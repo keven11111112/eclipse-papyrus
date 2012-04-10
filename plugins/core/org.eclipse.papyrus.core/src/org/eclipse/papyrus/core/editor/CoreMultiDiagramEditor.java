@@ -585,18 +585,18 @@ public class CoreMultiDiagramEditor extends AbstractMultiPageSashEditor implemen
 	 * @throws PartInitException
 	 */
 	protected void assertOneEditorOpen(IEditorSite site) throws PartInitException {
-//		IWorkbenchWindow window = site.getWorkbenchWindow();
-//		if (OneInstanceUtils.isPapyrusOpen(window,this)) {
-//			String errorMessage = Messages.CoreMultiDiagramEditor_only_one;
-//			if (MessageDialog.openQuestion(window.getShell(), Messages.CoreMultiDiagramEditor_warning, Messages.CoreMultiDiagramEditor_do_you_want_to_close +
-//					Messages.CoreMultiDiagramEditor_if_not_close)){
-//				if (!OneInstanceUtils.closeAllPapyrusOpened(window, this)){
-//					throw new PartInitException(errorMessage) ;
-//				}
-//			} else {
-//				throw new PartInitException(errorMessage) ;
-//			}
-//		}
+		IWorkbenchWindow window = site.getWorkbenchWindow();
+		if (OneInstanceUtils.isPapyrusOpen(window,this)) {
+			String errorMessage = Messages.CoreMultiDiagramEditor_only_one;
+			if (MessageDialog.openQuestion(window.getShell(), Messages.CoreMultiDiagramEditor_warning, Messages.CoreMultiDiagramEditor_do_you_want_to_close +
+					Messages.CoreMultiDiagramEditor_if_not_close)){
+				if (!OneInstanceUtils.closeAllPapyrusOpened(window, this)){
+					throw new PartInitException(errorMessage) ;
+				}
+			} else {
+				throw new PartInitException(errorMessage) ;
+			}
+		}
 	}
 
 	/**

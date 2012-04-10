@@ -57,7 +57,8 @@ public final class OneInstanceUtils {
 	 * @return
 	 */
 	public static boolean isPapyrusOpen(IWorkbenchWindow window, CoreMultiDiagramEditor reference) {
-		return getAllEdtiorsExceptReference(window,reference).size() > 0 ;
+		return false;
+//		return getAllEdtiorsExceptReference(window,reference).size() > 0 ;
 	}
 	
 	/**
