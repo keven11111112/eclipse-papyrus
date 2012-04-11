@@ -76,7 +76,7 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 				/*
 				 * Test if the moving element is going to be in a new resource
 				 */
-				if(!eResource.equals(containerEResource) && !AdapterFactoryEditingDomain.isControlled(sourceEObject)) {
+				if(!containerEResource.equals(eResource) && !AdapterFactoryEditingDomain.isControlled(sourceEObject)) {
 					/*
 					 * Move related diagrams
 					 */
@@ -154,6 +154,11 @@ public class ElementEditHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	protected ICommand getMoveDiagramsCommand(EObject container, EObject sourceEObject) {
+
+		// in case of copy/paste context (usage of MoveCommand also), the source object does not have a resource
+		if(sourceEObject.eResource() == null) {
+			return null;
+		}
 		/*
 		 * Get all diagram from source EObject (its diagram and its descendant)
 		 */

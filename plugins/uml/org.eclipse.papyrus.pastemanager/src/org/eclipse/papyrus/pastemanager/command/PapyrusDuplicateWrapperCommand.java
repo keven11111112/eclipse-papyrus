@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.service.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.service.edit.service.IElementEditService;
 
@@ -202,6 +203,7 @@ public class PapyrusDuplicateWrapperCommand extends AbstractTransactionalCommand
 				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
 				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
 				request.setParameter(PapyrusDuplicateWrapperCommand.ADDITIONAL_DUPLICATED_ELEMENTS, duplicatedExternalElements);
+				request.setParameter("Target_Owner", BusinessModelResolver.getInstance().getBusinessModel(container));
 				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
 				ICommand command = service.getEditCommand(request);
 				if(command != null) {

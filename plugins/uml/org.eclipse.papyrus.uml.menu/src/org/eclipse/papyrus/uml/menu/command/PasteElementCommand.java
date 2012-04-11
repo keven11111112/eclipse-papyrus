@@ -193,7 +193,7 @@ public class PasteElementCommand extends AbstractCommand {
 				}
 			}
 			
-			ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand(duplicatedObjects);
+			ICommand externalObjectsDuplicateCommand = getExternalObjectsDuplicateCommand(duplicatedObjects, targetOwner);
 			if(externalObjectsDuplicateCommand != null && command != null) {
 				command.compose(externalObjectsDuplicateCommand);
 			}
@@ -286,7 +286,7 @@ public class PasteElementCommand extends AbstractCommand {
 	 * 
 	 * @return the list of external objects to duplicate or an empty list if not elements are found to add.
 	 */
-	protected ICommand getExternalObjectsDuplicateCommand(Map duplicatedElementsMap) {
+	protected ICommand getExternalObjectsDuplicateCommand(Map duplicatedElementsMap, EObject targetOwner) {
 		CompositeCommand result = new CompositeCommand("Duplicate Diagrams");
 		Set<Object> duplicatedExternalElements = new HashSet<Object>();
 
@@ -296,6 +296,7 @@ public class PasteElementCommand extends AbstractCommand {
 				DuplicateElementsRequest request = new DuplicateElementsRequest(Collections.singletonList(object));
 				request.setAllDuplicatedElementsMap(duplicatedElementsMap);
 				request.setParameter("Additional_Duplicated_Elements", duplicatedExternalElements);
+				request.setParameter("Target_Owner", targetOwner);
 				IElementEditService service = ElementEditServiceUtils.getCommandProvider(object);
 				ICommand command = service.getEditCommand(request);
 				if(command != null) {
