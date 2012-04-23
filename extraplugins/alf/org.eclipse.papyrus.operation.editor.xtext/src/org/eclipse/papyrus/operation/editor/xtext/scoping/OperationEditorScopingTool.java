@@ -53,7 +53,9 @@ import org.eclipse.papyrus.operation.editor.xtext.operation.OperationDeclaration
 import org.eclipse.papyrus.operation.editor.xtext.operation.OperationDefinitionOrStub;
 import org.eclipse.papyrus.operation.editor.xtext.validation.OperationJavaValidator;
 import org.eclipse.uml2.uml.Behavior;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ElementImport;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
@@ -266,6 +268,9 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 						else
 							return ((Behavior)eImport.getImportedElement()).getName() ;
 					}
+					else if (element instanceof Reception) {
+						return ((Reception)element).getName() ;
+					}
 					else
 						return "Unexpected element kind..." ;
 				}
@@ -334,6 +339,12 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 						else
 							nestedList.add(contextOperation) ;
 					}
+					nestedScopes.add(nestedList) ;
+					// adds also receptions
+					if (contextClassifier instanceof org.eclipse.uml2.uml.Class) {
+						nestedList.addAll(((Class)contextClassifier).getOwnedReceptions()) ;
+					}
+
 					nestedScopes.add(nestedList) ;
 					// then builds other scoping levels based on context classifier inheritance hierarchy 
 					List<Classifier> currentGenerals = new ArrayList<Classifier>() ;
@@ -724,6 +735,15 @@ public class OperationEditorScopingTool extends AbstractScopingTool{
 						nestedList.addAll(removeDuplicateClassifiers(importedClassifiers)) ;
 						nestedScopes.add(nestedList) ;
 					}
+					
+					// Then process all classifiers at the same namespace level than the context classifier
+					nestedList = new ArrayList<EObject>() ;
+					Namespace namespaceOfContextClassifier = contextClassifier.getNamespace() ;
+					for (Element e : namespaceOfContextClassifier.getOwnedElements()) {
+						if (e instanceof Classifier && e != contextClassifier)
+							nestedList.add(e) ;
+					}
+					nestedScopes.add(nestedList) ;
 					
 					return nestedScopes ;
 				}
