@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+<extension
+         point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping
+            source="pathmap://TEST_PROFILES/"
+            target="platform:/plugin/org.eclipse.papyrus.sysml.modelexplorer.tests.generator/profile/"/>
+   </extension>
+
+   <extension
+         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+      <profile
+            description="profile for test modeling"
+            iconpath="icons/testIcon.png"
+            name="Test Modeling Profile"
+            path="pathmap://TEST_PROFILES/modelExplorerTest.profile.uml"
+            provider="Eclipse Modeling Project">
+      </profile>
+   </extension>
+
+</plugin>

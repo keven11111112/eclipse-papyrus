@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<uml:Profile xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/3.0.0/UML" xmi:id="_bA2ZgHnOEeGYn78b4G1s-Q" name="ModelExplorerTest" metaclassReference="_jRbIkXnOEeGYn78b4G1s-Q _WZXNYHpEEeGYn78b4G1s-Q _ixirAHpEEeGYn78b4G1s-Q" metamodelReference="_bA2ZgXnOEeGYn78b4G1s-Q">
+  <eAnnotations xmi:id="_srXdkHpJEeGifP1MNj-uKg" source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <contents xmi:type="ecore:EPackage" xmi:id="_JwTmkIMVEeGdYK4JhU1dXg" name="ModelExplorerTest" nsURI="http:///schemas/ModelExplorerTest/_JwNf8IMVEeGdYK4JhU1dXg/3" nsPrefix="ModelExplorerTest">
+      <eAnnotations xmi:id="_JwsBFIMVEeGdYK4JhU1dXg" source="PapyrusVersion">
+        <details xmi:id="_JwsBFYMVEeGdYK4JhU1dXg" key="Version" value="0.0.4"/>
+        <details xmi:id="_JwsBFoMVEeGdYK4JhU1dXg" key="Comment" value="added expected number of added elements"/>
+        <details xmi:id="_JwsBF4MVEeGdYK4JhU1dXg" key="Copyright" value="CEA LIST"/>
+        <details xmi:id="_JwsBGIMVEeGdYK4JhU1dXg" key="Date" value="2012-04-10"/>
+        <details xmi:id="_JwsBGYMVEeGdYK4JhU1dXg" key="Author" value="RS211865"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JwTmkYMVEeGdYK4JhU1dXg" name="TestModel">
+        <eAnnotations xmi:id="_JwTmkoMVEeGdYK4JhU1dXg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_kY68IHnOEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmk4MVEeGdYK4JhU1dXg" name="base_Model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmlYMVEeGdYK4JhU1dXg" name="sourceModel" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JwTml4MVEeGdYK4JhU1dXg" name="SourceTargetRulesCopyPasteTest">
+        <eAnnotations xmi:id="_JwTmmIMVEeGdYK4JhU1dXg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_GmyToHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmmYMVEeGdYK4JhU1dXg" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmm4MVEeGdYK4JhU1dXg" name="sourceElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmnYMVEeGdYK4JhU1dXg" name="targets" ordered="false" lowerBound="1" upperBound="-1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmn4MVEeGdYK4JhU1dXg" name="feature" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmoYMVEeGdYK4JhU1dXg" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmo4MVEeGdYK4JhU1dXg" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmpYMVEeGdYK4JhU1dXg" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmp4MVEeGdYK4JhU1dXg" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmqYMVEeGdYK4JhU1dXg" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmq4MVEeGdYK4JhU1dXg" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmrYMVEeGdYK4JhU1dXg" name="additionalElementsQuantity" ordered="false" lowerBound="1" defaultValueLiteral="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EInt"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_JwTmr4MVEeGdYK4JhU1dXg" name="ElementTypeRulesCopyPasteTest">
+        <eAnnotations xmi:id="_JwTmsIMVEeGdYK4JhU1dXg" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Pjw1sHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_JwTmsYMVEeGdYK4JhU1dXg" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTms4MVEeGdYK4JhU1dXg" name="elementType" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmtYMVEeGdYK4JhU1dXg" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmt4MVEeGdYK4JhU1dXg" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmuYMVEeGdYK4JhU1dXg" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmu4MVEeGdYK4JhU1dXg" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmvYMVEeGdYK4JhU1dXg" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_JwTmv4MVEeGdYK4JhU1dXg" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_NFfPcHpeEeGUn-gUafelZQ" name="ModelExplorerTest" nsURI="http:///schemas/ModelExplorerTest/_NFcMIHpeEeGUn-gUafelZQ/2" nsPrefix="ModelExplorerTest">
+      <eAnnotations xmi:id="_NGAz4XpeEeGUn-gUafelZQ" source="PapyrusVersion">
+        <details xmi:id="_NGAz4npeEeGUn-gUafelZQ" key="Version" value="0.0.3"/>
+        <details xmi:id="_NGAz43peEeGUn-gUafelZQ" key="Comment" value="fixed the default value error"/>
+        <details xmi:id="_NGAz5HpeEeGUn-gUafelZQ" key="Copyright" value="CEA LIST"/>
+        <details xmi:id="_NGAz5XpeEeGUn-gUafelZQ" key="Date" value="2012-03-30"/>
+        <details xmi:id="_NGAz5npeEeGUn-gUafelZQ" key="Author" value="RS211865"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_NFfPcXpeEeGUn-gUafelZQ" name="TestModel">
+        <eAnnotations xmi:id="_NFfPcnpeEeGUn-gUafelZQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_kY68IHnOEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPc3peEeGUn-gUafelZQ" name="base_Model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPdXpeEeGUn-gUafelZQ" name="sourceModel" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_NFfPd3peEeGUn-gUafelZQ" name="SourceTargetRulesCopyPasteTest">
+        <eAnnotations xmi:id="_NFfPeHpeEeGUn-gUafelZQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_GmyToHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPeXpeEeGUn-gUafelZQ" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPe3peEeGUn-gUafelZQ" name="sourceElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPfXpeEeGUn-gUafelZQ" name="targets" ordered="false" lowerBound="1" upperBound="-1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPf3peEeGUn-gUafelZQ" name="feature" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPgXpeEeGUn-gUafelZQ" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPg3peEeGUn-gUafelZQ" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPhXpeEeGUn-gUafelZQ" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPh3peEeGUn-gUafelZQ" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPiXpeEeGUn-gUafelZQ" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPi3peEeGUn-gUafelZQ" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_NFfPjXpeEeGUn-gUafelZQ" name="ElementTypeRulesCopyPasteTest">
+        <eAnnotations xmi:id="_NFfPjnpeEeGUn-gUafelZQ" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Pjw1sHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_NFfPj3peEeGUn-gUafelZQ" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPkXpeEeGUn-gUafelZQ" name="elementType" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPk3peEeGUn-gUafelZQ" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPlXpeEeGUn-gUafelZQ" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPl3peEeGUn-gUafelZQ" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPmXpeEeGUn-gUafelZQ" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPm3peEeGUn-gUafelZQ" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_NFfPnXpeEeGUn-gUafelZQ" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+    <contents xmi:type="ecore:EPackage" xmi:id="_j_2lUHpREeGa7NsMeUze4A" name="ModelExplorerTest" nsURI="http:///schemas/ModelExplorerTest/_j_ziAHpREeGa7NsMeUze4A/1" nsPrefix="ModelExplorerTest">
+      <eAnnotations xmi:id="_kAI5MXpREeGa7NsMeUze4A" source="PapyrusVersion">
+        <details xmi:id="_kAI5MnpREeGa7NsMeUze4A" key="Version" value="0.0.2"/>
+        <details xmi:id="_kAI5M3pREeGa7NsMeUze4A" key="Comment" value="fixed the default valiue error"/>
+        <details xmi:id="_kAI5NHpREeGa7NsMeUze4A" key="Copyright" value="CEA LIST"/>
+        <details xmi:id="_kAI5NXpREeGa7NsMeUze4A" key="Date" value="2012-03-30"/>
+        <details xmi:id="_kAI5NnpREeGa7NsMeUze4A" key="Author" value="RS211865"/>
+      </eAnnotations>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_j_2lUXpREeGa7NsMeUze4A" name="TestModel">
+        <eAnnotations xmi:id="_j_2lUnpREeGa7NsMeUze4A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_kY68IHnOEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lU3pREeGa7NsMeUze4A" name="base_Model" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lVXpREeGa7NsMeUze4A" name="sourceModel" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Model"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_j_2lV3pREeGa7NsMeUze4A" name="SourceTargetRulesCopyPasteTest">
+        <eAnnotations xmi:id="_j_2lWHpREeGa7NsMeUze4A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_GmyToHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lWXpREeGa7NsMeUze4A" name="base_Class" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Class"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lW3pREeGa7NsMeUze4A" name="sourceElement" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lXXpREeGa7NsMeUze4A" name="targets" ordered="false" lowerBound="1" upperBound="-1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Element"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lX3pREeGa7NsMeUze4A" name="feature" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lYXpREeGa7NsMeUze4A" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lY3pREeGa7NsMeUze4A" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lZXpREeGa7NsMeUze4A" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lZ3pREeGa7NsMeUze4A" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2laXpREeGa7NsMeUze4A" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2la3pREeGa7NsMeUze4A" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+      <eClassifiers xmi:type="ecore:EClass" xmi:id="_j_2lbXpREeGa7NsMeUze4A" name="ElementTypeRulesCopyPasteTest">
+        <eAnnotations xmi:id="_j_2lbnpREeGa7NsMeUze4A" source="http://www.eclipse.org/uml2/2.0.0/UML" references="_Pjw1sHnPEeGYn78b4G1s-Q"/>
+        <eStructuralFeatures xmi:type="ecore:EReference" xmi:id="_j_2lb3pREeGa7NsMeUze4A" name="base_Package" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EClass" href="http://www.eclipse.org/uml2/3.0.0/UML#//Package"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lcXpREeGa7NsMeUze4A" name="elementType" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lc3pREeGa7NsMeUze4A" name="preCopyInitialization" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2ldXpREeGa7NsMeUze4A" name="postCopyRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2ld3pREeGa7NsMeUze4A" name="postUndoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2leXpREeGa7NsMeUze4A" name="postRedoRule" ordered="false" lowerBound="1">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2le3pREeGa7NsMeUze4A" name="isCopyRuleValidInRedo" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+        <eStructuralFeatures xmi:type="ecore:EAttribute" xmi:id="_j_2lfXpREeGa7NsMeUze4A" name="canCopy" ordered="false" lowerBound="1" defaultValueLiteral="true">
+          <eType xmi:type="ecore:EDataType" href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+        </eStructuralFeatures>
+      </eClassifiers>
+    </contents>
+  </eAnnotations>
+  <elementImport xmi:id="_jRbIkXnOEeGYn78b4G1s-Q" alias="Model">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+  </elementImport>
+  <elementImport xmi:id="_WZXNYHpEEeGYn78b4G1s-Q" alias="Package">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+  </elementImport>
+  <elementImport xmi:id="_ixirAHpEEeGYn78b4G1s-Q" alias="Class">
+    <importedElement xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+  </elementImport>
+  <packageImport xmi:id="_bA2ZgXnOEeGYn78b4G1s-Q">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_METAMODELS/UML.metamodel.uml#_0"/>
+  </packageImport>
+  <packageImport xmi:id="_bA2ZgnnOEeGYn78b4G1s-Q">
+    <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+  </packageImport>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_kY68IHnOEeGYn78b4G1s-Q" name="TestModel">
+    <ownedAttribute xmi:id="_syeoEHnOEeGYn78b4G1s-Q" name="base_Model" association="_syt4oHnOEeGYn78b4G1s-Q">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_8fyOcHnOEeGYn78b4G1s-Q" name="sourceModel">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Model"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_syt4oHnOEeGYn78b4G1s-Q" name="E_TestModel_Model1" memberEnd="_syt4oXnOEeGYn78b4G1s-Q _syeoEHnOEeGYn78b4G1s-Q">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_syt4oXnOEeGYn78b4G1s-Q" name="extension_TestModel" type="_kY68IHnOEeGYn78b4G1s-Q" aggregation="composite" association="_syt4oHnOEeGYn78b4G1s-Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_GmyToHnPEeGYn78b4G1s-Q" name="SourceTargetRulesCopyPasteTest">
+    <ownedAttribute xmi:id="_IF9nYHnPEeGYn78b4G1s-Q" name="base_Class" association="_IGM38HnPEeGYn78b4G1s-Q">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Class"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_KaWr4HnPEeGYn78b4G1s-Q" name="sourceElement">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_tBLHwHpEEeGYn78b4G1s-Q" name="targets">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_wX2vsHpEEeGYn78b4G1s-Q" value="*"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_HgzoQHpFEeGYn78b4G1s-Q" name="feature">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_716HYHpEEeGYn78b4G1s-Q" name="preCopyInitialization">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_AfapIHpFEeGYn78b4G1s-Q" name="postCopyRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_ndHz4HpFEeGYn78b4G1s-Q" name="postUndoRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_rPTsEHpFEeGYn78b4G1s-Q" name="postRedoRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_40E4oHpFEeGYn78b4G1s-Q" name="isCopyRuleValidInRedo">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_YcipQHpIEeGifP1MNj-uKg" name="sourceTargetRuleIsCopyRuleValidDefaultValue" value="true"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_nF1N4HpIEeGifP1MNj-uKg" name="canCopy">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_nF1N4XpIEeGifP1MNj-uKg" name="sourceTargetRuleCanCopyDefaultValue" value="true"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Q_auEIMUEeGdYK4JhU1dXg" name="additionalElementsQuantity">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+      <defaultValue xmi:type="uml:LiteralString" xmi:id="_Ez3hwIMVEeGdYK4JhU1dXg" value="1"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_IGM38HnPEeGYn78b4G1s-Q" name="E_SourceDefinition_Class1" memberEnd="_IGM38XnPEeGYn78b4G1s-Q _IF9nYHnPEeGYn78b4G1s-Q">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_IGM38XnPEeGYn78b4G1s-Q" name="extension_SourceTargetRulesCopyPasteTest" type="_GmyToHnPEeGYn78b4G1s-Q" aggregation="composite" association="_IGM38HnPEeGYn78b4G1s-Q"/>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Stereotype" xmi:id="_Pjw1sHnPEeGYn78b4G1s-Q" name="ElementTypeRulesCopyPasteTest">
+    <ownedAttribute xmi:id="_ZjOIcHnPEeGYn78b4G1s-Q" name="base_Package" association="_ZjdZAHnPEeGYn78b4G1s-Q">
+      <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_RhREMHnPEeGYn78b4G1s-Q" name="elementType">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+      <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_a80YoHnPEeGYn78b4G1s-Q" value="1"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ee85c3pIEeGifP1MNj-uKg" name="preCopyInitialization">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ee85dHpIEeGifP1MNj-uKg" name="postCopyRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ee85cnpIEeGifP1MNj-uKg" name="postUndoRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_EezvgHpIEeGifP1MNj-uKg" name="postRedoRule">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_Ee85cHpIEeGifP1MNj-uKg" name="isCopyRuleValidInRedo">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_fn8J4HpREeGa7NsMeUze4A" name="elementTypeRuleIsCopyValidDefaultValue" value="true"/>
+    </ownedAttribute>
+    <ownedAttribute xmi:id="_fZxhIHpIEeGifP1MNj-uKg" name="canCopy">
+      <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+      <defaultValue xmi:type="uml:LiteralBoolean" xmi:id="_l-7QMHpIEeGifP1MNj-uKg" name="elementTypeRuleCanCopyDefaultValue" value="true"/>
+    </ownedAttribute>
+  </packagedElement>
+  <packagedElement xmi:type="uml:Extension" xmi:id="_ZjdZAHnPEeGYn78b4G1s-Q" name="E_TargetDefinition_Package1" memberEnd="_ZjdZAXnPEeGYn78b4G1s-Q _ZjOIcHnPEeGYn78b4G1s-Q">
+    <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_ZjdZAXnPEeGYn78b4G1s-Q" name="extension_ElementTypeRulesCopyPasteTest" type="_Pjw1sHnPEeGYn78b4G1s-Q" aggregation="composite" association="_ZjdZAHnPEeGYn78b4G1s-Q"/>
+  </packagedElement>
+</uml:Profile>
