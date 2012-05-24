@@ -18,8 +18,9 @@
         <acceleoCompiler 
             sourceFolder="${target.folder}"
             outputFolder="${target.folder}"
-            dependencies="${target.folder}/../../org.eclipse.papyrus.extensionpoints.uml2;"
-            binaryResource="false">
+            dependencies=""
+            binaryResource="false"
+            packagesToRegister="">
         </acceleoCompiler>
     </target>    
 </project>

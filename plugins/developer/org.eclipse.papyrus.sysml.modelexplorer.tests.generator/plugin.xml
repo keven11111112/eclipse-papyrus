@@ -9,7 +9,7 @@
    </extension>
 
    <extension
-         point="org.eclipse.papyrus.extensionpoints.uml2.UMLProfile">
+         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
       <profile
             description="profile for test modeling"
             iconpath="icons/testIcon.png"
