@@ -10,6 +10,10 @@
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VwHkIHRGEeGbA9TcuN7qCA" value="1"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VwG9EHRGEeGbA9TcuN7qCA" value="1"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="_R5uCwJqEEeGgRvetq2P46A" name="rB2" type="_CqW0MHRGEeGbA9TcuN7qCA" association="_UVVwopqEEeGgRvetq2P46A">
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_UVVwoZqEEeGgRvetq2P46A" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_UVVwoJqEEeGgRvetq2P46A" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_CqW0MHRGEeGbA9TcuN7qCA" name="B2"/>
     <packagedElement xmi:type="uml:Package" xmi:id="_E8hEEHRGEeGbA9TcuN7qCA" name="P1">
@@ -48,6 +52,12 @@
         <details xmi:id="_VwILMXRGEeGbA9TcuN7qCA" key="nature" value="SysML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:id="_VwILMnRGEeGbA9TcuN7qCA" name="" type="__OVZQHRFEeGbA9TcuN7qCA" association="_VwHkIXRGEeGbA9TcuN7qCA"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_UVVwopqEEeGgRvetq2P46A" name="Association3" memberEnd="_R5uCwJqEEeGgRvetq2P46A _UVVwpZqEEeGgRvetq2P46A">
+      <eAnnotations xmi:id="_UVVwo5qEEeGgRvetq2P46A" source="org.eclipse.papyrus">
+        <details xmi:id="_UVVwpJqEEeGgRvetq2P46A" key="nature" value="SysML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:id="_UVVwpZqEEeGgRvetq2P46A" name="" type="__OVZQHRFEeGbA9TcuN7qCA" association="_UVVwopqEEeGgRvetq2P46A"/>
     </packagedElement>
     <profileApplication xmi:id="_sT65AJdfEeCIWccnqNjPug">
       <eAnnotations xmi:id="_sUNz8JdfEeCIWccnqNjPug" source="http://www.eclipse.org/uml2/2.0.0/UML">

@@ -242,7 +242,7 @@ public class [getFileName(aClass)/] extends [getFileName(aClass.eContainer(Packa
 [query public getFileName(aPackage: Package) : String = 'AbstractCopyPaste'.concat(aPackage.name).concat('Test')/]
 
 [** Returns all Rules for the given test model *]
-[query public getAllElementTypesRules(aTestModel : Model) : Set(Package) = aTestModel.ownedElement->select(e : Element | isStereotyped(e, 'ModelExplorerTest::ElementTypeRulesCopyPasteTest'))/]
+[query public getAllElementTypesRules(aTestModel : Model) : Set(Package) = aTestModel.allOwnedElements()->select(e : Element | isStereotyped(e, 'ModelExplorerTest::ElementTypeRulesCopyPasteTest'))/]
 
 [query public getAllSourceTargetRules(elementTypeRule : Package, aTestModel :Model ) : Set(Class) = elementTypeRule.ownedElement->select(e : Element | isStereotyped(e, 'ModelExplorerTest::SourceTargetRulesCopyPasteTest')) /]
 
