@@ -170,8 +170,9 @@
       </rm:uri>
     </rm:provider>
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
+    	  <!-- After Indigo SR2, the OCL update site from the Indigo Aggregator doesn't exist anymore -->
 		  <!-- updateFrom("MDT OCL 3.1",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/maintenance/3.1.0">
+      <rm:uri format="{0}/releases/indigo">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
