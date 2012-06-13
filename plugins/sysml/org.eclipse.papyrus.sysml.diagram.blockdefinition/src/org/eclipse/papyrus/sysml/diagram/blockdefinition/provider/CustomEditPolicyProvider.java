@@ -36,12 +36,14 @@ import org.eclipse.papyrus.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPart;
 import org.eclipse.papyrus.diagram.clazz.edit.parts.PackagePackageableElementCompartmentEditPartCN;
 import org.eclipse.papyrus.diagram.common.editparts.ResizeableListCompartmentEditPart;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
@@ -53,6 +55,7 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEdi
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowSpecificationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.UnitEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ValueTypeEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementChildLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditPart;
@@ -105,11 +108,22 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			return true;
 		}
 
+		if(gep instanceof BlockDefinitionDiagramEditPart) {
+			return true;
+		}
+
+
 		return super.provides(operation);
 	}
 
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
+
+		if(editPart instanceof BlockDefinitionDiagramEditPart) {
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			// no installation of other policies. 
+			return;
+		}
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());

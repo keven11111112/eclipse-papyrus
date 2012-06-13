@@ -20,6 +20,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.diagram.common.editpolicies.NavigationEditPolicy;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.diagram.composite.edit.parts.CommentEditPartCN;
@@ -33,6 +34,8 @@ import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyComposite
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockPropertyStructureCompartmentEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedNodeEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.StructureCompartmentEditPart;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.internalblock.edit.part.InternalBlockDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeDropEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy.CustomBlockPropertyCompositeSemanticEditPolicy;
@@ -90,11 +93,22 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 			return true;
 		}
 
+		// provides for the main diagram edit part
+		if(gep instanceof InternalBlockDiagramEditPart) {
+			return true;
+		}
+
 		return super.provides(operation);
 	}
 
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
+
+		if(editPart instanceof InternalBlockDiagramEditPart) {
+			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			// no installation of other policies. 
+			return;
+		}
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDragDropEditPolicy());
 		editPart.installEditPolicy(EditPolicyRoles.OPEN_ROLE, new NavigationEditPolicy());

@@ -15,6 +15,8 @@ package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractShapeCompartmentEditPart;
 
@@ -31,6 +33,7 @@ public class StructureCompartmentEditPart extends AbstractShapeCompartmentEditPa
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StructureCompartmentSemanticEditPolicy());
 		// Start of user code custom edit policies
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 		// End of user code
 	}
 

@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.sysml.diagram.common.edit.part;
 
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.common.edit.policy.CustomDuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractShapeCompartmentEditPart;
 
 public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeCompartmentEditPart {
@@ -28,6 +30,7 @@ public class BlockPropertyStructureCompartmentEditPart extends AbstractShapeComp
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		// Start of user code custom edit policies
+		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 		// End of user code
 	}
 
