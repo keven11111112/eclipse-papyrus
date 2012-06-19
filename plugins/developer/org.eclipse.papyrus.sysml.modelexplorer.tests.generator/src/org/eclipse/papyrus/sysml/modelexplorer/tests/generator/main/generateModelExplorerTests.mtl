@@ -3,7 +3,7 @@
 [**
  * The documentation of the module.
  */]
-[module generateModelExplorerTests('http://www.eclipse.org/uml2/4.0.0/UML')/]
+[module generateModelExplorerTests('http://www.eclipse.org/uml2/4.0.0/UML', 'http://www.eclipse.org/gmf/runtime/1.0.2/notation')/]
 [import org::eclipse::papyrus::sysml::modelexplorer::tests::generator::common::CopyPasteTests /]
 
 
@@ -16,7 +16,19 @@
 	[comment @main /]
 	[let testedModel : Model = aTestModel.getValue(aTestModel.getAppliedStereotype('ModelExplorerTest::TestModel'), 'sourceModel').oclAsType(Model)]
 
-	[file ('/org/eclipse/papyrus/sysml/modelexplorer/tests/copypaste/AbstractCopyPasteTest.java', false, 'Cp1252')]
+	[generateAbstractModelExplorerTest(aTestModel, testedModel)/]
+
+	[generateAbstractCopyPasteTest(aTestModel ,testedModel)/]
+
+	[generateCopyPasteTests(aTestModel, testedModel)/]
+
+	[generateCopyPasteSuites(aTestModel, testedModel)/]
+
+[/let]
+[/template]
+
+[template public generateAbstractModelExplorerTest (aTestModel : Model, testedModel : Model) ]
+[file ('/org/eclipse/papyrus/sysml/modelexplorer/tests/common/AbstractModelExplorerTest.java', false, 'Cp1252'))]
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *    
@@ -28,50 +40,61 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  * 
- * @Generated from [aTestModel.name/] 
+ * @Generated from Model 
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
+package org.eclipse.papyrus.sysml.modelexplorer.tests.common;
 
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.HashMap;
+import java.util.Collections;
+import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
 import junit.framework.Assert;
 
-import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.ModelElementItem;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 import org.eclipse.papyrus.sysml.modelexplorer.Activator;
 import org.eclipse.papyrus.sysml.modelexplorer.tests.utils.EditorUtils;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
 import org.eclipse.papyrus.views.modelexplorer.NavigatorUtils;
+import org.eclipse.papyrus.views.modelexplorer.matching.IMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.LinkItemMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.ModelElementItemMatchingItem;
+import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IViewPart;
-import org.eclipse.ui.IWorkbenchCommandConstants;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.ui.commands.ICommandService;
 import org.eclipse.ui.intro.IIntroPart;
+import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.uml2.uml.Model;
 import org.junit.AfterClass;
 import org.junit.BeforeClass;
 
 
+
 /**
  * Abstract class for Copy/paste
  */
-public abstract class AbstractCopyPasteTest {
+public abstract class AbstractModelExplorerTest {
 
 	/** boolean to indicate if the test is initialized or not */
 	private static boolean isInitialized;
@@ -204,6 +227,415 @@ public abstract class AbstractCopyPasteTest {
 	}
 
 	/**
+	 * Returns the current editing domain
+	 * 
+	 * @return
+	 *         the current editing domain
+	 */
+	protected TransactionalEditingDomain getEditingDomain() throws Exception {
+		return org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
+	}
+
+	/**
+	 * Returns <code>true</code> if the current Active editor is dirty.
+	 * 
+	 * @return <code>true</code> if the current Active editor is dirty
+	 * @throws Exception
+	 *         exception thrown in case of problem (NPE, etc.)
+	 */
+	protected boolean isEditorDirty() throws Exception {
+		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().isDirty();
+	}
+
+/**
+	 * Selects and reveal the specified element
+	 * 
+	 * @param object
+	 *        the object to select
+	 * @throws Exception
+	 *         exception thrown in case element could not be selected
+	 */
+	public static void selectAndRevealDiagram(Diagram object) throws Exception {
+		selectAndRevealDiagram(Arrays.asList(object));
+	}
+
+	/**
+	 * Selects and reveal the specified list of diagrams
+	 * 
+	 * @param newElements
+	 *        the list of diagrams to select
+	 * @throws Exception
+	 *         exception thrown in case diagram could not be selected
+	 */
+	public static void selectAndRevealDiagram(List<Diagram> newDiagrams) throws Exception {
+		// Retrieve model explorer
+		ModelExplorerView modelExplorerView = null;
+		ModelExplorerPageBookView bookViewPart = (ModelExplorerPageBookView)NavigatorUtils.findViewPart(ModelExplorerPageBookView.VIEW_ID); //$NON-NLS-0$
+		if(bookViewPart != null) {
+			modelExplorerView = (ModelExplorerView)((ModelExplorerPageBookView)bookViewPart).getActiveView();
+		}
+		// Set selection on new element in the model explorer
+		if((modelExplorerView != null) && (newDiagrams != null)) {
+			List<Diagram> semanticElementList = new ArrayList<Diagram>();
+			semanticElementList.addAll(newDiagrams);
+			// reveal 'container' of the diagram
+			reveal(semanticElementList, modelExplorerView.getCommonViewer());
+		} else {
+			throw new Exception("Impossible to find the model explorer required to select: " + newDiagrams);
+		}
+	}
+
+	/**
+	 * Expands the given CommonViewer to reveal the given elements
+	 * 
+	 * @param elementList
+	 *        The elements to reveal
+	 * @param commonViewer
+	 *        The CommonViewer they are to be revealed in
+	 */
+	public static void reveal(Iterable<Diagram> elementList, CommonViewer commonViewer) {
+		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
+		// filter out non EMF objects
+		for(Diagram currentEObject : elementList) {
+			matchingItemsToSelect.add(new ModelElementItemMatchingItem(currentEObject));
+			// the content provider exist?
+			if(commonViewer.getContentProvider() != null) {
+				// retrieve the ancestors to reveal them
+				// and allow the selection of the object
+				ArrayList<EObject> parents = new ArrayList<EObject>();
+				// retrieve context
+				EObject tmp = currentEObject.getElement();
+				while(tmp != null) {
+					parents.add(tmp);
+					tmp = tmp.eContainer();
+				}
+				List<EObject> reverseParents = new ArrayList<EObject>(parents);
+				Collections.reverse(reverseParents);
+				// reveal the resource if necessary
+				Resource r = null;
+				if(!parents.isEmpty()) {
+					r = parents.get(parents.size() - 1).eResource();
+				} else {
+					r = currentEObject.eResource();
+				}
+				if(r != null) {
+					ResourceSet rs = r.getResourceSet();
+					if(rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
+						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
+						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
+					}
+				}
+				/*
+				 * reveal the ancestors tree using expandToLevel on each of them
+				 * in the good order. This is a lot faster than going through the whole tree
+				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
+				 * to keep track of the revealed elements.
+				 * 
+				 * However we need to use a dedicated MatchingItem to do the matching,
+				 * and a specific comparer in our viewer so than the equals of MatchingItem is
+				 * used in priority.
+				 * 
+				 * Please refer to MatchingItem for more infos.
+				 */
+				EObject previousParent = null;
+				for(EObject parent : reverseParents) {
+					if(parent.eContainingFeature() != null && previousParent != null) {
+						commonViewer.expandToLevel(new LinkItemMatchingItem(previousParent, parent.eContainmentFeature()), 1);
+					}
+					commonViewer.expandToLevel(new ModelElementItemMatchingItem(parent), 1);
+					previousParent = parent;
+				}
+				commonViewer.expandToLevel(new LinkItemMatchingItem(currentEObject.eContainer(), currentEObject.eContainmentFeature()), 1);
+			}
+		}
+		commonViewer.setSelection(new StructuredSelection(matchingItemsToSelect), true);
+	}
+
+	/**
+	 * Returns the diagram with the given name
+	 * 
+	 * @param name
+	 *        the name of the diagram to find
+	 * @return the diagram with the given name.
+	 * @exception Exception
+	 *            exception thrown in case of issue, e.g. diagram was not found
+	 */
+	protected static Diagram getDiagram(String name) throws Exception {
+		Iterator<EObject> it = EditorUtils.getDiagramEditPart().getDiagramView().eResource().getContents().iterator();
+		while(it.hasNext()) {
+			EObject next = it.next();
+			if(next instanceof Diagram) {
+				if(name.equals(((Diagram)next).getName())) {
+					return (Diagram)next;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * Retrieves the Model Element Item for the given EObject
+	 * 
+	 * @param objectToFind
+	 *        object represented by the searched item
+	 * @return the {@link ModelElementItem} that corresponds to the diagram
+	 * @throws Exception
+	 *         exception thrown in case of issue
+	 */
+	protected ModelElementItem findSemanticModelElementItem(EObject objectToFind) throws Exception {
+		selectAndReveal(objectToFind);
+		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
+		Assert.assertEquals("one and only one object should be selected", 1, selection.size());
+		Object selectedElement = (ModelElementItem)selection.getFirstElement();
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
+		Assert.assertTrue("selection should be linked to a EObject", ((ModelElementItem)selectedElement).getEObject() instanceof EObject);
+		Assert.assertTrue("selection should be linked to the Object: " + objectToFind, ((ModelElementItem)selectedElement).getEObject().equals(objectToFind));
+		return (ModelElementItem)selectedElement;
+	}
+
+	/**
+	 * Retrieves the Model Element Item for the given Diagram
+	 * 
+	 * @param diagramToFind
+	 *        diagram represented by the searched item
+	 * @return the {@link ModelElementItem} that corresponds to the diagram
+	 * @throws Exception
+	 *         exception thrown in case of issue
+	 */
+	protected ModelElementItem findSemanticModelElementItem(Diagram diagramToFind) throws Exception {
+		selectAndRevealDiagram(diagramToFind);
+		IStructuredSelection selection = (IStructuredSelection)modelExplorerPart.getSite().getSelectionProvider().getSelection();
+		Assert.assertEquals("one and only one diagram should be selected", 1, selection.size());
+		Object selectedElement = (ModelElementItem)selection.getFirstElement();
+		Assert.assertTrue("selection should be a model item element", selectedElement instanceof ModelElementItem);
+		Assert.assertTrue("selection should be linked to a Diagram", ((ModelElementItem)selectedElement).getEObject() instanceof Diagram);
+		Assert.assertTrue("selection should be linked to the Object: " + diagramToFind, ((ModelElementItem)selectedElement).getEObject().equals(diagramToFind));
+		return (ModelElementItem)selectedElement;
+	}
+
+	protected String printElement(EObject object) {
+		if(object instanceof Diagram) {
+			return printElement((Diagram)object);
+		}
+		return EcoreUtil.getID(object);
+	}
+
+	protected String printElement(Diagram diagram) {
+		return diagram.getName() + " <" + diagram.getType() + ">";
+	}
+
+}
+
+[/file]
+[/template]
+
+[template public generateCopyPasteSuites (aTestModel : Model, testedModel : Model) ]
+[file ('/org/eclipse/papyrus/sysml/modelexplorer/tests/suites/AllCopyPasteTests.java', false, 'Cp1252'))]
+	/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ * @generated
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
+
+import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.*;
+import org.junit.runner.RunWith;
+import org.junit.runners.Suite;
+import org.junit.runners.Suite.SuiteClasses;
+
+
+/**
+ * Tests suite for Copy/Paste
+ * @generated
+ */
+@RunWith(Suite.class)
+@SuiteClasses({
+[for (aPackage : Package | getAllElementTypesRules(aTestModel))]
+// [aPackage.name/]
+	[for (aClass : Class | getAllSourceTargetRules(aPackage, aTestModel))]
+[getFileName(aClass)/].class,
+	[/for]
+[/for]
+
+})
+public class AllCopyPasteTests {
+
+}
+[/file]
+[/template]
+
+[template public generateProperties(aModel: Model)]
+	protected static org.eclipse.uml2.uml.Model [generateElementName(aModel)/];
+	[for (element : Element | aModel.eContents(Element))]
+	[generateProperties(element)/]
+	[/for]
+
+	[comment Generate the selectable diagrams /]
+	[for(diagram : Diagram | getAllDiagrams(aModel))]
+		[generateDiagramProperties(diagram)/]
+	[/for]
+
+[/template]
+
+[template public generateProperties (aElement : Element) ]
+[/template]
+
+[template public generateDiagramProperties(diagram : Diagram)]
+protected static Diagram [generateDiagramName(diagram)/];
+[/template]
+
+[template public generateProperties (aPackage : Package) ]
+protected static org.eclipse.uml2.uml.Package [generateElementName(aPackage)/];
+[for (subPackage : Package | aPackage.nestedPackage)][generateProperties(subPackage)/]
+[/for]
+[for (subClass : Class | aPackage.ownedMember->filter(Class))][generateProperties(subClass)/]
+[/for]
+[for (subInterface : Interface | aPackage.ownedMember->filter(Interface))][generateProperties(subInterface)/]
+[/for]
+[/template]
+
+[template public generateProperties (aClass : Class) ]
+protected static org.eclipse.uml2.uml.Class [generateElementName(aClass)/];
+[for (aProperty : Property| aClass.attribute)][generatesProperties(aProperty)/]
+[/for]
+[for (aOperation : Operation| aClass.ownedOperation)][generatesProperties(aOperation)/]
+[/for]
+[/template]
+
+[template public generateProperties (aInterface : Interface) ]
+protected static org.eclipse.uml2.uml.Interface [generateElementName(aInterface)/];
+[for (aProperty : Property| aInterface.attribute)][generatesProperties(aProperty)/]
+[/for]
+[for (aOperation : Operation| aInterface.ownedOperation)][generatesProperties(aOperation)/]
+[/for]
+[/template]
+
+[template public generatesProperties(aProperty : Property) ]
+protected static org.eclipse.uml2.uml.Property [generateElementName(aProperty)/];
+[/template]
+
+[template public generatesProperties(aOperation : Operation) ]
+protected static org.eclipse.uml2.uml.Operation [generateElementName(aOperation)/];
+[/template]
+
+[template public initializeModelElements (aModel : Model) ]
+ 	[generateElementName(aModel)/] = (org.eclipse.uml2.uml.Model)root;
+	[for (element : Element | aModel.eContents(Element))]
+	[initializeModelElements(element)/]
+	[/for]
+	
+	[comment Initialization of diagrams/]
+	 [for(diagram : Diagram | getAllDiagrams(aModel))]
+		[initializeDiagram(diagram)/]
+	[/for]
+
+[/template]
+
+[template public initializeDiagram (aDiagram : Diagram) ]
+[generateDiagramName(aDiagram)/] = getDiagram("[aDiagram.name/]");
+Assert.assertNotNull("Impossible to find [diagram.name/]", [generateDiagramName(aDiagram)/] );
+[/template]
+
+[template public initializeModelElements (aElement : Element) ]
+[/template]
+
+[template public initializeModelElements (aPackage : Package) ]
+[generateElementName(aPackage)/] = (org.eclipse.uml2.uml.Package)[generateElementName(aPackage.eContainer().oclAsType(Element))/].getPackagedElement("[aPackage.name/]"); 
+Assert.assertNotNull("Impossible to find Package [aPackage.name/]", [generateElementName(aPackage)/] );
+[for (subPackage : Package | aPackage.nestedPackage)][initializeModelElements(subPackage)/]
+[/for]
+[for (subClass : Class | aPackage.ownedMember->filter(Class))][initializeModelElements(subClass)/]
+[/for]
+[for (subInterface : Interface | aPackage.ownedMember->filter(Interface))][initializeModelElements(subInterface)/]
+[/for]
+[/template]
+
+[template public initializeModelElements (aClass : Class) ]
+[generateElementName(aClass)/] = (org.eclipse.uml2.uml.Class)[generateElementName(aClass.eContainer().oclAsType(Element))/].getPackagedElement("[aClass.name/]");
+Assert.assertNotNull("Impossible to find Class [aClass.name/]", [generateElementName(aClass)/] ); 
+[for (aProperty : Property| aClass.attribute)][initializeModelElements(aProperty)/]
+[/for]
+[for (aOperation : Operation| aClass.ownedOperation)][initializeModelElements(aOperation)/]
+[/for]
+[/template]
+
+[template public initializeModelElements (aInterface : Interface) ]
+[generateElementName(aInterface)/] = (org.eclipse.uml2.uml.Interface)[generateElementName(aInterface.eContainer().oclAsType(Element))/].getPackagedElement("[aInterface.name/]");
+Assert.assertNotNull("Impossible to find Interface [aInterface.name/]", [generateElementName(aInterface)/] );  
+[for (aProperty : Property| aInterface.attribute)][initializeModelElements(aProperty)/]
+[/for]
+[for (aOperation : Operation| aInterface.ownedOperation)][initializeModelElements(aOperation)/]
+[/for]
+[/template]
+
+[template public initializeModelElements(aProperty : Property) ]
+[generateElementName(aProperty)/] = (org.eclipse.uml2.uml.Property)[generateElementName(aProperty.eContainer().oclAsType(Element))/].getAttribute("[aProperty.name/]", null);
+Assert.assertNotNull("Impossible to find Property [aProperty.name/]", [generateElementName(aProperty)/] );  
+[/template]
+
+[template public initializeModelElements(aOperation : Operation) ]
+[generateElementName(aOperation)/] = (org.eclipse.uml2.uml.Operation)[generateElementName(aOperation.eContainer().oclAsType(Element))/].getOperation("[aOperation.name/]", null, null);
+Assert.assertNotNull("Impossible to find Operation [aOperation.name/]", [generateElementName(aOperation)/] );   
+[/template]
+
+
+[**
+ * Generates a file for each junit test stereotype
+ */]
+[template public generateJUnitFiles (aModel : Model) ]
+	
+[/template]
+
+
+[query public getAllDiagrams(element : Element) : Set(Diagram) = invoke('org.eclipse.papyrus.sysml.modelexplorer.tests.generator.common.NotationUtils', 'getAllDiagrams(org.eclipse.uml2.uml.Element)', Sequence{element})/]
+
+[template public generateAbstractCopyPasteTest (aTestModel : Model, testedModel : Model) ]
+[file ('/org/eclipse/papyrus/sysml/modelexplorer/tests/copypaste/AbstractCopyPasteTest.java', false, 'Cp1252')]
+/*****************************************************************************
+ * Copyright (c) 2011 CEA LIST.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ * 
+ * @Generated from [aTestModel.name/] 
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import junit.framework.Assert;
+
+import org.eclipse.core.commands.ExecutionEvent;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.sysml.modelexplorer.tests.common.AbstractModelExplorerTest;
+import org.eclipse.ui.IWorkbenchCommandConstants;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.commands.ICommandService;
+
+
+/**
+ * Abstract class for Copy/paste
+ */
+public abstract class AbstractCopyPasteTest extends AbstractModelExplorerTest {
+
+	/**
 	 * Generic implementation of the test
 	 * 
 	 * @throws Exception
@@ -323,176 +755,6 @@ public abstract class AbstractCopyPasteTest {
 	protected void initializeTest(Map<Object, Object> additionalChecks, EObject targetContainer, EObject copiedEObject) {
 		// nothing to do here
 	}
-
-	/**
-	 * Returns the current editing domain
-	 * 
-	 * @return
-	 *         the current editing domain
-	 */
-	protected TransactionalEditingDomain getEditingDomain() throws Exception {
-		return org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers.getInstance().getTransactionalEditingDomain();
-	}
-
-	/**
-	 * Returns <code>true</code> if the current Active editor is dirty.
-	 * 
-	 * @return <code>true</code> if the current Active editor is dirty
-	 * @throws Exception
-	 *         exception thrown in case of problem (NPE, etc.)
-	 */
-	protected boolean isEditorDirty() throws Exception {
-		return PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().getActiveEditor().isDirty();
-	}
 }
 	[/file]
-
-	[generateCopyPasteTests(aTestModel, testedModel)/]
-
-	[generateCopyPasteSuites(aTestModel, testedModel)/]
-
-[/let]
-[/template]
-
-[template public generateCopyPasteSuites (aTestModel : Model, testedModel : Model) ]
-[file ('/org/eclipse/papyrus/sysml/modelexplorer/tests/suites/AllCopyPasteTests.java', false, 'Cp1252'))]
-	/*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
- *    
- * All rights reserved. This program and the accompanying materials
- * are made available under the terms of the Eclipse Public License v1.0
- * which accompanies this distribution, and is available at
- * http://www.eclipse.org/legal/epl-v10.html
- *
- * Contributors:
- *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
- * @generated
- *****************************************************************************/
-package org.eclipse.papyrus.sysml.modelexplorer.tests.suites;
-
-import org.eclipse.papyrus.sysml.modelexplorer.tests.copypaste.*;
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-
-
-/**
- * Tests suite for Copy/Paste
- * @generated
- */
-@RunWith(Suite.class)
-@SuiteClasses({
-[for (aPackage : Package | getAllElementTypesRules(aTestModel))]
-// [aPackage.name/]
-	[for (aClass : Class | getAllSourceTargetRules(aPackage, aTestModel))]
-[getFileName(aClass)/].class,
-	[/for]
-[/for]
-
-})
-public class AllCopyPasteTests {
-
-}
-[/file]
-[/template]
-
-[template public generateProperties(aModel: Model)]
-	protected static org.eclipse.uml2.uml.Model [generateElementName(aModel)/];
-	[for (element : Element | aModel.eContents(Element))]
-	[generateProperties(element)/]
-	[/for]
-[/template]
-
-[template public generateProperties (aElement : Element) ]
-[/template]
-
-
-[template public generateProperties (aPackage : Package) ]
-protected static org.eclipse.uml2.uml.Package [generateElementName(aPackage)/];
-[for (subPackage : Package | aPackage.nestedPackage)][generateProperties(subPackage)/]
-[/for]
-[for (subClass : Class | aPackage.ownedMember->filter(Class))][generateProperties(subClass)/]
-[/for]
-[for (subInterface : Interface | aPackage.ownedMember->filter(Interface))][generateProperties(subInterface)/]
-[/for]
-[/template]
-
-[template public generateProperties (aClass : Class) ]
-protected static org.eclipse.uml2.uml.Class [generateElementName(aClass)/];
-[for (aProperty : Property| aClass.attribute)][generatesProperties(aProperty)/]
-[/for]
-[for (aOperation : Operation| aClass.ownedOperation)][generatesProperties(aOperation)/]
-[/for]
-[/template]
-
-[template public generateProperties (aInterface : Interface) ]
-protected static org.eclipse.uml2.uml.Interface [generateElementName(aInterface)/];
-[for (aProperty : Property| aInterface.attribute)][generatesProperties(aProperty)/]
-[/for]
-[for (aOperation : Operation| aInterface.ownedOperation)][generatesProperties(aOperation)/]
-[/for]
-[/template]
-
-[template public generatesProperties(aProperty : Property) ]
-protected static org.eclipse.uml2.uml.Property [generateElementName(aProperty)/];
-[/template]
-
-[template public generatesProperties(aOperation : Operation) ]
-protected static org.eclipse.uml2.uml.Operation [generateElementName(aOperation)/];
-[/template]
-
-
-
-
-
-[template public initializeModelElements (aModel : Model) ]
- 	[generateElementName(aModel)/] = (org.eclipse.uml2.uml.Model)root;
-	[for (element : Element | aModel.eContents(Element))]
-	[initializeModelElements(element)/]
-	[/for]
-[/template]
-
-[template public initializeModelElements (aElement : Element) ]
-[/template]
-
-[template public initializeModelElements (aPackage : Package) ]
-[generateElementName(aPackage)/] = (org.eclipse.uml2.uml.Package)[generateElementName(aPackage.eContainer().oclAsType(Element))/].getPackagedElement("[aPackage.name/]"); 
-[for (subPackage : Package | aPackage.nestedPackage)][initializeModelElements(subPackage)/]
-[/for]
-[for (subClass : Class | aPackage.ownedMember->filter(Class))][initializeModelElements(subClass)/]
-[/for]
-[for (subInterface : Interface | aPackage.ownedMember->filter(Interface))][initializeModelElements(subInterface)/]
-[/for]
-[/template]
-
-[template public initializeModelElements (aClass : Class) ]
-[generateElementName(aClass)/] = (org.eclipse.uml2.uml.Class)[generateElementName(aClass.eContainer().oclAsType(Element))/].getPackagedElement("[aClass.name/]"); 
-[for (aProperty : Property| aClass.attribute)][initializeModelElements(aProperty)/]
-[/for]
-[for (aOperation : Operation| aClass.ownedOperation)][initializeModelElements(aOperation)/]
-[/for]
-[/template]
-
-[template public initializeModelElements (aInterface : Interface) ]
-[generateElementName(aInterface)/] = (org.eclipse.uml2.uml.Interface)[generateElementName(aInterface.eContainer().oclAsType(Element))/].getPackagedElement("[aInterface.name/]"); 
-[for (aProperty : Property| aInterface.attribute)][initializeModelElements(aProperty)/]
-[/for]
-[for (aOperation : Operation| aInterface.ownedOperation)][initializeModelElements(aOperation)/]
-[/for]
-[/template]
-
-[template public initializeModelElements(aProperty : Property) ]
-[generateElementName(aProperty)/] = (org.eclipse.uml2.uml.Property)[generateElementName(aProperty.eContainer().oclAsType(Element))/].getAttribute("[aProperty.name/]", null); 
-[/template]
-
-[template public initializeModelElements(aOperation : Operation) ]
-[generateElementName(aOperation)/] = (org.eclipse.uml2.uml.Operation)[generateElementName(aOperation.eContainer().oclAsType(Element))/].getOperation("[aOperation.name/]", null, null); 
-[/template]
-
-
-[**
- * Generates a file for each junit test stereotype
- */]
-[template public generateJUnitFiles (aModel : Model) ]
-	
 [/template]

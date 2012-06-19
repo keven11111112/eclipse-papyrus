@@ -15,6 +15,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.acceleo.common.utils.ModelUtils;
 import org.eclipse.acceleo.engine.event.IAcceleoTextGenerationListener;
 import org.eclipse.acceleo.engine.generation.strategy.IAcceleoGenerationStrategy;
 import org.eclipse.acceleo.engine.service.AbstractAcceleoGenerator;
@@ -23,6 +24,9 @@ import org.eclipse.emf.common.util.Monitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 
 /**
  * Entry point of the 'GenerateModelExplorerTests' generation module.
@@ -90,6 +94,23 @@ public class GenerateModelExplorerTests extends AbstractAcceleoGenerator {
         initialize(modelURI, targetFolder, arguments);
     }
 
+    @Override
+    protected void postInitialize() {
+    	super.postInitialize();
+    	
+        // load notation model
+        URI modelURI = model.eResource().getURI();
+        URI notationURI = modelURI.trimFileExtension();
+        notationURI = notationURI.appendFileExtension("notation");
+        
+        try {
+			Diagram mainDiagram = (Diagram)ModelUtils.load(notationURI, model.eResource().getResourceSet());
+			System.err.println("first diagram: "+mainDiagram.getName());
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+    }
+    
     /**
      * This allows clients to instantiates a generator with all required information.
      * 
@@ -342,6 +363,9 @@ public class GenerateModelExplorerTests extends AbstractAcceleoGenerator {
         super.registerPackages(resourceSet);
         if (!isInWorkspace(org.eclipse.uml2.uml.UMLPackage.class)) {
             resourceSet.getPackageRegistry().put(org.eclipse.uml2.uml.UMLPackage.eINSTANCE.getNsURI(), org.eclipse.uml2.uml.UMLPackage.eINSTANCE);
+        }
+        if (!isInWorkspace(org.eclipse.gmf.runtime.notation.NotationPackage.class)) {
+            resourceSet.getPackageRegistry().put(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getNsURI(), org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE);
         }
         
         /*

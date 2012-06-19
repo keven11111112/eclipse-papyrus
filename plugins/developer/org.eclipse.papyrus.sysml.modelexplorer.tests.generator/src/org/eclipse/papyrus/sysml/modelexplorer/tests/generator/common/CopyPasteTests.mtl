@@ -2,7 +2,7 @@
 [**
  * module CopyPasteTests to generate junit test files.
  */]
-[module CopyPasteTests('http://www.eclipse.org/uml2/3.0.0/UML')]
+[module CopyPasteTests('http://www.eclipse.org/uml2/3.0.0/UML', 'http://www.eclipse.org/gmf/runtime/1.0.2/notation')]
 
 [**
  * generate all the files for the given test model.
@@ -251,6 +251,10 @@ public class [getFileName(aClass)/] extends [getFileName(aClass.eContainer(Packa
  */]
 [template public generateElementName(aElement : Element) post(postTreatment())]
 [getName(aElement)/]_[for (element : Element | getAllContainersExceptModel(aElement))][getName(element)/]_[/for]EObject
+[/template]  
+
+[template public generateDiagramName(aDiagram : Diagram) post(postTreatment())]
+[aDiagram.name/]_Diagram
 [/template]  
 
 [template public postTreatment(txt: String)]
