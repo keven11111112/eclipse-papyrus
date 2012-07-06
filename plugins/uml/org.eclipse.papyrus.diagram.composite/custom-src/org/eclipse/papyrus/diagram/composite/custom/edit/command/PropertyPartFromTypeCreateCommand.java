@@ -71,11 +71,11 @@ public class PropertyPartFromTypeCreateCommand extends EditElementCommand {
 		StructuredClassifier owner = (StructuredClassifier)getElementToEdit();
 		owner.getOwnedAttributes().add(newElement);
 		newElement.setType(type);
-
-		ElementInitializers.getInstance().init_Property_3070(newElement);
-
-		((CreateElementRequest)getRequest()).setNewElement(newElement);
-
+		
+		String elementName = type.getName()+ Integer.toString(owner.getOwnedAttributes().size());		
+		
+		newElement.setName(elementName);
+		((CreateElementRequest)getRequest()).setNewElement(newElement);		
 		semanticAdapter.setElement(newElement);
 		return CommandResult.newOKCommandResult(semanticAdapter);
 	}
