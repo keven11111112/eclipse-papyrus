@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.core.editor.CoreMultiDiagramEditor;
@@ -52,11 +53,12 @@ public class LoadingUtils {
 	 * 
 	 * @param mainURI
 	 * @param modelSet
-	 * @param refresh if true the views (diagrams) will be refreshed to display correctly resolved elements
+	 * @param refresh
+	 *        if true the views (diagrams) will be refreshed to display correctly resolved elements
 	 * @param monitor
 	 */
 	public static void loadWithAssociatedResources(URI mainURI, ModelSet modelSet, boolean refresh, IProgressMonitor monitor) {
-		if (monitor == null) {
+		if(monitor == null) {
 			monitor = new NullProgressMonitor();
 		}
 
@@ -80,22 +82,32 @@ public class LoadingUtils {
 	 * 
 	 * @param mainURI
 	 * @param modelSet
-	 * @param refreshProxies if true the views (diagrams) will be refreshed to display correctly unresolved elements
+	 * @param refreshProxies
+	 *        if true the views (diagrams) will be refreshed to display correctly unresolved elements
 	 * @param monitor
 	 */
 	public static void unloadWithAssociatedResources(URI mainURI, ModelSet modelSet, boolean refresh, IProgressMonitor monitor) {
-		if (monitor == null) {
+		if(monitor == null) {
 			monitor = new NullProgressMonitor();
 		}
 
 		URI uriWithoutFileExtension = mainURI.trimFileExtension();
 
 		monitor.beginTask(Messages.LoadingUtils_UnloadModelsTask, modelSet.getResources().size());
-		Iterator<Resource> resIt = modelSet.getResources().iterator();
-		while (resIt.hasNext()) {
-			Resource res = resIt.next();
-			if (res.getURI() != null && res.getURI().trimFileExtension().equals(uriWithoutFileExtension)) {
 
+		// Use the platform string of a normalized URI for comparison below, see bug 372326
+		// (registered libraries in the model set have different URIs - e.g. due to a pathmap -
+		// although they point to the same location).
+		// TODO: Use a single detection mechanism in ResourceUpdateService and here
+		String unloadPlatformString = uriWithoutFileExtension.toPlatformString(true);
+		URIConverter uriConverter = modelSet.getURIConverter();
+
+		Iterator<Resource> resIt = modelSet.getResources().iterator();
+		while(resIt.hasNext()) {
+			Resource res = resIt.next();
+			URI normalizedURI = uriConverter.normalize(res.getURI());
+			String platformString = normalizedURI.trimFileExtension().toPlatformString(true);
+			if((platformString != null) && platformString.equals(unloadPlatformString)) {
 				// unload this resource
 				res.unload();
 				resIt.remove();
@@ -108,11 +120,11 @@ public class LoadingUtils {
 
 		CoreMultiDiagramEditor editor = getCoreMultiDiagramEditor();
 
-		if (editor != null) {
+		if(editor != null) {
 			IPageMngr pageMngr;
 			try {
 				pageMngr = editor.getServicesRegistry().getService(IPageMngr.class);
-				if (pageMngr != null) {
+				if(pageMngr != null) {
 					List<Object> allPages = pageMngr.allPages();
 					monitor.beginTask(Messages.LoadingUtils_RefreshPagesTask, allPages.size());
 					for(Object page : allPages) {
@@ -120,9 +132,9 @@ public class LoadingUtils {
 							EObject eobject = (EObject)page;
 							if(eobject.eIsProxy()) {
 								pageMngr.closePage(page);
-							} else if (eobject instanceof Diagram) {
-								Diagram diag = (Diagram) eobject;
-								if (diag.getElement() != null && diag.getElement().eIsProxy()) {
+							} else if(eobject instanceof Diagram) {
+								Diagram diag = (Diagram)eobject;
+								if(diag.getElement() != null && diag.getElement().eIsProxy()) {
 									pageMngr.closePage(page);
 								}
 							}
@@ -130,7 +142,8 @@ public class LoadingUtils {
 						monitor.worked(1);
 					}
 				}
-			} catch (ServiceException e) {}
+			} catch (ServiceException e) {
+			}
 		}
 	}
 
@@ -151,7 +164,7 @@ public class LoadingUtils {
 				}
 			}
 		}
-		if (editor instanceof CoreMultiDiagramEditor) {
+		if(editor instanceof CoreMultiDiagramEditor) {
 			return (CoreMultiDiagramEditor)editor;
 		}
 		return null;
