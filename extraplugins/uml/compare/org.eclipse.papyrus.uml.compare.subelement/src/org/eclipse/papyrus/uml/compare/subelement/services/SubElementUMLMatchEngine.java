@@ -54,6 +54,11 @@ public class SubElementUMLMatchEngine extends UMLMatchEngine {
 		return matchModel;
 	}
 
+	@Override
+	protected void completeMatchWithStereotypeApplications(MatchModel matchModel, EObject leftObject2, EObject rightObject2) {
+		//nothing to do in this case
+	}
+	
 	protected void fillDifferencesBetweenStereotypesApplication(final MatchModel matchModel) {
 		//we do a diff to find the differences between the applied stereotypes
 		UML2MatchEngine engine = new UMLStandaloneMatchEngine();
@@ -92,25 +97,5 @@ public class SubElementUMLMatchEngine extends UMLMatchEngine {
 		} catch (InterruptedException e) {
 			Activator.log.error(e);
 		}
-	}
-
-	/**
-	 * 
-	 * @param sourceElement
-	 *        a uml element
-	 * @param stereotypedElement
-	 *        a stereotyped element
-	 * @return
-	 *         <code>true</code> if the stereotyped element is a subelement of the uml element
-	 */
-	private boolean isRequiredByTheDiff(final Element sourceElement, Element stereotypedElement) {
-		EObject container = stereotypedElement;
-		while(container != null) {
-			if(container == sourceElement) {
-				return true;
-			}
-			container = container.eContainer();
-		}
-		return false;
 	}
 }
