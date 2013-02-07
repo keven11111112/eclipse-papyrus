@@ -38,17 +38,6 @@
 	
 	Modifier modifier = new Modifier(currentAttribute);
 	
-	// Treat multiplicity for association attributes
-	int multiplicity = currentAttribute.getUpper();
-	if (multiplicity == 1) {
-		multiple = "";
-	} else if (multiplicity == -1) {
-		multiple = "*";
-	} else {
-		multiple = "";
-		modifier.array = "[" + multiplicity + "]";
-	}
-	
 	// If attribute is aggregation
 	if (GenUtils.isAggregation(currentAttribute)) {
 		// attributeName	= "(*"+attributeName+")"; // this produce a pointer on a tab
@@ -75,4 +64,4 @@
 //////////////////////////////////////////////////////////////////////////////////////////%>
 
 	<%= propDoc %>
-	<%= prefix %><%= modifier.isConst %><%= typeName %><%= multiple %><%= modifier.ptr %><%= modifier.ref %> <%= attributeName %><%= modifier.array %><%= suffix %>;
+	<%= prefix %><%= modifier.isConst %><%= typeName %><%= modifier.ptr %><%= modifier.ref %> <%= attributeName %><%= modifier.array %><%= suffix %>;

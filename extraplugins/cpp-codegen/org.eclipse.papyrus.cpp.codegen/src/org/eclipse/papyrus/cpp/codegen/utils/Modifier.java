@@ -11,7 +11,11 @@
 
 package org.eclipse.papyrus.cpp.codegen.utils;
 
+import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.Parameter;
+import org.eclipse.uml2.uml.ParameterDirectionKind;
 
 import Cpp.CppArray;
 import Cpp.CppConst;
@@ -45,12 +49,12 @@ public class Modifier {
 	/**
 	 * Create instance and initialize the ptr/ref/array/isConst attributes.
 	 * 
-	 * @param currentParameter
+	 * @param propertyOrParameter
 	 */
-	public Modifier(Element currentParameter) {
+	public Modifier(Element propertyOrParameter) {
 
 		// Pointer
-		CppPtr cppPtr = GenUtils.getApplication(currentParameter, CppPtr.class);
+		CppPtr cppPtr = GenUtils.getApplication(propertyOrParameter, CppPtr.class);
 		if(cppPtr != null) {
 			ptr = (cppPtr.getDeclaration() != null) ? cppPtr.getDeclaration() : "*";
 		} else {
@@ -58,17 +62,49 @@ public class Modifier {
 		}
 
 		// Ref
-		ref = GenUtils.hasStereotype(currentParameter, CppRef.class) ? "&" : "";
+		ref = GenUtils.hasStereotype(propertyOrParameter, CppRef.class) ? "&" : "";
+		boolean ptrOrRef = GenUtils.hasStereotype(propertyOrParameter, CppRef.class) ||
+			GenUtils.hasStereotype(propertyOrParameter, CppPtr.class);
 
 		// Array
-		CppArray cppArray = GenUtils.getApplication(currentParameter, CppArray.class);
+		CppArray cppArray = GenUtils.getApplication(propertyOrParameter, CppArray.class);
 		if(cppArray != null) {
+			// explicit array definition
 			array = (cppArray.getDefinition() != null) ? cppArray.getDefinition() : "[]";
 		} else {
+			// calculate array from multiplicity definition
+			int multiplicity = 1;
+			if(propertyOrParameter instanceof MultiplicityElement) {
+				multiplicity = ((MultiplicityElement)propertyOrParameter).getUpper();
+			}
 			array = "";
+			if(multiplicity == -1) {
+				ptr += "*";
+			} else if(multiplicity > 1) {
+				array = "[" + multiplicity + "]";
+			}
 		}
 
+		// out an inout parameter are realized by means of a pointer 
+		if(propertyOrParameter instanceof Parameter) {
+			ParameterDirectionKind directionKind = ((Parameter)propertyOrParameter).getDirection();
+			if(directionKind == ParameterDirectionKind.IN_LITERAL) {
+				ptr += " _IN_";
+			}
+			else if(directionKind == ParameterDirectionKind.OUT_LITERAL) {
+				ptr += " _OUT_";
+				if(!ptrOrRef) {
+					ptr += CppCodeGenUtils.getOutInoutOp();
+				}
+			}
+			else if(directionKind == ParameterDirectionKind.INOUT_LITERAL) {
+				ptr += " _INOUT_";
+				if(!ptrOrRef) {
+					ptr += CppCodeGenUtils.getOutInoutOp();
+				}
+			}
+		}
 		// Const
-		isConst = GenUtils.hasStereotype(currentParameter, CppConst.class) ? "const " : "";
+		isConst = GenUtils.hasStereotype(propertyOrParameter, CppConst.class) ? "const " : "";
 	}
 }

@@ -85,6 +85,8 @@ public class CodegenPreferencePage extends FieldEditorPreferencePage implements
 			"Suffix for C++ header files ", getFieldEditorParent()));
 		addField(new StringFieldEditor(CppCodeGenConstants.P_IMPLEM_SUFFIX,
 			"Suffix for C++ implementation files ", getFieldEditorParent()));
+		addField(new StringFieldEditor(CppCodeGenConstants.P_OUT_INOUT_OP,
+			"Operator for out and inout parameters", getFieldEditorParent()));
 
 		// Add P_COMMENT_HEADER
 		addTextField(CppCodeGenConstants.P_COMMENT_HEADER, "Header for generated files",

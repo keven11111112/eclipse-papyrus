@@ -70,17 +70,6 @@ public class CppAttributeDeclaration
 	
 	Modifier modifier = new Modifier(currentAttribute);
 	
-	// Treat multiplicity for association attributes
-	int multiplicity = currentAttribute.getUpper();
-	if (multiplicity == 1) {
-		multiple = "";
-	} else if (multiplicity == -1) {
-		multiple = "*";
-	} else {
-		multiple = "";
-		modifier.array = "[" + multiplicity + "]";
-	}
-	
 	// If attribute is aggregation
 	if (GenUtils.isAggregation(currentAttribute)) {
 		// attributeName	= "(*"+attributeName+")"; // this produce a pointer on a tab
@@ -111,7 +100,6 @@ public class CppAttributeDeclaration
     stringBuffer.append( prefix );
     stringBuffer.append( modifier.isConst );
     stringBuffer.append( typeName );
-    stringBuffer.append( multiple );
     stringBuffer.append( modifier.ptr );
     stringBuffer.append( modifier.ref );
     stringBuffer.append(TEXT_3);

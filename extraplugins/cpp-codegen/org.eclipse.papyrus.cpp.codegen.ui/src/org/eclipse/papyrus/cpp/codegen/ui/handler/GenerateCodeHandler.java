@@ -21,7 +21,12 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -29,7 +34,14 @@ import org.eclipse.papyrus.cpp.codegen.preferences.CppCodeGenUtils;
 import org.eclipse.papyrus.cpp.codegen.transformation.ModelElementsCreator;
 import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.ui.PlatformUI;
-import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.DataType;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.uml2.uml.PrimitiveType;
+
 
 /**
  * <b><u>SyncURI Handler</u></b>
@@ -63,7 +75,15 @@ public class GenerateCodeHandler extends AbstractHandler {
 			if(businessObject instanceof EObject) {
 
 				selectedEObj = (EObject)businessObject;
-				return true;
+				if((selectedEObj instanceof PrimitiveType) || (selectedEObj instanceof Enumeration)) {
+					return false;
+				}
+				if((selectedEObj instanceof Class) ||
+					(selectedEObj instanceof Interface) ||
+					(selectedEObj instanceof DataType) ||
+					(selectedEObj instanceof Package)) {
+					return true;
+				}
 			}
 		}
 
@@ -73,44 +93,61 @@ public class GenerateCodeHandler extends AbstractHandler {
 
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 
-		if(selectedEObj instanceof Classifier) {
-			Classifier classifier = (Classifier)selectedEObj;
+		if(selectedEObj instanceof PackageableElement) {
+			final PackageableElement pe = (PackageableElement)selectedEObj;
 
-			URI uri = classifier.eResource().getURI();
+			URI uri = pe.eResource().getURI();
 
 			// URIConverter uriConverter = resource.getResourceSet().getURIConverter();
 			IWorkspaceRoot root = ResourcesPlugin.getWorkspace().getRoot();
 			if(uri.segmentCount() < 2) {
 				return null;
 			}
-			IProject modelProject = root.getProject(uri.segment(1));
+			final IProject modelProject = root.getProject(uri.segment(1));
+
 			if(modelProject.exists()) {
-				String name = classifier.getName();
 
-				// get the container for the current element
-				String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
-				String bodySuffix = CppCodeGenUtils.getBodySuffix();
-				ModelElementsCreator mec = new ModelElementsCreator(modelProject, headerSuffix, bodySuffix, CppCodeGenUtils.getCommentHeader());
-				IContainer srcPkg = mec.getContainer(classifier);
-				try {
-					mec.createPackageableElement(srcPkg, null, classifier);
+				Job job = new Job("Create deployment model (OO)") {
 
-					IFile cppFile = srcPkg.getFile(new Path(name + "." + bodySuffix));
-					IFile hFile = srcPkg.getFile(new Path(name + "." + headerSuffix));
-					if(!cppFile.exists()) {
-						return null;
+					@Override
+					protected IStatus run(IProgressMonitor monitor) {
+						// execute the task ...
+						String headerSuffix = CppCodeGenUtils.getHeaderSuffix();
+						String bodySuffix = CppCodeGenUtils.getBodySuffix();
+						ModelElementsCreator mec = new ModelElementsCreator(modelProject, headerSuffix, bodySuffix, CppCodeGenUtils.getCommentHeader());
+						generateCode(mec, pe, headerSuffix, bodySuffix);
+						monitor.done();
+						return Status.OK_STATUS;
 					}
-					if(cppFile != null) {
-						cppFile.refreshLocal(0, null);
-					}
-					if(hFile != null) {
-						hFile.refreshLocal(0, null);
-					}
-				} catch (CoreException coreException) {
-					return null;
-				}
+				};
+				job.setUser(true);
+				job.schedule();
+
 			}
 		}
 		return null;
+	}
+
+	public void generateCode(ModelElementsCreator mec, PackageableElement pe, String headerSuffix, String bodySuffix) {
+		String name = pe.getName();
+		IContainer srcPkg = mec.getContainer(pe);
+
+		try {
+			mec.createPackageableElement(srcPkg, new NullProgressMonitor(), pe);
+
+			IFile cppFile = srcPkg.getFile(new Path(name + "." + bodySuffix));
+			IFile hFile = srcPkg.getFile(new Path(name + "." + headerSuffix));
+			if(!cppFile.exists()) {
+				return;
+			}
+			if(cppFile != null) {
+				cppFile.refreshLocal(0, null);
+			}
+			if(hFile != null) {
+				hFile.refreshLocal(0, null);
+			}
+		} catch (CoreException coreException) {
+			return;
+		}
 	}
 }

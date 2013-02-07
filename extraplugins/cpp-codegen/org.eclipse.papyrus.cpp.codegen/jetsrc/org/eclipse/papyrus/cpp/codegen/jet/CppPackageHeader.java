@@ -40,7 +40,7 @@ public class CppPackageHeader
   protected final String TEXT_3 = NL + NL + "/************************************************************" + NL + "              Pkg_";
   protected final String TEXT_4 = " package header" + NL + " ************************************************************/" + NL;
   protected final String TEXT_5 = NL;
-  protected final String TEXT_6 = NL + "\t" + NL + "/* Package dependency header include                        */";
+  protected final String TEXT_6 = NL + NL + "#ifndef _IN_" + NL + "#define _IN_" + NL + "#endif" + NL + "#ifndef _OUT_" + NL + "#define _OUT_" + NL + "#endif" + NL + "#ifndef _INOUT_" + NL + "#define _INOUT_" + NL + "#endif" + NL + "" + NL + "\t" + NL + "/* Package dependency header include                        */";
   protected final String TEXT_7 = NL + "#include <";
   protected final String TEXT_8 = ".";
   protected final String TEXT_9 = ">";
@@ -94,7 +94,6 @@ public class CppPackageHeader
 			// Execute the util template
 			fatherPkgInclude		= jetPkgInclude.generate(fatherPackage);
 		}
-
 
 		// Prepare Dependency includes declarations ...
 		// Retrieve package used by current package (dependencies)
