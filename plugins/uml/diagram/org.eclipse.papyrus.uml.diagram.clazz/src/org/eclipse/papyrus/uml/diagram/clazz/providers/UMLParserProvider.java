@@ -1,3 +1,15 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
 package org.eclipse.papyrus.uml.diagram.clazz.providers;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -72,7 +84,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNam
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNameEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationName2EditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceRealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.MultiDependencyLabelEditPart;
@@ -85,6 +97,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedInterfaceForInterf
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageNameEditPartCN;
@@ -620,6 +633,23 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			class_3008Parser = parser;
 		}
 		return class_3008Parser;
+	}
+
+	/**
+	 * @generated
+	 */
+	private IParser operation_3042Parser;
+
+	/**
+	 * @generated
+	 */
+	private IParser getOperation_3042Parser() {
+		if(operation_3042Parser == null) {
+			EAttribute[] features = new EAttribute[]{ UMLPackage.eINSTANCE.getNamedElement_Name() };
+			MessageFormatParser parser = new MessageFormatParser(features);
+			operation_3042Parser = parser;
+		}
+		return operation_3042Parser;
 	}
 
 	/**
@@ -1706,6 +1736,8 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getClass_3004Parser();
 		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008Parser();
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return getOperation_3042Parser();
 		case OperationForComponentEditPart.VISUAL_ID:
 			return getOperation_3003Parser();
 		case OperationForInterfaceEditpart.VISUAL_ID:
@@ -1784,7 +1816,7 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 			return getGeneralizationIsSubstitutable_6007Parser();
 		case AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID:
 			return getInterfaceRealizationName_6008Parser();
-		case InterfaceRealizationName2EditPart.VISUAL_ID:
+		case InterfaceRealizationNameEditPart.VISUAL_ID:
 			return getInterfaceRealizationName_6009Parser();
 		case AppliedStereotypeSubstitutionEditPart.VISUAL_ID:
 			return getSubstitutionName_6010Parser();

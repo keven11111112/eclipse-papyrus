@@ -223,6 +223,11 @@ public class UMLVisualIDRegistry {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case DataTypeEditPart.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
@@ -264,9 +269,24 @@ public class UMLVisualIDRegistry {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
 			}
 			break;
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
+				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
 		case DataTypeEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getRedefinableTemplateSignature().isSuperTypeOf(domainElement.eClass())) {
 				return RedefinableTemplateSignatureEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return PropertyForPrimitiveTypeEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
+				return OperationForPrimitiveTypeEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
@@ -428,6 +448,16 @@ public class UMLVisualIDRegistry {
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 			if(UMLPackage.eINSTANCE.getSlot().isSuperTypeOf(domainElement.eClass())) {
 				return SlotEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getProperty().isSuperTypeOf(domainElement.eClass())) {
+				return PropertyForPrimitiveTypeEditPart.VISUAL_ID;
+			}
+			break;
+		case PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID:
+			if(UMLPackage.eINSTANCE.getOperation().isSuperTypeOf(domainElement.eClass())) {
+				return OperationForPrimitiveTypeEditPart.VISUAL_ID;
 			}
 			break;
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
@@ -865,6 +895,15 @@ public class UMLVisualIDRegistry {
 			if(PrimitiveTypeNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case DataTypeEditPart.VISUAL_ID:
 			if(DataTypeNameEditPart.VISUAL_ID == nodeVisualID) {
@@ -1049,6 +1088,15 @@ public class UMLVisualIDRegistry {
 			if(PrimitiveTypeNameEditPartCN.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
+			if(PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			if(RedefinableTemplateSignatureEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
 			break;
 		case DataTypeEditPartCN.VISUAL_ID:
 			if(DataTypeNameEditPartCN.VISUAL_ID == nodeVisualID) {
@@ -1074,6 +1122,16 @@ public class UMLVisualIDRegistry {
 				return true;
 			}
 			if(ConstraintBodyEditPartCN.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+			if(PropertyForPrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID:
+			if(OperationForPrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1235,6 +1293,16 @@ public class UMLVisualIDRegistry {
 			break;
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 			if(SlotEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
+			if(PropertyForPrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
+				return true;
+			}
+			break;
+		case PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID:
+			if(OperationForPrimitiveTypeEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1493,7 +1561,7 @@ public class UMLVisualIDRegistry {
 			if(AppliedStereotypeInterfaceRealizationEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
-			if(InterfaceRealizationName2EditPart.VISUAL_ID == nodeVisualID) {
+			if(InterfaceRealizationNameEditPart.VISUAL_ID == nodeVisualID) {
 				return true;
 			}
 			break;
@@ -1659,7 +1727,8 @@ public class UMLVisualIDRegistry {
 	}
 
 	/**
-	 * "User can change implementation of this method to handle some specific\n""situations not covered by default logic.\n"
+	 * User can change implementation of this method to handle some specific
+	 * situations not covered by default logic.
 	 * 
 	 * @generated
 	 */
@@ -1684,6 +1753,8 @@ public class UMLVisualIDRegistry {
 	 */
 	public static boolean isCompartmentVisualID(int visualID) {
 		switch(visualID) {
+		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+		case PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID:
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
 		case ClassNestedClassifierCompartmentEditPartCN.VISUAL_ID:
@@ -1700,6 +1771,8 @@ public class UMLVisualIDRegistry {
 		case PackagePackageableElementCompartmentEditPartCN.VISUAL_ID:
 		case EnumerationEnumerationLiteralCompartmentEditPartCN.VISUAL_ID:
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
+		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
+		case PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID:
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 		case ClassOperationCompartmentEditPart.VISUAL_ID:
 		case ClassNestedClassifierCompartmentEditPart.VISUAL_ID:
@@ -1735,7 +1808,6 @@ public class UMLVisualIDRegistry {
 		switch(visualID) {
 		case ModelEditPart.VISUAL_ID:
 			return false;
-		case PrimitiveTypeEditPart.VISUAL_ID:
 		case ConstraintEditPart.VISUAL_ID:
 		case CommentEditPart.VISUAL_ID:
 		case DependencyNodeEditPart.VISUAL_ID:
@@ -1761,7 +1833,6 @@ public class UMLVisualIDRegistry {
 		case EnumerationLiteralEditPart.VISUAL_ID:
 		case PropertyforDataTypeEditPart.VISUAL_ID:
 		case OperationForDataTypeEditPart.VISUAL_ID:
-		case PrimitiveTypeEditPartCN.VISUAL_ID:
 		case CommentEditPartCN.VISUAL_ID:
 		case ConstraintEditPartCN.VISUAL_ID:
 		case SlotEditPart.VISUAL_ID:
@@ -1774,6 +1845,8 @@ public class UMLVisualIDRegistry {
 		case NestedInterfaceForInterfaceEditPart.VISUAL_ID:
 		case ReceptionInInterfaceEditPart.VISUAL_ID:
 		case InformationItemEditPartCN.VISUAL_ID:
+		case PropertyForPrimitiveTypeEditPart.VISUAL_ID:
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
 			return true;
 		default:
 			break;

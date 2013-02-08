@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
@@ -28,8 +29,13 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.LayoutEditPolicy;
 import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.requests.CreateRequest;
+import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
+import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -41,9 +47,10 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.PreferenceConstantHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClazzDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomPrimitiveTypeItemSemanticEditPolicyCN;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.itemsemantic.CustomClassItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PrimitiveTypeItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -51,10 +58,17 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideClassifierContentsEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PrimitiveTypeFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
+import org.eclipse.papyrus.uml.diagram.common.locator.TemplateBorderItemLocator;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -88,14 +102,23 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PrimitiveTypeItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PrimitiveTypeCanonicalEditPolicyCN());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
+		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomPrimitiveTypeItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomClassItemSemanticEditPolicyCN());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY, new ClazzDiagramChangeStereotypedShapeEditpolicy());
+		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+		installEditPolicy(ShowHideClassifierContentsEditPolicy.SHOW_HIDE_CLASSIFIER_CONTENTS_POLICY, new ShowHideClassifierContentsEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -116,6 +139,11 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
+				View childView = (View)child.getModel();
+				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
+					return new BorderItemResizableEditPolicy();
+				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if(result == null) {
 					result = new NonResizableEditPolicy();
@@ -156,6 +184,24 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 			((PrimitiveTypeNameEditPartCN)childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
+		if(childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((PrimitiveTypeAttributeCompartmentEditPartCN)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof PrimitiveTypeOperationCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
+			pane.add(((PrimitiveTypeOperationCompartmentEditPartCN)childEditPart).getFigure());
+			return true;
+		}
+		//Papyrus Gencode :precise the locator for a template signature
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			return true;
+		}
 		return false;
 	}
 
@@ -164,6 +210,20 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
 		if(childEditPart instanceof PrimitiveTypeNameEditPartCN) {
+			return true;
+		}
+		if(childEditPart instanceof PrimitiveTypeAttributeCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
+			pane.remove(((PrimitiveTypeAttributeCompartmentEditPartCN)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof PrimitiveTypeOperationCompartmentEditPartCN) {
+			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
+			pane.remove(((PrimitiveTypeOperationCompartmentEditPartCN)childEditPart).getFigure());
+			return true;
+		}
+		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -193,6 +253,15 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
+		if(editPart instanceof PrimitiveTypeAttributeCompartmentEditPartCN) {
+			return getPrimaryShape().getAttributeCompartmentFigure();
+		}
+		if(editPart instanceof PrimitiveTypeOperationCompartmentEditPartCN) {
+			return getPrimaryShape().getOperationCompartmentFigure();
+		}
+		if(editPart instanceof IBorderItemEditPart) {
+			return getBorderedFigure().getBorderItemContainer();
+		}
 		return getContentPane();
 	}
 
@@ -216,7 +285,7 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 	 * 
 	 * @generated
 	 */
-	protected NodeFigure createNodeFigure() {
+	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
 		IFigure shape = createNodeShape();
@@ -2068,6 +2137,23 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 			types.add(UMLElementTypes.Constraint_3029);
 		}
 		return types;
+	}
+
+	/**
+	 * @generated
+	 */
+	public EditPart getTargetEditPart(Request request) {
+		if(request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
+			if(type == UMLElementTypes.Property_3041) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID));
+			}
+			if(type == UMLElementTypes.Operation_3042) {
+				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID));
+			}
+		}
+		return super.getTargetEditPart(request);
 	}
 
 	/**

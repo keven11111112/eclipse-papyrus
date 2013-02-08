@@ -18,6 +18,7 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -55,6 +56,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PackageImportCreateCo
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PackageImportReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RealizationCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RealizationReorientCommand;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.RedefinableTemplateSignatureCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.SubstitutionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.SubstitutionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.TemplateBindingCreateCommand;
@@ -91,6 +93,35 @@ public class PrimitiveTypeItemSemanticEditPolicyCN extends UMLBaseItemSemanticEd
 	 */
 	public PrimitiveTypeItemSemanticEditPolicyCN() {
 		super(UMLElementTypes.PrimitiveType_3026);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		IElementType requestElementType = req.getElementType();
+		if(requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		IElementType baseElementType = requestElementType;
+		boolean isExtendedType = false;
+		if(requestElementType instanceof IExtendedHintedElementType) {
+			baseElementType = ElementTypeUtils.getClosestDiagramType(requestElementType);
+			if(baseElementType != null) {
+				isExtendedType = true;
+			} else {
+				// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
+				baseElementType = ElementTypeUtils.findClosestNonExtendedElementType((IExtendedHintedElementType)requestElementType);
+				isExtendedType = true;
+			}
+		}
+		if(UMLElementTypes.RedefinableTemplateSignature_3015 == baseElementType) {
+			if(isExtendedType) {
+				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
+			}
+			return getGEFWrapper(new RedefinableTemplateSignatureCreateCommand(req));
+		}
+		return super.getCreateCommand(req);
 	}
 
 	/**

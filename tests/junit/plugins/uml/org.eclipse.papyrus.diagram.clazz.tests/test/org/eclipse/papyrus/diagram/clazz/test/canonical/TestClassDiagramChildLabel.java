@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Nizar GUEDIDI (CEA LIST) - Add tests for Primitive Type properties and operations 
  *
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.test.canonical;
@@ -27,6 +28,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationSlo
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceNestedClassifierCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InterfaceOperationCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeAttributeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PrimitiveTypeOperationCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SignalAttributeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.junit.Test;
@@ -119,5 +122,16 @@ public class TestClassDiagramChildLabel extends TestChildLabel {
 	public void testToManageInterfaceReception() {
 		//class
 		testToManageTopNode(UMLElementTypes.Interface_2004, UMLElementTypes.Reception_3039,InterfaceOperationCompartmentEditPart.VISUAL_ID );
+	}
+	@Test
+	public void testToManagePrimitiveTypeProperty() {
+		//class
+		testToManageTopNode(UMLElementTypes.PrimitiveType_2009, UMLElementTypes.Property_3041,PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID );
+	}
+	
+	@Test
+	public void testToManagePrimitiveTypeOperation() {
+		//class
+		testToManageTopNode(UMLElementTypes.PrimitiveType_2009, UMLElementTypes.Operation_3042,PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID);
 	}
 }

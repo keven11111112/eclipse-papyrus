@@ -86,6 +86,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForInterfaceEditpart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationTemplateParameterEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
@@ -97,6 +98,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ProfileApplicationEditPa
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForInterfaceEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForPrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RealizationEditPart;
@@ -257,6 +259,11 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType Property_3041 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3041"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType Property_3012 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Property_3012"); //$NON-NLS-1$
 
 	/**
@@ -293,6 +300,11 @@ public class UMLElementTypes {
 	 * @generated
 	 */
 	public static final IElementType Class_3008 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Class_3008"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType Operation_3042 = getElementType("org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -706,6 +718,7 @@ public class UMLElementTypes {
 			elements.put(TimeObservation_2096, UMLPackage.eINSTANCE.getTimeObservation());
 			elements.put(NamedElement_2097, UMLPackage.eINSTANCE.getNamedElement());
 			elements.put(NamedElement_2098, UMLPackage.eINSTANCE.getNamedElement());
+			elements.put(Property_3041, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3012, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3002, UMLPackage.eINSTANCE.getProperty());
 			elements.put(Property_3005, UMLPackage.eINSTANCE.getProperty());
@@ -714,6 +727,7 @@ public class UMLElementTypes {
 			elements.put(Class_3014, UMLPackage.eINSTANCE.getClass_());
 			elements.put(Class_3004, UMLPackage.eINSTANCE.getClass_());
 			elements.put(Class_3008, UMLPackage.eINSTANCE.getClass_());
+			elements.put(Operation_3042, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3013, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3003, UMLPackage.eINSTANCE.getOperation());
 			elements.put(Operation_3007, UMLPackage.eINSTANCE.getOperation());
@@ -806,6 +820,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(TimeObservation_2096);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2097);
 			KNOWN_ELEMENT_TYPES.add(NamedElement_2098);
+			KNOWN_ELEMENT_TYPES.add(Property_3041);
 			KNOWN_ELEMENT_TYPES.add(Property_3012);
 			KNOWN_ELEMENT_TYPES.add(Property_3002);
 			KNOWN_ELEMENT_TYPES.add(Property_3005);
@@ -814,6 +829,7 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Class_3014);
 			KNOWN_ELEMENT_TYPES.add(Class_3004);
 			KNOWN_ELEMENT_TYPES.add(Class_3008);
+			KNOWN_ELEMENT_TYPES.add(Operation_3042);
 			KNOWN_ELEMENT_TYPES.add(Operation_3013);
 			KNOWN_ELEMENT_TYPES.add(Operation_3003);
 			KNOWN_ELEMENT_TYPES.add(Operation_3007);
@@ -924,6 +940,8 @@ public class UMLElementTypes {
 			return NamedElement_2097;
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return NamedElement_2098;
+		case PropertyForPrimitiveTypeEditPart.VISUAL_ID:
+			return Property_3041;
 		case PropertyForClassEditPart.VISUAL_ID:
 			return Property_3012;
 		case PropertyForComponentEditPart.VISUAL_ID:
@@ -940,6 +958,8 @@ public class UMLElementTypes {
 			return Class_3004;
 		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return Class_3008;
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return Operation_3042;
 		case OperationForClassEditPart.VISUAL_ID:
 			return Operation_3013;
 		case OperationForComponentEditPart.VISUAL_ID:

@@ -17,6 +17,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Shape;
 import org.eclipse.draw2d.StackLayout;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -281,21 +282,21 @@ public class InstanceSpecificationEditPartCN extends NamedElementEditPart {
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void setLineWidth(int width) {
-		// Do not mask implementation, use method from parent.
-		// See. https://bugs.eclipse.org/bugs/show_bug.cgi?id=352549
-		super.setLineWidth(width);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineWidth(width);
+		}
 	}
 
 	/**
-	 * @generated NOT
+	 * @generated
 	 */
 	protected void setLineType(int style) {
-		// Do not mask implementation, use method from parent.
-		// See. https://bugs.eclipse.org/bugs/show_bug.cgi?id=352549
-		super.setLineType(style);
+		if(primaryShape instanceof Shape) {
+			((Shape)primaryShape).setLineStyle(style);
+		}
 	}
 
 	/**

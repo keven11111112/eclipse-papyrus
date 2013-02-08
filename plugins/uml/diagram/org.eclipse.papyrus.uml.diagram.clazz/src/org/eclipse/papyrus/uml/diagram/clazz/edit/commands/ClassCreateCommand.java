@@ -72,7 +72,6 @@ public class ClassCreateCommand extends EditElementCommand {
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected EObject getElementToEdit() {
 		EObject container = ((CreateElementRequest)getRequest()).getContainer();
 		if(container instanceof View) {
@@ -87,7 +86,6 @@ public class ClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	public boolean canExecute() {
 		return true;
 	}
@@ -95,7 +93,6 @@ public class ClassCreateCommand extends EditElementCommand {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		Class newElement = UMLFactory.eINSTANCE.createClass();
 		Package owner = (Package)getElementToEdit();

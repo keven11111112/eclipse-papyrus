@@ -71,7 +71,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
@@ -87,7 +86,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 **/
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		super.handleNotificationEvent(event);
 	}
@@ -153,7 +151,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createNodeFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -178,7 +175,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if(contentPane != null) {
 			return contentPane;
@@ -189,7 +185,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if(primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -199,7 +194,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineWidth(width);
@@ -209,7 +203,6 @@ public class ContainmentCircleEditPart extends AbstractBorderItemEditPart {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if(primaryShape instanceof Shape) {
 			((Shape)primaryShape).setLineStyle(style);

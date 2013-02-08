@@ -140,7 +140,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * 
 	 * @generated
 	 */
-	@Override
 	@SuppressWarnings("unchecked")
 	public Command getCommand(Request request) {
 		if(request instanceof ReconnectRequest) {
@@ -167,7 +166,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
 		Command semanticCommand = getSemanticCommandSwitch(completedRequest);
@@ -269,6 +267,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
+	// RS: add code for extended types
 	/**
 	 * @generated
 	 */
@@ -308,6 +307,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return getGEFWrapper(createGMFCommand);
 	}
 
+	// RS: End of add code for extended types
 	/**
 	 * @generated
 	 */

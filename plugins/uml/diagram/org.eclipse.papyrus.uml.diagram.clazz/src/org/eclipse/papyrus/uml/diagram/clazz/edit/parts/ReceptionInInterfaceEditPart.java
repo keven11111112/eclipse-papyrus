@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -754,7 +754,7 @@ public class ReceptionInInterfaceEditPart extends CompartmentEditPart implements
 		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
 			refreshLabel();
 		}
-		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);

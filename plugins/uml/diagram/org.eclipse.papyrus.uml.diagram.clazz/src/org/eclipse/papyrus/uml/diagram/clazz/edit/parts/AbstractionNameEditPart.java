@@ -136,7 +136,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -147,7 +146,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	public int getKeyPoint() {
 		return ConnectionLocator.MIDDLE;
 	}
@@ -218,7 +216,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -226,7 +223,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -394,7 +390,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		if(IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
@@ -467,7 +462,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -526,7 +520,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle)getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if(style != null) {
@@ -538,7 +531,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -546,7 +538,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if(getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -562,7 +553,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if(parserElements != null) {
 			for(int i = 0; i < parserElements.size(); i++) {
@@ -576,7 +566,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -701,7 +690,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if(NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -734,7 +722,6 @@ public class AbstractionNameEditPart extends PapyrusLabelEditPart implements ITe
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		// Parent should assign one using setLabel() method
 		return null;

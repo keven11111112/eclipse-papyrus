@@ -101,6 +101,8 @@ public class UMLDiagramUpdater {
 			return getPackage_2007SemanticChildren(view);
 		case ClassEditPart.VISUAL_ID:
 			return getClass_2008SemanticChildren(view);
+		case PrimitiveTypeEditPart.VISUAL_ID:
+			return getPrimitiveType_2009SemanticChildren(view);
 		case DataTypeEditPart.VISUAL_ID:
 			return getDataType_2010SemanticChildren(view);
 		case ComponentEditPartCN.VISUAL_ID:
@@ -115,8 +117,14 @@ public class UMLDiagramUpdater {
 			return getPackage_3009SemanticChildren(view);
 		case ClassEditPartCN.VISUAL_ID:
 			return getClass_3010SemanticChildren(view);
+		case PrimitiveTypeEditPartCN.VISUAL_ID:
+			return getPrimitiveType_3026SemanticChildren(view);
 		case DataTypeEditPartCN.VISUAL_ID:
 			return getDataType_3027SemanticChildren(view);
+		case PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID:
+			return getPrimitiveTypeAttributeCompartment_7041SemanticChildren(view);
+		case PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID:
+			return getPrimitiveTypeOperationCompartment_7042SemanticChildren(view);
 		case ClassAttributeCompartmentEditPartCN.VISUAL_ID:
 			return getClassAttributeCompartment_7011SemanticChildren(view);
 		case ClassOperationCompartmentEditPartCN.VISUAL_ID:
@@ -149,6 +157,10 @@ public class UMLDiagramUpdater {
 			return getEnumerationEnumerationLiteralCompartment_7031SemanticChildren(view);
 		case InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID:
 			return getInstanceSpecificationSlotCompartment_7035SemanticChildren(view);
+		case PrimitiveTypeAttributeCompartmentEditPart.VISUAL_ID:
+			return getPrimitiveTypeAttributeCompartment_7039SemanticChildren(view);
+		case PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID:
+			return getPrimitiveTypeOperationCompartment_7040SemanticChildren(view);
 		case ClassAttributeCompartmentEditPart.VISUAL_ID:
 			return getClassAttributeCompartment_7017SemanticChildren(view);
 		case ClassOperationCompartmentEditPart.VISUAL_ID:
@@ -429,6 +441,25 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLNodeDescriptor> getPrimitiveType_2009SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		PrimitiveType modelElement = (PrimitiveType)view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			TemplateSignature childElement = modelElement.getOwnedTemplateSignature();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLNodeDescriptor> getDataType_2010SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
@@ -568,6 +599,25 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLNodeDescriptor> getPrimitiveType_3026SemanticChildren(View view) {
+		if(!view.isSetElement()) {
+			return Collections.EMPTY_LIST;
+		}
+		PrimitiveType modelElement = (PrimitiveType)view.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		{
+			TemplateSignature childElement = modelElement.getOwnedTemplateSignature();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLNodeDescriptor> getDataType_3027SemanticChildren(View view) {
 		if(!view.isSetElement()) {
 			return Collections.EMPTY_LIST;
@@ -579,6 +629,54 @@ public class UMLDiagramUpdater {
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == RedefinableTemplateSignatureEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getPrimitiveTypeAttributeCompartment_7041SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		PrimitiveType modelElement = (PrimitiveType)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
+			Property childElement = (Property)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PropertyForPrimitiveTypeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getPrimitiveTypeOperationCompartment_7042SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		PrimitiveType modelElement = (PrimitiveType)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
+			Operation childElement = (Operation)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == OperationForPrimitiveTypeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
 			}
 		}
 		return result;
@@ -1089,6 +1187,54 @@ public class UMLDiagramUpdater {
 			Slot childElement = (Slot)it.next();
 			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
 			if(visualID == SlotEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getPrimitiveTypeAttributeCompartment_7039SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		PrimitiveType modelElement = (PrimitiveType)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedAttributes().iterator(); it.hasNext();) {
+			Property childElement = (Property)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == PropertyForPrimitiveTypeEditPart.VISUAL_ID) {
+				result.add(new UMLNodeDescriptor(childElement, visualID));
+				continue;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLNodeDescriptor> getPrimitiveTypeOperationCompartment_7040SemanticChildren(View view) {
+		if(false == view.eContainer() instanceof View) {
+			return Collections.emptyList();
+		}
+		View containerView = (View)view.eContainer();
+		if(!containerView.isSetElement()) {
+			return Collections.emptyList();
+		}
+		PrimitiveType modelElement = (PrimitiveType)containerView.getElement();
+		LinkedList<UMLNodeDescriptor> result = new LinkedList<UMLNodeDescriptor>();
+		for(Iterator<?> it = modelElement.getOwnedOperations().iterator(); it.hasNext();) {
+			Operation childElement = (Operation)it.next();
+			int visualID = UMLVisualIDRegistry.getNodeVisualID(view, childElement);
+			if(visualID == OperationForPrimitiveTypeEditPart.VISUAL_ID) {
 				result.add(new UMLNodeDescriptor(childElement, visualID));
 				continue;
 			}
@@ -1816,6 +1962,8 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097ContainedLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098ContainedLinks(view);
+		case PropertyForPrimitiveTypeEditPart.VISUAL_ID:
+			return getProperty_3041ContainedLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012ContainedLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
@@ -1832,6 +1980,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004ContainedLinks(view);
 		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008ContainedLinks(view);
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return getOperation_3042ContainedLinks(view);
 		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013ContainedLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
@@ -1981,6 +2131,8 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097IncomingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098IncomingLinks(view);
+		case PropertyForPrimitiveTypeEditPart.VISUAL_ID:
+			return getProperty_3041IncomingLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012IncomingLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
@@ -1997,6 +2149,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004IncomingLinks(view);
 		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008IncomingLinks(view);
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return getOperation_3042IncomingLinks(view);
 		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013IncomingLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
@@ -2146,6 +2300,8 @@ public class UMLDiagramUpdater {
 			return getNamedElement_2097OutgoingLinks(view);
 		case ShapeNamedElementEditPart.VISUAL_ID:
 			return getNamedElement_2098OutgoingLinks(view);
+		case PropertyForPrimitiveTypeEditPart.VISUAL_ID:
+			return getProperty_3041OutgoingLinks(view);
 		case PropertyForClassEditPart.VISUAL_ID:
 			return getProperty_3012OutgoingLinks(view);
 		case PropertyForComponentEditPart.VISUAL_ID:
@@ -2162,6 +2318,8 @@ public class UMLDiagramUpdater {
 			return getClass_3004OutgoingLinks(view);
 		case NestedClassForInterfaceEditPart.VISUAL_ID:
 			return getClass_3008OutgoingLinks(view);
+		case OperationForPrimitiveTypeEditPart.VISUAL_ID:
+			return getOperation_3042OutgoingLinks(view);
 		case OperationForClassEditPart.VISUAL_ID:
 			return getOperation_3013OutgoingLinks(view);
 		case OperationForComponentEditPart.VISUAL_ID:
@@ -2560,6 +2718,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getProperty_3041ContainedLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getProperty_3012ContainedLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -2631,6 +2796,18 @@ public class UMLDiagramUpdater {
 		result.addAll(getContainedTypeModelFacetLinks_Generalization_4002(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_InterfaceRealization_4003(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_Substitution_4004(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
+		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
+		return result;
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperation_3042ContainedLinks(View view) {
+		Operation modelElement = (Operation)view.getElement();
+		LinkedList<UMLLinkDescriptor> result = new LinkedList<UMLLinkDescriptor>();
 		result.addAll(getContainedTypeModelFacetLinks_ElementImport_4009(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_PackageImport_4010(modelElement));
 		result.addAll(getContainedTypeModelFacetLinks_TemplateBinding_4015(modelElement));
@@ -3637,6 +3814,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getProperty_3041IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getProperty_3012IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -3687,6 +3871,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getClass_3008IncomingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperation_3042IncomingLinks(View view) {
 		return Collections.emptyList();
 	}
 
@@ -4911,6 +5102,13 @@ public class UMLDiagramUpdater {
 	/**
 	 * @generated
 	 */
+	public static List<UMLLinkDescriptor> getProperty_3041OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
 	public static List<UMLLinkDescriptor> getProperty_3012OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
@@ -4961,6 +5159,13 @@ public class UMLDiagramUpdater {
 	 * @generated
 	 */
 	public static List<UMLLinkDescriptor> getClass_3008OutgoingLinks(View view) {
+		return Collections.emptyList();
+	}
+
+	/**
+	 * @generated
+	 */
+	public static List<UMLLinkDescriptor> getOperation_3042OutgoingLinks(View view) {
 		return Collections.emptyList();
 	}
 

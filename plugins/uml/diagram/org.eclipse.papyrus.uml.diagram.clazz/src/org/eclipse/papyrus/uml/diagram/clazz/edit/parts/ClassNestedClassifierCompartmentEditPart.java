@@ -65,10 +65,7 @@ public class ClassNestedClassifierCompartmentEditPart extends ResizeableListComp
 	}
 
 	/**
-	 * @generated NOT
-	 * 
-	 *            The NestedClassifierListenerEditPolicy has been manually removed.
-	 *            Bug 386296: [Class Diagram] Containment links (Nested classifiers) do no work
+	 * @generated
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
@@ -82,7 +79,6 @@ public class ClassNestedClassifierCompartmentEditPart extends ResizeableListComp
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new NestedClazzCompartmentCreationEditPolicy());
-		//installEditPolicy(AbstractNestedClassifierListenerEditPolicy.EDIT_POLICY_ID, new ClassNestedClassifierListenerEditPolicy());
 	}
 
 	/**

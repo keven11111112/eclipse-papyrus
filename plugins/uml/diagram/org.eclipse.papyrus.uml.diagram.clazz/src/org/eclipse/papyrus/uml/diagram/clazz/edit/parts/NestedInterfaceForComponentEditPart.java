@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2010 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *
- *****************************************************************************/
+ */
 package org.eclipse.papyrus.uml.diagram.clazz.edit.parts;
 
 import java.util.Collections;
@@ -738,7 +737,7 @@ public class NestedInterfaceForComponentEditPart extends CompartmentEditPart imp
 				}
 			}
 		}
-		if(event.getFeature().equals(UMLPackage.eINSTANCE.getFeature_IsStatic())) {
+		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
 		super.handleNotificationEvent(event);
