@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:NFPs="http://www.eclipse.org/papyrus/NFPs/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://www.eclipse.org/papyrus/NFPs/1 http://www.eclipse.org/papyrus/MARTE/1#//NFPs">
+<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:DataTypes="http://www.eclipse.org/papyrus/DataTypes/1" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:NFPs="http://www.eclipse.org/papyrus/NFPs/1" xmlns:Time="http://www.eclipse.org/papyrus/Time/1" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:l2="http://www.eclipse.org/uml2/4.0.0/UML/Profile/L2" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/DataTypes/1 http://www.eclipse.org/papyrus/MARTE/1#//DataTypes http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA http://www.eclipse.org/papyrus/NFPs/1 http://www.eclipse.org/papyrus/MARTE/1#//NFPs http://www.eclipse.org/papyrus/Time/1 http://www.eclipse.org/papyrus/MARTE/1#//Time">
   <uml:Package xmi:id="_uBlQkA73EdyML4mHwjNDrw" name="MARTE_Library">
     <packageImport xmi:id="_uBlQkQ73EdyML4mHwjNDrw">
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
@@ -1082,6 +1082,12 @@
         <ownedLiteral xmi:id="_jleDsDJSEd211cMdxu944g" name="mg"/>
         <ownedLiteral xmi:id="_jrlSwDJSEd211cMdxu944g" name="kg"/>
       </packagedElement>
+      <profileApplication xmi:id="_eWvLYHHQEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_eXCGUHHQEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//NFPs"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_U_GAoAPMEdyuUt-4qHuVvQ"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_X3JtMAeNEdytasR0-Ec7ew" name="GRM_BasicTypes">
       <packageImport xmi:id="_tfw-YBXFEdyBX5GHlMLAlg" importedPackage="_l6ms8A74EdyML4mHwjNDrw"/>
@@ -1275,6 +1281,12 @@
           </defaultValue>
         </ownedAttribute>
       </packagedElement>
+      <profileApplication xmi:id="_dT_nEHHzEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_dUKmMHHzEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//DataTypes"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_9FdqwA-MEdyLh7muGbCqMw"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_g2qR8A74EdyML4mHwjNDrw" name="MARTE_DataTypes">
       <packageImport xmi:id="_SuBaMBXFEdyBX5GHlMLAlg" importedPackage="_dDxjEAeNEdytasR0-Ec7ew"/>
@@ -1541,6 +1553,12 @@
           </ownedParameter>
         </ownedOperation>
       </packagedElement>
+      <profileApplication xmi:id="_VnjCIHHaEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_VnszIHHaEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//DataTypes"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_9FdqwA-MEdyLh7muGbCqMw"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_l6ms8A74EdyML4mHwjNDrw" name="BasicNFP_Types">
       <packageImport xmi:id="_EAt8oBXjEdyC88-N-gXBsQ" importedPackage="_3DJKAA4uEdysTsAUPnp57Q"/>
@@ -2131,6 +2149,18 @@
           </defaultValue>
         </ownedAttribute>
       </packagedElement>
+      <profileApplication xmi:id="_WG1PEHHuEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_WHIKAHHuEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//NFPs"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_U_GAoAPMEdyuUt-4qHuVvQ"/>
+      </profileApplication>
+      <profileApplication xmi:id="_WHIKAXHuEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_WHR7AHHuEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//DataTypes"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_9FdqwA-MEdyLh7muGbCqMw"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_x9l9sA74EdyML4mHwjNDrw" name="TimeTypesLibrary">
       <packagedElement xmi:type="uml:Enumeration" xmi:id="_WAvb0A75EdyML4mHwjNDrw" name="TimeNatureKind">
@@ -2218,6 +2248,24 @@
           <ownedParameter xmi:id="_pz2XgA-JEdyNj8xzjk-DoA" name="" type="_beo90AnpEdy9WM11hWri2g" direction="return"/>
         </ownedOperation>
       </packagedElement>
+      <profileApplication xmi:id="_IlkFoHHyEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_IltPkHHyEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//Time"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_WStkoAPMEdyuUt-4qHuVvQ"/>
+      </profileApplication>
+      <profileApplication xmi:id="_IltPkXHyEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_Il3AkHHyEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//DataTypes"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_9FdqwA-MEdyLh7muGbCqMw"/>
+      </profileApplication>
+      <profileApplication xmi:id="_fWzBwHHyEeKqG9oh8v31vA">
+        <eAnnotations xmi:id="_fW9Z0HHyEeKqG9oh8v31vA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+          <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/MARTE/1#//NFPs"/>
+        </eAnnotations>
+        <appliedProfile href="pathmap://Papyrus_PROFILES/MARTE.profile.uml#_U_GAoAPMEdyuUt-4qHuVvQ"/>
+      </profileApplication>
     </packagedElement>
     <packagedElement xmi:type="uml:Package" xmi:id="_RTwjABgzEdyHL91mBnoLNQ" name="RS_Library">
       <packageImport xmi:id="_ZKGCQBmVEdyKYph7niDrbQ" importedPackage="_g2qR8A74EdyML4mHwjNDrw"/>
@@ -2284,4 +2332,115 @@
   <l2:ModelLibrary xmi:id="_5Ou4gLGzEd-tmN4hwNCxXQ" base_Package="_2GPOEA74EdyML4mHwjNDrw"/>
   <l2:ModelLibrary xmi:id="_50PZULGzEd-tmN4hwNCxXQ" base_Package="_x9l9sA74EdyML4mHwjNDrw"/>
   <l2:ModelLibrary xmi:id="_DcPoAG6oEeKwEYt6tp1Aqg" base_Package="_uBlQkA73EdyML4mHwjNDrw"/>
+  <NFPs:Dimension xmi:id="_gVWNIHHQEeKqG9oh8v31vA" symbol="T" base_Enumeration="_Iaa3gA4yEdysTsAUPnp57Q"/>
+  <NFPs:Dimension xmi:id="_jY-9QHHQEeKqG9oh8v31vA" symbol="" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_ijhHUA4yEdysTsAUPnp57Q">
+    <baseExponent>2</baseExponent>
+    <baseExponent>1</baseExponent>
+    <baseExponent>-3</baseExponent>
+  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_l4wyYHHQEeKqG9oh8v31vA" symbol="" baseDimension="_gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_qFaygA4yEdysTsAUPnp57Q">
+    <baseExponent>-1</baseExponent>
+  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_wk92YHHQEeKqG9oh8v31vA" symbol="D" base_Enumeration="_2pVmEA4yEdysTsAUPnp57Q"/>
+  <NFPs:Dimension xmi:id="_2itnMHHQEeKqG9oh8v31vA" baseDimension="_wk92YHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_DyNg0A4zEdysTsAUPnp57Q">
+    <baseExponent>1</baseExponent>
+    <baseExponent>-1</baseExponent>
+  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_3R3zQHHQEeKqG9oh8v31vA" baseDimension="_37FIUHHQEeKqG9oh8v31vA _5PvOIHHQEeKqG9oh8v31vA _gVWNIHHQEeKqG9oh8v31vA" base_Enumeration="_UaKKgA4zEdysTsAUPnp57Q">
+    <baseExponent>2</baseExponent>
+    <baseExponent>1</baseExponent>
+    <baseExponent>-2</baseExponent>
+  </NFPs:Dimension>
+  <NFPs:Dimension xmi:id="_37FIUHHQEeKqG9oh8v31vA" symbol="L" base_Enumeration="_g5AQ0A4zEdysTsAUPnp57Q"/>
+  <NFPs:Dimension xmi:id="_4jZskHHQEeKqG9oh8v31vA" base_Enumeration="_Sw5dsBFUEdyUJeMeN__D-A"/>
+  <NFPs:Dimension xmi:id="_5PvOIHHQEeKqG9oh8v31vA" symbol="M" base_Enumeration="_fuoVADJSEd211cMdxu944g"/>
+  <NFPs:Unit xmi:id="_Nb4h4HHSEeKqG9oh8v31vA" base_EnumerationLiteral="_KvuiAA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_ODAzUHHSEeKqG9oh8v31vA" base_EnumerationLiteral="_LDGJ8A4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_OsOIYHHSEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_Nb4h4HHSEeKqG9oh8v31vA" base_EnumerationLiteral="_LK_hsA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_PWnwQHHSEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_OsOIYHHSEeKqG9oh8v31vA" base_EnumerationLiteral="_LTCqcA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_QFoyYHHSEeKqG9oh8v31vA" convFactor="60" baseUnit="_Nb4h4HHSEeKqG9oh8v31vA" base_EnumerationLiteral="_OsmAMA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_Q2b9MHHSEeKqG9oh8v31vA" convFactor="60" baseUnit="_QFoyYHHSEeKqG9oh8v31vA" base_EnumerationLiteral="_O8F0wA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_Rev6YHHSEeKqG9oh8v31vA" convFactor="24" baseUnit="_Q2b9MHHSEeKqG9oh8v31vA" base_EnumerationLiteral="_PU1E4A4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_27COUHHVEeKqG9oh8v31vA" base_EnumerationLiteral="_lBxScA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_3pdakHHVEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_27COUHHVEeKqG9oh8v31vA" base_EnumerationLiteral="_lMpFsA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_4WPBAHHVEeKqG9oh8v31vA" convFactor="1000" baseUnit="_27COUHHVEeKqG9oh8v31vA" base_EnumerationLiteral="_lXXvAA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_CxVt8HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_tcvToA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_Dd0ZcHHWEeKqG9oh8v31vA" convFactor="1E3" baseUnit="_CxVt8HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_tmRqIA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_EEWN8HHWEeKqG9oh8v31vA" convFactor="1E6" baseUnit="_CxVt8HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_twkOkA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_Es9tIHHWEeKqG9oh8v31vA" convFactor="1E9" baseUnit="_CxVt8HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_t46SQA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_FQhtMHHWEeKqG9oh8v31vA" convFactor="0.0167" baseUnit="_CxVt8HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_uA8z8A4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_YRXg4HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_7OS_AA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_Y4M3YHHWEeKqG9oh8v31vA" convFactor="8" baseUnit="_YRXg4HHWEeKqG9oh8v31vA" base_EnumerationLiteral="_7df4oA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_ZfeSwHHWEeKqG9oh8v31vA" convFactor="1024" baseUnit="_Y4M3YHHWEeKqG9oh8v31vA" base_EnumerationLiteral="_7pHSwA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_aH8oAHHWEeKqG9oh8v31vA" convFactor="1024" baseUnit="_ZfeSwHHWEeKqG9oh8v31vA" base_EnumerationLiteral="_717mwA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_arNGEHHWEeKqG9oh8v31vA" convFactor="1024" baseUnit="_aH8oAHHWEeKqG9oh8v31vA" base_EnumerationLiteral="_7-bbcA4yEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_iFZxUHHXEeKqG9oh8v31vA" base_EnumerationLiteral="_IdlDwA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_i9770HHXEeKqG9oh8v31vA" convFactor="1024" baseUnit="_iFZxUHHXEeKqG9oh8v31vA" base_EnumerationLiteral="_InkGMA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_jvoegHHXEeKqG9oh8v31vA" convFactor="1024" baseUnit="_i9770HHXEeKqG9oh8v31vA" base_EnumerationLiteral="_IzfCUA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_mciUMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_WkvLsA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_nHri8HHYEeKqG9oh8v31vA" convFactor="1E3" baseUnit="_mciUMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_Wr48kA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_nyO70HHYEeKqG9oh8v31vA" convFactor="2.778E-4" baseUnit="_mciUMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_WzL3YA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_oZgXMHHYEeKqG9oh8v31vA" convFactor="1E3" baseUnit="_nyO70HHYEeKqG9oh8v31vA" base_EnumerationLiteral="_W6pKQA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_pLDI4HHYEeKqG9oh8v31vA" convFactor="1E-3" baseUnit="_nyO70HHYEeKqG9oh8v31vA" base_EnumerationLiteral="_XCiiAA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_-0SiMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_oeL5gA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="__oEIgHHYEeKqG9oh8v31vA" convFactor="1E-2" baseUnit="_-0SiMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_opXOwA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_ASwrUHHZEeKqG9oh8v31vA" convFactor="1E-3" baseUnit="_-0SiMHHYEeKqG9oh8v31vA" base_EnumerationLiteral="_oxQmgA4zEdysTsAUPnp57Q"/>
+  <NFPs:Unit xmi:id="_4zdLsHHZEeKqG9oh8v31vA" base_EnumerationLiteral="_XV22oBFUEdyUJeMeN__D-A"/>
+  <NFPs:Unit xmi:id="_5k2MYHHZEeKqG9oh8v31vA" convFactor="1E-6" baseUnit="_4zdLsHHZEeKqG9oh8v31vA" base_EnumerationLiteral="_XeM6UBFUEdyUJeMeN__D-A"/>
+  <NFPs:Unit xmi:id="_B0mcEHHaEeKqG9oh8v31vA" base_EnumerationLiteral="_jcYZIDJSEd211cMdxu944g"/>
+  <NFPs:Unit xmi:id="_CgyMoHHaEeKqG9oh8v31vA" convFactor="1E-3" baseUnit="_B0mcEHHaEeKqG9oh8v31vA" base_EnumerationLiteral="_jleDsDJSEd211cMdxu944g"/>
+  <NFPs:Unit xmi:id="_DIzO4HHaEeKqG9oh8v31vA" convFactor="1E3" baseUnit="_B0mcEHHaEeKqG9oh8v31vA" base_EnumerationLiteral="_jrlSwDJSEd211cMdxu944g"/>
+  <DataTypes:CollectionType xmi:id="_XzSg8HHaEeKqG9oh8v31vA" collectionAttrib="_gdsBoBEDEdyx6M3BlUjlCQ" base_DataType="_WkRCQBD_EdyybZnLxHsjyA"/>
+  <DataTypes:CollectionType xmi:id="_Y9EzgHHaEeKqG9oh8v31vA" collectionAttrib="_2qGWQBD_EdyybZnLxHsjyA" base_DataType="_yhmP0BD_EdyybZnLxHsjyA"/>
+  <DataTypes:IntervalType xmi:id="_a-zasHHaEeKqG9oh8v31vA" intervalAttrib="_iG-lkBEBEdyx6M3BlUjlCQ" base_DataType="_ehpdoBEBEdyx6M3BlUjlCQ"/>
+  <DataTypes:CollectionType xmi:id="_eoO_gHHaEeKqG9oh8v31vA" collectionAttrib="_gdsBoBEDEdyx6M3BlUjlCQ" base_DataType="_MgXXkBEDEdyx6M3BlUjlCQ"/>
+  <DataTypes:IntervalType xmi:id="_fb200HHaEeKqG9oh8v31vA" intervalAttrib="_94t6EBXWEdyC88-N-gXBsQ" base_DataType="_6ekucBXWEdyC88-N-gXBsQ"/>
+  <DataTypes:IntervalType xmi:id="_kYlNgHHaEeKqG9oh8v31vA" intervalAttrib="_Uc9xMB15EdyUAqqkOL30sg" base_DataType="_TKe1oB15EdyUAqqkOL30sg"/>
+  <DataTypes:CollectionType xmi:id="_siKR0HHcEeKqG9oh8v31vA" collectionAttrib="_M7eyYEB9Ed6UTJZnztgOLw" base_DataType="_F0-CsEB9Ed6UTJZnztgOLw"/>
+  <DataTypes:CollectionType xmi:id="_twRDsHHcEeKqG9oh8v31vA" collectionAttrib="_NK0O4EB9Ed6UTJZnztgOLw" base_DataType="_I11ysEB9Ed6UTJZnztgOLw"/>
+  <NFPs:NfpType xmi:id="_YYER4HHuEeKqG9oh8v31vA" base_DataType="_ACuvABD_EdyybZnLxHsjyA" exprAttrib="_EC4KsBD_EdyybZnLxHsjyA"/>
+  <NFPs:NfpType xmi:id="_d40ksHHuEeKqG9oh8v31vA" base_DataType="_55fyMBFGEdyBd9q9NMDXUQ" valueAttrib="_76_I0BFGEdyBd9q9NMDXUQ"/>
+  <NFPs:NfpType xmi:id="_o6MncHHuEeKqG9oh8v31vA" base_DataType="_Asy1gBFIEdyUJeMeN__D-A" valueAttrib="_Asy1ghFIEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_22RrUHHvEeKqG9oh8v31vA" base_DataType="_B5VngBFQEdyUJeMeN__D-A" valueAttrib="_B5VnghFQEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_5XayYHHvEeKqG9oh8v31vA" base_DataType="_Yq-MQBFQEdyUJeMeN__D-A" valueAttrib="_Yq-MQhFQEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_7qH00HHvEeKqG9oh8v31vA" base_DataType="_0KWSgBFQEdyUJeMeN__D-A" valueAttrib="_0KWSghFQEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_-Q638HHvEeKqG9oh8v31vA" base_DataType="_NIDGMBFREdyUJeMeN__D-A" valueAttrib="_NIDGMhFREdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_BrL_YHHwEeKqG9oh8v31vA" base_DataType="_kMwX8BFREdyUJeMeN__D-A" unitAttrib="_kMwX8hFREdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_LoG7gHHwEeKqG9oh8v31vA" base_DataType="__NI1EBFREdyUJeMeN__D-A" unitAttrib="_B7LvsBFSEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_OVS6gHHwEeKqG9oh8v31vA" base_DataType="_UDZSQBFSEdyUJeMeN__D-A" unitAttrib="_UDZSQhFSEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_iES0sHHwEeKqG9oh8v31vA" base_DataType="_nWsu8BFSEdyUJeMeN__D-A" unitAttrib="_nWsu8hFSEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_lOWV4HHwEeKqG9oh8v31vA" base_DataType="_5LrMcBFSEdyUJeMeN__D-A" unitAttrib="_5LrMchFSEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_pG-NQHHwEeKqG9oh8v31vA" base_DataType="_QmcNwBFTEdyUJeMeN__D-A" unitAttrib="_QmcNwhFTEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_sBs5AHHwEeKqG9oh8v31vA" base_DataType="_g4VH4BFTEdyUJeMeN__D-A" unitAttrib="_g4VH4hFTEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_2HvU4HHwEeKqG9oh8v31vA" base_DataType="_0KmCwBFTEdyUJeMeN__D-A" unitAttrib="_0KmCwhFTEdyUJeMeN__D-A"/>
+  <DataTypes:ChoiceType xmi:id="_7zNp8HHwEeKqG9oh8v31vA" base_DataType="_VDec8BFXEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_9aB2wHHwEeKqG9oh8v31vA" base_DataType="_YOIbEBFXEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_-Cp9AHHwEeKqG9oh8v31vA" base_DataType="_n4-jUBFXEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_-mPLMHHwEeKqG9oh8v31vA" base_DataType="_xuG1YBFXEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="__JNVYHHwEeKqG9oh8v31vA" base_DataType="_69YoYBFXEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="__0EQQHHwEeKqG9oh8v31vA" base_DataType="_LYgXABFYEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_Ae7yMHHxEeKqG9oh8v31vA" base_DataType="_iyYAcBFYEdyUJeMeN__D-A"/>
+  <NFPs:NfpType xmi:id="_CqWg4HHxEeKqG9oh8v31vA" base_DataType="_ZPC-IBFaEdyUJeMeN__D-A" unitAttrib="_bD3xwBFaEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_Gc17EHHxEeKqG9oh8v31vA" base_DataType="_cb3rIDJPEd211cMdxu944g"/>
+  <NFPs:NfpType xmi:id="_HH2m8HHxEeKqG9oh8v31vA" base_DataType="_TyXpQDJQEd211cMdxu944g" unitAttrib="_XPkv8DJQEd211cMdxu944g"/>
+  <NFPs:NfpType xmi:id="_MjaQsHHxEeKqG9oh8v31vA" base_DataType="_sMCi0DJQEd211cMdxu944g" unitAttrib="_0pa-0DJQEd211cMdxu944g"/>
+  <DataTypes:TupleType xmi:id="_a-m5gHHyEeKqG9oh8v31vA" base_DataType="_xV1ksA75EdyML4mHwjNDrw"/>
+  <NFPs:Unit xmi:id="_gUpxIHHyEeKqG9oh8v31vA" base_EnumerationLiteral="_b_v5AA-KEdyNj8xzjk-DoA"/>
+  <Time:Clock xmi:id="_iHb9YHHyEeKqG9oh8v31vA" base_InstanceSpecification="_42TqEA-JEdyNj8xzjk-DoA" unit="_xByc0HHyEeKqG9oh8v31vA"/>
+  <Time:ClockType xmi:id="_pEdZ4HHyEeKqG9oh8v31vA" nature="dense" unitType="_DY4Q8A-KEdyNj8xzjk-DoA" getTime="_oPkhUA-JEdyNj8xzjk-DoA" base_Class="_BKyhUBBREdyt6tGzWCpUVA"/>
+  <NFPs:Unit xmi:id="_xByc0HHyEeKqG9oh8v31vA" base_EnumerationLiteral="_FahYkA-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_xtK8IHHyEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_xByc0HHyEeKqG9oh8v31vA" base_EnumerationLiteral="_Fh-EYA-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_yWlskHHyEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_xtK8IHHyEeKqG9oh8v31vA" base_EnumerationLiteral="_Fm5AoA-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_zHgzMHHyEeKqG9oh8v31vA" convFactor="0.001" baseUnit="_yWlskHHyEeKqG9oh8v31vA" base_EnumerationLiteral="_FsjjwA-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_z0TAsHHyEeKqG9oh8v31vA" convFactor="60" baseUnit="_xByc0HHyEeKqG9oh8v31vA" base_EnumerationLiteral="_FyEV4A-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_03pUEHHyEeKqG9oh8v31vA" convFactor="60" baseUnit="_z0TAsHHyEeKqG9oh8v31vA" base_EnumerationLiteral="_F3SNEA-KEdyNj8xzjk-DoA"/>
+  <NFPs:Unit xmi:id="_6eWd4HHyEeKqG9oh8v31vA" convFactor="24" baseUnit="_03pUEHHyEeKqG9oh8v31vA" base_EnumerationLiteral="_F8fdMA-KEdyNj8xzjk-DoA"/>
+  <DataTypes:TupleType xmi:id="_fHK04HHzEeKqG9oh8v31vA" base_DataType="_Ng1kMAeOEdytasR0-Ec7ew"/>
+  <DataTypes:ChoiceType xmi:id="_hcbcEHHzEeKqG9oh8v31vA" base_DataType="_d6I-0BFbEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_i18zwHHzEeKqG9oh8v31vA" base_DataType="_rnEo4BFbEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_kx1RoHHzEeKqG9oh8v31vA" base_DataType="_yayYYBFbEdyUJeMeN__D-A"/>
+  <DataTypes:TupleType xmi:id="_mb1VUHHzEeKqG9oh8v31vA" base_DataType="_LBY6sBFcEdyUJeMeN__D-A"/>
+  <DataTypes:ChoiceType xmi:id="_oX9q0HHzEeKqG9oh8v31vA" base_DataType="_HRbMoLGzEd-tmN4hwNCxXQ"/>
+  <DataTypes:TupleType xmi:id="_pSARMHHzEeKqG9oh8v31vA" base_DataType="_LcrFELGzEd-tmN4hwNCxXQ"/>
+  <DataTypes:TupleType xmi:id="_qyaUAHHzEeKqG9oh8v31vA" base_DataType="_NxGl0LGzEd-tmN4hwNCxXQ"/>
 </xmi:XMI>
