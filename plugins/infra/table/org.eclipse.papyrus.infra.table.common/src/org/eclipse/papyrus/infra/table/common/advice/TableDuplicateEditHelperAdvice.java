@@ -246,7 +246,7 @@ public class TableDuplicateEditHelperAdvice extends AbstractEditHelperAdvice {
 			EObject duplicatePapyrusTableInstance = (EObject)copier.get(papyrusTableInstanceToDuplicate);
 			EObject duplicateTableInstance = (EObject)copier.get(tableInstanceToDuplicate);
 
-			Resource targetResource = getNotationResourceForTable(duplicateTableInstance, getEditingDomain());
+			Resource targetResource = getDiResourceForTable(duplicateTableInstance, getEditingDomain());
 			//	Resource containerResource = papyrusTableInstanceToDuplicate.eResource();
 			if(targetResource != null) {
 				targetResource.getContents().add(duplicateTableInstance);
