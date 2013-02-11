@@ -584,9 +584,12 @@
 	</metamodelType>
 	
 	<!-- IMetamodelType for EnumerationLiteral -->
-	<metamodelType id="org.eclipse.papyrus.uml.EnumerationLiteral" name="UML::EnumerationLiteral"
-		eclass="EnumerationLiteral"
-		kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType" >
+	<metamodelType
+       eclass="EnumerationLiteral"
+       edithelper="org.eclipse.papyrus.uml.service.types.helper.EnumerationLiteralHelper"
+       id="org.eclipse.papyrus.uml.EnumerationLiteral"
+       kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
+       name="UML::EnumerationLiteral">
 			<param name="semanticHint" value="UML::EnumerationLiteral"/>
 	</metamodelType>
 	
