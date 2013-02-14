@@ -51,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.common.part.PapyrusPaletteViewer;
 import org.eclipse.papyrus.uml.diagram.common.part.UmlGmfDiagramEditor;
 import org.eclipse.papyrus.uml.diagram.common.service.PapyrusPaletteService;
 import org.eclipse.papyrus.uml.diagram.sequence.navigator.UMLNavigatorItem;
+import org.eclipse.papyrus.uml.diagram.sequence.util.FixInteractionOperandsOnOpening;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.dnd.TransferData;
 import org.eclipse.swt.events.KeyEvent;
@@ -103,10 +104,13 @@ public class UMLDiagramEditor extends UmlGmfDiagramEditor implements IProviderCh
 	private IDocumentProvider documentProvider;
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	public UMLDiagramEditor(ServicesRegistry servicesRegistry, Diagram diagram) throws ServiceException {
 		super(servicesRegistry, diagram);
+
+		// Fix interaction operand bounds (see bug 400460)
+		new FixInteractionOperandsOnOpening().fix(diagram);
 
 		// adds a listener to the palette service, which reacts to palette customizations
 		PapyrusPaletteService.getInstance().addProviderChangeListener(this);
