@@ -25,11 +25,14 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.Diagnostician;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.ui.EMFEditUIPlugin;
+import org.eclipse.emf.facet.infra.facet.validation.EValidatorAdapter;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.jface.dialogs.ProgressMonitorDialog;
@@ -95,11 +98,9 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 
 	/**
 	 * @return The resource on which markers should be applied.
-	 *         Currently, the function simply returns the first resource of the resource-set which happens to be the
-	 *         "notation" resource. This might change in the future.
 	 */
 	protected Resource getValidationResource() {
-		return ValidationUtils.getValidationResourceViaDomain(domain);
+		return ValidationUtils.getValidationResource(selectedElement);
 	}
 
 	protected void runValidation(final EObject validateElement) {
@@ -187,9 +188,26 @@ abstract public class AbstractValidateCommand extends AbstractTransactionalComma
 			@Override
 			public boolean validate(EClass eClass, EObject eObject, DiagnosticChain diagnostics, Map<Object, Object> context) {
 				progressMonitor.worked(1);
-				return super.validate(eClass, eObject, diagnostics, context);
+
+				// copied from superclass, difference: use EValidatorAdapter instead of first value from eValidatorRegistry
+				// fix of bug 397518
+
+				Object eValidator = validatorAdapter;
+
+				boolean circular = context.get(EObjectValidator.ROOT_OBJECT) == eObject;
+				boolean result = ((EValidator)eValidator).validate(eClass, eObject, diagnostics, context);
+				if((result || diagnostics != null) && !circular)
+				{
+					result &= doValidateContents(eObject, diagnostics, context);
+				}
+				return result;
 			}
+
+			// TODO: avoid discouraged access
+			@SuppressWarnings("restriction")
+			protected EValidatorAdapter validatorAdapter = new EValidatorAdapter();
 		};
+
 	}
 
 	/**

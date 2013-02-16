@@ -27,7 +27,6 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 
 
 public class ValidationUtils {
@@ -95,13 +94,15 @@ public class ValidationUtils {
 	}
 
 	/**
-	 * Convenience function delegating to getResourceViaDomain(domain)
+	 * Return the validation resource for a selected eObject
 	 * 
 	 * @return The resource on which markers should be applied.
 	 */
 	public static Resource getValidationResource(EObject eObject) {
-		TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
-		return getValidationResourceViaDomain(domain);
+		// fix for bug 397518 - assure that markers are put onto UML resource instead of delegating to domain
+		return eObject.eResource();
+		// TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(eObject);
+		// return getValidationResourceViaDomain(domain);
 	}
 
 	/**
