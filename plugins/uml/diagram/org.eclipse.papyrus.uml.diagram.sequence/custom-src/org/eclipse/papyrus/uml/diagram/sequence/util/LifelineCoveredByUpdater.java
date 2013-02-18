@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -24,9 +23,13 @@ import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -109,6 +112,9 @@ public class LifelineCoveredByUpdater {
 		coveredByLifelinesToAdd.clear();
 		coveredByLifelinesToRemove.clear();
 		
+		//Update height of Lifeline when coveredBy some InteractionFragments.
+		int bottom = 0;
+		
 		for (Map.Entry<InteractionFragmentEditPart, Rectangle> entry : interactionFragments.entrySet()) {
 			InteractionFragmentEditPart editPart = entry.getKey();
 			Rectangle childBounds = entry.getValue();
@@ -117,6 +123,7 @@ public class LifelineCoveredByUpdater {
 			if (rect.intersects(childBounds)) {
 				if (!coveredByLifelines.contains(interactionFragment)) {
 					coveredByLifelinesToAdd.add(interactionFragment);
+					bottom = Math.max(childBounds.bottom(), bottom);
 				}
 			} else if (coveredByLifelines.contains(interactionFragment)) {
 				coveredByLifelinesToRemove.add(interactionFragment);
@@ -128,6 +135,13 @@ public class LifelineCoveredByUpdater {
 					AddCommand.create(editingDomain, lifeline,
 							UMLPackage.eINSTANCE.getLifeline_CoveredBy(),
 							coveredByLifelinesToAdd), true);
+			
+			//Update Lifeline height.
+			int newHeight = bottom - rect.y;
+			if(newHeight > rect.height) {
+				Bounds bounds = (Bounds)((Shape)lifelineEditpart.getModel()).getLayoutConstraint();
+				CommandHelper.executeCommandWithoutHistory(editingDomain, SetCommand.create(editingDomain, bounds, NotationPackage.Literals.SIZE__HEIGHT, newHeight), true);
+			}
 		}
 		if (!coveredByLifelinesToRemove.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(editingDomain,

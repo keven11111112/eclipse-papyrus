@@ -51,9 +51,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.Messages;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLPaletteFactory.AspectUnspecifiedTypeConnectionToolEx;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.ElementInitializers;
+import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.ui.ISharedImages;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementListSelectionDialog;
 import org.eclipse.uml2.uml.ActionExecutionSpecification;
@@ -118,8 +120,6 @@ public class CommandHelper {
 	 * Message for dialog of choose actual gate
 	 */
 	private static final String CHOOSE_GATE_DIALOG_MSG = "Choose the gate to attach the message"; //$NON-NLS-1$
-
-
 
 	/**
 	 * Create a message on the given interaction. It only creates the message and not its messages end.
@@ -876,11 +876,28 @@ public class CommandHelper {
 			} else {
 				// remove connection feedbacks before opening dialog
 				clearConnectionFeedback();
+				// Introduce to create new Gate every time.
+				final Gate newGate = UMLFactory.eINSTANCE.createGate();
 				
 				Shell shell = Display.getCurrent().getActiveShell();
-				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(
-						UMLDiagramEditorPlugin.getInstance()
-								.getItemProvidersAdapterFactory());
+				ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory()) {
+
+					@Override
+					public Image getImage(Object object) {
+						if(newGate == object) {
+							return PlatformUI.getWorkbench().getSharedImages().getImage(ISharedImages.IMG_OBJ_ADD);
+						}
+						return super.getImage(object);
+					}
+
+					@Override
+					public String getText(Object object) {
+						if (newGate == object){
+							return "<create new gate>";
+						}
+						return super.getText(object);
+					}
+				};
 				ElementListSelectionDialog dialog = new ElementListSelectionDialog(
 						shell, labelProvider);
 				dialog.setTitle("Gates of the CombinedFragment has");
@@ -888,6 +905,7 @@ public class CommandHelper {
 				dialog.setMultipleSelection(false);
 				
 				List<Gate> gates = new ArrayList<Gate>();
+				gates.add(newGate);
 				for (Gate actualGate : cfragmentGates) {
 					gates.add(actualGate);
 				}
@@ -895,6 +913,9 @@ public class CommandHelper {
 				dialog.setElements(gates.toArray());
 				if (dialog.open() == Window.OK) {
 					gate = (Gate) dialog.getFirstResult();
+					if(gate == newGate) {
+						gate = combinedFragment.createCfragmentGate(null);
+					}
 				}else{ // cancel button
 					throw new OperationCanceledException(); 
 				}
@@ -910,27 +931,42 @@ public class CommandHelper {
 				return null;
 			}
 
-			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
-			ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
-			dialog.setTitle(CHOOSE_GATE_DIALOG_TITLE);
-			dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
-			dialog.setMultipleSelection(false);
-
-			List<Gate> gates = new ArrayList<Gate>();
-			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
-				if(actualGate.getName().startsWith(direction.getName())) {
-					gates.add(actualGate);
-				}
+//			ILabelProvider labelProvider = new AdapterFactoryLabelProvider(UMLDiagramEditorPlugin.getInstance().getItemProvidersAdapterFactory());
+//			ElementListSelectionDialog dialog = new ElementListSelectionDialog(shell, labelProvider);
+//			dialog.setTitle(CHOOSE_GATE_DIALOG_TITLE);
+//			dialog.setMessage(CHOOSE_GATE_DIALOG_MSG);
+//			dialog.setMultipleSelection(false);
+//
+//			List<Gate> gates = new ArrayList<Gate>();
+//			for(Gate actualGate : ((InteractionUse)element).getActualGates()) {
+//				if(actualGate.getName().startsWith(direction.getName())) {
+//					gates.add(actualGate);
+//				}
+//			}
+//			dialog.setElements(gates.toArray());
+//			if(dialog.open() == Window.OK) {
+//				gate = (Gate)dialog.getFirstResult();
+//			}
+			
+			/**
+			 * Quickly fixed: Try to create new gate every time. 
+			 */
+			Interaction refersTo = interactionUse.getRefersTo();
+			String name = direction.toString().toLowerCase() + "_Gate";
+			int index = 0;
+			while(refersTo.getFormalGate(name) != null) {
+				name = direction.toString().toLowerCase() + "_Gate" + index;
+				index++;
 			}
-			dialog.setElements(gates.toArray());
-			if(dialog.open() == Window.OK) {
-				gate = (Gate)dialog.getFirstResult();
-			}
+			Gate formalGate = UMLFactory.eINSTANCE.createGate();
+			formalGate.setName(name);
+			refersTo.getFormalGates().add(formalGate);
+			gate = ((InteractionUse)element).getActualGate(formalGate.getName());
 		} else {
 			throw new IllegalArgumentException(WRONG_GATE_CONTAINER_TYPE_ERROR_MSG);
 		}
 
-		if(gate != null) {
+		if(gate != null && gate.getName() != null) {
 			ElementInitializers.init_NamedElement(gate, direction.toString().toLowerCase() + "_"); //$NON-NLS-1$
 		}
 
@@ -1087,13 +1123,17 @@ public class CommandHelper {
 		// Update the messages end with the message
 		if(sendMessageEnd != null) {
 			sendMessageEnd.setMessage(message);
-			ElementInitializers.init_NamedElement(sendMessageEnd, "", message.getName(), "Send"); //$NON-NLS-1$ //$NON-NLS-2$
+			if (sendMessageEnd.getName() == null){
+				ElementInitializers.init_NamedElement(sendMessageEnd, "", message.getName(), "Send"); //$NON-NLS-1$ //$NON-NLS-2$
+			}
 			// Update the message with the messages end
 			message.setSendEvent(sendMessageEnd);
 		}
 		if(receiveMessageEnd != null) {
 			receiveMessageEnd.setMessage(message);
-			ElementInitializers.init_NamedElement(receiveMessageEnd, "", message.getName(), "Recv"); //$NON-NLS-1$ //$NON-NLS-2$
+			if (receiveMessageEnd.getName() == null){
+				ElementInitializers.init_NamedElement(receiveMessageEnd, "", message.getName(), "Recv"); //$NON-NLS-1$ //$NON-NLS-2$
+			}
 			// Update the message with the messages end
 			message.setReceiveEvent(receiveMessageEnd);
 		}

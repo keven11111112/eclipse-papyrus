@@ -684,6 +684,11 @@ public class SequenceUtil {
 					}
 				}
 			}
+			
+			// CoRegion
+			if (child instanceof CombinedFragment2EditPart){
+				completeOccurrencesMapWithMessages((GraphicalEditPart)child, occurrences);
+			}
 		}
 		// messages to and from the lifeline
 		completeOccurrencesMapWithMessages(lifelineEditPart, occurrences);

@@ -88,8 +88,20 @@ public class CreationOnMessageEditPolicy extends CreationEditPolicy {
 							return editpart instanceof LifelineEditPart;
 						}
 					});
+					LifelineEditPart targetEditPart = null;
 					if(object instanceof LifelineEditPart) {
-						return ((LifelineEditPart)object).getCommand(request);
+						targetEditPart = (LifelineEditPart)object;
+					} else {
+						while(object != null) {
+							if(object.getParent() instanceof LifelineEditPart) {
+								targetEditPart = (LifelineEditPart)object.getParent();
+								break;
+							}
+							object = object.getParent();
+						}
+					}
+					if (targetEditPart != null){
+						return targetEditPart.getCommand(request);
 					}
 				}
 					

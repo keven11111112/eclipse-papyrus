@@ -537,6 +537,11 @@ public class OperandBoundsComputeHelper {
 						height = height + heightDelta;
 						Rectangle containerRect = new Rectangle(containerBounds.getX(),containerBounds.getY(),width,height);
 						compositeCommand.add(OperandBoundsComputeHelper.createUpdateEditPartBoundsCommand(parent, containerRect));
+						//Preserve Message anchors.
+						ICommand preserveMessageAnchorsCommand = MessageAnchorRepairer.createPreserveMessageAnchorsCommand(parent, heightDelta);
+						if (preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()){
+							compositeCommand.add(preserveMessageAnchorsCommand);
+						}
 						ICommand expandCoveredsCommand = getExpandCoveredsCommand((CombinedFragmentEditPart)compartEP.getParent(), containerRect);
 						if (expandCoveredsCommand != null){
 							compositeCommand.add(expandCoveredsCommand);
@@ -761,6 +766,11 @@ public class OperandBoundsComputeHelper {
 							            DiagramUIMessages.SetLocationCommand_Label_Resize,
 							            new EObjectAdapter(shapeView), newBounds);
 								command.add(setParentBoundsCmd);
+								//Preserve Message anchors.
+								ICommand preserveMessageAnchorsCommand = MessageAnchorRepairer.createPreserveMessageAnchorsCommand(parent, OperandBoundsComputeHelper.DEFAULT_INTERACTION_OPERAND_HEIGHT);
+								if (preserveMessageAnchorsCommand != null && preserveMessageAnchorsCommand.canExecute()){
+									command.add(preserveMessageAnchorsCommand);
+								}
 								CombinedFragment combinedFragment = (CombinedFragment)parent.resolveSemanticElement();
 								if(!combinedFragment.getCovereds().isEmpty()) {
 									ICommand cmd = getExpandCoveredsCommand(parent, newBounds);
@@ -814,16 +824,21 @@ public class OperandBoundsComputeHelper {
 						Bounds bounds = (Bounds)((Node)view).getLayoutConstraint();
 						Rectangle rect = new Rectangle(bounds.getX(), bounds.getY(), bounds.getWidth(), bounds.getHeight());
 						int height = newBounds.bottom() - rect.y;
-						if (height > rect.height){
-							rect.height = height;
+						if (rect.height == -1){
+							rect.height = ((LifelineEditPart)part).getFigure().getPreferredSize().height;
 						}
-						command.add(new SetBoundsCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
+						if (height > rect.height){
+							int heightDelta = height - rect.height;
+							rect.height = height;
+							command.add(new SetBoundsCommand(parent.getEditingDomain(), "Expand covered Lifeline by CombinedFragment", new EObjectAdapter(view), rect));
+							command.add(MessageAnchorRepairer.createPreserveMessageAnchorsCommand((LifelineEditPart)part, heightDelta));
+						}
 						break;
 					}
 				}
 			}
 		}
-		return command;
+		return (ICommand)(command.isEmpty() ? null : command);
 	}
 
 	

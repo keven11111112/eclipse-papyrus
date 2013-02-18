@@ -1231,7 +1231,10 @@ public class InteractionUseEditPart extends InteractionFragmentEditPart {
 				// Block manual deletion of actual gate
 				if(notification.getOldValue() instanceof Gate) {
 					Gate oldActualGate = (Gate)notification.getOldValue();
-					if(checkActualGateExistence(oldActualGate)) {
+					//There are some issues in redo progress, check if there is other one with same time firstly.
+					InteractionUse interactionUse = (InteractionUse)notification.getNotifier();
+					Gate otherOne = interactionUse.getActualGate(oldActualGate.getName());
+					if(otherOne == null && checkActualGateExistence(oldActualGate)) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), NO_ACTUAL_GATE_MANUAL_DELETION_DLG_TITLE, NO_ACTUAL_GATE_MANUAL_DELETION_DLG_MSG);
 						CommandHelper.executeCommandWithoutHistory(getEditingDomain(), AddCommand.create(getEditingDomain(), resolveSemanticElement(), UMLPackage.eINSTANCE.getInteractionUse_ActualGate(), oldActualGate), true);
 					}

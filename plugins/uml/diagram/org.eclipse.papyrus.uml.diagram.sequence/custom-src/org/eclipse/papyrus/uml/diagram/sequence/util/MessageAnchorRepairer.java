@@ -15,14 +15,20 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.List;
 
+import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
+import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gef.NodeEditPart;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
+import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractMessageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
@@ -33,6 +39,42 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
  */
 public class MessageAnchorRepairer {
 
+	public static ICommand createPreserveMessageAnchorsCommand(ShapeNodeEditPart editPart, int heightDelta) {
+		if(editPart == null || heightDelta == 0) {
+			return null;
+		}
+		Dimension sizeDelta = new Dimension(0, heightDelta);
+		int preserveAxis = PreserveAnchorsPositionCommand.PRESERVE_Y;
+		if(editPart instanceof LifelineEditPart) {
+			return new LifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, preserveAxis);
+		}
+		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, preserveAxis);
+	}
+
+	public static ICommand preserveMessageAnchorsCommand(ShapeNodeEditPart editPart, int heightDelta, int direction) {
+		if(editPart == null || heightDelta == 0) {
+			return null;
+		}
+		Dimension sizeDelta = new Dimension(0, heightDelta);
+		if(editPart instanceof LifelineEditPart) {
+			return new LifelineEditPart.PreserveAnchorsPositionCommandEx(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
+		}
+		return new PreserveAnchorsPositionCommand(editPart, sizeDelta, PreserveAnchorsPositionCommand.PRESERVE_Y, editPart.getFigure(), direction);
+	}
+
+	public static int computeResizeDelta(ShapeNodeEditPart editPart, Rectangle newChildBounds) {
+		if(editPart == null || newChildBounds == null) {
+			return -1;
+		}
+		IFigure figure = editPart.getFigure();
+		Rectangle rect = figure.getBounds().getCopy();
+		if(rect.contains(newChildBounds)) {
+			return -1;
+		}
+		Rectangle result = rect.getUnion(newChildBounds);
+		return result.bottom() - rect.bottom();
+	}
+
 	/**
 	 * Update anchor of linked messages for Lifeline and CombinedFragment.
 	 * 
@@ -42,6 +84,13 @@ public class MessageAnchorRepairer {
 	public static void repair(NodeEditPart editPart, int oldHeight, int newHeight) {
 		if(editPart == null || !(editPart instanceof LifelineEditPart || editPart instanceof CombinedFragmentEditPart)) {
 			return;
+		}
+		Rectangle bounds = ((GraphicalEditPart)editPart).getFigure().getBounds();
+		if(oldHeight < 0) {
+			oldHeight = bounds.height;
+		}
+		if(newHeight < 0) {
+			newHeight = bounds.height;
 		}
 		if(oldHeight == newHeight) {
 			return;

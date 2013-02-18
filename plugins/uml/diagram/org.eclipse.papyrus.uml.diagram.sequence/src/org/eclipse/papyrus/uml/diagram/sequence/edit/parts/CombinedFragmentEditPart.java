@@ -1317,10 +1317,6 @@ public class CombinedFragmentEditPart extends InteractionFragmentEditPart implem
 		if(ElementIconUtil.isIconNotification(notification))
 			refreshLabelIcon();
 		
-		//Update message anchors when height changes.
-		if (NotationPackage.eINSTANCE.getSize_Height().equals(feature)){
-			MessageAnchorRepairer.repair(this, notification.getOldIntValue(), notification.getNewIntValue());
-		}
 	}
 
 	protected void refreshShadow() {

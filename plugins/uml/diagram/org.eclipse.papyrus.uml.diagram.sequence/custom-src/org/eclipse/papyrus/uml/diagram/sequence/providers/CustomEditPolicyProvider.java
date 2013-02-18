@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedConnectionHandleEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkEndEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.AnnotatedLinkStartEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.HighlightEditPolicy;
@@ -82,6 +83,8 @@ public class CustomEditPolicyProvider implements IEditPolicyProvider {
 				}
 				if (element instanceof Constraint || element instanceof Observation || element instanceof Comment){
 					installEditPolicy(editPart, new AnnotatedLinkStartEditPolicy(), AnnotatedLinkStartEditPolicy.ANNOTATED_LINK_START_ROLE);
+					editPart.removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
+					editPart.installEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE, new AnnotatedConnectionHandleEditPolicy());
 				}
 			}
 		}

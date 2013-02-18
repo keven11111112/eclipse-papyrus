@@ -136,20 +136,22 @@ public class CombinedFragmentCombinedFragmentCompartmentEditPart extends ListCom
 	private EditPolicy createCreationEditPolicy() {
 		return new CreationEditPolicy(){
 			protected Command getCreateElementAndViewCommand(CreateViewAndElementRequest request) {
-				Command createCommand = super.getCreateElementAndViewCommand(request);
-				if (createCommand == null || !createCommand.canExecute()){
-					return createCommand;
-				}
-				ICommandProxy commandProxy = (ICommandProxy)createCommand;
-				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
-				
-				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
-				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
-					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
-					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
-					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, request.getViewAndElementDescriptor(), command);
-				}
-				return commandProxy;
+				//THIS WAS ALREADY DID IN getCreateCommand(), WHY AGAIN?
+//				Command createCommand = super.getCreateElementAndViewCommand(request);
+//				if (createCommand == null || !createCommand.canExecute()){
+//					return createCommand;
+//				}
+//				ICommandProxy commandProxy = (ICommandProxy)createCommand;
+//				CompositeCommand command = (CompositeCommand)commandProxy.getICommand();
+//				
+//				IHintedType type = (IHintedType)UMLElementTypes.InteractionOperand_3005;
+//				if(type.getSemanticHint().equals(request.getViewAndElementDescriptor().getSemanticHint())) {
+//					//fix Scroll bars(https://bugs.eclipse.org/bugs/show_bug.cgi?id=364697), note that we use XYLayout
+//					//to relocate both its bounds and combined fragment bounds when operand is added to combined fragment 
+//					OperandBoundsComputeHelper.addUpdateBoundsForIOCreationCommand(CombinedFragmentCombinedFragmentCompartmentEditPart.this, request.getViewAndElementDescriptor(), command);
+//				}
+//				return commandProxy;
+				return super.getCreateElementAndViewCommand(request);
 			}
 			
 			protected Command getCreateCommand(CreateViewRequest request) {

@@ -1725,8 +1725,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 				}
 				return new Dimension(minSize.width, getMinimumHeight(height));
 			}
-			Dimension minimumSize = super.getMinimumSize(wHint, hHint);
-			return new Dimension(minimumSize.width, getMinimumHeight(minimumSize.height));
+			return super.getMinimumSize(wHint, hHint);
 		}
 	}
 
@@ -1903,10 +1902,6 @@ public class LifelineEditPart extends NamedElementEditPart {
 		Object feature = notification.getFeature();
 		if(ElementIconUtil.isIconNotification(notification)){
 			updateLifelinePosition();
-		}
-		//Update message anchors when height changes.
-		if(NotationPackage.eINSTANCE.getSize_Height().equals(feature)) {
-			MessageAnchorRepairer.repair(this, notification.getOldIntValue(), notification.getNewIntValue());
 		}
 
 		if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
