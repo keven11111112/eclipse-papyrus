@@ -25,6 +25,7 @@ import java.util.EventObject;
 import java.util.HashMap;
 
 import org.eclipse.core.databinding.conversion.IConverter;
+import org.eclipse.core.databinding.observable.IDisposeListener;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.command.BasicCommandStack;
@@ -50,6 +51,7 @@ import org.eclipse.emf.facet.widgets.nattable.IWorkbenchPartProvider;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableinstancePackage;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance2.TableInstance2;
+import org.eclipse.emf.facet.widgets.nattable.internal.NatTableWidget;
 import org.eclipse.jface.action.GroupMarker;
 import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.viewers.ISelection;
@@ -334,6 +336,11 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 		}
 		editingDomain.getCommandStack().removeCommandStackListener(commandListener);
 		super.dispose();
+		for(final ISelectionChangedListener listener : this.natTableWidget.getSelectionChangedListeners()) {
+			this.natTableWidget.removeSelectionChangedListener(listener);
+		}
+		((IPapyrusNatTableWidget)this.natTableWidget).dispose();
+		this.natTableWidget = null;
 	}
 
 	@Override
@@ -387,7 +394,9 @@ public class NatTableEditor extends EditorPart implements ISelectionProvider, IE
 	}
 
 	public void removeSelectionChangedListener(final ISelectionChangedListener listener) {
-		this.natTableWidget.removeSelectionChangedListener(listener);
+		if(this.natTableWidget != null) {
+			this.natTableWidget.removeSelectionChangedListener(listener);
+		}
 	}
 
 	public void setSelection(final ISelection selection) {
