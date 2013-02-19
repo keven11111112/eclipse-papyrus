@@ -36,5 +36,9 @@ public interface IPapyrusInternalProfileConstants {
 	
 	/** TypeSymbolDefinition::symbolPath property name */
 	public final static String TYPE_SYMBOL_DEFINITION_SYMBOL_PATH = "symbolPath";
+	
+	// Extension definition
+	/** profile name as defined in the extension point*/
+	public final static String PAPYRUS_INTERNAL_PROFILE_EXTENSION_NAME = "Papyrus Internal";
 
 }

@@ -23,7 +23,7 @@
       <profile
             description="Profile that provides annotations for the tool itself (Decorations, etc.)"
             iconpath="icons/symbols.gif"
-            name="Papyrus Internal "
+            name="Papyrus Internal"
             path="pathmap://PAPYRUS_INTERNAL_PROFILES/PapyrusInternal.profile.uml"
             provider="CEA LIST">
       </profile>
