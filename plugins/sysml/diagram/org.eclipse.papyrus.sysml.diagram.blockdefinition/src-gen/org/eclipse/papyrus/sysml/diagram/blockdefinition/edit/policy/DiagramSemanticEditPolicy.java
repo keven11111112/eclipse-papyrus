@@ -23,7 +23,7 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.commands.DuplicateNamedElementCommand;
 
-public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
+public class DiagramSemanticEditPolicy extends PackageSemanticEditPolicy {
 
 	/**
 	 * {@inheritDoc}

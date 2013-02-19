@@ -31,6 +31,8 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefiniti
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.PackageCreationEditPolicy;
+import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.PackageSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.BlockEditPart;
 import org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockEditPart;
@@ -79,6 +81,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.HyperLinkPopupBarEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * Edit policy provider for the Block definition diagram (install or remove policies on edit part creation).
@@ -138,8 +141,8 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 		// Legacy management of new Nodes / Edges with nodes from Class Diagram and navigation support (installed by edit policy provider in Class Diagram)
 		if((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
@@ -147,8 +150,8 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		}
 
 		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
 			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
@@ -157,14 +160,14 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 		if((editPart instanceof PackageEditPart) || (editPart instanceof PackageEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
 
 		if((editPart instanceof ModelEditPartTN) || (editPart instanceof ModelEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
-			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
+			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 			editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
 		}
