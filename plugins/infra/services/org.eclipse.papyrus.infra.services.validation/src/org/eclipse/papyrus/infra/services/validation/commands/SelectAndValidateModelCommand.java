@@ -22,7 +22,6 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.preference.PreferenceDialog;
-import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 import org.eclipse.ui.dialogs.PreferencesUtil;
 
 /**
@@ -73,8 +72,6 @@ public class SelectAndValidateModelCommand extends AbstractValidateCommand {
 
 		if(result == IDialogConstants.OK_ID) {
 			if(selectedElement != null) {
-				ValidationTool vt = new ValidationTool(selectedElement);
-				vt.deleteSubMarkers();
 				runValidation(selectedElement);
 			}
 		}

@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 
 public class ValidateSubtreeCommand extends AbstractValidateCommand {
@@ -35,8 +34,6 @@ public class ValidateSubtreeCommand extends AbstractValidateCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-		ValidationTool vt = new ValidationTool(selectedElement);
-		vt.deleteSubMarkers();
 		runValidation(selectedElement);
 		return null;
 	}

@@ -20,7 +20,6 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.papyrus.infra.services.validation.ValidationTool;
 
 
 /**
@@ -62,11 +61,8 @@ public class ValidateModelCommand extends AbstractValidateCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		// replace selection by model instead of current selection
 		if(selectedElement != null) {
-			ValidationTool vt = new ValidationTool(selectedElement);
-			vt.deleteSubMarkers();
 			runValidation(selectedElement);
 		}
-
 		return null;
 	}
 }
