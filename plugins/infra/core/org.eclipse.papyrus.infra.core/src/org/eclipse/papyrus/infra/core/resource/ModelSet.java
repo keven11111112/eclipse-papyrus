@@ -33,10 +33,12 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.impl.EditingDomainManager;
 import org.eclipse.emf.workspace.WorkspaceEditingDomainFactory;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.additional.AdditionalResourcesModel;
 
 /**
@@ -93,8 +95,15 @@ public class ModelSet extends ResourceSetImpl {
 	public ModelSet() {
 		registerModel(additional);
 		this.setURIResourceMap(new HashMap<URI, Resource>());
-		getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-		getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+	}
+
+	@Override
+	public Map<Object, Object> getLoadOptions() {
+		Map<Object, Object> loadOptions = super.getLoadOptions();
+		loadOptions.put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
+		loadOptions.put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
+		loadOptions.put(XMIResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
+		return loadOptions;
 	}
 
 	/**
@@ -457,9 +466,14 @@ public class ModelSet extends ResourceSetImpl {
 		try {
 			// Walk all registered models
 			for(IModel model : modelList) {
-				if(!(model instanceof AdditionalResourcesModel)) {
-					model.saveModel();
-					monitor.worked(1);
+				try {
+					if(!(model instanceof AdditionalResourcesModel)) {
+						model.saveModel();
+						monitor.worked(1);
+					}
+				} catch (Exception ex) {
+					//TODO: What happens when a save fails? Most of the time, it can be ignored (dangling href, ...)
+					Activator.log.error(ex);
 				}
 			}
 			additional.saveModel();

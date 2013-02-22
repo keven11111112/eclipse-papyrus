@@ -62,6 +62,7 @@ public class HistoryModel extends AbstractModelWithSharedResource<ControledResou
 	 * @param object
 	 * @return
 	 */
+	@Override
 	protected boolean isModelRoot(EObject object) {
 		return object instanceof ControledResource;
 	}

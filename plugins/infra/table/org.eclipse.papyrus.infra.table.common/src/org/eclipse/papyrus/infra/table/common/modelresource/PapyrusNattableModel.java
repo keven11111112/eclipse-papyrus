@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.facet.widgets.nattable.instance.tableinstance.TableInstance;
 import org.eclipse.papyrus.infra.core.resource.AbstractModelWithSharedResource;
 import org.eclipse.papyrus.infra.core.resource.IModel;
-import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.table.instance.papyrustableinstance.PapyrusTableInstance;
 
 
@@ -57,13 +56,6 @@ public class PapyrusNattableModel extends AbstractModelWithSharedResource<TableI
 	 */
 	public PapyrusNattableModel() {
 
-	}
-
-	// Initialize stuff in the model.
-	@Override
-	public void init(ModelSet modelManager) {
-		super.init(modelManager);
-		// nothing to do now
 	}
 
 	/**
