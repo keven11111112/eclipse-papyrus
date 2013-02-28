@@ -572,6 +572,9 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 				displayValue = policy.getCurrentDisplayValue();
 			}
 			Message e = getUMLElement(editPart);
+			if (e == null){
+				return null;
+			}
 			NamedElement signature = e.getSignature();
 
 			if(signature instanceof Operation) {
@@ -599,6 +602,13 @@ public class MessageLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 						buffer.append(", ");
 					
 					ValueSpecification arg = arguments.get(i);
+					//type
+					if ((style & ICustomAppearence.DISP_PARAMETER_TYPE) != 0){
+						String type = TypedElementUtil.getTypeAsString(arg);
+						if (type != null){
+							buffer.append(type);
+						}
+					}
 					boolean showEqualMark = false;
 					// name
 					if((style & ICustomAppearence.DISP_PARAMETER_NAME) != 0) {

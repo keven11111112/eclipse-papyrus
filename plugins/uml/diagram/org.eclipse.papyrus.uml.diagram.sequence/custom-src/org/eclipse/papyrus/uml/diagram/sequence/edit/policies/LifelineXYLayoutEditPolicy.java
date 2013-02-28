@@ -263,12 +263,30 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 	private ShapeNodeEditPart getParentWhenCreationExecuteSpecification(Point location, Dimension size, String semanticHint) {
 
-		// Define the bounds of the new Execution specification
-		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
+		LifelineEditPart lifelineEditPart = (LifelineEditPart)getHost();
 		// Get the dotline figure
-		List<ShapeNodeEditPart> executionSpecificationList = ((LifelineEditPart)getHost()).getChildShapeNodeEditPart();
+		LifelineDotLineFigure figureLifelineDotLineFigure = lifelineEditPart.getPrimaryShape().getFigureLifelineDotLineFigure();
+		Point newLocation = location.getCopy();
+		figureLifelineDotLineFigure.translateToRelative(newLocation);
+		
+		List<ShapeNodeEditPart> executionSpecificationList = lifelineEditPart.getChildShapeNodeEditPart();
 
-		return getParent((LifelineEditPart)getHost(), newBounds, executionSpecificationList);
+		ShapeNodeEditPart parent = null;
+
+		double distance = 0;
+		for(ShapeNodeEditPart externalExecutionSpecificationEP : executionSpecificationList) {
+			IFigure figure = externalExecutionSpecificationEP.getFigure();
+			Rectangle bounds = figure.getBounds().getCopy();
+			if (!bounds.contains(newLocation) || bounds.x > newLocation.x){
+				continue;
+			}
+			double newDistance = bounds.getLocation().getDistance(newLocation);
+			if (distance == 0 || newDistance< distance){
+				parent = externalExecutionSpecificationEP;
+				distance = newDistance;
+			}
+		}
+		return parent;
 	}
 		 
 	private Command getCommandForExecutionSpecificationCreation(CreateViewRequest cvr, ViewDescriptor viewDescriptor) {
@@ -283,12 +301,24 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 		
 		// Define the bounds of the new Execution specification
 		Rectangle newBounds = getCreateExecuteSpecificationBounds(location, size, semanticHint);
+		// Get the dotline figure
+		LifelineDotLineFigure figureLifelineDotLineFigure = editPart.getPrimaryShape().getFigureLifelineDotLineFigure();
+		Rectangle dotLineBounds = figureLifelineDotLineFigure.getBounds();
 		ShapeNodeEditPart parent = getParentWhenCreationExecuteSpecification(location, size, semanticHint);
-		
-		newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), false);
-		if(newBounds == null) {
-			return UnexecutableCommand.INSTANCE;
+		if (parent !=null){
+			Rectangle parentBounds = parent.getFigure().getBounds();
+			int width = parentBounds.width > 0 ? parentBounds.width : EXECUTION_INIT_WIDTH;
+			newBounds.x = parentBounds.x + width / 2 + 1;
+		}else{
+			int width = newBounds.width > 0 ? newBounds.width : EXECUTION_INIT_WIDTH;
+			newBounds.x = dotLineBounds.x + dotLineBounds.width / 2 - width / 2;
 		}
+		newBounds.x -= dotLineBounds.x;
+		newBounds.y -= dotLineBounds.y;
+//		newBounds = getExecutionSpecificationNewBounds(true, editPart, new Rectangle(), newBounds, new ArrayList<ShapeNodeEditPart>(0), true);
+//		if(newBounds == null) {
+//			return UnexecutableCommand.INSTANCE;
+//		}
 		Command p = new ICommandProxy(new SetBoundsCommand(editPart.getEditingDomain(), "Creation of an ExecutionSpecification", viewDescriptor, newBounds));		
 
 		// resize parent bar
@@ -786,7 +816,7 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 
 		// ExecutionSpecification EditParts list
 		List<ShapeNodeEditPart> executionSpecificationList = lifelineEP.getChildShapeNodeEditPart();
-		executionSpecificationList.remove(newNotToCheckExecutionSpecificationList);
+		executionSpecificationList.removeAll(newNotToCheckExecutionSpecificationList);
 
 		// List to store the Affixed ExecutionSpecification
 		List<ShapeNodeEditPart> affixedExecutionSpecificationList = new ArrayList<ShapeNodeEditPart>();
@@ -818,7 +848,8 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 	 *         right. False otherwise
 	 */
 	protected final static boolean isAffixedToRight(Rectangle leftFigure, Rectangle rightFigure) {
-		return leftFigure.touches(rightFigure) && leftFigure.x < rightFigure.x;
+//		return leftFigure.touches(rightFigure) && leftFigure.x < rightFigure.x;
+		return leftFigure.contains(rightFigure.getLocation()) && leftFigure.x < rightFigure.x;
 	}
 
 	/**

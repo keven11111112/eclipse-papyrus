@@ -1,14 +1,20 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.command.AbstractCommand;
 import org.eclipse.emf.common.util.EList;
@@ -24,14 +30,20 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
+import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
@@ -46,8 +58,11 @@ import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 
 public class OperandBoundsComputeHelper {
 
@@ -304,6 +319,26 @@ public class OperandBoundsComputeHelper {
 							.resolveSemanticElement() : null,
 					request.getSizeDelta(), request.getResizeDirection());
 		}
+		//Append command for expand covered Lifelines when moving CombinedFragment.
+		Point moveDelta = request.getMoveDelta();
+		if(moveDelta.y != 0) {
+			if(combinedFragmentEditPart.getModel() instanceof Node) {
+				Node node = (Node)combinedFragmentEditPart.getModel();
+				if(node.getLayoutConstraint() instanceof Bounds) {
+					Bounds containerBounds = (Bounds)node.getLayoutConstraint();
+					Dimension preferredSize = combinedFragmentEditPart.getFigure().getPreferredSize();
+					int width = containerBounds.getWidth() != -1 ? containerBounds.getWidth() : preferredSize.width();
+					int height = containerBounds.getHeight() != -1 ? containerBounds.getHeight() : preferredSize.height();
+					int x = containerBounds.getX() + moveDelta.x;
+					int y = containerBounds.getY() + moveDelta.y;
+					Rectangle newBounds = new Rectangle(x, y, width, height);
+					ICommand command = getExpandCoveredsCommand(combinedFragmentEditPart, newBounds);
+					if(command != null && command.canExecute()) {
+						compoundCmd.add(new ICommandProxy(command));
+					}
+				}
+			}
+		}
 		return compoundCmd;
 	}
 
@@ -523,6 +558,11 @@ public class OperandBoundsComputeHelper {
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper
 					.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
 			compositeCommand.add(currentIOEPCommand);
+			
+			ICommand cmd = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, heightDelta);
+			if (cmd != null && cmd.canExecute()){
+				compositeCommand.add(cmd);
+			}
 			// auto update CombinedFragmentEditPart bounds after resize the last operand
 			if(compartEP.getParent() instanceof CombinedFragmentEditPart){
 				CombinedFragmentEditPart parent = (CombinedFragmentEditPart) compartEP.getParent();
@@ -570,24 +610,120 @@ public class OperandBoundsComputeHelper {
 					.fillRectangle(currentIOEPBounds);
 			targetIOEPRect.setHeight(targetIOEPBounds.getHeight() - heightDelta);
 			currentIOEPRect.setHeight(currentIOEPBounds.getHeight() + heightDelta);
+			int shiftY = 0;
 			if ((direction & PositionConstants.NORTH) != 0) {
 				currentIOEPRect.setY(currentIOEPRect.y() - heightDelta);
+				shiftY = -heightDelta;
 			}else if ((direction & PositionConstants.SOUTH) != 0) {
 				targetIOEPRect.setY(targetIOEPRect.y() + heightDelta);
+				shiftY = heightDelta;
 			}
 
 			ICommand previousIOEPCommand = OperandBoundsComputeHelper
 					.createUpdateEditPartBoundsCommand(targetIOEP, targetIOEPRect);
+			compositeCommand.add(previousIOEPCommand);
+
+			ICommand shiftPreviousMessages = getShiftEnclosedMessagesCommand(targetIOEP, targetIOEPRect, shiftY);
+			if (shiftPreviousMessages != null && shiftPreviousMessages.canExecute()){
+				compositeCommand.add(shiftPreviousMessages);
+			}
+			
 			ICommand currentIOEPCommand = OperandBoundsComputeHelper
 					.createUpdateEditPartBoundsCommand(currentIOEP, currentIOEPRect);
-
-			compositeCommand.add(previousIOEPCommand);
 			compositeCommand.add(currentIOEPCommand);
+			
+			ICommand shiftCurrentMessages = getShiftEnclosedMessagesCommand(currentIOEP, currentIOEPRect, shiftY);
+			if (shiftCurrentMessages != null && shiftCurrentMessages.canExecute()){
+				compositeCommand.add(shiftCurrentMessages);
+			}
 		}
 
 		return new ICommandProxy(compositeCommand);
 	}
 	
+	private static ICommand getShiftEnclosedMessagesCommand(InteractionOperandEditPart editPart, Rectangle newBounds, int movedY){
+		if (editPart == null ||newBounds == null || movedY == 0){
+			return null;
+		}
+		IFigure cfFigure = editPart.getFigure();
+		Rectangle origCFBounds = newBounds.getCopy();
+
+		cfFigure.getParent().translateToAbsolute(origCFBounds);
+		origCFBounds.translate(cfFigure.getParent().getBounds().getLocation());
+		
+		InteractionOperand interactionOperand = (InteractionOperand)editPart.resolveSemanticElement();
+		Set<Message> messages = new HashSet<Message>();
+		EList<InteractionFragment> fragments = interactionOperand.getFragments();
+		for(InteractionFragment frag : fragments) {
+			if (!(frag instanceof MessageOccurrenceSpecification)){
+				continue;
+			}
+			Message message = ((MessageOccurrenceSpecification)frag).getMessage();
+			if (message != null){
+				messages.add(message);
+			}
+		}
+		if (messages.isEmpty()){
+			return null;
+		}
+		CompositeCommand commands= new CompositeCommand("Shift Enclosed Messages");
+		for(Message msg : messages) {
+			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(msg);
+			for(Setting ref : settings) {
+				if(NotationPackage.eINSTANCE.getView_Element().equals(ref.getEStructuralFeature())) {
+					View view = (View)ref.getEObject();
+					EditPart ep = DiagramEditPartsUtil.getEditPartFromView(view, editPart);
+					if(ep instanceof ConnectionEditPart) {
+						ConnectionEditPart cep = (ConnectionEditPart)ep;
+
+						Connection msgFigure = cep.getConnectionFigure();
+
+						ConnectionAnchor sourceAnchor = msgFigure.getSourceAnchor();
+						ConnectionAnchor targetAnchor = msgFigure.getTargetAnchor();
+
+						Point sourcePoint = sourceAnchor.getReferencePoint();
+						Point targetPoint = targetAnchor.getReferencePoint();
+
+						Edge edge = (Edge)cep.getModel();
+						
+						if (!origCFBounds.contains(sourcePoint)){
+							IdentityAnchor gmfSourceAnchor = (IdentityAnchor)edge.getSourceAnchor();
+							Rectangle figureBounds = sourceAnchor.getOwner().getBounds();
+							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfSourceAnchor));
+						}
+						if (!origCFBounds.contains(targetPoint)){
+							IdentityAnchor gmfTargetAnchor = (IdentityAnchor)edge.getTargetAnchor();
+							Rectangle	figureBounds = targetAnchor.getOwner().getBounds();
+							commands.add(getMoveAnchorCommand(movedY, figureBounds, gmfTargetAnchor));
+						}
+					}
+				}}
+		}
+		
+		if (commands.isEmpty()){
+			return null;
+		}
+		return commands;
+	}
+	private static ICommand getMoveAnchorCommand(int yDelta, Rectangle figureBounds, IdentityAnchor gmfAnchor) {
+		String oldTerminal = gmfAnchor.getId();
+		PrecisionPoint pp = BaseSlidableAnchor.parseTerminalString(oldTerminal);
+
+		int yPos = (int)Math.round(figureBounds.height * pp.preciseY);
+		yPos += yDelta;
+
+		pp.preciseY = (double)yPos / figureBounds.height;
+
+		if(pp.preciseY > 1.0) {
+			pp.preciseY = 1.0;
+		} else if(pp.preciseY < 0.0) {
+			pp.preciseY = 0.0;
+		}
+
+		String newTerminal = (new BaseSlidableAnchor(null, pp)).getTerminal();
+
+		return new SetValueCommand(new SetRequest(gmfAnchor, NotationPackage.Literals.IDENTITY_ANCHOR__ID, newTerminal));
+	}
 	/**
 	 * Compute CombinedFragement's header height
 	 * @param combinedFragmentEditPart 

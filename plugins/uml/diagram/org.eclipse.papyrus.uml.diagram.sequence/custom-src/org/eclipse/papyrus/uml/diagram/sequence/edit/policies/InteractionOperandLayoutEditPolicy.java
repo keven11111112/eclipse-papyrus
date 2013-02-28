@@ -70,7 +70,8 @@ public class InteractionOperandLayoutEditPolicy extends XYLayoutEditPolicy {
 			return combinedFragment.getCommand(request);
 		} else if (request instanceof CreateViewAndElementRequest  ) {
 			//FIXME If necessary
-			return null;
+			//Update Bounds and Guides.
+			return getCreateCommand((CreateViewAndElementRequest)request);
 		}else if (REQ_RESIZE_CHILDREN.equals(request.getType())){
 			return interactionCompartment.getCommand(request);
 		}

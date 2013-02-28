@@ -48,6 +48,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -1904,6 +1905,33 @@ public class LifelineEditPart extends NamedElementEditPart {
 			updateLifelinePosition();
 		}
 
+		EObject element = resolveSemanticElement();
+		TransactionalEditingDomain editingDomain = getEditingDomain();
+		if(element instanceof Lifeline && !((Lifeline)element).getCoveredBys().isEmpty()) {
+			Lifeline lifeline = (Lifeline)element;
+			EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
+			//if the coveredBy was removed from resource, then make sure them removed from lifeline model.
+			if(Notification.REMOVE == notification.getEventType()) {
+				Object oldValue = notification.getOldValue();
+				if (coveredBys.contains(oldValue)){
+					CommandHelper.executeCommandWithoutHistory(editingDomain,
+						RemoveCommand.create(editingDomain, lifeline,
+								UMLPackage.eINSTANCE.getLifeline_CoveredBy(),
+								oldValue), true);
+				}
+			}else if (Notification.REMOVE_MANY == notification.getEventType()){
+				List oldValue = (List)notification.getOldValue();
+				for(Object object : oldValue) {
+					if (coveredBys.contains(object)){
+						CommandHelper.executeCommandWithoutHistory(editingDomain,
+							RemoveCommand.create(editingDomain, lifeline,
+									UMLPackage.eINSTANCE.getLifeline_CoveredBy(),
+									object), true);
+					}
+				}
+			}
+		}
+
 		if(UMLPackage.eINSTANCE.getLifeline_CoveredBy().equals(feature)) {
 			// Handle coveredBy attribute
 			Object newValue = notification.getNewValue();
@@ -1920,6 +1948,14 @@ public class LifelineEditPart extends NamedElementEditPart {
 				//					getPrimaryShape().getFigureLifelineDotLineFigure().setCrossAtEnd(true);
 				//					getPrimaryShape().repaint();
 				//				}
+			}
+			
+			// Handle removing the coveredBys. 
+			if (newValue instanceof InteractionFragment){
+				EObject eContainer = ((InteractionFragment)newValue).eContainer();
+				if (eContainer != null){
+					notifier.listenObject(eContainer);
+				}
 			}
 		} else if(UMLPackage.eINSTANCE.getOccurrenceSpecification().equals(feature)) {
 			//			// Handle destruction event
@@ -2351,49 +2387,28 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@SuppressWarnings({ "rawtypes", "unchecked" })
 	@Override
 	protected void refreshChildren() {
-
-		List children = new ArrayList(getChildren());
-		int size = children.size();
-		Map modelToEditPart = Collections.EMPTY_MAP;
-		if (size > 0) {
-			modelToEditPart = new HashMap(size);
-			for (int i = 0; i < size; i++) {
-				EditPart editPart = (EditPart) children.get(i);
-				modelToEditPart.put(editPart.getModel(), editPart);
-			}
-		}
-
-		List modelObjects = getModelChildren();
-		for (int i = 0; i < modelObjects.size(); i++) {
-			Object model = modelObjects.get(i);
-
-			// Do a quick check to see if editPart[i] == model[i]
-			if (i < children.size()
-					&& ((EditPart) children.get(i)).getModel() == model){
-				modelToEditPart.remove(model);				
+		super.refreshChildren();
+		List modelChildren = getModelChildren();
+		List children = getChildren();
+		IFigure parent = getContentPane();
+		List visualChildren = parent.getChildren();
+		int index = 0;
+		//Fixed bug about z-order of Execution Specifications: reorder figures if needed.
+		for(int i = 0; i < modelChildren.size(); i++) {
+			EditPart child = (EditPart)children.get(i);
+			if(!(child instanceof GraphicalEditPart)) {
 				continue;
 			}
-
-			// Look to see if the EditPart is already around but in the
-			// wrong location
-			EditPart editPart = (EditPart) modelToEditPart.remove(model);
-
-			if (editPart != null)
-				reorderChild(editPart, i);
-			else {
-				// An EditPart for this model doesn't exist yet. Create and
-				// insert one.
-				editPart = createChild(model);
-				addChild(editPart, i);
+			IFigure figure = ((GraphicalEditPart)child).getFigure();
+			int currentIndex = visualChildren.indexOf(figure);
+			if(currentIndex == -1) {
+				continue;
 			}
-		}
-
-		// remove the remaining EditParts
-		if (!modelToEditPart.isEmpty()) {
-			Collection values = modelToEditPart.values();
-			for(Object object : values) {
-				removeChild((EditPart)object);
+			if(currentIndex != index) {
+				visualChildren.remove(figure);
+				visualChildren.add(index, figure);
 			}
+			index++;
 		}
 		configure(isInlineMode(), true);
 	}

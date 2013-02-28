@@ -2,7 +2,6 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.Iterator;
 import java.util.List;
 
@@ -44,47 +43,87 @@ public class LifelineModelChildrenHelper {
 				iterator.remove();
 			}
 		}
-		result.addAll(original);
-		Collections.sort(result, new Comparator<Object>() {
-
-			public int compare(Object o1, Object o2) {
-				if(!(o1 instanceof View && o2 instanceof View)) {
-					return 0;
-				}
-				View v1 = (View)o1;
-				View v2 = (View)o2;
-				EObject e1 = ViewUtil.resolveSemanticElement(v1);
-				EObject e2 = ViewUtil.resolveSemanticElement(v2);
-				if(e1 instanceof ExecutionSpecification && !(e2 instanceof ExecutionSpecification)) {
-					return 1;
-				}
-				if(!(e1 instanceof ExecutionSpecification) && e2 instanceof ExecutionSpecification) {
-					return -1;
-				}
-				if(!(e1 instanceof ExecutionSpecification && e2 instanceof ExecutionSpecification)) {
-					return 0;
-				}
-				Rectangle r1 = getViewBounds(v1);
-				Rectangle r2 = getViewBounds(v2);
-				// Fixed the bug about displaying last created ES. It seems the
-				// bounds are not set yet.
-				if(r1 == null || (r1.x == 0 && r1.y == 0) || r2 == null || (r2.x == 0 && r2.y == 0)) {
-					return 0;
-				}
-				if(r1.width <= 0) {
-					r1.width = 16;
-				}
-				if(r2.width <= 0) {
-					r2.width = 16;
-				}
-
-				if((r1.x < r2.x) || r1.right() < r2.right()) {
-					return -1;
-				}
-				return 1;
-			}
-		});
+		result.addAll(doSortExecutionSpecifications(original));
 		return result;
+	}
+
+	private static List<View> doSortExecutionSpecifications(List<View> executionSpecifications) {
+		if(executionSpecifications.isEmpty()) {
+			return executionSpecifications;
+		}
+		List<View> views = new ArrayList<View>(executionSpecifications);
+		List<View> result = new ArrayList<View>(executionSpecifications.size());
+		int minX = -1;
+		for(View view : views) {
+			Rectangle rect = getViewBounds(view);
+			if(minX == -1 || rect.x < minX) {
+				minX = rect.x;
+			}
+		}
+		List<View> firstLevelViews = new ArrayList<View>();
+		for(View view : views) {
+			Rectangle rect = getViewBounds(view);
+			if(rect.x >= minX - 2 && rect.x <= minX + 2) {
+				firstLevelViews.add(view);
+			}
+		}
+		List<View> insertViews = doSortVertically(firstLevelViews);
+		for(View view : insertViews) {
+			doInsert(view, result, views, new ArrayList<View>(insertViews));
+		}
+		List<View> remains = new ArrayList<View>();
+		for(View view : views) {
+			if (!result.contains(view)){
+				remains.add(view);
+			}
+		}
+		insertViews = doSortVertically(remains);
+		for(View view : remains) {
+			doInsert(view, result, views, new ArrayList<View>(insertViews));
+		}
+		return result;
+	}
+
+	private static void doInsert(View view, List<View> result, List<View> allViews, List<View> ignoreViews){
+		Rectangle r1 = getViewBounds(view);
+		r1.width = 16;
+		if (!result.contains(view)){
+			result.add(view);
+		}
+		ignoreViews.add(view);
+		List<View> newLevelViews = new ArrayList<View>();
+		for(View v : allViews) {
+			if(ignoreViews.contains(v)) {
+				continue;
+			}
+			Rectangle r2 = getViewBounds(v);
+			r2.width = 16;
+			if(r2.x > r1.x && r2.x < r1.right() && r2.y >= r1.y && r2.y <= r1.bottom()) {
+				newLevelViews.add(v);
+			}
+		}
+		newLevelViews = doSortVertically(newLevelViews);
+		ignoreViews.addAll(newLevelViews);
+		for(View v : newLevelViews) {
+			doInsert(v, result, allViews, ignoreViews);
+		}
+	}
+	
+	private static List<View> doSortVertically(List<View> views) {
+		List<View> insertViews = new ArrayList<View>();
+		for(int i = 0; i < views.size(); i++) {
+			View current = views.get(i);
+			Rectangle r1 = getViewBounds(current);
+			int index = insertViews.size();
+			for(int j = 0; j < insertViews.size(); j++) {
+				Rectangle r2 = getViewBounds(insertViews.get(j));
+				if(r1.y < r2.y) {
+					index = j;
+				}
+			}
+			insertViews.add(index, current);
+		}
+		return insertViews;
 	}
 
 	private static Rectangle getViewBounds(View view) {
