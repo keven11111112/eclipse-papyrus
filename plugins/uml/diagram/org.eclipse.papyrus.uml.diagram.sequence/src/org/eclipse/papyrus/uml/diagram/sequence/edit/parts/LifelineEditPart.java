@@ -1229,7 +1229,7 @@ public class LifelineEditPart extends NamedElementEditPart {
 		Object model = getModel();
 		//Fixed bug about inverse order for ExecutionSpecifications.
 		if (model instanceof View){
-			return LifelineModelChildrenHelper.getModelChildren((View)model);
+//			return LifelineModelChildrenHelper.getModelChildren((View)model);
 		}
 		return super.getModelChildren();
 	}
@@ -2388,14 +2388,14 @@ public class LifelineEditPart extends NamedElementEditPart {
 	@Override
 	protected void refreshChildren() {
 		super.refreshChildren();
-		List modelChildren = getModelChildren();
-		List children = getChildren();
+		List modelChildren = LifelineModelChildrenHelper.getModelChildren((View)getPrimaryView());
 		IFigure parent = getContentPane();
 		List visualChildren = parent.getChildren();
 		int index = 0;
 		//Fixed bug about z-order of Execution Specifications: reorder figures if needed.
+		Map editPartRegistry = getViewer().getEditPartRegistry();
 		for(int i = 0; i < modelChildren.size(); i++) {
-			EditPart child = (EditPart)children.get(i);
+			Object child = editPartRegistry.get(modelChildren.get(i));
 			if(!(child instanceof GraphicalEditPart)) {
 				continue;
 			}

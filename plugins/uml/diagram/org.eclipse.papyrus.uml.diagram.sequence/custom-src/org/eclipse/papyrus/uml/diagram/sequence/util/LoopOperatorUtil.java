@@ -29,8 +29,13 @@ public class LoopOperatorUtil {
 		if(minint == null && maxint == null) {
 			return "";
 		}
-		if(minint != null && maxint == null && minint.intValue() == 0) {
-			maxint = Integer.MAX_VALUE;
+		//by default, minint==0;
+		if(maxint == null && minint != null && minint.intValue() == 0) {
+			return "";
+		}
+		//by default, maxint==1
+		if(minint == null && maxint != null && maxint.intValue() == 1) {
+			return "";
 		}
 		if(minint == null) {
 			minint = Integer.valueOf(0);
@@ -39,7 +44,7 @@ public class LoopOperatorUtil {
 		buf.append(minint.intValue());
 		if(maxint != null) {
 			if(maxint.intValue() != minint.intValue()) {
-				buf.append(", ");
+				buf.append(",");
 				if(Integer.MAX_VALUE == maxint) {
 					buf.append("*");
 				} else {

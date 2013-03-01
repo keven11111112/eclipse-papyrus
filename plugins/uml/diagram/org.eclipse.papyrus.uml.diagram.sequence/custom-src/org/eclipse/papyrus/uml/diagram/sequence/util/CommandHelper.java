@@ -909,6 +909,10 @@ public class CommandHelper {
 				for (Gate actualGate : cfragmentGates) {
 					gates.add(actualGate);
 				}
+				//Reuse existing gates by default.
+				if (!cfragmentGates.isEmpty()){
+					dialog.setInitialSelections(new Object[]{cfragmentGates.get(0)});
+				}
 				
 				dialog.setElements(gates.toArray());
 				if (dialog.open() == Window.OK) {

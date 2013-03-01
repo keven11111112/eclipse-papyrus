@@ -212,7 +212,7 @@ public class CombinedFragmentDeleteHelper {
 		}
 
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			if(choice.contains(labels[0])) {
+			if(choice != null && choice.contains(labels[0])) {
 				deletaAllCommand.undo(progressMonitor, info);
 				return deletaAllCommand.getCommandResult();
 			} else {

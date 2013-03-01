@@ -12,6 +12,7 @@ import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.MessageEnd;
 
 /**
  * This helper performs non generated validation tasks.
@@ -44,8 +45,10 @@ public class UMLValidationHelper {
 			return validateFragmentsOrder(((InteractionFragment)context).getOwner(), ctx);
 		} else if(context instanceof Message) {
 			// both events are in the same container, but they may not exist
-			EObject sendFragmentContainer = ((Message)context).getSendEvent().eContainer();
-			EObject receiveFragmentContainer = ((Message)context).getReceiveEvent().eContainer();
+			MessageEnd sendEvent = ((Message)context).getSendEvent();
+			EObject sendFragmentContainer = sendEvent != null ? sendEvent.eContainer() : null;
+			MessageEnd receiveEvent = ((Message)context).getReceiveEvent();
+			EObject receiveFragmentContainer = receiveEvent != null ? receiveEvent.eContainer() : null;
 			if(sendFragmentContainer != null) {
 				return validateFragmentsOrder(sendFragmentContainer, ctx);
 			} else if(receiveFragmentContainer != null) {

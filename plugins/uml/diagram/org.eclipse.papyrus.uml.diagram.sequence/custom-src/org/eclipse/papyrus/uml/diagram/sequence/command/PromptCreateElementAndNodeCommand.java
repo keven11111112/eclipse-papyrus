@@ -75,7 +75,11 @@ public class PromptCreateElementAndNodeCommand extends
 		if (!cmdResult.getStatus().isOK()) {
 			return cmdResult;
 		}
-		IHintedType connectionType = (IHintedType) cmdResult.getReturnValue();
+		Object returnValue = cmdResult.getReturnValue();
+		if(!(returnValue instanceof IHintedType)) {
+			return cmdResult;
+		}
+		IHintedType connectionType = (IHintedType) returnValue;
 
 		CreateElementAndNodeCommand createExecutionSpecificationCommand = new CreateElementAndNodeCommand(
 				editingDomain, (ShapeNodeEditPart) targetEP, target,
