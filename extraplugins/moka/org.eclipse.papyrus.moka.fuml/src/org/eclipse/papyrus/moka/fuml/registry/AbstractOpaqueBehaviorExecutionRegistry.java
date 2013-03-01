@@ -48,13 +48,14 @@ public abstract class AbstractOpaqueBehaviorExecutionRegistry implements IOpaque
 	protected void buildOpaqueBehaviorsMap(final String LIBRARY_NAME) {
 		opaqueBehaviorsMap = new HashMap<String, OpaqueBehavior>();
 		RegisteredLibrary[] libraries = RegisteredLibrary.getRegisteredLibraries();
-		RegisteredLibrary mokaIOLibrary = null;
+		RegisteredLibrary library = null;
 		for(RegisteredLibrary l : libraries) {
+			System.out.println(l.getName()) ;
 			if(l.getName().equals(LIBRARY_NAME))
-				mokaIOLibrary = l;
+				library = l;
 		}
-		if(mokaIOLibrary != null) {
-			URI libraryUri = mokaIOLibrary.uri;
+		if(library != null) {
+			URI libraryUri = library.uri;
 			ResourceSet resourceSet = Util.getResourceSet(contextEObject);
 			Resource libraryResource = resourceSet.getResource(libraryUri, true);
 			for(Iterator<EObject> i = libraryResource.getAllContents(); i.hasNext();) {

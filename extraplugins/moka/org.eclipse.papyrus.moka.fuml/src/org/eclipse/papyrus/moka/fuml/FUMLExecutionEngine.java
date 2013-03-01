@@ -31,6 +31,7 @@ import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus;
 import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL3.ExecutionFactoryL3;
 import org.eclipse.papyrus.moka.fuml.registry.DefaultSemanticStrategyRegistry;
 import org.eclipse.papyrus.moka.fuml.registry.IOpaqueBehaviorExecutionRegistry;
+import org.eclipse.papyrus.moka.fuml.registry.ISystemServicesRegistry;
 import org.eclipse.papyrus.uml.extensionpoints.library.RegisteredLibrary;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.uml2.uml.Behavior;
@@ -41,6 +42,7 @@ import org.eclipse.uml2.uml.PrimitiveType;
 public class FUMLExecutionEngine implements IExecutionEngine {
 
 	protected final static String LIBRAY_EXTENSION_POINT_ID = "org.eclipse.papyrus.moka.fuml.library";
+	protected final static String SERVICES_EXTENSION_POINT_ID = "org.eclipse.papyrus.moka.fuml.services" ;
 
 	protected Behavior main = null;
 
@@ -56,6 +58,8 @@ public class FUMLExecutionEngine implements IExecutionEngine {
 			this.initializeBuiltInPrimitiveTypes(locus);
 			// Initializes opaque behavior executions
 			this.registerOpaqueBehaviorExecutions(locus);
+			// Initializes system services
+			this.registerSystemServices(locus) ;
 			// Initializes semantic strategies
 			this.registerSemanticStrategies(locus);
 			// Finally launches the execution
@@ -80,6 +84,25 @@ public class FUMLExecutionEngine implements IExecutionEngine {
 				System.out.println("Evaluating extension");
 				final Object o = e.createExecutableExtension("class");
 				loadLibrary(o, locus, main);
+			}
+		} catch (CoreException ex) {
+			System.out.println(ex.getMessage());
+		} catch (Exception ex) {
+			System.out.println(ex.getMessage());
+		}
+	}
+
+	// Register System Services available in the environment
+	protected void registerSystemServices(Locus locus) {
+		// Load any contribution to the extension SERVICES_EXTENSION_POINT_ID
+		IExtensionRegistry registry = Platform.getExtensionRegistry();
+		IConfigurationElement[] config = registry.getConfigurationElementsFor(SERVICES_EXTENSION_POINT_ID);
+		try {
+			for(int i = 0; i < config.length; i++) {
+				IConfigurationElement e = config[i];
+				System.out.println("Evaluating extension");
+				final Object o = e.createExecutableExtension("class");
+				loadServices(o, locus, main);
 			}
 		} catch (CoreException ex) {
 			System.out.println(ex.getMessage());
@@ -118,6 +141,21 @@ public class FUMLExecutionEngine implements IExecutionEngine {
 
 			public void run() throws Exception {
 				((IOpaqueBehaviorExecutionRegistry)o).init(context).registerOpaqueBehaviorExecutions(locus);
+			}
+		};
+		SafeRunner.run(runnable);
+	}
+
+	// Loads System services using the safe runner pattern
+	protected static void loadServices(final Object o, final Locus locus, final Object context) {
+		ISafeRunnable runnable = new ISafeRunnable() {
+
+			public void handleException(Throwable e) {
+				System.out.println("Exception while loading system services");
+			}
+
+			public void run() throws Exception {
+				((ISystemServicesRegistry)o).init(context).registerSystemServices(locus);
 			}
 		};
 		SafeRunner.run(runnable);

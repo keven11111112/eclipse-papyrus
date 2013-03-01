@@ -41,7 +41,7 @@ public class ActivityExecution extends Execution {
 		Debug.println("[event] Execute activity=" + activity.getName());
 		this.activationGroup = new ActivityNodeActivationGroup();
 		this.activationGroup.activityExecution = this;
-		this.activationGroup.activate(activity.getNodes(), activity.getEdges());
+		this.activationGroup.activate(activity.getOwnedNodes(), activity.getEdges());
 		// Debug.println("[execute] Getting output parameter node activations...");
 		List<ActivityParameterNodeActivation> outputActivations = this.activationGroup.getOutputParameterNodeActivations();
 		// Debug.println("[execute] There are " + outputActivations.size() +

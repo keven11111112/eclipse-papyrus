@@ -19,6 +19,7 @@ package org.eclipse.papyrus.moka.fuml.debug;
 public class Debug {
 
 	public static void println(String message) {
-		System.out.println(message);
+		System.err.println(message) ;
+		//System.out.println(message);
 	}
 }
