@@ -1,3 +1,18 @@
+/*****************************************************************************
+ * Copyright (c) 2010-2013 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ * 
+ * Ansgar Radermacher: Bug 402254: Height changes after first resize
+ * 
+ *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.commands;
 
 import java.util.Iterator;
@@ -81,14 +96,17 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 
 		if(internalResize) {
 			Zone.setHeight(stateLabel, Zone.getHeight(stateLabel) + dy);
-			//			dy = 0;
+			// dy = 0;
 		}
 		// first resize the state node with the constraint provided
 		Zone.setBounds(state, bounds);
 		// resize label and compartment
 		Zone.setWidth(stateLabel, bounds.width);
 		Zone.setWidth(stateCompartment, bounds.width);
-		Zone.setHeight(stateCompartment, bounds.height - Zone.getHeight(stateLabel));
+		if(Zone.getHeight(stateLabel) != -1) {
+			//only set height of state-compartment, if height is of label is already initialized assigned (402254)
+			Zone.setHeight(stateCompartment, bounds.height - Zone.getHeight(stateLabel));
+		}
 		Zone.setY(stateCompartment, Zone.getHeight(stateLabel));
 
 		if(internalResize && (dx == 0))
