@@ -588,7 +588,6 @@
 		</object>
 		<context
         elements="uml.Actor"
-        semanticHints="uml.Actor"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Class" -->
@@ -597,7 +596,6 @@
 		</object>
 		<context
         elements="uml.Class"
-        semanticHints="uml.Class"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Constraint" -->
@@ -606,7 +604,6 @@
 		</object>
 		<context
         elements="uml.Constraint"
-        semanticHints="uml.Constraint"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.DataType" -->
@@ -615,7 +612,6 @@
 		</object>
 		<context
         elements="uml.DataType"
-        semanticHints="uml.DataType"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Enumeration" -->
@@ -624,7 +620,6 @@
 		</object>
 		<context
         elements="uml.Enumeration"
-        semanticHints="uml.Enumeration"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.EnumerationLiteral" -->
@@ -633,7 +628,6 @@
 		</object>
 		<context
         elements="uml.EnumerationLiteral"
-        semanticHints="uml.EnumerationLiteral"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.InstanceSpecification" -->
@@ -642,7 +636,6 @@
 		</object>
 		<context
         elements="uml.InstanceSpecification"
-        semanticHints="uml.InstanceSpecification"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Interface" -->
@@ -651,7 +644,6 @@
 		</object>
 		<context
         elements="uml.Interface"
-        semanticHints="uml.Interface"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Operation" -->
@@ -660,7 +652,6 @@
 		</object>
 		<context
         elements="uml.Operation"
-        semanticHints="uml.Operation"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Port" -->
@@ -669,7 +660,6 @@
 		</object>
 		<context
         elements="uml.Port"
-        semanticHints="uml.Port"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.PrimitiveType" -->
@@ -678,7 +668,6 @@
 		</object>
 		<context
         elements="uml.PrimitiveType"
-        semanticHints="uml.PrimitiveType"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Property" -->
@@ -687,7 +676,6 @@
 		</object>
 		<context
         elements="uml.Property"
-        semanticHints="uml.Property"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Reception" -->
@@ -696,7 +684,6 @@
 		</object>
 		<context
         elements="uml.Reception"
-        semanticHints="uml.Reception"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Signal" -->
@@ -705,7 +692,6 @@
 		</object>
 		<context
         elements="uml.Signal"
-        semanticHints="uml.Signal"
         viewClass="org.eclipse.gmf.runtime.notation.Node"/>			
 		
 		<!-- "uml.Association" -->
@@ -714,7 +700,6 @@
 		</object>
 		<context
         elements="uml.Association"
-        semanticHints="uml.Association"
         viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Dependency" -->
@@ -723,7 +708,6 @@
 		</object>
 		<context
         elements="uml.Dependency"
-        semanticHints="uml.Dependency"
         viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Generalization" -->
@@ -732,7 +716,6 @@
 		</object>
 		<context
         elements="uml.Generalization"
-        semanticHints="uml.Generalization"
         viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.InterfaceRealization" -->
@@ -741,7 +724,6 @@
 		</object>
 		<context
         elements="uml.InterfaceRealization"
-        semanticHints="uml.InterfaceRealization"
         viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 		<!-- "uml.Usage" -->
@@ -750,7 +732,6 @@
 		</object>
 		<context
         elements="uml.Usage"
-        semanticHints="uml.Usage"
         viewClass="org.eclipse.gmf.runtime.notation.Edge"/>			
 		
 	</viewProvider>	

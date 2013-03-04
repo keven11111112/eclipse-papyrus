@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.gmf.diagram.common.commands;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -54,5 +55,16 @@ public class SemanticElementAdapter extends SemanticAdapter {
 			return elementType;
 		}
 		return super.getAdapter(adapter);
+	}
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public Object getProxyClassID() {
+		if(elementType !=null) {
+			return PackageUtil.getID(((IElementType)elementType).getEClass());
+		}
+		return super.getProxyClassID();
 	}
 }
