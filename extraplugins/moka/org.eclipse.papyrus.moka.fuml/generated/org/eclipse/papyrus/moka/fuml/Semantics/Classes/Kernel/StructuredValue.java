@@ -66,13 +66,30 @@ public abstract class StructuredValue extends Value {
 		List<Classifier> types = this.getTypes();
 		for(int i = 0; i < types.size(); i++) {
 			Classifier type = types.get(i);
-			List<NamedElement> members = type.getMembers();
-			for(int j = 0; j < members.size(); j++) {
-				NamedElement member = members.get(j);
-				if(member instanceof StructuralFeature) {
-					this.setFeatureValue((StructuralFeature)member, new ArrayList<Value>(), 0);
-				}
+			this.createFeatureValuesFromType(type); // REPLACED body of loop
+		}
+	}	
+	
+	// ADDED
+	public void createFeatureValuesFromType(Classifier type) {
+		// Create empty feature values for all structural features from the
+		// given type and all its direct and indirect parents.
+		// [Note that this is necessary in order to set the feature values for
+		// private structural features of parent classifiers, since these are
+		// not actually inherited.]
+		List<NamedElement> ownedMembers = type.getOwnedMembers();
+		for(int i = 0; i < ownedMembers.size(); i++) {
+			NamedElement member = ownedMembers.get(i);
+			if(member instanceof StructuralFeature) {
+				this.setFeatureValue((StructuralFeature)member, new ArrayList<Value>(), 0);
 			}
 		}
+		
+		List<Classifier> generals = type.getGenerals();
+		for (int i = 0; i < generals.size(); i++) {
+			Classifier general = generals.get(i);
+			this.createFeatureValuesFromType(general);
+		}
 	}
+	//
 }

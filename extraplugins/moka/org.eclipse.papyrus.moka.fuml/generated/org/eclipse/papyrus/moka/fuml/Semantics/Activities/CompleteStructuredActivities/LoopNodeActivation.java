@@ -31,6 +31,7 @@ import org.eclipse.uml2.uml.Pin;
 public class LoopNodeActivation extends StructuredActivityNodeActivation {
 
 	public List<Values> bodyOutputLists = new ArrayList<Values>();
+	public Boolean isTerminateAll;
 	
 	public void doStructuredActivity() {
 		// Set the initial values for the body outputs to the values of the loop
@@ -48,9 +49,6 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 		// consumed when running the test for the last time.]
 		LoopNode loopNode = (LoopNode)(this.node);
 		List<InputPin> loopVariableInputs = loopNode.getLoopVariableInputs();
-		// List<OutputPin> loopVariables = loopNode.getLoopVariables();
-		// List<OutputPin> resultPins = loopNode.getResults();
-		// List<Values> bodyOutputLists = this.bodyOutputLists;
 		
 		this.bodyOutputLists.clear(); // Added
 		
@@ -60,6 +58,7 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 			bodyOutputList.values = this.takeTokens(loopVariableInput);
 			this.bodyOutputLists.add(bodyOutputList);
 		}
+		this.isTerminateAll = false;
 		this.doLoop(true);
 	}
 
@@ -106,14 +105,14 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 					continuing = this.runTest();
 				}
 			}
-			if(this.isRunning() && !this.isSuspended()) {
+			if(!this.isTerminateAll & this.isRunning() & !this.isSuspended()) {
 				this.activationGroup.terminateAll();
 			} else {
 				continuing = false;
 			}
 			Debug.println("[doStructuredActivity] " + (continuing ? "Continuing." : this.isSuspended() ? "Suspended" : "Done."));
 		}
-		if(this.isRunning() && !this.isSuspended()) {
+		if(!this.isTerminateAll & this.isRunning() & !this.isSuspended()) {
 			for(int i = 0; i < bodyOutputLists.size(); i++) {
 				Values bodyOutputList = bodyOutputLists.get(i);
 				OutputPin resultPin = resultPins.get(i);
@@ -144,7 +143,7 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 		Debug.println("[runBody] Running body...");
 		LoopNode loopNode = (LoopNode)this.node;
 		this.activationGroup.runNodes(this.makeActivityNodeList(loopNode.getBodyParts()));
-		if(!this.isSuspended()) {
+		if(!this.isTerminateAll && !this.isSuspended()) {
 			this.saveBodyOutputs();
 		}
 	}
@@ -190,11 +189,14 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 	public void terminateAll() {
 		// Copy the values of the body outputs to the loop outputs, and then
 		// terminate all activations in the loop.
-		List<OutputPin> resultPins = this.getResults(); // CHANGED from: ((LoopNode)this.node).getResults();
-		for(int i = 0; i < bodyOutputLists.size(); i++) {
-			Values bodyOutputList = bodyOutputLists.get(i);
+		this.isTerminateAll = true;		
+		LoopNode loopNode = (LoopNode) this.node;
+		List<OutputPin> bodyOutputs = loopNode.getBodyOutputs();
+		List<OutputPin> resultPins = this.getResults();
+		for (int i = 0; i < bodyOutputs.size(); i++) {
+			OutputPin bodyOutput = bodyOutputs.get(i);
 			OutputPin resultPin = resultPins.get(i);
-			this.putTokens(resultPin, bodyOutputList.values);
+			this.putTokens(resultPin, this.getPinValues(bodyOutput));
 		}
 		super.terminateAll();
 	}
@@ -205,12 +207,14 @@ public class LoopNodeActivation extends StructuredActivityNodeActivation {
 		// without being suspended again, complete the action.
 		LoopNode loopNode = (LoopNode)(this.node);
 		this.saveBodyOutputs();
-		if(loopNode.isMustIsolate()) {
-			_beginIsolation();
-			this.continueLoop();
-			_endIsolation();
-		} else {
-			this.continueLoop();
+		if (!this.isTerminateAll) {
+			if(loopNode.isMustIsolate()) {
+				_beginIsolation();
+				this.continueLoop();
+				_endIsolation();
+			} else {
+				this.continueLoop();
+			}
 		}
 		if(this.isSuspended()) {
 			// NOTE: If the subsequent iteration of the loop suspends it again,
