@@ -115,6 +115,8 @@ public class StandardLibraryRegistry extends AbstractOpaqueBehaviorExecutionRegi
 			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.list.ListSize(), "FoundationalModelLibrary::PrimitiveBehaviors::ListFunctions::ListSize");
 			// ListGet
 			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.list.ListGet(), "FoundationalModelLibrary::PrimitiveBehaviors::ListFunctions::ListGet");
+			// ListConcat
+			this.registerOpaqueBehaviorExecution(new org.eclipse.papyrus.moka.fuml.standardlibrary.library.list.ListConcat(), "FoundationalModelLibrary::PrimitiveBehaviors::ListFunctions::ListConcat");
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
