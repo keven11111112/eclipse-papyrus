@@ -249,10 +249,6 @@ public class DecorationService extends Observable implements IDecorationService 
 	 */
 	public synchronized EList<IPapyrusDecoration> getDecorations(Object element, boolean navigateToParents) {
 		DecorationUtils tool = new DecorationUtils(element);
-		// tool.tryChildIfEmpty();
-		if(tool.getEObject() != null) {
-			return tool.getDecorations(this, navigateToParents);
-		}
-		return null;
+		return tool.getDecorations(this, navigateToParents);
 	}
 }

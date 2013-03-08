@@ -19,6 +19,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.facet.infra.browser.uicore.CustomizableModelLabelProvider;
+import org.eclipse.emf.facet.infra.browser.uicore.internal.model.LinkItem;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
@@ -98,7 +99,9 @@ public class MoDiscoLabelProvider extends CustomizableModelLabelProvider {
 
 		//Set the adapter decoration with position as indicated by decoration (from decoration service)
 		if(element != null) {
-			if(element instanceof EObject || (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
+			if(element instanceof EObject
+				|| element instanceof LinkItem // fix for bug 391676
+				|| (element instanceof IAdaptable && ((IAdaptable)element).getAdapter(EObject.class) != null)) {
 				EList<IPapyrusDecoration> decorations = decorationService.getDecorations(element, true);
 				if(decorations != null) {
 					adapter.setDecorations(decorations);
