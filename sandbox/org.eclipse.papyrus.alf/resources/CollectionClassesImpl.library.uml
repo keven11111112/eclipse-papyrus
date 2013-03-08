@@ -84,7 +84,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="CollectionImpl-CollectionImplmethod1-BodyCollectionImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="CollectionImpl-CollectionImplmethod1-BodyCollectionImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="CollectionImpl-CollectionImplmethod1-BodyCollectionImplmethod1-Value0" name="Value(0)">
             <result xmi:id="CollectionImpl-CollectionImplmethod1-BodyCollectionImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="CollectionImpl-CollectionImplmethod1-BodyCollectionImplmethod1-_edge.6" isOrdered="true" isUnique="false">
@@ -395,7 +395,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="CollectionImpl-addAllImplmethod1-BodyaddAllImplmethod1-ReturnStatementb0e2096-Call3E-Call3E.resultresult-_lowerValue" value="1"/>
                 <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="CollectionImpl-addAllImplmethod1-BodyaddAllImplmethod1-ReturnStatementb0e2096-Call3E-Call3E.resultresult-_upperValue" value="1"/>
               </result>
-              <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-gt"/>
+              <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-gt"/>
             </node>
             <structuredNodeOutput xmi:id="CollectionImpl-addAllImplmethod1-BodyaddAllImplmethod1-ReturnStatementb0e2096-ReturnStatementb0e2096.output" name="ReturnStatement@b0e2096.output" outgoing="CollectionImpl-addAllImplmethod1-_edge.3" incoming="CollectionImpl-addAllImplmethod1-BodyaddAllImplmethod1-ReturnStatementb0e2096-_edge.2" isOrdered="true" isUnique="false">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -1218,7 +1218,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="CollectionImpl-removeAllImplmethod1-BodyremoveAllImplmethod1-ReturnStatement4af45223-Call3C-Call3C.resultresult-_lowerValue" value="1"/>
                 <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="CollectionImpl-removeAllImplmethod1-BodyremoveAllImplmethod1-ReturnStatement4af45223-Call3C-Call3C.resultresult-_upperValue" value="1"/>
               </result>
-              <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-lt"/>
+              <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-lt"/>
             </node>
             <structuredNodeOutput xmi:id="CollectionImpl-removeAllImplmethod1-BodyremoveAllImplmethod1-ReturnStatement4af45223-ReturnStatement4af45223.output" name="ReturnStatement@4af45223.output" outgoing="CollectionImpl-removeAllImplmethod1-_edge.3" incoming="CollectionImpl-removeAllImplmethod1-BodyremoveAllImplmethod1-ReturnStatement4af45223-_edge.2" isOrdered="true" isUnique="false">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -1793,7 +1793,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="CollectionImpl-retainAllImplmethod1-BodyretainAllImplmethod1-ReturnStatement2c3a8f68-Call3C-Call3C.resultresult-_lowerValue" value="1"/>
                 <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="CollectionImpl-retainAllImplmethod1-BodyretainAllImplmethod1-ReturnStatement2c3a8f68-Call3C-Call3C.resultresult-_upperValue" value="1"/>
               </result>
-              <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-lt"/>
+              <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-lt"/>
             </node>
             <structuredNodeOutput xmi:id="CollectionImpl-retainAllImplmethod1-BodyretainAllImplmethod1-ReturnStatement2c3a8f68-ReturnStatement2c3a8f68.output" name="ReturnStatement@2c3a8f68.output" outgoing="CollectionImpl-retainAllImplmethod1-_edge.3" incoming="CollectionImpl-retainAllImplmethod1-BodyretainAllImplmethod1-ReturnStatement2c3a8f68-_edge.2" isOrdered="true" isUnique="false">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -1930,7 +1930,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="CollectionImpl-CollectionImplinitialization1-BodyCollectionImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="CollectionImpl-CollectionImplinitialization1-BodyCollectionImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="CollectionImpl-CollectionImplinitialization1-BodyCollectionImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="CollectionImpl-CollectionImplinitialization1-BodyCollectionImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="CollectionImpl-CollectionImplinitialization1-BodyCollectionImplinitialization1-_edge.5" isOrdered="true" isUnique="false">
@@ -2257,7 +2257,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="SetImpl-SetImplmethod1-BodySetImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="SetImpl-SetImplmethod1-BodySetImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="SetImpl-SetImplmethod1-BodySetImplmethod1-Value0" name="Value(0)">
             <result xmi:id="SetImpl-SetImplmethod1-BodySetImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="SetImpl-SetImplmethod1-BodySetImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -2800,7 +2800,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="SetImpl-SetImplinitialization1-BodySetImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="SetImpl-SetImplinitialization1-BodySetImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="SetImpl-SetImplinitialization1-BodySetImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="SetImpl-SetImplinitialization1-BodySetImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="SetImpl-SetImplinitialization1-BodySetImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -2988,7 +2988,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BagImpl-BagImplmethod1-BodyBagImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BagImpl-BagImplmethod1-BodyBagImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="BagImpl-BagImplmethod1-BodyBagImplmethod1-Value0" name="Value(0)">
             <result xmi:id="BagImpl-BagImplmethod1-BodyBagImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="BagImpl-BagImplmethod1-BodyBagImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -3347,7 +3347,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="BagImpl-BagImplinitialization1-BodyBagImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="BagImpl-BagImplinitialization1-BodyBagImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="BagImpl-BagImplinitialization1-BodyBagImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="BagImpl-BagImplinitialization1-BodyBagImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="BagImpl-BagImplinitialization1-BodyBagImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -3498,7 +3498,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="OrderedCollectionImpl-OrderedCollectionImplmethod1-BodyOrderedCollectionImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="OrderedCollectionImpl-OrderedCollectionImplmethod1-BodyOrderedCollectionImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="OrderedCollectionImpl-OrderedCollectionImplmethod1-BodyOrderedCollectionImplmethod1-Value0" name="Value(0)">
             <result xmi:id="OrderedCollectionImpl-OrderedCollectionImplmethod1-BodyOrderedCollectionImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="OrderedCollectionImpl-OrderedCollectionImplmethod1-BodyOrderedCollectionImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -3689,7 +3689,7 @@
                 <lowerValue xmi:type="uml:LiteralInteger" xmi:id="OrderedCollectionImpl-addAllAtImplmethod1-BodyaddAllAtImplmethod1-ReturnStatement276baafc-Call3E-Call3E.resultresult-_lowerValue" value="1"/>
                 <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="OrderedCollectionImpl-addAllAtImplmethod1-BodyaddAllAtImplmethod1-ReturnStatement276baafc-Call3E-Call3E.resultresult-_upperValue" value="1"/>
               </result>
-              <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-gt"/>
+              <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-gt"/>
             </node>
             <structuredNodeOutput xmi:id="OrderedCollectionImpl-addAllAtImplmethod1-BodyaddAllAtImplmethod1-ReturnStatement276baafc-ReturnStatement276baafc.output" name="ReturnStatement@276baafc.output" outgoing="OrderedCollectionImpl-addAllAtImplmethod1-_edge.5" incoming="OrderedCollectionImpl-addAllAtImplmethod1-BodyaddAllAtImplmethod1-ReturnStatement276baafc-_edge.2" isOrdered="true" isUnique="false">
               <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
@@ -4369,7 +4369,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="OrderedCollectionImpl-OrderedCollectionImplinitialization1-BodyOrderedCollectionImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="OrderedCollectionImpl-OrderedCollectionImplinitialization1-BodyOrderedCollectionImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="OrderedCollectionImpl-OrderedCollectionImplinitialization1-BodyOrderedCollectionImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="OrderedCollectionImpl-OrderedCollectionImplinitialization1-BodyOrderedCollectionImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="OrderedCollectionImpl-OrderedCollectionImplinitialization1-BodyOrderedCollectionImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -4608,7 +4608,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="OrderedSetImpl-OrderedSetImplmethod1-BodyOrderedSetImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="OrderedSetImpl-OrderedSetImplmethod1-BodyOrderedSetImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="OrderedSetImpl-OrderedSetImplmethod1-BodyOrderedSetImplmethod1-Value0" name="Value(0)">
             <result xmi:id="OrderedSetImpl-OrderedSetImplmethod1-BodyOrderedSetImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="OrderedSetImpl-OrderedSetImplmethod1-BodyOrderedSetImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -5378,7 +5378,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="OrderedSetImpl-OrderedSetImplinitialization1-BodyOrderedSetImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="OrderedSetImpl-OrderedSetImplinitialization1-BodyOrderedSetImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="OrderedSetImpl-OrderedSetImplinitialization1-BodyOrderedSetImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="OrderedSetImpl-OrderedSetImplinitialization1-BodyOrderedSetImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="OrderedSetImpl-OrderedSetImplinitialization1-BodyOrderedSetImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -5613,7 +5613,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ListImpl-ListImplmethod1-BodyListImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ListImpl-ListImplmethod1-BodyListImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="ListImpl-ListImplmethod1-BodyListImplmethod1-Value0" name="Value(0)">
             <result xmi:id="ListImpl-ListImplmethod1-BodyListImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="ListImpl-ListImplmethod1-BodyListImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -5933,7 +5933,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ListImpl-ListImplinitialization1-BodyListImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ListImpl-ListImplinitialization1-BodyListImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="ListImpl-ListImplinitialization1-BodyListImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="ListImpl-ListImplinitialization1-BodyListImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="ListImpl-ListImplinitialization1-BodyListImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -6093,7 +6093,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="QueueImpl-QueueImplmethod1-BodyQueueImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="QueueImpl-QueueImplmethod1-BodyQueueImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="QueueImpl-QueueImplmethod1-BodyQueueImplmethod1-Value0" name="Value(0)">
             <result xmi:id="QueueImpl-QueueImplmethod1-BodyQueueImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="QueueImpl-QueueImplmethod1-BodyQueueImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -6768,7 +6768,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="QueueImpl-QueueImplinitialization1-BodyQueueImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="QueueImpl-QueueImplinitialization1-BodyQueueImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="QueueImpl-QueueImplinitialization1-BodyQueueImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="QueueImpl-QueueImplinitialization1-BodyQueueImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="QueueImpl-QueueImplinitialization1-BodyQueueImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -6941,7 +6941,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-DequeImplmethod1-BodyDequeImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-DequeImplmethod1-BodyDequeImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-DequeImplmethod1-BodyDequeImplmethod1-Value0" name="Value(0)">
             <result xmi:id="DequeImpl-DequeImplmethod1-BodyDequeImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="DequeImpl-DequeImplmethod1-BodyDequeImplmethod1-_edge.7" isOrdered="true" isUnique="false">
@@ -7828,7 +7828,7 @@
                     <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-Call--Call-.resultresult-_lowerValue" value="1"/>
                     <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-Call--Call-.resultresult-_upperValue" value="1"/>
                   </result>
-                  <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
+                  <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
                 </node>
                 <edge xmi:type="uml:ObjectFlow" xmi:id="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-_edge.0" source="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-ReadSelf-ReadSelf.result" target="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-CallgetContent-CallgetContent.target"/>
                 <edge xmi:type="uml:ObjectFlow" xmi:id="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-_edge.1" source="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-ReadSelf.1-ReadSelf.result" target="DequeImpl-removeLastImplmethod1-BodyremoveLastImplmethod1-ExpressionStatement4f71d691-Tuple72d876d9-Tuple571f0759-CallsizeImpl-CallsizeImpl.target"/>
@@ -7938,7 +7938,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call3C-Call3C.resultresult-_lowerValue" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call3C-Call3C.resultresult-_upperValue" value="1"/>
                 </result>
-                <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-le"/>
+                <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-le"/>
               </node>
               <node xmi:type="uml:StructuredActivityNode" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-ValuesForStatement6c62aa33" name="Values(ForStatement@6c62aa33)" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.8">
                 <node xmi:type="uml:ForkNode" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-ValuesForStatement6c62aa33-Forki" name="Fork(i)" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.9 DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.10" incoming="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.7"/>
@@ -7996,7 +7996,7 @@
                           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call--Call-.resultresult-_lowerValue" value="1"/>
                           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call--Call-.resultresult-_upperValue" value="1"/>
                         </result>
-                        <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
+                        <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
                       </node>
                       <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Value1" name="Value(1)">
                         <result xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Value1-Value1.result" name="Value(1).result" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-_edge.2" isOrdered="true" isUnique="false">
@@ -8024,7 +8024,7 @@
                           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call-Call.resultresult-_lowerValue" value="1"/>
                           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call-Call.resultresult-_upperValue" value="1"/>
                         </result>
-                        <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
+                        <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
                       </node>
                       <edge xmi:type="uml:ObjectFlow" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-_edge.0" source="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-ReadSelf-ReadSelf.result" target="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-CallgetContent-CallgetContent.target"/>
                       <edge xmi:type="uml:ObjectFlow" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-_edge.1" source="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call--Call-.resultresult" target="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-BodyForStatement6c62aa33-ExpressionStatement2c21840d-RightHandSide7e2ac92f-Tuple4d4acd0b-Call-Call.argumentx"/>
@@ -8238,7 +8238,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call-Call.resultresult-_lowerValue" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call-Call.resultresult-_upperValue" value="1"/>
                 </result>
-                <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
+                <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
               </node>
               <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Value1" name="Value(1)">
                 <result xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Value1-Value1.result" name="Value(1).result" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.12" isOrdered="true" isUnique="false">
@@ -8266,7 +8266,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call.1-Call.resultresult-_lowerValue" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Call.1-Call.resultresult-_upperValue" value="1"/>
                 </result>
-                <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
+                <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
               </node>
               <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Value1.1" name="Value(1)">
                 <result xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-Value1.1-Value1.result" name="Value(1).result" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopForStatement6c62aa33-_edge.14" isOrdered="true" isUnique="false">
@@ -8412,7 +8412,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Call--Call-.resultresult-_lowerValue" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Call--Call-.resultresult-_upperValue" value="1"/>
                 </result>
-                <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
+                <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-minus"/>
               </node>
               <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Value1.1" name="Value(1)">
                 <result xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Value1.1-Value1.result" name="Value(1).result" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-_edge.2" isOrdered="true" isUnique="false">
@@ -8440,7 +8440,7 @@
                   <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Call-Call.resultresult-_lowerValue" value="1"/>
                   <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Call-Call.resultresult-_upperValue" value="1"/>
                 </result>
-                <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
+                <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-IntegerFunctions-plus"/>
               </node>
               <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Value1.2" name="Value(1)">
                 <result xmi:id="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-LoopVariablesForStatement6c62aa33-Value1.2-Value1.result" name="Value(1).result" outgoing="DequeImpl-removeLastOneImplmethod1-BodyremoveLastOneImplmethod1-ForStatement6c62aa33-_edge.1" isOrdered="true" isUnique="false">
@@ -8556,7 +8556,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="DequeImpl-DequeImplinitialization1-BodyDequeImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="DequeImpl-DequeImplinitialization1-BodyDequeImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="DequeImpl-DequeImplinitialization1-BodyDequeImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="DequeImpl-DequeImplinitialization1-BodyDequeImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="DequeImpl-DequeImplinitialization1-BodyDequeImplinitialization1-_edge.6" isOrdered="true" isUnique="false">
@@ -8780,7 +8780,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MapImpl-MapImplmethod1-BodyMapImplmethod1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MapImpl-MapImplmethod1-BodyMapImplmethod1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="MapImpl-MapImplmethod1-BodyMapImplmethod1-Value0" name="Value(0)">
             <result xmi:id="MapImpl-MapImplmethod1-BodyMapImplmethod1-Value0-Value0.result" name="Value(0).result" outgoing="MapImpl-MapImplmethod1-BodyMapImplmethod1-_edge.6" isOrdered="true" isUnique="false">
@@ -10328,7 +10328,7 @@
               <lowerValue xmi:type="uml:LiteralInteger" xmi:id="MapImpl-MapImplinitialization1-BodyMapImplinitialization1-CallListSize-CallListSize.resultresult-_lowerValue" value="1"/>
               <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="MapImpl-MapImplinitialization1-BodyMapImplinitialization1-CallListSize-CallListSize.resultresult-_upperValue" value="1"/>
             </result>
-            <behavior xmi:type="uml:FunctionBehavior" href="fUML.library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
+            <behavior xmi:type="uml:FunctionBehavior" href="pathmap://PAPYRUS_fUML_LIBRARY/fUML_Library.uml#PrimitiveBehaviors-ListFunctions-ListSize"/>
           </node>
           <node xmi:type="uml:ValueSpecificationAction" xmi:id="MapImpl-MapImplinitialization1-BodyMapImplinitialization1-Value0" name="Value(0)">
             <result xmi:id="MapImpl-MapImplinitialization1-BodyMapImplinitialization1-Value0-Value0.result" name="Value(0).result" outgoing="MapImpl-MapImplinitialization1-BodyMapImplinitialization1-_edge.5" isOrdered="true" isUnique="false">
