@@ -79,7 +79,6 @@ public class AlfEditorKeyListener extends KeyAdapter implements VerifyKeyListene
 		}
 	}
 
-	@Override
 	public void verifyKey(VerifyEvent event) {
 		if ((event.stateMask & SWT.CTRL) != 0 && ((event.keyCode == SWT.KEYPAD_CR) || (event.keyCode == SWT.CR))) {
 			event.doit = false;
