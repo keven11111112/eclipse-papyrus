@@ -152,6 +152,7 @@ public class AlfEditorUtils {
 		if (! isActionLanguageProfileApplied(element)) {
 			PackageUtil.applyProfile((org.eclipse.uml2.uml.Package)element.getModel(), actionLanguageProfile, true) ;
 		}
+		clean() ;
 		isATextualRepresentationComment(textualRepresentationComment) ; // This is just to force retrieval of the textual representation stereotype
 		textualRepresentationComment.applyStereotype(textualRepresentationStereotype) ;
 		return textualRepresentationComment ;
