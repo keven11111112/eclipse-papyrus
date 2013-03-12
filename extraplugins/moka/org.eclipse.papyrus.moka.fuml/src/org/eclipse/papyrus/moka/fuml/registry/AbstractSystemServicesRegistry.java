@@ -42,7 +42,6 @@ public abstract class AbstractSystemServicesRegistry implements ISystemServicesR
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.moka.fuml.registry.ISystemServicesRegistry#init(java.lang.Object)
 	 */
-	@Override
 	public ISystemServicesRegistry init(Object parameters) {
 		if(parameters instanceof EObject)
 			this.contextEObject = (EObject)parameters;
@@ -52,7 +51,6 @@ public abstract class AbstractSystemServicesRegistry implements ISystemServicesR
 	/* (non-Javadoc)
 	 * @see org.eclipse.papyrus.moka.fuml.registry.ISystemServicesRegistry#registerSystemServices(org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.Locus)
 	 */
-	@Override
 	public void registerSystemServices(Locus locus) {
 		this.locus = locus ;
 		List<Object_> services = this.instantiateServices() ;
