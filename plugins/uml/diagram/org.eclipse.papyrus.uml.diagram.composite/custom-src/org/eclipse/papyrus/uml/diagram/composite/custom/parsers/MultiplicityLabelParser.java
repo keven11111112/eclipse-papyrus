@@ -28,7 +28,6 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -81,7 +80,7 @@ public class MultiplicityLabelParser implements ISemanticParser {
 		List<EObject> semanticElementsBeingParsed = new ArrayList<EObject>();
 
 		if((element != null) && (element instanceof MultiplicityElement)) {
-			Property semElement = (Property)element;
+			MultiplicityElement semElement = (MultiplicityElement)element;
 
 			semanticElementsBeingParsed.add(semElement);
 			if(semElement.getLowerValue() != null) {
