@@ -15,8 +15,10 @@ package org.eclipse.papyrus.views.modelexplorer;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
@@ -38,10 +40,10 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ColumnViewerToolTipSupport;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
-import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.ToolTip;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.IEditorInputChangedListener;
@@ -63,8 +65,8 @@ import org.eclipse.papyrus.views.modelexplorer.matching.ReferencableMatchingItem
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Tree;
-import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IMemento;
 import org.eclipse.ui.ISaveablePart;
@@ -84,6 +86,7 @@ import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+
 import com.google.common.base.Function;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
@@ -347,8 +350,26 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		((CustomCommonViewer)getCommonViewer()).getDropAdapter().setFeedbackEnabled(true);
 		getCommonViewer().addDoubleClickListener(new DoubleClickListener());
 		Tree tree = getCommonViewer().getTree();
-		Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
+		installEMFFacetTreePainter(tree);
+	}
 
+	private void installEMFFacetTreePainter(Tree tree) {
+		// Install the EMFFacet Custom Tree Painter
+		org.eclipse.papyrus.infra.emf.Activator.getDefault().getCustomizationManager().installCustomPainter(tree);
+
+		// The EMF Facet MeasureItem Listener is incompatible with the NavigatorDecoratingLabelProvider. Remove it.
+		// Symptoms: ModelElementItems with an EMF Facet Overlay have a small selection size
+		// see also bug 400012, bad vertical refresh
+		Collection<Listener> listenersToRemove = new LinkedList<Listener>();
+		for(Listener listener : tree.getListeners(SWT.MeasureItem)) {
+			if(listener.getClass().getName().contains("org.eclipse.emf.facet.infra.browser.uicore.internal.CustomTreePainter")) {
+				listenersToRemove.add(listener);
+			}
+		}
+
+		for(Listener listener : listenersToRemove) {
+			tree.removeListener(SWT.MeasureItem, listener);
+		}
 	}
 
 	/**
@@ -649,8 +670,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Expands the given CommonViewer to reveal the given elements
-	 * @param elementList The elements to reveal
-	 * @param commonViewer The CommonViewer they are to be revealed in
+	 * 
+	 * @param elementList
+	 *        The elements to reveal
+	 * @param commonViewer
+	 *        The CommonViewer they are to be revealed in
 	 */
 	public static void reveal(Iterable<?> elementList, CommonViewer commonViewer) {
 		ArrayList<IMatchingItem> matchingItemsToSelect = new ArrayList<IMatchingItem>();
@@ -680,15 +704,15 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 				// reveal the resource if necessary
 				Resource r = null;
-				if (!parents.isEmpty()) {
-					 r = parents.get(parents.size() - 1).eResource();
+				if(!parents.isEmpty()) {
+					r = parents.get(parents.size() - 1).eResource();
 				} else {
 					r = currentEObject.eResource();
 				}
 
-				if (r != null) {
+				if(r != null) {
 					ResourceSet rs = r.getResourceSet();
-					if (rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
+					if(rs instanceof ModelSet && AdditionalResourcesModel.isAdditionalResource((ModelSet)rs, r.getURI())) {
 						commonViewer.expandToLevel(new ReferencableMatchingItem(rs), 1);
 						commonViewer.expandToLevel(new ReferencableMatchingItem(r), 1);
 					}
@@ -720,11 +744,14 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 		selectReveal(new StructuredSelection(matchingItemsToSelect), commonViewer);
 	}
-	
+
 	/**
 	 * Selects the given ISelection in the given CommonViwer
-	 * @param structuredSelection The ISelection to select
-	 * @param commonViewer The ComonViewer to select it in
+	 * 
+	 * @param structuredSelection
+	 *        The ISelection to select
+	 * @param commonViewer
+	 *        The ComonViewer to select it in
 	 */
 	public static void selectReveal(ISelection structuredSelection, Viewer commonViewer) {
 		commonViewer.setSelection(structuredSelection, true);
@@ -732,8 +759,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 	/**
 	 * Selects and, if possible, reveals the given ISelection in the given CommonViwer
-	 * @param selection The ISelection to select
-	 * @param viewer The ComonViewer to select it in
+	 * 
+	 * @param selection
+	 *        The ISelection to select
+	 * @param viewer
+	 *        The ComonViewer to select it in
 	 */
 	public static void reveal(ISelection selection, CommonViewer viewer) {
 		if(selection instanceof IStructuredSelection) {
