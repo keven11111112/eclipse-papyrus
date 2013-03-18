@@ -42,6 +42,8 @@ public class StandardOutputChannelImpl extends Object_ {
 	public Execution dispatch(Operation operation) {
 		if (operation.getName().equals("writeLine"))
 			return new WriteLineExecution(operation) ;
+		else if (operation.getName().equals("write"))
+			return new Write(operation) ;
 		// TODO complete with other operations
 		return null ;
 	}
@@ -81,4 +83,38 @@ public class StandardOutputChannelImpl extends Object_ {
 		
 	}
 	
+	protected class Write extends OpaqueBehaviorExecution {
+
+		protected Operation operation ;
+		
+		public Write(Operation operation) {
+			this.operation = operation ;
+		}
+		
+		@Override
+		public Value new_() {
+			return new Write(operation) ;
+		}
+
+		@Override
+		public void doBody(List<ParameterValue> inputParameters, List<ParameterValue> outputParameters) {
+			// Supposed to have only one input argument, corresponding to parameter 'value'
+			try {
+				String message = ((StringValue)inputParameters.get(0).values.get(0)).value;
+				System.out.print(message);
+				// This implementation does not produce errorStatus information.
+			} catch (Exception e) {
+				Debug.println("An error occured during the execution of write " + e.getMessage());
+			}
+		}
+
+		@Override
+		public Behavior getBehavior() {
+			if (writeLineMethod == null) {
+				writeLineMethod = SystemServicesRegistryUtils.getInstance().generateOpaqueBehaviorSignature(operation) ;
+			}
+			return writeLineMethod ;
+		}
+		
+	}
 }
