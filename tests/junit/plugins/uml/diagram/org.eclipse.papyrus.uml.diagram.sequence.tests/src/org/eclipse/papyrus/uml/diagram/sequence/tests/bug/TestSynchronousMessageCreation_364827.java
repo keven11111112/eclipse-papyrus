@@ -52,7 +52,11 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 
 	public void selectActionExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
-		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
+		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));
+		
+		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
+
+//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
 		waitForComplete();
 		PopupUtil.addMenuListener(0);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
@@ -62,21 +66,24 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart 
-		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().get(1) instanceof ActionExecutionSpecificationEditPart);
+//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2); // LifelineNameEditPart 
+		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof ActionExecutionSpecificationEditPart);
 
 		getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, target.getChildren().size() == 1);
+		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 0);
 
 		getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_REDO, target.getChildren().size() == 2);
+		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 1);
 	}
 
 	public void selectBehaviorExecution(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType subNodeType) {
 		installEnvironment(sourceType, targetType, subNodeType);
-		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
+		target = createSubNode(target, subNodeType, getAbsoluteCenter(target));
+		assertTrue(CREATION + TEST_THE_EXECUTION, target instanceof BehaviorExecutionSpecificationEditPart);
+
+//		assertTrue(CREATION + INITIALIZATION_TEST, target.getChildren().size() == 1);
 		waitForComplete();
 		PopupUtil.addMenuListener(1);
 		createLink(linkType, source, target, getAbsoluteCenter(source), getAbsoluteCenter(target).translate(0, 60));
@@ -86,16 +93,15 @@ public class TestSynchronousMessageCreation_364827 extends TestLink {
 		AbstractMessageEditPart p = (AbstractMessageEditPart)source.getSourceConnections().get(0);
 		assertTrue(CREATION + TEST_THE_EXECUTION, ((View)p.getModel()).getType().equals(((IHintedType)linkType).getSemanticHint()));
 
-		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2);
-		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().get(1) instanceof BehaviorExecutionSpecificationEditPart);
+//		assertTrue(CREATION + TEST_THE_EXECUTION, target.getChildren().size() == 2);
 
 		getDiagramCommandStack().undo();
 		assertTrue(CREATION + TEST_THE_UNDO, source.getSourceConnections().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, target.getChildren().size() == 1);
+		assertTrue(CREATION + TEST_THE_UNDO, target.getTargetConnections().size() == 0);
 
 		getDiagramCommandStack().redo();
 		assertTrue(CREATION + TEST_THE_REDO, source.getSourceConnections().size() == 1);
-		assertTrue(CREATION + TEST_THE_REDO, target.getChildren().size() == 2);
+		assertTrue(CREATION + TEST_THE_REDO, target.getTargetConnections().size() == 1);
 	}
 
 	@Override

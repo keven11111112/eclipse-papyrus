@@ -158,7 +158,7 @@ public class MessageConnectionHelper {
 	}
 
 	public static boolean canExistSynchMessage(Element source, Element target) {
-		if(source != null && false == source instanceof ExecutionSpecification) {
+		if(source != null && !( source instanceof ExecutionSpecification || source instanceof Lifeline)) {
 			return false;
 		}
 		if(target != null && !(target instanceof ExecutionSpecification || target instanceof Lifeline)) {
