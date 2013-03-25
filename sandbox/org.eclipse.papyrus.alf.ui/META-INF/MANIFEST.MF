@@ -29,5 +29,6 @@ Require-Bundle: org.eclipse.papyrus.alf;visibility:=reexport,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.alf.ui.contentassist,
  org.eclipse.papyrus.alf.ui.contentassist.antlr,
+ org.eclipse.papyrus.alf.ui.integration,
  org.eclipse.papyrus.alf.ui.internal
 Bundle-Activator: org.eclipse.papyrus.alf.ui.internal.AlfActivator
