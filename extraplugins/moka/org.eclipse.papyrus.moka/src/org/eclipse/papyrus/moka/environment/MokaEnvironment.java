@@ -58,6 +58,7 @@ public class MokaEnvironment {
 		ISafeRunnable runnable = new ISafeRunnable() {
 
 			public void handleException(Throwable e) {
+				e.printStackTrace() ;
 				System.out.println("Exception in execution of the behavior"); //$NON-NLS-1$
 			}
 
