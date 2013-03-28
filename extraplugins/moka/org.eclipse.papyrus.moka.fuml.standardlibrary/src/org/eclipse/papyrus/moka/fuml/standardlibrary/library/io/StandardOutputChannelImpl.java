@@ -32,6 +32,7 @@ import org.eclipse.uml2.uml.Operation;
 public class StandardOutputChannelImpl extends Object_ {
 
 	protected static OpaqueBehavior writeLineMethod ;
+	protected static OpaqueBehavior writeMethod;
 	
 	public StandardOutputChannelImpl(Class service) {
 		super() ;
@@ -100,7 +101,7 @@ public class StandardOutputChannelImpl extends Object_ {
 		public void doBody(List<ParameterValue> inputParameters, List<ParameterValue> outputParameters) {
 			// Supposed to have only one input argument, corresponding to parameter 'value'
 			try {
-				String message = ((StringValue)inputParameters.get(0).values.get(0)).value;
+				String message = inputParameters.get(0).values.get(0).toString();
 				System.out.print(message);
 				// This implementation does not produce errorStatus information.
 			} catch (Exception e) {
@@ -110,10 +111,10 @@ public class StandardOutputChannelImpl extends Object_ {
 
 		@Override
 		public Behavior getBehavior() {
-			if (writeLineMethod == null) {
-				writeLineMethod = SystemServicesRegistryUtils.getInstance().generateOpaqueBehaviorSignature(operation) ;
+			if (writeMethod == null) {
+				writeMethod = SystemServicesRegistryUtils.getInstance().generateOpaqueBehaviorSignature(operation) ;
 			}
-			return writeLineMethod ;
+			return writeMethod ;
 		}
 		
 	}
