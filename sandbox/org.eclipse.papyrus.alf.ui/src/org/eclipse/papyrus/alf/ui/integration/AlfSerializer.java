@@ -44,7 +44,7 @@ public class AlfSerializer {
 	 */
 	public boolean serialize(Element contextElement, String newTextualRepresentation, Object[] args) {
 		TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(contextElement) ;
-		UpdateElementCommand updateCommand = new UpdateElementCommand(contextElement, newTextualRepresentation, args, domain);
+		CompileCommand updateCommand = new CompileCommand(contextElement, newTextualRepresentation, args, domain);
 		domain.getCommandStack().execute(updateCommand) ;
 		return updateCommand.getCompileResult() ;
 	}
@@ -54,14 +54,14 @@ public class AlfSerializer {
 	 * 
 	 *         A command for updating the context UML model
 	 */
-	protected class UpdateElementCommand extends RecordingCommand {
+	protected class CompileCommand extends RecordingCommand {
 
 		protected Element element ;
 		protected String textualRepresentation ;
 		protected Object[] args ;
 		protected boolean compileResult = false ;
 
-		public UpdateElementCommand(Element element, String textualRepresentation, Object[] args, TransactionalEditingDomain domain) {
+		public CompileCommand(Element element, String textualRepresentation, Object[] args, TransactionalEditingDomain domain) {
 			super(domain) ;
 			this.element = element ;
 			this.textualRepresentation = textualRepresentation ;
@@ -108,4 +108,61 @@ public class AlfSerializer {
 		
 	}
 
+	/**
+	 * Adds a textual representation comment to the edit modelObject, if this eObject is a uml Element
+	 * 
+	 * @param graphicalEditPart
+	 * @param modelObject
+	 * @param newTextualRepresentation
+	 */
+	public boolean validate(Element contextElement, String newTextualRepresentation, Object[] args) {
+		TransactionalEditingDomain domain = (TransactionalEditingDomain)EMFHelper.resolveEditingDomain(contextElement) ;
+		ValidateCommand updateCommand = new ValidateCommand(contextElement, newTextualRepresentation, args, domain);
+		domain.getCommandStack().execute(updateCommand) ;
+		return updateCommand.getValidationResult() ;
+	}
+
+	/**
+	 * @author CEA LIST
+	 * 
+	 *         A command for updating the context UML model
+	 */
+	protected class ValidateCommand extends RecordingCommand {
+
+		protected Element element ;
+		protected String textualRepresentation ;
+		protected Object[] args ;
+		protected boolean validationResult = false ;
+
+		public ValidateCommand(Element element, String textualRepresentation, Object[] args, TransactionalEditingDomain domain) {
+			super(domain) ;
+			this.element = element ;
+			this.textualRepresentation = textualRepresentation ;
+			this.args = args ;
+		}
+
+		/*
+		 * (non-Javadoc)
+		 * 
+		 * @see
+		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
+		 * , org.eclipse.core.runtime.IAdaptable)
+		 */
+		@Override
+		protected void doExecute() {
+			// first tries to compile the textual representation
+			IAlfCompiler alfCompiler = AlfEditorUtils.getAlfCompiler() ;
+			if (alfCompiler != null) {
+				this.validationResult = alfCompiler.validate(element, textualRepresentation, args) ;
+			}
+			else {
+				MessageDialog.open(MessageDialog.ERROR, Display.getCurrent().getActiveShell(), "Validation info", "No registered Alf Compiler", SWT.NONE) ;
+			}
+		}
+
+		public boolean getValidationResult() {
+			return this.validationResult ;
+		}
+		
+	}
 }

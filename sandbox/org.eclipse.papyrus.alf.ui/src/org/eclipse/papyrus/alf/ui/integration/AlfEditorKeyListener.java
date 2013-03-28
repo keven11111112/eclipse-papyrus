@@ -15,7 +15,6 @@ package org.eclipse.papyrus.alf.ui.integration;
 
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.alf.compiler.IAlfCompiler;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.VerifyKeyListener;
@@ -64,17 +63,16 @@ public class AlfEditorKeyListener extends KeyAdapter implements VerifyKeyListene
 			}
 		}
 		if ((event.stateMask & SWT.ALT) != 0 && ((keyCode == SWT.KEYPAD_CR) || (keyCode == SWT.CR))) {
-			IAlfCompiler alfCompiler = AlfEditorUtils.getAlfCompiler() ;
-			if (alfCompiler == null) {
-				MessageDialog.open(MessageDialog.ERROR, Display.getCurrent().getActiveShell(), "Validation info", "No registered Alf Compiler", SWT.NONE) ;
+			boolean success = new AlfSerializer().validate(this.contextElement, embeddedEditorAccess.getSerializedModel(), this.args) ;
+			int messageDialogKind = success ? MessageDialog.INFORMATION : MessageDialog.ERROR ;
+			String message = "" ;
+			if (success) {
+				message += "Specification is valid." ;
+				MessageDialog.open(messageDialogKind, Display.getCurrent().getActiveShell(), "Validation info", message, SWT.NONE) ;
 			}
 			else {
-				if (alfCompiler.validate(contextElement, embeddedEditorAccess.getSerializedModel(), args)) {
-					MessageDialog.open(MessageDialog.INFORMATION, Display.getCurrent().getActiveShell(), "Validation info", "Specification is valid", SWT.NONE) ;
-				}
-				else {
-					MessageDialog.open(MessageDialog.ERROR, Display.getCurrent().getActiveShell(), "Validation info", "Validation failed", SWT.NONE) ;
-				}
+				message += "Validation failed" ;
+				MessageDialog.open(messageDialogKind, Display.getCurrent().getActiveShell(), "Validation info", message, SWT.NONE) ;
 			}
 		}
 	}
