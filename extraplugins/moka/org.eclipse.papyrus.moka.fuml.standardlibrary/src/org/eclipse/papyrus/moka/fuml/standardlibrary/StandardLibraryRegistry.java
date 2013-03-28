@@ -122,53 +122,6 @@ public class StandardLibraryRegistry extends AbstractOpaqueBehaviorExecutionRegi
 		}
 	}
 
-	// TODO This overriding should not be necessary
-	// The fUML standard library just needs to be a registered library
-	//	@Override
-	//	protected void buildOpaqueBehaviorsMap(String libraryName) {
-	//		opaqueBehaviorsMap = new HashMap<String, OpaqueBehavior>();
-	//		RegisteredLibrary[] libraries = RegisteredLibrary.getRegisteredLibraries();
-	//		RegisteredLibrary alfLibrary = null;
-	//		for(RegisteredLibrary l : libraries) {
-	//			if(l.getName().equals("AlfLibrary"))
-	//				alfLibrary = l;
-	//		}
-	//		if(alfLibrary != null) {
-	//			URI libraryUri = alfLibrary.uri;
-	//			ResourceSet resourceSet = contextEObject.eResource().getResourceSet();
-	//			Resource libraryResource = resourceSet.getResource(libraryUri, true);
-	//			Package libraryObject = (Package)libraryResource.getContents().get(0);
-	//			Package fumlPackage = null;
-	//			for(Element e : libraryObject.getOwnedElements()) {
-	//				if(e instanceof PackageImport) {
-	//					if(((PackageImport)e).getImportedPackage().getName().equals(libraryName))
-	//						fumlPackage = ((PackageImport)e).getImportedPackage();
-	//				}
-	//			}
-	//			if(fumlPackage != null) {
-	//				List<Package> packagesForCurrentIteration = new ArrayList<Package>();
-	//				packagesForCurrentIteration.add(fumlPackage);
-	//				List<Package> packagesForNextIteration = new ArrayList<Package>();
-	//				while(!packagesForCurrentIteration.isEmpty()) {
-	//					for(Package p : packagesForCurrentIteration) {
-	//						for(Element e : p.getOwnedElements()) {
-	//							if(e instanceof Package) {
-	//								packagesForNextIteration.add((Package)e);
-	//							} else if(e instanceof FunctionBehavior) {
-	//								FunctionBehavior f = (FunctionBehavior)e;
-	//								opaqueBehaviorsMap.put(f.getQualifiedName(), f);
-	//								System.out.println(f.getQualifiedName());
-	//							}
-	//						}
-	//					}
-	//					packagesForCurrentIteration.clear();
-	//					packagesForCurrentIteration.addAll(packagesForNextIteration);
-	//					packagesForNextIteration.clear();
-	//				}
-	//			}
-	//		}
-	//	}
-
 	protected void registerOpaqueBehaviorExecution(OpaqueBehaviorExecution behaviorExecution, String behaviorQualifiedName) {
 		behaviorExecution.types.add(this.opaqueBehaviorsMap.get(behaviorQualifiedName));
 		locus.factory.primitiveBehaviorPrototypes.add(behaviorExecution);
