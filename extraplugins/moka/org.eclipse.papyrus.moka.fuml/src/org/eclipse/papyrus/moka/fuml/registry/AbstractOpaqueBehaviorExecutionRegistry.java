@@ -50,7 +50,6 @@ public abstract class AbstractOpaqueBehaviorExecutionRegistry implements IOpaque
 		RegisteredLibrary[] libraries = RegisteredLibrary.getRegisteredLibraries();
 		RegisteredLibrary library = null;
 		for(RegisteredLibrary l : libraries) {
-			System.out.println(l.getName()) ;
 			if(l.getName().equals(LIBRARY_NAME))
 				library = l;
 		}

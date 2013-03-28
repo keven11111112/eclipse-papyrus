@@ -85,7 +85,6 @@ public abstract class AbstractSystemServicesRegistry implements ISystemServicesR
 		RegisteredLibrary[] libraries = RegisteredLibrary.getRegisteredLibraries();
 		RegisteredLibrary library = null;
 		for(RegisteredLibrary l : libraries) {
-			System.out.println(l.getName()) ;
 			if(l.getName().equals(libraryName))
 				library = l;
 		}

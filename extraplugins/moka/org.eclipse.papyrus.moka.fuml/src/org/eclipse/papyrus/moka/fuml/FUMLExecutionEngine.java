@@ -81,7 +81,6 @@ public class FUMLExecutionEngine implements IExecutionEngine {
 		try {
 			for(int i = 0; i < config.length; i++) {
 				IConfigurationElement e = config[i];
-				System.out.println("Evaluating extension");
 				final Object o = e.createExecutableExtension("class");
 				loadLibrary(o, locus, main);
 			}
@@ -100,7 +99,6 @@ public class FUMLExecutionEngine implements IExecutionEngine {
 		try {
 			for(int i = 0; i < config.length; i++) {
 				IConfigurationElement e = config[i];
-				System.out.println("Evaluating extension");
 				final Object o = e.createExecutableExtension("class");
 				loadServices(o, locus, main);
 			}

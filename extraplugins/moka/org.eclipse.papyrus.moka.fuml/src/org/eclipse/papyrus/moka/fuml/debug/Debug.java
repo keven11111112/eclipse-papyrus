@@ -13,13 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.debug;
 
-// TODO Should redirect logging to Papyrus log helper
-// TODO but problem with access restriction
-// TODO Note: There is no problem with MokaEnvironment...
 public class Debug {
 
 	public static void println(String message) {
-		System.err.println(message) ;
-		//System.out.println(message);
+		//System.err.println(message) ;
+		//FIXME Bug 404555: [Moka] Pollution of the console with debug messages
+		//https://bugs.eclipse.org/bugs/show_bug.cgi?id=404555
 	}
 }
