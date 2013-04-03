@@ -498,6 +498,9 @@ public class CustomStateMachineDiagramDragDropEditPolicy extends OldCommonDiagra
 		//we restrict drop to be over the owning region
 		GraphicalEditPart graphicalParentEditPart = (GraphicalEditPart)getHost();
 		EObject graphicalParentObject = graphicalParentEditPart.resolveSemanticElement();
+		if(!(graphicalParentObject instanceof Region)) {
+			return UnexecutableCommand.INSTANCE;
+		}
 		Region region = (Region)graphicalParentObject;
 		Region extendedRegion = region.getExtendedRegion();
 		// also take redefined (extended) regions into account, see Bug 366415
