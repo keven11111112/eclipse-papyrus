@@ -5,6 +5,12 @@ import java.util.Map;
 import java.util.Stack;
 
 import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
+import org.eclipse.papyrus.qompass.designer.core.Log;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Connector;
@@ -29,13 +35,6 @@ import FCM.ContainerRule;
 import FCM.CopyAttributeValue;
 import FCM.InteractionComponent;
 import FCM.RuleApplication;
-
-import org.eclipse.papyrus.qompass.designer.core.ConfigUtils;
-import org.eclipse.papyrus.qompass.designer.core.Log;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Stereotypes;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 
 public class DepCreation {
 
@@ -99,11 +98,11 @@ public class DepCreation {
 		if(type != null) {
 			String name = type.getName();
 			String qname = type.getQualifiedName();
-			if(name.equals("Integer") || qname.equals("CORBA::Octet")
-				|| qname.equals("CORBA::Long")
-				|| qname.equals("CORBA::UnsignedLong")
-				|| qname.equals("CORBA::Short")
-				|| qname.equals("CORBA::UnsignedShort")) {
+			if(name.equals("Integer") || qname.equals("corba::Octet")
+				|| qname.equals("corba::Long")
+				|| qname.equals("corba::UnsignedLong")
+				|| qname.equals("corba::Short")
+				|| qname.equals("corba::UnsignedShort")) {
 				slot.createValue("value for " + attribute.getName(), type,
 					UMLPackage.eINSTANCE.getLiteralInteger());
 			} else if(name.equals("Boolean")) {
