@@ -3,6 +3,7 @@ Bundle-Name: %pluginName
 Bundle-ClassPath: .
 Import-Package: org.apache.log4j
 Bundle-Vendor: %providerName
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-SymbolicName: org.eclipse.papyrus.marte.textedit.stereotypeappl
@@ -34,5 +35,5 @@ Export-Package: org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.impl,
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.stereotypeApplicationWithVSL.util,
  org.eclipse.papyrus.marte.textedit.stereotypeapplicationwithvsl.xtext.validation
-Bundle-Version: 0.9.1.qualifier
+Bundle-Version: 0.9.2.qualifier
 
