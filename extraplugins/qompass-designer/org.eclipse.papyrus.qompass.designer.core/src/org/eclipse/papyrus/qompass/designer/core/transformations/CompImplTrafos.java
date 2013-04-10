@@ -6,6 +6,10 @@ import java.util.Map;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Class;
@@ -27,11 +31,6 @@ import org.eclipse.uml2.uml.UMLPackage;
 
 import Cpp.CppPtr;
 import FCM.InteractionComponent;
-
-import org.eclipse.papyrus.qompass.designer.core.ConnectorUtils;
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * This class realizes the transformations for a component implementation (the executor)
@@ -193,7 +192,7 @@ public class CompImplTrafos {
 				boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 				if(multiPort) {
 					// add index parameter
-					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), "CORBA::Long");
+					Element eLong = Utils.getQualifiedElement(Utils.getTop(implementation), CompTypeTrafos.CORBA_LONG);
 					if(eLong instanceof Type) {
 						op.createOwnedParameter("index", (Type)eLong);
 					}

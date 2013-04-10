@@ -2,6 +2,9 @@ package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
+import org.eclipse.papyrus.qompass.designer.core.PortUtils;
+import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
@@ -14,10 +17,6 @@ import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Type;
 
 import Cpp.CppPtr;
-
-import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.StUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 
 /**
  * A collection of transformations related to component-types (or abstract implementations)
@@ -33,6 +32,8 @@ import org.eclipse.papyrus.qompass.designer.core.Utils;
  * 
  */
 public class CompTypeTrafos {
+
+	public static final String CORBA_LONG = "corba::Long";
 
 	/**
 	 * Complete access operations recursively, i.e. traverse all packageable
@@ -91,7 +92,7 @@ public class CompTypeTrafos {
 					boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 					if(multiPort) {
 						// add index parameter
-						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), "CORBA::Long");
+						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), CORBA_LONG);
 						if(eLong instanceof Type) {
 							op.createOwnedParameter("index", (Type)eLong);
 						}
