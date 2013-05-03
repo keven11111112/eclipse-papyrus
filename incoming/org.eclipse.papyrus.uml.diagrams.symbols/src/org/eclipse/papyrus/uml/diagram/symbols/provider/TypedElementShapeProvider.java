@@ -27,10 +27,10 @@ import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.draw2d.ui.render.RenderedImage;
 import org.eclipse.gmf.runtime.draw2d.ui.render.factory.RenderedImageFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.core.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.AbstractShapeProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ProviderNotificationManager;
 import org.eclipse.papyrus.infra.gmfdiag.common.service.shape.ShapeService;
+import org.eclipse.papyrus.uml.diagram.symbols.Activator;
 import org.eclipse.papyrus.uml.diagram.symbols.IPapyrusInternalProfileConstants;
 import org.eclipse.papyrus.uml.tools.listeners.PapyrusStereotypeListener.StereotypeCustomNotification;
 import org.eclipse.uml2.uml.Stereotype;
@@ -63,7 +63,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 						url = new URL("platform:/resource/" + workspaceRelativeFolderPath + File.separatorChar + path);
 						return Arrays.asList(RenderedImageFactory.getInstance(url));
 					} catch (MalformedURLException e1) {
-						e1.printStackTrace();
+						Activator.log.error(e1);
 					}
 				}
 			}
@@ -95,7 +95,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 			return null;
 		}
 
-		Object element = BusinessModelResolver.getInstance().getBusinessModel(view);
+		Object element = ((View)view).getElement();
 		if(element instanceof Type) {
 			return (Type)element;
 		} else if(element instanceof TypedElement) {
@@ -168,7 +168,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 			}
 			// should register this listener on the type, to listen for stereotype modification
 			// should listen to new value of the typedElement_type feature, in order to remove/add the stereotype listener...
-			Object semanticElement = BusinessModelResolver.getInstance().getBusinessModel(view);
+			Object semanticElement = ((View)view).getElement();
 			if(semanticElement instanceof Type) {
 				diagramEventBroker.addNotificationListener((Type)semanticElement, this);
 			} else if(semanticElement instanceof TypedElement) {
@@ -188,7 +188,7 @@ public class TypedElementShapeProvider extends AbstractShapeProvider {
 			if(view == null || !(view instanceof View)) {
 				return;
 			}
-			Object semanticElement = BusinessModelResolver.getInstance().getBusinessModel(view);
+			Object semanticElement = ((View)view).getElement();
 			if(semanticElement instanceof Type) {
 				diagramEventBroker.removeNotificationListener((Type)semanticElement, this);
 			} else if(semanticElement instanceof TypedElement) {
