@@ -17,6 +17,7 @@ import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.controlmode.request.ControlModeRequest;
@@ -48,6 +49,15 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 	public CreateControlResource(ControlModeRequest request, String newFileExtension) {
 		this(request);
 		this.newFileExtension = newFileExtension;
+		Resource sourceResource = request.getTargetObject().eResource();
+		if(sourceResource != null) {
+			URI sourceURI = sourceResource.getURI().trimFileExtension().appendFileExtension(newFileExtension);
+			Resource sourceResourceForExtension = sourceResource.getResourceSet().getResource(sourceURI, false);
+			if(sourceResourceForExtension != null) {
+				request.setSourceResource(sourceResourceForExtension, newFileExtension);
+			}
+		}
+
 	}
 
 

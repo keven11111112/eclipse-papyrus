@@ -10,6 +10,9 @@
  ******************************************************************************/
 package org.eclipse.papyrus.controlmode.request;
 
+import java.util.ArrayList;
+import java.util.Collection;
+
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -115,6 +118,10 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 		if(newURI != null) {
 			setTargetResource(editingDomain.getResourceSet().getResource(newURI, false), newURI.fileExtension());
 		}
+		Resource sourceResource = targetObject.eResource();
+		if(sourceResource != null) {
+			setSourceResource(sourceResource, sourceResource.getURI().fileExtension());
+		}
 		Resource r = objectToControl.eResource();
 		Assert.isNotNull(r);
 		this.sourceURI = r.getURI();
@@ -178,6 +185,41 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	}
 
 	/**
+	 * Get resources that has been used as target
+	 * 
+	 * @return
+	 */
+	public Collection<Resource> getTargetResources() {
+		return getResources(TARGET_RESOURCE);
+	}
+
+	/**
+	 * Get resource that has been used as sources
+	 * 
+	 * @return
+	 */
+	public Collection<Resource> getSourceResources() {
+		return getResources(SOURCE_RESOURCE);
+	}
+
+	protected Collection<Resource> getResources(String resourceKind) {
+		Collection<Resource> result = new ArrayList<Resource>();
+		for(Object key : getParameters().keySet()) {
+			if(key instanceof String) {
+				String keyString = (String)key;
+				if(keyString.startsWith(resourceKind)) {
+					Object value = getParameter(keyString);
+					if(value instanceof Resource) {
+						result.add((Resource)value);
+					}
+				}
+
+			}
+		}
+		return result;
+	}
+
+	/**
 	 * Get the target resource for this kind of file extension
 	 * 
 	 * @param extension
@@ -226,7 +268,7 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	 * Get the key used to register this file extension into the parameters for source
 	 * 
 	 * @param extension
-	 *        File Extenion
+	 *        File Extension
 	 * @return
 	 */
 	protected String getSourceResourceKey(String extension) {
@@ -243,7 +285,7 @@ public class ControlModeRequest extends AbstractEditCommandRequest implements Co
 	public ModelSet getModelSet() {
 		return (ModelSet)getEditingDomain().getResourceSet();
 	}
-	
+
 	/**
 	 * Create a request for creating a request for controlling a EObject. This request is aware that the action is User Interface action
 	 * 
