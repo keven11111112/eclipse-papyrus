@@ -13,10 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.umlprofiles.participants;
 
-import java.util.Collections;
-
 import org.eclipse.core.commands.operations.IUndoableOperation;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.controlmode.commands.AskUserCommand;
@@ -70,7 +67,7 @@ public class UMLProfileParticipant implements IControlCommandParticipant, IUncon
 	 * @return
 	 */
 	protected IUndoableOperation getMoveStereotypeCommand(final ControlModeRequest request) {
-		return new MoveStereotypeApplicationToControlResource(Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
+		return new MoveStereotypeApplicationToControlResource(request);
 	}
 
 	/*

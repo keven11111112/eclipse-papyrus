@@ -14,8 +14,6 @@
 package org.eclipse.papyrus.controlmode.commands;
 
 import java.util.Collection;
-import java.util.HashSet;
-import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
@@ -25,13 +23,9 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.controlmode.helper.ControlCommandHelper;
 import org.eclipse.papyrus.controlmode.request.ControlModeRequest;
-
-import com.google.common.base.Function;
-import com.google.common.collect.Collections2;
 
 /**
  * This command do the basic operation of the control. That is to say move the semantic element to a new resource previously created.
@@ -48,17 +42,10 @@ public class BasicControlCommand extends AbstractControlCommandRequest {
 	 */
 	public BasicControlCommand(ControlModeRequest request) {
 		super("Control command", null, request);
-		Set<Resource> affectedResources = new HashSet<Resource>();
-		ControlCommandHelper.getAffectedResourceByControlCommand(request.getTargetObject(), affectedResources);
-		Collection<IFile> affectedFile = Collections2.transform(affectedResources, new Function<Resource, IFile>() {
-
-			public IFile apply(Resource arg0) {
-				return WorkspaceSynchronizer.getFile(arg0);
-			}
-		});
-		System.out.println(affectedFile);
+		Collection<IFile> affectedFile = ControlCommandHelper.getAffecterFileByMoveToNewResouceCommand(request.getTargetObject());
 		getAffectedFiles().addAll(affectedFile);
 	}
+
 
 	/*
 	 * (non-Javadoc)

@@ -2,6 +2,7 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.controlmode,
  org.eclipse.papyrus.controlmode.action,
  org.eclipse.papyrus.controlmode.commands,
+ org.eclipse.papyrus.controlmode.helper,
  org.eclipse.papyrus.controlmode.interfaces,
  org.eclipse.papyrus.controlmode.request,
  org.eclipse.papyrus.controlmode.ui

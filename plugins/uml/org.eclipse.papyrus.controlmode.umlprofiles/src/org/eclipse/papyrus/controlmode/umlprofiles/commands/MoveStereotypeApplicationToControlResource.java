@@ -13,10 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.umlprofiles.commands;
 
-import java.util.List;
+import java.util.HashSet;
 import java.util.Set;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
@@ -26,6 +27,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.controlmode.commands.AbstractControlCommandRequest;
+import org.eclipse.papyrus.controlmode.helper.ControlCommandHelper;
 import org.eclipse.papyrus.controlmode.request.ControlModeRequest;
 import org.eclipse.papyrus.resource.uml.UmlModel;
 import org.eclipse.uml2.uml.Element;
@@ -41,9 +43,25 @@ import com.google.common.collect.Sets;
 public final class MoveStereotypeApplicationToControlResource extends AbstractControlCommandRequest {
 
 
-	@SuppressWarnings("rawtypes")
-	public MoveStereotypeApplicationToControlResource(List affectedFiles, ControlModeRequest request) {
-		super("Move setereotype application", affectedFiles, request);
+	public MoveStereotypeApplicationToControlResource(ControlModeRequest request) {
+		super("Move setereotype application", null, request);
+		Element elem = (Element)getRequest().getTargetObject();
+		TreeIterator<Object> contents = EcoreUtil.getAllProperContents(elem, true);
+		Set<Element> elements = Sets.newHashSet(elem);
+		while(contents.hasNext()) {
+			EObject eObject = (EObject)contents.next();
+			if(eObject instanceof Element) {
+				elements.add((Element)eObject);
+			}
+		}
+		Set<IFile> affectedFiles = new HashSet<IFile>();
+		for(Element e : elements) {
+			EList<EObject> stereotypeApplications = e.getStereotypeApplications();
+			for(EObject stereotype : stereotypeApplications) {
+				affectedFiles.addAll(ControlCommandHelper.getAffecterFileByMoveToNewResouceCommand(stereotype));
+			}
+		}
+		getAffectedFiles().addAll(affectedFiles);
 	}
 
 	@Override
