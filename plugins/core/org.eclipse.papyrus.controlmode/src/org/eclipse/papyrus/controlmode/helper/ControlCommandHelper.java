@@ -13,9 +13,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.helper;
 
+import java.util.Collection;
+import java.util.Set;
+
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
 
 /**
  * Helper for control command
@@ -42,5 +48,27 @@ public class ControlCommandHelper {
 			}
 		}
 		return false;
+	}
+
+
+	public static Set<Resource> getAffectedResourceByControlCommand(EObject source, Set<Resource> affectedResources) {
+		Collection<Setting> settings = PapyrusEcoreUtils.getUsages(source);
+		for(Setting setting : settings) {
+			EStructuralFeature feature = setting.getEStructuralFeature();
+			if(!feature.isDerived() && !feature.isTransient() && !feature.isVolatile()) {
+				EObject fromEObject = setting.getEObject();
+				Resource resource = fromEObject.eResource();
+				if(resource != null) {
+					affectedResources.add(resource);
+				}
+			}
+		}
+		for(EObject child : source.eContents()) {
+			Resource childResoure = child.eResource();
+			if(childResoure != null && childResoure.equals(source.eResource())) {
+				getAffectedResourceByControlCommand(child, affectedResources);
+			}
+		}
+		return affectedResources;
 	}
 }
