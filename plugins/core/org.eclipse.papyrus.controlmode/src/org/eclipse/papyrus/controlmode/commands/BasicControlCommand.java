@@ -13,17 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.commands;
 
-import java.util.Collections;
+import java.util.Collection;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.papyrus.controlmode.helper.ControlCommandHelper;
 import org.eclipse.papyrus.controlmode.request.ControlModeRequest;
 
 /**
@@ -40,8 +41,11 @@ public class BasicControlCommand extends AbstractControlCommandRequest {
 	 * @param request
 	 */
 	public BasicControlCommand(ControlModeRequest request) {
-		super("Control command", Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
+		super("Control command", null, request);
+		Collection<IFile> affectedFile = ControlCommandHelper.getAffecterFileByMoveToNewResouceCommand(request.getTargetObject());
+		getAffectedFiles().addAll(affectedFile);
 	}
+
 
 	/*
 	 * (non-Javadoc)

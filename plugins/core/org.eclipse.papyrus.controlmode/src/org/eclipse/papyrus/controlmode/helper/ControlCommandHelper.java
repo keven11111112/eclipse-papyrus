@@ -13,9 +13,21 @@
  *****************************************************************************/
 package org.eclipse.papyrus.controlmode.helper;
 
+import java.util.Collection;
+import java.util.HashSet;
+import java.util.Set;
+
+import org.eclipse.core.resources.IFile;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
+import org.eclipse.papyrus.core.utils.PapyrusEcoreUtils;
+
+import com.google.common.base.Function;
+import com.google.common.collect.Collections2;
 
 /**
  * Helper for control command
@@ -42,5 +54,40 @@ public class ControlCommandHelper {
 			}
 		}
 		return false;
+	}
+
+	public static Collection<IFile> getAffecterFileByMoveToNewResouceCommand(EObject eObject) {
+		Set<Resource> affectedResources = new HashSet<Resource>();
+		ControlCommandHelper.getAffectedResourceByControlCommand(eObject, affectedResources);
+		Collection<IFile> affectedFile = Collections2.transform(affectedResources, new Function<Resource, IFile>() {
+
+			public IFile apply(Resource arg0) {
+				return WorkspaceSynchronizer.getFile(arg0);
+			}
+		});
+		return affectedFile;
+	}
+
+
+
+	public static Set<Resource> getAffectedResourceByControlCommand(EObject source, Set<Resource> affectedResources) {
+		Collection<Setting> settings = PapyrusEcoreUtils.getUsages(source);
+		for(Setting setting : settings) {
+			EStructuralFeature feature = setting.getEStructuralFeature();
+			if(!feature.isDerived() && !feature.isTransient() && !feature.isVolatile()) {
+				EObject fromEObject = setting.getEObject();
+				Resource resource = fromEObject.eResource();
+				if(resource != null) {
+					affectedResources.add(resource);
+				}
+			}
+		}
+		for(EObject child : source.eContents()) {
+			Resource childResoure = child.eResource();
+			if(childResoure != null && childResoure.equals(source.eResource())) {
+				getAffectedResourceByControlCommand(child, affectedResources);
+			}
+		}
+		return affectedResources;
 	}
 }
