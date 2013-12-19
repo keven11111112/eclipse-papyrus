@@ -71,7 +71,13 @@ public class BasicControlCommand extends AbstractControlCommandRequest {
 		if(resource == null) {
 			throw new ExecutionException("The resource was not created");
 		}
-		resource.getContents().add(getObjectToControl());
+		EObject objectToControl = getObjectToControl();
+		// in affected files collection there is this resource
+		// so the resource is tagged as modified to make it savable
+		if (objectToControl != null && objectToControl.eResource() != null){
+			objectToControl.eResource().setModified(true);
+		}
+		resource.getContents().add(objectToControl);
 		return CommandResult.newOKCommandResult(resource);
 	}
 
