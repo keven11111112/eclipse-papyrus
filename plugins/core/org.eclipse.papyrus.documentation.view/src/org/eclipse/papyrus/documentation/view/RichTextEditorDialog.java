@@ -51,176 +51,166 @@ import org.eclipse.papyrus.documentation.view.actions.InsertTableRowAction;
 import org.eclipse.papyrus.documentation.view.actions.TextColorAction;
 import org.eclipse.papyrus.documentation.view.actions.TextHighlightAction;
 import org.eclipse.swt.SWT;
-import org.eclipse.swt.graphics.Point;
-import org.eclipse.swt.graphics.Rectangle;
-import org.eclipse.swt.layout.FillLayout;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swt.widgets.Event;
-import org.eclipse.swt.widgets.Listener;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.swt.widgets.ToolBar;
-import org.eclipse.swt.widgets.ToolItem;
 
 /**
  * A dialog using a RichText and its Toolbar to change a documentation
  * 
  * @author <a href="mailto:jacques.lescot@anyware-tech.com">Jacques Lescot</a>
  */
-public class RichTextEditorDialog extends Dialog
-{
-    /** The minimum width of the dialog */
-    private static final int MINIMUM_DIALOG_WIDTH = 50;
+public class RichTextEditorDialog extends Dialog {
 
-    /** The minimum height of the dialog */
-    private static final int MINIMUM_DIALOG_HEIGHT = 300;
-    
-    /** The minimum height of the dialog */
-    private static final int MARGIN = 80;
+	/** The minimum width of the dialog */
+	private static final int MINIMUM_DIALOG_WIDTH = 50;
 
-    private RichText commentsText;
+	/** The minimum height of the dialog */
+	private static final int MINIMUM_DIALOG_HEIGHT = 600;
 
-    private String initialValue;
+	/** The minimum height of the dialog */
+	private static final int MARGIN = 80;
 
-    private String newValue;
-    
-    /**
-     * Constructor
-     * 
-     * @param parentShell the parent Shell
-     * @param initialValue initial documentation value
-     */
-    public RichTextEditorDialog(Shell parentShell, String initialValue)
-    {
-        super(parentShell);
+	private RichText commentsText;
 
-        setBlockOnOpen(true);
-        setShellStyle(getShellStyle() | SWT.RESIZE);
+	private String initialValue;
 
-        this.initialValue = initialValue;
-    }
-    
-    /**
-     * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
-     */
-    protected void configureShell(Shell newShell)
-    {
-        newShell.setText(Messages.RichTextEditorDialog_useRichText);
-//        newShell.setMinimumSize(MINIMUM_DIALOG_WIDTH, MINIMUM_DIALOG_HEIGHT);
+	private String newValue;
 
-        super.configureShell(newShell);
-    }
+	/**
+	 * Constructor
+	 * 
+	 * @param parentShell
+	 *        the parent Shell
+	 * @param initialValue
+	 *        initial documentation value
+	 */
+	public RichTextEditorDialog(Shell parentShell, String initialValue) {
+		super(parentShell);
 
-    /**
-     * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
-     */
-    @Override
-    protected Control createDialogArea(Composite parent)
-    {
-        Composite dialogComposite = (Composite) super.createDialogArea(parent);
-        dialogComposite.setLayout(new GridLayout());
+		setBlockOnOpen(true);
+		setShellStyle(getShellStyle() | SWT.RESIZE);
 
-        Composite toolbarComposite = new Composite(dialogComposite, SWT.NONE);
-        toolbarComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
-        toolbarComposite.setLayout(new GridLayout());
-        final RichTextToolBar toolBar = new RichTextToolBar(toolbarComposite, SWT.WRAP, commentsText);
-        
-        Composite container = new Composite(dialogComposite, SWT.BORDER);
-        container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        container.setLayout(new GridLayout());
-        getShell();
-        commentsText = new RichText(container, SWT.NONE);
-        commentsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-        commentsText.setText(initialValue);
-        commentsText.setFocus();
-        fillToolBar(toolBar, commentsText);
-        getShell().setMinimumSize(toolBar.getToolbarMgr().getControl().getBounds().width + MARGIN, MINIMUM_DIALOG_HEIGHT);
-        return dialogComposite;
-    }
-    
-    /**
-     * Populate actions in the Toolbar to link with the RichText
-     * 
-     * @param toolBar The IRichTextToolBar
-     * @param richText The IRichText
-     */
-    private void fillToolBar(IRichTextToolBar toolBar, IRichText richText)
-    {
-        toolBar.addAction(new FontStyleAction(richText));
-        toolBar.addAction(new FontNameAction(richText));
-        toolBar.addAction(new FontSizeAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new CutAction(richText));
-        toolBar.addAction(new CopyAction(richText));
-        toolBar.addAction(new PasteAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new ClearContentAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new BoldAction(richText));
-        toolBar.addAction(new ItalicAction(richText));
-        toolBar.addAction(new UnderlineAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new TextColorAction(richText));
-        toolBar.addAction(new TextHighlightAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new SubscriptAction(richText));
-        toolBar.addAction(new SuperscriptAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new TidyActionGroup(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new AddOrderedListAction(richText));
-        toolBar.addAction(new AddUnorderedListAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new OutdentAction(richText));
-        toolBar.addAction(new IndentAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new JustifyLeftAction(richText));
-        toolBar.addAction(new JustifyCenterAction(richText));
-        toolBar.addAction(new JustifyRightAction(richText));
-        toolBar.addAction(new JustifyFullAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new FindReplaceAction(richText)
-        {
-            /**
-             * @see org.eclipse.epf.richtext.actions.FindReplaceAction#execute(org.eclipse.epf.richtext.IRichText)
-             */
-            @Override
-            public void execute(IRichText rText)
-            {
-                rText.getFindReplaceAction().execute(rText);
-            }
-        });
-        toolBar.addSeparator();
-        toolBar.addAction(new AddLinkAction(richText));
-        toolBar.addAction(new AddElementLinkAction(richText));
-        toolBar.addAction(new AddImageAction(richText));
-        toolBar.addSeparator();
-        toolBar.addAction(new AddTableAction(richText));
-        
-        // Only add these actions when IE is used to render the Browser
-        if (Platform.getOS().equals("win32")) { //$NON-NLS-1$
-            toolBar.addAction(new InsertTableColumnAction(richText));
-            toolBar.addAction(new DeleteTableColumnAction(richText));
-            toolBar.addAction(new InsertTableRowAction(richText));
-            toolBar.addAction(new DeleteTableRowAction(richText));
-        }
-    }
+		this.initialValue = initialValue;
+	}
 
-    /**
-     * @see org.eclipse.jface.dialogs.Dialog#okPressed()
-     */
-    @Override
-    protected void okPressed()
-    {
-        newValue = commentsText.getText();
+	/**
+	 * @see org.eclipse.jface.window.Window#configureShell(org.eclipse.swt.widgets.Shell)
+	 */
+	protected void configureShell(Shell newShell) {
+		newShell.setText(Messages.RichTextEditorDialog_useRichText);
+		//        newShell.setMinimumSize(MINIMUM_DIALOG_WIDTH, MINIMUM_DIALOG_HEIGHT);
 
-        super.okPressed();
-    }
+		super.configureShell(newShell);
+	}
 
-    /*
+	/**
+	 * @see org.eclipse.jface.dialogs.Dialog#createDialogArea(org.eclipse.swt.widgets.Composite)
+	 */
+	@Override
+	protected Control createDialogArea(Composite parent) {
+		Composite dialogComposite = (Composite)super.createDialogArea(parent);
+		dialogComposite.setLayout(new GridLayout());
+
+		Composite toolbarComposite = new Composite(dialogComposite, SWT.NONE);
+		toolbarComposite.setLayoutData(new GridData(SWT.FILL, SWT.TOP, true, false));
+		toolbarComposite.setLayout(new GridLayout());
+		final RichTextToolBar toolBar = new RichTextToolBar(toolbarComposite, SWT.WRAP, commentsText);
+
+		Composite container = new Composite(dialogComposite, SWT.BORDER);
+		container.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		container.setLayout(new GridLayout());
+		getShell();
+		commentsText = new RichText(container, SWT.NONE);
+		commentsText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		commentsText.setText(initialValue);
+		commentsText.setFocus();
+		fillToolBar(toolBar, commentsText);
+		getShell().setMinimumSize(toolBar.getToolbarMgr().getControl().getBounds().width + MARGIN, MINIMUM_DIALOG_HEIGHT);
+		return dialogComposite;
+	}
+
+	/**
+	 * Populate actions in the Toolbar to link with the RichText
+	 * 
+	 * @param toolBar
+	 *        The IRichTextToolBar
+	 * @param richText
+	 *        The IRichText
+	 */
+	private void fillToolBar(IRichTextToolBar toolBar, IRichText richText) {
+		toolBar.addAction(new FontStyleAction(richText));
+		toolBar.addAction(new FontNameAction(richText));
+		toolBar.addAction(new FontSizeAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new CutAction(richText));
+		toolBar.addAction(new CopyAction(richText));
+		toolBar.addAction(new PasteAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new ClearContentAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new BoldAction(richText));
+		toolBar.addAction(new ItalicAction(richText));
+		toolBar.addAction(new UnderlineAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new TextColorAction(richText));
+		toolBar.addAction(new TextHighlightAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new SubscriptAction(richText));
+		toolBar.addAction(new SuperscriptAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new TidyActionGroup(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new AddOrderedListAction(richText));
+		toolBar.addAction(new AddUnorderedListAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new OutdentAction(richText));
+		toolBar.addAction(new IndentAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new JustifyLeftAction(richText));
+		toolBar.addAction(new JustifyCenterAction(richText));
+		toolBar.addAction(new JustifyRightAction(richText));
+		toolBar.addAction(new JustifyFullAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new FindReplaceAction(richText) {
+
+			/**
+			 * @see org.eclipse.epf.richtext.actions.FindReplaceAction#execute(org.eclipse.epf.richtext.IRichText)
+			 */
+			@Override
+			public void execute(IRichText rText) {
+				rText.getFindReplaceAction().execute(rText);
+			}
+		});
+		toolBar.addSeparator();
+		toolBar.addAction(new AddLinkAction(richText));
+		toolBar.addAction(new AddElementLinkAction(richText));
+		toolBar.addAction(new AddImageAction(richText));
+		toolBar.addSeparator();
+		toolBar.addAction(new AddTableAction(richText));
+
+		// Only add these actions when IE is used to render the Browser
+		if(Platform.getOS().equals("win32")) { //$NON-NLS-1$
+			toolBar.addAction(new InsertTableColumnAction(richText));
+			toolBar.addAction(new DeleteTableColumnAction(richText));
+			toolBar.addAction(new InsertTableRowAction(richText));
+			toolBar.addAction(new DeleteTableRowAction(richText));
+		}
+	}
+
+	/**
+	 * @see org.eclipse.jface.dialogs.Dialog#okPressed()
+	 */
+	@Override
+	protected void okPressed() {
+		newValue = commentsText.getText();
+
+		super.okPressed();
+	}
+
+	/*
 	 * (non-Javadoc)
 	 * 
 	 * @see org.eclipse.jface.dialogs.Dialog#createButtonsForButtonBar(org.eclipse.swt.widgets.Composite)
@@ -231,14 +221,13 @@ public class RichTextEditorDialog extends Dialog
 		createButton(parent, IDialogConstants.OK_ID, IDialogConstants.OK_LABEL, false);
 		createButton(parent, IDialogConstants.CANCEL_ID, IDialogConstants.CANCEL_LABEL, false);
 	}
-	
-    /**
-     * This method returns the text contained in the <code>RichTextCommentsComposite</code>
-     * 
-     * @return the text contained in the <code>RichTextCommentsComposite</code>
-     */
-    public String getDocumentationValue()
-    {
-        return newValue;
-    }
+
+	/**
+	 * This method returns the text contained in the <code>RichTextCommentsComposite</code>
+	 * 
+	 * @return the text contained in the <code>RichTextCommentsComposite</code>
+	 */
+	public String getDocumentationValue() {
+		return newValue;
+	}
 }

@@ -14,12 +14,17 @@
  *****************************************************************************/
 package org.eclipse.papyrus.diagram.clazz.custom.parsers;
 
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
@@ -71,7 +76,7 @@ public class PropertyParser implements IParser {
 		final Property property = ((Property)((EObjectAdapter)element).getRealObject());
 		final String result = newString;
 
-		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Property", (List)null) {
+		AbstractTransactionalCommand tc = new AbstractTransactionalCommand(EditorUtils.getTransactionalEditingDomain(), "Edit Property", getModifiedFiles(property)) {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
@@ -93,6 +98,19 @@ public class PropertyParser implements IParser {
 		};
 		return tc;
 	}
+
+	protected List<IFile> getModifiedFiles(EObject target) {
+		List<IFile> modifiedFiles = null;
+		Resource resource = target.eResource();
+		if(resource != null) {
+			IFile file = WorkspaceSynchronizer.getFile(resource);
+			if(file != null) {
+				modifiedFiles = Collections.singletonList(file);
+			}
+		}
+		return modifiedFiles;
+	}
+
 
 	/**
 	 * 
