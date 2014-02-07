@@ -230,12 +230,11 @@ public class CommentsComposite extends DocPageComposite
         if (!useRichTextEditorButton.getSelection())
         {
             String comment = richTextComposite.getDocumentationValue(); 
-            boolean isEnabled = richTextComposite.isEnabled();
             richTextComposite.dispose();
             plainTextComposite = createPlainCommentsComposite();
             plainTextComposite.setFocus();
             plainTextComposite.setDocumentationValue(comment);
-            plainTextComposite.setEnabled(isEnabled);
+            plainTextComposite.setEnabled(true);
             useRichTextEditorButton.setToolTipText(Messages.TooptipHtml);
             useRichTextEditorButton.setSelection(false);
             editButton.setEnabled(false);
@@ -250,7 +249,7 @@ public class CommentsComposite extends DocPageComposite
                 plainTextComposite.dispose();
                 richTextComposite = createRichCommentsComposite();
                 richTextComposite.setDocumentationValue(comment);
-                richTextComposite.setEnabled(isEnabled);
+                richTextComposite.setEnabled(false);
                 useRichTextEditorButton.setToolTipText(Messages.TooptipText);
                 useRichTextEditorButton.setSelection(true);
                 editButton.setEnabled(useRichTextEditorButton.getSelection() && isEnabled);
@@ -442,7 +441,7 @@ public class CommentsComposite extends DocPageComposite
         }
         if (richTextComposite != null)
         {
-            richTextComposite.setEnabled(enabled);
+            richTextComposite.setEnabled(enabled && !useRichTextEditorButton.getSelection());
         }
         if (editButton != null)
         {
