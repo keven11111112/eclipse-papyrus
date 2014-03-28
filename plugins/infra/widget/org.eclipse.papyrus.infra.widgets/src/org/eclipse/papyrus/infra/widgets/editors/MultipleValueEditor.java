@@ -443,7 +443,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	@Override
 	protected void commit() {
 		super.commit();
-		treeViewer.refresh();
+		if(!isDisposed()){
+			//when the property view is dynamic, the listener is not disposed after the refresh instead of the treeViewer is disposed
+			//the listener are disposed when the selection in Papyrus changed
+			//that's why we need to add this test before to refresh the treeViewer
+			treeViewer.refresh();
+		}
 	}
 
 	/**
@@ -568,7 +573,12 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * @param event
 	 */
 	public void handleChange(ChangeEvent event) {
-		treeViewer.refresh();
+		if(!isDisposed()) {
+			//when the property view is dynamic, the listener is not disposed after the refresh instead of the treeViewer is disposed
+			//the listener are disposed when the selection in Papyrus changed
+			//that's why we need to add this test before to refresh the treeViewer
+			treeViewer.refresh();
+		}
 	}
 
 	@Override
