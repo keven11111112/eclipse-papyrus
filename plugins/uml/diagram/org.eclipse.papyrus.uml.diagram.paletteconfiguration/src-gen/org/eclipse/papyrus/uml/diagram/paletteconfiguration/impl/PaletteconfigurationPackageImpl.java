@@ -13,7 +13,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
-import org.eclipse.papyrus.infra.queries.core.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration;
@@ -159,7 +158,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		isInited = true;
 
 		// Initialize simple dependencies
-		ConfigurationPackage.eINSTANCE.eClass();
+		EcorePackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
 		thePaletteconfigurationPackage.createPackageContents();
@@ -199,6 +198,15 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getPaletteConfiguration_RequiredProfiles() {
+		return (EAttribute)paletteConfigurationEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getToolConfiguration() {
 		return toolConfigurationEClass;
 	}
@@ -208,17 +216,8 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EReference getToolConfiguration_PreValidationQuery() {
-		return (EReference)toolConfigurationEClass.getEStructuralFeatures().get(0);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	public EAttribute getToolConfiguration_Kind() {
-		return (EAttribute)toolConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)toolConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -227,7 +226,7 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 	 * @generated
 	 */
 	public EReference getToolConfiguration_ElementDescriptors() {
-		return (EReference)toolConfigurationEClass.getEStructuralFeatures().get(2);
+		return (EReference)toolConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -431,9 +430,9 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		// Create classes and their features
 		paletteConfigurationEClass = createEClass(PALETTE_CONFIGURATION);
 		createEReference(paletteConfigurationEClass, PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS);
+		createEAttribute(paletteConfigurationEClass, PALETTE_CONFIGURATION__REQUIRED_PROFILES);
 
 		toolConfigurationEClass = createEClass(TOOL_CONFIGURATION);
-		createEReference(toolConfigurationEClass, TOOL_CONFIGURATION__PRE_VALIDATION_QUERY);
 		createEAttribute(toolConfigurationEClass, TOOL_CONFIGURATION__KIND);
 		createEReference(toolConfigurationEClass, TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS);
 
@@ -491,7 +490,6 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		ConfigurationPackage theConfigurationPackage = (ConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(ConfigurationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
@@ -510,9 +508,9 @@ public class PaletteconfigurationPackageImpl extends EPackageImpl implements Pal
 		// Initialize classes and features; add operations and parameters
 		initEClass(paletteConfigurationEClass, PaletteConfiguration.class, "PaletteConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getPaletteConfiguration_DrawerConfigurations(), this.getDrawerConfiguration(), null, "drawerConfigurations", null, 1, -1, PaletteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getPaletteConfiguration_RequiredProfiles(), theEcorePackage.getEString(), "requiredProfiles", null, 0, -1, PaletteConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(toolConfigurationEClass, ToolConfiguration.class, "ToolConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getToolConfiguration_PreValidationQuery(), theConfigurationPackage.getQueryConfiguration(), null, "preValidationQuery", null, 0, 1, ToolConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getToolConfiguration_Kind(), this.getToolKind(), "kind", "CreationTool", 1, 1, ToolConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getToolConfiguration_ElementDescriptors(), this.getElementDescriptor(), null, "elementDescriptors", null, 0, -1, ToolConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

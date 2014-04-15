@@ -171,13 +171,22 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS = CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
+	 * The feature id for the '<em><b>Required Profiles</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PALETTE_CONFIGURATION__REQUIRED_PROFILES = CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
 	 * The number of structural features of the '<em>Palette Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PALETTE_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_FEATURE_COUNT + 1;
+	int PALETTE_CONFIGURATION_FEATURE_COUNT = CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ChildConfigurationImpl <em>Child Configuration</em>}' class.
@@ -336,22 +345,13 @@ public interface PaletteconfigurationPackage extends EPackage {
 	int TOOL_CONFIGURATION__ICON = LEAF_CONFIGURATION__ICON;
 
 	/**
-	 * The feature id for the '<em><b>Pre Validation Query</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int TOOL_CONFIGURATION__PRE_VALIDATION_QUERY = LEAF_CONFIGURATION_FEATURE_COUNT + 0;
-
-	/**
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__KIND = LEAF_CONFIGURATION_FEATURE_COUNT + 1;
+	int TOOL_CONFIGURATION__KIND = LEAF_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Element Descriptors</b></em>' containment reference list.
@@ -360,7 +360,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS = LEAF_CONFIGURATION_FEATURE_COUNT + 2;
+	int TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS = LEAF_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Tool Configuration</em>' class.
@@ -369,7 +369,7 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TOOL_CONFIGURATION_FEATURE_COUNT = LEAF_CONFIGURATION_FEATURE_COUNT + 3;
+	int TOOL_CONFIGURATION_FEATURE_COUNT = LEAF_CONFIGURATION_FEATURE_COUNT + 2;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.StackConfigurationImpl <em>Stack Configuration</em>}' class.
@@ -661,6 +661,17 @@ public interface PaletteconfigurationPackage extends EPackage {
 	EReference getPaletteConfiguration_DrawerConfigurations();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getRequiredProfiles <em>Required Profiles</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute list '<em>Required Profiles</em>'.
+	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getRequiredProfiles()
+	 * @see #getPaletteConfiguration()
+	 * @generated
+	 */
+	EAttribute getPaletteConfiguration_RequiredProfiles();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration <em>Tool Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -669,17 +680,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EClass getToolConfiguration();
-
-	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getPreValidationQuery <em>Pre Validation Query</em>}'.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @return the meta object for the reference '<em>Pre Validation Query</em>'.
-	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getPreValidationQuery()
-	 * @see #getToolConfiguration()
-	 * @generated
-	 */
-	EReference getToolConfiguration_PreValidationQuery();
 
 	/**
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}'.
@@ -944,6 +944,14 @@ public interface PaletteconfigurationPackage extends EPackage {
 		EReference PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS = eINSTANCE.getPaletteConfiguration_DrawerConfigurations();
 
 		/**
+		 * The meta object literal for the '<em><b>Required Profiles</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute PALETTE_CONFIGURATION__REQUIRED_PROFILES = eINSTANCE.getPaletteConfiguration_RequiredProfiles();
+
+		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl <em>Tool Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -952,14 +960,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EClass TOOL_CONFIGURATION = eINSTANCE.getToolConfiguration();
-
-		/**
-		 * The meta object literal for the '<em><b>Pre Validation Query</b></em>' reference feature.
-		 * <!-- begin-user-doc -->
-		 * <!-- end-user-doc -->
-		 * @generated
-		 */
-		EReference TOOL_CONFIGURATION__PRE_VALIDATION_QUERY = eINSTANCE.getToolConfiguration_PreValidationQuery();
 
 		/**
 		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
