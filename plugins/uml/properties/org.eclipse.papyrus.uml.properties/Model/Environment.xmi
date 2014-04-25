@@ -83,6 +83,10 @@
       widgetClass="GenericUMLDatatypeEditor"
       namespace="//@namespaces.0"
       type="Reference"/>
+  <propertyEditorTypes
+      label="String Rich Text Editor"
+      widgetClass="CommentBodyRichTextEditor"
+      namespace="//@namespaces.0"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

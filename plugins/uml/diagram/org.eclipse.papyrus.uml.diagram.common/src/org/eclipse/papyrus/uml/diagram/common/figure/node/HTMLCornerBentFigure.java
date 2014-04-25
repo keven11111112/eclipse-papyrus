@@ -63,6 +63,9 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	/** properties stack to store which format to apply */
 	protected Stack<Styles> textProperties = new Stack<Styles>();
 
+	/** list number stack used to set the ident and the number of list */
+	private Stack<Integer> listNumbers = new Stack<Integer>();
+
 	/** font used for the figure */
 	private FontData currentFontData;
 
@@ -276,6 +279,15 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 					case font:
 						generateBlocksForFontNode(node, parentFlow);
 						break;
+					case ul:
+						generateBlocksForUnorderedNode(node, parentFlow);
+						break;
+					case ol:
+						generateBlocksForOrderedNode(node, parentFlow);
+						break;
+					case li:
+						generateBlocksForListItemNode(node, parentFlow);
+						break;
 					default:
 						break;
 					}
@@ -284,7 +296,97 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 				}
 			}
 		}
+	}
 
+	/**
+	 * Generates code from a node representing an List item text.
+	 *
+	 * @param node
+	 *            the node from which to generate belowk flows
+	 * @param parentFlow
+	 *            the parent block flow which will contain the block created
+	 */
+	private void generateBlocksForListItemNode(Node node, BlockFlow parentFlow) {
+		// Manage unordered and ordered list
+		NodeList childrenNodes = node.getChildNodes();
+		boolean unordered = false;
+		boolean ordered = false;
+		for (Styles style : textProperties) {
+			switch (style) {
+			case unordered:
+				unordered = true;
+				break;
+			case ordered:
+				ordered = true;
+				break;
+			default:
+				break;
+			}
+		}
+		// The indent space before the item
+		String IdentSpace = "";
+		for (int i = 0; i < listNumbers.size() - 1; i++) {
+			IdentSpace += "  ";
+		}
+		if (unordered) {
+			// Set the bullet
+			TextFlowEx textFlow = new TextFlowEx(IdentSpace + "- ");
+			textFlow.setFont(FCORNERBENTCONTENTLABEL_FONT);
+			parentFlow.add(textFlow);
+		} else if (ordered) {
+			// Set the item number
+			TextFlowEx textFlow = new TextFlowEx(IdentSpace + listNumbers.peek().toString() + ". ");
+			textFlow.setFont(FCORNERBENTCONTENTLABEL_FONT);
+			// Increment the item number
+			Integer ItemNumber = listNumbers.pop();
+			listNumbers.push(ItemNumber + 1);
+			parentFlow.add(textFlow);
+		}
+		generateBlocksFromNodeList(childrenNodes, parentFlow);
+	}
+
+	/**
+	 * Generates code from a node representing an unordered text.
+	 *
+	 * @param node
+	 *            the node from which to generate belowk flows
+	 * @param parentFlow
+	 *            the parent block flow which will contain the block created
+	 */
+	private void generateBlocksForUnorderedNode(Node node, BlockFlow parentFlow) {
+		BlockFlow blockFlow = new BlockFlow();
+		NodeList childrenNodes = node.getChildNodes();
+		// Set the text properties to unordered
+		textProperties.push(Styles.unordered);
+		// Integer to manage indent in the case of unordered list
+		Integer currentNodeNumber = new Integer(0);
+		listNumbers.push(currentNodeNumber);
+		generateBlocksFromNodeList(childrenNodes, blockFlow);
+		listNumbers.pop();
+		textProperties.pop();
+		parentFlow.add(blockFlow);
+	}
+
+	/**
+	 * Generates code from a node representing an ordered node item text.
+	 *
+	 * @param node
+	 *            the node from which to generate belowk flows
+	 * @param parentFlow
+	 *            the parent block flow which will contain the block created
+	 */
+	private void generateBlocksForOrderedNode(Node node, BlockFlow parentFlow) {
+		BlockFlow blockFlow = new BlockFlow();
+		NodeList childrenNodes = node.getChildNodes();
+		// Set the text properties to unordered
+		textProperties.push(Styles.ordered);
+		// Integer to manage indent and item number in the case of ordered list
+		Integer currentNodeNumber = new Integer(1);
+		listNumbers.push(currentNodeNumber);
+		generateBlocksFromNodeList(childrenNodes, blockFlow);
+		listNumbers.pop();
+		textProperties.pop();
+		parentFlow.add(blockFlow);
 	}
 
 	/**
@@ -619,7 +721,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		table(""), // table
 		p(""), // paragraph
 		br(""), // new line
-		font(""); // specific font
+		font(""), // specific font
+		ul(""), // unordered list
+		ol(""), // ordered list
+		li(""); // List item
 
 		/** additional data for this enum */
 		protected String data;
@@ -653,7 +758,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * Styles to apply to the text
 	 */
 	protected enum Styles {
-		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>());
+		strong, header3, header4, header5, underline, italic, code, subscript, supscript, quote, font(new HashMap<String, Object>()), unordered, ordered;
 
 		/** additional data */
 		private Map<String, Object> data;
