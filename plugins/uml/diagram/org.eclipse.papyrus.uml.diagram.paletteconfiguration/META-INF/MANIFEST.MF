@@ -18,8 +18,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.core.log;bundle-version="0.10.2",
  org.eclipse.papyrus.infra.extendedtypes;bundle-version="0.10.2",
  org.eclipse.papyrus.infra.core;bundle-version="0.10.2",
- org.eclipse.papyrus.editor;bundle-version="0.10.2",
- org.eclipse.papyrus.uml.diagram.common;bundle-version="0.10.2"
+ org.eclipse.papyrus.editor;bundle-version="0.10.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

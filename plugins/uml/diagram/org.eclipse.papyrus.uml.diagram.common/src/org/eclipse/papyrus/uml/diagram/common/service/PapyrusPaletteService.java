@@ -662,6 +662,27 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 
 	}
 
+	public static class WorkspaceExtendedProviderDescriptor extends LocalProviderDescriptor {
+		/**
+		 * @param description
+		 */
+		public WorkspaceExtendedProviderDescriptor(IPaletteDescription description) {
+			super(description);
+		}
+		
+		/**
+		 * {@inheritDoc}
+		 */
+		@Override
+		public IProvider getProvider() {
+			if(provider == null) {
+				provider = new WorkspaceExtendedPaletteProvider();
+				((WorkspaceExtendedPaletteProvider)provider).setContributions(description);
+			}
+			return provider;
+		}
+	}
+	
 	public static class WorkspaceProviderDescriptor extends LocalProviderDescriptor {
 
 		/**
@@ -760,6 +781,28 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 			LocalProviderDescriptor descriptor = new WorkspaceProviderDescriptor(palette);
 			addProvider(palette.getPriority(), descriptor);
 		}
+	}
+	
+	/**
+	 * add providers for workspace palettes based on model
+	 */
+	protected void configureWorkspaceExtendedPalettes() {
+		// read the preference field that indicates where the workspace palettes
+		// are, their IDs, etc...
+		List<IPaletteDescription> workspacePalettes = PapyrusPalettePreferences.getWorkspaceExtendedPalettes();
+		// create the providers linked to these configuration
+		// remove all local descriptors
+		for(org.eclipse.gmf.runtime.common.core.service.Service.ProviderDescriptor descriptor : getProviders()) {
+			if(descriptor instanceof WorkspaceExtendedProviderDescriptor) {
+				removeProvider(descriptor);
+			}
+		}
+
+		// create new list
+		for(IPaletteDescription palette : workspacePalettes) {
+			LocalProviderDescriptor descriptor = new WorkspaceExtendedProviderDescriptor(palette);
+			addProvider(palette.getPriority(), descriptor);
+		}
 
 	}
 	
@@ -785,6 +828,7 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		getInstance().configureProviders(Activator.ID, PALETTE_DEFINITION);
 		getInstance().configureLocalPalettes();
 		getInstance().configureWorkspacePalettes();
+		getInstance().configureWorkspaceExtendedPalettes();
 	}
 
 	/**
@@ -1034,6 +1078,10 @@ public class PapyrusPaletteService extends PaletteService implements IPalettePro
 		if(IPapyrusPaletteConstant.PALETTE_WORKSPACE_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer
 			getInstance().configureWorkspacePalettes();
+			providerChanged(new ProviderChangeEvent(this));
+		} else if(IPapyrusPaletteConstant.EXTENDED_PALETTE_WORKSPACE_DEFINITIONS.equals(id)) {
+			// refresh available palette table viewer
+			getInstance().configureWorkspaceExtendedPalettes();
 			providerChanged(new ProviderChangeEvent(this));
 		} else if(IPapyrusPaletteConstant.PALETTE_LOCAL_DEFINITIONS.equals(id)) {
 			// refresh available palette table viewer
