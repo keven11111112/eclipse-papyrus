@@ -18,21 +18,28 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.List;
 
+import org.eclipse.draw2d.FreeformLayeredPane;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.DefaultEditDomain;
 import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.CommandStack;
+import org.eclipse.gef.editparts.AbstractGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditDomain;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.resources.editor.parts.DiagramDocumentEditor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.layer.CustomConnectionLayerEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
 import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
@@ -194,6 +201,29 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		} else {
 			throw new RuntimeException(String.format("The Eclipse service %s has not been found", ICommandService.class)); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor#configureGraphicalViewer()
+	 *
+	 */
+	@Override
+	protected void configureGraphicalViewer() {
+		super.configureGraphicalViewer();
+		final IDiagramGraphicalViewer viewer = getDiagramGraphicalViewer();
+		final RootEditPart rootEP = viewer.getRootEditPart();
+		if(rootEP instanceof AbstractGraphicalEditPart){
+			IFigure contentPane = ((AbstractGraphicalEditPart)rootEP).getContentPane();
+			IFigure parent = contentPane.getParent();
+			if(parent instanceof FreeformLayeredPane){
+				FreeformLayeredPane layerPane = (FreeformLayeredPane)parent;
+				
+				//we replace the connection layer by our to be able to change the routers 
+				layerPane.removeLayer(DiagramRootEditPart.CONNECTION_LAYER);
+				layerPane.add(new CustomConnectionLayerEx(rootEP), DiagramRootEditPart.CONNECTION_LAYER);
+			}
 		}
 	}
 

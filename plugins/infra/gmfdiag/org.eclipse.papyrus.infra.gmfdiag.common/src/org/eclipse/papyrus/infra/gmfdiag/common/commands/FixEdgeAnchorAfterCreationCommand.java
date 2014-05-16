@@ -1,43 +1,57 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST.
  *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
- *		CEA LIST - Initial API and implementation
+ *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 
 
+
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
-import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.ConnectionLayerEx;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
+import org.eclipse.gmf.runtime.notation.Routing;
+import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.geometry.RectangleUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.geometry.Segment;
+import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 
 
@@ -50,12 +64,9 @@ import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
  * 
  * see bug 430702: [Diagram] Moving source of a link moves the target too.
  */
- 
+
+@SuppressWarnings("restriction")
 public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalCommand {
-
-	private static final String RECT_RIGHT_MIDDLE_ANCHOR = "(1.0,0.5)";
-
-	private static final String RECT_BOTTOM_MIDDLE_ANCHOR = "(0.5,1.0)";
 
 	/**
 	 * the request used to create connection view
@@ -83,55 +94,102 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 	 * Executes a fix anchor command for the created edge
 	 * 
 	 */
+	@Override
 	protected CommandResult doExecuteWithResult(final IProgressMonitor progressMonitor, final IAdaptable info) throws ExecutionException {
 		final ConnectionViewDescriptor connectionViewDescriptor = this.request.getConnectionViewDescriptor();
 		final Edge createdEdge = (Edge)connectionViewDescriptor.getAdapter(View.class);
-		final IAdaptable adaptable = (CreateElementRequestAdapter)connectionViewDescriptor.getElementAdapter();
+
+		final IAdaptable adaptable = connectionViewDescriptor.getElementAdapter();
 		final CreateRelationshipRequest createRelationShipRequest = (CreateRelationshipRequest)adaptable.getAdapter(CreateRelationshipRequest.class);
 		final Map<?, ?> requestParameters = createRelationShipRequest.getParameters();
-		final IFigure sourceFigure = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_FIGURE);
-		final IFigure targetFigure = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_TARGET_FIGURE);
-		final Point sourcePoint = (Point)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT);
-		final Point targetPoint = (Point)requestParameters.get(RequestParameterConstants.EDGE_TARGET_POINT);
-		if(createdEdge != null && sourceFigure instanceof IAnchorableFigure && targetFigure instanceof IAnchorableFigure && sourcePoint!=null && targetPoint!=null) {
-			final String sourceTerminal;
-			final String targetTerminal;
-			if(sourceFigure == targetFigure) {
-				sourceTerminal = RECT_RIGHT_MIDDLE_ANCHOR.toString();
-				targetTerminal = RECT_BOTTOM_MIDDLE_ANCHOR.toString();
-			} else {
+		final Point sourcePoint = ((Point)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
+		final Point targetPoint = ((Point)requestParameters.get(RequestParameterConstants.EDGE_TARGET_POINT)).getCopy();
+		final IFigure fig1 = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_FIGURE);
+		final IFigure fig2 = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_TARGET_FIGURE);
+		if(fig1 instanceof IAnchorableFigure && fig2 instanceof IAnchorableFigure) {
+			final IAnchorableFigure sourceFigure = (IAnchorableFigure)fig1;
+			final IAnchorableFigure targetFigure = (IAnchorableFigure)fig2;
 
-				final Rectangle sourceBds = sourceFigure.getBounds().getCopy();
-				final Rectangle targetBds = targetFigure.getBounds().getCopy();
-				sourceFigure.translateToAbsolute(sourceBds);
-				targetFigure.translateToAbsolute(targetBds);
+			//we route the future connection to find its anchors and its bendpoints
+			final ConnectionRouter router = getRouterToUse(createdEdge);
+			final Connection dummyConnection = new PolylineConnectionEx();
 
-				final Segment segment = new Segment(sourcePoint, targetPoint);
-				final Point realSourcePoint = RectangleUtils.getIntersectionPoint(sourceBds, segment);
-				final Point realTargetPoint = RectangleUtils.getIntersectionPoint(targetBds, segment);
+			final PointList pointsList = new PointList();
+			pointsList.addPoint(sourcePoint);
+			pointsList.addPoint(targetPoint);
+
+			final ConnectionAnchor arg0 = sourceFigure.getSourceConnectionAnchorAt(sourcePoint);
+			dummyConnection.setSourceAnchor(arg0);
+
+			final ConnectionAnchor arg1 = targetFigure.getTargetConnectionAnchorAt(targetPoint);
+			dummyConnection.setTargetAnchor(arg1);
+
+			router.route(dummyConnection);
+
+			if(createdEdge != null && sourcePoint != null && targetPoint != null) {
+				Point realSourcePoint = dummyConnection.getPoints().getFirstPoint();
+				Point realTargetPoint = dummyConnection.getPoints().getLastPoint();
 
 				//get source anchor terminal
-				final BaseSlidableAnchor anchorSource = (BaseSlidableAnchor)((IAnchorableFigure)sourceFigure).getSourceConnectionAnchorAt(realSourcePoint);
-				sourceTerminal = anchorSource.getTerminal();
+				final BaseSlidableAnchor anchorSource = (BaseSlidableAnchor)sourceFigure.getSourceConnectionAnchorAt(realSourcePoint);
+				final String sourceTerminal = anchorSource.getTerminal();
 
 				//get target anchor terminal
-				final BaseSlidableAnchor anchorTarget = (BaseSlidableAnchor)((IAnchorableFigure)targetFigure).getTargetConnectionAnchorAt(realTargetPoint);
-				targetTerminal = anchorTarget.getTerminal();
+				final BaseSlidableAnchor anchorTarget = (BaseSlidableAnchor)targetFigure.getTargetConnectionAnchorAt(realTargetPoint);
+				final String targetTerminal = anchorTarget.getTerminal();
+
 				//create and set the source anchor
+				final IdentityAnchor sourceAnchor = NotationFactory.eINSTANCE.createIdentityAnchor();
+				sourceAnchor.setId(sourceTerminal);
+				createdEdge.setSourceAnchor(sourceAnchor);
+
+				//create an set the target anchor
+				final IdentityAnchor targetAnchor = NotationFactory.eINSTANCE.createIdentityAnchor();
+				targetAnchor.setId(targetTerminal);
+				createdEdge.setTargetAnchor(targetAnchor);
+
+
+				//serialize bendpoints
+				int numOfPoints = dummyConnection.getPoints().size();
+				final List<RelativeBendpoint> newBendpoints = new ArrayList<RelativeBendpoint>();
+				for(int i = 0; i < numOfPoints; i++) {
+					Dimension s = dummyConnection.getPoints().getPoint(i).getDifference(dummyConnection.getPoints().getFirstPoint());
+					Dimension t = dummyConnection.getPoints().getPoint(i).getDifference(dummyConnection.getPoints().getLastPoint());
+					newBendpoints.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
+				}
+
+				final RelativeBendpoints points = (RelativeBendpoints)createdEdge.getBendpoints();
+				points.setPoints(newBendpoints);
+				return CommandResult.newOKCommandResult();
 			}
-			//TODO : it is possible that the result will be not correct when the preferred routing for the link is not the oblique router
-			final IdentityAnchor sourceAnchor = NotationFactory.eINSTANCE.createIdentityAnchor();
-			sourceAnchor.setId(sourceTerminal);
-			createdEdge.setSourceAnchor(sourceAnchor);
-
-			//create an set the target anchor
-			final IdentityAnchor targetAnchor = NotationFactory.eINSTANCE.createIdentityAnchor();
-			targetAnchor.setId(targetTerminal);
-			createdEdge.setTargetAnchor(targetAnchor);
-
-			return CommandResult.newOKCommandResult();
 		}
 		return CommandResult.newOKCommandResult();
+	}
+
+	/**
+	 * 
+	 * @param edge
+	 *        an edge
+	 * @return
+	 *         the router to use to calculte bendpoints
+	 */
+	//remove warning for ConnectionLayerEx
+	protected ConnectionRouter getRouterToUse(final Edge edge) {
+		final DiagramEditPart rootEP = DiagramEditPartsUtil.getDiagramEditPart(this.request.getSourceEditPart());
+		final IFigure layer = rootEP.getLayer(LayerConstants.CONNECTION_LAYER);
+		RoutingStyle style = (RoutingStyle)edge.getStyle(NotationPackage.Literals.ROUTING_STYLE);
+		if(style != null && layer instanceof ConnectionLayerEx) {
+			ConnectionLayerEx cLayerEx = (ConnectionLayerEx)layer;
+			final Routing routing = style.getRouting();
+			if(Routing.MANUAL_LITERAL == routing) {
+				return cLayerEx.getObliqueRouter();
+			} else if(Routing.RECTILINEAR_LITERAL == routing) {
+				return cLayerEx.getRectilinearRouter();
+			} else if(Routing.TREE_LITERAL == routing) {
+				return cLayerEx.getTreeRouter();
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -139,6 +197,7 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#cleanup()
 	 * 
 	 */
+	@Override
 	protected void cleanup() {
 		this.request = null;
 		super.cleanup();
