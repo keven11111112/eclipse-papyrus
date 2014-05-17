@@ -19,6 +19,9 @@ import java.util.List;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
+import org.eclipse.gef.editpolicies.FeedbackHelper;
+import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.CustomFeedbackHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusConnectionEndpointHandle;
 
 
@@ -28,6 +31,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusConnectionEndpointHa
  * 
  */
 public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy {
+
+	/**
+	 * the feedback helper
+	 */
+	private FeedbackHelper feedbackHelper;
 
 	/**
 	 * 
@@ -50,4 +58,47 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 	}
 
 
+	/**
+	 * 
+	 * @see org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy#getFeedbackHelper(org.eclipse.gef.requests.ReconnectRequest)
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected FeedbackHelper getFeedbackHelper(final ReconnectRequest request) {
+		if(feedbackHelper == null) {
+			feedbackHelper = new CustomFeedbackHelper();
+			feedbackHelper.setConnection(getConnection());
+			feedbackHelper.setMovingStartAnchor(request.isMovingStartAnchor());
+		}
+		return feedbackHelper;
+	}
+
+
+	/**
+	 * Erases connection move feedback. This method is called when a
+	 * ReconnectRequest is received.
+	 * 
+	 * @param request
+	 *            the reconnect request.
+	 */
+	@Override
+	protected void eraseConnectionMoveFeedback(ReconnectRequest request) {
+		super.eraseConnectionMoveFeedback(request);
+		this.feedbackHelper = null;
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy#showConnectionMoveFeedback(org.eclipse.gef.requests.ReconnectRequest)
+	 *
+	 * @param request
+	 */
+	@Override
+	protected void showConnectionMoveFeedback(ReconnectRequest request) {
+		super.showConnectionMoveFeedback(request);
+		//we need to do calculus to find the real anchor point on the side of the figure
+		//+ update the router constraint, so we do nothing here and we do the job in CustomFeedbackHelper.setAnchor(ConnectionAnchor anchor)
+	}
 }
