@@ -81,6 +81,7 @@ public class CustomFeedbackHelper extends FeedbackHelper {
 	 */
 	@Override
 	protected void setAnchor(ConnectionAnchor anchor) {
+		//TODO : this calculus should be done in PapyrusConnectionEndEditPolicy 
 		//1. find the old anchor location
 		final Point oldPoint;
 		if(isMovingStartAnchor()) {
@@ -95,7 +96,7 @@ public class CustomFeedbackHelper extends FeedbackHelper {
 		if(isMovingStartAnchor()) {
 			dummyConnection.setSourceAnchor(anchor);
 			final Point targetPoint = getConnection().getTargetAnchor().getReferencePoint();
-			final ConnectionAnchor targetAnchor = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getTargetConnectionAnchorAt((targetPoint));;
+			final ConnectionAnchor targetAnchor = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getTargetConnectionAnchorAt(targetPoint);
 			dummyConnection.setTargetAnchor(targetAnchor);
 		} else {
 			final Point sourcePoint = getConnection().getSourceAnchor().getReferencePoint();
@@ -167,7 +168,7 @@ public class CustomFeedbackHelper extends FeedbackHelper {
 
 			//we change the constraints associated to the connection in the router to get wanted feedback (bendpoints points must not move)
 			getConnection().getConnectionRouter().setConstraint(getConnection(), newConstraints);
-			
+
 			//clear the router
 			getConnection().getConnectionRouter().remove(dummyConnection);
 		}
