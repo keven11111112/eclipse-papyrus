@@ -56,8 +56,9 @@ public class ObliqueGridRouter extends ObliqueRouter {
 	protected void resetEndPointsToEdge(Connection conn, PointList newLine) {
 		super.resetEndPointsToEdge(conn, newLine);
 		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
-			int spacing = (int)DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
-			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing);
+			double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
+			double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
+			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing, zoom);
 		}
 	}
 }

@@ -67,7 +67,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 
 		super.routeLine(conn, nestedRoutingDepth, newLine);
 
-		if(DiagramEditPartsUtil.isSnapToGridActive(anyEditPart)) {
+		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
 			double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
 			final int nbPoints = newLine.size();
 			if(nbPoints >= 3) {
@@ -78,7 +78,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 					Point previousPoint = newLineCopy.getPoint(i - 1);
 					Point current = newLineCopy.getPoint(i);
 					PrecisionPoint newPoint = new PrecisionPoint(current.getCopy());
-					if(i > 0 && i < (nbPoints - 1)) {
+					if(i > 0 && i < nbPoints - 1) {
 						boolean copyX = previousPoint.x == current.x;
 						boolean copyY = previousPoint.y == current.y;
 
@@ -118,12 +118,12 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 * @param newLine
 	 */
 	@Override
-	protected void resetEndPointsToEdge(Connection conn, PointList newLine) {
+	protected void resetEndPointsToEdge(final Connection conn, final PointList newLine) {
 		super.resetEndPointsToEdge(conn, newLine);
 		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
 			double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
-			//force end points on the grid!
-			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing);
+			double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
+			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing, zoom);
 		}
 	}
 }
