@@ -17,13 +17,10 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
-import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.RectilinearRouter;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
-import org.eclipse.papyrus.infra.tools.util.MathUtil;
 
 /**
  * 
@@ -49,7 +46,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 		this.anEditPart = anyEditPart;
 	}
 
-	static PointList copy;
+	//	static PointList copy;
 
 	/**
 	 * 
@@ -62,91 +59,92 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 */
 	@Override
 	public void routeLine(final Connection conn, final int nestedRoutingDepth, PointList newLine) {
-		if(newLine.size() >= 4) {
-			int i = 0;
-			i++;
-		}
-		boolean cop1y = true;
-		if(cop1y) {
-			copy = newLine.getCopy();
-		} else {
-			newLine = copy.getCopy();
-		}
-		System.out.println("initial constraint");
-		for(int i = 0; i < newLine.size(); i++) {
-			System.out.println(newLine.getPoint(i));
-		}
 		super.routeLine(conn, nestedRoutingDepth, newLine);
-
-		System.out.println("obtained constraint");
-		for(int i = 0; i < newLine.size(); i++) {
-			System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(newLine.getPoint(i), this.anEditPart));
-		}
-
-
-		final IFigure connectionParent = conn.getParent();
-		if(!(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
-			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart) && false) {
-				final double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart);
-				final double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anEditPart) * zoom;
-				final int nbPoints = newLine.size();
-				//				if(nbPoints >= 3) {
-				//we don't move the anchor, we only move the intermediate points
-				PointList newLineCopy = newLine.getCopy();
-
-				for(int i = 1; i < newLine.size() - 1; i++) {
-					Point previousPoint = newLineCopy.getPoint(i - 1);
-					Point current = newLineCopy.getPoint(i);
-					Point newPoint = new PrecisionPoint(current.getCopy());
-					if(i > 0 && i < nbPoints - 1) {
-						boolean copyX = previousPoint.x == current.x;
-						boolean copyY = previousPoint.y == current.y;
-
-						if(!copyX) {
-							newPoint.setX((int)MathUtil.getClosestMultiple(current.x, gridSpacing));
-						} else {
-							newPoint.setX(newLine.getPoint(i - 1).x);
-						}
-						if(!copyY) {
-							newPoint.setY((int)MathUtil.getClosestMultiple(current.y, gridSpacing));
-						} else {
-							newPoint.setY(newLine.getPoint(i - 1).y);
-						}
-					}
-
-					if(i == nbPoints - 2) {
-						if(current.x == newLineCopy.getPoint(i + 1).x) {
-							newPoint.x = current.x;
-						}
-						if(current.y == newLineCopy.getPoint(i + 1).y) {
-							newPoint.y = current.y;
-						}
-					}
-					newLine.setPoint(newPoint, i);
-				}
-				//				}
-
-				//
-				//				resetEndPointsToEdge(conn, newLine);
-
-				System.out.println("MY NICE POINT");
-				for(int i = 0; i < newLine.size(); i++) {
-
-					Point current = newLine.getPoint(i);
-					System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(current, this.anEditPart));;
-					if(i < newLine.size() - 1 && newLine.size() >= 3) {
-						Point next = newLine.getPoint(i + 1);
-
-						if(current.x != next.x && current.y != next.y) {
-							System.out.println("ERROR-ERROR-ERROR-ERRORS");
-							int j = 0;
-							j++;
-						}
-					}
-				}
-				System.out.println("MY NICE POINT");
-			}
-		}
+		//		if(newLine.size() >= 4) {
+		//			int i = 0;
+		//			i++;
+		//		}
+		//		boolean cop1y = true;
+		//		if(cop1y) {
+		//			copy = newLine.getCopy();
+		//		} else {
+		//			newLine = copy.getCopy();
+		//		}
+		//		//		System.out.println("initial constraint");
+		//		for(int i = 0; i < newLine.size(); i++) {
+		//			//			System.out.println(newLine.getPoint(i));
+		//		}
+		//	
+		//
+		//		//		System.out.println("obtained constraint");
+		//		//		for(int i = 0; i < newLine.size(); i++) {
+		//		//			System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(newLine.getPoint(i), this.anEditPart));
+		//		//		}
+		//
+		//
+		//		final IFigure connectionParent = conn.getParent();
+		//		if(!(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+		//			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart) && false) {
+		//				final double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart);
+		//				final double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anEditPart) * zoom;
+		//				final int nbPoints = newLine.size();
+		//				//				if(nbPoints >= 3) {
+		//				//we don't move the anchor, we only move the intermediate points
+		//				PointList newLineCopy = newLine.getCopy();
+		//
+		//				for(int i = 1; i < newLine.size() - 1; i++) {
+		//					Point previousPoint = newLineCopy.getPoint(i - 1);
+		//					Point current = newLineCopy.getPoint(i);
+		//					Point newPoint = new PrecisionPoint(current.getCopy());
+		//					if(i > 0 && i < nbPoints - 1) {
+		//						boolean copyX = previousPoint.x == current.x;
+		//						boolean copyY = previousPoint.y == current.y;
+		//
+		//						if(!copyX) {
+		//							newPoint.setX((int)MathUtil.getClosestMultiple(current.x, gridSpacing));
+		//						} else {
+		//							newPoint.setX(newLine.getPoint(i - 1).x);
+		//						}
+		//						if(!copyY) {
+		//							newPoint.setY((int)MathUtil.getClosestMultiple(current.y, gridSpacing));
+		//						} else {
+		//							newPoint.setY(newLine.getPoint(i - 1).y);
+		//						}
+		//					}
+		//
+		//					if(i == nbPoints - 2) {
+		//						if(current.x == newLineCopy.getPoint(i + 1).x) {
+		//							newPoint.x = current.x;
+		//						}
+		//						if(current.y == newLineCopy.getPoint(i + 1).y) {
+		//							newPoint.y = current.y;
+		//						}
+		//					}
+		//					newLine.setPoint(newPoint, i);
+		//				}
+		//				//				}
+		//
+		//				//
+		//				//				resetEndPointsToEdge(conn, newLine);
+		//
+		//				System.out.println("MY NICE POINT");
+		//				for(int i = 0; i < newLine.size(); i++) {
+		//
+		//					Point current = newLine.getPoint(i);
+		//					System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(current, this.anEditPart));;
+		//					if(i < newLine.size() - 1 && newLine.size() >= 3) {
+		//						Point next = newLine.getPoint(i + 1);
+		//
+		//						if(current.x != next.x && current.y != next.y) {
+		//							System.out.println("ERROR-ERROR-ERROR-ERRORS");
+		//							int j = 0;
+		//							j++;
+		//						}
+		//					}
+		//				}
+		//				System.out.println("MY NICE POINT");
+		//			}
+		//		}
 	}
 
 	/**
@@ -160,15 +158,10 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	@Override
 	protected void resetEndPointsToEdge(final Connection conn, final PointList newLine) {
 		final IFigure connectionParent = conn.getParent();
-		if(connectionParent instanceof ConnectionLayer) {
-			super.resetEndPointsToEdge(conn, newLine);
-		} else if(connectionParent instanceof FreeformLayer) {
+		super.resetEndPointsToEdge(conn, newLine);
+		if(!(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
 			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart)) {
 				super.resetEndPointsToEdge(conn, newLine);
-				if(newLine.size() >= 4) {
-					int i = 0;
-					i++;
-				}
 				CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGridUsingGMFCoordinates(conn, newLine, this.anEditPart);
 			}
 		}

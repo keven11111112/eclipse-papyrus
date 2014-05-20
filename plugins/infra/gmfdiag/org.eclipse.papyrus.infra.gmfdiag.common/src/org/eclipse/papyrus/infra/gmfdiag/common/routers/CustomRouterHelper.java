@@ -57,6 +57,94 @@ public class CustomRouterHelper {
 
 
 	/**
+	 * 
+	 * @param oldRectilinearLine
+	 *        the initial rectlinear line
+	 * @param newLine
+	 *        a new line not yet rectilinear, but source and target anchor are already correct
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         the point list, with the same source and target than in newLine, but with others points on the grid
+	 */
+	public static final PointList forceRectilinear(final PointList oldRectilinearLine, final PointList newLine, EditPart anEditPart) {
+		double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(anEditPart);
+		gridSpacing = DiagramEditPartsUtil.getDiagramZoomLevel(anEditPart) * gridSpacing;
+		for(int i = 1; i < oldRectilinearLine.size() - 2; i++) {
+			boolean copyX = oldRectilinearLine.getPoint(i - 1).x == oldRectilinearLine.getPoint(i).x;
+			boolean copyY = oldRectilinearLine.getPoint(i - 1).y == oldRectilinearLine.getPoint(i).y;
+
+			if(copyX) {
+				Point previousPoint = newLine.getPoint(i - 1);
+				Point currentPoint = newLine.getPoint(i);
+				newLine.setPoint(new Point(previousPoint.x, currentPoint.y), i);
+			} else {
+				Point currentPoint = newLine.getPoint(i);
+				newLine.setPoint(new Point((int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing), currentPoint.y), i);
+			}
+			if(copyY) {
+				Point previousPoint = newLine.getPoint(i - 1);
+				Point currentPoint = newLine.getPoint(i);
+				newLine.setPoint(new Point(currentPoint.x, previousPoint.y), i);
+			} else {
+				Point currentPoint = newLine.getPoint(i);
+				newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), i);
+			}
+		}
+
+		int size = oldRectilinearLine.size();
+		boolean copyX = oldRectilinearLine.getPoint(size - 2).x == oldRectilinearLine.getPoint(size - 1).x;
+		boolean copyY = oldRectilinearLine.getPoint(size - 2).y == oldRectilinearLine.getPoint(size - 1).y;
+
+		if(copyX) {
+			Point previousPoint = newLine.getPoint(size - 1);
+			Point currentPoint = newLine.getPoint(size - 2);
+			newLine.setPoint(new Point(previousPoint.x, currentPoint.y), size - 2);
+		} else {
+			Point currentPoint = newLine.getPoint(size - 2);
+			newLine.setPoint(new Point((int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing), currentPoint.y), size - 2);
+		}
+		if(copyY) {
+			Point previousPoint = newLine.getPoint(size - 1);
+			Point currentPoint = newLine.getPoint(size - 2);
+			newLine.setPoint(new Point(currentPoint.x, previousPoint.y), size - 2);
+		} else {
+			Point currentPoint = newLine.getPoint(size - 2);
+			newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), size - 2);
+		}
+
+		return newLine;
+	}
+
+	/**
+	 * We developer must call RouterHelper.getInstance.resetEndPointsToEdge before to call this method
+	 * 
+	 * @param conn
+	 *        the connection
+	 * @param newLine
+	 *        the point list
+	 * @param gridSpacing
+	 *        the grid spacing
+	 * @param zoomFactor
+	 *        zoom factor
+	 */
+	public void resetEndPointsToEdgeOnGridUsingGMFCoordinates(final Connection conn, final PointList newLine, final EditPart anEditPart) {
+		final PointList oldNewLine = newLine.getCopy();
+		final Point newSourcePoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), anEditPart);
+
+		//target anchor
+		final Point newTargetPoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), anEditPart);
+		//			}
+		newLine.setPoint(newSourcePoint, 0);
+		newLine.setPoint(newTargetPoint, newLine.size() - 1);
+
+
+		PointList res = forceRectilinear(oldNewLine.getCopy(), newLine.getCopy(), anEditPart);
+		newLine.removeAllPoints();
+		newLine.addAll(res);
+	}
+
+	/**
 	 * We developer must call RouterHelper.getInstance.resetEndPointsToEdge before to call this method
 	 * 
 	 * @param conn
@@ -487,83 +575,6 @@ public class CustomRouterHelper {
 		//		System.out.println("result after translation" + result);
 		return result;
 	}
-
-	/**
-	 * We developer must call RouterHelper.getInstance.resetEndPointsToEdge before to call this method
-	 * 
-	 * @param conn
-	 *        the connection
-	 * @param newLine
-	 *        the point list
-	 * @param gridSpacing
-	 *        the grid spacing
-	 * @param zoomFactor
-	 *        zoom factor
-	 */
-	public void resetEndPointsToEdgeOnGridUsingGMFCoordinates(final Connection conn, final PointList newLine, final EditPart anEditPart) {
-		//		final IFigure connectionParent = conn.getParent();
-		//		if(newLine.size() >= 2) {
-		//			Point newSourcePoint = null;
-		//			Point newTargetPoint = null;
-
-		//			if(connectionParent instanceof ConnectionLayer) {
-		//				double gridSpacing = 2;
-		//				double zoomFactor = 2;
-		//source anchor
-		//				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), null);
-		//
-		//target anchor
-		//				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), null);
-		//			} else if(connectionParent instanceof FreeformLayer || connectionParent == null) {//null when we are doing routing creating the link
-		//source anchor
-		final PointList oldNewLine = newLine.getCopy();
-		Point newSourcePoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), anEditPart);
-
-		//target anchor
-		Point newTargetPoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), anEditPart);
-		//			}
-		newLine.setPoint(newSourcePoint, 0);
-		newLine.setPoint(newTargetPoint, newLine.size() - 1);
-
-
-		//test test test
-		//to force rectilinear -> OK , but not always on the grid!
-		//		for(int i = 1; i < oldNewLine.size() - 2; i++) {
-		//			boolean copyX = oldNewLine.getPoint(i - 1).x == oldNewLine.getPoint(i).x;
-		//			boolean copyY = oldNewLine.getPoint(i - 1).y == oldNewLine.getPoint(i).y;
-		//
-		//			if(copyX) {
-		//				Point previousPoint = newLine.getPoint(i - 1);
-		//				Point currentPoint = newLine.getPoint(i);
-		//				newLine.setPoint(new Point(previousPoint.x, currentPoint.y), i);
-		//			}
-		//			if(copyY) {
-		//				Point previousPoint = newLine.getPoint(i - 1);
-		//				Point currentPoint = newLine.getPoint(i);
-		//				newLine.setPoint(new Point(currentPoint.x, previousPoint.y), i);
-		//			}
-		//		}
-		//
-		//		int size = oldNewLine.size();
-		//		boolean copyX = oldNewLine.getPoint(size - 2).x == oldNewLine.getPoint(size - 1).x;
-		//		boolean copyY = oldNewLine.getPoint(size - 2).y == oldNewLine.getPoint(size - 1).y;
-		//
-		//		if(copyX) {
-		//			Point previousPoint = newLine.getPoint(size - 1);
-		//			Point currentPoint = newLine.getPoint(size - 2);
-		//			newLine.setPoint(new Point(previousPoint.x, currentPoint.y), size - 2);
-		//		}
-		//		if(copyY) {
-		//			Point previousPoint = newLine.getPoint(size - 1);
-		//			Point currentPoint = newLine.getPoint(size - 2);
-		//			newLine.setPoint(new Point(currentPoint.x, previousPoint.y), size - 2);
-		//		}
-		//
-
-
-
-	}
-
 
 	/**
 	 * 
