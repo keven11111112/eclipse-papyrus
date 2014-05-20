@@ -20,14 +20,10 @@ import java.util.List;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
-import org.eclipse.draw2d.ConnectionRouter;
 import org.eclipse.draw2d.RelativeBendpoint;
-import org.eclipse.draw2d.XYAnchor;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.editpolicies.FeedbackHelper;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 
 
 /**
@@ -73,106 +69,106 @@ public class CustomFeedbackHelper extends FeedbackHelper {
 		getConnection().getConnectionRouter().setConstraint(getConnection(), newConstraint);
 	}
 
-	/**
-	 * Sets the anchor for the end being moved.
-	 * 
-	 * @param anchor
-	 *        the new anchor
-	 */
-	@Override
-	protected void setAnchor(ConnectionAnchor anchor) {
-		//TODO : this calculus should be done in PapyrusConnectionEndEditPolicy 
-		//1. find the old anchor location
-		final Point oldPoint;
-		if(isMovingStartAnchor()) {
-			oldPoint = getConnection().getSourceAnchor().getReferencePoint();
-		} else {
-			oldPoint = getConnection().getTargetAnchor().getReferencePoint();
-		}
-
-
-		//2. we create a dummy connection from current connection, with new informations to determine real anchor point
-		final Connection dummyConnection = new PolylineConnectionEx();
-		if(isMovingStartAnchor()) {
-			dummyConnection.setSourceAnchor(anchor);
-			final Point targetPoint = getConnection().getTargetAnchor().getReferencePoint();
-			final ConnectionAnchor targetAnchor = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getTargetConnectionAnchorAt(targetPoint);
-			dummyConnection.setTargetAnchor(targetAnchor);
-		} else {
-			final Point sourcePoint = getConnection().getSourceAnchor().getReferencePoint();
-			final ConnectionAnchor sourceAnchor = ((IAnchorableFigure)getConnection().getSourceAnchor().getOwner()).getSourceConnectionAnchorAt(sourcePoint);
-			dummyConnection.setSourceAnchor(sourceAnchor);
-			dummyConnection.setTargetAnchor(anchor);
-		}
-
-		dummyConnection.setPoints(getConnection().getPoints().getCopy());
-		final ConnectionRouter router = getConnection().getConnectionRouter();
-		router.route(dummyConnection);
-
-		//3. determine move between old anchor and new anchor
-		final Dimension move;
-		if(isMovingStartAnchor()) {
-			move = dummyConnection.getPoints().getFirstPoint().getDifference(oldPoint);
-		} else {
-			move = dummyConnection.getPoints().getLastPoint().getDifference(oldPoint);
-		}
-
-		//4. do something only when necessary
-		if(move.width != 0 || move.height != 0) {
-			final List<RelativeBendpoint> currentBendpoints = getCurrentConnectionConstraint();
-			final List<Point> newBendpoints = new ArrayList<Point>();
-			int nbBendpoints = currentBendpoints.size();
-			for(int i = 0; i < currentBendpoints.size(); i++) {
-				final Point realPoint = currentBendpoints.get(i).getLocation();
-				if(i == 0 && isMovingStartAnchor()) {
-					realPoint.translate(move);
-				}
-				if(i == 1 && nbBendpoints > 3 && isMovingStartAnchor()) {
-					realPoint.translate(move);
-				}
-				if(i == currentBendpoints.size() - 1 && nbBendpoints > 3 && !isMovingStartAnchor()) {
-					realPoint.translate(move);
-				}
-				if(i == currentBendpoints.size() - 2 && !isMovingStartAnchor()) {
-					realPoint.translate(move);
-				}
-				newBendpoints.add(realPoint);
-			}
-
-			//5. get new bendpoints
-			final List<RelativeBendpoint> newConstraints = convertToRelativeBendpoints(getConnection(), newBendpoints);
-
-
-			//6. fix the anchor location
-			if(isMovingStartAnchor()) {
-				if(anchor.getOwner() == null && anchor instanceof XYAnchor) {
-					((XYAnchor)anchor).setLocation(dummyConnection.getPoints().getFirstPoint());
-				} else {
-					anchor = ((IAnchorableFigure)anchor.getOwner()).getSourceConnectionAnchorAt(dummyConnection.getPoints().getFirstPoint());
-				}
-			} else {
-				if(anchor.getOwner() == null && anchor instanceof XYAnchor) {
-					((XYAnchor)anchor).setLocation(dummyConnection.getPoints().getLastPoint());
-				} else {
-					anchor = ((IAnchorableFigure)anchor.getOwner()).getTargetConnectionAnchorAt(dummyConnection.getPoints().getLastPoint());
-				}
-
-			}
-
-			//7. 
-			if(isMovingStartAnchor()) {
-				getConnection().setSourceAnchor(anchor);
-			} else {
-				getConnection().setTargetAnchor(anchor);
-			}
-
-			//we change the constraints associated to the connection in the router to get wanted feedback (bendpoints points must not move)
-			getConnection().getConnectionRouter().setConstraint(getConnection(), newConstraints);
-
-			//clear the router
-			getConnection().getConnectionRouter().remove(dummyConnection);
-		}
-	}
+	//	/**
+	//	 * Sets the anchor for the end being moved.
+	//	 * 
+	//	 * @param anchor
+	//	 *        the new anchor
+	//	 */
+	//	@Override
+	//	protected void setAnchor(ConnectionAnchor anchor) {
+	//		//TODO : this calculus should be done in PapyrusConnectionEndEditPolicy 
+	//		//1. find the old anchor location
+	//		final Point oldPoint;
+	//		if(isMovingStartAnchor()) {
+	//			oldPoint = getConnection().getSourceAnchor().getReferencePoint();
+	//		} else {
+	//			oldPoint = getConnection().getTargetAnchor().getReferencePoint();
+	//		}
+	//
+	//
+	//		//2. we create a dummy connection from current connection, with new informations to determine real anchor point
+	//		final Connection dummyConnection = new PolylineConnectionEx();
+	//		if(isMovingStartAnchor()) {
+	//			dummyConnection.setSourceAnchor(anchor);
+	//			final Point targetPoint = getConnection().getTargetAnchor().getReferencePoint();
+	//			final ConnectionAnchor targetAnchor = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getTargetConnectionAnchorAt(targetPoint);
+	//			dummyConnection.setTargetAnchor(targetAnchor);
+	//		} else {
+	//			final Point sourcePoint = getConnection().getSourceAnchor().getReferencePoint();
+	//			final ConnectionAnchor sourceAnchor = ((IAnchorableFigure)getConnection().getSourceAnchor().getOwner()).getSourceConnectionAnchorAt(sourcePoint);
+	//			dummyConnection.setSourceAnchor(sourceAnchor);
+	//			dummyConnection.setTargetAnchor(anchor);
+	//		}
+	//
+	//		dummyConnection.setPoints(getConnection().getPoints().getCopy());
+	//		final ConnectionRouter router = getConnection().getConnectionRouter();
+	//		router.route(dummyConnection);
+	//
+	//		//3. determine move between old anchor and new anchor
+	//		final Dimension move;
+	//		if(isMovingStartAnchor()) {
+	//			move = dummyConnection.getPoints().getFirstPoint().getDifference(oldPoint);
+	//		} else {
+	//			move = dummyConnection.getPoints().getLastPoint().getDifference(oldPoint);
+	//		}
+	//
+	//		//4. do something only when necessary
+	//		if(move.width != 0 || move.height != 0) {
+	//			final List<RelativeBendpoint> currentBendpoints = getCurrentConnectionConstraint();
+	//			final List<Point> newBendpoints = new ArrayList<Point>();
+	//			int nbBendpoints = currentBendpoints.size();
+	//			for(int i = 0; i < currentBendpoints.size(); i++) {
+	//				final Point realPoint = currentBendpoints.get(i).getLocation();
+	//				if(i == 0 && isMovingStartAnchor()) {
+	//					realPoint.translate(move);
+	//				}
+	//				if(i == 1 && nbBendpoints > 3 && isMovingStartAnchor()) {
+	//					realPoint.translate(move);
+	//				}
+	//				if(i == currentBendpoints.size() - 1 && nbBendpoints > 3 && !isMovingStartAnchor()) {
+	//					realPoint.translate(move);
+	//				}
+	//				if(i == currentBendpoints.size() - 2 && !isMovingStartAnchor()) {
+	//					realPoint.translate(move);
+	//				}
+	//				newBendpoints.add(realPoint);
+	//			}
+	//
+	//			//5. get new bendpoints
+	//			final List<RelativeBendpoint> newConstraints = convertToRelativeBendpoints(getConnection(), newBendpoints);
+	//
+	//
+	//			//6. fix the anchor location
+	//			if(isMovingStartAnchor()) {
+	//				if(anchor.getOwner() == null && anchor instanceof XYAnchor) {
+	//					((XYAnchor)anchor).setLocation(dummyConnection.getPoints().getFirstPoint());
+	//				} else {
+	//					anchor = ((IAnchorableFigure)anchor.getOwner()).getSourceConnectionAnchorAt(dummyConnection.getPoints().getFirstPoint());
+	//				}
+	//			} else {
+	//				if(anchor.getOwner() == null && anchor instanceof XYAnchor) {
+	//					((XYAnchor)anchor).setLocation(dummyConnection.getPoints().getLastPoint());
+	//				} else {
+	//					anchor = ((IAnchorableFigure)anchor.getOwner()).getTargetConnectionAnchorAt(dummyConnection.getPoints().getLastPoint());
+	//				}
+	//
+	//			}
+	//
+	//			//7. 
+	//			if(isMovingStartAnchor()) {
+	//				getConnection().setSourceAnchor(anchor);
+	//			} else {
+	//				getConnection().setTargetAnchor(anchor);
+	//			}
+	//
+	//			//we change the constraints associated to the connection in the router to get wanted feedback (bendpoints points must not move)
+	//			getConnection().getConnectionRouter().setConstraint(getConnection(), newConstraints);
+	//
+	//			//clear the router
+	//			getConnection().getConnectionRouter().remove(dummyConnection);
+	//		}
+	//	}
 
 	/**
 	 * Updates the feedback based on the given anchor or point. The anchor is

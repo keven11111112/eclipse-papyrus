@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.routers;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FreeformLayer;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -35,7 +36,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	/**
 	 * an edit part of the diagram
 	 */
-	private final EditPart anyEditPart;
+	private final EditPart anEditPart;
 
 	/**
 	 * 
@@ -45,8 +46,10 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 *        an edit part of the diagram
 	 */
 	public RectilinearGridRouter(final EditPart anyEditPart) {
-		this.anyEditPart = anyEditPart;
+		this.anEditPart = anyEditPart;
 	}
+
+	static PointList copy;
 
 	/**
 	 * 
@@ -58,42 +61,56 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 * @param newLine
 	 */
 	@Override
-	public void routeLine(final Connection conn, final int nestedRoutingDepth, final PointList newLine) {
-		super.routeLine(conn, nestedRoutingDepth, newLine);
-		final double zoom;
-
-		if(conn.getParent() instanceof ConnectionLayer) {
-			zoom = 1;
-		} else if(conn.getParent() instanceof FreeformLayer || conn.getParent() == null) {
-			zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
-		} else {
-			zoom = 1;
+	public void routeLine(final Connection conn, final int nestedRoutingDepth, PointList newLine) {
+		if(newLine.size() >= 4) {
+			int i = 0;
+			i++;
 		}
-		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
+		boolean cop1y = true;
+		if(cop1y) {
+			copy = newLine.getCopy();
+		} else {
+			newLine = copy.getCopy();
+		}
+		System.out.println("initial constraint");
+		for(int i = 0; i < newLine.size(); i++) {
+			System.out.println(newLine.getPoint(i));
+		}
+		super.routeLine(conn, nestedRoutingDepth, newLine);
 
-			double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart) * zoom;
-			final int nbPoints = newLine.size();
-			if(nbPoints >= 3) {
+		System.out.println("obtained constraint");
+		for(int i = 0; i < newLine.size(); i++) {
+			System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(newLine.getPoint(i), this.anEditPart));
+		}
+
+
+		final IFigure connectionParent = conn.getParent();
+		if(!(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart) && false) {
+				final double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart);
+				final double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anEditPart) * zoom;
+				final int nbPoints = newLine.size();
+				//				if(nbPoints >= 3) {
 				//we don't move the anchor, we only move the intermediate points
 				PointList newLineCopy = newLine.getCopy();
 
 				for(int i = 1; i < newLine.size() - 1; i++) {
 					Point previousPoint = newLineCopy.getPoint(i - 1);
 					Point current = newLineCopy.getPoint(i);
-					PrecisionPoint newPoint = new PrecisionPoint(current.getCopy());
+					Point newPoint = new PrecisionPoint(current.getCopy());
 					if(i > 0 && i < nbPoints - 1) {
 						boolean copyX = previousPoint.x == current.x;
 						boolean copyY = previousPoint.y == current.y;
 
 						if(!copyX) {
-							newPoint.setPreciseX(MathUtil.getClosestMultiple(current.x, gridSpacing));
+							newPoint.setX((int)MathUtil.getClosestMultiple(current.x, gridSpacing));
 						} else {
-							newPoint.setPreciseX(newLine.getPoint(i - 1).x);
+							newPoint.setX(newLine.getPoint(i - 1).x);
 						}
 						if(!copyY) {
-							newPoint.setPreciseY(MathUtil.getClosestMultiple(current.y, gridSpacing));
+							newPoint.setY((int)MathUtil.getClosestMultiple(current.y, gridSpacing));
 						} else {
-							newPoint.setPreciseY(newLine.getPoint(i - 1).y);
+							newPoint.setY(newLine.getPoint(i - 1).y);
 						}
 					}
 
@@ -107,9 +124,28 @@ public class RectilinearGridRouter extends RectilinearRouter {
 					}
 					newLine.setPoint(newPoint, i);
 				}
-			}
+				//				}
 
-			resetEndPointsToEdge(conn, newLine);
+				//
+				//				resetEndPointsToEdge(conn, newLine);
+
+				System.out.println("MY NICE POINT");
+				for(int i = 0; i < newLine.size(); i++) {
+
+					Point current = newLine.getPoint(i);
+					System.out.println(GridUtils.getPointFromFeedbackToGridCoordinate(current, this.anEditPart));;
+					if(i < newLine.size() - 1 && newLine.size() >= 3) {
+						Point next = newLine.getPoint(i + 1);
+
+						if(current.x != next.x && current.y != next.y) {
+							System.out.println("ERROR-ERROR-ERROR-ERRORS");
+							int j = 0;
+							j++;
+						}
+					}
+				}
+				System.out.println("MY NICE POINT");
+			}
 		}
 	}
 
@@ -123,11 +159,18 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 */
 	@Override
 	protected void resetEndPointsToEdge(final Connection conn, final PointList newLine) {
-		super.resetEndPointsToEdge(conn, newLine);
-		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
-			double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
-			double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
-			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing, zoom);
+		final IFigure connectionParent = conn.getParent();
+		if(connectionParent instanceof ConnectionLayer) {
+			super.resetEndPointsToEdge(conn, newLine);
+		} else if(connectionParent instanceof FreeformLayer) {
+			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart)) {
+				super.resetEndPointsToEdge(conn, newLine);
+				if(newLine.size() >= 4) {
+					int i = 0;
+					i++;
+				}
+				CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGridUsingGMFCoordinates(conn, newLine, this.anEditPart);
+			}
 		}
 	}
 }

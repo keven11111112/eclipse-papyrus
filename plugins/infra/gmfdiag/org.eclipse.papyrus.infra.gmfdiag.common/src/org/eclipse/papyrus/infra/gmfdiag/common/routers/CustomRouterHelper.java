@@ -24,7 +24,9 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.LineSeg;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.tools.util.MathUtil;
 
 
@@ -74,10 +76,10 @@ public class CustomRouterHelper {
 
 			if(connectionParent instanceof ConnectionLayer) {
 				//source anchor
-				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
+				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), null);
 
 				//target anchor
-				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), gridSpacing, zoomFactor);
+				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), null);
 			} else if(connectionParent instanceof FreeformLayer || connectionParent == null) {//null when we are doing routing creating the link
 				//source anchor
 				newSourcePoint = getGridPointFromAbsoluteLocation(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
@@ -92,27 +94,68 @@ public class CustomRouterHelper {
 
 	}
 
+	/**
+	 * We developer must call RouterHelper.getInstance.resetEndPointsToEdge before to call this method
+	 * 
+	 * @param conn
+	 *        the connection
+	 * @param newLine
+	 *        the point list
+	 * @param gridSpacing
+	 *        the grid spacing
+	 * @param zoomFactor
+	 *        zoom factor
+	 */
+	public void resetEndPointsToEdgeOnGrid(final Connection conn, final PointList newLine, final EditPart anEditPart) {
+		final IFigure connectionParent = conn.getParent();
+		if(newLine.size() >= 2) {
+			Point newSourcePoint = null;
+			Point newTargetPoint = null;
+
+			if(connectionParent instanceof ConnectionLayer) {
+				double gridSpacing = 2;
+				double zoomFactor = 2;
+				//source anchor
+				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), null);
+
+				//target anchor
+				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), null);
+			} else if(connectionParent instanceof FreeformLayer || connectionParent == null) {//null when we are doing routing creating the link
+				//source anchor
+				newSourcePoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), anEditPart);
+
+				//target anchor
+				newTargetPoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), anEditPart);
+			}
+			newLine.setPoint(newSourcePoint, 0);
+			newLine.setPoint(newTargetPoint, newLine.size() - 1);
+
+		}
+
+	}
+
 
 
 	/**
 	 * 
 	 * @param anchor
 	 *        a connection anchor
-	 * @param spacing
-	 *        the grid spacing
-	 * @param zoomFactor
-	 *        the zoom factor t apply for the calculus
+	 * @param anEditPart
+	 *        TODO
 	 * @return
 	 *         the point on which snap
 	 */
-	public Point getGridPoint(final Connection conn, final ConnectionAnchor anchor, Point calculatedPoint, Point secondPoint, double spacing, double zoomFactor) {
+	public Point getGridPoint(final Connection conn, final ConnectionAnchor anchor, Point calculatedPoint, Point secondPoint, EditPart anEditPart) {
 
 		final IFigure figure = anchor.getOwner();
 		if(figure == null) {
 			return calculatedPoint;
 		}
-		double zoom = zoomFactor;
+		double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(anEditPart);
+
+		double zoomFactor = DiagramEditPartsUtil.getDiagramZoomLevel(anEditPart);
 		spacing = spacing * zoomFactor;
+		double zoom = zoomFactor;
 		double x1 = calculatedPoint.x * zoom;
 		double y1 = calculatedPoint.y * zoom;
 
@@ -446,7 +489,242 @@ public class CustomRouterHelper {
 	}
 
 	/**
-	 * this method is nicest than {@link #getGridPoint(Connection, ConnectionAnchor, Point, Point, double, double)} and should give the same result
+	 * We developer must call RouterHelper.getInstance.resetEndPointsToEdge before to call this method
+	 * 
+	 * @param conn
+	 *        the connection
+	 * @param newLine
+	 *        the point list
+	 * @param gridSpacing
+	 *        the grid spacing
+	 * @param zoomFactor
+	 *        zoom factor
+	 */
+	public void resetEndPointsToEdgeOnGridUsingGMFCoordinates(final Connection conn, final PointList newLine, final EditPart anEditPart) {
+		//		final IFigure connectionParent = conn.getParent();
+		//		if(newLine.size() >= 2) {
+		//			Point newSourcePoint = null;
+		//			Point newTargetPoint = null;
+
+		//			if(connectionParent instanceof ConnectionLayer) {
+		//				double gridSpacing = 2;
+		//				double zoomFactor = 2;
+		//source anchor
+		//				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), null);
+		//
+		//target anchor
+		//				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), null);
+		//			} else if(connectionParent instanceof FreeformLayer || connectionParent == null) {//null when we are doing routing creating the link
+		//source anchor
+		final PointList oldNewLine = newLine.getCopy();
+		Point newSourcePoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), anEditPart);
+
+		//target anchor
+		Point newTargetPoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), anEditPart);
+		//			}
+		newLine.setPoint(newSourcePoint, 0);
+		newLine.setPoint(newTargetPoint, newLine.size() - 1);
+
+
+		//test test test
+		//to force rectilinear -> OK , but not always on the grid!
+		//		for(int i = 1; i < oldNewLine.size() - 2; i++) {
+		//			boolean copyX = oldNewLine.getPoint(i - 1).x == oldNewLine.getPoint(i).x;
+		//			boolean copyY = oldNewLine.getPoint(i - 1).y == oldNewLine.getPoint(i).y;
+		//
+		//			if(copyX) {
+		//				Point previousPoint = newLine.getPoint(i - 1);
+		//				Point currentPoint = newLine.getPoint(i);
+		//				newLine.setPoint(new Point(previousPoint.x, currentPoint.y), i);
+		//			}
+		//			if(copyY) {
+		//				Point previousPoint = newLine.getPoint(i - 1);
+		//				Point currentPoint = newLine.getPoint(i);
+		//				newLine.setPoint(new Point(currentPoint.x, previousPoint.y), i);
+		//			}
+		//		}
+		//
+		//		int size = oldNewLine.size();
+		//		boolean copyX = oldNewLine.getPoint(size - 2).x == oldNewLine.getPoint(size - 1).x;
+		//		boolean copyY = oldNewLine.getPoint(size - 2).y == oldNewLine.getPoint(size - 1).y;
+		//
+		//		if(copyX) {
+		//			Point previousPoint = newLine.getPoint(size - 1);
+		//			Point currentPoint = newLine.getPoint(size - 2);
+		//			newLine.setPoint(new Point(previousPoint.x, currentPoint.y), size - 2);
+		//		}
+		//		if(copyY) {
+		//			Point previousPoint = newLine.getPoint(size - 1);
+		//			Point currentPoint = newLine.getPoint(size - 2);
+		//			newLine.setPoint(new Point(currentPoint.x, previousPoint.y), size - 2);
+		//		}
+		//
+
+
+
+	}
+
+
+	/**
+	 * 
+	 * @param conn
+	 *        the connection
+	 * @param anchor
+	 *        an anchor
+	 * @param anchorPointInAbsoluteGMFCoordinates
+	 *        the anchor location obtains during the creation of the link, so zoom impact it
+	 * @param secondPointInGMFCoordinates
+	 *        the next point of the link, so zoom impact it
+	 * @param anEditPart
+	 *        an edit part of the edited diagram
+	 * @return
+	 *         the best point to push the anchor in the GMF Coordinates (zoom impact it!)
+	 */
+	public Point getAnchorPointLocationUsingGMFCoordinates(final Connection conn, final ConnectionAnchor anchor, final Point anchorPointInAbsoluteGMFCoordinates, final Point secondPointInGMFCoordinates, EditPart anEditPart) {
+		final IFigure figure = anchor.getOwner();
+		if(figure == null) {
+			return anchorPointInAbsoluteGMFCoordinates;
+		}
+		final double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(anEditPart);
+		final Point anchorPoint = GridUtils.getPointFromFeedbackToGridCoordinate(anchorPointInAbsoluteGMFCoordinates, anEditPart);
+		final Point secondPoint = GridUtils.getPointFromFeedbackToGridCoordinate(secondPointInGMFCoordinates, anEditPart);
+
+		final Rectangle bounds = GridUtils.getRealAbsoluteCoordinateFromGrid(anchor.getOwner(), anEditPart);
+
+		final LineSeg seg1 = new LineSeg(anchorPoint.getCopy(), secondPoint.getCopy());
+
+		int tolerance = 1;
+
+		//north intersection
+		final LineSeg northSeg = new LineSeg(bounds.getTopLeft(), bounds.getTopRight());
+		final Point northIntersection = seg1.intersect(northSeg, tolerance);
+
+		//south intersection
+		final LineSeg southSeg = new LineSeg(bounds.getBottomLeft(), bounds.getBottomRight());
+		final Point southIntersection = seg1.intersect(southSeg, tolerance);
+
+		//east intersection
+		final LineSeg eastSeg = new LineSeg(bounds.getTopRight(), bounds.getBottomRight());
+		final Point eastIntersection = seg1.intersect(eastSeg, tolerance);
+
+		//west intersection
+		final LineSeg westSeg = new LineSeg(bounds.getTopLeft(), bounds.getBottomLeft());
+		final Point westIntersection = seg1.intersect(westSeg, tolerance);
+
+		int nbIntersection = 0;
+		int position = PositionConstants.NONE;
+		if(northIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.NORTH;
+		}
+		if(eastIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.EAST;
+		}
+
+		if(westIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.WEST;
+		}
+
+		if(southIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.SOUTH;
+		}
+
+		final PrecisionPoint result = new PrecisionPoint(anchorPoint);
+
+		if(nbIntersection > 2) {
+			//no obvious case
+		}
+		if(nbIntersection == 2) {
+			if(northIntersection == eastIntersection || northIntersection == westIntersection) {
+				//arbitrary choice
+				position = PositionConstants.NORTH;
+				nbIntersection = 1;
+			}
+			if(southIntersection == eastIntersection || southIntersection == westIntersection) {
+				position = PositionConstants.SOUTH;
+				nbIntersection = 1;
+			}
+			if(nbIntersection == 2) {
+				//no obvious case
+			}
+		}
+		if(nbIntersection == 1) {
+			//determine first coordinate
+			switch(position) {
+			case PositionConstants.NORTH:
+				result.setPreciseY(bounds.getTop().y);
+				break;
+
+			case PositionConstants.SOUTH:
+				result.setPreciseY(bounds.getBottom().y);
+				break;
+			case PositionConstants.EAST:
+				result.setPreciseX(bounds.getRight().x);
+				break;
+
+			case PositionConstants.WEST:
+				result.setPreciseX(bounds.getLeft().x);
+				break;
+			default:
+				break;
+			}
+
+			//determine second coordinate
+			switch(position) {
+			case PositionConstants.NORTH:
+			case PositionConstants.SOUTH:
+				double x = MathUtil.getClosestMultiple(anchorPoint.x, spacing);
+
+				//verify that x value is included inside the figure
+				if(!(x >= bounds.getLeft().x && x <= bounds.getRight().x)) {
+					while(x < bounds.getLeft().x) {
+						x = x + spacing;
+					}
+					while(x > bounds.getRight().x) {
+						x = x - spacing;
+					}
+					if(!(x >= bounds.getLeft().x && x <= bounds.getRight().x)) {
+						//the figure width<spacing && there is no grid point on the witdh
+						x = anchorPoint.x;
+					}
+				}
+				result.setPreciseX(x);
+				break;
+			case PositionConstants.EAST:
+			case PositionConstants.WEST:
+				double y = MathUtil.getClosestMultiple(anchorPoint.y, spacing);
+
+				//verify that y value is inside the figure
+				if(!(y >= bounds.getTop().y && y <= bounds.getBottom().y)) {
+					while(y <= bounds.getTop().y) {
+						y = y + spacing;
+					}
+					while(y >= bounds.getBottom().y) {
+						y = y - spacing;
+					}
+					if(!(y >= bounds.getTop().y && y <= bounds.getBottom().y)) {
+						//the figure height<spacing && there is no grid point on the height
+						y = anchorPoint.y;
+					}
+				}
+				result.setPreciseY(y);
+				break;
+
+			default:
+				break;
+			}
+		}
+
+		//we translate the result of the calculus in the initial GMF system coordinate
+		final Point res = GridUtils.getFeedBackPointFromGridCoordinate(result, anEditPart);
+		return res;
+	}
+
+	/**
+	 * this method is nicest than {@link #getGridPoint(Connection, ConnectionAnchor, Point, Point, EditPart)} and should give the same result
 	 * than the previous one, but the result have less precision, so we don't use it currently
 	 * 
 	 * To see the difference between the other version of this method :
