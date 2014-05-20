@@ -15,6 +15,8 @@ package org.eclipse.papyrus.infra.gmfdiag.common.routers;
 
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
+import org.eclipse.draw2d.ConnectionLayer;
+import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.Viewport;
@@ -65,33 +67,24 @@ public class CustomRouterHelper {
 	 *        zoom factor
 	 */
 	public void resetEndPointsToEdgeOnGrid(final Connection conn, final PointList newLine, double gridSpacing, double zoomFactor) {
+		final IFigure connectionParent = conn.getParent();
 		if(newLine.size() >= 2) {
+			Point newSourcePoint = null;
+			Point newTargetPoint = null;
 
-			//1. method with better result
-			//source anchor
-			Point newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
+			if(connectionParent instanceof ConnectionLayer) {
+				//source anchor
+				newSourcePoint = getGridPoint(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
 
-			//target anchor
-			Point newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), gridSpacing, zoomFactor);
+				//target anchor
+				newTargetPoint = getGridPoint(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), gridSpacing, zoomFactor);
+			} else if(connectionParent instanceof FreeformLayer || connectionParent == null) {//null when we are doing routing creating the link
+				//source anchor
+				newSourcePoint = getGridPointFromAbsoluteLocation(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
 
-
-			//2. method with bad result
-			//			Point newSrc = getGridPointV2(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), gridSpacing, zoomFactor);
-			//			Point newTarget = getGridPointV2(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), gridSpacing, zoomFactor);
-			//			System.out.println("srcV1" + newSourcePoint);
-			//			System.out.println("srcV2" + newSrc);
-			//			System.out.println("tgtV1" + newTargetPoint);
-			//			System.out.println("tgtV2" + newTarget);
-			//			newSourcePoint = newSrc;
-			//			newTargetPoint = newTarget;
-			//			if(Math.abs(newSourcePoint.getDifference(newSrc).preciseWidth()) > 1.0 || Math.abs(newSourcePoint.getDifference(newSrc).preciseHeight()) > 1.0) {
-			//				System.out.println("ERROR ON SOURCE ERROR ON SOURCE ERROR ON SOURCE ERROR ON SOURCE ERROR ON SOURCE ERROR ON SOURCE ERROR ON SOURCE ");
-			//			}
-			//
-			//			if(Math.abs(newTargetPoint.getDifference(newTarget).preciseWidth()) > 1.0 || Math.abs(newTargetPoint.getDifference(newTarget).preciseHeight()) > 1.0) {
-			//				System.out.println("ERROR ON TARGET ERROR ON TARGET ERROR ON TARGET ERROR ON TARGET ERROR ON TARGET ERROR ON TARGET ERROR ON TARGET ");
-			//			}
-
+				//target anchor
+				newTargetPoint = getGridPointFromAbsoluteLocation(conn, conn.getTargetAnchor(), newLine.getLastPoint(), newLine.getPoint(newLine.size() - 2), gridSpacing, zoomFactor);
+			}
 			newLine.setPoint(newSourcePoint, 0);
 			newLine.setPoint(newTargetPoint, newLine.size() - 1);
 
@@ -113,6 +106,7 @@ public class CustomRouterHelper {
 	 *         the point on which snap
 	 */
 	public Point getGridPoint(final Connection conn, final ConnectionAnchor anchor, Point calculatedPoint, Point secondPoint, double spacing, double zoomFactor) {
+
 		final IFigure figure = anchor.getOwner();
 		if(figure == null) {
 			return calculatedPoint;
@@ -272,6 +266,182 @@ public class CustomRouterHelper {
 		}
 		result.setPreciseX(result.preciseX() / zoom);
 		result.setPreciseY(result.preciseY() / zoom);
+		return result;
+	}
+
+
+	/**
+	 * 
+	 * @param anchor
+	 *        a connection anchor
+	 * @param spacing
+	 *        the grid spacing
+	 * @param zoomFactor
+	 *        the zoom factor t apply for the calculus
+	 * @return
+	 *         the point on which snap
+	 */
+	public Point getGridPointFromAbsoluteLocation(final Connection conn, final ConnectionAnchor anchor, final Point calculatedPoint, final Point secondPoint, double spacing, double zoomFactor) {
+		final IFigure figure = anchor.getOwner();
+		if(figure == null) {
+			return calculatedPoint;
+		}
+
+		conn.getSourceAnchor().getOwner().translateToRelative(calculatedPoint);
+		//
+		//		IFigure parentFigure = figure.getParent();
+		//		Viewport lastViewport = null;
+		//		while(parentFigure != null) {
+		//			if(parentFigure instanceof Viewport) {
+		//				lastViewport = (Viewport)parentFigure;
+		//				parentFigure = parentFigure.getParent();
+		//			} else {
+		//				parentFigure = parentFigure.getParent();
+		//			}
+		//		}
+
+		//		conn.getSourceAnchor().getOwner().translateToRelative(calculatedPoint);
+		//		System.out.println("calcultatedPoint" + calculatedPoint);
+		//		conn.getSourceAnchor().getOwner().translateToRelative(secondPoint);
+		//		calculatedPoint.translate(lastViewport.getHorizontalRangeModel().getValue(), lastViewport.getVerticalRangeModel().getValue());
+		//		secondPoint.translate(-lastViewport.getHorizontalRangeModel().getValue(), -lastViewport.getVerticalRangeModel().getValue());
+		final LineSeg seg1 = new LineSeg(calculatedPoint.getCopy(), secondPoint.getCopy());
+		final Rectangle bounds = figure.getBounds().getCopy();
+
+		//we translate the bounds of the figure to the absolute bounds
+
+		//required!
+		//		bounds.translate(lastViewport.getHorizontalRangeModel().getValue(), lastViewport.getVerticalRangeModel().getValue());
+		int tolerance = 1;
+
+		//north intersection
+		final LineSeg northSeg = new LineSeg(bounds.getTopLeft(), bounds.getTopRight());
+		final Point northIntersection = seg1.intersect(northSeg, tolerance);
+
+		//south intersection
+		final LineSeg southSeg = new LineSeg(bounds.getBottomLeft(), bounds.getBottomRight());
+		final Point southIntersection = seg1.intersect(southSeg, tolerance);
+
+		//east intersection
+		final LineSeg eastSeg = new LineSeg(bounds.getTopRight(), bounds.getBottomRight());
+		final Point eastIntersection = seg1.intersect(eastSeg, tolerance);
+
+		//west intersection
+		final LineSeg westSeg = new LineSeg(bounds.getTopLeft(), bounds.getBottomLeft());
+		final Point westIntersection = seg1.intersect(westSeg, tolerance);
+
+		int nbIntersection = 0;
+		int position = PositionConstants.NONE;
+		if(northIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.NORTH;
+		}
+		if(eastIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.EAST;
+		}
+
+		if(westIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.WEST;
+		}
+
+		if(southIntersection != null) {
+			nbIntersection++;
+			position = PositionConstants.SOUTH;
+		}
+
+		final PrecisionPoint result = new PrecisionPoint(calculatedPoint);
+
+		if(nbIntersection > 2) {
+			//no obvious case
+		}
+		if(nbIntersection == 2) {
+			if(northIntersection == eastIntersection || northIntersection == westIntersection) {
+				//arbitrary choice
+				position = PositionConstants.NORTH;
+				nbIntersection = 1;
+			}
+			if(southIntersection == eastIntersection || southIntersection == westIntersection) {
+				position = PositionConstants.SOUTH;
+				nbIntersection = 1;
+			}
+			if(nbIntersection == 2) {
+				//no obvious case
+			}
+		}
+		if(nbIntersection == 1) {
+			//determine first coordinate
+			switch(position) {
+			case PositionConstants.NORTH:
+				result.setPreciseY(bounds.getTop().y);
+				break;
+
+			case PositionConstants.SOUTH:
+				result.setPreciseY(bounds.getBottom().y);
+				break;
+			case PositionConstants.EAST:
+				result.setPreciseX(bounds.getRight().x);
+				break;
+
+			case PositionConstants.WEST:
+				result.setPreciseX(bounds.getLeft().x);
+				break;
+			default:
+				break;
+			}
+
+			//determine second coordinate
+			switch(position) {
+			case PositionConstants.NORTH:
+			case PositionConstants.SOUTH:
+				double x = MathUtil.getClosestMultiple(calculatedPoint.x, spacing);
+
+				//verify that x value is included inside the figure
+				if(!(x >= bounds.getLeft().x && x <= bounds.getRight().x)) {
+					while(x < bounds.getLeft().x) {
+						x = x + spacing;
+					}
+					while(x > bounds.getRight().x) {
+						x = x - spacing;
+					}
+					if(!(x >= bounds.getLeft().x && x <= bounds.getRight().x)) {
+						//the figure width<spacing && there is no grid point on the witdh
+						x = calculatedPoint.x;
+					}
+				}
+				result.setPreciseX(x);
+				break;
+			case PositionConstants.EAST:
+			case PositionConstants.WEST:
+				double y = MathUtil.getClosestMultiple(calculatedPoint.y, spacing);
+
+				//verify that y value is inside the figure
+				if(!(y >= bounds.getTop().y && y <= bounds.getBottom().y)) {
+					while(y <= bounds.getTop().y) {
+						y = y + spacing;
+					}
+					while(y >= bounds.getBottom().y) {
+						y = y - spacing;
+					}
+					if(!(y >= bounds.getTop().y && y <= bounds.getBottom().y)) {
+						//the figure height<spacing && there is no grid point on the height
+						y = calculatedPoint.y;
+					}
+				}
+				result.setPreciseY(y);
+				break;
+
+			default:
+				break;
+			}
+		}
+		//		result.setPreciseX(result.preciseX() / zoom);
+		//		result.setPreciseY(result.preciseY() / zoom);
+
+		//		System.out.println("result" + result);
+		conn.getSourceAnchor().getOwner().translateToAbsolute(result);
+		//		System.out.println("result after translation" + result);
 		return result;
 	}
 

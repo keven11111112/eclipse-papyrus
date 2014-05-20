@@ -13,10 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.routers;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionLayer;
+import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
@@ -60,15 +59,19 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 */
 	@Override
 	public void routeLine(final Connection conn, final int nestedRoutingDepth, final PointList newLine) {
-		List<Point> initialPoints = new ArrayList<Point>(newLine.size());
-		for(int i = 0; i < newLine.size(); i++) {
-			initialPoints.add(newLine.getPoint(i));
-		}
-
 		super.routeLine(conn, nestedRoutingDepth, newLine);
+		final double zoom;
 
+		if(conn.getParent() instanceof ConnectionLayer) {
+			zoom = 1;
+		} else if(conn.getParent() instanceof FreeformLayer || conn.getParent() == null) {
+			zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
+		} else {
+			zoom = 1;
+		}
 		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
-			double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
+
+			double gridSpacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart) * zoom;
 			final int nbPoints = newLine.size();
 			if(nbPoints >= 3) {
 				//we don't move the anchor, we only move the intermediate points
@@ -106,6 +109,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 				}
 			}
 
+			resetEndPointsToEdge(conn, newLine);
 		}
 	}
 
