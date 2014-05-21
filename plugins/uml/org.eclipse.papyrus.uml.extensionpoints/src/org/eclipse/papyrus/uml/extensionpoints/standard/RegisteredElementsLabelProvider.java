@@ -1,6 +1,7 @@
 package org.eclipse.papyrus.uml.extensionpoints.standard;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -20,10 +21,10 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	 */
 	@Override
 	public Image getImage(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if (!(element instanceof IRegisteredItem)) {
 			return super.getImage(element);
 		}
-		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint) element;
+		IRegisteredItem abstractExtensionPoint = (IRegisteredItem) element;
 		return abstractExtensionPoint.getImage();
 	}
 
@@ -32,10 +33,10 @@ public class RegisteredElementsLabelProvider extends LabelProvider {
 	 */
 	@Override
 	public String getText(Object element) {
-		if (!(element instanceof RegisteredElementExtensionPoint)) {
+		if (!(element instanceof IRegisteredItem)) {
 			return super.getText(element);
 		}
-		RegisteredElementExtensionPoint abstractExtensionPoint = (RegisteredElementExtensionPoint) element;
+		IRegisteredItem abstractExtensionPoint = (IRegisteredItem) element;
 		return abstractExtensionPoint.getName();
 	}
 }

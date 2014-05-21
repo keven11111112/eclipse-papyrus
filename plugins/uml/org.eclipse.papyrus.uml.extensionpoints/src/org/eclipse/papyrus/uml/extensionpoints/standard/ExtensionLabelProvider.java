@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.uml.extensionpoints.standard;
 
 import org.eclipse.jface.viewers.LabelProvider;
+import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
 
 /**
  *
@@ -29,7 +30,7 @@ public class ExtensionLabelProvider extends LabelProvider {
 	public String getText(Object obj) {
 
 		if (obj instanceof RegisteredElementExtensionPoint) {
-			return ((RegisteredElementExtensionPoint) obj).name;
+			return ((IRegisteredItem)obj).getName();
 		} else {
 			return "unknown object";
 		}

@@ -14,12 +14,13 @@ import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.uml.extensionpoints.Activator;
+import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
 import org.eclipse.swt.graphics.Image;
 
 /**
  * Abstract Class that introduces the basic functionalities for Papyrus UML2 extension points
  */
-public abstract class RegisteredElementExtensionPoint {
+public abstract class RegisteredElementExtensionPoint implements IRegisteredItem {
 
 	/** Name of the registered element */
 	public String name;
