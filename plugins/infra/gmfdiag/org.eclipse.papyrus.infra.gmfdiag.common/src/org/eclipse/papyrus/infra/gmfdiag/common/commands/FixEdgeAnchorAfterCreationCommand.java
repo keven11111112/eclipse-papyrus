@@ -51,6 +51,7 @@ import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.RoutingStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.papyrus.infra.gmfdiag.common.routers.GridUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants;
 
@@ -152,9 +153,19 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 				//serialize bendpoints
 				int numOfPoints = dummyConnection.getPoints().size();
 				final List<RelativeBendpoint> newBendpoints = new ArrayList<RelativeBendpoint>();
+				Point first = dummyConnection.getPoints().getFirstPoint();
+				Point last = dummyConnection.getPoints().getLastPoint();
+
+				//required for bendpoints calculus
+				first = GridUtils.getPointFromFeedbackToGridCoordinate(first, this.request.getSourceEditPart());
+				last = GridUtils.getPointFromFeedbackToGridCoordinate(last, this.request.getSourceEditPart());
 				for(int i = 0; i < numOfPoints; i++) {
-					Dimension s = dummyConnection.getPoints().getPoint(i).getDifference(dummyConnection.getPoints().getFirstPoint());
-					Dimension t = dummyConnection.getPoints().getPoint(i).getDifference(dummyConnection.getPoints().getLastPoint());
+					Point current = dummyConnection.getPoints().getPoint(i);
+					//required for bendpoints calculus
+					current = GridUtils.getPointFromFeedbackToGridCoordinate(current, this.request.getSourceEditPart());
+
+					Dimension s = current.getDifference(first);
+					Dimension t = current.getDifference(last);
 					newBendpoints.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
 				}
 

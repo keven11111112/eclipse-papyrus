@@ -59,7 +59,7 @@ public class GridUtils {
 		final Point result = point.getCopy();
 		double zoomLevel = DiagramEditPartsUtil.getDiagramZoomLevel(anEditPart);
 		result.scale(zoomLevel);
-		boolean debug = true;
+		boolean debug = false;
 		if(debug) {
 			System.out.println("initialPoint/convertedPoint");
 			System.out.println(point + "/" + result);
@@ -78,7 +78,7 @@ public class GridUtils {
 		Point location = figureCanvas.getViewport().getViewLocation();
 		location.scale(1 / zoomFactor);//translation to get the absolute location with the scrollbar
 		result.translate(location);
-		boolean debug = true;
+		boolean debug = false;
 		if(debug) {
 			System.out.println("initialBounds/convertedBounds : zoomLevel = " + zoomFactor + " scollbar = " + location);
 			System.out.println(initialBounds + "/" + result);
