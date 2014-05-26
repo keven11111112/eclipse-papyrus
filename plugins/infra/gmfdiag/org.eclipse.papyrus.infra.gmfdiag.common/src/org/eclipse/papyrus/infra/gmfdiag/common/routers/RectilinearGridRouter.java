@@ -17,10 +17,10 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionLayer;
 import org.eclipse.draw2d.FreeformLayer;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.RectilinearRouter;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.FigureWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
@@ -61,22 +61,22 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	@Override
 	public void routeLine(final Connection conn, final int nestedRoutingDepth, PointList newLine) {
 
-		final IFigure connectionParent = conn.getParent();
-		if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
-			if(connectionParent != null) {
-				System.out.println("feedback points------------------------------------------------------");
-				System.out.println("ZOOM = " + DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart));
-
-			} else {
-				System.out.println("creation points------------------------------------------------------");
-			}
-
-			for(int i = 0; i < newLine.size(); i++) {
-				Point t = newLine.getPoint(i);
-				t = GridUtils.getPointFromFeedbackToGridCoordinate(t, this.anEditPart);
-				System.out.println("point i=" + i + " " + t);
-			}
-		}
+		//		final IFigure connectionParent = conn.getParent();
+		//		if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+		//			if(connectionParent != null) {
+		//				System.out.println("feedback points------------------------------------------------------");
+		//				System.out.println("ZOOM = " + DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart));
+		//
+		//			} else {
+		//				System.out.println("creation points------------------------------------------------------");
+		//			}
+		//
+		//			for(int i = 0; i < newLine.size(); i++) {
+		//				Point t = newLine.getPoint(i);
+		//				t = GridUtils.getPointFromFeedbackToGridCoordinate(t, this.anEditPart);
+		//				System.out.println("point i=" + i + " " + t);
+		//			}
+		//		}
 		super.routeLine(conn, nestedRoutingDepth, newLine);
 		//		if(newLine.size() >= 4) {
 		//			int i = 0;
@@ -177,8 +177,9 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	protected void resetEndPointsToEdge(final Connection conn, final PointList newLine) {
 		final IFigure connectionParent = conn.getParent();
 		super.resetEndPointsToEdge(conn, newLine);
-		if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+		if(connectionParent == null || connectionParent instanceof FigureWrapper || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
 			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart)) {
+				System.out.println("grid router////////////////////////////////////////////////////////:");
 				super.resetEndPointsToEdge(conn, newLine);
 				//TODO : move this call to this class
 				CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGridUsingGMFCoordinates(conn, newLine, this.anEditPart);

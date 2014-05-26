@@ -3,8 +3,10 @@ package org.eclipse.papyrus.infra.gmfdiag.common.snap.copy;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.AccessibleAnchorProvider;
@@ -16,6 +18,8 @@ import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.SharedCursors;
 import org.eclipse.gef.Tool;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.Util;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.graphics.Cursor;
@@ -54,9 +58,11 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @return the cursor
 	 */
+	@Override
 	protected Cursor calculateCursor() {
-		if(isInState(STATE_INITIAL | STATE_DRAG | STATE_ACCESSIBLE_DRAG))
+		if(isInState(STATE_INITIAL | STATE_DRAG | STATE_ACCESSIBLE_DRAG)) {
 			return getDefaultCursor();
+		}
 		return super.calculateCursor();
 	}
 
@@ -65,6 +71,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @see DragTracker#commitDrag()
 	 */
+	@Override
 	public void commitDrag() {
 		eraseSourceFeedback();
 		eraseTargetFeedback();
@@ -76,9 +83,19 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @return the target request
 	 */
+	@Override
 	protected Request createTargetRequest() {
 		ReconnectRequest request = new ReconnectRequest(getCommandName());
 		request.setConnectionEditPart(getConnectionEditPart());
+		@SuppressWarnings("unchecked")
+		final Map<Object, Object> data = request.getExtendedData();
+		final IFigure fig = getConnectionEditPart().getFigure();
+		//TODO : move me?
+		if(fig instanceof PolylineConnectionEx) {
+			data.put(Util.RECONNECT_REQUEST_INITIAL_POINTS_LIST, ((PolylineConnectionEx)fig).getPoints().getCopy());
+			data.put(Util.RECONNECT_REQUEST_INITIAL_CONSTRAINTS, Util.getConnectionConstraint(getConnection()));
+		}
+
 		return request;
 	}
 
@@ -89,6 +106,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @see Tool#deactivate()
 	 */
+	@Override
 	public void deactivate() {
 		eraseSourceFeedback();
 		getCurrentViewer().setFocus(null);
@@ -99,8 +117,9 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * Erases the source feedback.
 	 */
 	protected void eraseSourceFeedback() {
-		if(!getFlag(FLAG_SOURCE_FEEBBACK))
+		if(!getFlag(FLAG_SOURCE_FEEBBACK)) {
 			return;
+		}
 		setFlag(FLAG_SOURCE_FEEBBACK, false);
 		getConnectionEditPart().eraseSourceFeedback(getTargetRequest());
 	}
@@ -108,8 +127,9 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	/**
 	 * @see AbstractTool#getCommandName()
 	 */
+	@Override
 	protected String getCommandName() {
-		return commandName;
+		return this.commandName;
 	}
 
 	/**
@@ -127,12 +147,13 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * @return the ConnectionEditPart
 	 */
 	protected ConnectionEditPart getConnectionEditPart() {
-		return connectionEditPart;
+		return this.connectionEditPart;
 	}
 
 	/**
 	 * @see AbstractTool#getDebugName()
 	 */
+	@Override
 	protected String getDebugName() {
 		return "Connection Endpoint Tool";//$NON-NLS-1$
 	}
@@ -140,12 +161,13 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	/**
 	 * @see org.eclipse.gef.tools.TargetingTool#getExclusionSet()
 	 */
+	@Override
 	protected Collection getExclusionSet() {
-		if(exclusionSet == null) {
-			exclusionSet = new ArrayList();
-			exclusionSet.add(getConnection());
+		if(this.exclusionSet == null) {
+			this.exclusionSet = new ArrayList();
+			this.exclusionSet.add(getConnection());
 		}
-		return exclusionSet;
+		return this.exclusionSet;
 	}
 
 	/**
@@ -154,6 +176,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @see org.eclipse.gef.tools.AbstractTool#handleButtonUp(int)
 	 */
+	@Override
 	protected boolean handleButtonUp(int button) {
 		if(stateTransition(STATE_DRAG_IN_PROGRESS, STATE_TERMINAL)) {
 			eraseSourceFeedback();
@@ -169,6 +192,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @return <code>true</code>
 	 */
+	@Override
 	protected boolean handleDragInProgress() {
 		updateTargetRequest();
 		updateTargetUnderMouse();
@@ -181,6 +205,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	/**
 	 * @see org.eclipse.gef.tools.AbstractTool#handleDragStarted()
 	 */
+	@Override
 	protected boolean handleDragStarted() {
 		stateTransition(STATE_INITIAL, STATE_DRAG_IN_PROGRESS);
 		return false;
@@ -189,9 +214,11 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	/**
 	 * @see org.eclipse.gef.tools.TargetingTool#handleHover()
 	 */
+	@Override
 	protected boolean handleHover() {
-		if(isInDragInProgress())
+		if(isInDragInProgress()) {
 			updateAutoexposeHelper();
+		}
 		return true;
 	}
 
@@ -202,6 +229,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @see org.eclipse.gef.tools.AbstractTool#handleKeyDown(org.eclipse.swt.events.KeyEvent)
 	 */
+	@Override
 	protected boolean handleKeyDown(KeyEvent e) {
 		if(acceptArrowKey(e)) {
 			if(stateTransition(STATE_INITIAL, STATE_ACCESSIBLE_DRAG_IN_PROGRESS)) {
@@ -232,8 +260,9 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 			}
 
 			boolean consumed = false;
-			if(direction != 0 && e.stateMask == 0)
+			if(direction != 0 && e.stateMask == 0) {
 				consumed = navigateNextAnchor(direction);
+			}
 			if(!consumed) {
 				e.stateMask |= SWT.CONTROL;
 				e.stateMask &= ~SWT.SHIFT;
@@ -247,8 +276,9 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 			e.stateMask |= SWT.CONTROL;
 			if(getCurrentViewer().getKeyHandler().keyPressed(e)) {
 				// Do not try to connect to the same connection being dragged.
-				if(getCurrentViewer().getFocusEditPart() != getConnectionEditPart())
+				if(getCurrentViewer().getFocusEditPart() != getConnectionEditPart()) {
 					navigateNextAnchor(0);
+				}
 				return true;
 			}
 		}
@@ -268,22 +298,25 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 		EditPart focus = getCurrentViewer().getFocusEditPart();
 		AccessibleAnchorProvider provider;
 		provider = (AccessibleAnchorProvider)focus.getAdapter(AccessibleAnchorProvider.class);
-		if(provider == null)
+		if(provider == null) {
 			return false;
+		}
 
 		List list;
-		if(isTarget())
+		if(isTarget()) {
 			list = provider.getTargetAnchorLocations();
-		else
+		} else {
 			list = provider.getSourceAnchorLocations();
+		}
 
 		Point start = getLocation();
 		int distance = Integer.MAX_VALUE;
 		Point next = null;
 		for(int i = 0; i < list.size(); i++) {
 			Point p = (Point)list.get(i);
-			if(p.equals(start) || (direction != 0 && (start.getPosition(p) != direction)))
+			if(p.equals(start) || direction != 0 && start.getPosition(p) != direction) {
 				continue;
+			}
 			int d = p.getDistanceOrthogonal(start);
 			if(d < distance) {
 				distance = d;
@@ -305,7 +338,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 *        the new command name
 	 */
 	public void setCommandName(String newCommandName) {
-		commandName = newCommandName;
+		this.commandName = newCommandName;
 	}
 
 	/**
@@ -331,6 +364,7 @@ public class ConnectionEndpointTracker extends TargetingTool implements DragTrac
 	 * 
 	 * @see org.eclipse.gef.tools.TargetingTool#updateTargetRequest()
 	 */
+	@Override
 	protected void updateTargetRequest() {
 		ReconnectRequest request = (ReconnectRequest)getTargetRequest();
 		Point p = getLocation();
