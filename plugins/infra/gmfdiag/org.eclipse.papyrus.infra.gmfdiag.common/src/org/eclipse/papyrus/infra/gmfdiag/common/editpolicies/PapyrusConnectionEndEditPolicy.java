@@ -23,6 +23,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.ConnectionLocator;
 import org.eclipse.draw2d.ConnectionRouter;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Layer;
 import org.eclipse.draw2d.RelativeBendpoint;
@@ -35,6 +36,7 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.editpolicies.ConnectionEndpointEditPolicy;
 import org.eclipse.gef.editpolicies.FeedbackHelper;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.CustomFeedbackHelper;
@@ -245,8 +247,11 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 			point = dummyConnection.getPoints().getLastPoint();
 		}
 
+		final IDiagramGraphicalViewer viewer = DiagramEditPartsUtil.getActiveDiagramGraphicalViewer();
+		final FigureCanvas figureCanvas = (FigureCanvas)viewer.getControl();
+		final Point diagramScrollbarLocation = figureCanvas.getViewport().getViewLocation().getCopy();
+		point.translate(diagramScrollbarLocation.getNegated());
 		request.setLocation(point);
-
 
 		//clear the router
 		getConnection().getConnectionRouter().remove(dummyConnection);
