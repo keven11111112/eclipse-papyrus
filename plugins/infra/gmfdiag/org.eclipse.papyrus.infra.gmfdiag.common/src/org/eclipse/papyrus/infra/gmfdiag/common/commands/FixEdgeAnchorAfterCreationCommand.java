@@ -26,7 +26,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.ConnectionRouter;
+import org.eclipse.draw2d.FigureCanvas;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.Layer;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
@@ -34,6 +36,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.LayerConstants;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
@@ -105,38 +108,49 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 		final Map<?, ?> requestParameters = createRelationShipRequest.getParameters();
 		final Point sourcePoint = ((Point)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_POINT)).getCopy();
 		final Point targetPoint = ((Point)requestParameters.get(RequestParameterConstants.EDGE_TARGET_POINT)).getCopy();
+		final IDiagramGraphicalViewer viewer = DiagramEditPartsUtil.getActiveDiagramGraphicalViewer();
+		final FigureCanvas figureCanvas = (FigureCanvas)viewer.getControl();
+		final Point diagramScrollbarLocation = figureCanvas.getViewport().getViewLocation().getCopy();
 		final IFigure fig1 = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_SOURCE_FIGURE);
 		final IFigure fig2 = (IFigure)requestParameters.get(RequestParameterConstants.EDGE_TARGET_FIGURE);
 		if(fig1 instanceof IAnchorableFigure && fig2 instanceof IAnchorableFigure) {
 			final IAnchorableFigure sourceFigure = (IAnchorableFigure)fig1;
 			final IAnchorableFigure targetFigure = (IAnchorableFigure)fig2;
 
-			//we route the future connection to find its anchors and its bendpoints
-			final ConnectionRouter router = getRouterToUse(createdEdge);
-			final Connection dummyConnection = new PolylineConnectionEx();
-
-			final PointList pointsList = new PointList();
-			pointsList.addPoint(sourcePoint);
-			pointsList.addPoint(targetPoint);
-
-			final ConnectionAnchor arg0 = sourceFigure.getSourceConnectionAnchorAt(sourcePoint);
-			dummyConnection.setSourceAnchor(arg0);
-
-			final ConnectionAnchor arg1 = targetFigure.getTargetConnectionAnchorAt(targetPoint);
-			dummyConnection.setTargetAnchor(arg1);
-
-			router.route(dummyConnection);
 
 			if(createdEdge != null && sourcePoint != null && targetPoint != null) {
-				Point realSourcePoint = dummyConnection.getPoints().getFirstPoint();
-				Point realTargetPoint = dummyConnection.getPoints().getLastPoint();
+				//we route the future connection to find its anchors and its bendpoints
+				final ConnectionRouter router = getRouterToUse(createdEdge);
+				final Connection dummyConnection = new PolylineConnectionEx();
+				final Layer layer = DiagramEditPartsUtil.getDiagramFeedbackLayer(this.request.getSourceEditPart());
+				dummyConnection.setParent(layer);
 
-				//get source anchor terminal
-				final BaseSlidableAnchor anchorSource = (BaseSlidableAnchor)sourceFigure.getSourceConnectionAnchorAt(realSourcePoint);
+
+				final PointList pointsList = new PointList();
+				final Point dummySourcePoint = sourcePoint.getCopy();
+				final Point dummyTargetPoint = targetPoint.getCopy();
+				pointsList.addPoint(dummySourcePoint);
+				pointsList.addPoint(dummyTargetPoint);
+
+				final ConnectionAnchor arg0 = sourceFigure.getSourceConnectionAnchorAt(dummySourcePoint);
+				dummyConnection.setSourceAnchor(arg0);
+
+				final ConnectionAnchor arg1 = targetFigure.getTargetConnectionAnchorAt(dummyTargetPoint);
+				dummyConnection.setTargetAnchor(arg1);
+				router.route(dummyConnection);
+
+				final Point routedSourcePoint = dummyConnection.getPoints().getFirstPoint();
+				final Point routedTargetPoint = dummyConnection.getPoints().getLastPoint();
+
+				//we can't ignore the scrollbar in the result of the location obtains with the router!
+				routedSourcePoint.translate(diagramScrollbarLocation.getNegated());
+				routedTargetPoint.translate(diagramScrollbarLocation.getNegated());
+
+				final BaseSlidableAnchor anchorSource = (BaseSlidableAnchor)sourceFigure.getSourceConnectionAnchorAt(routedSourcePoint);
 				final String sourceTerminal = anchorSource.getTerminal();
 
 				//get target anchor terminal
-				final BaseSlidableAnchor anchorTarget = (BaseSlidableAnchor)targetFigure.getTargetConnectionAnchorAt(realTargetPoint);
+				final BaseSlidableAnchor anchorTarget = (BaseSlidableAnchor)targetFigure.getTargetConnectionAnchorAt(routedTargetPoint);
 				final String targetTerminal = anchorTarget.getTerminal();
 
 				//create and set the source anchor
@@ -151,6 +165,7 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 
 
 				//serialize bendpoints
+				//1. first way to get the bendpoints
 				int numOfPoints = dummyConnection.getPoints().size();
 				final List<RelativeBendpoint> newBendpoints = new ArrayList<RelativeBendpoint>();
 				Point first = dummyConnection.getPoints().getFirstPoint();
@@ -163,14 +178,27 @@ public class FixEdgeAnchorAfterCreationCommand extends AbstractTransactionalComm
 					Point current = dummyConnection.getPoints().getPoint(i);
 					//required for bendpoints calculus
 					current = GridUtils.getPointFromFeedbackToGridCoordinate(current, this.request.getSourceEditPart());
-
 					Dimension s = current.getDifference(first);
 					Dimension t = current.getDifference(last);
 					newBendpoints.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
 				}
 
+				//the 2 ways give small errors
+				//2. second way to get the bendpoints
+				//				final List<RelativeBendpoint> newBendpointsV2 = new ArrayList<RelativeBendpoint>();
+				//				for(int i = 0; i < numOfPoints; i++) {
+				//					Point current = dummyConnection.getPoints().getPoint(i);
+				//					Dimension s = current.getDifference(first);
+				//					Dimension t = current.getDifference(last);
+				//					s.scale(1.0 / DiagramEditPartsUtil.getDiagramZoomLevel(this.request.getSourceEditPart()));
+				//					t.scale(1.0 / DiagramEditPartsUtil.getDiagramZoomLevel(this.request.getSourceEditPart()));
+				//					newBendpointsV2.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
+				//				}
+
+
 				final RelativeBendpoints points = (RelativeBendpoints)createdEdge.getBendpoints();
 				points.setPoints(newBendpoints);
+				dummyConnection.setParent(null);
 				return CommandResult.newOKCommandResult();
 			}
 		}

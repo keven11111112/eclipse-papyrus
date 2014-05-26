@@ -16,10 +16,12 @@ package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 import java.util.Collection;
 import java.util.HashSet;
 
+import org.eclipse.draw2d.Layer;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.RootEditPart;
+import org.eclipse.gef.editparts.FreeformGraphicalRootEditPart;
 import org.eclipse.gef.editparts.ZoomManager;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramRootEditPart;
@@ -219,11 +221,18 @@ public class DiagramEditPartsUtil {
 	 *         the value of the grid spacing or -1 if not found
 	 */
 	public static final double getDiagramGridSpacing(final EditPart anEditPart) {
-		final RootEditPart rootEP = anEditPart.getRoot();
+		final RootEditPart rootEP;
+		if(anEditPart instanceof RootEditPart) {
+			rootEP = (RootEditPart)anEditPart;
+		} else {
+			rootEP = anEditPart.getRoot();
+
+		}
 		if(rootEP instanceof DiagramRootEditPart) {
 			return ((DiagramRootEditPart)rootEP).getGridSpacing();
 		}
 		return -1.0;
+
 	}
 
 	/**
@@ -242,5 +251,25 @@ public class DiagramEditPartsUtil {
 			}
 		}
 		return 1.0;
+	}
+
+	/**
+	 * 
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         the Feedback layer used by the diagram
+	 */
+	public static final Layer getDiagramFeedbackLayer(final EditPart anEditPart) {
+		Layer layer = null;
+		EditPart part = anEditPart;
+		while(part != null && layer == null) {
+			if(part instanceof FreeformGraphicalRootEditPart) {
+				layer = (Layer)((FreeformGraphicalRootEditPart)part).getLayer(DiagramRootEditPart.FEEDBACK_LAYER);
+			} else {
+				part = part.getParent();
+			}
+		}
+		return layer;
 	}
 }

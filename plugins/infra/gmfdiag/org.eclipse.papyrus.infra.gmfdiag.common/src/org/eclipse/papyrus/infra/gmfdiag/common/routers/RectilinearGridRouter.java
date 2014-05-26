@@ -60,11 +60,12 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	 */
 	@Override
 	public void routeLine(final Connection conn, final int nestedRoutingDepth, PointList newLine) {
-		System.out.println("ZOOM = " + DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart));
+
 		final IFigure connectionParent = conn.getParent();
 		if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
 			if(connectionParent != null) {
 				System.out.println("feedback points------------------------------------------------------");
+				System.out.println("ZOOM = " + DiagramEditPartsUtil.getDiagramZoomLevel(this.anEditPart));
 
 			} else {
 				System.out.println("creation points------------------------------------------------------");
@@ -72,7 +73,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 
 			for(int i = 0; i < newLine.size(); i++) {
 				Point t = newLine.getPoint(i);
-				//				Point t = GridUtils.getPointFromFeedbackToGridCoordinate(current, this.anEditPart);
+				t = GridUtils.getPointFromFeedbackToGridCoordinate(t, this.anEditPart);
 				System.out.println("point i=" + i + " " + t);
 			}
 		}

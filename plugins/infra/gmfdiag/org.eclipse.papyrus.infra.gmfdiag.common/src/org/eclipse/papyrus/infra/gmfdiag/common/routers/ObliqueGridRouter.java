@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.routers;
 
 import org.eclipse.draw2d.Connection;
+import org.eclipse.draw2d.ConnectionLayer;
+import org.eclipse.draw2d.FreeformLayer;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.ObliqueRouter;
@@ -55,10 +58,13 @@ public class ObliqueGridRouter extends ObliqueRouter {
 	@Override
 	protected void resetEndPointsToEdge(Connection conn, PointList newLine) {
 		super.resetEndPointsToEdge(conn, newLine);
+		final IFigure connectionParent = conn.getParent();
 		if(DiagramEditPartsUtil.isSnapToGridActive(this.anyEditPart)) {
-			double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
-			double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
-			CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing, zoom);
+			if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+				double spacing = DiagramEditPartsUtil.getDiagramGridSpacing(this.anyEditPart);
+				double zoom = DiagramEditPartsUtil.getDiagramZoomLevel(this.anyEditPart);
+				CustomRouterHelper.getInstance().resetEndPointsToEdgeOnGrid(conn, newLine, spacing, zoom);
+			}
 		}
 	}
 }
