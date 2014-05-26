@@ -20,7 +20,6 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.RectilinearRouter;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.FigureWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
@@ -177,7 +176,7 @@ public class RectilinearGridRouter extends RectilinearRouter {
 	protected void resetEndPointsToEdge(final Connection conn, final PointList newLine) {
 		final IFigure connectionParent = conn.getParent();
 		super.resetEndPointsToEdge(conn, newLine);
-		if(connectionParent == null || connectionParent instanceof FigureWrapper || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
+		if(connectionParent == null || !(connectionParent instanceof ConnectionLayer) && connectionParent instanceof FreeformLayer) {
 			if(DiagramEditPartsUtil.isSnapToGridActive(this.anEditPart)) {
 				System.out.println("grid router////////////////////////////////////////////////////////:");
 				super.resetEndPointsToEdge(conn, newLine);

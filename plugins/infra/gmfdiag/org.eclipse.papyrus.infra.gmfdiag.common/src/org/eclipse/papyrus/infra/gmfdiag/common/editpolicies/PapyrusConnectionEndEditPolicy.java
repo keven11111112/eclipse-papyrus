@@ -40,7 +40,6 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.CustomFeedbackHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.helper.FigureWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusConnectionEndpointHandle;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.Util;
@@ -231,8 +230,6 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 		//		PointList newPoints = initialPoints.getCopy();
 		PointList newPoints = getInitialPointList(request);
 		IFigure parent = getConnection().getParent();
-		IFigure figureWrapper = new FigureWrapper(parent);
-		dummyConnection.setParent(figureWrapper);
 		final Layer layer = DiagramEditPartsUtil.getDiagramFeedbackLayer(node);
 		dummyConnection.setParent(layer);
 		dummyConnection.setPoints(newPoints);//required?
