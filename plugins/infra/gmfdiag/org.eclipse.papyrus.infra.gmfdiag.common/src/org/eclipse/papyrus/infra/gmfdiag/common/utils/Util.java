@@ -58,6 +58,12 @@ public class Util {
 
 	public static final String RECONNECT_REQUEST_INITIAL_CONSTRAINTS = "Initial_Constraint";
 
+	public static final String FEEDBACK_SOURCE_TERMINAL = "sourceTerminal";
+
+	public static final String FEEDBKACK_TARGET_TERMINAL = "targetTerminal";
+
+	public static final String FEEDBACK_BENDPOINTS = "feedbackBendpoints";
+
 	/**
 	 * 
 	 * @return
@@ -65,7 +71,6 @@ public class Util {
 	 */
 	//TODO : move me
 	public static final List<RelativeBendpoint> getConnectionConstraint(final Connection connection) {
-		System.out.println("ask contraints///////////////////////////////////////////////////////////////////////////////////");
 		Object value = connection.getConnectionRouter().getConstraint(connection);
 		final List<RelativeBendpoint> contraints = new ArrayList<RelativeBendpoint>();
 		if(value instanceof List<?>) {

@@ -117,8 +117,19 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 	 */
 	@Override
 	protected void showConnectionMoveFeedback(ReconnectRequest request) {
+		final Point location = request.getLocation().getCopy();
 		updateRouterConstraint(request);
 		super.showConnectionMoveFeedback(request);
+		request.setLocation(location);
+		Map<Object, Object> param = request.getExtendedData();
+		final PointList copy = getConnection().getPoints().getCopy();
+		final String sourceID = ((IAnchorableFigure)getConnection().getSourceAnchor().getOwner()).getConnectionAnchorTerminal(getConnection().getSourceAnchor());
+		final String targetID = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getConnectionAnchorTerminal(getConnection().getTargetAnchor());
+		param.put(Util.FEEDBACK_BENDPOINTS, copy);
+		param.put(Util.FEEDBACK_SOURCE_TERMINAL, sourceID);
+		param.put(Util.FEEDBKACK_TARGET_TERMINAL, targetID);
+		System.out.println("sourceTerm" + sourceID);
+		System.out.println("targetRer" + targetID);
 	}
 
 

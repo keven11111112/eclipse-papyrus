@@ -33,9 +33,11 @@ public class MathUtil {
 		int div = (int)(aValue / base);
 
 		double remainder = aValue % base;
-		if((remainder * 2.0) > base) {
+		if(remainder * 2.0 > base) {
 			div++;
 		}
 		return div * base;
 	}
+
+
 }
