@@ -42,7 +42,6 @@ import org.eclipse.gmf.runtime.diagram.ui.internal.commands.SetConnectionBendpoi
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewAndElementRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.Diagram;
@@ -248,30 +247,40 @@ public class DefaultGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 
 		final IFigure fig = request.getConnectionEditPart().getFigure();
 		if(fig instanceof Connection) {
-			//2.1 get the points list of the figure
-			final Connection connection = (Connection)fig;
-			final PointList points = connection.getPoints();
+			Map<?, ?> param = request.getExtendedData();
+			if(param.get(Util.FEEDBACK_SOURCE_TERMINAL) != null) {//TODO : use a boolean or a wrapper for these information!
+				final String newSourceTerminal = (String)param.get(Util.FEEDBACK_SOURCE_TERMINAL);
+				final String newTargetTerminal = (String)param.get(Util.FEEDBKACK_TARGET_TERMINAL);
+				final PointList points = (PointList)param.get(Util.FEEDBACK_BENDPOINTS);
+				//2.1 get the points list of the figure
+				final Connection connection = (Connection)fig;
+				//				final PointList points = connection.getPoints();
 
-			//2.2 save bendpoints
-			SetConnectionBendpointsCommand connectionBendpoints = new SetConnectionBendpointsCommand(getEditingDomain());
-			connectionBendpoints.setNewPointList(points, points.getFirstPoint(), points.getLastPoint());
-			connectionBendpoints.setEdgeAdapter(request.getConnectionEditPart());
-			cc.add(connectionBendpoints);
+				//2.2 save bendpoints
+				SetConnectionBendpointsCommand connectionBendpoints = new SetConnectionBendpointsCommand(getEditingDomain());
+				connectionBendpoints.setNewPointList(points, points.getFirstPoint(), points.getLastPoint());
+				connectionBendpoints.setEdgeAdapter(request.getConnectionEditPart());
+				cc.add(connectionBendpoints);
 
-			//2.3 save connection anchor
-			final SetConnectionAnchorsCommand setConnectionAnchorsCommand = new SetConnectionAnchorsCommand(getEditingDomain(), "Set Anchors Command");
-			final ConnectionAnchor sourceAnchor = ((IAnchorableFigure)connection.getSourceAnchor().getOwner()).getSourceConnectionAnchorAt(points.getFirstPoint());
-			final ConnectionAnchor targetAnchor = ((IAnchorableFigure)node.getFigure()).getTargetConnectionAnchorAt(points.getLastPoint());
+				//2.3 save connection anchor
+				final SetConnectionAnchorsCommand setConnectionAnchorsCommand = new SetConnectionAnchorsCommand(getEditingDomain(), "Set Anchors Command");
+				//				final ConnectionAnchor sourceAnchor = ((IAnchorableFigure)node.getFigure()).getSourceConnectionAnchorAt(points.getFirstPoint());
+				//				final ConnectionAnchor targetAnchor = ((IAnchorableFigure)connection.getTargetAnchor().getOwner()).getTargetConnectionAnchorAt(points.getLastPoint());
 
-			final String newSourceTerminal = ((IAnchorableFigure)connection.getSourceAnchor().getOwner()).getConnectionAnchorTerminal(sourceAnchor);
-			final String newTargetTerminal = ((IAnchorableFigure)node.getFigure()).getConnectionAnchorTerminal(targetAnchor);
+				//				final String newSourceTerminal = ((IAnchorableFigure)node.getFigure()).getConnectionAnchorTerminal(sourceAnchor);
+				//				final String newTargetTerminal = ((IAnchorableFigure)connection.getTargetAnchor().getOwner()).getConnectionAnchorTerminal(targetAnchor);
 
-			setConnectionAnchorsCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
-			setConnectionAnchorsCommand.setNewSourceTerminal(newSourceTerminal);
-			setConnectionAnchorsCommand.setNewTargetTerminal(newTargetTerminal);
-			cc.add(setConnectionAnchorsCommand);
+				setConnectionAnchorsCommand.setEdgeAdaptor(new EObjectAdapter((View)request.getConnectionEditPart().getModel()));
+				setConnectionAnchorsCommand.setNewSourceTerminal(newSourceTerminal);
+				setConnectionAnchorsCommand.setNewTargetTerminal(newTargetTerminal);
+				cc.add(setConnectionAnchorsCommand);
+
+			} else {
+
+				//TODO : extract the calculus from PapyrusConnectionEndEditPolicy and put it here! 
+
+			}
 		}
-
 		return new ICommandProxy(cc);
 	}
 

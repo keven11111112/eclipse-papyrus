@@ -40,6 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IAnchorableFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.CustomFeedbackHelper;
+import org.eclipse.papyrus.infra.gmfdiag.common.helper.IdentityAnchorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.PapyrusConnectionEndpointHandle;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.Util;
@@ -123,13 +124,30 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 		request.setLocation(location);
 		Map<Object, Object> param = request.getExtendedData();
 		final PointList copy = getConnection().getPoints().getCopy();
-		final String sourceID = ((IAnchorableFigure)getConnection().getSourceAnchor().getOwner()).getConnectionAnchorTerminal(getConnection().getSourceAnchor());
-		final String targetID = ((IAnchorableFigure)getConnection().getTargetAnchor().getOwner()).getConnectionAnchorTerminal(getConnection().getTargetAnchor());
+		IFigure sourceOwner = getConnection().getSourceAnchor().getOwner();
+		final String sourceID;
+		if(sourceOwner == null) {
+			//we need to put a value
+			sourceID = IdentityAnchorHelper.createNewAnchorIdValue(0.0, 0.0);
+		} else {
+			sourceID = ((IAnchorableFigure)sourceOwner).getConnectionAnchorTerminal(getConnection().getSourceAnchor());
+		}
+
+
+		IFigure targetOwner = getConnection().getTargetAnchor().getOwner();
+
+
+		final String targetID;
+		if(targetOwner == null) {
+			targetID = IdentityAnchorHelper.createNewAnchorIdValue(0.0, 0.0);
+		} else {
+			targetID = ((IAnchorableFigure)targetOwner).getConnectionAnchorTerminal(getConnection().getTargetAnchor());
+		}
 		param.put(Util.FEEDBACK_BENDPOINTS, copy);
 		param.put(Util.FEEDBACK_SOURCE_TERMINAL, sourceID);
 		param.put(Util.FEEDBKACK_TARGET_TERMINAL, targetID);
-		System.out.println("sourceTerm" + sourceID);
-		System.out.println("targetRer" + targetID);
+//		System.out.println("sourceTerm" + sourceID);
+//		System.out.println("targetRer" + targetID);
 	}
 
 
@@ -154,11 +172,9 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 		List<RelativeBendpoint> result = new ArrayList<RelativeBendpoint>();
 		if(value instanceof Collection<?>) {
 			final Iterator<?> iter = ((Collection<?>)value).iterator();
-			System.out.println("initial bendpoints");
 			while(iter.hasNext()) {
 				final Object current = iter.next();
 				if(current instanceof RelativeBendpoint) {
-					//					System.out.println("bendpoints" + ((RelativeBendpoint)current).getLocation() + "  " + current);
 					result.add((RelativeBendpoint)current);
 				}
 			}
@@ -166,15 +182,6 @@ public class PapyrusConnectionEndEditPolicy extends ConnectionEndpointEditPolicy
 		}
 
 		result = Util.copyRelatedBendpointList(result, getConnection());
-		Iterator<RelativeBendpoint> iter = result.iterator();
-		while(iter.hasNext()) {
-			final Object current = iter.next();
-			//			if(current instanceof RelativeBendpoint) {
-			System.out.println("bendpoints" + ((RelativeBendpoint)current).getLocation() + "  " + current);
-			//				result.add((RelativeBendpoint)current);
-			//			}
-		}
-
 		return result;
 	}
 
