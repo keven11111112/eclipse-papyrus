@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
+import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 
 /**
@@ -78,6 +79,16 @@ public class IdentityAnchorHelper {
 		return Double.parseDouble(id);
 	}
 
+	/**
+	 * 
+	 * @param pt
+	 *        a point representing the relative location of the anchor
+	 * @return
+	 *         the string mapping for the point
+	 */
+	public static final String createNewAnchorIdValue(final PrecisionPoint pt) {
+		return createNewAnchorIdValue(pt.preciseX(), pt.preciseY());
+	}
 
 	/**
 	 * 

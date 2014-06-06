@@ -272,4 +272,24 @@ public class DiagramEditPartsUtil {
 		}
 		return layer;
 	}
+
+	/**
+	 * 
+	 * @param anEditPart
+	 *        an edit part
+	 * @return
+	 *         the Feedback layer used by the diagram
+	 */
+	public static final Layer getDiagramConnectionLayer(final EditPart anEditPart) {
+		Layer layer = null;
+		EditPart part = anEditPart;
+		while(part != null && layer == null) {
+			if(part instanceof FreeformGraphicalRootEditPart) {
+				layer = (Layer)((FreeformGraphicalRootEditPart)part).getLayer(DiagramRootEditPart.CONNECTION_LAYER);
+			} else {
+				part = part.getParent();
+			}
+		}
+		return layer;
+	}
 }

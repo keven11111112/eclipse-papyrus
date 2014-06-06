@@ -88,7 +88,8 @@ public class CustomRouterHelper {
 				newLine.setPoint(new Point(currentPoint.x, previousPoint.y), i);
 			} else {
 				Point currentPoint = newLine.getPoint(i);
-				newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), i);
+				//				newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), i);
+				newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.y, gridSpacing)), i);
 			}
 		}
 
@@ -110,7 +111,8 @@ public class CustomRouterHelper {
 			newLine.setPoint(new Point(currentPoint.x, previousPoint.y), size - 2);
 		} else {
 			Point currentPoint = newLine.getPoint(size - 2);
-			newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), size - 2);
+			//			newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.x, gridSpacing)), size - 2);
+			newLine.setPoint(new Point(currentPoint.x, (int)MathUtil.getClosestMultiple(currentPoint.y, gridSpacing)), size - 2);
 		}
 
 		return newLine;
@@ -129,6 +131,11 @@ public class CustomRouterHelper {
 	 *        zoom factor
 	 */
 	public void resetEndPointsToEdgeOnGridUsingGMFCoordinates(final Connection conn, final PointList newLine, final EditPart anEditPart) {
+		if(conn.getSourceAnchor().getOwner() != conn.getTargetAnchor().getOwner() && conn.getTargetAnchor().getOwner() != null) {
+			int i = 0;
+			i++;
+		}
+
 		final PointList oldNewLine = newLine.getCopy();
 		final Point newSourcePoint = getAnchorPointLocationUsingGMFCoordinates(conn, conn.getSourceAnchor(), newLine.getFirstPoint(), newLine.getPoint(1), anEditPart);
 

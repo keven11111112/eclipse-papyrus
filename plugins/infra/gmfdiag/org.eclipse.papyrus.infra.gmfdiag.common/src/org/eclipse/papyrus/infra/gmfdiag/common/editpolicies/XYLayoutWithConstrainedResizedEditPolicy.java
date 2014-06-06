@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -69,6 +68,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	 * @return a command to satisfy the request; <tt>null</tt> if the request is not
 	 *         understood.
 	 */
+	@Override
 	protected Command getCreateCommand(CreateRequest request) {
 		CreateViewRequest req = (CreateViewRequest)request;
 
@@ -135,6 +135,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	 *        the ChangeBoundsRequest
 	 * @return the Command
 	 */
+	@Override
 	protected Command getChangeConstraintCommand(ChangeBoundsRequest request) {
 		final CompoundCommand resize = new CompoundCommand("Resize Command");//$NON-NLS-1$
 		IGraphicalEditPart child;
@@ -169,7 +170,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 			}
 			//we add the command to fix the anchor
 			if(isConstrainedResize && child instanceof INodeEditPart) {
-				if(helper == null) {
+				if(this.helper == null) {
 					TransactionalEditingDomain domain = null;
 					try {
 						domain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(child);
@@ -191,6 +192,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	protected Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
 		final Command cmd = super.createChangeConstraintCommand(request, child, constraint);
 		if(RequestConstants.REQ_MOVE_CHILDREN.equals(request.getType()) && child instanceof INodeEditPart) {
+			System.out.println("We are moving");
 			List<?> sources = ((INodeEditPart)child).getSourceConnections();
 			List<?> targets = ((INodeEditPart)child).getTargetConnections();
 			Set<Object> connections = new HashSet<Object>();
@@ -200,7 +202,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 				final CompoundCommand cc = new CompoundCommand();
 				cc.add(cmd);
 				//see bug 430702: [Diagram] Moving source of a link moves the target too.	
-				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart)getHost(), connections)));
+				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart)getHost(), connections, (INodeEditPart)child)));
 				return cc;
 			}
 		}
