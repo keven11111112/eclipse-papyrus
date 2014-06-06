@@ -202,7 +202,7 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 				final CompoundCommand cc = new CompoundCommand();
 				cc.add(cmd);
 				//see bug 430702: [Diagram] Moving source of a link moves the target too.	
-				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart)getHost(), connections, (INodeEditPart)child)));
+				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), request, (IGraphicalEditPart)getHost(), connections)));
 				return cc;
 			}
 		}

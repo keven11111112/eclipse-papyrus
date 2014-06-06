@@ -31,7 +31,6 @@ public class IdentityAnchorHelper {
 	/**
 	 * the char ending an id of {@link IdentityAnchor}
 	 */
-
 	public static final char END_ID = ')';
 
 	/**
