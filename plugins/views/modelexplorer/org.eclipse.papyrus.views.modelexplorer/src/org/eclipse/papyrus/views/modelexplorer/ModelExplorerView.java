@@ -62,6 +62,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.emf.providers.SemanticFromModelExplorer;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
@@ -99,6 +100,8 @@ import org.eclipse.ui.internal.navigator.NavigatorContentService;
 import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
+import org.eclipse.ui.navigator.ILinkHelper;
+import org.eclipse.ui.navigator.LinkHelperService;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
 import org.eclipse.ui.views.properties.tabbed.ITabbedPropertySheetPageContributor;
@@ -228,6 +231,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	 */
 	private void handleSelectionChangedFromDiagramEditor(IWorkbenchPart part, ISelection selection) {
 		// Handle selection from diagram editor
+
 		if(isLinkingEnabled()) {
 			if(part instanceof IEditorPart) {
 				if(selection instanceof IStructuredSelection) {
@@ -235,18 +239,29 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 					ArrayList<Object> semanticElementList = new ArrayList<Object>();
 					while(selectionIterator.hasNext()) {
 						Object currentSelection = selectionIterator.next();
-						if(currentSelection instanceof IAdaptable) {
-							Object semanticElement = ((IAdaptable)currentSelection).getAdapter(EObject.class);
-							if(semanticElement != null) {
-								semanticElementList.add(semanticElement);
-							}
+						// getEObject already check if it is IAdaptable
+						EObject result = EMFHelper.getEObject(currentSelection);
+						if(result != null) {
+							semanticElementList.add(result);
 						}
-
 					}
+
 					revealSemanticElement(semanticElementList);
-
 				}
+			}
 
+			// Selections from the Model Explorer result in a part from the ModelExplorerPageBookView instance which is not an IEditorPart
+			if(part instanceof ModelExplorerPageBookView && !selection.isEmpty()) {
+				if(selection instanceof IStructuredSelection) {
+					// Extracted from org.eclipse.ui.internal.navigator.actions.LinkEditorAction activateEditorJob
+					// 	the problem was that multi-element selections were disabled as only selections of 1 could clear the condition size()==1
+					IStructuredSelection sSelection = (IStructuredSelection)selection;
+					LinkHelperService linkService = getLinkHelperService();
+					ILinkHelper[] helpers = linkService.getLinkHelpersFor(sSelection.getFirstElement()); // LinkHelper in org.eclipse.papyrus.views.modelexplorer
+					if(helpers.length > 0) {
+						helpers[0].activateEditor(part.getSite().getPage(), sSelection);
+					}
+				}
 			}
 		}
 	}
@@ -708,7 +723,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 
 
 		try {
-			this.editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
+			editingDomain = ServiceUtils.getInstance().getTransactionalEditingDomain(serviceRegistry);
 
 			// Set Viewer input if it already exist
 			if(getCommonViewer() != null) {
@@ -722,7 +737,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		// Listen to isDirty flag
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
-		if(this.getCommonViewer() != null) {
+		if(getCommonViewer() != null) {
 			refresh();
 		}
 	}
@@ -777,7 +792,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		editingDomain = null;
 		lastTrans = null;
 
-		for(IPropertySheetPage propertySheetPage : this.propertySheetPages) {
+		for(IPropertySheetPage propertySheetPage : propertySheetPages) {
 			propertySheetPage.dispose();
 		}
 
@@ -814,7 +829,7 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				if(multiDiagramEditor instanceof ITabbedPropertySheetPageContributor) {
 					ITabbedPropertySheetPageContributor contributor = (ITabbedPropertySheetPageContributor)multiDiagramEditor;
 					IPropertySheetPage propertySheetPage = new TabbedPropertySheetPage(contributor);
-					this.propertySheetPages.add(propertySheetPage);
+					propertySheetPages.add(propertySheetPage);
 					return propertySheetPage;
 				}
 			}
