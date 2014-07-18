@@ -62,7 +62,6 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
 	 * 
 	 */
-	@Override
 	public void revealSemanticElement(List<?> elementList) {
 		revealElement(elementList);
 	}
@@ -70,7 +69,6 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	/**
 	 * {@inheritDoc}
 	 */
-	@Override
 	public boolean revealElement(Object element) {
 		return revealElement(Collections.singleton(element));
 	}
@@ -84,7 +82,6 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
 	 * 
 	 */
-	@Override
 	public boolean revealElement(Collection<?> elementList) {
 		//create an instance that can get semantic element from gmf
 		SemanticFromGMFElement semanticFromGMFElement = new SemanticFromGMFElement();
@@ -106,7 +103,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 					Object currentElement = semanticFromGMFElement.getSemanticElement(currentEditPart);
 					if(clonedList.contains(currentElement)) {
 						clonedList.remove(currentElement);
-						researchedEditPart = ((IGraphicalEditPart)currentEditPart);
+						researchedEditPart = (IGraphicalEditPart)currentEditPart;
 						partSelection.add(researchedEditPart);
 
 					}
@@ -127,7 +124,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 			// the second test, as the model element is not a PrimaryEditPart, is to allow the selection even if the user selected it with other elements
 			//	and reset the selection if only the model is selected
-			if(clonedList.isEmpty() || (clonedList.size() == 1 && clonedList.get(0) instanceof org.eclipse.uml2.uml.internal.impl.ModelImpl)) {
+			if(clonedList.isEmpty() || clonedList.size() == 1 && clonedList.get(0) instanceof org.eclipse.uml2.uml.internal.impl.ModelImpl) {
 				//all parts have been found
 				IStructuredSelection sSelection = new StructuredSelection(partSelection);
 				// this is used instead of graphicalViewer.select(IGraphicalEditPart) as the later only allows the selection of a single element
