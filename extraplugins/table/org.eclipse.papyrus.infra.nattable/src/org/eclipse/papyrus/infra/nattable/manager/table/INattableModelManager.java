@@ -34,8 +34,10 @@ import org.eclipse.ui.services.IDisposable;
 public interface INattableModelManager extends ITableAxisElementProvider, IDisposable, IDataProvider {
 
 
+	@Override
 	public int getColumnCount();
 
+	@Override
 	public int getRowCount();
 
 	public void addRows(final Collection<Object> objectsToAdd);
@@ -193,4 +195,5 @@ public interface INattableModelManager extends ITableAxisElementProvider, IDispo
 	 *        the table preference store
 	 */
 	public void setWorkspacePreferenceStore(final PreferenceStore store);
+
 }
