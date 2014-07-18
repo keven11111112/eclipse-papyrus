@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.table;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -46,7 +47,10 @@ import org.eclipse.nebula.widgets.nattable.print.command.TurnViewportOnCommand;
 import org.eclipse.nebula.widgets.nattable.print.config.DefaultPrintBindings;
 import org.eclipse.nebula.widgets.nattable.reorder.ColumnReorderLayer;
 import org.eclipse.nebula.widgets.nattable.reorder.event.ColumnReorderEvent;
+import org.eclipse.nebula.widgets.nattable.selection.SelectionLayer;
 import org.eclipse.nebula.widgets.nattable.selection.command.SelectAllCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectColumnCommand;
+import org.eclipse.nebula.widgets.nattable.selection.command.SelectRowsCommand;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -72,10 +76,12 @@ import org.eclipse.papyrus.infra.nattable.provider.PapyrusNatTableToolTipProvide
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.sort.ColumnSortModel;
 import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.LocationValue;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
@@ -90,7 +96,7 @@ import org.eclipse.ui.IWorkbenchPartSite;
  * This class allows to create, configure and manipulate the NatTable Widget
  * 
  */
-public abstract class AbstractNattableWidgetManager implements INattableModelManager {
+public abstract class AbstractNattableWidgetManager implements INattableModelManager, IRevealSemanticElement {
 
 	/**
 	 * the managed table
@@ -152,7 +158,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	public AbstractNattableWidgetManager(final Table table) {
 		this.table = table;
-		this.tableContext = table.getContext();
+		tableContext = table.getContext();
 	}
 
 	/**
@@ -167,69 +173,69 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public NatTable createNattable(final Composite parent, final int style, final IWorkbenchPartSite site) {
-		this.bodyDataProvider = new BodyDataProvider(this);
-		this.bodyLayerStack = new BodyLayerStack(this.bodyDataProvider, this);
+		bodyDataProvider = new BodyDataProvider(this);
+		bodyLayerStack = new BodyLayerStack(bodyDataProvider, this);
 
-		this.columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
-		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider, getRowSortModel());
+		columnHeaderDataProvider = new ColumnHeaderDataProvider(this);
+		columnHeaderLayerStack = new ColumnHeaderLayerStack(columnHeaderDataProvider, bodyLayerStack, bodyDataProvider, getRowSortModel());
 
-		this.rowHeaderDataProvider = new RowHeaderDataProvider(this);
-
-
-		this.rowHeaderLayerStack = new RowHeaderLayerStack(this.rowHeaderDataProvider, this.bodyLayerStack);
+		rowHeaderDataProvider = new RowHeaderDataProvider(this);
 
 
-		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(this.columnHeaderDataProvider, this.rowHeaderDataProvider);
-		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, this.columnHeaderLayerStack);
+		rowHeaderLayerStack = new RowHeaderLayerStack(rowHeaderDataProvider, bodyLayerStack);
+
+
+		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(columnHeaderDataProvider, rowHeaderDataProvider);
+		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), rowHeaderLayerStack, columnHeaderLayerStack);
 		cornerLayer.addConfiguration(new CornerConfiguration(this));
-		this.gridLayer = new PapyrusGridLayer(this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
-		this.gridLayer.addConfiguration(new DefaultPrintBindings());
+		gridLayer = new PapyrusGridLayer(bodyLayerStack, columnHeaderLayerStack, rowHeaderLayerStack, cornerLayer);
+		gridLayer.addConfiguration(new DefaultPrintBindings());
 
-		this.natTable = new NatTable(parent, this.gridLayer, false);
+		natTable = new NatTable(parent, gridLayer, false);
 
 
 
-		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
+		natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
 
-		this.natTable.addConfiguration(new CellEditionConfiguration());
-		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
+		natTable.addConfiguration(new CellEditionConfiguration());
+		natTable.addConfiguration(new PapyrusClickSortConfiguration());
 
 
 		configureNatTable();
-		addColumnReorderListener(this.bodyLayerStack.getColumnReorderLayer());
-		addDragAndDropSupport(this.natTable);
+		addColumnReorderListener(bodyLayerStack.getColumnReorderLayer());
+		addDragAndDropSupport(natTable);
 
 
 		if(site != null) {
-			final MenuManager menuMgr = createMenuManager(this.natTable);
-			final Menu menu = menuMgr.createContextMenu(this.natTable);
-			this.natTable.setMenu(menu);
+			final MenuManager menuMgr = createMenuManager(natTable);
+			final Menu menu = menuMgr.createContextMenu(natTable);
+			natTable.setMenu(menu);
 
-			this.selectionProvider = new TableSelectionProvider(this, this.bodyLayerStack.getSelectionLayer());
-			site.registerContextMenu(menuMgr, this.selectionProvider);
-			site.setSelectionProvider(this.selectionProvider);
+			selectionProvider = new TableSelectionProvider(this, bodyLayerStack.getSelectionLayer());
+			site.registerContextMenu(menuMgr, selectionProvider);
+			site.setSelectionProvider(selectionProvider);
 		}
-		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
-		return this.natTable;
+		new PapyrusNatTableToolTipProvider(natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
+		return natTable;
 	}
 
 	protected void configureNatTable() {
-		if(this.natTable != null && !this.natTable.isDisposed()) {
+		if(natTable != null && !natTable.isDisposed()) {
 			ConfigRegistry configRegistry = new ConfigRegistry();
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			//commented because seems generate several bugs with edition
 			//newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL,  GridRegion.BODY);
-			this.natTable.setConfigRegistry(configRegistry);
-			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
-			this.natTable.configure();
+			natTable.setConfigRegistry(configRegistry);
+			natTable.setUiBindingRegistry(new UiBindingRegistry(natTable));
+			natTable.configure();
 		}
 	}
 
 
 	private LabelProviderService getLabelProviderService() {
 		try {
-			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());//get context and NOT get table for the usecase where the table is not in a resource
+			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table.getContext());//get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
 		} catch (ServiceException e) {
 			Activator.log.error(e);
@@ -331,13 +337,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public LocationValue getLocationInTheTable(final Point absolutePoint) {
-		final Point widgetPoint = this.natTable.toControl(absolutePoint.x, absolutePoint.y);
+		final Point widgetPoint = natTable.toControl(absolutePoint.x, absolutePoint.y);
 		TableGridRegion kind = TableGridRegion.UNKNOWN;
-		int columnPosition = this.natTable.getColumnPositionByX(widgetPoint.x);
-		int columnIndex = this.natTable.getColumnIndexByPosition(columnPosition);
-		int rowPosition = this.natTable.getRowPositionByY(widgetPoint.y);
-		int rowIndex = this.natTable.getRowIndexByPosition(rowPosition);
-		final ILayerCell cell = this.natTable.getCellByPosition(columnPosition, rowPosition);
+		int columnPosition = natTable.getColumnPositionByX(widgetPoint.x);
+		int columnIndex = natTable.getColumnIndexByPosition(columnPosition);
+		int rowPosition = natTable.getRowPositionByY(widgetPoint.y);
+		int rowIndex = natTable.getRowIndexByPosition(rowPosition);
+		final ILayerCell cell = natTable.getCellByPosition(columnPosition, rowPosition);
 		Object columnObject = null;
 		Object rowObject = null;
 		if(rowIndex == -1 && columnIndex == -1) {
@@ -369,7 +375,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 	public GridLayer getGridLayer() {
-		return this.gridLayer;
+		return gridLayer;
 	}
 
 	/**
@@ -379,9 +385,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public void print() {
-		this.natTable.doCommand(new TurnViewportOffCommand());
-		this.natTable.doCommand(new PrintCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
-		this.natTable.doCommand(new TurnViewportOnCommand());
+		natTable.doCommand(new TurnViewportOffCommand());
+		natTable.doCommand(new PrintCommand(natTable.getConfigRegistry(), natTable.getShell()));
+		natTable.doCommand(new TurnViewportOnCommand());
 	}
 
 	/**
@@ -391,7 +397,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public void selectAll() {
-		this.natTable.doCommand(new SelectAllCommand());
+		natTable.doCommand(new SelectAllCommand());
 	}
 
 	/**
@@ -401,11 +407,11 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public void exportToXLS() {
-		this.natTable.doCommand(new ExportCommand(this.natTable.getConfigRegistry(), this.natTable.getShell()));
+		natTable.doCommand(new ExportCommand(natTable.getConfigRegistry(), natTable.getShell()));
 	}
 
 	public void copyToClipboard() {
-		this.natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", this.natTable.getConfigRegistry()));
+		natTable.doCommand(new CopyDataToClipboardCommand("\t", "\n", natTable.getConfigRegistry()));
 	}
 
 	/**
@@ -416,30 +422,30 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	@Override
 	public BodyLayerStack getBodyLayerStack() {
-		return this.bodyLayerStack;
+		return bodyLayerStack;
 	}
 
 	@Override
 	public void dispose() {
-		if(this.bodyDataProvider != null) {
-			this.bodyDataProvider.dispose();
+		if(bodyDataProvider != null) {
+			bodyDataProvider.dispose();
 		}
-		if(this.rowHeaderDataProvider != null) {
-			this.rowHeaderDataProvider.dispose();
+		if(rowHeaderDataProvider != null) {
+			rowHeaderDataProvider.dispose();
 		}
-		if(this.columnHeaderDataProvider != null) {
-			this.columnHeaderDataProvider.dispose();
+		if(columnHeaderDataProvider != null) {
+			columnHeaderDataProvider.dispose();
 		}
-		this.tableContext = null;
+		tableContext = null;
 	}
 
 	public EObject getTableContext() {
-		return this.tableContext;
+		return tableContext;
 	}
 
 	@Override
 	public Table getTable() {
-		return this.table;
+		return table;
 	}
 
 	/**
@@ -448,10 +454,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 *         the created sort model to use for
 	 */
 	protected IPapyrusSortModel getRowSortModel() {
-		if(this.rowSortModel == null) {
-			this.rowSortModel = new ColumnSortModel(this);
+		if(rowSortModel == null) {
+			rowSortModel = new ColumnSortModel(this);
 		}
-		return this.rowSortModel;
+		return rowSortModel;
 	}
 
 	/**
@@ -480,6 +486,56 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			});
 
 			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, null, DisplayMode.EDIT, ""); //$NON-NLS-1$
+		}
+	}
+
+	/**
+	 * 
+	 * handles the selections from the model explorer to the table when the link is activated
+	 * 
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager#revealSemanticElement(java.util.List)
+	 * @see org.eclipse.papyrus.infra.nattable.utils.AxisUtils
+	 * @see org.eclipse.nebula.widgets.nattable.selection.SelectionLayer
+	 * 
+	 * @param elementList
+	 */
+	@Override
+	public void revealSemanticElement(List<?> elementList) {
+		SelectionLayer selectionLayer = bodyLayerStack.getSelectionLayer();
+		List<Object> rowObjects = getRowElementsList();
+		List<Object> columnObjects = getColumnElementsList();
+
+		// clear the selectionLayer to avoid the previous selections to mess with the current
+		selectionLayer.clear();
+
+		for(int rowIndex = 0; rowIndex < rowObjects.size(); rowIndex++) {
+			List<?> toFind = new ArrayList<Object>(elementList);
+			Object currentAxisObject = rowObjects.get(rowIndex);
+			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+			if(toFind.contains(currentRealObject)) {
+				selectionLayer.doCommand(new SelectRowsCommand(selectionLayer, 0, rowIndex, false, true));
+				//we remove the found object from the cloned elementList as they are already selected
+				toFind.remove(currentRealObject);
+			}
+			if(toFind.isEmpty()) {
+				// all objects are selected
+				return;
+			}
+		}
+
+		for(int columnIndex = 0; columnIndex < columnObjects.size(); columnIndex++) {
+			List<?> toFind = new ArrayList<Object>(elementList);
+			Object currentAxisObject = columnObjects.get(columnIndex);
+			Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
+			if(toFind.contains(currentRealObject)) {
+				selectionLayer.doCommand(new SelectColumnCommand(selectionLayer, columnIndex, 0, false, true));
+				//we remove the found object from the cloned elementList as they are already selected
+				toFind.remove(currentRealObject);
+			}
+			if(toFind.isEmpty()) {
+				// all objects are selected
+				return;
+			}
 		}
 	}
 }

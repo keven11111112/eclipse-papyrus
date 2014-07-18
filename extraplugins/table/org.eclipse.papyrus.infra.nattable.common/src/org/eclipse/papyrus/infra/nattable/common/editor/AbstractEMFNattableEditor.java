@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.nattable.common.editor;
 
 
 import java.io.IOException;
+import java.util.List;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.notify.Adapter;
@@ -27,10 +28,12 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.common.utils.TableEditorInput;
+import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage;
+import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.IEditorInput;
@@ -45,7 +48,7 @@ import org.eclipse.ui.part.EditorPart;
  * 
  * 
  */
-public abstract class AbstractEMFNattableEditor extends EditorPart {
+public abstract class AbstractEMFNattableEditor extends EditorPart implements IRevealSemanticElement {
 
 	/** the service registry */
 	protected ServicesRegistry servicesRegistry;
@@ -74,9 +77,9 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	 */
 	public AbstractEMFNattableEditor(final ServicesRegistry servicesRegistry, final Table rawModel) {
 		this.servicesRegistry = servicesRegistry;
-		this.tableManager = new NattableModelManager(rawModel);
-		this.synchronizer = new PartNameSynchronizer(rawModel);
-		this.workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
+		tableManager = new NattableModelManager(rawModel);
+		synchronizer = new PartNameSynchronizer(rawModel);
+		workspacePreferenceStore = getWorkspaceViewerPreferenceStore();
 	}
 
 	/**
@@ -150,10 +153,10 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	 */
 	@Override
 	public void init(final IEditorSite site, final IEditorInput input) throws PartInitException {
-		final TableEditorInput tableEditorInput = new TableEditorInput(this.tableManager.getTable(), getEditingDomain());
+		final TableEditorInput tableEditorInput = new TableEditorInput(tableManager.getTable(), getEditingDomain());
 		setSite(site);
 		setInput(tableEditorInput);
-		setPartName(this.tableManager.getTable().getName());
+		setPartName(tableManager.getTable().getName());
 	}
 
 	/**
@@ -164,7 +167,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	 */
 	public TransactionalEditingDomain getEditingDomain() {
 		try {
-			return ServiceUtils.getInstance().getTransactionalEditingDomain(this.servicesRegistry);
+			return ServiceUtils.getInstance().getTransactionalEditingDomain(servicesRegistry);
 		} catch (final ServiceException e) {
 			Activator.log.error(e);
 		}
@@ -201,13 +204,13 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 
 	@Override
 	public void createPartControl(final Composite parent) {
-		this.tableManager.createNattable(parent, SWT.NONE, getSite());
+		tableManager.createNattable(parent, SWT.NONE, getSite());
 	}
 
 	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") final Class adapter) {
 		if(adapter == INattableModelManager.class) {
-			return this.tableManager;
+			return tableManager;
 		}
 
 		//Give direct access to the Table model element
@@ -215,7 +218,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		//Be careful when using directly the Table element.
 		if(adapter == Table.class) {
 			if(tableManager != null) {
-				return this.tableManager.getTable();
+				return tableManager.getTable();
 			}
 		}
 
@@ -225,16 +228,17 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 	@Override
 	public void dispose() {
 		saveLocalPreferenceStoreValues();
-		this.tableManager.dispose();
-		this.synchronizer.dispose();
+		tableManager.dispose();
+		synchronizer.dispose();
 		super.dispose();
 	}
 
 	protected void saveLocalPreferenceStoreValues() {
 		// Write the settings, if necessary
 		try {
-			if(getWorkspaceViewerPreferenceStore() != null && getWorkspaceViewerPreferenceStore().needsSaving())
+			if(getWorkspaceViewerPreferenceStore() != null && getWorkspaceViewerPreferenceStore().needsSaving()) {
 				getWorkspaceViewerPreferenceStore().save();
+			}
 		} catch (IOException ioe) {
 			Activator.log.warn("Preferences can' be saved"); //$NON-NLS-1$
 		}
@@ -265,7 +269,7 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 			@Override
 			public void notifyChanged(final Notification notification) {
 				if(notification.getFeature() == NattableconfigurationPackage.eINSTANCE.getTableNamedElement_Name()) {
-					setPartName(PartNameSynchronizer.this.papyrusTable.getName());
+					setPartName(papyrusTable.getName());
 				}
 			}
 		};
@@ -281,8 +285,8 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		}
 
 		public void dispose() {
-			this.papyrusTable.eAdapters().remove(this.tableNameListener);
-			this.papyrusTable = null;
+			papyrusTable.eAdapters().remove(tableNameListener);
+			papyrusTable = null;
 		}
 
 		/**
@@ -293,14 +297,30 @@ public abstract class AbstractEMFNattableEditor extends EditorPart {
 		public void setTable(final Table papyrusTable) {
 			// Remove from old table, if any
 			if(this.papyrusTable != null) {
-				papyrusTable.eAdapters().remove(this.tableNameListener);
+				papyrusTable.eAdapters().remove(tableNameListener);
 			}
 			// Set new table
 			this.papyrusTable = papyrusTable;
 			// Set editor name
 			setPartName(papyrusTable.getName());
 			// Listen to name change
-			papyrusTable.eAdapters().add(this.tableNameListener);
+			papyrusTable.eAdapters().add(tableNameListener);
 		}
 	}
+
+	/**
+	 * 
+	 * used to link the selection between the model explorer and the table
+	 * 
+	 * @see org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement#revealSemanticElement(java.util.List)
+	 * 
+	 * @param elementList
+	 */
+	@Override
+	public void revealSemanticElement(List<?> elementList) {
+		if(tableManager instanceof IRevealSemanticElement) {
+			((AbstractNattableWidgetManager)tableManager).revealSemanticElement(elementList);
+		}
+	}
+
 }

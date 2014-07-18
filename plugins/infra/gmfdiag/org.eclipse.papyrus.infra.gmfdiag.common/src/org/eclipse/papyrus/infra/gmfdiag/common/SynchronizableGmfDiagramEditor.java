@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -32,6 +33,8 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
@@ -59,6 +62,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
 	 * 
 	 */
+	@Override
 	public void revealSemanticElement(List<?> elementList) {
 		revealElement(elementList);
 	}
@@ -66,6 +70,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean revealElement(Object element) {
 		return revealElement(Collections.singleton(element));
 	}
@@ -79,6 +84,7 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 	 * @see org.eclipse.papyrus.infra.core.ui.IRevealSemanticElement#revealSemanticElement(java.util.List)
 	 * 
 	 */
+	@Override
 	public boolean revealElement(Collection<?> elementList) {
 		//create an instance that can get semantic element from gmf
 		SemanticFromGMFElement semanticFromGMFElement = new SemanticFromGMFElement();
@@ -87,35 +93,45 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		GraphicalViewer graphicalViewer = getGraphicalViewer();
 		if(graphicalViewer != null) {
 
-			//look for among all edit part if the semantic is contained in the list
+			//look amidst all edit part if the semantic is contained in the list
 			Iterator<?> iter = graphicalViewer.getEditPartRegistry().values().iterator();
 			IGraphicalEditPart researchedEditPart = null;
+			List<?> clonedList = new ArrayList<Object>(elementList);
+			List<IGraphicalEditPart> partSelection = new ArrayList<IGraphicalEditPart>();
 
-			while(iter.hasNext() && researchedEditPart == null) {
+			while(iter.hasNext() && !clonedList.isEmpty()) {
 				Object currentEditPart = iter.next();
-				//look for only among IPrimary editpart to avoid compartment and labels of links
+				//look only amidst IPrimary editpart to avoid compartment and labels of links
 				if(currentEditPart instanceof IPrimaryEditPart) {
-					if(elementList.contains(semanticFromGMFElement.getSemanticElement(currentEditPart))) {
+					Object currentElement = semanticFromGMFElement.getSemanticElement(currentEditPart);
+					if(clonedList.contains(currentElement)) {
+						clonedList.remove(currentElement);
 						researchedEditPart = ((IGraphicalEditPart)currentEditPart);
-						break;
+						partSelection.add(researchedEditPart);
+
 					}
 				}
 			}
 
 			//We may also search for a GMF View (Instead of a semantic model Element)
-			if(researchedEditPart == null) {
-				for(Object element : elementList) {
-					if(graphicalViewer.getEditPartRegistry().containsKey(element)) {
+			if(!clonedList.isEmpty()) {
+				for(Object element : clonedList) {
+					if(graphicalViewer.getEditPartRegistry().containsKey(element) && !clonedList.isEmpty()) {
+						clonedList.remove(element);
 						researchedEditPart = (IGraphicalEditPart)graphicalViewer.getEditPartRegistry().get(element);
-						break;
+						partSelection.add(researchedEditPart);
+
 					}
 				}
 			}
 
-			//an editpart has been found so put selection on it.
-			if(researchedEditPart != null) {
-				graphicalViewer.select(researchedEditPart); //Set selection
-				graphicalViewer.reveal(researchedEditPart); //If needed, scroll to make the edit part visible
+			// the second test, as the model element is not a PrimaryEditPart, is to allow the selection even if the user selected it with other elements
+			//	and reset the selection if only the model is selected
+			if(clonedList.isEmpty() || (clonedList.size() == 1 && clonedList.get(0) instanceof org.eclipse.uml2.uml.internal.impl.ModelImpl)) {
+				//all parts have been found
+				IStructuredSelection sSelection = new StructuredSelection(partSelection);
+				// this is used instead of graphicalViewer.select(IGraphicalEditPart) as the later only allows the selection of a single element
+				graphicalViewer.setSelection(sSelection);
 				return true;
 			}
 		}
