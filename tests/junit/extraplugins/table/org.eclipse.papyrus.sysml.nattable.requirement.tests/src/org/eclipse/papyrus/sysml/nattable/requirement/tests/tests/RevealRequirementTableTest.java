@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.sysml.nattable.requirement.tests.tests;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
 
@@ -90,38 +91,38 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 		for(Resource current : resources) {
 			if(current.getURI().lastSegment().equals("revealSemanticModel.uml")) {
-				uml = current;
+				this.uml = current;
 			} else if(current.getURI().lastSegment().equals("revealSemanticModel.notation")) {
-				notation = current;
+				this.notation = current;
 			} else if(current.getURI().lastSegment().equals("revealSemanticModel.di")) {
-				di = current;
+				this.di = current;
 			}
 		}
 
-		rootModel = (Model)uml.getContents().get(0);
-		root = notation.getContents();
+		this.rootModel = (Model)this.uml.getContents().get(0);
+		this.root = this.notation.getContents();
 		//TODO on luna : open diagram
 	}
 
 
 	@Test
 	public void test1SelectElement() {
-		diagramTest = root.get(0);
+		this.diagramTest = this.root.get(0);
 		selectTablePage(3);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
 		if(manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(diagramTest));
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.diagramTest));
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
 				Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
 				Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-				Assert.assertTrue("failed to match the selection with: " + diagramTest, diagramTest.equals(currentRealObject));
+				Assert.assertTrue("failed to match the selection with: " + this.diagramTest, this.diagramTest.equals(currentRealObject));
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
@@ -135,22 +136,22 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 	@Test
 	public void test2SelectElementInvertAxis() {
-		diagramTest = root.get(0);
+		this.diagramTest = this.root.get(0);
 		selectTablePage(3);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
 		if(!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(diagramTest));
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.diagramTest));
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
 				Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
 				Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-				Assert.assertTrue("failed to match the selection with: " + diagramTest, diagramTest.equals(currentRealObject));
+				Assert.assertTrue("failed to match the selection with: " + this.diagramTest, this.diagramTest.equals(currentRealObject));
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
@@ -164,22 +165,22 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 	@Test
 	public void test3SelectElement() {
-		classTest = (Class)rootModel.allOwnedElements().get(4);
+		this.classTest = (Class)this.rootModel.allOwnedElements().get(4);
 		selectTablePage(4);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
 		if(manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(classTest));
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.classTest));
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
 				Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
 				Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-				Assert.assertTrue("failed to match the selection with: " + classTest, classTest.equals(currentRealObject));
+				Assert.assertTrue("failed to match the selection with: " + this.classTest, this.classTest.equals(currentRealObject));
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
@@ -193,22 +194,22 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 	@Test
 	public void test4SelectElementInvertAxis() {
-		classTest = (Class)rootModel.allOwnedElements().get(4);
+		this.classTest = (Class)this.rootModel.allOwnedElements().get(4);
 		selectTablePage(4);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
 		if(!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(classTest));
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(Collections.singletonList(this.classTest));
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
 				Object currentAxisObject = ((IStructuredSelection)selection).getFirstElement();
 				Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-				Assert.assertTrue("failed to match the selection with: " + classTest, classTest.equals(currentRealObject));
+				Assert.assertTrue("failed to match the selection with: " + this.classTest, this.classTest.equals(currentRealObject));
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
 				int[] rowSelectedPositions = layer.getFullySelectedRowPositions();
@@ -222,17 +223,22 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 	@Test
 	public void test5SelectMultipleElements() {
-		elementListTest = rootModel.allOwnedElements().get(2).getOwnedElements();
-
+		this.elementListTest = this.rootModel.allOwnedElements().get(2).getOwnedElements();
+		List<Object> columns = new ArrayList<Object>();
 		selectTablePage(4);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
 		if(manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(elementListTest);
+		for(Object current : manager.getColumnElementsList()) {
+			Object currentRealObject = AxisUtils.getRepresentedElement(current);
+			columns.add(currentRealObject);
+		}
+
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(this.elementListTest);
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
@@ -240,7 +246,11 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 				for(int index = 0; index < selectedRowElements.size(); index++) {
 					Object currentAxisObject = selectedRowElements.get(index);
 					Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-					Assert.assertTrue("failed to match the selection", elementListTest.contains(currentRealObject));
+					if(currentRealObject instanceof Class) {
+						Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject));
+					} else {
+						Assert.assertTrue(columns.contains(currentRealObject));
+					}
 				}
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();
@@ -262,17 +272,22 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 
 	@Test
 	public void test6SelectMultipleElementsInvertAxis() {
-		elementListTest = rootModel.allOwnedElements().get(2).getOwnedElements();
-
+		this.elementListTest = this.rootModel.allOwnedElements().get(2).getOwnedElements();
+		List<Object> rows = new ArrayList<Object>();
 		selectTablePage(4);
 
-		INattableModelManager manager = (INattableModelManager)editor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager)this.editor.getAdapter(INattableModelManager.class);
+
 		if(!manager.getTable().isInvertAxis()) {
 			manager.invertAxis();
 		}
+		for(Object current : manager.getRowElementsList()) {
+			Object currentRealObject = AxisUtils.getRepresentedElement(current);
+			rows.add(currentRealObject);
+		}
 
-		if(editor.getActiveEditor() instanceof IRevealSemanticElement) {
-			((IRevealSemanticElement)editor.getActiveEditor()).revealSemanticElement(elementListTest);
+		if(this.editor.getActiveEditor() instanceof IRevealSemanticElement) {
+			((IRevealSemanticElement)this.editor.getActiveEditor()).revealSemanticElement(this.elementListTest);
 			ISelectionService serv = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 			final ISelection selection = serv.getSelection();
 			if(selection instanceof IStructuredSelection) {
@@ -280,7 +295,11 @@ public class RevealRequirementTableTest extends AbstractEditorTest {
 				for(int index = 0; index < selectedRowElements.size(); index++) {
 					Object currentAxisObject = selectedRowElements.get(index);
 					Object currentRealObject = AxisUtils.getRepresentedElement(currentAxisObject);
-					Assert.assertTrue("failed to match the selection", elementListTest.contains(currentRealObject));
+					if(currentRealObject instanceof Class) {
+						Assert.assertTrue("failed to match the selection", this.elementListTest.contains(currentRealObject));
+					} else {
+						Assert.assertTrue(rows.contains(currentRealObject));
+					}
 				}
 
 				SelectionLayer layer = manager.getBodyLayerStack().getSelectionLayer();

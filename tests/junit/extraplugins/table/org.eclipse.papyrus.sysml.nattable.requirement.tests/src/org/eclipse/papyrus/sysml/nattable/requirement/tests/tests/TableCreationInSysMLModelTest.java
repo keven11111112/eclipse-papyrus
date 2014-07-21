@@ -20,7 +20,6 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -171,7 +170,9 @@ public class TableCreationInSysMLModelTest {
 	public void testCreationAndDestructionOnRootModel() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.rootModel, BUNDLE_ID);
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -204,7 +205,9 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertNotNull(requirement);
 		requirement3 = (Class)requirement;
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -226,7 +229,9 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertNull(requirement);
 		requirement3 = (Class)requirement;
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(requirement1));
@@ -241,7 +246,9 @@ public class TableCreationInSysMLModelTest {
 	public void testCreationAndDestructionOnRequirement() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.requirement1, BUNDLE_ID);
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 		Assert.assertTrue(result instanceof NatTableEditor);
 		NatTableEditor editor = (NatTableEditor)result;
 		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
@@ -270,12 +277,18 @@ public class TableCreationInSysMLModelTest {
 		Assert.assertTrue(creationCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement1"); //$NON-NLS-1$
+		while(Display.getDefault().readAndDispatch()) {
+
+		}
+		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember("Requirement"); //$NON-NLS-1$
+
 		Assert.assertNotNull(requirement);
 		nestedRequirement3 = (Class)requirement;
 
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
 		Assert.assertTrue(managedAxis.contains(nestedRequirement1));
@@ -298,7 +311,9 @@ public class TableCreationInSysMLModelTest {
 		nestedRequirement3 = (Class)requirement;
 
 		//to refresh the table content
-		while(Display.getDefault().readAndDispatch());
+		while(Display.getDefault().readAndDispatch()) {
+			;
+		}
 
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
