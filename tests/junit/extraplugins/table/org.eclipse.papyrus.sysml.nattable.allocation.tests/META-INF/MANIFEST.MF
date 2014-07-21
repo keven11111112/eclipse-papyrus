@@ -19,3 +19,5 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.papyrus.sysml.nattable.allocation.tests,
+ org.eclipse.papyrus.sysml.nattable.allocation.tests.tests

@@ -11,7 +11,7 @@
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.tests;
+package org.eclipse.papyrus.infra.nattable.tests.tests;
 
 
 import org.junit.runner.RunWith;
@@ -19,7 +19,7 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ CommonBendpointsTest.class })
+@SuiteClasses({ TableSelectionProviderTest.class })
 public class AllTests {
 	// JUnit 4 test suite
 }

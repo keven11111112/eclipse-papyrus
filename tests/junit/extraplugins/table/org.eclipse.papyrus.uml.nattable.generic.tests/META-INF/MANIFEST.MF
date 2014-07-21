@@ -22,3 +22,4 @@ Require-Bundle: org.junit;bundle-version="4.11.0",
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %Bundle-Vendor
+Export-Package: org.eclipse.papyrus.uml.nattable.generic.tests.tests
