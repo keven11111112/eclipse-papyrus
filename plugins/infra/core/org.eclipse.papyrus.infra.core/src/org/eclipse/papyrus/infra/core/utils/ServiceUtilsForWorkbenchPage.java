@@ -31,6 +31,13 @@ public class ServiceUtilsForWorkbenchPage extends AbstractServiceUtils<IWorkbenc
 			if(registry != null) {
 				return registry;
 			}
+		} else // necessary for the link between model explorer and the diagram selection option
+				// WorkbenchPage is not an instance of IAdaptable, but we only need the activePart for the selections
+		if(from.getActivePart() instanceof IAdaptable) {
+			ServicesRegistry registry = (ServicesRegistry)((IAdaptable)from.getActivePart()).getAdapter(ServicesRegistry.class);
+			if(registry != null) {
+				return registry;
+			}
 		}
 
 		throw new ServiceException("Cannot resolve the ServiceRegistry from the IWorkbenchPage. Page: " + from);
