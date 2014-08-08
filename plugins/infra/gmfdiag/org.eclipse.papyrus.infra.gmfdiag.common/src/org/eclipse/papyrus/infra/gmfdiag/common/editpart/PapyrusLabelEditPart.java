@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 
 
 public abstract class PapyrusLabelEditPart extends LabelEditPart {
@@ -21,4 +23,12 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart {
 		super(view);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void createDefaultEditPolicies() {
+		super.createDefaultEditPolicies();
+		installEditPolicy(LabelAlignmentEditPolicy.LABEL_ALIGNMENT_KEY, new LabelAlignmentEditPolicy());
+	}
 }

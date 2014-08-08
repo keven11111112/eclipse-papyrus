@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440224 Label Alignment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
@@ -16,17 +17,23 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.draw2d.PositionConstants;
+import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.handles.MoveHandle;
+import org.eclipse.gef.requests.AlignmentRequest;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.NonResizableLabelEditPolicy;
+import org.eclipse.gmf.runtime.diagram.ui.internal.figures.BorderItemContainerFigure;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
@@ -53,8 +60,14 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		// FeedBack - Port + Delta
 		Rectangle updatedRect = new Rectangle();
 		PrecisionRectangle initialRect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
-		updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
+		// in case of bordered item figure bounds is 1x1, real parent figure is then the grandParent
+		if (getHostFigure().getParent() instanceof BorderItemContainerFigure){
+			updatedRect = initialRect.getTranslated(getHostFigure().getParent().getParent().getBounds().getLocation().getNegated());
+		}else{
+			updatedRect = initialRect.getTranslated(getHostFigure().getParent().getBounds().getLocation().getNegated());
+		}
 		updatedRect = updatedRect.getTranslated(request.getMoveDelta());
+	
 
 		// translate the feedback figure
 		PrecisionRectangle rect = new PrecisionRectangle(getInitialFeedbackBounds().getCopy());
@@ -64,6 +77,11 @@ public class ExternalLabelPrimaryDragRoleEditPolicy extends NonResizableLabelEdi
 		getHostFigure().translateToRelative(rect);
 
 		ICommand moveCommand = new SetBoundsCommand(editPart.getEditingDomain(), DiagramUIMessages.MoveLabelCommand_Label_Location, new EObjectAdapter((View)editPart.getModel()), updatedRect);
+			
 		return new ICommandProxy(moveCommand);
+		
 	}
+
+
+	
 }

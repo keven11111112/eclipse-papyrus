@@ -9,13 +9,14 @@
  * Contributors:
  *		
  *		CEA LIST - Initial API and implementation
+ *		Céline Janssens (ALL4TEC) celine.Janssens@all4tec.net - Bug 440224: Label Alignment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart;
+import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 
@@ -38,8 +39,10 @@ public class CustomEditPartFactory extends UMLEditPartFactory {
 
 			case ConnectorMultiplicityTargetEditPart.VISUAL_ID:
 				return new ConnectorMultiplicityTargetEditPart(view);
+				
+			case PortNameEditPart.VISUAL_ID:
+				return new CustomPortNameEditPart(view);
 			
-
 			}
 		}
 		return super.createEditPart(context, model);

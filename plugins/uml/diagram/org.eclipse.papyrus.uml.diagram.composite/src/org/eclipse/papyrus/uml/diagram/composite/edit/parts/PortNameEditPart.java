@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Céline Janssens (All4TEC) celine.Janssens@all4tec.net - Bug 440224 : Label Alignment
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.edit.parts;
@@ -64,6 +65,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
@@ -140,13 +142,16 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PortLabelEditPolicy());
+				// New Edit Policy for the Label Alignment
+		installEditPolicy(LabelAlignmentEditPolicy.LABEL_ALIGNMENT_KEY, new LabelAlignmentEditPolicy());
 	}
 
 	/**
@@ -170,6 +175,9 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+
+		
+		
 	}
 
 	/**

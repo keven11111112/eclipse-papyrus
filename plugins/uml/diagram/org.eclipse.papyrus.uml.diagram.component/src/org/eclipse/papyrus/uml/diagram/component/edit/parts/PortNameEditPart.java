@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Amine EL KOUHEN (CEA LIST/LIFL) & Nizar GUEDIDI (CEA LIST) - Initial API and implementation
+ *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440224 Label Alignment
  /*****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 
@@ -62,9 +63,11 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PortLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PropertyLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.component.edit.policies.UMLTextSelectionEditPolicy;
@@ -137,14 +140,18 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 	}
 
 	/**
-	 * @generated
+	 * @generated NOT
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
+		
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
-		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PropertyLabelEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new PortLabelEditPolicy());
+		// New edit policy to allow Label Alignment
+		installEditPolicy(LabelAlignmentEditPolicy.LABEL_ALIGNMENT_KEY, new LabelAlignmentEditPolicy());
+
 	}
 
 	/**
@@ -169,6 +176,7 @@ public class PortNameEditPart extends LabelEditPart implements ITextAwareEditPar
 		int width = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Width())).intValue();
 		int height = ((Integer)getStructuralFeatureValue(NotationPackage.eINSTANCE.getSize_Height())).intValue();
 		getBorderItemLocator().setConstraint(new Rectangle(x, y, width, height));
+
 	}
 
 	/**

@@ -9,6 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
+ *		Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Add LabelAlignment EditPolicy
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.edit.part;
@@ -72,6 +73,7 @@ import org.eclipse.papyrus.gmf.diagram.common.locator.TextCellEditorLocator;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.LabelAlignmentEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.LabelPreferenceHelper;
@@ -128,6 +130,7 @@ public abstract class AbstractElementLabelEditPart extends LabelEditPart impleme
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new TextSelectionEditPolicy());
 		installEditPolicy(EditPolicyRoles.SNAP_FEEDBACK_ROLE, new DefaultSnapBackEditPolicy());
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new LabelDefaultSemanticEditPolicy());
+		installEditPolicy(LabelAlignmentEditPolicy.LABEL_ALIGNMENT_KEY, new LabelAlignmentEditPolicy());
 	}
 
 	/**
