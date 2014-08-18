@@ -20,13 +20,13 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ViewComponentEditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.PolylineConnectionEx;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFConnectionEditPart;
 
 /**
  * @generated
  */
-public class AssociationClassDashedLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class AssociationClassDashedLinkEditPart extends LinksLFConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

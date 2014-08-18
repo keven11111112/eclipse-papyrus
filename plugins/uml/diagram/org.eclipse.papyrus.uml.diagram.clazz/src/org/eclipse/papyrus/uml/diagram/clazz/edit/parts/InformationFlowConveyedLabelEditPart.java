@@ -60,8 +60,8 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.labels.LinksLFLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InformationFlowCustomLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
@@ -81,7 +81,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class InformationFlowConveyedLabelEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart {
+public class InformationFlowConveyedLabelEditPart extends LinksLFLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated

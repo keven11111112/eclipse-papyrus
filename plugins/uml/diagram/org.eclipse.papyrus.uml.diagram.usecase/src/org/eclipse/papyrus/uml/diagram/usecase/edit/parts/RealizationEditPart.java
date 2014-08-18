@@ -18,7 +18,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.InterfaceRealizationFigure;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.RealizationItemSemanticEditPolicy;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.RealizationItemSema
 /**
  * @generated
  */
-public class RealizationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class RealizationEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

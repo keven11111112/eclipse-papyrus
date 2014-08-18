@@ -25,14 +25,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ControlFlowItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleEdgeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ActivityEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 
 /**
  * @generated
  */
-public class ControlFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ControlFlowEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

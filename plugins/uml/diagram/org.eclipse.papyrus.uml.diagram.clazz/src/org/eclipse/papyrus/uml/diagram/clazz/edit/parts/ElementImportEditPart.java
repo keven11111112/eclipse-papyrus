@@ -21,14 +21,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeElementImportLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.ElementImportItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
  */
-public class ElementImportEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ElementImportEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

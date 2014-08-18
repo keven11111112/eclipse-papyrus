@@ -17,15 +17,15 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.DependencyBranchSemanticEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 
 /**
  * @generated
  */
-public class DependencyBranchEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class DependencyBranchEditPart extends LinksLFConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

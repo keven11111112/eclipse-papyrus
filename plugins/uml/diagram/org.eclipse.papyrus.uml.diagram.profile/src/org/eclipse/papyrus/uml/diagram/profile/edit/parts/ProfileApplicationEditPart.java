@@ -17,14 +17,14 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.DashedEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ProfileApplicationItemSemanticEditPolicy;
 
 /**
  * @generated
  */
-public class ProfileApplicationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ProfileApplicationEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

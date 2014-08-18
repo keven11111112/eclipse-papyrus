@@ -21,14 +21,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.TemplateBindingFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.TemplateBindingItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
  * @generated
  */
-public class TemplateBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class TemplateBindingEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

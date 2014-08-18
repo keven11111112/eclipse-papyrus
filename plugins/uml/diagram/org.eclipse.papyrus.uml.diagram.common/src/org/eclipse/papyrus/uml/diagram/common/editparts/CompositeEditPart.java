@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -22,12 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFBorderedShapeEditPart;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * this uml edit part can refresh shadow and gradient.
  */
-public abstract class CompositeEditPart extends AbstractBorderedShapeEditPart {
+public abstract class CompositeEditPart extends LinksLFBorderedShapeEditPart {
 
 	public CompositeEditPart(View view) {
 		super(view);

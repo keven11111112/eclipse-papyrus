@@ -23,12 +23,13 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.IUMLNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart;
 
 /**
  * This is a super class for observation edit parts
  * 
  */
-public abstract class AbstractObservationEditPart extends NamedElementEditPart implements IUMLNamedElementEditPart {
+public abstract class AbstractObservationEditPart extends LinksLFNamedElementEditPart implements IUMLNamedElementEditPart {
 
 	/**
 	 * 

@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Element;
@@ -27,7 +27,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * this a abstract editpart use to add listeners
  */
-public abstract class AbstractAssociationEditPart extends UMLConnectionNodeEditPart {
+public abstract class AbstractAssociationEditPart extends LinksLFUMLConnectionNodeEditPart {
 
 	protected static final String ASSOCIATION_END_LISTENERS_SOURCE = "AssociationEndListenersSource";
 

@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.AssociationItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.figure.AssociationFigure;
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * @generated
  */
-public class AssociationEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class AssociationEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

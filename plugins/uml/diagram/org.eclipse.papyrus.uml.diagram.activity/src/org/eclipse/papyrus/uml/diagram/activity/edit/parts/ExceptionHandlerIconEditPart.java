@@ -49,8 +49,8 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.labels.LinksLFLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.InterruptibleEdgeExternalIconFigure;
@@ -72,7 +72,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class ExceptionHandlerIconEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart {
+public class ExceptionHandlerIconEditPart extends LinksLFLabelEditPart implements ITextAwareEditPart {
 
 	/**
 	 * @generated

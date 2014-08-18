@@ -13,13 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderItemEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFBorderItemEditPart;
 
 /**
  * this a editpart to force the refresh after change the size of the border item
  */
-public abstract class AbstractRedefinableTemplateSignatureEditPart extends AbstractBorderItemEditPart {
+public abstract class AbstractRedefinableTemplateSignatureEditPart extends LinksLFBorderItemEditPart {
 
 	public AbstractRedefinableTemplateSignatureEditPart(View view) {
 		super(view);

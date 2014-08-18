@@ -18,7 +18,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.custom.figures.RoleBindingFigure;
 import org.eclipse.papyrus.uml.diagram.composite.edit.policies.RoleBindingItemSemanticEditPolicy;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.policies.RoleBindingItemSe
 /**
  * @generated
  */
-public class RoleBindingEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class RoleBindingEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

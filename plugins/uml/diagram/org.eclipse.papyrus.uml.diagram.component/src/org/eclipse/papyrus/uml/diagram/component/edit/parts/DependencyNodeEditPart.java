@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.component.edit.parts;
 /**
  * @generated
  */
-public class DependencyNodeEditPart extends org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart {
+public class DependencyNodeEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFBorderedShapeEditPart {
 
 	/**
 	 * @generated

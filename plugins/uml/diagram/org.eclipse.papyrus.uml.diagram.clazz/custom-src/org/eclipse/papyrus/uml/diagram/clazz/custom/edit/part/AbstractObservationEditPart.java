@@ -22,13 +22,13 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.editparts.IUMLNamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart;
 
 /**
  * 
  * 
  */
-public abstract class AbstractObservationEditPart extends NamedElementEditPart implements IUMLNamedElementEditPart {
+public abstract class AbstractObservationEditPart extends LinksLFNamedElementEditPart implements IUMLNamedElementEditPart {
 
 	public AbstractObservationEditPart(View view) {
 		super(view);

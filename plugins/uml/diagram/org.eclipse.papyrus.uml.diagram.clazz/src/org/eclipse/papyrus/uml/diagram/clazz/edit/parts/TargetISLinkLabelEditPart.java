@@ -59,8 +59,8 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.labels.LinksLFLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ISRoleTargetDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.InstanceSpecificationRoleDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -82,7 +82,7 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class TargetISLinkLabelEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
+public class TargetISLinkLabelEditPart extends LinksLFLabelEditPart implements ITextAwareEditPart, ILabelRoleProvider {
 
 	/**
 	 * @generated

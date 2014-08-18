@@ -43,8 +43,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
+import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.BehaviorPropertyNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.DecisionNodeItemSemanticEditPolicy;
@@ -52,7 +52,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPol
 import org.eclipse.papyrus.uml.diagram.activity.locator.LinkedBehaviorLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiamondNode;
 import org.eclipse.swt.graphics.Color;
@@ -60,7 +60,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class DecisionNodeEditPart extends UMLNodeEditPart {
+public class DecisionNodeEditPart extends LinksLFUMLNodeEditPart {
 
 	/**
 	 * @generated

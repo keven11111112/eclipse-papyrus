@@ -17,7 +17,7 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.figure.ExtensionFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.itemsemantic.CustomExtensionItemSemanticEditPolicy;
@@ -26,7 +26,7 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ExtensionItemSemant
 /**
  * @generated
  */
-public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class ExtensionEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

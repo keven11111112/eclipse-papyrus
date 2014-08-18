@@ -22,14 +22,14 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.GeneralizationSet;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.GeneralizationSetLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.GeneralizationSetItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
  * @generated
  */
-public class GeneralizationSetEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class GeneralizationSetEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

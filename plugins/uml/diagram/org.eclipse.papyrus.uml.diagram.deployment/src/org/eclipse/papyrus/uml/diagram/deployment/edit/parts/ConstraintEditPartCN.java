@@ -18,7 +18,7 @@ package org.eclipse.papyrus.uml.diagram.deployment.edit.parts;
 public class ConstraintEditPartCN extends
 
 
-org.eclipse.papyrus.uml.diagram.common.editparts.AbstractConstraintEditPart {
+org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFConstraintEditPart {
 
 	/**
 	 * @generated

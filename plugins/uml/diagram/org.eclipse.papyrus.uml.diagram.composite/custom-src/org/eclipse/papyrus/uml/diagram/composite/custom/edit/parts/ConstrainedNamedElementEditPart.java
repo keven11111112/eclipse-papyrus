@@ -17,14 +17,14 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.dragtracker.NoScrollDragEditPartsTrackerEx;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart;
 
 /**
  * this class was used to remove scrollbar
  * Now it is not used (but can be when this functionality will be operational)
  *
  */
-public abstract class ConstrainedNamedElementEditPart extends NamedElementEditPart {
+public abstract class ConstrainedNamedElementEditPart extends LinksLFNamedElementEditPart {
 
 	public ConstrainedNamedElementEditPart(View view) {
 		super(view);

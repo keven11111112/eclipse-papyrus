@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFConnectionEditPart;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -26,7 +26,7 @@ import org.eclipse.uml2.uml.Property;
 /**
  * this a abstract editpart use to add listeners
  */
-public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPart {
+public abstract class AbstractAssociationBranchEditPart extends LinksLFConnectionEditPart {
 
 	public AbstractAssociationBranchEditPart(View view) {
 		super(view);

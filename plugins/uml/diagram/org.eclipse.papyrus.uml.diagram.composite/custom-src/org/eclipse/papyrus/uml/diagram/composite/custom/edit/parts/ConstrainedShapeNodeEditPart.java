@@ -15,7 +15,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.Request;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFShapeNodeEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.dragtracker.NoScrollDragEditPartsTrackerEx;
 
@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.dragtracker.NoScrollDragEditPartsT
  * Now it is not used (but can be when this fucntionality will operational)
  *
  */
-public abstract class ConstrainedShapeNodeEditPart extends ShapeNodeEditPart {
+public abstract class ConstrainedShapeNodeEditPart extends LinksLFShapeNodeEditPart {
 
 	public ConstrainedShapeNodeEditPart(View view) {
 		super(view);

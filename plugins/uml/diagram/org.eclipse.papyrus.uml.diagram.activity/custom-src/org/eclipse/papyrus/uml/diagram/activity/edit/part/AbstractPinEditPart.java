@@ -2,15 +2,15 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.part;
 
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.gef.ConnectionEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.figures.PinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityFigureDrawer;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFBorderedBorderItemEditPart;
 
 
-public abstract class AbstractPinEditPart  extends BorderedBorderItemEditPart {
+public abstract class AbstractPinEditPart  extends LinksLFBorderedBorderItemEditPart {
 
 	public AbstractPinEditPart(View view) {
 		super(view);

@@ -18,14 +18,14 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExceptionHandlerItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.ExceptionHandlerFigure;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFConnectionEditPart;
 
 /**
  * @generated
  */
-public class ExceptionHandlerEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class ExceptionHandlerEditPart extends LinksLFConnectionEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

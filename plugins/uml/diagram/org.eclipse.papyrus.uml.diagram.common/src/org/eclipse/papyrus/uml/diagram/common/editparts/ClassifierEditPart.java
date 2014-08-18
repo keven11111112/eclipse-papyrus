@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
 import org.eclipse.swt.SWT;
@@ -27,7 +28,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * 
  * @author tlandre
  */
-public abstract class ClassifierEditPart extends NamedElementEditPart {
+public abstract class ClassifierEditPart extends LinksLFNamedElementEditPart/*Merge comment*/ {
 
 	/**
 	 * isAbstract Classifier property

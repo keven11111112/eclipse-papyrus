@@ -21,13 +21,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.InformationFlowFigure;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeInformationFlowLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InformationFlowItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFUMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 
 /**
  * @generated
  */
-public class InformationFlowEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
+public class InformationFlowEditPart extends LinksLFUMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

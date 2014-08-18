@@ -22,7 +22,6 @@ import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -30,13 +29,14 @@ import org.eclipse.papyrus.infra.core.editorsfactory.IPageIconsRegistry;
 import org.eclipse.papyrus.infra.core.editorsfactory.PageIconsRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFBorderedShapeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DiagramNodeFigure;
 
 /**
  * this class is used to constraint the behavior of a node to obtain the
  * behavior a short cut
  */
-public abstract class AbstractShortCutDiagramEditPart extends AbstractBorderedShapeEditPart implements Adapter {
+public abstract class AbstractShortCutDiagramEditPart extends LinksLFBorderedShapeEditPart implements Adapter {
 
 	protected static final String DELETE_ICON = "icons/delete.gif";
 

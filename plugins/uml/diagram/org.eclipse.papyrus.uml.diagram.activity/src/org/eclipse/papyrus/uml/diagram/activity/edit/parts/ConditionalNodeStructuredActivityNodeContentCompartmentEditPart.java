@@ -19,7 +19,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gef.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
@@ -31,13 +30,14 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ConditionalNodeStr
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomConditionalNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFShapeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * @generated
  */
-public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends ShapeCompartmentEditPart {
+public class ConditionalNodeStructuredActivityNodeContentCompartmentEditPart extends LinksLFShapeCompartmentEditPart {
 
 	/**
 	 * @generated

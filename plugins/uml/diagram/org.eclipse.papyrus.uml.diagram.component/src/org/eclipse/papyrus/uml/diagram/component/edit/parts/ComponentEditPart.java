@@ -44,6 +44,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.LinksLFNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.editpolicies.AdjustLinksToIndirectlyMovedNodesEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy;
@@ -70,7 +72,7 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated NOT in order to implement {@link IPapyrusEditPart}
  */
-public class ComponentEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart implements IPapyrusEditPart {
+public class ComponentEditPart extends org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart implements IPapyrusEditPart {
 
 	/**
 	 * @generated
@@ -114,6 +116,7 @@ public class ComponentEditPart extends org.eclipse.papyrus.uml.diagram.common.ed
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
+		installEditPolicy(AdjustLinksToIndirectlyMovedNodesEditPolicy.ROLE, new AdjustLinksToIndirectlyMovedNodesEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -254,7 +257,7 @@ public class ComponentEditPart extends org.eclipse.papyrus.uml.diagram.common.ed
 		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
 		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
 		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new DefaultSizeNodeFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
+		DefaultSizeNodeFigure result = new LinksLFNodeFigure(this, store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
 		return result;
 	}
 

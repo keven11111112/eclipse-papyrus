@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.composite.custom.edit.parts;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.linkslf.LinksLFNamedElementEditPart;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -28,7 +28,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * changes.
  * </pre>
  */
-public abstract class PropertyPartEditPartCN extends NamedElementEditPart {
+public abstract class PropertyPartEditPartCN extends LinksLFNamedElementEditPart {
 
 	/**
 	 * Constructor
