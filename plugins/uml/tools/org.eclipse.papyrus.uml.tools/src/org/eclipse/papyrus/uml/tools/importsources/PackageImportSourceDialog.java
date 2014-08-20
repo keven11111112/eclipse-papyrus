@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2016 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 409555
+ *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - extends by MultipleValueSelectionDialog
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.importsources;
 
@@ -20,10 +22,9 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectorDialog;
-import org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector;
+import org.eclipse.papyrus.infra.widgets.editors.IElementSelector;
+import org.eclipse.papyrus.infra.widgets.editors.MultipleValueSelectionDialog;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
-import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.services.IEvaluationService;
@@ -33,15 +34,18 @@ import org.eclipse.ui.statushandlers.StatusManager;
 import org.eclipse.uml2.uml.Package;
 
 /**
- * This is the PackageImportSourceDialog type. Enjoy.
+ * Dialog for Package import source.
  */
-public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
+public class PackageImportSourceDialog extends MultipleValueSelectionDialog {
 
 	private IPackageImportSource source;
 
 	private ResourceSet resourceSet;
 
 	private List<Package> selectedPackages;
+
+
+	protected Map<String, String> extensionFilters;
 
 	/**
 	 * Initializes me.
@@ -52,9 +56,16 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	 *            the dialog title
 	 */
 	public PackageImportSourceDialog(Shell parentShell, String title) {
-		super(parentShell, new MyReferenceSelector(), title, true, true);
+		super(parentShell, getPackageImportSourceSelector(), title, true, true);
+	}
 
-		setTitle(title);
+	/**
+	 * Gets the package import source selector.
+	 *
+	 * @return the package import source selector
+	 */
+	private static IElementSelector getPackageImportSourceSelector() {
+		return new PackageImportReferenceSelector();
 	}
 
 	/**
@@ -65,7 +76,6 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 	 *         user cancelled
 	 */
 	public static Collection<Package> open(Shell parentShell, String title, IStructuredSelection selection) {
-
 		return open(parentShell, title, selection.toList());
 	}
 
@@ -97,22 +107,22 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 		return dlg.getSelectedPackages();
 	}
 
-	protected Map<String, String> extensionFilters;
-
 	protected void setExtensionFilters(Map<String, String> extensionFilters) {
 		this.extensionFilters = extensionFilters;
 	}
 
 	public void initialize(Collection<?> selection) {
-		IEvaluationService evaluationService = (IEvaluationService) PlatformUI.getWorkbench().getService(IEvaluationService.class);
+		IEvaluationService evaluationService = PlatformUI.getWorkbench().getService(IEvaluationService.class);
 		source = new PackageImportSourceRegistry(evaluationService).createImportSourceFor(selection);
 		source.initialize(selection);
 
-		MyReferenceSelector selector = (MyReferenceSelector) this.selector;
+		PackageImportReferenceSelector selector = (PackageImportReferenceSelector) getPackageImportSourceSelector();
+		setSelector(selector);
+
 		ILabelProvider labelProvider = source.getModelHierarchyLabelProvider();
-		selector.setLabelProvider(labelProvider);
-		selector.setContentProvider(source.getModelHierarchyContentProvider(extensionFilters));
-		selector.setImportSource(source);
+		((PackageImportReferenceSelector) selector).setLabelProvider(labelProvider);
+		((PackageImportReferenceSelector) selector).setContentProvider(source.getModelHierarchyContentProvider(extensionFilters));
+		((PackageImportReferenceSelector) selector).setImportSource(source);
 
 		setLabelProvider(labelProvider);
 
@@ -169,30 +179,9 @@ public class PackageImportSourceDialog extends MultipleValueSelectorDialog {
 				}
 			}
 		}
+
 	}
 
-	//
-	// Nested types
-	//
 
-	private static class MyReferenceSelector extends ReferenceSelector {
 
-		private IPackageImportSource source;
-
-		void setImportSource(IPackageImportSource source) {
-			this.source = source;
-		}
-
-		@Override
-		public void createControls(Composite parent) {
-			super.createControls(parent);
-
-			if (source instanceof CompositePackageImportSource) {
-				// expand to the second level to show projects in the workspace
-				// and whatever is contributed by other sources
-				treeViewer.expandToLevel(2);
-			}
-
-		}
-	}
 }
