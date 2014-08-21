@@ -20,7 +20,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolic
 /**
  * Edit Part for link label showing {@link Connector} label.
  */
-public class ConnectorLinkLabelEditPart extends AbstractElementLabelEditPart {
+public class ConnectorLinkLabelEditPart extends LinksLFSysmlLinkLabel {
 
 	/** Constructor */
 	public ConnectorLinkLabelEditPart(View view) {

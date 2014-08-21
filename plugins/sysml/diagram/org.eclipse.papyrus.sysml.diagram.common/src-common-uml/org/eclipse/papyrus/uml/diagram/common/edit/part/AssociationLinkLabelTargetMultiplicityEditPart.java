@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.Association;
 /**
  * Edit Part for link label showing {@link Association} target multiplicity.
  */
-public class AssociationLinkLabelTargetMultiplicityEditPart extends AbstractElementLabelEditPart {
+public class AssociationLinkLabelTargetMultiplicityEditPart extends LinksLFSysmlLinkLabel {
 
 	/** Constructor */
 	public AssociationLinkLabelTargetMultiplicityEditPart(View view) {

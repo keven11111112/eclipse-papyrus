@@ -20,7 +20,7 @@ import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LinkLabelDragEditPolic
 /**
  * Edit Part for link label showing {@link NamedElement} name.
  */
-public class NamedElementLinkLabelNameEditPart extends AbstractElementLabelEditPart {
+public class NamedElementLinkLabelNameEditPart extends LinksLFSysmlLinkLabel {
 
 	/** Constructor */
 	public NamedElementLinkLabelNameEditPart(View view) {

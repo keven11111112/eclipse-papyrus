@@ -24,7 +24,7 @@ import org.eclipse.uml2.uml.Connector;
 /**
  * Edit Part for link label showing {@link Connector} target {@link ConnectorEnd} multiplicity.
  */
-public class ConnectorLinkLabelTargetMultiplicityEditPart extends AbstractElementLabelEditPart {
+public class ConnectorLinkLabelTargetMultiplicityEditPart extends LinksLFSysmlLinkLabel {
 
 	/** Constructor */
 	public ConnectorLinkLabelTargetMultiplicityEditPart(View view) {

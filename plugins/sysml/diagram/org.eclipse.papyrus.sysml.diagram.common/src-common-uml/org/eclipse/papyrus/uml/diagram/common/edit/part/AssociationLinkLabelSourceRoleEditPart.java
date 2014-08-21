@@ -25,7 +25,7 @@ import org.eclipse.uml2.uml.Association;
 /**
  * Edit Part for link label showing {@link Association} source role.
  */
-public class AssociationLinkLabelSourceRoleEditPart extends AbstractElementLabelEditPart {
+public class AssociationLinkLabelSourceRoleEditPart extends LinksLFSysmlLinkLabel {
 
 	/** Constructor */
 	public AssociationLinkLabelSourceRoleEditPart(View view) {
