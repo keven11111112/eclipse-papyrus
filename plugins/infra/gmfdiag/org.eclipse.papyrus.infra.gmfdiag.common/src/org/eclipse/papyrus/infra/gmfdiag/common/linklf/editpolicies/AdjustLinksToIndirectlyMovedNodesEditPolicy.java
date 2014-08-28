@@ -12,13 +12,15 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
+import org.eclipse.draw2d.geometry.PrecisionRectangle;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.SnapToGrid;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -28,18 +30,19 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.geometry.PointListUtilities;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouter;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.OrthogonalRouterUtilities;
-import org.eclipse.gmf.runtime.draw2d.ui.internal.routers.RectilinearRouter;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.infra.gmfdiag.common.linklf.AbsoluteBendpointsConvention;
-import org.eclipse.papyrus.infra.gmfdiag.common.linklf.router.RectilinearRouter2;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.DiagramGridSpec;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.router.SnapToGridRectilinearRouter;
 
 public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteBendpointsEditPolicyBase {
 
 	/**
 	 * Default role for registering this edit policy.
 	 * <p/>
-	 * The value is prefixed by class FQN in order to avoid conflicts, but the literal should NOT be used anywhere.
+	 * The value is prefixed by class FQN in order to avoid conflicts, 
+	 * but the literal should NOT be used anywhere.
 	 */
 	public static final String ROLE = AdjustLinksToIndirectlyMovedNodesEditPolicy.class.getName() + ":Role";
 
@@ -49,12 +52,12 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 
 	@Override
 	protected Command getAdjustLinksCommand(ChangeBoundsRequest req) {
-		if(myLastRequest != null && myLastRequest.get() == req) {
-			if(myLastCommand == null) {
+		if (myLastRequest != null && myLastRequest.get() == req) {
+			if (myLastCommand == null) {
 				return null;
 			}
 			Command result = myLastCommand.get();
-			if(result != null) {
+			if (result != null) {
 				return result;
 			}
 		}
@@ -73,66 +76,66 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		LinkedList<GraphicalEditPart> queue = new LinkedList<GraphicalEditPart>();
 		queue.addAll(getHost().getChildren());
 
-		while(!queue.isEmpty()) {
+		while (!queue.isEmpty()) {
 			GraphicalEditPart cur = queue.removeFirst();
-			for(EditPart link : (Collection<EditPart>)cur.getSourceConnections()) {
+			for (EditPart link : (Collection<EditPart>) cur.getSourceConnections()) {
 				ICommand nextOutgoingCommand = getAdjustOneLinkCommand(link, allMoved, req, true);
 				result = compose(result, nextOutgoingCommand);
 			}
-			for(EditPart link : (Collection<EditPart>)cur.getTargetConnections()) {
+			for (EditPart link : (Collection<EditPart>) cur.getTargetConnections()) {
 				ICommand nextIncomingCommand = getAdjustOneLinkCommand(link, allMoved, req, false);
 				result = compose(result, nextIncomingCommand);
 			}
-			queue.addAll((Collection<GraphicalEditPart>)cur.getChildren());
+			queue.addAll((Collection<GraphicalEditPart>) cur.getChildren());
 		}
 
 		return result == null ? null : new ICommandProxy(result.reduce());
 	}
 
 	protected ICommand getAdjustOneLinkCommand(EditPart linkEP, CachedEditPartsSet allMoved, ChangeBoundsRequest req, boolean outgoing) {
-		if(false == linkEP instanceof ConnectionEditPart) {
+		if (false == linkEP instanceof ConnectionEditPart) {
 			return null;
 		}
-		ConnectionEditPart link = (ConnectionEditPart)linkEP;
+		ConnectionEditPart link = (ConnectionEditPart) linkEP;
 		EditPart staticEnd = outgoing ? link.getTarget() : link.getSource();
-		if(staticEnd == null) {
+		if (staticEnd == null) {
 			return null;
 		}
 		MovedNodeKind kind = allMoved.isMoved(staticEnd);
-		if(kind != MovedNodeKind.NO) {
+		if (kind != MovedNodeKind.NO) {
 			return null;
 		}
 
 		Connection conn = link.getConnectionFigure();
-		if(conn == null) {
+		if (conn == null) {
 			return null;
 		}
-		if(!acceptAdjustingConnection(link, conn)) {
+		if (!acceptAdjustingConnection(link, conn)) {
 			return null;
 		}
 
-		GraphicalEditPart staticGateEP = (GraphicalEditPart)findHighestDifferentAncestor(staticEnd, getHost());
-		if(staticGateEP == null) {
+		GraphicalEditPart staticGateEP = (GraphicalEditPart) findHighestDifferentAncestor(staticEnd, getHost());
+		if (staticGateEP == null) {
 			return null;
 		}
 
 		PointList linkPoints = makeAbsolute(conn, conn.getPoints());
 
 		Point hostGate = findGatePosition(linkPoints, getHostFigure());
-		if(hostGate == null) {
+		if (hostGate == null) {
 			return null;
 		}
 		int hostGateSegment = PointListUtilities.findNearestLineSegIndexOfPoint(linkPoints, hostGate);
 
 		Point staticGate;
 		int staticGateSegment;
-		if(staticGateEP == staticEnd) {
+		if (staticGateEP == staticEnd) {
 			staticGate = null;
 			staticGateSegment = -1;
 		} else {
 			IFigure staticGateOwner = staticGateEP.getFigure();
 			staticGate = findGatePosition(linkPoints, staticGateOwner);
-			if(staticGate == null) {
+			if (staticGate == null) {
 				return null;
 			}
 			staticGateSegment = PointListUtilities.findNearestLineSegIndexOfPoint(linkPoints, staticGate);
@@ -156,38 +159,31 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 	/**
 	 * Hook for subclasses, allows to decide whether to adjust links on instance-by-instance basis.
 	 * <p/>
-	 * In this implementation the link is accepted if it
-	 * <ul>
+	 * In this implementation the link is accepted if it <ul>
 	 * <li>is backed by some {@link Edge}</li>
 	 * <li>has absolute bendpoints {@link AbsoluteBendpointsConvention} which has to be adjusted</li>
 	 * <li>has an orthogonal router</li>
 	 * </ul>
 	 * 
-	 * @param link
-	 *        link editpart to check
-	 * @param conn
-	 *        its connection figure, known to be not <code>null</code>
+	 * @param link link editpart to check
+	 * @param conn its connection figure, known to be not <code>null</code>
 	 * @return true if link gates should be preserved
 	 */
 	protected boolean acceptAdjustingConnection(ConnectionEditPart link, Connection conn) {
-		Edge edge = (Edge)link.getNotationView();
-		if(edge == null) {
+		Edge edge = (Edge) link.getNotationView();
+		if (edge == null) {
 			return false;
 		}
-		return AbsoluteBendpointsConvention.hasAbsoluteStoredAsRelativeBendpoints(edge) && // 
-		conn.getConnectionRouter() instanceof OrthogonalRouter;
+		return AbsoluteBendpointsConvention.getInstance().hasAbsoluteStoredAsRelativeBendpoints(edge) && // 
+				conn.getConnectionRouter() instanceof OrthogonalRouter;
 	}
 
 	/**
-	 * Finds the gate, that is an intersection between link points and the given gate owner.
+	 * Finds the gate, that is an intersection between link points and the given gate owner. 
+	 * @param linkPointsAbs absolute link point coordinates
+	 * @param gateOwner the figure which intersection with the link defines the gate 
 	 * 
-	 * @param linkPointsAbs
-	 *        absolute link point coordinates
-	 * @param gateOwner
-	 *        the figure which intersection with the link defines the gate
-	 * 
-	 * @return absolute position of the intersection, or <code>null</code> if not found. If multiple intersections are found then only the first is
-	 *         returned
+	 * @return absolute position of the intersection, or <code>null</code> if not found. If multiple intersections are found then only the first is returned
 	 */
 	protected Point findGatePosition(PointList linkPointsAbs, IFigure gateOwner) {
 		Rectangle ownerBounds = makeAbsolute(gateOwner, gateOwner.getBounds());
@@ -197,19 +193,19 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		PointList distances = new PointList();
 
 		boolean computed = PointListUtilities.findIntersections(ownerPoints, linkPointsAbs, intersections, distances);
-		if(!computed || intersections.size() == 0) {
+		if (!computed || intersections.size() == 0) {
 			System.err.println("Can't compute intersections between:" + //
-			" hostBounds: " + pointList2String(ownerPoints) + //
-			" and link: " + pointList2String(linkPointsAbs));
+					" hostBounds: " + pointList2String(ownerPoints) + //
+					" and link: " + pointList2String(linkPointsAbs));
 			return null;
 		}
 
-		if(intersections.size() > 1) {
+		if (intersections.size() > 1) {
 			System.err.println("Expected exactly one intersection between:" + //
-			" hostBounds: " + pointList2String(ownerPoints) + //
-			" and link: " + pointList2String(linkPointsAbs) + //
-			" actually: " + pointList2String(intersections) + //
-			" will use the first one: " + intersections.getFirstPoint());
+					" hostBounds: " + pointList2String(ownerPoints) + //
+					" and link: " + pointList2String(linkPointsAbs) + //
+					" actually: " + pointList2String(intersections) + //
+					" will use the first one: " + intersections.getFirstPoint());
 		}
 
 		return intersections.getFirstPoint();
@@ -223,31 +219,27 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 	}
 
 	/**
-	 * Provides the highest (closest to the root) editpart which is ancestor of the subj editPart but is still not a common ancestor of some other
-	 * editpart
-	 * 
-	 * @param subj
-	 *        the editPart to compute ancestor for
-	 * @param other
-	 *        the editPart which ancestors should be avoided
+	 * Provides the highest (closest to the root) editpart which is ancestor of the subj editPart but is still not a common ancestor of some other editpart
+	 * @param subj the editPart to compute ancestor for
+	 * @param other the editPart which ancestors should be avoided
 	 * @return
 	 */
 	protected static EditPart findHighestDifferentAncestor(EditPart subj, EditPart other) {
 		Set<EditPart> otherChainUp = new HashSet<EditPart>();
 		EditPart cur = other;
-		while(cur != null) {
+		while (cur != null) {
 			otherChainUp.add(cur);
 			cur = cur.getParent();
 		}
 
 		EditPart result = subj;
-		while(result != null) {
+		while (result != null) {
 			EditPart parent = result.getParent();
-			if(parent == null) {
+			if (parent == null) {
 				//weird, there should be at least common root edit part
 				return null;
 			}
-			if(otherChainUp.contains(parent)) {
+			if (otherChainUp.contains(parent)) {
 				return result;
 			}
 			result = parent;
@@ -255,7 +247,7 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		throw new IllegalStateException();
 	}
 
-	protected static class PreserveGatesRequest {
+	protected static class PreserveGatesRequest extends Request {
 
 		private final ConnectionEditPart myLink;
 
@@ -311,7 +303,7 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		}
 
 		public Edge getEdge() {
-			return (Edge)myLink.getNotationView();
+			return (Edge) myLink.getNotationView();
 		}
 
 		public PointList getLinkPointsBefore() {
@@ -323,15 +315,20 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		}
 
 		public GraphicalEditPart getStaticLinkEnd() {
-			return (GraphicalEditPart)(isOutgoing() ? myLink.getTarget() : myLink.getSource());
+			return (GraphicalEditPart) (isOutgoing() ? myLink.getTarget() : myLink.getSource());
 		}
 
 		public GraphicalEditPart getMovingLinkEnd() {
-			return (GraphicalEditPart)(isOutgoing() ? myLink.getSource() : myLink.getTarget());
+			return (GraphicalEditPart) (isOutgoing() ? myLink.getSource() : myLink.getTarget());
 		}
 
 		public Point getMoveDelta() {
 			return myHostRequest.getMoveDelta();
+		}
+
+		public SnapToGrid getSnapToGrid() {
+			PrecisionRectangle gridSpec = DiagramGridSpec.getAbsoluteGridSpec(getLink().getViewer());
+			return gridSpec == null ? null : new SnapToGrid(getLink());
 		}
 	}
 
@@ -349,7 +346,7 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			Point moveDelta = myRequest.getMoveDelta();
-			if(moveDelta == null || moveDelta.x == 0 && moveDelta.y == 0) {
+			if (moveDelta == null || moveDelta.x == 0 && moveDelta.y == 0) {
 				//may be the case due to the caching: command was created when moveDelta was here
 				//but at the execution time request has changed
 				return CommandResult.newOKCommandResult();
@@ -359,30 +356,30 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 			//System.err.println("[1]: oldPoints: " + pointList2String(oldPoints));
 			PointList newPointsStart = new PointList(oldPoints.size());
 			PointList newPointsEnd = new PointList(oldPoints.size() * 2);
-			if(myRequest.isOutgoing()) {
+			if (myRequest.isOutgoing()) {
 				//segment indexes are 1-based, see findNearestLineSegIndexOfPoint
-				for(int i = 0; i < myRequest.getMovingGateSegment(); i++) {
+				for (int i = 0; i < myRequest.getMovingGateSegment(); i++) {
 					newPointsStart.addPoint(oldPoints.getPoint(i));
 				}
 				newPointsStart.addPoint(myRequest.getMovingGateAbs());
 				newPointsStart.translate(moveDelta);
 
-				if(myRequest.getStaticGateAbs() != null && myRequest.getStaticGateSegment() == myRequest.getMovingGateSegment()) {
+				if (myRequest.getStaticGateAbs() != null && myRequest.getStaticGateSegment() == myRequest.getMovingGateSegment()) {
 					newPointsEnd.addPoint(myRequest.getStaticGateAbs());
 				}
-				for(int i = myRequest.getMovingGateSegment(); i < oldPoints.size(); i++) {
+				for (int i = myRequest.getMovingGateSegment(); i < oldPoints.size(); i++) {
 					newPointsEnd.addPoint(oldPoints.getPoint(i));
 				}
 			} else {
-				for(int i = 0; i < myRequest.getMovingGateSegment(); i++) {
+				for (int i = 0; i < myRequest.getMovingGateSegment(); i++) {
 					newPointsStart.addPoint(oldPoints.getPoint(i));
 				}
-				if(myRequest.getStaticGateAbs() != null && myRequest.getMovingGateSegment() == myRequest.getStaticGateSegment()) {
+				if (myRequest.getStaticGateAbs() != null && myRequest.getMovingGateSegment() == myRequest.getStaticGateSegment()) {
 					newPointsStart.addPoint(myRequest.getStaticGateAbs());
 				}
 
 				newPointsEnd.addPoint(myRequest.getMovingGateAbs());
-				for(int i = myRequest.getMovingGateSegment(); i < oldPoints.size(); i++) {
+				for (int i = myRequest.getMovingGateSegment(); i < oldPoints.size(); i++) {
 					newPointsEnd.addPoint(oldPoints.getPoint(i));
 				}
 				newPointsEnd.translate(moveDelta);
@@ -412,17 +409,18 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 			middlePart.addPoint(routeStart);
 			middlePart.addPoint(routeEnd);
 
-			if(!OrthogonalRouterUtilities.isRectilinear(middlePart)) {
-				PreserveGatesUtil.insertPointsProducingNotAlignedRectilinearSegments(middlePart, offSourceDirection, offTargetDirection);
+			if (!OrthogonalRouterUtilities.isRectilinear(middlePart)) {
+				SnapToGrid snapper = myRequest.getSnapToGrid();
+				PreserveGatesUtil.insertPointsProducingNotAlignedRectilinearSegments(middlePart, offSourceDirection, offTargetDirection, snapper);
 				OrthogonalRouterUtilities.transformToOrthogonalPointList(middlePart, //
-					PreserveGatesUtil.asVerticalOrHorizontal(offSourceDirection), //
-					PreserveGatesUtil.asVerticalOrHorizontal(offTargetDirection));
+						PreserveGatesUtil.asVerticalOrHorizontal(offSourceDirection), //
+						PreserveGatesUtil.asVerticalOrHorizontal(offTargetDirection));
 			}
 
-			if(middlePart.getFirstPoint().equals(newPointsStart.getLastPoint())) {
+			if (middlePart.getFirstPoint().equals(newPointsStart.getLastPoint())) {
 				middlePart.removePoint(0);
 			}
-			if(middlePart.getLastPoint().equals(newPointsEnd.getFirstPoint())) {
+			if (middlePart.getLastPoint().equals(newPointsEnd.getFirstPoint())) {
 				middlePart.removePoint(middlePart.size() - 1);
 			}
 
@@ -440,7 +438,7 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 			myRequest.getLink().getConnectionFigure().translateToRelative(relPoints);
 			//System.err.println("== (rel:) " + pointList2String(relPoints));
 
-			if(newPoints != null) {
+			if (newPoints != null) {
 				SetAbsoluteBendpointsCommand.setAbsoluteBendpoints(myRequest.getEdge(), relPoints);
 			}
 
@@ -449,68 +447,40 @@ public class AdjustLinksToIndirectlyMovedNodesEditPolicy extends AdjustAbsoluteB
 
 	}
 
-	private static class PreserveGatesUtil extends RectilinearRouter2 {
+	private static class PreserveGatesUtil extends SnapToGridRectilinearRouter {
 
 		public static int getOppositeDirection(int direction) {
 			int result = 0;
-			if((direction & PositionConstants.EAST) != 0) {
+			if ((direction & PositionConstants.EAST) != 0) {
 				result |= PositionConstants.WEST;
 			}
-			if((direction & PositionConstants.WEST) != 0) {
+			if ((direction & PositionConstants.WEST) != 0) {
 				result |= PositionConstants.EAST;
 			}
-			if((direction & PositionConstants.NORTH) != 0) {
+			if ((direction & PositionConstants.NORTH) != 0) {
 				result |= PositionConstants.SOUTH;
 			}
-			if((direction & PositionConstants.SOUTH) != 0) {
+			if ((direction & PositionConstants.SOUTH) != 0) {
 				result |= PositionConstants.NORTH;
 			}
 			return result;
 		}
 
 		/**
-		 * @param points
-		 *        input list of points
-		 * @param segment
-		 *        1-based segment index, valid for given points list
+		 * @param points input list of points 
+		 * @param segment 1-based segment index, valid for given points list
 		 * @return
 		 */
 		public static int getSegmentDirection(PointList points, int segment) {
 			Point start = points.getPoint(segment - 1);
 			Point end = points.getPoint(segment);
-			if(start.x == end.x) {
+			if (start.x == end.x) {
 				return start.y < end.y ? PositionConstants.SOUTH : PositionConstants.NORTH;
 			}
-			if(start.y == end.y) {
+			if (start.y == end.y) {
 				return start.x < end.x ? PositionConstants.EAST : PositionConstants.WEST;
 			}
 			return getOutisePointOffRectanglePosition2(start, new Rectangle(end.x, end.y, 0, 0));
-		}
-
-		public static int asVerticalOrHorizontal(int direction) {
-			return getOffShapeDirection2(direction);
-		}
-
-		public static void removeRedundantPoints(PointList line) {
-			removeRedundantPoints2(line);
-		}
-
-		/**
-		 * We need to find two points offset from the source and target anchors outside the shapes
-		 * such that when the polyline is converted to rectilinear from oblique we won't have
-		 * rectilinear line segments alligned with source or target shapes edges.
-		 * <p/>
-		 * Copy-pasted from {@link RectilinearRouter} lines 416.
-		 */
-		@Deprecated
-		public static void insertPointsProducingNotAlignedRectilinearSegments(PointList line, int sourceAnchorRelativeLocation, int targetAnchorRelativeLocation) {
-			Point offStart = line.getFirstPoint();
-			Point offEnd = line.getLastPoint();
-			Dimension offsetDim = offStart.getDifference(offEnd).scale(0.5);
-			offStart.translate(getTranslationValue2(sourceAnchorRelativeLocation, Math.abs(offsetDim.width), Math.abs(offsetDim.height)));
-			offEnd.translate(getTranslationValue2(targetAnchorRelativeLocation, Math.abs(offsetDim.width), Math.abs(offsetDim.height)));
-			line.insertPoint(offStart, 1);
-			line.insertPoint(offEnd, 2);
 		}
 
 	}

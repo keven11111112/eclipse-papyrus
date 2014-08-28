@@ -49,7 +49,7 @@ public abstract class LinksLFConnectionEditPart extends ConnectionEditPart {
 			} else {
 				weight = i / ((float)modelConstraint.size() - 1);
 			}
-			Bendpoint bp = AbsoluteBendpointsConvention.d2dBendpoint(wbp, getConnectionFigure(), weight);
+			Bendpoint bp = getAbsoluteBendpointsConvention().d2dBendpoint(wbp, getConnectionFigure(), weight);
 			figureConstraint.add(bp);
 		}
 		getConnectionFigure().setRoutingConstraint(figureConstraint);
@@ -108,6 +108,9 @@ public abstract class LinksLFConnectionEditPart extends ConnectionEditPart {
 				installBendpointEditPolicy();
 		}
 	}
-
+	
+	protected AbsoluteBendpointsConvention getAbsoluteBendpointsConvention() {
+		return AbsoluteBendpointsConvention.getInstance();
+	}
 
 }

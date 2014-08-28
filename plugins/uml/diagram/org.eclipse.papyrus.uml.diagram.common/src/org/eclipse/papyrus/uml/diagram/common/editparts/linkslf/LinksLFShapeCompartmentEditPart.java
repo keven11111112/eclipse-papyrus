@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.uml.diagram.common.editparts.linkslf;
 
-import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 
 import org.eclipse.draw2d.FreeformViewport;
@@ -37,23 +36,19 @@ import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.AnimatableScrollPane;
 import org.eclipse.gmf.runtime.draw2d.ui.internal.figures.OverlayScrollPaneLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.linklf.DiagramGridSpec.GridSpecListener;
 
 
 public class LinksLFShapeCompartmentEditPart extends ShapeCompartmentEditPart {
 
-	private final PropertyChangeListener myGridListener = new PropertyChangeListener() {
-
-		public void propertyChange(PropertyChangeEvent evt) {
-			String propertyName = evt.getPropertyName();
-			if(SnapToGrid.PROPERTY_GRID_ORIGIN.equals(propertyName) || //
-			SnapToGrid.PROPERTY_GRID_ENABLED.equals(propertyName) || //
-			SnapToGrid.PROPERTY_GRID_SPACING.equals(propertyName)) {
-
-				updateGridBehavior();
-			}
+	private final GridSpecListener myGridListener = new GridSpecListener() {
+		
+		@Override
+		public void gridSpecChanged() {
+			updateGridBehavior();
 		}
 	};
-
+	
 	public LinksLFShapeCompartmentEditPart(View view) {
 		super(view);
 	}

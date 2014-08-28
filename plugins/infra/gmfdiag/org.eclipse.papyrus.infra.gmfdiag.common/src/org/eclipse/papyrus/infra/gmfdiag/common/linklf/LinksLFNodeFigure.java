@@ -3,12 +3,15 @@ package org.eclipse.papyrus.infra.gmfdiag.common.linklf;
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.ScalablePolygonShape;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.PrecisionPoint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 
 public class LinksLFNodeFigure extends DefaultSizeNodeFigure {
@@ -47,6 +50,21 @@ public class LinksLFNodeFigure extends DefaultSizeNodeFigure {
 			if(isDefaultAnchorArea(pt)) {
 				return getConnectionAnchor(szAnchor);
 			}
+			
+			if (myHost instanceof IBorderItemEditPart) {
+				IBorderItemLocator locator = ((IBorderItemEditPart) myHost).getBorderItemLocator();
+				switch (locator.getCurrentSideOfParent()) {
+				case PositionConstants.WEST:
+				case PositionConstants.EAST:
+					pt.setPreciseX(pt.preciseX() > 0.5 ? 1.0 : 0.0);
+					break;
+				case PositionConstants.SOUTH:
+				case PositionConstants.NORTH:
+					pt.setPreciseY(pt.preciseY() > 0.5 ? 1.0 : 0.0);
+					break;
+				}
+			}
+
 			return createAnchor(pt);
 		}
 	}

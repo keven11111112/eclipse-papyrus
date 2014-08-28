@@ -62,7 +62,7 @@ public class SetAbsoluteBendpointsCommand extends SetConnectionBendpointsCommand
 			//Dimension s = getNewPointList().getPoint(i).getDifference(getSourceRefPoint());
 			//Dimension t = getNewPointList().getPoint(i).getDifference(getTargetRefPoint());
 			//newBendpoints.add(new RelativeBendpoint(s.width, s.height, t.width, t.height));
-			newBendpoints.add(AbsoluteBendpointsConvention.createAbsoluteBendpointStoredAsRelative(newPointList.getPoint(i)));
+			newBendpoints.add(AbsoluteBendpointsConvention.getInstance().createAbsoluteBendpointStoredAsRelative(newPointList.getPoint(i)));
 		}
 
 		StringBuffer toString = new StringBuffer();
