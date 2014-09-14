@@ -391,9 +391,11 @@ public class OperandBoundsComputeHelper {
 				Object ioEPModel = ioEP.getModel();
 				if (ioEPModel instanceof Shape) {
 					Shape ioEPShape = (Shape) ioEPModel;
+					Dimension unZoomedSize = sizeDelta.getCopy();
+					ioEP.getFigure().translateToRelative(unZoomedSize);
 					if (ioEPShape.getLayoutConstraint() instanceof Bounds) {
 						final Bounds ioEPOriginalBounds = (Bounds) ioEPShape.getLayoutConstraint();
-						ICommand cmd = new UpdateIOBoundsForCFResizeCommand(ioEP.getEditingDomain(), "Update operand bounds interaction command", ioEPOriginalBounds, request, sizeDelta, ioEP == targetOperandEditPart, direction);
+						ICommand cmd = new UpdateIOBoundsForCFResizeCommand(ioEP.getEditingDomain(), "Update operand bounds interaction command", ioEPOriginalBounds, request, unZoomedSize, ioEP == targetOperandEditPart, direction);
 						compoundCmd.add(new ICommandProxy(cmd));
 					}
 				}
