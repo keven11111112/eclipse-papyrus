@@ -669,9 +669,14 @@ public class LifelineXYLayoutEditPolicy extends XYLayoutEditPolicy {
 						newBounds.x = oldBounds.x;
 					}
 					else {
-						newBounds.x += request.getMoveDelta().x;
-						newBounds.y += request.getMoveDelta().y;
-						newBounds.height += newSizeDelta.height;
+						Dimension unZoomedMoveDelta = new Dimension(request.getMoveDelta().x, request.getMoveDelta().y);
+						executionSpecificationEP.getFigure().translateToRelative(unZoomedMoveDelta);
+						newBounds.x += unZoomedMoveDelta.width;
+						newBounds.y += unZoomedMoveDelta.height;
+						
+						Dimension unZoomedSizeDelta = newSizeDelta.getCopy();
+						executionSpecificationEP.getFigure().translateToRelative(unZoomedSizeDelta);
+						newBounds.height += unZoomedSizeDelta.height;
 					}
 					// Not to check list
 					List<ShapeNodeEditPart> notToCheckExecutionSpecificationList = new BasicEList<ShapeNodeEditPart>();
