@@ -647,6 +647,7 @@ public class AppliedStereotypeCompositeOnModel extends DecoratedTreeComposite im
 			@Override
 			protected void doExecute() {
 				elt.applyStereotype(st);
+				elt.eNotify(new NotificationImpl(Notification.SET, true, true, true));
 				refresh();
 			}
 		};
