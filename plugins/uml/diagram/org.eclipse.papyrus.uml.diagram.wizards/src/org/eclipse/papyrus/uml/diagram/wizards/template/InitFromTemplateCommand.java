@@ -27,7 +27,12 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModelUtils;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.uml.diagram.wizards.Activator;
 import org.eclipse.papyrus.uml.diagram.wizards.utils.WizardsHelper;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
@@ -104,8 +109,7 @@ public class InitFromTemplateCommand extends RecordingCommand {
 			// verify if .di file and .notation file were filled in the org.eclipse.papyrus.uml.diagram.wizards.templates extension
 
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+			Activator.log.error("Initialization from template failed", e); //$NON-NLS-1$
 		}
 	}
 
@@ -166,7 +170,21 @@ public class InitFromTemplateCommand extends RecordingCommand {
 			// 3. set copied elements in goods resources
 			myModelUMLResource.getContents().addAll(umlObjects);
 			if (diObjects != null) {
-				myModelDiResource.getContents().addAll(diObjects);
+				TabFolder currentSelection = DiUtils.lookupCurrentTabFolderSelection(myModelDiResource);
+				if (currentSelection != null){
+					for (EObject eObject : diObjects) {
+						if (eObject instanceof SashWindowsMngr){
+							SashWindowsMngr sashWindowsMngr = (SashWindowsMngr) eObject;
+							SashModel sashModel = sashWindowsMngr.getSashModel();
+							if (sashModel != null){
+								TabFolder tabFolder = sashModel.getCurrentSelection();
+								if (tabFolder != null){
+									currentSelection.getChildren().addAll(tabFolder.getChildren());
+								}
+							}
+						}	
+					}					
+				}
 			}
 			if (notationObjects != null) {
 				myModelNotationResource.getContents().addAll(notationObjects);
