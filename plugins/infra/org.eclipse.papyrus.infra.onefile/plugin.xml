@@ -312,5 +312,24 @@
          properties="toto"
          type="java.util.Collection">
    </propertyTester>   
-</extension>      
+</extension>
+<!-- #368878 : Definition of command id to avoid error logs -->
+<extension
+      id="org.eclipse.ui.commands.oneFile"
+      name="Commands for oneFiles"
+      point="org.eclipse.ui.commands">
+  <command name="Move file"
+        description="Move file"
+        categoryId="org.eclipse.ui.category.file"
+        id="move">
+  </command>
+  <command name="Open selected file"
+        description="Open selected fsile"
+        categoryId="org.eclipse.ui.category.file"
+        id="org.eclipse.ui.navigator.Open">
+  </command>  
+</extension>     
+
+
+ 
 </plugin>
