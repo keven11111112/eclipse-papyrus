@@ -22,4 +22,3 @@ import org.eclipse.gmf.codegen.gmfgen.GenDiagramUpdater
 	}
 	
 }
-

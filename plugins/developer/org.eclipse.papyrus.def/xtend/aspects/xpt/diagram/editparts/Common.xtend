@@ -13,14 +13,18 @@
  */
 package aspects.xpt.diagram.editparts
 
+import aspects.xpt.QualifiedClassNameProvider
 import com.google.inject.Singleton
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase
 import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
+import com.google.inject.Inject
 
 //Documentation: PapyrusGenCode
 //This template has been modified in order to remove canonical ediPolicies
 
 @Singleton class Common extends xpt.diagram.editparts.Common {
+	
+	@Inject QualifiedClassNameProvider qualifiedClassNameProvider;
 
 	override installCanonicalEditPolicy(GenContainerBase it) '''
 	«IF it.needsCanonicalEditPolicy»
@@ -34,6 +38,14 @@ import org.eclipse.gmf.codegen.gmfgen.GenContainerBase
 	'''
 
 	override creationEditPolicyNewInstance(GenCommonBase it) 
-	'''new org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy()'''
+	'''new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy()'''
 
+
+	override installSemanticEditPolicy(GenCommonBase it) '''
+	«IF sansDomain»
+	removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE);
+	«ELSE»
+	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE, new «qualifiedClassNameProvider.getItemSemanticEditPolicyQualifiedClassName(it)»());
+	«ENDIF»
+	'''
 }

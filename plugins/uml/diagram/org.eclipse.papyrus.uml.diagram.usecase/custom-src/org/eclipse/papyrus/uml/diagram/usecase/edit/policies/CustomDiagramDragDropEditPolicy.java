@@ -108,8 +108,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
 		Collection<?> endtypes = UseCaseLinkMappingHelper.getInstance().getSource(semanticLink);
 		if (endtypes.size() == 2) {
-			Element source = (Element) endtypes.toArray()[0];
-			Element target = (Element) endtypes.toArray()[1];
+			Element target = (Element) endtypes.toArray()[0];
+			Element source = (Element) endtypes.toArray()[1];
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, linkVISUALID, dropRequest.getLocation(), semanticLink));
 		} else {
 			return UnexecutableCommand.INSTANCE;

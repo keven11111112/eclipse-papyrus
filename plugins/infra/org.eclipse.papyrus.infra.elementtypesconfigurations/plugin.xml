@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>r
+
+ $Id$
+-->
+
+<plugin>
+	<extension-point id="elementTypeSetConfiguration" name="ElementType Set Configuration" schema="schema/elementTypeSetConfiguration.exsd"/>
+	<extension-point id="elementTypeConfigurationType" name="ElementType Configuration Type" schema="schema/elementTypeConfigurationType.exsd"/>
+	<extension-point id="adviceConfigurationType" name="Advice Configuration Type" schema="schema/adviceConfigurationType.exsd"/>
+	<extension-point id="containerConfigurationType" name="Container Configuration Type" schema="schema/containerConfigurationType.exsd"/>
+	<extension-point id="matcherConfigurationType" name="Matcher Configuration Type" schema="schema/matcherConfigurationType.exsd"/>
+
+   
+   <extension
+         point="org.eclipse.papyrus.infra.core.service">
+      <service
+            classname="org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypesConfigurationsRegistryService"
+            description="Service used to registrer elementTypes in the GMF elementTypes registry"
+            id="ElementTypesConfigurationsRegistryService"
+            priority="50"
+            startKind="startup">
+      </service>
+   </extension>
+
+	<extension
+         point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any?after=additions">
+       <command
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.deploy"
+             icon="icons/configuration.gif"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+             <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                      <or>
+                         <test
+                               property="org.eclipse.core.resources.extension"
+                               value="elementtypesconfigurations">
+                         </test>
+                      </or>
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+       <command
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.undeploy"
+             icon="icons/configuration.gif"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+             <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                      <or>
+                         <test
+                               property="org.eclipse.core.resources.extension"
+                               value="elementtypesconfigurations">
+                         </test>
+                      </or>
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+	</extension>
+
+	<extension
+         point="org.eclipse.ui.commands">
+		<command
+            defaultHandler="org.eclipse.papyrus.infra.elementtypesconfigurations.handler.DeployElementTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.elementtypesconfigurations.deploy"
+            name="Deploy ElementTypes Set configuration">
+		</command>
+		<command
+            defaultHandler="org.eclipse.papyrus.infra.elementtypesconfigurations.handler.UndeployElementTypeSetConfigurationHandler"
+            id="org.eclipse.papyrus.infra.elementtypesconfigurations.undeploy"
+            name="Disable ElementTypes Set configuration">
+		</command>
+	</extension>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated ElementTypesConfigurations -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage"
+            genModel="model/ElementTypesConfigurations.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.content_parser">
+      <!-- @generated ElementTypesConfigurations -->
+      <parser
+            contentTypeIdentifier="org.eclipse.papyrus.infra.elementtypesconfigurations"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.util.ElementtypesconfigurationsResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.core.contenttype.contentTypes">
+      <!-- @generated ElementTypesConfigurations -->
+      <content-type
+            base-type="org.eclipse.emf.ecore.xmi"
+            file-extensions="elementtypesconfigurations"
+            id="org.eclipse.papyrus.infra.elementtypesconfigurations"
+            name="%_UI_Elementtypesconfigurations_content_type"
+            priority="normal">
+         <describer class="org.eclipse.emf.ecore.xmi.impl.RootXMLContentHandlerImpl$Describer">
+            <parameter name="namespace" value="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"/>
+            <parameter name="kind" value="xmi"/>
+         </describer>
+      </content-type>
+   </extension>
+
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <parser
+            type="elementtypesconfigurations"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.resource.CustomElementtypesconfigurationsResourceFactoryImpl"/>
+   </extension>
+
+</plugin>

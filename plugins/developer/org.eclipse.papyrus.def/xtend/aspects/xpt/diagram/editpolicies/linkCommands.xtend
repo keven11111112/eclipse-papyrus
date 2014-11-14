@@ -79,22 +79,9 @@ import xpt.providers.ElementTypes
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
 			«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
-			boolean isExtendedType = false;
+			boolean isExtendedType = true;
 			«ENDIF»
-			if(requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-				baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(requestElementType);
-				if(baseElementType != null) {
-					«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
-					isExtendedType = true;
-					«ENDIF»
-				} else {
-					// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-					baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.findClosestNonExtendedElementType((org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
-					«IF aspectsUtils_qvto.containsCreateStartLinkCommand(it)»
-					isExtendedType = true;
-					«ENDIF»
-				}
-			}
+			
 			«FOR l : getAllPotentialLinks(it)»
 			«startLinkCommands(l, it)»
 			«ENDFOR»
@@ -110,22 +97,9 @@ import xpt.providers.ElementTypes
 			}
 			org.eclipse.gmf.runtime.emf.type.core.IElementType baseElementType = requestElementType;
 			«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
-			boolean isExtendedType = false;
+			boolean isExtendedType = true;
 			«ENDIF»
-			if(requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-				baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.getClosestDiagramType(requestElementType);
-				if(baseElementType != null) {
-					«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
-					isExtendedType = true;
-					«ENDIF»
-				} else {
-					// no reference element type ID. using the closest super element type to give more opportunities, but can lead to bugs.
-					baseElementType = org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils.findClosestNonExtendedElementType((org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
-					«IF aspectsUtils_qvto.containsCreateCompleteLinkCommand(it)»
-					isExtendedType = true;
-					«ENDIF»
-				}
-			}	
+
 			«FOR l : getAllPotentialLinks(it)»
 			«completeLinkCommands(l, it)»
 			«ENDFOR»
@@ -137,7 +111,7 @@ import xpt.providers.ElementTypes
 		if («xptElementTypes.accessElementType(it)» == baseElementType) {
 		«IF createStartLinkCommand(it, linkEnd)»
 		if(isExtendedType) {
-			return getExtendedStartCreateRelationshipCommand(req, (org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
+			return getExtendedStartCreateRelationshipCommand(req, requestElementType);
 		}
 				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
 					«IF createStartIncomingLinkCommand(it, linkEnd)»
@@ -156,7 +130,7 @@ import xpt.providers.ElementTypes
 		if («xptElementTypes.accessElementType(it)» == baseElementType) {
 			«IF createCompleteLinkCommand(it, linkEnd)»
 			if(isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType)requestElementType);
+				return getExtendedCompleteCreateRelationshipCommand(req, requestElementType);
 			}
 				return getGEFWrapper(new «xptCreateLinkCommand.qualifiedClassName(it)»(req,
 					«IF createCompleteOutgoingLinkCommand(it, linkEnd)»

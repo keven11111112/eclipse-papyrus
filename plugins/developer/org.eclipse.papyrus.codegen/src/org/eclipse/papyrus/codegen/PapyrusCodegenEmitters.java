@@ -24,7 +24,7 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 	}
 
 	@Override
-	public JavaClassEmitter getModelingAssistantProviderEmitter() throws UnexpectedBehaviourException {
+	public JavaClassEmitter getDiagramCanonicalEditPolicyEmitter() {
 		return null;
 	}
 
@@ -34,12 +34,63 @@ public class PapyrusCodegenEmitters extends CodegenEmittersWithXtend2 {
 	}
 
 	@Override
+	public JavaClassEmitter getModelingAssistantProviderEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getChildContainerCanonicalEditPolicyEmitter() {
+		return null;
+	}
+
+
+	@Override
 	public JavaClassEmitter getNodeEditPartModelingAssistantProviderEmitter() {
 		return null;
 	}
 
 	@Override
+	public JavaClassEmitter getDiagramItemSemanticEditPolicyEmitter() {
+		return null;
+	}
+
+	@Override
 	public JavaClassEmitter getDeleteElementActionEmitter() {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getCreateNodeCommandEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getReorientLinkCommandEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getReorientRefLinkCommandEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getCreateLinkCommandEmitter() throws UnexpectedBehaviourException {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getCompartmentItemSemanticEditPolicyEmitter() {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getNodeItemSemanticEditPolicyEmitter() {
+		return null;
+	}
+
+	@Override
+	public JavaClassEmitter getLinkItemSemanticEditPolicyEmitter() {
 		return null;
 	}
 }

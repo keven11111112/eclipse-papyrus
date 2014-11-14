@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+
+
+
+
+	<extension
+         point="org.eclipse.ui.menus">
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurations"
+             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.generateElementTypesConfigurations"
+             label="Generate ElementTypes Configurations"
+             mnemonic="S"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurationsFromGmfGen"
+             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.generateEElementTypesConfigurationsFromGmfGen"
+             label="Generate ElementTypesConfigurations From GmfGen"
+             mnemonic="G"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+    <menuContribution
+          allPopups="false"
+          locationURI="popup:org.eclipse.ui.popup.any">
+       <command
+             commandId="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesRegistry"
+             id="org.eclipse.papyrus.infra.elementtypesconfigurations.menus.generateElementTypesRegistry"
+             label="Generate ElementTypes Registry"
+             mnemonic="G"
+             style="push">
+          <visibleWhen
+                checkEnabled="false">
+                <with
+                   variable="selection">
+                <iterate
+                      ifEmpty="false"
+                      operator="and">
+                   <adapt
+                         type="org.eclipse.core.resources.IFile">
+                   </adapt>
+                </iterate>
+             </with>
+          </visibleWhen>
+       </command>
+    </menuContribution>
+	</extension>
+
+	<extension
+         point="org.eclipse.ui.commands">
+  <command
+        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesConfigurations"
+        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurations"
+        name="Generate ElementTypesConfigurations">
+  </command>
+    <command
+        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesConfigurationsFromGmfGen"
+        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesConfigurationsFromGmfGen"
+        name="Generate ElementTypesConfigurations From GmfGen">
+  </command>
+      <command
+        defaultHandler="org.eclipse.papyrus.elementtypesconfigurations.developer.handlers.GenerateElementTypesRegistry"
+        id="org.eclipse.papyrus.infra.elementtypesconfigurations.commands.generateElementTypesRegistry"
+        name="Generate ElementTypes Registry">
+  </command>
+	</extension>
+ <extension
+       point="org.eclipse.ui.views">
+    <view
+          category="org.eclipse.papyrus.views.category"
+          class="org.eclipse.papyrus.elementtypesconfigurations.developer.view.RegistredElementTypesView"
+          id="org.eclipse.papyrus.elementtypesconfigurations.developer.registeredElementTypesView"
+          name="Registred ElementTypes View"
+          restorable="true">
+    </view>
+ </extension>
+
+</plugin>

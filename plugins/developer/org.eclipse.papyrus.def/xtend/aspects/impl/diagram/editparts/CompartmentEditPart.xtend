@@ -33,7 +33,7 @@ import xpt.diagram.editparts.Common
 		«ENDIF»
 		«xptEditpartsCommon.installSemanticEditPolicy(it)»
 		«IF ! childNodes.empty»
-			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy());
+			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy());
 			installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE, new org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy());
 			installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy());
 		«ENDIF»
