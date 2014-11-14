@@ -21,6 +21,7 @@ import static org.junit.Assert.assertTrue;
 import java.util.ArrayList;
 
 import org.eclipse.draw2d.geometry.Point;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
@@ -45,6 +46,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtilsForActionHandlers;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.uml2.uml.Element;
 
@@ -58,15 +60,15 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test view deletion.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testViewDeletion(IElementType type) {
-		//DELETION OF THE VIEW
+		// DELETION OF THE VIEW
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-		Command command = ((GraphicalEditPart)getDiagramEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
+		Command command = ((GraphicalEditPart) getDiagramEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
@@ -104,17 +106,17 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test destroy.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testDestroy(IElementType type) {
 
 
-		//DESTROY SEMANTIC+ VIEW
+		// DESTROY SEMANTIC+ VIEW
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
-		Command command = ((GraphicalEditPart)getDiagramEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
+		Command command = ((GraphicalEditPart) getDiagramEditPart().getChildren().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
@@ -136,10 +138,10 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test drop.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testDrop(IElementType type) {
-		//DROP
+		// DROP
 		assertTrue(DROP + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
 		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
@@ -169,12 +171,12 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test change container.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param containerType
-	 *        the container type
+	 *            the container type
 	 */
 	public void testChangeContainer(IElementType type, IElementType containerType) {
-		//CHANGE CONTAINER
+		// CHANGE CONTAINER
 		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		assertTrue(CHANGE_CONTAINER + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 1);
 
@@ -186,15 +188,15 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
 		assertTrue(CONTAINER_CREATION + TEST_THE_EXECUTION, getRootView().getChildren().size() == 2);
-		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
+		GraphicalEditPart containerEditPart = (GraphicalEditPart) getDiagramEditPart().getChildren().get(1);
 		ChangeBoundsRequest changeBoundsRequest = new ChangeBoundsRequest(RequestConstants.REQ_ADD);
-		changeBoundsRequest.setEditParts((EditPart)getDiagramEditPart().getChildren().get(0));
+		changeBoundsRequest.setEditParts((EditPart) getDiagramEditPart().getChildren().get(0));
 		changeBoundsRequest.setLocation(new Point(30, 30));
 		ShapeCompartmentEditPart compartment = null;
 		int index = 0;
-		while(compartment == null && index < containerEditPart.getChildren().size()) {
-			if((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
-				compartment = (ShapeCompartmentEditPart)(containerEditPart.getChildren().get(index));
+		while (compartment == null && index < containerEditPart.getChildren().size()) {
+			if ((containerEditPart.getChildren().get(index)) instanceof ShapeCompartmentEditPart) {
+				compartment = (ShapeCompartmentEditPart) (containerEditPart.getChildren().get(index));
 			}
 			index++;
 		}
@@ -224,17 +226,17 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test to create a node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	public void testToCreateANode(IElementType type) {
 
-		//CREATION
+		// CREATION
 		assertEquals(CREATION + INITIALIZATION_TEST, 0, getDiagramEditPart().getChildren().size());
 		assertEquals(CREATION + INITIALIZATION_TEST, 0, getRootSemanticModel().getOwnedElements().size());
-		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(type)), Node.class, ((IHintedType)type).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
+		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(new CreateElementRequest(type)), Node.class, ((IHintedType) type).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
 		CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 
-		//CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
+		// CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertNotSame(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, UnexecutableCommand.INSTANCE, command);
@@ -254,20 +256,20 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test to create a node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
-	public void testToCreateSpecificNode(IElementType type, IHintedType semanticType) {
+	public void testToCreateSpecificNode(IElementType type, EClass eClassHint) {
 
-		//CREATION
+		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
 		CreateElementRequest semanticRequest = new CreateElementRequest(type);
-		semanticRequest.setParameter("Subject_SemanticHint", semanticType);
+		semanticRequest.setParameter(CreateEditBasedElementCommand.ECLASS_HINT, eClassHint);
 
-		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(semanticRequest), Node.class, ((IHintedType)type).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
+		ViewAndElementDescriptor viewDescriptor = new ViewAndElementDescriptor(new CreateElementRequestAdapter(semanticRequest), Node.class, ((IHintedType) type).getSemanticHint(), getDiagramEditPart().getDiagramPreferencesHint());
 		CreateViewRequest requestcreation = new CreateViewAndElementRequest(viewDescriptor);
 
-		//CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
+		// CreateViewRequest requestcreation=CreateViewRequestFactory.getCreateShapeRequest(type, getDiagramEditPart().getDiagramPreferencesHint());
 		Command command = getDiagramEditPart().getCommand(requestcreation);
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
@@ -287,9 +289,9 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test to manage top node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param containerType
-	 *        the container type
+	 *            the container type
 	 */
 	public void testToManageTopNode(IElementType type, IElementType containerType) {
 		int i = 0;
@@ -305,13 +307,13 @@ public abstract class TestSpecificTopNode extends org.eclipse.papyrus.uml.diagra
 	 * Test to manage top node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param containerType
-	 *        the container type
+	 *            the container type
 	 */
-	public void testToManageSpecificTopNode(IElementType type, IElementType containerType, IHintedType semanticType) {
+	public void testToManageSpecificTopNode(IElementType type, IElementType containerType, EClass eClassHint) {
 		int i = 0;
-		testToCreateSpecificNode(type, semanticType);
+		testToCreateSpecificNode(type, eClassHint);
 		testDestroy(type);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testViewDeletion(type);

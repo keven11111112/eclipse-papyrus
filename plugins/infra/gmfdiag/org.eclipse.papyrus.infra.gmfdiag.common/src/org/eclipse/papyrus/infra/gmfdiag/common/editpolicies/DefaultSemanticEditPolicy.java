@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -69,9 +70,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return super.getCommand(request);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	@Override
 	protected Command getSemanticCommand(IEditCommandRequest request) {
 		IEditCommandRequest completedRequest = completeRequest(request);
@@ -83,9 +82,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return semanticCommand;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getSemanticCommandSwitch(IEditCommandRequest req) {
 		if (req instanceof CreateRelationshipRequest) {
 			return getCreateRelationshipCommand((CreateRelationshipRequest) req);
@@ -113,79 +110,58 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getConfigureCommand(ConfigureRequest req) {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 		return getDefaultSemanticCommand(req, req.getElementType());
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getCreateCommand(CreateElementRequest req) {
 		return getDefaultSemanticCommand(req);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getSetCommand(SetRequest req) {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getEditContextCommand(GetEditContextRequest req) {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		return getDefaultSemanticCommand(req);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getDestroyReferenceCommand(DestroyReferenceRequest req) {
 		return getDefaultSemanticCommand(req);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getDuplicateCommand(DuplicateElementsRequest req) {
 		return null;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getMoveCommand(MoveRequest req) {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		return UnexecutableCommand.INSTANCE;
+		EObject context = req.getReferenceOwner();
+		return getDefaultSemanticCommand(req, context);
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(req.getRelationship());
 		if (commandService == null) {
@@ -204,9 +180,7 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	/**
-	 * @generated
-	 */
+
 	protected final Command getGEFWrapper(ICommand cmd) {
 		return new ICommandProxy(cmd);
 	}
@@ -225,9 +199,11 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 	}
 
 	private Command getDefaultSemanticCommand(IEditCommandRequest req, Object context) {
-		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
+		IElementEditService commandService;
 		if (context != null) {
 			commandService = ElementEditServiceUtils.getCommandProvider(context);
+		} else {
+			commandService = ElementEditServiceUtils.getCommandProvider(((IGraphicalEditPart) getHost()).resolveSemanticElement());
 		}
 
 		if (commandService == null) {

@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -45,21 +45,21 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 
 	/**
 	 * Subclasses should implement this method providing the EReference to be used as source.
-	 *
+	 * 
 	 * @return the source EReference
 	 */
 	protected abstract EReference getSourceReference();
 
 	/**
 	 * Subclasses should implement this method providing the EReference to be used as target.
-	 *
+	 * 
 	 * @return the target EReference
 	 */
 	protected abstract EReference getTargetReference();
 
 	/**
 	 * Test if the relationship creation is allowed.
-	 *
+	 * 
 	 * @param source
 	 *            the relationship source can be null
 	 * @param target
@@ -91,22 +91,29 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 			return IdentityCommand.INSTANCE;
 		}
 
-		// Propose a container if none is set in request.
-		EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[] { source, target }), UMLPackage.eINSTANCE.getPackage());
+		// If containmentFeature doesn't fit with container, try to find one that make sense
 
-		// If no common container is found try source nearest package
-		EObject sourcePackage = EMFCoreUtil.getContainer(source, UMLPackage.eINSTANCE.getPackage());
-		if ((proposedContainer == null) && !(isReadOnly(sourcePackage))) {
-			proposedContainer = sourcePackage;
+		if ((!req.getContainer().eClass().getEAllReferences().contains(req.getContainmentFeature())) || req.getContainmentFeature() == null) {
+			// Propose a container if none is set in request.
+			EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[] { source, target }), UMLPackage.eINSTANCE.getPackage());
+
+			// If no common container is found try source nearest package
+			EObject sourcePackage = EMFCoreUtil.getContainer(source, UMLPackage.eINSTANCE.getPackage());
+			if ((proposedContainer == null) && !(isReadOnly(sourcePackage))) {
+				proposedContainer = sourcePackage;
+			}
+
+			// If no common container is found try target nearest package
+			EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
+			if ((proposedContainer == null) && !(isReadOnly(targetPackage))) {
+				proposedContainer = targetPackage;
+			}
+
+			req.setContainer(proposedContainer);
+
 		}
 
-		// If no common container is found try target nearest package
-		EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
-		if ((proposedContainer == null) && !(isReadOnly(targetPackage))) {
-			proposedContainer = targetPackage;
-		}
 
-		req.setContainer(proposedContainer);
 
 		return new CreateRelationshipCommand(req);
 	}
@@ -120,7 +127,7 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 
 	/**
 	 * This method provides the object to be use as source.
-	 *
+	 * 
 	 * @return the source value (EList or EObject)
 	 */
 	protected Object getSourceObject(ConfigureRequest req) {
@@ -139,7 +146,7 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 
 	/**
 	 * This method provides the object to be used as target.
-	 *
+	 * 
 	 * @return the target value (EList or EObject)
 	 */
 	protected Object getTargetObject(ConfigureRequest req) {
@@ -164,7 +171,6 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
-			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				DirectedRelationship element = (DirectedRelationship) req.getElementToConfigure();

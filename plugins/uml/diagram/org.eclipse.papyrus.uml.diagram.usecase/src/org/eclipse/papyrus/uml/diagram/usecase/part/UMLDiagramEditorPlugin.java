@@ -1,14 +1,13 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 410346
  */
 package org.eclipse.papyrus.uml.diagram.usecase.part;
 
@@ -22,7 +21,7 @@ import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
-import org.eclipse.papyrus.infra.gmfdiag.preferences.Activator;
+import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.usecase.expressions.UMLOCLFactory;
 import org.eclipse.papyrus.uml.diagram.usecase.preferences.DiagramPreferenceInitializer;
@@ -90,22 +89,19 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		instance = this;
 		myLogHelper = new LogHelper(this);
 		PreferencesHint.registerPreferenceStore(DIAGRAM_PREFERENCES_HINT, getPreferenceStore());
-		adapterFactory = org.eclipse.papyrus.infra.gmfdiag.common.Activator.getInstance().getItemProvidersAdapterFactory();
+		adapterFactory = Activator.getInstance().getItemProvidersAdapterFactory();
 		DiagramPreferenceInitializer diagramPreferenceInitializer = new DiagramPreferenceInitializer();
 		diagramPreferenceInitializer.initializeDefaultPreferences();
-
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	public void stop(BundleContext context) throws Exception {
 		adapterFactory = null;
 		linkConstraints = null;
@@ -125,9 +121,8 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * @generated
 	 */
-	@Override
 	public IPreferenceStore getPreferenceStore() {
-		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		IPreferenceStore store = org.eclipse.papyrus.infra.gmfdiag.preferences.Activator.getDefault().getPreferenceStore();
 		return store;
 	}
 
@@ -142,12 +137,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * @generated
 	 */
 	public ImageDescriptor getItemImageDescriptor(Object item) {
-		IItemLabelProvider labelProvider =
-				(IItemLabelProvider) adapterFactory.adapt(
-						item, IItemLabelProvider.class);
-		if (labelProvider != null) {
-			return ExtendedImageRegistry.getInstance().getImageDescriptor(
-					labelProvider.getImage(item));
+		IItemLabelProvider labelProvider = (IItemLabelProvider)adapterFactory.adapt(item, IItemLabelProvider.class);
+		if(labelProvider != null) {
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
 		}
 		return null;
 	}
@@ -155,10 +147,9 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * Returns an image descriptor for the image file at the given
 	 * plug-in relative path.
-	 *
+	 * 
 	 * @generated
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor getBundledImageDescriptor(String path) {
@@ -169,17 +160,15 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	 * Respects images residing in any plug-in. If path is relative,
 	 * then this bundle is looked up for the image, otherwise, for absolute
 	 * path, first segment is taken as id of plug-in with image
-	 *
+	 * 
 	 * @generated
-	 * @param path
-	 *            the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
+	 * @param path the path to image, either absolute (with plug-in id as first segment), or relative for bundled images
 	 * @return the image descriptor
 	 */
 	public static ImageDescriptor findImageDescriptor(String path) {
 		final IPath p = new Path(path);
-		if (p.isAbsolute() && p.segmentCount() > 1) {
-			return AbstractUIPlugin.imageDescriptorFromPlugin(
-					p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
+		if(p.isAbsolute() && p.segmentCount() > 1) {
+			return AbstractUIPlugin.imageDescriptorFromPlugin(p.segment(0), p.removeFirstSegments(1).makeAbsolute().toString());
 		} else {
 			return getBundledImageDescriptor(p.makeAbsolute().toString());
 		}
@@ -188,15 +177,14 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 	/**
 	 * Returns an image for the image file at the given plugin relative path.
 	 * Client do not need to dispose this image. Images will be disposed automatically.
-	 *
+	 * 
 	 * @generated
-	 * @param path
-	 *            the path
+	 * @param path the path
 	 * @return image instance
 	 */
 	public Image getBundledImage(String path) {
 		Image image = getImageRegistry().get(path);
-		if (image == null) {
+		if(image == null) {
 			getImageRegistry().put(path, getBundledImageDescriptor(path));
 			image = getImageRegistry().get(path);
 		}
@@ -205,19 +193,18 @@ public class UMLDiagramEditorPlugin extends AbstractUIPlugin {
 
 	/**
 	 * Returns string from plug-in's resource bundle
-	 *
+	 * 
 	 * @generated
 	 */
 	public static String getString(String key) {
-		return Platform.getResourceString(
-				getInstance().getBundle(), "%" + key); //$NON-NLS-1$
+		return Platform.getResourceString(getInstance().getBundle(), "%" + key); //$NON-NLS-1$
 	}
 
 	/**
 	 * @generated
 	 */
 	public UMLDocumentProvider getDocumentProvider() {
-		if (documentProvider == null) {
+		if(documentProvider == null) {
 			documentProvider = new UMLDocumentProvider();
 		}
 		return documentProvider;

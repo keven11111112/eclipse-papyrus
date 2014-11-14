@@ -31,7 +31,6 @@ import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode
 import org.eclipse.gmf.codegen.gmfgen.MetamodelType
 import org.eclipse.gmf.codegen.gmfgen.NotationType
 import org.eclipse.gmf.codegen.gmfgen.SpecializationType
-import org.eclipse.papyrus.papyrusgmfgenextension.GenerateUsingElementTypeCreationCommand
 import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
 import xpt.Common
 import xpt.Common_qvto
@@ -140,24 +139,18 @@ import xpt.editor.VisualIDRegistry
 					Both parameters should describe exactly the same diagram element.
 					In addition we check that visualID returned by VisualIDRegistry.getNodeVisualID() for
 					domainElement (if specified) is the same as in element type. */»
-				if(elementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-					if (domainElement != null) {
-						if (!«xptVisualIDRegistry.qualifiedClassName(it)».«checkNodeVisualIDMethodName(it)»(op.getContainerView(), domainElement, visualID)) {
-							return false;
-						}
-					}
-				} else {
+				
 					if (!«getElementTypesQualifiedClassName()».isKnownElementType(elementType) || (!(elementType instanceof org.eclipse.gmf.runtime.emf.type.core.IHintedType))) {
 						return false; // foreign element type
 					}
-				}
+				
 				String elementTypeHint = ((org.eclipse.gmf.runtime.emf.type.core.IHintedType) elementType).getSemanticHint();
 				if (!op.getSemanticHint().equals(elementTypeHint)) {
 					return false; // if semantic hint is specified it should be the same as in element type
 				}
-				if (domainElement != null && visualID != «getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement)) {
-					return false; // visual id for node EClass should match visual id from element type
-				}
+				//if (domainElement != null && visualID != «getNodeVisualIDMethodCall(it)»(op.getContainerView(), domainElement)) {
+				//	return false; // visual id for node EClass should match visual id from element type
+				//}
 			} else {«/*
 					Element type is not specified. Domain element should be present (except pure design elements).
 					 This method is called with EObjectAdapter as parameter from:
@@ -194,13 +187,8 @@ import xpt.editor.VisualIDRegistry
 				«ENDIF»
 				}
 				}
-				«IF it.eResource.allContents.filter(typeof(GenerateUsingElementTypeCreationCommand)).size>0»
+				
 					return «canCreateNodeMethodCall(it)»(op.getContainerView(), visualID);
-				«ELSE»
-					return «FOR n : getAllNodes() SEPARATOR '||'»«VisualIDRegistry::visualID(n)» == visualID«ENDFOR»;
-				«ENDIF»
-				
-				
 			}
 		
 			«generatedMemberComment»«/* XXX: unlike createNode, we don't check op.containerView() for null here. On purpose? */»
@@ -225,11 +213,11 @@ import xpt.editor.VisualIDRegistry
 		if (elementTypeHint == null || (op.getSemanticHint() != null && !elementTypeHint.equals(op.getSemanticHint()))) {
 			return false; // our hint is visual id and must be specified, and it should be the same as in element type
 		}
-		int visualID = «getVisualIDMethodCall(it)»(elementTypeHint);
-		org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
-		if (domainElement != null && visualID != «getLinkWithClassVisualIDMethodCall(it)»(domainElement)) {
-			return false; // visual id for link EClass should match visual id from element type
-		}
+		//int visualID = «getVisualIDMethodCall(it)»(elementTypeHint);
+		//org.eclipse.emf.ecore.EObject domainElement = getSemanticElement(op.getSemanticAdapter());
+		//if (domainElement != null && visualID != «getLinkWithClassVisualIDMethodCall(it)»(domainElement)) {
+		//	return false; // visual id for link EClass should match visual id from element type
+		//}
 		return true; «««Does it make sense to check visualID here, like we did for nodes?
 	}
 

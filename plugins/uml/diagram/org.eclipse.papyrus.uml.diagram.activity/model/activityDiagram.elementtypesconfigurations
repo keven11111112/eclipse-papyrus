@@ -1,0 +1,398 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmi:id="_x8G0YGaNEeSyJIsxLao1Pw" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0yWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063" identifier="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063" hint="3063">
+    <iconEntry xmi:id="_x8G0ymaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/AcceptEventAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.AcceptEventAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0cWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016" hint="3016">
+    <iconEntry xmi:id="_x8G0cmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0e2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018" hint="3018">
+    <iconEntry xmi:id="_x8G0fGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0g2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021" hint="3021">
+    <iconEntry xmi:id="_x8G0hGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0jWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026" hint="3026">
+    <iconEntry xmi:id="_x8G0jmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0r2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047" hint="3047">
+    <iconEntry xmi:id="_x8G0sGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0tWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050" hint="3050">
+    <iconEntry xmi:id="_x8G0tmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0u2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053" hint="3053">
+    <iconEntry xmi:id="_x8G0vGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0w2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061" hint="3061">
+    <iconEntry xmi:id="_x8G0xGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0aWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005" identifier="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005" hint="3005">
+    <iconEntry xmi:id="_x8G0amaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActivityFinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActivityFinalNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0x2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059" identifier="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059" hint="3059">
+    <iconEntry xmi:id="_x8G0yGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActivityParameterNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActivityParameterNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbiGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067" identifier="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067" hint="3067">
+    <iconEntry xmi:id="_x8HbiWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ActivityPartition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActivityPartition</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbvmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Activity_2001" identifier="org.eclipse.papyrus.uml.diagram.activity.Activity_2001" hint="2001">
+    <iconEntry xmi:id="_x8Hbv2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Activity.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Activity</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbkmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Activity_3083" identifier="org.eclipse.papyrus.uml.diagram.activity.Activity_3083" hint="3083">
+    <iconEntry xmi:id="_x8Hbk2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Activity.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Activity</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HboGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091" identifier="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091" hint="3091">
+    <iconEntry xmi:id="_x8HboWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/AddStructuralFeatureValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.AddStructuralFeatureValueAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbsGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099" identifier="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099" hint="3099">
+    <iconEntry xmi:id="_x8HbsWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/AddVariableValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.AddVariableValueAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbtmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102" identifier="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102" hint="3102">
+    <iconEntry xmi:id="_x8Hbt2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/BroadcastSignalAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.BroadcastSignalAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0d2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008" identifier="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008" hint="3008">
+    <iconEntry xmi:id="_x8G0eGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/CallBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.CallBehaviorAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0gWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010" identifier="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010" hint="3010">
+    <iconEntry xmi:id="_x8G0gmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/CallOperationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.CallOperationAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbumaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104" identifier="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104" hint="3104">
+    <iconEntry xmi:id="_x8Hbu2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/CentralBufferNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.CentralBufferNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbjGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Comment_3080" identifier="org.eclipse.papyrus.uml.diagram.activity.Comment_3080" hint="3080">
+    <iconEntry xmi:id="_x8HbjWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbcmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069" identifier="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069" hint="3069">
+    <iconEntry xmi:id="_x8Hbc2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ConditionalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ConditionalNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0Y2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3002" hint="3002">
+    <iconEntry xmi:id="_x8G0ZGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0ZWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3003" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3003" hint="3003">
+    <iconEntry xmi:id="_x8G0ZmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0nWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011" hint="3011">
+    <iconEntry xmi:id="_x8G0nmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0n2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012" hint="3012">
+    <iconEntry xmi:id="_x8G0oGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbvGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112" hint="3112">
+    <iconEntry xmi:id="_x8HbvWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbwmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004" identifier="org.eclipse.papyrus.uml.diagram.activity.ControlFlow_4004" hint="4004">
+    <iconEntry xmi:id="_x8Hbw2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ControlFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ControlFlow</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HblGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086" identifier="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086" hint="3086">
+    <iconEntry xmi:id="_x8HblWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/CreateObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.CreateObjectAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0qWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078" identifier="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078" hint="3078">
+    <iconEntry xmi:id="_x8G0qmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DataStoreNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DataStoreNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0oWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038" identifier="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038" hint="3038">
+    <iconEntry xmi:id="_x8G0omaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DecisionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DecisionNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbqGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095" identifier="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095" hint="3095">
+    <iconEntry xmi:id="_x8HbqWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DestroyObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DestroyObjectAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0kWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034" identifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034" hint="3034">
+    <iconEntry xmi:id="_x8G0kmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0k2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035" identifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035" hint="3035">
+    <iconEntry xmi:id="_x8G0lGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbxGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005" identifier="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005" hint="4005">
+    <iconEntry xmi:id="_x8HbxWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ExceptionHandler.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExceptionHandler</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbdmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074" hint="3074">
+    <iconEntry xmi:id="_x8Hbd2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ExpansionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbeGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075" hint="3075">
+    <iconEntry xmi:id="_x8HbeWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ExpansionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbdGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070" hint="3070">
+    <iconEntry xmi:id="_x8HbdWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ExpansionRegion.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExpansionRegion</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0a2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006" identifier="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006" hint="3006">
+    <iconEntry xmi:id="_x8G0bGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/FlowFinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.FlowFinalNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0pWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040" identifier="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040" hint="3040">
+    <iconEntry xmi:id="_x8G0pmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ForkNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ForkNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0Z2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004" identifier="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004" hint="3004">
+    <iconEntry xmi:id="_x8G0aGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InitialNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InitialNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0c2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013" hint="3013">
+    <iconEntry xmi:id="_x8G0dGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0fWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019" hint="3019">
+    <iconEntry xmi:id="_x8G0fmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0h2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023" hint="3023">
+    <iconEntry xmi:id="_x8G0iGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0j2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027" hint="3027">
+    <iconEntry xmi:id="_x8G0kGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0sWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048" hint="3048">
+    <iconEntry xmi:id="_x8G0smaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0t2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051" hint="3051">
+    <iconEntry xmi:id="_x8G0uGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0v2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055" hint="3055">
+    <iconEntry xmi:id="_x8G0wGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0xWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062" hint="3062">
+    <iconEntry xmi:id="_x8G0xmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbnGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089" hint="3089">
+    <iconEntry xmi:id="_x8HbnWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbomaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092" hint="3092">
+    <iconEntry xmi:id="_x8Hbo2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbpGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093" hint="3093">
+    <iconEntry xmi:id="_x8HbpWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbqmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096" hint="3096">
+    <iconEntry xmi:id="_x8Hbq2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbsmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100" hint="3100">
+    <iconEntry xmi:id="_x8Hbs2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbtGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101" hint="3101">
+    <iconEntry xmi:id="_x8HbtWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbuGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103" hint="3103">
+    <iconEntry xmi:id="_x8HbuWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbhmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105" hint="3105">
+    <iconEntry xmi:id="_x8Hbh2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbimaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068" identifier="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068" hint="3068">
+    <iconEntry xmi:id="_x8Hbi2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/InterruptibleActivityRegion.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InterruptibleActivityRegion</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0mWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032" identifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032" hint="3032">
+    <iconEntry xmi:id="_x8G0mmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0m2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033" identifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033" hint="3033">
+    <iconEntry xmi:id="_x8G0nGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0p2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041" identifier="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041" hint="3041">
+    <iconEntry xmi:id="_x8G0qGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/JoinNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.JoinNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbemaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071" identifier="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071" hint="3071">
+    <iconEntry xmi:id="_x8Hbe2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/LoopNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.LoopNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0o2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039" identifier="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039" hint="3039">
+    <iconEntry xmi:id="_x8G0pGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/MergeNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.MergeNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbmGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085" identifier="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085" hint="3085">
+    <iconEntry xmi:id="_x8HbmWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.NamedElement</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbwGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003" identifier="org.eclipse.papyrus.uml.diagram.activity.ObjectFlow_4003" hint="4003">
+    <iconEntry xmi:id="_x8HbwWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ObjectFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ObjectFlow</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0bWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007" identifier="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007" hint="3007">
+    <iconEntry xmi:id="_x8G0bmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OpaqueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OpaqueAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0dWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014" hint="3014">
+    <iconEntry xmi:id="_x8G0dmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0f2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020" hint="3020">
+    <iconEntry xmi:id="_x8G0gGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0iWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024" hint="3024">
+    <iconEntry xmi:id="_x8G0imaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0y2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064" hint="3064">
+    <iconEntry xmi:id="_x8G0zGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbcGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077" hint="3077">
+    <iconEntry xmi:id="_x8HbcWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbkGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3084" hint="3084">
+    <iconEntry xmi:id="_x8HbkWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HblmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087" hint="3087">
+    <iconEntry xmi:id="_x8Hbl2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbnmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090" hint="3090">
+    <iconEntry xmi:id="_x8Hbn2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbpmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094" hint="3094">
+    <iconEntry xmi:id="_x8Hbp2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbrmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098" hint="3098">
+    <iconEntry xmi:id="_x8Hbr2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbfGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109" hint="3109">
+    <iconEntry xmi:id="_x8HbfWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbfmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110" hint="3110">
+    <iconEntry xmi:id="_x8Hbf2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbgGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111" hint="3111">
+    <iconEntry xmi:id="_x8HbgWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0YWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001" identifier="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001" hint="3001">
+    <iconEntry xmi:id="_x8G0YmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Parameter</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbjmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081" identifier="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081" hint="3081">
+    <iconEntry xmi:id="_x8Hbj2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ReadSelfAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ReadSelfAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbmmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088" identifier="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088" hint="3088">
+    <iconEntry xmi:id="_x8Hbm2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ReadStructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ReadStructuralFeatureAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbrGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097" identifier="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097" hint="3097">
+    <iconEntry xmi:id="_x8HbrWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ReadVariableAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ReadVariableAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0q2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042" identifier="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042" hint="3042">
+    <iconEntry xmi:id="_x8G0rGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/SendObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.SendObjectAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0uWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052" identifier="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052" hint="3052">
+    <iconEntry xmi:id="_x8G0umaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/SendSignalAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.SendSignalAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbgmaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073" identifier="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073" hint="3073">
+    <iconEntry xmi:id="_x8Hbg2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/SequenceNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.SequenceNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbhGaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065" identifier="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065" hint="3065">
+    <iconEntry xmi:id="_x8HbhWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/StructuredActivityNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.StructuredActivityNode</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0lWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036" identifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036" hint="3036">
+    <iconEntry xmi:id="_x8G0lmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/TimeConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0l2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037" identifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037" hint="3037">
+    <iconEntry xmi:id="_x8G0mGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/TimeConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0b2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015" hint="3015">
+    <iconEntry xmi:id="_x8G0cGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0eWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017" hint="3017">
+    <iconEntry xmi:id="_x8G0emaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0hWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022" hint="3022">
+    <iconEntry xmi:id="_x8G0hmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0i2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025" hint="3025">
+    <iconEntry xmi:id="_x8G0jGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0rWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046" hint="3046">
+    <iconEntry xmi:id="_x8G0rmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0s2aNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049" hint="3049">
+    <iconEntry xmi:id="_x8G0tGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0vWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054" hint="3054">
+    <iconEntry xmi:id="_x8G0vmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0wWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060" hint="3060">
+    <iconEntry xmi:id="_x8G0wmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0zWaNEeSyJIsxLao1Pw" name="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076" identifier="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076" hint="3076">
+    <iconEntry xmi:id="_x8G0zmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValueSpecificationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValueSpecificationAction</specializedTypesID>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations xmi:id="_zAcw0GaOEeSyJIsxLao1Pw" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallBehaviorActionEditHelperAdvice" target="_x8G0d2aNEeSyJIsxLao1Pw"/>
+  <adviceBindingsConfigurations xmi:id="_9UmhMGaOEeSyJIsxLao1Pw" name="" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.CallOperationActionEditHelperAdvice" inheritance="all" target="_x8G0gWaNEeSyJIsxLao1Pw"/>
+  <adviceBindingsConfigurations xmi:id="_Eu2FMGaPEeSyJIsxLao1Pw" identifier="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.activity.edit.advices.SendSignalActionEditHelperAdvice" inheritance="all" target="_x8G0uWaNEeSyJIsxLao1Pw"/>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

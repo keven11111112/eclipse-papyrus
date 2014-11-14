@@ -33,15 +33,16 @@ import utils.EditPartsUtils_qvto
 import xpt.Common
 import xpt.diagram.editparts.EditPartFactory
 import xpt.diagram.editparts.Utils_qvto
+import xpt.diagram.editpolicies.GraphicalNodeEditPolicy
 
 @Singleton class NodeEditPart extends impl.diagram.editparts.NodeEditPart {
 	@Inject extension Common;
 
 	@Inject extension EditPartsUtils_qvto;
 	@Inject extension  VisualIDRegistry;
+	@Inject GraphicalNodeEditPolicy graphicalEditPolicy;
 	
 	@Inject extension Utils_qvto;
-	@Inject extension xpt.diagram.Utils_qvto;
 	@Inject EditPartFactory xptEditPartFactory;
 		@Inject impl.diagram.editparts.TextAware xptTextAware;
 	
@@ -118,6 +119,11 @@ override addFixedChild (GenNode it)'''
 		return false;
 	}
 '''
+	override installGraphicalNodeEditPolicy(GenNode it) '''
+		
+			installEditPolicy(org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy());
+		
+	'''
 
 	override def setLineWidth(GenNode it) '''
 		«generatedMemberComment»

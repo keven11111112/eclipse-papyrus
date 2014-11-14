@@ -28,7 +28,7 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 	/**
 	 * {@link InterruptibleActivityRegion} cannot contain any {@link ActivityNode}.
 	 * That's why we create new element in {@link Activity} and added it to {@link InterruptibleActivityRegion#getNodes()} referenced list
-	 *
+	 * 
 	 * @param baseReq
 	 *            {@link CreateElementRequest} from ItemSemanticEditPolicy with not containment {@link InterruptibleActivityRegion#getNodes()} feature
 	 * @return new {@link CreateElementRequest} with {@link Activity} as container and right containment {@link ActivityNode} feature
@@ -47,7 +47,7 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 
 	/**
 	 * Find {@link Activity} feature appropriate to {@link InterruptibleActivityRegion} feature.
-	 *
+	 * 
 	 * @return Appropriate feature.
 	 */
 	protected EReference findActivityFeature(EClass eClass) {
@@ -74,7 +74,7 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 	/**
 	 * This method create {@link CompositeCommand}. It contain redirected {@link MoveCommand} to Activity
 	 * and commands to set references on ActivityNodes for base container which can't contain they.
-	 *
+	 * 
 	 * @param req
 	 *            base {@MoveRequest}
 	 * @param featureToSetReference
@@ -82,7 +82,7 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 	 * @return {@link CompositeCommand} which contain {@link MoveCommand} elements to Activity and {@link SetValueCommand}s to base container's referenced list
 	 */
 	protected ICommand createMoveCommandWithSetReference(MoveRequest req, EReference featureToSetReference) {
-		EObject nonContainmentContainer = req.getTargetContainer();
+		EObject nonContainmentContainer = (EObject) req.getTargetContainer();
 		CompositeCommand result = new CompositeCommand("Move elements in non containment Activity container");
 		MoveElementsCommand moveCommand = new NotContainmentMoveCommand(createMoveToActivityRequest(req));
 		result.add(moveCommand);

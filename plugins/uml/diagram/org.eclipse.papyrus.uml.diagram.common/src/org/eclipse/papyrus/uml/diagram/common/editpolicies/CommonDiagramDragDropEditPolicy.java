@@ -646,6 +646,12 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		while (editPartIterator.hasNext() && existedEditPart == null) {
 			EditPart currentEditPart = editPartIterator.next();
 
+			if (currentEditPart == null) {
+				System.err.println("Ici");
+			}
+			if (semantic == null) {
+				System.err.println("La");
+			}
 			if (isEditPartTypeAdapted(currentEditPart.getClass(), semantic.eClass()) && semantic.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
 				existedEditPart = currentEditPart;
 			}

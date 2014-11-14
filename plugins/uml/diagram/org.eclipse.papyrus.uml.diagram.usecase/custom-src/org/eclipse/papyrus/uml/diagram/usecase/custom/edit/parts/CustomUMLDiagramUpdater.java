@@ -134,13 +134,13 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
-			Object theTarget = targets.size() > 1 ? targets.get(1) : null;
+			Object theTarget = targets.size() > 1 ? targets.get(0) : null;
 			if (false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type) theTarget;
 			List<?> sources = link.getEndTypes();
-			Object theSource = sources.size() > 1 ? sources.get(0) : null;
+			Object theSource = sources.size() > 1 ? sources.get(1) : null;
 			if (false == theSource instanceof Type) {
 				continue;
 			}
@@ -175,7 +175,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
-			Object theTarget = targets.size() > 1 ? targets.get(1) : null;
+			Object theTarget = targets.size() > 1 ? targets.get(0) : null;
 			if (false == theTarget instanceof Type) {
 				continue;
 			}
@@ -184,7 +184,7 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			List<?> sources = link.getEndTypes();
-			Object theSource = sources.size() > 1 ? sources.get(0) : null;
+			Object theSource = sources.size() > 1 ? sources.get(1) : null;
 			if (false == theSource instanceof Type) {
 				continue;
 			}
@@ -223,13 +223,13 @@ public class CustomUMLDiagramUpdater extends UMLDiagramUpdater {
 				continue;
 			}
 			List<?> targets = link.getEndTypes();
-			Object theTarget = targets.size() > 1 ? targets.get(1) : null;
+			Object theTarget = targets.size() > 1 ? targets.get(0) : null;
 			if (false == theTarget instanceof Type) {
 				continue;
 			}
 			Type dst = (Type) theTarget;
 			List<?> sources = link.getEndTypes();
-			Object theSource = sources.size() > 1 ? sources.get(0) : null;
+			Object theSource = sources.size() > 1 ? sources.get(1) : null;
 			if (false == theSource instanceof Type) {
 				continue;
 			}
