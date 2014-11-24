@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.modelelement;
 
+import java.util.List;
+
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
@@ -20,12 +22,15 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Style;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.gmfdiag.properties.Activator;
@@ -81,7 +86,12 @@ public class GMFModelElement extends EMFModelElement {
 		if (propertyPath.endsWith("owner")) {
 			return true;
 		}
-		return super.isFeatureEditable(propertyPath);
+
+		if (super.isFeatureEditable(propertyPath)) {
+			return true;
+		}
+
+		return getStyleFor(propertyPath) != null;
 	}
 
 	@Override
@@ -106,7 +116,7 @@ public class GMFModelElement extends EMFModelElement {
 		EStructuralFeature feature = getFeature(propertyPath);
 
 		if (feature == null) {
-			return null;
+			return findStyleObservable(propertyPath);
 		}
 
 		if (feature.getEType() == NotationPackage.eINSTANCE.getGradientData()) {
@@ -119,6 +129,54 @@ public class GMFModelElement extends EMFModelElement {
 		}
 
 		IObservableValue value = domain == null ? EMFProperties.value(featurePath).observe(source) : new PapyrusObservableValue(getSource(featurePath), feature, domain);
+		return value;
+	}
+
+	protected Style getStyleFor(String propertyPath) {
+		if (!(source instanceof View)) {
+			return null;
+		}
+
+		View view = (View) source;
+
+		for (Style style : (List<Style>) view.getStyles()) {
+			// NamedStyles are application-specific and should be handled separately
+			if (style instanceof NamedStyle) {
+				continue;
+			}
+
+			EStructuralFeature styleFeature = style.eClass().getEStructuralFeature(propertyPath);
+			if (styleFeature != null) {
+				return style;
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Fallback: if the object doesn't have the required property, search for its owned styles
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	protected IObservable findStyleObservable(String propertyPath) {
+		Style style = getStyleFor(propertyPath);
+		if (style == null) {
+			return null;
+		}
+
+		EStructuralFeature styleFeature = style.eClass().getEStructuralFeature(propertyPath);
+		if (styleFeature == null) {
+			return null; // Shouldn't happen, since this is already checked by getStyleFor()
+		}
+
+		if (styleFeature.getUpperBound() != 1) {
+			IObservableList list = domain == null ? EMFProperties.list(styleFeature).observe(source) : new PapyrusObservableList(EMFProperties.list(styleFeature).observe(source), domain, style, styleFeature);
+			return list;
+		}
+
+		IObservableValue value = domain == null ? EMFProperties.value(styleFeature).observe(source) : new PapyrusObservableValue(style, styleFeature, domain);
 		return value;
 	}
 
@@ -187,7 +245,24 @@ public class GMFModelElement extends EMFModelElement {
 				}
 			};
 		}
-		return super.getContentProvider(propertyPath);
+
+
+		IStaticContentProvider provider = super.getContentProvider(propertyPath);
+		if (provider != null && !(provider instanceof EmptyContentProvider)) {
+			return provider;
+		}
+
+		Style style = getStyleFor(propertyPath);
+		if (style == null) {
+			return null;
+		}
+
+		EStructuralFeature feature = style.eClass().getEStructuralFeature(propertyPath);
+		if (feature == null) {
+			return null; // Shouldn't happen, since getStyleFor() already checks that
+		}
+
+		return new EMFContentProvider(style, style.eClass().getEStructuralFeature(propertyPath));
 	}
 
 	/**

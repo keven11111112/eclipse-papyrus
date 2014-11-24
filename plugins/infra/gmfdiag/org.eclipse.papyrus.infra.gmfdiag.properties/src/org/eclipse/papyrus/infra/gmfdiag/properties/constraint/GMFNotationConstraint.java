@@ -11,8 +11,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
+import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.constraints.constraints.EMFInstanceOfConstraint;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -49,7 +54,22 @@ public class GMFNotationConstraint extends EMFInstanceOfConstraint {
 			view = (View) eObject;
 		}
 
-		return view == null ? false : super.match(view);
-	}
+		if (view == null) {
+			return false;
+		}
 
+		if (super.match(view)) { // Match via "instance of"
+			return true;
+		}
+
+		EClassifier classifier = NotationPackage.eINSTANCE.getEClassifier(className);
+		if (classifier instanceof EClass) {
+			Style style = view.getStyle((EClass) classifier);
+
+			// NamedStyle are application-specific and should be handled separately
+			return style != null && !(style instanceof NamedStyle);
+		}
+
+		return false;
+	}
 }

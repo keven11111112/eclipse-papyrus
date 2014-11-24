@@ -27,11 +27,11 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
  */
 public class EMFInstanceOfConstraint extends AbstractConstraint {
 
-	private String className;
+	protected String className;
 
-	private String nsUri;
+	protected String nsUri;
 
-	private EPackage metamodel;
+	protected EPackage metamodel;
 
 	@Override
 	protected void setDescriptor(SimpleConstraint descriptor) {
