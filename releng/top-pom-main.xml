@@ -177,6 +177,7 @@
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.policy</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.preferences</module>
 		<module>../plugins/infra/widget/org.eclipse.papyrus.infra.widgets</module>
+		<module>../plugins/infra/widget/org.eclipse.papyrus.infra.widgets.epf.richtext</module>
 		<module>../plugins/infra/widget/org.eclipse.papyrus.infra.widgets.toolbox</module>
 		<module>../plugins/doc/org.eclipse.papyrus.moka.doc</module>
 		<module>../plugins/sysml/org.eclipse.papyrus.sysml</module>
