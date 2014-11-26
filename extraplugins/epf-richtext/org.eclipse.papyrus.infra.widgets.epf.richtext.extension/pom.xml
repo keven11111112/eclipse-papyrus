@@ -7,7 +7,7 @@
 		<version>1.0.1-SNAPSHOT</version>
 		<relativePath>../../../releng/top-pom-extras.xml</relativePath>
 	</parent>
-	<artifactId>org.eclipse.papyrus.infra.widgets.epf.richtext</artifactId>
+	<artifactId>org.eclipse.papyrus.infra.widgets.epf.richtext.extension</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>

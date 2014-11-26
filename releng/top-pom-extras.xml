@@ -137,7 +137,7 @@
 		<module>../extraplugins/umlrt/org.eclipse.papyrus.umlrt.wizard</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.views.cpp</module>
 		<module>../extraplugins/qompass-designer/tracing/org.eclipse.papyrus.views.tracepoints</module>
-		<module>../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext</module>
+		<module>../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module>
 		<module>extras</module>
 	</modules>
 	<properties>
