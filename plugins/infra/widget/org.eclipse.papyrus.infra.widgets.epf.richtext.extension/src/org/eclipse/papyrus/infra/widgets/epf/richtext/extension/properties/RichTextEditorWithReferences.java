@@ -10,15 +10,15 @@
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  * 
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.widgets;
+package org.eclipse.papyrus.infra.widgets.epf.richtext.extension.properties;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
-import org.eclipse.papyrus.infra.widgets.editors.RichTextValueEditor;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.epf.richtext.extension.RichTextValueEditor;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;

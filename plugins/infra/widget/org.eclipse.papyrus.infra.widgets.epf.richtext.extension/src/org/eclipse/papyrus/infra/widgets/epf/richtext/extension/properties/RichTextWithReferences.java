@@ -10,13 +10,14 @@
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  * 
  *****************************************************************************/
-package org.eclipse.papyrus.views.properties.widgets;
+package org.eclipse.papyrus.infra.widgets.epf.richtext.extension.properties;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.utils.TextReferencesHelper;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
-import org.eclipse.papyrus.infra.widgets.editors.RichTextValueEditor;
+import org.eclipse.papyrus.infra.widgets.epf.richtext.extension.RichTextValueEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.views.properties.widgets.AbstractPropertyEditor;
 import org.eclipse.swt.widgets.Composite;
 
 /**

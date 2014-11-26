@@ -10,13 +10,12 @@
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  * 
  *****************************************************************************/
-package org.eclipse.papyrus.infra.widgets.databinding;
+package org.eclipse.papyrus.infra.widgets.epf.richtext.extension;
 
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.observable.value.ValueDiff;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
-import org.eclipse.papyrus.infra.widgets.epf.richtext.extension.RichTextEditor;
 import org.eclipse.papyrus.infra.widgets.providers.UnchangedObject;
 import org.eclipse.swt.widgets.Event;
 import org.eclipse.swt.widgets.Listener;
