@@ -15,6 +15,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.databinding;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
@@ -24,7 +25,9 @@ import java.util.List;
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
-import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.common.notify.Adapter;
+import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
@@ -42,8 +45,49 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class AppliedCommentsObservableList extends PapyrusObservableList {
 
+	/** The comment Listener */
+	private Adapter commentListener;
+
+	private ArrayList<Comment> commentList = new ArrayList<Comment>();
+
 	public AppliedCommentsObservableList(EditingDomain domain, Element source) {
 		super(getAppliedCommentsList(source), domain, source, UMLPackage.eINSTANCE.getElement_OwnedComment());
+		addCommentListener(source);
+	}
+
+	/**
+	 * Add a listener on comment annotated element.
+	 *
+	 * @param source
+	 */
+	private void addCommentListener(Element source) {
+		Iterator<Setting> it = UML2Util.getNonNavigableInverseReferences(source).iterator();
+		while (it.hasNext()) {
+			Setting setting = it.next();
+			if (setting.getEStructuralFeature() == UMLPackage.Literals.COMMENT__ANNOTATED_ELEMENT) {
+				if (setting.getEObject() instanceof Comment) {
+					Comment comment = (Comment) setting.getEObject();
+					comment.eAdapters().add(getCommentListener());
+					commentList.add(comment);
+				}
+			}
+		}
+	}
+
+	/**
+	 * Create a listener for DiagramElement.
+	 */
+	private Adapter getCommentListener() {
+		if (commentListener == null) {
+			commentListener = new AdapterImpl() {
+
+				@Override
+				public void notifyChanged(Notification event) {
+					refreshCacheList();
+				}
+			};
+		}
+		return commentListener;
 	}
 
 	/**
@@ -104,8 +148,6 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 		fireListChange(null);
 	}
 
-
-
 	/**
 	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getAddCommand(java.lang.Object)
 	 *
@@ -117,6 +159,11 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 		CompoundCommand addAppliedCommentCommand = null;
 
 		if (value instanceof Comment) {
+			Comment comment = (Comment) value;
+
+			// Add an adapter to the comment
+			comment.eAdapters().add(getCommentListener());
+			commentList.add(comment);
 
 			addAppliedCommentCommand = new CompoundCommand("Add applied comment");
 
@@ -125,9 +172,9 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 			addAppliedCommentCommand.append(getCommandFromRequests(getProvider(), Collections.singletonList(setRequest)));
 
 			// Check if source was already had to comment
-			if (!((Comment) value).getAnnotatedElements().contains(source)) {
+			if (!comment.getAnnotatedElements().contains(source)) {
 				// Add comment to element
-				AddCommand addCommand = new AddCommand(editingDomain, (EObject) value, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), source);
+				AddCommand addCommand = new AddCommand(editingDomain, comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), source);
 				addAppliedCommentCommand.append(addCommand);
 			}
 		}
@@ -148,6 +195,10 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 		if (value instanceof Comment) {
 
 			Comment comment = (Comment) value;
+
+			// remove the adapter
+			comment.eAdapters().remove(commentListener);
+			commentList.remove(comment);
 
 			if (comment.getAnnotatedElements().size() > 1) {
 				// Remove on link between source and comment
@@ -181,7 +232,13 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 		while (itr.hasNext()) {
 			value = (Element) itr.next();
 			Assert.isTrue(value instanceof Comment);
-			removeAppliedCommentCommand.append(getRemoveCommand(value));
+			Comment comment = (Comment) value;
+
+			// remove the adapter
+			comment.eAdapters().remove(commentListener);
+			commentList.remove(comment);
+
+			removeAppliedCommentCommand.append(getRemoveCommand(comment));
 		}
 		return removeAppliedCommentCommand;
 	}
@@ -229,5 +286,16 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 	public Command getAddCommand(int index, Object value) {
 		throw new UnsupportedOperationException();
 		// return super.getAddCommand(index, value);
+	}
+
+
+	@Override
+	public synchronized void dispose() {
+		// remove adapters
+		for (int i = 0; i < commentList.size(); i++) {
+			commentList.get(i).eAdapters().remove(commentListener);
+			commentList.remove(commentList.get(i));
+		}
+		super.dispose();
 	}
 }
