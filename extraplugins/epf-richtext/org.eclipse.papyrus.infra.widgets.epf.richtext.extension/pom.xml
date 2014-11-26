@@ -5,7 +5,7 @@
 		<artifactId>org.eclipse.papyrus</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
 		<version>1.0.1-SNAPSHOT</version>
-		<relativePath>../../../../releng/top-pom-extras.xml</relativePath>
+		<relativePath>../../../releng/top-pom-extras.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.widgets.epf.richtext</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
