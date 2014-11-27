@@ -278,6 +278,11 @@
 			<url>file://../libs</url>
 		</repository>
 		<repository>
+			<id>org.eclipse.epf</id>
+			<name>org.eclipse.epf.richtext</name>
+			<url>file://../libs</url>
+		</repository>
+		<repository>
 			<id>papyrus-main</id>
 			<layout>p2</layout>
 			<url>${papyrus.repo.main}</url>
