@@ -271,12 +271,7 @@
 
 
 	<repositories>
-		<!--  In Project repository -->
 		
-		<repository>
-			<id>org.eclipse.epf</id>	
-			<url>file://../libs</url>
-		</repository>
 		<repository>
 			<id>papyrus-main</id>
 			<layout>p2</layout>
