@@ -17,5 +17,30 @@
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url>
 		</repository>
-	</repositories>		
+	</repositories>
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.eclipse.tycho.extras</groupId>
+				<artifactId>tycho-source-feature-plugin</artifactId>
+				<version>${tychoExtrasVersion}</version>
+				<executions>
+					<execution>
+						<id>source-feature</id>
+						<phase>package</phase>
+						<goals>
+							<goal>source-feature</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<excludes>
+						<plugin id="org.eclipse.epf.common" />
+						<plugin id="org.eclipse.epf.common.html" />
+						<plugin id="org.eclipse.epf.richtext" />
+					</excludes>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
 </project>
