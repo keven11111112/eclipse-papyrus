@@ -2,13 +2,20 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
+		<artifactId>org.eclipse.papyrus.infra.widgets.epf</artifactId>
 		<version>1.0.1-SNAPSHOT</version>
-		<relativePath>../../../releng/top-pom-extras.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.widgets.epf.richtext.extension</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>eclipse-plugin</packaging>
+	<repositories>
+		<repository>
+			<id>org.eclipse.epf.richtext_1.5.1.6-update-site</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/mdt/papyrus/updates/epf/main</url>
+		</repository>
+	</repositories>	
 </project>
