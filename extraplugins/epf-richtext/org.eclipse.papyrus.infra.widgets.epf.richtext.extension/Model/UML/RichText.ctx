@@ -23,8 +23,7 @@
     <constraints
         xsi:type="constraints:SimpleConstraint"
         name="isRichTextSingleComment">
-      <overriddenConstraints
-       <href="../../../org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@views.447/@constraints.0"/>
+      <overriddenConstraints href="../../../org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@views.447/@constraints.0"/>
       <constraintType
           href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.0"/>
       <properties
