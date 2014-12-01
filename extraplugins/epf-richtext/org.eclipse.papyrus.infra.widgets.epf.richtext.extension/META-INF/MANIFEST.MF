@@ -28,6 +28,8 @@ Export-Package: org.eclipse.papyrus.infra.widgets.epf.richtext,
  org.eclipse.papyrus.infra.widgets.epf.richtext.extension,
  org.eclipse.papyrus.infra.widgets.epf.richtext.extension.actions,
  org.eclipse.papyrus.infra.widgets.epf.richtext.extension.dialogs,
+ org.eclipse.papyrus.infra.widgets.epf.richtext.extension.properties,
+ org.eclipse.papyrus.infra.widgets.epf.richtext.extension.properties.uml,
  org.eclipse.papyrus.infra.widgets.epf.richtext.extension.ui
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
