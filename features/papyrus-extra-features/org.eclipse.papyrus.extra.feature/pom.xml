@@ -11,29 +11,4 @@
 	<groupId>org.eclipse.papyrus</groupId>
 	<version>1.0.1-SNAPSHOT</version>
 	<packaging>eclipse-feature</packaging>
-	<build>
-		<plugins>
-			<plugin>
-				<groupId>org.eclipse.tycho.extras</groupId>
-				<artifactId>tycho-source-feature-plugin</artifactId>
-				<version>${tychoExtrasVersion}</version>
-				<executions>
-					<execution>
-						<id>source-feature</id>
-						<phase>package</phase>
-						<goals>
-							<goal>source-feature</goal>
-						</goals>
-					</execution>
-				</executions>
-				<configuration>
-					<excludes>
-						<plugin id="org.eclipse.epf.common" />
-						<plugin id="org.eclipse.epf.common.html" />
-						<plugin id="org.eclipse.epf.richtext" />
-					</excludes>
-				</configuration>
-			</plugin>
-		</plugins>
-	</build>
 </project>
