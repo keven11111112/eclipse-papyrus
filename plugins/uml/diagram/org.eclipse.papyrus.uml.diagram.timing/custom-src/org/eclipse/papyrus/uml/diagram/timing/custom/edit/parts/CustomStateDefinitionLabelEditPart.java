@@ -14,6 +14,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.timing.custom.parsers.StateDefinitionParser;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.StateDefinitionLabelEditPart;
@@ -42,11 +43,17 @@ public class CustomStateDefinitionLabelEditPart extends StateDefinitionLabelEdit
 	@Override
 	public IParser getParser() {
 		if (this.parser == null) {
-			this.parser = new StateDefinitionParser();
+			setParser(new StateDefinitionParser());
 		}
 		return this.parser;
 	}
 
+	@Override
+	public void setParser(IParser parser) {
+		super.setParser(parser);
+		this.parser = parser;
+	}
+	
 	@Override
 	public Object getAdapter(@SuppressWarnings("rawtypes") final Class key) {
 		// GMF returns the View by default, but Papyrus expects a semantic element.
@@ -57,5 +64,13 @@ public class CustomStateDefinitionLabelEditPart extends StateDefinitionLabelEdit
 			return null;
 		}
 		return super.getAdapter(key);
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
+	 */
+	@Override
+	public EObject resolveSemanticElement() {
+		return ((IGraphicalEditPart)getParent()).resolveSemanticElement();
 	}
 }

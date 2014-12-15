@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateDefinitionUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateInvariantUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.StateDefinitionEditPart;
+import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.StateInvariant;
 
@@ -110,5 +111,40 @@ public class CustomStateDefinitionEditPart extends StateDefinitionEditPart {
 				return super.handleDragStarted();
 			}
 		};
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#resolveSemanticElement()
+	 *
+	 */
+	@Override
+	public EObject resolveSemanticElement() {
+		return findStateInvariant();
+	}
+	
+	/**
+	 * 
+	 * @return StateInvariant object which find by StateDefinitionEditPart ViewID
+	 */
+	private StateInvariant findStateInvariant() {
+		View stateDefView = (View)getModel();
+		if (stateDefView == null) {
+			return null;
+		}
+		String stateDefID = StateDefinitionUtils.getStateDefinitionViewID(stateDefView);
+		Lifeline lifeline = StateDefinitionUtils.getParentLifeline(stateDefView);
+		if (lifeline == null) {
+			return null;
+		}
+		for (InteractionFragment fragment: lifeline.getInteraction().getFragments()) {
+			if (fragment instanceof StateInvariant) {
+				StateInvariant stateInvariant = (StateInvariant) fragment;
+				String stateInvariantID = StateInvariantUtils.getStateInvariantId(stateInvariant);
+				if (stateDefID.equals(stateInvariantID)) {
+					return stateInvariant;
+				}
+			}
+		}
+		return null;
 	}
 }

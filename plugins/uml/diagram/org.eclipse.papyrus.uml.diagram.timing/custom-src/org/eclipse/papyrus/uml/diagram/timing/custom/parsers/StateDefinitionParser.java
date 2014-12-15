@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.diagram.timing.custom.parsers;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -30,19 +31,17 @@ import org.eclipse.papyrus.uml.diagram.timing.custom.utils.StateDefinitionUtils;
 import org.eclipse.papyrus.uml.diagram.timing.custom.utils.ViewUtils;
 import org.eclipse.papyrus.uml.diagram.timing.edit.parts.FullLifelineEditPartCN;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.StateInvariant;
 
 /** Used to get and set the name of a StateDefinition when editing a StateDefinition's label */
 public class StateDefinitionParser implements IParser {
-
+	
+	public static final String DEFAULT_EDIT_VALUE = ""; //$NON-NLS
+	
 	@Override
 	public String getEditString(final IAdaptable adaptable, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
-		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
-		final String name = StateDefinitionUtils.getStateDefinitionName(stateDefinitionView);
-		if (name == null) {
-			return ""; //$NON-NLS-1$
-		}
-		return name;
+		StateInvariant stateInvariant =  (StateInvariant) adaptable.getAdapter(EObject.class);
+		return stateInvariant != null ? stateInvariant.getName() : DEFAULT_EDIT_VALUE;
 	}
 
 	@Override
@@ -74,9 +73,8 @@ public class StateDefinitionParser implements IParser {
 
 	@Override
 	public String getPrintString(final IAdaptable adaptable, final int flags) {
-		final View stateDefinitionLabelView = (View) adaptable.getAdapter(View.class);
-		final View stateDefinitionView = (View) stateDefinitionLabelView.eContainer();
-		final String name = StateDefinitionUtils.getStateDefinitionName(stateDefinitionView);
+		StateInvariant stateInvariant =  (StateInvariant) adaptable.getAdapter(EObject.class);
+		String name = stateInvariant != null ? stateInvariant.getName() : null;
 		if (name == null || name.length() == 0) {
 			return Messages.StateDefinitionParser_Unnamed;
 		}
