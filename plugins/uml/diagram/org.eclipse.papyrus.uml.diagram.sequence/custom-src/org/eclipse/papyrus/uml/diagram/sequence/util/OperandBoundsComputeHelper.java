@@ -830,7 +830,9 @@ public class OperandBoundsComputeHelper {
 	}
 
 	/**
-	 * Check if operation resizing on CombinedFragment is allowed
+	 * Check if operation resizing on CombinedFragment is allowed:
+	 * Height of its operands must be at least of OperandBoundsComputeHelper.MIN_INTERACTION_OPERAND_HEIGHT
+	 * after the resize
 	 *
 	 * @param request
 	 * @param child
