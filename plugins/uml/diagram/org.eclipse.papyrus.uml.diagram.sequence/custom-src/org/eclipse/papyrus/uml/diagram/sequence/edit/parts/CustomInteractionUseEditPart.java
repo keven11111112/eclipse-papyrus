@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.FillStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -49,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.figures.InteractionUseRectangleF
 import org.eclipse.papyrus.uml.diagram.sequence.locator.GateLocator;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.InteractionUseUtil;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineCoveredByUpdater;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
@@ -341,6 +343,16 @@ public class CustomInteractionUseEditPart extends InteractionUseEditPart impleme
 				refreshLineWidth();
 			}
 		}
+		if (notification.getNotifier() instanceof Bounds) {
+			Display.getDefault().asyncExec(new Runnable() {
+
+				@Override
+				public void run() {
+					LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
+					updater.update(CustomInteractionUseEditPart.this);
+				}
+			});
+		}		
 		refreshShadow();
 		super.handleNotificationEvent(notification);
 	}

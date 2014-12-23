@@ -55,7 +55,6 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
@@ -408,16 +407,14 @@ public class CustomCombinedFragmentEditPart extends CombinedFragmentEditPart imp
 		super.handleNotificationEvent(notification);
 		// fixed bug (id=364711) when bounds changed update coveredBys with the figure's bounds.
 		if (notification.getNotifier() instanceof Bounds) {
-			if (notification.getNotifier() instanceof Bounds) {
-				Display.getDefault().asyncExec(new Runnable() {
+			Display.getDefault().asyncExec(new Runnable() {
 
-					@Override
-					public void run() {
-						LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
-						updater.update(CustomCombinedFragmentEditPart.this);
-					}
-				});
-			}
+				@Override
+				public void run() {
+					LifelineCoveredByUpdater updater = new LifelineCoveredByUpdater();
+					updater.update(CustomCombinedFragmentEditPart.this);
+				}
+			});
 		}
 		if ((getModel() != null) && (getModel() == notification.getNotifier())) {
 			if (NotationPackage.eINSTANCE.getLineStyle_LineWidth().equals(feature)) {
