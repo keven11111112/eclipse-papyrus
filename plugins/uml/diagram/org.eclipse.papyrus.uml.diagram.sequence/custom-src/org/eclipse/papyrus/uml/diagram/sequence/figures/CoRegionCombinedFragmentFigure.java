@@ -18,9 +18,11 @@ import java.util.List;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.LifelineXYLayoutEditPolicy;
 
 public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 
@@ -111,6 +113,14 @@ public class CoRegionCombinedFragmentFigure extends RectangleFigure {
 		return false;
 	}
 
+	@Override
+	public Dimension getMinimumSize(int wHint, int hHint) {
+		Rectangle bounds = new Rectangle();
+		bounds.height = BRACKET_HEIGHT * 2 + LifelineXYLayoutEditPolicy.SPACING_HEIGHT;
+		bounds.width = -1;
+		return bounds.getSize();
+	}
+	
 	/**
 	 * Get a rectangleFigure representing a central vertical line
 	 */
