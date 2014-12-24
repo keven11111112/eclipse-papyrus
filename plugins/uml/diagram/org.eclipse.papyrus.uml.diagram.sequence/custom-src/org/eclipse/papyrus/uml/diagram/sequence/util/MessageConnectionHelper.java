@@ -38,10 +38,7 @@ public class MessageConnectionHelper {
 	private MessageConnectionHelper() {
 	}
 
-	public static boolean canReorientSource(Message message, Element newSource) {
-		if (message == null || newSource == null) {
-			return false;
-		}
+	public static Element getMessageTarget(Message message) {
 		Element target = null;
 		MessageEnd receiveEvent = message.getReceiveEvent();
 		if (receiveEvent instanceof OccurrenceSpecification) {
@@ -54,13 +51,10 @@ public class MessageConnectionHelper {
 				&& MessageSort.SYNCH_CALL_LITERAL != message.getMessageSort()) {
 			target = ((Gate) receiveEvent).getOwner();
 		}
-		return canExist(message, newSource, target);
+		return target;
 	}
 
-	public static boolean canReorientTarget(Message message, Element newTarget) {
-		if (message == null || newTarget == null) {
-			return false;
-		}
+	public static Element getMessageSource(Message message) {
 		Element source = null;
 		MessageEnd sendEvent = message.getSendEvent();
 		if (sendEvent instanceof OccurrenceSpecification) {
@@ -73,9 +67,23 @@ public class MessageConnectionHelper {
 				&& MessageSort.SYNCH_CALL_LITERAL != message.getMessageSort()) {
 			source = ((Gate) sendEvent).getOwner();
 		}
-		return canExist(message, source, newTarget);
+		return source;
 	}
 
+	public static boolean canReorientSource(Message message, Element newSource) {
+		if (message == null || newSource == null) {
+			return false;
+		}
+		return canExist(message, newSource, getMessageTarget(message));
+	}
+
+	public static boolean canReorientTarget(Message message, Element newTarget) {
+		if (message == null || newTarget == null) {
+			return false;
+		}
+		return canExist(message, getMessageSource(message), newTarget);
+	}
+	
 	public static boolean canExist(Message message, Element source, Element target) {
 		MessageSort messageSort = null;
 		if (message != null) {
