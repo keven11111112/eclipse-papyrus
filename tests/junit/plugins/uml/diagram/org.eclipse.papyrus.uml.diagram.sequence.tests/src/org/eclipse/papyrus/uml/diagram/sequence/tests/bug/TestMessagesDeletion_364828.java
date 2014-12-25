@@ -110,13 +110,14 @@ public class TestMessagesDeletion_364828 extends TestLink {
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, delCommand != UnexecutableCommand.INSTANCE);
 		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, delCommand.canExecute() == true);
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(delCommand));
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getMessageEndCount(interaction.getFragments()) == 0);
+		int fragmentsAfterMessageDeletion = (linkType.equals(UMLElementTypes.Message_4007)) ? 1 : 0;
+		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getMessageEndCount(interaction.getFragments()) == fragmentsAfterMessageDeletion);
 
 		getEMFCommandStack().undo();
 		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getMessageEndCount(interaction.getFragments()) == 2);
 
 		getEMFCommandStack().redo();
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getMessageEndCount(interaction.getFragments()) == 0);
+		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getMessageEndCount(interaction.getFragments()) == fragmentsAfterMessageDeletion);
 	}
 
 	private int getMessageEndCount(EList<InteractionFragment> fragments) {
@@ -207,8 +208,8 @@ public class TestMessagesDeletion_364828 extends TestLink {
 			source = createSubNode(source, childNodeType, getChildLocation(source));
 			sourcePlayer = createSubNode(sourcePlayer, childNodeType, getChildLocation(sourcePlayer));
 
-			target = createSubNode(target, childNodeType, getChildLocation(target).translate(0, 50));
-			targetPlayer = createSubNode(targetPlayer, childNodeType, getChildLocation(targetPlayer).translate(0, 50));
+			target = createSubNode(target, childNodeType, getChildLocation(target).getTranslated(0, 50));
+			targetPlayer = createSubNode(targetPlayer, childNodeType, getChildLocation(targetPlayer).getTranslated(0, 50));
 		}
 
 	};

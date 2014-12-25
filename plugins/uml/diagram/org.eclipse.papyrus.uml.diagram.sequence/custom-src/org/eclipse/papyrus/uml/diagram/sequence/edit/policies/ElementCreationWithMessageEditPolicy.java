@@ -45,6 +45,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPar
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
@@ -106,6 +107,9 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 						// }
 					}
 				}
+				if (getDeleteMessageHint().equals(viewRequest.getConnectionViewDescriptor().getSemanticHint())) {
+					command = LifelineMessageDeleteHelper.getAttachToNewDosCommand(command, viewRequest, getEditingDomain(), targetEP, getHost());
+				}
 			}
 		}
 		return command;
@@ -118,6 +122,11 @@ public class ElementCreationWithMessageEditPolicy extends LifelineChildGraphical
 
 	private static String getReplyMessageHint() {
 		IHintedType message = (IHintedType) UMLElementTypes.Message_4005;
+		return message.getSemanticHint();
+	}
+
+	private static String getDeleteMessageHint() {
+		IHintedType message = (IHintedType) UMLElementTypes.Message_4007;
 		return message.getSemanticHint();
 	}
 

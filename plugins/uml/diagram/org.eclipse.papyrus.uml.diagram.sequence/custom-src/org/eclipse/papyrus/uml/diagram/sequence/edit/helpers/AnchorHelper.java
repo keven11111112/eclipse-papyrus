@@ -188,6 +188,8 @@ public class AnchorHelper {
 				} else {
 					return getBox().getBottomRight();
 				}
+			} else if (position == PositionConstants.CENTER) {
+				return getBox().getCenter();
 			}
 			return super.getLocation(reference);
 		}

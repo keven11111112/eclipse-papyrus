@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.diagram.sequence.util;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.uml2.uml.CombinedFragment;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Gate;
@@ -56,7 +57,10 @@ public class ReconnectMessageHelper {
 	 * @param newElement
 	 */
 	public static void updateMessageEnd(MessageEnd messageEnd, Element oldElement, Element newElement) {
-		if (messageEnd instanceof MessageOccurrenceSpecification) {
+		if (messageEnd instanceof DestructionOccurrenceSpecification) {
+			updateDos((DestructionOccurrenceSpecification) messageEnd, oldElement, newElement);
+		}
+		else if (messageEnd instanceof MessageOccurrenceSpecification) {
 			updateMos((MessageOccurrenceSpecification) messageEnd, oldElement, newElement);
 		} else if (messageEnd instanceof Gate) {
 			updateGate((Gate) messageEnd, oldElement, newElement);
@@ -68,6 +72,24 @@ public class ReconnectMessageHelper {
 				OccurrenceSpecificationHelper.resetExecutionStart(execution, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
 			} else if (messageEnd == execution.getFinish()) {
 				OccurrenceSpecificationHelper.resetExecutionFinish(execution, UMLFactory.eINSTANCE.createExecutionOccurrenceSpecification());
+			}
+		}
+	}
+
+	public static void updateDos(DestructionOccurrenceSpecification messageEnd, Element oldElement, Element newElement) {
+		Message message = messageEnd.getMessage();
+		if (newElement instanceof DestructionOccurrenceSpecification && messageEnd != newElement) {
+			DestructionOccurrenceSpecification newEnd = (DestructionOccurrenceSpecification) newElement;
+			if (message != null) {
+				message.setReceiveEvent(newEnd);
+				newEnd.setMessage(message);
+				messageEnd.setMessage(null);
+			}
+		} else {
+			if (newElement instanceof Lifeline) {
+				// will be set in ChangeEdgeTargetCommand
+				message.setReceiveEvent(null);
+				messageEnd.setMessage(null);
 			}
 		}
 	}

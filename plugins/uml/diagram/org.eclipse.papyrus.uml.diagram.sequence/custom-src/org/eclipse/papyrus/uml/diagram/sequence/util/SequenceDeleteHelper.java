@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -29,7 +30,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.RestoreExecutionEndAdvice;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ObservationLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.TimeObservationLabelEditPart;
@@ -96,6 +97,13 @@ public class SequenceDeleteHelper {
 							}
 						}
 					}
+					DestructionOccurrenceSpecification dos = (DestructionOccurrenceSpecification) obj;
+					if (dos.getMessage() != null) {
+						destroyMessageEvent(deleteViewsCmd, dos.getMessage().getSendEvent(), editingDomain);
+						DestroyElementRequest myReq = new DestroyElementRequest(editingDomain, dos.getMessage(), false);
+						deleteViewsCmd.add(new ICommandProxy(new DestroyElementCommand(myReq)));
+					}
+					deleteViewsCmd.add(((CustomLifelineEditPart)lifelinePart).getAlignLifelineBottomToParentCommand(null, true));					
 				}
 			}
 		}
@@ -263,24 +271,11 @@ public class SequenceDeleteHelper {
 			// Retrieve delete command from the Element Edit service
 			ICommand deleteCommand = provider.getEditCommand(req);
 			if (deleteCommand != null) {
-				CompositeCommand command = new CompositeCommand(deleteCommand.getLabel());
-				command.add(deleteCommand);
-				Message message = (Message) selectedEObject;
-				MessageEnd receiveEvent = message.getReceiveEvent();
-				if (receiveEvent != null) {
-					DestroyElementRequest myReq = new DestroyElementRequest(req.getEditingDomain(), receiveEvent, false);
-					command.add(new DestroyElementCommand(myReq));
-				}
-				MessageEnd sendEvent = message.getSendEvent();
-				if (sendEvent != null) {
-					DestroyElementRequest myReq = new DestroyElementRequest(req.getEditingDomain(), sendEvent, false);
-					command.add(new DestroyElementCommand(myReq));
-				}
-				CompoundCommand compoundCommand = new CompoundCommand();
-				compoundCommand.add(new ICommandProxy(command));
-				addDeleteMessageRelatedTimeObservationLinkCommand(req.getEditingDomain(), editPart, compoundCommand, receiveEvent, true);
-				addDeleteMessageRelatedTimeObservationLinkCommand(req.getEditingDomain(), editPart, compoundCommand, sendEvent, true);
-				return compoundCommand;
+				CompoundCommand command = new CompoundCommand(deleteCommand.getLabel());
+				command.add(new ICommandProxy(deleteCommand));
+				//return completeDeleteMessageCommand(command, (ConnectionEditPart)editPart, req.getEditingDomain());
+				destroyMessageEvents(command, Arrays.asList(editPart), req.getEditingDomain());
+				return command;
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -309,37 +304,35 @@ public class SequenceDeleteHelper {
 	static void destroyMessageEvents(CompoundCommand deleteElementsCommand, List<?> list, TransactionalEditingDomain transactionalEditingDomain) {
 		for (Object o : list) {
 			if (o instanceof ConnectionEditPart) {
+				ConnectionEditPart connectionEP = (ConnectionEditPart) o; 
 				EObject model = ((ConnectionEditPart) o).resolveSemanticElement();
 				if (model instanceof Message) {
 					Message message = (Message) model;
 					MessageEnd receiveEvent = message.getReceiveEvent();
-					if (receiveEvent != null) {
-						DestroyElementRequest myReq = new DestroyElementRequest(transactionalEditingDomain, receiveEvent, false);
-						// Sometimes, the message end is also the end of a execution.
-						RestoreExecutionEndAdvice provider = new RestoreExecutionEndAdvice();
-						if (provider != null) {
-							ICommand editCommand = provider.getAfterEditCommand(myReq);
-							if (editCommand != null && editCommand.canExecute()) {
-								deleteElementsCommand.add(new ICommandProxy(editCommand));
-							}
-						}
-						deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(myReq)));
-					}
 					MessageEnd sendEvent = message.getSendEvent();
-					if (sendEvent != null) {
-						DestroyElementRequest myReq = new DestroyElementRequest(transactionalEditingDomain, sendEvent, false);
-						// Sometimes, the message end is also the end of a execution.
-						RestoreExecutionEndAdvice provider = new RestoreExecutionEndAdvice();
-						if (provider != null) {
-							ICommand editCommand = provider.getAfterEditCommand(myReq);
-							if (editCommand != null && editCommand.canExecute()) {
-								deleteElementsCommand.add(new ICommandProxy(editCommand));
-							}
-						}
-						deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(myReq)));
+					destroyMessageEvent(deleteElementsCommand, sendEvent, transactionalEditingDomain);
+					addDeleteMessageRelatedTimeObservationLinkCommand(transactionalEditingDomain, connectionEP, deleteElementsCommand, sendEvent, true);
+					if (false == receiveEvent instanceof DestructionOccurrenceSpecification) {
+						destroyMessageEvent(deleteElementsCommand, receiveEvent, transactionalEditingDomain);
+						addDeleteMessageRelatedTimeObservationLinkCommand(transactionalEditingDomain, connectionEP, deleteElementsCommand, receiveEvent, true);
 					}
 				}
 			}
+		}
+	}
+
+	static void destroyMessageEvent(CompoundCommand deleteElementsCommand, MessageEnd event, TransactionalEditingDomain transactionalEditingDomain) {
+		if (event != null) {
+			DestroyElementRequest myReq = new DestroyElementRequest(transactionalEditingDomain, event, false);
+			// Sometimes, the message end is also the end of a execution.
+			RestoreExecutionEndAdvice provider = new RestoreExecutionEndAdvice();
+			if (provider != null) {
+				ICommand editCommand = provider.getAfterEditCommand(myReq);
+				if (editCommand != null && editCommand.canExecute()) {
+					deleteElementsCommand.add(new ICommandProxy(editCommand));
+				}
+			}
+			deleteElementsCommand.add(new ICommandProxy(new DestroyElementCommand(myReq)));
 		}
 	}
 

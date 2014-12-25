@@ -189,14 +189,27 @@ public abstract class AbstractNodeTest extends TestTopNode {
 		getEMFCommandStack().execute(new GEFtoEMFCommandWrapper(c));
 		waitForComplete();
 		Rectangle after = getAbsoluteBounds(op);
+		boolean checkHeight = after.height() - before.height() == deltaSize.height();
 		assertTrue(RESIZE + TEST_THE_EXECUTION, after.width() - before.width() == deltaSize.width());
-		assertTrue(RESIZE + TEST_THE_EXECUTION, after.height() - before.height() == deltaSize.height());
+		if (checkHeight) {
+			assertTrue(RESIZE + TEST_THE_EXECUTION, after.height() - before.height() == deltaSize.height());
+		}
 		getEMFCommandStack().undo();
 		waitForComplete();
-		assertTrue(RESIZE + TEST_THE_UNDO, before.equals(getAbsoluteBounds(op)));
+		if (checkHeight) {
+			assertTrue(RESIZE + TEST_THE_UNDO, before.equals(getAbsoluteBounds(op)));
+		}
+		else {
+			assertTrue(RESIZE + TEST_THE_UNDO, before.width() == getAbsoluteBounds(op).width());
+		}
 		getEMFCommandStack().redo();
 		waitForComplete();
-		assertTrue(RESIZE + TEST_THE_REDO, after.equals(getAbsoluteBounds(op)));
+		if (checkHeight) {
+			assertTrue(RESIZE + TEST_THE_REDO, after.equals(getAbsoluteBounds(op)));
+		}
+		else {
+			assertTrue(RESIZE + TEST_THE_REDO, after.width() == getAbsoluteBounds(op).width());
+		}
 	}
 
 	protected Command createSetCommand(TransactionalEditingDomain editingDomain, EObject eObject, EStructuralFeature feature, Object value) {

@@ -70,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCo
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -127,6 +128,17 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		Rectangle hostBounds = figure.getBounds();
 		for (Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart) o;
+			boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
+			// Adjust excessive vertical resizing 
+			if (child instanceof LifelineEditPart && hasCreateLink && request.getMoveDelta().y > 0) {
+				int oldHeight = child.getFigure().getBounds().height;
+				int oldMinimumHeight = ((CustomLifelineEditPart)child).getMinimumHeight(-1);
+				int requestHeight = oldHeight + request.getMoveDelta().y;
+				int newMinimumHeight = oldMinimumHeight + request.getMoveDelta().y;
+				int newHeight = Math.max(oldHeight, newMinimumHeight);
+				request.setSizeDelta(new Dimension(request.getSizeDelta().width, newHeight - requestHeight));
+				request.setResizeDirection(PositionConstants.SOUTH);
+			}
 			Object constraintFor = getConstraintFor(request, child);
 			if (constraintFor instanceof Rectangle) {
 				Rectangle childBounds = (Rectangle) constraintFor;
@@ -150,7 +162,6 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					// return UnexecutableCommand.INSTANCE;
 					// }
 				}
-				boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
 				if (hasCreateLink && !LifelineMessageCreateHelper.canMoveLifelineVertical((LifelineEditPart) child, (Rectangle) translateToModelConstraint(constraintFor))) {
 					return UnexecutableCommand.INSTANCE;
 				}
@@ -161,6 +172,12 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 						compoundCmd.add(new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart) child)));
 					}
 					compoundCmd.add(changeConstraintCommand);
+					// Update heights of all the lifelines
+					if (child instanceof LifelineEditPart && changeConstraintCommand != null && request.getMoveDelta().y != 0) {
+						CustomInteractionEditPart hostParent = (CustomInteractionEditPart)getHost().getParent();
+						Command commandUpdateLifelines = hostParent.getUpdateLifelinesHeightsCommand(null);
+						compoundCmd.add(commandUpdateLifelines);
+					}
 				}
 				if (child instanceof CombinedFragmentEditPart) {
 					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd, request, (CombinedFragmentEditPart) child);
@@ -645,7 +662,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			minimunSize.union(getMinimumSizeFor(lifelineEP));
 		}
 		for (ShapeNodeEditPart executionSpecificationEP : LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEditPart)) {
-			int minimunHeight = executionSpecificationEP.getFigure().getBounds().bottom();
+			int minimunHeight = executionSpecificationEP.getFigure().getBounds().height;
 			minimunSize.setSize(new Dimension(minimunSize.width, Math.max(minimunSize.height, minimunHeight)));
 		}
 		return minimunSize;

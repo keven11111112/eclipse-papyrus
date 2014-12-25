@@ -46,7 +46,7 @@ public class TestMessageCreateWithLifeline_403134 extends AbstractNodeTest {
 	public void test() {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		Point fromLocation = getAbsoluteBounds(lifeline).getCenter();
+		Point fromLocation = getAbsoluteBounds(lifeline).getTop().translate(0, 50);
 		EditPart editPart = createLink(UMLElementTypes.Message_4006, lifeline.getViewer(), fromLocation, fromLocation.getTranslated(100, 0));
 		//check result
 		assertNotNull("editpart not found", editPart);
