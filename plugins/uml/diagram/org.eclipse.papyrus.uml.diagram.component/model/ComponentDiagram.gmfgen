@@ -3365,7 +3365,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange otherNamedElement"
-        genView="/0/@diagram/@topLevelNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram /0/@diagram/@topLevelNodes.4/@labels.0"
+        genView="/0/@diagram /0/@diagram/@topLevelNodes.4/@labels.0"
         name="OtherNamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -3471,5 +3471,10 @@
         comment="Locator for external Floating label of RoundedCompartment EP"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator"
         genExternalNodeLabel="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@topLevelNodes.0/@labels.1 /0/@diagram/@topLevelNodes.1/@labels.1 /0/@diagram/@topLevelNodes.4/@labels.1 /0/@diagram/@topLevelNodes.8/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        genView="/0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2"
+        name="PackageEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

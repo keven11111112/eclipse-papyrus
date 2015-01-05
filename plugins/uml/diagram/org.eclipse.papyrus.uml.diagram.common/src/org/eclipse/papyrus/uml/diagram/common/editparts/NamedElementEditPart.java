@@ -30,6 +30,8 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure;
 import org.eclipse.swt.graphics.Color;
@@ -41,33 +43,19 @@ import org.eclipse.uml2.uml.NamedElement;
  * label.
  *
  */
-public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart {
+public abstract class NamedElementEditPart extends UMLNodeEditPart implements IUMLNamedElementEditPart, NamedStyleProperties {
 
-	/** The Constant NAME_POSITION. */
-	public static final String NAME_POSITION = "namePosition";
+	/** Default Top Margin when not present in CSS. */
+	public static final int DEFAULT_TOP_MARGIN = 0;
 
-	/** CSS boolean property controlling whether stereotypes should be displayed. */
-	public static final String DISPLAY_STEREOTYPES = "displayStereotypes"; // $NON-NLS$
+	/** Default Bottom Margin when not present in CSS. */
+	public static final int DEFAULT_BOTTOM_MARGIN = 0;
 
-	/** CSS boolean property controlling whether tags should be displayed. */
-	public static final String DISPLAY_TAGS = "displayTags"; // $NON-NLS$
+	/** Default Left Margin when not present in CSS. */
+	public static final int DEFAULT_LEFT_MARGIN = 0;
 
-	/** Default Margin when not present in CSS. */
-	public static final int DEFAULT_MARGIN = 0;
-
-	/** CSS Integer property to define the horizontal Label Margin. */
-	public static final String TOP_MARGIN_PROPERTY = "topMarginLabel"; // $NON-NLS$
-
-	/** CSS Integer property to define the vertical Label Margin. */
-	public static final String LEFT_MARGIN_PROPERTY = "leftMarginLabel"; // $NON-NLS$
-
-	/** CSS Integer property to define the horizontal Label Margin. */
-	public static final String BOTTOM_MARGIN_PROPERTY = "bottomMarginLabel"; // $NON-NLS$
-
-	/** CSS Integer property to define the vertical Label Margin. */
-	public static final String RIGHT_MARGIN_PROPERTY = "rightMarginLabel"; // $NON-NLS$
-
-
+	/** Default Right Margin when not present in CSS. */
+	public static final int DEFAULT_RIGHT_MARGIN = 0;
 
 	/**
 	 * {@inheritDoc}
@@ -159,13 +147,14 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 
 		int textAlignment = 0;
 		if (labelAlignment != null) {
-			if ("left".equals(labelAlignment.getStringValue())) {
+			String strLabelAlignment = labelAlignment.getStringValue();
+			if (PositionEnum.LEFT.toString().equals(strLabelAlignment)) {
 				textAlignment = PositionConstants.LEFT;
 			}
-			if ("right".equals(labelAlignment.getStringValue())) {
+			if (PositionEnum.RIGHT.toString().equals(strLabelAlignment)) {
 				textAlignment = PositionConstants.RIGHT;
 			}
-			if ("center".equals(labelAlignment.getStringValue())) {
+			if (PositionEnum.CENTER.toString().equals(strLabelAlignment)) {
 				textAlignment = PositionConstants.CENTER;
 			}
 		} else {
@@ -194,37 +183,42 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	 * .
 	 */
 	private void refreshLabelMargin() {
-		IFigure figure = null;
-
-		int leftMargin = DEFAULT_MARGIN;
-		int rightMargin = DEFAULT_MARGIN;
-		int topMargin = DEFAULT_MARGIN;
-		int bottomMargin = DEFAULT_MARGIN;
-
 		Object model = this.getModel();
-
-
-
 		if (model instanceof View) {
-			leftMargin = NotationUtils.getIntValue((View) model, LEFT_MARGIN_PROPERTY, DEFAULT_MARGIN);
-			rightMargin = NotationUtils.getIntValue((View) model, RIGHT_MARGIN_PROPERTY, DEFAULT_MARGIN);
-			topMargin = NotationUtils.getIntValue((View) model, TOP_MARGIN_PROPERTY, DEFAULT_MARGIN);
-			bottomMargin = NotationUtils.getIntValue((View) model, BOTTOM_MARGIN_PROPERTY, DEFAULT_MARGIN);
-		}
+			int leftMargin = NotationUtils.getIntValue((View) model, LEFT_MARGIN_PROPERTY, getDefaultLeftNameMargin());
+			int rightMargin = NotationUtils.getIntValue((View) model, RIGHT_MARGIN_PROPERTY, getDefaultRightNameMargin());
+			int topMargin = NotationUtils.getIntValue((View) model, TOP_MARGIN_PROPERTY, getDefaultTopNameMargin());
+			int bottomMargin = NotationUtils.getIntValue((View) model, BOTTOM_MARGIN_PROPERTY, getDefaultBottomNameMargin());
 
-		// Get all children figures of the Edit Part and set margin according to the retrieve values
-		if (this instanceof IPapyrusEditPart) {
-			figure = ((IPapyrusEditPart) this).getPrimaryShape();
-			List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
+			// Get all children figures of the Edit Part and set margin according to the retrieve values
+			if (this instanceof IPapyrusEditPart) {
+				IFigure figure = ((IPapyrusEditPart) this).getPrimaryShape();
+				List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
 
-			for (IPapyrusWrappingLabel label : labelChildFigureList) {
-				if (label != null) {
-					label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
+				for (IPapyrusWrappingLabel label : labelChildFigureList) {
+					if (label != null) {
+						label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
+					}
 				}
 			}
 		}
+	}
 
 
+	protected int getDefaultBottomNameMargin() {
+		return DEFAULT_BOTTOM_MARGIN;
+	}
+
+	protected int getDefaultTopNameMargin() {
+		return DEFAULT_TOP_MARGIN;
+	}
+
+	protected int getDefaultRightNameMargin() {
+		return DEFAULT_RIGHT_MARGIN;
+	}
+
+	protected int getDefaultLeftNameMargin() {
+		return DEFAULT_LEFT_MARGIN;
 	}
 
 	/**

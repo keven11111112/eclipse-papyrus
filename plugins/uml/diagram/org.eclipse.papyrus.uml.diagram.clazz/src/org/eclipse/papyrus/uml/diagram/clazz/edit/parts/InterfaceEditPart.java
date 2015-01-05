@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
@@ -92,14 +92,18 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		//in Papyrus diagrams are not strongly synchronised
-		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InterfaceCanonicalEditPolicy());
+		// in Papyrus diagrams are not strongly synchronised
+		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.InterfaceCanonicalEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
 		installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNodeLabelDisplayEditPolicy());
@@ -119,23 +123,24 @@ public class InterfaceEditPart extends ClassifierEditPart {
 
 			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
-				View childView = (View)child.getModel();
-				switch(UMLVisualIDRegistry.getVisualID(childView)) {
+				View childView = (View) child.getModel();
+				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case InterfaceFloatingNameEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
 						protected List<?> createSelectionHandles() {
-							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
+							MoveHandle mh = new MoveHandle((GraphicalEditPart) getHost());
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					};
+					}
+					;
 				case RedefinableTemplateSignatureEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
-				if(result == null) {
+				if (result == null) {
 					result = new NonResizableEditPolicy();
 				}
 				return result;
@@ -155,73 +160,88 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	}
 
 	/**
-	 *Papyrus codeGen
-	 *@generated
+	 * Papyrus codeGen
+	 *
+	 * @generated
 	 **/
+	@Override
 	protected void handleNotificationEvent(Notification event) {
 		/*
 		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
 		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
 		 */
-		if(NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View)getModel()).getChildren();
-			if(!(notifier instanceof Edge)) {
-				if(modelChildren.contains(event.getNotifier())) {
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (!(notifier instanceof Edge)) {
+				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
 			}
 		}
 		super.handleNotificationEvent(event);
+
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure createNodeShape() {
 		return primaryShape = new InterfaceFigure();
 	}
 
 	/**
 	 * org.eclipse.papyrus.uml.diagram.common.figure.node.InterfaceFigure
+	 * 
 	 * @generated
 	 */
+	@Override
 	public InterfaceFigure getPrimaryShape() {
-		return (InterfaceFigure)primaryShape;
+		return (InterfaceFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
 	protected boolean addFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InterfaceNameEditPart) {
-			((InterfaceNameEditPart)childEditPart).setLabel(getPrimaryShape().getNameLabel());
+		if (childEditPart instanceof InterfaceNameEditPart) {
+			((InterfaceNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
 			return true;
 		}
-		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
+
+
+		if (childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((InterfaceAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
+
+		if (childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((InterfaceOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
+
+		if (childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
-			pane.add(((InterfaceNestedClassifierCompartmentEditPart)childEditPart).getFigure());
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			pane.add(((InterfaceNestedClassifierCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		//Papyrus Gencode :precise the locator for a template signature
-		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+
+
+
+		// Papyrus Gencode :precise the locator for a template signature
+		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
 			IBorderItemLocator locator = new TemplateBorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure(), locator);
+			getBorderedFigure().getBorderItemContainer().add(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+
+
 		return false;
 	}
 
@@ -229,26 +249,26 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	 * @generated
 	 */
 	protected boolean removeFixedChild(EditPart childEditPart) {
-		if(childEditPart instanceof InterfaceNameEditPart) {
+		if (childEditPart instanceof InterfaceNameEditPart) {
 			return true;
 		}
-		if(childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
+		if (childEditPart instanceof InterfaceAttributeCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getAttributeCompartmentFigure();
-			pane.remove(((InterfaceAttributeCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((InterfaceAttributeCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof InterfaceOperationCompartmentEditPart) {
+		if (childEditPart instanceof InterfaceOperationCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getOperationCompartmentFigure();
-			pane.remove(((InterfaceOperationCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((InterfaceOperationCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
+		if (childEditPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getNestedClassifierFigure();
-			pane.remove(((InterfaceNestedClassifierCompartmentEditPart)childEditPart).getFigure());
+			pane.remove(((InterfaceNestedClassifierCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if(childEditPart instanceof RedefinableTemplateSignatureEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart)childEditPart).getFigure());
+		if (childEditPart instanceof RedefinableTemplateSignatureEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((RedefinableTemplateSignatureEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
@@ -257,8 +277,9 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addChildVisual(EditPart childEditPart, int index) {
-		if(addFixedChild(childEditPart)) {
+		if (addFixedChild(childEditPart)) {
 			return;
 		}
 		super.addChildVisual(childEditPart, -1);
@@ -267,8 +288,9 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void removeChildVisual(EditPart childEditPart) {
-		if(removeFixedChild(childEditPart)) {
+		if (removeFixedChild(childEditPart)) {
 			return;
 		}
 		super.removeChildVisual(childEditPart);
@@ -277,17 +299,18 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
-		if(editPart instanceof InterfaceAttributeCompartmentEditPart) {
+		if (editPart instanceof InterfaceAttributeCompartmentEditPart) {
 			return getPrimaryShape().getAttributeCompartmentFigure();
 		}
-		if(editPart instanceof InterfaceOperationCompartmentEditPart) {
+		if (editPart instanceof InterfaceOperationCompartmentEditPart) {
 			return getPrimaryShape().getOperationCompartmentFigure();
 		}
-		if(editPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
+		if (editPart instanceof InterfaceNestedClassifierCompartmentEditPart) {
 			return getPrimaryShape().getNestedClassifierFigure();
 		}
-		if(editPart instanceof IBorderItemEditPart) {
+		if (editPart instanceof IBorderItemEditPart) {
 			return getBorderedFigure().getBorderItemContainer();
 		}
 		return getContentPane();
@@ -296,15 +319,18 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if(borderItemEditPart instanceof InterfaceFloatingNameEditPart) {
+		if (borderItemEditPart instanceof InterfaceFloatingNameEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else {
+		} else
+		{
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
 
+	@Override
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(100, 100);
 		return result;
@@ -312,24 +338,29 @@ public class InterfaceEditPart extends ClassifierEditPart {
 
 	/**
 	 * Creates figure for this edit part.
-	 * 
+	 *
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 * 
+	 *
 	 * @generated
 	 */
+	@Override
 	protected NodeFigure createMainFigure() {
 		return new SelectableBorderedNodeFigure(createMainFigureWithSVG());
+
 	}
 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 * @param nodeShape instance of generated figure class
+	 * 
+	 * @param nodeShape
+	 *            instance of generated figure class
 	 * @generated
 	 */
+	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
-		if(nodeShape.getLayoutManager() == null) {
+		if (nodeShape.getLayoutManager() == null) {
 			ConstrainedToolbarLayout layout = new ConstrainedToolbarLayout();
 			layout.setSpacing(5);
 			nodeShape.setLayoutManager(layout);
@@ -340,8 +371,9 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public IFigure getContentPane() {
-		if(contentPane != null) {
+		if (contentPane != null) {
 			return contentPane;
 		}
 		return super.getContentPane();
@@ -350,8 +382,9 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setForegroundColor(Color color) {
-		if(primaryShape != null) {
+		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
 		}
 	}
@@ -359,6 +392,7 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -366,15 +400,17 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	protected void setLineType(int style) {
-		if(primaryShape instanceof IPapyrusNodeFigure) {
-			((IPapyrusNodeFigure)primaryShape).setLineStyle(style);
+		if (primaryShape instanceof IPapyrusNodeFigure) {
+			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
 		}
 	}
 
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getPrimaryChildEditPart() {
 		return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNameEditPart.VISUAL_ID));
 	}
@@ -382,35 +418,36 @@ public class InterfaceEditPart extends ClassifierEditPart {
 	/**
 	 * @generated
 	 */
+	@Override
 	public EditPart getTargetEditPart(Request request) {
-		if(request instanceof CreateViewAndElementRequest) {
-			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
-			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3006)) {
+		if (request instanceof CreateViewAndElementRequest) {
+			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3006)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3007)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3007)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Reception_3039)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Reception_3039)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceOperationCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Class_3008)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Class_3008)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Interface_3038)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Interface_3038)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Enumeration_3054)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Enumeration_3054)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.PrimitiveType_3048)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.PrimitiveType_3048)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.DataType_3043)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.DataType_3043)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
-			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Signal_3049)) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Signal_3049)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InterfaceNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}

@@ -104,7 +104,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 		}
 		if (!visibleCompartments.isEmpty()) {
 			for (Object o : container.getChildren()) {
-				//only for child which are compartment
+				// only for child which are compartment
 				if (o instanceof ResizableCompartmentFigure) {
 					IFigure child = (IFigure) o;
 					minimumHeight += child.getPreferredSize().height;
@@ -300,7 +300,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 *            The previously filled bound
 	 */
 	protected void fillBoundsForOther(IFigure container, Rectangle bound, Rectangle previous) {
-		bound.x = container.getBounds().x + 1;
+		bound.x = container.getBounds().x;
 		bound.width = container.getBounds().width;
 		if (previous == null) {
 			bound.y = container.getBounds().y + 3;

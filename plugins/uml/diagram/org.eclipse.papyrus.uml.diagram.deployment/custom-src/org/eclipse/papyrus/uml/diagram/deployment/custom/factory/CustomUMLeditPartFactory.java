@@ -18,14 +18,10 @@ import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomDepende
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomDependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomModelEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomPackageEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.custom.edit.part.CustomPackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.deployment.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.deployment.part.UMLVisualIDRegistry;
 
@@ -38,10 +34,7 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 			View view = (View) model;
 			switch (UMLVisualIDRegistry.getVisualID(view)) {
 			// redefined classes to modify the method createNodePlate
-			case PackageEditPart.VISUAL_ID:
-				return new CustomPackageEditPart(view);
-			case PackageEditPartCN.VISUAL_ID:
-				return new CustomPackageEditPartCN(view);
+
 			case ModelEditPart.VISUAL_ID:
 				return new CustomModelEditPart(view);
 			case ModelEditPartCN.VISUAL_ID:

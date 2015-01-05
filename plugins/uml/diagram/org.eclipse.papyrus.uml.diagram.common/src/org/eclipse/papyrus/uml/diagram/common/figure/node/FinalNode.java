@@ -14,10 +14,10 @@ package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -97,7 +97,7 @@ public class FinalNode extends PapyrusNodeFigure implements IPapyrusNodeUMLEleme
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Label getStereotypesLabel() {
-		return new Label();
+	public PapyrusWrappingLabel getStereotypesLabel() {
+		return new PapyrusWrappingLabel();
 	}
 }

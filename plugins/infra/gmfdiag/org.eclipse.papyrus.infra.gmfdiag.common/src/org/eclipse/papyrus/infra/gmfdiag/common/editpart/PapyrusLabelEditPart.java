@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +8,6 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
-<<<<<<< HEAD
  *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 443235
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - text alignment implementation
@@ -43,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.locator.IPapyrusBorderItemLocato
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.PapyrusLabelLocator;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
 
 
 public abstract class PapyrusLabelEditPart extends LabelEditPart implements NamedStyleProperties {
@@ -180,13 +180,13 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 
 		int textAlignment = 0;
 		if (labelAlignment != null) {
-			if ("left".equals(labelAlignment.getStringValue())) { //$NON-NLS-1$
+			if (PositionEnum.LEFT.toString().equals(labelAlignment.getStringValue())) {
 				textAlignment = PositionConstants.LEFT;
 			}
-			if ("right".equals(labelAlignment.getStringValue())) {//$NON-NLS-1$
+			if (PositionEnum.RIGHT.toString().equals(labelAlignment.getStringValue())) {
 				textAlignment = PositionConstants.RIGHT;
 			}
-			if ("center".equals(labelAlignment.getStringValue())) {//$NON-NLS-1$
+			if (PositionEnum.CENTER.toString().equals(labelAlignment.getStringValue())) {
 				textAlignment = PositionConstants.CENTER;
 			}
 		} else {
@@ -320,8 +320,9 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 		return PositionConstants.CENTER;
 	}
 
+
 	/**
-	 * 
+	 * Refresh label margin.
 	 */
 	public void refreshLabelMargin() {
 		IFigure figure = null;
@@ -352,7 +353,6 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 				papyrusLabelLocator.setMargin(new Point(leftMargin + rightMargin, topMargin + bottomMargin));
 			}
 		}
-
 	}
 
 }

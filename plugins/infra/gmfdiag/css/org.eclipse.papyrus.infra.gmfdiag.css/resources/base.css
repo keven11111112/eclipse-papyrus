@@ -336,6 +336,7 @@ CompositeStructureDiagram Port > Label
 {
     visible:true;
     textAlignment:"left";
+<<<<<<< master
 }
 
 
@@ -394,4 +395,6 @@ InteractionOverviewDiagram Activity
 	rightMarginLabel:5;
 	topMarginLabel:5;
 	bottomMarginLabel:5;
+=======
+>>>>>>> 0b7a736 456053: [All Diagram] Package shall used generic figure https://bugs.eclipse.org/bugs/show_bug.cgi?id=456053
 }

@@ -993,49 +993,49 @@
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="component.tool.constraint"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.comment"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.component"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.interface"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.model"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.property"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.operation"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.package"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.port"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.reception"
-		        path="/component.group.nodes">
+				path="/component.group.nodes">
 		  </predefinedEntry>
 		<entry
 		      description="Diagram Links"
@@ -1045,53 +1045,53 @@
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="component.tool.link"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.connector"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.dependency"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.dependencybranch"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.abstraction"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.manifestation"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.generalization"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.usage"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.substitution"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.interfaceRealization"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="component.tool.componentRealization"
-		        path="/component.group.links">
+				path="/component.group.links">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.component"/>

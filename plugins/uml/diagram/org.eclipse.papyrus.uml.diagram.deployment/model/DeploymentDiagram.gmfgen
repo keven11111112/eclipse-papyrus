@@ -2805,51 +2805,8 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             createMethodName="createNodesGroup"
-            id="&quot;deployment.group.nodes&quot;">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Model"
-              description="Create a model"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-              createMethodName="createModelCreationTool"
-              genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Package"
-              description="Create a Package"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-              createMethodName="createPackageCreationTool"
-              id="&quot;deployment.tool.package&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.1"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Node"
-              description="Create new Node"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
-              createMethodName="createNodeCreationTool"
-              id="&quot;deployment.tool.node&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Device"
-              description="Create new Device"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
-              createMethodName="createDeviceCreationTool"
-              id="&quot;deployment.tool.device&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3"/>
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Execution Environment"
-              description="Create new ExecutionEnvironment"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
-              createMethodName="createExecutionEnvironmentCreationTool"
-              id="&quot;deployment.tool.executionEnvironment&quot;"
-              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"/>
+            id="&quot;deployment.group.nodes&quot;"
+            collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Artifact"
@@ -2877,6 +2834,50 @@
               createMethodName="createConstraintCreationTool"
               id="&quot;deployment.tool.constraint&quot;"
               genNodes="/0/@diagram/@topLevelNodes.3 /0/@diagram/@childNodes.12"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Device"
+              description="Create new Device"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
+              createMethodName="createDeviceCreationTool"
+              id="&quot;deployment.tool.device&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@childNodes.3"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Execution Environment"
+              description="Create new ExecutionEnvironment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+              createMethodName="createExecutionEnvironmentCreationTool"
+              id="&quot;deployment.tool.executionEnvironment&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Model"
+              description="Create a model"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+              createMethodName="createModelCreationTool"
+              genNodes="/0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Node"
+              description="Create new Node"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+              createMethodName="createNodeCreationTool"
+              id="&quot;deployment.tool.node&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.7"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Package"
+              description="Create a Package"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+              createMethodName="createPackageCreationTool"
+              id="&quot;deployment.tool.package&quot;"
+              genNodes="/0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.1"/>
         </groups>
         <groups
             title="Links"
@@ -2885,17 +2886,7 @@
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             createMethodName="createLinksGroup"
             id="&quot;deployment.group.links&quot;"
-            stack="true"
             collapse="true">
-          <entries
-              xsi:type="gmfgen:ToolEntry"
-              title="Link"
-              description="Create new Link (Comment / Constraint)"
-              largeIconPath="icons/obj16/Link.gif"
-              smallIconPath="icons/obj16/Link.gif"
-              createMethodName="createLinkCreationTool"
-              id="&quot;deployment.tool.link&quot;"
-              genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Dependency"
@@ -2916,6 +2907,15 @@
               genLinks="/0/@diagram/@links.7"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
+              title="Deployment"
+              description="Create new Deployment"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+              createMethodName="createDeploymentCreationTool"
+              id="&quot;deployment.tool.deployment&quot;"
+              genLinks="/0/@diagram/@links.3"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
               title="Generalization"
               description="Create new Generalization"
               largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
@@ -2925,13 +2925,13 @@
               genLinks="/0/@diagram/@links.5"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
-              title="Deployment"
-              description="Create new Deployment"
-              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
-              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
-              createMethodName="createDeploymentCreationTool"
-              id="&quot;deployment.tool.deployment&quot;"
-              genLinks="/0/@diagram/@links.3"/>
+              title="Link"
+              description="Create new Link (Comment / Constraint)"
+              largeIconPath="icons/obj16/Link.gif"
+              smallIconPath="icons/obj16/Link.gif"
+              createMethodName="createLinkCreationTool"
+              id="&quot;deployment.tool.link&quot;"
+              genLinks="/0/@diagram/@links.1 /0/@diagram/@links.2"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Manifestation"
@@ -3074,7 +3074,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="adding to manange NamedElement"
-        genView="/0/@diagram /0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1 /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.6 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.4"
+        genView="/0/@diagram /0/@diagram/@topLevelNodes.9 /0/@diagram/@topLevelNodes.8 /0/@diagram/@childNodes.6 /0/@diagram/@topLevelNodes.6 /0/@diagram/@childNodes.2 /0/@diagram/@topLevelNodes.5 /0/@diagram/@childNodes.4"
         name="NamedElementEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart"/>
     <extensionNodes
@@ -3133,5 +3133,10 @@
         comment="Locator for external Floating label of RoundedCompartment EP"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator"
         genExternalNodeLabel="/0/@diagram/@topLevelNodes.7/@labels.1 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.8/@labels.1"/>
+    <extensionNodes
+        xsi:type="papyrusgmfgenextension:ExtendedGenView"
+        genView="/0/@diagram/@childNodes.1 /0/@diagram/@topLevelNodes.2 /0/@diagram/@childNodes.0 /0/@diagram/@topLevelNodes.1"
+        name="PackageEditPart"
+        superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.PackageEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

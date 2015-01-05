@@ -25,6 +25,7 @@ import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -50,7 +51,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 */
 	protected Label stereotypePropertiesInBraceContent;
 
-	protected Label stereotypesLabel;
+	protected PapyrusWrappingLabel stereotypesLabel;
 
 	/**
 	 * The icon label.
@@ -75,7 +76,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypeLabel() {
-		stereotypesLabel = new Label();
+		stereotypesLabel = new PapyrusWrappingLabel();
 		stereotypesLabel.setOpaque(false);
 		stereotypesLabel.setFont(getFont());
 		stereotypesLabel.setForegroundColor(getForegroundColor());
@@ -148,7 +149,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	}
 
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return this.stereotypesLabel;
 	}
 

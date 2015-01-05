@@ -22,8 +22,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CAssociationClassE
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CDependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CPackageEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CPackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CSourceISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CTargetISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CustomConstraintEditPart;
@@ -41,8 +39,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditP
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationFloatingNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SourceISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TargetISLinkLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.TimeObservationEditPart;
@@ -60,9 +56,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 		if (model instanceof View) {
 			View view = (View) model;
 			switch (UMLVisualIDRegistry.getVisualID(view)) {
-			// redefined classes to modify the method createNodePlate
-			case PackageEditPart.VISUAL_ID:
-				return new CPackageEditPart(view);
 			case DurationObservationEditPart.VISUAL_ID:
 				return new CustomDurationObservationEditPart(view);
 			case TimeObservationEditPart.VISUAL_ID:
@@ -71,8 +64,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomDurationObservationFloatingNameEditPart(view);
 			case TimeObservationFloatingNameEditPart.VISUAL_ID:
 				return new CustomTimeObservationFloatingNameEditPart(view);
-			case PackageEditPartCN.VISUAL_ID:
-				return new CPackageEditPartCN(view);
 			case ModelEditPartTN.VISUAL_ID:
 				return new CModelEditPart(view);
 			case ModelEditPartCN.VISUAL_ID:

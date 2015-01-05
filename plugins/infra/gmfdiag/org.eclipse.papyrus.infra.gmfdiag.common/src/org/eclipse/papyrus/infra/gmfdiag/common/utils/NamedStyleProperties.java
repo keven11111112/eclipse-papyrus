@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
 
 /**
- * Contains constants for the CSS-specific NameStyle, use to customize figure.
+ * Contains constants for specific NamedStyle, used to customize figure.
  */
 public interface NamedStyleProperties {
 
@@ -68,7 +68,17 @@ public interface NamedStyleProperties {
 	/**
 	 * The NamedStyle property to select the custom dash when the style of the line is set to custom.
 	 */
-	public static final String LINE_CUSTOM_VALUE = "customDash";//$NON-NLS-N$
+	public static final String LINE_CUSTOM_VALUE = "customDash"; //$NON-NLS-N$
+
+	/**
+	 * The NamedStyle property to set the shadow width.
+	 */
+	public static final String SHADOW_WIDTH = "shadowWidth"; //$NON-NLS-N$
+
+	/**
+	 * The NamedStyle property to define if the figure must be draw as a package.
+	 */
+	public static final String IS_PACKAGE = "isPackage"; //$NON-NLS-N$
 
 	/* NamedStyle use on PapyrusLabelEditPart */
 
@@ -126,55 +136,19 @@ public interface NamedStyleProperties {
 	/** The notation NameStyle property to display. */
 	public static final String DISPLAY_BORDER = "displayBorder"; //$NON-NLS-1$
 
-	/* Positions used for the name, the topLine and the Floating label. */
-	interface PositionAsString {
-		/** The Constant NORTH as String. */
-		public static final String NORTH = "NORTH"; //$NON-NLS-1$
+	/* NamedStyle for NamedElementEditPart */
 
-		/** The Constant SOUTH as String. */
-		public static final String SOUTH = "SOUTH"; //$NON-NLS-1$
+	/** The Constant NAME_POSITION. */
+	public static final String NAME_POSITION = "namePosition";// $NON-NLS$
 
-		/** The Constant EAST as String. */
-		public static final String EAST = "EAST"; //$NON-NLS-1$
+	/** CSS boolean property controlling whether stereotypes should be displayed. */
+	public static final String DISPLAY_STEREOTYPES = "displayStereotypes"; // $NON-NLS$
 
-		/** The Constant WEST as String. */
-		public static final String WEST = "WEST"; //$NON-NLS-1$
+	/** CSS boolean property controlling whether tags should be displayed. */
+	public static final String DISPLAY_TAGS = "displayTags"; // $NON-NLS$
 
-		/** The Constant NONE as String. */
-		public static final String NONE = "NONE"; //$NON-NLS-1$
+	/* NamedStyle for affixed node */
+	/** The port position namedStyle property */
+	public static final String PORT_POSITION = "portPosition"; // $NON-NLS$
 
-		/** The Constant AUTO as String. */
-		public static final String AUTO = "AUTO"; //$NON-NLS-1$
-
-		/** The Constant LEFT as String. */
-		public static final String LEFT = "LEFT"; //$NON-NLS-1$
-
-		/** The Constant RIGHT as String. */
-		public static final String RIGHT = "RIGHT"; //$NON-NLS-1$
-
-		/** The Constant CENTER as String. */
-		public static final String CENTER = "CENTER"; //$NON-NLS-1$
-	}
-
-	/* Border style */
-	interface BorderStyle {
-
-		/** The Constant DASH as String. */
-		public static final String DASH = "dash"; //$NON-NLS-1$
-
-		/** The Constant DASH_DOT as String. */
-		public static final String DASH_DOT = "dashDot"; //$NON-NLS-1$
-
-		/** The Constant DASH_DOT_DOT as String. */
-		public static final String DASH_DOT_DOT = "dashDotDot"; //$NON-NLS-1$
-
-		/** The Constant DOT as String. */
-		public static final String DOT = "dot"; //$NON-NLS-1$
-
-		/** The Constant SOLID as String. */
-		public static final String SOLID = "solid"; //$NON-NLS-1$
-
-		/** The Constant CUSTOM as String. */
-		public static final String CUSTOM = "custom"; //$NON-NLS-1$
-	}
 }

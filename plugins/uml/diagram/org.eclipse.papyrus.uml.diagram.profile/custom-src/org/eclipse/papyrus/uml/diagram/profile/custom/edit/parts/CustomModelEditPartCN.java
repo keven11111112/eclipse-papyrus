@@ -14,12 +14,9 @@
 package org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN;
 
 /**
@@ -29,20 +26,8 @@ public class CustomModelEditPartCN extends ModelEditPartCN {
 
 	protected static final String ICONS_PATH = "icons/Triangle.gif"; //$NON-NLS-1$
 
-
-
 	public CustomModelEditPartCN(View view) {
 		super(view);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-
-		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
-		return result;
 	}
 
 	/**

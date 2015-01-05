@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 
 import java.util.Iterator;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.gef.EditPart;
@@ -27,6 +26,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.ICompartmentLayoutHelper;
@@ -171,7 +171,7 @@ public abstract class BorderUMLNodeEditPart extends BorderNodeEditPart implement
 	 * <pre>
 	 * Refresh used font. This method should not be overridden by subclasses.
 	 * To refresh labels font, the method refreshLabelsFont should be used.
-	 *
+	 * 
 	 * {@inheritDoc}
 	 * </pre>
 	 */
@@ -203,7 +203,7 @@ public abstract class BorderUMLNodeEditPart extends BorderNodeEditPart implement
 	 *            the font to use
 	 */
 	protected void refreshLabelsFont(Font font) {
-		Label stereotypesLabel = ((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel();
+		PapyrusWrappingLabel stereotypesLabel = ((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel();
 		if (stereotypesLabel != null) {
 			stereotypesLabel.setFont(font);
 		}
@@ -227,7 +227,7 @@ public abstract class BorderUMLNodeEditPart extends BorderNodeEditPart implement
 	protected void setFontColor(Color color) {
 		super.setFontColor(color);
 
-		Label stereotypesLabel = ((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel();
+		PapyrusWrappingLabel stereotypesLabel = ((IPapyrusNodeUMLElementFigure) getPrimaryShape()).getStereotypesLabel();
 		if (stereotypesLabel != null) {
 			stereotypesLabel.setForegroundColor(color);
 		}

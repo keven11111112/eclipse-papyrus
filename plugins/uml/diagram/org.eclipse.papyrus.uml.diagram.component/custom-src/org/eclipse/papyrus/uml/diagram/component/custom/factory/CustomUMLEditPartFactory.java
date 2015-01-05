@@ -20,8 +20,6 @@ import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomInterfac
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomInterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPackageEditPart;
-import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomPortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.part.CustomUsageEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.DependencyBranchEditPart;
@@ -31,8 +29,6 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceEditPartPCN
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.InterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.component.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.PortNameEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UMLEditPartFactory;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.UsageEditPart;
@@ -51,8 +47,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 			switch (UMLVisualIDRegistry.getVisualID(view)) {
 
 			// redefined classes to modify the method createNodePlate
-			case PackageEditPart.VISUAL_ID:
-				return new CustomPackageEditPart(view);
 			case InterfaceEditPartPCN.VISUAL_ID:
 				return new CustomInterfaceEditPart(view);
 			case InterfaceEditPart.VISUAL_ID:
@@ -61,8 +55,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CustomInterfaceRealizationEditPart(view);
 			case UsageEditPart.VISUAL_ID:
 				return new CustomUsageEditPart(view);
-			case PackageEditPartCN.VISUAL_ID:
-				return new CustomPackageEditPartCN(view);
 			case ModelEditPart.VISUAL_ID:
 				return new CustomModelEditPart(view);
 			case ModelEditPartCN.VISUAL_ID:

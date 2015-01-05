@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusLabelEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.locator.IPapyrusBorderItemLocator;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 
 /**
@@ -123,19 +124,20 @@ public class ExternalLabelPositionLocator implements IPapyrusBorderItemLocator {
 	@Override
 	public int getPosition() {
 		// Get the forced value(CSS, Notation)
-		String ForcedPosition = NotationUtils.getStringValue(view, NamedStyleProperties.POSITION, NamedStyleProperties.PositionAsString.AUTO);
+		String ForcedPosition = NotationUtils.getStringValue(view, NamedStyleProperties.POSITION, PositionEnum.AUTO.getLiteral());
 		// if there is a forced position
-		if (!NamedStyleProperties.PositionAsString.AUTO.equals(ForcedPosition)) {
-			if (NamedStyleProperties.PositionAsString.EAST.equals(ForcedPosition)) {
+
+		if (!PositionEnum.AUTO.toString().equals(ForcedPosition)) {
+			if (PositionEnum.EAST.toString().equals(ForcedPosition)) {
 				position = PositionConstants.EAST;
 			}
-			if (NamedStyleProperties.PositionAsString.WEST.equals(ForcedPosition)) {
+			if (PositionEnum.WEST.toString().equals(ForcedPosition)) {
 				position = PositionConstants.WEST;
 			}
-			if (NamedStyleProperties.PositionAsString.NORTH.equals(ForcedPosition)) {
+			if (PositionEnum.NORTH.toString().equals(ForcedPosition)) {
 				position = PositionConstants.NORTH;
 			}
-			if (NamedStyleProperties.PositionAsString.SOUTH.equals(ForcedPosition)) {
+			if (PositionEnum.SOUTH.toString().equals(ForcedPosition)) {
 				position = PositionConstants.SOUTH;
 			}
 		} else {

@@ -38,6 +38,7 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 		super(defSize);
 	}
 
+
 	/**
 	 * Instantiates a new rounded rectangle node plate figure.
 	 *
@@ -242,7 +243,6 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 	 */
 	@Override
 	public void setHasHeader(boolean hasHeader) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -253,8 +253,39 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 	 */
 	@Override
 	public boolean hasHeader() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 *
+	 * @return
+	 */
+	@Override
+	public Rectangle getPackageHeader() {
+		return null;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setShadowWidth(int)
+	 *
+	 * @param shadowWidth
+	 */
+	@Override
+	public void setShadowWidth(int shadowWidth) {
+
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setIsPackage(boolean)
+	 *
+	 * @param isPackage
+	 */
+	@Override
+	public void setIsPackage(boolean isPackage) {
+
 	}
 
 }

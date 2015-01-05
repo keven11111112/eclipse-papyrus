@@ -14,10 +14,10 @@ import org.eclipse.draw2d.AbstractLayout;
 import org.eclipse.draw2d.ColorConstants;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.swt.graphics.Image;
@@ -144,7 +144,7 @@ public class LifelineFigure extends PapyrusNodeFigure implements IPapyrusNodeUML
 	}
 
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return null;
 	}
 }

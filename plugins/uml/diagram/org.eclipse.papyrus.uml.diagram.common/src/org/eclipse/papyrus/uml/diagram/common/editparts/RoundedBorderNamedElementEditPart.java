@@ -6,14 +6,13 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.PapyrusRoundedEditPartHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 
 
 public abstract class RoundedBorderNamedElementEditPart extends BorderNamedElementEditPart {
-
-	/** The port position namedStyle property */
-	private static final String PORT_POSITION = "portPosition";
 
 	/** The Constant DEFAULT_BORDER_STYLE. */
 	private static final int DEFAULT_BORDER_STYLE = Graphics.LINE_SOLID;
@@ -42,7 +41,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 
 	private static final boolean DEFAULT_HAS_HEADER = false;
 
-	private static final String DEFAULT_PORT_POSITION_VALUE = "onLine";
+	private static final String DEFAULT_PORT_POSITION_VALUE = PortPositionEnum.ONLINE.toString();
 
 	/**
 	 * Constructor.
@@ -166,7 +165,7 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 				Object constraint = ((AbstractBorderedShapeEditPart) getParent()).getBorderedFigure().getBorderItemContainer().getLayoutManager().getConstraint(getFigure());
 				if (constraint instanceof PortPositionLocator) {
 					PortPositionLocator portLocator = (PortPositionLocator) constraint;
-					String position = NotationUtils.getStringValue((View) getModel(), PORT_POSITION, "onLine");
+					String position = NotationUtils.getStringValue((View) getModel(), NamedStyleProperties.PORT_POSITION, getDefaultPortPosition());
 					portLocator.setPortPosition(position);
 				}
 			}

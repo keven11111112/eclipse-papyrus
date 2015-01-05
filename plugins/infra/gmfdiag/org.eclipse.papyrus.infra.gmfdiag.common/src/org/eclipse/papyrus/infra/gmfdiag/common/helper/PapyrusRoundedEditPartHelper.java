@@ -12,7 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.helper;
 
-import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gef.editparts.AbstractEditPart;
@@ -25,15 +24,23 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ShapeDisplayCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.LineStyleEnum;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 
 /**
- * The Class RoundedCompartmentEditPart provides refresh method to apply notation properties specific to roundedRectangleFigure
+ * The Class RoundedCompartmentEditPart provides refresh method to apply notation properties specific to RoundedRectangleFigure.
  */
 public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperties {
 
 	/**
 	 * Refresh border style.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultBorderStyle
+	 *            the default border style
+	 * @param defaultLineCustomValue
+	 *            the default line custom value
 	 */
 	public static void refreshBorderStyle(IPapyrusEditPart editpart, int defaultBorderStyle, int[] defaultLineCustomValue) {
 		// get the Figure
@@ -51,26 +58,8 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 					NamedStyle borderValueStyle = ((View) ((GraphicalEditPart) editpart).getModel()).getNamedStyle(stringValueStyle, BORDER_STYLE);
 					// convert the string style name in integer
 					if (borderValueStyle instanceof StringValueStyle) {
-						String value = ((StringValueStyle) borderValueStyle).getStringValue();
-
-						if (NamedStyleProperties.BorderStyle.DASH.equals(value)) {
-							borderStyle = Graphics.LINE_DASH;
-						}
-						if (NamedStyleProperties.BorderStyle.DASH_DOT.equals(value)) {
-							borderStyle = Graphics.LINE_DASHDOT;
-						}
-						if (NamedStyleProperties.BorderStyle.DASH_DOT_DOT.equals(value)) {
-							borderStyle = Graphics.LINE_DASHDOTDOT;
-						}
-						if (NamedStyleProperties.BorderStyle.DOT.equals(value)) {
-							borderStyle = Graphics.LINE_DOT;
-						}
-						if (NamedStyleProperties.BorderStyle.SOLID.equals(value)) {
-							borderStyle = Graphics.LINE_SOLID;
-						}
-						if (NamedStyleProperties.BorderStyle.CUSTOM.equals(value)) {
-							borderStyle = Graphics.LINE_CUSTOM;
-						}
+						String str = ((StringValueStyle) borderValueStyle).getStringValue();
+						borderStyle = LineStyleEnum.getByLiteral(str).getLineStyle();
 					}
 				}
 			}
@@ -86,6 +75,15 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 	/**
 	 * Refresh floating name.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultIsFloatingNameConstrained
+	 *            the default is floating name constrained
+	 * @param defaultFloatingLabelOffsetWidth
+	 *            the default floating label offset width
+	 * @param defaultFloatingLabelOffsetHeight
+	 *            the default floating label offset height
 	 */
 	public static void refreshFloatingName(IPapyrusEditPart editpart, boolean defaultIsFloatingNameConstrained, int defaultFloatingLabelOffsetWidth, int defaultFloatingLabelOffsetHeight) {
 		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
@@ -111,6 +109,11 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 	/**
 	 * Refresh oval.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultIsOvalValue
+	 *            the default is oval value
 	 */
 	public static void refreshOval(IPapyrusEditPart editpart, boolean defaultIsOvalValue) {
 		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
@@ -128,7 +131,60 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 	}
 
 	/**
+	 * Refresh package.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultIsPackageValue
+	 *            the default is package value
+	 */
+	public static void refreshPackage(IPapyrusEditPart editpart, boolean defaultIsPackageValue) {
+		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
+			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
+				// The figure
+				IRoundedRectangleFigure roundedRectangleFigure = (IRoundedRectangleFigure) editpart.getPrimaryShape();
+
+				// get the CSS value of isPackage
+				boolean isPackage = NotationUtils.getBooleanValue((View) ((GraphicalEditPart) editpart).getModel(), IS_PACKAGE, defaultIsPackageValue);
+
+				// Set isPackage
+				roundedRectangleFigure.setIsPackage(isPackage);
+			}
+		}
+	}
+
+	/**
+	 * Refresh shadow width.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultShadowWidthValue
+	 *            the default shadow width value
+	 */
+	public static void refreshShadowWidth(IPapyrusEditPart editpart, int defaultShadowWidthValue) {
+		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
+			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
+				// The figure
+				IRoundedRectangleFigure roundedRectangleFigure = (IRoundedRectangleFigure) editpart.getPrimaryShape();
+
+				// get the CSS value of isOval
+				int shadowWidth = NotationUtils.getIntValue((View) ((GraphicalEditPart) editpart).getModel(), SHADOW_WIDTH, defaultShadowWidthValue);
+
+				// Set isOval
+				roundedRectangleFigure.setShadowWidth(shadowWidth);
+			}
+		}
+	}
+
+	/**
 	 * Refresh radius.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultCornerWidth
+	 *            the default corner width
+	 * @param defaultCornerHeight
+	 *            the default corner height
 	 */
 	public static void refreshRadius(IPapyrusEditPart editpart, int defaultCornerWidth, int defaultCornerHeight) {
 		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
@@ -150,6 +206,11 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 	/**
 	 * Refresh svg original colors.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultUseOriginalColors
+	 *            the default use original colors
 	 */
 	public static void refreshSVGOriginalColors(IPapyrusEditPart editpart, boolean defaultUseOriginalColors) {
 		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {

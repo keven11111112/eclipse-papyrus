@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,7 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Laurent Wouters (CEA LIST) laurent.wouters@cea.fr - Refactoring, cleanup, added support for PapyrusLabel element
  *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Add IRoundedRectangleFigure use case(436547)
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
 
@@ -106,16 +105,22 @@ public class SVGNodePlateFigure extends DefaultSizeNodeFigure {
 		}
 	}
 
+	/** The svg document. */
 	protected SVGDocument svgDocument = null;
 
+	/** The svg dimension. */
 	private PrecisionDimension svgDimension = null;
 
+	/** The outline points for the svg Figure. */
 	private List<PrecisionPoint> outlinePoints = null;
 
+	/** The outline dimension. */
 	private PrecisionDimension outlineDimension = null;
 
+	/** The label bounds. */
 	private PrecisionRectangle labelBounds = null;
 
+	/** The default node plate. */
 	protected DefaultSizeNodeFigure defaultNodePlate;
 
 

@@ -78,7 +78,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	/**
 	 * The stereotypes label.
 	 */
-	protected Label stereotypesLabel;
+	protected PapyrusWrappingLabel stereotypesLabel;
 
 	private int namePosition = PositionConstants.MIDDLE;
 
@@ -205,6 +205,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	public void restoreStereotypeLabel() {
 		if (stereotypesLabel != null) {
 			stereotypesLabel.setOpaque(false);
+			stereotypesLabel.setAlignment(namePosition);
 			getStereotypeLabelContainer().add(stereotypesLabel, getStereotypeLabelConstraint(), getStereotypeLabelPosition());
 		}
 	}
@@ -482,8 +483,9 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * this method is used to create the stereotype label.
 	 */
 	protected void createStereotypeLabel() {
-		stereotypesLabel = new Label();
+		stereotypesLabel = new PapyrusWrappingLabel();
 		stereotypesLabel.setOpaque(false);
+		stereotypesLabel.setAlignment(namePosition);
 		stereotypesLabel.setFont(getNameLabel().getFont());
 		stereotypesLabel.setForegroundColor(getNameLabel().getForegroundColor());
 		// Add the stereotype label to the figure at pos 0
@@ -847,7 +849,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	 * @return the stereotypes label
 	 */
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return this.stereotypesLabel;
 	}
 

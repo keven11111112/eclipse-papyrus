@@ -13,17 +13,10 @@
 package org.eclipse.papyrus.uml.diagram.component.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
-import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure;
-import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramEditorPlugin;
 
 /**
  * this a specific editpart used to overload the method createNodePlate
@@ -40,19 +33,6 @@ public class CustomModelEditPartCN extends ModelEditPartCN {
 	 */
 	public CustomModelEditPartCN(View view) {
 		super(view);
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected NodeFigure createNodePlate() {
-		String prefElementId = "Model";
-		IPreferenceStore store = UMLDiagramEditorPlugin.getInstance().getPreferenceStore();
-		String preferenceConstantWitdh = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.WIDTH);
-		String preferenceConstantHeight = PreferenceInitializerForElementHelper.getpreferenceKey(getNotationView(), prefElementId, PreferencesConstantsHelper.HEIGHT);
-		DefaultSizeNodeFigure result = new PackageNodePlateFigure(store.getInt(preferenceConstantWitdh), store.getInt(preferenceConstantHeight));
-		return result;
 	}
 
 	/**

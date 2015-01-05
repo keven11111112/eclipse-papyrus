@@ -15,10 +15,10 @@ package org.eclipse.papyrus.uml.diagram.activity.figures;
 
 import org.eclipse.draw2d.GridData;
 import org.eclipse.draw2d.GridLayout;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RoundedRectangle;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CenteredWrappedLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
@@ -159,7 +159,7 @@ public abstract class AbstractActionFigure extends RoundedRectangle implements I
 	 */
 	@Deprecated
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return null;// fActionStereotypeLabel;
 	}
 
