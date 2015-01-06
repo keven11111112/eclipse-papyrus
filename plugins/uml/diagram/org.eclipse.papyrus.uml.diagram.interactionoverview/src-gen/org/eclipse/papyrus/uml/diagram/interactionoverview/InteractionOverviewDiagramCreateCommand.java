@@ -13,14 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.interactionoverview;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
-import org.eclipse.papyrus.infra.gmfdiag.common.AbstractPapyrusGmfCreateDiagramCommandHandler;
+import org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.provider.ElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 // Start of user code custom imports
 //  End of user code
 
-public class InteractionOverviewDiagramCreateCommand extends AbstractPapyrusGmfCreateDiagramCommandHandler {
+public class InteractionOverviewDiagramCreateCommand extends CreateBehavioredClassifierDiagramCommand {
 
 	/**
 	 * {@inheritDoc}
@@ -44,5 +46,15 @@ public class InteractionOverviewDiagramCreateCommand extends AbstractPapyrusGmfC
 	@Override
 	protected PreferencesHint getPreferenceHint() {
 		return Activator.DIAGRAM_PREFERENCES_HINT;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.commands.CreateBehavioredClassifierDiagramCommand#getBehaviorEClass()
+	 *
+	 * @return
+	 */
+	@Override
+	protected EClass getBehaviorEClass() {
+		return UMLPackage.eINSTANCE.getActivity();
 	}
 }

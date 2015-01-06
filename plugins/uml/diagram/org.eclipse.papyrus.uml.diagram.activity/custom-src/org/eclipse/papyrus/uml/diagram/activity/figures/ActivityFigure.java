@@ -35,17 +35,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigu
  * @author PT202707
  *
  */
-public class ActivityFigure extends RoundedCompartmentFigure { // PapyrusRoundedNodeFigure RoundedCompartmentFigure
-
-	/**
-	 * gap in x to display name stereotypes and qualified name
-	 */
-	protected final int GAP_X = 10;
-
-	/**
-	 * gap in y to display the first label at the top of the package
-	 */
-	protected final int GAP_Y = 5;
+public class ActivityFigure extends RoundedCompartmentFigure {
 
 	/**
 	 * this is the layout manager in charge to place element in the enumeration
@@ -102,10 +92,10 @@ public class ActivityFigure extends RoundedCompartmentFigure { // PapyrusRounded
 				bound.setSize(((IFigure) childrenList.get(i)).getPreferredSize());
 				if (i > 0) {
 					bound.y = ((IFigure) childrenList.get(i - 1)).getBounds().getBottomLeft().y + 1;
-					bound.x = getBounds().x + GAP_X;
+					bound.x = getBounds().x;
 				} else {
-					bound.x = getBounds().x + GAP_X;
-					bound.y = getBounds().y + GAP_Y;
+					bound.x = getBounds().x;
+					bound.y = getBounds().y;
 				}
 				((IFigure) childrenList.get(i)).setBounds(bound);
 			}
@@ -121,31 +111,31 @@ public class ActivityFigure extends RoundedCompartmentFigure { // PapyrusRounded
 			// place precondition
 			// setX
 			Rectangle preconditionBound = getPreconditionFigure().getBounds().getCopy();
-			preconditionBound.x = getNameLabel().getBounds().getTopRight().x + GAP_X;
+			preconditionBound.x = getNameLabel().getBounds().getTopRight().x;
 			// take in account stereotype label
 			if (getStereotypesLabel() != null) {
-				int posStererotypeLabel = getStereotypesLabel().getBounds().getTopRight().x + GAP_X;
+				int posStererotypeLabel = getStereotypesLabel().getBounds().getTopRight().x;
 				if (posStererotypeLabel > preconditionBound.x) {
 					preconditionBound.x = posStererotypeLabel;
 				}
 			}
 			// take in account qualified name
 			if (getQualifiedNameLabel() != null) {
-				int posqualifiedName = getQualifiedNameLabel().getBounds().getTopRight().x + GAP_X;
+				int posqualifiedName = getQualifiedNameLabel().getBounds().getTopRight().x;
 				if (posqualifiedName > preconditionBound.x) {
 					preconditionBound.x = posqualifiedName;
 				}
 			}
 			// take in account stereotype properties
 			if (stereotypePropertiesInBraceContent != null) {
-				int possterotypeInBrace = stereotypePropertiesInBraceContent.getBounds().getTopRight().x + GAP_X;
+				int possterotypeInBrace = stereotypePropertiesInBraceContent.getBounds().getTopRight().x;
 				if (possterotypeInBrace > preconditionBound.x) {
 					preconditionBound.x = possterotypeInBrace;
 				}
 			}
 			// take in account parameter figure
 			if (getParameterFigure() != null) {
-				int posparameter = getParameterFigure().getBounds().getTopRight().x + GAP_X;
+				int posparameter = getParameterFigure().getBounds().getTopRight().x;
 				if (posparameter > preconditionBound.x) {
 					preconditionBound.x = posparameter;
 				}
@@ -160,7 +150,7 @@ public class ActivityFigure extends RoundedCompartmentFigure { // PapyrusRounded
 			// setPoscondtion
 			Rectangle postconditionBound = getPostconditionFigure().getBounds().getCopy();
 			postconditionBound.x = getPreconditionFigure().getBounds().x;
-			postconditionBound.y = getPreconditionFigure().getBounds().y + getPreconditionFigure().getBounds().height + GAP_Y;
+			postconditionBound.y = getPreconditionFigure().getBounds().y + getPreconditionFigure().getBounds().height;
 			getPostconditionFigure().setBounds(postconditionBound);
 			if (getPostconditionFigure().getChildren().size() > 0) {
 				((IFigure) getPostconditionFigure().getChildren().get(0)).setBounds(postconditionBound);
@@ -168,15 +158,15 @@ public class ActivityFigure extends RoundedCompartmentFigure { // PapyrusRounded
 			}
 			// setPoscondtion
 			Rectangle singleExecutionBound = getHeaderSingleExecution().getBounds().getCopy();
-			singleExecutionBound.x = getPreconditionFigure().getBounds().x + getPreconditionFigure().getBounds().width + GAP_X;
+			singleExecutionBound.x = getPreconditionFigure().getBounds().x + getPreconditionFigure().getBounds().width;
 			;
 			singleExecutionBound.y = getPreconditionFigure().getBounds().y;
 			getHeaderSingleExecution().setBounds(singleExecutionBound);
 			// replace compartment stereotype properties
 			if (getStereotypePropertiesContent() != null) {
 				Rectangle pscontainer = getStereotypePropertiesContent().getBounds().getCopy();
-				if (getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height + GAP_Y > pscontainer.y) {
-					pscontainer.y = getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height + GAP_Y;
+				if (getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height > pscontainer.y) {
+					pscontainer.y = getPostconditionFigure().getBounds().y + getPostconditionFigure().getBounds().height;
 				}
 				getStereotypePropertiesContent().setBounds(pscontainer);
 			}

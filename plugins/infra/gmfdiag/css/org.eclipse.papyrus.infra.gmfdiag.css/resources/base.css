@@ -43,23 +43,27 @@ TimingDiagram * {
 	gradient:none;
 }
 
+
 /*---------- Default SVG symbols ----------*/
 
 /* Round full */
 StateMachineDiagram Pseudostate[kind="initial"],
 StateMachineDiagram Pseudostate[kind="junction"],
-ActivityDiagram InitialNode
+ActivityDiagram InitialNode,
+InteractionOverviewDiagram InitialNode
 {
 svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_full.svg";
 }
 
 ActivityDiagram ActivityFinalNode, 
+InteractionOverviewDiagram ActivityFinalNode,
 StateMachineDiagram FinalState
 {
 svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_dot.svg";
 }
 
-ActivityDiagram FlowFinalNode
+ActivityDiagram FlowFinalNode,
+InteractionOverviewDiagram FlowFinalNode
 {
 svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols/round_with_cross.svg";
 }
@@ -76,6 +80,8 @@ svgFile:"platform:/plugin/org.eclipse.papyrus.infra.gmfdiag.common/icons/symbols
 
 ActivityDiagram MergeNode,
 ActivityDiagram DecisionNode,
+InteractionOverviewDiagram MergeNode,
+InteractionOverviewDiagram DecisionNode,
 StateMachineDiagram Pseudostate[kind="choice"],
 ClassDiagram Association
 {
@@ -157,12 +163,19 @@ ActivityDiagram JoinNode > Label
 	 visible:true;
 }
 
-
-
 ActivityDiagram SendSignalAction, 
-ActivityDiagram AcceptEventAction{
+ActivityDiagram AcceptEventAction
+{
 	maintainSymbolRatio:false;
 	displayName:true;
+}
+
+ActivityDiagram Activity
+{
+	leftMarginLabel:10;
+	rightMarginLabel:5;
+	topMarginLabel:5;
+	bottomMarginLabel:5;
 }
 
 /* For most Activity diagram nodes (e.g. initial, final, fork, decision, ...), 
@@ -314,13 +327,63 @@ CompositeStructureDiagram TimeObservation > Compartment[kind="symbol"]
 }
 
 CompositeStructureDiagram DurationObservation > Label,
-CompositeStructureDiagram TimeObservation > Label
-{
-    visible:true;
-    textAlignment:"Left";
-}
+CompositeStructureDiagram TimeObservation > Label,
 CompositeStructureDiagram Port > Label
 {
-	visible: true;
-	textAlignment:"Left";
+    visible:true;
+    textAlignment:"left";
+}
+
+
+/*---------- Interaction Overview Diagram ----------*/
+
+InteractionOverviewDiagram MergeNode, 
+InteractionOverviewDiagram InitialNode, 
+InteractionOverviewDiagram ActivityFinalNode, 
+InteractionOverviewDiagram FlowFinalNode, 
+InteractionOverviewDiagram DecisionNode
+{
+	displayBorder:false;
+	displayName:false;
+	diplayIcon:false;
+	displayTag:false;
+	followSVGSymbol:true;
+	maintainSymbolRatio:true;
+	transparency:100;
+	maxNumberOfSymbol:1;
+	useOriginalColors:false;
+	gradient:none;
+	fillColor:white;
+}
+
+/*symbol compartment set to visible */
+InteractionOverviewDiagram MergeNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram InitialNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram ActivityFinalNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram FlowFinalNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram MergeNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram DecisionNode > Compartment[kind="symbol"], 
+InteractionOverviewDiagram SendSignalAction > Compartment[kind="symbol"]
+{
+    visible:true;
+}
+
+/*External Label set to visible*/
+InteractionOverviewDiagram MergeNode > Label, 
+InteractionOverviewDiagram InitialNode > Label, 
+InteractionOverviewDiagram ActivityFinalNode > Label, 
+InteractionOverviewDiagram FlowFinalNode > Label, 
+InteractionOverviewDiagram DecisionNode > Label, 
+InteractionOverviewDiagram ForkNode > Label,
+InteractionOverviewDiagram JoinNode > Label
+{
+	 visible:true;
+}
+
+InteractionOverviewDiagram Activity
+{
+	leftMarginLabel:10;
+	rightMarginLabel:5;
+	topMarginLabel:5;
+	bottomMarginLabel:5;
 }

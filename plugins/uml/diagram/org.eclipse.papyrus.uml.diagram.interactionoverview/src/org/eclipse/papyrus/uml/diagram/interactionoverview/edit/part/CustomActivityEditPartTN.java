@@ -11,6 +11,7 @@
 package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.ResizableShapeEditPolicy;
 import org.eclipse.gmf.runtime.notation.View;
@@ -34,4 +35,25 @@ public class CustomActivityEditPartTN extends ActivityEditPart {
 		// Because ActivityTN is not created by default in this diagram, user may move the figure unlike in Activity diagram
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new ResizableShapeEditPolicy());
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart#getDefaultHasHeader()
+	 *
+	 * @return
+	 */
+	@Override
+	protected boolean getDefaultHasHeader() {
+		return true;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#getDefaultNamePosition()
+	 *
+	 * @return
+	 */
+	@Override
+	protected int getDefaultNamePosition() {
+		return PositionConstants.LEFT;
+	}
+
 }

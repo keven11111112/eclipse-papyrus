@@ -140,7 +140,7 @@ import org.eclipse.papyrus.uml.diagram.activity.figures.CallBehaviorActionFigure
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
@@ -158,7 +158,7 @@ import org.eclipse.uml2.uml.CallBehaviorAction;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
-public class CallBehaviorActionAsInteractionEditPart extends NamedElementEditPart {
+public class CallBehaviorActionAsInteractionEditPart extends RoundedCompartmentEditPart {
 
 	public static final int VISUAL_ID = 5000;
 
