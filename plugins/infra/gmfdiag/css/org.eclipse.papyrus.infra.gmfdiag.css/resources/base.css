@@ -137,6 +137,10 @@ ActivityDiagram AcceptEventAction
 	fillColor:white;
 }
 
+ActivityDiagram InitialNode{
+	fillColor: black;
+}
+
 /*symbol compartment set to visible */
 ActivityDiagram MergeNode > Compartment[kind="symbol"], 
 ActivityDiagram InitialNode > Compartment[kind="symbol"], 
@@ -354,6 +358,10 @@ InteractionOverviewDiagram DecisionNode
 	useOriginalColors:false;
 	gradient:none;
 	fillColor:white;
+}
+
+InteractionOverviewDiagram InitialNode{
+	fillColor:black;
 }
 
 /*symbol compartment set to visible */
