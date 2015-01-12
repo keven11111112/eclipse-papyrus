@@ -96,7 +96,18 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
 		PapyrusRoundedEditPartHelper.refreshShadowWidth(this, getDefaultShadowWidth());
 		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());
+		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		super.refreshVisuals();
+	}
+
+	/**
+	 * Gets the default shadow color.
+	 *
+	 * @return the default shadow color
+	 */
+	private String getDefaultShadowColor() {
+		// When null the color is the same that the border line.
+		return null;
 	}
 
 	/**

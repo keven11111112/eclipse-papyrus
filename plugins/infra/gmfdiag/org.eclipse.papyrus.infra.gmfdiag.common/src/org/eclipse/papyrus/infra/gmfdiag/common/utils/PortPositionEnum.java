@@ -1,14 +1,14 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2010, 2014 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -22,13 +22,13 @@ package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 public enum PortPositionEnum {
 
 	/** The inside. */
-	INSIDE("inside"), //$NON-NLS-N$
+	INSIDE("inside"), //$NON-NLS-1$
 
 	/** The outside. */
-	OUTSIDE("outside"), //$NON-NLS-N$
+	OUTSIDE("outside"), //$NON-NLS-1$
 
 	/** The online. */
-	ONLINE("onLine"); //$NON-NLS-N$
+	ONLINE("onLine"); //$NON-NLS-1$
 
 	/** The literal. */
 	private String literal;

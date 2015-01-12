@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- * 
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.figures;
@@ -17,26 +17,32 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleShadowBorder;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.SubCompartmentLayoutManager;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
+import org.w3c.dom.css.RGBColor;
 
 /**
  * This figure handles a rounded dashed rectangle Papyrus node, with no
@@ -63,6 +69,39 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 
 	/** The border style. */
 	protected int borderStyle = Graphics.LINE_SOLID;
+
+	/** The cached border. */
+	private Border cachedBorder;
+
+	/** The cached transparency. */
+	private int cachedTransparency;
+
+	/** The shadow width. */
+	private int shadowWidth = 4;
+
+	/** The shadow color. */
+	String shadowColor = null;
+
+	/**
+	 * Gets the shadow color.
+	 *
+	 * @return the shadowColor
+	 */
+	@Override
+	public String getShadowColor() {
+		return shadowColor;
+	}
+
+	/**
+	 * Sets the shadow color.
+	 *
+	 * @param shadowColor
+	 *            the shadowColor to set
+	 */
+	@Override
+	public void setShadowColor(String shadowColor) {
+		this.shadowColor = shadowColor;
+	}
 
 	/**
 	 * @param borderStyle
@@ -104,11 +143,28 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	public InterruptibleActivityRegionFigure(List<String> compartmentFigure, String taggedLabelValue) {
 		super();
 		setOpaque(false);
-		shadowborder = new RoundedRectangleShadowBorder(getForegroundColor(), cornerDimension);
 		setLayoutManager(new AutomaticCompartmentLayoutManager());
 		if (compartmentFigure != null) {
 			createContentPane(compartmentFigure);
 		}
+	}
+
+	/**
+	 * @param shadowWidth
+	 *            the shadowWidth to set
+	 */
+	@Override
+	public void setShadowWidth(int shadowWidth) {
+		this.shadowWidth = shadowWidth;
+	}
+
+	/**
+	 * @param isPackage
+	 *            the isPackage to set
+	 */
+	@Override
+	public void setIsPackage(boolean isPackage) {
+		// The Region is not a named element
 	}
 
 	/**
@@ -168,47 +224,58 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public void paintFigure(Graphics graphics) {
-		shadowborder.setColor(getForegroundColor());
+
 		graphics.pushState();
 		Rectangle rectangle = getBounds().getCopy();
-
+		Rectangle clipRectangle = getBounds().getCopy();
 		refreshCornerSizeWhenOval();
 
 		applyTransparency(graphics);
+
+
+		// Retrieve the border when was be set to null for package
+		if (cachedBorder != null) {
+			setBorder(cachedBorder);
+			cachedBorder = null;
+		}
+
+		// Draw shadow
+		if (isShadow()) {
+
+			// Set the transparency for shadow
+			setShadowTransparency(graphics, true);
+
+			rectangle.translate(shadowWidth, shadowWidth);
+
+			// expand clip for draw shadow
+			graphics.getClip(clipRectangle);
+			clipRectangle.width += shadowWidth;
+			clipRectangle.height += shadowWidth;
+			graphics.setClip(clipRectangle);
+
+			// set the background color
+			setShadowBackgroudColor(graphics);
+
+			// draw the shadow
+			graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
+
+			rectangle.translate(-shadowWidth, -shadowWidth);
+
+			// reposition clip
+			clipRectangle.width -= shadowWidth;
+			clipRectangle.height -= shadowWidth;
+			graphics.setClip(clipRectangle);
+
+			// Reset the transparency for shadow
+			setShadowTransparency(graphics, false);
+		}
+
 		if (isUsingGradient()) {
-			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-
-			Point startGradientPoint = rectangle.getTopLeft();
-			Point endGradientPoint = rectangle.getBottomRight();
-
-			// Place start and end point according to isVertical.
-			if (isVertical) {
-				startGradientPoint.x = rectangle.getTopLeft().x + rectangle.width() / 2;
-				endGradientPoint.x = startGradientPoint.x;
-			} else {
-				startGradientPoint.y = rectangle.getTopLeft().y + rectangle.height() / 2;
-				endGradientPoint.y = startGradientPoint.y;
-			}
-
-			// Take zoom into account
-			double scale = FigureUtils.getScale(this);
-			startGradientPoint.scale(scale);
-			endGradientPoint.scale(scale);
-
-			// get alpha with convert transparency from 0 -> 100 to 255 -> 0
-			int alpha = (int) ((255.0 / 100.0) * (100.0 - getTransparency()));
-
-			// create pattern to display
-			Pattern pattern = new Pattern(Display.getCurrent(), startGradientPoint.x,
-					startGradientPoint.y, endGradientPoint.x, endGradientPoint.y,
-					ColorRegistry.getInstance().getColor(getGradientColor2()), alpha,
-					ColorRegistry.getInstance().getColor(getGradientColor1()), alpha);
-
+			Pattern pattern = getGradientPattern();
 			graphics.setBackgroundPattern(pattern);
 			graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
 			graphics.setBackgroundPattern(null);
 			pattern.dispose();
-
 		} else {
 			graphics.pushState();
 			graphics.setBackgroundColor(getBackgroundColor());
@@ -216,7 +283,96 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 			graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
 			graphics.popState();
 		}
+
+
 		graphics.popState();
+	}
+
+	/**
+	 * @param graphics
+	 */
+	private void setShadowBackgroudColor(Graphics graphics) {
+
+		if (shadowColor != null) {
+			// get the the RGBColor from string
+			RGBColor rgbColor = CSS2ColorHelper.getRGBColor(shadowColor);
+
+			// extract RGB
+			int red = Integer.parseInt(rgbColor.getRed().toString());
+			int green = Integer.parseInt(rgbColor.getGreen().toString());
+			int blue = Integer.parseInt(rgbColor.getBlue().toString());
+
+			// get the the Color from RGB
+			Color color = new Color(Display.getCurrent(), new RGB(red, green, blue));
+			graphics.setBackgroundColor(color);
+		} else {
+			graphics.setBackgroundColor(getForegroundColor());
+		}
+	}
+
+	/**
+	 * Sets the shadow transparency.
+	 *
+	 * @param graphics
+	 *            the graphics
+	 * @param toApplied
+	 *            the to applied
+	 */
+	private void setShadowTransparency(Graphics graphics, boolean toApplied) {
+		// Set transparency to be used for the shadow
+		if (toApplied) {
+			cachedTransparency = getTransparency();
+			// Set Shadow transparency
+			int transparency = cachedTransparency + (100 - cachedTransparency) / 2;
+			if (transparency > 100) {
+				transparency = 100;
+			}
+			setTransparency((transparency));
+			applyTransparency(graphics);
+		} else {
+			// Reset Shadow transparency
+			setTransparency(cachedTransparency);
+			applyTransparency(graphics);
+		}
+	}
+
+
+	/**
+	 * Gets the gradient pattern.
+	 *
+	 * @return the gradient pattern
+	 */
+	private Pattern getGradientPattern() {
+		Rectangle rectangle = getBounds().getCopy();
+
+		boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
+
+		Point startGradientPoint = rectangle.getTopLeft();
+		Point endGradientPoint = rectangle.getBottomRight();
+
+		// Place start and end point according to isVertical.
+		if (isVertical) {
+			startGradientPoint.x = rectangle.getTopLeft().x + rectangle.width() / 2;
+			endGradientPoint.x = startGradientPoint.x;
+		} else {
+			startGradientPoint.y = rectangle.getTopLeft().y + rectangle.height() / 2;
+			endGradientPoint.y = startGradientPoint.y;
+		}
+
+		// Take zoom into account
+		double scale = FigureUtils.getScale(this);
+		startGradientPoint.scale(scale);
+		endGradientPoint.scale(scale);
+
+		// get alpha with convert transparency from 0 -> 100 to 255 -> 0
+		int alpha = (int) ((255.0 / 100.0) * (100.0 - getTransparency()));
+
+		// create pattern to display
+		Pattern pattern = new Pattern(Display.getCurrent(), startGradientPoint.x,
+				startGradientPoint.y, endGradientPoint.x, endGradientPoint.y,
+				ColorRegistry.getInstance().getColor(getGradientColor2()), alpha,
+				ColorRegistry.getInstance().getColor(getGradientColor1()), alpha);
+		return pattern;
 	}
 
 	/**
@@ -227,18 +383,28 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	@Override
 	public void setShadow(boolean shadow) {
 		super.setShadow(shadow);
-		if (!shadow) {
-			// If shadow is set to false we set the border
-			if (getBorder() != null) {
 
-				refreshCornerSizeWhenOval();
+		refreshCornerSizeWhenOval();
 
-				RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height);
-				border.setWidth(getLineWidth());
-				border.setStyle(borderStyle);
-				this.setBorder(border);
+		RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height) {
+			/**
+			 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics, org.eclipse.draw2d.geometry.Insets)
+			 *
+			 * @param figure
+			 * @param graphics
+			 * @param insets
+			 */
+			@Override
+			public void paint(IFigure figure, Graphics graphics, Insets insets) {
+				int transparency = 255 - ((NodeFigure) figure).getTransparency() * 255 / 100;
+				graphics.setAlpha(transparency);
+				super.paint(figure, graphics, insets);
 			}
-		}
+		};
+
+		border.setWidth(getLineWidth());
+		border.setStyle(borderStyle);
+		setBorder(border);
 		setLineStyle(borderStyle);
 	}
 
@@ -269,6 +435,11 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		this.cornerDimension = cornerDimension;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setOval(boolean)
+	 *
+	 * @param booleanValue
+	 */
 	@Override
 	public void setOval(boolean booleanValue) {
 		isOval = booleanValue;
@@ -277,30 +448,86 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		}
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#isOval()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean isOval() {
 		return isOval;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setFloatingNameConstrained(boolean)
+	 *
+	 * @param booleanValue
+	 */
 	@Override
 	public void setFloatingNameConstrained(boolean booleanValue) {
 		isLabelConstrained = booleanValue;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#isFloatingNameConstrained()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean isFloatingNameConstrained() {
 		return isLabelConstrained;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setFloatingNameOffset(org.eclipse.draw2d.geometry.Dimension)
+	 *
+	 * @param offset
+	 */
 	@Override
 	public void setFloatingNameOffset(Dimension offset) {
 		this.floatingNameOffset = offset;
 
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getFloatingNameOffset()
+	 *
+	 * @return
+	 */
 	@Override
 	public Dimension getFloatingNameOffset() {
 		return floatingNameOffset;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 *
+	 * @return
+	 */
+	@Override
+	public Rectangle getPackageHeader() {
+		// The Region is not a named element
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
+	 *
+	 * @param hasHeader
+	 */
+	@Override
+	public void setHasHeader(boolean hasHeader) {
+		// The Region is not a named element
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#hasHeader()
+	 *
+	 * @return
+	 */
+	@Override
+	public boolean hasHeader() {
+		return false;
 	}
 
 	/**
@@ -344,55 +571,5 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		return null;
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setHasHeader(boolean)
-	 *
-	 * @param hasHeader
-	 */
-	@Override
-	public void setHasHeader(boolean hasHeader) {
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#hasHeader()
-	 *
-	 * @return
-	 */
-	@Override
-	public boolean hasHeader() {
-		return false;
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
-	 *
-	 * @return
-	 */
-	@Override
-	public Rectangle getPackageHeader() {
-		return null;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setShadowWidth(int)
-	 *
-	 * @param shadowWidth
-	 */
-	@Override
-	public void setShadowWidth(int shadowWidth) {
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setIsPackage(boolean)
-	 *
-	 * @param isPackage
-	 */
-	@Override
-	public void setIsPackage(boolean isPackage) {
-
-	}
 
 }

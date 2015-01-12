@@ -46,7 +46,11 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 	/** The Constant DEFAULT_IS_OVAL. */
 	private static final boolean DEFAULT_IS_OVAL = false;
 
+	/** The Constant DEFAULT_HAS_HEADER. */
 	private static final boolean DEFAULT_HAS_HEADER = false;
+
+	/** The Constant DEFAULT_IS_PACKAGE. */
+	private static final boolean DEFAULT_IS_PACKAGE = false;
 
 	/**
 	 * Instantiates a new rounded compartment edit part.
@@ -59,8 +63,9 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart#createDefaultEditPolicies()
+	 * Creates the default edit policies.
 	 *
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart#createDefaultEditPolicies()
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
@@ -97,7 +102,9 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 	}
 
 	/**
-	 * @return
+	 * Gets the default cutom dash.
+	 *
+	 * @return the default cutom dash
 	 */
 	private int[] getDefaultCutomDash() {
 		return DEFAULT_CUTOM_DASH;
@@ -140,7 +147,9 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 	}
 
 	/**
-	 * @return
+	 * Gets the default use original colors.
+	 *
+	 * @return the default use original colors
 	 */
 	private boolean getDefaultUseOriginalColors() {
 		return true;
@@ -159,11 +168,34 @@ public abstract class RoundedUMLNodeEditPart extends UMLNodeEditPart {
 		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
+		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());
+		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		super.refreshVisuals();
 	}
 
 	/**
-	 * @return
+	 * Gets the default shadow color.
+	 *
+	 * @return the default shadow color
+	 */
+	private String getDefaultShadowColor() {
+		// When null the color is the same that the border line.
+		return null;
+	}
+
+	/**
+	 * Gets the default is package.
+	 *
+	 * @return the default is package
+	 */
+	protected boolean getDefaultIsPackage() {
+		return DEFAULT_IS_PACKAGE;
+	}
+
+	/**
+	 * Gets the default has header.
+	 *
+	 * @return the default has header
 	 */
 	protected boolean getDefaultHasHeader() {
 		return DEFAULT_HAS_HEADER;

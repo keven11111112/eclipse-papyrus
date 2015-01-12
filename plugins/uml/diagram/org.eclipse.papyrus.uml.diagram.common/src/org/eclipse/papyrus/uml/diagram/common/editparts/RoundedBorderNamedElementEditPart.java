@@ -152,8 +152,19 @@ public abstract class RoundedBorderNamedElementEditPart extends BorderNamedEleme
 		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
 		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
 		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
+		PapyrusRoundedEditPartHelper.refreshShadowColor(this, getDefaultShadowColor());
 		refreshPortPosition();
 		super.refreshVisuals();
+	}
+
+	/**
+	 * Gets the default shadow color.
+	 *
+	 * @return the default shadow color
+	 */
+	private String getDefaultShadowColor() {
+		// When null the color is the same that the border line.
+		return null;
 	}
 
 	/**

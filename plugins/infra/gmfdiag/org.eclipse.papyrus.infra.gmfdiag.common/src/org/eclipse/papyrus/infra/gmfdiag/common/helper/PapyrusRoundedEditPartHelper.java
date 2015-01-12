@@ -257,4 +257,27 @@ public abstract class PapyrusRoundedEditPartHelper implements NamedStyleProperti
 
 	}
 
+	/**
+	 * Refresh the shadow color.
+	 *
+	 * @param editpart
+	 *            the editpart
+	 * @param defaultShadowColor
+	 *            the default shadow color
+	 */
+	public static void refreshShadowColor(IPapyrusEditPart editpart, String defaultShadowColor) {
+		if (editpart.getPrimaryShape() instanceof IRoundedRectangleFigure) {
+			if (((GraphicalEditPart) editpart).getModel() instanceof View) {
+				// The figure
+				IRoundedRectangleFigure roundedRectangleFigure = (IRoundedRectangleFigure) editpart.getPrimaryShape();
+
+				// get the CSS value of hasHeader
+				String shadowColor = NotationUtils.getStringValue((View) ((GraphicalEditPart) editpart).getModel(), SHADOW_COLOR, defaultShadowColor);
+
+				// Set color of the shadow
+				roundedRectangleFigure.setShadowColor(shadowColor);
+			}
+		}
+
+	}
 }
