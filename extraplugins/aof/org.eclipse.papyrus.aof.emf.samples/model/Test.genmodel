@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<genmodel:GenModel xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore"
+    xmlns:genmodel="http://www.eclipse.org/emf/2002/GenModel" copyrightText="Copyright (c) 2015 ESEO.&#xD;&#xA;All rights reserved. This program and the accompanying materials&#xD;&#xA;are made available under the terms of the Eclipse Public License v1.0&#xD;&#xA;which accompanies this distribution, and is available at&#xD;&#xA;http://www.eclipse.org/legal/epl-v10.html&#xD;&#xA;&#xD;&#xA;Contributors:&#xD;&#xA;   Olivier Beaudoux - code generated from model Test.ecore&#xD;&#xA;"
+    modelDirectory="/org.eclipse.papyrus.aof.emf.samples/src-gen" modelPluginID="org.eclipse.papyrus.aof.emf.samples"
+    modelName="Test" rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="6.0" copyrightFields="false"
+    operationReflection="true" importOrganizing="true" oSGiCompatible="true">
+  <foreignModel>Test.ecore</foreignModel>
+  <genPackages prefix="Tests" basePackage="org.eclipse.papyrus.aof.emf.samples" disposableProviderFactory="true"
+      ecorePackage="Test.ecore#/">
+    <genClasses ecoreClass="Test.ecore#//Test">
+      <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Test.ecore#//Test/name"/>
+    </genClasses>
+    <genClasses ecoreClass="Test.ecore#//TestSuite">
+      <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference Test.ecore#//TestSuite/tests"/>
+    </genClasses>
+  </genPackages>
+</genmodel:GenModel>
