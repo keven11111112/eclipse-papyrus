@@ -348,6 +348,9 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
         <stereotypes href="http://www.eclipse.org/papyrus/0.7.0/SysML#//blocks/Block"/>
       </owningRules>
+      <owningRules xmi:id="_fkidIHGDEeSH8PZiaHSGZQ">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//DataType"/>
+      </owningRules>
       <childRules xmi:id="_gCM0wAdwEeSVMJ4835ECFQ"/>
     </modelKinds>
     <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wM04dxhEeOqHvRyiN87hA" implementationID="InternalBlock" categories="_7wNb49xhEeOqHvRyiN87hA">

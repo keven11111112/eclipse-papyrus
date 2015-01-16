@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
- *
+ *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr -  #452669
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.migration;
 
@@ -54,6 +54,10 @@ public class BDDReconcilier extends DiagramReconciler {
 				org.eclipse.uml2.uml.Class clazz = (org.eclipse.uml2.uml.Class) element;
 				diagram.setElement(clazz.getNearestPackage());
 				DiagramUtils.setOwner(diagram, element);
+			} else if (element instanceof org.eclipse.uml2.uml.DataType){
+				org.eclipse.uml2.uml.DataType datatype = (org.eclipse.uml2.uml.DataType) element;
+				diagram.setElement(datatype.getNearestPackage());
+				DiagramUtils.setOwner(diagram, element);				
 			}
 			return CommandResult.newOKCommandResult();
 		}
@@ -70,12 +74,12 @@ public class BDDReconcilier extends DiagramReconciler {
 
 		@Override
 		protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canRedo false");
+			throw new ExecutionException("Should not be called, canRedo false"); //$NON-NLS-1$
 		}
 
 		@Override
 		protected CommandResult doUndoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
-			throw new ExecutionException("Should not be called, canUndo false");
+			throw new ExecutionException("Should not be called, canUndo false"); //$NON-NLS-1$
 		}
 	}
 }
