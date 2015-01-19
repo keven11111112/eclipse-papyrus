@@ -29,4 +29,4 @@ Bundle-Description: The goal of this plugin is to bring a template and
 Bundle-SymbolicName: org.eclipse.papyrus.uml.developer.mde;singleton:=
  true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

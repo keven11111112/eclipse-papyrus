@@ -27,4 +27,4 @@ Bundle-Description: This plugin has in charge to connect the tool to m
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool.assistant;sin
  gleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

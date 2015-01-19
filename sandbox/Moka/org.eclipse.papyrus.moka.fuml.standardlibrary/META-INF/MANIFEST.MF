@@ -28,4 +28,3 @@ Export-Package: org.eclipse.papyrus.moka.fuml.standardlibrary.library.boolean_,
  org.eclipse.papyrus.moka.fuml.standardlibrary.library.io,
  org.eclipse.papyrus.moka.fuml.standardlibrary.library.list,
  org.eclipse.papyrus.moka.fuml.standardlibrary.library.string,
- org.eclipse.papyrus.moka.fuml.standardlibrary.library.unlimitednatural
