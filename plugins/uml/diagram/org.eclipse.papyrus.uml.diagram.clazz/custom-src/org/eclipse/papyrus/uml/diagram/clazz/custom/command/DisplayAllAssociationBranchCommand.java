@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.diagram.clazz.custom.command;
 import org.eclipse.jface.action.IAction;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.ui.IObjectActionDelegate;
 import org.eclipse.ui.IWorkbenchPart;
@@ -42,7 +42,7 @@ public class DisplayAllAssociationBranchCommand implements IObjectActionDelegate
 	 */
 	@Override
 	public void run(IAction action) {
-		CustomMultiAssociationHelper multiAssociationHelper = new CustomMultiAssociationHelper(selectedElement.getEditingDomain());
+		MultiAssociationHelper multiAssociationHelper = new MultiAssociationHelper(selectedElement.getEditingDomain());
 		selectedElement.getDiagramEditDomain().getDiagramCommandStack().execute(multiAssociationHelper.displayAllBranchesCommand(selectedElement));
 	}
 

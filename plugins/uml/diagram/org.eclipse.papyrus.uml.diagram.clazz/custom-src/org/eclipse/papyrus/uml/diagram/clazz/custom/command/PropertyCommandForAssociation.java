@@ -19,9 +19,8 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.commands.PropertyForComponentCreateCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.ElementInitializers;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -32,16 +31,16 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * The Class PropertyCommandForAssociation use to create a property into an association (ownedEnd)
  */
-public class PropertyCommandForAssociation extends PropertyForComponentCreateCommand {
+public class PropertyCommandForAssociation extends CreateElementCommand {
 
 	/**
-	 * Instantiates a new property command for association.
+	 * Constructor.
 	 *
-	 * @param req
-	 *            the req to launch the command
+	 * @param request
 	 */
-	public PropertyCommandForAssociation(CreateElementRequest req, Diagram diagram) {
-		super(req, diagram);
+	public PropertyCommandForAssociation(CreateElementRequest request) {
+		super(request);
+		// TODO Auto-generated constructor stub
 	}
 
 	/**

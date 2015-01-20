@@ -35,7 +35,7 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
@@ -73,7 +73,7 @@ public class AssociationBranchDeletion implements IObjectActionDelegate {
 		// target is the association end of the association branch
 		association = (Association) branchSource.resolveSemanticElement();
 		associationNodeEditPart = branchSource;
-		Property associationEndToRemove = CustomMultiAssociationHelper.getPropertyToListen((Edge) selectedElement.getModel(), association);
+		Property associationEndToRemove = MultiAssociationHelper.getPropertyToListen((Edge) selectedElement.getModel(), association);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(associationEndToRemove);
 		if (provider != null) {
 			DestroyElementRequest destroyRequest = new DestroyElementRequest(associationEndToRemove, false);

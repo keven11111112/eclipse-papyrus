@@ -27,5 +27,8 @@ public class AddedLinkFigure extends UMLEdgeFigure {
 	public AddedLinkFigure() {
 		this.setLineStyle(Graphics.LINE_SOLID);
 		this.setForegroundColor(org.eclipse.draw2d.ColorConstants.black);
+		this.setSourceDecoration(new ContainmentDecoration());
 	}
+
+
 }

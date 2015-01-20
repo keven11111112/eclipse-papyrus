@@ -8,4 +8,11 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier/ownedUseCase"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_OdntAJgmEeSbPLBxcMMcNg" identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Package::packagedElement">
+    <iconEntry xmi:id="_m1srIJgmEeSbPLBxcMMcNg" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <containerConfiguration xmi:id="_tgfvMJgmEeSbPLBxcMMcNg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

@@ -33,55 +33,37 @@ public class ComponentEditHelper extends ElementEditHelper {
 
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {
-		// overload the creation in order to prevent to create or move a component into a component by using the role
-		// "nestedClassifier"
-		EObject owner= req.getContainer();
-		EReference eref=req.getContainmentFeature();
-		if(owner!=null &&!canCreate(owner, eref)) {
-			// Abort creation.
+
+		// override the creation in order to prevent to create a component into a component by using the role "nestedClassifier"
+		EObject owner = req.getContainer();
+		EReference eref = req.getContainmentFeature();
+		if (owner instanceof Component && eref.equals(UMLPackage.eINSTANCE.getClass_NestedClassifier()) && req.getElementType().getEClass().equals(UMLPackage.eINSTANCE.getComponent())) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if(owner instanceof Component && eref==null){
-			req.setContainmentFeature(UMLPackage.eINSTANCE.getComponent_PackagedElement());
-		}
+
 		return super.getCreateCommand(req);
 	}
 
 	@Override
 	protected ICommand getMoveCommand(MoveRequest req) {
-		// overload the creation in order to prevent to create or move a component into a component by using the role
-		// "nestedClassifier"
-		for(Object elementToMove : req.getElementsToMove().keySet()) {
-			if( elementToMove instanceof Component && (UMLPackage.eINSTANCE.getClass_NestedClassifier().equals(req.getTargetFeature((EObject)elementToMove)))){
+		// override the creation in order to prevent to move a component into a component by using the role "nestedClassifier"
+		for (Object elementToMove : req.getElementsToMove().keySet()) {
+			if (elementToMove instanceof Component && (UMLPackage.eINSTANCE.getClass_NestedClassifier().equals(req.getTargetFeature((EObject) elementToMove)))) {
 				return UnexecutableCommand.INSTANCE;
 			}
-			if( elementToMove instanceof Component && req.getTargetFeature((EObject)elementToMove)==null){
-				req.setTargetFeature((EObject)elementToMove, (UMLPackage.eINSTANCE.getComponent_PackagedElement()));
-			}
 		}
-		
+
 		return super.getMoveCommand(req);
 	}
+
 	@Override
 	protected ICommand getSetCommand(SetRequest req) {
-		// overload the creation in order to prevent to create or move a component into a component by using the role
-		// "nestedClassifier"
-		EObject eobject=req.getElementToEdit();
-		if( eobject instanceof Component && (UMLPackage.eINSTANCE.getComponent_PackagedElement().equals(req.getFeature()))){
+		// override the creation in order to prevent to set a component into a component by using the role "nestedClassifier"
+		EObject eobject = req.getElementToEdit();
+		if (eobject instanceof Component && (UMLPackage.eINSTANCE.getComponent_PackagedElement().equals(req.getFeature()))) {
 			return UnexecutableCommand.INSTANCE;
 		}
 		return super.getSetCommand(req);
 	}
-	/**
-	 * test if it is possible to create a component into a given container and with the given containment feature
-	 * @param owner the owner of the component, can be null
-	 * @param eref the containment feature, can be null
-	 * @return false if the container is a component and the feature "nestedClassifier"
-	 */
-	protected boolean canCreate(EObject owner,EReference eref) {
-		if(owner instanceof Component && UMLPackage.eINSTANCE.getClass_NestedClassifier().equals(eref)){
-			return false;
-		}
-		return true;
-	}
+
 }

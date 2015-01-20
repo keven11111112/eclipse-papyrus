@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.figure.AssociationFigure;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.uml2.uml.AggregationKind;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
@@ -47,7 +47,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	 */
 	protected void addAssociationEndListeners() {
 		if (resolveSemanticElement() instanceof Association) {
-			Property targetEnd = CustomMultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
+			Property targetEnd = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
 			if (targetEnd != null) {
 				addListenerFilter("AssociationEndListenersTarget", this, targetEnd); //$NON-NLS-1$
 			}
@@ -90,7 +90,7 @@ public abstract class AbstractAssociationBranchEditPart extends ConnectionEditPa
 	protected void refreshVisuals() {
 		if (resolveSemanticElement() != null) {
 			if (resolveSemanticElement() instanceof Association) {
-				Property target = CustomMultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
+				Property target = MultiAssociationHelper.getPropertyToListen(((Edge) getModel()), (Association) resolveSemanticElement());
 				if (target != null && target.getOwner() != null) {
 					int sourceType = 0;
 					int targetType = 0;

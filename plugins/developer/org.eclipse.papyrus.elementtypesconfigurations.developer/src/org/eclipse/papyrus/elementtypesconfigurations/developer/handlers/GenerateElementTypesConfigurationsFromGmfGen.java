@@ -31,6 +31,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.codegen.gmfgen.FeatureLinkModelFacet;
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.gmf.codegen.gmfgen.NotationType;
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
@@ -69,16 +70,21 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 
 
 			Resource inputResource = resourceSet.getResource(URI.createURI(selectedFilePath), true);
-			Resource outputResource = resourceSet.createResource(URI.createURI(selectedFilePath + ".elementtypesconfigurations"));
+			String outputFilePath = ((IFile) selectedElement).getFullPath().removeFileExtension().toString();
+			Resource outputResource = resourceSet.createResource(URI.createURI(outputFilePath + ".elementtypesconfigurations"));
 			ElementTypeSetConfiguration elementTypeSetConfiguration = generateElementTypeSetConfiguration(inputResource);
-
+			Resource outputNotationResource = resourceSet.createResource(URI.createURI(outputFilePath + "-notation.elementtypesconfigurations"));
+			ElementTypeSetConfiguration elementTypeSetConfigurationNotation = generateElementTypeSetConfigurationNotation(inputResource);
 
 			outputResource.getContents().add(elementTypeSetConfiguration);
+			outputNotationResource.getContents().add(elementTypeSetConfigurationNotation);
 
 			ECollections.sort(((ElementTypeSetConfiguration) outputResource.getContents().get(0)).getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
+			ECollections.sort(((ElementTypeSetConfiguration) outputNotationResource.getContents().get(0)).getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
 
 			try {
 				outputResource.save(Collections.EMPTY_MAP);
+				outputNotationResource.save(Collections.EMPTY_MAP);
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -87,8 +93,42 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 		return null;
 	}
 
+	protected ElementTypeSetConfiguration generateElementTypeSetConfigurationNotation(Resource inputResource) {
+		ElementTypeSetConfiguration elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+		elementTypeSetConfiguration.setMetamodelNsURI("http://www.eclipse.org/gmf/runtime/1.0.2/notation");
+
+
+		TreeIterator<EObject> it = inputResource.getAllContents();
+		while (it.hasNext()) {
+			EObject eObject = (EObject) it.next();
+			if (eObject instanceof NotationType) {
+				NotationType notationType = (NotationType) eObject;
+
+
+
+				SpecializationTypeConfiguration specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+
+				specializationTypeConfiguration.setIdentifier(notationType.getUniqueIdentifier());
+				specializationTypeConfiguration.setHint("" + ((GenCommonBase) notationType.eContainer()).getVisualID());
+				specializationTypeConfiguration.setName(notationType.getDisplayName());
+
+				specializationTypeConfiguration.setKind("org.eclipse.gmf.runtime.diagram.ui.util.INotationType");
+
+				specializationTypeConfiguration.getSpecializedTypesID().add("org.eclipse.gmf.runtime.emf.type.core.null");
+
+				elementTypeSetConfiguration.getElementTypeConfigurations().add(specializationTypeConfiguration);
+
+
+			}
+		}
+
+		return elementTypeSetConfiguration;
+	}
+
 	protected ElementTypeSetConfiguration generateElementTypeSetConfiguration(Resource inputResource) {
 		ElementTypeSetConfiguration elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+		elementTypeSetConfiguration.setMetamodelNsURI("http://www.eclipse.org/uml2/5.0.0/UML");
+
 
 		TreeIterator<EObject> it = inputResource.getAllContents();
 		while (it.hasNext()) {

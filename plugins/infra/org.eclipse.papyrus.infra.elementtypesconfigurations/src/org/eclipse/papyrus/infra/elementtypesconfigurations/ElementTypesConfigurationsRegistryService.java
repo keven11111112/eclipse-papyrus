@@ -40,8 +40,7 @@ public class ElementTypesConfigurationsRegistryService implements IService {
 	 * {@inheritDoc}
 	 */
 	public void disposeService() throws ServiceException {
-		// elementType set registry should unregister all added elementTypes in the gmf registry
-		ElementTypeSetConfigurationRegistry.getInstance().dispose();
+		// Do nothing because registered elementtypes may be used somewhere else.
 	}
 
 	public ElementTypeSetConfigurationRegistry getElementTypeSetRegistry() {

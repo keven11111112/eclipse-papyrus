@@ -114,7 +114,7 @@ public class ElementTypeSetConfigurationRegistry {
 	}
 
 	/**
-	 * Dispose this registry, i.e. remove all contribution on the elementType registry
+	 * Dispose this registry, i.e. remove all contribution on the elementType registry.
 	 */
 	public synchronized void dispose() {
 		if (elementTypeSetConfigurations == null) {

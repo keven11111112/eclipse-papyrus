@@ -41,15 +41,15 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CreateUniqueViewCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * The Class ClazzCompartmentCreationEditPolicy overload the creation editpolicy in order to manage correctly the drop of a class into a class
  */
-public class NestedClazzCompartmentCreationEditPolicy extends PapyrusCreationEditPolicy {
+public class NestedClazzCompartmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
 	/**
 	 *

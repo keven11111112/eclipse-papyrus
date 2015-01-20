@@ -17,6 +17,7 @@ package org.eclipse.papyrus.uml.service.types.command;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageImport;
 
@@ -25,17 +26,17 @@ import org.eclipse.uml2.uml.PackageImport;
  * Re-orient command for {@link PackageImport} elements.
  * </pre>
  */
-public class PackageImportReorientCommand extends AbstractDirectedRelationshipReorientCommand<PackageImport, Package, Package> {
+public class PackageImportReorientCommand extends AbstractDirectedRelationshipReorientCommand<PackageImport, Namespace, Package> {
 
 	public PackageImportReorientCommand(ReorientRelationshipRequest request) {
 		super(request);
 	}
 
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Package && newEnd instanceof Package)) {
+		if (!(oldEnd instanceof Namespace && newEnd instanceof Namespace)) {
 			return false;
 		}
-		if (!(getLink().eContainer() instanceof Package)) {
+		if (!(getLink().eContainer() instanceof Namespace)) {
 			return false;
 		}
 		return true;

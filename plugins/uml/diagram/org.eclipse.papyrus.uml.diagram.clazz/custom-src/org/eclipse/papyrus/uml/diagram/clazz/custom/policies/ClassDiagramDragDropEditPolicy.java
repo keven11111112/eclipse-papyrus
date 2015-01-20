@@ -38,8 +38,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ContainmentHelper;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.InstanceSpecificationLinkHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
@@ -238,7 +238,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
 		}
 		if (endtypes.size() > 2) {
-			CustomMultiAssociationHelper associationHelper = new CustomMultiAssociationHelper(getEditingDomain());
+			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
 			return associationHelper.dropMutliAssociation((Association) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;

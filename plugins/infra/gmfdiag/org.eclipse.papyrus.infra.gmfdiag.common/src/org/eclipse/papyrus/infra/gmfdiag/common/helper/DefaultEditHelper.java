@@ -363,11 +363,11 @@ public class DefaultEditHelper extends AbstractEditHelper {
 
 					if (superElementType instanceof ISpecializationType) {
 						initialized = initializeWithThisSpecializationType((ISpecializationType) superElementType, req);
-					}
-				}
 
-				if (initialized) {
-					return;
+						if (initialized) {
+							return;
+						}
+					}
 				}
 			}
 

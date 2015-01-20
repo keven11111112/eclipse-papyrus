@@ -20,9 +20,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
@@ -31,7 +31,7 @@ import com.google.common.collect.Iterables;
 /**
  * Basic Create Command but check that there is no other view which is related to the same element before. If so do nothing
  */
-public class CreateUniqueViewCommand extends CreateCommand {
+public class CreateUniqueViewCommand extends CreateViewCommand {
 
 	public CreateUniqueViewCommand(TransactionalEditingDomain editingDomain, ViewDescriptor viewDescriptor, View containerView) {
 		super(editingDomain, viewDescriptor, containerView);

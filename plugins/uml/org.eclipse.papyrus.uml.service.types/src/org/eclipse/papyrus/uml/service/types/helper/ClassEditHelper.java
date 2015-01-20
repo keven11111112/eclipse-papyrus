@@ -14,6 +14,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
 
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -37,4 +41,27 @@ public class ClassEditHelper extends ElementEditHelper {
 		getDefaultContainmentFeatures().put(UMLPackage.eINSTANCE.getClassifier(), UMLPackage.eINSTANCE.getClass_NestedClassifier());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		// For contaimentlink
+		// Delegate to advices
+		return null;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		// For contaimentlink
+		if (req.getSource() instanceof org.eclipse.uml2.uml.Class)
+		{
+			// Delegate to advices
+			return null;
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
 }
