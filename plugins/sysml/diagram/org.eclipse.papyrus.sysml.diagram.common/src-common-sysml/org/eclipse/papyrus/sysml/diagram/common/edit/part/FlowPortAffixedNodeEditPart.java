@@ -29,6 +29,7 @@ import org.eclipse.gef.editpolicies.NonResizableEditPolicy;
 import org.eclipse.gef.handles.MoveHandle;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLGraphicalTypes;
 import org.eclipse.papyrus.sysml.portandflows.FlowPort;
 import org.eclipse.papyrus.sysml.portandflows.PortandflowsPackage;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
+import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeIconlDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
@@ -269,6 +271,66 @@ public class FlowPortAffixedNodeEditPart extends AbstractElementBorderEditPart {
 		getBorderedFigure().getBorderItemContainer().addLayoutListener(layoutInitializationListener);
 
 		super.activate();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+
+	@Override
+	protected void addChildVisual(EditPart childEditPart, int index) {
+		if (addFixedChild(childEditPart)) {
+			return;
+		}
+		super.addChildVisual(childEditPart, -1);
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+
+	@Override
+	protected void removeChildVisual(EditPart childEditPart) {
+		if (removeFixedChild(childEditPart)) {
+			return;
+		}
+		super.removeChildVisual(childEditPart);
+	}
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected boolean addFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof FlowPortAffixedLabelNameEditPart) {
+			((FlowPortAffixedLabelNameEditPart) childEditPart).setLabel(getPrimaryShape().getNameLabel());
+			IFigure borderItemContainer = getContentPaneFor((IGraphicalEditPart) childEditPart);
+			addBorderItem(borderItemContainer, (IBorderItemEditPart) childEditPart);
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	protected boolean removeFixedChild(EditPart childEditPart) {
+		if (childEditPart instanceof FlowPortAffixedLabelNameEditPart) {
+			return true;
+		}
+		return false;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected void removeChild(EditPart child) {
+		if (child instanceof AbstractElementLabelEditPart) {
+			return;
+		}
+		super.removeChild(child);
 	}
 
 }
