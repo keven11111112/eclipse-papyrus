@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?pde version="3.5"?>
 
-<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="1.0.1.qualifier" useFeatures="true" includeLaunchers="true">
+<product name="Papyrus" uid="org.eclipse.papyrus.rcp.product" id="org.eclipse.papyrus.rcp.product" application="org.eclipse.ui.ide.workbench" version="1.0.2.qualifier" useFeatures="true" includeLaunchers="true">
 
    <aboutInfo>
       <image path="/org.eclipse.papyrus.rcp/icons/papyrus_lg.png"/>
@@ -22,9 +22,12 @@ Apache Software Foundation http://www.apache.org/
    </configIni>
 
    <launcherArgs>
-      <programArgs>-showsplash org.eclipse.papyrus.rcp --launcher.XXMaxPermSize 256m --launcher.defaultAction openFile</programArgs>
-      <vmArgs>-Xms128m -Xmx900m</vmArgs>
-      <vmArgsMac>-Xdock:icon=../Resources/papyrus.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts</vmArgsMac>
+      <programArgs>-showsplash org.eclipse.papyrus.rcp --launcher.XXMaxPermSize 256m --launcher.defaultAction openFile
+      </programArgs>
+      <vmArgs>-Xms128m -Xmx900m
+      </vmArgs>
+      <vmArgsMac>-Xdock:icon=../Resources/papyrus.icns -XstartOnFirstThread -Dorg.eclipse.swt.internal.carbon.smallFonts
+      </vmArgsMac>
    </launcherArgs>
 
    <windowImages i16="/org.eclipse.papyrus.rcp/icons/papyrus16.png" i32="/org.eclipse.papyrus.rcp/icons/papyrus32.png" i48="/org.eclipse.papyrus.rcp/icons/papyrus48.png" i64="/org.eclipse.papyrus.rcp/icons/papyrus64.png" i128="/org.eclipse.papyrus.rcp/icons/papyrus128.png"/>

@@ -1,20 +1,17 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.services.viewersearch,
- org.eclipse.papyrus.infra.services.viewersearch.impl
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.2",
  org.eclipse.emf.ecore;bundle-version="2.9.0"
+Export-Package: org.eclipse.papyrus.infra.services.viewersearch,
+ org.eclipse.papyrus.infra.services.viewersearch.impl
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.services.viewersearch.Acti
- vator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewersearch;s
- ingleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.services.viewersearch.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.services.viewersearch;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

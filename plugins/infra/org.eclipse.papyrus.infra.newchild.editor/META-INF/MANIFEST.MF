@@ -1,24 +1,19 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.newchild.elementcreationmenu
- model.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources;visibility:=reexport,
- org.eclipse.papyrus.infra.newchild.edit;bundle-version="1.0.1";visibility:=reexport,
+ org.eclipse.papyrus.infra.newchild.edit;bundle-version="1.0.2";visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit.ui;visibility:=reexport,
  org.eclipse.ui.ide;visibility:=reexport,
  org.eclipse.emf.ecore.edit;visibility:=reexport
+Export-Package: org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
+Bundle-Activator: org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.presentation.ElementCreationMenuModelEditorPlugin$Implementation
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.infra.newchild.elementcreationme
- numodel.presentation.ElementCreationMenuModelEditorPlugin$Implementat
- ion
-Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.editor;singlet
- on:=true
+Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.editor;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

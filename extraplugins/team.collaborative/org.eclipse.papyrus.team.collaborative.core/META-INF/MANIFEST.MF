@@ -1,10 +1,4 @@
 Manifest-Version: 1.0
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.emf.ecore,
- com.google.guava,
- org.eclipse.core.resources;bundle-version="3.7.101",
- org.eclipse.emf.workspace
 Export-Package: org.eclipse.papyrus.team.collaborative.core,
  org.eclipse.papyrus.team.collaborative.core.participants,
  org.eclipse.papyrus.team.collaborative.core.participants.locker,
@@ -13,16 +7,19 @@ Export-Package: org.eclipse.papyrus.team.collaborative.core,
  org.eclipse.papyrus.team.collaborative.core.strategy,
  org.eclipse.papyrus.team.collaborative.core.utils,
  org.eclipse.papyrus.team.collaborative.core.utils.funtions;x-internal:=true
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.emf.ecore,
+ com.google.guava,
+ org.eclipse.core.resources;bundle-version="3.7.101",
+ org.eclipse.emf.workspace
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.team.collaborative.core.Activato
- r
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.team.collaborative.core;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.team.collaborative.core.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.team.collaborative.core;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

@@ -1,4 +1,14 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.core.runtime,
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport,
+ org.eclipse.uml2.types;visibility:=reexport,
+ org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.2",
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.2",
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.2",
+ org.eclipse.uml2.uml;bundle-version="4.1.0";visibility:=reexport,
+ org.eclipse.papyrus.sysml;bundle-version="1.0.2";visibility:=reexport,
+ org.eclipse.uml2.uml.profile.standard;bundle-version="1.0.0";visibility:=reexport
 Export-Package: org.eclipse.papyrus.eastadl,
  org.eclipse.papyrus.eastadl.annex,
  org.eclipse.papyrus.eastadl.annex.attributequantificationconstraint,
@@ -98,23 +108,12 @@ Export-Package: org.eclipse.papyrus.eastadl,
  org.eclipse.papyrus.eastadl.variability,
  org.eclipse.papyrus.eastadl.variability.impl,
  org.eclipse.papyrus.eastadl.variability.util
-Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport,
- org.eclipse.emf.ecore.xmi;visibility:=reexport,
- org.eclipse.uml2.types;visibility:=reexport,
- org.eclipse.papyrus.uml.diagram.common;bundle-version="1.0.1",
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.1",
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.1",
- org.eclipse.uml2.uml;bundle-version="4.1.0";visibility:=reexport,
- org.eclipse.papyrus.sysml;bundle-version="1.0.1";visibility:=reexport,
- org.eclipse.uml2.uml.profile.standard;bundle-version="1.0.0";visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.2.qualifier
 Bundle-Localization: plugin
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.eastadl;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

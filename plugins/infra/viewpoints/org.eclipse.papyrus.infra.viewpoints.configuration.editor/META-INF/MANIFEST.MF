@@ -1,25 +1,21 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration.presentation
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.core.resources,
  org.eclipse.emf.ecore.xmi,
  org.eclipse.emf.edit.ui,
  org.eclipse.ui.ide,
  org.eclipse.emf.ecore.edit,
- org.eclipse.papyrus.infra.viewpoints.iso42010.edit;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.viewpoints.configuration.edit;bundle-version="1.0.1"
-Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration.pre
- sentation
+ org.eclipse.papyrus.infra.viewpoints.iso42010.edit;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.viewpoints.configuration.edit;bundle-version="1.0.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.p
- resentation.ConfigurationEditorPlugin$Implementation
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuratio
- n.editor;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.presentation.ConfigurationEditorPlugin$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuration.editor;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

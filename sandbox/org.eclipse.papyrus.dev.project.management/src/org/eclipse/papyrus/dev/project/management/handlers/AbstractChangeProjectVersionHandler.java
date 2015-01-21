@@ -1,20 +1,27 @@
 package org.eclipse.papyrus.dev.project.management.handlers;
 
+import java.lang.reflect.InvocationTargetException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
-import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.jface.dialogs.IInputValidator;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.window.Window;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.dev.project.management.Activator;
 import org.eclipse.papyrus.dev.project.management.dialog.InputDialogWithCheckBox;
 import org.eclipse.swt.widgets.Display;
+import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.WorkspaceModifyOperation;
+import org.eclipse.ui.progress.IProgressService;
+import org.eclipse.ui.statushandlers.StatusManager;
 
 
 public abstract class AbstractChangeProjectVersionHandler extends AbstractHandler {
@@ -52,18 +59,22 @@ public abstract class AbstractChangeProjectVersionHandler extends AbstractHandle
 
 		final InputDialogWithCheckBox dialog = new InputDialogWithCheckBox(Display.getCurrent().getActiveShell(), TITLE, MESSAGE, INITIAL_VALUE, CHECKBOX_MESSAGE, true, validator);
 		if(dialog.open() == Window.OK) {
-			Job job = new Job("Update version numbers") {
-
-				@Override
-				protected IStatus run(IProgressMonitor monitor) {
+			WorkspaceModifyOperation workspaceOperation = new WorkspaceModifyOperation(){
+				protected void execute(IProgressMonitor monitor) throws CoreException ,InvocationTargetException ,InterruptedException {
 					IStatus result = runAsJob(dialog.getValue(), dialog.isChecked(), monitor);
-					return result;
+					StatusManager.getManager().handle(result, StatusManager.SHOW);
 				}
-
 			};
-			job.setUser(true);
-
-			job.schedule();
+			
+			try {
+				IProgressService service = PlatformUI.getWorkbench().getProgressService();
+				service.run(true, true, workspaceOperation);
+			} catch (InvocationTargetException e) {
+				Activator.log.error(e);
+			} catch (InterruptedException e) {
+				Activator.log.error(e);
+			}
+		
 		}
 
 		return null;
@@ -74,8 +85,13 @@ public abstract class AbstractChangeProjectVersionHandler extends AbstractHandle
 		final IProject[] projects = ResourcesPlugin.getWorkspace().getRoot().getProjects();
 
 		monitor.beginTask("Update version numbers", projects.length);
-
+		
 		for(final IProject current : projects) {
+			
+			if (monitor.isCanceled()){
+				return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "Operation canceled");
+			}
+			
 			final String name = current.getName();
 			if(papyrusProjectsOnly) {
 				if(name.startsWith(PAPYRUS_NAME)) {//we test the project name
@@ -90,16 +106,12 @@ public abstract class AbstractChangeProjectVersionHandler extends AbstractHandle
 			monitor.worked(1);
 		}
 
-		//FIXME: We're not in the UI Thread anymore. We can't open a Dialog.
-		if(notManagedProjectNames.equals("")) {
-			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE2, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-			informationDialog.open();
+		if ("".equals(notManagedProjectNames)){
+			return Status.OK_STATUS;
 		} else {
-			final MessageDialog informationDialog = new MessageDialog(Display.getCurrent().getActiveShell(), WARNING_DIALOG_TITLE, null, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames, MessageDialog.INFORMATION, new String[]{ "OK" }, 0);
-			informationDialog.open();
+			return new Status(IStatus.WARNING, Activator.PLUGIN_ID, WARNING_DIALOG_MESSAGE + "\n" + notManagedProjectNames);
 		}
 
-		return Status.OK_STATUS;
 	}
 
 	/**

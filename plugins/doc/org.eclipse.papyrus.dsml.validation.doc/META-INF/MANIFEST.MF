@@ -1,16 +1,14 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.doc;bundle-version="1.0.1",
- org.eclipse.papyrus.uml.diagram.common.doc;bundle-version="1.0.1",
+ org.eclipse.papyrus.infra.doc;bundle-version="1.0.2",
+ org.eclipse.papyrus.uml.diagram.common.doc;bundle-version="1.0.2",
  org.eclipse.help;bundle-version="3.6.0"
 Bundle-Vendor: %vendorName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.dsml.validation.doc.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.doc;singleton
- :=true
-
+Bundle-Activator: org.eclipse.papyrus.dsml.validation.doc.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.doc;singleton:=true

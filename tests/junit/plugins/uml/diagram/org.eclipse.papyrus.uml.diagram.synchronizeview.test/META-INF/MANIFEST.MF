@@ -3,13 +3,10 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
 Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.synchronizeview.test
- .Activator
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.synchronizeview.t
- est
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.synchronizeview.test.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.synchronizeview.test
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

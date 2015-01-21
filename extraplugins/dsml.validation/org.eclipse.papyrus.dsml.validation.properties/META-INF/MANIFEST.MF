@@ -1,16 +1,13 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.views.properties;bundle-version="1.0.1"
+ org.eclipse.papyrus.views.properties;bundle-version="1.0.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
+Bundle-Localization: plugin
+Bundle-Activator: org.eclipse.papyrus.dsml.validation.properties.Activator
 Bundle-ManifestVersion: 2
-Bundle-Activator: org.eclipse.papyrus.dsml.validation.properties.Activ
- ator
-Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.properties;si
- ngleton:=true
+Bundle-SymbolicName: org.eclipse.papyrus.dsml.validation.properties;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

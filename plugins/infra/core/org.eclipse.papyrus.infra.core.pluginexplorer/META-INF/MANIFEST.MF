@@ -1,17 +1,14 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.core.pluginexplorer
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.1"
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.2"
+Export-Package: org.eclipse.papyrus.infra.core.pluginexplorer
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.2.qualifier
 Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.papyrus.infra.core.pluginexplorer.Activa
- tor
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.core.pluginexplorer;sin
- gleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.core.pluginexplorer.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.core.pluginexplorer;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

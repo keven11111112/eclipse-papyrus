@@ -1,29 +1,26 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration,
- org.eclipse.papyrus.infra.viewpoints.configuration.impl,
- org.eclipse.papyrus.infra.viewpoints.configuration.ui,
- org.eclipse.papyrus.infra.viewpoints.configuration.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.jface,
  org.eclipse.emf.ecore,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
  org.eclipse.emf.edit,
  org.eclipse.gmf.runtime.emf.type.core,
- org.eclipse.papyrus.infra.core;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.viewpoints.iso42010;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.constraints;bundle-version="1.0.1"
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.viewpoints.iso42010;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.services.edit;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.constraints;bundle-version="1.0.2"
+Export-Package: org.eclipse.papyrus.infra.viewpoints.configuration,
+ org.eclipse.papyrus.infra.viewpoints.configuration.impl,
+ org.eclipse.papyrus.infra.viewpoints.configuration.ui,
+ org.eclipse.papyrus.infra.viewpoints.configuration.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.A
- ctivator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuratio
- n;singleton:=true
+Bundle-Activator: org.eclipse.papyrus.infra.viewpoints.configuration.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.infra.viewpoints.configuration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

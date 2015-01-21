@@ -1,4 +1,5 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.diagram.synchronizeview.customization
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.common,
@@ -6,24 +7,17 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.gef,
  org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.core;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.1",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.0.2",
  org.eclipse.gmf.tooling.runtime,
- org.eclipse.papyrus.infra.core.log;bundle-version="1.0.1"
-Export-Package: org.eclipse.papyrus.uml.diagram.synchronizeview.custom
- ization
+ org.eclipse.papyrus.infra.core.log;bundle-version="1.0.2"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Name: %pluginName
+Bundle-Version: 1.0.2.qualifier
 Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.papyrus.uml.diagram.synchronizeview.Acti
- vator
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-Description: The goal of this plugin is add the fucntionality t
- o synchronize elements in diagram. More details (models and .html) ha
- s been store in the docs directory.
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.synchronizeview;s
- ingleton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.diagram.synchronizeview.Activator
+Bundle-Description: The goal of this plugin is add the fucntionality to synchronize elements in diagram. More details (models and .html) has been store in the docs directory.
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.synchronizeview;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-

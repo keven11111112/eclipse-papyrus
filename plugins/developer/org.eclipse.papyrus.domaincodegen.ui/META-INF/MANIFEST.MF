@@ -8,16 +8,14 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.ocl.ecore,
  org.eclipse.acceleo.model,
  org.eclipse.acceleo.engine,
- org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.0.1"
+ org.eclipse.papyrus.domaincontextcodegen;bundle-version="1.0.2"
 Bundle-Vendor: %providerName
-Eclipse-LazyStart: true
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Name: %pluginName
+Eclipse-LazyStart: true
+Bundle-Version: 1.0.2.qualifier
 Bundle-Localization: plugin
-Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
+Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=t
- rue
+Bundle-Activator: org.eclipse.papyrus.domaincodegen.ui.Activator
+Bundle-SymbolicName: org.eclipse.papyrus.domaincodegen.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

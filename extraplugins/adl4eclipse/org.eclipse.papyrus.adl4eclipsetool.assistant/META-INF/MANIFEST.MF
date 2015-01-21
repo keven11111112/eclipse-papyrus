@@ -1,30 +1,24 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.adltool.assistant
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf,
  org.eclipse.emf.ecore,
  org.eclipse.emf.transaction,
  org.eclipse.gmf.runtime.diagram.ui,
- org.eclipse.papyrus.editor;bundle-version="1.0.1",
- org.eclipse.papyrus.infra.core;bundle-version="1.0.1",
+ org.eclipse.papyrus.editor;bundle-version="1.0.2",
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.2",
  org.eclipse.uml2.uml,
- org.eclipse.papyrus.infra.emf;bundle-version="1.0.1",
- org.eclipse.papyrus.adl4eclipsetool;bundle-version="1.0.1",
+ org.eclipse.papyrus.infra.emf;bundle-version="1.0.2",
+ org.eclipse.papyrus.adl4eclipsetool;bundle-version="1.0.2",
  org.eclipse.pde.core,
- org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.1"
+ org.eclipse.papyrus.uml.diagram.wizards;bundle-version="1.0.2"
+Export-Package: org.eclipse.papyrus.adltool.assistant
 Bundle-Vendor: %providerName
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.adltool.assistant.Activator
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
-Bundle-Description: This plugin has in charge to connect the tool to m
- odel eclipse plugins withe the eclipse UI. The plugins that allow the
-  modelization is or.eclipse.papyrus.adl4eclipsetool. More details can
-  be found in the docs directory of or.eclipse.papyrus.adl4eclipsetool
- .
-Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool.assistant;sin
- gleton:=true
+Bundle-Activator: org.eclipse.papyrus.adltool.assistant.Activator
+Bundle-Description: This plugin has in charge to connect the tool to model eclipse plugins withe the eclipse UI. The plugins that allow the modelization is or.eclipse.papyrus.adl4eclipsetool. More details can be found in the docs directory of or.eclipse.papyrus.adl4eclipsetool.
+Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool.assistant;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

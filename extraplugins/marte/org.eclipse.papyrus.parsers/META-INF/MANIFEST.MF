@@ -1,4 +1,13 @@
 Manifest-Version: 1.0
+Require-Bundle: org.eclipse.ui,
+ org.eclipse.core.runtime,
+ org.eclipse.uml2.uml,
+ org.eclipse.jface.text,
+ org.eclipse.ui.editors,
+ org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.2",
+ org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.2",
+ org.antlr.runtime;bundle-version="[3.0.0,
+ 4.0.0)"
 Export-Package: org.eclipse.papyrus.parsers,
  org.eclipse.papyrus.parsers.antlr,
  org.eclipse.papyrus.parsers.messages,
@@ -10,21 +19,12 @@ Export-Package: org.eclipse.papyrus.parsers,
  org.eclipse.papyrus.parsers.texteditor.parameterlabel,
  org.eclipse.papyrus.parsers.texteditor.propertylabel,
  org.eclipse.papyrus.parsers.util
-Require-Bundle: org.eclipse.ui,
- org.eclipse.core.runtime,
- org.eclipse.uml2.uml,
- org.eclipse.jface.text,
- org.eclipse.ui.editors,
- org.eclipse.papyrus.uml.tools.utils;bundle-version="1.0.1",
- org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.0.1",
- org.antlr.runtime;bundle-version="[3.0.0,4.0.0)"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Bundle-Version: 1.0.1.qualifier
-Bundle-Localization: plugin
+Bundle-Version: 1.0.2.qualifier
 Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.parsers.PapyrusParsersPlugin
+Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
+Bundle-Activator: org.eclipse.papyrus.parsers.PapyrusParsersPlugin
 Bundle-SymbolicName: org.eclipse.papyrus.parsers;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
