@@ -113,8 +113,6 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** ClassDiagram :: CONTAINMENT_LINK */
 	public static final IHintedType CONTAINMENT_LINK = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"); //$NON-NLS-1$
 
-	/** ClassDiagram :: CONTAINMENT_SUB_LINK */
-	public static final IHintedType CONTAINMENT_SUB_LINK = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.AddedLink_4022"); //$NON-NLS-1$
 
 	/** ClassDiagram :: DEPENDENCY */
 	public static final IHintedType DEPENDENCY = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"); //$NON-NLS-1$

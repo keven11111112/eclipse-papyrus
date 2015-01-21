@@ -7943,7 +7943,6 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;clazz.group.nodes&quot;"
-            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -8163,7 +8162,6 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;clazz.group.relationships&quot;"
-            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"

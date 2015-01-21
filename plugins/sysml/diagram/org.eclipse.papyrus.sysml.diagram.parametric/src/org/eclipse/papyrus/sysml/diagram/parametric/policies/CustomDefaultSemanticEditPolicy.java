@@ -58,7 +58,7 @@ public class CustomDefaultSemanticEditPolicy extends DefaultSemanticEditPolicy {
 		}
 
 		if (ElementTypes.CONTEXT_LINK == req.getElementType()) {
-			return getGEFWrapper(new CustomParametricContextLinkCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CustomParametricContextLinkCreateCommand(req));
 		}
 
 		String newEdgeGraphicalType = registry.getEdgeGraphicalType(req.getElementType());

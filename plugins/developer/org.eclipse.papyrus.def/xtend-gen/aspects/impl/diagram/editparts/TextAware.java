@@ -97,7 +97,7 @@ public class TextAware extends impl.diagram.editparts.TextAware {
     return _builder;
   }
   
-  public Object methods(final GenCommonBase it, final boolean needsRefreshBounds, final boolean readOnly, final boolean useElementIcon, final Viewmap viewmap, final LabelModelFacet modelFacet, final GenCommonBase host, final GenDiagram diagram) {
+  public CharSequence methods(final GenCommonBase it, final boolean needsRefreshBounds, final boolean readOnly, final boolean useElementIcon, final Viewmap viewmap, final LabelModelFacet modelFacet, final GenCommonBase host, final GenDiagram diagram) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("\t");
     _builder.newLine();

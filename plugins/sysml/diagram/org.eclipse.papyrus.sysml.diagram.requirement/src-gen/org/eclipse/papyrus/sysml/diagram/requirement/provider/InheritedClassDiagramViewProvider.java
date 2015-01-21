@@ -59,9 +59,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				if (ElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createLink_4023(containerView, index, persisted, preferencesHint);
 				}
-				if (ElementTypes.CONTAINMENT_SUB_LINK.getSemanticHint().equals(domainElementGraphicalType)) {
-					createdEdge = createLink_4022(containerView, index, persisted, preferencesHint);
-				}
 				if (ElementTypes.DEPENDENCY.getSemanticHint().equals(domainElementGraphicalType)) {
 					createdEdge = createDependency_4008(domainElement, containerView, index, persisted, preferencesHint);
 				}
@@ -118,9 +115,6 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 			return true;
 		}
 		if (elementType == ElementTypes.CONTAINMENT_LINK) {
-			return true;
-		}
-		if (elementType == ElementTypes.CONTAINMENT_SUB_LINK) {
 			return true;
 		}
 		if (elementType == ElementTypes.DEPENDENCY) {

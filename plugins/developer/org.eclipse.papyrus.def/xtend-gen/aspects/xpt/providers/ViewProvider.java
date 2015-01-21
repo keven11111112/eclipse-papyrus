@@ -944,7 +944,7 @@ public class ViewProvider extends xpt.providers.ViewProvider {
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");
         _builder.append("\t\t");
-        Object _addShortcutAnnotation = this._common.addShortcutAnnotation(it, "target");
+        CharSequence _addShortcutAnnotation = this._common.addShortcutAnnotation(it, "target");
         _builder.append(_addShortcutAnnotation, "\t\t\t\t");
         _builder.newLineIfNotEmpty();
         _builder.append("\t\t");

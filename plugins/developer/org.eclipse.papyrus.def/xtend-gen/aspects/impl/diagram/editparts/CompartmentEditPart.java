@@ -32,7 +32,7 @@ public class CompartmentEditPart extends impl.diagram.editparts.CompartmentEditP
   @Inject
   private xpt.diagram.editparts.Common xptEditpartsCommon;
   
-  public Object createDefaultEditPoliciesBody(final GenCompartment it) {
+  public CharSequence createDefaultEditPoliciesBody(final GenCompartment it) {
     StringConcatenation _builder = new StringConcatenation();
     _builder.append("super.createDefaultEditPolicies();");
     _builder.newLine();

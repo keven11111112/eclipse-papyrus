@@ -108,7 +108,7 @@ public class NodeItemSemanticEditPolicy extends xpt.diagram.editpolicies.NodeIte
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     _builder.append("\t");
-    Object _defaultConstructor = this.xptBaseItemSemanticEditPolicy.defaultConstructor(it);
+    CharSequence _defaultConstructor = this.xptBaseItemSemanticEditPolicy.defaultConstructor(it);
     _builder.append(_defaultConstructor, "\t");
     _builder.newLineIfNotEmpty();
     _builder.newLine();

@@ -15,9 +15,10 @@ Export-Package: org.eclipse.papyrus.infra.elementtypesconfigurations,
  org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl,
  org.eclipse.papyrus.infra.elementtypesconfigurations.handler,
  org.eclipse.papyrus.infra.elementtypesconfigurations.impl,
- org.eclipse.papyrus.infra.elementtypesconfigurations.util,
  org.eclipse.papyrus.infra.elementtypesconfigurations.preferences,
  org.eclipse.papyrus.infra.elementtypesconfigurations.registries,
+ org.eclipse.papyrus.infra.elementtypesconfigurations.resource,
+ org.eclipse.papyrus.infra.elementtypesconfigurations.util,
  org.eclipse.papyrus.infra.elementtypesconfigurations.utils
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

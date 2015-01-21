@@ -927,7 +927,7 @@
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
-           editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy"/>
+            editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Component"/>
@@ -949,7 +949,8 @@
             visualID="5023"
             editPartClassName="ComponentInPackageNameEditPart"
             itemSemanticEditPolicyClassName="ComponentInPackageNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ComponentName3ViewFactory" elementIcon="true">
+            notationViewFactoryClassName="ComponentName3ViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -964,7 +965,7 @@
                 href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
           </modelFacet>
         </labels>
-                <labels
+        <labels
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6051"
             editPartClassName="ComponentInPackageFloatingLabelEditPart"
@@ -2780,7 +2781,6 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="usecase.group.nodes"
-            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2837,7 +2837,6 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;usecase.group.children&quot;"
-            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -2854,7 +2853,6 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;usecase.group.links&quot;"
-            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -3225,7 +3223,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="extends for SubjectNodeEditPart"
-         genView="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.10"
+        genView="/0/@diagram/@topLevelNodes.4 /0/@diagram/@childNodes.10"
         name="SubjectNodeEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts.SubjectNodeEditPart"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>
