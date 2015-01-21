@@ -4,12 +4,12 @@
 	<parent>
 		<artifactId>org.eclipse.papyrus</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
-		<version>1.0.1-SNAPSHOT</version>
+		<version>1.0.2-SNAPSHOT</version>
 		<relativePath>../../releng/top-pom-extras.xml</relativePath>
 	</parent>
 	<groupId>org.eclipse.papyrus</groupId>
 	<artifactId>org.eclipse.papyrus.infra.widgets.epf</artifactId>
-	<version>1.0.1-SNAPSHOT</version>
+	<version>1.0.2-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<properties>
 		<papyrus.repo.main>http://download.eclipse.org/modeling/mdt/papyrus/updates/releases/luna/1.0.1/</papyrus.repo.main>
