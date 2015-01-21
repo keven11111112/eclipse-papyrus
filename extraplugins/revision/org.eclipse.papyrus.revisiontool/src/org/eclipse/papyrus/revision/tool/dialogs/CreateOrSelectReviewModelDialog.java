@@ -29,7 +29,6 @@ import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
 import org.eclipse.swt.widgets.Button;
-import org.eclipse.swt.widgets.Combo;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
@@ -42,7 +41,8 @@ import org.eclipse.ui.forms.widgets.Section;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 
-/** this dialog is used to select or create a profile**/
+/**  This dialog is used to select or create a review model
+ * **/
 public class CreateOrSelectReviewModelDialog extends FormDialog {
 
 
@@ -66,7 +66,7 @@ public class CreateOrSelectReviewModelDialog extends FormDialog {
 	 * Constructor.
 	 *
 	 * @param shell
-	 * @param appliedLocalProfiles list of local profiles
+	 * @param reviewResourceManager the resource manager of reviews
 	 */
 	public CreateOrSelectReviewModelDialog(Shell shell, ReviewResourceManager reviewResourceManager) {
 		super(shell);
@@ -283,7 +283,9 @@ public class CreateOrSelectReviewModelDialog extends FormDialog {
 			//creation
 			if (!(newTypeNameText.getText().trim().equals(""))){
 				resultReviewName=newTypeNameText.getText().trim();
+			
 				reviewResourceManager.createReviewModel(resultReviewName);
+				
 			}
 		}
 		super.okPressed();

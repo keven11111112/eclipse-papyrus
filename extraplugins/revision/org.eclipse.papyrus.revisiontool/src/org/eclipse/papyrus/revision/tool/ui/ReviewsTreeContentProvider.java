@@ -13,14 +13,22 @@
  *****************************************************************************/
 package org.eclipse.papyrus.revision.tool.ui;
 
+import java.util.List;
+
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.revision.tool.core.I_ReviewStereotype;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
 
+/**
+ * This is the content provider to display reviews in the review editor
+ *
+ */
 public class ReviewsTreeContentProvider implements ITreeContentProvider{
 
+	private static Object[] EMPTY={};
 	@Override
 	public void dispose() {
 
@@ -33,6 +41,7 @@ public class ReviewsTreeContentProvider implements ITreeContentProvider{
 
 	@Override
 	public Object[] getElements(Object inputElement) {
+		
 		if( inputElement instanceof org.eclipse.uml2.uml.Package){
 			Package package1=(Package)inputElement;
 			if(package1.getAppliedStereotype(I_ReviewStereotype.REVIEWREPOSITORY_STEREOTYPE)!=null){
@@ -41,11 +50,21 @@ public class ReviewsTreeContentProvider implements ITreeContentProvider{
 		}
 		if(inputElement instanceof Comment ){
 			Comment cmt=(Comment)inputElement;
-			if(cmt.getApplicableStereotype(I_ReviewStereotype.REVIEW_STEREOTYPE)!=null){
+			Stereotype theReviewStereotype=cmt.getApplicableStereotype(I_ReviewStereotype.COMMENT_STEREOTYPE);
+			Stereotype reviewStereotype=null;
+			List<Stereotype> stereotypes= cmt.getAppliedStereotypes();
+			System.out.println(cmt);
+			for (Stereotype stereotype : stereotypes) {
+				if(stereotype.getGenerals().contains(theReviewStereotype)){
+					reviewStereotype=stereotype;
+				}
+			}
+			
+			if(reviewStereotype!=null){
 				((Comment)inputElement).getOwnedComments().toArray();
 			}
 		}
-		return null;
+		return  EMPTY;
 	}
 
 	@Override
@@ -58,11 +77,21 @@ public class ReviewsTreeContentProvider implements ITreeContentProvider{
 		}
 		if(parentElement instanceof Comment ){
 			Comment cmt=(Comment)parentElement;
-			if(cmt.getApplicableStereotype(I_ReviewStereotype.REVIEW_STEREOTYPE)!=null){
+			Stereotype theReviewStereotype=cmt.getApplicableStereotype(I_ReviewStereotype.COMMENT_STEREOTYPE);
+			Stereotype reviewStereotype=null;
+			List<Stereotype> stereotypes= cmt.getAppliedStereotypes();
+			System.out.println(cmt);
+			for (Stereotype stereotype : stereotypes) {
+				if(stereotype.getGenerals().contains(theReviewStereotype)){
+					reviewStereotype=stereotype;
+				}
+			}
+			
+			if(reviewStereotype!=null){
 				return ((Comment)parentElement).getOwnedComments().toArray();
 			}
 		}
-		return null;
+		return EMPTY;
 	}
 
 	@Override

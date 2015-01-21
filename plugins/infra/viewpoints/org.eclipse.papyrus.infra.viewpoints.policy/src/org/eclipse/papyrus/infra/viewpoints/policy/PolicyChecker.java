@@ -17,6 +17,7 @@ package org.eclipse.papyrus.infra.viewpoints.policy;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -25,6 +26,7 @@ import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.IExtensionRegistry;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
@@ -47,6 +49,7 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusConfiguration;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusView;
 import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusViewpoint;
+import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ArchitectureViewpoint;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.ModelKind;
 import org.eclipse.papyrus.infra.viewpoints.iso42010.Stakeholder;
@@ -118,31 +121,30 @@ public class PolicyChecker {
 	 * @return The loaded configuration, or <code>null</code> if the operation failed
 	 */
 	public static PapyrusConfiguration loadConfigurationFrom(String location) {
-		try {
-			if (location == null) {
-				return null;
-			}
-			if (location.isEmpty()) {
-				return null;
-			}
-			URI uri = null;
-			if (location.startsWith("platform:/")) {
-				uri = URI.createURI(location);
-			} else {
-				uri = URI.createFileURI(location);
-			}
-			location = uri.toString();
-			PapyrusConfiguration config = CONFIGURATIONS_CACHE.get(location);
-			if (config != null) {
-				return config;
-			}
-			Resource res = CONFIGURATIONS_RESOURCE_SET.getResource(uri, true);
-			config = (PapyrusConfiguration) res.getContents().get(0);
-			CONFIGURATIONS_CACHE.put(location, config);
-			return config;
-		} catch (NullPointerException e) {
+		if (location == null) {
+			return null;
 		}
-		return null;
+		if (location.isEmpty()) {
+			return null;
+		}
+		URI uri = null;
+		if (location.startsWith("platform:/")) {
+			uri = URI.createURI(location);
+		} else {
+			uri = URI.createFileURI(location);
+		}
+		location = uri.toString();
+		PapyrusConfiguration config = CONFIGURATIONS_CACHE.get(location);
+		if (config != null) {
+			return config;
+		}
+		Resource res = CONFIGURATIONS_RESOURCE_SET.getResource(uri, true);
+		EList<EObject> contents = res.getContents();
+		if (contents.size() >0){
+			config = (PapyrusConfiguration) contents.get(0);
+			CONFIGURATIONS_CACHE.put(location, config);				
+		}
+		return config;
 	}
 
 	/**
@@ -646,6 +648,8 @@ public class PolicyChecker {
 				if (rule.getNewModelPath() != null && !rule.getNewModelPath().isEmpty()) {
 					// Auto-created root => always OK
 					result.add(proto);
+				} else if (rule.getSelectDiagramRoot() != null && !rule.getSelectDiagramRoot().isEmpty()){
+					result.add(proto);
 				} else {
 					// We have to check if the owner can also be a root
 					count = proto.getViewCountOn(element);
@@ -922,12 +926,12 @@ public class PolicyChecker {
 	 * @return <code>true</code> if it is possible
 	 */
 	private boolean allows(OwningRule rule, EObject owner) {
-		List<ModelAutoCreate> list = rule.getNewModelPath();
-		if (list == null || list.isEmpty()) {
+		List<ModelAutoCreate> modelAutoCreateList = rule.getNewModelPath();
+		if (modelAutoCreateList == null || modelAutoCreateList.isEmpty()) {
 			return true;
 		}
 		EObject current = owner;
-		for (ModelAutoCreate elem : list) {
+		for (ModelAutoCreate elem : modelAutoCreateList) {
 			EReference ref = elem.getFeature();
 			if (ref.isMany()) {
 				return true;
@@ -938,7 +942,7 @@ public class PolicyChecker {
 			}
 			current = (EObject) e;
 		}
-		return false;
+		return false; // by default a rule is not allowed
 	}
 
 	/**

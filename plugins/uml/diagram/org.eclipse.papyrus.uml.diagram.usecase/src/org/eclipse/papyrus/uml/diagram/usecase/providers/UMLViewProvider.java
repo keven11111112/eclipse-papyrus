@@ -63,11 +63,14 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAppliedStereotype
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAsRectangleEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorFloatingLabelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ActorQualifiedNameEditPartTN;
@@ -87,6 +90,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.CommentEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases2EditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ComponentUsecases3EditPart;
@@ -130,6 +134,7 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.RealizationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.ShortCutDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierFloatingLabelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectClassifierNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.SubjectComponentUsecasesEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UsageEditPart;
@@ -138,9 +143,12 @@ import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleEdit
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseAsRectangleNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseEditPartTN;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseFloatingLabelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInComponentNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInPackageEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInPackageFloatingLabelEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseInPackageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCaseNameEditPartTN;
 import org.eclipse.papyrus.uml.diagram.usecase.edit.parts.UseCasePointsEditPartTN;
@@ -459,6 +467,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6037 = (Location)label6037.getLayoutConstraint();
 		location6037.setX(20);
 		location6037.setY(80);
+		Node label6048 = createLabel(node, UMLVisualIDRegistry.getType(ActorFloatingLabelEditPartTN.VISUAL_ID));
+		label6048.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6048 = (Location)label6048.getLayoutConstraint();
+		location6048.setX(0);
+		location6048.setY(5);
 		return node;
 	}
 
@@ -493,6 +506,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "UseCase");
 		Node label5016 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseNameEditPartTN.VISUAL_ID));
+		Node label6038 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseFloatingLabelEditPartTN.VISUAL_ID));
+		label6038.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6038 = (Location)label6038.getLayoutConstraint();
+		location6038.setX(0);
+		location6038.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePointsEditPartTN.VISUAL_ID), false, false, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "UseCase");
 		return node;
@@ -531,6 +549,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Classifier");
 		Node label5019 = createLabel(node, UMLVisualIDRegistry.getType(SubjectClassifierNameEditPartTN.VISUAL_ID));
+		Node label6047 = createLabel(node, UMLVisualIDRegistry.getType(SubjectClassifierFloatingLabelEditPartTN.VISUAL_ID));
+		label6047.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6047 = (Location)label6047.getLayoutConstraint();
+		location6047.setX(0);
+		location6047.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(SubjectComponentUsecasesEditPart.VISUAL_ID), false, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Classifier");
 		return node;
@@ -671,6 +694,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "UseCase");
 		Node label5018 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInComponentNameEditPart.VISUAL_ID));
+		Node label6045 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInComponentFloatingLabelEditPart.VISUAL_ID));
+		label6045.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6045 = (Location)label6045.getLayoutConstraint();
+		location6045.setX(0);
+		location6045.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePointsInComponentEditPart.VISUAL_ID), false, false, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "UseCase");
 		return node;
@@ -755,6 +783,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6041 = (Location)label6041.getLayoutConstraint();
 		location6041.setX(20);
 		location6041.setY(80);
+		Node label6050 = createLabel(node, UMLVisualIDRegistry.getType(ActorInComponentFloatingLabelEditPart.VISUAL_ID));
+		label6050.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6050 = (Location)label6050.getLayoutConstraint();
+		location6050.setX(0);
+		location6050.setY(5);
 		return node;
 	}
 
@@ -802,6 +835,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location6040 = (Location)label6040.getLayoutConstraint();
 		location6040.setX(20);
 		location6040.setY(80);
+		Node label6049 = createLabel(node, UMLVisualIDRegistry.getType(ActorInPackageFloatingLabelEditPart.VISUAL_ID));
+		label6049.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6049 = (Location)label6049.getLayoutConstraint();
+		location6049.setX(0);
+		location6049.setY(5);
 		return node;
 	}
 
@@ -818,6 +856,11 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "UseCase");
 		Node label5022 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInPackageNameEditPart.VISUAL_ID));
+		Node label6046 = createLabel(node, UMLVisualIDRegistry.getType(UseCaseInPackageFloatingLabelEditPart.VISUAL_ID));
+		label6046.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6046 = (Location)label6046.getLayoutConstraint();
+		location6046.setX(0);
+		location6046.setY(5);
 		createCompartment(node, UMLVisualIDRegistry.getType(UseCasePointsInPackageEditPart.VISUAL_ID), false, false, true, true);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "UseCase");
 		return node;
@@ -836,7 +879,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Component");
 		Node label5023 = createLabel(node, UMLVisualIDRegistry.getType(ComponentInPackageNameEditPart.VISUAL_ID));
-		createCompartment(node, UMLVisualIDRegistry.getType(ComponentUsecases3EditPart.VISUAL_ID), false, false, false, false);
+		Node label6051 = createLabel(node, UMLVisualIDRegistry.getType(ComponentInPackageFloatingLabelEditPart.VISUAL_ID));
+		label6051.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location6051 = (Location)label6051.getLayoutConstraint();
+		location6051.setX(0);
+		location6051.setY(5);
+		createCompartment(node, UMLVisualIDRegistry.getType(ComponentUsecases3EditPart.VISUAL_ID), true, false, false, false);
 		PreferenceInitializerForElementHelper.initCompartmentsStatusFromPrefs(node, prefStore, "Component");
 		return node;
 	}

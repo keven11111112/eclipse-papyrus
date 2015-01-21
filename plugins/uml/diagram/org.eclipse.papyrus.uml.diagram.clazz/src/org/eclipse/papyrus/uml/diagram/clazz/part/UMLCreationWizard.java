@@ -116,6 +116,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 		addPage(diagramModelFilePage);
 		domainModelFilePage = new UMLCreationWizardPage("DomainModelFile", getSelection(), "PapyrusUMLClass") { //$NON-NLS-1$ //$NON-NLS-2$
 
+			@Override
 			public void setVisible(boolean visible) {
 				if(visible) {
 					String fileName = diagramModelFilePage.getFileName();
@@ -136,6 +137,7 @@ public class UMLCreationWizard extends Wizard implements INewWizard {
 	public boolean performFinish() {
 		IRunnableWithProgress op = new WorkspaceModifyOperation(null) {
 
+			@Override
 			protected void execute(IProgressMonitor monitor) throws CoreException, InterruptedException {
 				diagram = UMLDiagramEditorUtil.createDiagram(diagramModelFilePage.getURI(), domainModelFilePage.getURI(), monitor);
 				if(isOpenNewlyCreatedDiagramEditor() && diagram != null) {

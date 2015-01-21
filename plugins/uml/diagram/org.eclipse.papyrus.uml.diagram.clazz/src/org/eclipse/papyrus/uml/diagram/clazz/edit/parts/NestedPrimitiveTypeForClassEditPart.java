@@ -18,6 +18,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RunnableWithResult;
@@ -31,7 +32,6 @@ import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
@@ -63,10 +63,13 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.ILabelEditorDialog;
 import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
+import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
+import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -77,6 +80,7 @@ import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEdi
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
+import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
 import org.eclipse.swt.custom.BusyIndicator;
@@ -255,6 +259,16 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 	 * @generated
 	 */
 	protected Image getLabelIcon() {
+		EObject parserElement = getParserElement();
+		if(parserElement == null) {
+			return null;
+		}
+		List<View> views = DiagramEditPartsUtil.findViews(parserElement, getViewer());
+		for(View view : views) {
+			if(AppearanceHelper.showElementIcon(view)) {
+				return UMLElementTypes.getImage(parserElement.eClass());
+			}
+		}
 		return null;
 	}
 
@@ -311,6 +325,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
+			@Override
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
@@ -318,11 +333,12 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 					try {
 						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
+							@Override
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 							}
 						});
-						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
+						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
@@ -383,6 +399,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 	protected void performDirectEdit() {
 		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
 
+			@Override
 			public void run() {
 				getManager().show();
 			}
@@ -441,7 +458,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -475,6 +492,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -611,6 +629,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -705,6 +724,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -769,6 +789,9 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 				}
 			}
 		}
+		if(event.getNewValue() instanceof EAnnotation && VisualInformationPapyrusConstants.DISPLAY_NAMELABELICON.equals(((EAnnotation)event.getNewValue()).getSource())) {
+			refreshLabel();
+		}
 		if(UMLPackage.eINSTANCE.getFeature_IsStatic().equals(feature)) {
 			refreshUnderline();
 		}
@@ -788,7 +811,7 @@ public class NestedPrimitiveTypeForClassEditPart extends UMLCompartmentEditPart 
 	 * @generated
 	 */
 	protected IFigure createFigurePrim() {
-		return new WrappingLabel();
+		return new PapyrusWrappingLabel();
 	}
 
 	/**

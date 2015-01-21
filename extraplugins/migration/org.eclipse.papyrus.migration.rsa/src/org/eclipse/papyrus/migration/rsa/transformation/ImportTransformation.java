@@ -32,7 +32,6 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.MultiStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
@@ -43,8 +42,10 @@ import org.eclipse.emf.common.util.DiagnosticException;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
+import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -65,29 +66,46 @@ import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
 import org.eclipse.m2m.qvt.oml.util.WriterLog;
 import org.eclipse.papyrus.dsml.validation.PapyrusDSMLValidationRule.PapyrusDSMLValidationRulePackage;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.m2m.qvto.TransformationUI;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
 import org.eclipse.papyrus.migration.rsa.blackbox.ProfileBaseHelper;
+import org.eclipse.papyrus.migration.rsa.default_.DefaultPackage;
+import org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage;
 import org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage;
 import org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.UMLRealTimeStateMachPackage;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+/**
+ * Executes a single RSA-to-Papyrus transformation
+ *
+ * @author Camille Letavernier
+ *
+ */
 public class ImportTransformation {
 
+	/** For debug purpose */
+	private static final boolean DEBUG = false;
+
+	// SourceURI is the input
 	protected final URI sourceURI;
 
-	protected ModelExtent outUML, outNotation, outSashModel, inParameters;
+	// targetURI is computed during the transformation
+	protected URI targetURI;
+
+	protected ModelExtent outUML, outNotation, outSashModel, inParameters, inPapyrusProfiles;
 
 	protected ResourceSet resourceSet;
-
-	protected boolean cacheTransformations;
 
 	protected Job job;
 
@@ -95,15 +113,35 @@ public class ImportTransformation {
 
 	protected Config parameters;
 
-	/** Source URI to Target URI map */
+	protected boolean complete = false;
+
+	// For logging purpose (Bug 455001)
+	// Starts when the job starts; ends when the job returns
+	/** Execution time, in nano-seconds */
+	protected long executionTime = 0L;
+
+	/** Execution time of the initial model loading */
+	protected long loadingTime = 0L;
+
+	/** Source URI to Target URI map (For Models/Libraries/Fragments) */
 	protected final Map<URI, URI> uriMappings = new HashMap<URI, URI>();
 
-	// The cache can be used to increase performances (For small and medium sized models, most of the execution time is spent in loading the transformation)
-	// Warning: using the cache prevents dynamic transformations (i.e. it should not be used in Debug Mode)
-	protected static final Map<URI, TransformationExecutor> sharedTransformations = new HashMap<URI, TransformationExecutor>();
+	/** Source URI to Target URI map (For Profiles) */
+	protected final Map<URI, URI> profileURIMappings = new HashMap<URI, URI>();
 
-	// Separate local cache for preloading transformations if cacheTransformations = false (Mostly for debug purpose)
-	protected final Map<URI, TransformationExecutor> localTransformations = new HashMap<URI, TransformationExecutor>();
+	protected List<Diagram> diagramsToDelete = new LinkedList<Diagram>();
+
+	protected static final ExecutorsPool executorsPool = new ExecutorsPool(4);
+
+	/** EPackages corresponding to source native profiles with specific support in the transformation */
+	protected static final Set<EPackage> sourceEPackages = new HashSet<EPackage>();
+
+
+	static {
+		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.default_.DefaultPackage.eINSTANCE);
+		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage.eINSTANCE);
+		sourceEPackages.add(org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage.eINSTANCE);
+	}
 
 	public ImportTransformation(URI sourceURI) {
 		this(sourceURI, RSAToPapyrusParametersFactory.eINSTANCE.createConfig());
@@ -113,8 +151,10 @@ public class ImportTransformation {
 		Assert.isNotNull(sourceURI);
 		this.sourceURI = sourceURI;
 		this.parameters = config;
+	}
 
-		this.cacheTransformations = true;
+	public void run() {
+		run(true);
 	}
 
 	/**
@@ -122,41 +162,48 @@ public class ImportTransformation {
 	 *
 	 * The transformation will be executed asynchronously in a Job
 	 */
-	public void run() {
+	public void run(final boolean isUserJob) {
 
 		job = new Job("Import " + getModelName()) {
 
 			@Override
 			protected IStatus run(IProgressMonitor monitor) {
-				return ImportTransformation.this.run(monitor);
+				long begin = System.nanoTime();
+				IStatus result = ImportTransformation.this.run(monitor);
+				long end = System.nanoTime();
+				executionTime = end - begin;
+				return result;
 			}
 		};
 
-		job.setUser(true);
+		job.setUser(isUserJob);
 
 		job.addJobChangeListener(new JobChangeAdapter() {
 
 			@Override
 			public void done(IJobChangeEvent event) {
-				if (event.getResult().getSeverity() == IStatus.OK) {
-					Display.getDefault().asyncExec(new Runnable() {
+				complete = true;
+				if (isUserJob) {
+					if (event.getResult().getSeverity() == IStatus.OK) {
+						Display.getDefault().asyncExec(new Runnable() {
 
-						@Override
-						public void run() {
-							MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), job.getName(), String.format("Model %s has been successfully imported", getModelName()));
-						}
-					});
+							@Override
+							public void run() {
+								MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), job.getName(), String.format("Model %s has been successfully imported", getModelName()));
+							}
+						});
 
-				} else if (event.getResult().getSeverity() == IStatus.CANCEL) {
-					Display.getDefault().asyncExec(new Runnable() {
+					} else if (event.getResult().getSeverity() == IStatus.CANCEL) {
+						Display.getDefault().asyncExec(new Runnable() {
 
-						@Override
-						public void run() {
-							MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), job.getName(), String.format("Operation canceled", getModelName()));
-						}
-					});
-				} else {
-					StatusManager.getManager().handle(event.getResult(), StatusManager.SHOW);
+							@Override
+							public void run() {
+								MessageDialog.openInformation(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), job.getName(), String.format("Operation canceled: %s", getModelName()));
+							}
+						});
+					} else {
+						StatusManager.getManager().handle(event.getResult(), StatusManager.BLOCK);
+					}
 				}
 			}
 
@@ -173,15 +220,35 @@ public class ImportTransformation {
 		}
 	}
 
+	public boolean isComplete() {
+		return complete;
+	}
+
+	public IStatus getStatus() {
+		if (job == null) { // If job hasn't been created, the operation has probably been canceled before the transformation is ran
+			return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "Operation canceled");
+		}
+		return job.getResult();
+	}
+
+	public long getExecutionTime() {
+		return executionTime;
+	}
+
+	public long getLoadingTime() {
+		return loadingTime;
+	}
+
 	public Map<URI, URI> getURIMappings() {
 		return uriMappings;
 	}
 
+	public Map<URI, URI> getProfileURIMappings() {
+		return profileURIMappings;
+	}
+
 	public URI getTargetURI() {
-		if (umlResource != null) {
-			return umlResource.getURI();
-		}
-		return null;
+		return targetURI;
 	}
 
 	/**
@@ -198,13 +265,12 @@ public class ImportTransformation {
 
 		try {
 			resourceSet.getResource(sourceURI, true);
+			loadInPapyrusProfiles();
 		} catch (Exception ex) {
-			Activator.log.error(ex);
+			Activator.log.error("An error occurred while loading " + getModelName(), ex);
 		}
 
 		monitor.subTask("Resolving all dependencies...");
-
-		EcoreUtil.resolveAll(resourceSet);
 	}
 
 	/**
@@ -220,14 +286,14 @@ public class ImportTransformation {
 		ModelExtent extent = getInOutUMLModel();
 		for (EObject eObject : extent.getContents()) {
 
-			// We already called ResolveAll, there is no need to try resolution again
-			TreeIterator<EObject> modelIterator = EcoreUtil.getAllContents(eObject, false);
+			TreeIterator<EObject> modelIterator = EcoreUtil.getAllContents(eObject, true);
 			while (modelIterator.hasNext()) {
 				EObject next = modelIterator.next();
 				if (next instanceof Diagram) {
 					Diagram diagram = (Diagram) next;
 					if (isSupported(diagram)) {
 						i++;
+						diagramsToDelete.add(diagram);
 					}
 					modelIterator.prune(); // Don't navigate Diagram children
 				} else if (next instanceof OpaqueExpression) {
@@ -276,16 +342,21 @@ public class ImportTransformation {
 	// Preloads all required transformations (Either locally or statically, depending on the cache parameter)
 	protected IStatus loadTransformations(IProgressMonitor monitor) {
 		for (URI transformationURI : getAllTransformationURIs()) {
-			try {
-				// Don't use a subprogress monitor, since it may be confusing
-				getTransformation(transformationURI, new NullProgressMonitor());
-				monitor.worked(1);
-			} catch (DiagnosticException ex) {
-				return BasicDiagnostic.toIStatus(ex.getDiagnostic());
-			}
+			IStatus status = executorsPool.preLoad(transformationURI);
+			monitor.worked(1);
 		}
 
 		return Status.OK_STATUS;
+	}
+
+	// MemoryLeak: Don't rely on BasicDiagnostic.toIStatus
+	// The source Diagnostic contains references to the QVTo ModelExtents, referencing the Model elements (used in #extractPapyrusProfiles())
+	// When using the standard conversion, these references are not discarded
+	protected static IStatus createStatusFromDiagnostic(Diagnostic diagnostic) {
+		return new Status(diagnostic.getSeverity(),
+				diagnostic.getSource(),
+				diagnostic.getMessage(),
+				diagnostic.getException());
 	}
 
 	/**
@@ -302,19 +373,24 @@ public class ImportTransformation {
 
 		monitor.subTask("Loading source model " + getModelName());
 
+		long startLoad = System.nanoTime();
 		initResourceSet(monitor);
 
 		int numberOfElements = countSupportedElements();
+
 
 		monitor.beginTask("Importing " + getModelName(), numberOfElements);
 
 		monitor.subTask("Loading transformations (This may take a few seconds for the first import)...");
 		loadTransformations(monitor);
+		long endLoad = System.nanoTime();
+		loadingTime = endLoad - startLoad;
 
 
 		List<ModelExtent> extents = getModelExtents();
 
-		MultiStatus generationStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, "Operation complete", null);
+		String statusMessage = String.format("Import %s", getModelName());
+		MultiStatus generationStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, statusMessage, null);
 
 		ExecutionContext context = createExecutionContext(monitor, generationStatus);
 
@@ -343,10 +419,12 @@ public class ImportTransformation {
 		result = runTransformation(getSemanticTransformationURI(), context, monitor, extents);
 		generationStatus.add(result);
 
-		monitor.subTask("Handle additional profiles...");
-		// Default.epx and ProfileBase.epx
-		result = importRSAProfiles(context, monitor);
-		generationStatus.add(result);
+		if (!monitor.isCanceled()) {
+			monitor.subTask("Handle additional profiles...");
+			// Default.epx and ProfileBase.epx
+			result = importRSAProfiles(context, monitor);
+			generationStatus.add(result);
+		}
 
 		//
 		// FRAGMENTS & SAVE
@@ -354,19 +432,25 @@ public class ImportTransformation {
 
 		if (generationStatus.getSeverity() <= Diagnostic.WARNING) {
 
-			monitor.subTask("Saving models...");
-			URI umlModelURI = null;
+			monitor.subTask("Cleaning-up target model...");
 			URI notationModelURI = null;
 			URI sashModelURI = null;
-			ResourceSet resourceSet = new ResourceSetImpl();
+			// ResourceSet resourceSet = new ResourceSetImpl();
 
-			umlModelURI = convertToPapyrus(sourceURI, UMLResource.FILE_EXTENSION);
+			targetURI = convertToPapyrus(sourceURI, UMLResource.FILE_EXTENSION);
 			notationModelURI = convertToPapyrus(sourceURI, "notation"); // TODO use constant
 			sashModelURI = convertToPapyrus(sourceURI, "di"); // TODO use constant
 
-			uriMappings.put(sourceURI, umlModelURI);
+			if ("epx".equals(sourceURI.fileExtension())) {
+				profileURIMappings.put(sourceURI, targetURI);
+			}
+			// Profile mappings are also library mappings
+			uriMappings.put(sourceURI, targetURI);
 
-			umlResource = createUMLResource(resourceSet, umlModelURI);
+			umlResource = createUMLResource(resourceSet, sourceURI, targetURI);
+
+			// This list contains all the objects from the initial ModelExtent, plus all the ones
+			// which were created during the QVTo transformations.
 			List<EObject> outUMLObjects = getInOutUMLModel().getContents();
 			umlResource.getContents().addAll(outUMLObjects);
 
@@ -376,13 +460,12 @@ public class ImportTransformation {
 			notationResource.getContents().addAll(outNotationObjects);
 
 			// Cleanup empty diagrams (FIXME: They should not be generated)
-			Iterator<EObject> iterator = notationResource.getContents().iterator();
-			while (iterator.hasNext()) {
-				EObject next = iterator.next();
+			List<EObject> contentsCopy = new LinkedList<EObject>(notationResource.getContents());
+			for (EObject next : contentsCopy) {
 				if (next instanceof Diagram) {
 					Diagram diagram = (Diagram) next;
 					if (diagram.getType() == null || "".equals(diagram.getType())) {
-						iterator.remove();
+						delete(diagram);
 					}
 				}
 			}
@@ -396,39 +479,95 @@ public class ImportTransformation {
 			configureResource(notationResource);
 			configureResource((XMIResource) umlResource);
 
-			// Handle orphaned elements: remove them and log a warning
+			// Handle orphaned elements: remove them and log a warning (Log temporarily disabled to avoid spamming the console)
 			List<EObject> notationRootElements = new LinkedList<EObject>(notationResource.getContents());
 			for (EObject rootElement : notationRootElements) {
 				if (rootElement instanceof View) {
 					View rootView = (View) rootElement;
 					if (!(rootView instanceof Diagram)) {
-						String objectType = rootView.getElement() == null ? "None" : rootView.getElement().eClass().getName();
-						String viewType = rootView.getType() == null ? "None" : rootView.getType();
-						generationStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "An orphaned view has been found after the migration. It will be removed. View Type: " + viewType + ", semantic type: " + objectType));
+						if (DEBUG) {
+							String objectType = rootView.getElement() == null ? "None" : rootView.getElement().eClass().getName();
+							String viewType = rootView.getType() == null ? "None" : rootView.getType();
+							generationStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "An orphaned view has been found after the migration. It will be removed. View Type: " + viewType + ", semantic type: " + objectType));
+						}
 
-						notationResource.getContents().remove(rootElement);
+						delete(rootElement);
 					}
 				} else if (rootElement instanceof Style) {
-					String styleType = rootElement.eClass().getName();
-					generationStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "An orphaned style has been found after the migration. It will be removed. Style Type: " + styleType));
 
-					notationResource.getContents().remove(rootElement);
+					if (DEBUG) {
+						String styleType = rootElement.eClass().getName();
+						generationStatus.add(new Status(IStatus.WARNING, Activator.PLUGIN_ID, "An orphaned style has been found after the migration. It will be removed. Style Type: " + styleType));
+					}
+
+					delete(rootElement);
 				}
 			}
 
+			monitor.subTask("Handling fragments...");
+
 			Collection<Resource> resourcesToSave = handleFragments(umlResource, notationResource, sashResource);
+
+			for (Resource resource : resourcesToSave) {
+				List<EObject> rootElements = new LinkedList<EObject>(resource.getContents());
+				for (EObject rootElement : rootElements) {
+					EPackage ePackage = rootElement.eClass().getEPackage();
+					if (ePackage == ProfileBasePackage.eINSTANCE || ePackage == DefaultPackage.eINSTANCE) {
+						delete(rootElement);
+					}
+				}
+			}
+
+			monitor.subTask("Deleting source diagrams...");
+
+			for (Diagram diagram : diagramsToDelete) {
+				EObject container = diagram.eContainer();
+				delete(diagram);
+				if (container instanceof EAnnotation) {
+					EAnnotation annotation = (EAnnotation) container;
+					if (annotation.getContents().isEmpty()) {
+						delete(annotation);
+					}
+				}
+			}
+
+			diagramsToDelete.clear();
+
+			monitor.subTask("Analyzing dangling references...");
+
+			handleDanglingURIs(resourcesToSave);
+
+			monitor.subTask("Saving models...");
 
 			for (Resource resource : resourcesToSave) {
 				try {
 					resource.save(null);
 				} catch (Exception ex) {
 					Activator.log.error(ex);
+					generationStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occurred during save", ex));
 				}
 			}
 		}
 
+		monitor.subTask("Releasing memory...");
+
+		unloadResourceSet(this.resourceSet);
+
+		this.resourceSet = null;
+		this.umlResource = null;
+		this.outNotation = this.inParameters = this.outSashModel = this.outUML = null;
+
 		monitor.done();
 		return generationStatus;
+	}
+
+	protected void handleDanglingURIs(Collection<Resource> resourcesToSave) {
+		ConfigHelper helper = new ConfigHelper(parameters);
+		helper.computeURIMappings(resourcesToSave);
+	}
+
+	protected void unloadResourceSet(ResourceSet resourceSet) {
+		EMFHelper.unload(resourceSet);
 	}
 
 	protected IStatus importRSAProfiles(ExecutionContext context, IProgressMonitor monitor) {
@@ -437,8 +576,8 @@ public class ImportTransformation {
 		List<ModelExtent> extents = new LinkedList<ModelExtent>();
 		extents.add(getInOutUMLModel());
 		extents.add(getInoutNotationModel());
-		Diagnostic loadedProfiles = getInPapyrusProfiles();
-		extents.add(extractPapyrusProfiles(loadedProfiles));
+		Diagnostic loadedProfiles = loadInPapyrusProfiles();
+		extents.add(getInPapyrusProfiles());
 		extents.add(getInProfileDefinitions());
 		extents.add(getInConfig());
 
@@ -449,16 +588,21 @@ public class ImportTransformation {
 			Diagnostic diagnostic = ex.getDiagnostic();
 
 			Activator.log.warn(String.format("Cannot load the transformation : %s. Diagnostic: %s", transformationURI, diagnostic.getMessage()));
-			return BasicDiagnostic.toIStatus(diagnostic);
+			return createStatusFromDiagnostic(diagnostic);
 		}
 
 		ExecutionDiagnostic transformationResult;
 		synchronized (executor) {
-			transformationResult = executor.execute(context, extents.toArray(new ModelExtent[0]));
+			try {
+				transformationResult = executor.execute(context, extents.toArray(new ModelExtent[0]));
+			} finally {
+				executor.cleanup();
+				executorsPool.releaseExecutor(executor);
+			}
 		}
 
-		IStatus loadedProfilesStatus = BasicDiagnostic.toIStatus(loadedProfiles);
-		IStatus transformationStatus = BasicDiagnostic.toIStatus(transformationResult);
+		IStatus loadedProfilesStatus = createStatusFromDiagnostic(loadedProfiles);
+		IStatus transformationStatus = createStatusFromDiagnostic(transformationResult);
 
 		int severity = Math.max(loadedProfiles.getSeverity(), transformationResult.getSeverity());
 
@@ -475,22 +619,7 @@ public class ImportTransformation {
 	}
 
 	protected TransformationExecutor getTransformation(URI transformationURI, IProgressMonitor monitor) throws DiagnosticException {
-
-		if (!cacheTransformations) {
-			if (!localTransformations.containsKey(transformationURI)) {
-				TransformationExecutor executor = loadTransformationExecutor(transformationURI, monitor);
-				localTransformations.put(transformationURI, executor);
-			}
-			return localTransformations.get(transformationURI);
-		}
-
-		synchronized (sharedTransformations) {
-			if (!sharedTransformations.containsKey(transformationURI)) {
-				TransformationExecutor executor = loadTransformationExecutor(transformationURI, monitor);
-				sharedTransformations.put(transformationURI, executor);
-			}
-			return sharedTransformations.get(transformationURI);
-		}
+		return executorsPool.getExecutor(transformationURI);
 	}
 
 	// Static synchronized, as it seems that QVTo can't load 2 transformations at the same time, even in separate execution contexts
@@ -540,7 +669,7 @@ public class ImportTransformation {
 		List<ModelExtent> extents = new LinkedList<ModelExtent>();
 		extents.add(getInOutUMLModel());
 		extents.add(getInoutNotationModel());
-		extents.add(extractPapyrusProfiles(getInPapyrusProfiles()));
+		extents.add(getInPapyrusProfiles());
 		extents.add(getInProfileDefinitions());
 		extents.add(getInConfig());
 
@@ -550,24 +679,20 @@ public class ImportTransformation {
 		} catch (DiagnosticException ex) {
 			Diagnostic diagnostic = ex.getDiagnostic();
 			Activator.log.warn(String.format("Cannot load the transformation : %s. Diagnostic: %s", transformationURI, diagnostic.getMessage()));
-			return BasicDiagnostic.toIStatus(diagnostic);
+			return createStatusFromDiagnostic(diagnostic);
 		}
 
 		ExecutionDiagnostic result;
 		synchronized (executor) {
-			result = executor.execute(context, extents.toArray(new ModelExtent[0]));
-		}
-
-		return BasicDiagnostic.toIStatus(result);
-	}
-
-	protected ModelExtent extractPapyrusProfiles(Diagnostic diagnostic) {
-		for (Object extent : diagnostic.getData()) {
-			if (extent instanceof ModelExtent) {
-				return (ModelExtent) extent;
+			try {
+				result = executor.execute(context, extents.toArray(new ModelExtent[0]));
+			} finally {
+				executor.cleanup();
+				executorsPool.releaseExecutor(executor);
 			}
 		}
-		return null;
+
+		return createStatusFromDiagnostic(result);
 	}
 
 	protected ModelExtent getInProfileDefinitions() {
@@ -579,15 +704,26 @@ public class ImportTransformation {
 		}));
 	}
 
+	protected ModelExtent getInPapyrusProfiles() {
+		if (inPapyrusProfiles == null) {
+			loadInPapyrusProfiles();
+		}
+
+		return inPapyrusProfiles;
+	}
+
 	/**
 	 * Returns a Diagnostic. Diagnostic#data is the ModelExtent containing the loaded profiles
 	 *
 	 * @return
 	 * @throws WrappedException
 	 */
-	protected Diagnostic getInPapyrusProfiles() {
-		List<String> missingProfiles = new LinkedList<String>();
+	protected Diagnostic loadInPapyrusProfiles() {
+		if (inPapyrusProfiles != null) {
+			return Diagnostic.OK_INSTANCE;
+		}
 
+		List<String> missingProfiles = new LinkedList<String>();
 
 		List<EObject> allContents = new LinkedList<EObject>();
 		try {
@@ -626,7 +762,7 @@ public class ImportTransformation {
 			missingProfiles.add("UML RT / StateMachine extension Profile");
 		}
 
-		ModelExtent result = new BasicModelExtent(allContents);
+		inPapyrusProfiles = new BasicModelExtent(allContents);
 
 		String message;
 		int code;
@@ -638,7 +774,7 @@ public class ImportTransformation {
 			code = Diagnostic.ERROR;
 		}
 
-		Diagnostic diagnostic = new BasicDiagnostic(code, Activator.PLUGIN_ID, code, message, new ModelExtent[] { result });
+		Diagnostic diagnostic = new BasicDiagnostic(code, Activator.PLUGIN_ID, code, message, null);
 
 		return diagnostic;
 	}
@@ -650,8 +786,11 @@ public class ImportTransformation {
 		}
 	}
 
-	protected Resource createUMLResource(ResourceSet resourceSet, URI umlModelURI) {
-		return resourceSet.createResource(umlModelURI, UMLResource.UML_CONTENT_TYPE_IDENTIFIER);
+	protected Resource createUMLResource(ResourceSet resourceSet, URI sourceResourceURI, URI targetResourceURI) {
+		// Use the same resource to ensure that XMI IDs are maintained
+		Resource resource = resourceSet.getResource(sourceResourceURI, false);
+		resource.setURI(targetResourceURI);
+		return resource;
 	}
 
 	protected ModelExtent getInConfig() {
@@ -680,17 +819,21 @@ public class ImportTransformation {
 			}
 		}
 
+		List<Resource> fragmentUMLResources = new LinkedList<Resource>();
+
 		for (Resource fragmentResource : fragmentResources) {
-			URI fragmentURI = convertToPapyrus(fragmentResource.getURI(), UMLResource.FILE_EXTENSION);
+			URI papyrusFragmentURI = convertToPapyrus(fragmentResource.getURI(), UMLResource.FILE_EXTENSION);
 
-			uriMappings.put(fragmentResource.getURI(), fragmentURI);
+			uriMappings.put(fragmentResource.getURI(), papyrusFragmentURI);
 
-			Resource newResource = resourceSet.getResource(fragmentURI, false);
+			Resource newResource = resourceSet.getResource(papyrusFragmentURI, false);
 			if (newResource == null) {
-				newResource = createUMLResource(resourceSet, fragmentURI);
+				newResource = createUMLResource(resourceSet, fragmentResource.getURI(), papyrusFragmentURI);
 
-				Resource fragmentNotationResource = new GMFResource(convertToPapyrus(fragmentURI, "notation"));
-				Resource fragmentDiResource = new XMIResourceImpl(convertToPapyrus(fragmentURI, "di"));
+				fragmentUMLResources.add(newResource);
+
+				Resource fragmentNotationResource = new GMFResource(convertToPapyrus(papyrusFragmentURI, "notation"));
+				Resource fragmentDiResource = new XMIResourceImpl(convertToPapyrus(papyrusFragmentURI, "di"));
 
 				result.add(fragmentNotationResource);
 				result.add(fragmentDiResource);
@@ -703,7 +846,7 @@ public class ImportTransformation {
 			result.add(newResource);
 		}
 
-		deleteSourceRTStereotypes(fragmentResources);
+		deleteSourceStereotypes(fragmentResources);
 
 		List<EObject> importedElements = new LinkedList<EObject>(notationResource.getContents());
 		for (EObject notationElement : importedElements) {
@@ -724,10 +867,55 @@ public class ImportTransformation {
 			}
 		}
 
+		handleFragmentStereotypes(umlResource, fragmentUMLResources);
+
+		for (Resource resource : result) {
+			if (resource instanceof XMIResource) {
+				configureResource((XMIResource) resource);
+			}
+		}
+
 		return result;
 	}
 
-	protected void deleteSourceRTStereotypes(Collection<Resource> fragmentResources) {
+	/*
+	 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
+	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
+	 *
+	 * Before the transformation, We moved all root elements from the fragment resources to the main
+	 * resource, then we transformed some of them to Papyrus Stereotype Applications. We need to move
+	 * these stereotype applications back to the proper fragment resource
+	 */
+	protected void handleFragmentStereotypes(Resource mainUMLResource, List<Resource> umlResources) {
+		Iterator<EObject> rootElementIterator = mainUMLResource.getContents().iterator();
+		while (rootElementIterator.hasNext()) {
+			EObject rootElement = rootElementIterator.next();
+			if (rootElement instanceof Element) {
+				continue;
+			}
+
+			Resource targetStereotypeResource = getTargetStereotypeResource(rootElement, umlResources);
+			if (targetStereotypeResource != null && targetStereotypeResource != mainUMLResource) {
+				rootElementIterator.remove(); // To avoid ConcurrentModificationException when moving to the other resource
+				targetStereotypeResource.getContents().add(rootElement);
+			}
+		}
+	}
+
+	protected Resource getTargetStereotypeResource(EObject rootElement, List<Resource> umlResources) {
+		for (EReference eReference : rootElement.eClass().getEAllReferences()) {
+			if (eReference.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+				Object value = rootElement.eGet(eReference);
+				if (value instanceof Element) {
+					return ((Element) value).eResource();
+				}
+			}
+		}
+
+		return null;
+	}
+
+	protected void deleteSourceStereotypes(Collection<Resource> fragmentResources) {
 		Set<Resource> allResources = new HashSet<Resource>(fragmentResources);
 		allResources.add(umlResource);
 
@@ -735,13 +923,12 @@ public class ImportTransformation {
 
 			// For performance reasons, RSA RT Stereotypes have not been deleted during the QVTo transformation (Bug 444379)
 			// Delete them as a post-action. Iterate on all controlled models and delete the RealTime stereotypes at the root of each resource
-			for (Iterator<EObject> rootsIterator = resource.getContents().iterator(); rootsIterator.hasNext();) {
-				EObject rootElement = rootsIterator.next();
-				if (rootElement.eClass().getEPackage() == org.eclipse.papyrus.migration.rsa.umlrt.UMLRealTimePackage.eINSTANCE) {
-					rootsIterator.remove();
+			List<EObject> resourceContents = new LinkedList<EObject>(resource.getContents());
+			for (EObject rootElement : resourceContents) {
+				if (sourceEPackages.contains(rootElement.eClass().getEPackage())) {
+					delete(rootElement);
 				}
 			}
-
 		}
 	}
 
@@ -756,6 +943,10 @@ public class ImportTransformation {
 	}
 
 	protected IStatus runTransformation(URI transformationURI, ExecutionContext context, IProgressMonitor monitor, List<ModelExtent> extents) {
+		if (monitor.isCanceled()) {
+			return new Status(IStatus.CANCEL, Activator.PLUGIN_ID, "Operation canceled");
+		}
+
 		TransformationExecutor executor;
 		try {
 			executor = getTransformation(transformationURI, monitor);
@@ -763,15 +954,20 @@ public class ImportTransformation {
 			Diagnostic diagnostic = ex.getDiagnostic();
 
 			Activator.log.warn(String.format("Cannot load the transformation : %s. Diagnostic: %s", transformationURI, diagnostic.getMessage()));
-			return BasicDiagnostic.toIStatus(diagnostic);
+			return createStatusFromDiagnostic(diagnostic);
 		}
 
 		ExecutionDiagnostic result;
 		synchronized (executor) {
-			result = executor.execute(context, extents.toArray(new ModelExtent[0]));
+			try {
+				result = executor.execute(context, extents.toArray(new ModelExtent[0]));
+			} finally {
+				executor.cleanup();
+				executorsPool.releaseExecutor(executor);
+			}
 		}
 
-		return BasicDiagnostic.toIStatus(result);
+		return createStatusFromDiagnostic(result);
 	}
 
 	protected ExecutionContext createExecutionContext(final IProgressMonitor monitor, final MultiStatus generationStatus) {
@@ -840,16 +1036,16 @@ public class ImportTransformation {
 		Map<Object, Object> saveOptions = new HashMap<Object, Object>();
 
 		// default save options.
-		saveOptions.put(XMIResource.OPTION_DECLARE_XML, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_PROCESS_DANGLING_HREF, XMIResource.OPTION_PROCESS_DANGLING_HREF_DISCARD);
-		saveOptions.put(XMIResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
+		saveOptions.put(XMLResource.OPTION_DECLARE_XML, Boolean.TRUE);
+		saveOptions.put(XMLResource.OPTION_PROCESS_DANGLING_HREF, XMLResource.OPTION_PROCESS_DANGLING_HREF_DISCARD);
+		saveOptions.put(XMLResource.OPTION_SCHEMA_LOCATION, Boolean.TRUE);
 		saveOptions.put(XMIResource.OPTION_USE_XMI_TYPE, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
-		saveOptions.put(XMIResource.OPTION_SKIP_ESCAPE_URI, Boolean.FALSE);
-		saveOptions.put(XMIResource.OPTION_ENCODING, "UTF-8");
+		saveOptions.put(XMLResource.OPTION_SAVE_TYPE_INFORMATION, Boolean.TRUE);
+		saveOptions.put(XMLResource.OPTION_SKIP_ESCAPE_URI, Boolean.FALSE);
+		saveOptions.put(XMLResource.OPTION_ENCODING, "UTF-8");
 
 		// see bug 397987: [Core][Save] The referenced plugin models are saved using relative path
-		saveOptions.put(XMIResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
+		saveOptions.put(XMLResource.OPTION_URI_HANDLER, new org.eclipse.emf.ecore.xmi.impl.URIHandlerImpl.PlatformSchemeAware());
 
 		resource.setEncoding("UTF-8");
 		resource.getDefaultSaveOptions().putAll(saveOptions);
@@ -869,7 +1065,44 @@ public class ImportTransformation {
 			try {
 				Resource resource = resourceSet.getResource(sourceURI, true);
 
-				outUML = new BasicModelExtent(resource.getContents());
+				/*
+				 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
+				 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
+				 *
+				 * StereotypeApplications from Fragments are not considered "rootElements" by QVTo, and
+				 * there is no logical link between UML Elements and stereotype applications in fragments
+				 * We need to make all root Elements available to the QVTo ModelExtent (Including the ones
+				 * from fragments)
+				 */
+				List<EObject> allStereotypeApplications = new LinkedList<EObject>();
+				TreeIterator<EObject> allContents = resource.getAllContents();
+				Set<Resource> browsedResources = new HashSet<Resource>();
+				browsedResources.add(resource);
+				while (allContents.hasNext()) {
+					EObject next = allContents.next();
+					if (!(next instanceof Element)) { // Only navigate the UML hierarchy
+						allContents.prune();
+						continue;
+					}
+
+					Resource nextResource = next.eResource();
+					if (!browsedResources.contains(nextResource)) {
+						browsedResources.add(nextResource);
+						for (EObject rootElement : nextResource.getContents()) {
+							EPackage rootElementPackage = rootElement.eClass().getEPackage();
+							if (sourceEPackages.contains(rootElementPackage)) {
+								// We're interested in all stereotype applications which require a specific support in the QVTo transformation
+								allStereotypeApplications.add(rootElement);
+							}
+						}
+					}
+				}
+
+				List<EObject> allRootElements = new LinkedList<EObject>(resource.getContents());
+				allRootElements.addAll(allStereotypeApplications);
+
+				// outUML = new BasicModelExtent(resource.getContents());
+				outUML = new BasicModelExtent(allRootElements);
 
 			} catch (Exception ex) {
 				Activator.log.error(ex);
@@ -902,7 +1135,7 @@ public class ImportTransformation {
 				"Object",
 				"Activity",
 				// "Component", //Not yet
-				"Sequence", // Not yet
+				// "Sequence", // Not yet
 				"Statechart",
 				"Structure"
 		}));
@@ -945,5 +1178,34 @@ public class ImportTransformation {
 
 	public String getModelName() {
 		return URI.decode(sourceURI.lastSegment());
+	}
+
+	public void cancel() {
+		job.cancel();
+	}
+
+	/** Lightweight delete operation, which only removes the object from its parent. Incoming references are not deleted */
+	public void delete(EObject elementToDelete) {
+		CacheAdapter adapter = CacheAdapter.getCacheAdapter(elementToDelete);
+		if (adapter == null) {
+			adapter = CacheAdapter.getInstance();
+		}
+		adapter.unsetTarget(elementToDelete);
+		if (elementToDelete.eResource() != null) {
+			elementToDelete.eResource().getContents().remove(elementToDelete);
+		}
+
+		EObject parent = elementToDelete.eContainer();
+		if (parent == null) {
+			return;
+		}
+		EReference containmentFeature = elementToDelete.eContainmentFeature();
+
+		if (containmentFeature.getUpperBound() == 1) {
+			parent.eUnset(containmentFeature);
+		} else {
+			List<?> values = (List<?>) parent.eGet(containmentFeature);
+			values.remove(elementToDelete);
+		}
 	}
 }

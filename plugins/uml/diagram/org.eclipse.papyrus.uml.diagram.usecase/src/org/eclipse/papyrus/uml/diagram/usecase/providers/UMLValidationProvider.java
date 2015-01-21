@@ -41,6 +41,7 @@ public class UMLValidationProvider {
 		final Runnable op = operation;
 		Runnable task = new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					constraintsActive = true;

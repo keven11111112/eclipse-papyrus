@@ -1,9 +1,1 @@
-/TextAware.java
-/NodeEditPart.java
-/ChildNodeLabelEditPart.java
-/ChoiceUtils_qvto.java
-/CompartmentEditPart.java
-/DiagramEditPart.java
-/LinkEditPart.java
-/LinkLabelEditPart.java
-/NodeLabelEditPart.java
+/ExternalNodeLabelEditPart.java

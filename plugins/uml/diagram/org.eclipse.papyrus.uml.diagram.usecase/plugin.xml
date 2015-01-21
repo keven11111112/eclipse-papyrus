@@ -472,114 +472,114 @@
 		<entry
 		      description="Diagram Nodes"
 		      id="usecase.group.nodes"
-		      kind="drawer"
+		      kind="stack"
 		      label="Nodes"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="usecase.tool.package"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.subject"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.actor"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.usecase"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.constraint"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.comment"
-		        path="/usecase.group.nodes">
+				path="/usecase.group.nodes">
 		  </predefinedEntry>
 		<entry
 		      description="Child Elements of the Diagram Nodes"
 		      id="usecase.group.children"
-		      kind="drawer"
+		      kind="stack"
 		      label="Children"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="usecase.tool.extensionpoint"
-		        path="/usecase.group.children">
+				path="/usecase.group.children">
 		  </predefinedEntry>
 		<entry
 		      description="Diagram Links"
 		      id="usecase.group.links"
-		      kind="drawer"
+		      kind="stack"
 		      label="Links"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="usecase.tool.association"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.generalization"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.dependency"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.abstraction"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.realization"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.usage"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.packagemerge"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.packageimport"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.include"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.extend"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.constraintlink"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="usecase.tool.commentlink"
-		        path="/usecase.group.links">
+				path="/usecase.group.links">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.usecase"/>

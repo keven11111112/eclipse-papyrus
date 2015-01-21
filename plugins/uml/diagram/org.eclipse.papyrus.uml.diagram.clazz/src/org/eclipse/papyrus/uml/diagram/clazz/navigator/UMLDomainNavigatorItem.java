@@ -32,6 +32,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 		final Class[] supportedTypes = new Class[]{ EObject.class, IPropertySource.class };
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.clazz.navigator.UMLDomainNavigatorItem) {
@@ -47,6 +48,7 @@ public class UMLDomainNavigatorItem extends PlatformObject {
 				return null;
 			}
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;

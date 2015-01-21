@@ -685,7 +685,7 @@ public class UMLElementTypes {
 			elements.put(InformationFlow_4026, UMLPackage.eINSTANCE.getInformationFlow());
 			elements.put(ConstraintContext_8500, UMLPackage.eINSTANCE.getConstraint_Context());
 		}
-		return (ENamedElement)elements.get(type);
+		return elements.get(type);
 	}
 
 	/**

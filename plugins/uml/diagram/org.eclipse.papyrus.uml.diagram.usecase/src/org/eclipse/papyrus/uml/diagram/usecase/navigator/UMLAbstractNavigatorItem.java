@@ -29,12 +29,14 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 		final Class[] supportedTypes = new Class[]{ ITabbedPropertySheetPageContributor.class };
 		final ITabbedPropertySheetPageContributor propertySheetPageContributor = new ITabbedPropertySheetPageContributor() {
 
+			@Override
 			public String getContributorId() {
 				return "org.eclipse.papyrus.uml.diagram.usecase"; //$NON-NLS-1$
 			}
 		};
 		Platform.getAdapterManager().registerAdapters(new IAdapterFactory() {
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Object getAdapter(Object adaptableObject, Class adapterType) {
 				if(adaptableObject instanceof org.eclipse.papyrus.uml.diagram.usecase.navigator.UMLAbstractNavigatorItem && adapterType == ITabbedPropertySheetPageContributor.class) {
@@ -43,6 +45,7 @@ public abstract class UMLAbstractNavigatorItem extends PlatformObject {
 				return null;
 			}
 
+			@Override
 			@SuppressWarnings("rawtypes")
 			public Class[] getAdapterList() {
 				return supportedTypes;

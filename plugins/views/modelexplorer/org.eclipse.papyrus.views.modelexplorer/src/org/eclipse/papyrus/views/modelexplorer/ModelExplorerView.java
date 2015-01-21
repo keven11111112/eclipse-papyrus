@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus (CEA) - bug 441857
  *  Christian W. Damus - bug 450235
+ *  Christian W. Damus - bug 451683
  *
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer;
@@ -26,7 +27,6 @@ import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 import java.util.concurrent.atomic.AtomicBoolean;
 
 import org.eclipse.core.commands.operations.IUndoContext;
@@ -107,16 +107,14 @@ import org.eclipse.ui.IPropertyListener;
 import org.eclipse.ui.ISaveablePart;
 import org.eclipse.ui.ISelectionListener;
 import org.eclipse.ui.IViewSite;
-import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
 import org.eclipse.ui.PartInitException;
-import org.eclipse.ui.internal.navigator.NavigatorContentService;
-import org.eclipse.ui.internal.navigator.extensions.NavigatorContentDescriptor;
 import org.eclipse.ui.navigator.CommonNavigator;
 import org.eclipse.ui.navigator.CommonViewer;
 import org.eclipse.ui.navigator.CommonViewerSorter;
 import org.eclipse.ui.navigator.IExtensionActivationListener;
 import org.eclipse.ui.navigator.ILinkHelper;
+import org.eclipse.ui.navigator.INavigatorContentService;
 import org.eclipse.ui.navigator.LinkHelperService;
 import org.eclipse.ui.part.FileEditorInput;
 import org.eclipse.ui.views.properties.IPropertySheetPage;
@@ -684,18 +682,6 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void init(IViewSite site) throws PartInitException {
-		super.init(site);
-		IWorkbenchPage page = site.getPage();
-		// an ISelectionListener to react to workbench selection changes.
-
-		page.addSelectionListener(pageSelectionListener);
-	}
-
-	/**
 	 * {@link ResourceSetListener} to listen and react to changes in the
 	 * resource set.
 	 */
@@ -855,6 +841,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 			// Can't get EditingDomain, skip
 		}
 
+		// listen to change events
+		getSite().getPage().addSelectionListener(pageSelectionListener);
+
 		// Listen to isDirty flag
 		saveAndDirtyService.addInputChangedListener(editorInputChangedListener);
 
@@ -904,6 +893,22 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		editingDomain = null;
 		editingDomain = null;
 		lastTrans = null;
+	}
+
+	/**
+	 * Invoked internally to clear the common viewer's associate listener in order to promote garbage collection.
+	 */
+	void aboutToDispose() {
+		final CommonViewer viewer = getCommonViewer();
+		if ((viewer.getTree() != null) && !viewer.getTree().isDisposed()) {
+			viewer.setInput(null);
+
+			// Kick the NavigatorContentService to clear the cache in its StructuredViewerManager that leaks all of our tree elements
+			INavigatorContentService contentService = getNavigatorContentService();
+			if (contentService instanceof IExtensionActivationListener) {
+				((IExtensionActivationListener) getNavigatorContentService()).onExtensionActivation(contentService.getViewerId(), new String[0], false);
+			}
+		}
 	}
 
 	/**
@@ -1090,11 +1095,11 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 				 * in the good order. This is a lot faster than going through the whole tree
 				 * using getChildren of the ContentProvider since our Viewer uses a Hashtable
 				 * to keep track of the revealed elements.
-				 * 
+				 *
 				 * However we need to use a dedicated MatchingItem to do the matching,
 				 * and a specific comparer in our viewer so than the equals of MatchingItem is
 				 * used in priority.
-				 * 
+				 *
 				 * Please refer to MatchingItem for more infos.
 				 */
 				EObject previousParent = null;

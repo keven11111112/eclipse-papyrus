@@ -31,7 +31,6 @@ import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DirectEditManager;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
-import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserOptions;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
@@ -314,6 +313,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
+			@Override
 			public String isValid(final Object value) {
 				if(value instanceof String) {
 					final EObject element = getParserElement();
@@ -321,11 +321,12 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 					try {
 						IParserEditStatus valid = (IParserEditStatus)getEditingDomain().runExclusive(new RunnableWithResult.Impl<java.lang.Object>() {
 
+							@Override
 							public void run() {
 								setResult(parser.isValidEditString(new EObjectAdapter(element), (String)value));
 							}
 						});
-						return valid.getCode() == ParserEditStatus.EDITABLE ? null : valid.getMessage();
+						return valid.getCode() == IParserEditStatus.EDITABLE ? null : valid.getMessage();
 					} catch (InterruptedException ie) {
 						ie.printStackTrace();
 					}
@@ -386,6 +387,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 	protected void performDirectEdit() {
 		BusyIndicator.showWhile(Display.getDefault(), new java.lang.Runnable() {
 
+			@Override
 			public void run() {
 				getManager().show();
 			}
@@ -444,7 +446,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 				} else if(configuration instanceof IAdvancedEditorConfiguration) {
 					dialog = ((IAdvancedEditorConfiguration)configuration).createDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()));
 				} else if(configuration instanceof IDirectEditorConfiguration) {
-					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), ((IDirectEditorConfiguration)configuration).getTextToEdit(resolveSemanticElement()), (IDirectEditorConfiguration)configuration);
+					dialog = new ExtendedDirectEditionDialog(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), resolveSemanticElement(), configuration.getTextToEdit(resolveSemanticElement()), configuration);
 				} else {
 					return;
 				}
@@ -478,6 +480,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(request.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {
@@ -614,6 +617,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 		if(accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
 
+				@Override
 				public void getName(AccessibleEvent e) {
 					e.result = getLabelTextHelper(getFigure());
 				}
@@ -708,6 +712,7 @@ public class OperationForComponentEditPart extends UMLCompartmentEditPart implem
 		try {
 			getEditingDomain().runExclusive(new Runnable() {
 
+				@Override
 				public void run() {
 					if(isActive() && isEditable()) {
 						if(theRequest.getExtendedData().get(RequestConstants.REQ_DIRECTEDIT_EXTENDEDDATA_INITIAL_CHAR) instanceof Character) {

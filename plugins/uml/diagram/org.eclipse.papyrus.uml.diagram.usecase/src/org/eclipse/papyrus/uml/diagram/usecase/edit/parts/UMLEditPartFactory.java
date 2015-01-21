@@ -47,6 +47,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActorAppliedStereotypeEditPartTN(view);
 			case ActorQualifiedNameEditPartTN.VISUAL_ID:
 				return new ActorQualifiedNameEditPartTN(view);
+			case ActorFloatingLabelEditPartTN.VISUAL_ID:
+				return new ActorFloatingLabelEditPartTN(view);
 			case ActorAsRectangleEditPartTN.VISUAL_ID:
 				return new ActorAsRectangleEditPartTN(view);
 			case ActorAsRectangleNameEditPartTN.VISUAL_ID:
@@ -55,6 +57,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new UseCaseEditPartTN(view);
 			case UseCaseNameEditPartTN.VISUAL_ID:
 				return new UseCaseNameEditPartTN(view);
+			case UseCaseFloatingLabelEditPartTN.VISUAL_ID:
+				return new UseCaseFloatingLabelEditPartTN(view);
 			case UseCaseAsRectangleEditPartTN.VISUAL_ID:
 				return new UseCaseAsRectangleEditPartTN(view);
 			case UseCaseAsRectangleNameEditPartTN.VISUAL_ID:
@@ -63,6 +67,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new SubjectClassifierEditPartTN(view);
 			case SubjectClassifierNameEditPartTN.VISUAL_ID:
 				return new SubjectClassifierNameEditPartTN(view);
+			case SubjectClassifierFloatingLabelEditPartTN.VISUAL_ID:
+				return new SubjectClassifierFloatingLabelEditPartTN(view);
 			case PackageEditPartTN.VISUAL_ID:
 				return new PackageEditPartTN(view);
 			case PackageNameEditPartTN.VISUAL_ID:
@@ -93,6 +99,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new UseCaseInComponentEditPart(view);
 			case UseCaseInComponentNameEditPart.VISUAL_ID:
 				return new UseCaseInComponentNameEditPart(view);
+			case UseCaseInComponentFloatingLabelEditPart.VISUAL_ID:
+				return new UseCaseInComponentFloatingLabelEditPart(view);
 			case ComponentInComponentEditPart.VISUAL_ID:
 				return new ComponentInComponentEditPart(view);
 			case ComponentInComponentNameEditPart.VISUAL_ID:
@@ -115,6 +123,8 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActorInComponentAppliedStereotypeEditPart(view);
 			case ActorQualifiedNameInCEditPart.VISUAL_ID:
 				return new ActorQualifiedNameInCEditPart(view);
+			case ActorInComponentFloatingLabelEditPart.VISUAL_ID:
+				return new ActorInComponentFloatingLabelEditPart(view);
 			case ConstraintInPackageEditPart.VISUAL_ID:
 				return new ConstraintInPackageEditPart(view);
 			case ConstraintInPackageNameEditPart.VISUAL_ID:
@@ -129,14 +139,20 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActorInPackageAppliedStereotypeEditPart(view);
 			case ActorQualifiedNameInPEditPart.VISUAL_ID:
 				return new ActorQualifiedNameInPEditPart(view);
+			case ActorInPackageFloatingLabelEditPart.VISUAL_ID:
+				return new ActorInPackageFloatingLabelEditPart(view);
 			case UseCaseInPackageEditPart.VISUAL_ID:
 				return new UseCaseInPackageEditPart(view);
 			case UseCaseInPackageNameEditPart.VISUAL_ID:
 				return new UseCaseInPackageNameEditPart(view);
+			case UseCaseInPackageFloatingLabelEditPart.VISUAL_ID:
+				return new UseCaseInPackageFloatingLabelEditPart(view);
 			case ComponentInPackageEditPart.VISUAL_ID:
 				return new ComponentInPackageEditPart(view);
 			case ComponentInPackageNameEditPart.VISUAL_ID:
 				return new ComponentInPackageNameEditPart(view);
+			case ComponentInPackageFloatingLabelEditPart.VISUAL_ID:
+				return new ComponentInPackageFloatingLabelEditPart(view);
 			case PackageEditPartCN.VISUAL_ID:
 				return new PackageEditPartCN(view);
 			case PackageNameEditPartCN.VISUAL_ID:

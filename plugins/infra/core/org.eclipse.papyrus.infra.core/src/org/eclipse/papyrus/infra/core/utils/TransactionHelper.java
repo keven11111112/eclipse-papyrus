@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,8 @@
  *  Christian W. Damus (CEA) - bug 429826
  *  Christian W. Damus (CEA) - bug 408491
  *  Christian W. Damus (CEA) - bug 433320
+ *  Christian W. Damus - bug 451557
+ *  Christian W. Damus - bug 457560
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -21,6 +23,7 @@ import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -42,6 +45,8 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	// Refactoring needed. The sasheditor contentprovider should have dependencies to infra.EMF...
 
 	public static final String TRANSACTION_OPTION_READ_ONLY_AXIS = "papyrus.read_only_axis"; //$NON-NLS-1$
+
+	public static final String TRANSACTION_OPTION_NO_READ_ONLY_CACHE = "papyrus.no_read_only_cache"; //$NON-NLS-1$
 
 	public static final String TRANSACTION_OPTION_INTERACTIVE = "papyrus.interactive"; //$NON-NLS-1$
 
@@ -159,6 +164,58 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	}
 
 	/**
+	 * Merges the option to disable read-only state caching into an existing map of {@code options}.
+	 *
+	 * @param options
+	 *            an existing (non-{@code null}) options map
+	 * @param disableCache
+	 *            whether to disable read-only caching
+	 * @return the augmented {@code options}
+	 */
+	public static Map<String, Object> mergeDisableReadOnlyOption(Map<String, Object> options, boolean disableCache) {
+		options.put(TRANSACTION_OPTION_NO_READ_ONLY_CACHE, disableCache);
+		return options;
+	}
+
+	/**
+	 * Adds the option to disable read-only state caching to a transaction's {@code options}.
+	 *
+	 * @param options
+	 *            an options map, which may be {@code null} or immutable
+	 * @param disableCache
+	 *            whether to disable read-only caching
+	 * @return a new map based on the {@code options} and including the {@code disableCache} option
+	 */
+	public static Map<String, Object> addDisableReadOnlyCacheOption(Map<String, ?> options, boolean disableCache) {
+		Map<String, Object> result = (options == null) ? Maps.<String, Object> newHashMap() : Maps.newHashMap(options);
+		result.put(TRANSACTION_OPTION_NO_READ_ONLY_CACHE, disableCache);
+		return result;
+	}
+
+	/**
+	 * Creates a new mutable transaction options map with the option to disable caching of read-only state for objects and resources.
+	 *
+	 * @param disableCache
+	 *            whether to disable read-only caching
+	 * @return a new mutable map including the {@code disableCache} option
+	 */
+	public static Map<String, Object> disableReadOnlyCacheOption(boolean disableCache) {
+		return addDisableReadOnlyCacheOption(null, disableCache);
+	}
+
+	/**
+	 * Queries whether a {@code transaction} is running with caching of read-only state of objects and resources disabled.
+	 *
+	 * @param transaction
+	 *            a transaction
+	 * @return {@code true} if the {@code transaction} has the {@linkplain #TRANSACTION_OPTION_INTERACTIVE interactive option} set {@code true}; {@code false}, otherwise (including the default case of no option set)
+	 */
+	public static boolean isReadOnlyCacheDisabled(Transaction transaction) {
+		Object value = transaction.getOptions().get(TRANSACTION_OPTION_INTERACTIVE);
+		return (value instanceof Boolean) ? (Boolean) value : false;
+	}
+
+	/**
 	 * Merges the {@code interactive} transaction option into an existing map of {@code options}.
 	 *
 	 * @param options
@@ -231,6 +288,8 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 			public void run() {
 				try {
 					runnable.run(monitorHolder[0]);
+				} catch (RuntimeException e) {
+					throw e;
 				} catch (Exception e) {
 					throw new WrappedException(e);
 				}
@@ -245,6 +304,8 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 
 				try {
 					privileged.run();
+				} catch (OperationCanceledException e) {
+					throw new InterruptedException(e.getLocalizedMessage());
 				} catch (WrappedException e) {
 					Exception unwrapped = e.exception();
 					if (unwrapped instanceof InvocationTargetException) {

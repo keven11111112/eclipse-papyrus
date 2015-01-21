@@ -337,7 +337,7 @@ public class UMLElementTypes {
 			elements.put(PackageMerge_4018, UMLPackage.eINSTANCE.getPackageMerge());
 			elements.put(PackageImport_4019, UMLPackage.eINSTANCE.getPackageImport());
 		}
-		return (ENamedElement)elements.get(type);
+		return elements.get(type);
 	}
 
 	/**

@@ -27,7 +27,7 @@
    <extension
          point="org.eclipse.core.runtime.preferences">
       <initializer
-            class="org.eclipse.papyrus.revision.tool.preference.PreferenceInitializer">
+            class="org.eclipse.papyrus.revision.tool.preference.ReviewPreferenceInitializer">
       </initializer>
    </extension>
    <extension
@@ -51,41 +51,43 @@
             path="pathmap://Review_PROFILES/Versioning.profile.uml"
             provider="CEA LIST">
       </profile>
+      <profile
+            description="Profile used to store some changes during revision"
+            name="ChangeProfile"
+            path="pathmap://Review_PROFILES/Changes.profile.uml"
+            provider="CEA LIST">
+      </profile>
    </extension>
 <extension point="org.eclipse.papyrus.views.properties.context">
 <context contextModel="properties/Review.ctx"/>
 </extension>
 <extension
-      point="org.eclipse.ui.commands">
-   <category
-         id="org.eclipse.papyrus.revisiontool.commands.category"
-         name="Sample Category">
-   </category>
-   <command
-         categoryId="org.eclipse.papyrus.revisiontool.commands.category"
-         id="org.eclipse.papyrus.revisiontool.commands.sampleCommand"
-         name="Sample Command">
-   </command>
-</extension>
-<extension
       point="org.eclipse.ui.handlers">
    <handler
          class="org.eclipse.papyrus.revision.tool.handlers.ReviewCreateHandler"
-         commandId="org.eclipse.papyrus.revisiontool.commands.sampleCommand">
+         commandId="org.eclipse.papyrus.revisiontool.commands.ReviewCreateHandler">
    </handler>
    <handler
-         class="org.eclipse.papyrus.revision.tool.handlers.DeleteReviewCreateHandler"
+         class="org.eclipse.papyrus.revision.tool.handlers.DeleteReviewHandler"
          commandId="org.eclipse.papyrus.revisiontool.commands.deletereview">
    </handler>
    <handler
          class="org.eclipse.papyrus.revision.tool.handlers.HookReviewHandler"
          commandId="org.eclipse.papyrus.revisiontool.commands.hookreview">
    </handler>
+   <handler
+         class="org.eclipse.papyrus.revision.tool.handlers.RefuseReviewHandler"
+         commandId="org.eclipse.papyrus.revisiontool.commands.refusereview">
+   </handler>
+   <handler
+         class="org.eclipse.papyrus.revision.tool.handlers.AcceptReviewHandler"
+         commandId="org.eclipse.papyrus.revisiontool.commands.acceptreview">
+   </handler>
 </extension>
 <extension
       point="org.eclipse.ui.bindings">
    <key
-         commandId="org.eclipse.papyrus.revisiontool.commands.sampleCommand"
+         commandId="org.eclipse.papyrus.revisiontool.commands.ReviewCreateHandler"
          contextId="org.eclipse.ui.contexts.window"
          schemeId="org.eclipse.ui.defaultAcceleratorConfiguration"
          sequence="M1+1">
@@ -113,7 +115,7 @@
             label="New"
             mnemonic="M">
          <command
-               commandId="org.eclipse.papyrus.revisiontool.commands.sampleCommand"
+               commandId="org.eclipse.papyrus.revisiontool.commands.ReviewCreateHandler"
                icon="img/Add.png"
                id="org.eclipse.papyrus.revisiontool.menus.sampleCommand"
                label="Review"
@@ -139,6 +141,22 @@
             style="push"
             tooltip="Hook">
       </command>
+      <command
+            commandId="org.eclipse.papyrus.revisiontool.commands.acceptreview"
+            icon="img/accept.JPG"
+            id="org.eclipse.papyrus.revisiontool.commands.acceptreview"
+            label="Accept Review"
+            style="push"
+            tooltip="Accept Review">
+      </command>
+      <command
+            commandId="org.eclipse.papyrus.revisiontool.commands.refusereview"
+            icon="img/refuse.JPG"
+            id="org.eclipse.papyrus.revisiontool.commands.refusereview"
+            label="Refuse Review"
+            style="push"
+            tooltip="Refuse Review">
+      </command>
    </menuContribution>
    <menuContribution
          allPopups="true"
@@ -162,5 +180,70 @@
             tooltip="Hook">
       </command>
    </menuContribution>
+   <menuContribution
+         locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+      <menu
+            id="org.eclipse.papyrus.revisiontool.menus.revisionmenu"
+            label="Revision"
+            mnemonic="M">
+         <command
+               commandId="org.eclipse.papyrus.revisiontool.commands.revisionlaunch"
+               hoverIcon="Revision Mode"
+               label="Revision Mode"
+               style="toggle">
+            <visibleWhen
+                  checkEnabled="true">
+            </visibleWhen>
+         </command>
+      </menu>
+   </menuContribution>
+</extension>
+<extension
+      point="org.eclipse.ui.commands">
+   <command
+         defaultHandler="org.eclipse.papyrus.revision.tool.handlers.LaunchRevisionMode"
+         id="org.eclipse.papyrus.revisiontool.commands.revisionlaunch"
+         name="org.eclipse.papyrus.revisiontool.commands.revisionlaunch">
+       <state
+         class="org.eclipse.ui.handlers.RegistryToggleState:false"
+         id="org.eclipse.ui.commands.toggleState">
+   </state>
+   </command>
+   <command
+         defaultHandler="org.eclipse.papyrus.revision.tool.handlers.SaveSnapshotRevision"
+         id="org.eclipse.papyrus.revision.tool.handlers.SaveSnapshotRevision"
+         name="org.eclipse.papyrus.revision.tool.handlers.SaveSnapshotRevision">
+      <state
+            class="org.eclipse.ui.handlers.RegistryToggleState:false"
+            id="org.eclipse.ui.commands.toggleState">
+      </state>
+   </command>
+</extension>
+ <extension
+         point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+      <metamodel
+            nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+         <adviceBinding
+               class="org.eclipse.papyrus.revision.tool.advice.AdviceRemove"
+               id="org.eclipse.papyrus.uml.advice.fobidremove"
+               inheritance="all"
+               typeId="org.eclipse.papyrus.uml.Element">
+         </adviceBinding>
+      </metamodel>
+   </extension>
+   <!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.advice.fobidremove"/>
+	</binding>
+		
+</extension>
+<extension
+      point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+   <modeldeclaration
+         file="resource/revision.custom">
+   </modeldeclaration>
 </extension>
 </plugin>

@@ -36,19 +36,20 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
-import org.eclipse.papyrus.uml.diagram.common.editparts.UMLNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
-import org.eclipse.papyrus.uml.diagram.usecase.edit.policies.ExternalNodeActorLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.usecase.figure.StickMan;
+import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.usecase.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
 /**
  * @generated
  */
-public class ActorInComponentEditPart extends UMLNodeEditPart {
+public class ActorInComponentEditPart extends RoundedCompartmentEditPart {
 
 	/**
 	 * @generated
@@ -80,7 +81,7 @@ public class ActorInComponentEditPart extends UMLNodeEditPart {
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicy.LAYOUT_ROLE, new ExternalNodeActorLayoutEditPolicy());
+		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 	}
@@ -91,14 +92,17 @@ public class ActorInComponentEditPart extends UMLNodeEditPart {
 	protected LayoutEditPolicy createLayoutEditPolicy() {
 		org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy lep = new org.eclipse.gmf.runtime.diagram.ui.editpolicies.LayoutEditPolicy() {
 
+			@Override
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View)child.getModel();
 				switch(UMLVisualIDRegistry.getVisualID(childView)) {
 				case ActorInComponentNameEditPart.VISUAL_ID:
 				case ActorInComponentAppliedStereotypeEditPart.VISUAL_ID:
 				case ActorQualifiedNameInCEditPart.VISUAL_ID:
+				case ActorInComponentFloatingLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
+						@Override
 						protected List<?> createSelectionHandles() {
 							MoveHandle mh = new MoveHandle((GraphicalEditPart)getHost());
 							mh.setBorder(null);
@@ -113,10 +117,12 @@ public class ActorInComponentEditPart extends UMLNodeEditPart {
 				return result;
 			}
 
+			@Override
 			protected Command getMoveChildrenCommand(Request request) {
 				return null;
 			}
 
+			@Override
 			protected Command getCreateCommand(CreateRequest request) {
 				return null;
 			}
@@ -149,15 +155,15 @@ public class ActorInComponentEditPart extends UMLNodeEditPart {
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new StickMan();
+		return primaryShape = new RoundedCompartmentFigure();
 	}
 
 	/**
-	 * org.eclipse.papyrus.uml.diagram.usecase.figure.StickMan
+	 * org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure
 	 * @generated
 	 */
-	public StickMan getPrimaryShape() {
-		return (StickMan)primaryShape;
+	public RoundedCompartmentFigure getPrimaryShape() {
+		return (RoundedCompartmentFigure)primaryShape;
 	}
 
 	/**
@@ -172,6 +178,9 @@ public class ActorInComponentEditPart extends UMLNodeEditPart {
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else if(borderItemEditPart instanceof ActorQualifiedNameInCEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if(borderItemEditPart instanceof ActorInComponentFloatingLabelEditPart) {
+			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);

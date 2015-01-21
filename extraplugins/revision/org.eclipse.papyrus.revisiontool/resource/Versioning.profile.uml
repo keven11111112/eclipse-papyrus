@@ -71,6 +71,17 @@ It is based on concepts defined in the chapter &quot;4.3.2 Pre-Defined Metadata 
       <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
     </packageImport>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_HoZwEM7gEeOUWOjBbvvZ9Q" name="VersioningElement">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_9dNKcIUVEeSVSpmUeqlzmw">
+        <body>An element under version contains a set of data:&#xD;
+- the generator attribute contains a string that identifies the OpenDocument producer that was used to create or last modify the document.&#xD;
+- the description attributes contains a description of a model element.&#xD;
+- the creationDate attribute specifies the date and time when a model element was created.&#xD;
+- the keyword attribute specifies a list of keywords pertaining to a model element.&#xD;
+- the date attribute specifies the date and time when the model elemeent was last modified.&#xD;
+- the language attribute specifies the default language of a document.&#xD;
+- the editingCycles attribute specifies the number of times a document has been edited. When a document is created, this value is set to 1. Each time a document is saved, the editing-cycles number is incremented by 1.&#xD;&#xD;&#xD;
+- the author attribute specifies the author that as create the element under version.</body>
+      </ownedComment>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_MFHzAM7gEeOUWOjBbvvZ9Q" name="base_Element" association="_MFIaEM7gEeOUWOjBbvvZ9Q">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Element"/>
       </ownedAttribute>
@@ -142,6 +153,15 @@ It is based on concepts defined in the chapter &quot;4.3.2 Pre-Defined Metadata 
       <ownedEnd xmi:type="uml:ExtensionEnd" xmi:id="_MFIaEc7gEeOUWOjBbvvZ9Q" name="extension_VersioningElement" type="_HoZwEM7gEeOUWOjBbvvZ9Q" aggregation="composite" association="_MFIaEM7gEeOUWOjBbvvZ9Q"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_9x2KsGTJEeS0T8QWLYAQCA" name="Author">
+      <ownedComment xmi:type="uml:Comment" xmi:id="_RbTGAIUVEeSVSpmUeqlzmw">
+        <body>This author is a person that has created the element under versioning.&#xD;
+The author has 3 attributes:&#xD;
+- the language, attribute used specifies the language spoken by the author.&#xD;
+- the color  attribute specifies the color associated to an element under version.&#xD;
+- the versioningElements attribute specifies the list of elements that are under version&#xD;
+&#xD;
+This stereotype can only applied on Actor.</body>
+      </ownedComment>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_9x2KsmTJEeS0T8QWLYAQCA" name="language" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9x2Ks2TJEeS0T8QWLYAQCA"/>

@@ -22,13 +22,14 @@ import org.eclipse.gmf.codegen.gmfgen.GenNavigatorReferenceType
 import xpt.Common
 import xpt.Common_qvto
 import xpt.editor.VisualIDRegistry
-import xpt.navigator.Utils_qvto
+import xpt.navigator.Utils_qvtoimport xpt.CodeStyle
 
 @Singleton class NavigatorContentProvider extends xpt.navigator.NavigatorContentProvider {
 	@Inject extension Common;
 	@Inject extension Common_qvto;
 	@Inject extension Utils_qvto;
-
+	@Inject extension CodeStyle
+	
 	@Inject VisualIDRegistry xptVisualIDRegistry;
 
 
@@ -63,7 +64,7 @@ import xpt.navigator.Utils_qvto
 
 	override processChanges(GenNavigator it) '''
 		for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-			org.eclipse.emf.ecore.resource.Resource nextResource = (org.eclipse.emf.ecore.resource.Resource) it.next();
+			org.eclipse.emf.ecore.resource.Resource nextResource = it.next();
 				nextResource.unload();
 		}
 		if (myViewer != null) {
@@ -77,6 +78,8 @@ import xpt.navigator.Utils_qvto
 		myEditingDomain = (org.eclipse.emf.edit.domain.AdapterFactoryEditingDomain) editingDomain;
 		@SuppressWarnings("serial")
 		java.util.Map<org.eclipse.emf.ecore.resource.Resource, java.lang.Boolean> map = new java.util.HashMap<org.eclipse.emf.ecore.resource.Resource, java.lang.Boolean>() {
+			
+			«overrideI(it.editorGen.diagram)»
 			public java.lang.Boolean get(java.lang.Object key) {
 				if (!containsKey(key)) {
 					if (key instanceof org.eclipse.emf.ecore.resource.Resource) {
@@ -88,6 +91,8 @@ import xpt.navigator.Utils_qvto
 		};
 		myEditingDomain.setResourceToReadOnlyMap(map);
 		myViewerRefreshRunnable = new Runnable() {
+			
+			«overrideI(it.editorGen.diagram)»
 			public void run() {
 				if (myViewer != null) {
 					myViewer.refresh();
@@ -95,17 +100,22 @@ import xpt.navigator.Utils_qvto
 			}
 		};
 		myWorkspaceSynchronizer = new org.eclipse.emf.workspace.util.WorkspaceSynchronizer(editingDomain, new org.eclipse.emf.workspace.util.WorkspaceSynchronizer.Delegate() {
+			
+			«overrideC(it.editorGen.diagram)»
 			public void dispose() {
 			}
 		
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceChanged(final org.eclipse.emf.ecore.resource.Resource resource) {
 				«processChanges(it)»
 			}
 			
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceDeleted(org.eclipse.emf.ecore.resource.Resource resource) {
 				«processChanges(it)»
 			}
 			
+			«overrideC(it.editorGen.diagram)»
 			public boolean handleResourceMoved(org.eclipse.emf.ecore.resource.Resource resource, final org.eclipse.emf.common.util.URI newURI) {
 				«processChanges(it)»
 			}
@@ -127,7 +137,7 @@ import xpt.navigator.Utils_qvto
 			myViewerRefreshRunnable = null;
 			
 			for (java.util.Iterator<org.eclipse.emf.ecore.resource.Resource> it = myEditingDomain.getResourceSet().getResources().iterator(); it.hasNext();) {
-				org.eclipse.emf.ecore.resource.Resource resource = (org.eclipse.emf.ecore.resource.Resource) it.next();
+				org.eclipse.emf.ecore.resource.Resource resource = it.next();
 				resource.unload();
 			}
 			
@@ -178,96 +188,100 @@ import xpt.navigator.Utils_qvto
 	'''
 
 	override utilityMethods(GenNavigator it) '''
-«««		«generatedMemberComment»
-«««		private java.util.Collection getLinksSourceByType(java.util.Collection edges, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
-«««		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-«««		 		org.eclipse.gmf.runtime.notation.View nextEdgeSource = nextEdge.getSource();
-«««		 		if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
-«««		 			result.add(nextEdgeSource);
-«««		 		}
-«««		 	}
-«««		 	return result;
-«««		}
-«««			
-«««		«generatedMemberComment»
-«««		 private java.util.Collection getLinksTargetByType(java.util.Collection edges, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
-«««		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
-«««		 		org.eclipse.gmf.runtime.notation.View nextEdgeTarget = nextEdge.getTarget();
-«««		 		if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
-«««		 			result.add(nextEdgeTarget);
-«««		 		}
-«««		 	}
-«««		 	return result;
-«««		}
-«««		«generatedMemberComment»
-«««		 private java.util.Collection getOutgoingLinksByType(java.util.Collection nodes, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
-«««		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
-«««				result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
-«««		 	}
-«««		 	return result;
-«««		}
-«««			
-«««		«generatedMemberComment»
-«««		private java.util.Collection getIncomingLinksByType(java.util.Collection nodes, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
-«««		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
-«««				result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
-«««		 	}
-«««		 	return result;
-«««		}
-«««			
-«««		«generatedMemberComment»
-«««		private java.util.Collection getChildrenByType(java.util.Collection nodes, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««			for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
-«««				org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
-«««				result.addAll(selectViewsByType(nextNode.getChildren(), type));
-«««			}
-«««			return result;
-«««		}
-«««			
-«««		«generatedMemberComment»
-«««		private java.util.Collection getDiagramLinksByType(java.util.Collection diagrams, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««			for (java.util.Iterator it = diagrams.iterator(); it.hasNext();) {
-«««				org.eclipse.gmf.runtime.notation.Diagram nextDiagram = (org.eclipse.gmf.runtime.notation.Diagram) it.next();
-«««				result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
-«««			}
-«««			return result;
-«««		}
-«««		«generatedMemberComment»
-«««		private java.util.Collection selectViewsByType(java.util.Collection views, String type) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
-«««				org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
-«««				if (type.equals(nextView.getType()) && isOwnView(nextView)) {
-«««					result.add(nextView);
-«««				}
-«««			}
-«««			return result;
-«««		}
+		«IF getNavigatorContainerNodes(it).notEmpty»
+		«generatedMemberComment»
+		private java.util.Collection getLinksSourceByType(java.util.Collection edges, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
+		 		org.eclipse.gmf.runtime.notation.View nextEdgeSource = nextEdge.getSource();
+		 		if (type.equals(nextEdgeSource.getType()) && isOwnView(nextEdgeSource)) {
+		 			result.add(nextEdgeSource);
+		 		}
+		 	}
+		 	return result;
+		}
 			
+		«generatedMemberComment»
+		 private java.util.Collection getLinksTargetByType(java.util.Collection edges, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = edges.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.Edge nextEdge = (org.eclipse.gmf.runtime.notation.Edge) it.next();
+		 		org.eclipse.gmf.runtime.notation.View nextEdgeTarget = nextEdge.getTarget();
+		 		if (type.equals(nextEdgeTarget.getType()) && isOwnView(nextEdgeTarget)) {
+		 			result.add(nextEdgeTarget);
+		 		}
+		 	}
+		 	return result;
+		}
+		«generatedMemberComment»
+		 private java.util.Collection getOutgoingLinksByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
+				result.addAll(selectViewsByType(nextNode.getSourceEdges(), type));
+		 	}
+		 	return result;
+		}
+			
+		«generatedMemberComment»
+		private java.util.Collection getIncomingLinksByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+		 	for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+		 		org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
+				result.addAll(selectViewsByType(nextNode.getTargetEdges(), type));
+		 	}
+		 	return result;
+		}
+«««			
+		«generatedMemberComment»
+		private java.util.Collection getChildrenByType(java.util.Collection nodes, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = nodes.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.View nextNode = (org.eclipse.gmf.runtime.notation.View) it.next();
+				result.addAll(selectViewsByType(nextNode.getChildren(), type));
+			}
+			return result;
+		}
+			
+		«generatedMemberComment»
+		private java.util.Collection getDiagramLinksByType(java.util.Collection diagrams, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = diagrams.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.Diagram nextDiagram = (org.eclipse.gmf.runtime.notation.Diagram) it.next();
+				result.addAll(selectViewsByType(nextDiagram.getEdges(), type));
+			}
+			return result;
+		}
+		«generatedMemberComment»
+		private java.util.Collection selectViewsByType(java.util.Collection views, String type) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
+				org.eclipse.gmf.runtime.notation.View nextView = (org.eclipse.gmf.runtime.notation.View) it.next();
+				if (type.equals(nextView.getType()) && isOwnView(nextView)) {
+					result.add(nextView);
+				}
+			}
+			return result;
+		}
+			
+		«generatedMemberComment»
+		private java.util.Collection createNavigatorItems(java.util.Collection views, Object parent, boolean isLeafs) {
+			java.util.Collection result = new java.util.ArrayList();
+			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
+				result.add(new «getNavigatorItemQualifiedClassName()»((org.eclipse.gmf.runtime.notation.View) it.next(), parent, isLeafs));
+			}
+			return result;
+		}
+		«ENDIF»
+		
 				«generatedMemberComment()»
 				private boolean isOwnView(org.eclipse.gmf.runtime.notation.View view) {
 					return «VisualIDRegistry::modelID(editorGen.diagram)».equals(«xptVisualIDRegistry.
 					getModelIDMethodCall(editorGen.diagram)»(view));
 				}
 			
-«««		«generatedMemberComment»
-«««		private java.util.Collection createNavigatorItems(java.util.Collection views, Object parent, boolean isLeafs) {
-«««			java.util.Collection result = new java.util.ArrayList();
-«««			for (java.util.Iterator it = views.iterator(); it.hasNext();) {
-«««				result.add(new «getNavigatorItemQualifiedClassName()»((org.eclipse.gmf.runtime.notation.View) it.next(), parent, isLeafs));
-«««			}
-«««			return result;
-«««		}
+		
 		«getForeignShortcuts(it)»
 	'''
 
@@ -301,7 +315,7 @@ import xpt.navigator.Utils_qvto
 			}
 	'''
 	
-
+	override createEditingDomain(GenNavigator it) '''org.eclipse.emf.workspace.WorkspaceEditingDomainFactory.INSTANCE.createEditingDomain()'''
 	
 //BEGIN: PapyrusGenCode
 //Loop to call generator of each method
@@ -343,7 +357,7 @@ private Object[] getViewChildrenFor«it.editPartClassName»(org.eclipse.gmf.runtim
 				«var segment = path.segments.get(segmentsIterator-1)»
 					«IF referencesIterator==1 && pathsIterator==1 && segmentsIterator==1»java.util.Collection «ENDIF»
 					connectedViews = «childrenMethodName(segment.from,reference.referenceType, segment) »
-					(«IF segmentsIterator==0»java.util.Collections.singleton(view)«ELSE»connectedViews«ENDIF»
+					(«IF segmentsIterator==1»java.util.Collections.singleton(view)«ELSE»connectedViews«ENDIF»
 					, «xptVisualIDRegistry.typeMethodCall(segment.to)»);
 
 				«ENDFOR»

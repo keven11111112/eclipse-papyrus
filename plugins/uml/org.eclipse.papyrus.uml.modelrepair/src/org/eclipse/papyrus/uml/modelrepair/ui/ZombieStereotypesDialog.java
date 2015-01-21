@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2013, 2014 CEA and others.
+ * Copyright (c) 2013, 2014 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,8 @@
  *   CEA - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (adapted from SwitchProfileDialog)
  *   Christian W. Damus - bug 451338
+ *   Christian W. Damus - bug 451557
+ *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 454997
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.ui;
@@ -18,8 +20,10 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.AbstractCollection;
 import java.util.Collection;
 import java.util.Collections;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
@@ -61,6 +65,7 @@ import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.markerlistener.dialogs.DiagnosticDialog;
+import org.eclipse.papyrus.infra.tools.util.UIUtil;
 import org.eclipse.papyrus.uml.modelrepair.Activator;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.IRepairAction;
 import org.eclipse.papyrus.uml.modelrepair.internal.stereotypes.ZombieStereotypesDescriptor;
@@ -68,6 +73,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -75,6 +81,7 @@ import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.uml2.uml.Profile;
 
 import com.google.common.base.Predicate;
 import com.google.common.collect.Iterables;
@@ -103,6 +110,8 @@ public class ZombieStereotypesDialog extends TrayDialog {
 
 	private ProgressMonitorPart progress;
 
+	private Map<String, Profile> brokenNamespaceProfileMap;
+
 	/**
 	 * @param shell
 	 */
@@ -120,7 +129,9 @@ public class ZombieStereotypesDialog extends TrayDialog {
 		this.zombieDescriptors = Lists.newArrayList(zombies);
 		this.labelProviderService = ServiceUtilsForResourceSet.getInstance().getService(LabelProviderService.class, modelSet);
 		this.actionsToApply = createActionsToApply();
+		this.brokenNamespaceProfileMap = new HashMap<String, Profile>();
 	}
+
 
 	private Collection<MissingSchema> createActionsToApply() {
 		return new AbstractCollection<ZombieStereotypesDialog.MissingSchema>() {
@@ -194,7 +205,7 @@ public class ZombieStereotypesDialog extends TrayDialog {
 		table.setLabelProvider(new ZombiesLabelProvider());
 		table.setInput(getMissingSchemas());
 
-		progress = new ProgressMonitorPart(self, null);
+		progress = new ProgressMonitorPart(self, null, true);
 		progress.setLayoutData(new GridData(SWT.FILL, SWT.LEAD, true, false));
 		progress.setVisible(false);
 
@@ -246,9 +257,14 @@ public class ZombieStereotypesDialog extends TrayDialog {
 							SubMonitor subMonitor = SubMonitor.convert(monitor, actionsToApply.size());
 
 							for (Iterator<MissingSchema> iter = repairActions.iterator(); iter.hasNext();) {
-								if (!iter.next().apply(diagnostics, subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE))) {
+								MissingSchema missingSchema = iter.next();
+
+								missingSchema.initialiseRepairAction(brokenNamespaceProfileMap);
+								if (!missingSchema.apply(diagnostics, subMonitor.newChild(1, SubMonitor.SUPPRESS_NONE))) {
 									// Leave this one to try it again
 									iter.remove();
+								} else {
+									saveRepairAction(missingSchema);
 								}
 							}
 
@@ -256,21 +272,26 @@ public class ZombieStereotypesDialog extends TrayDialog {
 						}
 					});
 
-					Cursor waitCursor = new Cursor(getShell().getDisplay(), SWT.CURSOR_WAIT);
+					final Cursor previousCursor = getShell().getCursor();
+					Cursor waitCursor = getShell().getDisplay().getSystemCursor(SWT.CURSOR_WAIT);
 					try {
 						getShell().setCursor(waitCursor);
 						progress.setVisible(true);
+						progress.attachToCancelComponent(null); // Enable the stop button
+						enableButtons(false);
 						ModalContext.run(runnable, true, progress, getShell().getDisplay());
+					} catch (InterruptedException e) {
+						// User cancelled. That's normal
 					} catch (Exception e) {
-						getShell().setCursor(null);
+						getShell().setCursor(previousCursor);
 						Throwable t = e;
 						if (e instanceof InvocationTargetException) {
 							t = ((InvocationTargetException) e).getTargetException();
 						}
 						StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Failed to repair stereotypes.", t), StatusManager.BLOCK | StatusManager.LOG);
 					} finally {
-						getShell().setCursor(null);
-						waitCursor.dispose();
+						enableButtons(true);
+						getShell().setCursor(previousCursor);
 						progress.setVisible(false);
 					}
 
@@ -318,6 +339,12 @@ public class ZombieStereotypesDialog extends TrayDialog {
 		super.buttonPressed(buttonId);
 	}
 
+	void enableButtons(boolean enable) {
+		for (Iterator<Button> iter = UIUtil.allChildren(getButtonBar(), Button.class); iter.hasNext();) {
+			iter.next().setEnabled(enable);
+		}
+	}
+
 	@Override
 	public void create() {
 		super.create();
@@ -343,7 +370,12 @@ public class ZombieStereotypesDialog extends TrayDialog {
 	protected void okPressed() {
 		applyPressed();
 
-		super.okPressed();
+		updateControls();
+
+		// Maybe the user cancelled the work
+		if (!getButton(APPLY_ID).isEnabled()) {
+			super.okPressed();
+		}
 	}
 
 	@Override
@@ -354,6 +386,17 @@ public class ZombieStereotypesDialog extends TrayDialog {
 		}
 
 		return super.close();
+	}
+
+	protected void saveRepairAction(MissingSchema missingSchema) {
+		IRepairAction repairAction = missingSchema.getSelectedRepairAction();
+
+		if (repairAction instanceof IRepairAction.IApplyProfileAction) {
+			Profile appliedProfile = ((IRepairAction.IApplyProfileAction) repairAction).getAppliedProfile();
+			if (appliedProfile != null) {
+				brokenNamespaceProfileMap.put(missingSchema.getSchema().getNsURI(), appliedProfile);
+			}
+		}
 	}
 
 	//
@@ -420,6 +463,13 @@ public class ZombieStereotypesDialog extends TrayDialog {
 			this.ePackage = ePackage;
 			this.descriptor = descriptor;
 			this.selectedAction = descriptor.getSuggestedRepairAction(ePackage);
+		}
+
+		void initialiseRepairAction(Map<String, Profile> brokenNsProfileMap) {
+			if (selectedAction instanceof IRepairAction.IApplyProfileAction) {
+				((IRepairAction.IApplyProfileAction) selectedAction).setPreviousAppliedProfile(brokenNsProfileMap.get(getSchema().getNsURI()));
+			}
+
 		}
 
 		Resource getResource() {

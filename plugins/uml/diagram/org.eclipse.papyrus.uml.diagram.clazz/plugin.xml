@@ -1030,218 +1030,218 @@
 		<entry
 		      description="Nodes"
 		      id="clazz.group.nodes"
-		      kind="drawer"
+		      kind="stack"
 		      label="Nodes"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="clazz.tool.class"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.classifiertemplateparameter"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.comment"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.component"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.constraint"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.datatype"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="createDurationObservation7CreationTool"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.enumeration"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.enumerationliteral"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.interface"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.instancespecification"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.informationitem"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.primitivetype"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.model"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.operation"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.OperationTemplateParameter"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.package"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.property"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.reception"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.redefinabletemplatesignature"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.signal"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.slot"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.templateparameter"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.templatesignature"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="createTimeObservation22CreationTool"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.connectableelementtemplateparameter"
-		        path="/clazz.group.nodes">
+				path="/clazz.group.nodes">
 		  </predefinedEntry>
 		<entry
 		      description="Edges"
 		      id="clazz.group.relationships"
-		      kind="drawer"
+		      kind="stack"
 		      label="Edges"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="clazz.tool.abstraction"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.association"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.associationbranch"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.associationclass"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.containmentlink"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.contextlink"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.dependency"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.dependencybranch"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.elementimport"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.generalization"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.generalizationset"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.informationflowlink"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.instancespecificationlink"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.interfacerealization"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.link"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.packageimport"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.packagemerge"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.profileapplication"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.realization"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.substitution"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.templatebinding"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="clazz.tool.usage"
-		        path="/clazz.group.relationships">
+				path="/clazz.group.relationships">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.clazz"/>

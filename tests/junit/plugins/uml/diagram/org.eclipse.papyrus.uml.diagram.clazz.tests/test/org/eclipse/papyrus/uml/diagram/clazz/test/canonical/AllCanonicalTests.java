@@ -39,7 +39,12 @@ TestDropfunction.class,
 //test is a static operation is underlined
 TestStaticFeatureRepresentation.class,
 //test nested classifier
-TestClassDiagramNestedClassifier.class, 
+TestClassDiagramNestedClassifier.class,
+//List Compartment child duplicates
+TestListCompartmentNodesChildDuplicates.class,
+//List Compartment illegal elements
+TestListCompartmentIllegalElements.class,
+TestListCompartmentPropertiesOperationsDrop.class
 })
 public class AllCanonicalTests {
 }

@@ -46,6 +46,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InstanceSpecificationEditPart;
@@ -279,10 +280,10 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		if (sources.size() == 1 && targets.size() == 1) {
 			Element source = (Element) sources.toArray()[0];
 			Element target = (Element) targets.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4008, dropRequest.getLocation(), semanticLink));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Dependency"), source, target, DependencyEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 		}
 		if (sources.size() > 1 || targets.size() > 1) {
-			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain(), getCompositeCommandRegistry());
+			MultiDependencyHelper dependencyHelper = new MultiDependencyHelper(getEditingDomain(), getElement2IAdaptableRegistryHelper());
 			return dependencyHelper.dropMutliDependency((Dependency) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;
