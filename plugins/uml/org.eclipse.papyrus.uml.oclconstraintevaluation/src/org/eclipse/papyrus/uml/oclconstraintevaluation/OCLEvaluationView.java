@@ -16,13 +16,13 @@ package org.eclipse.papyrus.uml.oclconstraintevaluation;
 
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.xtext.base.utilities.ElementUtil;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.utilities.PivotUtilInternal;
+import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.MetamodelManager;
+import org.eclipse.ocl.pivot.utilities.OCL;
+import org.eclipse.ocl.pivot.utilities.OCLHelper;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Display;
@@ -42,7 +42,7 @@ public class OCLEvaluationView extends ViewPart {
 	 */
 	public static String ID = "org.eclipse.papyrus.uml.oclconstraintevaluation.OCLEvaluationView";
 
-	protected MetaModelManager metaModelManager = null;
+	protected MetamodelManager metamodelManager = null;
 
 	/**
 	 *
@@ -71,15 +71,12 @@ public class OCLEvaluationView extends ViewPart {
 	 * @param contextObject
 	 * @return the metamodelManager
 	 */
-	protected MetaModelManager getMetaModelManager(EObject contextObject) {
-		MetaModelManager metaModelManager = ElementUtil.findMetaModelManager(contextObject);
-		if (metaModelManager != null) {
-			return metaModelManager;
+	protected MetamodelManager getMetamodelManager(EObject contextObject) {
+		EnvironmentFactory environmentFactory = PivotUtilInternal.findEnvironmentFactory(contextObject);
+		if (environmentFactory != null) {
+			return environmentFactory.getMetamodelManager();
 		}
-		if (metaModelManager == null) {
-			metaModelManager = new MetaModelManager();
-		}
-		return metaModelManager;
+		return UMLOCL.newInstance().getMetamodelManager();
 	}
 
 
@@ -94,12 +91,11 @@ public class OCLEvaluationView extends ViewPart {
 	 */
 	public void compute(EObject contextObject, String expression) {
 		// initialize the context of an evaluation of the OCL expression
-		MetaModelManager metaModelManager = getMetaModelManager(contextObject);
-		PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metaModelManager);
-		PivotEnvironment environment = envFactory.createEnvironment();
-		OCL ocl = OCL.newInstance(environment);
-		OCLHelper oclHelper = ocl.createOCLHelper(contextObject);
-		oclHelper.setContext(contextObject.eClass());
+		MetamodelManager metamodelManager = getMetamodelManager(contextObject);
+		EnvironmentFactory environmentFactory = metamodelManager.getEnvironmentFactory();
+		OCL ocl = OCL.newInstance(environmentFactory);
+		org.eclipse.ocl.pivot.Class contextType = ocl.getContextType(contextObject);
+		OCLHelper oclHelper = ocl.createOCLHelper(contextType);
 		try {
 			ExpressionInOCL createQuery = oclHelper.createQuery(expression);
 			Object evaluate = ocl.evaluate(contextObject, createQuery);

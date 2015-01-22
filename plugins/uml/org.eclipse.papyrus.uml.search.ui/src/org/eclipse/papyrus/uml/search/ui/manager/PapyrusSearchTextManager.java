@@ -50,7 +50,7 @@ public class PapyrusSearchTextManager {
 	}
 
 	public ISearchQuery manageSimpleSearch(boolean searchAllStrings, Object[] umlMetaClassesArray) {
-		if (fQueryText.isEmpty()) {
+		if (fQueryText.length() == 0) {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_29, Messages.PapyrusSearchPage_30);
 			return null;
 		} else {
@@ -69,7 +69,7 @@ public class PapyrusSearchTextManager {
 			MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 			return null;
 		} else {
-			if (fQueryText.isEmpty()) {
+			if (fQueryText.length() == 0) {
 				for (Object participantChecked : checkedElements) {
 					if (participantChecked instanceof ParticipantTypeAttribute) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_33, Messages.PapyrusSearchPage_34);

@@ -7,8 +7,7 @@ import java.util.Collections;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
-import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.EssentialOCLUiModule;
+import org.eclipse.ocl.pivot.ui.OCLUI;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.eclipse.xtext.ui.shared.SharedStateModule;
 import org.eclipse.xtext.util.Modules2;
@@ -73,18 +72,18 @@ public class UMLConstraintEditorActivator extends AbstractUIPlugin {
 	}
 
 	protected Module getRuntimeModule(String grammar) {
-		if (EssentialOCLRuntimeModule.LANGUAGE_ID.equals(grammar)) {
-			return new EssentialOCLRuntimeModule();
+		Module module = OCLUI.getRuntimeModule(grammar);
+		if (module != null) {
+			return module;
 		}
-
 		throw new IllegalArgumentException(grammar);
 	}
 
 	protected Module getUiModule(String grammar) {
-		if (EssentialOCLRuntimeModule.LANGUAGE_ID.equals(grammar)) {
-			return new EssentialOCLUiModule(this);
+		Module module = OCLUI.getUiModule(this, grammar);
+		if (module != null) {
+			return module;
 		}
-
 		throw new IllegalArgumentException(grammar);
 	}
 

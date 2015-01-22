@@ -23,7 +23,7 @@ public class OCLContextContentProvider implements ITreeContentProvider {
 	}
 
 	public Object[] getElements(Object inputElement) {
-		ArrayList result = new ArrayList();
+		ArrayList<EObject> result = new ArrayList<EObject>();
 		if (inputElement instanceof ModelSet) {
 			UmlModel root = (UmlModel) ((ModelSet) inputElement).getModel(UmlModel.MODEL_ID);
 			try {
@@ -37,7 +37,7 @@ public class OCLContextContentProvider implements ITreeContentProvider {
 	}
 
 	public Object[] getChildren(Object parentElement) {
-		ArrayList result = new ArrayList();
+		ArrayList<EObject> result = new ArrayList<EObject>();
 		if (parentElement instanceof EObject) {
 			result.addAll(((EObject) parentElement).eContents());
 		}

@@ -63,7 +63,7 @@ public class ParticipantValidator implements IParticipantValidator {
 			EObject modelElement = it.next();
 
 			// Check that metaclass of this element is a supported metaclass
-			EClass e = modelElement.eClass();
+			@SuppressWarnings("unused") EClass e = modelElement.eClass();
 			if (participantsTypesList.contains(modelElement.eClass())) {
 				results.add(modelElement);
 			}
