@@ -60,6 +60,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConne
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementBorderEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLabelEditPart;
+import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryHelper;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Element;
@@ -69,6 +70,8 @@ import org.eclipse.uml2.uml.Element;
  * graphical type registry.
  */
 public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
+
+	private Element2IAdaptableRegistryHelper myElement2IAdaptableRegistryHelper;
 
 	/** The graphical type registry. */
 	protected IGraphicalTypeRegistry registry;
@@ -89,6 +92,16 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			specificDropList = getSpecificDropBehaviorTypes();
 		}
 		return specificDropList;
+	}
+
+	/**
+	 * Gets composite command adapters
+	 */
+	protected Element2IAdaptableRegistryHelper getElement2IAdaptableRegistryHelper() {
+		if (myElement2IAdaptableRegistryHelper == null) {
+			myElement2IAdaptableRegistryHelper = new Element2IAdaptableRegistryHelper();
+		}
+		return myElement2IAdaptableRegistryHelper;
 	}
 
 	protected abstract Set<String> getSpecificDropBehaviorTypes();

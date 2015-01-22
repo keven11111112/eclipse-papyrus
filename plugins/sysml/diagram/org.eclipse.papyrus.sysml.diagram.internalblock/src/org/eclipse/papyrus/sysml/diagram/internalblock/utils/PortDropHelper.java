@@ -18,15 +18,18 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
+import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewDescriptorUtil;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Port;
@@ -42,29 +45,29 @@ public class PortDropHelper extends ElementHelper {
 		this.editDomain = editDomain;
 	}
 
-	public Command getDropPortOnPart(DropObjectsRequest request, GraphicalEditPart host) {
+	public ICommand getDropPortOnPart(DropObjectsRequest request, GraphicalEditPart host) {
 
 		Object droppedEObject = request.getObjects().get(0);
 		if (!isValidPort(droppedEObject, getHostEObject(host))) {
-			return UnexecutableCommand.INSTANCE;
+			return new CommandProxy(UnexecutableCommand.INSTANCE);
 		}
 
 		return getDropPortOnPart((Port) droppedEObject, request.getLocation().getCopy(), host);
 	}
 
-	public Command getDropPortOnPart(Port droppedPort, Point location, GraphicalEditPart host) {
+	public ICommand getDropPortOnPart(Port droppedPort, Point location, GraphicalEditPart host) {
 
 		if (!isValidPort(droppedPort, getHostEObject(host))) {
-			return UnexecutableCommand.INSTANCE;
+			return new CommandProxy(UnexecutableCommand.INSTANCE);
 		}
 
 		// Prepare the view creation command
-		ViewDescriptor descriptor = new ViewDescriptor(new SemanticAdapter(droppedPort, null), Node.class, /* explicit semantic hint is mandatory */null, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
+		ViewDescriptor descriptor = new ViewDescriptor(new EObjectAdapter(droppedPort), Node.class, /* explicit semantic hint is mandatory */null, ViewDescriptorUtil.PERSISTED, host.getDiagramPreferencesHint());
 		CreateViewRequest createViewRequest = new CreateViewRequest(descriptor);
 		createViewRequest.setLocation(location);
 		Command viewCreateCommand = host.getCommand(createViewRequest);
 
-		return viewCreateCommand;
+		return new CommandProxyWithResult(viewCreateCommand, descriptor);
 	}
 
 	private boolean isValidPort(Object object, EObject dropTarget) {
