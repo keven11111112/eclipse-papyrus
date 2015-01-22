@@ -10,6 +10,7 @@
  * Contributors:
  * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ * 		Patrik Nandorf (Ericsson AB) - bug 458042
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.helper;
@@ -86,19 +87,30 @@ public abstract class DirectedRelationshipEditHelper extends ElementEditHelper {
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;
 		}
-		// If containmentFeature doesn't fit with container, try to find one that make sense
-		if((!req.getContainer().eClass().getEAllReferences().contains(req.getContainmentFeature())) || req.getContainmentFeature() == null) {
-			// Propose a container if none is set in request.
-			EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ source, target }), UMLPackage.eINSTANCE.getPackage());
+
+		// If the container is null or containmentFeature doesn't fit with container, try to find one that make sense
+		if (req.getContainer() == null || (!req.getContainer().eClass().getEAllReferences().contains(req.getContainmentFeature())) || req.getContainmentFeature() == null) {
+			// Propose a container.
+			EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[] { source, target }), UMLPackage.eINSTANCE.getPackage());
+
 			// If no common container is found try source nearest package
-			EObject sourcePackage = EMFCoreUtil.getContainer(source, UMLPackage.eINSTANCE.getPackage());
-			if((proposedContainer == null) && !(isReadOnly(sourcePackage))) {
-				proposedContainer = sourcePackage;
+			if (proposedContainer == null) {
+				EObject sourcePackage = EMFCoreUtil.getContainer(source, UMLPackage.eINSTANCE.getPackage());
+				if (!isReadOnly(sourcePackage)) {
+					proposedContainer = sourcePackage;
+				}
 			}
+
 			// If no common container is found try target nearest package
-			EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
-			if((proposedContainer == null) && !(isReadOnly(targetPackage))) {
-				proposedContainer = targetPackage;
+			if (proposedContainer == null)  {
+				EObject targetPackage = EMFCoreUtil.getContainer(target, UMLPackage.eINSTANCE.getPackage());
+				if (!isReadOnly(targetPackage)) {
+					proposedContainer = targetPackage;
+				}
+			}
+
+			if (proposedContainer == null) {
+				return UnexecutableCommand.INSTANCE;
 			}
 			req.setContainer(proposedContainer);
 		}
