@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Calin Glitia (Esterel Technologies) calin.glitia@esterel-technologies.com - fix for Bugzilla Bug 431516
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.command;
@@ -56,7 +57,6 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	@Override
 	public void doExecute() {
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
-		compartment.setVisible(displayit);
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 		ts.setShowTitle(true);
@@ -65,6 +65,7 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		compartment.setType(AppliedStereotypeCompartmentEditPart.ID);
 		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, false);
 		compartment.setMutable(true);
+		compartment.setVisible(displayit);
 	}
 
 }
