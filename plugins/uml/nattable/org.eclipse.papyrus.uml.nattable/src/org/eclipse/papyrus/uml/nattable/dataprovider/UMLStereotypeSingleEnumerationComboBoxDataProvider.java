@@ -17,8 +17,12 @@ package org.eclipse.papyrus.uml.nattable.dataprovider;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -87,9 +91,17 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 			final List<Stereotype> ste = UMLTableUtils.getApplicableStereotypesWithThisProperty(modelElement, id);
 			if (ste.size() == 1) {
 				final Stereotype current = ste.get(0);
-				final EEnum eenum = (EEnum) current.getProfile().getDefinition(property.getType());
-				for (final EEnumLiteral instances : eenum.getELiterals()) {
-					literals.add(instances.getInstance());
+				// the stereotype is maybe not applied on the element, but we allow to edit the values
+				EObject stereotypeDef = current.getProfile().getDefinition(current);
+				if (stereotypeDef != null) {
+					EStructuralFeature feature = ((EClass) stereotypeDef).getEStructuralFeature(property.getName());
+					if (feature != null && feature.getEType() instanceof EEnum) {
+						EEnum eType = (EEnum) feature.getEType();
+						for (EEnumLiteral literal : eType.getELiterals()) {
+							Enumerator value = literal.getInstance();
+							literals.add(value);
+						}
+					}
 				}
 			}
 		}
