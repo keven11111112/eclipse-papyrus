@@ -389,6 +389,41 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType InputPin_3181 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3181"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3182 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3182"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3183 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3183"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3184 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3184"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3185 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3185"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3186 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3186"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3187 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3187"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType OutputPin_3094 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"); //$NON-NLS-1$
 
 	/**
@@ -1022,6 +1057,13 @@ public class UMLElementTypes {
 			elements.put(AddStructuralFeatureValueAction_3091, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction());
 			elements.put(InputPin_3092, UMLPackage.eINSTANCE.getInputPin());
 			elements.put(InputPin_3093, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(InputPin_3181, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3182, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ValuePin_3183, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ValuePin_3184, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3185, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ActionInputPin_3186, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ActionInputPin_3187, UMLPackage.eINSTANCE.getActionInputPin());
 			elements.put(OutputPin_3094, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(DestroyObjectAction_3095, UMLPackage.eINSTANCE.getDestroyObjectAction());
 			elements.put(InputPin_3096, UMLPackage.eINSTANCE.getInputPin());
@@ -1208,6 +1250,13 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(AddStructuralFeatureValueAction_3091);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3092);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3093);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3181);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3182);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3183);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3184);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3185);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3186);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3187);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3094);
 			KNOWN_ELEMENT_TYPES.add(DestroyObjectAction_3095);
 			KNOWN_ELEMENT_TYPES.add(InputPin_3096);
@@ -1470,6 +1519,20 @@ public class UMLElementTypes {
 			return InputPin_3092;
 		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
 			return InputPin_3093;
+		case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+			return InputPin_3181;
+		case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3182;
+		case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return ValuePin_3183;
+		case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+			return ValuePin_3184;
+		case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3185;
+		case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+			return ActionInputPin_3186;
+		case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+			return ActionInputPin_3187;
 		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 			return OutputPin_3094;
 		case DestroyObjectActionEditPart.VISUAL_ID:

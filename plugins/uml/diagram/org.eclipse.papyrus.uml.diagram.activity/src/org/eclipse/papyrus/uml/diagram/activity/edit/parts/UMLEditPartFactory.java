@@ -545,6 +545,60 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new InputPinInAddStructuralFeatureValueActionAsValueLabel2EditPart(view);
 			case InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart.VISUAL_ID:
 				return new InputPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabel2EditPart(view);
+			case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsInserAtEditPart(view);
+			case InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart(view);
+			case InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsObjectEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsObjectLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsObjectValueEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsValueEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsValueLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsValueValueEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsInserAtLabelEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsInserAtValueEditPart(view);
+			case ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ValuePinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsObjectEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsValueEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsValueLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsValueLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsValueValueEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsValueAppliedStereotypeWrappingLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsInserAtLabelEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsInserAtValueEditPart(view);
+			case ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
+				return new ActionPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(view);
 			case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 				return new OutputPinInAddStructuralFeatureValueActionAsResultEditPart(view);
 			case OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID:

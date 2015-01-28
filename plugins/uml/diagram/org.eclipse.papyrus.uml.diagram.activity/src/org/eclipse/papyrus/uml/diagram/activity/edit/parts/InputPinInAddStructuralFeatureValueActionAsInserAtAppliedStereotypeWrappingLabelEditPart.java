@@ -75,12 +75,12 @@ import org.eclipse.uml2.uml.Feature;
 /**
  * @generated
  */
-public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
+public class InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart extends AbstractLabelEditPart implements ITextAwareEditPart, IBorderItemEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 5159;
+	public static final int VISUAL_ID = 5358;
 
 	/**
 	 * @generated
@@ -104,14 +104,14 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * direct edition mode (default, undefined, registered editor, etc.)
-	 *
+	 * 
 	 * @generated
 	 */
 	protected int directEditionMode = IDirectEdition.UNDEFINED_DIRECT_EDITOR;
 
 	/**
 	 * configuration from a registered edit dialog
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IDirectEditorConfiguration configuration;
@@ -119,20 +119,19 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	 * @generated
 	 */
 	static {
-		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID), new Point(0, 0));
+		registerSnapBackPosition(UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID), new Point(0, 0));
 	}
 
 	/**
 	 * @generated
 	 */
-	public OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart(View view) {
+	public InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart(View view) {
 		super(view);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
@@ -143,7 +142,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public IBorderItemLocator getBorderItemLocator() {
 		IFigure parentFigure = getFigure().getParent();
 		if (parentFigure != null && parentFigure.getLayoutManager() != null) {
@@ -156,7 +154,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public void refreshBounds() {
 		int x = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_X())).intValue();
 		int y = ((Integer) getStructuralFeatureValue(NotationPackage.eINSTANCE.getLocation_Y())).intValue();
@@ -231,7 +228,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
@@ -239,7 +235,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public IGraphicalEditPart getChildBySemanticHint(String semanticHint) {
 		return null;
 	}
@@ -293,7 +288,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setLabelText(String text) {
 		setLabelTextHelper(getFigure(), text);
 		Object pdEditPolicy = getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -309,7 +303,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public String getEditText() {
 		if (getParserElement() == null || getParser() == null) {
 			return ""; //$NON-NLS-1$
@@ -327,7 +320,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public ICellEditorValidator getEditTextValidator() {
 		return new ICellEditorValidator() {
 
@@ -358,7 +350,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public IContentAssistProcessor getCompletionProcessor() {
 		if (getParserElement() == null || getParser() == null) {
 			return null;
@@ -369,7 +360,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public ParserOptions getParserOptions() {
 		return ParserOptions.NONE;
 	}
@@ -377,11 +367,10 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	public IParser getParser() {
 		if (parser == null) {
-			parser = UMLParserProvider.getParser(UMLElementTypes.OutputPin_3094, getParserElement(),
-					UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID));
+			parser = UMLParserProvider.getParser(UMLElementTypes.InputPin_3181, getParserElement(),
+					UMLVisualIDRegistry.getType(org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsInserAtAppliedStereotypeWrappingLabelEditPart.VISUAL_ID));
 		}
 		return parser;
 	}
@@ -439,7 +428,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void performDirectEditRequest(Request request) {
 		final Request theRequest = request;
 		if (IDirectEdition.UNDEFINED_DIRECT_EDITOR == directEditionMode) {
@@ -523,7 +511,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshVisuals() {
 		super.refreshVisuals();
 		refreshLabel();
@@ -591,7 +578,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void refreshFont() {
 		FontStyle style = (FontStyle) getFontStyleOwnerView().getStyle(NotationPackage.eINSTANCE.getFontStyle());
 		if (style != null) {
@@ -603,7 +589,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setFontColor(Color color) {
 		getFigure().setForegroundColor(color);
 	}
@@ -611,7 +596,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			EObject element = resolveSemanticElement();
@@ -627,7 +611,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void removeSemanticListeners() {
 		if (parserElements != null) {
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -641,7 +624,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected AccessibleEditPart getAccessibleEditPart() {
 		if (accessibleEP == null) {
 			accessibleEP = new AccessibleGraphicalEditPart() {
@@ -664,7 +646,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Returns the kind of associated editor for direct edition.
-	 *
+	 * 
 	 * @return an <code>int</code> corresponding to the kind of direct editor, @see org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition
 	 * @generated
 	 */
@@ -675,7 +657,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Checks if an extended editor is present.
-	 *
+	 * 
 	 * @return <code>true</code> if an extended editor is present.
 	 * @generated
 	 */
@@ -688,7 +670,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Checks if a default direct edition is available
-	 *
+	 * 
 	 * @return <code>true</code> if a default direct edition is available
 	 * @generated
 	 */
@@ -698,7 +680,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Initializes the extended editor configuration
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void initExtendedEditorConfiguration() {
@@ -714,7 +696,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Updates the preference configuration
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void updateExtendedEditorConfiguration() {
@@ -728,7 +710,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 
 	/**
 	 * Performs the direct edit usually used by GMF editors.
-	 *
+	 * 
 	 * @param theRequest
 	 *            the direct edit request that starts the direct edit system
 	 * @generated
@@ -761,7 +743,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void handleNotificationEvent(Notification event) {
 		Object feature = event.getFeature();
 		if (NotationPackage.eINSTANCE.getFontStyle_FontColor().equals(feature)) {
@@ -795,7 +776,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotype
 	/**
 	 * @generated
 	 */
-	@Override
 	protected IFigure createFigure() {
 		IFigure label = createFigurePrim();
 		defaultText = getLabelTextHelper(label);
