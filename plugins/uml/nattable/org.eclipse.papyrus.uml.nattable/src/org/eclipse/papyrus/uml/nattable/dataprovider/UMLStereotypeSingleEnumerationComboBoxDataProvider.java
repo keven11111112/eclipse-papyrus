@@ -18,12 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
-import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
@@ -94,33 +91,24 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 			if (ste.size() == 1) {
 				final Stereotype current = ste.get(0);
 				// the stereotype is maybe not applied on the element, but we allow to edit its values
-				EObject propertyDef = current.getProfile().getDefinition(property);
-				EEnum eenum = null;
-				if (propertyDef != null) {
-					if (propertyDef instanceof EClass) {
-						// dynamic profile
-						EStructuralFeature feature = ((EClass) propertyDef).getEStructuralFeature(property.getName());
+				EClass stereotypeDefinition = (EClass) current.getProfile().getDefinition(current);
+				if (stereotypeDefinition != null) {
+					EStructuralFeature feature = stereotypeDefinition.getEStructuralFeature(property.getName());
+					if (feature != null) {
+						EEnum eenum = null;
 						if (feature != null && feature.getEType() instanceof EEnum) {
 							eenum = (EEnum) feature.getEType();
 						}
-
-						// in case of static profile (SysML) we get an eattribute instead of an EClass
-					} else if (propertyDef instanceof EAttribute) {
-						EClassifier tmp = ((EAttribute) propertyDef).getEType();
-						if (tmp instanceof EEnum) {
-							eenum = (EEnum) tmp;
+						if (eenum != null) {
+							for (EEnumLiteral literal : eenum.getELiterals()) {
+								Enumerator value = literal.getInstance();
+								literals.add(value);
+							}
 						}
-					}
-				}
-				if (eenum != null) {
-					for (EEnumLiteral literal : eenum.getELiterals()) {
-						Enumerator value = literal.getInstance();
-						literals.add(value);
 					}
 				}
 			}
 		}
 		return literals;
 	}
-
 }
