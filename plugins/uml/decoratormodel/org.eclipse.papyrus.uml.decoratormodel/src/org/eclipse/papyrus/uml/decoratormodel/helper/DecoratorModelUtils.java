@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bug 458197
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.helper;
@@ -66,7 +67,6 @@ import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Dependency;
-import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
@@ -309,21 +309,10 @@ public class DecoratorModelUtils {
 	 */
 	public static Package getUserModelApplyingPackage(ProfileApplication profileApplication) {
 		Package applying = profileApplication.getApplyingPackage();
-		Package result = applying; // Maybe it's not actually an externalized profile application
+		Package userPackage = getUserPackage(applying);
 
-		if (applying != null) {
-			for (Dependency next : Iterables.filter(applying.getTargetDirectedRelationships(UMLPackage.Literals.DEPENDENCY), Dependency.class)) {
-				if (isApplyProfiles(next)) {
-					Package clientPackage = Iterables.getFirst(Iterables.filter(next.getClients(), Package.class), null);
-					if (clientPackage != null) {
-						result = clientPackage;
-						break;
-					}
-				}
-			}
-		}
-
-		return result;
+		// Maybe it's not actually an externalized profile application
+		return (userPackage == null) ? applying : userPackage;
 	}
 
 	/**
@@ -524,16 +513,23 @@ public class DecoratorModelUtils {
 		return result;
 	}
 
-	static Package getUserPackage(Package externalPackage) {
+	/**
+	 * Queries the package in the user model to which a package in the decorator model applies profiles.
+	 * <p>
+	 * This method does <em>not</em> access the decorator model index.
+	 * 
+	 * @param decoratorPackage
+	 *            a package in a decorator model
+	 * @return the user-model package to which it applies profiles
+	 */
+	public static Package getUserPackage(Package decoratorPackage) {
 		Package result = null;
 
-		for (DirectedRelationship next : externalPackage.getTargetDirectedRelationships(UMLPackage.Literals.DEPENDENCY)) {
-			for (EStructuralFeature.Setting setting : CacheAdapter.getCacheAdapter(next).getNonNavigableInverseReferences(next)) {
-				if (setting.getEStructuralFeature() == ProfileExternalizationPackage.Literals.APPLY_PROFILES__BASE_DEPENDENCY) {
-					result = Iterables.getFirst(Iterables.filter(next.getSources(), Package.class), null);
-					if (result != null) {
-						break;
-					}
+		for (Dependency next : Iterables.filter(decoratorPackage.getTargetDirectedRelationships(UMLPackage.Literals.DEPENDENCY), Dependency.class)) {
+			if (isApplyProfiles(next)) {
+				result = Iterables.getFirst(Iterables.filter(next.getClients(), Package.class), null);
+				if (result != null) {
+					break;
 				}
 			}
 		}

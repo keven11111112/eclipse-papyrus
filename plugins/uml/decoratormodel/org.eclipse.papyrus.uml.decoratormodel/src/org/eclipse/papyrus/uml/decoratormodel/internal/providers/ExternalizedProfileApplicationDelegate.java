@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2005, 2014 IBM Corporation, Embarcadero Technologies, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2005, 2015 IBM Corporation, Embarcadero Technologies, CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *   Kenn Hussey (CEA) - 327039, 369492, 313951, 163556, 418466, 447901
  *   Christian W. Damus (CEA) - 300957, 431998
  *   Christian W. Damus - 444588, 399859, 451557
+ *   Christian W. Damus - bug 458197
  *   
  *****************************************************************************/
 
@@ -110,8 +111,16 @@ public class ExternalizedProfileApplicationDelegate implements IProfileApplicati
 		Package result = profileApplication.getApplyingPackage();
 
 		Resource resource = (result == null) ? null : result.eResource();
-		if ((resource != null) && DecoratorModelUtils.isDecoratorModel(resource)) {
-			result = DecoratorModelUtils.getUserModelApplyingPackage(profileApplication);
+		if (resource != null) {
+			if (DecoratorModelUtils.isDecoratorModel(resource)) {
+				result = DecoratorModelUtils.getUserModelApplyingPackage(profileApplication);
+			}
+		} else {
+			// Unloaded? See whether we can still remember the user-model package
+			Package userModel = DecoratorPackageCache.getUserModelPackage(result);
+			if (userModel != null) {
+				result = userModel;
+			}
 		}
 
 		return result;
