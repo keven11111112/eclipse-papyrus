@@ -10,7 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *
+ *  Vincent Lorenzo (CEA-LIST) - bug 458492
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.dataprovider;
 
@@ -18,7 +18,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
@@ -53,7 +55,7 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 	 * Constructor.
 	 *
 	 * @param axisElement
-	 *            the obejct represented by the axis
+	 *            the object represented by the axis
 	 * @param elementProvider
 	 *            The table axis element provider
 	 */
@@ -80,9 +82,9 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 		el = AxisUtils.getRepresentedElement(el);
 		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element modelElement = null;
-		if (rowElement instanceof Element && el == this.axisElement) {
+		if (rowElement instanceof Element && el.equals(AxisUtils.getRepresentedElement(this.axisElement))) {
 			modelElement = (Element) rowElement;
-		} else if (rowElement == this.axisElement && el instanceof Element) {
+		} else if (rowElement.equals(AxisUtils.getRepresentedElement(this.axisElement)) && el instanceof Element) {
 			modelElement = (Element) el;
 		}
 		if (modelElement != null) {
@@ -91,16 +93,29 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 			final List<Stereotype> ste = UMLTableUtils.getApplicableStereotypesWithThisProperty(modelElement, id);
 			if (ste.size() == 1) {
 				final Stereotype current = ste.get(0);
-				// the stereotype is maybe not applied on the element, but we allow to edit the values
-				EObject stereotypeDef = current.getProfile().getDefinition(current);
-				if (stereotypeDef != null) {
-					EStructuralFeature feature = ((EClass) stereotypeDef).getEStructuralFeature(property.getName());
-					if (feature != null && feature.getEType() instanceof EEnum) {
-						EEnum eType = (EEnum) feature.getEType();
-						for (EEnumLiteral literal : eType.getELiterals()) {
-							Enumerator value = literal.getInstance();
-							literals.add(value);
+				// the stereotype is maybe not applied on the element, but we allow to edit its values
+				EObject propertyDef = current.getProfile().getDefinition(property);
+				EEnum eenum = null;
+				if (propertyDef != null) {
+					if (propertyDef instanceof EClass) {
+						// dynamic profile
+						EStructuralFeature feature = ((EClass) propertyDef).getEStructuralFeature(property.getName());
+						if (feature != null && feature.getEType() instanceof EEnum) {
+							eenum = (EEnum) feature.getEType();
 						}
+
+						// in case of static profile (SysML) we get an eattribute instead of an EClass
+					} else if (propertyDef instanceof EAttribute) {
+						EClassifier tmp = ((EAttribute) propertyDef).getEType();
+						if (tmp instanceof EEnum) {
+							eenum = (EEnum) tmp;
+						}
+					}
+				}
+				if (eenum != null) {
+					for (EEnumLiteral literal : eenum.getELiterals()) {
+						Enumerator value = literal.getInstance();
+						literals.add(value);
 					}
 				}
 			}
