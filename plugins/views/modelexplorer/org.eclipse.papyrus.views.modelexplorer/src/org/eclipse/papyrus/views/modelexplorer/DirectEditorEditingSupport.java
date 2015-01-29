@@ -11,7 +11,6 @@
  *   Andreas Muelder - Initial contribution and API
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.views.modelexplorer;
 
 import org.eclipse.emf.ecore.EObject;
@@ -100,17 +99,13 @@ public class DirectEditorEditingSupport extends EditingSupport {
 	 */
 	public static ICustomDirectEditorConfiguration getConfiguration(EObject semanticElement) {
 
-		IPreferenceStore store = Activator.getDefault()
-				.getPreferenceStore();
-		String semanticClassName = semanticElement.eClass()
-				.getInstanceClassName();
-		String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-				+ semanticClassName;
+		IPreferenceStore store = Activator.getDefault().getPreferenceStore();
+		String semanticClassName = semanticElement.eClass().getInstanceClassName();
+		String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticClassName;
 		String languagePreferred = store.getString(key);
 
 		if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-			IDirectEditorConfiguration configuration = DirectEditorsUtil
-					.findEditorConfiguration(languagePreferred, semanticClassName);
+			IDirectEditorConfiguration configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, semanticElement);
 			if (configuration instanceof ICustomDirectEditorConfiguration) {
 				return (ICustomDirectEditorConfiguration) configuration;
 			}

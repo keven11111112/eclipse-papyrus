@@ -75,8 +75,11 @@
          <attribute name="objectToEdit" type="string" use="required">
             <annotation>
                <documentation>
-                  the qualified type of object to edit (for example, &quot;java.lang.Object&quot;)
+                  The type of object to edit (for example, &quot;org.eclipse.emf.ecore.EObject&quot;)
                </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.emf.ecore.EObject"/>
+               </appInfo>
             </annotation>
          </attribute>
          <attribute name="icon" type="string">
@@ -94,6 +97,16 @@
                <documentation>
                   Name of the contributor for this extension point
                </documentation>
+            </annotation>
+         </attribute>
+         <attribute name="additionalConstraint" type="string">
+            <annotation>
+               <documentation>
+                  
+               </documentation>
+               <appInfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint"/>
+               </appInfo>
             </annotation>
          </attribute>
       </complexType>
@@ -183,15 +196,6 @@
 
    <annotation>
       <appInfo>
-         <meta.section type="apiInfo"/>
-      </appInfo>
-      <documentation>
-         [Enter API information here.]
-      </documentation>
-   </annotation>
-
-   <annotation>
-      <appInfo>
          <meta.section type="since"/>
       </appInfo>
       <documentation>
@@ -205,6 +209,15 @@
       </appInfo>
       <documentation>
          [Enter extension point usage example here.]
+      </documentation>
+   </annotation>
+
+   <annotation>
+      <appInfo>
+         <meta.section type="apiInfo"/>
+      </appInfo>
+      <documentation>
+         [Enter API information here.]
       </documentation>
    </annotation>
 
