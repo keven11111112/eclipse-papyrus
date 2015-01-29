@@ -18,44 +18,48 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
+import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConstraint;
+import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.constraints.constraints.JavaQuery;
 import org.eclipse.swt.graphics.Image;
 
-public class DirectEditorExtensionPoint {
+/**
+ * Represented class for Extension point of Direct Editor.
+ */
+public class DirectEditorExtensionPoint implements IDirectEditorExtensionPoint {
 
 	/** Array that stores registered transformations */
-	private static DirectEditorExtensionPoint[] configurations;
+	private static IDirectEditorExtensionPoint[] configurations;
 
 	private static DirectEditorRegistry directEditorProvider;
 
 	/** value of the language attribute */
 	private String language;
 
-	/** value of the object to edit attribute */
-	private String objectToEdit;
-
 	/** value of the editor configuration attribute */
 	private IDirectEditorConfiguration directEditorConfiguration;
 
-	private Class objectClassToEdit;
+	private Class<? extends EObject> objectClassToEdit;
 
 	/** the current priority of the direct editor, can be null **/
-	private Integer priority;
+	private Integer extensionPriority;
 
-
-
+	/** an optional additional constraint to filter the supported elements (In addition to the Metaclass) */
+	private IDirectEditorConstraint constraint;
 
 	/**
 	 * Returns the set of transformations registered in the platform
 	 *
 	 * @return the set of transformations registered in the platform
 	 */
-	public static DirectEditorExtensionPoint[] getDirectEditorConfigurations() {
+	public static IDirectEditorExtensionPoint[] getDirectEditorConfigurations() {
 
 		// Computed only once
 		if (configurations != null) {
@@ -106,22 +110,12 @@ public class DirectEditorExtensionPoint {
 	 * @param class_
 	 *            the type of element to edit
 	 * @return the preferred editor configuration for the specified type or <code>null</code>
+	 * @deprecated Use {@link DirectEditorsUtil#getDefautDirectEditorConfiguration(Object, Object)} instead
 	 */
-	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(Class class_) {
-		// retrieves preference for this element
-		String language = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + class_.getCanonicalName());
-		if (language == null || IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(language)) {
-			return null;
-		}
+	@Deprecated
+	public static DirectEditorExtensionPoint getDefautDirectEditorConfiguration(EObject semanticObjectToEdit, Object selectedObject) {
+		return (DirectEditorExtensionPoint) DirectEditorsUtil.getDefautDirectEditorConfiguration(semanticObjectToEdit, selectedObject);
 
-		Collection<DirectEditorExtensionPoint> configs = getDirectEditorConfigurations(class_);
-		for (DirectEditorExtensionPoint configuration : configs) {
-			if (language.equals(configuration.getLanguage())) {
-				return configuration;
-			}
-		}
-
-		return null;
 	}
 
 	/**
@@ -132,24 +126,19 @@ public class DirectEditorExtensionPoint {
 	 *            type of element to be edited
 	 * @return the set of transformations registered in the platform for the specified kind of
 	 *         element
+	 * @deprecated Use {@link DirectEditorsUtil#getDirectEditorConfigurations(Object, Object)} instead
 	 */
-	public static Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(Class<?> elementClass) {
-		// list of configuration to be returned. They correspond to
-		// configuration to edit the
-		// specified type
-		final ArrayList<DirectEditorExtensionPoint> elementConfigurations = new ArrayList<DirectEditorExtensionPoint>();
+	@Deprecated
+	public static Collection<DirectEditorExtensionPoint> getDirectEditorConfigurations(EObject semanticObjectToEdit, Object selectedObject) {
+		Collection<IDirectEditorExtensionPoint> directEditorConfigurations = DirectEditorsUtil.getDirectEditorConfigurations(semanticObjectToEdit, selectedObject);
 
-		// check each configuration in the platform and select corresponding
-		// ones.
-		for (DirectEditorExtensionPoint configuration : getDirectEditorConfigurations()) {
-			// both class are compatibles ?
-			if (configuration.getObjectClassToEdit() != null) {
-				if (configuration.objectClassToEdit.isAssignableFrom(elementClass)) {
-					elementConfigurations.add(configuration);
-				}
+		List<DirectEditorExtensionPoint> returnList = new ArrayList<DirectEditorExtensionPoint>();
+		for (IDirectEditorExtensionPoint extension : directEditorConfigurations) {
+			if (extension instanceof DirectEditorExtensionPoint) {
+				returnList.add((DirectEditorExtensionPoint) extension);
 			}
 		}
-		return elementConfigurations;
+		return returnList;
 	}
 
 	/**
@@ -188,11 +177,12 @@ public class DirectEditorExtensionPoint {
 		// be
 		// a
 		// string
-		objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, "java.lang.Object", true); // should already be a string
+		String objectToEdit = getAttribute(configElt, IDirectEditorConfigurationIds.ATT_OBJECT_TO_EDIT, EObject.class.getCanonicalName(), true);
+
 		directEditorConfiguration = getDirectEditorConfigurationClass(configElt);
 		// the constraint maybe null!
 
-		priority = getPriority(configElt);
+		extensionPriority = getPriority(configElt);
 		if (directEditorConfiguration == null) {
 			directEditorConfiguration = getAdvancedDirectEditorConfigurationClass(configElt);
 		}
@@ -205,9 +195,22 @@ public class DirectEditorExtensionPoint {
 		// retrieve the bundle loader of the plugin that declares the extension
 		try {
 			String pluginID = configElt.getContributor().getName();
-			objectClassToEdit = Platform.getBundle(pluginID).loadClass(objectToEdit);
+			objectClassToEdit = Platform.getBundle(pluginID).loadClass(objectToEdit).asSubclass(EObject.class);
 		} catch (ClassNotFoundException e) {
-			Activator.log(e);
+			Activator.log.error(e);
+		} catch (ClassCastException e) {
+			Activator.log.error(e);
+		}
+
+		if (configElt.getAttribute(IDirectEditorConfigurationIds.ATT_ADDITIONAL_CONSTRAINT) != null) {
+			try {
+				constraint = (IDirectEditorConstraint) configElt.createExecutableExtension(IDirectEditorConfigurationIds.ATT_ADDITIONAL_CONSTRAINT);
+
+			} catch (CoreException ex) {
+				Activator.log.error(ex);
+			} catch (ClassCastException ex) {
+				Activator.log.error(ex);
+			}
 		}
 
 	}
@@ -389,95 +392,106 @@ public class DirectEditorExtensionPoint {
 	}
 
 	/**
-	 * Returns the language edited by this direct editor
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getLanguage()
 	 *
-	 * @return the language edited by this direct editor
+	 * @return
 	 */
 	public String getLanguage() {
 		return language;
 	}
 
-	/**
-	 * Sets the language edited by this direct editor
-	 *
-	 * @param language
-	 *            the language edited by this direct editor
-	 */
-	// @unused
-	public void setLanguage(String language) {
-		this.language = language;
-	}
 
 	/**
-	 * Returns the type of object to edit
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getObjectToEdit()
 	 *
-	 * @return the type of object to edit
+	 * @return
 	 */
 	public String getObjectToEdit() {
-		return objectToEdit;
+		return objectClassToEdit.getCanonicalName();
 	}
 
 	/**
-	 * Returns the class of object to edit
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getObjectClassToEdit()
 	 *
-	 * @return the class of object to edit
+	 * @return
 	 */
-	public Class getObjectClassToEdit() {
+	public Class<? extends EObject> getObjectClassToEdit() {
 		return objectClassToEdit;
 	}
 
-	/**
-	 * Sets the type of object to edit
-	 *
-	 * @param objectToEdit
-	 *            the type of object to edit
-	 */
-	// @unused
-	public void setObjectToEdit(String objectToEdit) {
-		this.objectToEdit = objectToEdit;
-	}
 
 	/**
-	 * Returns the configuration for the dialog window
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getDirectEditorConfiguration()
 	 *
-	 * @return the configuration for the dialog window
+	 * @return
 	 */
 	public IDirectEditorConfiguration getDirectEditorConfiguration() {
 		return directEditorConfiguration;
 	}
 
+
 	/**
-	 * Sets the configuration for the dialog window
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#setDirectEditorConfiguration(org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration)
 	 *
 	 * @param directEditorConfiguration
-	 *            the configuration for the dialog window
 	 */
-	// @unused
 	public void setDirectEditorConfiguration(IDirectEditorConfiguration directEditorConfiguration) {
 		this.directEditorConfiguration = directEditorConfiguration;
 	}
 
+
 	/**
-	 * Gets the priority.
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getPriority()
 	 *
-	 * @return the priority
+	 * @return
 	 */
 	public Integer getPriority() {
-		return priority;
+		int preferencePriority = getPreferencePriority();
+		return preferencePriority != -1 ? preferencePriority : extensionPriority;
 	}
 
 
 	/**
-	 * Sets the priority.
+	 * Gets the preference priority.
 	 *
-	 * @param priority
-	 *            the new priority
+	 * @return the preference priority
 	 */
-	public void setPriority(Integer priority) {
-		this.priority = priority;
+	private int getPreferencePriority() {
+		int preferencePriority = -1;
+		int preference = Activator.getDefault().getPreferenceStore().getInt(IDirectEditorsIds.EDITOR_FOR_ELEMENT + getObjectToEdit() + '.' + language);
+		if (IPreferenceStore.INT_DEFAULT_DEFAULT != preference) {
+			preferencePriority = preference;
+		}
+		return preferencePriority;
 	}
 
 
+	/**
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#setPriority(java.lang.Integer)
+	 *
+	 * @param priority
+	 */
+	public void setPriority(Integer priority) {
+		this.extensionPriority = priority;
+	}
+
+	/**
+	 * Gets the additional constraint.
+	 *
+	 * @return the additional constraint
+	 */
+	public IDirectEditorConstraint getAdditionalConstraint() {
+		return constraint;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint#getIcon()
+	 *
+	 * @return
+	 */
+	public Image getIcon() {
+		return null;
+	}
 
 
 

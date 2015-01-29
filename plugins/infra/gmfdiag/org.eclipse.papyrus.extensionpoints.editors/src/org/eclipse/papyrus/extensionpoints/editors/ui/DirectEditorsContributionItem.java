@@ -1,6 +1,15 @@
-/**
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
  *
- */
+ * Contributors:
+ * 	CEA LIST -  Initial API and implementation
+ *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 441962
+ *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.ui;
 
 import java.util.Collection;
@@ -9,7 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.action.ContributionItem;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
+import org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
+import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.swt.SWT;
@@ -26,7 +36,7 @@ import org.eclipse.ui.menus.IWorkbenchContribution;
 import org.eclipse.ui.services.IServiceLocator;
 
 /**
- *
+ * Contribution to contextual menu for Direct Editor extension.
  */
 public class DirectEditorsContributionItem extends ContributionItem implements IWorkbenchContribution {
 
@@ -87,7 +97,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// get the UML object type of this element, using the business resolver
-		final Object businessObject = EMFHelper.getEObject(selectedElement);
+		final EObject businessObject = EMFHelper.getEObject(selectedElement);
 
 		// no object found: exit
 		if (businessObject == null) {
@@ -95,24 +105,24 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 		}
 
 		// retrieves all editor configurations for this kind of element
-		final Collection<DirectEditorExtensionPoint> configurations = DirectEditorExtensionPoint.getDirectEditorConfigurations(businessObject.getClass());
+		final Collection<IDirectEditorExtensionPoint> configurations = DirectEditorsUtil.getDirectEditorConfigurations(businessObject, selectedElement);
 
 		// if configurations is not empty, a submenu should open to select which
 		// editor to use...
 
-		if (configurations.size() < 1) {
+		if (configurations.isEmpty()) {
 			return;
 		}
 
-		createSubMenu(menu, index, businessObject, configurations);
+		createSubMenu(menu, index, selectedElement, businessObject, configurations);
 	}
 
 	// creates the submenu "open editors" > "edit with UML", "edit with AL", etc
-	protected void createSubMenu(Menu menu, int index, Object businessObject, Collection<DirectEditorExtensionPoint> configurations) {
+	protected void createSubMenu(Menu menu, int index, Object selectedElement, EObject businessObject, Collection<IDirectEditorExtensionPoint> configurations) {
 		// create direct item, and then create sub-items
 		subMenuItem = new MenuItem(menu, SWT.CASCADE);
 		String type = ((businessObject instanceof EObject) ?
-				((EObject) businessObject).eClass().getName() : ""); //$NON-NLS-1$
+				businessObject.eClass().getName() : ""); //$NON-NLS-1$
 
 		subMenuItem.setText("Edit " + type); //$NON-NLS-1$
 
@@ -122,10 +132,9 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 
 		// items on the submenu
 		// there are as many items as configurations
-		Class<?> fullType = ((businessObject instanceof EObject) ? ((EObject) businessObject).eClass().getInstanceClass() : null);
-		final DirectEditorExtensionPoint defaultConfig = DirectEditorExtensionPoint.getDefautDirectEditorConfiguration(fullType);
+		final IDirectEditorExtensionPoint defaultConfig = DirectEditorsUtil.getDefautDirectEditorConfiguration(businessObject, selectedElement);
 
-		for (final DirectEditorExtensionPoint configuration : configurations) {
+		for (final IDirectEditorExtensionPoint configuration : configurations) {
 			MenuItem item = new MenuItem(subMenu, SWT.NONE);
 			StringBuffer buffer = new StringBuffer();
 			buffer.append("Using "); //$NON-NLS-1$
@@ -192,7 +201,7 @@ public class DirectEditorsContributionItem extends ContributionItem implements I
 	 *         service was found.
 	 */
 	protected ISelectionService getSelectionService() {
-		ISelectionService selectionService = (ISelectionService) serviceLocator.getService(ISelectionService.class);
+		ISelectionService selectionService = serviceLocator.getService(ISelectionService.class);
 		return selectionService;
 	}
 

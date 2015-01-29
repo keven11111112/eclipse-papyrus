@@ -7,13 +7,14 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Patrick Tesseir (CEA LIST) - Initial API and implementation
+ *		Patrick Tessier (CEA LIST) - Initial API and implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.extensionpoints.editors.definition;
 
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.List;
 import java.util.TreeMap;
 
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
@@ -27,7 +28,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 public class DirectEditorRegistry {
 
 	// map of direct editor indexed by priorities
-	protected TreeMap<Integer, ArrayList<DirectEditorExtensionPoint>> editorMap = new TreeMap<Integer, ArrayList<DirectEditorExtensionPoint>>();
+	protected TreeMap<Integer, List<IDirectEditorExtensionPoint>> editorMap = new TreeMap<Integer, List<IDirectEditorExtensionPoint>>();
 	// list of objects that can be edited
 	protected ArrayList<String> objectToEdits = new ArrayList<String>();
 
@@ -38,7 +39,7 @@ public class DirectEditorRegistry {
 	 * @param directEditor
 	 *            a direct editor, cannot be null
 	 */
-	public void add(DirectEditorExtensionPoint directEditor) {
+	public void add(IDirectEditorExtensionPoint directEditor) {
 		assert (directEditor != null);
 		objectToEdits.add(directEditor.getObjectToEdit());
 		Integer priority = directEditor.getPriority();
@@ -50,9 +51,9 @@ public class DirectEditorRegistry {
 		if (preferedLanguage.equals(directEditor.getLanguage())) {
 			priority = new Integer(0);
 		}
-		ArrayList<DirectEditorExtensionPoint> currentValue = editorMap.get(priority);
+		List<IDirectEditorExtensionPoint> currentValue = editorMap.get(priority);
 		if (currentValue == null) {
-			currentValue = new ArrayList<DirectEditorExtensionPoint>();
+			currentValue = new ArrayList<IDirectEditorExtensionPoint>();
 		}
 
 		currentValue.add(directEditor);
@@ -64,7 +65,7 @@ public class DirectEditorRegistry {
 	 */
 	protected void adaptPreferences() {
 		Iterator<String> iter = objectToEdits.iterator();
-		DirectEditorExtensionPoint defaultDirectEditor = null;
+		IDirectEditorExtensionPoint defaultDirectEditor = null;
 		while (iter.hasNext()) {
 			String objectToEdit = iter.next();
 			defaultDirectEditor = getDefaultDirectEditor(objectToEdit);
@@ -97,8 +98,8 @@ public class DirectEditorRegistry {
 	 * @param directEditors
 	 *            cannot be null
 	 */
-	public void init(DirectEditorExtensionPoint[] directEditors) {
-		editorMap = new TreeMap<Integer, ArrayList<DirectEditorExtensionPoint>>();
+	public void init(IDirectEditorExtensionPoint[] directEditors) {
+		editorMap = new TreeMap<Integer, List<IDirectEditorExtensionPoint>>();
 		objectToEdits = new ArrayList<String>();
 		for (int i = 0; i < directEditors.length; i++) {
 			add(directEditors[i]);
@@ -115,14 +116,14 @@ public class DirectEditorRegistry {
 	 *            the string that represents the element to edit
 	 * @return a direct editor, it can be null
 	 */
-	public DirectEditorExtensionPoint getDefaultDirectEditor(String ObjectToEdit) {
+	public IDirectEditorExtensionPoint getDefaultDirectEditor(String ObjectToEdit) {
 		Iterator<Integer> keyIterator = editorMap.keySet().iterator();
 
 		while (keyIterator.hasNext()) {
 			Integer index = keyIterator.next();
-			Iterator<DirectEditorExtensionPoint> iter = editorMap.get(index).iterator();
+			Iterator<IDirectEditorExtensionPoint> iter = editorMap.get(index).iterator();
 			while (iter.hasNext()) {
-				DirectEditorExtensionPoint directEditorExtensionPoint = iter.next();
+				IDirectEditorExtensionPoint directEditorExtensionPoint = iter.next();
 				if (directEditorExtensionPoint.getObjectToEdit().equals(ObjectToEdit)) {
 					return directEditorExtensionPoint;
 				}

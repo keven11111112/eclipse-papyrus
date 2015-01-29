@@ -24,7 +24,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.IAdvancedEditor
 import org.eclipse.papyrus.extensionpoints.editors.configuration.ICustomDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IPopupEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.definition.DirectEditorExtensionPoint;
+import org.eclipse.papyrus.extensionpoints.editors.definition.IDirectEditorExtensionPoint;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -45,7 +45,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	protected IWorkbenchPart part = null;
 
 	/** the configuration for the embedded editor */
-	private DirectEditorExtensionPoint directEditorExtensionPoint;
+	private IDirectEditorExtensionPoint directEditorExtensionPoint;
 
 	/**
 	 * Returns the edited EObject
@@ -139,11 +139,11 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * protected void setManager(DirectEditManager manager) {
 	 * this.manager = manager;
 	 * }
-	 *
+	 * 
 	 * public void setParser(IParser parser) {
 	 * this.parser = parser;
 	 * }
-	 *
+	 * 
 	 * protected void initializeDirectEditManager(final Request request) {
 	 * // initialize the direct edit manager
 	 * try {
@@ -179,7 +179,7 @@ public abstract class OpenEmbeddedTextEditorObjectActionDelegate implements IObj
 	 * @param configuration
 	 *            the configuration for the specified editor
 	 */
-	public void setExtensionPointConfiguration(DirectEditorExtensionPoint directEditorExtensionPoint) {
+	public void setExtensionPointConfiguration(IDirectEditorExtensionPoint directEditorExtensionPoint) {
 		this.directEditorExtensionPoint = directEditorExtensionPoint;
 	}
 

@@ -725,7 +725,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(getAdapter(AppliedStereotypeProperty.class), this);
 		}
 		return false;
 	}
@@ -745,11 +745,12 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
+			Object semanticElement = getAdapter(AppliedStereotypeProperty.class);
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticElement);
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, this);
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, semanticElement, this);
 			}
 		}
 	}
@@ -761,7 +762,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, getAdapter(AppliedStereotypeProperty.class), this);
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
