@@ -111,10 +111,6 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 				return true;
 			}
 
-			/** Nodes (NotationType) : CONTAINMENT_CIRCLE_CN *********** */
-			if (ElementTypes.CONTAINMENT_CIRCLE_CN.getSemanticHint().equals(hint)) {
-				return true;
-			}
 
 		}
 		return false;

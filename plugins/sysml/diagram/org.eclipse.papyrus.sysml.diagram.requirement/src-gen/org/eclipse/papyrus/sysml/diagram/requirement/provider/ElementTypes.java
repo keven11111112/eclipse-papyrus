@@ -75,8 +75,6 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 
 	public static final String DEFAULT_NAMED_ELEMENT_LABEL_NAME_HINT = "5157"; //$NON-NLS-1$
 
-	/** ClassDiagram :: CONTAINMENT_CIRCLE_CN */
-	public static final IHintedType CONTAINMENT_CIRCLE_CN = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.ContainmentCircle_3032"); //$NON-NLS-1$
 
 	/** ClassDiagram :: COMMENT */
 	public static final IHintedType COMMENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.Comment_2012"); //$NON-NLS-1$

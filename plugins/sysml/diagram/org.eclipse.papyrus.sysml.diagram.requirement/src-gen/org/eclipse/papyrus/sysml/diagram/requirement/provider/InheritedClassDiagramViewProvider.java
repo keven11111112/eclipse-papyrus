@@ -229,17 +229,7 @@ public class InheritedClassDiagramViewProvider extends UMLViewProvider {
 				return true;
 			}
 		}
-		if (elementType == ElementTypes.CONTAINMENT_CIRCLE_CN) {
-			// node: org.eclipse.gmf.codegen.gmfgen.impl.GenChildSideAffixedNodeImpl@6585f639 (visualID: 3032, editPartClassName: ContainmentCircleEditPart, itemSemanticEditPolicyClassName: ContainmentCircleItemSemanticEditPolicy, notationViewFactoryClassName:
-			// null) (canonicalEditPolicyClassName: ContainmentCircleCanonicalEditPolicy) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ContainmentCircleGraphicalNodeEditPolicy, createCommandClassName:
-			// ContainmentCircleCreateCommand) (preferredSideName: NORTH)
-			// containers: org.eclipse.gmf.codegen.gmfgen.impl.GenTopLevelNodeImpl@a94a7a8 (visualID: 2008, editPartClassName: ClassEditPart, itemSemanticEditPolicyClassName: ClassItemSemanticEditPolicy, notationViewFactoryClassName: null)
-			// (canonicalEditPolicyClassName: ClassCanonicalEditPolicy) (primaryDragEditPolicyQualifiedClassName: null, graphicalNodeEditPolicyClassName: ClassGraphicalNodeEditPolicy, createCommandClassName: ClassCreateCommand)
-			// nodeRef: org.eclipse.papyrus.generation.diagram.idgen.impl.GenNodeRefImpl@6eca2ca5 (name: ) (customPreferencePage: null, generatePreferencePage: false, generateTool: false)
-			if (ElementTypes.CLASS.getSemanticHint().equals(containerGraphicalType)) {
-				return true;
-			}
-		}
+
 		if (elementType == ElementTypes.COMMENT) {
 			if (ElementTypes.DIAGRAM_ID.equals(containerGraphicalType)) {
 				return true;

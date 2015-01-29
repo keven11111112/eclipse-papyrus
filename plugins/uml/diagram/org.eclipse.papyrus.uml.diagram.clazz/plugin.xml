@@ -1030,7 +1030,7 @@
 		<entry
 		      description="Nodes"
 		      id="clazz.group.nodes"
-		      kind="stack"
+		      kind="drawer"
 		      label="Nodes"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
@@ -1146,7 +1146,7 @@
 		<entry
 		      description="Edges"
 		      id="clazz.group.relationships"
-		      kind="stack"
+		      kind="drawer"
 		      label="Edges"
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"

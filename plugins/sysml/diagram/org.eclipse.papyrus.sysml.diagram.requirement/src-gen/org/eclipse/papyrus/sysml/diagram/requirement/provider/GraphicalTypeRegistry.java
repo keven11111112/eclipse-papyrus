@@ -53,7 +53,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		knownNodes.add(ElementTypes.CLASS.getSemanticHint());
 		knownNodes.add(ElementTypes.CLASS_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.DEFAULT_NAMED_ELEMENT.getSemanticHint());
-		knownNodes.add(ElementTypes.CONTAINMENT_CIRCLE_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT.getSemanticHint());
 		knownNodes.add(ElementTypes.COMMENT_CN.getSemanticHint());
 		knownNodes.add(ElementTypes.CONSTRAINT.getSemanticHint());
