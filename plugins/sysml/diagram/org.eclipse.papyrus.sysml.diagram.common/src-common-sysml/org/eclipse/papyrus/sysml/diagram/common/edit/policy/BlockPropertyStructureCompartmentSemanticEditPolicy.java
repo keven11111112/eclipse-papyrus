@@ -22,8 +22,8 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.blocks.Block;
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateActorPartWithTypeConfigureCommandFactory;
@@ -39,7 +39,7 @@ import org.eclipse.uml2.uml.Type;
 /**
  * Semantic edit policy for {@link Block} structure compartment.
  */
-public class BlockPropertyStructureCompartmentSemanticEditPolicy extends CompartmentSemanticEditPolicy {
+public class BlockPropertyStructureCompartmentSemanticEditPolicy extends DefaultCompartmentSemanticEditPolicy {
 
 	/**
 	 * {@inheritDoc}

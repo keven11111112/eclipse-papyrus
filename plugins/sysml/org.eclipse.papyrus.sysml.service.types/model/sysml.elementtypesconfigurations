@@ -239,7 +239,7 @@
   <adviceBindingsConfigurations xmi:id="_pCAFEFYDEeS0WsAAtVmToA" name="org.eclipse.papyrus.sysml.advice.Property" identifier="org.eclipse.papyrus.sysml.advice.Property" editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.helper.advice.PropertyEditHelperAdvice" inheritance="all">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc-1cFYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xmi:id="_vpsKwFYDEeS0WsAAtVmToA" name="org.eclipse.papyrus.sysml.advice.Package" identifier="org.eclipse.papyrus.sysml.advice.Package" editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.helper.advice.PackageEditHelperAdvice">
+  <adviceBindingsConfigurations xmi:id="_vpsKwFYDEeS0WsAAtVmToA" name="org.eclipse.papyrus.sysml.advice.Package" identifier="org.eclipse.papyrus.sysml.advice.Package" editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.helper.advice.PackageEditHelperAdvice" inheritance="all">
     <target xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" href="../../../plugin/org.eclipse.papyrus.uml.service.types/model/uml.elementtypesconfigurations#_Sc9nZVYCEeS0WsAAtVmToA"/>
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations xmi:id="_2t_7AFYDEeS0WsAAtVmToA" name="org.eclipse.papyrus.sysml.advice.Actor" identifier="org.eclipse.papyrus.sysml.advice.Actor" editHelperAdviceClassName="org.eclipse.papyrus.sysml.service.types.helper.advice.ActorEditHelperAdvice" inheritance="all">

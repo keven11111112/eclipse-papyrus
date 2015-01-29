@@ -16,7 +16,7 @@ package org.eclipse.papyrus.sysml.diagram.internalblock.edit.policy;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ReconnectRequest;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 
 public class DiagramSemanticEditPolicy extends DefaultSemanticEditPolicy {
 

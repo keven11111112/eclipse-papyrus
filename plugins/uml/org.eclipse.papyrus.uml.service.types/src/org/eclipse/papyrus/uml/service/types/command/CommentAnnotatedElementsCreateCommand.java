@@ -35,10 +35,19 @@ public class CommentAnnotatedElementsCreateCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		if (source instanceof Comment && target instanceof Element) {
+		if (source == null && target == null) {
+			return false;
+		}
+		if (source != null && !(source instanceof Comment)) {
+			return false;
+		}
+		if (target != null && !(target instanceof Element)) {
+			return false;
+		}
+		if (getSource() == null) {
 			return true;
 		}
-		return false;
+		return true;
 	}
 
 	@Override

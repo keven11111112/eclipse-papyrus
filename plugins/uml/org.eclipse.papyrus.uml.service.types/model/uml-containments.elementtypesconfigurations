@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="ASCII"?>
 <elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmi:id="_ScP1oFYCEeS0WsAAtVmToA" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_SdLC0lYCEeS0WsAAtVmToA" name="UML::UseCase_As_UML::Classifier::ownedUseCase" identifier="org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase" hint="org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_SdLC0lYCEeS0WsAAtVmToA" name="UML::UseCase_As_UML::Classifier::ownedUseCase" identifier="org.eclipse.papyrus.uml.UseCase_As_UML::Classifier::ownedUseCase" hint="UML::UseCase_As_UML::Classifier::ownedUseCase">
     <iconEntry xmi:id="_SdLpwFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/UseCase.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.UseCase</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_g1eR0FuQEeSq2af_QYA1OA" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.UseCaseAsClassifierOwnedUseCaseEditHelperAdvice"/>
