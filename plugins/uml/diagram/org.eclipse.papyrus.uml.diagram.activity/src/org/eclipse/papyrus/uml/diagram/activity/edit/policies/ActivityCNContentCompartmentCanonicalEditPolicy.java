@@ -43,13 +43,17 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalAction
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ClearAssociationActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ClearStructuralFeatureActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateLinkActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyLinkActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
@@ -64,13 +68,21 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.MergeNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadExtentActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadIsClassifiedObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadLinkActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadVariableActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReclassifyObjectActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReduceActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendObjectActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendSignalActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartClassifierBehaviorActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StartObjectBehavoiurActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TestIdentityActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
@@ -190,6 +202,18 @@ public class ActivityCNContentCompartmentCanonicalEditPolicy extends CanonicalEd
 		case BroadcastSignalActionEditPart.VISUAL_ID:
 		case CentralBufferNodeEditPart.VISUAL_ID:
 		case ActivityParameterNodeEditPart.VISUAL_ID:
+		case StartObjectBehavoiurActionEditPart.VISUAL_ID:
+		case TestIdentityActionEditPart.VISUAL_ID:
+		case ClearStructuralFeatureActionEditPart.VISUAL_ID:
+		case CreateLinkActionEditPart.VISUAL_ID:
+		case ReadLinkActionEditPart.VISUAL_ID:
+		case DestroyLinkActionEditPart.VISUAL_ID:
+		case ClearAssociationActionEditPart.VISUAL_ID:
+		case ReadExtentActionEditPart.VISUAL_ID:
+		case ReclassifyObjectActionEditPart.VISUAL_ID:
+		case ReadIsClassifiedObjectActionEditPart.VISUAL_ID:
+		case ReduceActionEditPart.VISUAL_ID:
+		case StartClassifierBehaviorActionEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

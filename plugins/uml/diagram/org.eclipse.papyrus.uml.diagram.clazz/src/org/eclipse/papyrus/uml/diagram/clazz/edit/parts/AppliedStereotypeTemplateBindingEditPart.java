@@ -136,8 +136,9 @@ public class AppliedStereotypeTemplateBindingEditPart extends PapyrusLabelEditPa
 	}
 
 	/**
-	 * @generated
+	 * @generated Papyrus Generation
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());

@@ -41,102 +41,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.update.UpdaterLinkDescriptor;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AcceptEventActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionInputPinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityDiagramEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPartCN;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityFinalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityParameterNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddStructuralFeatureValueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.AddVariableValueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.BroadcastSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallOperationActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CentralBufferNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentEditPartCN;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintEditPartCN;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CreateObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DataStoreNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DecisionNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DestroyObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.FlowFinalNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ForkNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InitialNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsInsertAtEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddVariableValueActionAsValueEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInBroadcastSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInDestroyObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInLoopNodeAsVariableEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInReadStructuralFeatureAsObjectEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.JoinNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.MergeNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OpaqueActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAcceptEventActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInCreateObjectActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsBodyOutputEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsLoopVariableEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInReadStructuralFeatureAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInReadVariableActionAsResultEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInValSpecActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadSelfActionOutputPinEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadStructuralFeatureActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ReadVariableActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendObjectActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SendSignalActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ShapeNamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPostcondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.TimeConstraintAsLocalPrecondEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallBeActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallOpActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInCallOpActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInOpaqueActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActAsReqEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendObjActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActAsTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInSendSigActEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLLinkDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLNodeDescriptor;
@@ -1034,6 +939,412 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 		case ConstraintEditPartCN.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE.getConstraint_3112ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case StartObjectBehavoiurActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getStartObjectBehaviorAction_3113ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3125ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3132ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3145ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3158ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3133ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3146ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3159ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case TestIdentityActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getTestIdentityAction_3114ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInTestIdentityActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3126ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3134ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3135ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3147ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3148ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3160ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3161ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ClearStructuralFeatureActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getClearStructuralFeatureAction_3115ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3127ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3136ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3149ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3162ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case CreateLinkActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getCreateLinkAction_3117ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3137ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3151ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3163ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ReadLinkActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getReadLinkAction_3116ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInReadLinkActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3128ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3138ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3150ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3164ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case DestroyLinkActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getDestroyLinkAction_3118ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3139ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3152ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3165ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ClearAssociationActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getClearAssociationAction_3119ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3140ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3153ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3166ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ReadExtentActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getReadExtentAction_3120ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInReadExtentActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3129ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ReclassifyObjectActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getReclassifyObjectAction_3121ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3141ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3154ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3167ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ReadIsClassifiedObjectActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getReadIsClassifiedObjectAction_3122ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3130ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3142ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3155ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3168ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ReduceActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getReduceAction_3123ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInReduceActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3131ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInReduceActionAsCollectionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3143ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3156ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3169ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case StartClassifierBehaviorActionEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getStartClassifierBehaviorAction_3124ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3144ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3157ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3170ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;

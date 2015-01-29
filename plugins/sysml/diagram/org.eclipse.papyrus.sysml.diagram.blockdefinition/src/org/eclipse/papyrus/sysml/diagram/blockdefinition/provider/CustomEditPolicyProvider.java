@@ -70,7 +70,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 /**
  * Edit policy provider for the Block definition diagram (install or remove policies on edit part creation).
@@ -122,7 +122,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		super.createEditPolicies(editPart);
 
 		if (editPart instanceof BlockDefinitionDiagramEditPart) {
-			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			editPart.installEditPolicy(PasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 			// no installation of other policies.
 			return;
 		}
@@ -134,7 +134,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
-			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			editPart.installEditPolicy(PasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
 		}
 
@@ -142,7 +142,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
-			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			editPart.installEditPolicy(PasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 
 		}
 

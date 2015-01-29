@@ -21,8 +21,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPo
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 /**
  * @generated
@@ -77,7 +77,7 @@ public class ActivityCNPreConditionsCompartmentEditPart extends ListCompartmentE
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityCNPreConditionsCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCNPreConditionsCompartmentCanonicalEditPolicy());
 		installEditPolicy(EditPolicyRoles.CANONICAL_ROLE, new ActivityActivityPreConditionsCompartmentCanonicalEditPolicy());

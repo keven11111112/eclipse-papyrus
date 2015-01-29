@@ -16,7 +16,6 @@ package aspects.impl.diagram.editparts
 
 import com.google.inject.Inject
 import com.google.inject.Singleton
-import org.eclipse.gmf.codegen.gmfgen.GenDiagram
 import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
 import xpt.diagram.editparts.Common
 
@@ -40,6 +39,9 @@ import xpt.diagram.editparts.Common
 		super.handleNotificationEvent(event);
 	'''
 	
-	override linkLabelDragPolicyQualifiedClassName(GenDiagram it) '''org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy'''
+	override additionalEditPolicies(GenLinkLabel it)
+	'''
+	installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusLinkLabelDragPolicy());
+    '''
 
 }

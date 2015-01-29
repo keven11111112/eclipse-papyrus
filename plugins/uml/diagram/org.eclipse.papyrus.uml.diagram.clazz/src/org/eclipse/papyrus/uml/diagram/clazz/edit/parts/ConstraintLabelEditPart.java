@@ -135,8 +135,9 @@ public class ConstraintLabelEditPart extends PapyrusLabelEditPart implements ITe
 	}
 
 	/**
-	 * @generated
+	 * @generated Papyrus Generation
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());

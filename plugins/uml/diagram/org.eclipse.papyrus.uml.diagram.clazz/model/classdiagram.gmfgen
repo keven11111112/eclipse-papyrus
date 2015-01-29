@@ -7943,6 +7943,7 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;clazz.group.nodes&quot;"
+            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -8162,6 +8163,7 @@
             largeIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             smallIconPath="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
             id="&quot;clazz.group.relationships&quot;"
+            stack="true"
             collapse="true">
           <entries
               xsi:type="gmfgen:ToolEntry"
@@ -8485,11 +8487,11 @@
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.20/@labels.0/@modelFacet"
-          qualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationSourceLinkParser"/>
+          qualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationLinkParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
           uses="/0/@diagram/@links.20/@labels.1/@modelFacet"
-          qualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationTargetLinkParser"/>
+          qualifiedName="org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationLinkParser"/>
     </labelParsers>
     <contextMenus
         context="/0/@diagram">

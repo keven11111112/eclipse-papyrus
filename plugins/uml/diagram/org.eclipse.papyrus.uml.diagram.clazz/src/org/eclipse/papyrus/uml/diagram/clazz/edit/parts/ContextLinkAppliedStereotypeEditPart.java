@@ -137,8 +137,9 @@ public class ContextLinkAppliedStereotypeEditPart extends PapyrusLabelEditPart i
 	}
 
 	/**
-	 * @generated
+	 * @generated Papyrus Generation
 	 */
+	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());

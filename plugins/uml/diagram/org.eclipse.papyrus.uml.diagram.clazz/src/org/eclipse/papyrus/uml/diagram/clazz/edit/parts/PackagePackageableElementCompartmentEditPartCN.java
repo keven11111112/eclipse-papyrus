@@ -32,7 +32,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.CustomContainmentCr
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 /**
  * @generated
@@ -66,7 +66,7 @@ public class PackagePackageableElementCompartmentEditPartCN extends AbstractPack
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.clazz.edit.policies.PackagePackageableElementCompartmentCanonicalEditPolicyCN());
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$

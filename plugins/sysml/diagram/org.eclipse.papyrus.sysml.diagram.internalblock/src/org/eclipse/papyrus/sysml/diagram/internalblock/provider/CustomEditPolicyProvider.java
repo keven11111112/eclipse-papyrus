@@ -46,7 +46,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.AbstractElementLinkEditP
 import org.eclipse.papyrus.uml.diagram.common.edit.part.ConnectorEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CommentEditPartCN;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.ConstraintEditPart;
@@ -102,7 +102,7 @@ public class CustomEditPolicyProvider extends InternalBlockDiagramEditPolicyProv
 		super.createEditPolicies(editPart);
 
 		if (editPart instanceof InternalBlockDiagramEditPart) {
-			editPart.installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
+			editPart.installEditPolicy(PasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDropEditPolicy());
 			// no installation of other policies.
 			return;

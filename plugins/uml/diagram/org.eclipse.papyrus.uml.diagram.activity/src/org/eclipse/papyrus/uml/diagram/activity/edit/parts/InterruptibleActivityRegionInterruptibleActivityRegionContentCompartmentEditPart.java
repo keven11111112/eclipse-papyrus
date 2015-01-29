@@ -37,8 +37,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleActiv
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.Messages;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.DuplicatePasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 
 /**
  * @generated
@@ -91,7 +91,7 @@ public class InterruptibleActivityRegionInterruptibleActivityRegionContentCompar
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		installEditPolicy(DuplicatePasteEditPolicy.PASTE_ROLE, new DuplicatePasteEditPolicy());
+		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
 		// in Papyrus diagrams are not strongly synchronised
 		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new
 		// org.eclipse.papyrus.uml.diagram.activity.edit.policies.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy());

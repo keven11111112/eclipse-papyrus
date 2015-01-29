@@ -449,6 +449,296 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType StartObjectBehaviorAction_3113 = getElementType("org.eclipse.papyrus.uml.diagram.activity.StartObjectBehaviorAction_3113"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3125 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3125"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3132 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3132"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3145 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3145"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3158 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3158"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3133 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3133"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3146 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3146"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3159 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3159"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType TestIdentityAction_3114 = getElementType("org.eclipse.papyrus.uml.diagram.activity.TestIdentityAction_3114"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3126 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3126"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3134 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3134"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3135 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3135"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3147 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3147"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3148 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3148"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3160 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3160"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3161 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3161"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ClearStructuralFeatureAction_3115 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ClearStructuralFeatureAction_3115"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3127 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3127"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3136 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3136"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3149 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3149"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3162 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3162"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType CreateLinkAction_3117 = getElementType("org.eclipse.papyrus.uml.diagram.activity.CreateLinkAction_3117"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3137 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3137"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3151 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3151"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3163 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3163"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReadLinkAction_3116 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ReadLinkAction_3116"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3128 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3128"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3138 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3138"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3150 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3150"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3164 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3164"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType DestroyLinkAction_3118 = getElementType("org.eclipse.papyrus.uml.diagram.activity.DestroyLinkAction_3118"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3139 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3139"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3152 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3152"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3165 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3165"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ClearAssociationAction_3119 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ClearAssociationAction_3119"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3140 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3140"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3153 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3153"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3166 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3166"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReadExtentAction_3120 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ReadExtentAction_3120"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3129 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3129"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReclassifyObjectAction_3121 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ReclassifyObjectAction_3121"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3141 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3141"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3154 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3154"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3167 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3167"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReadIsClassifiedObjectAction_3122 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ReadIsClassifiedObjectAction_3122"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3130 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3130"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3142 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3142"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3155 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3155"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3168 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3168"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ReduceAction_3123 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ReduceAction_3123"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3131 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3131"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3143 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3143"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3156 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3156"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3169 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3169"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType StartClassifierBehaviorAction_3124 = getElementType("org.eclipse.papyrus.uml.diagram.activity.StartClassifierBehaviorAction_3124"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3144 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3144"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3157 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3157"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3170 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3170"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ValueSpecificationAction_3076 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
 
 	/**
@@ -704,6 +994,64 @@ public class UMLElementTypes {
 			elements.put(InputPin_3103, UMLPackage.eINSTANCE.getInputPin());
 			elements.put(CentralBufferNode_3104, UMLPackage.eINSTANCE.getCentralBufferNode());
 			elements.put(Constraint_3112, UMLPackage.eINSTANCE.getConstraint());
+			elements.put(StartObjectBehaviorAction_3113, UMLPackage.eINSTANCE.getStartObjectBehaviorAction());
+			elements.put(OutputPin_3125, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3132, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3145, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3158, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(InputPin_3133, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3146, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3159, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(TestIdentityAction_3114, UMLPackage.eINSTANCE.getTestIdentityAction());
+			elements.put(OutputPin_3126, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3134, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(InputPin_3135, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3147, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ValuePin_3148, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3160, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ActionInputPin_3161, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ClearStructuralFeatureAction_3115, UMLPackage.eINSTANCE.getClearStructuralFeatureAction());
+			elements.put(OutputPin_3127, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3136, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3149, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3162, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(CreateLinkAction_3117, UMLPackage.eINSTANCE.getCreateLinkAction());
+			elements.put(InputPin_3137, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3151, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3163, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ReadLinkAction_3116, UMLPackage.eINSTANCE.getReadLinkAction());
+			elements.put(OutputPin_3128, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3138, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3150, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3164, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(DestroyLinkAction_3118, UMLPackage.eINSTANCE.getDestroyLinkAction());
+			elements.put(InputPin_3139, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3152, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3165, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ClearAssociationAction_3119, UMLPackage.eINSTANCE.getClearAssociationAction());
+			elements.put(InputPin_3140, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3153, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3166, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ReadExtentAction_3120, UMLPackage.eINSTANCE.getReadExtentAction());
+			elements.put(OutputPin_3129, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(ReclassifyObjectAction_3121, UMLPackage.eINSTANCE.getReclassifyObjectAction());
+			elements.put(InputPin_3141, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3154, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3167, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ReadIsClassifiedObjectAction_3122, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction());
+			elements.put(OutputPin_3130, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3142, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3155, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3168, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(ReduceAction_3123, UMLPackage.eINSTANCE.getReduceAction());
+			elements.put(OutputPin_3131, UMLPackage.eINSTANCE.getOutputPin());
+			elements.put(InputPin_3143, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3156, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3169, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(StartClassifierBehaviorAction_3124, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction());
+			elements.put(InputPin_3144, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3157, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3170, UMLPackage.eINSTANCE.getActionInputPin());
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
@@ -824,6 +1172,64 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(InputPin_3103);
 			KNOWN_ELEMENT_TYPES.add(CentralBufferNode_3104);
 			KNOWN_ELEMENT_TYPES.add(Constraint_3112);
+			KNOWN_ELEMENT_TYPES.add(StartObjectBehaviorAction_3113);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3125);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3132);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3145);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3158);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3133);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3146);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3159);
+			KNOWN_ELEMENT_TYPES.add(TestIdentityAction_3114);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3126);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3134);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3135);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3147);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3148);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3160);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3161);
+			KNOWN_ELEMENT_TYPES.add(ClearStructuralFeatureAction_3115);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3127);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3136);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3149);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3162);
+			KNOWN_ELEMENT_TYPES.add(CreateLinkAction_3117);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3137);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3151);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3163);
+			KNOWN_ELEMENT_TYPES.add(ReadLinkAction_3116);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3128);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3138);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3150);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3164);
+			KNOWN_ELEMENT_TYPES.add(DestroyLinkAction_3118);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3139);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3152);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3165);
+			KNOWN_ELEMENT_TYPES.add(ClearAssociationAction_3119);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3140);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3153);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3166);
+			KNOWN_ELEMENT_TYPES.add(ReadExtentAction_3120);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3129);
+			KNOWN_ELEMENT_TYPES.add(ReclassifyObjectAction_3121);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3141);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3154);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3167);
+			KNOWN_ELEMENT_TYPES.add(ReadIsClassifiedObjectAction_3122);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3130);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3142);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3155);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3168);
+			KNOWN_ELEMENT_TYPES.add(ReduceAction_3123);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3131);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3143);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3156);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3169);
+			KNOWN_ELEMENT_TYPES.add(StartClassifierBehaviorAction_3124);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3144);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3157);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3170);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1032,6 +1438,122 @@ public class UMLElementTypes {
 			return CentralBufferNode_3104;
 		case ConstraintEditPartCN.VISUAL_ID:
 			return Constraint_3112;
+		case StartObjectBehavoiurActionEditPart.VISUAL_ID:
+			return StartObjectBehaviorAction_3113;
+		case OutputPinInStartObjectBehaviorActionEditPart.VISUAL_ID:
+			return OutputPin_3125;
+		case InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3132;
+		case ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3145;
+		case ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3158;
+		case InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
+			return InputPin_3133;
+		case ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
+			return ValuePin_3146;
+		case ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID:
+			return ActionInputPin_3159;
+		case TestIdentityActionEditPart.VISUAL_ID:
+			return TestIdentityAction_3114;
+		case OutputPinInTestIdentityActionEditPart.VISUAL_ID:
+			return OutputPin_3126;
+		case InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
+			return InputPin_3134;
+		case InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
+			return InputPin_3135;
+		case ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
+			return ValuePin_3147;
+		case ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
+			return ValuePin_3148;
+		case ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID:
+			return ActionInputPin_3160;
+		case ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID:
+			return ActionInputPin_3161;
+		case ClearStructuralFeatureActionEditPart.VISUAL_ID:
+			return ClearStructuralFeatureAction_3115;
+		case OutputPinInClearStructuralFeatureActionEditPart.VISUAL_ID:
+			return OutputPin_3127;
+		case InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3136;
+		case ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3149;
+		case ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3162;
+		case CreateLinkActionEditPart.VISUAL_ID:
+			return CreateLinkAction_3117;
+		case InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
+			return InputPin_3137;
+		case ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ValuePin_3151;
+		case ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ActionInputPin_3163;
+		case ReadLinkActionEditPart.VISUAL_ID:
+			return ReadLinkAction_3116;
+		case OutputPinInReadLinkActionEditPart.VISUAL_ID:
+			return OutputPin_3128;
+		case InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
+			return InputPin_3138;
+		case ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ValuePin_3150;
+		case ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ActionInputPin_3164;
+		case DestroyLinkActionEditPart.VISUAL_ID:
+			return DestroyLinkAction_3118;
+		case InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
+			return InputPin_3139;
+		case ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ValuePin_3152;
+		case ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID:
+			return ActionInputPin_3165;
+		case ClearAssociationActionEditPart.VISUAL_ID:
+			return ClearAssociationAction_3119;
+		case InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3140;
+		case ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3153;
+		case ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3166;
+		case ReadExtentActionEditPart.VISUAL_ID:
+			return ReadExtentAction_3120;
+		case OutputPinInReadExtentActionEditPart.VISUAL_ID:
+			return OutputPin_3129;
+		case ReclassifyObjectActionEditPart.VISUAL_ID:
+			return ReclassifyObjectAction_3121;
+		case InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3141;
+		case ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3154;
+		case ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3167;
+		case ReadIsClassifiedObjectActionEditPart.VISUAL_ID:
+			return ReadIsClassifiedObjectAction_3122;
+		case OutputPinInReadIsClassifiedObjectActionEditPart.VISUAL_ID:
+			return OutputPin_3130;
+		case InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3142;
+		case ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3155;
+		case ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3168;
+		case ReduceActionEditPart.VISUAL_ID:
+			return ReduceAction_3123;
+		case OutputPinInReduceActionEditPart.VISUAL_ID:
+			return OutputPin_3131;
+		case InputPinInReduceActionAsCollectionEditPart.VISUAL_ID:
+			return InputPin_3143;
+		case ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID:
+			return ValuePin_3156;
+		case ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID:
+			return ActionInputPin_3169;
+		case StartClassifierBehaviorActionEditPart.VISUAL_ID:
+			return StartClassifierBehaviorAction_3124;
+		case InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return InputPin_3144;
+		case ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return ValuePin_3157;
+		case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
+			return ActionInputPin_3170;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:

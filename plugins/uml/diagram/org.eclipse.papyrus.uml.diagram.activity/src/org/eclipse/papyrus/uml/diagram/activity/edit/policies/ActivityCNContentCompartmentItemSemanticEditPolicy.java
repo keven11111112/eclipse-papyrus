@@ -280,6 +280,78 @@ public class ActivityCNContentCompartmentItemSemanticEditPolicy extends UMLBaseI
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
+		if (UMLElementTypes.StartObjectBehaviorAction_3113 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.TestIdentityAction_3114 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ClearStructuralFeatureAction_3115 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.CreateLinkAction_3117 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ReadLinkAction_3116 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.DestroyLinkAction_3118 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ClearAssociationAction_3119 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ReadExtentAction_3120 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ReclassifyObjectAction_3121 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ReadIsClassifiedObjectAction_3122 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ReduceAction_3123 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.StartClassifierBehaviorAction_3124 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedNode();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 }

@@ -49,7 +49,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[87];
+		this.expressions = new UMLAbstractExpression[126];
 		this.expressionBodies = new String[] {
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
@@ -126,7 +126,7 @@ public class UMLOCLFactory {
 				"result->notEmpty() implies self.result.type = self.object.type", //$NON-NLS-1$
 				"self.value -> notEmpty()", //$NON-NLS-1$
 				"self.structuralFeature.featuringClassifier->size() = 1", //$NON-NLS-1$
-				"self.target.type->size() = 0", //$NON-NLS-1$
+				"if self.target.oclIsUndefined() then true else self.target.type->size() = 0 endif", //$NON-NLS-1$
 				"(not self.structuralFeature.oclIsUndefined()) implies (self.structuralFeature.isStatic = false)", //$NON-NLS-1$
 				"self.structuralFeature.featuringClassifier.oclAsType(Type)->includes(self.object.type) or\r\nself.structuralFeature.oclAsType(Property).opposite.type = self.object.type", //$NON-NLS-1$
 				"self.object.lowerBound()=1 and self.object.upperBound()=1", //$NON-NLS-1$
@@ -138,6 +138,45 @@ public class UMLOCLFactory {
 				"self.result.type =self.variable.type and self.result.isOrdered = self.variable.isOrdered", //$NON-NLS-1$
 				"(self.result.lowerBound() <= self.variable.lowerBound())  and (self.result.upperBound() >= self.variable.lowerBound())", //$NON-NLS-1$
 				"((not self.handlerBody.oclIsUndefined()) and  (not self.exceptionInput.oclIsUndefined())) implies( let pins : Collection(Element) = self.handlerBody.allOwnedElements()->select(e : Element | e.oclIsKindOf(Pin)) in pins->forAll(e : Element | e.oclIsKindOf(Pin) implies e = self.exceptionInput))", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(InputPin) then self.owner.oclAsType(StartObjectBehaviorAction).argument->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(StartObjectBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(ValuePin) then self.owner.oclAsType(StartObjectBehaviorAction).argument->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(StartObjectBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(ActionInputPin) then self.owner.oclAsType(StartObjectBehaviorAction).argument->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartObjectBehaviorAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(StartObjectBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(InputPin) then self.owner.oclAsType(TestIdentityAction).first = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(TestIdentityAction).second = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(ValuePin) then self.owner.oclAsType(TestIdentityAction).first = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(TestIdentityAction).second = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(ActionInputPin) then self.owner.oclAsType(TestIdentityAction).first = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(TestIdentityAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(TestIdentityAction).second = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearStructuralFeatureAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ClearStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearStructuralFeatureAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ClearStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearStructuralFeatureAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ClearStructuralFeatureAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(CreateLinkAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(CreateLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(CreateLinkAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(CreateLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(CreateLinkAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(CreateLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadLinkAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ReadLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadLinkAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ReadLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadLinkAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ReadLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(DestroyLinkAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(DestroyLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(DestroyLinkAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(DestroyLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(DestroyLinkAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(DestroyLinkAction).inputValue->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearAssociationAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ClearAssociationAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearAssociationAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ClearAssociationAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ClearAssociationAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ClearAssociationAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReclassifyObjectAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ReclassifyObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReclassifyObjectAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ReclassifyObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReclassifyObjectAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ReclassifyObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadIsClassifiedObjectAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ReadIsClassifiedObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadIsClassifiedObjectAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ReadIsClassifiedObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReadIsClassifiedObjectAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ReadIsClassifiedObjectAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReduceAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(ReduceAction).collection = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReduceAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(ReduceAction).collection = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(ReduceAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(ReduceAction).collection = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartClassifierBehaviorAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(StartClassifierBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartClassifierBehaviorAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(StartClassifierBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StartClassifierBehaviorAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(StartClassifierBehaviorAction).object = self\r\nelse false endif", //$NON-NLS-1$
 		};
 	}
 

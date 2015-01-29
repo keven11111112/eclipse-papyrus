@@ -16,8 +16,10 @@ import java.util.HashSet;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -45,16 +47,16 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 * Instantiates a new association selection dialog.
 	 *
 	 * @param parent
-	 *        the parent shell
+	 *            the parent shell
 	 * @param style
-	 *        the style
+	 *            the style
 	 * @param commonAssociations
-	 *        list of assocation in which we would like to llok for
+	 *            list of assocation in which we would like to llok for
 	 */
 	public AssociationSelectionDialog(Shell parent, int style, HashSet<Association> commonAssociations) {
 		super(parent, style);
 		this.commonAssociations = commonAssociations;
-		this.selectedAssociation = (Association)commonAssociations.toArray()[0];
+		this.selectedAssociation = (Association) commonAssociations.toArray()[0];
 	}
 
 	/**
@@ -63,11 +65,10 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 */
 	@Override
 	protected void createContents() {
-		// TODO Auto-generated method stub
 		super.createContents();
 		ServicesRegistry registry;
 		try {
-			if(selectedAssociation != null) {
+			if (selectedAssociation != null) {
 				registry = ServiceUtilsForResource.getInstance().getServiceRegistry(selectedAssociation.eResource());
 				LabelProviderService labelProviderService = registry.getService(LabelProviderService.class);
 				final ILabelProvider labelProvider = labelProviderService.getLabelProvider();
@@ -90,13 +91,23 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 				tableViewer.setLabelProvider(labelProvider);
 				tableViewer.setContentProvider(associationContentProvider);
 				tableViewer.setInput(commonAssociations);
+				tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						btnOk.setEnabled(true);
+
+					}
+				});
+
+				btnOk.setEnabled(false);
 				btnOk.addMouseListener(new MouseListener() {
 
 					@Override
 					public void mouseUp(MouseEvent e) {
 						ISelection selection = tableViewer.getSelection();
-						if(selection instanceof IStructuredSelection) {
-							selectedAssociation = (Association)((IStructuredSelection)selection).getFirstElement();
+						if (selection instanceof IStructuredSelection) {
+							selectedAssociation = (Association) ((IStructuredSelection) selection).getFirstElement();
 							shlAssociationselection.close();
 						}
 					}
@@ -109,7 +120,27 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 					public void mouseDoubleClick(MouseEvent e) {
 					}
 				});
-				btnCancel.setVisible(false);
+				btnCancel.addMouseListener(new MouseListener() {
+
+					@Override
+					public void mouseUp(MouseEvent e) {
+						selectedAssociation = null;
+						shlAssociationselection.close();
+
+					}
+
+					@Override
+					public void mouseDown(MouseEvent e) {
+
+
+					}
+
+					@Override
+					public void mouseDoubleClick(MouseEvent e) {
+
+
+					}
+				});
 			} else {
 				btnCancel.setVisible(true);
 			}

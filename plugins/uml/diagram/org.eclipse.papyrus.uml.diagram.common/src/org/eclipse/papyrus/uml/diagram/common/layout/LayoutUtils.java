@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.IOvalAnchorableFigure;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 
@@ -237,9 +238,9 @@ public class LayoutUtils {
 	 * an Affixed Child Node
 	 *
 	 * @param sourceEditPart
-	 *            he source EditPart
+	 *            the source EditPart, it must be a node
 	 * @param targetEditPart
-	 *            the targetEditPart
+	 *            the targetEditPart, it must be a node
 	 * @return <ul>
 	 *         <li>Point[0] is the source Anchor</li>
 	 *         <li>Point[1] is the target Anchor</li>
