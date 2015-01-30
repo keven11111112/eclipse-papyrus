@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.uml.extensionpoints.Activator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Some utils extracted from com.cea.utils classes (package and element)
@@ -100,6 +101,11 @@ public class Util {
 		tmpResourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		tmpResourceSet.getLoadOptions().put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, Boolean.TRUE);
 		tmpResourceSet.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
+
+		// UMLUtil.init is not thread-safe since it may write in the EMF Metadata
+		synchronized (UMLUtil.class) {
+			UMLUtil.init(tmpResourceSet);
+		}
 
 		return tmpResourceSet;
 	}
