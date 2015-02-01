@@ -431,6 +431,28 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new LoopNodeEditPart(view);
 			case LoopNodeKeywordEditPart.VISUAL_ID:
 				return new LoopNodeKeywordEditPart(view);
+			case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				return new InputPinInLoopNodeAsVariableEditPart(view);
+			case InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
+				return new InputPinInLoopNodeAsVariableLabelEditPart(view);
+			case InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID:
+				return new InputPinInStructuredActivityNodeAppliedStereotypeEditPart(view);
+			case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				return new ValuePinInLoopNodeAsVariableEditPart(view);
+			case ValuePinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
+				return new ValuePinInLoopNodeAsVariableLabelEditPart(view);
+			case ValuePinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
+				return new ValuePinInLoopNodeAsVariableValueEditPart(view);
+			case ValuePinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
+				return new ValuePinInLoopNodeAsVariableAppliedStereotypeEditPart(view);
+			case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				return new ActionPinInLoopNodeAsVariableEditPart(view);
+			case ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
+				return new ActionPinInLoopNodeAsVariableLabelEditPart(view);
+			case ActionPinInLoopNodeAsVariableValueEditPart.VISUAL_ID:
+				return new ActionPinInLoopNodeAsVariableValueEditPart(view);
+			case ActionPinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID:
+				return new ActionPinInLoopNodeAsVariableAppliedStereotypeEditPart(view);
 			case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 				return new OutputPinInLoopNodeAsBodyOutputEditPart(view);
 			case OutputPinInLoopNodeAsBodyOutputLabelEditPart.VISUAL_ID:
@@ -457,12 +479,34 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new StructuredActivityNodeEditPart(view);
 			case StructuredActivityNodeKeywordEditPart.VISUAL_ID:
 				return new StructuredActivityNodeKeywordEditPart(view);
-			case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				return new InputPinInLoopNodeAsVariableEditPart(view);
-			case InputPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID:
-				return new InputPinInLoopNodeAsVariableLabelEditPart(view);
-			case InputPinInStructuredActivityNodeAppliedStereotypeEditPart.VISUAL_ID:
-				return new InputPinInStructuredActivityNodeAppliedStereotypeEditPart(view);
+			case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				return new InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart(view);
+			case InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
+				return new InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart(view);
+			case InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
+				return new InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart(view);
+			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				return new ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart(view);
+			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
+				return new ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart(view);
+			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
+				return new ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart(view);
+			case ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
+				return new ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart(view);
+			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				return new ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart(view);
+			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
+				return new ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart(view);
+			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID:
+				return new ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart(view);
+			case ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
+				return new ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart(view);
+			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				return new OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart(view);
+			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID:
+				return new OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart(view);
+			case OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID:
+				return new OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart(view);
 			case ActivityPartitionEditPart.VISUAL_ID:
 				return new ActivityPartitionEditPart(view);
 			case ActivityPartitionNameEditPart.VISUAL_ID:

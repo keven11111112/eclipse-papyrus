@@ -244,12 +244,18 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 				case ExpansionNodeAsInEditPart.VISUAL_ID:
 				case ExpansionNodeAsOutEditPart.VISUAL_ID:
 				case LoopNodeEditPart.VISUAL_ID:
+				case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
 				case SequenceNodeEditPart.VISUAL_ID:
 				case StructuredActivityNodeEditPart.VISUAL_ID:
-				case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
 				case ActivityPartitionEditPart.VISUAL_ID:
 				case InterruptibleActivityRegionEditPart.VISUAL_ID:
 				case CommentEditPartCN.VISUAL_ID:
@@ -546,6 +552,12 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createExpansionNode_3075(domainElement, containerView, index, persisted, preferencesHint);
 		case LoopNodeEditPart.VISUAL_ID:
 			return createLoopNode_3071(domainElement, containerView, index, persisted, preferencesHint);
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return createInputPin_3105(domainElement, containerView, index, persisted, preferencesHint);
+		case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return createValuePin_3192(domainElement, containerView, index, persisted, preferencesHint);
+		case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return createActionInputPin_3193(domainElement, containerView, index, persisted, preferencesHint);
 		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 			return createOutputPin_3109(domainElement, containerView, index, persisted, preferencesHint);
 		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
@@ -556,8 +568,14 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 			return createSequenceNode_3073(domainElement, containerView, index, persisted, preferencesHint);
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 			return createStructuredActivityNode_3065(domainElement, containerView, index, persisted, preferencesHint);
-		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-			return createInputPin_3105(domainElement, containerView, index, persisted, preferencesHint);
+		case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return createInputPin_3188(domainElement, containerView, index, persisted, preferencesHint);
+		case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return createValuePin_3189(domainElement, containerView, index, persisted, preferencesHint);
+		case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return createActionInputPin_3190(domainElement, containerView, index, persisted, preferencesHint);
+		case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return createOutputPin_3191(domainElement, containerView, index, persisted, preferencesHint);
 		case ActivityPartitionEditPart.VISUAL_ID:
 			return createActivityPartition_3067(domainElement, containerView, index, persisted, preferencesHint);
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:
@@ -2172,6 +2190,120 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 	/**
 	 * @generated
 	 */
+	public Node createInputPin_3188(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "InputPin");
+		Node label5377 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
+		label5377.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5377 = (Location) label5377.getLayoutConstraint();
+		location5377.setX(0);
+		location5377.setY(5);
+		Node label5378 = createLabel(node, UMLVisualIDRegistry.getType(InputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID));
+		label5378.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5378 = (Location) label5378.getLayoutConstraint();
+		location5378.setX(0);
+		location5378.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createValuePin_3189(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		Node label5379 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
+		label5379.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5379 = (Location) label5379.getLayoutConstraint();
+		location5379.setX(0);
+		location5379.setY(5);
+		Node label5380 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID));
+		label5380.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5380 = (Location) label5380.getLayoutConstraint();
+		location5380.setX(0);
+		location5380.setY(5);
+		Node label5381 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID));
+		label5381.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5381 = (Location) label5381.getLayoutConstraint();
+		location5381.setX(0);
+		location5381.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createActionInputPin_3190(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		Node label5382 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
+		label5382.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5382 = (Location) label5382.getLayoutConstraint();
+		location5382.setX(0);
+		location5382.setY(5);
+		Node label5383 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsValueEditPart.VISUAL_ID));
+		label5383.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5383 = (Location) label5383.getLayoutConstraint();
+		location5383.setX(0);
+		location5383.setY(5);
+		Node label5384 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID));
+		label5384.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5384 = (Location) label5384.getLayoutConstraint();
+		location5384.setX(0);
+		location5384.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createOutputPin_3191(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "OutputPin");
+		Node label5385 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsLabelEditPart.VISUAL_ID));
+		label5385.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5385 = (Location) label5385.getLayoutConstraint();
+		location5385.setX(0);
+		location5385.setY(5);
+		Node label5386 = createLabel(node, UMLVisualIDRegistry.getType(OutputPinInStructuredActivityNodeAsStructuredNodeInputsAppliedStereotypeEditPart.VISUAL_ID));
+		label5386.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5386 = (Location) label5386.getLayoutConstraint();
+		location5386.setX(0);
+		location5386.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
 	public Node createInputPin_3105(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
 		Shape node = NotationFactory.eINSTANCE.createShape();
 		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
@@ -2192,6 +2324,68 @@ public class UMLViewProvider extends AbstractProvider implements IViewProvider {
 		Location location5179 = (Location) label5179.getLayoutConstraint();
 		location5179.setX(0);
 		location5179.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createValuePin_3192(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ValuePin");
+		Node label5388 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
+		label5388.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5388 = (Location) label5388.getLayoutConstraint();
+		location5388.setX(0);
+		location5388.setY(5);
+		Node label5389 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableValueEditPart.VISUAL_ID));
+		label5389.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5389 = (Location) label5389.getLayoutConstraint();
+		location5389.setX(0);
+		location5389.setY(5);
+		Node label5390 = createLabel(node, UMLVisualIDRegistry.getType(ValuePinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID));
+		label5390.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5390 = (Location) label5390.getLayoutConstraint();
+		location5390.setX(0);
+		location5390.setY(5);
+		return node;
+	}
+
+	/**
+	 * @generated
+	 */
+	public Node createActionInputPin_3193(EObject domainElement, View containerView, int index, boolean persisted, PreferencesHint preferencesHint) {
+		Shape node = NotationFactory.eINSTANCE.createShape();
+		node.getStyles().add(NotationFactory.eINSTANCE.createHintedDiagramLinkStyle());
+		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+		node.setType(UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID));
+		ViewUtil.insertChildView(containerView, node, index, persisted);
+		node.setElement(domainElement);
+		// initializeFromPreferences
+		final IPreferenceStore prefStore = (IPreferenceStore) preferencesHint.getPreferenceStore();
+		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "ActionInputPin");
+		Node label5391 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableLabelEditPart.VISUAL_ID));
+		label5391.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5391 = (Location) label5391.getLayoutConstraint();
+		location5391.setX(0);
+		location5391.setY(5);
+		Node label5392 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableValueEditPart.VISUAL_ID));
+		label5392.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5392 = (Location) label5392.getLayoutConstraint();
+		location5392.setX(0);
+		location5392.setY(5);
+		Node label5393 = createLabel(node, UMLVisualIDRegistry.getType(ActionPinInLoopNodeAsVariableAppliedStereotypeEditPart.VISUAL_ID));
+		label5393.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		Location location5393 = (Location) label5393.getLayoutConstraint();
+		location5393.setX(0);
+		location5393.setY(5);
 		return node;
 	}
 

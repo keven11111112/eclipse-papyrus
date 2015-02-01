@@ -14,11 +14,13 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -49,6 +51,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
@@ -60,6 +63,41 @@ public class ConditionalNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 	 */
 	public ConditionalNodeItemSemanticEditPolicy() {
 		super(UMLElementTypes.ConditionalNode_3069);
+	}
+
+	/**
+	 * @generated
+	 */
+	protected Command getCreateCommand(CreateElementRequest req) {
+		IElementType requestElementType = req.getElementType();
+		if (requestElementType == null) {
+			return super.getCreateCommand(req);
+		}
+		if (UMLElementTypes.InputPin_3188 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ValuePin_3189 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3190 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.OutputPin_3191 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeOutput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		return super.getCreateCommand(req);
 	}
 
 	/**

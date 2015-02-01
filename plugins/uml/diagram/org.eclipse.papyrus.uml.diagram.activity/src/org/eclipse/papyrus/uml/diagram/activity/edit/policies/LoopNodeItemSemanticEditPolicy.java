@@ -80,9 +80,15 @@ public class LoopNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
-		if (UMLElementTypes.OutputPin_3111 == requestElementType) {
+		if (UMLElementTypes.ValuePin_3192 == requestElementType) {
 			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_Result();
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3193 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput();
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
@@ -95,6 +101,12 @@ public class LoopNodeItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolic
 		if (UMLElementTypes.OutputPin_3110 == requestElementType) {
 			// adjust the containment feature
 			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_LoopVariable();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.OutputPin_3111 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getLoopNode_Result();
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
