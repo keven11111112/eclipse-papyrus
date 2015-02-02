@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Sebastien Gabel (Esterel Technologies) - Change implementation to consider denied permissions
  *   
  *****************************************************************************/
 
@@ -24,7 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
  * Utility class for Invariant Container rules
  */
 public class InvariantContainerUtils {
-	
+
 	public static boolean isContainerValid(IElementType[] containerTypes, boolean baseIsValid, List<HierarchyPermission> permissions) {
 		boolean isValid = baseIsValid;
 		for (HierarchyPermission permission : permissions) {
@@ -34,23 +35,11 @@ public class InvariantContainerUtils {
 			IElementType type = ElementTypeRegistry.getInstance().getType(childType);
 			if (type != null) {
 				if (isStrict) {
-					if (containerTypes[0].equals(type)) {
-						if (isPermitted) {
-							isValid = true;
-						}
-					} else if (!isPermitted) {
-						isValid = false;
-					}
+					isValid = containerTypes[0].equals(type) ? isPermitted : !isPermitted;
 				} else {
 					// not strict. The super types of typeToCreate should contain the permission type if permitted, or not contain the permission type if not permitted
 					List<IElementType> allTypes = new ArrayList<IElementType>(Arrays.asList(containerTypes));
-					if (allTypes.contains(type)) {
-						if (isPermitted) {
-							isValid = true;
-						}
-					} else if (!isPermitted) {
-						isValid = false;
-					}
+					isValid = allTypes.contains(type) ? isPermitted : !isPermitted;
 				}
 			}
 		}

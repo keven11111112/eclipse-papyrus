@@ -24,6 +24,7 @@ import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguratio
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration#getRequiredProfile <em>Required Profile</em>}</li>
+ * <li>{@link org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration#isStrict <em>Strict</em>}</li>
  * </ul>
  * </p>
  *
@@ -88,4 +89,32 @@ public interface InvariantStereotypeConfiguration extends InvariantRuleConfigura
 	 * @generated
 	 */
 	void setRequiredProfile(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Strict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Strict</em>' attribute isn't clear, there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Strict</em>' attribute.
+	 * @see #setStrict(boolean)
+	 * @see org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfigurationPackage#getInvariantStereotypeConfiguration_Strict()
+	 * @model
+	 * @generated
+	 */
+	boolean isStrict();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.InvariantStereotypeConfiguration#isStrict <em>Strict</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Strict</em>' attribute.
+	 * @see #isStrict()
+	 * @generated
+	 */
+	void setStrict(boolean value);
 } // InvariantStereotypeConfiguration
