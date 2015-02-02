@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ContainmentHelper;
@@ -49,6 +50,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.EnumerationLiteralEditPart;
@@ -63,11 +65,14 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.RedefinableTemplateSignatureEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.SubstitutionEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.UsageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.strategy.paste.ShowConstraintContextLink;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
+import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.InstanceSpecification;
@@ -106,6 +111,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		droppableElementsVisualID.add(PackageEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(InstanceSpecificationEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(InstanceSpecificationLinkEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ConstraintEditPart.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
 
@@ -128,17 +134,21 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 			return dropAsNormalBinaryLink(dropRequest, semanticLink, linkVISUALID);
 		}
 		if (linkVISUALID == AssociationEditPart.VISUAL_ID) {
-			return dropAssociation(dropRequest, semanticLink, linkVISUALID);
+			return dropAssociation(dropRequest, semanticLink);
+		}
+		if (linkVISUALID == UsageEditPart.VISUAL_ID) {
+			return dropAsNormalBinaryLink(dropRequest, semanticLink, linkVISUALID);
 		}
 		switch (nodeVISUALID) {
 		case DependencyNodeEditPart.VISUAL_ID:
-			return dropDependency(dropRequest, semanticLink, nodeVISUALID);
+			return dropDependency(dropRequest, semanticLink);
 		case AssociationClassEditPart.VISUAL_ID:
 			return dropAssociationClass(dropRequest, semanticLink, nodeVISUALID);
 		case AssociationNodeEditPart.VISUAL_ID:
-			return dropAssociation(dropRequest, semanticLink, nodeVISUALID);
+			return dropAssociation(dropRequest, semanticLink);
 		case NestedClassForClassEditPart.VISUAL_ID:
 		case ClassEditPartCN.VISUAL_ID:
+
 		case PackageEditPartCN.VISUAL_ID:
 		case ModelEditPartCN.VISUAL_ID:
 			return dropChildNodeWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
@@ -146,6 +156,8 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		case ClassEditPart.VISUAL_ID:
 		case PackageEditPart.VISUAL_ID:
 			return dropTopLevelNodeWithContainmentLink(dropRequest, semanticLink, nodeVISUALID);
+		case ConstraintEditPart.VISUAL_ID:
+			return dropConstraintNode(dropRequest, (Constraint) semanticLink, nodeVISUALID);
 		default:
 			return UnexecutableCommand.INSTANCE;
 		}
@@ -229,17 +241,17 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *
 	 * @return the command
 	 */
-	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropAssociation(DropObjectsRequest dropRequest, Element semanticLink) {
 		Collection<?> endtypes = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
 		if (endtypes.size() == 1) {
 			Element source = (Element) endtypes.toArray()[0];
 			Element target = (Element) endtypes.toArray()[0];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 		}
 		if (endtypes.size() == 2) {
 			Element source = (Element) endtypes.toArray()[0];
 			Element target = (Element) endtypes.toArray()[1];
-			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, 4001, dropRequest.getLocation(), semanticLink));
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 		}
 		if (endtypes.size() > 2) {
 			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
@@ -277,7 +289,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 *
 	 * @return the command
 	 */
-	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink, int nodeVISUALID) {
+	protected Command dropDependency(DropObjectsRequest dropRequest, Element semanticLink) {
 		Collection<?> sources = ClassLinkMappingHelper.getInstance().getSource(semanticLink);
 		Collection<?> targets = ClassLinkMappingHelper.getInstance().getTarget(semanticLink);
 		if (sources.size() == 1 && targets.size() == 1) {
@@ -345,6 +357,26 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 		}
 		return new ICommandProxy(cc);
 	}
+
+
+	/**
+	 * Use to drop a constraint, will also display the contextlink
+	 * 
+	 * @param dropRequest
+	 * @param droppedConstraint
+	 * @param nodeVISUALID
+	 * @return
+	 */
+	protected Command dropConstraintNode(DropObjectsRequest dropRequest, Constraint droppedConstraint, int nodeVISUALID) {
+		ICommand dropConstraintCommand = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), droppedConstraint, dropRequest);
+		if (droppedConstraint.getContext() != null) {
+			ShowConstraintContextLink showConstraintContextLink = new ShowConstraintContextLink(getEditingDomain(), (GraphicalEditPart) getHost(), droppedConstraint);
+			dropConstraintCommand = dropConstraintCommand.compose(showConstraintContextLink);
+		}
+		return GMFtoGEFCommandWrapper.wrap(dropConstraintCommand);
+	}
+
+
 
 	/**
 	 * call the mechanism to drop a binary link without specific type
@@ -417,7 +449,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	/**
 	 * @Overrided org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy to resolve cause of repeated definition
 	 *            of attributes shown outside classes when dragged back
-	 * 
+	 *
 	 * @param hostEP
 	 *            The host edit part which will be the parent of the new node
 	 * @param semanticHint

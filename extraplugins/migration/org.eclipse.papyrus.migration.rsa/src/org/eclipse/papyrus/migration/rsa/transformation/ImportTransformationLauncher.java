@@ -42,13 +42,13 @@ import org.eclipse.papyrus.infra.core.resource.IEMFModel;
 import org.eclipse.papyrus.infra.core.resource.IModel;
 import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
-import org.eclipse.papyrus.infra.core.utils.DiResourceSet;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
+import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.JobWrapper;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.Schedulable;
 import org.eclipse.papyrus.migration.rsa.internal.schedule.Scheduler;
@@ -469,7 +469,7 @@ public class ImportTransformationLauncher {
 
 	protected IStatus fixDependencies(ImportTransformation transformation, IProgressMonitor monitor, Map<URI, URI> urisToReplace, Map<URI, URI> profileUrisToReplace) {
 		monitor.subTask("Importing dependencies for " + transformation.getModelName());
-		final ModelSet modelSet = new DiResourceSet();
+		final MigrationModelSet modelSet = new MigrationModelSet();
 
 		final Collection<Resource> resourcesToRepair;
 		try {
@@ -496,7 +496,12 @@ public class ImportTransformationLauncher {
 
 		try {
 			long startProxies = System.nanoTime();
-			repairProxies(modelSet, resourcesToRepair, urisToReplace, monitor); // Repairing proxies first will change the Applied Profiles. This helps repairing stereotypes
+			modelSet.freeze(); // The repairProxies operation will try to load referenced resources, which we want to avoid (For performances)
+			try {
+				repairProxies(modelSet, resourcesToRepair, urisToReplace, monitor); // Repairing proxies first will change the Applied Profiles. This helps repairing stereotypes
+			} finally {
+				modelSet.unfreeze();
+			}
 			long endProxies = System.nanoTime();
 			synchronized (ImportTransformationLauncher.this) {
 				ownRepairLibrariesTime += endProxies - startProxies;
@@ -524,8 +529,9 @@ public class ImportTransformationLauncher {
 		try {
 
 			for (Resource resource : resourcesToRepair) {
-				resource.save(null);
+				ResourceAccessHelper.INSTANCE.saveResource(resource, null);
 			}
+
 			monitor.worked(1);
 
 			final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();

@@ -19,6 +19,8 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.structure.DiagramStructure;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.*;
+import org.eclipse.papyrus.uml.diagram.clazz.expressions.UMLOCLFactory;
+import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -1932,6 +1934,22 @@ public class UMLVisualIDRegistry {
 	 */
 	private static boolean isDiagram(Package element) {
 		return true;
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInstanceSpecification_2001(InstanceSpecification domainElement) {
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
+	}
+
+	/**
+	 * @generated
+	 */
+	private static boolean isInstanceSpecification_4021(InstanceSpecification domainElement) {
+		Object result = UMLOCLFactory.getExpression(1, UMLPackage.eINSTANCE.getInstanceSpecification(), null).evaluate(domainElement);
+		return result instanceof Boolean && ((Boolean) result).booleanValue();
 	}
 
 	/**

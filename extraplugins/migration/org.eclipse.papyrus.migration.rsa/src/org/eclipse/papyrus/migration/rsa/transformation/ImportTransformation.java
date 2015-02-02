@@ -48,7 +48,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
-import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
@@ -73,6 +72,8 @@ import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
 import org.eclipse.papyrus.migration.rsa.blackbox.ProfileBaseHelper;
+import org.eclipse.papyrus.migration.rsa.concurrent.ExecutorsPool;
+import org.eclipse.papyrus.migration.rsa.concurrent.ResourceAccessHelper;
 import org.eclipse.papyrus.migration.rsa.default_.DefaultPackage;
 import org.eclipse.papyrus.migration.rsa.profilebase.ProfileBasePackage;
 import org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage;
@@ -85,6 +86,7 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.OpaqueExpression;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * Executes a single RSA-to-Papyrus transformation
@@ -105,7 +107,7 @@ public class ImportTransformation {
 
 	protected ModelExtent outUML, outNotation, outSashModel, inParameters, inPapyrusProfiles;
 
-	protected ResourceSet resourceSet;
+	protected MigrationResourceSet resourceSet;
 
 	protected Job job;
 
@@ -271,7 +273,10 @@ public class ImportTransformation {
 	 * Initializes the resource set, and resolve all dependencies
 	 */
 	protected void initResourceSet(IProgressMonitor monitor) {
-		resourceSet = new ResourceSetImpl();
+		resourceSet = new MigrationResourceSetImpl();
+		synchronized (UMLUtil.class) {
+			UMLUtil.init(resourceSet);
+		}
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
 		resourceSet.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, Boolean.TRUE);
@@ -397,8 +402,6 @@ public class ImportTransformation {
 
 		monitor.subTask("Loading transformations (This may take a few seconds for the first import)...");
 		loadTransformations(monitor);
-		long endLoad = System.nanoTime();
-		loadingTime = endLoad - startLoad;
 
 
 		List<ModelExtent> extents = getModelExtents();
@@ -407,6 +410,11 @@ public class ImportTransformation {
 		MultiStatus generationStatus = new MultiStatus(Activator.PLUGIN_ID, IStatus.OK, statusMessage, null);
 
 		ExecutionContext context = createExecutionContext(monitor, generationStatus);
+
+		getInPapyrusProfiles(); // Preload profiles
+
+		long endLoad = System.nanoTime();
+		loadingTime = endLoad - startLoad;
 
 		//
 		// TRANSFORMATIONS
@@ -450,7 +458,6 @@ public class ImportTransformation {
 			monitor.subTask("Cleaning-up target model...");
 			URI notationModelURI = null;
 			URI sashModelURI = null;
-			// ResourceSet resourceSet = new ResourceSetImpl();
 
 			targetURI = convertToPapyrus(sourceURI, UMLResource.FILE_EXTENSION);
 			notationModelURI = convertToPapyrus(sourceURI, "notation"); // TODO use constant
@@ -559,7 +566,7 @@ public class ImportTransformation {
 
 			for (Resource resource : resourcesToSave) {
 				try {
-					resource.save(null);
+					ResourceAccessHelper.INSTANCE.saveResource(resource, null);
 				} catch (Exception ex) {
 					Activator.log.error(ex);
 					generationStatus.add(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occurred during save", ex));
@@ -581,7 +588,12 @@ public class ImportTransformation {
 
 	protected void handleDanglingURIs(Collection<Resource> resourcesToSave) {
 		if (analysisHelper != null) {
-			analysisHelper.computeURIMappings(resourcesToSave);
+			resourceSet.freeze();
+			try {
+				analysisHelper.computeURIMappings(resourcesToSave);
+			} finally {
+				resourceSet.unfreeze();
+			}
 		}
 	}
 
@@ -799,6 +811,7 @@ public class ImportTransformation {
 	}
 
 	protected void checkResource(Resource resource) {
+		Assert.isNotNull(resource);
 		Assert.isTrue(!resource.getContents().isEmpty(), "The resource " + resource.getURI() + " is empty");
 		for (EObject rootElement : resource.getContents()) {
 			Assert.isTrue(!rootElement.eIsProxy());
@@ -900,7 +913,7 @@ public class ImportTransformation {
 	/*
 	 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
 	 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
-	 *
+	 * 
 	 * Before the transformation, We moved all root elements from the fragment resources to the main
 	 * resource, then we transformed some of them to Papyrus Stereotype Applications. We need to move
 	 * these stereotype applications back to the proper fragment resource
@@ -1087,7 +1100,7 @@ public class ImportTransformation {
 				/*
 				 * Bug 447097: [Model Import] Importing a fragmented model causes stereotype applications to be lost in resulting submodel
 				 * https://bugs.eclipse.org/bugs/show_bug.cgi?id=447097
-				 *
+				 * 
 				 * StereotypeApplications from Fragments are not considered "rootElements" by QVTo, and
 				 * there is no logical link between UML Elements and stereotype applications in fragments
 				 * We need to make all root Elements available to the QVTo ModelExtent (Including the ones

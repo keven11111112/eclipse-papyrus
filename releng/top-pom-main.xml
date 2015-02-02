@@ -47,6 +47,7 @@
 		<module>../plugins/doc/org.eclipse.papyrus.infra.services.controlmode.doc</module>
 		<module>../plugins/doc/org.eclipse.papyrus.layers.documentation</module>
         <module>../plugins/doc/org.eclipse.papyrus.uml.decoratormodel.doc</module>
+        <module>../plugins/doc/org.eclipse.papyrus.uml.modelrepair.doc</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.palette</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.paletteconfiguration</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties</module>
@@ -117,7 +118,6 @@
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
-		<module>../plugins/uml/tools/org.eclipse.papyrus.uml.tools.elementtypesconfigurations</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common</module>
 		<module>../plugins/doc/org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
@@ -416,7 +416,7 @@
 		<repository>
 			<id>orbit</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20140525021250/repository</url>
+			<url>http://download.eclipse.org/tools/orbit/downloads/drops/R20150124073747/repository</url>
 		</repository>
 		<repository>
 			<id>tmf-xtext</id>
