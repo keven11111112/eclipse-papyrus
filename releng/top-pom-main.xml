@@ -118,6 +118,7 @@
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
+		<module>../plugins/uml/tools/org.eclipse.papyrus.uml.tools.elementtypesconfigurations</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common</module>
 		<module>../plugins/doc/org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
