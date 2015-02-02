@@ -4,15 +4,15 @@
     <iconEntry xmi:id="_ScP1olYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Abstraction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScQcs1YCEeS0WsAAtVmToA" name="UML::AcceptCallAction" identifier="org.eclipse.papyrus.uml.AcceptCallAction" hint="UML::AcceptCallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScQcs1YCEeS0WsAAtVmToA" name="UML::AcceptCallAction" identifier="org.eclipse.papyrus.uml.AcceptCallAction" hint="UML::AcceptCallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScQctFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/AcceptCallAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//AcceptCallAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScQcu1YCEeS0WsAAtVmToA" name="UML::AcceptEventAction" identifier="org.eclipse.papyrus.uml.AcceptEventAction" hint="UML::AcceptEventAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScQcu1YCEeS0WsAAtVmToA" name="UML::AcceptEventAction" identifier="org.eclipse.papyrus.uml.AcceptEventAction" hint="UML::AcceptEventAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScQcvFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/AcceptEventAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//AcceptEventAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScRDxFYCEeS0WsAAtVmToA" name="UML::Action" identifier="org.eclipse.papyrus.uml.Action" hint="UML::Action" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScRDxFYCEeS0WsAAtVmToA" name="UML::Action" identifier="org.eclipse.papyrus.uml.Action" hint="UML::Action" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScRDxVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Action.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Action"/>
   </elementTypeConfigurations>
@@ -20,7 +20,7 @@
     <iconEntry xmi:id="_ScRDx1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActionExecutionSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActionExecutionSpecification"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScRDyFYCEeS0WsAAtVmToA" name="UML::ActionInputPin" identifier="org.eclipse.papyrus.uml.ActionInputPin" hint="UML::ActionInputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScRDyFYCEeS0WsAAtVmToA" name="UML::ActionInputPin" identifier="org.eclipse.papyrus.uml.ActionInputPin" hint="UML::ActionInputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScRDyVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActionInputPin"/>
   </elementTypeConfigurations>
@@ -36,7 +36,7 @@
     <iconEntry xmi:id="_ScTgIFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityEdge"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScTgIVYCEeS0WsAAtVmToA" name="UML::ActivityFinalNode" identifier="org.eclipse.papyrus.uml.ActivityFinalNode" hint="UML::ActivityFinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScTgIVYCEeS0WsAAtVmToA" name="UML::ActivityFinalNode" identifier="org.eclipse.papyrus.uml.ActivityFinalNode" hint="UML::ActivityFinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScTgIlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActivityFinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityFinalNode"/>
   </elementTypeConfigurations>
@@ -48,7 +48,7 @@
     <iconEntry xmi:id="_ScTgJlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActivityNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScTgJ1YCEeS0WsAAtVmToA" name="UML::ActivityParameterNode" identifier="org.eclipse.papyrus.uml.ActivityParameterNode" hint="UML::ActivityParameterNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScTgJ1YCEeS0WsAAtVmToA" name="UML::ActivityParameterNode" identifier="org.eclipse.papyrus.uml.ActivityParameterNode" hint="UML::ActivityParameterNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScTgKFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ActivityParameterNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ActivityParameterNode"/>
   </elementTypeConfigurations>
@@ -60,11 +60,11 @@
     <iconEntry xmi:id="_ScV8UlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Actor.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Actor"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScWjU1YCEeS0WsAAtVmToA" name="UML::AddStructuralFeatureValueAction" identifier="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction" hint="UML::AddStructuralFeatureValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScWjU1YCEeS0WsAAtVmToA" name="UML::AddStructuralFeatureValueAction" identifier="org.eclipse.papyrus.uml.AddStructuralFeatureValueAction" hint="UML::AddStructuralFeatureValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScWjVFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/AddStructuralFeatureValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//AddStructuralFeatureValueAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScWjW1YCEeS0WsAAtVmToA" name="UML::AddVariableValueAction" identifier="org.eclipse.papyrus.uml.AddVariableValueAction" hint="UML::AddVariableValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScWjW1YCEeS0WsAAtVmToA" name="UML::AddVariableValueAction" identifier="org.eclipse.papyrus.uml.AddVariableValueAction" hint="UML::AddVariableValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScWjXFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/AddVariableValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//AddVariableValueAction"/>
   </elementTypeConfigurations>
@@ -111,15 +111,15 @@
     <iconEntry xmi:id="_ScaNt1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/BehavioredClassifier.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//BehavioredClassifier"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNuFYCEeS0WsAAtVmToA" name="UML::BroadcastSignalAction" identifier="org.eclipse.papyrus.uml.BroadcastSignalAction" hint="UML::BroadcastSignalAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNuFYCEeS0WsAAtVmToA" name="UML::BroadcastSignalAction" identifier="org.eclipse.papyrus.uml.BroadcastSignalAction" hint="UML::BroadcastSignalAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScaNuVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/BroadcastSignalAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//BroadcastSignalAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNwFYCEeS0WsAAtVmToA" name="UML::CallAction" identifier="org.eclipse.papyrus.uml.CallAction" hint="UML::CallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNwFYCEeS0WsAAtVmToA" name="UML::CallAction" identifier="org.eclipse.papyrus.uml.CallAction" hint="UML::CallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScaNwVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CallAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CallAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNwlYCEeS0WsAAtVmToA" name="UML::CallBehaviorAction" identifier="org.eclipse.papyrus.uml.CallBehaviorAction" hint="UML::CallBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaNwlYCEeS0WsAAtVmToA" name="UML::CallBehaviorAction" identifier="org.eclipse.papyrus.uml.CallBehaviorAction" hint="UML::CallBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScaNw1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CallBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CallBehaviorAction"/>
   </elementTypeConfigurations>
@@ -127,11 +127,11 @@
     <iconEntry xmi:id="_ScaNy1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CallEvent.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CallEvent"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaN0lYCEeS0WsAAtVmToA" name="UML::CallOperationAction" identifier="org.eclipse.papyrus.uml.CallOperationAction" hint="UML::CallOperationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaN0lYCEeS0WsAAtVmToA" name="UML::CallOperationAction" identifier="org.eclipse.papyrus.uml.CallOperationAction" hint="UML::CallOperationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScaN01YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CallOperationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CallOperationAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaN2lYCEeS0WsAAtVmToA" name="UML::CentralBufferNode" identifier="org.eclipse.papyrus.uml.CentralBufferNode" hint="UML::CentralBufferNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScaN2lYCEeS0WsAAtVmToA" name="UML::CentralBufferNode" identifier="org.eclipse.papyrus.uml.CentralBufferNode" hint="UML::CentralBufferNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScaN21YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CentralBufferNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CentralBufferNode"/>
   </elementTypeConfigurations>
@@ -159,15 +159,15 @@
     <iconEntry xmi:id="_Sca01FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Clause.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Clause"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca01VYCEeS0WsAAtVmToA" name="UML::ClearAssociationAction" identifier="org.eclipse.papyrus.uml.ClearAssociationAction" hint="UML::ClearAssociationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca01VYCEeS0WsAAtVmToA" name="UML::ClearAssociationAction" identifier="org.eclipse.papyrus.uml.ClearAssociationAction" hint="UML::ClearAssociationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sca01lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ClearAssociationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ClearAssociationAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca03VYCEeS0WsAAtVmToA" name="UML::ClearStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.ClearStructuralFeatureAction" hint="UML::ClearStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca03VYCEeS0WsAAtVmToA" name="UML::ClearStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.ClearStructuralFeatureAction" hint="UML::ClearStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sca03lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ClearStructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ClearStructuralFeatureAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca05VYCEeS0WsAAtVmToA" name="UML::ClearVariableAction" identifier="org.eclipse.papyrus.uml.ClearVariableAction" hint="UML::ClearVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca05VYCEeS0WsAAtVmToA" name="UML::ClearVariableAction" identifier="org.eclipse.papyrus.uml.ClearVariableAction" hint="UML::ClearVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sca05lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ClearVariableAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ClearVariableAction"/>
   </elementTypeConfigurations>
@@ -203,7 +203,7 @@
     <iconEntry xmi:id="_Scbb61YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ComponentRealization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ComponentRealization"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScbcBFYCEeS0WsAAtVmToA" name="UML::ConditionalNode" identifier="org.eclipse.papyrus.uml.ConditionalNode" hint="UML::ConditionalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScbcBFYCEeS0WsAAtVmToA" name="UML::ConditionalNode" identifier="org.eclipse.papyrus.uml.ConditionalNode" hint="UML::ConditionalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScbcBVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ConditionalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ConditionalNode"/>
   </elementTypeConfigurations>
@@ -255,23 +255,23 @@
     <iconEntry xmi:id="_SccDGFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ControlFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlFlow"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccDGVYCEeS0WsAAtVmToA" name="UML::ControlNode" identifier="org.eclipse.papyrus.uml.ControlNode" hint="UML::ControlNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccDGVYCEeS0WsAAtVmToA" name="UML::ControlNode" identifier="org.eclipse.papyrus.uml.ControlNode" hint="UML::ControlNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sccp8FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ControlNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ControlNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sccp8VYCEeS0WsAAtVmToA" name="UML::CreateLinkAction" identifier="org.eclipse.papyrus.uml.CreateLinkAction" hint="UML::CreateLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sccp8VYCEeS0WsAAtVmToA" name="UML::CreateLinkAction" identifier="org.eclipse.papyrus.uml.CreateLinkAction" hint="UML::CreateLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sccp8lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CreateLinkAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CreateLinkAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sccp-VYCEeS0WsAAtVmToA" name="UML::CreateLinkObjectAction" identifier="org.eclipse.papyrus.uml.CreateLinkObjectAction" hint="UML::CreateLinkObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sccp-VYCEeS0WsAAtVmToA" name="UML::CreateLinkObjectAction" identifier="org.eclipse.papyrus.uml.CreateLinkObjectAction" hint="UML::CreateLinkObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sccp-lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CreateLinkObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CreateLinkObjectAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqAVYCEeS0WsAAtVmToA" name="UML::CreateObjectAction" identifier="org.eclipse.papyrus.uml.CreateObjectAction" hint="UML::CreateObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqAVYCEeS0WsAAtVmToA" name="UML::CreateObjectAction" identifier="org.eclipse.papyrus.uml.CreateObjectAction" hint="UML::CreateObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SccqAlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CreateObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CreateObjectAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqCVYCEeS0WsAAtVmToA" name="UML::DataStoreNode" identifier="org.eclipse.papyrus.uml.DataStoreNode" hint="UML::DataStoreNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqCVYCEeS0WsAAtVmToA" name="UML::DataStoreNode" identifier="org.eclipse.papyrus.uml.DataStoreNode" hint="UML::DataStoreNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SccqClYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DataStoreNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DataStoreNode"/>
   </elementTypeConfigurations>
@@ -279,7 +279,7 @@
     <iconEntry xmi:id="_SccqDFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DataType"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqGVYCEeS0WsAAtVmToA" name="UML::DecisionNode" identifier="org.eclipse.papyrus.uml.DecisionNode" hint="UML::DecisionNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqGVYCEeS0WsAAtVmToA" name="UML::DecisionNode" identifier="org.eclipse.papyrus.uml.DecisionNode" hint="UML::DecisionNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SccqGlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DecisionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DecisionNode"/>
   </elementTypeConfigurations>
@@ -303,11 +303,11 @@
     <iconEntry xmi:id="_ScdRD1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DeploymentTarget.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DeploymentTarget"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScdRFlYCEeS0WsAAtVmToA" name="UML::DestroyLinkAction" identifier="org.eclipse.papyrus.uml.DestroyLinkAction" hint="UML::DestroyLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScdRFlYCEeS0WsAAtVmToA" name="UML::DestroyLinkAction" identifier="org.eclipse.papyrus.uml.DestroyLinkAction" hint="UML::DestroyLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScdRF1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DestroyLinkAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DestroyLinkAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScdRHlYCEeS0WsAAtVmToA" name="UML::DestroyObjectAction" identifier="org.eclipse.papyrus.uml.DestroyObjectAction" hint="UML::DestroyObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScdRHlYCEeS0WsAAtVmToA" name="UML::DestroyObjectAction" identifier="org.eclipse.papyrus.uml.DestroyObjectAction" hint="UML::DestroyObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScdRH1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DestroyObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DestroyObjectAction"/>
   </elementTypeConfigurations>
@@ -371,7 +371,7 @@
     <iconEntry xmi:id="_Scg7Z1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ExceptionHandler.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ExceptionHandler"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scg7aFYCEeS0WsAAtVmToA" name="UML::ExecutableNode" identifier="org.eclipse.papyrus.uml.ExecutableNode" hint="UML::ExecutableNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scg7aFYCEeS0WsAAtVmToA" name="UML::ExecutableNode" identifier="org.eclipse.papyrus.uml.ExecutableNode" hint="UML::ExecutableNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Scg7aVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ExecutableNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ExecutableNode"/>
   </elementTypeConfigurations>
@@ -424,7 +424,7 @@
     <iconEntry xmi:id="_ScjXulYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Feature.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Feature"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scj-sFYCEeS0WsAAtVmToA" name="UML::FinalNode" identifier="org.eclipse.papyrus.uml.FinalNode" hint="UML::FinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scj-sFYCEeS0WsAAtVmToA" name="UML::FinalNode" identifier="org.eclipse.papyrus.uml.FinalNode" hint="UML::FinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Scj-sVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/FinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//FinalNode"/>
   </elementTypeConfigurations>
@@ -432,11 +432,11 @@
     <iconEntry xmi:id="_ScklwFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/FinalState.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//FinalState"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScklwVYCEeS0WsAAtVmToA" name="UML::FlowFinalNode" identifier="org.eclipse.papyrus.uml.FlowFinalNode" hint="UML::FlowFinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScklwVYCEeS0WsAAtVmToA" name="UML::FlowFinalNode" identifier="org.eclipse.papyrus.uml.FlowFinalNode" hint="UML::FlowFinalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScklwlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/FlowFinalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//FlowFinalNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scklw1YCEeS0WsAAtVmToA" name="UML::ForkNode" identifier="org.eclipse.papyrus.uml.ForkNode" hint="UML::ForkNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scklw1YCEeS0WsAAtVmToA" name="UML::ForkNode" identifier="org.eclipse.papyrus.uml.ForkNode" hint="UML::ForkNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_ScklxFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ForkNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ForkNode"/>
   </elementTypeConfigurations>
@@ -476,11 +476,11 @@
     <iconEntry xmi:id="_ScnCFVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InformationItem.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InformationItem"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sco3OVYCEeS0WsAAtVmToA" name="UML::InitialNode" identifier="org.eclipse.papyrus.uml.InitialNode" hint="UML::InitialNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sco3OVYCEeS0WsAAtVmToA" name="UML::InitialNode" identifier="org.eclipse.papyrus.uml.InitialNode" hint="UML::InitialNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sco3OlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InitialNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InitialNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sco3O1YCEeS0WsAAtVmToA" name="UML::InputPin" identifier="org.eclipse.papyrus.uml.InputPin" hint="UML::InputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sco3O1YCEeS0WsAAtVmToA" name="UML::InputPin" identifier="org.eclipse.papyrus.uml.InputPin" hint="UML::InputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sco3PFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InputPin"/>
   </elementTypeConfigurations>
@@ -524,7 +524,7 @@
     <iconEntry xmi:id="_Scvk4FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InterfaceRealization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InterfaceRealization"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScwL-VYCEeS0WsAAtVmToA" name="UML::InterruptibleActivityRegion" identifier="org.eclipse.papyrus.uml.InterruptibleActivityRegion" hint="UML::InterruptibleActivityRegion" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScwL-VYCEeS0WsAAtVmToA" name="UML::InterruptibleActivityRegion" identifier="org.eclipse.papyrus.uml.InterruptibleActivityRegion" hint="UML::InterruptibleActivityRegion" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InterruptibleActivityRegionHelper">
     <iconEntry xmi:id="_ScwL-lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InterruptibleActivityRegion.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InterruptibleActivityRegion"/>
   </elementTypeConfigurations>
@@ -536,11 +536,11 @@
     <iconEntry xmi:id="_ScxaEVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//IntervalConstraint"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2U1YCEeS0WsAAtVmToA" name="UML::InvocationAction" identifier="org.eclipse.papyrus.uml.InvocationAction" hint="UML::InvocationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2U1YCEeS0WsAAtVmToA" name="UML::InvocationAction" identifier="org.eclipse.papyrus.uml.InvocationAction" hint="UML::InvocationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Scz2VFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InvocationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InvocationAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2VVYCEeS0WsAAtVmToA" name="UML::JoinNode" identifier="org.eclipse.papyrus.uml.JoinNode" hint="UML::JoinNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2VVYCEeS0WsAAtVmToA" name="UML::JoinNode" identifier="org.eclipse.papyrus.uml.JoinNode" hint="UML::JoinNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Scz2VlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/JoinNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//JoinNode"/>
   </elementTypeConfigurations>
@@ -548,7 +548,7 @@
     <iconEntry xmi:id="_Scz2WFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Lifeline.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Lifeline"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2WVYCEeS0WsAAtVmToA" name="UML::LinkAction" identifier="org.eclipse.papyrus.uml.LinkAction" hint="UML::LinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scz2WVYCEeS0WsAAtVmToA" name="UML::LinkAction" identifier="org.eclipse.papyrus.uml.LinkAction" hint="UML::LinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Scz2WlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LinkAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LinkAction"/>
   </elementTypeConfigurations>
@@ -592,7 +592,7 @@
     <iconEntry xmi:id="_Sc4u7VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LiteralUnlimitedNatural.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralUnlimitedNatural"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc58-VYCEeS0WsAAtVmToA" name="UML::LoopNode" identifier="org.eclipse.papyrus.uml.LoopNode" hint="UML::LoopNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc58-VYCEeS0WsAAtVmToA" name="UML::LoopNode" identifier="org.eclipse.papyrus.uml.LoopNode" hint="UML::LoopNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc58-lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LoopNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LoopNode"/>
   </elementTypeConfigurations>
@@ -600,7 +600,7 @@
     <iconEntry xmi:id="_Sc59C1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Manifestation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Manifestation"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc59ElYCEeS0WsAAtVmToA" name="UML::MergeNode" identifier="org.eclipse.papyrus.uml.MergeNode" hint="UML::MergeNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc59ElYCEeS0WsAAtVmToA" name="UML::MergeNode" identifier="org.eclipse.papyrus.uml.MergeNode" hint="UML::MergeNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc59E1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/MergeNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//MergeNode"/>
   </elementTypeConfigurations>
@@ -647,7 +647,7 @@
     <iconEntry xmi:id="_Sc6kJVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ObjectFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectFlow"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc6kJlYCEeS0WsAAtVmToA" name="UML::ObjectNode" identifier="org.eclipse.papyrus.uml.ObjectNode" hint="UML::ObjectNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ObjectNodeHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc6kJlYCEeS0WsAAtVmToA" name="UML::ObjectNode" identifier="org.eclipse.papyrus.uml.ObjectNode" hint="UML::ObjectNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc6kJ1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ObjectNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ObjectNode"/>
   </elementTypeConfigurations>
@@ -659,7 +659,7 @@
     <iconEntry xmi:id="_Sc7LEFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/OccurrenceSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OccurrenceSpecification"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc7LEVYCEeS0WsAAtVmToA" name="UML::OpaqueAction" identifier="org.eclipse.papyrus.uml.OpaqueAction" hint="UML::OpaqueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc7LEVYCEeS0WsAAtVmToA" name="UML::OpaqueAction" identifier="org.eclipse.papyrus.uml.OpaqueAction" hint="UML::OpaqueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc7LElYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/OpaqueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OpaqueAction"/>
   </elementTypeConfigurations>
@@ -683,7 +683,7 @@
     <specializedTypesID>org.eclipse.papyrus.uml.OperationTemplateParameterBase</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_vg_QMZXJEeSmV5hdT3HeBw" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.OperationTemplateParameterEditHelperAdvice"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc9AQ1YCEeS0WsAAtVmToA" name="UML::OutputPin" identifier="org.eclipse.papyrus.uml.OutputPin" hint="UML::OutputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc9AQ1YCEeS0WsAAtVmToA" name="UML::OutputPin" identifier="org.eclipse.papyrus.uml.OutputPin" hint="UML::OutputPin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc9ARFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OutputPin"/>
   </elementTypeConfigurations>
@@ -727,7 +727,7 @@
     <iconEntry xmi:id="_Sc-OaVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/PartDecomposition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//PartDecomposition"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc-OalYCEeS0WsAAtVmToA" name="UML::Pin" identifier="org.eclipse.papyrus.uml.Pin" hint="UML::Pin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.PinEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc-OalYCEeS0WsAAtVmToA" name="UML::Pin" identifier="org.eclipse.papyrus.uml.Pin" hint="UML::Pin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc-Oa1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Pin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Pin"/>
   </elementTypeConfigurations>
@@ -771,39 +771,39 @@
     <iconEntry xmi:id="_Sc_chFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/QualifierValue.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//QualifierValue"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_chVYCEeS0WsAAtVmToA" name="UML::RaiseExceptionAction" identifier="org.eclipse.papyrus.uml.RaiseExceptionAction" hint="UML::RaiseExceptionAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_chVYCEeS0WsAAtVmToA" name="UML::RaiseExceptionAction" identifier="org.eclipse.papyrus.uml.RaiseExceptionAction" hint="UML::RaiseExceptionAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_chlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/RaiseExceptionAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//RaiseExceptionAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cjVYCEeS0WsAAtVmToA" name="UML::ReadExtentAction" identifier="org.eclipse.papyrus.uml.ReadExtentAction" hint="UML::ReadExtentAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cjVYCEeS0WsAAtVmToA" name="UML::ReadExtentAction" identifier="org.eclipse.papyrus.uml.ReadExtentAction" hint="UML::ReadExtentAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_cjlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadExtentAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadExtentAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_clVYCEeS0WsAAtVmToA" name="UML::ReadIsClassifiedObjectAction" identifier="org.eclipse.papyrus.uml.ReadIsClassifiedObjectAction" hint="UML::ReadIsClassifiedObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_clVYCEeS0WsAAtVmToA" name="UML::ReadIsClassifiedObjectAction" identifier="org.eclipse.papyrus.uml.ReadIsClassifiedObjectAction" hint="UML::ReadIsClassifiedObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_cllYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadIsClassifiedObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadIsClassifiedObjectAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cnVYCEeS0WsAAtVmToA" name="UML::ReadLinkAction" identifier="org.eclipse.papyrus.uml.ReadLinkAction" hint="UML::ReadLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cnVYCEeS0WsAAtVmToA" name="UML::ReadLinkAction" identifier="org.eclipse.papyrus.uml.ReadLinkAction" hint="UML::ReadLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_cnlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadLinkAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadLinkAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cpVYCEeS0WsAAtVmToA" name="UML::ReadLinkObjectEndAction" identifier="org.eclipse.papyrus.uml.ReadLinkObjectEndAction" hint="UML::ReadLinkObjectEndAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_cpVYCEeS0WsAAtVmToA" name="UML::ReadLinkObjectEndAction" identifier="org.eclipse.papyrus.uml.ReadLinkObjectEndAction" hint="UML::ReadLinkObjectEndAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_cplYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadLinkObjectEndAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadLinkObjectEndAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_crVYCEeS0WsAAtVmToA" name="UML::ReadLinkObjectEndQualifierAction" identifier="org.eclipse.papyrus.uml.ReadLinkObjectEndQualifierAction" hint="UML::ReadLinkObjectEndQualifierAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc_crVYCEeS0WsAAtVmToA" name="UML::ReadLinkObjectEndQualifierAction" identifier="org.eclipse.papyrus.uml.ReadLinkObjectEndQualifierAction" hint="UML::ReadLinkObjectEndQualifierAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_Sc_crlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadLinkObjectEndQualifierAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadLinkObjectEndQualifierAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADk1YCEeS0WsAAtVmToA" name="UML::ReadSelfAction" identifier="org.eclipse.papyrus.uml.ReadSelfAction" hint="UML::ReadSelfAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADk1YCEeS0WsAAtVmToA" name="UML::ReadSelfAction" identifier="org.eclipse.papyrus.uml.ReadSelfAction" hint="UML::ReadSelfAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdADlFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadSelfAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadSelfAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADm1YCEeS0WsAAtVmToA" name="UML::ReadStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.ReadStructuralFeatureAction" hint="UML::ReadStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADm1YCEeS0WsAAtVmToA" name="UML::ReadStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.ReadStructuralFeatureAction" hint="UML::ReadStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdADnFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadStructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadStructuralFeatureAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADo1YCEeS0WsAAtVmToA" name="UML::ReadVariableAction" identifier="org.eclipse.papyrus.uml.ReadVariableAction" hint="UML::ReadVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdADo1YCEeS0WsAAtVmToA" name="UML::ReadVariableAction" identifier="org.eclipse.papyrus.uml.ReadVariableAction" hint="UML::ReadVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdADpFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReadVariableAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReadVariableAction"/>
   </elementTypeConfigurations>
@@ -815,7 +815,7 @@
     <iconEntry xmi:id="_SdADtFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Reception.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Reception"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdAqoFYCEeS0WsAAtVmToA" name="UML::ReclassifyObjectAction" identifier="org.eclipse.papyrus.uml.ReclassifyObjectAction" hint="UML::ReclassifyObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdAqoFYCEeS0WsAAtVmToA" name="UML::ReclassifyObjectAction" identifier="org.eclipse.papyrus.uml.ReclassifyObjectAction" hint="UML::ReclassifyObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdAqoVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReclassifyObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReclassifyObjectAction"/>
   </elementTypeConfigurations>
@@ -827,7 +827,7 @@
     <iconEntry xmi:id="_SdAqq1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/RedefinableTemplateSignature.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//RedefinableTemplateSignature"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdAqrFYCEeS0WsAAtVmToA" name="UML::ReduceAction" identifier="org.eclipse.papyrus.uml.ReduceAction" hint="UML::ReduceAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdAqrFYCEeS0WsAAtVmToA" name="UML::ReduceAction" identifier="org.eclipse.papyrus.uml.ReduceAction" hint="UML::ReduceAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdAqrVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReduceAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReduceAction"/>
   </elementTypeConfigurations>
@@ -839,27 +839,27 @@
     <iconEntry xmi:id="_SdBRuVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Relationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Relationship"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRulYCEeS0WsAAtVmToA" name="UML::RemoveStructuralFeatureValueAction" identifier="org.eclipse.papyrus.uml.RemoveStructuralFeatureValueAction" hint="UML::RemoveStructuralFeatureValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRulYCEeS0WsAAtVmToA" name="UML::RemoveStructuralFeatureValueAction" identifier="org.eclipse.papyrus.uml.RemoveStructuralFeatureValueAction" hint="UML::RemoveStructuralFeatureValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdBRu1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/RemoveStructuralFeatureValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//RemoveStructuralFeatureValueAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRwlYCEeS0WsAAtVmToA" name="UML::RemoveVariableValueAction" identifier="org.eclipse.papyrus.uml.RemoveVariableValueAction" hint="UML::RemoveVariableValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRwlYCEeS0WsAAtVmToA" name="UML::RemoveVariableValueAction" identifier="org.eclipse.papyrus.uml.RemoveVariableValueAction" hint="UML::RemoveVariableValueAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdBRw1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/RemoveVariableValueAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//RemoveVariableValueAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRylYCEeS0WsAAtVmToA" name="UML::ReplyAction" identifier="org.eclipse.papyrus.uml.ReplyAction" hint="UML::ReplyAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBRylYCEeS0WsAAtVmToA" name="UML::ReplyAction" identifier="org.eclipse.papyrus.uml.ReplyAction" hint="UML::ReplyAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdBRy1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ReplyAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ReplyAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBR0lYCEeS0WsAAtVmToA" name="UML::SendObjectAction" identifier="org.eclipse.papyrus.uml.SendObjectAction" hint="UML::SendObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdBR0lYCEeS0WsAAtVmToA" name="UML::SendObjectAction" identifier="org.eclipse.papyrus.uml.SendObjectAction" hint="UML::SendObjectAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdBR01YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/SendObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//SendObjectAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdB4xlYCEeS0WsAAtVmToA" name="UML::SendSignalAction" identifier="org.eclipse.papyrus.uml.SendSignalAction" hint="UML::SendSignalAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdB4xlYCEeS0WsAAtVmToA" name="UML::SendSignalAction" identifier="org.eclipse.papyrus.uml.SendSignalAction" hint="UML::SendSignalAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdB4x1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/SendSignalAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//SendSignalAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdB4zlYCEeS0WsAAtVmToA" name="UML::SequenceNode" identifier="org.eclipse.papyrus.uml.SequenceNode" hint="UML::SequenceNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdB4zlYCEeS0WsAAtVmToA" name="UML::SequenceNode" identifier="org.eclipse.papyrus.uml.SequenceNode" hint="UML::SequenceNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdB4z1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/SequenceNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//SequenceNode"/>
   </elementTypeConfigurations>
@@ -875,11 +875,11 @@
     <iconEntry xmi:id="_SdCf41YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Slot.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Slot"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdCf5FYCEeS0WsAAtVmToA" name="UML::StartClassifierBehaviorAction" identifier="org.eclipse.papyrus.uml.StartClassifierBehaviorAction" hint="UML::StartClassifierBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdCf5FYCEeS0WsAAtVmToA" name="UML::StartClassifierBehaviorAction" identifier="org.eclipse.papyrus.uml.StartClassifierBehaviorAction" hint="UML::StartClassifierBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdCf5VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StartClassifierBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StartClassifierBehaviorAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdCf7FYCEeS0WsAAtVmToA" name="UML::StartObjectBehaviorAction" identifier="org.eclipse.papyrus.uml.StartObjectBehaviorAction" hint="UML::StartObjectBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdCf7FYCEeS0WsAAtVmToA" name="UML::StartObjectBehaviorAction" identifier="org.eclipse.papyrus.uml.StartObjectBehaviorAction" hint="UML::StartObjectBehaviorAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdCf7VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StartObjectBehaviorAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StartObjectBehaviorAction"/>
   </elementTypeConfigurations>
@@ -907,11 +907,11 @@
     <iconEntry xmi:id="_SdGKSVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StructuralFeature.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeature"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGKSlYCEeS0WsAAtVmToA" name="UML::StructuralFeatureAction" identifier="org.eclipse.papyrus.uml.StructuralFeatureAction" hint="UML::StructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGKSlYCEeS0WsAAtVmToA" name="UML::StructuralFeatureAction" identifier="org.eclipse.papyrus.uml.StructuralFeatureAction" hint="UML::StructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdGKS1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeatureAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGxQFYCEeS0WsAAtVmToA" name="UML::StructuredActivityNode" identifier="org.eclipse.papyrus.uml.StructuredActivityNode" hint="UML::StructuredActivityNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGxQFYCEeS0WsAAtVmToA" name="UML::StructuredActivityNode" identifier="org.eclipse.papyrus.uml.StructuredActivityNode" hint="UML::StructuredActivityNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdGxQVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StructuredActivityNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredActivityNode"/>
   </elementTypeConfigurations>
@@ -947,7 +947,7 @@
     <iconEntry xmi:id="_SdHYZFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TemplateableElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TemplateableElement"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdHYZVYCEeS0WsAAtVmToA" name="UML::TestIdentityAction" identifier="org.eclipse.papyrus.uml.TestIdentityAction" hint="UML::TestIdentityAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdHYZVYCEeS0WsAAtVmToA" name="UML::TestIdentityAction" identifier="org.eclipse.papyrus.uml.TestIdentityAction" hint="UML::TestIdentityAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdHYZlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TestIdentityAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction"/>
   </elementTypeConfigurations>
@@ -987,7 +987,7 @@
     <iconEntry xmi:id="_SdLCvFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TypedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TypedElement"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdLCvVYCEeS0WsAAtVmToA" name="UML::UnmarshallAction" identifier="org.eclipse.papyrus.uml.UnmarshallAction" hint="UML::UnmarshallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdLCvVYCEeS0WsAAtVmToA" name="UML::UnmarshallAction" identifier="org.eclipse.papyrus.uml.UnmarshallAction" hint="UML::UnmarshallAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdLCvlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/UnmarshallAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//UnmarshallAction"/>
   </elementTypeConfigurations>
@@ -999,7 +999,7 @@
     <iconEntry xmi:id="_SdLCzlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/UseCase.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//UseCase"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdLp11YCEeS0WsAAtVmToA" name="UML::ValuePin" identifier="org.eclipse.papyrus.uml.ValuePin" hint="UML::ValuePin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdLp11YCEeS0WsAAtVmToA" name="UML::ValuePin" identifier="org.eclipse.papyrus.uml.ValuePin" hint="UML::ValuePin" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdLp2FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ValuePin"/>
   </elementTypeConfigurations>
@@ -1007,7 +1007,7 @@
     <iconEntry xmi:id="_SdM4AFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ValueSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecification"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdM4AVYCEeS0WsAAtVmToA" name="UML::ValueSpecificationAction" identifier="org.eclipse.papyrus.uml.ValueSpecificationAction" hint="UML::ValueSpecificationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdM4AVYCEeS0WsAAtVmToA" name="UML::ValueSpecificationAction" identifier="org.eclipse.papyrus.uml.ValueSpecificationAction" hint="UML::ValueSpecificationAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdM4AlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ValueSpecificationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ValueSpecificationAction"/>
   </elementTypeConfigurations>
@@ -1015,7 +1015,7 @@
     <iconEntry xmi:id="_SdNe8VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Variable.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Variable"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe8lYCEeS0WsAAtVmToA" name="UML::VariableAction" identifier="org.eclipse.papyrus.uml.VariableAction" hint="UML::VariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe8lYCEeS0WsAAtVmToA" name="UML::VariableAction" identifier="org.eclipse.papyrus.uml.VariableAction" hint="UML::VariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdNe81YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/VariableAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//VariableAction"/>
   </elementTypeConfigurations>
@@ -1023,15 +1023,15 @@
     <iconEntry xmi:id="_SdNe-1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Vertex.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Vertex"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe_FYCEeS0WsAAtVmToA" name="UML::WriteLinkAction" identifier="org.eclipse.papyrus.uml.WriteLinkAction" hint="UML::WriteLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe_FYCEeS0WsAAtVmToA" name="UML::WriteLinkAction" identifier="org.eclipse.papyrus.uml.WriteLinkAction" hint="UML::WriteLinkAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdNe_VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/WriteLinkAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteLinkAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe_lYCEeS0WsAAtVmToA" name="UML::WriteStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.WriteStructuralFeatureAction" hint="UML::WriteStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNe_lYCEeS0WsAAtVmToA" name="UML::WriteStructuralFeatureAction" identifier="org.eclipse.papyrus.uml.WriteStructuralFeatureAction" hint="UML::WriteStructuralFeatureAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdNe_1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/WriteStructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteStructuralFeatureAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNfAFYCEeS0WsAAtVmToA" name="UML::WriteVariableAction" identifier="org.eclipse.papyrus.uml.WriteVariableAction" hint="UML::WriteVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdNfAFYCEeS0WsAAtVmToA" name="UML::WriteVariableAction" identifier="org.eclipse.papyrus.uml.WriteVariableAction" hint="UML::WriteVariableAction" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
     <iconEntry xmi:id="_SdNfAVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/WriteVariableAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//WriteVariableAction"/>
   </elementTypeConfigurations>
