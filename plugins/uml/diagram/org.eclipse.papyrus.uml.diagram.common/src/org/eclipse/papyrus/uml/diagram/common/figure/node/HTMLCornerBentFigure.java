@@ -12,17 +12,20 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.Stack;
 
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.text.BlockFlow;
 import org.eclipse.draw2d.text.FlowPage;
-import org.eclipse.gmf.runtime.common.ui.util.DisplayUtils;
+import org.eclipse.draw2d.text.TextFlow;
 import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.jface.resource.FontDescriptor;
 import org.eclipse.jface.resource.JFaceResources;
@@ -32,7 +35,6 @@ import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Font;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.NamedNodeMap;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -49,7 +51,13 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	static final Color THIS_BACK = new Color(null, 248, 249, 214);
 
 	/** font used by default by this figure */
-	static final Font FCORNERBENTCONTENTLABEL_FONT = new Font(Display.getCurrent(), "Arial", 8, SWT.NORMAL);
+	private static final FontData DEFAULT_FONT = new FontData("Arial", 8, SWT.NORMAL);
+
+	/** font used for sampleCode by this figure */
+	private static final FontData CODE_SAMPLE_FONT = new FontData("Lucida Console", 8, SWT.NORMAL);
+
+	/** font used for quote by this figure */
+	private static final FontData QUOTE_FONT = new FontData("Monotype Corsiva", 10, SWT.NORMAL);
 
 	/** key for the font style, corresponding to the type of font */
 	private static final String FONT_NAME = "face";
@@ -304,8 +312,42 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	}
 
 	/**
+	 * Overides Figure.setFont() method
+	 * setup font for all TextFlow childes of this figure
+	 * 
+	 */
+	@Override
+	public void setFont(Font f) {
+		super.setFont(f);
+		List<TextFlow> textFlowList = findTextFlowChildList(page);
+		Font currentParentFont = calculateCurrentFont();
+		for (TextFlow nextTextFlow : textFlowList) {
+			nextTextFlow.setFont(currentParentFont);
+		}
+	}
+
+	/**
+	 * @see HTMLCornerBentFigure.setFont() for using
+	 * 
+	 * @param parent
+	 * @return TextFlow childs list
+	 */
+	private List<TextFlow> findTextFlowChildList(IFigure parent) {
+		List<TextFlow> result = new ArrayList<TextFlow>();
+		for (Object nextFigure : parent.getChildren()) {
+			if (!(nextFigure instanceof TextFlow)) {
+				result.addAll(findTextFlowChildList((IFigure) nextFigure));
+				continue;
+			}
+			result.add((TextFlow) nextFigure);
+		}
+		return result;
+	}
+
+	/**
 	 * Generates code from a node representing a text.
-	 *
+	 * IFigure default font value will setup if styles list is empty.
+	 * 
 	 * @param node
 	 *            the node from which to generate belowk flows
 	 * @param parentFlow
@@ -315,26 +357,99 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		// node has type: TEXT_NODE
 		String text = HTMLCleaner.cleanHTMLTags(node.getNodeValue());
 		TextFlowEx textFlow = new TextFlowEx(text);
-		textFlow.setTextUnderline(false);
+		textFlow.setTextUnderline(getUnderLineFromStyles());
+		textFlow.setFont(calculateCurrentFont());
+		parentFlow.add(textFlow);
+	}
 
-		boolean italic = false;
-		boolean strong = false;
+	/**
+	 * Calculates current font as default figure font + styles
+	 * styles has overrides default font
+	 * It's main method for getting font value by this figure
+	 * 
+	 * @return
+	 */
+	private Font calculateCurrentFont() {
+		return composeFontWithStyles(getDefaultFontData());
+	}
+
+	/**
+	 * Extracts underLine value from styles
+	 * 
+	 * @see generateTextFromTextNode() for using
+	 * @return
+	 */
+	private boolean getUnderLineFromStyles() {
+		boolean result = false;
+		for (Styles style : textProperties) {
+			switch (style) {
+			case underline:
+				result = true;
+				break;
+			default:
+				break;
+			}
+		}
+		return result;
+	}
+
+	/**
+	 * Clculates default fontData without styles
+	 * 
+	 * @return
+	 */
+	private FontData getDefaultFontData() {
 		boolean quote = false;
 		boolean codeSample = false;
-		String fontName = "Arial";
-		int fontSize = 2;
+		if (codeSample) {
+			return CODE_SAMPLE_FONT;
+		}
+		if (quote) {
+			return QUOTE_FONT;
+		}
+		FontData fromDefaultFigure = getCurrentFigureFontData();
+		if (fromDefaultFigure == null) {
+			return DEFAULT_FONT;
+		}
+		return fromDefaultFigure;
+	}
 
+	/**
+	 * Font -> FontData converter
+	 * 
+	 * @return Current Figure FonData value
+	 */
+	private FontData getCurrentFigureFontData() {
+		if (getFont() == null) {
+			return null;
+		}
+		if (getFont().getFontData() == null || getFont().getFontData().length == 0) {
+			return null;
+		}
+		return getFont().getFontData()[0];
+	}
+
+	/**
+	 * Compose figure font with styles
+	 * 
+	 * @param defaultFontData
+	 * @return
+	 */
+	private Font composeFontWithStyles(FontData defaultFontData) {
+		if (textProperties == null || textProperties.isEmpty()) {
+			return (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(defaultFontData));
+		}
+		int defaultStyle = defaultFontData.getStyle();
+		boolean quote = false;
+		boolean codeSample = false;
 		// calculate the font to apply
 		for (Styles style : textProperties) {
 			switch (style) {
 			case italic:
-				italic = true;
+				defaultStyle = defaultStyle | SWT.ITALIC;
 				break;
 			case strong:
-				strong = true;
-				break;
-			case underline:
-				textFlow.setTextUnderline(true);
+				defaultStyle = defaultStyle | SWT.BOLD;
 				break;
 			case quote:
 				quote = true;
@@ -343,42 +458,27 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 				codeSample = true;
 				break;
 			case font:
-				fontName = (Styles.font.getData().get(FONT_NAME) != null) ? (String) Styles.font.getData().get(FONT_NAME) : "Arial";
-				fontSize = (Styles.font.getData().get(FONT_SIZE) != null) ? ((Integer) Styles.font.getData().get(FONT_SIZE)) : 2;
+				if (Styles.font.getData().get(FONT_NAME) != null) {
+					defaultFontData.setName((String) Styles.font.getData().get(FONT_NAME));
+				}
+				if (Styles.font.getData().get(FONT_SIZE) != null) {
+					// font size = [1..7] in html, but does not correspond to system
+					// size... 2 by default => 8 in real size.
+					// so: real size = (html font size)+6
+					defaultFontData.setHeight(((Integer) Styles.font.getData().get(FONT_SIZE)) * 2 + 4);
+				}
 				break;
 			default:
 				break;
 			}
-
 		}
-
-		int style = SWT.NORMAL;
-
-		if (italic) {
-			style = style | SWT.ITALIC;
-		}
-
-		if (strong) {
-			style = style | SWT.BOLD;
-		}
-
-		FontData fontData;
+		defaultFontData.setStyle(defaultStyle);
 		if (codeSample) {
-			fontData = new FontData("Lucida Console", 8, style);
+			defaultFontData = CODE_SAMPLE_FONT;
 		} else if (quote) {
-			fontData = new FontData("Monotype Corsiva", 10, style);
-			textFlow.setBackgroundColor(DisplayUtils.getDisplay().getSystemColor(SWT.COLOR_RED));
-		} else {
-			// font size = [1..7] in html, but does not correspond to system
-			// size... 2 by default => 8 in real size.
-			// so: real size = (html font size)+6
-			fontData = new FontData(fontName, 2 * fontSize + 4, style);
+			defaultFontData = QUOTE_FONT;
 		}
-
-		Font font = (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(fontData));
-		textFlow.setFont(font);
-
-		parentFlow.add(textFlow);
+		return (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(defaultFontData));
 	}
 
 	/**
