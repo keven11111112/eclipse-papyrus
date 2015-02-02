@@ -78,18 +78,27 @@ public class InvariantStereotypeConfigurationPackageImpl extends EPackageImpl im
 		if (isInited) {
 			return (InvariantStereotypeConfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(InvariantStereotypeConfigurationPackage.eNS_URI);
 		}
+
 		// Obtain or create and register package
 		InvariantStereotypeConfigurationPackageImpl theInvariantStereotypeConfigurationPackage = (InvariantStereotypeConfigurationPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof InvariantStereotypeConfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.get(eNS_URI) : new InvariantStereotypeConfigurationPackageImpl());
+				.get(eNS_URI)
+				: new InvariantStereotypeConfigurationPackageImpl());
+
 		isInited = true;
+
 		// Initialize simple dependencies
 		InvariantSemanticTypeConfigurationPackage.eINSTANCE.eClass();
+
 		// Create package meta-data objects
 		theInvariantStereotypeConfigurationPackage.createPackageContents();
+
 		// Initialize created meta-data
 		theInvariantStereotypeConfigurationPackage.initializePackageContents();
+
 		// Mark meta-data to indicate it can't be changed
 		theInvariantStereotypeConfigurationPackage.freeze();
+
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(InvariantStereotypeConfigurationPackage.eNS_URI, theInvariantStereotypeConfigurationPackage);
 		return theInvariantStereotypeConfigurationPackage;
@@ -131,6 +140,16 @@ public class InvariantStereotypeConfigurationPackageImpl extends EPackageImpl im
 	 *
 	 * @generated
 	 */
+	public EAttribute getInvariantStereotypeConfiguration_Strict() {
+		return (EAttribute) invariantStereotypeConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	public InvariantStereotypeConfigurationFactory getInvariantStereotypeConfigurationFactory() {
 		return (InvariantStereotypeConfigurationFactory) getEFactoryInstance();
 	}
@@ -156,10 +175,12 @@ public class InvariantStereotypeConfigurationPackageImpl extends EPackageImpl im
 			return;
 		}
 		isCreated = true;
+
 		// Create classes and their features
 		invariantStereotypeConfigurationEClass = createEClass(INVARIANT_STEREOTYPE_CONFIGURATION);
 		createEAttribute(invariantStereotypeConfigurationEClass, INVARIANT_STEREOTYPE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME);
 		createEAttribute(invariantStereotypeConfigurationEClass, INVARIANT_STEREOTYPE_CONFIGURATION__REQUIRED_PROFILE);
+		createEAttribute(invariantStereotypeConfigurationEClass, INVARIANT_STEREOTYPE_CONFIGURATION__STRICT);
 	}
 
 	/**
@@ -183,23 +204,32 @@ public class InvariantStereotypeConfigurationPackageImpl extends EPackageImpl im
 			return;
 		}
 		isInitialized = true;
+
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
+
 		// Obtain other dependent packages
 		InvariantSemanticTypeConfigurationPackage theInvariantSemanticTypeConfigurationPackage = (InvariantSemanticTypeConfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(InvariantSemanticTypeConfigurationPackage.eNS_URI);
 		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+
 		// Create type parameters
+
 		// Set bounds for type parameters
+
 		// Add supertypes to classes
 		invariantStereotypeConfigurationEClass.getESuperTypes().add(theInvariantSemanticTypeConfigurationPackage.getInvariantRuleConfiguration());
+
 		// Initialize classes, features, and operations; add parameters
 		initEClass(invariantStereotypeConfigurationEClass, InvariantStereotypeConfiguration.class, "InvariantStereotypeConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getInvariantStereotypeConfiguration_StereotypeQualifiedName(), theEcorePackage.getEString(), "stereotypeQualifiedName", null, 1, 1, InvariantStereotypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE,
 				!IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInvariantStereotypeConfiguration_RequiredProfile(), theEcorePackage.getEString(), "requiredProfile", null, 0, 1, InvariantStereotypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
 				!IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInvariantStereotypeConfiguration_Strict(), ecorePackage.getEBoolean(), "strict", null, 0, 1, InvariantStereotypeConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
 		// Create resource
 		createResource(eNS_URI);
 	}

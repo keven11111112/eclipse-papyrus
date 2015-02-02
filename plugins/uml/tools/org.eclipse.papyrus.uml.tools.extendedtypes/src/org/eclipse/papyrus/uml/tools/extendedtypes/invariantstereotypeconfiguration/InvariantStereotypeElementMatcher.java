@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
+ *  Sebastien Gabel (Esterel Technologies) - Add support to isStrict attribute  
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantElementMatcher;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -25,6 +27,8 @@ public class InvariantStereotypeElementMatcher implements IInvariantElementMatch
 
 	private String stereotypeQualifiedName;
 
+	private boolean isStrict;
+
 	/**
 	 * {@inheritDoc}
 	 */
@@ -34,8 +38,23 @@ public class InvariantStereotypeElementMatcher implements IInvariantElementMatch
 			return false;
 		}
 
-		Stereotype appliedStereotype = ((Element) eObject).getAppliedStereotype(getStereotypeQualifiedName());
-		return appliedStereotype != null;
+		String stereotypeQualifiedName = getStereotypeQualifiedName();
+		if(stereotypeQualifiedName==null) { // to avoid null pointers
+			return false;
+		}
+		Stereotype appliedStereotype = ((Element) eObject).getAppliedStereotype(stereotypeQualifiedName);
+		if (appliedStereotype != null) { // one has been found, no need to get further
+			return true; 
+		} else if(!isStrict) { // the stereotype does not match perfectly, but one of the applied stereotypes on the element could match if not strict
+			for (Stereotype stereotype : ((Element) eObject).getAppliedStereotypes()) { 
+				for (Stereotype superStereotype : StereotypeUtil.getAllSuperStereotypes(stereotype)) {
+					if (stereotypeQualifiedName.equals(superStereotype.getQualifiedName())) {
+						return true; // there is a match in the super stereotypes. Finish here, element matches
+					}
+				}
+			}
+		}
+		return false;
 	}
 
 	/**
@@ -43,6 +62,7 @@ public class InvariantStereotypeElementMatcher implements IInvariantElementMatch
 	 */
 	public void init(InvariantStereotypeConfiguration ruleConfiguration) {
 		setStereotypeQualifiedName(ruleConfiguration.getStereotypeQualifiedName());
+		setStrict(ruleConfiguration.isStrict());
 	}
 
 	/**
@@ -58,5 +78,21 @@ public class InvariantStereotypeElementMatcher implements IInvariantElementMatch
 	 */
 	public void setStereotypeQualifiedName(String stereotypeQualifiedName) {
 		this.stereotypeQualifiedName = stereotypeQualifiedName;
+	}
+
+
+	/**
+	 * @return the isStrict
+	 */
+	public boolean isStrict() {
+		return isStrict;
+	}
+
+	/**
+	 * @param isStrict
+	 *            the isStrict to set
+	 */
+	public void setStrict(boolean isStrict) {
+		this.isStrict = isStrict;
 	}
 }

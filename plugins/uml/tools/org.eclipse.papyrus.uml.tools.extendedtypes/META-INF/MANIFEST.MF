@@ -1,4 +1,17 @@
 Manifest-Version: 1.0
+Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.invariantstereotypeconfiguration.util,
+ org.eclipse.papyrus.uml.tools.extendedtypes.settypeactionconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.settypeactionconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.settypeactionconfiguration.util,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.impl,
+ org.eclipse.papyrus.uml.tools.extendedtypes.stereotypedelementmatcherconfiguration.util
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,
  org.eclipse.emf.ecore.xmi;visibility:=reexport,
@@ -13,20 +26,12 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.widgets;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.properties;bundle-version="1.1.0",
  org.eclipse.papyrus.views.properties;bundle-version="1.1.0"
-Export-Package: org.eclipse.papyrus.uml.tools.extendedtypes,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.impl,
- org.eclipse.papyrus.uml.tools.extendedtypes.applystereotypeactionconfiguration.util
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Version: 1.1.0.qualifier
 Bundle-Localization: plugin
-Bundle-Name: %pluginName
-Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activato
- r$Implementation
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singl
- eton:=true
+Bundle-Activator: org.eclipse.papyrus.uml.tools.extendedtypes.Activator$Implementation
+Bundle-SymbolicName: org.eclipse.papyrus.uml.tools.extendedtypes;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-

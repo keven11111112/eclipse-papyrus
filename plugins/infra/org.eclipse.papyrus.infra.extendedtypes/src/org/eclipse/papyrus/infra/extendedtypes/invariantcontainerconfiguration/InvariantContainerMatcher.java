@@ -12,20 +12,29 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes.invariantcontainerconfiguration;
 
+import java.util.Arrays;
 import java.util.List;
 
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IMetamodelType;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.extendedtypes.Activator;
 import org.eclipse.papyrus.infra.extendedtypes.invariantsemantictypeconfiguration.IInvariantElementMatcher;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 
 /**
  * Matcher of the hierarchy matcher
  */
 public class InvariantContainerMatcher implements IInvariantElementMatcher<InvariantContainerConfiguration> {
 
-	protected EList<HierarchyPermission> permissions;
+	protected List<HierarchyPermission> permissions;
+	
+	protected IClientContext sharedContext;
 
 	/**
 	 *
@@ -38,106 +47,81 @@ public class InvariantContainerMatcher implements IInvariantElementMatcher<Invar
 	 * {@inheritDoc}
 	 */
 	public boolean matches(EObject eObject) {
-		return true;
-		// boolean matches = false;
-		//
-		// EObject container = eObject.eContainer();
-		//
-		// if(container ==null) {
-		// return false;
-		// }
-		//
-		// matches = checkAllowed(container, allowedDirectParents, false);
-		//
-		// // if not ok in direct parents, test in the hierarchy
-		// if(!matches && allowedParentsInHierarchy!=null && !allowedParentsInHierarchy.isEmpty()) {
-		// while(!matches && container.eContainer() !=null) {
-		// container = container.eContainer();
-		// matches = checkAllowed(container, allowedParentsInHierarchy, false);
-		// }
-		// }
-		//
-		// // check now that some forbidden type does not override the current matches
-		// if(!matches) {
-		// return false;
-		// }
-		//
-		// container = eObject.eContainer();
-		// // container (direct or indirect) could match. now try the forbidden lists
-		// matches = checkForbidden(container, forbiddenDirectParents, false);
-		//
-		// // if not ok in direct parents, test in the hierarchy
-		// if(matches && forbiddenParentsInHierarchy!=null && !forbiddenParentsInHierarchy.isEmpty()) {
-		// while(matches && container.eContainer() !=null) {
-		// container = container.eContainer();
-		// matches = checkForbidden(container, forbiddenParentsInHierarchy, false);
-		// }
-		// }
-		//
-		// return matches;
-	}
+		EObject container = eObject.eContainer();
 
-	/**
-	 * @param container
-	 * @param forbiddenParentsInHierarchy2
-	 * @param b
-	 * @return
-	 */
-	protected boolean checkForbidden(EObject container, List<String> forbiddenParents, boolean isStrict) {
-		// check direct permissions
-		if (forbiddenParents != null && !forbiddenParents.isEmpty()) {
-			IElementType parentType = ElementTypeRegistry.getInstance().getElementType(container);
-			if (parentType != null) {
-				// check if necessary all super types of the direct parent
-				if (forbiddenParents.contains(parentType.getId())) {
-					return false;
+		if (container == null) {
+			return false;
+		}
+		
+		IElementType objectMetamodelType = ElementTypeRegistry.getInstance().getElementType(container, sharedContext);
+
+		boolean isValid = false;
+		for (HierarchyPermission permission : permissions) { // for each permission, get the matcher and matches directly
+			boolean isPermitted = permission.isIsPermitted();
+			String childType = permission.getChildType();
+			boolean isStrict = permission.isIsStrict();
+			IElementType type = ElementTypeRegistry.getInstance().getType(childType);
+			
+			// check is the permission type is a specialization type or a metamodel type, to enhance performances
+			// if this is a metamodel type and strict, a simple equals can match or not if it is permitted or not
+			// if this is a metamodel type and not strict, we only compare the list of supertypes of the eobject type with the permission Type 
+			if (type instanceof IMetamodelType) {
+				if (isStrict) {
+					isValid = type.equals(objectMetamodelType) ? isPermitted : !isPermitted;
 				} else {
-					// check also super types ids, if not strict permission
-					if (!isStrict) {
-						for (IElementType superType : parentType.getAllSuperTypes()) {
-							if (forbiddenParents.contains(superType.getId())) {
-								return false;
+					// this is not strict 
+					// so any super metamodeltype of permission type that matches objectMetamodelType is OK
+					isValid = Arrays.asList(objectMetamodelType.getAllSuperTypes()).contains(type) ? isPermitted : !isPermitted;
+				}
+			} else if (type instanceof ISpecializationType) {
+				IElementMatcher matcher = ((ISpecializationType) type).getMatcher();
+				if (matcher != null) {
+					boolean matchesSpecialization = matcher.matches(container) && objectMetamodelType.equals(((ISpecializationType) type).getMetamodelType()); // the eObject matches the speciailization type that is permitted. Should then check the
+					if (matchesSpecialization) { 
+						// test the isStrict now... It will be false if it matches one of the sub-specialization type
+						if (isStrict) {
+							ISpecializationType[] subtypes = ElementTypeRegistry.getInstance().getSpecializationsOf(childType);
+							if (subtypes != null && subtypes.length > 0) {
+								for (ISpecializationType subType : subtypes) {
+									isValid = subType.getMatcher().matches(container) ? isPermitted : !isPermitted; // the isStrict is not verified (one of the subtypes is matched whereas it shoud not)
+								}
+							} else { // there are no further sub specialization types. 
+								isValid = isPermitted;
 							}
+						} else {
+							// not strict
+							isValid = isPermitted;
 						}
+					} else { // eObject type does not match the permission type
+						isValid = !isPermitted;
+						
 					}
 				}
 			}
 		}
-		return true;
+		
+		return isValid;
+		
+//		
+//		
+//		// retrieve element type
+//		IElementType[] containerTypes = ElementTypeRegistry.getInstance().getAllTypesMatching(container, sharedContext);
+//		if(containerTypes != null && containerTypes.length >0) {
+//			return InvariantContainerUtils.isContainerValid(containerTypes, matches, permissions);
+//		}
+//		return false;
 	}
 
-	/**
-	 *
-	 */
-	protected boolean checkAllowed(EObject container, List<String> allowedParents, boolean isStrict) {
-		boolean matches = false;
-		// check direct permissions
-		if (allowedParents != null && !allowedParents.isEmpty()) {
-			IElementType parentType = ElementTypeRegistry.getInstance().getElementType(container);
-			if (parentType != null) {
-				// check if necessary all super types of the direct parent
-				if (allowedParents.contains(parentType.getId())) {
-					matches = true;
-				} else {
-					// check also super types ids, if not strict permission
-					if (!isStrict) {
-						for (IElementType superType : parentType.getAllSuperTypes()) {
-							if (allowedParents.contains(superType.getId())) {
-								matches = true;
-								break;
-							}
-						}
-					}
-				}
-			}
-		}
-		return matches;
-	}
 
 	/**
 	 * {@inheritDoc}
 	 */
 	public void init(InvariantContainerConfiguration configuration) {
+		try {
+			sharedContext = TypeContext.getContext();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
 		this.permissions = configuration.getPermissions();
 	}
 }
