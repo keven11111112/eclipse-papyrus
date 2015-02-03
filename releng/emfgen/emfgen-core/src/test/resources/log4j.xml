@@ -19,7 +19,7 @@
 		</layout>
 	</appender>
 
-	<logger name="fr.cea.list.lise.emfgen.core.EmfGenerator">
+	<logger name="org.eclipse.papyrus.emfgen.core.EmfGenerator">
 		<level value="all" />
 	</logger>
 

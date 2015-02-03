@@ -6,7 +6,7 @@
     <parameter name="ecoreModel" value="../emfgen-parent/src/test/resources/models/extlibrary/extlibrary.ecore"/>
     <parameter name="outputDirectory" value="${project.emfgen.outdir}/"/>
     <classes>
-       <class name="fr.cea.list.lise.emfgen.core.test.EmfGenCoreTest" />
+       <class name="org.eclipse.papyrus.emfgen.core.test.EmfGenCoreTest" />
     </classes>
   </test>
   <test name="StyleSheets" >
@@ -14,7 +14,7 @@
     <parameter name="ecoreModel" value="../emfgen-parent/src/test/resources/models/stylesheets/StyleSheets.ecore"/>
     <parameter name="outputDirectory" value="${project.emfgen.outdir}/"/>
     <classes>
-       <class name="fr.cea.list.lise.emfgen.core.test.EmfGenCoreTest" />
+       <class name="org.eclipse.papyrus.emfgen.core.test.EmfGenCoreTest" />
     </classes>
   </test>
 </suite>
