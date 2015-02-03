@@ -11,6 +11,7 @@
  *   Christian W. Damus - bug 455248
  *   Christian W. Damus - bug 455329
  *   Christian W. Damus - bug 458736
+ *   Christian W. Damus - bug 458652
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -53,6 +54,7 @@ import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Sets;
+import com.google.common.util.concurrent.FutureCallback;
 
 
 /**
@@ -123,6 +125,47 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Asynchronously analyzes and, if necessary, launches interactive repair on the stereotype applications in a {@code modelSet}.
+	 * 
+	 * @param modelSet
+	 *            the model-set to repair
+	 * @param onRepairCompleted
+	 *            a call-back to receive the results of stereotype repair. May be {@code null} if no results are needed
+	 */
+	public void repairAsync(final ModelSet modelSet, final FutureCallback<IStatus> onRepairCompleted) {
+		if (presenter != null) {
+			for (Resource next : ImmutableList.copyOf(modelSet.getResources())) {
+				if (next.isLoaded()) {
+					handleResourceLoaded(next);
+				}
+			}
+
+			if (onRepairCompleted != null) {
+				presenter.onPendingDone(new Runnable() {
+
+					public void run() {
+						IStatus result = Status.OK_STATUS;
+
+						try {
+							// Did we fix all of the zombies?
+							for (Resource next : ImmutableList.copyOf(modelSet.getResources())) {
+								if (next.isLoaded() && (getZombieStereotypes(next) != null)) {
+									result = new Status(IStatus.WARNING, Activator.PLUGIN_ID, "Stereotype repair did not successfully repair all stereotype application problems.");
+									break;
+								}
+							}
+
+							onRepairCompleted.onSuccess(result);
+						} catch (Exception e) {
+							onRepairCompleted.onFailure(e);
+						}
+					}
+				});
+			}
+		}
 	}
 
 	protected void handleResourceLoaded(final Resource resource) {

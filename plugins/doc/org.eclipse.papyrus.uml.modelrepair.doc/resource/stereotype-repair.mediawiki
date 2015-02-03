@@ -54,3 +54,13 @@ of any UML element, and so there is nothing to repair.  If it happens that the e
 still exist and they need to be reconnected, then Papyrus cannot determine two which elements they should be
 reconnected.  In that case, the user must simply take the ''Postpone'' option and fix up these objects' base
 element references by some other means.
+
+==Model Validation==
+
+Papyrus contributes a model validation constraint, enabled by default, that scans the model's stereotypes for problems when the entire model
+is validated.  This uses the same repair analysis capability described above.  Problems reported by this constraint have a "quick fix"
+available in the '''Model Validation''' view and in the '''Problems''' view that launches the same dialog described above for resolution
+of stereotype application issues.
+
+This is useful, for example, after completing a compare/merge operation, profile migration, or other complex operation that may have resulted
+in structural problems in the model (whether in stereotype applications or otherwise).
