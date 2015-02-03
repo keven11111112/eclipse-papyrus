@@ -13,7 +13,7 @@
 		<parameter name="isGenEditor" value="true" />
 		<parameter name="isGenTests" value="true" />
 		<classes>
-			<class name="fr.cea.list.lise.emfgen.maven.test.EmfGenMojoTest" />
+			<class name="org.eclipse.papyrus.emfgen.maven.test.EmfGenMojoTest" />
 		</classes>
 	</test>
 	<test name="extlibrary">
@@ -28,7 +28,7 @@
 		<parameter name="isGenEditor" value="true" />
 		<parameter name="isGenTests" value="true" />
 		<classes>
-			<class name="fr.cea.list.lise.emfgen.maven.test.EmfGenMojoTest" />
+			<class name="org.eclipse.papyrus.emfgen.maven.test.EmfGenMojoTest" />
 		</classes>
 	</test>
 </suite>

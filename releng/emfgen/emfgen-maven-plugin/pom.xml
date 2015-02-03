@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>fr.cea.list.lise.emfgen</groupId>
+		<groupId>org.eclipse.papyrus.emfgen</groupId>
 		<artifactId>emfgen-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../emfgen-parent/pom.xml</relativePath>
@@ -46,7 +46,7 @@
 		</dependency>
 
 		<dependency>
-			<groupId>fr.cea.list.lise.emfgen</groupId>
+			<groupId>org.eclipse.papyrus.emfgen</groupId>
 			<artifactId>emfgen-core</artifactId>
 			<version>0.0.1-SNAPSHOT</version>
 		</dependency>
