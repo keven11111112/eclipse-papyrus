@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 459174
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl;
@@ -16,12 +17,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration;
@@ -33,12 +34,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.AdviceCon
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ContainerConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.MatcherConfigurationTypeRegistry;
 
-@SuppressWarnings("restriction")
 public class SpecializationTypeFactory extends AbstractElementTypeConfigurationFactory<SpecializationTypeConfiguration> {
 
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public IHintedType createElementType(SpecializationTypeConfiguration elementTypeConfiguration) {
 		return new ConfiguredHintedSpecializationElementType(getID(elementTypeConfiguration), getIconURL(elementTypeConfiguration), getDisplayName(elementTypeConfiguration), getSpecializedID(elementTypeConfiguration),
 				createElementMatcher(elementTypeConfiguration), createContainerDescriptor(elementTypeConfiguration), getEditHelperAdvice(elementTypeConfiguration), getSemanticHint(elementTypeConfiguration));
@@ -49,7 +50,7 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 		if (editHelperAdviceConfiguration == null) {
 			return NullEditHelperAdvice.getInstance();
 		}
-		IEditHelperAdviceDescriptor editHelperAdviceDescriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(editHelperAdviceConfiguration);
+		IAdviceBindingDescriptor editHelperAdviceDescriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(editHelperAdviceConfiguration);
 		return editHelperAdviceDescriptor.getEditHelperAdvice();
 	}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 459174
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -31,21 +32,18 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IMetamodelType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.NullElementType;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.MetamodelTypeDescriptor;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.SpecializationTypeDescriptor;
-import org.eclipse.gmf.runtime.emf.type.core.internal.impl.SpecializationTypeRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.MetamodelTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.extensionpoints.IElementTypeSetExtensionPoint;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.preferences.ElementTypesPreferences;
@@ -262,27 +260,17 @@ public class ElementTypeSetConfigurationRegistry {
 
 		// Register adviceBindings
 		for (ElementTypeSetConfiguration elementTypeSetConfiguration : elementTypeSetConfigurations) {
-			SpecializationTypeRegistry registry = ElementTypeRegistryUtils.getSpecializationTypeRegistry();
-			if (registry != null) {
-				List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
-				for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
-					IEditHelperAdviceDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
-					ElementTypeRegistryUtils.registerAdviceBinding(registry, editHelperAdviceDecriptor);
-					context.bindId(editHelperAdviceDecriptor.getId());
-				}
+			List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSetConfiguration.getAdviceBindingsConfigurations();
+			for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
+				IAdviceBindingDescriptor editHelperAdviceDecriptor = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
+				ElementTypeRegistryUtils.registerAdviceBinding(editHelperAdviceDecriptor);
+				context.bindId(editHelperAdviceDecriptor.getId());
 			}
 		}
 	}
 
 
 	public void unload(String identifier) {
-		IClientContext context;
-		try {
-			context = TypeContext.getContext();
-		} catch (ServiceException e1) {
-			Activator.log.error(e1);
-			return;
-		}
 		if (elementTypeSetConfigurations == null) {
 			return;
 		}
@@ -292,44 +280,28 @@ public class ElementTypeSetConfigurationRegistry {
 			elementTypeSetConfigurations.remove(identifier);
 			return;
 		}
-		SpecializationTypeRegistry specializationTypeRegistry = ElementTypeRegistryUtils.getSpecializationTypeRegistry();
-		Map<?, ?> metamodelTypeDescriptorsById = ElementTypeRegistryUtils.getMetamodelTypeDescriptorsById();
-		Map<?, ?> metamodelTypeDescriptorsByNsURI = ElementTypeRegistryUtils.getMetamodelTypeDescriptorsByNsURI();
-		if (specializationTypeRegistry == null || metamodelTypeDescriptorsById == null || metamodelTypeDescriptorsByNsURI == null) {
-			return;
-		}
 		// Remove elementTypes
+		ElementTypeRegistry registry = ElementTypeRegistry.getInstance();
+		List<IElementType> elementTypes = new ArrayList<>(elementTypeSet.getElementTypeConfigurations().size());
 		for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSet.getElementTypeConfigurations()) {
 			if (elementTypeConfiguration != null && elementTypeConfiguration.getIdentifier() != null) {
 				String configIdentifier = elementTypeConfiguration.getIdentifier();
-				if (elementTypeConfiguration instanceof SpecializationTypeConfiguration) {
-					// retrieve descriptor
-					SpecializationTypeDescriptor descriptor = specializationTypeRegistry.getSpecializationTypeDescriptor(configIdentifier);
-					if (descriptor != null) {
-						// remove also advice bindings specific to this descriptor
-						IEditHelperAdviceDescriptor adviceDescriptor = descriptor.getEditHelperAdviceDescriptor();
-						String targetId = adviceDescriptor.getTypeId();
-						ElementTypeRegistryUtils.removeAdviceDescriptorFromBindings(specializationTypeRegistry, targetId, adviceDescriptor);
-						specializationTypeRegistry.removeSpecializationType(descriptor);
-						ElementTypeRegistryUtils.unBindID(context, descriptor.getId());
-					} else {
-						Activator.log.warn("Failed to unregister elementType for ID : " + configIdentifier);
-					}
-				} else if (elementTypeConfiguration instanceof MetamodelTypeConfiguration) {
-					MetamodelTypeDescriptor descriptor = (MetamodelTypeDescriptor) metamodelTypeDescriptorsById.get(configIdentifier);
-					if (descriptor != null) {
-						removeMetamodelType(descriptor, metamodelTypeDescriptorsById, metamodelTypeDescriptorsByNsURI);
-						ElementTypeRegistryUtils.unBindID(context, descriptor.getId());
-					} else {
-						Activator.log.warn("Failed to unregister elementType for ID : " + configIdentifier);
-					}
+				IElementType elementType = registry.getType(configIdentifier);
+				if (elementType != null) {
+					elementTypes.add(elementType);
 				}
 			}
 		}
+
+		ElementTypeUtil.deregisterElementTypes(elementTypes, ElementTypeUtil.ALL_DEPENDENTS);
+
 		// Remove adviceBindings
 		List<AdviceBindingConfiguration> adviceBindingConfigurations = elementTypeSet.getAdviceBindingsConfigurations();
 		for (AdviceBindingConfiguration adviceBindingConfiguration : adviceBindingConfigurations) {
-			ElementTypeRegistryUtils.removeAdviceIDFromBindings(specializationTypeRegistry, adviceBindingConfiguration.getTarget().getIdentifier(), adviceBindingConfiguration.getIdentifier());
+			IAdviceBindingDescriptor advice = AdviceConfigurationTypeRegistry.getInstance().getEditHelperAdviceDecriptor(adviceBindingConfiguration);
+			if (advice != null) {
+				ElementTypeRegistryUtils.removeAdviceDescriptorFromBindings(advice);
+			}
 		}
 		if (elementTypeSet.eResource() != null) {
 			elementTypeSet.eResource().unload();
@@ -339,25 +311,6 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 		elementTypeSetConfigurations.remove(identifier);
 	}
-
-	protected void removeMetamodelType(MetamodelTypeDescriptor typeDescriptor, Map<?, ?> metamodelTypeDescriptorsById, Map<?, ?> metamodelTypeDescriptorsByNsURI) {
-		String nsURI = typeDescriptor.getNsURI();
-		String eClassName = typeDescriptor.getEClassName();
-		Map<?, ?> metamodelTypeDescriptorsByEClass = (Map<?, ?>) metamodelTypeDescriptorsByNsURI.get(nsURI);
-		if (metamodelTypeDescriptorsByEClass != null) {
-			Collection<?> descriptors = (Collection<?>) metamodelTypeDescriptorsByEClass.get(eClassName);
-			descriptors.remove(typeDescriptor);
-			// Clean pointless entries
-			if (descriptors.isEmpty()) {
-				metamodelTypeDescriptorsByEClass.remove(eClassName);
-			}
-			if (metamodelTypeDescriptorsByEClass.isEmpty()) {
-				metamodelTypeDescriptorsByNsURI.remove(metamodelTypeDescriptorsByEClass);
-			}
-		}
-		metamodelTypeDescriptorsById.remove(typeDescriptor.getId());
-	}
-
 
 
 	protected Map<String, ElementTypeSetConfiguration> readElementTypeSetConfigurationModelsFromWorkspace() {

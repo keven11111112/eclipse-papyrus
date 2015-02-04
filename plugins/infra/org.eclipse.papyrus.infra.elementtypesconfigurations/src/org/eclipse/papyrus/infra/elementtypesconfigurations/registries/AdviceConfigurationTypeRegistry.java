@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 459174
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.registries;
@@ -18,7 +19,9 @@ import java.util.Map;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
+import org.eclipse.emf.common.notify.impl.AdapterImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
@@ -28,7 +31,6 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.IEditHelpe
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.AdviceBindingFactory;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.EditHelperAdviceFactory;
 
-@SuppressWarnings("restriction")
 public class AdviceConfigurationTypeRegistry {
 
 	private static AdviceConfigurationTypeRegistry registry;
@@ -78,17 +80,53 @@ public class AdviceConfigurationTypeRegistry {
 		return factory;
 	}
 
-	public <T extends AdviceConfiguration> IEditHelperAdviceDescriptor getEditHelperAdviceDecriptor(T adviceConfiguration) {
-		if (adviceConfiguration == null) {
-			return null;
-		} else {
-			IEditHelperAdviceFactory<T> factory = getFactory(adviceConfiguration);
-			if (factory != null) {
-				IConfiguredEditHelperAdviceDescriptor<T> editHelperAdvice = factory.createEditHelperAdviceDescriptor(adviceConfiguration);
-				editHelperAdvice.init(adviceConfiguration);
-				return editHelperAdvice;
+	public <T extends AdviceConfiguration> IAdviceBindingDescriptor getEditHelperAdviceDecriptor(T adviceConfiguration) {
+		IAdviceBindingDescriptor result = null;
+
+		if (adviceConfiguration != null) {
+			AdviceDescriptorAdapter adapter = AdviceDescriptorAdapter.get(adviceConfiguration);
+			if (adapter == null) {
+				IEditHelperAdviceFactory<T> factory = getFactory(adviceConfiguration);
+				if (factory != null) {
+					IConfiguredEditHelperAdviceDescriptor<T> editHelperAdvice = factory.createEditHelperAdviceDescriptor(adviceConfiguration);
+					editHelperAdvice.init(adviceConfiguration);
+					adapter = new AdviceDescriptorAdapter(editHelperAdvice);
+					adviceConfiguration.eAdapters().add(adapter);
+				}
+			}
+
+			if (adapter != null) {
+				result = adapter.getAdviceDescriptor();
 			}
 		}
-		return null;
+
+		return result;
+	}
+
+	//
+	// Nested types
+	//
+
+	private static class AdviceDescriptorAdapter extends AdapterImpl {
+		private final IAdviceBindingDescriptor adviceDescriptor;
+
+		AdviceDescriptorAdapter(IAdviceBindingDescriptor adviceDescriptor) {
+			super();
+
+			this.adviceDescriptor = adviceDescriptor;
+		}
+
+		@Override
+		public boolean isAdapterForType(Object type) {
+			return type == IAdviceBindingDescriptor.class;
+		}
+
+		public IAdviceBindingDescriptor getAdviceDescriptor() {
+			return adviceDescriptor;
+		}
+
+		static AdviceDescriptorAdapter get(AdviceConfiguration configuration) {
+			return (AdviceDescriptorAdapter) EcoreUtil.getExistingAdapter(configuration, IAdviceBindingDescriptor.class);
+		}
 	}
 }

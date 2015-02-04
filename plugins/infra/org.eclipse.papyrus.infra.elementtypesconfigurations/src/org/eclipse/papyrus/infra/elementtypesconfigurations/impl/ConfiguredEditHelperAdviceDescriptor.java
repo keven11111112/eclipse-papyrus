@@ -12,10 +12,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.impl;
 
+import org.eclipse.gmf.runtime.emf.type.core.AdviceBindingInheritance;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.AdviceBindingInheritance;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IConfiguredEditHelperAdviceDescriptor;
 

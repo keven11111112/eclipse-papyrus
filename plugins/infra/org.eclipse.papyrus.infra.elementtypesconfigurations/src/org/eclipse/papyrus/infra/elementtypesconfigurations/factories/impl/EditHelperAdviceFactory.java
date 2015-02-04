@@ -12,9 +12,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl;
 
+import org.eclipse.gmf.runtime.emf.type.core.AdviceBindingInheritance;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.AdviceBindingInheritance;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.EditHelperAdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration;
@@ -37,8 +37,8 @@ public class EditHelperAdviceFactory extends AbstractEditHelperAdviceFactory<Edi
 
 	@Override
 	protected IContainerDescriptor getContainerDescriptor(EditHelperAdviceConfiguration adviceConfiguration) {
-		ContainerConfiguration containerConfiguration = ((SpecializationTypeConfiguration)adviceConfiguration.eContainer()).getContainerConfiguration();
-		if(containerConfiguration == null) {
+		ContainerConfiguration containerConfiguration = ((SpecializationTypeConfiguration) adviceConfiguration.eContainer()).getContainerConfiguration();
+		if (containerConfiguration == null) {
 			return null;
 		}
 		IContainerDescriptor containerDescriptor = ContainerConfigurationTypeRegistry.getInstance().getContainerDescriptor(containerConfiguration);
@@ -47,8 +47,8 @@ public class EditHelperAdviceFactory extends AbstractEditHelperAdviceFactory<Edi
 
 	@Override
 	protected IElementMatcher getMatcher(EditHelperAdviceConfiguration adviceConfiguration) {
-		MatcherConfiguration matcherConfiguration = ((SpecializationTypeConfiguration)adviceConfiguration.eContainer()).getMatcherConfiguration();
-		if(matcherConfiguration == null) {
+		MatcherConfiguration matcherConfiguration = ((SpecializationTypeConfiguration) adviceConfiguration.eContainer()).getMatcherConfiguration();
+		if (matcherConfiguration == null) {
 			return null;
 		}
 		IElementMatcher matcher = MatcherConfigurationTypeRegistry.getInstance().getMatcher(matcherConfiguration);
