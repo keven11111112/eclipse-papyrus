@@ -25,11 +25,13 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
+import org.eclipse.papyrus.umlrt.utils.UMLRTUtil;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Realization;
 
 /**
@@ -141,7 +143,9 @@ public class UMLRTExtModelElement extends UMLModelElement {
 	 * @return provided or required interface
 	 */
 	protected Interface getProvidedOrRequiredInterface(String propertyPath) {
-		if (source instanceof Collaboration) {
+
+		if (source instanceof Collaboration
+				|| UMLRTUtil.isProtocolContainer(source)) {
 			if (propertyPath.endsWith("provides")) { //$NON-NLS-1$
 				for (Interface intf : getProvideds()) {
 					// interface is only in provided list
@@ -177,7 +181,18 @@ public class UMLRTExtModelElement extends UMLModelElement {
 	 */
 	protected EList<Interface> getProvideds() {
 		EList<Interface> provideds = new BasicEList<Interface>();
-		for (DirectedRelationship directedRelation : ((Collaboration) source).getSourceDirectedRelationships()) {
+
+		Collaboration protocol = null;
+		if (source instanceof Collaboration) {
+			protocol = (Collaboration) source;
+		} else if (UMLRTUtil.isProtocolContainer(source)) {
+			protocol = UMLRTUtil.getProtocol((Package) source);
+		}
+		if (protocol == null) {
+			return provideds;
+		}
+		
+		for (DirectedRelationship directedRelation : protocol.getSourceDirectedRelationships()) {
 			if (directedRelation instanceof Realization) {
 				EList<NamedElement> suppliers = ((Realization) directedRelation).getSuppliers();
 				if (suppliers.size() > 0) {
@@ -192,6 +207,17 @@ public class UMLRTExtModelElement extends UMLModelElement {
 	}
 	
 	protected EList<Interface> getRequireds() {
-		return ((Collaboration) source).getUsedInterfaces();
+		Collaboration protocol = null;
+		if (source instanceof Collaboration) {
+			protocol = (Collaboration) source;
+		} else if (UMLRTUtil.isProtocolContainer(source)) {
+			protocol = UMLRTUtil.getProtocol((Package) source);
+		}
+
+		if (protocol == null) {
+			return new BasicEList<Interface>();
+		}
+		
+		return protocol.getUsedInterfaces();
 	}
 }

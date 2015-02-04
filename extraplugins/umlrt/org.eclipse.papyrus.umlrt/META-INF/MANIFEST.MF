@@ -4,7 +4,8 @@ Export-Package: org.eclipse.papyrus.umlrt.UMLRealTime,
  org.eclipse.papyrus.umlrt.UMLRealTime.util,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl,
- org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.util
+ org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.util,
+ org.eclipse.papyrus.umlrt.utils
 Require-Bundle: org.eclipse.papyrus.uml.extensionpoints;bundle-version="1.0.2",
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore;visibility:=reexport,

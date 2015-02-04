@@ -1,8 +1,41 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Composite xmlns:x="http://www.eclipse.org/xwt" xmlns="http://www.eclipse.org/xwt/presentation"
-	xmlns:j="clr-namespace:java.lang"
+<Composite
+	xmlns:umlrtppep="clr-namespace:org.eclipse.papyrus.umlrt.properties.protocoleditor"
+	xmlns:x="http://www.eclipse.org/xwt" xmlns:j="clr-namespace:java.lang"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
 	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout">
 	<Composite.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
 	</Composite.layout>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<ppe:StringEditor input="{Binding}" property="UML:NamedElement:name"
+			customLabel="Name"></ppe:StringEditor>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<umlrtppep:MultiReferenceWithDnDSupport
+			input="{Binding}" property="UMLRealTimeExt:ProtocolContainer:provides"
+			customLabel="In"></umlrtppep:MultiReferenceWithDnDSupport>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<umlrtppep:MultiReferenceWithDnDSupport
+			input="{Binding}" property="UMLRealTimeExt:ProtocolContainer:required"
+			customLabel="Out"></umlrtppep:MultiReferenceWithDnDSupport>
+	</Composite>
+	<Composite>
+		<Composite.layout>
+			<ppel:PropertiesLayout></ppel:PropertiesLayout>
+		</Composite.layout>
+		<umlrtppep:MultiReferenceWithDnDSupport
+			input="{Binding}" property="UMLRealTimeExt:ProtocolContainer:provreq"
+			customLabel="InOut"></umlrtppep:MultiReferenceWithDnDSupport>
+	</Composite>
 </Composite>

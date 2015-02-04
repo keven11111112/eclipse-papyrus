@@ -178,12 +178,18 @@
     <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@modelElementFactories.2"/>
   </dataContexts>
   <dataContexts name="UMLRealTimeExt">
-    <elements name="Protocol">
-      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.78"/>
+    <elements name="ProtocolContainer">
       <properties name="provides" type="Reference"/>
       <properties name="required" type="Reference"/>
       <properties name="provreq" type="Reference"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.78"/>
     </elements>
-      <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.umlrt.properties/propertyView/UML-RT/Environment.xmi#//@modelElementFactories.0"/>
+    <elements name="Protocol">
+      <properties name="provides" type="Reference"/>
+      <properties name="required" type="Reference"/>
+      <properties name="provreq" type="Reference"/>
+      <supertypes href="ppe:/context/org.eclipse.papyrus.uml.properties/Model/UML/UML.ctx#//@dataContexts.0/@elements.78"/>
+    </elements>
+    <modelElementFactory href="ppe:/environment/org.eclipse.papyrus.umlrt.properties/propertyView/UML-RT/Environment.xmi#//@modelElementFactories.0"/>
   </dataContexts>
 </contexts:Context>
