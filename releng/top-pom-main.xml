@@ -344,7 +344,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.4/R-4.4.1-201409250400/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.4-M-builds/M-4.4.2RC2-201501281000/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -380,19 +380,19 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 5.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.0.2/S201409011459</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.0.4/S201502010829</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT UML2",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0</url>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.0.x</url>
 		</repository>
 		<repository>
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.4.0/S201406101621</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.4.1/S201502011444</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -408,13 +408,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/maintenance/R201409160908/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/maintenance/R201411190455/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.1/R-3.6.1-20140912000031/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.3/M-3.6.3RC2-20150203000141/repository/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
