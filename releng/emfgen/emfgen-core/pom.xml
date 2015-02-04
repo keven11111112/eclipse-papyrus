@@ -3,7 +3,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<parent>
-		<groupId>fr.cea.list.lise.emfgen</groupId>
+		<groupId>org.eclipse.papyrus.emfgen</groupId>
 		<artifactId>emfgen-parent</artifactId>
 		<version>0.0.1-SNAPSHOT</version>
 		<relativePath>../emfgen-parent/pom.xml</relativePath>
@@ -52,7 +52,7 @@
 						<manifest>
 							<addClasspath>true</addClasspath>
 							<classpathPrefix>lib/</classpathPrefix>
-							<mainClass>fr.cea.list.lise.emfgen.core.EmfGeneratorApp</mainClass>
+							<mainClass>org.eclipse.papyrus.emfgen.core.EmfGeneratorApp</mainClass>
 							<addDefaultImplementationEntries>true</addDefaultImplementationEntries>
 							<addDefaultSpecificationEntries>true</addDefaultSpecificationEntries>
 						</manifest>

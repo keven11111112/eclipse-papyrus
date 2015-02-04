@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2013 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,8 +9,9 @@
  *
  * Contributors:
  *	Amine EL KOUHEN (CEA LIST/LIFL) - Amine.Elkouhen@cea.fr
- * Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
- * Christian W. Damus (CEA) - support marker type hierarchy in CDO problem markers (CDO)
+ *  Christian W. Damus (CEA) - refactor for non-workspace abstraction of problem markers (CDO)
+ *  Christian W. Damus (CEA) - support marker type hierarchy in CDO problem markers (CDO)
+ *  Christian W. Damus - bug 458652
  *
  *****************************************************************************/
 
@@ -25,12 +26,14 @@ import java.util.Set;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.IExtension;
 import org.eclipse.core.runtime.IExtensionPoint;
 import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.EMFPlugin;
+import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
@@ -39,6 +42,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.ui.action.ValidateAction.EclipseResourcesUtil;
+import org.eclipse.papyrus.infra.services.markerlistener.IPapyrusMarker;
 import org.eclipse.papyrus.infra.services.markerlistener.providers.IMarkerProvider;
 import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerProviderRegistry;
 
@@ -48,7 +52,18 @@ import org.eclipse.papyrus.infra.services.markerlistener.providers.MarkerProvide
  */
 public class MarkerListenerUtils {
 
-	public static EclipseResourcesUtil eclipseResourcesUtil = EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() : null;
+	public static EclipseResourcesUtil eclipseResourcesUtil = EMFPlugin.IS_RESOURCES_BUNDLE_AVAILABLE ? new EclipseResourcesUtil() {
+		@Override
+		protected boolean adjustMarker(IMarker marker, Diagnostic diagnostic) throws CoreException {
+			String source = (diagnostic == null) ? null : diagnostic.getSource();
+
+			if (source != null) {
+				marker.setAttribute(IPapyrusMarker.SOURCE, source);
+			}
+
+			return super.adjustMarker(marker, diagnostic);
+		}
+	} : null;
 
 	private static final Map<String, String> MARKER_LABELS = new java.util.HashMap<String, String>();
 
