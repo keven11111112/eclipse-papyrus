@@ -329,31 +329,31 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201412160330/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201502030703/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201412160441/mwe2lang</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201502030947/mwe2lang</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201412161904</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201502040445</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201412161741</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201502040400</url>
 		</repository>
 		<repository>
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M4-201412102000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M5a-201502031300/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -365,13 +365,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201412161742</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201502040339</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201412162002</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201502040533</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -383,13 +383,13 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201412160338/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201502030723/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 5.1",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.1.0/S201412151441</url>
+			<!-- updateFrom("MDT OCL 6.0",0) -->
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201502021341</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -401,7 +401,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201412161054</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201502021150</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -417,7 +417,7 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201412160421/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201502030924/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>

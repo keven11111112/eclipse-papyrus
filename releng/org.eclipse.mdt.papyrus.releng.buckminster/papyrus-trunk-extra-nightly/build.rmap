@@ -255,7 +255,7 @@
     <!-- Birt -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("BIRT",0) -->
-      <rm:uri format="{0}/birt/update-site/luna-interim/">
+      <rm:uri format="{0}/birt/update-site/mars-interim/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -271,7 +271,7 @@
     <!-- M2M ATL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("M2M ATL",0) -->
-      <rm:uri format="{0}/mmt/atl/updates/milestones/3.5/">
+      <rm:uri format="{0}/mmt/atl/updates/milestones/3.6/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -279,7 +279,7 @@
     <!-- EMFT MWE -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMFT MWE",0) -->
-      <rm:uri format="{0}/modeling/emft/mwe/updates/releases/R201409021027/mwe">
+      <rm:uri format="{0}/modeling/emft/mwe/updates/milestones/S201502030703/mwe">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -287,7 +287,7 @@
     <!-- M2M QVT-OML -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("QVT Operational",0) -->
-      <rm:uri format="{0}/mmt/qvto/updates/milestones/3.4.0/S201406101621">
+      <rm:uri format="{0}/mmt/qvto/updates/milestones/3.5.0/S201502021150">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -302,15 +302,15 @@
     <!-- M2T Acceleo -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("M2T ACCELEO",0) -->
-      <rm:uri format="{0}/acceleo/updates/milestones/3.5/S201409021433">
+      <rm:uri format="{0}/acceleo/updates/milestones/3.6/S201502030917">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
     
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
-      <!-- updateFrom("MDT OCL 5.0",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.2/S201409011459">
+      <!-- updateFrom("MDT OCL 6.0",0) -->
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/6.0.0/S201502021341">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -318,7 +318,7 @@
     <!-- EMF Facet -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF Facet",0) -->
-      <rm:uri format="{0}/facet/updates/integration/0.4.1/I201407310909/">
+      <rm:uri format="{0}/facet/updates/integration/1.0.0/I201502030839/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -326,7 +326,7 @@
     <!-- MDT UML2 -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT UML2",0) -->
-      <rm:uri format="{0}/modeling/mdt/uml2/updates/5.0">
+      <rm:uri format="{0}/modeling/mdt/uml2/updates/5.1milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -334,7 +334,7 @@
     <!-- Mylyn -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("Mylyn",0) -->
-      <rm:uri format="{0}/mylyn/snapshots/3.13">
+      <rm:uri format="{0}/mylyn/snapshots/3.15">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -342,7 +342,7 @@
     <!-- M2T Xpand -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("M2T XPAND",0) -->
-      <rm:uri format="{0}/modeling/m2t/xpand/updates/releases/R201406030414/">
+      <rm:uri format="{0}/modeling/m2t/xpand/updates/milestones/S201502030723/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -350,7 +350,7 @@
     <!-- Xtext, Xtend -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("Xtext, Xtend",0) -->
-      <rm:uri format="{0}/modeling/tmf/xtext/updates/releases/maintenance/R201409160908/">
+      <rm:uri format="{0}/modeling/tmf/xtext/updates/milestones/head/S201502030924/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -358,7 +358,7 @@
     <!-- EMF -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF (Core)",0) -->
-      <rm:uri format="{0}/modeling/emf/emf/updates/2.10.x/">
+      <rm:uri format="{0}/modeling/emf/emf/updates/2.11milestones/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -366,7 +366,7 @@
     <!-- EMF Compare -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF COMPARE",0) -->
-       <rm:uri format="{0}/modeling/emf/compare/updates/milestones/3.0/S201408191310">
+       <rm:uri format="{0}/modeling/emf/compare/updates/milestones/3.1/S201502031424">
       <!-- rm:uri format="{0}/modeling/emf/compare/updates/milestones/2.0" -->
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
@@ -376,7 +376,7 @@
     <!-- EMF Transaction -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF TRANSACTION",0) -->
-      <rm:uri format="{0}/modeling/emf/transaction/updates/releases/R201405281451/">
+      <rm:uri format="{0}/modeling/emf/transaction/updates/milestones/S201502040445">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -384,7 +384,7 @@
     <!-- EMF Validation -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("EMF VALIDATION",0) -->
-      <rm:uri format="{0}/modeling/emf/validation/updates/releases/R201405281429/">
+      <rm:uri format="{0}/modeling/emf/validation/updates/milestones/S201502040400">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -400,7 +400,7 @@
     <!-- GMP -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Runtime",0) -->
-      <rm:uri format="{0}/modeling/gmp/gmf-runtime/updates/releases/R201408201453/">
+      <rm:uri format="{0}/modeling/gmp/gmf-runtime/updates/milestones/S201502040533">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -408,7 +408,7 @@
     <!-- GMF Notation -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Notation",0) -->
-      <rm:uri format="{0}/modeling/gmp/gmf-notation/updates/releases/R201405281433/">
+      <rm:uri format="{0}/modeling/gmp/gmf-notation/updates/milestones/S201502040339">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -416,7 +416,7 @@
     <!-- GMF Tooling -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("GMF Tooling",0) -->
-      <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones-3.2.1.RC4">
+      <rm:uri format="{0}/modeling/gmp/gmf-tooling/updates/milestones-3.3/M4">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -424,7 +424,7 @@
     <!-- CDT -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("CDT",0) -->
-      <rm:uri format="{0}/tools/cdt/builds/luna/milestones">
+      <rm:uri format="{0}/tools/cdt/builds/mars/milestones">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -432,7 +432,7 @@
     <!-- Subversive -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("Subversive",0) -->
-      <rm:uri format="{0}/technology/subversive/2.0/luna-site/">
+      <rm:uri format="{0}/technology/subversive/2.0/mars-site/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -440,7 +440,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.6.1/R-3.6.1-20140912000031/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.7.0/S-3.7.0M4-20141211000148/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -448,7 +448,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.4/R-4.4.1-201409250400/">
+		<rm:uri format="{0}/eclipse/updates/4.5milestones/S-4.5M5a-201502031300/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>
