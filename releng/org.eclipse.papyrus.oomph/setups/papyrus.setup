@@ -1221,6 +1221,16 @@
           </predicate>
         </workingSet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.targlets:TargletTask">
+        <targlet
+            name="Additional UML Dependencies"
+            activeRepositoryList="">
+          <requirement
+              name="org.eclipse.ocl.jdt.annotation7"
+              optional="true"/>
+        </targlet>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
