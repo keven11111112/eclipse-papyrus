@@ -2,7 +2,7 @@
 <configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:constraints="http://www.eclipse.org/papyrus/constraints/0.9" xmi:id="_7wLmkNxhEeOqHvRyiN87hA" defaultStakeholder="_7wLmkdxhEeOqHvRyiN87hA">
   <stakeholders xmi:id="_7wLmkdxhEeOqHvRyiN87hA" name="Default Modeler" viewpoints="_7wLmktxhEeOqHvRyiN87hA"/>
   <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_7wLmktxhEeOqHvRyiN87hA" name="Default Papyrus Viewpoint">
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wLmk9xhEeOqHvRyiN87hA" name="UML Inner Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wLmk9xhEeOqHvRyiN87hA" name="Inner Class Diagram" icon="platform:/plugin/org.eclipse.papyrus.uml.diagram.clazz/icons/obj16/Diagram_Class.gif" implementationID="PapyrusUMLClassDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
       <modelRules xmi:id="_7wLmlNxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
       </modelRules>
@@ -36,7 +36,7 @@
       <paletteRules xmi:id="_7wLmotxhEeOqHvRyiN87hA" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_7wLmo9xhEeOqHvRyiN87hA" element=""/>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wLmpNxhEeOqHvRyiN87hA" name="UML Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" implementationID="PapyrusUMLClassDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
+    <modelKinds xsi:type="configuration:PapyrusDiagram" xmi:id="_7wLmpNxhEeOqHvRyiN87hA" name="Package Diagram" icon="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/icons/Diagram_Package.gif" implementationID="PapyrusUMLClassDiagram" categories="_7wNb4txhEeOqHvRyiN87hA">
       <modelRules xmi:id="_7wLmpdxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </modelRules>
@@ -445,7 +445,7 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
       </owningRules>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_7wNb29xhEeOqHvRyiN87hA" name="SysML Allocation Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.png" implementationID="PapyrusSysMLAllocationTable" categories="_7wNb49xhEeOqHvRyiN87hA">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_7wNb29xhEeOqHvRyiN87hA" name="Allocation Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.allocation.config/icons/table_SysML_Allocation.png" implementationID="PapyrusSysMLAllocationTable" categories="_7wNb49xhEeOqHvRyiN87hA">
       <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//allocations"/>
       <modelRules xmi:id="_7wNb3NxhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
@@ -454,7 +454,7 @@
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
       </owningRules>
     </modelKinds>
-    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_7wNb3txhEeOqHvRyiN87hA" name="SysML Requirement Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.png" implementationID="PapyrusSysMLRequirementTable" categories="_7wNb49xhEeOqHvRyiN87hA">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_7wNb3txhEeOqHvRyiN87hA" name="Requirement Table" icon="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/icons/table_SysML_Requirement.png" implementationID="PapyrusSysMLRequirementTable" categories="_7wNb49xhEeOqHvRyiN87hA">
       <profiles href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
       <modelRules xmi:id="_7wNb39xhEeOqHvRyiN87hA">
         <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>

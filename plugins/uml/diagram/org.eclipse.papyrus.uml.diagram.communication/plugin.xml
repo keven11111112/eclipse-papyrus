@@ -39,7 +39,7 @@
             creationCondition="org.eclipse.papyrus.uml.diagram.communication.CommunicationDiagramCreationCondition"
             icon="icons/obj16/Diagram_Communication.gif"
             id="org.eclipse.papyrus.uml.diagram.communication.CreateCommunicationDiagramCommand"
-            label="UML Communication Diagram"
+            label="Communication Diagram"
             language="uml">
       </creationCommand>
    </extension>

@@ -1344,7 +1344,7 @@
             icon="icons/obj16/Diagram_Class.gif"
             id="org.eclipse.papyrus.uml.diagram.clazz.CreateClassDiagramCommand"
             language="uml"
-            label="UML Class Diagram">
+            label="Class Diagram">
       </creationCommand>
       <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"

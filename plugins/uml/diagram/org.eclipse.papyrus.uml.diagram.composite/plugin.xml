@@ -1318,7 +1318,7 @@
             icon="icons/obj16/Diagram_CompositeStructure.gif"
             id="org.eclipse.papyrus.uml.diagram.composite.createCompositeDiagram"
             language="uml"
-            label="UML Composite Structure Diagram">
+            label="Composite Structure Diagram">
       </creationCommand>
    </extension>
    

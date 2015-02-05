@@ -22,7 +22,7 @@
             creationCondition="org.eclipse.papyrus.uml.diagram.interactionoverview.InteractionOverviewDiagramCreationCondition"
             icon="icons/obj16/interactionOverviewDiagram.gif"
             id="org.eclipse.papyrus.uml.diagram.interactionoverview.CreateCommand"
-            label="UML Interaction Overview Diagram"
+            label="Interaction Overview Diagram"
             language="uml"/>
         <editorDiagram
             actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"

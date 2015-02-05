@@ -10,7 +10,7 @@
 		icon="icons/obj16/Diagram_Requirement.gif"
 		id="org.eclipse.papyrus.sysml.diagram.requirement.CreateCommand"
 		language="sysml"
-		label="SysML Requirement Diagram"/>
+		label="Requirement Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.requirement.RequirementDiagramEditorFactory"
