@@ -32,10 +32,12 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionPinInLoopNodeAsVariableEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInLoopNodeAsVariableEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsBodyOutputEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsLoopVariableEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInLoopNodeAsResultEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInLoopNodeAsVariableEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -72,9 +74,9 @@ public class LoopNodeCanonicalEditPolicy extends CanonicalEditPolicy {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput());
-			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getLoopNode_Result());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getLoopNode_BodyOutput());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getLoopNode_LoopVariable());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getLoopNode_Result());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -109,9 +111,11 @@ public class LoopNodeCanonicalEditPolicy extends CanonicalEditPolicy {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
 		switch (visualID) {
 		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-		case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+		case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+		case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
 		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+		case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
 			return true;
 		}
 		return false;

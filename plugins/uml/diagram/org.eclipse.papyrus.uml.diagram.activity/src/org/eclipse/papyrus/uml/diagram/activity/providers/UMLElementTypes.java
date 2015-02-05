@@ -309,7 +309,37 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType InputPin_3188 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3188"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3189 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3189"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3190 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3190"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3191 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3191"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType InputPin_3105 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3192 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3192"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3193 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3193"); //$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -1036,12 +1066,18 @@ public class UMLElementTypes {
 			elements.put(ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionNode());
 			elements.put(ExpansionNode_3075, UMLPackage.eINSTANCE.getExpansionNode());
 			elements.put(LoopNode_3071, UMLPackage.eINSTANCE.getLoopNode());
+			elements.put(InputPin_3105, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3192, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3193, UMLPackage.eINSTANCE.getActionInputPin());
 			elements.put(OutputPin_3109, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(OutputPin_3110, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(OutputPin_3111, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(SequenceNode_3073, UMLPackage.eINSTANCE.getSequenceNode());
 			elements.put(StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode());
-			elements.put(InputPin_3105, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(InputPin_3188, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3189, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3190, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(OutputPin_3191, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(ActivityPartition_3067, UMLPackage.eINSTANCE.getActivityPartition());
 			elements.put(InterruptibleActivityRegion_3068, UMLPackage.eINSTANCE.getInterruptibleActivityRegion());
 			elements.put(Comment_3080, UMLPackage.eINSTANCE.getComment());
@@ -1229,12 +1265,18 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3074);
 			KNOWN_ELEMENT_TYPES.add(ExpansionNode_3075);
 			KNOWN_ELEMENT_TYPES.add(LoopNode_3071);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3105);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3192);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3193);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3109);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3110);
 			KNOWN_ELEMENT_TYPES.add(OutputPin_3111);
 			KNOWN_ELEMENT_TYPES.add(SequenceNode_3073);
 			KNOWN_ELEMENT_TYPES.add(StructuredActivityNode_3065);
-			KNOWN_ELEMENT_TYPES.add(InputPin_3105);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3188);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3189);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3190);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3191);
 			KNOWN_ELEMENT_TYPES.add(ActivityPartition_3067);
 			KNOWN_ELEMENT_TYPES.add(InterruptibleActivityRegion_3068);
 			KNOWN_ELEMENT_TYPES.add(Comment_3080);
@@ -1477,6 +1519,12 @@ public class UMLElementTypes {
 			return ExpansionNode_3075;
 		case LoopNodeEditPart.VISUAL_ID:
 			return LoopNode_3071;
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return InputPin_3105;
+		case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return ValuePin_3192;
+		case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
+			return ActionInputPin_3193;
 		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 			return OutputPin_3109;
 		case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
@@ -1487,8 +1535,14 @@ public class UMLElementTypes {
 			return SequenceNode_3073;
 		case StructuredActivityNodeEditPart.VISUAL_ID:
 			return StructuredActivityNode_3065;
-		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-			return InputPin_3105;
+		case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return InputPin_3188;
+		case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return ValuePin_3189;
+		case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return ActionInputPin_3190;
+		case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return OutputPin_3191;
 		case ActivityPartitionEditPart.VISUAL_ID:
 			return ActivityPartition_3067;
 		case InterruptibleActivityRegionEditPart.VISUAL_ID:

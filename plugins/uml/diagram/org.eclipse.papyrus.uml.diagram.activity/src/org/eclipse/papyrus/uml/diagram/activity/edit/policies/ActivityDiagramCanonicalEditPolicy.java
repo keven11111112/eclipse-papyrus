@@ -712,6 +712,27 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
+		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3105ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3192ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3193ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
 		case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
 				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3109ContainedLinks(view));
@@ -747,9 +768,30 @@ public class ActivityDiagramCanonicalEditPolicy extends CanonicalEditPolicy {
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
 		}
-		case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID: {
+		case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID: {
 			if (!domain2NotationMap.containsKey(view.getElement())) {
-				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3105ContainedLinks(view));
+				result.addAll(UMLDiagramUpdater.INSTANCE.getInputPin_3188ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getValuePin_3189ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getActionInputPin_3190ContainedLinks(view));
+			}
+			domain2NotationMap.putView(view.getElement(), view);
+			break;
+		}
+		case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID: {
+			if (!domain2NotationMap.containsKey(view.getElement())) {
+				result.addAll(UMLDiagramUpdater.INSTANCE.getOutputPin_3191ContainedLinks(view));
 			}
 			domain2NotationMap.putView(view.getElement(), view);
 			break;
