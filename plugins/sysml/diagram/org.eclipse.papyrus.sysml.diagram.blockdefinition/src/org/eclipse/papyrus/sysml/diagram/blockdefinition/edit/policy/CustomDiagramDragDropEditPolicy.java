@@ -103,16 +103,12 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (false == droppedEObject instanceof InstanceSpecification) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (((InstanceSpecification) droppedEObject).getClassifiers().size() > 0) {
-			if (((InstanceSpecification) droppedEObject).getClassifiers().get(0) instanceof Association) {
-				// DROP AS LINK
-				List<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification) droppedEObject));
-				if (endTypes.size() > 0) {
-					Element source = endTypes.get(0);
-					Element target = endTypes.get(1);
-					return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop InstanceSpecification link"), source, target, ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint(), dropRequest.getLocation(), (Element) droppedEObject));
-				}
-			}
+		// DROP AS LINK
+		List<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification) droppedEObject));
+		if (endTypes.size() > 0) {
+			Element source = endTypes.get(0);
+			Element target = endTypes.get(1);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop InstanceSpecification link"), source, target, ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint(), dropRequest.getLocation(), (Element) droppedEObject));
 		}
 		// DROP AS A NODE
 		// drop into diagram
