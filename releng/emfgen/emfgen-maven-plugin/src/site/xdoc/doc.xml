@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document xmlns="http://maven.apache.org/XDOC/2.0"
+  xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
+
+  <properties>
+    <title>EMFGenerator</title>
+  </properties>
+
+  <body>
+    <section name="EMFGen for developers">
+	<p>section dedicated for developers</p>
+      <subsection name="deploy the new web site">
+        <source>
+        <![CDATA[ <plugin>
+				<groupId>org.eclipse.papyrus.emfgen</groupId>
+				<artifactId>emfgen-maven-plugin</artifactId>
+				<version>${project.version}</version>
+				<executions>
+					<execution>
+						<id>emfgen4constraint</id>
+						<phase>generate-sources</phase>
+						<goals>
+							<goal>emfgen</goal>
+						</goals>
+						<configuration>
+							<ecoreModel>file:/${project.basedir}/src/main/resources/models/constraints/Constraints.ecore</ecoreModel>
+							<genModel>file:/${project.basedir}/src/main/resources/models/constraints/Constraints.genmodel</genModel>
+							<outputDirectory>${project.basedir}/target/src-genc</outputDirectory>
+							<isRelocate>true</isRelocate>
+							<isGenModel>true</isGenModel>
+							<isGenEdit>true</isGenEdit>
+							<isGenEditor>true</isGenEditor>
+							<isGenTests>true</isGenTests>
+						</configuration>
+					</execution>
+					
+					</executions>
+					</plugin>
+					]]>
+					</source>
+      </subsection>
+
+    </section>
+
+ 
+
+  </body>
+
+</document>

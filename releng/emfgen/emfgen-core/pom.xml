@@ -4,9 +4,9 @@
 
 	<parent>
 		<groupId>org.eclipse.papyrus.emfgen</groupId>
-		<artifactId>emfgen-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../emfgen-parent/pom.xml</relativePath>
+		<artifactId>emfgen</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 
 	<artifactId>emfgen-core</artifactId>

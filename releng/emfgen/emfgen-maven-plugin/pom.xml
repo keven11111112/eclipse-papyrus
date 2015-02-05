@@ -4,9 +4,9 @@
 
 	<parent>
 		<groupId>org.eclipse.papyrus.emfgen</groupId>
-		<artifactId>emfgen-parent</artifactId>
-		<version>0.0.1-SNAPSHOT</version>
-		<relativePath>../emfgen-parent/pom.xml</relativePath>
+		<artifactId>emfgen</artifactId>
+		<version>0.0.2-SNAPSHOT</version>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<packaging>maven-plugin</packaging>
 
@@ -48,7 +48,7 @@
 		<dependency>
 			<groupId>org.eclipse.papyrus.emfgen</groupId>
 			<artifactId>emfgen-core</artifactId>
-			<version>0.0.1-SNAPSHOT</version>
+			<version>${project.version}</version>
 		</dependency>
 
 	</dependencies>
