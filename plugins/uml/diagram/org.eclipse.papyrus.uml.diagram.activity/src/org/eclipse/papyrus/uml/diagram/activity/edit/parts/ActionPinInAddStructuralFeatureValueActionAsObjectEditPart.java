@@ -27,11 +27,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActionPinInAddStructuralFeatureValueActionAsObjectItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OutputPinInAddStructuralFeatureValueActionAsResultItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
+import org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
@@ -39,12 +39,12 @@ import org.eclipse.swt.graphics.Color;
 /**
  * @generated
  */
-public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends AbstractPinEditPart {
+public class ActionPinInAddStructuralFeatureValueActionAsObjectEditPart extends AbstractPinEditPart {
 
 	/**
 	 * @generated
 	 */
-	public static final int VISUAL_ID = 3094;
+	public static final int VISUAL_ID = 3185;
 
 	/**
 	 * @generated
@@ -59,47 +59,23 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	public OutputPinInAddStructuralFeatureValueActionAsResultEditPart(View view) {
+	public ActionPinInAddStructuralFeatureValueActionAsObjectEditPart(View view) {
 		super(view);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, getPrimaryDragEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new OutputPinInAddStructuralFeatureValueActionAsResultItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActionPinInAddStructuralFeatureValueActionAsObjectItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(EditPolicyRoles.OPEN_ROLE, new OpenDiagramEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new PinLayoutEditPolicy());
 		installEditPolicy(RequestConstants.REQ_DELETE, new NoDeleteFromDiagramEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
-	}
-
-	/**
-	 * Papyrus codeGen
-	 *
-	 * @generated
-	 **/
-	@Override
-	protected void handleNotificationEvent(Notification event) {
-		/*
-		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
-		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
-		 */
-		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
-			Object notifier = event.getNotifier();
-			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (!(notifier instanceof Edge)) {
-				if (modelChildren.contains(event.getNotifier())) {
-					return;
-				}
-			}
-		}
-		super.handleNotificationEvent(event);
 	}
 
 	/**
@@ -112,8 +88,9 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 			protected EditPolicy createChildEditPolicy(EditPart child) {
 				View childView = (View) child.getModel();
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
-				case OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID:
-				case OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart.VISUAL_ID:
 					return new BorderItemSelectionEditPolicy() {
 
 						@Override
@@ -145,29 +122,54 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	}
 
 	/**
+	 * Papyrus codeGen
+	 *
+	 * @generated
+	 **/
+	protected void handleNotificationEvent(Notification event) {
+		/*
+		 * when a node have external node labels, the methods refreshChildren() remove the EditPart corresponding to the Label from the EditPart
+		 * Registry. After that, we can't reset the visibility to true (using the Show/Hide Label Action)!
+		 */
+		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
+			Object notifier = event.getNotifier();
+			List<?> modelChildren = ((View) getModel()).getChildren();
+			if (!(notifier instanceof Edge)) {
+				if (modelChildren.contains(event.getNotifier())) {
+					return;
+				}
+			}
+		}
+		super.handleNotificationEvent(event);
+	}
+
+	/**
 	 * @generated
 	 */
 	protected IFigure createNodeShape() {
-		return primaryShape = new OutputPinFigure();
+		return primaryShape = new InputPinFigure();
+	}
+
+	/**
+	 * org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure
+	 * 
+	 * @generated
+	 */
+	public InputPinFigure getPrimaryShape() {
+		return (InputPinFigure) primaryShape;
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
-	public OutputPinFigure getPrimaryShape() {
-		return (OutputPinFigure) primaryShape;
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
 	protected void addBorderItem(IFigure borderItemContainer, IBorderItemEditPart borderItemEditPart) {
-		if (borderItemEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart) {
+		if (borderItemEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultAppliedStereotypeWrappingLabel3EditPart) {
+		} else if (borderItemEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectValueEditPart) {
+			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
+			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
+		} else if (borderItemEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectAppliedStereotypeWrappingLabelEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
 		} else {
@@ -175,9 +177,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 		}
 	}
 
-	/**
-	 * @generated
-	 */
 	protected NodeFigure createNodePlate() {
 		RoundedRectangleNodePlateFigure result = new RoundedRectangleNodePlateFigure(16, 16);
 		return result;
@@ -185,13 +184,12 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected NodeFigure createMainFigure() {
 		NodeFigure figure = createNodePlate();
 		figure.setLayoutManager(new StackLayout());
@@ -204,7 +202,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * Default implementation treats passed figure as content pane.
 	 * Respects layout one may have set for generated figure.
-	 *
+	 * 
 	 * @param nodeShape
 	 *            instance of generated figure class
 	 * @generated
@@ -216,7 +214,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	@Override
 	public IFigure getContentPane() {
 		if (contentPane != null) {
 			return contentPane;
@@ -227,7 +224,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setForegroundColor(Color color) {
 		if (primaryShape != null) {
 			primaryShape.setForegroundColor(color);
@@ -237,7 +233,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineWidth(int width) {
 		super.setLineWidth(width);
 	}
@@ -245,7 +240,6 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	@Override
 	protected void setLineType(int style) {
 		if (primaryShape instanceof IPapyrusNodeFigure) {
 			((IPapyrusNodeFigure) primaryShape).setLineStyle(style);
@@ -255,8 +249,7 @@ public class OutputPinInAddStructuralFeatureValueActionAsResultEditPart extends 
 	/**
 	 * @generated
 	 */
-	@Override
 	public EditPart getPrimaryChildEditPart() {
-		return getChildBySemanticHint(UMLVisualIDRegistry.getType(OutputPinInAddStructuralFeatureValueActionAsResultLabel3EditPart.VISUAL_ID));
+		return getChildBySemanticHint(UMLVisualIDRegistry.getType(ActionPinInAddStructuralFeatureValueActionAsObjectLabelEditPart.VISUAL_ID));
 	}
 }

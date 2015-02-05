@@ -1,13 +1,11 @@
 package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
@@ -16,10 +14,6 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPostconditionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPostconditionReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPreconditionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ActionLocalPreconditionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.CommentLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
@@ -30,104 +24,28 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerCr
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ExceptionHandlerReorientCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ObjectFlowReorientCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CommentLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExceptionHandlerEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.uml2.uml.UMLPackage;
 
 /**
  * @generated
  */
-public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
+public class InputPinInAddStructuralFeatureValueActionAsInserAtItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 
 	/**
 	 * @generated
 	 */
-	public AddStructuralFeatureValueActionItemSemanticEditPolicy() {
-		super(UMLElementTypes.AddStructuralFeatureValueAction_3091);
+	public InputPinInAddStructuralFeatureValueActionAsInserAtItemSemanticEditPolicy() {
+		super(UMLElementTypes.InputPin_3181);
 	}
 
 	/**
 	 * @generated
 	 */
-	@Override
-	protected Command getCreateCommand(CreateElementRequest req) {
-		IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
-			return super.getCreateCommand(req);
-		}
-		if (UMLElementTypes.InputPin_3092 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.InputPin_3093 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.InputPin_3181 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ValuePin_3182 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ValuePin_3183 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ValuePin_3184 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ActionInputPin_3185 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ActionInputPin_3186 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.ActionInputPin_3187 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		if (UMLElementTypes.OutputPin_3094 == requestElementType) {
-			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Result();
-			req.setContainmentFeature(containmentFeature);
-			return getGEFWrapper(getSemanticCreationCommand(req));
-		}
-		return super.getCreateCommand(req);
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
 	protected Command getDestroyElementCommand(DestroyElementRequest req) {
 		EObject selectedEObject = req.getElementToDestroy();
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedEObject);
@@ -161,18 +79,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.ActionLocalPrecondition_4001 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new ActionLocalPreconditionCreateCommand(req, req.getSource(), req.getTarget()));
-		}
-		if (UMLElementTypes.ActionLocalPostcondition_4002 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new ActionLocalPostconditionCreateCommand(req, req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.ObjectFlow_4003 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
@@ -186,10 +92,7 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ExceptionHandler_4005 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
+			return null;
 		}
 		if (UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
 			return null;
@@ -220,12 +123,6 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.ActionLocalPrecondition_4001 == baseElementType) {
-			return null;
-		}
-		if (UMLElementTypes.ActionLocalPostcondition_4002 == baseElementType) {
-			return null;
-		}
 		if (UMLElementTypes.ObjectFlow_4003 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
@@ -239,7 +136,10 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			return getGEFWrapper(new ControlFlowCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.ExceptionHandler_4005 == baseElementType) {
-			return null;
+			if (isExtendedType) {
+				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
+			}
+			return getGEFWrapper(new ExceptionHandlerCreateCommand(req, req.getSource(), req.getTarget()));
 		}
 		if (UMLElementTypes.CommentAnnotatedElement_4006 == baseElementType) {
 			if (isExtendedType) {
@@ -259,10 +159,9 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 	/**
 	 * Returns command to reorient EClass based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
 		case ObjectFlowEditPart.VISUAL_ID:
@@ -278,16 +177,11 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 	/**
 	 * Returns command to reorient EReference based link. New link target or source
 	 * should be the domain model element associated with this node.
-	 *
+	 * 
 	 * @generated
 	 */
-	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case ActionLocalPreconditionEditPart.VISUAL_ID:
-			return getGEFWrapper(new ActionLocalPreconditionReorientCommand(req));
-		case ActionLocalPostconditionEditPart.VISUAL_ID:
-			return getGEFWrapper(new ActionLocalPostconditionReorientCommand(req));
 		case CommentLinkEditPart.VISUAL_ID:
 			return getGEFWrapper(new CommentLinkReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:

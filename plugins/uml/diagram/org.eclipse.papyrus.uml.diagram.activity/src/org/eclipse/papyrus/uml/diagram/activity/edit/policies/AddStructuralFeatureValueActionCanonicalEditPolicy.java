@@ -32,9 +32,16 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionPinInAddStructuralFeatureValueActionAsObjectEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionPinInAddStructuralFeatureValueActionAsValueEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsInserAtEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsObjectEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInAddStructuralFeatureValueActionAsResultEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInAddStructuralFeatureValueActionAsObjectEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInAddStructuralFeatureValueActionAsValueEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -72,6 +79,7 @@ public class AddStructuralFeatureValueActionCanonicalEditPolicy extends Canonica
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt());
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Result());
 		}
 		return myFeaturesToSynchronize;
@@ -105,8 +113,20 @@ public class AddStructuralFeatureValueActionCanonicalEditPolicy extends Canonica
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID || visualID == InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID
-				|| visualID == OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID;
+		switch (visualID) {
+		case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+		case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+		case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+		case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+		case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+		case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+		case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+		case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+		case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+		case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**
