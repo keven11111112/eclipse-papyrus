@@ -66,7 +66,9 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.AppliedStereotypeNestedLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.ClassDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.policies.NestedLabelMaskManagedEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.NestedSignalForClassItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLTextSelectionEditPolicy;
@@ -75,6 +77,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
@@ -162,6 +165,8 @@ public class NestedSignalForClassEditPart extends UMLCompartmentEditPart impleme
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new ClassDiagramDragDropEditPolicy());
+		installEditPolicy(AbstractAppliedStereotypeDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeNestedLabelDisplayEditPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new NestedLabelMaskManagedEditPolicy());
 	}
 
 	/**
