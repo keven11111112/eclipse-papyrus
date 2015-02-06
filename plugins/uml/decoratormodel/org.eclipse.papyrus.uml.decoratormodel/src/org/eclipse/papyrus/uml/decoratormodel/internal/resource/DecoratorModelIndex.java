@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -30,6 +30,9 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.EcorePackage;
+import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex.IndexHandler;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndexAdapter;
@@ -38,7 +41,9 @@ import org.eclipse.papyrus.uml.decoratormodel.Activator;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.internal.messages.Messages;
 import org.eclipse.papyrus.uml.decoratormodel.internal.resource.index.ProfileIndexHandler;
+import org.eclipse.papyrus.uml.decoratormodel.profileExternalization.ProfileExternalizationPackage;
 import org.eclipse.uml2.common.util.CacheAdapter;
+import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.base.Function;
 import com.google.common.collect.HashMultimap;
@@ -71,6 +76,14 @@ public class DecoratorModelIndex {
 	private final WorkspaceModelIndex<DecoratorModelIndex> index;
 
 	private final CopyOnWriteArrayList<IDecoratorModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
+
+	static {
+		// Ensure that packages required by the UML content describers won't be initialized in parallel by project index jobs
+		EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
+		EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
+		EPackage.Registry.INSTANCE.getEPackage(ProfileExternalizationPackage.eNS_URI);
+	}
 
 	/**
 	 * Not instantiable by clients.
