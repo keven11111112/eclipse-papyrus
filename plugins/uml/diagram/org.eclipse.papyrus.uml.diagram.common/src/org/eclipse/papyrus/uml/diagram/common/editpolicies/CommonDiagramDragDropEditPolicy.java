@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
@@ -123,7 +124,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		Command createCommand = getHost().getCommand(createViewRequest);
 		return createCommand;
 	}
-
+	
 	/**
 	 * the method provides command to create the binary link into the diagram.
 	 * If the source and the target views do not exist, these views will be
@@ -248,14 +249,22 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// Create a view request from the drop request and then forward getting
 		// the command for that.
-		CompositeCommand cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+		CompositeCommand cc = null;
 		Iterator<?> iter = dropRequest.getObjects().iterator();
 
 		while(iter.hasNext()) {
 			EObject droppedObject = (EObject)iter.next();
-			cc.add(getDropObjectCommand(dropRequest, droppedObject));
+			IUndoableOperation operation= getDropObjectCommand(dropRequest, droppedObject);
+			if(operation !=null) {
+				if(cc==null) {
+					 cc = new CompositeCommand("Drop"); //$NON-NLS-1$
+				}
+				cc.add(operation);
+			}
 		}
-
+		if(cc==null) {
+			return null;
+		}
 		return new ICommandProxy(cc);
 	}
 

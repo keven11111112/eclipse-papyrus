@@ -200,7 +200,7 @@ public class ExpansionRegionStructuredActivityNodeContentCompartmentItemSemantic
 		}
 		if(UMLElementTypes.ExpansionRegion_3070 == baseElementType) {
 			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getActivity_OwnedGroup();
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_Node();
 			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);

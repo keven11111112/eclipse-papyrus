@@ -4307,6 +4307,25 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	</metamodel>
 </extension>
 
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
+	<metamodel nsURI="http://www.eclipse.org/uml2/4.0.0/UML">
+	<!-- specific advices - expansion region as in or out -->		
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsInputElementEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsInputElementEditHelperAdvice" inheritance="none" typeId="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"/>
+	<adviceBinding id="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsOutputElementEditHelperAdvice" class="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsOutputElementEditHelperAdvice" inheritance="none" typeId="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"/>			
+	</metamodel>
+</extension>
+
+<!-- UML ElementType bindings to Papyrus shared IClientContext -->
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
+
+	<!-- Bindings declaration to shared IClientContext -->
+	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
+		<elementType ref="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsInputElementEditHelperAdvice"></elementType>
+		<elementType ref="org.eclipse.papyrus.uml.diagram.activity.edit.advices.ExpansionNodeAsOutputElementEditHelperAdvice"></elementType>
+	</binding>
+		
+</extension>
+
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
 

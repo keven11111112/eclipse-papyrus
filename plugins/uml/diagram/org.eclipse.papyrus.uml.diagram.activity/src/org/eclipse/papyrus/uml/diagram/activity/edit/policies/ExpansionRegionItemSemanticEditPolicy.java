@@ -87,7 +87,7 @@ public class ExpansionRegionItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		if(UMLElementTypes.ExpansionNode_3074 == baseElementType) {
 			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getExpansionRegion_InputElement();
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_Node();
 			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);
@@ -96,7 +96,7 @@ public class ExpansionRegionItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 		}
 		if(UMLElementTypes.ExpansionNode_3075 == baseElementType) {
 			// adjust the containment feature
-			EReference containmentFeature = UMLPackage.eINSTANCE.getExpansionRegion_OutputElement();
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_Node();
 			req.setContainmentFeature(containmentFeature);
 			if(isExtendedType) {
 				return getExtendedTypeCreationCommand(req, (IExtendedHintedElementType)requestElementType);

@@ -57,6 +57,8 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConstraintAsLocalPrec
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.DurationConstraintAsLocalPrecondEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPostcondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.IntervalConstraintAsLocalPrecondEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
@@ -124,6 +126,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		droppableElementsVisualID.add(ControlFlowEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ValueSpecificationActionEditPart.VISUAL_ID);
 		droppableElementsVisualID.add(ReadSelfActionEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ExpansionNodeAsInEditPart.VISUAL_ID);
+		droppableElementsVisualID.add(ExpansionNodeAsOutEditPart.VISUAL_ID);
 		return droppableElementsVisualID;
 	}
 
@@ -163,6 +167,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		case ValueSpecificationActionEditPart.VISUAL_ID:
 		case ReadSelfActionEditPart.VISUAL_ID:
 			return dropAction(dropRequest, semanticElement, nodeVISUALID);
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+			return dropExpansionNode(dropRequest, semanticElement, nodeVISUALID);
 		case TimeConstraintAsLocalPrecondEditPart.VISUAL_ID:
 		case TimeConstraintAsLocalPostcondEditPart.VISUAL_ID:
 		case DurationConstraintAsLocalPrecondEditPart.VISUAL_ID:
@@ -179,6 +186,32 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			return dropActivityEdge(dropRequest, semanticElement, linkVISUALID);
 		}
 		return super.getSpecificDropCommand(dropRequest, semanticElement, nodeVISUALID, linkVISUALID);
+	}
+
+	protected Command dropExpansionNode(DropObjectsRequest dropRequest,
+			Element semanticElement, int nodeVISUALID) {
+		// The element to drop is a node
+		/*
+		 * Check if the element is contained in this new container.
+		 * A special case as to be handle for structured element as contained node are not contained by the reference OwnedElement
+		 */
+		// Retrieve it's expected graphical parent
+		EObject graphicalParent = ((GraphicalEditPart)getHost()).resolveSemanticElement();
+		if(graphicalParent instanceof StructuredActivityNode) {
+			if(!((StructuredActivityNode)graphicalParent).getNodes().contains(semanticElement)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		} else if(graphicalParent instanceof Element) {
+			if(!((Element)graphicalParent).getOwnedElements().contains(semanticElement)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		CompoundCommand globalCmd = new CompoundCommand();
+		if(globalCmd.isEmpty()) {
+			ICommand cmd = getDefaultDropNodeCommand(nodeVISUALID, dropRequest.getLocation(), semanticElement);
+			globalCmd.add(new ICommandProxy(cmd));
+		}
+		return globalCmd;
 	}
 
 	/**

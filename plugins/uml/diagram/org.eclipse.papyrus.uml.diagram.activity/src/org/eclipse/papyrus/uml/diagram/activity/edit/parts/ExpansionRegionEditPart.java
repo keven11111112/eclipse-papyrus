@@ -47,6 +47,7 @@ import org.eclipse.jface.preference.PreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.preferences.utils.GradientPreferenceConverter;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFigure;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.locator.ExpansionNodePositionLocator;
@@ -96,7 +97,7 @@ public class ExpansionRegionEditPart extends UMLNodeEditPart {
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExpansionRegionItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
+		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 		//in Papyrus diagrams are not strongly synchronised
 		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionCanonicalEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
