@@ -282,7 +282,7 @@ public class ElementTypeSetConfigurationRegistry {
 		}
 		// Remove elementTypes
 		ElementTypeRegistry registry = ElementTypeRegistry.getInstance();
-		List<IElementType> elementTypes = new ArrayList<>(elementTypeSet.getElementTypeConfigurations().size());
+		List<IElementType> elementTypes = new ArrayList<IElementType>(elementTypeSet.getElementTypeConfigurations().size());
 		for (ElementTypeConfiguration elementTypeConfiguration : elementTypeSet.getElementTypeConfigurations()) {
 			if (elementTypeConfiguration != null && elementTypeConfiguration.getIdentifier() != null) {
 				String configIdentifier = elementTypeConfiguration.getIdentifier();
