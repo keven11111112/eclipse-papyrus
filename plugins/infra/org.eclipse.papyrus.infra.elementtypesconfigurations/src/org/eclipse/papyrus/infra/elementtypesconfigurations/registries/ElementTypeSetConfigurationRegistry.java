@@ -439,10 +439,12 @@ public class ElementTypeSetConfigurationRegistry {
 	 * @return the loaded file or <code>null</code> if some problem occured during loading
 	 */
 	protected ElementTypeSetConfiguration getElementTypeSetConfigurationInBundle(String modelPath, String bundleID) {
-		Resource resource = elementTypeSetConfigurationResourceSet.createResource(URI.createPlatformPluginURI(bundleID + IPath.SEPARATOR + modelPath, true));
+		String path = bundleID + IPath.SEPARATOR + modelPath;
+		Resource resource = elementTypeSetConfigurationResourceSet.createResource(URI.createPlatformPluginURI(path, true));
 		try {
 			resource.load(null);
 		} catch (IOException e) {
+			Activator.log.error("Impossible to find the elementtypesetconfiguration model at path: " + path, e);
 			return null;
 		}
 		EObject content = resource.getContents().get(0);
