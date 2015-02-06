@@ -32,6 +32,7 @@ import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraint
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IValidationRule;
 import org.eclipse.papyrus.dsml.validation.model.profilenames.Utils;
+import org.eclipse.papyrus.eclipse.project.editors.file.ManifestEditor;
 import org.eclipse.papyrus.eclipse.project.editors.interfaces.IPluginProjectEditor;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Stereotype;
@@ -88,8 +89,12 @@ public class ValidationPluginGenerator {
 	private static final String UML_PLUGIN = "org.eclipse.uml2.uml"; //$NON-NLS-1$
 
 	private static final String EMF_VALIDATION_PLUGIN = "org.eclipse.emf.validation"; //$NON-NLS-1$
-	
+
 	private static final String UML_VALIDATION_PLUGIN = "org.eclipse.papyrus.uml.service.validation"; //$NON-NLS-1$
+
+	// A generated plugin will depend on the validation profile, since it typically contains the profile as well.
+	// [well, that's not always the case]
+	private static final String UML_VALIDATION_PROFILE_PLUGIN = "org.eclipse.papyrus.dsml.validation"; //$NON-NLS-1$
 
 	private static final String UML_URL = "http://www.eclipse.org/uml2/5.0.0/UML"; //$NON-NLS-1$
 
@@ -104,21 +109,45 @@ public class ValidationPluginGenerator {
 	private IConstraintsManager constraintsManager;
 
 	/**
-	 * generate the java code form constraints contained in the profile
+	 * Add a dependency to the plugin hosting the DSML profile.
+	 * 
+	 * @param project
+	 *            The Eclipse project
+	 * @return true, if dependency has been added
+	 * @throws CoreException
+	 * @throws IOException
+	 */
+	public boolean addDSMLdependency(IProject project) throws
+			CoreException, IOException {
+
+		if ((project != null) && project.exists()) {
+			ManifestEditor manifest = new ManifestEditor(project);
+			manifest.init();
+			if (manifest.initOk() && !manifest.hasDependency(UML_VALIDATION_PROFILE_PLUGIN)) {
+				manifest.addDependency(UML_VALIDATION_PROFILE_PLUGIN);
+				manifest.save();
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	/**
+	 * Generate the java code form constraints contained in the profile
 	 *
 	 * @param project
-	 *            the project eclipse
-	 * @param wizard
-	 *            the ref to to wizard
+	 *            the Eclipse project
 	 * @param constraintsManager
 	 *            the class in charge to collect all information from the model
+	 * @param definition
+	 *            The definition of the profile for which a plugin is generated
 	 * @throws CoreException
 	 * @throws IOException
 	 * @throws SAXException
 	 * @throws ParserConfigurationException
 	 */
-	public void generate(IProject project, IConstraintsManager constraintsManager, EPackage definition) throws CoreException,
-			IOException, SAXException, ParserConfigurationException {
+	public void generate(IProject project, IConstraintsManager constraintsManager, EPackage definition) throws
+			CoreException, IOException, SAXException, ParserConfigurationException {
 		PluginEditor editor;
 
 		this.constraintsManager = constraintsManager;
@@ -141,7 +170,7 @@ public class ValidationPluginGenerator {
 		editor.getManifestEditor().addDependency(EMF_VALIDATION_PLUGIN);
 		editor.getManifestEditor().addDependency(UML_VALIDATION_PLUGIN);
 		editor.getManifestEditor().addDependency(UML_PLUGIN);
-		
+
 		Element constraintProviderExtension =
 				createOrCleanExtension(editor, EMF_VALIDATION_CONSTRAINT_PROVIDERS_EXTENSIONPOINT);
 
@@ -309,6 +338,7 @@ public class ValidationPluginGenerator {
 	 * @param constraintProvider
 	 * @param parentElement
 	 * @param editor
+	 * @param definition
 	 * @return the extension point
 	 */
 	@SuppressWarnings("nls")

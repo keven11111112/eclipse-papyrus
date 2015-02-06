@@ -147,6 +147,18 @@ public class ManifestEditor extends ProjectEditor implements IManifestEditor {
 		this.manifest.getMainAttributes().put(rqBundle, requireBundle);
 	}
 
+	/**
+	 *
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#hasDependency(java.lang.String)
+	 *
+	 *      {@inheritDoc}
+	 */
+	public boolean hasDependency(final String dependency) {
+		final Name rqBundle = new Name(REQUIRED_BUNDLE);
+		String requireBundle = this.manifest.getMainAttributes().getValue(rqBundle);
+		return (requireBundle != null) && requireBundle.contains(dependency);
+	}
+	
 	public void setDependenciesVersion(final String dependencyPattern, final String newVersion) {
 		final Name rqBundle = new Name(REQUIRED_BUNDLE);
 		final String requireBundles = this.manifest.getMainAttributes().getValue(rqBundle);
