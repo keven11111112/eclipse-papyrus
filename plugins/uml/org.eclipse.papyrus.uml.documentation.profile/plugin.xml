@@ -2,11 +2,11 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated Papyrus.profile -->
+      <!-- @generated Documentation.profile -->
       <package
             uri="http://www.eclipse.org/papyrus/documentation"
             class="org.eclipse.papyrus.uml.documentation.Documentation.DocumentationPackage"
-            genModel="model/Papyrus.profile.genmodel"/>
+            genModel="model/Documentation.genmodel"/>
    </extension>
    <extension
          point="org.eclipse.uml2.uml.generated_package">
@@ -22,5 +22,4 @@
             target="platform:/plugin/org.eclipse.papyrus.uml.documentation.profile/model/">
       </mapping>
    </extension>
-
 </plugin>
