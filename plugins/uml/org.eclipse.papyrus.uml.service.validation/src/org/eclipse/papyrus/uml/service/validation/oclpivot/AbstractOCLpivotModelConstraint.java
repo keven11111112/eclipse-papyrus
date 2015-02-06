@@ -27,14 +27,9 @@ import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.NamedElement;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.Type;
-import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -59,7 +54,7 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 
 	private QueryManager queryManager;
 
-	protected static OCL oclInstance = null;
+	protected static UMLOCL oclInstance = null;
 
 	/**
 	 * Initializes me with the <code>descriptor</code> which contains my OCL
@@ -99,22 +94,16 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		if (result == null) {
 			// lazily initialize the condition.
 			if (oclInstance == null) {
-				OCL.initialize(null);
-				PivotEnvironmentFactory pef = new PivotEnvironmentFactory(null,
-						new MetaModelManager());
-				oclInstance = OCL.newInstance(pef);
+				UMLOCL.initialize(null);
+				oclInstance = UMLOCL.newInstance();
 			}
 
-			OCLHelper oclHelper = oclInstance.createOCLHelper();
-
 			try {
-				NamedElement context =
-						oclInstance.getMetaModelManager().getPivotOf(NamedElement.class, umlStereotype);
-
-				oclHelper.setContext((Type) context);
+				org.eclipse.ocl.pivot.Class context =
+						oclInstance.getMetamodelManager().getASOf(org.eclipse.ocl.pivot.Class.class, umlStereotype);
 
 				String expression = getDescriptor().getBody();
-				result = oclHelper.createQuery(expression);
+				result = oclInstance.createQuery(context, expression);
 			} catch (ParserException parserException) {
 				throw new WrappedException(parserException);
 			}

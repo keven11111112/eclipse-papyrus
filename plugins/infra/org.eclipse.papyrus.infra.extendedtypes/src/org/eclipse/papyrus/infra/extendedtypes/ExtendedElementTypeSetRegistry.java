@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,13 @@
  *
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
+ *  Christian W. Damus - bug 459174
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes;
 
 import java.io.IOException;
 import java.lang.ref.WeakReference;
-import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Dictionary;
@@ -35,9 +35,10 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
-import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.SpecializationTypeDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.internal.impl.SpecializationTypeRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
@@ -211,91 +212,36 @@ public class ExtendedElementTypeSetRegistry {
 			return;
 		}
 
-		// retrieve the specializationTypeRegistry to remove all contribution from the given element type set
-		Field declaredField = null;
-		try {
-			declaredField = ElementTypeRegistry.class.getDeclaredField("specializationTypeRegistry");
-		} catch (SecurityException e1) {
-			Activator.log.error(e1);
-			return;
-		} catch (NoSuchFieldException e1) {
-			Activator.log.error(e1);
-			return;
-		}
-		if (declaredField == null) {
-			Activator.log.error("impossible to find specializationTypeRegistry", null);
-			return;
-		}
-		declaredField.setAccessible(true);
-		SpecializationTypeRegistry registry = null;
-		try {
-			registry = (SpecializationTypeRegistry) declaredField.get(ElementTypeRegistry.getInstance());
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		}
-
-		if (registry == null) {
-			return;
-		}
-
+		// Retrieve the element types to remove them from the registry
+		ElementTypeRegistry registry = ElementTypeRegistry.getInstance();
+		List<IElementType> elementTypes = new ArrayList<IElementType>(elementTypeSet.getElementType().size());
 		for (ElementTypeConfiguration configuration : elementTypeSet.getElementType()) {
 			if (configuration != null && configuration.getIdentifier() != null) {
 				String configIdentifier = configuration.getIdentifier();
-				// retrieve descriptor
-				SpecializationTypeDescriptor descriptor = registry.getSpecializationTypeDescriptor(configIdentifier);
-				if (descriptor != null) {
-					// remove also advice bindings specific to this descriptor
-					IEditHelperAdviceDescriptor adviceDescriptor = descriptor.getEditHelperAdviceDescriptor();
-					String targetId = adviceDescriptor.getTypeId();
-					removeAdviceFromBindings(registry, targetId, adviceDescriptor);
-
-					registry.removeSpecializationType(descriptor);
-
+				// retrieve element type
+				IElementType elementType = registry.getType(configIdentifier);
+				if (elementType != null) {
+					elementTypes.add(elementType);
 				}
 			}
 		}
-		if (elementTypeSet.eResource() != null) {
-			elementTypeSet.eResource().unload();
+
+		// And remove them
+		ElementTypeUtil.deregisterElementTypes(elementTypes, ElementTypeUtil.ALL_DEPENDENTS);
+
+		// Then unload the configuration model
+		Resource resource = elementTypeSet.eResource();
+		if (resource != null) {
+			resource.unload();
 			if (extendedTypesResourceSet != null) {
-				extendedTypesResourceSet.getResources().remove(elementTypeSet.eResource());
+				extendedTypesResourceSet.getResources().remove(resource);
 			}
 		}
 		extendedTypeSets.remove(identifier);
 	}
 
 	protected void removeAdviceFromBindings(SpecializationTypeRegistry registry, String adviceDescriptorId, IEditHelperAdviceDescriptor adviceDescriptor) {
-		// retrieve the specializationTypeRegistry to remove all contribution from the given element type set
-		Map<?, ?> adviceBindings = null;
-		Field adviceBindingsField = null;
-		try {
-			adviceBindingsField = SpecializationTypeRegistry.class.getDeclaredField("adviceBindings");
-		} catch (SecurityException e1) {
-			Activator.log.error(e1);
-			return;
-		} catch (NoSuchFieldException e1) {
-			Activator.log.error(e1);
-			return;
-		}
-		if (adviceBindingsField == null) {
-			Activator.log.error("impossible to find adviceBindings", null);
-			return;
-		}
-		adviceBindingsField.setAccessible(true);
-		try {
-			adviceBindings = (Map<?, ?>) adviceBindingsField.get(registry);
-		} catch (IllegalArgumentException e) {
-			Activator.log.error(e);
-		} catch (IllegalAccessException e) {
-			Activator.log.error(e);
-		}
-		if (adviceBindings != null) {
-			Set<?> bindings = (Set<?>) adviceBindings.get(adviceDescriptorId);
-			if (bindings != null) {
-				bindings.remove(adviceDescriptor);
-			}
-		}
+		ElementTypeRegistry.getInstance().deregisterAdvice(adviceDescriptor);
 	}
 
 

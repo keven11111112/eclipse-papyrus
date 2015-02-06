@@ -36,10 +36,10 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.essentialocl.EssentialOCLRuntimeModule;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.ui.OCLUI;
+import org.eclipse.ocl.pivot.utilities.PivotConstants;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.services.validation.commands.AbstractValidateCommand;
 import org.eclipse.papyrus.infra.services.validation.commands.AsyncValidateSubtreeCommand;
@@ -67,8 +67,6 @@ import com.google.inject.Injector;
  */
 public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorConfiguration {
 	// org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration {
-
-	private static final String OCL = "OCL"; //$NON-NLS-1$
 
 	@Inject
 	protected XtextResource fakeResource;
@@ -122,13 +120,13 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 			} else {
 				opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) constraint.getSpecification();
 				for (int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
-					if (opaqueExpression.getLanguages().get(i).equals(OCL)) {
+					if (opaqueExpression.getLanguages().get(i).equals(PivotConstants.OCL_LANGUAGE)) {
 						indexOfOCLBody = i;
 					}
 				}
 			}
 			if (indexOfOCLBody == -1) {
-				opaqueExpression.getLanguages().add(OCL);
+				opaqueExpression.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				opaqueExpression.getBodies().add(newTextualRepresentation);
 			} else {
 				opaqueExpression.getBodies().set(indexOfOCLBody, newTextualRepresentation);
@@ -159,12 +157,12 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 		protected CommandResult doExecuteWithResult(IProgressMonitor arg0, IAdaptable arg1) throws ExecutionException {
 			int indexOfOCLBody = -1;
 			for (int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
-				if (opaqueExpression.getLanguages().get(i).equals(OCL)) {
+				if (opaqueExpression.getLanguages().get(i).equals(PivotConstants.OCL_LANGUAGE)) {
 					indexOfOCLBody = i;
 				}
 			}
 			if (indexOfOCLBody == -1) {
-				opaqueExpression.getLanguages().add(OCL);
+				opaqueExpression.getLanguages().add(PivotConstants.OCL_LANGUAGE);
 				opaqueExpression.getBodies().add(newTextualRepresentation);
 			} else if (indexOfOCLBody < opaqueExpression.getBodies().size()) { // might not be true, if body list is not synchronized with language list
 				opaqueExpression.getBodies().set(indexOfOCLBody, newTextualRepresentation);
@@ -194,7 +192,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				int indexOfOCLBody = -1;
 				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) specification;
 				for (int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
-					if (opaqueExpression.getLanguages().get(i).equals(OCL)) {
+					if (opaqueExpression.getLanguages().get(i).equals(PivotConstants.OCL_LANGUAGE)) {
 						if (i < opaqueExpression.getBodies().size()) {
 							value += opaqueExpression.getBodies().get(i);
 						}
@@ -232,10 +230,8 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				
 			public void initResource(XtextResource resource) {
 				try {
-					if (resource instanceof BaseResource) {
-						PivotUtil.setParserContext((BaseResource) resource, getEditObject());
-					}
-				} catch (ParserException e) {
+					PivotUtil.setParserContext((CSResource)resource, getEditObject());
+				} catch (Exception e) {
 				}
 			}
 		};
@@ -243,7 +239,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 
 	@Override
 	public Injector getInjector() {
-		return UMLConstraintEditorActivator.getInstance().getInjector(EssentialOCLRuntimeModule.LANGUAGE_ID);
+		return UMLConstraintEditorActivator.getInstance().getInjector(OCLUI.ESSENTIAL_OCL_LANGUAGE_ID);
 	}
 
 	@Override
@@ -304,7 +300,7 @@ public class EssentialOCLEditorConfiguration extends DefaultXtextDirectEditorCon
 				return null;
 			}
 
-			public List getSemanticElementsBeingParsed(EObject element) {
+			public List<EObject> getSemanticElementsBeingParsed(EObject element) {
 				// Add specification to list.
 				List<EObject> list = new BasicEList<EObject>();
 				if (element instanceof Constraint) {

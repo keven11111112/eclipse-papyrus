@@ -12,14 +12,14 @@ import org.eclipse.papyrus.emfgen.core.EmfGeneratorAppOptions;
  *  @author CEA Tech - Francois Le Fevre
  * 2014
 **/
-@Mojo( name = "emfgen", defaultPhase = LifecyclePhase.INSTALL )
+@Mojo( name = "emfgen", defaultPhase = LifecyclePhase.GENERATE_SOURCES )
 public class EmfGenMojo extends AbstractMojo
 {
 
     public void execute() throws MojoExecutionException
     {
     	getLog().info("Welcome to EmfGen");
-    	getLog().info("dealing with "+genModel+" output: "+ outputDirectory);
+    	getLog().info("dealing with "+genModel+" and "+ ecoreModel +" output: "+ outputDirectory);
     	EmfGeneratorAppOptions emfGeneratorAppOptions = new EmfGeneratorAppOptions(genModel,ecoreModel, outputDirectory,isRelocate, isGenModel, isGenEdit,isGenEditor,isGenTests);
 		EmfGenerator myEmfGenerator = new EmfGenerator();
 		myEmfGenerator.execute(emfGeneratorAppOptions.getEmfModel(), emfGeneratorAppOptions.getEmfGeneratorOptions());
@@ -39,9 +39,8 @@ public class EmfGenMojo extends AbstractMojo
     
     /**
      * genModel path
-     * @parameter property="${genModel}"
-     * @required
      */
+    @Parameter
     private String genModel = null;
     
     /**

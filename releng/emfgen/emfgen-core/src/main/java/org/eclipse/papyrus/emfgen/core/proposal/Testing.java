@@ -18,7 +18,7 @@ public class Testing {
 		
 		String[] args2 = new String[2];
 		args2[0]=new String("generate");
-		args2[1]=new String("../emfgen-parent/src/test/resources/models/extlibrary/extlibrary.genmodel");
+		args2[1]=new String("../src/test/resources/models/extlibrary/extlibrary.genmodel");
 		myG.run(args2);
 	} 
 }

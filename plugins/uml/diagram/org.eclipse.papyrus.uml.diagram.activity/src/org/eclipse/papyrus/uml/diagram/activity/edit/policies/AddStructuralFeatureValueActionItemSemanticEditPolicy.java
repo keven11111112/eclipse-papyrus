@@ -73,6 +73,48 @@ public class AddStructuralFeatureValueActionItemSemanticEditPolicy extends UMLBa
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
+		if (UMLElementTypes.InputPin_3181 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ValuePin_3182 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ValuePin_3183 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ValuePin_3184 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3185 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuralFeatureAction_Object();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3186 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3187 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
 		if (UMLElementTypes.OutputPin_3094 == requestElementType) {
 			// adjust the containment feature
 			EReference containmentFeature = UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Result();

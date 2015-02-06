@@ -49,7 +49,7 @@ public class UMLOCLFactory {
 	 * @generated
 	 */
 	protected UMLOCLFactory() {
-		this.expressions = new UMLAbstractExpression[138];
+		this.expressions = new UMLAbstractExpression[154];
 		this.expressionBodies = new String[] {
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(CallOperationAction)\r\nthen self.owner.oclAsType(CallOperationAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
@@ -189,6 +189,22 @@ public class UMLOCLFactory {
 				"if self.owner.oclIsKindOf(BroadcastSignalAction) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(BroadcastSignalAction) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(BroadcastSignalAction) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(BroadcastSignalAction).argument->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ValuePin) then self.owner.oclAsType(AddStructuralFeatureValueAction).object = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(InputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).object = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ActionInputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).object = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ValuePin) then self.owner.oclAsType(AddStructuralFeatureValueAction).insertAt = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(InputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).insertAt = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ActionInputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).insertAt = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ValuePin) then self.owner.oclAsType(AddStructuralFeatureValueAction).value = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(InputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).value = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(AddStructuralFeatureValueAction) and self.oclIsTypeOf(ActionInputPin) then self.owner.oclAsType(AddStructuralFeatureValueAction).value = self else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StructuredActivityNode) and self.oclIsTypeOf(InputPin)\r\nthen self.owner.oclAsType(StructuredActivityNode).structuredNodeInput->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(LoopNode) then self.owner.oclAsType(LoopNode).result->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(LoopNode) then self.owner.oclAsType(LoopNode).loopVariable->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(LoopNode) then self.owner.oclAsType(LoopNode).bodyOutput->includes(self) else false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StructuredActivityNode) and self.oclIsTypeOf(ActionInputPin)\r\nthen self.owner.oclAsType(StructuredActivityNode).structuredNodeInput->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(StructuredActivityNode) and self.oclIsTypeOf(ValuePin)\r\nthen self.owner.oclAsType(StructuredActivityNode).structuredNodeInput->includes(self)\r\nelse false endif", //$NON-NLS-1$
+				"if self.owner.oclIsKindOf(LoopNode) and self.oclIsTypeOf(InputPin)\nthen self.owner.oclAsType(LoopNode).loopVariableInput->includes(self) \nelse false endif", //$NON-NLS-1$
 		};
 	}
 

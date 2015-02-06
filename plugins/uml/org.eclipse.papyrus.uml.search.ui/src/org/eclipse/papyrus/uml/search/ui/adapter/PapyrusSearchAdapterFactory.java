@@ -28,14 +28,14 @@ public class PapyrusSearchAdapterFactory implements IAdapterFactory {
 		// Nothing
 	}
 
-	public Object getAdapter(Object adaptableObject, Class adapterType) {
+	public Object getAdapter(Object adaptableObject, @SuppressWarnings("rawtypes") Class adapterType) {
 		if (adapterType == ISearchPageScoreComputer.class) {
 			return new PapyrusSearchPageScoreComputer();
 		}
 		return null;
 	}
 
-	public Class[] getAdapterList() {
-		return new Class[] { ISearchPageScoreComputer.class };
+	public Class<?>[] getAdapterList() {
+		return new Class<?>[] { ISearchPageScoreComputer.class };
 	}
 }

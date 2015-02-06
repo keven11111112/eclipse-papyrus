@@ -147,8 +147,9 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 	}
 
 
+	@SuppressWarnings("unchecked")
 	@Override
-	protected void evaluateChangedElements(Match[] matches, Set changedElements) {
+	protected void evaluateChangedElements(Match[] matches, @SuppressWarnings("rawtypes") Set changedElements) {
 		for (int i = 0; i < matches.length; i++) {
 			changedElements.add(matches[i]);
 		}

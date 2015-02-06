@@ -27,7 +27,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
-import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
@@ -115,9 +114,11 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 				View childView = (View) child.getModel();
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case InputPinInLoopNodeAsVariableEditPart.VISUAL_ID:
-				case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
+				case ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID:
+				case ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsBodyOutputEditPart.VISUAL_ID:
 				case OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID:
+				case OutputPinInLoopNodeAsResultEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -176,19 +177,34 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((InputPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
-			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure(), locator);
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInLoopNodeAsVariableEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsBodyOutputEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
-			BorderItemLocator locator = new BorderItemLocator(getMainFigure(), PositionConstants.EAST);
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsLoopVariableEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
 		return false;
@@ -210,8 +226,12 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 			getBorderedFigure().getBorderItemContainer().remove(((InputPinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
 			return true;
 		}
-		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
-			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure());
+		if (childEditPart instanceof ValuePinInLoopNodeAsVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ActionPinInLoopNodeAsVariableEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInLoopNodeAsVariableEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInLoopNodeAsBodyOutputEditPart) {
@@ -220,6 +240,10 @@ public class LoopNodeEditPart extends RoundedCompartmentEditPart {
 		}
 		if (childEditPart instanceof OutputPinInLoopNodeAsLoopVariableEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsLoopVariableEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof OutputPinInLoopNodeAsResultEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInLoopNodeAsResultEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;
