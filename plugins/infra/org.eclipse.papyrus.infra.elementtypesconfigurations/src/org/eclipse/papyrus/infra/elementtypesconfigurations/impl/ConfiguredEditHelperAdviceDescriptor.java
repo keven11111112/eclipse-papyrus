@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IConfiguredEditHelperAdviceDescriptor;
 
-@SuppressWarnings("restriction")
 public class ConfiguredEditHelperAdviceDescriptor<T extends AdviceConfiguration> implements IConfiguredEditHelperAdviceDescriptor<T> {
 
 	protected T editHelperAdviceConfiguration;

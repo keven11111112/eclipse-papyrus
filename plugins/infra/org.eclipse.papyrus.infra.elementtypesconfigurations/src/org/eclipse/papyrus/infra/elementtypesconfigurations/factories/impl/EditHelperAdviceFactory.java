@@ -22,7 +22,6 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ContainerConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.MatcherConfigurationTypeRegistry;
 
-@SuppressWarnings("restriction")
 public class EditHelperAdviceFactory extends AbstractEditHelperAdviceFactory<EditHelperAdviceConfiguration> {
 
 	@Override
