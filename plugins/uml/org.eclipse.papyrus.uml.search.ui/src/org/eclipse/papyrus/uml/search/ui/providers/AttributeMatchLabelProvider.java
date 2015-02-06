@@ -45,8 +45,8 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 		return null;
 	}
 
-	private String printResult(String sectionThatMatch, String value, int offset, int lenght, String attributeName) {
-		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + offset + "," + (offset + lenght) + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+	private String printResult(String sectionThatMatch, String value, int offset, int length, String attributeName) {
+		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + (offset + 1) + "," + length + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 	}
 
 	public String getText(Object element) {
@@ -59,8 +59,7 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 					EAttribute source = (EAttribute) attributeMatch.getMetaAttribute();
 					if (target.eGet(source) instanceof String) {
 						String value = (String) target.eGet(source);
-						int end = attributeMatch.getOffset() + attributeMatch.getLength();
-						return printResult(value.substring(attributeMatch.getOffset(), end), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
+						return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 
 					} else {
 						String value = String.valueOf(target.eGet(source));
