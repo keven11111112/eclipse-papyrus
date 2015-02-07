@@ -12,7 +12,10 @@
  */
 package org.eclipse.papyrus.uml.service.types.ui;
 
+import java.util.ArrayList;
 import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
@@ -27,8 +30,8 @@ import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.service.types.Activator;
-import org.eclipse.swt.events.MouseEvent;
-import org.eclipse.swt.events.MouseListener;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Association;
 
@@ -37,11 +40,16 @@ import org.eclipse.uml2.uml.Association;
  */
 public class AssociationSelectionDialog extends AbstractAssociationSelectionDialog {
 
+	private static final String UNTYPED = "<untyped>";
+
 	/** The selected association. */
 	protected Association selectedAssociation;
 
 	/** The common associations. */
-	protected HashSet<Association> commonAssociations;
+	protected Set<Association> commonAssociations;
+
+	private boolean isCanceled = true;
+
 
 	/**
 	 * Instantiates a new association selection dialog.
@@ -53,10 +61,10 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 * @param commonAssociations
 	 *            list of assocation in which we would like to llok for
 	 */
-	public AssociationSelectionDialog(Shell parent, int style, HashSet<Association> commonAssociations) {
+	public AssociationSelectionDialog(Shell parent, int style, Set<Association> commonAssociations) {
 		super(parent, style);
-		this.commonAssociations = commonAssociations;
-		this.selectedAssociation = (Association) commonAssociations.toArray()[0];
+		this.commonAssociations = commonAssociations == null ? new HashSet<Association>() : commonAssociations;
+		this.selectedAssociation = null;
 	}
 
 	/**
@@ -84,7 +92,10 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 
 					@Override
 					public Object[] getElements(Object inputElement) {
-						return commonAssociations.toArray();
+						List<Object> result = new ArrayList<Object>();
+						result.add(UNTYPED);
+						result.addAll(commonAssociations);
+						return result.toArray();
 					}
 				};
 				final TableViewer tableViewer = new TableViewer(table);
@@ -101,45 +112,29 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 				});
 
 				btnOk.setEnabled(false);
-				btnOk.addMouseListener(new MouseListener() {
+				btnOk.addSelectionListener(new SelectionAdapter() {
 
 					@Override
-					public void mouseUp(MouseEvent e) {
+					public void widgetSelected(SelectionEvent event) {
 						ISelection selection = tableViewer.getSelection();
 						if (selection instanceof IStructuredSelection) {
-							selectedAssociation = (Association) ((IStructuredSelection) selection).getFirstElement();
+							Object selectedItem = ((IStructuredSelection) selection).getFirstElement();
+							selectedAssociation = selectedItem instanceof Association ? (Association) selectedItem : null;
+							isCanceled = false;
 							shlAssociationselection.close();
 						}
 					}
 
-					@Override
-					public void mouseDown(MouseEvent e) {
-					}
-
-					@Override
-					public void mouseDoubleClick(MouseEvent e) {
-					}
 				});
-				btnCancel.addMouseListener(new MouseListener() {
+				btnCancel.addSelectionListener(new SelectionAdapter() {
 
 					@Override
-					public void mouseUp(MouseEvent e) {
+					public void widgetSelected(SelectionEvent event) {
 						selectedAssociation = null;
 						shlAssociationselection.close();
 
 					}
 
-					@Override
-					public void mouseDown(MouseEvent e) {
-
-
-					}
-
-					@Override
-					public void mouseDoubleClick(MouseEvent e) {
-
-
-					}
 				});
 			} else {
 				btnCancel.setVisible(true);
@@ -156,5 +151,12 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 */
 	public Association getSelectedAssociation() {
 		return selectedAssociation;
+	}
+
+	/**
+	 * @return if canceled button was clicked
+	 */
+	public boolean isCanceled() {
+		return isCanceled;
 	}
 }
