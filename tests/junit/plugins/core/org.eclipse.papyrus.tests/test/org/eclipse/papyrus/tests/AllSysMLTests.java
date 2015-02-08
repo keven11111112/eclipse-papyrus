@@ -1,19 +1,32 @@
+/*****************************************************************************
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 451230
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.tests;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.List;
 
-import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
-import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
-import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.AllTestsRunner;
+import org.eclipse.papyrus.junit.framework.runner.FragmentTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.PluginTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.SuiteSpot;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.model.InitializationError;
 
-@RunWith(AllSysMLTests.AllTestsRunner.class)
+@RunWith(AllTestsRunner.class)
 public class AllSysMLTests {
 
+	@SuiteSpot
 	public static final List<ITestSuiteClass> suiteClasses;
 
 	static {
@@ -29,44 +42,5 @@ public class AllSysMLTests {
 		suiteClasses.add(new FragmentTestSuiteClass("org.eclipse.papyrus.sysml.diagram.parametric", "org.eclipse.papyrus.sysml.diagram.parametric.tests.suites.AllTests"));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.nattable.requirement.tests.tests.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.sysml.nattable.allocation.tests.tests.AllTests.class));
-	}
-
-
-	/**
-	 * Finds and runs tests.
-	 */
-	public static class AllTestsRunner extends Suite {
-
-		/**
-		 * Constructor.
-		 *
-		 * @param clazz
-		 *        the suite class � AllTests2
-		 * @throws InitializationError
-		 *         if there's a problem
-		 * @throws org.junit.runners.model.InitializationError
-		 */
-		public AllTestsRunner(final Class<?> clazz) throws InitializationError {
-			super(clazz, getSuites());
-		}
-	}
-
-	/**
-	 * Returns the list of test classes
-	 *
-	 * @return the list of test classes
-	 */
-	private static Class<?>[] getSuites() {
-		// retrieve all test suites.
-		final Collection<Class<?>> suites = new ArrayList<Class<?>>();
-		for(final ITestSuiteClass testSuiteClass : suiteClasses) {
-			final Class<?> class_ = testSuiteClass.getMainTestSuiteClass();
-			if(class_ != null) {
-				suites.add(class_);
-			} else {
-				System.err.println(testSuiteClass + " does not give a correct test suite class");
-			}
-		}
-		return suites.toArray(new Class<?>[]{});
 	}
 }

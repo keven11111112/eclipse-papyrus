@@ -7,6 +7,7 @@
 	<packaging>pom</packaging>
 	<modules>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.tests</module>
+        <module>../tests/junit/plugins/suites/org.eclipse.papyrus.tests.diagramassistants</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.core.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.infra.feature</module>
@@ -15,6 +16,7 @@
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.diagram.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.sysml.nattable.feature</module>
+        <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.assistants.feature</module>
         <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.decoratormodel.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.diagram.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.feature</module>
@@ -29,13 +31,15 @@
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
 		<module>../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
+        <module>../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
 		<module>../tests/junit/plugins/infra/org.eclipse.papyrus.infra.tools.tests</module>
 		<module>../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.readonly.tests</module>
 		<module>../tests/junit/plugins/infra/emf/org.eclipse.papyrus.infra.emf.tests</module>
 		<module>../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands.tests</module>
 		<module>../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common.tests</module>
 		<module>../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.tests</module>
-    <module>../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
+        <module>../tests/junit/plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.menu.tests</module>
+        <module>../tests/junit/plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.tests</module>
         <module>../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.tests</module>
 		<module>../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.model.editor.tests</module>
 		<module>../tests/junit/plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.tests</module>
@@ -54,6 +58,8 @@
 		<module>../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.modelexplorer.tests</module>
 		<module>../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.service.types.tests</module>
 		<module>../tests/junit/plugins/sysml/org.eclipse.papyrus.sysml.tests</module>
+        <module>../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.tests</module>
+        <module>../tests/junit/plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests</module>
         <module>../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.tests</module>
         <module>../tests/junit/plugins/uml/decoratormodel/org.eclipse.papyrus.uml.decoratormodel.controlmode.tests</module>
 		<module>../tests/junit/plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity.tests</module>
@@ -78,6 +84,7 @@
 		<module>../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.generic.tests</module>
 		<module>../tests/junit/plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.clazz.config.tests</module>
 		<module>../tests/junit/plugins/uml/org.eclipse.papyrus.search.tests</module>
+        <module>../tests/junit/plugins/uml/org.eclipse.papyrus.uml.filters.tests</module>
 		<module>../tests/junit/plugins/uml/org.eclipse.papyrus.uml.modelrepair.tests</module>
 		<module>../tests/junit/plugins/uml/org.eclipse.papyrus.uml.service.types.tests</module>
 		<module>../tests/junit/plugins/infra/services/org.eclipse.papyrus.infra.services.controlmode.tests</module>
@@ -94,6 +101,8 @@
 		<tycho-version>0.22.0</tycho-version>
 		<tychoExtrasVersion>0.22.0</tychoExtrasVersion>
 		<testConfig>CI_TESTS_CONFIG</testConfig> <!-- See org.eclipse.papyrus.junit.framework.classification.ClassificationConfig -->
+        <testSuitePlugin>org.eclipse.papyrus.tests</testSuitePlugin>
+        <testSuiteClass>org.eclipse.papyrus.tests.AllTests</testSuiteClass>
 	</properties>
 	<repositories>
 		<repository>
@@ -308,8 +317,8 @@
 				<artifactId>tycho-surefire-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<testSuite>org.eclipse.papyrus.tests</testSuite>
-					<testClass>org.eclipse.papyrus.tests.AllTests</testClass>
+					<testSuite>${testSuitePlugin}</testSuite>
+					<testClass>${testSuiteClass}</testClass>
 					<useUIHarness>true</useUIHarness>
 					<useUIThread>true</useUIThread>
 					<testFailureIgnore>true</testFailureIgnore>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,7 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support pluggable edit-part conflict detection (CDO)
- *  Céline Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
+ *  Cï¿½line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
+ *  Christian W. Damus - bug 451230
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
@@ -21,7 +22,9 @@ import org.eclipse.gef.Request;
 import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.PapyrusRubberbandDragTracker;
 
@@ -60,6 +63,10 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new XYLayoutWithConstrainedResizedEditPolicy());
+
+		// Replace GMF's default popup-bar edit policy
+		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
+		installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new PapyrusPopupBarEditPolicy());
 	}
 
 	/**

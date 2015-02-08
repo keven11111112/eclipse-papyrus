@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- *
+ * Copyright (c) 2013, 2014 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +8,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 451230
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.edit.utils;
@@ -43,12 +43,7 @@ public class ElementTypeUtils {
 	 *         all existing elements types
 	 */
 	public static final Collection<IElementType> getAllExistingElementTypes() {
-		IClientContext clientContext = null;
-		try {
-			clientContext = TypeContext.getContext();
-		} catch (ServiceException e) {
-			Activator.log.error(e);
-		}
+		IClientContext clientContext = getEditContext();
 		final IElementType[] types = ElementTypeRegistry.getInstance().getElementTypes(clientContext);
 		return Arrays.asList(types);
 	}
@@ -63,5 +58,23 @@ public class ElementTypeUtils {
 			ids.add(iElementType.getId());
 		}
 		return ids;
+	}
+
+	/**
+	 * Obtains the element type client context in which the edit service binds element types.
+	 * 
+	 * @return the edit service's client context, or {@code null} if it is not available in the current installation
+	 */
+	public static IClientContext getEditContext() {
+		IClientContext result = null;
+
+		try {
+			result = TypeContext.getContext();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
+
+		return result;
+
 	}
 }

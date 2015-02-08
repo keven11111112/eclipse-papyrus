@@ -190,6 +190,8 @@
           name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement
           name="org.eclipse.emf.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.nebula.widgets.tablecombo.feature.feature.group"/>
       <repositoryList
           name="Mars">
         <repository
@@ -376,6 +378,8 @@
         </repository>
         <repository
             url="${base.downloads.url}/nattable/releases/1.1.0/repository/"/>
+        <repository
+            url="${base.downloads.url}/technology/nebula/snapshot"/>
         <repository
             url="http://download.eclipse.org/xwt/release-1.1.0">
           <annotation

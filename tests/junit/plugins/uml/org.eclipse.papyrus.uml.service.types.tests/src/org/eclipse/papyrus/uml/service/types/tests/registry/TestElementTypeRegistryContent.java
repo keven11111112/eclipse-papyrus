@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Yann Tanguy - Initial API and implementation
+ *  Christian W. Damus - bug 451230
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.service.types.tests.registry;
 
 import static org.junit.Assert.assertFalse;

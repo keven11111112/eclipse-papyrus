@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,14 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 451230
  *
  *****************************************************************************/
 package org.eclipse.papyrus.elementtypesconfigurations.developer.handlers;
 
 import java.io.IOException;
 import java.util.Collections;
+import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -29,21 +31,34 @@ import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.codegen.gmfgen.FeatureLinkModelFacet;
 import org.eclipse.gmf.codegen.gmfgen.GenCommonBase;
+import org.eclipse.gmf.codegen.gmfgen.GenDiagram;
+import org.eclipse.gmf.codegen.gmfgen.GenEditorGenerator;
 import org.eclipse.gmf.codegen.gmfgen.NotationType;
 import org.eclipse.gmf.codegen.gmfgen.TypeModelFacet;
+import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.Activator;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.utils.ElementTypeConfigurationComparator;
 import org.eclipse.papyrus.elementtypesconfigurations.developer.utils.GenerateElementTypesConfigurationsUtils;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.handlers.HandlerUtil;
+
+import com.google.common.base.Function;
+import com.google.common.base.Joiner;
+import com.google.common.base.Strings;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.Maps;
 
 
 public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandler {
@@ -54,6 +69,7 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 	public GenerateElementTypesConfigurationsFromGmfGen() {
 	}
 
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		ISelection currentSelection = HandlerUtil.getCurrentSelection(event);
@@ -68,19 +84,43 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 
 			String selectedFilePath = ((IFile) selectedElement).getFullPath().toString();
 
-
-			Resource inputResource = resourceSet.getResource(URI.createURI(selectedFilePath), true);
+			/*
+			 * Generate the semantic types.
+			 */
+			Resource inputResource = resourceSet.getResource(URI.createPlatformResourceURI(selectedFilePath, true), true);
 			String outputFilePath = ((IFile) selectedElement).getFullPath().removeFileExtension().toString();
-			Resource outputResource = resourceSet.createResource(URI.createURI(outputFilePath + ".elementtypesconfigurations"));
-			ElementTypeSetConfiguration elementTypeSetConfiguration = generateElementTypeSetConfiguration(inputResource);
-			Resource outputNotationResource = resourceSet.createResource(URI.createURI(outputFilePath + "-notation.elementtypesconfigurations"));
-			ElementTypeSetConfiguration elementTypeSetConfigurationNotation = generateElementTypeSetConfigurationNotation(inputResource);
+			URI outputURI = URI.createURI(outputFilePath + ".elementtypesconfigurations");
+			Resource outputResource;
+			if (resourceSet.getURIConverter().exists(outputURI, null)) {
+				// We'll merge with the existing model
+				outputResource = resourceSet.getResource(outputURI, true);
+			} else {
+				// Generate a new model
+				outputResource = resourceSet.createResource(outputURI);
+			}
+			ElementTypeSetConfiguration elementTypeSetConfiguration = generateElementTypeSetConfiguration(inputResource, outputResource);
 
-			outputResource.getContents().add(elementTypeSetConfiguration);
-			outputNotationResource.getContents().add(elementTypeSetConfigurationNotation);
+			/*
+			 * Generate the notation types.
+			 */
+			URI outputNotationURI = URI.createURI(outputFilePath + "-notation.elementtypesconfigurations");
+			Resource outputNotationResource;
+			if (resourceSet.getURIConverter().exists(outputNotationURI, null)) {
+				// We'll merge with the existing model
+				outputNotationResource = resourceSet.getResource(outputNotationURI, true);
+			} else {
+				// Generate a new model
+				outputNotationResource = resourceSet.createResource(outputNotationURI);
+			}
+			ElementTypeSetConfiguration elementTypeSetConfigurationNotation = generateElementTypeSetConfigurationNotation(inputResource, outputNotationResource);
 
-			ECollections.sort(((ElementTypeSetConfiguration) outputResource.getContents().get(0)).getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
-			ECollections.sort(((ElementTypeSetConfiguration) outputNotationResource.getContents().get(0)).getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
+			// Sort only when generating new
+			if (!resourceSet.getURIConverter().exists(outputURI, null)) {
+				ECollections.sort(elementTypeSetConfiguration.getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
+			}
+			if (!resourceSet.getURIConverter().exists(outputNotationURI, null)) {
+				ECollections.sort(elementTypeSetConfigurationNotation.getElementTypeConfigurations(), new ElementTypeConfigurationComparator());
+			}
 
 			try {
 				outputResource.save(Collections.EMPTY_MAP);
@@ -93,20 +133,41 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 		return null;
 	}
 
-	protected ElementTypeSetConfiguration generateElementTypeSetConfigurationNotation(Resource inputResource) {
-		ElementTypeSetConfiguration elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+	protected ElementTypeSetConfiguration generateElementTypeSetConfigurationNotation(Resource inputResource, Resource outputResource) {
+		ElementTypeSetConfiguration elementTypeSetConfiguration = (ElementTypeSetConfiguration) EcoreUtil.getObjectByType(outputResource.getContents(), ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
+		final Map<String, ElementTypeConfiguration> extantConfigurations = Maps.newHashMap();
+		if (elementTypeSetConfiguration == null) {
+			// Creating a new model
+			elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+			outputResource.getContents().add(elementTypeSetConfiguration);
+		} else {
+			// Gather the configurations already in the model to merge them
+			for (ElementTypeConfiguration next : elementTypeSetConfiguration.getElementTypeConfigurations()) {
+				extantConfigurations.put(next.getIdentifier(), next);
+			}
+		}
+
 		elementTypeSetConfiguration.setMetamodelNsURI("http://www.eclipse.org/gmf/runtime/1.0.2/notation");
 
 
 		TreeIterator<EObject> it = inputResource.getAllContents();
 		while (it.hasNext()) {
-			EObject eObject = (EObject) it.next();
+			EObject eObject = it.next();
 			if (eObject instanceof NotationType) {
 				NotationType notationType = (NotationType) eObject;
 
-
-
-				SpecializationTypeConfiguration specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+				// Merge with existing?
+				String identifier = notationType.getUniqueIdentifier();
+				SpecializationTypeConfiguration specializationTypeConfiguration;
+				ElementTypeConfiguration existing = extantConfigurations.get(identifier);
+				if (existing instanceof SpecializationTypeConfiguration) {
+					// Merged
+					specializationTypeConfiguration = (SpecializationTypeConfiguration) extantConfigurations.remove(identifier);
+				} else {
+					// New
+					specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+					specializationTypeConfiguration.setIdentifier(identifier);
+				}
 
 				specializationTypeConfiguration.setIdentifier(notationType.getUniqueIdentifier());
 				specializationTypeConfiguration.setHint("" + ((GenCommonBase) notationType.eContainer()).getVisualID());
@@ -114,7 +175,9 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 
 				specializationTypeConfiguration.setKind("org.eclipse.gmf.runtime.diagram.ui.util.INotationType");
 
-				specializationTypeConfiguration.getSpecializedTypesID().add("org.eclipse.gmf.runtime.emf.type.core.null");
+				if (specializationTypeConfiguration.getSpecializedTypesID().isEmpty()) {
+					specializationTypeConfiguration.getSpecializedTypesID().add("org.eclipse.gmf.runtime.emf.type.core.null");
+				}
 
 				elementTypeSetConfiguration.getElementTypeConfigurations().add(specializationTypeConfiguration);
 
@@ -122,18 +185,67 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 			}
 		}
 
+		deleteLeftovers(extantConfigurations);
+
 		return elementTypeSetConfiguration;
 	}
 
-	protected ElementTypeSetConfiguration generateElementTypeSetConfiguration(Resource inputResource) {
-		ElementTypeSetConfiguration elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
-		elementTypeSetConfiguration.setMetamodelNsURI("http://www.eclipse.org/uml2/5.0.0/UML");
+	protected ElementTypeSetConfiguration generateElementTypeSetConfiguration(Resource inputResource, Resource outputResource) {
+		ElementTypeSetConfiguration elementTypeSetConfiguration = (ElementTypeSetConfiguration) EcoreUtil.getObjectByType(outputResource.getContents(), ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
+		final Map<String, ElementTypeConfiguration> extantConfigurations = Maps.newHashMap();
+		if (elementTypeSetConfiguration == null) {
+			// Creating a new model
+			elementTypeSetConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createElementTypeSetConfiguration();
+			outputResource.getContents().add(elementTypeSetConfiguration);
+		} else {
+			// Gather the configurations already in the model to merge them
+			for (ElementTypeConfiguration next : elementTypeSetConfiguration.getElementTypeConfigurations()) {
+				extantConfigurations.put(next.getIdentifier(), next);
+			}
+		}
 
+		elementTypeSetConfiguration.setMetamodelNsURI("http://www.eclipse.org/uml2/5.0.0/UML");
 
 		TreeIterator<EObject> it = inputResource.getAllContents();
 		while (it.hasNext()) {
-			EObject eObject = (EObject) it.next();
-			if (eObject instanceof TypeModelFacet) {
+			EObject eObject = it.next();
+			if (eObject instanceof GenEditorGenerator) {
+				GenEditorGenerator editorGen = (GenEditorGenerator) eObject;
+				elementTypeSetConfiguration.setName(editorGen.getModelID());
+			} else if (eObject instanceof GenDiagram) {
+				// Diagram model does not have a TypeModelFacet, so use this instead
+				GenDiagram diagram = (GenDiagram) eObject;
+
+				// Merge with existing?
+				String identifier = diagram.getElementType().getUniqueIdentifier();
+				SpecializationTypeConfiguration specializationTypeConfiguration;
+				ElementTypeConfiguration existing = extantConfigurations.get(identifier);
+				if (existing instanceof SpecializationTypeConfiguration) {
+					// Merged
+					specializationTypeConfiguration = (SpecializationTypeConfiguration) extantConfigurations.remove(identifier);
+				} else {
+					// New
+					specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+					specializationTypeConfiguration.setIdentifier(identifier);
+				}
+
+				// This is what the Diagram uses as its type, not the visual ID
+				specializationTypeConfiguration.setHint(diagram.getEditorGen().getModelID());
+
+				// The element type name is often just "Undefined"
+				specializationTypeConfiguration.setName(cleanUpName(diagram.getDomainDiagramElement().getFormattedName()));
+
+				specializationTypeConfiguration.setKind("org.eclipse.gmf.runtime.emf.type.core.IHintedType");
+
+				// Container configuration is irrelevant for the diagram because it has no parent view
+				specializationTypeConfiguration.getSpecializedTypesID().clear();
+				specializationTypeConfiguration.getSpecializedTypesID().add(GenerateElementTypesConfigurationsUtils.getIdentifier(diagram.getDomainDiagramElement().getEcoreClass()));
+
+				generateIconEntry(specializationTypeConfiguration, diagram.getDomainDiagramElement().getEcoreClass());
+
+				elementTypeSetConfiguration.getElementTypeConfigurations().add(specializationTypeConfiguration);
+
+			} else if (eObject instanceof TypeModelFacet) {
 				TypeModelFacet typeModelFacet = (TypeModelFacet) eObject;
 
 
@@ -143,12 +255,23 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 				{
 					Activator.log.info("EClass not defined for: " + typeModelFacet.eContainer());
 				} else {
+					GenCommonBase base = (GenCommonBase) typeModelFacet.eContainer();
 
-					SpecializationTypeConfiguration specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+					// Merge with existing?
+					String identifier = base.getElementType().getUniqueIdentifier();
+					SpecializationTypeConfiguration specializationTypeConfiguration;
+					ElementTypeConfiguration existing = extantConfigurations.get(identifier);
+					if (existing instanceof SpecializationTypeConfiguration) {
+						// Merged
+						specializationTypeConfiguration = (SpecializationTypeConfiguration) extantConfigurations.remove(identifier);
+					} else {
+						// New
+						specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+						specializationTypeConfiguration.setIdentifier(identifier);
+					}
 
-					specializationTypeConfiguration.setIdentifier(((GenCommonBase) typeModelFacet.eContainer()).getElementType().getUniqueIdentifier());
-					specializationTypeConfiguration.setHint("" + ((GenCommonBase) typeModelFacet.eContainer()).getVisualID());
-					specializationTypeConfiguration.setName(specializationTypeConfiguration.getIdentifier());
+					specializationTypeConfiguration.setHint(Integer.toString(base.getVisualID()));
+					specializationTypeConfiguration.setName(cleanUpName(base.getElementType().getDisplayName()));
 
 					specializationTypeConfiguration.setKind("org.eclipse.gmf.runtime.emf.type.core.IHintedType");
 
@@ -160,44 +283,108 @@ public class GenerateElementTypesConfigurationsFromGmfGen extends AbstractHandle
 						}
 					}
 					if (containmentEReference != null) {
+						specializationTypeConfiguration.getSpecializedTypesID().clear();
 						specializationTypeConfiguration.getSpecializedTypesID().add(GenerateElementTypesConfigurationsUtils.findSpecializedTypesIDs(eClass, containmentEReference));
 
 						if (GenerateElementTypesConfigurationsUtils.isSpecializedASpecialization(eClass, containmentEReference)) {
+							ContainerConfiguration containerConfiguration = specializationTypeConfiguration.getContainerConfiguration();
+							if (containerConfiguration == null) {
+								containerConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createContainerConfiguration();
+								specializationTypeConfiguration.setContainerConfiguration(containerConfiguration);
+							}
 
-							ContainerConfiguration containerConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createContainerConfiguration();
+							containerConfiguration.getEContainmentFeatures().clear();
 							containerConfiguration.getEContainmentFeatures().add(containmentEReference);
-							specializationTypeConfiguration.setContainerConfiguration(containerConfiguration);
+						} else if (specializationTypeConfiguration.getContainerConfiguration() != null) {
+							// Delete it
+							EcoreUtil.delete(specializationTypeConfiguration.getContainerConfiguration(), true);
 						}
 					}
 
-					IconEntry iconEntryForSpecialization = ElementtypesconfigurationsFactory.eINSTANCE.createIconEntry();
-					iconEntryForSpecialization.setBundleId("org.eclipse.uml2.uml.edit");
-					iconEntryForSpecialization.setIconPath("/icons/full/obj16/" + eClass.getName() + ".gif");
-
-					specializationTypeConfiguration.setIconEntry(iconEntryForSpecialization);
+					generateIconEntry(specializationTypeConfiguration, eClass);
 
 					elementTypeSetConfiguration.getElementTypeConfigurations().add(specializationTypeConfiguration);
 				}
 
 			} else if (eObject instanceof FeatureLinkModelFacet) {
 				FeatureLinkModelFacet featureLinkModelFacet = (FeatureLinkModelFacet) eObject;
+				GenCommonBase base = (GenCommonBase) featureLinkModelFacet.eContainer();
 
-				SpecializationTypeConfiguration specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+				// Merge with existing?
+				String identifier = base.getElementType().getUniqueIdentifier();
+				SpecializationTypeConfiguration specializationTypeConfiguration;
+				ElementTypeConfiguration existing = extantConfigurations.get(identifier);
+				if (existing instanceof SpecializationTypeConfiguration) {
+					// Merged
+					specializationTypeConfiguration = (SpecializationTypeConfiguration) extantConfigurations.remove(identifier);
+				} else {
+					// New
+					specializationTypeConfiguration = ElementtypesconfigurationsFactory.eINSTANCE.createSpecializationTypeConfiguration();
+					specializationTypeConfiguration.setIdentifier(identifier);
+				}
 
-				specializationTypeConfiguration.setIdentifier(((GenCommonBase) featureLinkModelFacet.eContainer()).getElementType().getUniqueIdentifier());
-				specializationTypeConfiguration.setHint("" + ((GenCommonBase) featureLinkModelFacet.eContainer()).getVisualID());
-				specializationTypeConfiguration.setName(specializationTypeConfiguration.getIdentifier());
+				specializationTypeConfiguration.setHint(Integer.toString(base.getVisualID()));
+				specializationTypeConfiguration.setName(cleanUpName(base.getElementType().getUniqueIdentifier()));
 
 				specializationTypeConfiguration.setKind("org.eclipse.gmf.runtime.emf.type.core.IHintedType");
 
-				specializationTypeConfiguration.getSpecializedTypesID().add("org.eclipse.gmf.runtime.emf.type.core.null");
+				if (specializationTypeConfiguration.getSpecializedTypesID().isEmpty()) {
+					specializationTypeConfiguration.getSpecializedTypesID().add("org.eclipse.gmf.runtime.emf.type.core.null");
+				}
 
 				elementTypeSetConfiguration.getElementTypeConfigurations().add(specializationTypeConfiguration);
 
 			}
 		}
 
+		deleteLeftovers(extantConfigurations);
+
 		return elementTypeSetConfiguration;
 	}
 
+	protected IconEntry generateIconEntry(ElementTypeConfiguration type, EClass eClass) {
+		// If an icon entry already exists, it may have been customized, so don't mess with it
+		IconEntry result = type.getIconEntry();
+		if (result == null) {
+			result = ElementtypesconfigurationsFactory.eINSTANCE.createIconEntry();
+			result.setBundleId("org.eclipse.uml2.uml.edit");
+			result.setIconPath("/icons/full/obj16/" + eClass.getName() + ".gif");
+			type.setIconEntry(result);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Deletes from the merged element types model those element types that are no longer defined in the GMFGen.
+	 * 
+	 * @param elementTypesToDelete
+	 *            element types to delete
+	 */
+	protected void deleteLeftovers(Map<String, ElementTypeConfiguration> elementTypesToDelete) {
+		if (!elementTypesToDelete.isEmpty()) {
+			String names = Joiner.on(", ").join(Iterables.transform(elementTypesToDelete.values(), new Function<ElementTypeConfiguration, String>() {
+				@Override
+				public String apply(ElementTypeConfiguration input) {
+					return Strings.isNullOrEmpty(input.getName()) ? input.getIdentifier() : input.getName();
+				}
+			}));
+
+			if (MessageDialog.openQuestion(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getShell(), "Delete Left-over Element Types", "Delete element types no longer defined in the GMFGen model?\n\n" + names)) {
+				for (ElementTypeConfiguration next : elementTypesToDelete.values()) {
+					EcoreUtil.delete(next, true);
+				}
+			}
+		}
+	}
+
+	static String cleanUpName(String name) {
+		name = name.substring(name.lastIndexOf('.') + 1); // Strip off namespace qualifier, if any
+		if (name.matches("^.*_\\d+$")) {
+			name = name.substring(0, name.lastIndexOf('_')); // Strip off visual ID suffix, if any
+		}
+		name = name.replaceAll("([a-z])([A-Z])", "$1 $2"); // put space between camel-case words
+
+		return name;
+	}
 }
