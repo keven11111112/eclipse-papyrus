@@ -337,7 +337,7 @@ public class InstanceSpecificationEditPartCN extends NamedElementEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Slot_3030) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Slot_3030)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(InstanceSpecificationSlotCompartmentEditPartCN.VISUAL_ID));
 			}
 		}

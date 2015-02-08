@@ -367,13 +367,13 @@ public class AssociationClassEditPart extends ClassifierEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_3002) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3002)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Operation_3003) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3003)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassOperationCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Class_3004) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Class_3004)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(AssociationClassNestedClassifierCompartmentEditPart.VISUAL_ID));
 			}
 		}

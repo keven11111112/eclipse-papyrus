@@ -268,16 +268,16 @@ public class RedefinableTemplateSignatureEditPart extends AbstractRedefinableTem
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.ClassifierTemplateParameter_3031) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.ClassifierTemplateParameter_3031)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.ConnectableElementTemplateParameter_3034) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.ConnectableElementTemplateParameter_3034)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.OperationTemplateParameter_3035) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.OperationTemplateParameter_3035)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.TemplateParameter_3016) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.TemplateParameter_3016)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(RedefinableTemplateSignatureTemplateParameterCompartmentEditPart.VISUAL_ID));
 			}
 		}

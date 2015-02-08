@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006, 2010 Borland Software Corporation and others
+ * Copyright (c) 2006, 2014 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -13,6 +13,7 @@
  *    Patrick Tessier (CEA) - initial API and implementation
  *    Thibault Landre (Atos Origin) - initial API and implementation
  *    Vincent Lorenzo (CEA-LIST) - Bug 335987 [General][Enhancement] Show/Hide Connectors Labels and External Nodes Labels
+ *    Christian W. Damus - bug 451230
  */
 package aspects.impl.diagram.editparts
 
@@ -36,6 +37,7 @@ import xpt.diagram.editparts.Utils_qvto
 import xpt.CodeStyle
 import xpt.diagram.ViewmapAttributesUtils_qvto
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate
+import xpt.providers.ElementTypes
 
 @Singleton class NodeEditPart extends impl.diagram.editparts.NodeEditPart {
 	@Inject extension Common;
@@ -50,6 +52,9 @@ import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate
 	@Inject extension xpt.diagram.Utils_qvto;
 	@Inject EditPartFactory xptEditPartFactory;
 	@Inject impl.diagram.editparts.TextAware xptTextAware;
+	
+    @Inject VisualIDRegistry xptVisualIDRegistry;
+    @Inject ElementTypes xptElementTypes;
 	
 //---------
 //   GMF
@@ -455,5 +460,24 @@ def setupNodePlate (GenChildSideAffixedNode it)'''
 	result.getBounds().setSize(result.getPreferredSize());
 '''
 		
+override def getTargetEditPartMethod(GenNode it) '''
+    «generatedMemberComment»
+    public org.eclipse.gef.EditPart getTargetEditPart(org.eclipse.gef.Request request) {
+        if (request instanceof org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) {
+            org.eclipse.gmf.runtime.diagram.core.edithelpers.CreateElementRequestAdapter adapter = ((org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
+            org.eclipse.gmf.runtime.emf.type.core.IElementType type = (org.eclipse.gmf.runtime.emf.type.core.IElementType) adapter.getAdapter(org.eclipse.gmf.runtime.emf.type.core.IElementType.class);
+    «FOR compartment : compartments»
+    «IF listCompartmentHasChildren(compartment)»
+        «FOR childNode : compartment.childNodes»
+            if («xptElementTypes.className(it.diagram)».isKindOf(type, «xptElementTypes.accessElementType(childNode)»)) {
+                return getChildBySemanticHint(«xptVisualIDRegistry.typeMethodCall(compartment)»);
+            }
+        «ENDFOR»
+    «ENDIF»
+    «ENDFOR»
+        }
+        return super.getTargetEditPart(request);
+    }
+'''
 	
 }

@@ -360,7 +360,7 @@ public class SignalEditPart extends ClassifierEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_3005) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3005)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(SignalAttributeCompartmentEditPart.VISUAL_ID));
 			}
 		}

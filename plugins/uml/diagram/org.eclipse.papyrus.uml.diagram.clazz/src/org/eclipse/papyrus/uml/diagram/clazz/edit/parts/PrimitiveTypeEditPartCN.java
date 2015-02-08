@@ -357,10 +357,10 @@ public class PrimitiveTypeEditPartCN extends ClassifierEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_3041) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3041)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Operation_3042) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3042)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(PrimitiveTypeOperationCompartmentEditPartCN.VISUAL_ID));
 			}
 		}

@@ -25,8 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({ AssistantAllTests.class, //
-// TODO: These integration tests require that the Use Case diagram be regenerated for Diagram Assistants support
-/* GenericModelingAssistantIntegrationTest.class, DiagramSpecificModelingAssistantIntegrationTest.class */})
+		GenericModelingAssistantIntegrationTest.class, DiagramSpecificModelingAssistantIntegrationTest.class })
 public class AllTests {
 	@BeforeClass
 	public static void ensureElementTypesRegistry() {

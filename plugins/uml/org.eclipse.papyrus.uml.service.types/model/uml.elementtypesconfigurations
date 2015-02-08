@@ -144,7 +144,7 @@
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Class"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca0z1YCEeS0WsAAtVmToA" name="UML::Classifier" identifier="org.eclipse.papyrus.uml.Classifier" hint="UML::Classifier" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
-    <iconEntry xmi:id="_Sca00FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Classifier.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <iconEntry xmi:id="_Sca00FYCEeS0WsAAtVmToA" iconPath="/icons/Classifier.gif" bundleId="org.eclipse.papyrus.uml.service.types"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Classifier"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca00VYCEeS0WsAAtVmToA" name="UML::ClassifierTemplateParameterBase" identifier="org.eclipse.papyrus.uml.ClassifierTemplateParameterBase" hint="UML::ClassifierTemplateParameterBase" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
