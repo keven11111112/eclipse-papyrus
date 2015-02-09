@@ -124,12 +124,13 @@ The most important considerations in designing assistant models are appropriaten
 
 As discussed above, the generation of the assistants model just provides a starting point that needs to be fine-tuned.  The generator outputs every combination that seems to be valid; these need to be culled in practice.  Some assistants are not valid in every context where they may be shown (which requires customization of their filters) whereas many assistants just may not be necessary because they are element types that are rarely used, or only in advanced use cases.
 
-Of particular concern is the scaling of the diagram assistants user interface:  it is important not to overwhelm users with too many options.  There is a practical limit to how large the pop-up bar can be before its usability degrades; likewise the menus that are popped up for completion of connections.  When designing the assistants model for your profile, keep in mind that the diagram assistants will include proposals from four sources:
+Of particular concern is the scaling of the diagram assistants user interface:  it is important not to overwhelm users with too many options.  There is a practical limit to how large the pop-up bar can be before its usability degrades; likewise the menus that are popped up for completion of connections.  When designing the assistants model for your profile, keep in mind that the diagram assistants will include proposals from five sources:
 
 * the base UML assistants models deployed by Papyrus for each of the diagrams
 * the assistant models deployed by Papyrus for first-party profiles such as SysML and UML-RT
 * assistant models deployed from the workspace or in third-party plug-ins for other profiles
 * the assistant model that you are designing for your profile
+* the pop-up bar shows hyperlinks created by the user, in addition to the green "plus" button for creation of new hyperlinks
 
 The number of assistants presented on any given selection in a diagram can add up rather quickly.  Precise filtering of assistants is critical and restricting the overall number of assistants that are defined to only the most commonly used elements is highly recommended.
 
