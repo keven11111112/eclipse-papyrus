@@ -222,6 +222,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		textQueryFieldsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		textQueryFieldsComposite.setLayout(new GridLayout(1, false));
 
+		searchQueryExplanatoryLabel = new Label(textQueryFieldsComposite, SWT.NONE);
+		searchQueryExplanatoryLabel.setText(Messages.PapyrusSearchPage_48);
+		searchQueryExplanatoryLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		
 		searchQueryText = new Text(textQueryFieldsComposite, SWT.BORDER);
 		searchQueryText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		searchQueryText.addModifyListener(new ModifyListener() {
@@ -232,15 +236,9 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		});
 		searchQueryText.setFocus();
 
-		searchQueryExplanatoryLabel = new Label(textQueryFieldsComposite, SWT.NONE);
-		searchQueryExplanatoryLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
-
-
 		Composite compositeParameters = new Composite(textQueryComposite, SWT.NONE);
 		compositeParameters.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		compositeParameters.setLayout(new GridLayout(1, false));
-
-
 
 		btnCaseSensitive = new Button(compositeParameters, SWT.CHECK);
 		btnCaseSensitive.setText(Messages.PapyrusSearchPage_5);
