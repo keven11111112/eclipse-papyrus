@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2011 - 2014 Mia-Software, CEA LIST.
+ * Copyright (c) 2011, 2015 Mia-Software, CEA LIST, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,12 +8,11 @@
  * Contributors:
  *     Nicolas Bros (Mia-Software) - Bug 366567 - [Releng] Tool to update rmaps
  *     Camille Letavernier (CEA LIST) - Generalize to support POMs
+ *     Christian W. Damus - Support updating of multiple selected files
  *******************************************************************************/
 package org.eclipse.papyrus.releng.tools.internal.popup.actions;
 
-import org.eclipse.b3.aggregator.Contribution;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.emf.common.util.EList;
 import org.w3c.dom.Node;
 
 /**
@@ -33,23 +32,32 @@ import org.w3c.dom.Node;
  * &lt;aggregator:Contribution ... label="xxx"&gt;
  * </pre>
  *
- * The second parameter is the index of the "repositories" element that must be used (in case there are several update sites defined on one
- * contribution).
+ * The second parameter is the index of the "repositories" element that must be used (in case there are several update sites defined on one contribution).
  */
 public class MapUpdater extends DependencyUpdater {
 
-	public MapUpdater(final IFile mapFile, final EList<Contribution> contributions) {
-		super(mapFile, contributions);
+	public MapUpdater() {
+		super();
+	}
+
+	@Override
+	public boolean canUpdate(IFile file) {
+		return "rmap".equals(file.getFileExtension()); //$NON-NLS-1$
 	}
 
 	@Override
 	protected String getXpath() {
-		return "/rmap/searchPath/provider[@readerType='p2']/uri";
+		return "/rmap/searchPath/provider[@readerType='p2']/uri"; //$NON-NLS-1$
+	}
+
+	@Override
+	protected String getCurrentLocation(Node uri) {
+		return uri.getAttributes().getNamedItem("format").getTextContent(); //$NON-NLS-1$
 	}
 
 	@Override
 	protected void updateUri(Node uri, String location) {
-		if(location.startsWith(PREFIX)) {
+		if (location.startsWith(PREFIX)) {
 			location = "{0}/" + location.substring(PREFIX.length()); //$NON-NLS-1$
 		}
 		uri.getAttributes().getNamedItem("format").setTextContent(location); //$NON-NLS-1$
