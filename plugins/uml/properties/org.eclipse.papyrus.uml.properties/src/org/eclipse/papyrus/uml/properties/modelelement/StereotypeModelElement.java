@@ -8,15 +8,20 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -25,7 +30,9 @@ import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableV
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
+import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -84,6 +91,43 @@ public class StereotypeModelElement extends EMFModelElement {
 		return new PapyrusObservableValue(getSource(featurePath), feature, domain);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public FeaturePath getFeaturePath(String propertyPath) {
+		String[] featureNames = propertyPath.split("\\."); //$NON-NLS-1$
+		EStructuralFeature[] features = new EStructuralFeature[featureNames.length];
+
+		int i = 0;
+		EClass currentClass = source.eClass();
+		for (String featureName : featureNames) {
+			// Bug 453445 : Manage the special character for the property path
+			featureName = UML2Util.getValidJavaIdentifier(featureName);
+			EStructuralFeature feature = currentClass.getEStructuralFeature(featureName);
+			features[i++] = feature;
+			if (i < featureNames.length) {
+				if (feature instanceof EReference) {
+					EReference reference = (EReference) feature;
+					EClassifier type = reference.getEType();
+					if (type instanceof EClass) {
+						currentClass = (EClass) type;
+						continue;
+					}
+				}
+
+				final StringBuilder warningMessage = new StringBuilder("Cannot find feature path "); //$NON-NLS-1$
+				warningMessage.append(propertyPath);
+				warningMessage.append(" for EClass "); //$NON-NLS-1$
+				warningMessage.append(source.eClass());
+				Activator.log.warn(warningMessage.toString());
+				return null;
+			}
+		}
+
+		return FeaturePath.fromList(features);
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */

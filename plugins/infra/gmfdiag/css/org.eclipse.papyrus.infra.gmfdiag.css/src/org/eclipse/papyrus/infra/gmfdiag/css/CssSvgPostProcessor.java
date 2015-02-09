@@ -122,6 +122,9 @@ public class CssSvgPostProcessor implements SVGPostProcessor, IRefreshHandlerPar
 	 */
 	@Override
 	public void postProcess(EObject view, SVGDocument document) {
+		if (document == null) {
+			return;
+		}
 		if (view instanceof org.eclipse.gmf.runtime.notation.Node) {
 			View shape = (View) view;
 			// Retrieve the applied CSS stylesheet if necessary

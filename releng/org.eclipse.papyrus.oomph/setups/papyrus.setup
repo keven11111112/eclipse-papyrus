@@ -317,7 +317,7 @@
           </annotation>
         </repository>
         <repository
-            url="http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201502021341">
+            url="http://download.eclipse.org/modeling/mdt/ocl/updates/interim/6.0.0/">
           <annotation
               source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail
@@ -1957,7 +1957,9 @@
           xsi:type="projects:ProjectsImportTask">
         <sourceLocator
             rootFolder="${papyrus.git.clone.location/releng}"
-            locateNestedProjects="true"/>
+            locateNestedProjects="true">
+          <excludedPath>emfgen</excludedPath>
+        </sourceLocator>
       </setupTask>
       <setupTask
           xsi:type="setup.workingsets:WorkingSetTask">
@@ -1975,6 +1977,25 @@
           </predicate>
         </workingSet>
       </setupTask>
+      <project
+          name="maven"
+          label="Maven Plug-ins">
+        <setupTask
+            xsi:type="projects:ProjectsImportTask">
+          <sourceLocator
+              rootFolder="${papyrus.git.clone.location/releng/emfgen}"
+              locateNestedProjects="true"/>
+        </setupTask>
+        <stream
+            name="master"
+            label="master (Mars/1.1)">
+          <setupTask
+              xsi:type="setup:VariableTask"
+              name="papyrus.bugzilla.version"
+              value="1.0.0&amp;version=1.0.1&amp;version=1.0.2&amp;version=1.1.0"/>
+        </stream>
+        <description>Sources of Maven plug-ins for Papyrus custom build behaviours</description>
+      </project>
       <stream
           name="master"
           label="master (Mars/1.1)">
