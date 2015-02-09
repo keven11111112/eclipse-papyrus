@@ -109,11 +109,11 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 	public void exportReqIFModel(boolean withGUI, String reqIFpath) {
 		reqIFModel=createReqIFResource(reqIFpath);
 		//get all information form stereotypes
-		reqStereotypes=getAllPossibleRequirementType(UMLModel);
-		reqstereotypeSpecRelation= getAllPossibleSpecRelationType();
+		objectTypeStereotypesMap=getAllPossibleRequirementType(UMLModel);
+		specRelationTypeSterotypeMap= getAllPossibleSpecRelationType();
 		//create All reqIF Types
-		reqiFTypeMap = new HashMap<String, SpecType>();
-		reqiFSpecRelationTypeMap= new HashMap<String, SpecType >();
+		objectTypeMap = new HashMap<String, SpecType>();
+		specRelationTypeMap= new HashMap<String, SpecType >();
 
 		element_SpecObject = new HashMap<Element, SpecObject>();
 
@@ -124,14 +124,14 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 		exportEnumeration();
 		getAllDataTypeDefinitionEnumeration();
 		//export specRealtionType
-		for(Stereotype adependencyStereotype:reqstereotypeSpecRelation.values()){
+		for(Stereotype adependencyStereotype:specRelationTypeSterotypeMap.values()){
 			exportSpecRelationType(reqIFModel, adependencyStereotype);
 		}
 
 
 		//export specType
-		for(Stereotype stereotype : reqStereotypes.values()) {
-			exportSpecObjectTypes(reqIFModel, reqiFTypeMap, stereotype);
+		for(Stereotype stereotype : objectTypeStereotypesMap.values()) {
+			exportSpecObjectTypes(reqIFModel, objectTypeMap, stereotype);
 		}
 		HashSet<Package> packageContainers=getRequirementContainers(UMLModel);
 		for(Package aPackage : packageContainers) {
@@ -172,15 +172,15 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 				Dependency aDependency= (Dependency)eObject;
 				List<Stereotype> appliedStereotypes=aDependency.getAppliedStereotypes();
 				for(Stereotype appliedstereotype : appliedStereotypes) {
-					if(reqstereotypeSpecRelation.values().contains(appliedstereotype)){
+					if(specRelationTypeSterotypeMap.values().contains(appliedstereotype)){
 						if((element_SpecObject.containsKey(aDependency.getClients().get(0)))&&(element_SpecObject.containsKey(aDependency.getSuppliers().get(0)))){
 							SpecRelation specRelation=ReqIF10Factory.eINSTANCE.createSpecRelation();
-							specRelation.setType((SpecRelationType)reqiFSpecRelationTypeMap.get(appliedstereotype.getName()));
+							specRelation.setType((SpecRelationType)specRelationTypeMap.get(appliedstereotype.getName()));
 							specRelation.setLastChange((GregorianCalendar)GregorianCalendar.getInstance());
 							specRelation.setLongName(aDependency.getName());
 							specRelation.setSource((element_SpecObject.get(aDependency.getClients().get(0))));
 							specRelation.setTarget(element_SpecObject.get(aDependency.getSuppliers().get(0)));
-							exportAttributeValues(reqiFSpecRelationTypeMap,(Element) aDependency, appliedstereotype, specRelation);
+							exportAttributeValues(specRelationTypeMap,(Element) aDependency, appliedstereotype, specRelation);
 							reqIFModel.getCoreContent().getSpecRelations().add(specRelation);
 						}
 					}
@@ -226,10 +226,10 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 	protected  void exportAHierarchy(Specification aSpecification, ReqIF reqIFModel, PackageableElement aPackageableElement) {
 		List<Stereotype> appliedStereotypes=aPackageableElement.getAppliedStereotypes();
 		for(Stereotype appliedstereotype : appliedStereotypes) {
-			if(reqStereotypes.values().contains(appliedstereotype)){
+			if(objectTypeStereotypesMap.values().contains(appliedstereotype)){
 				SpecHierarchy hierarchy=ReqIF10Factory.eINSTANCE.createSpecHierarchy();
 				hierarchy.setLastChange((GregorianCalendar)GregorianCalendar.getInstance());
-				SpecObject specObject=exportSpecObjects(reqIFModel, reqStereotypes, reqiFTypeMap, ((Class)aPackageableElement));
+				SpecObject specObject=exportSpecObjects(reqIFModel, objectTypeStereotypesMap, objectTypeMap, ((Class)aPackageableElement));
 				hierarchy.setObject(specObject);
 				aSpecification.getChildren().add(hierarchy);
 				for(Element containedElement: aPackageableElement.getOwnedElements()){
@@ -250,11 +250,11 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 		//test if the current element is a requirement
 		List<Stereotype> appliedStereotypes=containedElement.getAppliedStereotypes();
 		for(Stereotype appliedstereotype : appliedStereotypes) {
-			if(reqStereotypes.values().contains(appliedstereotype)){
+			if(objectTypeStereotypesMap.values().contains(appliedstereotype)){
 				//this is a requirement
 				SpecHierarchy childhierarchy=ReqIF10Factory.eINSTANCE.createSpecHierarchy();
 				childhierarchy.setLastChange((GregorianCalendar)GregorianCalendar.getInstance());
-				SpecObject specObject=exportSpecObjects(reqIFModel, reqStereotypes, reqiFTypeMap, ((Class)containedElement));
+				SpecObject specObject=exportSpecObjects(reqIFModel, objectTypeStereotypesMap, objectTypeMap, ((Class)containedElement));
 				childhierarchy.setObject(specObject);
 				hierarchy.getChildren().add(childhierarchy);
 				for(Element childcontainedElement: containedElement.getOwnedElements()){
@@ -279,7 +279,7 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 				Class clazz=(Class)eObject;
 				List<Stereotype> appliedStereotypes=clazz.getAppliedStereotypes();
 				for(Stereotype appliedstereotype : appliedStereotypes) {
-					if(reqStereotypes.values().contains(appliedstereotype)){
+					if(objectTypeStereotypesMap.values().contains(appliedstereotype)){
 						if(clazz.eContainer() instanceof Package){
 							requirementContainers.add((Package)clazz.eContainer());
 						}
@@ -528,7 +528,7 @@ public class ReqIFExporter extends ReqIFBaseTransformation{
 		//		
 		//add Attributes... simple Attribute
 		exporttoAttributeType(adependencyStereotype, aSpecRealtionType);
-		reqiFSpecRelationTypeMap.put(aSpecRealtionType.getLongName(), aSpecRealtionType);
+		specRelationTypeMap.put(aSpecRealtionType.getLongName(), aSpecRealtionType);
 
 	}
 

@@ -50,19 +50,19 @@ public abstract class ReqIFBaseTransformation {
 	public TransactionalEditingDomain domain = null;
 	protected ReqIF reqIFModel;
 	protected org.eclipse.uml2.uml.Package UMLModel;
-	protected HashMap<String,Stereotype> reqStereotypes;
-	protected HashMap<String, Stereotype> reqstereotypeSpecRelation;
+	protected HashMap<String,Stereotype> objectTypeStereotypesMap;
+	protected HashMap<String, Stereotype> specRelationTypeSterotypeMap;
 	/** The UML primitive  Type */
 	protected org.eclipse.uml2.uml.Package umlPrimitiveTypes;
 	/** The UML metamodel**/
 	protected Package umlMetamodel;
 	/** The SysML profile*/
 	protected Profile sysMLprofile;
-	protected HashMap<String, SpecType> reqiFTypeMap;
-	protected HashMap<String, SpecType> reqiFSpecRelationTypeMap;
-	protected HashMap<String, SpecificationType> reqiFSpecificationTypeMap;
+	protected HashMap<String, SpecType> objectTypeMap;
+	protected HashMap<String, SpecType> specRelationTypeMap;
+	protected HashMap<String, SpecificationType> specificationTypeMap;
 	protected HashMap<String, DatatypeDefinitionEnumeration> reqifDatatTypeEnumeration;
-	protected HashMap<String, Stereotype> reqstereotypeSpecification;
+	protected HashMap<String, Stereotype> specificationTypeSterotypeMap;
 	protected HashMap<SpecObject, Element> SpecObject_UMLElementMap;
 	protected HashMap<String, Enumeration> profileEnumeration;
 
@@ -89,8 +89,8 @@ public abstract class ReqIFBaseTransformation {
 		// get reference to  UML metamodel
 		Resource umlMetamodelResource=EMFHelper.getResourceSet(UMLModel).getResource(URI.createURI(UMLResource.UML_METAMODEL_URI), true);
 		umlMetamodel = (org.eclipse.uml2.uml.Package) (umlMetamodelResource.getContents().get(0));
-		reqStereotypes = new HashMap<String,Stereotype>();
-		reqstereotypeSpecRelation= new HashMap<String, Stereotype>();
+		objectTypeStereotypesMap = new HashMap<String,Stereotype>();
+		specRelationTypeSterotypeMap= new HashMap<String, Stereotype>();
 	}
 
 	/**

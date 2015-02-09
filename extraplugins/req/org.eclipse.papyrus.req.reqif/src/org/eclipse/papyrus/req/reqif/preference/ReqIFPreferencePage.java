@@ -30,7 +30,7 @@ import org.eclipse.ui.IWorkbenchPreferencePage;
  */
 public class ReqIFPreferencePage  extends FieldEditorPreferencePage implements IWorkbenchPreferencePage {
 
-	public static String[][]  values= new String[][]{{"User",ReqIFPreferenceConstants.SIMPLE_USER},{"Advancer User",ReqIFPreferenceConstants.ADVANCED_USER}};
+	public static String[][]  values= new String[][]{{"User",ReqIFPreferenceConstants.SIMPLE_USER},{"Advanced User",ReqIFPreferenceConstants.ADVANCED_USER}};
 	/**
 	 * Constructor
 	 */

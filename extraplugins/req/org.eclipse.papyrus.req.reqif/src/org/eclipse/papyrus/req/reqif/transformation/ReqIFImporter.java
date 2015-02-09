@@ -25,6 +25,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -37,8 +38,11 @@ import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.req.reqif.Activator;
 import org.eclipse.papyrus.req.reqif.I_SysMLStereotype;
 import org.eclipse.papyrus.req.reqif.assistant.CreateOrSelectProfilDialog;
+import org.eclipse.papyrus.req.reqif.assistant.SelectProfilDialog;
 import org.eclipse.papyrus.req.reqif.integration.assistant.ChooseAttributeEnumerationDialog;
 import org.eclipse.papyrus.req.reqif.preference.ReqIFPreferenceConstants;
+import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
+import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.eclipse.rmf.reqif10.AttributeDefinition;
 import org.eclipse.rmf.reqif10.AttributeDefinitionBoolean;
@@ -69,6 +73,7 @@ import org.eclipse.rmf.reqif10.Specification;
 import org.eclipse.rmf.reqif10.SpecificationType;
 import org.eclipse.rmf.reqif10.XhtmlContent;
 import org.eclipse.rmf.reqif10.common.util.ReqIF10Util;
+import org.eclipse.rmf.reqif10.pror.util.ProrUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
@@ -89,6 +94,7 @@ import org.eclipse.uml2.uml.resource.UMLResource;
  *
  */
 public abstract class ReqIFImporter extends ReqIFBaseTransformation {
+
 	/**
 	 * 
 	 * Constructor.
@@ -102,15 +108,15 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		this.reqIFModel= reqIFModel;
 		//initiate Hashmap
 		//mapping for the list of  specObjectTypes
-		reqiFTypeMap=new HashMap<String, SpecType>();
-		reqStereotypes= new HashMap<String,Stereotype>();
+		objectTypeMap=new HashMap<String, SpecType>();
+		objectTypeStereotypesMap= new HashMap<String,Stereotype>();
 
 		//mapping stereotype for specification
-		reqiFSpecificationTypeMap=new HashMap<String, SpecificationType>();
-		reqstereotypeSpecification= new HashMap<String,Stereotype>();
+		specificationTypeMap=new HashMap<String, SpecificationType>();
+		specificationTypeSterotypeMap= new HashMap<String,Stereotype>();
 		//mapping SpecRelationType
-		reqiFSpecRelationTypeMap= new  HashMap<String, SpecType>(); 
-		reqstereotypeSpecRelation= new HashMap<String, Stereotype>();
+		specRelationTypeMap= new  HashMap<String, SpecType>(); 
+		specRelationTypeSterotypeMap= new HashMap<String, Stereotype>();
 		profileEnumeration= new HashMap<String, Enumeration>();
 
 	}
@@ -121,9 +127,9 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 	public void preProcess( ReqIF reqIFModel){
 		//1. first make sure that all reqIFelement have a name
 		normalizeNames(reqIFModel);
-
-
-		//2. patterns, if 1 type, maybe there is an enumeration?
+		//2.set ReqIF_ForeignID as ID
+		normalizeID(reqIFModel);
+		//3. patterns, if 1 type, maybe there is an enumeration?
 		transformPatternEnumeration(reqIFModel,null);
 
 	}
@@ -143,6 +149,31 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 					index++;
 				}
 				identifiable.setLongName(getNormalName(identifiable.getLongName()));
+			}
+		}
+	}
+
+	/**
+	 * set a name of all type of the ReqIF model if there is no name
+	 * @param reqIFModel
+	 */
+	protected void normalizeID(ReqIF reqIFModel) {
+		Iterator<EObject> reqIFElementIterator= reqIFModel.eAllContents();
+		int index =0;
+		while(reqIFElementIterator.hasNext()) {
+			EObject eObject = (EObject)reqIFElementIterator.next();
+			if( eObject instanceof  SpecObject){
+				SpecObject specObject=(SpecObject)eObject;
+				EList<AttributeValue> values=specObject.getValues();
+				for (Iterator iterator = values.iterator(); iterator.hasNext();) {
+					AttributeValue attributeValue = (AttributeValue) iterator.next();
+					if( attributeValue instanceof AttributeValueInteger){
+						if( ((AttributeValueInteger)attributeValue).getDefinition().getLongName().equals("ReqIF_ForeignID")){
+							specObject.setIdentifier(""+((AttributeValueInteger)attributeValue).getTheValue());
+						}
+					}
+
+				}
 			}
 		}
 	}
@@ -231,45 +262,19 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		//import ReqIFHeader
 		importReqIFHeader(reqIFModel, UMLModel);
 
-		//specObject Types
-		reqiFTypeMap= new HashMap<String, SpecType>();
-		reqStereotypes=getAllPossibleRequirementType(  UMLModel);
-
-		//specificationType
-		reqiFSpecificationTypeMap= new HashMap<String, SpecificationType>();
-		reqstereotypeSpecification= getAllPossibleSpecificationType(UMLModel);
-
-		//SpecRelation
-		reqiFSpecRelationTypeMap= new  HashMap<String, SpecType>(); 
-		reqstereotypeSpecRelation= getAllPossibleSpecRelationType();
+		//getAll  stereotypes that represents types in profiles
+		getAllStereotypesRepresentingTypes(UMLModel);
 
 		//map between SpecObject and Element
 		SpecObject_UMLElementMap= new HashMap<SpecObject, Element>();
 
 		//get all types of ReqIF and SpecificationType
-		if(reqIFModel.getCoreContent().getSpecTypes()!=null&&reqIFModel.getCoreContent().getSpecTypes().size()>0){
-			for(SpecType reqIFType : reqIFModel.getCoreContent().getSpecTypes()) {
-				if(reqIFType instanceof SpecObjectType){
-					reqiFTypeMap.put(reqIFType.getLongName(), (SpecObjectType) reqIFType);
-				}
-				if(reqIFType instanceof SpecificationType){
-					reqiFSpecificationTypeMap.put(reqIFType.getLongName(), (SpecificationType) reqIFType);
-				}
-				if(reqIFType instanceof SpecRelationType){
-					reqiFSpecRelationTypeMap.put(reqIFType.getLongName(), (SpecRelationType) reqIFType);
-				}
+		getAllTypesFromReqIFFiles(reqIFModel);
 
-			}
-		}
-		//get All DataTypeEnumeration
-		profileEnumeration=getAllPossibleEnumeration(UMLModel);
-		reqifDatatTypeEnumeration= new HashMap<String, DatatypeDefinitionEnumeration>();
-		getAllDataTypeDefinitionEnumeration();
-
-		reqiFTypeMap= filterReqifAvailableType(reqiFTypeMap);
+		objectTypeMap= filterReqifAvailableType(objectTypeMap);
 		//ask to the User all specObjectTypes to import
 		if(interactive){
-			reqiFTypeMap=selectReqIFType(reqiFTypeMap.values());
+			objectTypeMap=selectReqIFType(objectTypeMap.values());
 		}
 
 		//analyze the list of existing stereotypes and the list of specObject Types to import 
@@ -278,30 +283,10 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		ArrayList<SpecType> specRelationTypesToCreate= new ArrayList<SpecType>();
 		ArrayList<DatatypeDefinitionEnumeration> dataTypeDefinitionToCreate= new ArrayList<DatatypeDefinitionEnumeration>();
 
-		//find spec Object Types to create
-		for(SpecType specObjectType : reqiFTypeMap.values()) {
-			if( !reqStereotypes.containsKey(specObjectType.getLongName())){
-				specObjectTypesToCreate.add(specObjectType);
-			}
-		}
-		//find specificationTypess to create
-		for(SpecificationType specificationType : reqiFSpecificationTypeMap.values()) {
-			if( !reqstereotypeSpecification.containsKey(specificationType.getLongName())){
-				specificationTypesToCreate.add(specificationType);
-			}
-		}
-		//find specRelationTypes to create
-		for(SpecType specRelationType : reqiFSpecRelationTypeMap.values()) {
-			if( !reqstereotypeSpecRelation.containsKey(specRelationType.getLongName())){
-				specRelationTypesToCreate.add(specRelationType);
-			}
-		}
-		//find dataTypeDefinition Enumeration to create
-		for(DatatypeDefinitionEnumeration definitionEnumeration : reqifDatatTypeEnumeration.values()) {
-			if( !profileEnumeration.containsKey(definitionEnumeration.getLongName())){
-				dataTypeDefinitionToCreate.add(definitionEnumeration);
-			}
-		}
+		lookForTypesWihtouStereotypes(	specObjectTypesToCreate,
+				specificationTypesToCreate,
+				specRelationTypesToCreate,
+				dataTypeDefinitionToCreate);
 
 		//test if a profile must be updated or created
 		if( specObjectTypesToCreate.size()>0||specificationTypesToCreate.size()>0||specRelationTypesToCreate.size()>0||dataTypeDefinitionToCreate.size()>0){
@@ -324,27 +309,180 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 				defineProfile(profile);
 				UMLModel.applyProfile(profile);
 			}
+			else{
+				//SIMPLE USER choose profiles
+				
+				//popose a list of profile from registered profiles
+				List<IRegisteredProfile> registeredProfiles=RegisteredProfile.getRegisteredProfiles();
+				ArrayList<Profile> profilelist= new ArrayList<Profile>(); 
+				for (Iterator<IRegisteredProfile> iterator = registeredProfiles.iterator(); iterator.hasNext();) {
+					IRegisteredProfile iRegisteredProfile = (IRegisteredProfile) iterator.next();
+					ResourceSet resourceSet = UMLModel.eResource().getResourceSet();
+					Resource resource=resourceSet.getResource(iRegisteredProfile.getUri(), true);
+					if( resource.getContents().get(0) instanceof Profile){
+						profilelist.add((Profile)resource.getContents().get(0));
+					}
+
+				}
+				SelectProfilDialog profilDialog= new SelectProfilDialog(new Shell(), profilelist);
+				profilDialog.open();
+				Profile profileToApply=null;
+				String profileName=profilDialog.getProfileName();
+				for (Iterator<Profile> iterator = profilelist.iterator(); iterator.hasNext();) {
+					Profile profileTmp = (Profile) iterator.next();
+					if( profileTmp.getName().equals(profileName)){
+						profileToApply=profileTmp;
+					}
+
+				}
+
+				UMLModel.applyProfile(profileToApply);
+				
+				//getAll  stereotypes that represents types in profiles
+				getAllStereotypesRepresentingTypes(UMLModel);
+				specObjectTypesToCreate= new ArrayList<SpecType>();
+				specificationTypesToCreate= new ArrayList<SpecificationType>();
+				specRelationTypesToCreate= new ArrayList<SpecType>();
+				dataTypeDefinitionToCreate= new ArrayList<DatatypeDefinitionEnumeration>();
+
+				lookForTypesWihtouStereotypes(	specObjectTypesToCreate,
+						specificationTypesToCreate,
+						specRelationTypesToCreate,
+						dataTypeDefinitionToCreate);
+				if( specObjectTypesToCreate.size()>0||specificationTypesToCreate.size()>0||specRelationTypesToCreate.size()>0||dataTypeDefinitionToCreate.size()>0){
+				
+					createMessageForTypewithoutStereotypes(specObjectTypesToCreate, specificationTypesToCreate,
+							specRelationTypesToCreate, dataTypeDefinitionToCreate);
+					
+					return false;
+				}
+			}
 		}
 
 		//all types has been created so import elspecifications and specObjects
-		reqStereotypes=getAllPossibleRequirementType(UMLModel);
+		objectTypeStereotypesMap=getAllPossibleRequirementType(UMLModel);
 
 		HashMap<String,Stereotype> filteredreqStereotypes=new HashMap<String, Stereotype>();
 
 		//filter Type to import, because reqstereotype may be too large
-		for(SpecType specObjectType : reqiFTypeMap.values()) {
-			if( reqStereotypes.containsKey(specObjectType.getLongName())){
-				filteredreqStereotypes.put(specObjectType.getLongName(), reqStereotypes.get(specObjectType.getLongName()));
+		for(SpecType specObjectType : objectTypeMap.values()) {
+			if( objectTypeStereotypesMap.containsKey(specObjectType.getLongName())){
+				filteredreqStereotypes.put(specObjectType.getLongName(), objectTypeStereotypesMap.get(specObjectType.getLongName()));
 			}
 		}
-		reqStereotypes=filteredreqStereotypes;
-		reqstereotypeSpecification= getAllPossibleSpecificationType(UMLModel);
-		reqstereotypeSpecRelation= getAllPossibleSpecRelationType();
-		importReqIFspecification(reqIFModel, UMLModel, reqStereotypes);
-		importSpecRelation(reqIFModel, UMLModel,reqstereotypeSpecRelation);
+		objectTypeStereotypesMap=filteredreqStereotypes;
+		specificationTypeSterotypeMap= getAllPossibleSpecificationType(UMLModel);
+		specRelationTypeSterotypeMap= getAllPossibleSpecRelationType();
+		importReqIFspecification(reqIFModel, UMLModel, objectTypeStereotypesMap);
+		importSpecRelation(reqIFModel, UMLModel,specRelationTypeSterotypeMap);
 
 		postProcess(UMLModel);
 		return true;
+	}
+	protected void createMessageForTypewithoutStereotypes(ArrayList<SpecType> specObjectTypesToCreate,
+			ArrayList<SpecificationType> specificationTypesToCreate, ArrayList<SpecType> specRelationTypesToCreate,
+			ArrayList<DatatypeDefinitionEnumeration> dataTypeDefinitionToCreate) {
+		Comment comment=	UMLModel.createOwnedComment();
+		String messageTodisplay="";
+		for (Iterator<SpecType> iterator = specObjectTypesToCreate.iterator(); iterator.hasNext();) {
+			SpecType type = (SpecType) iterator.next();
+			messageTodisplay=messageTodisplay+"\n "+type.getLongName();
+		}
+		for (Iterator<SpecificationType> iterator = specificationTypesToCreate.iterator(); iterator.hasNext();) {
+			SpecificationType type = (SpecificationType) iterator.next();
+			messageTodisplay=messageTodisplay+"\n "+type.getLongName();
+		}
+		for (Iterator<SpecType> iterator = specRelationTypesToCreate.iterator(); iterator.hasNext();) {
+			SpecType type = (SpecType) iterator.next();
+			messageTodisplay=messageTodisplay+"\n "+type.getLongName();
+		}
+		for (Iterator<DatatypeDefinitionEnumeration> iterator = dataTypeDefinitionToCreate.iterator(); iterator.hasNext();) {
+			DatatypeDefinitionEnumeration type = (DatatypeDefinitionEnumeration) iterator.next();
+			messageTodisplay=messageTodisplay+"\n "+type.getLongName();
+		}
+		messageTodisplay="No Stereotype found for:"+messageTodisplay;
+		comment.setBody(messageTodisplay);
+	}
+
+	/**
+	 * look for in the list of types if it exist a corresponding stereotypes
+	 * @param specObjectTypesToCreate list of specObjectType that has no stereotypes
+	 * @param specificationTypesToCreate list of specificationType that has no stereotypes
+	 * @param specRelationTypesToCreate list of specRelationTypes that has no stereotypes
+	 * @param dataTypeDefinitionToCreate list of dataTypeDefinition that has no stereotypes
+	 */
+	protected void lookForTypesWihtouStereotypes(ArrayList<SpecType> specObjectTypesToCreate,
+			ArrayList<SpecificationType> specificationTypesToCreate, ArrayList<SpecType> specRelationTypesToCreate,
+			ArrayList<DatatypeDefinitionEnumeration> dataTypeDefinitionToCreate) {
+		//find spec Object Types to create
+		for(SpecType specObjectType : objectTypeMap.values()) {
+			if( !objectTypeStereotypesMap.containsKey(specObjectType.getLongName())){
+				specObjectTypesToCreate.add(specObjectType);
+			}
+		}
+		//find specificationTypess to create
+		for(SpecificationType specificationType : specificationTypeMap.values()) {
+			if( !specificationTypeSterotypeMap.containsKey(specificationType.getLongName())){
+				specificationTypesToCreate.add(specificationType);
+			}
+		}
+		//find specRelationTypes to create
+		for(SpecType specRelationType : specRelationTypeMap.values()) {
+			if( !specRelationTypeSterotypeMap.containsKey(specRelationType.getLongName())){
+				specRelationTypesToCreate.add(specRelationType);
+			}
+		}
+		//find dataTypeDefinition Enumeration to create
+		for(DatatypeDefinitionEnumeration definitionEnumeration : reqifDatatTypeEnumeration.values()) {
+			if( !profileEnumeration.containsKey(definitionEnumeration.getLongName())){
+				dataTypeDefinitionToCreate.add(definitionEnumeration);
+			}
+		}
+	}
+
+
+	/**
+	 * load all types that are represented in the ReqFiles
+	 * @param reqIFModel given ReqIFModel
+	 */
+	protected void getAllTypesFromReqIFFiles(ReqIF reqIFModel) {
+		if(reqIFModel.getCoreContent().getSpecTypes()!=null&&reqIFModel.getCoreContent().getSpecTypes().size()>0){
+			for(SpecType reqIFType : reqIFModel.getCoreContent().getSpecTypes()) {
+				if(reqIFType instanceof SpecObjectType){
+					objectTypeMap.put(reqIFType.getLongName(), (SpecObjectType) reqIFType);
+				}
+				if(reqIFType instanceof SpecificationType){
+					specificationTypeMap.put(reqIFType.getLongName(), (SpecificationType) reqIFType);
+				}
+				if(reqIFType instanceof SpecRelationType){
+					specRelationTypeMap.put(reqIFType.getLongName(), (SpecRelationType) reqIFType);
+				}
+
+			}
+		}
+		reqifDatatTypeEnumeration= new HashMap<String, DatatypeDefinitionEnumeration>();
+		getAllDataTypeDefinitionEnumeration();
+	}
+
+	/**
+	 * get all stereotypes form applied profiles that represent type inside ReqIF file
+	 * @param UMLModel the current UML model
+	 */
+	protected void getAllStereotypesRepresentingTypes(Package UMLModel) {
+		//specObject Types
+		objectTypeMap= new HashMap<String, SpecType>();
+		objectTypeStereotypesMap=getAllPossibleRequirementType(UMLModel);
+
+		//specificationType
+		specificationTypeMap= new HashMap<String, SpecificationType>();
+		specificationTypeSterotypeMap= getAllPossibleSpecificationType(UMLModel);
+
+		//SpecRelation
+		specRelationTypeMap= new  HashMap<String, SpecType>(); 
+		specRelationTypeSterotypeMap= getAllPossibleSpecRelationType();
+		//get All DataTypeEnumeration
+		profileEnumeration=getAllPossibleEnumeration(UMLModel);
+
 	}
 
 	/**
@@ -455,9 +593,9 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 	protected void importReqIFspecification(ReqIF reqIFModel,Package UMLModel,HashMap<String,Stereotype> reqStereotypes){
 		for(Specification specif : reqIFModel.getCoreContent().getSpecifications()) {
 			Package apackage=UMLModel.createNestedPackage(specif.getLongName());
-			if(reqstereotypeSpecification.get(specif.getType().getLongName())!=null){
-				apackage.applyStereotype(reqstereotypeSpecification.get(specif.getType().getLongName()));
-				importSpecAttributesValue(reqstereotypeSpecification, specif, apackage, specif.getType());
+			if(specificationTypeSterotypeMap.get(specif.getType().getLongName())!=null){
+				apackage.applyStereotype(specificationTypeSterotypeMap.get(specif.getType().getLongName()));
+				importSpecAttributesValue(specificationTypeSterotypeMap, specif, apackage, specif.getType());
 			}
 			for(SpecHierarchy specHierarchy : specif.getChildren()) {
 				importReqIFHyerarchy(specHierarchy, apackage, reqStereotypes);

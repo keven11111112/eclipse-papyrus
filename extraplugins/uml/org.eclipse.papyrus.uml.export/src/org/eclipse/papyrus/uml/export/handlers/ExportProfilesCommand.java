@@ -274,11 +274,10 @@ public class ExportProfilesCommand extends AbstractTransactionalCommand {
 						ManifestEditor editor = new ManifestEditor(project);
 						editor.init();
 						editor.setSingleton(true);// we are going to add extensions to manifest, singleton must be set to true
+						editor.addDependency("org.eclipse.papyrus.uml.extensionpoints");
+						editor.addDependency("org.eclipse.emf.ecore");
 						editor.save();
-
-
-
-
+						
 						// ***********************************************************************************
 						// 1.1 Plugin customization: adding model directory and copying the profiles resources
 						// ************************************************************************************
