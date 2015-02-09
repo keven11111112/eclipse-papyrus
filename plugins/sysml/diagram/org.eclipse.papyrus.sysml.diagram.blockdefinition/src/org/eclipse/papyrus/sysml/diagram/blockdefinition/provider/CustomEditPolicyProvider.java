@@ -159,7 +159,6 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 		}
 
 		if ((editPart instanceof InstanceSpecificationEditPart) || (editPart instanceof InstanceSpecificationEditPartCN)) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
