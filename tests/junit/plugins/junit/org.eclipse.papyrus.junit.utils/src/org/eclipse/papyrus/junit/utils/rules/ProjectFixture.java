@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 451230
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -60,12 +61,22 @@ public class ProjectFixture implements TestRule {
 		return !uri.isPlatformResource() ? null : project.getWorkspace().getRoot().getFile(new Path(uri.toPlatformString(true)));
 	}
 
-	public Statement apply(final Statement base, final Description description) {
+	public Statement apply(final Statement base, Description description) {
+		String name = description.getMethodName();
+		if (name == null) {
+			// We are used as a class rule, then
+			name = description.getClassName();
+			if (name != null) {
+				name = name.substring(name.lastIndexOf('.') + 1);
+			}
+		}
+
+		final String projectName = name;
 		return new Statement() {
 
 			@Override
 			public void evaluate() throws Throwable {
-				createProject(description.getMethodName());
+				createProject(projectName);
 
 				try {
 					base.evaluate();
@@ -79,16 +90,16 @@ public class ProjectFixture implements TestRule {
 	protected void createProject(String name) throws CoreException {
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(name);
 
-		if(project.exists()) {
+		if (project.exists()) {
 			// Start clean, if we can
 			deleteProject();
 		}
 
-		if(!project.exists()) {
+		if (!project.exists()) {
 			project.create(null);
 		}
 
-		if(!project.isOpen()) {
+		if (!project.isOpen()) {
 			project.open(null);
 		}
 
@@ -103,7 +114,7 @@ public class ProjectFixture implements TestRule {
 			project.accept(new IResourceVisitor() {
 
 				public boolean visit(IResource resource) throws CoreException {
-					switch(resource.getType()) {
+					switch (resource.getType()) {
 					case IResource.FILE:
 					case IResource.FOLDER:
 						ensureWritable(resource);
@@ -117,13 +128,13 @@ public class ProjectFixture implements TestRule {
 			project.delete(true, null);
 		} catch (CoreException e) {
 			e.printStackTrace();
-			// leave the project.  We may end up re-using it, who knows?
+			// leave the project. We may end up re-using it, who knows?
 		}
 	}
 
 	protected void ensureWritable(IResource resource) throws CoreException {
 		ResourceAttributes attr = resource.getResourceAttributes();
-		if(attr.isReadOnly()) {
+		if (attr.isReadOnly()) {
 			attr.setReadOnly(false);
 			resource.setResourceAttributes(attr);
 		}
@@ -142,7 +153,7 @@ public class ProjectFixture implements TestRule {
 		assertThat("Cannot set non-workspace resource read-only", file, notNullValue());
 		setReadOnly(file);
 	}
-	
+
 	public void setReadOnly(IResource resource) {
 		setReadOnly(resource, true);
 	}
@@ -150,7 +161,7 @@ public class ProjectFixture implements TestRule {
 	public void setReadOnly(IResource resource, boolean readOnly) {
 		ResourceAttributes attr = resource.getResourceAttributes();
 
-		if(attr.isReadOnly() != readOnly) {
+		if (attr.isReadOnly() != readOnly) {
 			attr.setReadOnly(readOnly);
 
 			try {

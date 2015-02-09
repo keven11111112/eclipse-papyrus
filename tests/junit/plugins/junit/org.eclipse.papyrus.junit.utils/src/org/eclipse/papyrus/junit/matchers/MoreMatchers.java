@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -37,6 +37,19 @@ public class MoreMatchers {
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((N) item).compareTo(minimum) > 0;
+			}
+		};
+	}
+
+	public static <N extends Number & Comparable<N>> Matcher<N> lessThan(final N maximum) {
+		return new BaseMatcher<N>() {
+			public void describeTo(Description description) {
+				description.appendText("less than ").appendValue(maximum);
+			}
+
+			@SuppressWarnings("unchecked")
+			public boolean matches(Object item) {
+				return ((N) item).compareTo(maximum) < 0;
 			}
 		};
 	}

@@ -4,8 +4,6 @@ Export-Package: org.eclipse.papyrus.uml.diagram.usecase,
  org.eclipse.papyrus.uml.diagram.usecase.custom.edit.parts,
  org.eclipse.papyrus.uml.diagram.usecase.custom.factory,
  org.eclipse.papyrus.uml.diagram.usecase.custom.providers,
- org.eclipse.papyrus.uml.diagram.usecase.draw2d,
- org.eclipse.papyrus.uml.diagram.usecase.edit.commands,
  org.eclipse.papyrus.uml.diagram.usecase.edit.helpers,
  org.eclipse.papyrus.uml.diagram.usecase.edit.parts,
  org.eclipse.papyrus.uml.diagram.usecase.edit.policies,
@@ -18,8 +16,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.usecase,
  org.eclipse.papyrus.uml.diagram.usecase.part,
  org.eclipse.papyrus.uml.diagram.usecase.preferences,
  org.eclipse.papyrus.uml.diagram.usecase.providers,
- org.eclipse.papyrus.uml.diagram.usecase.sheet,
- org.eclipse.papyrus.uml.diagram.usecase.ui
+ org.eclipse.papyrus.uml.diagram.usecase.sheet
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .
 Bundle-Name: %pluginName
@@ -79,6 +76,7 @@ Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.viewpoints.configuration;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.core.log;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.tools.utils;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.elementtypesconfigurations;bundle-version="1.1.0",
  org.eclipse.core.databinding.observable
 Bundle-Vendor: %providerName
 Eclipse-LazyStart: true

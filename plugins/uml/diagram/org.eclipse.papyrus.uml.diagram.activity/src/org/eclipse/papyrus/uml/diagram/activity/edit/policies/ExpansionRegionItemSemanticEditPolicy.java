@@ -86,6 +86,30 @@ public class ExpansionRegionItemSemanticEditPolicy extends UMLBaseItemSemanticEd
 			req.setContainmentFeature(containmentFeature);
 			return getGEFWrapper(getSemanticCreationCommand(req));
 		}
+		if (UMLElementTypes.InputPin_3188 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ValuePin_3189 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.ActionInputPin_3190 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
+		if (UMLElementTypes.OutputPin_3191 == requestElementType) {
+			// adjust the containment feature
+			EReference containmentFeature = UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeOutput();
+			req.setContainmentFeature(containmentFeature);
+			return getGEFWrapper(getSemanticCreationCommand(req));
+		}
 		return super.getCreateCommand(req);
 	}
 

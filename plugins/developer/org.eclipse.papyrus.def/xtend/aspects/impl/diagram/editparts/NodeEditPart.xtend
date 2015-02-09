@@ -33,7 +33,6 @@ import utils.EditPartsUtils_qvto
 import xpt.Common
 import xpt.diagram.editparts.EditPartFactory
 import xpt.diagram.editparts.Utils_qvto
-import xpt.diagram.editpolicies.TextSelectionEditPolicy
 import xpt.CodeStyle
 import xpt.diagram.ViewmapAttributesUtils_qvto
 import org.eclipse.papyrus.papyrusgmfgenextension.SpecificNodePlate
@@ -125,6 +124,12 @@ override addFixedChild (GenNode it)'''
 		return false;
 	}
 '''
+
+    override installGraphicalNodeEditPolicy(GenNode it) '''
+
+        installEditPolicy(org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy());
+
+    '''
 
 	override def setLineWidth(GenNode it) '''
 		«generatedMemberComment»

@@ -26,30 +26,26 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.text.IDocument;
-import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
-import org.eclipse.ocl.examples.domain.utilities.DomainUtil;
-import org.eclipse.ocl.examples.domain.values.CollectionValue;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.domain.values.util.ValuesUtil;
-import org.eclipse.ocl.examples.pivot.Environment;
-import org.eclipse.ocl.examples.pivot.EnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.context.ParserContext;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationEnvironment;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitor;
-import org.eclipse.ocl.examples.pivot.evaluation.EvaluationVisitorImpl;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironment;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
 import org.eclipse.ocl.examples.xtext.console.messages.ConsoleMessages;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.evaluation.EvaluationEnvironment;
+import org.eclipse.ocl.pivot.evaluation.EvaluationVisitor;
+import org.eclipse.ocl.pivot.evaluation.ModelManager;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.ClassUtil;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.ParserContext;
+import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.utilities.ValueUtil;
+import org.eclipse.ocl.pivot.values.CollectionValue;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
@@ -82,18 +78,18 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 
 	private ParserContext parserContext;
 
-	private MetaModelManager metaModelManager;
+	private EnvironmentFactory environmentFactory;
 
-	private DomainModelManager modelManager;
+	private ModelManager modelManager;
 
 	protected Set<AbstractResultEntry> fResults = null;
 
-	public PapyrusOCLQuery(BaseDocument queryEditorDocument, ParserContext parserContext, MetaModelManager metaModelManager, DomainModelManager modelManager, EObject contextObject, ScopeEntry scopeEntry) {
+	public PapyrusOCLQuery(BaseDocument queryEditorDocument, ParserContext parserContext, EnvironmentFactory environmentFactory, ModelManager modelManager, EObject contextObject, ScopeEntry scopeEntry) {
 		this.queryEditorDocument = queryEditorDocument;
 		this.contextObject = contextObject;
 		this.scopeEntry = scopeEntry;
 		this.parserContext = parserContext;
-		this.metaModelManager = metaModelManager;
+		this.environmentFactory = environmentFactory;
 		this.modelManager = modelManager;
 
 		Collection<ScopeEntry> scopeEntries = new ArrayList<ScopeEntry>();
@@ -114,7 +110,7 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 		try {
 
 
-			IDocument doc = queryEditorDocument;
+			@SuppressWarnings("unused") IDocument doc = queryEditorDocument;
 
 			final BaseDocument editorDocument = queryEditorDocument;
 			Object value = null;
@@ -124,8 +120,8 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 
 					public Object exec(XtextResource state) throws Exception {
 						assert state != null;
-						IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
-						EvaluationRunnable runnable = new EvaluationRunnable((BaseResource) state, expression);
+						@SuppressWarnings("unused") IProgressService progressService = PlatformUI.getWorkbench().getProgressService();
+						EvaluationRunnable runnable = new EvaluationRunnable((CSResource) state, expression);
 						runnable.run(new NullProgressMonitor());
 						// progressService.busyCursorWhile(runnable);
 						return runnable.getValue();
@@ -142,7 +138,7 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 					// MessageDialog.openError(Display.getCurrent().getActiveShell(), "Error", cause.getMessage());
 				}
 			} else if (value != null) {
-				CollectionValue collectionValue = ValuesUtil.isCollectionValue(value);
+				CollectionValue collectionValue = ValueUtil.isCollectionValue(value);
 				if (collectionValue != null) {
 					for (Object elementValue : collectionValue.iterable()) {
 						if (elementValue instanceof EObject) {
@@ -178,13 +174,13 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 
 	private class EvaluationRunnable implements IRunnableWithProgress {
 
-		private final BaseResource resource;
+		private final CSResource resource;
 
 		private final String expression;
 
 		private Object value = null;
 
-		public EvaluationRunnable(BaseResource resource, String expression) {
+		public EvaluationRunnable(CSResource resource, String expression) {
 			this.resource = resource;
 			this.expression = expression;
 		}
@@ -210,20 +206,20 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 			if (expressionInOCL != null) {
 				// monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Extent);
-				PivotEnvironmentFactory envFactory = new PivotEnvironmentFactory(null, metaModelManager);
-				PivotEnvironment environment = envFactory.createEnvironment();
-				EvaluationEnvironment evaluationEnvironment = envFactory.createEvaluationEnvironment();
-				Object contextValue = metaModelManager.getIdResolver().boxedValueOf(contextObject);
-				evaluationEnvironment.add(DomainUtil.nonNullModel(expressionInOCL.getContextVariable()), contextValue);
-				// if (modelManager == null) {
-				// let the evaluation environment create one
-				DomainModelManager modelManager2 = modelManager = evaluationEnvironment.createModelManager(contextObject);
-				// }
+				ModelManager modelManager2 = modelManager;
+				if (modelManager2 == null) {
+					// let the evaluation environment create one
+					modelManager2 = modelManager = environmentFactory.createModelManager(contextObject);
+				}
+				EvaluationEnvironment evaluationEnvironment = environmentFactory.createEvaluationEnvironment(expressionInOCL, modelManager2);
+				Object contextValue = environmentFactory.getIdResolver().boxedValueOf(contextObject);
+				evaluationEnvironment.add(ClassUtil.nonNullModel(expressionInOCL.getOwnedContext()), contextValue);
 				monitor.worked(2);
 				monitor.subTask(ConsoleMessages.Progress_Evaluating);
 				try {
-					// metaModelManager.setMonitor(monitor);
-					CancelableEvaluationVisitor evaluationVisitor = new CancelableEvaluationVisitor(monitor, environment, evaluationEnvironment, modelManager2);
+					// metamodelManager.setMonitor(monitor);
+					EvaluationVisitor evaluationVisitor = environmentFactory.createEvaluationVisitor(evaluationEnvironment);
+					evaluationVisitor.setMonitor(BasicMonitor.toMonitor(monitor));
 					// evaluationVisitor.setLogger(new DomainLogger() {
 					//
 					// public void append(final @NonNull String message) {
@@ -241,34 +237,10 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 				} catch (Exception e) {
 					value = new InvalidValueException(e, ConsoleMessages.Result_EvaluationFailure);
 				} finally {
-					// metaModelManager.setMonitor(null);
+					// metamodelManager.setMonitor(null);
 				}
 			}
 			monitor.worked(4);
-		}
-	}
-
-	/**
-	 * CancelableEvaluationVisitor refines the EvaluationVisitor to poll the
-	 * monitor foer cancelation at a variety of significant
-	 * evaluation events, such as feature vists and {@link #getValueFactory()}.
-	 */
-	protected static class CancelableEvaluationVisitor extends EvaluationVisitorImpl {
-
-		private final IProgressMonitor monitor;
-
-		protected CancelableEvaluationVisitor(IProgressMonitor monitor, Environment env, EvaluationEnvironment evalEnv, DomainModelManager modelManager) {
-			super(env, evalEnv, modelManager);
-			this.monitor = monitor;
-		}
-
-		@Override
-		public EvaluationVisitor createNestedEvaluator() {
-			EnvironmentFactory factory = environment.getFactory();
-			EvaluationEnvironment nestedEvalEnv = factory.createEvaluationEnvironment(evaluationEnvironment);
-			CancelableEvaluationVisitor nestedVisitor = new CancelableEvaluationVisitor(monitor, environment, nestedEvalEnv, modelManager);
-			nestedVisitor.setLogger(getLogger());
-			return nestedVisitor;
 		}
 	}
 
@@ -301,7 +273,7 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 
 		value = value != null ? value : ""; //$NON-NLS-1$
 
-		Matcher m = pattern.matcher(value);
+		@SuppressWarnings("unused") Matcher m = pattern.matcher(value);
 
 		// if(isRegularExpression) {
 		// if(m.matches()) {

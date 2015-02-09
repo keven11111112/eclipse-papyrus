@@ -24,6 +24,7 @@ import xpt.diagram.editparts.Common
 @Singleton class ChildNodeLabelEditPart extends impl.diagram.editparts.ChildNodeLabelEditPart {
 	@Inject extension Common;
 
+
 	override handleNotificationEventBody(GenChildLabelNode it) '''
 			Object feature = event.getFeature();
 	«handleText(it)»
@@ -37,5 +38,4 @@ import xpt.diagram.editparts.Common
 	}
 	super.handleNotificationEvent(event);
 	'''
-
 }

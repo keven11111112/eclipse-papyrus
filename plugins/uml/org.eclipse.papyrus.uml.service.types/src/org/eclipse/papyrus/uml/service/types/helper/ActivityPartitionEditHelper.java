@@ -48,7 +48,7 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 				/**
 				 * separate moving elements containment and not
 				 */
-				for (Object movedElement: req.getElementsToMove().keySet()) {
+				for (Object movedElement : req.getElementsToMove().keySet()) {
 					if (movedElement instanceof ActivityNode) {
 						result.add(createMoveActivityNodeCommand(req, (ActivityNode) movedElement));
 					} else {
@@ -61,29 +61,28 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 		return super.getMoveCommand(req);
 	}
 
-	
+
 	/**
 	 * 
 	 * Create for {@link ActivityNode} {@link CompositeCommand}.
-	 * Contain {@link NotContainmentMoveCommand} to {@link Activity} and 
-	 * {@link SetValueCommand} to set not containment reference for {@link ActivityPartition}
+	 * Contain {@link NotContainmentMoveCommand} to {@link Activity} and {@link SetValueCommand} to set not containment reference for {@link ActivityPartition}
 	 */
 	private ICommand createMoveActivityNodeCommand(MoveRequest baseRequest, ActivityNode node) {
 		CompositeCommand cc = new CompositeCommand("Move ActivityNode command");
-		
+
 		ActivityPartition partition = (ActivityPartition) baseRequest.getTargetContainer();
 		EReference containmentFeature = findActivityFeature(node.eClass());
 		Activity activity = findActivity(partition);
-		
+
 		MoveRequest moveActivityNodesReq = new MoveRequest(baseRequest.getEditingDomain(), activity, containmentFeature, node);
-		
+
 		cc.add(new NotContainmentMoveCommand(moveActivityNodesReq));
 		cc.add(new SetValueCommand(new SetRequest(partition, UMLPackage.eINSTANCE.getActivityPartition_Node(), node)));
 		return cc;
 	}
-	
+
 	/**
-	 * Create new {@link MoveRequest} for @param movedElement 
+	 * Create new {@link MoveRequest} for @param movedElement
 	 * and invoke super{@link #getMoveCommand(MoveRequest)} to get default move command
 	 */
 	private ICommand createDefaultMoveCommand(MoveRequest baseRequest, EObject movedElement) {
@@ -91,7 +90,7 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 		MoveRequest moveRequest = new MoveRequest(baseRequest.getEditingDomain(), baseRequest.getTargetContainer(), containmentFeature, movedElement);
 		return super.getMoveCommand(moveRequest);
 	}
-	
+
 	/**
 	 * Find parent Activity.
 	 *

@@ -40,7 +40,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescrip
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.gmf.diagram.common.commands.CreateViewCommand;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.snap.NodeSnapHelper;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
@@ -63,11 +63,11 @@ public class StructuredClassifierCreationEditPolicy extends CreationEditPolicy {
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * The goal here is to create the view and to move it at the mouse location,
 	 * respecting a given locator. It is assumed that only affixed Port can be created on
 	 * edit part that have this edit policy, and the locator is a {@link PortPositionLocator}.
-	 *
+	 * 
 	 * @see DefaultCreationEditPolicy#getCreateCommand().
 	 * </pre>
 	 */

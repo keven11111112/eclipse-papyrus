@@ -3,9 +3,9 @@
 <suite name="Suite1" verbose="1">
 	<test name="constraints">
 		<parameter name="genModel"
-			value="../emfgen-parent/src/test/resources/models/constraints/Constraints.genmodel" />
+			value="../src/test/resources/models/constraints/Constraints.genmodel" />
 		<parameter name="ecoreModel"
-			value="../emfgen-parent/src/test/resources/models/constraints/Constraints.ecore" />
+			value="../src/test/resources/models/constraints/Constraints.ecore" />
 		<parameter name="outputDirectory" value="${project.emfgen.outdir}/" />
 		<parameter name="isRelocate" value="true" />
 		<parameter name="isGenModel" value="true" />
@@ -13,14 +13,14 @@
 		<parameter name="isGenEditor" value="true" />
 		<parameter name="isGenTests" value="true" />
 		<classes>
-			<class name="fr.cea.list.lise.emfgen.maven.test.EmfGenMojoTest" />
+			<class name="org.eclipse.papyrus.emfgen.maven.test.EmfGenMojoTest" />
 		</classes>
 	</test>
 	<test name="extlibrary">
 		<parameter name="genModel"
-			value="../emfgen-parent/src/test/resources/models/extlibrary/extlibrary.genmodel" />
+			value="../src/test/resources/models/extlibrary/extlibrary.genmodel" />
 		<parameter name="ecoreModel"
-			value="../emfgen-parent/src/test/resources/models/extlibrary/extlibrary.ecore" />
+			value="../src/test/resources/models/extlibrary/extlibrary.ecore" />
 		<parameter name="outputDirectory" value="${project.emfgen.outdir}/" />
 		<parameter name="isRelocate" value="true" />
 		<parameter name="isGenModel" value="true" />
@@ -28,7 +28,7 @@
 		<parameter name="isGenEditor" value="true" />
 		<parameter name="isGenTests" value="true" />
 		<classes>
-			<class name="fr.cea.list.lise.emfgen.maven.test.EmfGenMojoTest" />
+			<class name="org.eclipse.papyrus.emfgen.maven.test.EmfGenMojoTest" />
 		</classes>
 	</test>
 </suite>

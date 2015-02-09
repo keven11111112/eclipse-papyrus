@@ -26,7 +26,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomContextLinkCreateCommand;
+import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsCreateCommand;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Constraint;
@@ -34,11 +34,11 @@ import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.Property;
 
 public class CustomParametricContextLinkCreateCommand extends
-		CustomContextLinkCreateCommand {
+		ConstraintConstrainedElementsCreateCommand {
 
 	public CustomParametricContextLinkCreateCommand(
-			CreateRelationshipRequest request, EObject source, EObject target) {
-		super(request, source, target);
+			CreateRelationshipRequest request) {
+		super(request);
 	}
 
 	/**

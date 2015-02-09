@@ -19,8 +19,8 @@ import java.util.List;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.commands.ConfigureFeatureCommandFactory;
 import org.eclipse.papyrus.infra.services.edit.commands.IConfigureCommandFactory;
 import org.eclipse.papyrus.sysml.constraints.ConstraintBlock;
@@ -31,7 +31,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Semantic edit policy for {@link ConstraintBlock} parameters (Property) compartment.
  */
-public class ConstraintParameterCompartmentSemanticEditPolicy extends CompartmentSemanticEditPolicy {
+public class ConstraintParameterCompartmentSemanticEditPolicy extends DefaultCompartmentSemanticEditPolicy {
 
 	/**
 	 * {@inheritDoc}

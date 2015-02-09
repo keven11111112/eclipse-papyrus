@@ -108,5 +108,62 @@
          </dependsOn>
       </service>
    </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintProviders">
+      <category
+            id="org.eclipse.papyrus.uml.modelrepair.constraints"
+            name="UML Model Repair">
+      </category>
+      <constraintProvider
+            cache="true"
+            mode="Batch">
+         <package
+               namespaceUri="http://www.eclipse.org/uml2/5.0.0/UML">
+         </package>
+         <constraints
+               categories="org.eclipse.papyrus.uml.modelrepair.constraints">
+            <constraint
+                  id="org.eclipse.papyrus.uml.modelrepair.stereotypeRepair"
+                  class="org.eclipse.papyrus.uml.modelrepair.internal.validation.StereotypeApplicationRepairConstraint"
+                  isEnabledByDefault="true"
+                  lang="Java"
+                  mode="Batch"
+                  name="Stereotype applications needing repair"
+                  severity="WARNING"
+                  statusCode="1">
+               <message>
+                  Stereotype application is detached from its base element and/or is inconsistent with the currently applied profile(s).
+               </message>
+               <description>
+                  Scans stereotype applications in the model for inconsistencies of various kinds with the profiles applied on their contextual packages.  These are the same checks as are performed automatically by Papyrus when loading a UML resource.
+               </description>
+            </constraint>
+         </constraints>
+      </constraintProvider>
+   </extension>
+   <extension
+         point="org.eclipse.emf.validation.constraintBindings">
+      <clientContext
+            id="org.eclipse.papyrus.uml.modelrepair.repairContext">
+         <selector
+               class="org.eclipse.papyrus.uml.modelrepair.internal.validation.UMLClientSelector">
+         </selector>
+      </clientContext>
+      <binding
+            category="org.eclipse.papyrus.uml.modelrepair.constraints"
+            context="org.eclipse.papyrus.uml.modelrepair.repairContext">
+      </binding>
+   </extension>
+   <extension
+         point="org.eclipse.ui.ide.markerResolution">
+      <markerResolutionGenerator
+            class="org.eclipse.papyrus.uml.modelrepair.internal.validation.StereotypeRepairResolutionGenerator"
+            markerType="org.eclipse.emf.ecore.diagnostic">
+         <attribute
+               name="source"
+               value="org.eclipse.papyrus.uml.modelrepair.stereotypeRepair">
+         </attribute>
+      </markerResolutionGenerator>
+   </extension>
 
 </plugin>

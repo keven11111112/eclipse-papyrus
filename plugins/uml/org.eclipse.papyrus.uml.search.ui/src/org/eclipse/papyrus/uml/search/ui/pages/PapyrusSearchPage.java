@@ -47,24 +47,20 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ViewerSorter;
-import org.eclipse.ocl.examples.domain.evaluation.DomainModelManager;
-import org.eclipse.ocl.examples.domain.values.Value;
-import org.eclipse.ocl.examples.domain.values.impl.InvalidValueException;
-import org.eclipse.ocl.examples.pivot.ExpressionInOCL;
-import org.eclipse.ocl.examples.pivot.ParserException;
-import org.eclipse.ocl.examples.pivot.context.EObjectContext;
-import org.eclipse.ocl.examples.pivot.context.ParserContext;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerListener;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManagerResourceSetAdapter;
-import org.eclipse.ocl.examples.pivot.utilities.BaseResource;
-import org.eclipse.ocl.examples.pivot.utilities.PivotUtil;
-import org.eclipse.ocl.examples.xtext.base.utilities.CS2PivotResourceAdapter;
 import org.eclipse.ocl.examples.xtext.console.xtfo.EmbeddedXtextEditor;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.internal.EssentialOCLActivator;
-import org.eclipse.ocl.examples.xtext.essentialocl.ui.model.BaseDocument;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLCSResource;
-import org.eclipse.ocl.examples.xtext.essentialocl.utilities.EssentialOCLPlugin;
+import org.eclipse.ocl.pivot.ExpressionInOCL;
+import org.eclipse.ocl.pivot.internal.context.EObjectContext;
+import org.eclipse.ocl.pivot.resource.CSResource;
+import org.eclipse.ocl.pivot.utilities.EnvironmentFactory;
+import org.eclipse.ocl.pivot.utilities.ParserContext;
+import org.eclipse.ocl.pivot.utilities.ParserException;
+import org.eclipse.ocl.pivot.utilities.PivotUtil;
+import org.eclipse.ocl.pivot.values.InvalidValueException;
+import org.eclipse.ocl.pivot.values.Value;
+import org.eclipse.ocl.xtext.base.ui.model.BaseDocument;
+import org.eclipse.ocl.xtext.essentialocl.ui.internal.EssentialOCLActivator;
+import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLCSResource;
+import org.eclipse.ocl.xtext.essentialocl.utilities.EssentialOCLPlugin;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
@@ -127,7 +123,6 @@ import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.eclipse.xtext.resource.XtextResource;
-import org.eclipse.xtext.ui.editor.model.IXtextDocument;
 import org.eclipse.xtext.ui.editor.outline.IOutlineNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EObjectNode;
 import org.eclipse.xtext.ui.editor.outline.impl.EStructuralFeatureNode;
@@ -140,7 +135,7 @@ import com.google.inject.Injector;
  * Papyrus specific search page
  *
  */
-public class PapyrusSearchPage extends DialogPage implements ISearchPage, IReplacePage, MetaModelManagerListener {
+public class PapyrusSearchPage extends DialogPage implements ISearchPage, IReplacePage {
 
 	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
 
@@ -191,9 +186,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	private ParserContext parserContext;
 
-	private MetaModelManager nullMetaModelManager = null;
-
-	private DomainModelManager modelManager = null;
+//	private ModelManager modelManager = null;
 
 	protected Composite textQueryComposite;
 
@@ -203,7 +196,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 
 	private Button fBtnSearchForAllSelected;
-
 
 
 
@@ -924,7 +916,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						EObjectNode selectedObjectNode = (EObjectNode) selectedObject;
 						selectedObjectNode.getEObjectURI();
 						contextObject = null; // FIXME
-												// metaModelManager.loadResource(eObjectURI,
+												// metamodelManager.loadResource(eObjectURI,
 												// null, null);
 					} else if (selectedObject instanceof EStructuralFeatureNode) {
 						contextObject = null;
@@ -941,16 +933,16 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						contextObject = null;
 					}
 				}
-				MetaModelManager metaModelManager = getMetaModelManager(contextObject);
-				parserContext = new EObjectContext(metaModelManager, null, contextObject);
+				EnvironmentFactory environmentFactory = getEnvironmentFactory();
+				parserContext = new EObjectContext(environmentFactory, null, contextObject);
 				EssentialOCLCSResource csResource = (EssentialOCLCSResource) resource;
 				if (csResource != null) {
 					if (contextObject != null) {
-						CS2PivotResourceAdapter.getAdapter(csResource, metaModelManager);
+						csResource.getCS2AS();			// FIXME redundant ??
 					}
 					ResourceSet resourceSet = oclEditor.getResourceSet();
 					if (resourceSet != null) {
-						MetaModelManagerResourceSetAdapter.getAdapter(resourceSet, metaModelManager);
+						environmentFactory.adapt(resourceSet);			// FIXME redundant ??
 					}
 					csResource.setParserContext(parserContext);
 				}
@@ -961,6 +953,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	}
 
 
+	@SuppressWarnings("unused")
 	private Collection<ScopeEntry> createScopeEntries(Collection<URI> scope) {
 		Collection<ScopeEntry> results = new HashSet<ScopeEntry>();
 
@@ -975,6 +968,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		return results;
 	}
 
+	@SuppressWarnings("unused")
 	private List<ParticipantTypeElement> getParticipantsToEvaluate(HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList) {
 		List<ParticipantTypeElement> participantsToEvaluate = new ArrayList<ParticipantTypeElement>();
 
@@ -1057,15 +1051,15 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 				try {
 
 					PivotUtil.checkResourceErrors("", oclEditor.getResource()); //$NON-NLS-1$
-					ExpressionInOCL expressionInOCL = parserContext.getExpression((BaseResource) oclEditor.getResource());
-					ISearchQuery query = new PapyrusOCLQuery((BaseDocument) oclEditor.getDocument(), parserContext, getMetaModelManager(contextObject), modelManager, contextObject, scopeEntry);
+					@SuppressWarnings("unused") ExpressionInOCL expressionInOCL = parserContext.getExpression((CSResource) oclEditor.getResource());
+					ISearchQuery query = new PapyrusOCLQuery((BaseDocument) oclEditor.getDocument(), parserContext, getEnvironmentFactory(), null, contextObject, scopeEntry);
 
 
 					if (query.canRunInBackground()) {
 						NewSearchUI.runQueryInBackground(query);
 					}
 				} catch (ParserException e) {
-					Object value = new InvalidValueException(e, Messages.PapyrusSearchPage_35);
+					@SuppressWarnings("unused") Object value = new InvalidValueException(e, Messages.PapyrusSearchPage_35);
 					MessageDialog.openError(Display.getCurrent().getActiveShell(), SEARCH_ISSUE, OCL_QUERY_ILLFORMED);
 					return false;
 				}
@@ -1172,26 +1166,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	}
 
-
-
-
-	public MetaModelManager getMetaModelManager(EObject contextObject) {
-		MetaModelManager metaModelManager = contextObject != null ? PivotUtil.findMetaModelManager(contextObject) : null;
-		if (metaModelManager != null) {
-			return metaModelManager;
-		}
-		MetaModelManager nullMetaModelManager2 = nullMetaModelManager;
-		if (nullMetaModelManager2 == null) {
-			nullMetaModelManager2 = nullMetaModelManager = new MetaModelManager();
-			nullMetaModelManager2.addListener(this);
-		}
-		return nullMetaModelManager2;
-	}
-
-	public void metaModelManagerDisposed(MetaModelManager metaModelManager) {
-		metaModelManager.removeListener(this);
-		reset();
-
+	protected EnvironmentFactory getEnvironmentFactory() {
+		return oclEditor.getOCL().getEnvironmentFactory();
 	}
 
 	protected void flushEvents() {
@@ -1203,35 +1179,9 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	public void reset() {
 		if (oclEditor != null) {
-			IXtextDocument document = oclEditor.getDocument();
-			MetaModelManager metaModelManager = document.modify(new IUnitOfWork<MetaModelManager, XtextResource>() { // Cancel
-
-						// validation
-
-						public MetaModelManager exec(XtextResource state) throws Exception {
-							if (state == null) {
-								return null;
-							}
-							if (state instanceof BaseResource) {
-								((BaseResource) state).setParserContext(null);
-							}
-							return PivotUtil.findMetaModelManager(state);
-						}
-					});
 			flushEvents();
 			// editor.close(false);
 			flushEvents();
-			if (metaModelManager != null) {
-				metaModelManager.dispose();
-			}
-		}
-		if (modelManager != null) {
-			// modelManager.dispose();
-			modelManager = null;
-		}
-		if (nullMetaModelManager != null) {
-			nullMetaModelManager.dispose();
-			nullMetaModelManager = null;
 		}
 		parserContext = null;
 		contextObject = null;

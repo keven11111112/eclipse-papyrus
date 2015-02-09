@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Anatoliy Tischenko - Initial API and implementation
+ *  Christian W. Damus - bug 451230
+ *
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.activity.tests.edit.helper;
 
 import static org.junit.Assert.assertEquals;
@@ -19,9 +32,9 @@ import org.eclipse.emf.transaction.impl.TransactionalEditingDomainImpl;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.service.types.command.CreateEditBasedElementCommand;
 import org.eclipse.papyrus.uml.service.types.helper.ExpansionNodeHelper;
 import org.eclipse.papyrus.uml.service.types.helper.ExpansionRegionHelper;
 import org.eclipse.uml2.uml.ExpansionRegion;
@@ -60,7 +73,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 		CreateElementRequest expansionNodeCreateRequest = initCreateElementRequest(UMLElementTypes.ExpansionNode_3074, UMLPackage.eINSTANCE.getExpansionRegion_InputElement());
 		ICommand command = myHelperInstance.getCreateCommand(expansionNodeCreateRequest);
 		commonExpansionRegionCreateChildTest(command);
-		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand)command;
+		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand) command;
 		assertNotEquals(expansionNodeCreateRequest, createCommand.getCreateRequest());
 		CreateElementRequest changedRequest = createCommand.getCreateRequest();
 		assertEquals(changedRequest.getContainer(), expansionNodeCreateRequest.getContainer());
@@ -74,7 +87,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 		CreateElementRequest expansionRegionContainmentCreateRequest = initCreateElementRequest(UMLElementTypes.StructuredActivityNode_3065, UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
 		ICommand command = myHelperInstance.getCreateCommand(expansionRegionContainmentCreateRequest);
 		commonExpansionRegionCreateChildTest(command);
-		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand)command;
+		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand) command;
 		assertEquals(expansionRegionContainmentCreateRequest, createCommand.getCreateRequest());
 	}
 
@@ -102,10 +115,10 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 	private ExpansionRegion loadExpansionRegion() throws UnexpectedException {
 		ResourceSet resourceSet = myUMLEditor.getEditingDomain().getResourceSet();
 		Resource resource = resourceSet.getResource(URI.createURI(TEST_UML_MODEL), true);
-		for(Iterator<EObject> i = resource.getAllContents(); i.hasNext();) {
+		for (Iterator<EObject> i = resource.getAllContents(); i.hasNext();) {
 			EObject content = i.next();
-			if(content instanceof ExpansionRegion) {
-				return (ExpansionRegion)content;
+			if (content instanceof ExpansionRegion) {
+				return (ExpansionRegion) content;
 			}
 		}
 		throw new UnexpectedException("ExpansionRegion element was not fount in " + TEST_UML_MODEL);

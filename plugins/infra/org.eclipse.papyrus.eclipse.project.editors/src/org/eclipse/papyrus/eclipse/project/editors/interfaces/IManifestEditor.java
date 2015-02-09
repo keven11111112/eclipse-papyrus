@@ -51,13 +51,14 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	public static final String BUNDLE_LOCALIZATION = "Bundle-Localization"; //$NON-NLS-1$
 	
 	/**
-	 *
+	 * Add a dependency to the MANIFEST
 	 * @param dependency
 	 *            the dependency to add
 	 */
 	public void addDependency(final String dependency);
 
 	/**
+	 * Add a specific version of a dependency to the MANIFEST
 	 *
 	 * @param dependency
 	 *            the dependency to add
@@ -66,6 +67,13 @@ public interface IManifestEditor extends IProjectEditor, IFileEditor {
 	 */
 	public void addDependency(final String dependency, final String version);
 
+	/**
+	 * Check whether a dependency is already present in the MANIFEST
+	 *
+	 * @param dependency
+	 *            the dependency to check
+	 */
+	public boolean hasDependency(final String dependency);
 
 	/**
 	 *

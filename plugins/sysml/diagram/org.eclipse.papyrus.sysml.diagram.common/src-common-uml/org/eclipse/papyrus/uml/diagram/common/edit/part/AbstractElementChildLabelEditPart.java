@@ -80,13 +80,13 @@ import org.eclipse.papyrus.extensionpoints.editors.ui.IPopupEditorHelper;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.gmf.diagram.common.edit.part.ITextAwareEditPart;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.LabelDirectEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextNonResizableEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.TextSelectionEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.locator.CellEditorLocatorUtil;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusAnchorableWrappingLabel;
 import org.eclipse.papyrus.sysml.diagram.common.Activator;
@@ -708,7 +708,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getModelSourceConnections()
-	 *
+	 * 
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelSourceConnections()
 	 */
 	@Override
@@ -719,7 +719,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getModelTargetConnections()
-	 *
+	 * 
 	 * @see org.eclipse.gef.editparts.AbstractGraphicalEditPart#getModelTargetConnections()
 	 */
 	@Override
@@ -731,7 +731,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor()
-	 *
+	 * 
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
 	 */
 	@Override
@@ -761,7 +761,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getAnchorableFigure()
-	 *
+	 * 
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	protected IAnchorableFigure getAnchorableFigure() {
@@ -776,7 +776,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getSourceConnectionAnchor()
-	 *
+	 * 
 	 * @see org.eclipse.gef.NodeEditPart#getSourceConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	@Override
@@ -797,7 +797,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor()
-	 *
+	 * 
 	 * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.ConnectionEditPart)
 	 */
 	@Override
@@ -832,7 +832,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#getTargetConnectionAnchor()
-	 *
+	 * 
 	 * @see org.eclipse.gef.NodeEditPart#getTargetConnectionAnchor(org.eclipse.gef.Request)
 	 */
 	@Override
@@ -853,7 +853,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#mapConnectionAnchorToTerminal()
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapConnectionAnchorToTerminal(org.eclipse.draw2d.ConnectionAnchor)
 	 */
 	@Override
@@ -864,7 +864,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 	/*
 	 * (non-Javadoc)
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#mapTerminalToConnectionAnchor()
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INodeEditPart#mapTerminalToConnectionAnchor(java.lang.String)
 	 */
 	@Override
@@ -875,7 +875,7 @@ public class AbstractElementChildLabelEditPart extends GraphicalEditPart impleme
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.INotableEditPart#canAttachNote()
 	 * Copied from @see org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeNodeEditPart#canAttachNote()
 	 */

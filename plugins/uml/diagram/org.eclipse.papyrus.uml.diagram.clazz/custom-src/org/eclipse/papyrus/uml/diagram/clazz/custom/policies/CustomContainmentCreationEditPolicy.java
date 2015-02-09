@@ -29,6 +29,7 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.LabelEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ContainmentDragDropHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPartCN;
@@ -38,12 +39,11 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditP
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * The Class CustomContainmentCreationEditPolicy.
  */
-public class CustomContainmentCreationEditPolicy extends PapyrusCreationEditPolicy {
+public class CustomContainmentCreationEditPolicy extends DefaultCreationEditPolicy {
 
 	private static List<Integer> ourCanHaveContainmentLinks = Arrays.asList(new Integer[] { NestedClassForClassEditPart.VISUAL_ID, ClassEditPartCN.VISUAL_ID, PackageEditPartCN.VISUAL_ID, ModelEditPartCN.VISUAL_ID, ModelEditPartTN.VISUAL_ID,
 			ClassEditPart.VISUAL_ID, PackageEditPart.VISUAL_ID });

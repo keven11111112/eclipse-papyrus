@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2014 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,8 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 451230
+ *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers;
 
@@ -65,6 +67,7 @@ public class HyperlinkEditPolicyProvider extends AbstractProvider implements IEd
 	 */
 	public void createEditPolicies(EditPart editPart) {
 		if (editPart instanceof IPrimaryEditPart) {
+			editPart.removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
 			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
 		}
 		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());

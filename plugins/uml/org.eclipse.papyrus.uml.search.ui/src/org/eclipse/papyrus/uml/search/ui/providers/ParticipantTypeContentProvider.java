@@ -42,6 +42,7 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 
 	}
 
+	@SuppressWarnings("unchecked")
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 		participantsList = (HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>) newInput;
 	}
@@ -52,7 +53,7 @@ public class ParticipantTypeContentProvider implements ITreeContentProvider {
 		List<Object> result = new ArrayList<Object>();
 
 		if (inputElement instanceof HashMap) {
-			return ((HashMap) inputElement).keySet().toArray();
+			return ((HashMap<?,?>) inputElement).keySet().toArray();
 		}
 
 

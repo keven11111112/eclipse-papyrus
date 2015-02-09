@@ -76,15 +76,15 @@
     <labels href="UML.ReusableParts.idgen#linklabel_uml_association_target_multiplicity"/>
   </customEdges>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_constraint_as_list" label="BlockConstraint" title="constraints"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowport_as_list" label="FlowPort" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortCompartmentSemanticEditPolicy" title="flow ports"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowport_as_list" label="FlowPort" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortDefaultCompartmentSemanticEditPolicy" title="flow ports"/>
   <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_flowproperty_as_list" label="FlowProperty" title="flow properties"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_parameter_as_list" label="Parameter" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterCompartmentSemanticEditPolicy" title="parameters"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_part_as_list" label="PartProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PartCompartmentSemanticEditPolicy" title="parts"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_property_as_list" label="BlockProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyCompartmentSemanticEditPolicy" title="properties"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_reference_as_list" label="ReferenceProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceCompartmentSemanticEditPolicy" title="references"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_structure" label="Structure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureCompartmentSemanticEditPolicy" title="structure" list="false"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_blockproperty_structure" label="BlockPropertyStructure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureCompartmentSemanticEditPolicy" title="structure" list="false"/>
-  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_value_as_list" label="ValueProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueCompartmentSemanticEditPolicy" title="values"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_parameter_as_list" label="Parameter" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterDefaultCompartmentSemanticEditPolicy" title="parameters"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_part_as_list" label="PartProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PartDefaultCompartmentSemanticEditPolicy" title="parts"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_property_as_list" label="BlockProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyDefaultCompartmentSemanticEditPolicy" title="properties"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_reference_as_list" label="ReferenceProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceDefaultCompartmentSemanticEditPolicy" title="references"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_structure" label="Structure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureDefaultCompartmentSemanticEditPolicy" title="structure" list="false"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_blockproperty_structure" label="BlockPropertyStructure" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureDefaultCompartmentSemanticEditPolicy" title="structure" list="false"/>
+  <customDecorations xsi:type="idgen:CustomCompartment" id="compartment_sysml_value_as_list" label="ValueProperty" semanticPolicy="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueDefaultCompartmentSemanticEditPolicy" title="values"/>
   <customDecorations xsi:type="idgen:CustomAffixedLabel" id="affixedlabel_sysml_flowport_label" label="FlowPortAffixedLabel" editPart="org.eclipse.papyrus.sysml.diagram.common.edit.part.FlowPortAffixedLabelNameEditPart" role="Label">
     <locator href="UML.ReusableParts.idgen#org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"/>
   </customDecorations>
@@ -127,13 +127,13 @@
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.ConstraintBlockPropertyCompositeEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.part.AssociationEditPart"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.figure.AssociationFigure"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PartCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueCompartmentSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ConstraintParameterDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PartDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.PropertyDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ReferenceDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.StructureDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.ValueDefaultCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockPropertyStructureDefaultCompartmentSemanticEditPolicy"/>
   <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy"/>
-  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortCompartmentSemanticEditPolicy"/>
+  <javaClasses qualifiedName="org.eclipse.papyrus.sysml.diagram.common.edit.policy.FlowPortDefaultCompartmentSemanticEditPolicy"/>
 </idgen:Diagram>

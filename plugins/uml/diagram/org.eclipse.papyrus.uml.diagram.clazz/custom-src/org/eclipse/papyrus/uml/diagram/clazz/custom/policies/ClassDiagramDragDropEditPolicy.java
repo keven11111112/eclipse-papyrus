@@ -42,8 +42,8 @@ import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.AssociationClassHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ClassLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.ContainmentHelper;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.CustomMultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.InstanceSpecificationLinkHelper;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiAssociationHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.helper.MultiDependencyHelper;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationEditPart;
@@ -175,30 +175,27 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 	 * @return the command in charge of the drop
 	 */
 	protected Command dropInstanceSpecification(DropObjectsRequest dropRequest, Element semanticLink, int linkVISUALID) {
-		if (semanticLink instanceof InstanceSpecification) {
-			if (((InstanceSpecification) semanticLink).getClassifiers().size() > 0) {
-				if (((InstanceSpecification) semanticLink).getClassifiers().get(0) instanceof Association) {
-					// DROP AS LINK
-					List<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification) semanticLink));
-					if (endTypes.size() > 0) {
-						Element source = endTypes.get(0);
-						Element target = endTypes.get(1);
-						return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
-					}
-				}
-			}
-			// DROP AS A NODE
-			EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
-			// Restrict the default node creation to the following cases:
-			// . Take the containment relationship into consideration
-			// . Release the constraint when GraphicalParent is a diagram
-			// drop into diagram
-			if (getHost().getModel() instanceof Diagram) {
-				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
-				// drop into another editpart
-			} else if ((graphicalParent instanceof Element) && ((Element) graphicalParent).getOwnedElements().contains(semanticLink)) {
-				return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPartCN.VISUAL_ID, dropRequest.getLocation(), semanticLink));
-			}
+		if (false == (semanticLink instanceof InstanceSpecification)) {
+			return UnexecutableCommand.INSTANCE;
+		}
+		// DROP AS LINK
+		List<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification) semanticLink));
+		if (endTypes.size() > 0) {
+			Element source = endTypes.get(0);
+			Element target = endTypes.get(1);
+			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Instance"), source, target, InstanceSpecificationLinkEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+		}
+		// DROP AS A NODE
+		EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
+		// Restrict the default node creation to the following cases:
+		// . Take the containment relationship into consideration
+		// . Release the constraint when GraphicalParent is a diagram
+		// drop into diagram
+		if (getHost().getModel() instanceof Diagram) {
+			return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
+			// drop into another editpart
+		} else if ((graphicalParent instanceof Element) && ((Element) graphicalParent).getOwnedElements().contains(semanticLink)) {
+			return new ICommandProxy(getDefaultDropNodeCommand(InstanceSpecificationEditPartCN.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 		}
 		return UnexecutableCommand.INSTANCE;
 	}
@@ -254,7 +251,7 @@ public class ClassDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPol
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop Association"), source, target, AssociationEditPart.VISUAL_ID, dropRequest.getLocation(), semanticLink));
 		}
 		if (endtypes.size() > 2) {
-			CustomMultiAssociationHelper associationHelper = new CustomMultiAssociationHelper(getEditingDomain());
+			MultiAssociationHelper associationHelper = new MultiAssociationHelper(getEditingDomain());
 			return associationHelper.dropMutliAssociation((Association) semanticLink, getViewer(), getDiagramPreferencesHint(), dropRequest.getLocation(), ((GraphicalEditPart) getHost()).getNotationView());
 		}
 		return UnexecutableCommand.INSTANCE;

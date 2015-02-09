@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
  *
- *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ * 
  * 		Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -181,6 +181,12 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML Constraint */
 	public static final IHintedType CONSTRAINT = (IHintedType) getElementType("org.eclipse.papyrus.uml.Constraint"); //$NON-NLS-1$
+
+	/** IElementType for UML Constraint.ConstrainedElements */
+	public static final IHintedType CONSTRAINT_CONSTRAINEDELEMENTS = (IHintedType) getElementType("org.eclipse.papyrus.uml.Constraint.ConstrainedElements"); //$NON-NLS-1$
+
+	/** IElementType for UML Constraint.Context */
+	public static final IHintedType CONSTRAINT_CONTEXT = (IHintedType) getElementType("org.eclipse.papyrus.uml.Constraint.Context"); //$NON-NLS-1$
 
 	/** IElementType for UML Continuation */
 	public static final IHintedType CONTINUATION = (IHintedType) getElementType("org.eclipse.papyrus.uml.Continuation"); //$NON-NLS-1$
@@ -463,6 +469,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML Namespace */
 	public static final IHintedType NAMESPACE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Namespace"); //$NON-NLS-1$
+
+	/** IElementType for UML Namespace.OwnedMember */
+	public static final IHintedType NAMESPACE_OWNEDMEMBER = (IHintedType) getElementType("org.eclipse.papyrus.uml.Namespace.OwnedMember"); //$NON-NLS-1$
 
 	/** IElementType for UML Node */
 	public static final IHintedType NODE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Node"); //$NON-NLS-1$

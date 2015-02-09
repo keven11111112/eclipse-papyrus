@@ -95,7 +95,7 @@ public class DynamicTablesMenuContribution extends DynamicContribution {
 		for (int i = 0; i != data.size(); i++) {
 			final ViewPrototype proto = data.get(i);
 			String label = labels.get(i);
-			items.add(new ActionContributionItem(new Action(CREATE_MESSAGE + label, proto.getIconDescriptor()) {
+			items.add(new ActionContributionItem(new Action(label, proto.getIconDescriptor()) {
 				@Override
 				public void run() {
 					proto.instantiateOn(selection);

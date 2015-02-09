@@ -27,6 +27,7 @@
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.sysml.nattable.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.sysml.properties.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.uml.alf.feature</module>
+        <module>../features/papyrus-main-features/org.eclipse.papyrus.uml.assistants.feature</module>
         <module>../features/papyrus-main-features/org.eclipse.papyrus.uml.decoratormodel.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.uml.diagram.css.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.uml.diagram.feature</module>
@@ -113,6 +114,18 @@
 		<module>../plugins/infra/org.eclipse.papyrus.infra.extendedtypes</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.edit</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.extendedtypes.emf</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.edit</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.editor</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.emf</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes</module>
+        <module>../plugins/infra/org.eclipse.papyrus.infra.filters</module>
+        <module>../plugins/infra/org.eclipse.papyrus.infra.filters.edit</module>
+		<module>../plugins/uml/tools/org.eclipse.papyrus.uml.tools.elementtypesconfigurations</module>
+        <module>../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant</module>
+        <module>../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.edit</module>
+        <module>../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.editor</module>
+        <module>../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.ui</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common</module>
 		<module>../plugins/doc/org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
@@ -203,6 +216,10 @@
 		<module>../plugins/uml/alf/org.eclipse.papyrus.uml.alf.common</module>
 		<module>../plugins/uml/alf/org.eclipse.papyrus.uml.alf.common.ui</module>
 		<module>../plugins/uml/alf/org.eclipse.papyrus.uml.alf.ui</module>
+        <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator</module>
+        <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.ui</module>
+        <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator</module>
+        <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.appearance</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.commands</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.controlmode.profile</module>
@@ -243,6 +260,8 @@
 		<module>../plugins/doc/org.eclipse.papyrus.uml.doc</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.documentation.profile</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.extensionpoints</module>
+        <module>../plugins/uml/org.eclipse.papyrus.uml.filters</module>
+        <module>../plugins/uml/org.eclipse.papyrus.uml.filters.edit</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.icons</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.import</module>
 		<module>../plugins/uml/modelexplorer/org.eclipse.papyrus.uml.modelexplorer</module>
@@ -329,31 +348,31 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201412160330/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201502030703/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201412160441/mwe2lang</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201502030947/mwe2lang</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201412161904</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201502040445</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201412161741</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201502040400</url>
 		</repository>
 		<repository>
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M4-201412102000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M5a-201502031300/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -365,13 +384,13 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201412161742</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201502040339</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201412162002</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201502040533</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
@@ -383,13 +402,13 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201412160338/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201502030723/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
-			<!-- updateFrom("MDT OCL 5.1",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.1.0/S201412151441</url>
+			<!-- updateFrom("MDT OCL 6.0",0) -->
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201502021341</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -401,13 +420,18 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201412161054</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201502021150</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
 			<layout>p2</layout>
 			<url>http://download.eclipse.org/nattable/releases/1.1.0/repository/</url>
 		</repository>
+        <repository>
+            <id>nebula-tablecombo</id>
+            <layout>p2</layout>
+            <url>http://download.eclipse.org/technology/nebula/snapshot/</url>
+        </repository>
 		<repository>
 			<id>orbit</id>
 			<layout>p2</layout>
@@ -417,7 +441,7 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201412160421/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/head/S201502030924/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
@@ -447,9 +471,9 @@
 	</pluginRepositories>
 	<build>
 		<pluginManagement>
-			<plugins>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
 					<artifactId>maven-compiler-plugin</artifactId>
 					<version>3.2</version>
 					<configuration>

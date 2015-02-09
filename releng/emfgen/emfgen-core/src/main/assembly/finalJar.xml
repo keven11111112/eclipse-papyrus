@@ -14,7 +14,7 @@
 			<fileMode>0755</fileMode>
 			<directoryMode>0755</directoryMode>
 			<includes>
-				<include>fr.cea.list.lise.emfgen:emfgen-core</include>
+				<include>org.eclipse.papyrus.emfgen:emfgen-core</include>
 			</includes>
 		</dependencySet>
 		<!--to include the dependent jars in transitive manner -->

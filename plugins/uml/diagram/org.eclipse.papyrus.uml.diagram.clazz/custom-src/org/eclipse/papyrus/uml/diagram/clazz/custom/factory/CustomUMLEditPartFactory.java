@@ -19,7 +19,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AssociationEndSour
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.AssociationEndTargetEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CAssociationClassEndSourceEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CAssociationClassEndTargetEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CContainmentCircleEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CDependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CModelEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part.CModelEditPartCN;
@@ -37,7 +36,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationClassRoleTarg
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.DurationObservationFloatingNameEditPart;
@@ -77,8 +75,6 @@ public class CustomUMLEditPartFactory extends UMLEditPartFactory {
 				return new CPackageEditPartCN(view);
 			case ModelEditPartTN.VISUAL_ID:
 				return new CModelEditPart(view);
-			case ContainmentCircleEditPart.VISUAL_ID:
-				return new CContainmentCircleEditPart(view);
 			case ModelEditPartCN.VISUAL_ID:
 				return new CModelEditPartCN(view);
 			case AssociationSourceNameEditPart.VISUAL_ID:

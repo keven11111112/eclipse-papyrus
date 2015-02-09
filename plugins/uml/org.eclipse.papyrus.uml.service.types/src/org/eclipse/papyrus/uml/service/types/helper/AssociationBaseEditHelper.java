@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ *		
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.service.types.command.AssociationReorientCommand;
+import org.eclipse.papyrus.uml.service.types.utils.RequestParameterConstants;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -44,7 +45,7 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 
 	/**
 	 * This method provides the source type provided as {@link ConfigureRequest} parameter.
-	 *
+	 * 
 	 * @return the target role
 	 */
 	private Classifier getSourceOwnerType(ConfigureRequest req) {
@@ -59,7 +60,7 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 
 	/**
 	 * This method provides the target type provided as {@link ConfigureRequest} parameter.
-	 *
+	 * 
 	 * @return the target role
 	 */
 	private Classifier getTargetOwnerType(ConfigureRequest req) {
@@ -74,7 +75,7 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 
 	/**
 	 * Test if the relationship creation is allowed.
-	 *
+	 * 
 	 * @param source
 	 *            the relationship source can be null
 	 * @param target
@@ -119,7 +120,7 @@ public class AssociationBaseEditHelper extends ElementEditHelper {
 
 		// Propose a container if none is set in request.
 		// EObject proposedContainer = EMFCoreUtil.getLeastCommonContainer(Arrays.asList(new EObject[]{ source, target }), UMLPackage.eINSTANCE.getPackage());
-		View sourceView = (View) req.getParameter(org.eclipse.papyrus.infra.services.edit.utils.RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW);
+		View sourceView = (View) req.getParameter(RequestParameterConstants.EDGE_CREATE_REQUEST_SOURCE_VIEW);
 		if (sourceView != null) {
 			Diagram diagram = sourceView.getDiagram();
 			EObject proposedContainer = EMFCoreUtil.getContainer(diagram.getElement(), UMLPackage.Literals.PACKAGE);

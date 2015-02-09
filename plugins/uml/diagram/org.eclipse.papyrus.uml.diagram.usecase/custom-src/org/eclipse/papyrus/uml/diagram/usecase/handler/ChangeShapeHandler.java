@@ -28,6 +28,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.uml.diagram.usecase.part.UMLDiagramEditorPlugin;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.IWorkbenchWindow;
@@ -75,7 +76,7 @@ public abstract class ChangeShapeHandler extends AbstractHandler {
 		try {
 			transactionalEditingDomain = util.getTransactionalEditingDomain(editPart);
 		} catch (Exception e) {
-			System.err.println("impossible to get the Transactional Editing Domain " + e);
+			UMLDiagramEditorPlugin.getInstance().logError("Impossible to get the Transactional Editing Domain.", e);
 		}
 		try {
 			editPart.getEditingDomain().runExclusive(new Runnable() {

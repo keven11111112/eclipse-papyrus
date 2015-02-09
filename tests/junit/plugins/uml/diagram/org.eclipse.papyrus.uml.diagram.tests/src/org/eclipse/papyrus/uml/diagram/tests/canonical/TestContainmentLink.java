@@ -39,110 +39,98 @@ public abstract class TestContainmentLink extends TestLink {
 	 * Test view deletion.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	@Override
 	public void testViewDeletion(IElementType type) {
-		//DELETION OF THE VIEW
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
+		// DELETION OF THE VIEW
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(VIEW_DELETION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		Request deleteViewRequest = new GroupRequest(RequestConstants.REQ_DELETE);
-		Command command = ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)).getCommand(deleteViewRequest); //$NON-NLS-1$
+		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
 		assertNotNull(VIEW_DELETION + COMMAND_NULL, command);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue(VIEW_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(VIEW_DELETION + TEST_THE_EXECUTION, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(VIEW_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(VIEW_DELETION + TEST_THE_UNDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(VIEW_DELETION + TEST_THE_UNDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(VIEW_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(VIEW_DELETION + TEST_THE_REDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(VIEW_DELETION + TEST_THE_REDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 	}
 
 	/**
 	 * Test destroy.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	@Override
 	public void testDestroy(IElementType type) {
-		//DESTROY SEMANTIC+ VIEW
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		// DESTROY SEMANTIC+ VIEW
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		assertTrue(DESTROY_DELETION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
 		Request deleteViewRequest = new EditCommandRequestWrapper(new DestroyElementRequest(false));
-		Command command = ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)).getCommand(deleteViewRequest); //$NON-NLS-1$
-		assertNotNull(DESTROY_DELETION + COMMAND_NULL, command);
-		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
-		assertTrue(DESTROY_DELETION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(DESTROY_DELETION + TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(DESTROY_DELETION + TEST_THE_UNDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(DESTROY_DELETION + TEST_THE_REDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
+		Command command = ((ConnectionEditPart) source.getSourceConnections().get(0)).getCommand(deleteViewRequest);
+		// ContainmentLink cannot be destroyed
+		assertTrue(DESTROY_DELETION + COMMAND_NULL, command == null);
+
 	}
 
 	/**
 	 * Test drop.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 */
 	@Override
 	public void testDrop(IElementType type) {
-		//DROP
-		//it is impossible to drop but you can recreat the link between this element
+		// DROP
+		// it is impossible to drop but you can recreat the link between this element
 		assertTrue(DROP + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(DROP + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(DROP + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
-		assertTrue(DROP + TEST_THE_REDO, ((Diagram)getRootView()).getEdges().size() == 0);
+		assertTrue(DROP + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(DROP + TEST_THE_REDO, ((Diagram) getRootView()).getEdges().size() == 0);
 	}
 
 	/**
 	 * Test to create a link.
 	 *
 	 * @param linkType
-	 *        the type
+	 *            the type
 	 */
 	@Override
 	public void testToCreateALink(IElementType linkType, String initialName) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 4);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0);
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 0);
-		assertTrue(CREATION + TEST_THE_UNDO, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 0);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 0);
+		assertTrue(CREATION + TEST_THE_UNDO, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 0);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 1);
-		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + TEST_THE_EXECUTION, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 	}
 
 	@Override
 	public void installEnvironment(IElementType sourceType, IElementType targetType) {
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 0);
-		//create the source
+		// create the source
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 100));
 		Command command = getDiagramEditPart().getCommand(requestcreation);
@@ -150,7 +138,7 @@ public abstract class TestContainmentLink extends TestLink {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the source player to test reconnect
+		// create the source player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(sourceType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(100, 300));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -158,7 +146,7 @@ public abstract class TestContainmentLink extends TestLink {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the target
+		// create the target
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 100));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -166,7 +154,7 @@ public abstract class TestContainmentLink extends TestLink {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		//create the target player to test reconnect
+		// create the target player to test reconnect
 		requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(new Point(300, 300));
 		command = getDiagramEditPart().getCommand(requestcreation);
@@ -174,18 +162,18 @@ public abstract class TestContainmentLink extends TestLink {
 		assertTrue(CREATION + TEST_IF_THE_COMMAND_IS_CREATED, command != UnexecutableCommand.INSTANCE);
 		assertTrue("CREATION: " + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true); //$NON-NLS-1$
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		source = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
-		sourcePlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(1);
-		target = (GraphicalEditPart)getDiagramEditPart().getChildren().get(2);
-		targetPlayer = (GraphicalEditPart)getDiagramEditPart().getChildren().get(3);
+		source = (GraphicalEditPart) getDiagramEditPart().getChildren().get(0);
+		sourcePlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(1);
+		target = (GraphicalEditPart) getDiagramEditPart().getChildren().get(2);
+		targetPlayer = (GraphicalEditPart) getDiagramEditPart().getChildren().get(3);
 	}
 
 	@Override
 	public void testTargetReconnectAMultiLink(IElementType type) {
-		//target reconnection
+		// target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
-		assertTrue(THE_LINK_RECONNECT_EXISTS, ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)) != null); //$NON-NLS-1$
-		ConnectionEditPart binaryLink = ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)); //$NON-NLS-1$
+		assertTrue(THE_LINK_RECONNECT_EXISTS, (ConnectionEditPart) target.getTargetConnections().get(0) != null);
+		ConnectionEditPart binaryLink = (ConnectionEditPart) target.getTargetConnections().get(0);
 		reconnectRequest.setConnectionEditPart(binaryLink);
 		reconnectRequest.setTargetEditPart(targetPlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_TARGET);
@@ -193,44 +181,42 @@ public abstract class TestContainmentLink extends TestLink {
 		assertTrue(RECONNECTION_TARGET + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().execute(cmd);
 		// EditorUtils.getTransactionalEditingDomain().getCommandStack().execute(cmd);
-		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, ((Diagram)getRootView()).getEdges().size() == 1);
-		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 3);
+		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, ((Diagram) getRootView()).getEdges().size() == 1);
+		assertTrue(RECONNECTION_TARGET + TEST_THE_EXECUTION, getRootSemanticModel().getOwnedElements().size() == 2);
 		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET, binaryLink.getTarget().equals(targetPlayer));
-		//undo
+		// undo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().undo();
 		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_UNDO, binaryLink.getTarget().equals(target));
-		//redo
+		// redo
 		getDiagramEditPart().getDiagramEditDomain().getDiagramCommandStack().redo();
 		assertTrue(LINK_EXISTS_RECONNECTION_ON_TARGET + TEST_THE_REDO, binaryLink.getTarget().equals(targetPlayer));
 	}
 
 	@Override
 	public void testSourceReconnectAMultiLink(IElementType type) {
-		//target reconnection
+		// target reconnection
 		ReconnectRequest reconnectRequest = new ReconnectRequest();
-		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)) != null); //$NON-NLS-1$
-		ConnectionEditPart branch = ((ConnectionEditPart)source.getChildBySemanticHint("3032").getSourceConnections().get(0)); //$NON-NLS-1$
+		assertTrue(THE_LINK_TO_RECONNECT_EXISTS, ((ConnectionEditPart) source.getSourceConnections().get(0)) != null); //$NON-NLS-1$
+		ConnectionEditPart branch = ((ConnectionEditPart) source.getSourceConnections().get(0)); //$NON-NLS-1$
 		reconnectRequest.setConnectionEditPart(branch);
 		reconnectRequest.setTargetEditPart(sourcePlayer);
 		reconnectRequest.setType(RequestConstants.REQ_RECONNECT_SOURCE);
 		Command cmd = sourcePlayer.getCommand(reconnectRequest);
-		//it is impossible to reconnect source of the link
-		assertTrue(RECONNECTION_SOURCE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == false);
+		assertTrue(RECONNECTION_SOURCE + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, cmd.canExecute() == true);
 	}
 
 	/**
 	 * Test to manage top node.
 	 *
 	 * @param type
-	 *        the type
+	 *            the type
 	 * @param containerType
-	 *        the container type
+	 *            the container type
 	 */
 	public void testToManageLink(IElementType sourceType, IElementType targetType, IElementType linkType, IElementType containerType) {
 		installEnvironment(sourceType, targetType);
-		testToCreateALink(linkType,null);
+		testToCreateALink(linkType, null);
 		testDestroy(linkType);
-		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
 		testViewDeletion(linkType);
 		testDrop(linkType);
 		testRecreation(linkType);
@@ -239,27 +225,27 @@ public abstract class TestContainmentLink extends TestLink {
 	}
 
 	public void testRecreation(IElementType linkType) {
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		Command command = target.getCommand(createConnectionViewRequest(linkType, source, target));
 		assertNotNull(CREATION + COMMAND_NULL, command);
 		assertTrue(CONTAINER_CREATION + TEST_IF_THE_COMMAND_CAN_BE_EXECUTED, command.canExecute() == true);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().undo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 0);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 0);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 		diagramEditor.getDiagramEditDomain().getDiagramCommandStack().redo();
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram)getRootView()).getEdges().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Diagram) getRootView()).getEdges().size() == 1);
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 4);
 		assertTrue(CREATION + INITIALIZATION_TEST, getRootSemanticModel().getOwnedElements().size() == 3);
-		assertTrue(CREATION + INITIALIZATION_TEST, ((Element)source.resolveSemanticElement()).getOwnedElements().size() == 1);
+		assertTrue(CREATION + INITIALIZATION_TEST, ((Element) source.resolveSemanticElement()).getOwnedElements().size() == 1);
 	}
 }

@@ -27,7 +27,6 @@ import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ReconnectRequest;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.ICompositeCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
@@ -36,23 +35,16 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateConnectionViewRequest.ConnectionViewDescriptor;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.command.ContainmentCircleViewCreateCommand;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomCreateContainmentLinkCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.command.CustomDropAppliedStereotypeCommand;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentSubLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ModelEditPartTN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.NestedClassForClassEditPart;
@@ -60,8 +52,6 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.clazz.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.ElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -86,48 +76,7 @@ public class ContainmentHelper extends ElementHelper {
 		this.editDomain = editDomain;
 	}
 
-	/**
-	 * Create a containment link view with the semantic transformation.
-	 * This link can be created between two classes or between the node of the containment link with the targeted class or package
-	 *
-	 * @param createConnectionViewRequest
-	 *            the create connection view request
-	 * @param command
-	 *            the command
-	 *
-	 * @return the containment element command
-	 */
-	public Command getCreateContainmentCommand(CreateConnectionViewRequest createConnectionViewRequest, Command command) {
-		CompositeCommand compoundCommand = new CompositeCommand(CREATE_CONTAINMENT);
-		IGraphicalEditPart sourceEditPart = (GraphicalEditPart) createConnectionViewRequest.getSourceEditPart();
-		View sourceView = (View) sourceEditPart.getModel();
-		EditPartViewer editPartViewer = sourceEditPart.getViewer();
-		PreferencesHint preferencesHint = sourceEditPart.getDiagramPreferencesHint();
-		String linkHint = ((IHintedType) UMLElementTypes.Link_4022).getSemanticHint();
-		ConnectionViewDescriptor viewDescriptor = new ConnectionViewDescriptor(org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.Link_4022,
-				((IHintedType) org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes.Link_4022).getSemanticHint(), sourceEditPart.getDiagramPreferencesHint());
-		View targetView = (View) createConnectionViewRequest.getTargetEditPart().getModel();
-		IAdaptable targetViewAdapter = new SemanticAdapter(null, targetView);
-		IAdaptable circleAdapter = null;
-		ContainmentCircleViewCreateCommand circleCommand = null;
-		deleteIncomingContainmentLinksFor(compoundCommand, targetView);
-		// detect if we draw a containment link between the node of containment and the target class or package
-		if (ContainmentCircleEditPart.VISUAL_ID == UMLVisualIDRegistry.getVisualID(sourceEditPart.getNotationView())) {
-			circleAdapter = new SemanticAdapter(null, sourceEditPart.getNotationView());
-			sourceView = (View) sourceEditPart.getParent().getModel();
-		} else {
-			// detect if we draw a containment link between two class or packages
-			circleCommand = new ContainmentCircleViewCreateCommand(createConnectionViewRequest, getEditingDomain(), sourceView, editPartViewer, preferencesHint);
-			compoundCommand.add(circleCommand);
-			if (createConnectionViewRequest.getLocation() != null) {
-				SetBoundsCommand setBoundsCommand = new SetBoundsCommand(getEditingDomain(), CONTAINMENT_CIRCLE_POSITION, (IAdaptable) circleCommand.getCommandResult().getReturnValue(), createConnectionViewRequest.getLocation());
-				compoundCommand.add(setBoundsCommand);
-			}
-		}
-		ICommand dashedLineCmd = new CustomCreateContainmentLinkCommand(getEditingDomain(), linkHint, sourceView, circleAdapter, targetViewAdapter, editPartViewer, preferencesHint, viewDescriptor, circleCommand);
-		compoundCommand.add(dashedLineCmd);
-		return new ICommandProxy(compoundCommand);
-	}
+
 
 	/**
 	 * Delete all incoming link that go this node
@@ -300,7 +249,7 @@ public class ContainmentHelper extends ElementHelper {
 	 */
 	public static boolean isReorientContainmentLink(ReconnectRequest request) {
 		int visualId = getVisualID(request);
-		return visualId == ContainmentSubLinkEditPart.VISUAL_ID;
+		return visualId == ContainmentLinkEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -357,7 +306,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return true, if is containment link
 	 */
 	public static boolean isContainmentLink(Edge edge) {
-		return UMLVisualIDRegistry.getVisualID(edge) == ContainmentSubLinkEditPart.VISUAL_ID;
+		return UMLVisualIDRegistry.getVisualID(edge) == ContainmentLinkEditPart.VISUAL_ID;
 	}
 
 	/**
@@ -368,7 +317,7 @@ public class ContainmentHelper extends ElementHelper {
 	 * @return true, if is containment link
 	 */
 	public static boolean isContainmentCircle(View view) {
-		return UMLVisualIDRegistry.getVisualID(view) == ContainmentCircleEditPart.VISUAL_ID;
+		return false;
 	}
 
 	/**

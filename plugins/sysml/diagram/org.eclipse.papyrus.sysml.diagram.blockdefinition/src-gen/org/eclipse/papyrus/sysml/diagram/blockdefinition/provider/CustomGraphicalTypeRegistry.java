@@ -806,6 +806,10 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 		if (UMLElementTypes.GENERALIZATION.getEClass().isInstance(domainElement)) {
 			return UMLGraphicalTypes.LINK_UML_GENERALIZATION_ID;
 		}
+		if (UMLElementTypes.INSTANCE_SPECIFICATION.getEClass().isInstance(domainElement)) {
+			return ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint();
+		}
+
 		return super.getEdgeGraphicalType(domainElement);
 	}
 

@@ -1,0 +1,162 @@
+/*****************************************************************************
+ * Copyright (c) 2010 CEA LIST.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ */
+package org.eclipse.papyrus.uml.service.types.ui;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.ISelection;
+import org.eclipse.jface.viewers.ISelectionChangedListener;
+import org.eclipse.jface.viewers.IStructuredContentProvider;
+import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.jface.viewers.SelectionChangedEvent;
+import org.eclipse.jface.viewers.TableViewer;
+import org.eclipse.jface.viewers.Viewer;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.uml.service.types.Activator;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.widgets.Shell;
+import org.eclipse.uml2.uml.Association;
+
+/**
+ * This class can be launch is order to open a dialog used to choose an association
+ */
+public class AssociationSelectionDialog extends AbstractAssociationSelectionDialog {
+
+	private static final String UNTYPED = "<untyped>";
+
+	/** The selected association. */
+	protected Association selectedAssociation;
+
+	/** The common associations. */
+	protected Set<Association> commonAssociations;
+
+	private boolean isCanceled = true;
+
+
+	/**
+	 * Instantiates a new association selection dialog.
+	 *
+	 * @param parent
+	 *            the parent shell
+	 * @param style
+	 *            the style
+	 * @param commonAssociations
+	 *            list of assocation in which we would like to llok for
+	 */
+	public AssociationSelectionDialog(Shell parent, int style, Set<Association> commonAssociations) {
+		super(parent, style);
+		this.commonAssociations = commonAssociations == null ? new HashSet<Association>() : commonAssociations;
+		this.selectedAssociation = null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.clazz.custom.ui.AbstractAssociationSelectionDialog#createContents()
+	 *
+	 */
+	@Override
+	protected void createContents() {
+		super.createContents();
+		ServicesRegistry registry;
+		try {
+			if (selectedAssociation != null) {
+				registry = ServiceUtilsForResource.getInstance().getServiceRegistry(selectedAssociation.eResource());
+				LabelProviderService labelProviderService = registry.getService(LabelProviderService.class);
+				final ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+				final IStructuredContentProvider associationContentProvider = new IStructuredContentProvider() {
+
+					@Override
+					public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+					}
+
+					@Override
+					public void dispose() {
+					}
+
+					@Override
+					public Object[] getElements(Object inputElement) {
+						List<Object> result = new ArrayList<Object>();
+						result.add(UNTYPED);
+						result.addAll(commonAssociations);
+						return result.toArray();
+					}
+				};
+				final TableViewer tableViewer = new TableViewer(table);
+				tableViewer.setLabelProvider(labelProvider);
+				tableViewer.setContentProvider(associationContentProvider);
+				tableViewer.setInput(commonAssociations);
+				tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+					@Override
+					public void selectionChanged(SelectionChangedEvent event) {
+						btnOk.setEnabled(true);
+
+					}
+				});
+
+				btnOk.setEnabled(false);
+				btnOk.addSelectionListener(new SelectionAdapter() {
+
+					@Override
+					public void widgetSelected(SelectionEvent event) {
+						ISelection selection = tableViewer.getSelection();
+						if (selection instanceof IStructuredSelection) {
+							Object selectedItem = ((IStructuredSelection) selection).getFirstElement();
+							selectedAssociation = selectedItem instanceof Association ? (Association) selectedItem : null;
+							isCanceled = false;
+							shlAssociationselection.close();
+						}
+					}
+
+				});
+				btnCancel.addSelectionListener(new SelectionAdapter() {
+
+					@Override
+					public void widgetSelected(SelectionEvent event) {
+						selectedAssociation = null;
+						shlAssociationselection.close();
+
+					}
+
+				});
+			} else {
+				btnCancel.setVisible(true);
+			}
+		} catch (ServiceException e1) {
+			Activator.log.error(e1);
+		}
+	}
+
+	/**
+	 * Gets the selected association.
+	 *
+	 * @return the selected association
+	 */
+	public Association getSelectedAssociation() {
+		return selectedAssociation;
+	}
+
+	/**
+	 * @return if canceled button was clicked
+	 */
+	public boolean isCanceled() {
+		return isCanceled;
+	}
+}

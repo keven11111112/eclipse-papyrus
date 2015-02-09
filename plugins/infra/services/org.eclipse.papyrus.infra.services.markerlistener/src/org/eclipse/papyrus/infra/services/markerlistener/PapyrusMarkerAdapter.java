@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 458652
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.markerlistener;
 
@@ -17,6 +18,7 @@ import java.util.Map;
 
 import org.eclipse.core.resources.IMarker;
 import org.eclipse.core.runtime.CoreException;
+import org.eclipse.core.runtime.PlatformObject;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
@@ -27,6 +29,7 @@ import org.eclipse.papyrus.infra.services.markerlistener.util.MarkerListenerUtil
  * This is the PapyrusMarkerAdapter type. Enjoy.
  */
 public class PapyrusMarkerAdapter
+		extends PlatformObject
 		implements IPapyrusMarker {
 
 	private final Resource resource;
@@ -200,5 +203,14 @@ public class PapyrusMarkerAdapter
 
 	public boolean isSubtypeOf(String type) throws CoreException {
 		return marker.isSubtypeOf(type);
+	}
+
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+		if (adapter == IMarker.class) {
+			return marker;
+		}
+
+		return super.getAdapter(adapter);
 	}
 }

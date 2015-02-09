@@ -101,7 +101,13 @@ public class AspectCreationEntry extends CombinedTemplateCreationEntry implement
 	@Override
 	public Tool createTool() {
 		if (tool == null) {
-			tool = entry.createTool();
+			if(entry instanceof AspectCreationEntry) {
+				// clone to avoid reuse of the same tool than other aspect creation entries (see bug 412735)
+				AspectCreationEntry clonedEntry = ((AspectCreationEntry)entry).clone();
+				tool = clonedEntry.createTool();
+			} else {
+				tool = entry.createTool();		
+			}
 			tool.setProperties(properties);
 		}
 		return tool;

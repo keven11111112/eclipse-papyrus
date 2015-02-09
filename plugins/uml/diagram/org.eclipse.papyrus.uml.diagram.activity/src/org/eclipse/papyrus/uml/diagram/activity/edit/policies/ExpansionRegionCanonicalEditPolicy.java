@@ -45,8 +45,12 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.Size;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsOutEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
+import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -83,6 +87,8 @@ public class ExpansionRegionCanonicalEditPolicy extends CanonicalEditPolicy {
 		if (myFeaturesToSynchronize == null) {
 			myFeaturesToSynchronize = new HashSet<EStructuralFeature>();
 			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuredActivityNode_Node());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
+			myFeaturesToSynchronize.add(UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeOutput());
 		}
 		return myFeaturesToSynchronize;
 	}
@@ -115,7 +121,16 @@ public class ExpansionRegionCanonicalEditPolicy extends CanonicalEditPolicy {
 	 */
 	private boolean isMyDiagramElement(View view) {
 		int visualID = UMLVisualIDRegistry.getVisualID(view);
-		return visualID == ExpansionNodeAsInEditPart.VISUAL_ID || visualID == ExpansionNodeAsOutEditPart.VISUAL_ID;
+		switch (visualID) {
+		case ExpansionNodeAsInEditPart.VISUAL_ID:
+		case ExpansionNodeAsOutEditPart.VISUAL_ID:
+		case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+		case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+		case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+		case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+			return true;
+		}
+		return false;
 	}
 
 	/**

@@ -194,9 +194,8 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 «generatedMemberComment()»
 	protected org.eclipse.gef.commands.Command getCreateCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest req) {
 		org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType = req.getElementType();
-		if (requestElementType instanceof org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType) {
-			// try to get a semantic create command from the extended type
-			org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandProvider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
+		if (requestElementType instanceof org.eclipse.gmf.runtime.emf.type.core.IElementType) {
+						org.eclipse.papyrus.infra.services.edit.service.IElementEditService commandProvider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(req.getContainer());
 			if (commandProvider != null) {
 				org.eclipse.gmf.runtime.common.core.command.ICommand command = commandProvider.getEditCommand(req);
 				if (command != null && command.canExecute()) {
@@ -210,7 +209,7 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 
 	def getCreateExtendedTypeCommand(GenDiagram it) '''
 «generatedMemberComment»
- protected org.eclipse.gef.commands.Command getExtendedTypeCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+ protected org.eclipse.gef.commands.Command getExtendedTypeCreationCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType) {
 		org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(request.getContainer());
 		if(provider == null) {
 			return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
@@ -223,7 +222,7 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 
 	def getExtendedStartCreateRelationshipCommand(GenDiagram it) '''
 «generatedMemberComment»
- protected org.eclipse.gef.commands.Command getExtendedStartCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+ protected org.eclipse.gef.commands.Command getExtendedStartCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType) {
 	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
 	if(provider == null) {
 		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;
@@ -236,7 +235,7 @@ protected org.eclipse.gef.commands.Command getCreateRelationshipCommand(org.ecli
 
 	def getExtendedCompleteCreateRelationshipCommand(GenDiagram it) '''
 «generatedMemberComment»
- protected org.eclipse.gef.commands.Command getExtendedCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType requestElementType) {
+ protected org.eclipse.gef.commands.Command getExtendedCompleteCreateRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest request, org.eclipse.gmf.runtime.emf.type.core.IElementType requestElementType) {
 	org.eclipse.papyrus.infra.services.edit.service.IElementEditService provider = org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils.getCommandProvider(requestElementType);
 	if(provider == null) {
 		return org.eclipse.gef.commands.UnexecutableCommand.INSTANCE;

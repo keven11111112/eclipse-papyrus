@@ -110,15 +110,7 @@ public class InheritedClassDiagramEditPartProvider extends UMLEditPartProvider {
 			if (ElementTypes.CONTAINMENT_LINK.getSemanticHint().equals(hint)) {
 				return true;
 			}
-			/** Edges (NotationType) : CONTAINMENT_SUB_LINK *********** */
-			if (ElementTypes.CONTAINMENT_SUB_LINK.getSemanticHint().equals(hint)) {
-				return true;
-			}
 
-			/** Nodes (NotationType) : CONTAINMENT_CIRCLE_CN *********** */
-			if (ElementTypes.CONTAINMENT_CIRCLE_CN.getSemanticHint().equals(hint)) {
-				return true;
-			}
 
 		}
 		return false;

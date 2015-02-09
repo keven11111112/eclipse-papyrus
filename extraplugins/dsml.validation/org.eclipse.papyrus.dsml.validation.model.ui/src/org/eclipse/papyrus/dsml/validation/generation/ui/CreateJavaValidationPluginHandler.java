@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.dsml.validation.generation.ui;
 
+import java.io.IOException;
+
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
@@ -19,6 +21,7 @@ import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
@@ -126,6 +129,8 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 			if (uri.segmentCount() >= 2) {
 				existingProject = root.getProject(uri.segment(1));
 			}
+			IProject hostingProject = existingProject;
+		
 			int question = 0;
 			Shell shell = Display.getDefault().getActiveShell();
 			if ((existingProject != null) && existingProject.exists()) {
@@ -166,6 +171,7 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 					// generate plugin + extension point
 					try {
 						ValidationPluginGenerator.instance.generate(existingProject, constraintsManager, definition);
+						addDependencyToHostingProject(shell, hostingProject);
 					} catch (Exception e) {
 						Activator.log.error(e);
 						MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration, Messages.CreateJavaValidationPluginHandler_CheckErrorLog);
@@ -174,6 +180,12 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 			}
 			else if (question == 0) {
 
+				try {
+					addDependencyToHostingProject(shell, hostingProject);
+				} catch (Exception e) {
+					Activator.log.error(e);
+					MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_ExceptionDuringPluginGeneration, Messages.CreateJavaValidationPluginHandler_CheckErrorLog);
+				}
 				CreateEMFValidationProject wizard = new CreateEMFValidationProject(profileSelection, constraintsManager, definition);
 				wizard.openDialog();
 			}
@@ -181,6 +193,13 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 		return null;
 	}
 
+	public void addDependencyToHostingProject(Shell shell, IProject hostingProject) throws CoreException, IOException {
+		if (ValidationPluginGenerator.instance.addDSMLdependency(hostingProject)) {
+			MessageDialog.openInformation(shell, Messages.CreateJavaValidationPluginHandler_DependencyAdded,
+					String.format(Messages.CreateJavaValidationPluginHandler_DependencyAddedMsg, hostingProject.getName()));							
+		}
+	}
+	
 	@Override
 	public boolean isEnabled() {
 		EObject eObject = getSelectedElement();

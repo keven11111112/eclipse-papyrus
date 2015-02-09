@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2010-2011 CEA LIST.
  *
- *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *
+ * 
  * 		Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -25,6 +25,8 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.utils.InteractionConstraintUtil;
 import org.eclipse.uml2.uml.Constraint;
@@ -35,13 +37,13 @@ import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * <pre>
- *
+ * 
  * Edit helper class for {@link Constraint}
- *
+ * 
  * Expected behavior:
  * - Initialize specification with a LiteralString
  * - Set new ValueSpecification as specification of the parent constraint
- *
+ * 
  * </pre>
  */
 public class ConstraintEditHelper extends ElementEditHelper {
@@ -54,7 +56,6 @@ public class ConstraintEditHelper extends ElementEditHelper {
 	protected ICommand getConfigureCommand(final ConfigureRequest req) {
 		ICommand configureCommand = new ConfigureElementCommand(req) {
 
-			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
 
 				Constraint element = (Constraint) req.getElementToConfigure();
@@ -73,8 +74,32 @@ public class ConstraintEditHelper extends ElementEditHelper {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
+		// Delegate to advices
+		return null;
+	}
+
+
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
+		if (req.getSource() instanceof Constraint)
+		{
+			// Delegate to advices
+			return null;
+		}
+		return UnexecutableCommand.INSTANCE;
+	}
+
+	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper#getSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
-	 *
+	 * 
 	 * @param req
 	 * @return
 	 */
@@ -86,7 +111,7 @@ public class ConstraintEditHelper extends ElementEditHelper {
 		if (value != null) {
 			EObject elementToEdit = req.getElementToEdit();
 			if (UMLPackage.eINSTANCE.getInteractionConstraint_Minint() == feature) {
-				Integer minintValue = InteractionConstraintUtil.getNonNegativeInteger(value);
+				Integer minintValue = InteractionConstraintUtil.getNonNegativeInteger((ValueSpecification) value);
 				if (minintValue == null) {
 					return UnexecutableCommand.INSTANCE;
 				}
@@ -97,7 +122,7 @@ public class ConstraintEditHelper extends ElementEditHelper {
 				}
 			} else if (UMLPackage.eINSTANCE.getInteractionConstraint_Maxint() == feature) {
 				InteractionConstraint element = (InteractionConstraint) elementToEdit;
-				Integer maxintValue = InteractionConstraintUtil.getNonNegativeInteger(value);
+				Integer maxintValue = InteractionConstraintUtil.getNonNegativeInteger((ValueSpecification) value);
 				if (maxintValue == null || maxintValue.intValue() == 0) {
 					return UnexecutableCommand.INSTANCE;
 				}

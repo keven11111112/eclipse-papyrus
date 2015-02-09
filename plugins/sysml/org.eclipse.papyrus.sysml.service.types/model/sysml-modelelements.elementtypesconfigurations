@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"  metamodelNsURI="http://www.eclipse.org/papyrus/0.7.0/SysML/ModelElements">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::Conform" identifier="org.eclipse.papyrus.sysml.stereotype.Conform" hint="SysML::Stereotype::Conform" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//modelelements/Conform"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" name="SysML::Stereotype::View" identifier="org.eclipse.papyrus.sysml.stereotype.View" hint="SysML::Stereotype::View" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//modelelements/View"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"  name="SysML::Stereotype::ViewPoint" identifier="org.eclipse.papyrus.sysml.stereotype.ViewPoint" hint="SysML::Stereotype::ViewPoint" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//modelelements/ViewPoint"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"  name="SysML::Stereotype::Rationale" identifier="org.eclipse.papyrus.sysml.stereotype.Rationale" hint="SysML::Stereotype::Rationale" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//modelelements/Rationale"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration"  name="SysML::Stereotype::Problem" identifier="org.eclipse.papyrus.sysml.stereotype.Problem" hint="SysML::Stereotype::Problem" editHelperClassName="org.eclipse.papyrus.infra.gmfdiag.common.helper.DefaultEditHelper">
+    <eClass href="../../org.eclipse.papyrus.sysml/model/sysml.ecore#//modelelements/Problem"/>
+  </elementTypeConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

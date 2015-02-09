@@ -17,14 +17,13 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultCreationEditPolicy;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultXYLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.part.BlockDefinitionDiagramEditPart;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomBlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.blockdefinition.edit.policy.CustomDefaultSemanticEditPolicy;
@@ -71,10 +70,7 @@ import org.eclipse.papyrus.uml.diagram.common.edit.part.PortAffixedNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.PrimitiveTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.SignalEditPart;
 import org.eclipse.papyrus.uml.diagram.common.edit.part.UsageEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 
 /**
  * Edit policy provider for the Block definition diagram (install or remove policies on edit part creation).
@@ -83,37 +79,37 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 	public boolean provides(IOperation operation) {
 
-		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation)operation;
-		if(!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
+		CreateEditPoliciesOperation epOperation = (CreateEditPoliciesOperation) operation;
+		if (!(epOperation.getEditPart() instanceof IGraphicalEditPart)) {
 			return false;
 		}
 
 		// Make sure this concern Block Definition Diagram only
-		IGraphicalEditPart gep = (IGraphicalEditPart)epOperation.getEditPart();
+		IGraphicalEditPart gep = (IGraphicalEditPart) epOperation.getEditPart();
 		String diagramType = gep.getNotationView().getDiagram().getType();
-		if(!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
+		if (!ElementTypes.DIAGRAM_ID.equals(diagramType)) {
 			return false;
 		}
 
 		// Provides for edit parts that represent nodes in Block Definition diagram
-		if(gep instanceof AbstractElementEditPart) {
+		if (gep instanceof AbstractElementEditPart) {
 			return true;
 		}
 
 		// Provides for edit parts that represent edges in Block Definition diagram
-		if(gep instanceof AbstractElementLinkEditPart) {
+		if (gep instanceof AbstractElementLinkEditPart) {
 			return true;
 		}
 
-		if(gep instanceof ResizeableListCompartmentEditPart) {
+		if (gep instanceof ResizeableListCompartmentEditPart) {
 			return true;
 		}
 
-		if(gep instanceof AbstractElementChildLabelEditPart) {
+		if (gep instanceof AbstractElementChildLabelEditPart) {
 			return true;
 		}
 
-		if(gep instanceof BlockDefinitionDiagramEditPart) {
+		if (gep instanceof BlockDefinitionDiagramEditPart) {
 			return true;
 		}
 
@@ -123,16 +119,16 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 	public void createEditPolicies(EditPart editPart) {
 		super.createEditPolicies(editPart);
 
-		if(editPart instanceof BlockDefinitionDiagramEditPart) {
+		if (editPart instanceof BlockDefinitionDiagramEditPart) {
 			editPart.installEditPolicy(PasteEditPolicy.PASTE_ROLE, new CustomDuplicatePasteEditPolicy());
-			// no installation of other policies. 
+			// no installation of other policies.
 			return;
 		}
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomDiagramDragDropEditPolicy());
 
 		// Legacy management of new Nodes / Edges with nodes from Class Diagram and navigation support (installed by edit policy provider in Class Diagram)
-		if((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
+		if ((editPart instanceof PackagePackageableElementCompartmentEditPartCN) || (editPart instanceof PackagePackageableElementCompartmentEditPart)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
@@ -140,7 +136,7 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 		}
 
-		if((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
+		if ((editPart instanceof ModelPackageableElementCompartmentEditPartCN) || (editPart instanceof ModelPackageableElementCompartmentEditPartTN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new PackageSemanticEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.LAYOUT_ROLE, new DefaultXYLayoutEditPolicy());
@@ -148,119 +144,118 @@ public class CustomEditPolicyProvider extends BlockDefinitionDiagramEditPolicyPr
 
 		}
 
-		if((editPart instanceof PackageEditPart) || (editPart instanceof PackageEditPartCN)) {
+		if ((editPart instanceof PackageEditPart) || (editPart instanceof PackageEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
-		if((editPart instanceof ModelEditPartTN) || (editPart instanceof ModelEditPartCN)) {
+		if ((editPart instanceof ModelEditPartTN) || (editPart instanceof ModelEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PackageCreationEditPolicy());// replace DefaultCreationEditPolicy to let reparent
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
-		if((editPart instanceof InstanceSpecificationEditPart) || (editPart instanceof InstanceSpecificationEditPartCN)) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
+		if ((editPart instanceof InstanceSpecificationEditPart) || (editPart instanceof InstanceSpecificationEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
-		if((editPart instanceof InstanceSpecificationSlotCompartmentEditPart) || (editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN)) {
+		if ((editPart instanceof InstanceSpecificationSlotCompartmentEditPart) || (editPart instanceof InstanceSpecificationSlotCompartmentEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		}
 
-		if((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
+		if ((editPart instanceof ConstraintEditPart) || (editPart instanceof ConstraintEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
-		if((editPart instanceof CommentEditPart) || (editPart instanceof CommentEditPartCN)) {
+		if ((editPart instanceof CommentEditPart) || (editPart instanceof CommentEditPartCN)) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 			editPart.installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
 		}
 
 		// Legacy management of Comment / Constraint links
-		if(editPart instanceof ActorEditPart) {
+		if (editPart instanceof ActorEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof EnumerationEditPart) {
+		if (editPart instanceof EnumerationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof PrimitiveTypeEditPart) {
+		if (editPart instanceof PrimitiveTypeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof ValueTypeEditPart) {
+		if (editPart instanceof ValueTypeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof DataTypeEditPart) {
+		if (editPart instanceof DataTypeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof FlowSpecificationEditPart) {
+		if (editPart instanceof FlowSpecificationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof InterfaceEditPart) {
+		if (editPart instanceof InterfaceEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof SignalEditPart) {
+		if (editPart instanceof SignalEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof ConstraintBlockEditPart) {
+		if (editPart instanceof ConstraintBlockEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof BlockEditPart) {
+		if (editPart instanceof BlockEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomBlockCompositeSemanticEditPolicy());
 		}
 
-		if(editPart instanceof DimensionEditPart) {
+		if (editPart instanceof DimensionEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof UnitEditPart) {
+		if (editPart instanceof UnitEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof DependencyEditPart) {
+		if (editPart instanceof DependencyEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof GeneralizationEditPart) {
+		if (editPart instanceof GeneralizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof UsageEditPart) {
+		if (editPart instanceof UsageEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof AssociationEditPart) {
+		if (editPart instanceof AssociationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof InterfaceRealizationEditPart) {
+		if (editPart instanceof InterfaceRealizationEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof FlowPortChildLabelEditPart) {
+		if (editPart instanceof FlowPortChildLabelEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof FlowPortAffixedNodeEditPart || editPart instanceof PortAffixedNodeEditPart) {
+		if (editPart instanceof FlowPortAffixedNodeEditPart || editPart instanceof PortAffixedNodeEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 
-		if(editPart instanceof AbstractElementChildLabelEditPart) {
+		if (editPart instanceof AbstractElementChildLabelEditPart) {
 			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDefaultSemanticEditPolicy());
 		}
 

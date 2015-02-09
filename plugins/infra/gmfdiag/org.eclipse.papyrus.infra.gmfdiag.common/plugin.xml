@@ -414,4 +414,20 @@
       </contribution>
    </paletteProvider>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+   <elementTypeSet
+         id="org.eclipse.papyrus.infra.gmfdiag.common.elementTypeSet"
+         path="model/notation.elementtypesconfigurations">
+   </elementTypeSet>
+</extension>
+<extension
+      point="org.eclipse.gmf.runtime.common.ui.services.iconProviders">
+   <IconProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.ElementTypeIconProvider">
+      <Priority
+            name="Medium">
+      </Priority>
+   </IconProvider>
+</extension>
 </plugin>

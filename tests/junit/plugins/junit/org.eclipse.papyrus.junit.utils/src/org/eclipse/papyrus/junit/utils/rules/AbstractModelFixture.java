@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 399859
+ *   Christian W. Damus - bug 451230
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -21,7 +22,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Method;
 import java.net.URL;
 import java.util.Enumeration;
 import java.util.HashSet;
@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
+import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
@@ -105,7 +106,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	@Override
 	public Statement apply(Statement base, Description description) {
-		testClass = description.getTestClass();
+		testClass = JUnitUtils.getTestClass(description);
 
 		// Wrap myself in the project rule so that the project exists when I start
 		Statement result = super.apply(base, description);
@@ -450,30 +451,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 	}
 
 	private Annotation getResourceAnnotation(Description description) {
-		Annotation result = null;
-
-		Class<?> testClass = description.getTestClass();
-
-		Method testMethod = null;
-		try {
-			testMethod = testClass.getDeclaredMethod(description.getMethodName());
-		} catch (Exception e) {
-			e.printStackTrace();
-			fail("Could not access test method via JUnit framework.");
-		}
-
-		if (testMethod.isAnnotationPresent(JavaResource.class)) {
-			result = testMethod.getAnnotation(JavaResource.class);
-		} else if (testMethod.isAnnotationPresent(PluginResource.class)) {
-			result = testMethod.getAnnotation(PluginResource.class);
-		} else {
-			// The class must have an annotation
-			if (testClass.isAnnotationPresent(JavaResource.class)) {
-				result = testClass.getAnnotation(JavaResource.class);
-			} else if (testClass.isAnnotationPresent(PluginResource.class)) {
-				result = testClass.getAnnotation(PluginResource.class);
-			}
-		}
+		Annotation result = JUnitUtils.getAnyAnnotation(description, JavaResource.class, PluginResource.class);
 
 		assertThat("No JavaResource or PluginResource annotation found on test.", result, notNullValue());
 

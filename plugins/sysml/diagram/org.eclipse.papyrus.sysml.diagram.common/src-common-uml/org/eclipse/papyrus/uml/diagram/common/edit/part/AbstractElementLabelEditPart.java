@@ -639,7 +639,9 @@ public abstract class AbstractElementLabelEditPart extends PapyrusLabelEditPart 
 					if (resolveSemanticElement() != null) {
 						addSemanticListeners();
 					}
-					// refreshLabel(); //Comment to fix text alignment issue
+					// Bug 457470 : The label refreshment is not done if the following method is not called
+					// This call was comment to fix a text alignment issue (Bug 440226)
+					refreshLabel(); //Comment to fix text alignment issue
 				}
 			}
 		}

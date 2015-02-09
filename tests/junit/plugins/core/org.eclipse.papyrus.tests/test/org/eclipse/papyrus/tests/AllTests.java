@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,45 +10,31 @@
  *  Remi Schnekenburger (CEA LIST) remi.schnekenburger@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bugs 402525, 323802, 431953, 433310, 434993
  *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bug 451230
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
 
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
-import java.util.Set;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.junit.framework.classification.ClassificationConfig;
-import org.eclipse.papyrus.junit.framework.classification.TestCategory;
-import org.eclipse.papyrus.tests.launcher.FragmentTestSuiteClass;
-import org.eclipse.papyrus.tests.launcher.ITestSuiteClass;
-import org.eclipse.papyrus.tests.launcher.PluginTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.AllTestsRunner;
+import org.eclipse.papyrus.junit.framework.runner.FragmentTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.ITestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.PluginTestSuiteClass;
+import org.eclipse.papyrus.junit.framework.runner.SuiteSpot;
 import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.model.InitializationError;
 
 
 /**
  * Test class for all tests for Papyrus
  */
-@RunWith(AllTests.AllTestsRunner.class)
+@RunWith(AllTestsRunner.class)
 public class AllTests {
 
-	static Map<String, Set<TestCategory>> availableConfigs = new HashMap<String, Set<TestCategory>>();
-
-	static {
-		availableConfigs.put("CI_TESTS_CONFIG", ClassificationConfig.CI_TESTS_CONFIG);
-		availableConfigs.put("FAILING_TESTS_CONFIG", ClassificationConfig.FAILING_TESTS_CONFIG);
-		availableConfigs.put("FULL_CI_TESTS_CONFIG", ClassificationConfig.FULL_CI_TESTS_CONFIG);
-		availableConfigs.put("FULL_TESTS_CONFIG", ClassificationConfig.FULL_TESTS_CONFIG);
-		availableConfigs.put("LIGTHWEIGHT_TESTS_CONFIG", ClassificationConfig.LIGTHWEIGHT_TESTS_CONFIG);
-	}
-
+	@SuiteSpot
 	public static final List<ITestSuiteClass> suiteClasses;
+
 	/** list of classes to launch */
 	static {
 		suiteClasses = new ArrayList<ITestSuiteClass>();
@@ -94,6 +80,9 @@ public class AllTests {
 
 		/* control mode */
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.services.controlmode.tests.AllTests.class));
+
+		/* Diagram Assistants test suite */
+		org.eclipse.papyrus.tests.diagramassistants.AllTests.appendTo(suiteClasses);
 
 		if (System.getProperty("no.SysML.tests") == null) {
 			// SysML tests
@@ -144,55 +133,6 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.textedit.parameter.tests.suites.AllTests.class));
 
 		// end
-	}
-
-	/**
-	 * Finds and runs tests.
-	 */
-	public static class AllTestsRunner extends Suite {
-
-		/**
-		 * Constructor.
-		 *
-		 * @param clazz
-		 *            the suite class � AllTests2
-		 * @throws InitializationError
-		 *             if there's a problem
-		 * @throws org.junit.runners.model.InitializationError
-		 */
-		public AllTestsRunner(final Class<?> clazz) throws InitializationError {
-			super(clazz, getSuites());
-
-			for (String arg : Platform.getApplicationArgs()) {
-				if (arg.contains("-testConfig=")) {
-					String configName = arg.substring("-testConfig=".length());
-					Set<TestCategory> testsConfig = availableConfigs.get(configName);
-					if (testsConfig != null) {
-						ClassificationConfig.setTestsConfiguration(testsConfig);
-					}
-					break;
-				}
-			}
-		}
-	}
-
-	/**
-	 * Returns the list of test classes
-	 *
-	 * @return the list of test classes
-	 */
-	private static Class<?>[] getSuites() {
-		// retrieve all test suites.
-		final Collection<Class<?>> suites = new ArrayList<Class<?>>();
-		for (final ITestSuiteClass testSuiteClass : suiteClasses) {
-			final Class<?> class_ = testSuiteClass.getMainTestSuiteClass();
-			if (class_ != null) {
-				suites.add(class_);
-			} else {
-				System.err.println(testSuiteClass + " does not give a correct test suite class");
-			}
-		}
-		return suites.toArray(new Class<?>[] {});
 	}
 
 }

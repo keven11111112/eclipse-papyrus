@@ -45,8 +45,8 @@ import com.google.inject.Singleton
 				if (targetWrapperClass.equals(Long.class)) {
 					return new Long(num.longValue());
 				}
-				if (targetWrapperClass.equals(BigInteger.class)) {
-					return BigInteger.valueOf(num.longValue());
+				if (targetWrapperClass.equals(java.math.BigInteger.class)) {
+					return java.math.BigInteger.valueOf(num.longValue());
 				}
 				if (targetWrapperClass.equals(Float.class)) {
 					return new Float(num.floatValue());
@@ -54,8 +54,8 @@ import com.google.inject.Singleton
 				if (targetWrapperClass.equals(Double.class)) {
 					return new Double(num.doubleValue());
 				}
-				if (targetWrapperClass.equals(BigDecimal.class)) {
-					return new BigDecimal(num.doubleValue());
+				if (targetWrapperClass.equals(java.math.BigDecimal.class)) {
+					return new java.math.BigDecimal(num.doubleValue());
 				}
 			}
 			return value;

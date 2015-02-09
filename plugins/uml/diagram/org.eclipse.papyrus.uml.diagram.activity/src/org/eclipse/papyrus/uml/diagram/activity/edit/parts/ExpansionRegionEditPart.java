@@ -38,6 +38,7 @@ import org.eclipse.papyrus.uml.diagram.activity.draw2d.StructuredActivityNodeFig
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ExpansionRegionItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.locator.ExpansionNodePositionLocator;
+import org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -115,6 +116,10 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 				switch (UMLVisualIDRegistry.getVisualID(childView)) {
 				case ExpansionNodeAsInEditPart.VISUAL_ID:
 				case ExpansionNodeAsOutEditPart.VISUAL_ID:
+				case InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
+				case OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -179,6 +184,30 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 			getBorderedFigure().getBorderItemContainer().add(((ExpansionNodeAsOutEditPart) childEditPart).getFigure(), locator);
 			return true;
 		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NONE);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.EAST);
+			getBorderedFigure().getBorderItemContainer().add(((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
 		return false;
 	}
 
@@ -200,6 +229,22 @@ public class ExpansionRegionEditPart extends RoundedCompartmentEditPart {
 		}
 		if (childEditPart instanceof ExpansionNodeAsOutEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((ExpansionNodeAsOutEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((OutputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart) childEditPart).getFigure());
 			return true;
 		}
 		return false;

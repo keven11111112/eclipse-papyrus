@@ -18,7 +18,7 @@ import org.eclipse.draw2d.Graphics;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.EdgeDecorationType;
 import org.eclipse.papyrus.uml.diagram.common.figure.GeneralizationFigure;
 

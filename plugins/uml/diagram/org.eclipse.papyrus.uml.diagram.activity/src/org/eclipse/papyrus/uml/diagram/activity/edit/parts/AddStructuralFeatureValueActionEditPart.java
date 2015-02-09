@@ -132,6 +132,13 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 					};
 				case InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
 				case InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				case InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+				case ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				case ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				case ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID:
+				case ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID:
 				case OutputPinInAddStructuralFeatureValueActionAsResultEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
@@ -190,6 +197,48 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 			return true;
 		}
 		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.NORTH);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.WEST);
+			getBorderedFigure().getBorderItemContainer().add(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure(), locator);
+			return true;
+		}
+		// Papyrus Gencode :Affixed Pin locator for Actions
 		if (childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {
 			IBorderItemLocator locator = new PinPositionLocator(getMainFigure(), PositionConstants.SOUTH);
 			getBorderedFigure().getBorderItemContainer().add(((OutputPinInAddStructuralFeatureValueActionAsResultEditPart) childEditPart).getFigure(), locator);
@@ -211,6 +260,34 @@ public class AddStructuralFeatureValueActionEditPart extends RoundedCompartmentE
 		}
 		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsValueEditPart) {
 			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((InputPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsObjectEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsValueEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsValueEditPart) childEditPart).getFigure());
+			return true;
+		}
+		if (childEditPart instanceof ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) {
+			getBorderedFigure().getBorderItemContainer().remove(((ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart) childEditPart).getFigure());
 			return true;
 		}
 		if (childEditPart instanceof OutputPinInAddStructuralFeatureValueActionAsResultEditPart) {

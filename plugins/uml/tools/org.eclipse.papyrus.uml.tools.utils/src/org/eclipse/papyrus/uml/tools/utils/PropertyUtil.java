@@ -166,18 +166,18 @@ public class PropertyUtil {
 		StringBuffer buffer = new StringBuffer();
 		// visibility
 		buffer.append(" ");
-		buffer.append(NamedElementUtil.getVisibilityAsSign(property));
+		buffer.append(getNonNullString(NamedElementUtil.getVisibilityAsSign(property)));
 
 		// derived property
-		buffer.append(getDerived(property));
+		buffer.append(getNonNullString(getDerived(property)));
 
 		// name
 		buffer.append(" ");
-		buffer.append(getName(property));
+		buffer.append(getNonNullString(getName(property)));
 
 		// type
 		if (property.getType() != null) {
-			buffer.append(" : " + property.getType().getName());
+			buffer.append(" : " + getNonNullString(property.getType().getName()));
 		} else {
 			buffer.append(" : " + TypeUtil.UNDEFINED_TYPE_NAME);
 		}
@@ -185,17 +185,17 @@ public class PropertyUtil {
 		// multiplicity -> do not display [1]
 		String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
 		if (!multiplicity.trim().equals("[1]")) {
-			buffer.append(multiplicity);
+			buffer.append(getNonNullString(multiplicity));
 		}
 
 		// default value
 		if (property.getDefaultValue() != null) {
 			buffer.append(" = ");
-			buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue()));
+			buffer.append(getNonNullString(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue())));
 		}
 
 		// property modifiers
-		buffer.append(PropertyUtil.getModifiersAsString(property, false));
+		buffer.append(getNonNullString(PropertyUtil.getModifiersAsString(property, false)));
 
 		return buffer.toString();
 	}
@@ -206,6 +206,10 @@ public class PropertyUtil {
 		} else {
 			return (NamedElementUtil.getDefaultNameWithIncrement(property));
 		}
+	}
+
+	private static String getNonNullString(String source) {
+		return source == null ? "" : source;
 	}
 
 	/**
@@ -222,7 +226,7 @@ public class PropertyUtil {
 
 		buffer.append(" ");
 		if (style.contains(ICustomAppearance.DISP_VISIBILITY)) {
-			buffer.append(NamedElementUtil.getVisibilityAsSign(property));
+			buffer.append(getNonNullString(NamedElementUtil.getVisibilityAsSign(property)));
 		}
 
 		// derived property
@@ -234,13 +238,13 @@ public class PropertyUtil {
 		// name
 		if (style.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(property.getName());
+			buffer.append(getNonNullString(property.getName()));
 		}
 
 		if (style.contains(ICustomAppearance.DISP_TYPE)) {
 			// type
 			if (property.getType() != null) {
-				buffer.append(": " + property.getType().getName());
+				buffer.append(": " + getNonNullString(property.getType().getName()));
 			} else {
 				buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
 			}
@@ -248,7 +252,7 @@ public class PropertyUtil {
 
 		if (style.contains(ICustomAppearance.DISP_MULTIPLICITY)) {
 			// multiplicity -> do not display [1]
-			String multiplicity = MultiplicityElementUtil.getMultiplicityAsString(property);
+			String multiplicity = getNonNullString(MultiplicityElementUtil.getMultiplicityAsString(property));
 			buffer.append(multiplicity);
 		}
 
@@ -256,14 +260,14 @@ public class PropertyUtil {
 			// default value
 			if (property.getDefaultValue() != null) {
 				buffer.append(" = ");
-				buffer.append(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue()));
+				buffer.append(getNonNullString(ValueSpecificationUtil.getSpecificationValue(property.getDefaultValue())));
 			}
 		}
 
 		if (style.contains(ICustomAppearance.DISP_MODIFIERS)) {
 			boolean multiLine = style.contains(ICustomAppearance.DISP_MULTI_LINE);
 			// property modifiers
-			String modifiers = PropertyUtil.getModifiersAsString(property, multiLine);
+			String modifiers = getNonNullString(PropertyUtil.getModifiersAsString(property, multiLine));
 			if (!modifiers.equals("")) {
 				if (multiLine) {
 					buffer.append("\n");

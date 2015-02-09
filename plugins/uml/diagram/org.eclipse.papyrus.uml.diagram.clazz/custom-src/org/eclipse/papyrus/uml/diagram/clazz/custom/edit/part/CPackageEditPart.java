@@ -13,13 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.clazz.custom.edit.part;
 
-import org.eclipse.gef.EditPart;
-import org.eclipse.gmf.runtime.diagram.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.locator.ContainmentCircleOnPackageLocator;
-import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContainmentCircleEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageNodePlateFigure;
 
@@ -39,18 +35,5 @@ public class CPackageEditPart extends PackageEditPart {
 	protected NodeFigure createNodePlate() {
 		DefaultSizeNodeFigure result = new PackageNodePlateFigure(200, 100);
 		return result;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected boolean addFixedChild(EditPart childEditPart) {
-		if (childEditPart instanceof ContainmentCircleEditPart) {
-			IBorderItemLocator locator = new ContainmentCircleOnPackageLocator(getMainFigure());
-			getBorderedFigure().getBorderItemContainer().add(((ContainmentCircleEditPart) childEditPart).getFigure(), locator);
-			return true;
-		}
-		return super.addFixedChild(childEditPart);
 	}
 }

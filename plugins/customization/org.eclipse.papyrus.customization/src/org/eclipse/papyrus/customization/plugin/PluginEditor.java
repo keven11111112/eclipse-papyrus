@@ -76,6 +76,16 @@ public class PluginEditor extends PluginProjectEditor implements IPluginProjectE
 		manifest.addDependency(dependency, version);
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.eclipse.project.editors.interfaces.IManifestEditor#hasDependency(java.lang.String)
+	 *
+	 * @param dependency
+	 * @return
+	 */
+	public boolean hasDependency(String dependency) {
+		return manifest.hasDependency(dependency);
+	}
+	
 	public void setValue(String key, String value) {
 		manifest.setValue(key, value);
 	}

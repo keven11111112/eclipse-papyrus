@@ -24,7 +24,7 @@ import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.gmf.diagram.common.edit.policy.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
@@ -167,10 +167,10 @@ public abstract class AbstractElementLinkEditPart extends UMLConnectionNodeEditP
 	/**
 	 * <pre>
 	 * {@inheritDoc}
-	 *
+	 * 
 	 * This method override parent implementation to add a new set of
 	 * predefined decoration type.
-	 *
+	 * 
 	 * The arrowType available constants are given in {@link EdgeDecorationType}.
 	 * </pre>
 	 */

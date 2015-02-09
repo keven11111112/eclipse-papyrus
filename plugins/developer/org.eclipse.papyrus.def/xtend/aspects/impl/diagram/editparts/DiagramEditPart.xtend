@@ -44,7 +44,7 @@ org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart
 override createDefaultEditPoliciesBody(GenDiagram it) '''
 	super.createDefaultEditPolicies();
 	
-	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy());
+	installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE, new org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy());
 	installEditPolicy(org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy.PASTE_ROLE, new org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy());
 	
 	«xptEditpartsCommon.installSemanticEditPolicy(it)»

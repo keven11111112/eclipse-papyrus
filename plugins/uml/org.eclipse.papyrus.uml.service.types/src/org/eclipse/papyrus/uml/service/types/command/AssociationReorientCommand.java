@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2011 CEA LIST.
  *
- *
+ *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -20,7 +20,6 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Association;
@@ -36,10 +35,10 @@ import org.eclipse.uml2.uml.StructuredClassifier;
 /**
  * <pre>
  * Re-orient command for binary {@link Association}.
- *
+ * 
  * Expected behavior:
  * When the association is re-oriented, the type of the property on the opposite side
- * of the re-oriented association end has to be modified accordingly to the new end
+ * of the re-oriented association end has to be modified accordingly to the new end 
  * (from a graphical point of view - its a Classifier).
  * </pre>
  */
@@ -64,21 +63,16 @@ public class AssociationReorientCommand extends EditElementCommand {
 	/**
 	 * Test if the command can be executed.
 	 */
-	@Override
 	public boolean canExecute() {
 		if (false == getElementToEdit() instanceof Association) {
 			return false;
 		}
 
-		if (getLink().getMemberEnds().size() != 2) {
-			return false;
-		}
-
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return canReorientSource();
 		}
 
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return canReorientTarget();
 		}
 
@@ -89,7 +83,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * <pre>
 	 * This method test if the {@link Association} can be re-oriented to a new source.
 	 * </pre>
-	 *
+	 * 
 	 * @return true if the link end can be re-oriented to a new source
 	 */
 	protected boolean canReorientSource() {
@@ -122,7 +116,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 	 * <pre>
 	 * This method test if the {@link Association} can be re-oriented to a new target.
 	 * </pre>
-	 *
+	 * 
 	 * @return true if the link end can be re-oriented to a new source
 	 */
 	protected boolean canReorientTarget() {
@@ -151,15 +145,14 @@ public class AssociationReorientCommand extends EditElementCommand {
 		return true;
 	}
 
-	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
 			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_SOURCE) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
 		}
-		if (reorientDirection == ReorientRequest.REORIENT_TARGET) {
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_TARGET) {
 			return reorientTarget();
 		}
 		throw new IllegalStateException();
@@ -215,7 +208,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the link to re-orient.
-	 *
+	 * 
 	 * @return the edited {@link Association}
 	 */
 	protected Association getLink() {
@@ -224,7 +217,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the old {@link Association} source.
-	 *
+	 * 
 	 * @return the previous {@link Association} source.
 	 */
 	protected Element getOldSource() {
@@ -233,7 +226,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the new {@link Association} source.
-	 *
+	 * 
 	 * @return the new {@link Association} source.
 	 */
 	protected Element getNewSource() {
@@ -242,7 +235,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the old {@link Association} target.
-	 *
+	 * 
 	 * @return the previous {@link Association} target.
 	 */
 	protected Element getOldTarget() {
@@ -251,7 +244,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the new {@link Association} target.
-	 *
+	 * 
 	 * @return the new {@link Association} target.
 	 */
 	protected Element getNewTarget() {
@@ -261,7 +254,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the {@link Association} semantic source.
-	 *
+	 * 
 	 * @return the {@link Association} semantic source.
 	 */
 	protected Property getSemanticSource() {
@@ -270,7 +263,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	/**
 	 * Get the {@link Association} semantic target.
-	 *
+	 * 
 	 * @return the {@link Association} semantic target.
 	 */
 	protected Property getSemanticTarget() {
