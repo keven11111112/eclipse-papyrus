@@ -189,6 +189,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	private static final int SIMPLE_SEARCH = 0;
 
 	private static final int ADVANCED_SEARCH = 1;
+	
+	private int currentSearchKind = SIMPLE_SEARCH;
 
 	private ParserContext parserContext;
 
@@ -282,19 +284,21 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				for (Control childControl : advancedSearchComposite.getChildren()) {
-					childControl.dispose();
+				if (searchKind.getSelectionIndex() != currentSearchKind) {
+					for (Control childControl : advancedSearchComposite.getChildren()) {
+						childControl.dispose();
+					}
+				
+					if (searchKind.getSelectionIndex() == ADVANCED_SEARCH) {
+						participantsList.clear();
+						createResultList();
+						createAdvancedSearch();
+					} else if (searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
+						simpleSearch();
+					}
+					
+					advancedSearchComposite.layout();
 				}
-
-				if (searchKind.getSelectionIndex() == ADVANCED_SEARCH) {
-					participantsList.clear();
-					createResultList();
-
-					createAdvancedSearch();
-				} else {
-					simpleSearch();
-				}
-				advancedSearchComposite.layout();
 			}
 		});
 
@@ -304,9 +308,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		advancedSearchComposite.setLayout(new GridLayout(3, false));
 
 		simpleSearch();
-
-
-
 	}
 
 	protected void createResultList() {
@@ -691,6 +692,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		fBtnSearchForAllSelected = new Button(advancedSearchComposite, SWT.CHECK);
 		fBtnSearchForAllSelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		fBtnSearchForAllSelected.setText(Messages.PapyrusSearchPage_13);
+		
+		currentSearchKind = ADVANCED_SEARCH;
 	}
 
 	protected void selectAllSubSter(final ParticipantTypeElement elementParent, final List<ParticipantTypeAttribute> attributeParentList) {
@@ -820,6 +823,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		btnSearchAllStringAttributes = new Button(participantManipualtionComposite, SWT.RADIO);
 		btnSearchAllStringAttributes.setText(Messages.PapyrusSearchPage_17);
 		btnSearchAllStringAttributes.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
+		
+		currentSearchKind = SIMPLE_SEARCH;
 	}
 
 
