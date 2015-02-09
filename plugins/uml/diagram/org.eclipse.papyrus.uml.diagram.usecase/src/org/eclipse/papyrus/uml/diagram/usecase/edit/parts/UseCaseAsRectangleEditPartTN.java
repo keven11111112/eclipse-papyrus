@@ -278,7 +278,7 @@ public class UseCaseAsRectangleEditPartTN extends NamedElementEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.ExtensionPoint_3008) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.ExtensionPoint_3008)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsInRectangleEditPart.VISUAL_ID));
 			}
 		}

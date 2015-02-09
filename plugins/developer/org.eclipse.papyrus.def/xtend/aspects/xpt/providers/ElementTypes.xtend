@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2006, 2010, 2013 Borland Software Corporation and others
+ * Copyright (c) 2006, 2014 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    Dmitry Stadnik (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *    Christian W. Damus - bug 451230
  */
 package aspects.xpt.providers
 
@@ -50,8 +51,35 @@ import xpt.Common
 					«addKnownElementType(e)»
 				«ENDFOR»
 			}
-			return KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		    boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		    if (!result) {
+		        IElementType[] supertypes = elementType.getAllSuperTypes();
+		        for (int i = 0; !result && (i < supertypes.length); i++) {
+		            result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+		        }
+		    }
+		    
+		    return result;
 		}
 	'''
 
+    override def additions(GenDiagram it) '''
+        «super.additions(it)»
+        
+        «generatedMemberComment»
+        public static boolean isKindOf(org.eclipse.gmf.runtime.emf.type.core.IElementType subtype, org.eclipse.gmf.runtime.emf.type.core.IElementType supertype) {
+            boolean result = subtype == supertype;
+
+            if (!result) {
+                org.eclipse.gmf.runtime.emf.type.core.IElementType[] supertypes = subtype.getAllSuperTypes();
+                for (int i = 0; !result && (i < supertypes.length); i++) {
+                    result = supertype == supertypes[i];
+                }
+            }
+
+            return result;
+        }
+    '''
 }

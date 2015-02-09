@@ -335,7 +335,7 @@ public class UseCaseEditPartTN extends UseCaseNodeEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.ExtensionPoint_3007) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.ExtensionPoint_3007)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(UseCasePointsEditPartTN.VISUAL_ID));
 			}
 		}

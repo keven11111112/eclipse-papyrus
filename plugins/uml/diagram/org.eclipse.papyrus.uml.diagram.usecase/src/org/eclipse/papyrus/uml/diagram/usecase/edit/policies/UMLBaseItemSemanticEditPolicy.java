@@ -366,7 +366,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected final Command getGEFWrapper(ICommand cmd) {
-		return new ICommandProxy(cmd);
+		return (cmd == null) ? UnexecutableCommand.INSTANCE : new ICommandProxy(cmd);
 	}
 
 	/**

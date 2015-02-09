@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2007, 2010 Borland Software Corporation and others
+ * Copyright (c) 2007, 2014 Borland Software Corporation, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *    Alexander Shatalin (Borland) - initial API and implementation
  *    Michael Golubev (Montages) - #386838 - migrate to Xtend2
+ *    Christian W. Damus - bug 451230
  */
 package aspects.xpt.diagram.editpolicies
 
@@ -420,5 +421,12 @@ public boolean canCreate«getUniqueIdentifier()»(
 		«ENDIF»
 		}
 	'''
+
+    override def getGEFWrapper(GenDiagram it) '''
+        «generatedMemberComment()»
+        protected final org.eclipse.gef.commands.Command getGEFWrapper(org.eclipse.gmf.runtime.common.core.command.ICommand cmd) {
+            return (cmd == null) ? org.eclipse.gef.commands.UnexecutableCommand.INSTANCE : new org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy(cmd);
+        }
+    '''
 
 }
