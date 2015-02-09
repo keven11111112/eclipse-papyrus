@@ -11,6 +11,7 @@
  *  Chokri Mraidha (CEA LIST) Chokri.Mraidha@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - modification
  *  Christian W. Damus (CEA) - bug 448139
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.profile.tree.objects;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.utils.Util;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
@@ -142,7 +144,8 @@ public class AppliedStereotypePropertyTreeObject extends ParentTreeObject {
 	}
 
 	public EStructuralFeature getFeature() {
-		return getStereotypeApplication().eClass().getEStructuralFeature(property.getName());
+		// Bug 453445 : Manage the special character for the property name
+		return getStereotypeApplication().eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(property.getName()));
 	}
 
 	public EObject getStereotypeApplication() {
