@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 454693
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.actions;
@@ -31,6 +32,7 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.diagram.ui.requests.SetAllBendpointRequest;
@@ -840,7 +842,8 @@ public class DistributeAffixedChildNodeLinkAction extends AbstractDistributeActi
 		 * @return the side on parent
 		 */
 		public int getSideOnParent() {
-			IBorderItemLocator loc = ((BorderNamedElementEditPart) this.affixedChildNode).getBorderItemLocator();
+			// Bug 454693 : The cast of the border item locator will be BorderedBorderItemEditPart to include pin objects
+			IBorderItemLocator loc = ((BorderedBorderItemEditPart) this.affixedChildNode).getBorderItemLocator();
 			return loc.getCurrentSideOfParent();
 
 		}
