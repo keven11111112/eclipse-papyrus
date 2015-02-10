@@ -49,16 +49,16 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
-	
+
 	protected IMultiDiagramEditor editor = null;
 
 	protected Model model;
 
 	@Before
 	public void setUp() {
-		//Set the current resource loading strategy to the default
+		// Set the current resource loading strategy to the default
 		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
-		
+
 		try {
 			initTests(Activator.getDefault().getBundle());
 		} catch (CoreException e) {
@@ -98,11 +98,11 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 			do {
 				StackTraceElement[] stackTrace = e.getStackTrace();
 				s += e.getLocalizedMessage() + "\n";
-				for(StackTraceElement stackTraceElement : stackTrace) {
+				for (StackTraceElement stackTraceElement : stackTrace) {
 					s += stackTraceElement.toString() + "\n";
 				}
 				s += "-------------------------------------------------\n";
-			} while((e = e.getCause()) != null);
+			} while ((e = e.getCause()) != null);
 			fail(s);
 
 		}
@@ -131,18 +131,23 @@ public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 	 * @return
 	 */
 	protected List<PackageableElement> selectElementToControl() {
-		editor = houseKeeper.openPapyrusEditor(modelFile);
-		
+		try {
+			editor = houseKeeper.openPapyrusEditor(modelFile);
+		} catch (Exception e) {
+			Activator.log.error(e);
+			fail(e.getMessage());
+		}
+
 		try {
 			AbstractControlModeTest.view = ModelExplorerUtils.openModelExplorerView();
 		} catch (Exception e) {
-
+			Activator.log.error(e);
 			fail(e.getMessage());
 		}
-		model = (Model)ModelExplorerUtils.getRootInModelExplorer(view);
+		model = (Model) ModelExplorerUtils.getRootInModelExplorer(view);
 		List<PackageableElement> elements = new ArrayList<PackageableElement>();
-		for(PackageableElement packageableElement : model.getPackagedElements()) {
-			if(packageableElement instanceof org.eclipse.uml2.uml.Package) {
+		for (PackageableElement packageableElement : model.getPackagedElements()) {
+			if (packageableElement instanceof org.eclipse.uml2.uml.Package) {
 				elements.add(packageableElement);
 			}
 		}

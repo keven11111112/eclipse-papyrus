@@ -374,10 +374,10 @@ public class DataTypeEditPart extends ClassifierEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_3018) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3018)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPart.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Operation_3019) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3019)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPart.VISUAL_ID));
 			}
 		}

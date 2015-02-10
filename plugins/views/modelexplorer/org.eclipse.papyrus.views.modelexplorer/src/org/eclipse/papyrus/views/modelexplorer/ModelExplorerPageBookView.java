@@ -192,6 +192,10 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 
 	@Override
 	public void setFocus() {
+		if (getSite() == null) {
+			return;
+		}
+
 		super.setFocus();
 
 		IPage page = getCurrentPage();

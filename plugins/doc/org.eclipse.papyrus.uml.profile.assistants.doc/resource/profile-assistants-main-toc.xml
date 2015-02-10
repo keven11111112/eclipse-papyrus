@@ -1,0 +1,8 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Diagram Assistants for UML Profiles" link_to="../org.eclipse.papyrus.uml.diagram.profile.doc/resource/users/profile-main-toc.xml#profiles">
+   <topic href="resource/profile-assistants.html" label="Diagram Assistants for UML Profiles">
+      <link toc="resource/profile-assistants-toc.xml"/>
+      <anchor id="profile-diagram-assistants"/>
+   </topic>
+	
+</toc>

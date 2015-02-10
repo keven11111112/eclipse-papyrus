@@ -50,6 +50,9 @@ public class UMLDiagnostician extends EcoreDiagnostician {
 
 	@Override
 	public BasicDiagnostic createDefaultDiagnostic(EObject eObject) {
+		if (eObject == null || eObject.eResource() == null){
+			return super.createDefaultDiagnostic(eObject);
+		}
 		ResourceSet resourceSet = eObject.eResource().getResourceSet();
 		if (resourceSet != null) {
 			OCLDelegateDomain.initializePivotOnlyDiagnosticianResourceSet(resourceSet);

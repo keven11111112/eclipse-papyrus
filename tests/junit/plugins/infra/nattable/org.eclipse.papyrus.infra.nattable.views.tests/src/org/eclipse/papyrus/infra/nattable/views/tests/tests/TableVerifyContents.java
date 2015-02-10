@@ -66,7 +66,7 @@ public class TableVerifyContents extends AbstractPapyrusTest {
 
 	@ClassRule
 	public static final HouseKeeper.Static houseKeeper = new HouseKeeper.Static();
-	
+
 	private static final String MODEL_PATH = "/resources/model2"; //$NON-NLS-1$
 
 	private static final String SOURCE_PATH = "/resources/"; //$NON-NLS-1$
@@ -114,30 +114,34 @@ public class TableVerifyContents extends AbstractPapyrusTest {
 
 			@Override
 			public void run() {
-				papyrusEditor = houseKeeper.openPapyrusEditor(file);
-				
+				try {
+					papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				} catch (Exception ex) {
+					Activator.log.error(ex);
+				}
+
 				try {
 					TableVerifyContents.view = ModelExplorerUtils.openModelExplorerView();
 				} catch (PartInitException e) {
 					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), e.getMessage()));
 				}
 				EObject root = ModelExplorerUtils.getRootInModelExplorer(TableVerifyContents.view);
-				TableVerifyContents.rootModel = (Model)root;
-				subModel = (Model)TableVerifyContents.rootModel.getMember("SubModel1"); //$NON-NLS-1$
+				TableVerifyContents.rootModel = (Model) root;
+				subModel = (Model) TableVerifyContents.rootModel.getMember("SubModel1"); //$NON-NLS-1$
 
 				PageList pageList = getPageList(rootModel);
-				for(final PageRef pageRef : pageList.getAvailablePage()) {
+				for (final PageRef pageRef : pageList.getAvailablePage()) {
 					Object identifier = pageRef.getPageIdentifier();
-					if(identifier instanceof Diagram) {
-						if("ClassDiagram2".equals(((Diagram)identifier).getName())) {
-							diagram2 = (Diagram)identifier;
-						} else if("ClassDiagram1".equals(((Diagram)identifier).getName())) {
-							diagram1 = (Diagram)identifier;
+					if (identifier instanceof Diagram) {
+						if ("ClassDiagram2".equals(((Diagram) identifier).getName())) {
+							diagram2 = (Diagram) identifier;
+						} else if ("ClassDiagram1".equals(((Diagram) identifier).getName())) {
+							diagram1 = (Diagram) identifier;
 						}
 
-					} else if(identifier instanceof Table) {
-						if("TableOfViews0".equals(((Table)identifier).getName())) {
-							table1 = (Table)identifier;
+					} else if (identifier instanceof Table) {
+						if ("TableOfViews0".equals(((Table) identifier).getName())) {
+							table1 = (Table) identifier;
 						}
 					}
 
@@ -167,7 +171,7 @@ public class TableVerifyContents extends AbstractPapyrusTest {
 	 */
 	private static final PageList getPageList(final EObject object) {
 		final Resource resource = object.eResource();
-		final ModelSet modelSet = (ModelSet)resource.getResourceSet();
+		final ModelSet modelSet = (ModelSet) resource.getResourceSet();
 		final Resource diResource = modelSet.getAssociatedResource(resource, DiModel.DI_FILE_EXTENSION, false);
 		final SashWindowsMngr windowMngr = DiUtils.lookupSashWindowsMngr(diResource);
 		final PageList pageList = windowMngr.getPageList();
@@ -186,7 +190,7 @@ public class TableVerifyContents extends AbstractPapyrusTest {
 		DisplayUtils.safeReadAndDispatch();
 		tableEditor = papyrusEditor.getActiveEditor();
 		Assert.assertTrue(tableEditor instanceof NatTableEditor);
-		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
 		Assert.assertEquals(AllTests.VIEWS_TABLE_ID, manager.getTable().getTableConfiguration().getType());
 

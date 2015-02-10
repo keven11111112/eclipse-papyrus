@@ -390,31 +390,31 @@ public class ComponentEditPartCN extends ClassifierEditPart {
 		if(request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest)request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType)adapter.getAdapter(IElementType.class);
-			if(type == UMLElementTypes.Property_3002) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3002)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Operation_3003) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3003)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentOperationCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Reception_3011) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Reception_3011)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentOperationCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Class_3004) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Class_3004)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Interface_3037) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Interface_3037)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Enumeration_3053) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Enumeration_3053)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.PrimitiveType_3046) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.PrimitiveType_3046)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.DataType_3045) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.DataType_3045)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
-			if(type == UMLElementTypes.Signal_3051) {
+			if(UMLElementTypes.isKindOf(type, UMLElementTypes.Signal_3051)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(ComponentNestedClassifierCompartmentEditPartCN.VISUAL_ID));
 			}
 		}

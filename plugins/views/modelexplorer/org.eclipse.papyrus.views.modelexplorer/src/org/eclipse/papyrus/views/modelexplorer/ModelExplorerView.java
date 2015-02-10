@@ -1185,6 +1185,9 @@ public class ModelExplorerView extends CommonNavigator implements IRevealSemanti
 		Display.getDefault().asyncExec(new Runnable() {
 
 			public void run() {
+				if (getCommonViewer().getControl() == null || getCommonViewer().getControl().isDisposed()) {
+					return;
+				}
 				getCommonViewer().refresh(true);
 				// Force redraw to refresh facet overlay
 				getCommonViewer().getTree().redraw();
