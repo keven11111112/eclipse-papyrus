@@ -72,7 +72,7 @@ public class ECollections2 {
 		}
 
 		@SafeVarargs
-		public ImmutableEListBuilder<E> add(E element1, E element2, E element3, E element4, E... elements) {
+		public final ImmutableEListBuilder<E> add(E element1, E element2, E element3, E element4, E... elements) {
 			helper.add(element1);
 			helper.add(element2);
 			helper.add(element3);
@@ -98,7 +98,7 @@ public class ECollections2 {
 		}
 	}
 
-	private static class ImmutableEListBuilderHelper<E> extends BasicEList<E> {
+	private static final class ImmutableEListBuilderHelper<E> extends BasicEList<E> {
 		private static final long serialVersionUID = 1L;
 
 		void addAll(Iterable<? extends E> elements) {
@@ -112,7 +112,7 @@ public class ECollections2 {
 		}
 
 		@SafeVarargs
-		void addAll(E... elements) {
+		final void addAll(E... elements) {
 			for (int i = 0; i < elements.length; i++) {
 				add(elements[i]);
 			}

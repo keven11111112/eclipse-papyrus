@@ -320,6 +320,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 	private LabelProviderService getLabelProviderService() {
+		//FIXME: avoid spam-log of ServiceExceptions when configuring a Table without a Context (Especially during tests), 
+		//but there is probably something wrong if we're in this case 
+		if (this.table == null || this.table.getContext() == null){
+			return null;
+		}
+		
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);

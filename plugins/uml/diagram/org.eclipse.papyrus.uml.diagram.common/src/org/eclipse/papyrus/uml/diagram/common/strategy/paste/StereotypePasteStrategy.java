@@ -227,18 +227,21 @@ public class StereotypePasteStrategy extends AbstractPasteStrategy implements IP
 	 * @return true, if is profile applied recursive
 	 */
 	protected boolean isProfileAppliedRecursive(Element element, Profile profile) {
-		if(element instanceof Package) {
-			Package pkg = (Package)element;
+		if (element == null ){
+			return Boolean.FALSE;
+		}
+		if (element instanceof Package) {
+			Package pkg = (Package) element;
 			boolean profileApplied = pkg.isProfileApplied(profile);
 
-			if(pkg instanceof Model) {
+			if (pkg instanceof Model || pkg instanceof Profile ) {
 				return profileApplied;
 			}
 
 			if(!profileApplied) {
 				return isProfileAppliedRecursive(element.getOwner(), profile);
 			} else {
-				return true;
+				return Boolean.TRUE;
 			}
 		}
 		return isProfileAppliedRecursive(element.getOwner(), profile);
