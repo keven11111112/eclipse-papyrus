@@ -115,7 +115,7 @@ public class DefaultDiagramPasteCommand extends AbstractTransactionalCommand {
 		if (provider != null) {
 			editCommand = provider.getEditCommand(moveRequest);
 		}
-		if (!papyrusClipboard.getContainerType().equals(targetEditPart.getNotationView().getType()) || viewList.isEmpty()) {
+		if (!papyrusClipboard.getContainerType().equals(targetEditPart.getNotationView().getDiagram().getType()) || viewList.isEmpty()) {
 			this.objectToDrop = semanticRootList;
 		}
 	}
