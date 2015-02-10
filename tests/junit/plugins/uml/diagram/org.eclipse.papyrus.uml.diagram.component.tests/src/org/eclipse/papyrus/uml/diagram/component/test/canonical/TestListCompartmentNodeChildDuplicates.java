@@ -9,6 +9,7 @@ import org.eclipse.papyrus.uml.diagram.component.edit.parts.ReceptionInInterface
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.RectangleInterfaceEditPart;
 import org.eclipse.papyrus.uml.diagram.component.test.IComponentDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestListCompartmentHelper;
+import org.junit.Test;
 
 /**
  *
@@ -38,17 +39,20 @@ public class TestListCompartmentNodeChildDuplicates extends AbstractPapyrusTestC
 	}
 
 	@FailingTest
+	@Test
 	public void testInterfaceVsOperation() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, OperationForInterfaceEditPart.VISUAL_ID);
 	}
 
 	@FailingTest
+	@Test
 	public void testInterfaceVsProperty() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, PropertyForInterfaceEditPart.VISUAL_ID);
 	}
 
 
 	@FailingTest
+	@Test
 	public void testInterfaceVsReception() throws Exception {
 		getHelper().checkDuplicate(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, ReceptionInInterfaceEditPart.VISUAL_ID);
 	}
