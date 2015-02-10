@@ -36,7 +36,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.rmf.reqif10.pror.edit;bundle-version="0.10.0",
  org.eclipse.papyrus.emf.facet.efacet.core,
  org.eclipse.papyrus.emf.facet.efacet.metamodel,
- org.eclipse.papyrus.emf.facet.query.java.core
+ org.eclipse.papyrus.emf.facet.query.java.core,
+ org.eclipse.papyrus.infra.widgets.toolbox
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Export-Package: org.eclipse.papyrus.req.reqif,

@@ -35,6 +35,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xmi.impl.XMLResourceImpl;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.preference.IPreferenceStore;
+import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.papyrus.req.reqif.Activator;
 import org.eclipse.papyrus.req.reqif.I_SysMLStereotype;
 import org.eclipse.papyrus.req.reqif.assistant.CreateOrSelectProfilDialog;
@@ -73,9 +74,16 @@ import org.eclipse.rmf.reqif10.Specification;
 import org.eclipse.rmf.reqif10.SpecificationType;
 import org.eclipse.rmf.reqif10.XhtmlContent;
 import org.eclipse.rmf.reqif10.common.util.ReqIF10Util;
-import org.eclipse.rmf.reqif10.common.util.ReqIF10XhtmlUtil;
-import org.eclipse.rmf.reqif10.pror.util.ProrXhtmlSimplifiedHelper;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.layout.GridLayout;
+import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
+import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
+import org.eclipse.ui.forms.FormDialog;
+import org.eclipse.ui.forms.IManagedForm;
+import org.eclipse.ui.forms.widgets.FormToolkit;
+import org.eclipse.ui.forms.widgets.ScrolledForm;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
@@ -248,7 +256,7 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 				return value;
 			}
 		}
-		
+
 		//maybe it has a default value in the definition.
 		if( attributeDefinition instanceof AttributeDefinitionEnumeration){
 			return ((AttributeDefinitionEnumeration)attributeDefinition).getDefaultValue();
@@ -302,6 +310,7 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 			objectTypeMap=selectReqIFType(objectTypeMap.values());
 		}
 
+		
 		//analyze the list of existing stereotypes and the list of specObject Types to import 
 		ArrayList<SpecType> specObjectTypesToCreate= new ArrayList<SpecType>();
 		ArrayList<SpecificationType> specificationTypesToCreate= new ArrayList<SpecificationType>();
@@ -337,7 +346,7 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 			else{
 				//SIMPLE USER choose profiles
 
-				//popose a list of profile from registered profiles
+				//propose a list of profile from registered profiles
 				List<IRegisteredProfile> registeredProfiles=RegisteredProfile.getRegisteredProfiles();
 				ArrayList<Profile> profilelist= new ArrayList<Profile>(); 
 				for (Iterator<IRegisteredProfile> iterator = registeredProfiles.iterator(); iterator.hasNext();) {
@@ -376,10 +385,8 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 						specRelationTypesToCreate,
 						dataTypeDefinitionToCreate);
 				if( specObjectTypesToCreate.size()>0||specificationTypesToCreate.size()>0||specRelationTypesToCreate.size()>0||dataTypeDefinitionToCreate.size()>0){
-
 					createMessageForTypewithoutStereotypes(specObjectTypesToCreate, specificationTypesToCreate,
 							specRelationTypesToCreate, dataTypeDefinitionToCreate);
-
 					return false;
 				}
 			}
@@ -428,8 +435,13 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 		}
 		messageTodisplay="No Stereotype found for:"+messageTodisplay;
 		comment.setBody(messageTodisplay);
+		displayShell(messageTodisplay);
 	}
 
+	protected void displayShell(String message){
+		NotificationBuilder warm=NotificationBuilder.createErrorPopup("The choosen profile does not contain types that have to be imported!");
+		warm.run();
+	}
 	/**
 	 * look for in the list of types if it exist a corresponding stereotypes
 	 * @param specObjectTypesToCreate list of specObjectType that has no stereotypes
@@ -472,6 +484,11 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 	 * @param reqIFModel given ReqIFModel
 	 */
 	protected void getAllTypesFromReqIFFiles(ReqIF reqIFModel) {
+		objectTypeMap= new HashMap<String, SpecType>();
+		specificationTypeMap=new HashMap<String, SpecificationType>();
+		specRelationTypeMap= new HashMap<String, SpecType>();
+		reqifDatatTypeEnumeration= new HashMap<String, DatatypeDefinitionEnumeration>();
+		
 		if(reqIFModel.getCoreContent().getSpecTypes()!=null&&reqIFModel.getCoreContent().getSpecTypes().size()>0){
 			for(SpecType reqIFType : reqIFModel.getCoreContent().getSpecTypes()) {
 				if(reqIFType instanceof SpecObjectType){
@@ -486,7 +503,7 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 
 			}
 		}
-		reqifDatatTypeEnumeration= new HashMap<String, DatatypeDefinitionEnumeration>();
+		
 		getAllDataTypeDefinitionEnumeration();
 	}
 
@@ -496,17 +513,18 @@ public abstract class ReqIFImporter extends ReqIFBaseTransformation {
 	 */
 	protected void getAllStereotypesRepresentingTypes(Package UMLModel) {
 		//specObject Types
-		objectTypeMap= new HashMap<String, SpecType>();
+		objectTypeStereotypesMap= new HashMap<String, Stereotype>();
 		objectTypeStereotypesMap=getAllPossibleRequirementType(UMLModel);
 
 		//specificationType
-		specificationTypeMap= new HashMap<String, SpecificationType>();
+		specificationTypeSterotypeMap= new HashMap<String, Stereotype>();
 		specificationTypeSterotypeMap= getAllPossibleSpecificationType(UMLModel);
 
 		//SpecRelation
-		specRelationTypeMap= new  HashMap<String, SpecType>(); 
+		specRelationTypeSterotypeMap= new  HashMap<String, Stereotype>();
 		specRelationTypeSterotypeMap= getAllPossibleSpecRelationType();
 		//get All DataTypeEnumeration
+		profileEnumeration=new HashMap<String, Enumeration>();
 		profileEnumeration=getAllPossibleEnumeration(UMLModel);
 
 	}
