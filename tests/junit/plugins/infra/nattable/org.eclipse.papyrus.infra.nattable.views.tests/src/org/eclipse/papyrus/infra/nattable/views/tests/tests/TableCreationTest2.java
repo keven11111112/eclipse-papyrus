@@ -97,7 +97,7 @@ public class TableCreationTest2 extends AbstractPapyrusTest {
 	protected static ModelExplorerView view;
 
 	@BeforeClass
-	public static void init() {
+	public static void init() throws Exception {
 		try {
 			initTests(Activator.getDefault().getBundle(), PROJECT_NAME, MODEL_PATH);
 		} catch (CoreException e) {
@@ -109,7 +109,7 @@ public class TableCreationTest2 extends AbstractPapyrusTest {
 		}
 	}
 
-	public static void initTests(final Bundle bundle, final String projectName, final String papyrusModelPath) throws CoreException, IOException, BundleException {
+	public static void initTests(final Bundle bundle, final String projectName, final String papyrusModelPath) throws CoreException, IOException, BundleException, Exception {
 		ProjectUtils.removeAllProjectFromTheWorkspace();
 		IProject testProject = houseKeeper.createProject(projectName);
 		final IFile file = PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, FILE_ROOT_NAME);
@@ -117,7 +117,12 @@ public class TableCreationTest2 extends AbstractPapyrusTest {
 
 			@Override
 			public void run() {
-				papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				try {
+					papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				} catch (Exception ex){
+					Activator.log.error(ex);
+					return;
+				}
 				
 				try {
 					TableCreationTest2.view = ModelExplorerUtils.openModelExplorerView();
