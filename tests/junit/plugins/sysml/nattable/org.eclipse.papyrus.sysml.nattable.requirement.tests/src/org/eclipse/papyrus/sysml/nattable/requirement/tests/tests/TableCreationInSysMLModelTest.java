@@ -118,7 +118,12 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 
 			@Override
 			public void run() {
-				papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				try {
+					papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				} catch (Exception ex) {
+					Activator.log.error(ex);
+					Assert.fail(ex.getMessage());
+				}
 
 				try {
 					TableCreationInSysMLModelTest.view = ModelExplorerUtils.openModelExplorerView();
@@ -126,13 +131,13 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 					setStatus(new Status(IStatus.ERROR, bundle.getSymbolicName(), e.getMessage()));
 				}
 				EObject root = ModelExplorerUtils.getRootInModelExplorer(TableCreationInSysMLModelTest.view);
-				TableCreationInSysMLModelTest.rootModel = (Model)root;
-				class_ = (Class)TableCreationInSysMLModelTest.rootModel.getMember("Class1"); //$NON-NLS-1$
-				requirement1 = (Class)TableCreationInSysMLModelTest.rootModel.getMember("Requirement1"); //$NON-NLS-1$
-				requirement2 = (Class)TableCreationInSysMLModelTest.rootModel.getMember("Requirement2"); //$NON-NLS-1$
-				if(requirement1 != null) {
-					nestedRequirement1 = (Class)requirement1.getMember("NestedRequirement1"); //$NON-NLS-1$
-					nestedRequirement2 = (Class)requirement1.getMember("NestedRequirement2"); //$NON-NLS-1$
+				TableCreationInSysMLModelTest.rootModel = (Model) root;
+				class_ = (Class) TableCreationInSysMLModelTest.rootModel.getMember("Class1"); //$NON-NLS-1$
+				requirement1 = (Class) TableCreationInSysMLModelTest.rootModel.getMember("Requirement1"); //$NON-NLS-1$
+				requirement2 = (Class) TableCreationInSysMLModelTest.rootModel.getMember("Requirement2"); //$NON-NLS-1$
+				if (requirement1 != null) {
+					nestedRequirement1 = (Class) requirement1.getMember("NestedRequirement1"); //$NON-NLS-1$
+					nestedRequirement2 = (Class) requirement1.getMember("NestedRequirement2"); //$NON-NLS-1$
 					setStatus(Status.OK_STATUS);
 
 				} else {
@@ -170,11 +175,11 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 	@Test
 	public void testCreationAndDestructionOnRootModel() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.rootModel, BUNDLE_ID);
-		//to refresh the table content
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 		Assert.assertTrue(result instanceof NatTableEditor);
-		NatTableEditor editor = (NatTableEditor)result;
-		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
+		NatTableEditor editor = (NatTableEditor) result;
+		NattableModelManager manager = (NattableModelManager) editor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
 		Table table = manager.getTable();
 		Assert.assertEquals(AllTests.REQUIREMENT_TABLE_ID, table.getTableConfiguration().getType());
@@ -190,7 +195,7 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(requirement1));
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(requirement2));
 
-		final TransactionalEditingDomain domain = (TransactionalEditingDomain)papyrusEditor.getAdapter(TransactionalEditingDomain.class);
+		final TransactionalEditingDomain domain = (TransactionalEditingDomain) papyrusEditor.getAdapter(TransactionalEditingDomain.class);
 		Assert.assertNotNull(domain);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(TableCreationInSysMLModelTest.rootModel);
 		Assert.assertNotNull(provider);
@@ -202,8 +207,8 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
 		NamedElement requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
 		Assert.assertNotNull(requirement);
-		requirement3 = (Class)requirement;
-		//to refresh the table content
+		requirement3 = (Class) requirement;
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
@@ -224,8 +229,8 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
 		requirement = TableCreationInSysMLModelTest.rootModel.getMember("Requirement3"); //$NON-NLS-1$
 		Assert.assertNull(requirement);
-		requirement3 = (Class)requirement;
-		//to refresh the table content
+		requirement3 = (Class) requirement;
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(2, managedAxis.size());
@@ -240,11 +245,11 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 	@Test
 	public void testCreationAndDestructionOnRequirement() {
 		Object result = ModelExplorerUtils.executeCreateNestedEditorHandlerInModelExplorer(papyrusEditor, TableCreationInSysMLModelTest.view, AllTests.COMMAND_ID, TableCreationInSysMLModelTest.requirement1, BUNDLE_ID);
-		//to refresh the table content
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 		Assert.assertTrue(result instanceof NatTableEditor);
-		NatTableEditor editor = (NatTableEditor)result;
-		NattableModelManager manager = (NattableModelManager)editor.getAdapter(INattableModelManager.class);
+		NatTableEditor editor = (NatTableEditor) result;
+		NattableModelManager manager = (NattableModelManager) editor.getAdapter(INattableModelManager.class);
 		Assert.assertNotNull(manager);
 		Table table = manager.getTable();
 		Assert.assertEquals(AllTests.REQUIREMENT_TABLE_ID, table.getTableConfiguration().getType());
@@ -260,7 +265,7 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(nestedRequirement1));
 		Assert.assertTrue(rowAxisManager.getTableManager().getRowElementsList().contains(nestedRequirement2));
 
-		final TransactionalEditingDomain domain = (TransactionalEditingDomain)papyrusEditor.getAdapter(TransactionalEditingDomain.class);
+		final TransactionalEditingDomain domain = (TransactionalEditingDomain) papyrusEditor.getAdapter(TransactionalEditingDomain.class);
 		Assert.assertNotNull(domain);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(TableCreationInSysMLModelTest.requirement1);
 		Assert.assertNotNull(provider);
@@ -270,12 +275,12 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		Assert.assertTrue(creationCommand.canExecute());
 
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(creationCommand));
-		final NamedElement createdElement = (NamedElement)request.getNewElement();
+		final NamedElement createdElement = (NamedElement) request.getNewElement();
 		NamedElement requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName());
 		Assert.assertNotNull(requirement);
-		nestedRequirement3 = (Class)requirement;
+		nestedRequirement3 = (Class) requirement;
 
-		//to refresh the table content
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 		managedAxis = rowAxisManager.getAllManagedAxis();
 		Assert.assertEquals(3, managedAxis.size());
@@ -296,9 +301,9 @@ public class TableCreationInSysMLModelTest extends AbstractPapyrusTest {
 		domain.getCommandStack().execute(new GMFtoEMFCommandWrapper(destroyCommand));
 		requirement = TableCreationInSysMLModelTest.requirement1.getMember(createdElement.getName());
 		Assert.assertNull(requirement);
-		nestedRequirement3 = (Class)requirement;
+		nestedRequirement3 = (Class) requirement;
 
-		//to refresh the table content
+		// to refresh the table content
 		DisplayUtils.flushEventLoop();
 
 		managedAxis = rowAxisManager.getAllManagedAxis();

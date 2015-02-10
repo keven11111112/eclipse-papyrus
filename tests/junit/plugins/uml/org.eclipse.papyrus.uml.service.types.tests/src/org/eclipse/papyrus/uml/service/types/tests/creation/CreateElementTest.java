@@ -82,7 +82,7 @@ public class CreateElementTest extends AbstractPapyrusTest {
 	 * Init test class
 	 */
 	@BeforeClass
-	public static void initCreateElementTest() {
+	public static void initCreateElementTest() throws Exception {
 
 		// create Project
 		createProject = houseKeeper.createProject("UMLServiceTypesTest");

@@ -88,7 +88,12 @@ public class TableCreationInUMLModel extends AbstractPapyrusTest {
 
 			@Override
 			public void run() {
+				try {
 				papyrusEditor = houseKeeper.openPapyrusEditor(file);
+				} catch (Exception ex){
+					Activator.log.error(ex);
+					Assert.fail(ex.getMessage());
+				}
 
 				try {
 					TableCreationInSysMLModelTest.view = ModelExplorerUtils.openModelExplorerView();
