@@ -93,6 +93,7 @@ public class ParticipantValidator implements IParticipantValidator {
 					for (Object stereotypeToGet : participantsTypesList) {
 						if (EcoreUtil.equals(appliedStereotype, (EObject) stereotypeToGet)) {
 							results.add(modelElement);
+							break;
 						}
 					}
 				}

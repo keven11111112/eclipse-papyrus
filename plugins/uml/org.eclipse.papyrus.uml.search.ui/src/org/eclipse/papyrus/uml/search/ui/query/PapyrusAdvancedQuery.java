@@ -164,21 +164,23 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					EObject root = umlModel.lookupRoot();
 
 					Collection<EObject> participants = ParticipantValidator.getInstance().getParticipants(root, participantsList.keySet().toArray());
-					Collection<EObject> stereotypesParticipants = ParticipantValidator.getInstance().getParticipantsStereotype(root, stereotypeList.keySet().toArray());
+					Collection<EObject> stereotypedParticipants = ParticipantValidator.getInstance().getParticipantsStereotype(root, stereotypeList.keySet().toArray());
 
 					if (searchForAllSter) {
 
 						if (participantsList.keySet().size() == 0) {
-							stereotypesParticipants = getElementsWithAllSter(stereotypesParticipants);
-							evaluateStereotypes(stereotypesParticipants, scopeEntry);
+							stereotypedParticipants = getElementsWithAllSter(stereotypedParticipants);
+							evaluate(stereotypedParticipants, scopeEntry);
+							evaluateStereotypes(stereotypedParticipants, scopeEntry);
 						} else {
 							participants = getElementsWithAllSter(participants);
 							evaluate(participants, scopeEntry);
+							evaluateStereotypes(participants, scopeEntry);
 						}
 
 					} else {
 						evaluate(participants, scopeEntry);
-						evaluateStereotypes(stereotypesParticipants, scopeEntry);
+						evaluateStereotypes(stereotypedParticipants, scopeEntry);
 					}
 
 

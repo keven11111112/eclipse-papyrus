@@ -68,6 +68,7 @@ import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.CheckBoxFilteredTree;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.actions.ReplaceAction;
+import org.eclipse.papyrus.uml.search.ui.listeners.ParticipantTypesTreeViewerCheckStateListener;
 import org.eclipse.papyrus.uml.search.ui.providers.OCLContextContentProvider;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeAttribute;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeContentProvider;
@@ -110,6 +111,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
@@ -332,8 +334,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						}
 					}
 				}
-
-
+				
 				// Find available stereotypes
 				availableStereotypes = StereotypeCollector.getInstance().computeAppliedStereotypes(container);
 				for (Stereotype stereotype : availableStereotypes) {
@@ -355,11 +356,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					}
 
 					stereotypeParticipantsList.put(parentElement, attributeList);
-
-
 				}
-
-
 			}
 
 		};
@@ -592,97 +589,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		});
 
 		participantTypesTreeViewer.setInput(participantsList);
-
-		// participantTypesTreeViewer.setAllChecked(true);
-		((ICheckable) participantTypesTreeViewer).addCheckStateListener(new ICheckStateListener() {
-
-
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				if (event.getElement() instanceof ParticipantTypeElement) {
-
-
-					// If the item is checked . . .
-					if (event.getChecked()) {
-						Object selectedElement = event.getElement();
-
-						((ParticipantTypeElement) selectedElement).setChecked(true);
-						participantTypesTreeViewer.refresh(selectedElement);
-
-						if (selectedElement instanceof ParticipantTypeAttribute) {
-							ParticipantTypeElement parent = ((ParticipantTypeAttribute) selectedElement).getParent();
-							if (parent != null) {
-								// participantTypesTreeViewer.setChecked(parent, true);
-								parent.setChecked(true);
-								participantTypesTreeViewer.refresh(parent);
-							}
-						}
-					} else {
-						Object selectedElement = event.getElement();
-						((ParticipantTypeElement) selectedElement).setChecked(false);
-						participantTypesTreeViewer.refresh(selectedElement);
-
-						if (((ParticipantTypeElement) selectedElement).getElement() instanceof Stereotype || ((ParticipantTypeElement) selectedElement).getElement() instanceof EClassImpl) {
-							for (Object attribute : participantTypesTreeViewer.getCheckedElements()) {
-								if (attribute instanceof ParticipantTypeAttribute) {
-									if (((ParticipantTypeAttribute) attribute).getParent().equals(selectedElement)) {
-										// participantTypesTreeViewer.setChecked(attribute, false);
-										((ParticipantTypeElement) attribute).setChecked(false);
-										participantTypesTreeViewer.refresh(attribute);
-									}
-								}
-							}
-						}
-					}
-				}
-
-
-			}
-		});
+		((ICheckable) participantTypesTreeViewer).addCheckStateListener(new ParticipantTypesTreeViewerCheckStateListener(participantTypesTreeViewer, participantsList));
 		
 		participantStereotypesTreeViewer.setInput(stereotypeParticipantsList);
-		//TODO refactor
-		((ICheckable) participantStereotypesTreeViewer).addCheckStateListener(new ICheckStateListener() {
-
-
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				if (event.getElement() instanceof ParticipantTypeElement) {
-
-
-					// If the item is checked . . .
-					if (event.getChecked()) {
-						Object selectedElement = event.getElement();
-
-						((ParticipantTypeElement) selectedElement).setChecked(true);
-						participantStereotypesTreeViewer.refresh(selectedElement);
-
-						if (selectedElement instanceof ParticipantTypeAttribute) {
-							ParticipantTypeElement parent = ((ParticipantTypeAttribute) selectedElement).getParent();
-							if (parent != null) {
-								// participantTypesTreeViewer.setChecked(parent, true);
-								parent.setChecked(true);
-								participantStereotypesTreeViewer.refresh(parent);
-							}
-						}
-					} else {
-						Object selectedElement = event.getElement();
-						((ParticipantTypeElement) selectedElement).setChecked(false);
-						participantStereotypesTreeViewer.refresh(selectedElement);
-
-						if (((ParticipantTypeElement) selectedElement).getElement() instanceof Stereotype || ((ParticipantTypeElement) selectedElement).getElement() instanceof EClassImpl) {
-							for (Object attribute : participantStereotypesTreeViewer.getCheckedElements()) {
-								if (attribute instanceof ParticipantTypeAttribute) {
-									if (((ParticipantTypeAttribute) attribute).getParent().equals(selectedElement)) {
-										// participantTypesTreeViewer.setChecked(attribute, false);
-										((ParticipantTypeElement) attribute).setChecked(false);
-										participantStereotypesTreeViewer.refresh(attribute);
-									}
-								}
-							}
-						}
-					}
-				}
-			}
-		});
+		((ICheckable) participantStereotypesTreeViewer).addCheckStateListener(new ParticipantTypesTreeViewerCheckStateListener(participantStereotypesTreeViewer, stereotypeParticipantsList));
 
 		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
 		emptyLabel2 = new Label(advancedSearchComposite, SWT.NONE);
@@ -1158,9 +1068,12 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					for (ParticipantTypeElement element : this.participantsList.keySet()) {
 						if (element.isChecked()) {
 							participantsToEvaluate.add(element);
-							for (ParticipantTypeAttribute attributesToEvaluate : participantsList.get(element)) {
-								if (attributesToEvaluate.isChecked()) {
-									participantsToEvaluate.add(attributesToEvaluate);
+							
+							if (searchQueryText.getText().length() > 0) {
+								for (ParticipantTypeAttribute attributesToEvaluate : participantsList.get(element)) {
+									if (attributesToEvaluate.isChecked()) {
+										participantsToEvaluate.add(attributesToEvaluate);
+									}
 								}
 							}
 						}
@@ -1169,31 +1082,23 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					for (ParticipantTypeElement element : this.stereotypeParticipantsList.keySet()) {
 						if (element.isChecked()) {
 							participantsToEvaluate.add(element);
-							for (ParticipantTypeAttribute attributesToEvaluate : stereotypeParticipantsList.get(element)) {
-								if (attributesToEvaluate.isChecked()) {
-									participantsToEvaluate.add(attributesToEvaluate);
+							
+							if (searchQueryText.getText().length() > 0) {
+								for (ParticipantTypeAttribute attributesToEvaluate : stereotypeParticipantsList.get(element)) {
+									if (attributesToEvaluate.isChecked()) {
+										participantsToEvaluate.add(attributesToEvaluate);
+									}
 								}
 							}
 						}
 					}
 					
 					if (participantsToEvaluate.size() == 0) {
-
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 						return false;
 					} else {
-						if (searchQueryText.getText().length() == 0) {
-							for (Object participantChecked : participantTypesTreeViewer.getCheckedElements()) {
-								if (participantChecked instanceof ParticipantTypeAttribute) {
-									MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_33, Messages.PapyrusSearchPage_34);
-									return false;
-								}
-							}
-						}
-
 						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection());
 						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
-
 					}
 
 				}
