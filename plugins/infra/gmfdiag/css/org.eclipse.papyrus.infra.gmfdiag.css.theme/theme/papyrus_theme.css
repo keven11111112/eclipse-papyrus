@@ -133,15 +133,25 @@ ActivityDiagram Activity *,InteractionOverviewDiagram Activity * {
 
 /* no gradiant for symbol to permit to change color */
 ActivityDiagram MergeNode, 
-ActivityDiagram InitialNode, 
 ActivityDiagram ActivityFinalNode, 
 ActivityDiagram FlowFinalNode, 
 ActivityDiagram DecisionNode, 
 ActivityDiagram SendSignalAction,
-ActivityDiagram AcceptEventAction
+ActivityDiagram AcceptEventAction,
+InteractionOverviewDiagram MergeNode, 
+InteractionOverviewDiagram ActivityFinalNode, 
+InteractionOverviewDiagram FlowFinalNode, 
+InteractionOverviewDiagram DecisionNode
 {
 	gradient:none;
 	fillColor:white;
+}
+
+
+ActivityDiagram InitialNode,
+InteractionOverviewDiagram InitialNode{
+	gradient:none;
+	fillColor:black;
 }
 
 ClassDiagram Dependency{
