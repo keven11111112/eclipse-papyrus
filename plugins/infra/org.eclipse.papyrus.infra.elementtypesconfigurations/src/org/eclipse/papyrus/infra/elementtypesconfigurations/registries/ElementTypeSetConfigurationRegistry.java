@@ -384,21 +384,37 @@ public class ElementTypeSetConfigurationRegistry {
 		// 2. no local redefinition. Load elementType set from plugin definition
 		Bundle bundle = Platform.getBundle(bundleId);
 		if (Platform.isFragment(bundle)) {
-			return getElementTypeSetConfigurationInBundle(modelPath, bundleId);
+			ElementTypeSetConfiguration configuration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
+			if (configuration == null) {
+				Activator.log.warn("Cannot find resource " + modelPath + " in bundle " + bundleId);
+			}
+			return configuration;
 		} else { // this is a plugin. Search in sub fragments, then in the plugin
 			Bundle[] fragments = Platform.getFragments(bundle);
 			// no fragment, so the file should be in the plugin itself
 			if (fragments == null) {
 				return getElementTypeSetConfigurationInBundle(modelPath, bundleId);
 			} else {
+
+				ElementTypeSetConfiguration elementTypeSetConfiguration = null;
+
 				for (Bundle fragment : fragments) {
-					ElementTypeSetConfiguration ElementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, fragment.getSymbolicName());
-					if (ElementTypeSetConfiguration != null) {
-						return ElementTypeSetConfiguration;
+					elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, fragment.getSymbolicName());
+					if (elementTypeSetConfiguration != null) {
+						break;
 					}
 				}
-				// not found in fragments. Look in the plugin itself
-				return getElementTypeSetConfigurationInBundle(modelPath, bundleId);
+
+				if (elementTypeSetConfiguration == null) {
+					// not found in fragments. Look in the plugin itself
+					elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
+				}
+				
+				if (elementTypeSetConfiguration == null) {
+					Activator.log.warn("Cannot find resource " + modelPath + " in bundle " + bundleId);
+				}
+
+				return elementTypeSetConfiguration;
 			}
 		}
 	}
@@ -424,7 +440,7 @@ public class ElementTypeSetConfigurationRegistry {
 			if (content instanceof ElementTypeSetConfiguration) {
 				return (ElementTypeSetConfiguration) content;
 			}
-			Activator.log.error("Impossible to cast the object into an ElementTypeSetConfiguration: " + content, null);
+			Activator.log.warn("Impossible to cast the object into an ElementTypeSetConfiguration: " + content);
 			return null;
 		}
 		return null;
@@ -444,14 +460,12 @@ public class ElementTypeSetConfigurationRegistry {
 		try {
 			resource.load(null);
 		} catch (IOException e) {
-			Activator.log.error("Impossible to find the elementtypesetconfiguration model at path: " + path, e);
-			return null;
+			return null; //Don't log the error yet; we're trying several options
 		}
 		EObject content = resource.getContents().get(0);
 		if (content instanceof ElementTypeSetConfiguration) {
 			return (ElementTypeSetConfiguration) content;
 		}
-		Activator.log.error("Impossible to cast the object into an ElementTypeSetConfiguration: " + content, null);
 		return null;
 	}
 
