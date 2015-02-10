@@ -22,6 +22,7 @@ import java.lang.reflect.Modifier;
 import java.util.Collection;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.atomic.AtomicReference;
 
 import org.eclipse.core.commands.operations.IUndoableOperation;
 import org.eclipse.core.resources.IFile;
@@ -93,15 +94,15 @@ public abstract class AbstractHouseKeeperRule {
 			public Disposer<Object> apply(Object input) {
 				Function<Object, Disposer<?>> resultFunction = nullFunction;
 
-				for(Map.Entry<Class<?>, Function<Object, Disposer<?>>> next : disposers.entrySet()) {
-					if(next.getKey().isInstance(input)) {
+				for (Map.Entry<Class<?>, Function<Object, Disposer<?>>> next : disposers.entrySet()) {
+					if (next.getKey().isInstance(input)) {
 						resultFunction = next.getValue();
 						break;
 					}
 				}
 
 				@SuppressWarnings("unchecked")
-				Disposer<Object> result = (Disposer<Object>)resultFunction.apply(input);
+				Disposer<Object> result = (Disposer<Object>) resultFunction.apply(input);
 				return result;
 			}
 		};
@@ -124,11 +125,11 @@ public abstract class AbstractHouseKeeperRule {
 	 * Adds an {@code object} to clean up later, with a {@code disposer} method that is invoked reflectively to do the cleaning up.
 	 *
 	 * @param object
-	 *        an object to dispose after the test has completed
+	 *            an object to dispose after the test has completed
 	 * @param disposer
-	 *        the disposal method name
+	 *            the disposal method name
 	 * @param arg
-	 *        arguments (if any) to the {@code disposer} method
+	 *            arguments (if any) to the {@code disposer} method
 	 *
 	 * @return the {@code object}, for convenience
 	 */
@@ -141,14 +142,14 @@ public abstract class AbstractHouseKeeperRule {
 	 * Adds an {@code object} to clean up later, with a {@code disposer} that does the cleaning up.
 	 *
 	 * @param object
-	 *        an object to dispose after the test has completed
+	 *            an object to dispose after the test has completed
 	 * @param disposer
-	 *        the disposal behaviour
+	 *            the disposal behaviour
 	 *
 	 * @return the {@code object}, for convenience
 	 */
 	public <T> T cleanUpLater(T object, Disposer<? super T> disposer) {
-		if(cleanUpActions == null) {
+		if (cleanUpActions == null) {
 			cleanUpActions = Lists.newLinkedList();
 		}
 
@@ -162,13 +163,13 @@ public abstract class AbstractHouseKeeperRule {
 	 * Fails if the {@code object} does not have a corresponding built-in disposer.
 	 *
 	 * @param object
-	 *        an object to dispose after the test has completed
+	 *            an object to dispose after the test has completed
 	 *
 	 * @return the {@code object}, for convenience
 	 */
 	public <T> T cleanUpLater(T object) {
 		@SuppressWarnings("unchecked")
-		Disposer<T> disposer = (Disposer<T>)DISPOSER_FUNCTION.apply(object);
+		Disposer<T> disposer = (Disposer<T>) DISPOSER_FUNCTION.apply(object);
 		assertThat("No built-in disposer available", disposer, notNullValue());
 		return cleanUpLater(object, disposer);
 	}
@@ -195,12 +196,12 @@ public abstract class AbstractHouseKeeperRule {
 	 * Creates a new editing domain that will be disposed of automatically after the test completes.
 	 *
 	 * @param resourceSet
-	 *        the resource set on which to create the editing domain (or {@code null} to create a default one)
+	 *            the resource set on which to create the editing domain (or {@code null} to create a default one)
 	 *
 	 * @return the editing domain
 	 */
 	public TransactionalEditingDomain createSimpleEditingDomain(ResourceSet resourceSet) {
-		if(resourceSet == null) {
+		if (resourceSet == null) {
 			resourceSet = createResourceSet();
 		}
 
@@ -211,7 +212,7 @@ public abstract class AbstractHouseKeeperRule {
 	 * Creates a project that will be disposed of automatically after the test completes.
 	 *
 	 * @param name
-	 *        the name of the project
+	 *            the name of the project
 	 *
 	 * @return the project
 	 */
@@ -229,20 +230,20 @@ public abstract class AbstractHouseKeeperRule {
 	 * template resource from the test class's originating bundle.
 	 *
 	 * @param project
-	 *        the test project in which to create the file
+	 *            the test project in which to create the file
 	 * @param fileName
-	 *        the name of the file to create
+	 *            the name of the file to create
 	 * @param templatePath
-	 *        the path in the test bundle of the template file to copy
+	 *            the path in the test bundle of the template file to copy
 	 *
 	 * @return the new file
 	 */
 	public IFile createFile(IProject project, String fileName, String templatePath) {
-		Class<?> testClass = (test instanceof Class<?>) ? (Class<?>)test : test.getClass();
+		Class<?> testClass = (test instanceof Class<?>) ? (Class<?>) test : test.getClass();
 
 		try {
 			return cleanUpLater(PapyrusProjectUtils.copyIFile(templatePath, FrameworkUtil.getBundle(testClass), project, fileName), //
-				WorkspaceResourceDisposer.INSTANCE);
+					WorkspaceResourceDisposer.INSTANCE);
 		} catch (Exception e) {
 			fail(e.getMessage());
 			return null; // Unreachable
@@ -253,7 +254,7 @@ public abstract class AbstractHouseKeeperRule {
 	 * Opens the default editor on the given {@code file} and ensures that it will be closed after the test terminates.
 	 *
 	 * @param file
-	 *        the file to open in its editor
+	 *            the file to open in its editor
 	 *
 	 * @return the editor
 	 */
@@ -278,23 +279,28 @@ public abstract class AbstractHouseKeeperRule {
 	 * Opens the Papyrus editor on the given {@code file} and ensures that it will be closed after the test terminates.
 	 *
 	 * @param file
-	 *        the file to open in the Papyrus editor
+	 *            the file to open in the Papyrus editor
 	 *
 	 * @return the editor
 	 */
-	public IMultiDiagramEditor openPapyrusEditor(final IFile file) {
+	public IMultiDiagramEditor openPapyrusEditor(final IFile file) throws Exception {
 		final IMultiDiagramEditor[] result = { null };
+		final AtomicReference<Exception> syncExecException = new AtomicReference<Exception>();
 
 		Display.getDefault().syncExec(new Runnable() {
 
 			public void run() {
 				try {
 					result[0] = cleanUpLater(EditorUtils.openPapyrusEditor(file), EditorDisposer.INSTANCE);
-				} catch (Exception e) {
-					fail(e.getMessage());
+				} catch (Exception ex) {
+					syncExecException.set(ex);
 				}
 			}
 		});
+
+		if (syncExecException.get() != null) {
+			throw syncExecException.get();
+		}
 
 		return result[0];
 	}
@@ -303,7 +309,7 @@ public abstract class AbstractHouseKeeperRule {
 	 * Obtains the value of the named field of the test instance and ensures that it will be automatically cleared after the test completes.
 	 *
 	 * @param fieldName
-	 *        the field to access now and clear later
+	 *            the field to access now and clear later
 	 *
 	 * @return the value of the field
 	 */
@@ -312,7 +318,7 @@ public abstract class AbstractHouseKeeperRule {
 			Field field = field(fieldName);
 
 			@SuppressWarnings("unchecked")
-			T result = (T)field.get(test);
+			T result = (T) field.get(test);
 			cleanUpLater(field, new FieldDisposer());
 
 			return result;
@@ -326,10 +332,10 @@ public abstract class AbstractHouseKeeperRule {
 	Field field(String fieldName) {
 		Field result = null;
 
-		for(Class<?> next = getTestClass(); (result == null) && (next != null) && (next != Object.class); next = next.getSuperclass()) {
+		for (Class<?> next = getTestClass(); (result == null) && (next != null) && (next != Object.class); next = next.getSuperclass()) {
 			try {
 				result = next.getDeclaredField(fieldName);
-				if(result != null) {
+				if (result != null) {
 					result.setAccessible(true);
 				}
 			} catch (Exception e) {
@@ -348,9 +354,9 @@ public abstract class AbstractHouseKeeperRule {
 	 * Sets the value of the named field of the test instance and ensures that it will be automatically cleared after the test completes.
 	 *
 	 * @param fieldName
-	 *        the field to access now and clear later
+	 *            the field to access now and clear later
 	 * @param value
-	 *        the value to set
+	 *            the value to set
 	 *
 	 * @return the new value of the field
 	 */
@@ -375,20 +381,20 @@ public abstract class AbstractHouseKeeperRule {
 	void cleanUp() throws Exception {
 		cleanUpLeakProneFields();
 
-		if(cleanUpActions != null) {
+		if (cleanUpActions != null) {
 			Exception toThrow = null;
 
-			for(Runnable next : cleanUpActions) {
+			for (Runnable next : cleanUpActions) {
 				try {
 					next.run();
 				} catch (Exception e) {
 					// Unwrap
-					if(e instanceof WrappedException) {
-						e = ((WrappedException)e).exception();
+					if (e instanceof WrappedException) {
+						e = ((WrappedException) e).exception();
 					}
 
 					e.printStackTrace();
-					if(toThrow == null) {
+					if (toThrow == null) {
 						toThrow = e;
 					}
 				}
@@ -396,7 +402,7 @@ public abstract class AbstractHouseKeeperRule {
 
 			cleanUpActions = null;
 
-			if(toThrow != null) {
+			if (toThrow != null) {
 				throw toThrow;
 			}
 		}
@@ -409,7 +415,7 @@ public abstract class AbstractHouseKeeperRule {
 		try {
 			final Field[] fields = isStatic() ? leakProneStaticFields.get(getTestClass()) : leakProneInstanceFields.get(getTestClass());
 
-			for(int i = 0; i < fields.length; i++) {
+			for (int i = 0; i < fields.length; i++) {
 				fields[i].set(test, null);
 			}
 		} catch (Exception e) {
@@ -425,9 +431,9 @@ public abstract class AbstractHouseKeeperRule {
 				List<Field> result = Lists.newArrayList();
 
 				// Get all inherited fields, too
-				for(Class<?> next = key; (next != null) && (next != Object.class); next = next.getSuperclass()) {
-					for(Field field : next.getDeclaredFields()) {
-						if((Modifier.isStatic(field.getModifiers()) == staticFields) && !Modifier.isFinal(field.getModifiers()) && isLeakProne(field)) {
+				for (Class<?> next = key; (next != null) && (next != Object.class); next = next.getSuperclass()) {
+					for (Field field : next.getDeclaredFields()) {
+						if ((Modifier.isStatic(field.getModifiers()) == staticFields) && !Modifier.isFinal(field.getModifiers()) && isLeakProne(field)) {
 							try {
 								field.setAccessible(true);
 								result.add(field);
@@ -446,10 +452,10 @@ public abstract class AbstractHouseKeeperRule {
 	private static boolean isLeakProne(Field field) {
 		Class<?> type = field.getType();
 		return EObject.class.isAssignableFrom(type) || Resource.class.isAssignableFrom(type) //
-			|| ResourceSet.class.isAssignableFrom(type) || EditingDomain.class.isAssignableFrom(type) //
-			|| EditPart.class.isAssignableFrom(type) //
-			|| Command.class.isAssignableFrom(type) || org.eclipse.gef.commands.Command.class.isAssignableFrom(type) //
-			|| IUndoableOperation.class.isAssignableFrom(type) || ICommand.class.isAssignableFrom(type);
+				|| ResourceSet.class.isAssignableFrom(type) || EditingDomain.class.isAssignableFrom(type) //
+				|| EditPart.class.isAssignableFrom(type) //
+				|| Command.class.isAssignableFrom(type) || org.eclipse.gef.commands.Command.class.isAssignableFrom(type) //
+				|| IUndoableOperation.class.isAssignableFrom(type) || ICommand.class.isAssignableFrom(type);
 	}
 
 	//
@@ -465,7 +471,7 @@ public abstract class AbstractHouseKeeperRule {
 		@SuppressWarnings("unchecked")
 		<T> CleanUpAction(T object, Disposer<? super T> disposer) {
 			this.target = object;
-			this.disposer = (Disposer<Object>)disposer;
+			this.disposer = (Disposer<Object>) disposer;
 		}
 
 		public void run() {
@@ -490,8 +496,8 @@ public abstract class AbstractHouseKeeperRule {
 		}
 
 		public void dispose(ResourceSet object) {
-			if(object instanceof ModelSet) {
-				((ModelSet)object).unload();
+			if (object instanceof ModelSet) {
+				((ModelSet) object).unload();
 			}
 
 			// No harm in hitting a ModelSet again
@@ -532,7 +538,7 @@ public abstract class AbstractHouseKeeperRule {
 		}
 
 		public void dispose(IResource object) throws Exception {
-			switch(object.getType()) {
+			switch (object.getType()) {
 			case IResource.PROJECT:
 			case IResource.FOLDER:
 			case IResource.FILE:
@@ -559,7 +565,7 @@ public abstract class AbstractHouseKeeperRule {
 
 				public void run() {
 					IWorkbenchPage page = (object.getSite() == null) ? null : object.getSite().getPage();
-					if(page != null) {
+					if (page != null) {
 						try {
 							page.closeEditor(object, false);
 						} catch (Exception e) {
