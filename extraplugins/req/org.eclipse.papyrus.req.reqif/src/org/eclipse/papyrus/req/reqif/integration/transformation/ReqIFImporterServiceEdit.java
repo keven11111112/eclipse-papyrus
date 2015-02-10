@@ -31,6 +31,7 @@ import org.eclipse.papyrus.req.reqif.integration.assistant.ChooseReqIFTypeDialog
 import org.eclipse.papyrus.req.reqif.integration.command.DefineProfileCommand;
 import org.eclipse.papyrus.req.reqif.transformation.ReqIFImporter;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.rmf.reqif10.ReqIF;
 import org.eclipse.rmf.reqif10.SpecType;
 import org.eclipse.swt.widgets.Shell;
@@ -64,17 +65,19 @@ public class ReqIFImporterServiceEdit extends ReqIFImporter {
 	 * @see org.eclipse.papyrus.req.reqif.transformation.ReqIFImporter#createRequirementClass(org.eclipse.uml2.uml.Element)
 	 *{@inheritDoc}
 	 */
-	protected Class createRequirementClass(org.eclipse.uml2.uml.Element owner) {
+	protected Class createClassWithRequirementName(org.eclipse.uml2.uml.Element owner) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(owner);
 		if(provider == null) {
 			return null;
 		}
 
-		ICommand createGMFCommand = provider.getEditCommand(new CreateElementRequest(domain, owner, SysMLElementTypes.REQUIREMENT));
+		ICommand createGMFCommand = provider.getEditCommand(new CreateElementRequest(domain, owner, UMLElementTypes.CLASS));
 		if(createGMFCommand != null) {
 			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 			domain.getCommandStack().execute(emfCommand);
-			return (Class)createGMFCommand.getCommandResult().getReturnValue();
+			Class theClass= (Class)createGMFCommand.getCommandResult().getReturnValue();
+			theClass.setName(theClass.getName().replaceAll("Class", "Requirement"));
+			return theClass;
 		}
 		return null;
 	}
