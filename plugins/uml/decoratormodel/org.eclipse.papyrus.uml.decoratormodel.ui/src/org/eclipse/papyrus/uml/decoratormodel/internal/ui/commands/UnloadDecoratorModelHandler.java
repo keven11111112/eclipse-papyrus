@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -41,6 +41,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
+import org.eclipse.papyrus.uml.decoratormodel.internal.providers.DecoratorPackageCache;
 import org.eclipse.papyrus.uml.decoratormodel.internal.ui.messages.Messages;
 import org.eclipse.papyrus.uml.tools.utils.CustomUMLUtil;
 import org.eclipse.swt.widgets.Shell;
@@ -129,6 +130,9 @@ public class UnloadDecoratorModelHandler extends AbstractHandler {
 				@Override
 				public void execute() {
 					for (Resource next : resources) {
+						// Prepare the ephemeral cache of decorator-to-usermodel package relationships
+						DecoratorPackageCache.aboutToUnload(next);
+
 						// Destroy the contents of the resource to effect unapplication of stereotypes
 						CustomUMLUtil.destroyAll(next.getContents());
 

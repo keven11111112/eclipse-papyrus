@@ -10,11 +10,13 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 458655
+ *  Christian W. Damus - bug 458197
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.model;
 
 import java.io.IOException;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -36,8 +38,12 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.uml.decoratormodel.Activator;
 import org.eclipse.papyrus.uml.decoratormodel.helper.DecoratorModelUtils;
+import org.eclipse.papyrus.uml.decoratormodel.internal.providers.DecoratorPackageCache;
+import org.eclipse.papyrus.uml.tools.listeners.ProfileApplicationListener;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.common.collect.ImmutableList;
@@ -212,8 +218,14 @@ public class DecoratorModel extends AbstractModel {
 				// Ensure that references to base elements resolve so that the diagrams
 				// and property sheets etc. may all update
 				EcoreUtil.resolveAll(result);
+
+				// And ensure that after it is unloaded we will have an ephemeral cache of the last-known decorator-package relationships
+				new DecoratorPackageCache(result).install();
 			} catch (Exception e) {
 				// Fine, we couldn't load it all. Will recover whatever we did manage to load
+			} finally {
+				// And then notify listeners that profiles were applied
+				notifyProfilesApplied(result);
 			}
 		}
 
@@ -231,6 +243,26 @@ public class DecoratorModel extends AbstractModel {
 					resource.eAdapters().add(afterCacheAdapter, recorder);
 				} else {
 					resource.eAdapters().move(afterCacheAdapter, index);
+				}
+			}
+		}
+	}
+
+	protected void notifyProfilesApplied(Resource decoratorModel) {
+		Package rootPackage = (Package) EcoreUtil.getObjectByType(decoratorModel.getContents(), UMLPackage.Literals.PACKAGE);
+		if (rootPackage != null) {
+			for (Iterator<?> iter = rootPackage.eAllContents(); iter.hasNext();) {
+				Object next = iter.next();
+				if (next instanceof ProfileApplication) {
+					// Our specialized service implementation takes care of translating to user-model terms
+					ProfileApplication application = (ProfileApplication) next;
+					Package applyingPackage = DecoratorModelUtils.getUserModelApplyingPackage(application);
+
+					// Only inject notifications for the external applications
+					if (applyingPackage != application.getApplyingPackage()) {
+						Profile appliedProfile = application.getAppliedProfile();
+						ProfileApplicationListener.ProfileApplicationNotification.notifyProfileApplied(applyingPackage, appliedProfile);
+					}
 				}
 			}
 		}
