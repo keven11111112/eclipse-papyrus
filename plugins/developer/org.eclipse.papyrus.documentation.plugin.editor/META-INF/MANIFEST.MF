@@ -19,5 +19,5 @@ Bundle-Activator: org.eclipse.papyrus.documentation.plugin.documentati
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.documentation.plugin.editor;s
  ingleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

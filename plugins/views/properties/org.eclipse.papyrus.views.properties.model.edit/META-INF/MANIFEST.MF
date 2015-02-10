@@ -18,5 +18,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.views.properties.environment.provider.PropertiesEditPlugin$Implementation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties.model.edit;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

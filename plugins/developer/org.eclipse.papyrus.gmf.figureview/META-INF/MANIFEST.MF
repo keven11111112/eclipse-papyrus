@@ -17,5 +17,5 @@ Bundle-Activator: org.eclipse.papyrus.gmf.figureview.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.gmf.figureview;singleton:=tru
  e
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
