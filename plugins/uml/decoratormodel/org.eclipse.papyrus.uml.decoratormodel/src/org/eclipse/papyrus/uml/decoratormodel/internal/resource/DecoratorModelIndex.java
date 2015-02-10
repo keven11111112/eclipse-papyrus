@@ -30,7 +30,6 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.xml.type.XMLTypePackage;
 import org.eclipse.papyrus.infra.emf.resource.index.WorkspaceModelIndex;
@@ -63,6 +62,14 @@ public class DecoratorModelIndex {
 
 	private static final int MAX_INDEX_JOBS = 5;
 
+	static {
+		// Ensure that packages required by the UML content describers won't be initialized in parallel by project index jobs
+		EcorePackage.eINSTANCE.eClass();
+		XMLTypePackage.eINSTANCE.eClass();
+		UMLPackage.eINSTANCE.eClass();
+		ProfileExternalizationPackage.eINSTANCE.eClass();
+	}
+
 	private static final DecoratorModelIndex INSTANCE = new DecoratorModelIndex();
 
 	private final Object sync = new Object();
@@ -76,14 +83,6 @@ public class DecoratorModelIndex {
 	private final WorkspaceModelIndex<DecoratorModelIndex> index;
 
 	private final CopyOnWriteArrayList<IDecoratorModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
-
-	static {
-		// Ensure that packages required by the UML content describers won't be initialized in parallel by project index jobs
-		EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-		EPackage.Registry.INSTANCE.getEPackage(XMLTypePackage.eNS_URI);
-		EPackage.Registry.INSTANCE.getEPackage(UMLPackage.eNS_URI);
-		EPackage.Registry.INSTANCE.getEPackage(ProfileExternalizationPackage.eNS_URI);
-	}
 
 	/**
 	 * Not instantiable by clients.
