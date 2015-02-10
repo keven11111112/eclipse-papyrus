@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
@@ -67,6 +68,10 @@ public class StyleBasedShapeProvider extends AbstractShapeProvider {
 			return listEmptyRendered;
 		}
 		SVGDocument svg = getSVGDocument(view, svgFile);
+		if (svg == null){
+			Activator.log.warn("Invalid SVG File path: "+svgFile);
+			return null;
+		}
 		RenderedImage img = null;
 		try {
 			img = renderSVGDocument(view, svg);
