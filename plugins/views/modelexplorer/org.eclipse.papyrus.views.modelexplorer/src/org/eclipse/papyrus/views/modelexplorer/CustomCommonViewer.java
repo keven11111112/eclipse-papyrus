@@ -123,6 +123,8 @@ public class CustomCommonViewer extends CommonViewer {
 		TreeViewerFocusCellManager focusCellManager = new TreeViewerFocusCellManager(
 				this, fch);
 
+		
+		
 		TreeViewerEditor.create(this, focusCellManager, new ColumnViewerEditorActivationStrategy(this) {
 			@Override
 			protected boolean isEditorActivationEvent(
@@ -134,7 +136,20 @@ public class CustomCommonViewer extends CommonViewer {
 			}
 		}, ColumnViewerEditor.KEYBOARD_ACTIVATION);
 		ColumnViewerEditor editor = this.getColumnViewerEditor();
+		
 		return editor;
+	}
+	
+	/**
+	 * @see org.eclipse.ui.navigator.CommonViewer#dispose()
+	 *
+	 */
+	@Override
+	public void dispose() {
+		//Remove the custom column viewer editor which causes NPE after dispose
+		//ViewerEditor cannot be nulled or disposed, so we just recreate a default one
+		setColumnViewerEditor(super.createViewerEditor());
+		super.dispose();
 	}
 
 }
