@@ -56,21 +56,23 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getListeners <em>Listener</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getAssistants <em>Assistant</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getElementTypeIDs <em>Element Type ID</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getOwnedFilters <em>Owned Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getPopupAssistants <em>Popup Assistant</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getConnectionAssistants <em>Connection Assistant</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getElementTypes <em>Element Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getElementTypeIDs <em>Element Type ID</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getClientContext <em>Client Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getClientContextID <em>Client Context ID</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getExcludedElementTypes <em>Excluded Element Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getExcludedElementTypeIDs <em>Excluded Element Type ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getRelationshipTypes <em>Relationship Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl#getRelationshipTypeIDs <em>Relationship Type ID</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -86,6 +88,17 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<IProviderChangeListener> listeners;
+
+	/**
+	 * The cached value of the '{@link #getElementTypeIDs() <em>Element Type ID</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getElementTypeIDs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> elementTypeIDs;
 
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
@@ -143,17 +156,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	protected EList<ConnectionAssistant> connectionAssistants;
 
 	/**
-	 * The cached value of the '{@link #getElementTypeIDs() <em>Element Type ID</em>}' attribute list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #getElementTypeIDs()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<String> elementTypeIDs;
-
-	/**
 	 * The default value of the '{@link #getClientContext() <em>Client Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -196,6 +198,17 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 * @ordered
 	 */
 	protected EList<String> excludedElementTypeIDs;
+
+	/**
+	 * The cached value of the '{@link #getRelationshipTypeIDs() <em>Relationship Type ID</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getRelationshipTypeIDs()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<String> relationshipTypeIDs;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -466,6 +479,17 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	}
 
 	/**
+	 * The array of subset feature identifiers for the '{@link #getElementTypeIDs() <em>Element Type ID</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getElementTypeIDs()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] ELEMENT_TYPE_ID_ESUBSETS = new int[] { AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID };
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -554,6 +578,56 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 		}
 		return excludedElementTypeIDs;
 	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EList<IElementType> getRelationshipTypes()
+	{
+		CacheAdapter cache = getCacheAdapter();
+		if (cache != null)
+		{
+			@SuppressWarnings("unchecked")
+			EList<IElementType> result = (EList<IElementType>) cache.get(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE);
+			if (result == null)
+			{
+				cache.put(eResource(), this, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE, result = ModelingAssistantProviderOperations.getRelationshipTypes(this));
+			}
+			return result;
+		}
+		return ModelingAssistantProviderOperations.getRelationshipTypes(this);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EList<String> getRelationshipTypeIDs()
+	{
+		if (relationshipTypeIDs == null)
+		{
+			relationshipTypeIDs = new EDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID);
+		}
+		return relationshipTypeIDs;
+	}
+
+	/**
+	 * The array of superset feature identifiers for the '{@link #getRelationshipTypeIDs() <em>Relationship Type ID</em>}' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getRelationshipTypeIDs()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final int[] RELATIONSHIP_TYPE_ID_ESUPERSETS = new int[] { AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID };
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -741,6 +815,18 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	 *
 	 * @generated
 	 */
+	@Override
+	public boolean isRelationshipType(IElementType elementType)
+	{
+		return ModelingAssistantProviderOperations.isRelationshipType(this, elementType);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs)
@@ -791,6 +877,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return getListeners();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT:
 			return getAssistants();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
+			return getElementTypeIDs();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__NAME:
 			return getName();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER:
@@ -801,8 +889,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return getConnectionAssistants();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE:
 			return getElementTypes();
-		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
-			return getElementTypeIDs();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT:
 			return getClientContext();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID:
@@ -811,6 +897,10 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return getExcludedElementTypes();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID:
 			return getExcludedElementTypeIDs();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE:
+			return getRelationshipTypes();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID:
+			return getRelationshipTypeIDs();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -831,6 +921,10 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			getListeners().clear();
 			getListeners().addAll((Collection<? extends IProviderChangeListener>) newValue);
 			return;
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
+			getElementTypeIDs().clear();
+			getElementTypeIDs().addAll((Collection<? extends String>) newValue);
+			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__NAME:
 			setName((String) newValue);
 			return;
@@ -846,16 +940,16 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			getConnectionAssistants().clear();
 			getConnectionAssistants().addAll((Collection<? extends ConnectionAssistant>) newValue);
 			return;
-		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
-			getElementTypeIDs().clear();
-			getElementTypeIDs().addAll((Collection<? extends String>) newValue);
-			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID:
 			setClientContextID((String) newValue);
 			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID:
 			getExcludedElementTypeIDs().clear();
 			getExcludedElementTypeIDs().addAll((Collection<? extends String>) newValue);
+			return;
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID:
+			getRelationshipTypeIDs().clear();
+			getRelationshipTypeIDs().addAll((Collection<? extends String>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -875,6 +969,9 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__LISTENER:
 			getListeners().clear();
 			return;
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
+			getElementTypeIDs().clear();
+			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -887,14 +984,14 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CONNECTION_ASSISTANT:
 			getConnectionAssistants().clear();
 			return;
-		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
-			getElementTypeIDs().clear();
-			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID:
 			setClientContextID(CLIENT_CONTEXT_ID_EDEFAULT);
 			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID:
 			getExcludedElementTypeIDs().clear();
+			return;
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID:
+			getRelationshipTypeIDs().clear();
 			return;
 		}
 		super.eUnset(featureID);
@@ -915,6 +1012,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return listeners != null && !listeners.isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ASSISTANT:
 			return isSetAssistants();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
+			return elementTypeIDs != null && !elementTypeIDs.isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER:
@@ -925,8 +1024,6 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return connectionAssistants != null && !connectionAssistants.isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE:
 			return !getElementTypes().isEmpty();
-		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID:
-			return elementTypeIDs != null && !elementTypeIDs.isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT:
 			return CLIENT_CONTEXT_EDEFAULT == null ? getClientContext() != null : !CLIENT_CONTEXT_EDEFAULT.equals(getClientContext());
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID:
@@ -935,6 +1032,10 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return !getExcludedElementTypes().isEmpty();
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID:
 			return excludedElementTypeIDs != null && !excludedElementTypeIDs.isEmpty();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE:
+			return !getRelationshipTypes().isEmpty();
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID:
+			return relationshipTypeIDs != null && !relationshipTypeIDs.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -982,6 +1083,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 			return getTypesForPopupBar((IAdaptable) arguments.get(0));
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER___GET_ELEMENT_TYPE__STRING:
 			return getElementType((String) arguments.get(0));
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE:
+			return isRelationshipType((IElementType) arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
@@ -1010,6 +1113,8 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 		result.append(clientContextID);
 		result.append(", excludedElementTypeID: "); //$NON-NLS-1$
 		result.append(excludedElementTypeIDs);
+		result.append(", relationshipTypeID: "); //$NON-NLS-1$
+		result.append(relationshipTypeIDs);
 		result.append(')');
 		return result.toString();
 	}

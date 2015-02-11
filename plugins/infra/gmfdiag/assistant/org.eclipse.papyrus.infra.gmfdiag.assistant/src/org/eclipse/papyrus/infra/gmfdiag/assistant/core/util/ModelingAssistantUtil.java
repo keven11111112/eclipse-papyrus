@@ -34,7 +34,6 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
-import org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.util.ProxyElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticElementAdapter;
@@ -344,20 +343,5 @@ public class ModelingAssistantUtil {
 		final Collator collator = Collator.getInstance();
 		collator.setStrength(Collator.PRIMARY);
 		return Ordering.from(collator).onResultOf(primaryNameFunction()).compound(Ordering.natural().onResultOf(visualIDFunction()));
-	}
-
-	public static boolean isRelationship(ModelingAssistantProvider provider, IElementType elementType) {
-		boolean result = false;
-
-		// A relationship is a type for which we provide connection assistants
-		for (ConnectionAssistant next : provider.getConnectionAssistants()) {
-			IElementType relationshipType = next.getElementType();
-			if ((relationshipType != null) && isSubtype(elementType, relationshipType)) {
-				result = true;
-				break;
-			}
-		}
-
-		return result;
 	}
 }

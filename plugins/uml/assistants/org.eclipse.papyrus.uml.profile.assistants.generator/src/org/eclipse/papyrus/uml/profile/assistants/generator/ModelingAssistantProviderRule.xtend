@@ -57,6 +57,7 @@ class ModelingAssistantProviderRule {
                 popupAssistants.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toPopupAssistant(it)])
             } else {
                 // Connection assistants to create relationships
+                relationshipTypeIDs.addAll(profileElementTypes)
                 connectionAssistants.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toConnectionAssistant(it)])
             }
         ]

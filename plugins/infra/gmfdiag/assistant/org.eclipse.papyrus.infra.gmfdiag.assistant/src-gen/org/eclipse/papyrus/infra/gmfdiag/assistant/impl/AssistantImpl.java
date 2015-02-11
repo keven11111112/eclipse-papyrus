@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -38,12 +38,12 @@ import org.eclipse.uml2.common.util.CacheAdapter;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.AssistantImpl#getProvider <em>Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.AssistantImpl#getElementTypeID <em>Element Type ID</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.AssistantImpl#getElementType <em>Element Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

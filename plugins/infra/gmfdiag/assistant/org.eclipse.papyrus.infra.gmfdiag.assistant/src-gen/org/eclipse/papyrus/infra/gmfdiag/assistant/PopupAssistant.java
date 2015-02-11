@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,12 +22,12 @@ import org.eclipse.papyrus.infra.filters.Filter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant#getFilter <em>Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant#getOwnedFilter <em>Owned Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant#getOwningProvider <em>Owning Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#getPopupAssistant()
  * @model
@@ -67,10 +67,10 @@ public interface PopupAssistant extends Assistant
 	 * Returns the value of the '<em><b>Owned Filter</b></em>' containment reference.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant#getFilter() <em>Filter</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Filter</em>' containment reference isn't clear, there really should be more of a description here...
@@ -117,10 +117,10 @@ public interface PopupAssistant extends Assistant
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getPopupAssistants <em>Popup Assistant</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant#getProvider() <em>Provider</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Provider</em>' container reference isn't clear, there really should be more of a description here...

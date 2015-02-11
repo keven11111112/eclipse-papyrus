@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getAssistants <em>Assistant</em>}</li>
@@ -46,8 +47,9 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getClientContextID <em>Client Context ID</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getExcludedElementTypes <em>Excluded Element Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getExcludedElementTypeIDs <em>Excluded Element Type ID</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes <em>Relationship Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypeIDs <em>Relationship Type ID</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#getModelingAssistantProvider()
  * @model superTypes="org.eclipse.papyrus.infra.gmfdiag.assistant.IModelingAssistantProvider"
@@ -110,6 +112,15 @@ public interface ModelingAssistantProvider extends EObject, IModelingAssistantPr
 	 * @generated
 	 */
 	IElementType getElementType(String id);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @model dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false" elementTypeDataType="org.eclipse.papyrus.infra.gmfdiag.assistant.ElementType" elementTypeRequired="true" elementTypeOrdered="false"
+	 * @generated
+	 */
+	boolean isRelationshipType(IElementType elementType);
 
 	/**
 	 * Returns the value of the '<em><b>Owned Filter</b></em>' containment reference list.
@@ -180,10 +191,10 @@ public interface ModelingAssistantProvider extends EObject, IModelingAssistantPr
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant#getOwningProvider <em>Owning Provider</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getAssistants() <em>Assistant</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Popup Assistant</em>' containment reference list isn't clear, there really should be more of a description here...
@@ -215,10 +226,10 @@ public interface ModelingAssistantProvider extends EObject, IModelingAssistantPr
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getOwningProvider <em>Owning Provider</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getAssistants() <em>Assistant</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Connection Assistant</em>' containment reference list isn't clear, there really should be more of a description here...
@@ -352,5 +363,49 @@ public interface ModelingAssistantProvider extends EObject, IModelingAssistantPr
 	 * @generated
 	 */
 	EList<String> getExcludedElementTypeIDs();
+
+	/**
+	 * Returns the value of the '<em><b>Relationship Type</b></em>' attribute list.
+	 * The list contents are of type {@link org.eclipse.gmf.runtime.emf.type.core.IElementType}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementTypes() <em>Element Type</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The element types supported by the provider.
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Relationship Type</em>' attribute list.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#getModelingAssistantProvider_RelationshipType()
+	 * @model unique="false" dataType="org.eclipse.papyrus.infra.gmfdiag.assistant.ElementType" transient="true" changeable="false" volatile="true" derived="true" ordered="false"
+	 * @generated
+	 */
+	EList<IElementType> getRelationshipTypes();
+
+	/**
+	 * Returns the value of the '<em><b>Relationship Type ID</b></em>' attribute list.
+	 * The list contents are of type {@link java.lang.String}.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementTypeIDs() <em>Element Type ID</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The identifiers of element types supported by the provider.
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Relationship Type ID</em>' attribute list.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#getModelingAssistantProvider_RelationshipTypeID()
+	 * @model dataType="org.eclipse.uml2.types.String" ordered="false"
+	 * @generated
+	 */
+	EList<String> getRelationshipTypeIDs();
 
 } // ModelingAssistantProvider

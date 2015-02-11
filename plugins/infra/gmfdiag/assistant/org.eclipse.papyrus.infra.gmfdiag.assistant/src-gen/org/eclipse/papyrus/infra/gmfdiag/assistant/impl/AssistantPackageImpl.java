@@ -412,6 +412,30 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	 * @generated
 	 */
 	@Override
+	public EAttribute getModelingAssistantProvider_RelationshipType()
+	{
+		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(11);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EAttribute getModelingAssistantProvider_RelationshipTypeID()
+	{
+		return (EAttribute) modelingAssistantProviderEClass.getEStructuralFeatures().get(12);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EOperation getModelingAssistantProvider__GetElementTypes()
 	{
 		return modelingAssistantProviderEClass.getEOperations().get(0);
@@ -451,6 +475,30 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 	public EOperation getModelingAssistantProvider__GetExcludedElementTypes()
 	{
 		return modelingAssistantProviderEClass.getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EOperation getModelingAssistantProvider__GetRelationshipTypes()
+	{
+		return modelingAssistantProviderEClass.getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EOperation getModelingAssistantProvider__IsRelationshipType__IElementType()
+	{
+		return modelingAssistantProviderEClass.getEOperations().get(5);
 	}
 
 	/**
@@ -1021,10 +1069,14 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		createEAttribute(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID);
 		createEAttribute(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE);
 		createEAttribute(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID);
+		createEAttribute(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE);
+		createEAttribute(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID);
 		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___GET_ELEMENT_TYPES);
 		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___GET_CLIENT_CONTEXT);
 		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___GET_ELEMENT_TYPE__STRING);
 		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___GET_EXCLUDED_ELEMENT_TYPES);
+		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___GET_RELATIONSHIP_TYPES);
+		createEOperation(modelingAssistantProviderEClass, MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE);
 
 		assistantEClass = createEClass(ASSISTANT);
 		createEAttribute(assistantEClass, ASSISTANT__ELEMENT_TYPE_ID);
@@ -1150,6 +1202,10 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 				"excludedElementType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getModelingAssistantProvider_ExcludedElementTypeID(), theTypesPackage.getString(),
 				"excludedElementTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelingAssistantProvider_RelationshipType(), this.getElementType(),
+				"relationshipType", null, 0, -1, ModelingAssistantProvider.class, IS_TRANSIENT, IS_VOLATILE, !IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getModelingAssistantProvider_RelationshipTypeID(), theTypesPackage.getString(),
+				"relationshipTypeID", null, 0, -1, ModelingAssistantProvider.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getModelingAssistantProvider__GetElementTypes(), this.getElementType(), "getElementTypes", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
@@ -1159,6 +1215,11 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 		addEParameter(op, theTypesPackage.getString(), "id", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEOperation(getModelingAssistantProvider__GetExcludedElementTypes(), this.getElementType(), "getExcludedElementTypes", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		initEOperation(getModelingAssistantProvider__GetRelationshipTypes(), this.getElementType(), "getRelationshipTypes", 0, -1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+
+		op = initEOperation(getModelingAssistantProvider__IsRelationshipType__IElementType(), theTypesPackage.getBoolean(), "isRelationshipType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
+		addEParameter(op, this.getElementType(), "elementType", 1, 1, IS_UNIQUE, !IS_ORDERED); //$NON-NLS-1$
 
 		initEClass(assistantEClass, Assistant.class, "Assistant", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getAssistant_ElementTypeID(), theTypesPackage.getString(), "elementTypeID", null, 1, 1, Assistant.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED); //$NON-NLS-1$
@@ -1295,6 +1356,24 @@ public class AssistantPackageImpl extends EPackageImpl implements AssistantPacka
 				new URI[]
 				{
 				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/assistant") //$NON-NLS-1$
+				});
+		addAnnotation(getModelingAssistantProvider_RelationshipType(),
+				source,
+				new String[]
+				{
+				},
+				new URI[]
+				{
+				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementType") //$NON-NLS-1$
+				});
+		addAnnotation(getModelingAssistantProvider_RelationshipTypeID(),
+				source,
+				new String[]
+				{
+				},
+				new URI[]
+				{
+				URI.createURI(eNS_URI).appendFragment("//ModelingAssistantProvider/elementTypeID") //$NON-NLS-1$
 				});
 		addAnnotation(getPopupAssistant_OwnedFilter(),
 				source,

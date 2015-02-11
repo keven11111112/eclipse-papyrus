@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -25,12 +25,12 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUt
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.filters.Filter#matches(java.lang.Object) <em>Matches</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter#getElementType() <em>Get Element Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ElementTypeFilter#getProvider() <em>Get Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

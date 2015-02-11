@@ -13,7 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations;
 
 import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUtil.alphabetical;
 import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUtil.filterConnectionTypes;
-import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUtil.isRelationship;
 
 import java.util.Collection;
 import java.util.List;
@@ -37,6 +36,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.papyrus.infra.emf.utils.ECollections2;
 import org.eclipse.papyrus.infra.emf.utils.ECollections2.ImmutableEListBuilder;
+import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
@@ -44,10 +44,12 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUt
 import org.eclipse.papyrus.infra.gmfdiag.assistant.impl.ModelingAssistantProviderImpl;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.core.util.ProviderCache;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
+import org.eclipse.uml2.common.util.CacheAdapter;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
@@ -58,6 +60,7 @@ import com.google.common.collect.Sets;
  *
  * <p>
  * The following operations are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.gmf.runtime.common.core.service.IProvider#provides(org.eclipse.gmf.runtime.common.core.service.IOperation) <em>Provides</em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.common.core.service.IProvider#addProviderChangeListener(org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener) <em>Add Provider Change Listener</em>}</li>
@@ -79,8 +82,9 @@ import com.google.common.collect.Sets;
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getClientContext() <em>Get Client Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementType(java.lang.String) <em>Get Element Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getExcludedElementTypes() <em>Get Excluded Element Types</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes() <em>Get Relationship Types</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Is Relationship Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -293,7 +297,7 @@ public class ModelingAssistantProviderOperations
 						// The filter, if any, needs to match but we also don't want to propose connections
 						// from relationships (only node-like things)
 						if (((next.getSourceFilter() == null) || next.getSourceFilter().matches(sourceType))
-								&& !isRelationship(modelingAssistantProvider, sourceType)) {
+								&& !modelingAssistantProvider.isRelationshipType(sourceType)) {
 							ModelingAssistantUtil.collectAllConcreteSubtypes(sourceType, modelingAssistantProvider, types);
 						}
 					}
@@ -335,7 +339,7 @@ public class ModelingAssistantProviderOperations
 						// The filter, if any, needs to match but we also don't want to propose connections
 						// to relationships (only node-like things)
 						if (((next.getTargetFilter() == null) || next.getTargetFilter().matches(targetType))
-								&& !isRelationship(modelingAssistantProvider, targetType)) {
+								&& !modelingAssistantProvider.isRelationshipType(targetType)) {
 							ModelingAssistantUtil.collectAllConcreteSubtypes(targetType, modelingAssistantProvider, types);
 						}
 					}
@@ -534,6 +538,64 @@ public class ModelingAssistantProviderOperations
 		ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
 		result.addAll(types);
 		return result.sort(alphabetical()).build();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	public static EList<IElementType> getRelationshipTypes(ModelingAssistantProvider modelingAssistantProvider)
+	{
+		Set<IElementType> types = Sets.newLinkedHashSet();
+		for (String next : modelingAssistantProvider.getRelationshipTypeIDs()) {
+			IElementType type = modelingAssistantProvider.getElementType(next);
+			if (type != null) {
+				types.add(type);
+			}
+		}
+
+		ImmutableEListBuilder<IElementType> result = ECollections2.immutableEListBuilder();
+		result.addAll(types);
+		return result.sort(alphabetical()).build();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated NOT
+	 */
+	@SuppressWarnings("unchecked")
+	public static boolean isRelationshipType(ModelingAssistantProvider modelingAssistantProvider, IElementType elementType)
+	{
+		Set<IElementType> relationshipTypes;
+		CacheAdapter cache = CacheAdapter.getCacheAdapter(modelingAssistantProvider);
+		if (cache == null) {
+			relationshipTypes = ImmutableSet.copyOf(modelingAssistantProvider.getRelationshipTypes());
+		} else {
+			// We aren't going to use this EOperation having a parameter for any other cache, so use it for this
+			relationshipTypes = (Set<IElementType>) cache.get(modelingAssistantProvider.eResource(), modelingAssistantProvider, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE);
+			if (relationshipTypes == null) {
+				cache.put(modelingAssistantProvider.eResource(), modelingAssistantProvider, AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE,
+						relationshipTypes = ImmutableSet.copyOf(modelingAssistantProvider.getRelationshipTypes()));
+			}
+		}
+
+		boolean result = relationshipTypes.contains(elementType);
+
+		if (!result) {
+			// Maybe it's a specialization of a relationship type
+			IElementType[] allSupers = elementType.getAllSuperTypes();
+
+			// The super types have the more specific types after the more general
+			for (int i = allSupers.length - 1; !result && (i >= 0); i--) {
+				result = relationshipTypes.contains(allSupers[i]);
+			}
+		}
+
+		return result;
 	}
 
 } // ModelingAssistantProviderOperations

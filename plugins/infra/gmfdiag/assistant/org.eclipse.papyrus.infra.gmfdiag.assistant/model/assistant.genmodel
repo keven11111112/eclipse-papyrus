@@ -76,6 +76,11 @@
         <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
       </genFeatures>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute assistant.ecore#//ModelingAssistantProvider/excludedElementTypeID"/>
+      <genFeatures xsi:type="genmodel:GenFeature" property="Readonly" createChild="false"
+          ecoreFeature="ecore:EAttribute assistant.ecore#//ModelingAssistantProvider/relationshipType">
+        <propertyFilterFlags>org.eclipse.ui.views.properties.expert</propertyFilterFlags>
+      </genFeatures>
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute assistant.ecore#//ModelingAssistantProvider/relationshipTypeID"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="assistant.ecore#//ModelingAssistantProvider/getElementTypes"
           cacheAdapterScope="Resource"/>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="assistant.ecore#//ModelingAssistantProvider/getClientContext"
@@ -85,6 +90,11 @@
       </genOperations>
       <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="assistant.ecore#//ModelingAssistantProvider/getExcludedElementTypes"
           cacheAdapterScope="Resource"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="assistant.ecore#//ModelingAssistantProvider/getRelationshipTypes"
+          cacheAdapterScope="Resource"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="assistant.ecore#//ModelingAssistantProvider/isRelationshipType">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="assistant.ecore#//ModelingAssistantProvider/isRelationshipType/elementType"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="assistant.ecore#//Assistant">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute assistant.ecore#//Assistant/elementTypeID"/>

@@ -268,4 +268,6 @@
   <excludedElementTypeID>org.eclipse.papyrus.uml.diagram.clazz.Association_2015</excludedElementTypeID>
   <excludedElementTypeID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018</excludedElementTypeID>
   <excludedElementTypeID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014</excludedElementTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.example.j2ee.Import</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.example.j2ee.Web</relationshipTypeID>
 </assistant:ModelingAssistantProvider>

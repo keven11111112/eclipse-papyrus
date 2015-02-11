@@ -53,6 +53,7 @@ import org.hamcrest.CoreMatchers;
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementTypes() <em>Element Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getClientContext() <em>Client Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getExcludedElementTypes() <em>Excluded Element Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes() <em>Relationship Type</em>}</li>
  * </ul>
  * </p>
  * <p>
@@ -75,6 +76,7 @@ import org.hamcrest.CoreMatchers;
  * </em>}</li>
  * <li>{@link org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider#getTypesForPopupBar(org.eclipse.core.runtime.IAdaptable) <em>Get Types For Popup Bar</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementType(java.lang.String) <em>Get Element Type</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Is Relationship Type</em>}</li>
  * </ul>
  * </p>
  *
@@ -213,6 +215,21 @@ public class ModelingAssistantProviderTest extends TestCase {
 	public void testGetExcludedElementTypes()
 	{
 		assertThat(getFixture().getExcludedElementTypes(), hasItem(canonicalize(UMLElementTypes.ASSOCIATION_CLASS)));
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes() <em>Relationship Type</em>}' feature getter.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes()
+	 * @generated NOT
+	 */
+	public void testGetRelationshipTypes()
+	{
+		assertThat(getFixture().getRelationshipTypes(), hasItem(canonicalize(UMLElementTypes.USAGE)));
+		assertThat(getFixture().getRelationshipTypes(), hasItem(canonicalize(UMLElementTypes.GENERALIZATION)));
+		assertThat(getFixture().getRelationshipTypes(), not(hasItem(canonicalize(UMLElementTypes.CLASS))));
 	}
 
 	/**
@@ -478,6 +495,21 @@ public class ModelingAssistantProviderTest extends TestCase {
 	public void testGetElementType__String()
 	{
 		assertThat(canonicalize(UMLElementTypes.CLASS), is(getFixture().getElementType("org.eclipse.papyrus.uml.Class")));
+	}
+
+	/**
+	 * Tests the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Is Relationship Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType)
+	 * @generated NOT
+	 */
+	public void testIsRelationshipType__IElementType()
+	{
+		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.USAGE)), is(true));
+		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.GENERALIZATION)), is(true));
+		assertThat(getFixture().isRelationshipType(canonicalize(UMLElementTypes.CLASS)), is(false));
 	}
 
 } // ModelingAssistantProviderTest

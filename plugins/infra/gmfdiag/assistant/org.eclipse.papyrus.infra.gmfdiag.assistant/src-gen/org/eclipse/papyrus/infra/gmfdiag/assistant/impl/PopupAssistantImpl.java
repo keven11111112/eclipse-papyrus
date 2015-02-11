@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -34,13 +34,13 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.PopupAssistantImpl#getProvider <em>Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.PopupAssistantImpl#getFilter <em>Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.PopupAssistantImpl#getOwnedFilter <em>Owned Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.PopupAssistantImpl#getOwningProvider <em>Owning Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

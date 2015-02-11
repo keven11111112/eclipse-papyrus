@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -22,6 +22,7 @@ import org.eclipse.papyrus.infra.filters.Filter;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getSourceFilter <em>Source Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getOwnedSourceFilter <em>Owned Source Filter</em>}</li>
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.infra.filters.Filter;
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getOwnedTargetFilter <em>Owned Target Filter</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getOwningProvider <em>Owning Provider</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage#getConnectionAssistant()
  * @model
@@ -42,10 +42,10 @@ public interface ConnectionAssistant extends Assistant
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getConnectionAssistants <em>Connection Assistant</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant#getProvider() <em>Provider</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owning Provider</em>' container reference isn't clear, there really should be more of a description here...
@@ -105,10 +105,10 @@ public interface ConnectionAssistant extends Assistant
 	 * Returns the value of the '<em><b>Owned Source Filter</b></em>' containment reference.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getSourceFilter() <em>Source Filter</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Source Filter</em>' containment reference isn't clear, there really should be more of a description here...
@@ -182,10 +182,10 @@ public interface ConnectionAssistant extends Assistant
 	 * Returns the value of the '<em><b>Owned Target Filter</b></em>' containment reference.
 	 * <p>
 	 * This feature subsets the following features:
+	 * </p>
 	 * <ul>
 	 * <li>'{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ConnectionAssistant#getTargetFilter() <em>Target Filter</em>}'</li>
 	 * </ul>
-	 * </p>
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Owned Target Filter</em>' containment reference isn't clear, there really should be more of a description here...

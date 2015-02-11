@@ -266,6 +266,21 @@ This implies that inferred element types specializing any of these excluded type
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ModelingAssistantProvider-excludedElementTypeID-_lowerValue"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ModelingAssistantProvider-excludedElementTypeID-_upperValue" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:id="ModelingAssistantProvider-relationshipType" name="relationshipType" visibility="public" type="ElementType" isUnique="false" isReadOnly="true" isDerived="true" subsettedProperty="ModelingAssistantProvider-elementType">
+        <ownedComment xmi:id="ModelingAssistantProvider-relationshipType-_ownedComment.0" annotatedElement="ModelingAssistantProvider-relationshipType">
+          <body>The element types supported by the provider.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ModelingAssistantProvider-relationshipType-_lowerValue"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ModelingAssistantProvider-relationshipType-_upperValue" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="ModelingAssistantProvider-relationshipTypeID" name="relationshipTypeID" subsettedProperty="ModelingAssistantProvider-elementTypeID">
+        <ownedComment xmi:id="ModelingAssistantProvider-relationshipTypeID-_ownedComment.0" annotatedElement="ModelingAssistantProvider-relationshipTypeID">
+          <body>The identifiers of element types supported by the provider.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ModelingAssistantProvider-relationshipTypeID-_lowerValue"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ModelingAssistantProvider-relationshipTypeID-_upperValue" value="*"/>
+      </ownedAttribute>
       <interfaceRealization xmi:id="ModelingAssistantProvider-_interfaceRealization.0" client="ModelingAssistantProvider" supplier="IProvider IModelingAssistantProvider" contract="IModelingAssistantProvider"/>
       <ownedOperation xmi:id="ModelingAssistantProvider-getElementTypes" name="getElementTypes" visibility="protected" isQuery="true">
         <ownedParameter xmi:id="ModelingAssistantProvider-getElementTypes-_ownedParameter.0" type="ElementType" direction="return">
@@ -289,6 +304,18 @@ This implies that inferred element types specializing any of these excluded type
         <ownedParameter xmi:id="ModelingAssistantProvider-getExcludedElementTypes-_ownedParameter.0" type="ElementType" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ModelingAssistantProvider-getExcludedElementTypes-_ownedParameter.0-_lowerValue"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ModelingAssistantProvider-getExcludedElementTypes-_ownedParameter.0-_upperValue" value="*"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="ModelingAssistantProvider-getRelationshipTypes" name="getRelationshipTypes" visibility="protected" isQuery="true">
+        <ownedParameter xmi:id="ModelingAssistantProvider-getRelationshipTypes-_ownedParameter.0" type="ElementType" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="ModelingAssistantProvider-getRelationshipTypes-_ownedParameter.0-_lowerValue"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="ModelingAssistantProvider-getRelationshipTypes-_ownedParameter.0-_upperValue" value="*"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="ModelingAssistantProvider-isRelationshipType" name="isRelationshipType">
+        <ownedParameter xmi:id="ModelingAssistantProvider-isRelationshipType-elementType" name="elementType" type="ElementType" effect="read"/>
+        <ownedParameter xmi:id="ModelingAssistantProvider-isRelationshipType-_ownedParameter.1" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
@@ -407,17 +434,19 @@ This implies that inferred element types specializing any of these excluded type
   <Ecore:EOperation xmi:id="_yacP0IFgEeS8o9c9-aDIuQ" base_Operation="AssistedElementTypeFilter-getProvider" visibility="None"/>
   <Ecore:EAttribute xmi:id="_alaK8Ku-EeSfB7MLtP_t1w" base_Property="ModelingAssistantProvider-excludedElementType"/>
   <Ecore:EOperation xmi:id="_6xnMsKu-EeSfB7MLtP_t1w" base_Operation="ModelingAssistantProvider-getExcludedElementTypes" visibility="None"/>
-  <Ecore:EDataType xmi:id="_fNkzcKu_EeSfB7MLtP_t1w" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IOperation" base_PrimitiveType="IOperation"/>
-  <Ecore:EDataType xmi:id="_fNkzcau_EeSfB7MLtP_t1w" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener" base_PrimitiveType="IProviderChangeListener"/>
-  <Ecore:EClass xmi:id="_fNkzcqu_EeSfB7MLtP_t1w" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IProvider" base_Interface="IProvider"/>
-  <Ecore:EReference xmi:id="_fNkzc6u_EeSfB7MLtP_t1w" isTransient="true" visibility="None" base_Property="IProvider-listener"/>
-  <Ecore:EDataType xmi:id="_fNod0Ku_EeSfB7MLtP_t1w" instanceClassName="org.eclipse.core.runtime.IAdaptable" base_PrimitiveType="IAdaptable"/>
-  <Ecore:EClass xmi:id="_fNpE4Ku_EeSfB7MLtP_t1w" instanceClassName="org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider" base_Interface="IModelingAssistantProvider"/>
-  <standard:Metamodel xmi:id="_g4XhUKu_EeSfB7MLtP_t1w" base_Model="_0"/>
-  <standard:Metaclass xmi:id="_g4ZWgKu_EeSfB7MLtP_t1w" base_Class="ConnectionAssistant"/>
-  <standard:Metaclass xmi:id="_g4bLsKu_EeSfB7MLtP_t1w" base_Class="Assistant"/>
-  <standard:Metaclass xmi:id="_g4bywKu_EeSfB7MLtP_t1w" base_Class="PopupAssistant"/>
-  <standard:Metaclass xmi:id="_g4dA4Ku_EeSfB7MLtP_t1w" base_Class="ElementTypeFilter"/>
-  <standard:Metaclass xmi:id="_g4gEMKu_EeSfB7MLtP_t1w" base_Class="AssistedElementTypeFilter"/>
-  <standard:Metaclass xmi:id="_g4igcKu_EeSfB7MLtP_t1w" base_Class="ModelingAssistantProvider"/>
+  <Ecore:EAttribute xmi:id="_yIL4oLIoEeSNj7xRtN2nYQ" base_Property="ModelingAssistantProvider-relationshipType"/>
+  <Ecore:EOperation xmi:id="_yIVCkLIoEeSNj7xRtN2nYQ" base_Operation="ModelingAssistantProvider-getRelationshipTypes" visibility="None"/>
+  <Ecore:EDataType xmi:id="_5kuGMLIpEeSNj7xRtN2nYQ" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IOperation" base_PrimitiveType="IOperation"/>
+  <Ecore:EDataType xmi:id="_5kuGMbIpEeSNj7xRtN2nYQ" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener" base_PrimitiveType="IProviderChangeListener"/>
+  <Ecore:EClass xmi:id="_5kutQLIpEeSNj7xRtN2nYQ" instanceClassName="org.eclipse.gmf.runtime.common.core.service.IProvider" base_Interface="IProvider"/>
+  <Ecore:EReference xmi:id="_5kutQbIpEeSNj7xRtN2nYQ" isTransient="true" visibility="None" base_Property="IProvider-listener"/>
+  <Ecore:EDataType xmi:id="_5k0z4LIpEeSNj7xRtN2nYQ" instanceClassName="org.eclipse.core.runtime.IAdaptable" base_PrimitiveType="IAdaptable"/>
+  <Ecore:EClass xmi:id="_5k0z4bIpEeSNj7xRtN2nYQ" instanceClassName="org.eclipse.gmf.runtime.emf.ui.services.modelingassistant.IModelingAssistantProvider" base_Interface="IModelingAssistantProvider"/>
+  <standard:Metamodel xmi:id="_7pIN8LIpEeSNj7xRtN2nYQ" base_Model="_0"/>
+  <standard:Metaclass xmi:id="_7pKDILIpEeSNj7xRtN2nYQ" base_Class="ConnectionAssistant"/>
+  <standard:Metaclass xmi:id="_7pLRQLIpEeSNj7xRtN2nYQ" base_Class="Assistant"/>
+  <standard:Metaclass xmi:id="_7pMfYLIpEeSNj7xRtN2nYQ" base_Class="PopupAssistant"/>
+  <standard:Metaclass xmi:id="_7pNtgLIpEeSNj7xRtN2nYQ" base_Class="ElementTypeFilter"/>
+  <standard:Metaclass xmi:id="_7pQJwLIpEeSNj7xRtN2nYQ" base_Class="AssistedElementTypeFilter"/>
+  <standard:Metaclass xmi:id="_7pR-8LIpEeSNj7xRtN2nYQ" base_Class="ModelingAssistantProvider"/>
 </xmi:XMI>

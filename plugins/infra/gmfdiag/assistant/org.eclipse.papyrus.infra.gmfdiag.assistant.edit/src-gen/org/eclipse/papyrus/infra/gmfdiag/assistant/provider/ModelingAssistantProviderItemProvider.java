@@ -12,15 +12,24 @@
 package org.eclipse.papyrus.infra.gmfdiag.assistant.provider;
 
 
+import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Objects;
+import java.util.Set;
 
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.command.AddCommand;
+import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
@@ -40,6 +49,9 @@ import org.eclipse.papyrus.infra.filters.FiltersFactory;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantFactory;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantPackage;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider;
+import org.eclipse.uml2.common.edit.command.SubsetAddCommand;
+import org.eclipse.uml2.common.edit.command.SubsetSupersetReplaceCommand;
+import org.eclipse.uml2.common.edit.command.SupersetRemoveCommand;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider} object.
@@ -82,6 +94,8 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 			addClientContextIDPropertyDescriptor(object);
 			addExcludedElementTypePropertyDescriptor(object);
 			addExcludedElementTypeIDPropertyDescriptor(object);
+			addRelationshipTypePropertyDescriptor(object);
+			addRelationshipTypeIDPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -304,6 +318,55 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 	}
 
 	/**
+	 * This adds a property descriptor for the Relationship Type feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addRelationshipTypePropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+				(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ModelingAssistantProvider_relationshipType_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipType_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE,
+						false,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						new String[] { "org.eclipse.ui.views.properties.expert" //$NON-NLS-1$
+						}));
+	}
+
+	/**
+	 * This adds a property descriptor for the Relationship Type ID feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addRelationshipTypeIDPropertyDescriptor(Object object)
+	{
+		itemPropertyDescriptors.add
+				(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+						getResourceLocator(),
+						getString("_UI_ModelingAssistantProvider_relationshipTypeID_feature"), //$NON-NLS-1$
+						getString("_UI_PropertyDescriptor_description", "_UI_ModelingAssistantProvider_relationshipTypeID_feature", "_UI_ModelingAssistantProvider_type"), //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+						AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID,
+						true,
+						false,
+						false,
+						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+						null,
+						null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
@@ -399,6 +462,8 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__CLIENT_CONTEXT_ID:
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE:
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID:
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE:
+		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		case AssistantPackage.MODELING_ASSISTANT_PROVIDER__OWNED_FILTER:
@@ -465,4 +530,116 @@ public class ModelingAssistantProviderItemProvider extends ItemProviderAdapter i
 		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createAddCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.util.Collection, int)
+	 *      <!-- begin-user-doc -->
+	 *      <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Command createAddCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection, int index) {
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID) {
+			return new SubsetAddCommand(domain, owner, feature, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID }, collection, index);
+		}
+		return super.createAddCommand(domain, owner, feature, collection, index);
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createRemoveCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.util.Collection)
+	 *      <!-- begin-user-doc -->
+	 *      <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Command createRemoveCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Collection<?> collection) {
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID) {
+			return new SupersetRemoveCommand(domain, owner, feature, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID }, collection);
+		}
+		return super.createRemoveCommand(domain, owner, feature, collection);
+	}
+
+	/**
+	 * @see org.eclipse.emf.edit.provider.ItemProviderAdapter#createReplaceCommand(org.eclipse.emf.edit.domain.EditingDomain, org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object, java.util.Collection)
+	 *      <!-- begin-user-doc -->
+	 *      <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected Command createReplaceCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value, Collection<?> collection) {
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID) {
+			return new SubsetSupersetReplaceCommand(domain, owner, feature, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID }, null, value, collection);
+		}
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID) {
+			return new SubsetSupersetReplaceCommand(domain, owner, feature, null, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID }, value, collection);
+		}
+		return super.createReplaceCommand(domain, owner, feature, value, collection);
+	}
+
+	//
+	// FIXME Work-around for UML2 bug 459723
+	// https://bugs.eclipse.org/bugs/show_bug.cgi?id=459723
+	// Replace with generated code when available
+	//
+
+	@Override
+	protected Command createSetCommand(EditingDomain domain, EObject owner, EStructuralFeature feature, Object value) {
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID) {
+			return createSetSubsetListCommand(domain, owner, feature, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID }, value);
+		}
+		if (feature == AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID) {
+			return createSetSupersetListCommand(domain, owner, feature, new EStructuralFeature[] { AssistantPackage.Literals.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID }, value);
+		}
+		return super.createSetCommand(domain, owner, feature, value);
+	}
+
+	protected Command createSetSubsetListCommand(EditingDomain domain, EObject owner, EStructuralFeature subset, EStructuralFeature[] supersets, Object value) {
+		List<Command> result = new ArrayList<>(supersets.length + 1);
+
+		EList<?> newList = (EList<?>) value;
+		result.add(new SetCommand(domain, owner, subset, newList));
+
+		for (int i = 0; i < supersets.length; i++) {
+			EStructuralFeature superset = supersets[i];
+			EList<Object> toAdd = new BasicEList<>(newList.size());
+			Set<?> current = new HashSet<>((EList<?>) owner.eGet(superset));
+			for (Object next : newList) {
+				if (!current.contains(next)) {
+					toAdd.add(next);
+				}
+			}
+			if (!toAdd.isEmpty()) {
+				result.add(AddCommand.create(domain, owner, superset, toAdd));
+			}
+		}
+
+		return (result.size() == 1) ? result.get(0) : new CompoundCommand(0, result);
+	}
+
+	protected Command createSetSupersetListCommand(EditingDomain domain, EObject owner, EStructuralFeature superset, EStructuralFeature[] subsets, Object value) {
+		List<Command> result = new ArrayList<>(subsets.length + 1);
+
+		EList<?> newList = (EList<?>) value;
+		result.add(new SetCommand(domain, owner, superset, newList));
+
+		// What are we removing?
+		EList<Object> toRemove = new BasicEList<>((EList<?>) owner.eGet(superset));
+		toRemove.removeAll(newList);
+
+		if (!toRemove.isEmpty()) {
+			for (int i = 0; i < subsets.length; i++) {
+				EStructuralFeature subset = subsets[i];
+				EList<Object> toRemoveFromSubset = new BasicEList<>((EList<?>) owner.eGet(subset));
+				toRemoveFromSubset.retainAll(toRemove);
+				if (!toRemoveFromSubset.isEmpty()) {
+					result.add(RemoveCommand.create(domain, owner, subset, toRemoveFromSubset));
+				}
+			}
+		}
+
+		return (result.size() == 1) ? result.get(0) : new CompoundCommand(0, result);
+	}
+
+	//
+	// End work-around
+	//
 }

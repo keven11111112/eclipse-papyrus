@@ -14,4 +14,6 @@
   <elementTypeID>org.eclipse.papyrus.uml.Package</elementTypeID>
   <elementTypeID>org.eclipse.papyrus.uml.Generalization</elementTypeID>
   <excludedElementTypeID>org.eclipse.papyrus.uml.AssociationClass</excludedElementTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.Usage</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.uml.Generalization</relationshipTypeID>
 </assistant:ModelingAssistantProvider>

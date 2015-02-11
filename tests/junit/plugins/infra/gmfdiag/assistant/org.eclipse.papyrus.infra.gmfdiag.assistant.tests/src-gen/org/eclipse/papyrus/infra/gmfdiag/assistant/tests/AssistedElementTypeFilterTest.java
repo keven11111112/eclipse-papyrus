@@ -15,12 +15,9 @@ import static org.eclipse.papyrus.infra.gmfdiag.assistant.tests.ElementTypesUtil
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
-
 import java.util.Arrays;
-
 import junit.framework.TestCase;
 import junit.textui.TestRunner;
-
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;

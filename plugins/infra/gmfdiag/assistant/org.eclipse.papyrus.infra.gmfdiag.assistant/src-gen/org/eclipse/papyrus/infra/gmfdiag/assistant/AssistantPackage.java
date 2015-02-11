@@ -583,6 +583,26 @@ public interface AssistantPackage extends EPackage
 	int MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID = IMODELING_ASSISTANT_PROVIDER_FEATURE_COUNT + 10;
 
 	/**
+	 * The feature id for the '<em><b>Relationship Type</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE = IMODELING_ASSISTANT_PROVIDER_FEATURE_COUNT + 11;
+
+	/**
+	 * The feature id for the '<em><b>Relationship Type ID</b></em>' attribute list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID = IMODELING_ASSISTANT_PROVIDER_FEATURE_COUNT + 12;
+
+	/**
 	 * The number of structural features of the '<em>Modeling Assistant Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -590,7 +610,7 @@ public interface AssistantPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODELING_ASSISTANT_PROVIDER_FEATURE_COUNT = IMODELING_ASSISTANT_PROVIDER_FEATURE_COUNT + 11;
+	int MODELING_ASSISTANT_PROVIDER_FEATURE_COUNT = IMODELING_ASSISTANT_PROVIDER_FEATURE_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Provides</em>' operation.
@@ -773,6 +793,26 @@ public interface AssistantPackage extends EPackage
 	int MODELING_ASSISTANT_PROVIDER___GET_EXCLUDED_ELEMENT_TYPES = IMODELING_ASSISTANT_PROVIDER_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Get Relationship Types</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ASSISTANT_PROVIDER___GET_RELATIONSHIP_TYPES = IMODELING_ASSISTANT_PROVIDER_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Is Relationship Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE = IMODELING_ASSISTANT_PROVIDER_OPERATION_COUNT + 5;
+
+	/**
 	 * The number of operations of the '<em>Modeling Assistant Provider</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -780,7 +820,7 @@ public interface AssistantPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int MODELING_ASSISTANT_PROVIDER_OPERATION_COUNT = IMODELING_ASSISTANT_PROVIDER_OPERATION_COUNT + 4;
+	int MODELING_ASSISTANT_PROVIDER_OPERATION_COUNT = IMODELING_ASSISTANT_PROVIDER_OPERATION_COUNT + 6;
 
 	/**
 	 * The feature id for the '<em><b>Element Type ID</b></em>' attribute.
@@ -1365,6 +1405,30 @@ public interface AssistantPackage extends EPackage
 	EAttribute getModelingAssistantProvider_ExcludedElementTypeID();
 
 	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes <em>Relationship Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute list '<em>Relationship Type</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes()
+	 * @see #getModelingAssistantProvider()
+	 * @generated
+	 */
+	EAttribute getModelingAssistantProvider_RelationshipType();
+
+	/**
+	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypeIDs <em>Relationship Type ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute list '<em>Relationship Type ID</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypeIDs()
+	 * @see #getModelingAssistantProvider()
+	 * @generated
+	 */
+	EAttribute getModelingAssistantProvider_RelationshipTypeID();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getElementTypes() <em>Get Element Types</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1407,6 +1471,28 @@ public interface AssistantPackage extends EPackage
 	 * @generated
 	 */
 	EOperation getModelingAssistantProvider__GetExcludedElementTypes();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes() <em>Get Relationship Types</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the '<em>Get Relationship Types</em>' operation.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#getRelationshipTypes()
+	 * @generated
+	 */
+	EOperation getModelingAssistantProvider__GetRelationshipTypes();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Is Relationship Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the '<em>Is Relationship Type</em>' operation.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider#isRelationshipType(org.eclipse.gmf.runtime.emf.type.core.IElementType)
+	 * @generated
+	 */
+	EOperation getModelingAssistantProvider__IsRelationshipType__IElementType();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.Assistant <em>Assistant</em>}'.
@@ -2074,6 +2160,24 @@ public interface AssistantPackage extends EPackage
 		EAttribute MODELING_ASSISTANT_PROVIDER__EXCLUDED_ELEMENT_TYPE_ID = eINSTANCE.getModelingAssistantProvider_ExcludedElementTypeID();
 
 		/**
+		 * The meta object literal for the '<em><b>Relationship Type</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE = eINSTANCE.getModelingAssistantProvider_RelationshipType();
+
+		/**
+		 * The meta object literal for the '<em><b>Relationship Type ID</b></em>' attribute list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID = eINSTANCE.getModelingAssistantProvider_RelationshipTypeID();
+
+		/**
 		 * The meta object literal for the '<em><b>Get Element Types</b></em>' operation.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
@@ -2108,6 +2212,24 @@ public interface AssistantPackage extends EPackage
 		 * @generated
 		 */
 		EOperation MODELING_ASSISTANT_PROVIDER___GET_EXCLUDED_ELEMENT_TYPES = eINSTANCE.getModelingAssistantProvider__GetExcludedElementTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Get Relationship Types</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EOperation MODELING_ASSISTANT_PROVIDER___GET_RELATIONSHIP_TYPES = eINSTANCE.getModelingAssistantProvider__GetRelationshipTypes();
+
+		/**
+		 * The meta object literal for the '<em><b>Is Relationship Type</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EOperation MODELING_ASSISTANT_PROVIDER___IS_RELATIONSHIP_TYPE__IELEMENTTYPE = eINSTANCE.getModelingAssistantProvider__IsRelationshipType__IElementType();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.gmfdiag.assistant.impl.AssistantImpl <em>Assistant</em>}' class.

@@ -80,6 +80,21 @@ This implies that inferred element types specializing any of these excluded type
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_afnE8qu-EeSfB7MLtP_t1w"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_afnE86u-EeSfB7MLtP_t1w" value="*"/>
       </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_yIFK8LIoEeSNj7xRtN2nYQ" name="relationshipType" visibility="public" type="_vq6HUG9gEeSumdlFUM6GVw" isUnique="false" isReadOnly="true" isDerived="true" subsettedProperty="_4IsCUHAYEeSI-6xi41tPrg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_yIFK8bIoEeSNj7xRtN2nYQ" annotatedElement="_yIFK8LIoEeSNj7xRtN2nYQ">
+          <body>The element types supported by the provider.</body>
+        </ownedComment>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yIFK8rIoEeSNj7xRtN2nYQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yIFK87IoEeSNj7xRtN2nYQ" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_yIIOQLIoEeSNj7xRtN2nYQ" name="relationshipTypeID" subsettedProperty="_4IwTwHAYEeSI-6xi41tPrg">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_yIIOQbIoEeSNj7xRtN2nYQ" annotatedElement="_yIIOQLIoEeSNj7xRtN2nYQ">
+          <body>The identifiers of element types supported by the provider.</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yIIOQrIoEeSNj7xRtN2nYQ"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yIIOQ7IoEeSNj7xRtN2nYQ" value="*"/>
+      </ownedAttribute>
       <ownedOperation xmi:type="uml:Operation" xmi:id="_4-awcHAYEeSI-6xi41tPrg" name="getElementTypes" visibility="protected" isQuery="true">
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_4-awcXAYEeSI-6xi41tPrg" type="_vq6HUG9gEeSumdlFUM6GVw" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_7XrG0HAYEeSI-6xi41tPrg"/>
@@ -104,6 +119,20 @@ This implies that inferred element types specializing any of these excluded type
         <ownedParameter xmi:type="uml:Parameter" xmi:id="_6xkwcau-EeSfB7MLtP_t1w" type="_vq6HUG9gEeSumdlFUM6GVw" direction="return">
           <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_6xkwcqu-EeSfB7MLtP_t1w"/>
           <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_6xkwc6u-EeSfB7MLtP_t1w" value="*"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_yIKDcLIoEeSNj7xRtN2nYQ" name="getRelationshipTypes" visibility="protected" isQuery="true">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_yIKDcbIoEeSNj7xRtN2nYQ" type="_vq6HUG9gEeSumdlFUM6GVw" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_yIKDcrIoEeSNj7xRtN2nYQ"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_yIKDc7IoEeSNj7xRtN2nYQ" value="*"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_i0wVYLIpEeSNj7xRtN2nYQ" name="isRelationshipType">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_m68usLIpEeSNj7xRtN2nYQ" name="elementType" effect="read">
+          <type xmi:type="uml:PrimitiveType" href="assistantapi.uml#_1R7qIG90EeSumdlFUM6GVw"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_sPJzQLIpEeSNj7xRtN2nYQ" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
         </ownedParameter>
       </ownedOperation>
     </packagedElement>
@@ -283,4 +312,6 @@ This implies that inferred element types specializing any of these excluded type
   <Ecore:EOperation xmi:id="_yacP0IFgEeS8o9c9-aDIuQ" base_Operation="_yaO0cIFgEeS8o9c9-aDIuQ" visibility="None"/>
   <Ecore:EAttribute xmi:id="_alaK8Ku-EeSfB7MLtP_t1w" base_Property="_afgXQKu-EeSfB7MLtP_t1w"/>
   <Ecore:EOperation xmi:id="_6xnMsKu-EeSfB7MLtP_t1w" base_Operation="_6xkwcKu-EeSfB7MLtP_t1w" visibility="None"/>
+  <Ecore:EAttribute xmi:id="_yIL4oLIoEeSNj7xRtN2nYQ" base_Property="_yIFK8LIoEeSNj7xRtN2nYQ"/>
+  <Ecore:EOperation xmi:id="_yIVCkLIoEeSNj7xRtN2nYQ" base_Operation="_yIKDcLIoEeSNj7xRtN2nYQ" visibility="None"/>
 </xmi:XMI>

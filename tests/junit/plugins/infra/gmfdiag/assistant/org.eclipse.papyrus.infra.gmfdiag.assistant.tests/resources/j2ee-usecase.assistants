@@ -122,4 +122,6 @@
   <elementTypeID>org.eclipse.papyrus.example.j2ee.WebScenario_3012</elementTypeID>
   <elementTypeID>org.eclipse.papyrus.example.j2ee.WebScenario_2013</elementTypeID>
   <elementTypeID>org.eclipse.papyrus.example.j2ee.WebScenario_2014</elementTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.example.j2ee.Import_4013</relationshipTypeID>
+  <relationshipTypeID>org.eclipse.papyrus.example.j2ee.Web_4011</relationshipTypeID>
 </assistant:ModelingAssistantProvider>
