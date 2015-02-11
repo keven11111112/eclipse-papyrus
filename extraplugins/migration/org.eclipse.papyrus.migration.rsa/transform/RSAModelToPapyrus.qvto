@@ -30,8 +30,6 @@ transformation RSAModelToPapyrus(inout semantics : uml, inout graphics : notatio
 
 main() {
 	assert fatal (not semantics.rootObjects()[uml::Element]->isEmpty()) with log('Cannot find root uml::Element');
-
-	map createSashModel();
 	
 	//semantics.objectsOfType(Element).map deleteSourceDiagrams(); //TODO programatically to clean up everything (Avoid memory leaks)
 	
@@ -94,26 +92,4 @@ mapping inout OpaqueExpression::fixLanguage() when {
 
 query String::isEmpty() : Boolean {
 	return self.oclIsUndefined() or self = '';
-}
-
-mapping createSashModel() : SashWindowsMngr {
-	pageList := object PageList {
-		availablePage := graphics.rootObjects()[Diagram].map toAvailablePage();
-
-			};
-	
-	var mainWindow : Window := object Window{
-		children := object TabFolder{};
-	};
-	
-	sashModel := object SashModel {
-		windows := mainWindow;
-		currentSelection := mainWindow.children->selectByKind(TabFolder)->any(true);
-	};
-}
-
-mapping Diagram::toAvailablePage() : sash::PageRef when {
-	not self.type.oclIsUndefined() and self.type <> ""
-}{
-	result.emfPageIdentifier := self.oclAsType(EObject);
 }
