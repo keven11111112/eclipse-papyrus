@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 
 import org.eclipse.emf.common.notify.Notification;
@@ -246,5 +247,18 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 			getDiagramEventBroker().removeNotificationListener(((MultiplicityElement) umlElement).getUpperValue(), this);
 			getDiagramEventBroker().removeNotificationListener(((MultiplicityElement) umlElement).getLowerValue(), this);
 		}
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy#getCurrentDisplayValue()
+	 *
+	 * @return
+	 */
+	@Override
+	public Collection<String> getCurrentDisplayValue() {
+		if (getView() == null){
+			return Collections.emptySet();
+		}
+		return super.getCurrentDisplayValue();
 	}
 }

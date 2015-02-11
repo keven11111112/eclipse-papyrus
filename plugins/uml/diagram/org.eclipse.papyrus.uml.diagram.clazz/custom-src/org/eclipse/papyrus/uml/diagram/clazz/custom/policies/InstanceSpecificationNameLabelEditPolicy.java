@@ -100,28 +100,32 @@ public class InstanceSpecificationNameLabelEditPolicy extends AbstractMaskManage
 		Object object = notification.getNotifier();
 
 		if (notification.getEventType() == Notification.ADD) {
-			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
+			if (UMLPackage.eINSTANCE.getInstanceSpecification_Classifier().equals(notification.getFeature())) {
 				getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
 			}
 		}
 		if (notification.getEventType() == Notification.REMOVE) {
-			if (notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
+			if (UMLPackage.eINSTANCE.getInstanceSpecification_Classifier().equals(notification.getFeature())) {
 				getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
 			}
 		}
 		if (object == null) {
 			return;
 		}
-		if (notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
+		if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
 			refreshDisplay();
-		} else if (notification.getFeature().equals(UMLPackage.eINSTANCE.getInstanceSpecification_Classifier())) {
+			return;
+		} else if (UMLPackage.eINSTANCE.getInstanceSpecification_Classifier().equals(notification.getFeature())) {
 			refreshDisplay();
+			return;
 		}
 		if (isMaskManagedAnnotation(object)) {
 			refreshDisplay();
+			return;
 		}
 		if (isRemovedMaskManagedLabelAnnotation(object, notification)) {
 			refreshDisplay();
+			return;
 		}
 	}
 
