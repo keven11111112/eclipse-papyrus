@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -24,6 +24,8 @@ import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Future;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -52,12 +54,15 @@ import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFuture;
+import org.eclipse.papyrus.infra.core.utils.JobExecutorService;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.tools.util.ReferenceCounted;
 
 import com.google.common.base.Function;
 import com.google.common.collect.ArrayListMultimap;
 import com.google.common.collect.HashMultimap;
 import com.google.common.collect.ImmutableMap;
+import com.google.common.collect.ImmutableSet;
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -77,7 +82,6 @@ public class WorkspaceModelIndex<T> {
 	private final IndexHandler<? extends T> indexer;
 
 	private final QualifiedName indexKey;
-	private final IContentTypeManager mgr;
 	private final IContentType contentType;
 
 	private final SetMultimap<IProject, IFile> index = HashMultimap.create();
@@ -85,6 +89,8 @@ public class WorkspaceModelIndex<T> {
 
 	private final Map<IProject, AbstractIndexJob> activeJobs = Maps.newHashMap();
 	private final JobWrangler jobWrangler;
+	private final ContentTypeService contentTypeService;
+	private final Set<String> fileExtensions;
 
 	private final CopyOnWriteArrayList<IWorkspaceModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
 
@@ -96,10 +102,17 @@ public class WorkspaceModelIndex<T> {
 		super();
 
 		this.indexKey = new QualifiedName("org.eclipse.papyrus.modelindex", name); //$NON-NLS-1$
-		this.mgr = Platform.getContentTypeManager();
-		this.contentType = this.mgr.getContentType(contentType);
+		this.contentType = Platform.getContentTypeManager().getContentType(contentType);
 		this.indexer = indexer;
 
+		String[] fileSpecs = this.contentType.getFileSpecs(IContentType.FILE_EXTENSION_SPEC);
+		if ((fileSpecs != null) && (fileSpecs.length > 0)) {
+			fileExtensions = ImmutableSet.copyOf(fileSpecs);
+		} else {
+			fileExtensions = null;
+		}
+
+		contentTypeService = ContentTypeService.getInstance();
 		jobWrangler = new JobWrangler(maxConcurrentJobs);
 
 		startIndex();
@@ -108,6 +121,7 @@ public class WorkspaceModelIndex<T> {
 	public void dispose() {
 		ResourcesPlugin.getWorkspace().removeResourceChangeListener(workspaceListener);
 		Job.getJobManager().cancel(this);
+		ContentTypeService.dispose(contentTypeService);
 
 		synchronized (index) {
 			for (IFile next : index.values()) {
@@ -262,24 +276,12 @@ public class WorkspaceModelIndex<T> {
 	boolean match(IFile file) {
 		boolean result = false;
 
-		if (file.isAccessible()) {
-			InputStream input = null;
-
-			try {
-				input = file.getContents(true);
-				IContentType[] contentTypes = mgr.findContentTypesFor(input, file.getName());
+		// Don't even attempt to match the content type if the file extension doesn't match
+		if (file.isAccessible() && ((fileExtensions == null) || fileExtensions.contains(file.getFileExtension()))) {
+			IContentType[] contentTypes = contentTypeService.getContentTypes(file);
+			if (contentTypes != null) {
 				for (int i = 0; (i < contentTypes.length) && !result; i++) {
 					result = contentTypes[i].isKindOf(contentType);
-				}
-			} catch (Exception e) {
-				Activator.log.error("Failed to index file " + file.getFullPath(), e); //$NON-NLS-1$
-			} finally {
-				if (input != null) {
-					try {
-						input.close();
-					} catch (IOException e) {
-						Activator.log.error("Failed to close indexed file " + file.getFullPath(), e); //$NON-NLS-1$
-					}
 				}
 			}
 		}
@@ -859,6 +861,74 @@ public class WorkspaceModelIndex<T> {
 		protected AbstractIndexJob getFollowup() {
 			// If I still have work to do, then I am my own follow-up
 			return deltas.isEmpty() ? null : this;
+		}
+	}
+
+	private static final class ContentTypeService extends ReferenceCounted<ContentTypeService> {
+		private static ContentTypeService instance = null;
+
+		private final ExecutorService serialExecution = new JobExecutorService();
+
+		private final IContentTypeManager mgr = Platform.getContentTypeManager();
+
+		private ContentTypeService() {
+			super();
+		}
+
+		synchronized static ContentTypeService getInstance() {
+			ContentTypeService result = instance;
+
+			if (result == null) {
+				result = new ContentTypeService();
+				instance = result;
+			}
+
+			return result.retain();
+		}
+
+		synchronized static void dispose(ContentTypeService service) {
+			service.release();
+		}
+
+		@Override
+		protected void dispose() {
+			serialExecution.shutdownNow();
+
+			if (instance == this) {
+				instance = null;
+			}
+		}
+
+		IContentType[] getContentTypes(final IFile file) {
+			Future<IContentType[]> futureResult = serialExecution.submit(new Callable<IContentType[]>() {
+
+				@Override
+				public IContentType[] call() {
+					IContentType[] result = null;
+					InputStream input = null;
+
+					if (file.isAccessible()) {
+						try {
+							input = file.getContents(true);
+							result = mgr.findContentTypesFor(input, file.getName());
+						} catch (Exception e) {
+							Activator.log.error("Failed to index file " + file.getFullPath(), e); //$NON-NLS-1$
+						} finally {
+							if (input != null) {
+								try {
+									input.close();
+								} catch (IOException e) {
+									Activator.log.error("Failed to close indexed file " + file.getFullPath(), e); //$NON-NLS-1$
+								}
+							}
+						}
+					}
+
+					return result;
+				}
+			});
+
+			return Futures.getUnchecked(futureResult);
 		}
 	}
 }

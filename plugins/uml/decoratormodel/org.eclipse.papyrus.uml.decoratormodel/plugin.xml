@@ -46,6 +46,7 @@
             base-type="org.eclipse.uml2.uml"
             id="org.eclipse.papyrus.uml.decoratormodel.decorator_model"
             name="%content-type.name"
+            file-extensions="uml"
             priority="normal">
         <describer
               class="org.eclipse.papyrus.infra.emf.resource.AnyRootNamespaceContentHandler$Describer">
