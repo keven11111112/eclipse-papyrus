@@ -16,6 +16,7 @@ import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssi
 import static org.eclipse.papyrus.infra.gmfdiag.assistant.core.util.ModelingAssistantUtil.isRelationship;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IAdaptable;
@@ -46,6 +47,8 @@ import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
 
 import com.google.common.base.Function;
 import com.google.common.base.Objects;
+import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Sets;
 
 /**
@@ -176,7 +179,7 @@ public class ModelingAssistantProviderOperations
 					result.remove(null); // In case of an unresolved element type
 
 					// Filter result on connections that we actually think we can create
-					return filterConnectionTypes(result, input);
+					return filterConnectionTypes(modelingAssistantProvider, result, input);
 				}
 			});
 		}
@@ -208,7 +211,7 @@ public class ModelingAssistantProviderOperations
 					result.remove(null); // In case of an unresolved element type
 
 					// Filter result on connections that we actually think we can create
-					return filterConnectionTypes(result, input);
+					return filterConnectionTypes(modelingAssistantProvider, result, input);
 				}
 			});
 		}
@@ -236,7 +239,7 @@ public class ModelingAssistantProviderOperations
 		result.remove(null); // In case of an unresolved element type
 
 		// Filter result on connections that we actually think we can create
-		return filterConnectionTypes(result, source);
+		return filterConnectionTypes(modelingAssistantProvider, result, source);
 	}
 
 	/**
@@ -278,10 +281,15 @@ public class ModelingAssistantProviderOperations
 		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
 		relationshipType = ModelingAssistantUtil.resolveSemanticType(relationshipType);
 
+		// Don't suggest types that we would exclude from connection ends
+		List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
+				modelingAssistantProvider.getElementTypes(),
+				ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
+
 		for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
 			if (Objects.equal(relationshipType, next.getElementType())) {
 				if ((next.getTargetFilter() == null) || next.getTargetFilter().matches(target)) {
-					for (IElementType sourceType : modelingAssistantProvider.getElementTypes()) {
+					for (IElementType sourceType : validTypes) {
 						// The filter, if any, needs to match but we also don't want to propose connections
 						// from relationships (only node-like things)
 						if (((next.getSourceFilter() == null) || next.getSourceFilter().matches(sourceType))
@@ -315,10 +323,15 @@ public class ModelingAssistantProviderOperations
 		// In case we had to create a proxy for diagram-specific hinted types that are not modeled
 		relationshipType = ModelingAssistantUtil.resolveSemanticType(relationshipType);
 
+		// Don't suggest types that we would exclude from connection ends
+		List<IElementType> validTypes = ImmutableList.copyOf(Iterables.filter(
+				modelingAssistantProvider.getElementTypes(),
+				ModelingAssistantUtil.notSpecializationOfAny(modelingAssistantProvider.getExcludedElementTypes())));
+
 		for (ConnectionAssistant next : modelingAssistantProvider.getConnectionAssistants()) {
 			if (Objects.equal(relationshipType, next.getElementType())) {
 				if ((next.getSourceFilter() == null) || next.getSourceFilter().matches(source)) {
-					for (IElementType targetType : modelingAssistantProvider.getElementTypes()) {
+					for (IElementType targetType : validTypes) {
 						// The filter, if any, needs to match but we also don't want to propose connections
 						// to relationships (only node-like things)
 						if (((next.getTargetFilter() == null) || next.getTargetFilter().matches(targetType))

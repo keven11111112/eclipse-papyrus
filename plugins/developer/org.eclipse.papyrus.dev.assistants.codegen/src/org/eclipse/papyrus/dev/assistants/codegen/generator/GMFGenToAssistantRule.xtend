@@ -96,7 +96,7 @@ class GMFGenToAssistantRule {
 
     def dispatch create createPopupAssistant toPopupAssistant(GenChildNode node) {
         elementTypeID = node.modelFacet.elementType.uniqueIdentifier
-        filter = node.createPossibleOwnersFilter.reduce
+        filter = node.createPossibleOwnersFilter.reduce && node.rootEditor.assistedElementTypeFilter
         
         if (filter.isCompound) {
             // I need to own it if I created a new compound
@@ -116,8 +116,8 @@ class GMFGenToAssistantRule {
 
     def create createConnectionAssistant toConnectionAssistant(GenLink link) {
         elementTypeID = link.modelFacet.elementType.uniqueIdentifier
-        sourceFilter = link.createPossibleSourcesFilter().reduce
-        targetFilter = link.createPossibleTargetsFilter().reduce
+        sourceFilter = link.createPossibleSourcesFilter().reduce && link.rootEditor.assistedElementTypeFilter
+        targetFilter = link.createPossibleTargetsFilter().reduce && link.rootEditor.assistedElementTypeFilter
         
         if (sourceFilter.isCompound) {
             // I need to own it if I created a new compound
@@ -143,4 +143,7 @@ class GMFGenToAssistantRule {
         ]
     }
 
+    private def create createAssistedElementTypeFilter assistedElementTypeFilter(GenEditorGenerator genEditor) {
+        genEditor.toModelingAssistantProvider.ownedFilters.add(it)
+    }
 }

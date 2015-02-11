@@ -259,6 +259,15 @@ public class ModelingAssistantUtil {
 		return result;
 	}
 
+	public static Predicate<? super IElementType> notSpecializationOfAny(final Iterable<? extends IElementType> types) {
+		return new Predicate<Object>() {
+			@Override
+			public boolean apply(Object input) {
+				return !(input instanceof ISpecializationType) || !isSpecializationOfAny((ISpecializationType) input, types);
+			}
+		};
+	}
+
 	public static IElementType resolveSemanticType(IElementType type) {
 		return (type instanceof IProxyElementType) ? ((IProxyElementType) type).resolveSemanticType() : type;
 	}
@@ -275,6 +284,8 @@ public class ModelingAssistantUtil {
 	 * Filters a set of connection types for only those that we think we could actually create in the current diagram context and
 	 * sorts them alphabetically.
 	 * 
+	 * @param provider
+	 *            the contextual assistant provider
 	 * @param elementTypes
 	 *            connection element types matched in the assistant model
 	 * @param connectionEnd
@@ -282,14 +293,12 @@ public class ModelingAssistantUtil {
 	 * 
 	 * @return the (possibly) reduced set of connection types that we think we could create, sorted
 	 */
-	public static EList<IElementType> filterConnectionTypes(Set<IElementType> elementTypes, IAdaptable connectionEnd) {
-		final Iterable<IElementType> result;
+	public static EList<IElementType> filterConnectionTypes(ModelingAssistantProvider provider, Set<IElementType> elementTypes, IAdaptable connectionEnd) {
+		Iterable<IElementType> result = Iterables.filter(elementTypes, notSpecializationOfAny(provider.getExcludedElementTypes()));
 
 		final View endView = AdapterUtils.adapt(connectionEnd, View.class, null);
-		if (endView == null) {
-			result = elementTypes;
-		} else {
-			result = Iterables.filter(elementTypes, new Predicate<IElementType>() {
+		if (endView != null) {
+			result = Iterables.filter(result, new Predicate<IElementType>() {
 				@Override
 				public boolean apply(IElementType input) {
 					IAdaptable semanticAdapter = new SemanticElementAdapter(input);
