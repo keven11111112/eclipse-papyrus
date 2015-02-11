@@ -328,6 +328,18 @@
 		<module>../plugins/views/org.eclipse.papyrus.views.search</module>
 		<module>../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
 		<module>main</module>
+		<!-- Papyrus examples -->
+		<module>../examples/core/org.eclipse.papyrus.example.core.lifecycleevents</module>
+		<module>../examples/core/org.eclipse.papyrus.example.core.sashwindows.fulleditor</module>
+		<module>../examples/core/org.eclipse.papyrus.example.core.sashwindows.simpleeditor</module>
+		<module>../examples/infra/org.eclipse.papyrus.example.infra.servicesregistry.retrieval</module>
+		<module>../examples/org.eclipse.papyrus.example.text.instance</module>
+		<module>../examples/org.eclipse.papyrus.example.uml.comment.editor.newresource</module>
+		<module>../examples/org.eclipse.papyrus.example.uml.comment.editor.sharedresource</module>
+		<module>../examples/infra/org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences</module>
+		<module>../examples/emf/org.eclipse.papyrus.outline.emftree</module>
+		<module>../examples/uml/org.eclipse.papyrus.thousandcreation</module>
+		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>		
 	</modules>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
