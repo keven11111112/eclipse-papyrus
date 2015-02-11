@@ -6,7 +6,7 @@
 	<version>1.1.0-SNAPSHOT</version>
 	<packaging>pom</packaging>
 	<modules>
-		<module>../features/papyrus-main-features/org.eclipse.papyrus.customization.feature</module>
+	    <module>../features/papyrus-main-features/org.eclipse.papyrus.customization.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.doc.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.editor.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.emf.facet.feature</module>
@@ -328,6 +328,14 @@
 		<module>../plugins/views/org.eclipse.papyrus.views.search</module>
 		<module>../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
 		<module>main</module>
+		<!-- Papyrus Sysml 1.4 -->
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.blockdefinition</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.internalblock</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.parametric</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.requirement</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.edit</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.service.types</module>
 		<!-- Papyrus examples -->
 		<module>../examples/core/org.eclipse.papyrus.example.core.lifecycleevents</module>
 		<module>../examples/core/org.eclipse.papyrus.example.core.sashwindows.fulleditor</module>
@@ -339,7 +347,7 @@
 		<module>../examples/infra/org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences</module>
 		<module>../examples/emf/org.eclipse.papyrus.outline.emftree</module>
 		<module>../examples/uml/org.eclipse.papyrus.thousandcreation</module>
-		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>		
+		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>	
 	</modules>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
