@@ -17,7 +17,6 @@ package org.eclipse.papyrus.texteditor.modelexplorer.queries;
 import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
@@ -43,7 +42,7 @@ public class IsTextEditorContainer extends AbstractEditorContainerQuery implemen
 		while (roots.hasNext()) {
 			EObject inner = roots.next();
 			if (inner instanceof TextEditorModel) {
-				if (EcoreUtil.equals(((TextEditorModel) inner).getEditedObject(), context)) {
+				if (((TextEditorModel) inner).getEditedObject() == context) {
 					return true;
 				}
 			}
