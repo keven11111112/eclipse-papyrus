@@ -192,11 +192,13 @@ public class ModelExplorerPageBookView extends MultiViewPageBookView implements 
 
 	@Override
 	public void setFocus() {
-		if (getSite() == null) {
-			return;
+		try {
+			super.setFocus();
+		} catch (Exception ex) {
+			//Tentative workaround to reduce error log cluttering during test execution on Linux
+			//Only log a warning instead of the full stack trace, since NPEs happen a lot during tests on Linux
+			Activator.log.warn("Error setting focus");
 		}
-
-		super.setFocus();
 
 		IPage page = getCurrentPage();
 		if (page instanceof ViewPartPage) {
