@@ -108,5 +108,18 @@
             priority="100">
       </configuration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="umlProfile/newChildMenu.xmi">
+      </menuCreationModel>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.umlrt.elementTypeSet"
+            path="umlProfile/uml-rt.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
 
 </plugin>
