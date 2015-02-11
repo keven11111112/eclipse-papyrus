@@ -215,7 +215,12 @@ public final class DeleteActionUtil {
 	 */
 	public static boolean isCanonicalView(IGraphicalEditPart editpart) {
 		View view = editpart.getAdapter(View.class);
-		return view != null || view.getElement() != null || !(view.getElement() instanceof View);
+		boolean canonicalView = true;
+		if (view != null) {
+			canonicalView = !(view.getElement() instanceof View);
+		}
+		return canonicalView;
+
 	}
 
 	/**

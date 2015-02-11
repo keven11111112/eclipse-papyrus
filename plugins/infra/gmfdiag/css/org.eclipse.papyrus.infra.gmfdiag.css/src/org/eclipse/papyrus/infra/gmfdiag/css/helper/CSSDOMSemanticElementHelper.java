@@ -43,6 +43,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @return
 	 */
 	public static EObject findSemanticElement(EObject notationElement) {
+
 		if (notationElement == null) {
 			return null;
 		}
@@ -86,13 +87,13 @@ public class CSSDOMSemanticElementHelper {
 
 		/*
 		 * Remove the warning to avoid flooding the error log.
-		 *
+		 * 
 		 * This may happen in the following cases:
-		 *
+		 * 
 		 * - The element is at the root of the Notation model and is not a Diagram (Which may happen in corrupted models,
 		 * or (maybe) non-Papyrus notation models, but shouldn't have a major impact)
 		 * - The element is contained in an EMF ChangeDescription (e.g. Create + Undo creation)
-		 *
+		 * 
 		 * See Bug 430534
 		 */
 		// Activator.log.warn("Cannot find a valid source for " + notationElement);
@@ -164,6 +165,13 @@ public class CSSDOMSemanticElementHelper {
 		}
 
 		if (node.eContainer() instanceof Shape) {
+			if (node.getLayoutConstraint() != null) {
+				return true;
+			}
+		}
+
+		// TODO Check if relevant
+		if (node.eContainer() instanceof BasicCompartment) {
 			if (node.getLayoutConstraint() != null) {
 				return true;
 			}

@@ -31,10 +31,10 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
-import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -56,7 +56,7 @@ import com.google.common.collect.Lists;
  * Specific edit policy for label displaying stereotypes and their properties
  * for representing UML elements.
  */
-public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	/** constant for this edit policy role */
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";
@@ -142,7 +142,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 		}
 		hostSemanticElement = getUMLElement();
 		// adds a listener on the view and the element controlled by the
-		// editpart
+		// editPart
 		getDiagramEventBroker().addNotificationListener(view, this);
 		if (hostSemanticElement == null) {
 			return;
@@ -312,6 +312,15 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 * this edit policies
 	 */
 	public abstract void refreshDisplay();
+
+	/**
+	 * @see org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx#refresh()
+	 *      This method must extend GraphicalEditPolicyEx, in order to call the edit policy refresh method when the EditPart is Refreshed
+	 */
+	@Override
+	public void refresh() {
+		refreshDisplay();
+	}
 
 	/**
 	 * Parses the string containing the complete definition of properties to be

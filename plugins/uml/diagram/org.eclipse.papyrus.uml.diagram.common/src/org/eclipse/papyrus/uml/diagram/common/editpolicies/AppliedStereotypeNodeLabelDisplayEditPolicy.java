@@ -21,10 +21,10 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.graphics.Image;
 
@@ -51,16 +51,15 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
 
 			// calculate text and icon to display
-			final String stereotypesToDisplay = stereotypesOnlyToDisplay();
+			final String stereotypesToDisplay = StereotypeDisplayHelper.getStereotypeTextToDisplay((View) getHost().getModel());
 			// computes the icon to be displayed
 			final Image imageToDisplay = stereotypeIconToDisplay();
 
 			// if the string is not empty, then, the figure has to display it.
-			// Else, it displays
-			// nothing
-			// if (stereotypesToDisplay != "" || imageToDisplay != null) {
+			// Else, it displays nothing
 			if (figure instanceof IPapyrusNodeUMLElementFigure) {
-				((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesOnlyToDisplay().equals("") ? stereotypesToDisplay : stereotypesToDisplay), imageToDisplay);
+				// Stereotype should be passed as "" if null, in order to avoid "null" string.
+				((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay == null ? "" : stereotypesToDisplay), imageToDisplay);
 
 				if (figure instanceof IPapyrusNodeNamedElementFigure) {
 					refreshAppliedStereotypesProperties((IPapyrusNodeNamedElementFigure) figure);
@@ -141,41 +140,6 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 			figure.setStereotypePropertiesInBrace(todisplay);
 		} else {
 			figure.setStereotypePropertiesInBrace(null);
-		}
-	}
-
-	/**
-	 * this method is used to display only applied stereotypes
-	 *
-	 * @return the string with applied stereotypes. It can return "" if there is
-	 *         no stereotypes to display
-	 */
-	public String stereotypesOnlyToDisplay() {
-		// list of stereotypes to display
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getHost().getModel());
-		// Kind of the representation
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getHost().getModel());
-
-		// check the presentation kind. if only icon => do not display
-		// stereotypes
-		if (UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return ""; // empty string, so stereotype label should not be
-						// displayed
-		}
-
-		// stereotypes with qualified name to display
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(((View) getHost().getModel()));
-
-		// the set is empty
-		if (stereotypesToDisplayWithQN.length() == 0 && stereotypesToDisplay.length() == 0) {
-			return "";
-		}
-		// vertical representation
-		if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			return Activator.ST_LEFT + stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;
-		} else {// horizontal representation
-			return Activator.ST_LEFT + stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;
-
 		}
 	}
 

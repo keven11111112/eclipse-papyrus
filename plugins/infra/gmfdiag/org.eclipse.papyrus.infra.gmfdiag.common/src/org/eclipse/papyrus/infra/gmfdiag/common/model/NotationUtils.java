@@ -275,6 +275,7 @@ public class NotationUtils {
 		NamedStyle style;
 
 		if (intValueStyle != null) {
+
 			style = view.getNamedStyle(intValueStyle, property);
 			if (style instanceof IntValueStyle) {
 				value = ((IntValueStyle) style).getIntValue();
@@ -359,9 +360,38 @@ public class NotationUtils {
 				int i = 0;
 				value = new int[valueList.size()];
 				// Convert list in int array
-				for (Iterator iterator = valueList.iterator(); iterator.hasNext();) {
+				for (Iterator<?> iterator = valueList.iterator(); iterator.hasNext();) {
 					String string = (String) iterator.next();
 					value[i++] = Integer.parseInt(string);
+				}
+			}
+		}
+		return value;
+	}
+
+
+	/**
+	 * Get the list as a String list
+	 * 
+	 * @param view
+	 *            model
+	 * @param property
+	 *            property name
+	 * @param defaultStringList
+	 *            default value if empty
+	 * @return List of String
+	 * 
+	 */
+	public static EList<String> getStringListValue(View view, String property, EList<String> defaultStringList) {
+		EList<String> value = defaultStringList;
+		if (view != null && property != null && property != "") {
+			EClass stringValueStyle = NotationPackage.eINSTANCE.getStringListValueStyle();
+			if (stringValueStyle != null) {
+				NamedStyle style;
+				style = view.getNamedStyle(stringValueStyle, property);
+				if (style instanceof StringListValueStyle) {
+					// Get the string list
+					value = ((StringListValueStyle) style).getStringListValue();
 				}
 			}
 		}

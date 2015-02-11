@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
@@ -96,7 +97,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, NotificationListener, IPapyrusListener, IControlParserForDirectEdit {
 
-	public static final String ID = "AppliedStereotypeProperty"; //$NON-NLS-1$
+	public static final String ID = "Applied_Stereotype_Property"; //$NON-NLS-1$
 
 	private DirectEditManager manager;
 
@@ -119,7 +120,6 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected IDirectEditorConfiguration configuration;
 
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param view
@@ -158,7 +158,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	}
 
 	/**
-	 * set the text inot the
+	 * set the text if not
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
 		if (figure instanceof FlowPage) {
@@ -250,7 +250,11 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		String text = null;
 		EObject parserElement = getParserElement();
 		if (parserElement != null && getParser() != null) {
-			text = getParser().getPrintString(new SemanticAdapter(this.resolveSemanticElement(), getNotationView()), getParserOptions().intValue());
+
+			EObject element = this.resolveSemanticElement();
+			SemanticAdapter sAdapter = new SemanticAdapter(element, getNotationView());
+
+			text = getParser().getPrintString(sAdapter, getParserOptions().intValue());
 		}
 		if (text == null || text.length() == 0) {
 			text = defaultText;
@@ -292,7 +296,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 
 	/**
 	 *
-	 * @return true if this edit part is editable, it depends of the attribue derived of the property
+	 * @return true if this edit part is editable, it depends of the attribute derived of the property
 	 */
 	protected boolean isEditable() {
 		if (!(((Property) resolveSemanticElement()).isDerived())) {
@@ -712,7 +716,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(getAdapter(AppliedStereotypeProperty.class), this);
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -733,11 +737,10 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
 			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
-			Object resolveSemanticElement = getAdapter(AppliedStereotypeProperty.class);
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement, this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement, this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, AppliedStereotypeProperty.class.getName());
 			}
 		}
 	}
@@ -749,7 +752,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + AppliedStereotypeProperty.class.getName());
 		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, getAdapter(AppliedStereotypeProperty.class), this);
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, AppliedStereotypeProperty.class.getName());
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}
@@ -924,9 +927,15 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	public Object getAdapter(Class key) {
 		if (key == AppliedStereotypeProperty.class) {
 			return new AppliedStereotypeProperty(((View) getNotationView().eContainer()).getElement(), (Property) resolveSemanticElement());
+		} else if (key == View.class) {
+			View view = this.getNotationView();
+			return view;
 		}
+
 		return null;
 	}
+
+
 
 	/**
 	 * locator for the multiline Cell

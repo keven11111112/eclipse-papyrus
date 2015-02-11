@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -133,9 +134,6 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		return UnexecutableCommand.INSTANCE;
 	}
 
-
-
-
 	/**
 	 *
 	 * @see org.eclipse.gmf.runtime.common.ui.services.parser.IParser#getPrintString(org.eclipse.core.runtime.IAdaptable, int)
@@ -150,11 +148,9 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
 			final View view = ((View) element.getAdapter(View.class));
-			final EObject stereotypeApplication = ((View) view.eContainer()).getElement();
-			final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
-			if (stereotype != null && property != null && umlElement != null) {
-				return StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, "");
+
+			if (view != null && property != null) {
+				return StereotypeDisplayHelper.getStereotypePropertyToDisplay(view, property);
 			}
 		}
 		return "<UNDEFINED>";

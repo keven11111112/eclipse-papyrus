@@ -19,9 +19,13 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
+import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
@@ -29,42 +33,63 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereo
  */
 public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 
-	protected View owner;
+	protected View node;
 
-	protected EObject StereotypeApplication;
+	protected EObject stereotypeApplication;
 
 	protected boolean displayit = false;
+
+	protected Node parent;
 
 	/**
 	 *
 	 * Constructor.
 	 *
 	 * @param domain
-	 * @param owner
+	 * @param node
+	 *            The EditPart view of the Compartment
 	 * @param StereotypeApplication
 	 * @param displayit
 	 */
-	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View owner, EObject StereotypeApplication, boolean displayit) {
+	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View node, EObject stereotypeApplication, boolean displayit) {
 		super(domain, "CreateStereotypeCompartment");
-		this.owner = owner;
-		this.StereotypeApplication = StereotypeApplication;
+		this.node = node;
+		this.stereotypeApplication = stereotypeApplication;
 		this.displayit = displayit;
+		parent = StereotypeDisplayHelper.getStereotypeLabel(node, stereotypeApplication);
 
 	}
 
 	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
+
+
+		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
+
+		// Create the Graphical Compartment
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
-		compartment.setVisible(displayit);
+		compartment.setVisible(true);
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
+
+		// Create Title Style
 		TitleStyle ts = NotationFactory.eINSTANCE.createTitleStyle();
 		ts.setShowTitle(true);
 		compartment.getStyles().add(ts);
-		compartment.setElement(StereotypeApplication);
-		compartment.setType(AppliedStereotypeCompartmentEditPart.ID);
-		ViewUtil.insertChildView(owner, compartment, ViewUtil.APPEND, false);
+
+		// Create Stereotype Name Style
+		StringValueStyle stereotypeNameStyle = NotationFactory.eINSTANCE.createStringValueStyle();
+		stereotypeNameStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME);
+		stereotypeNameStyle.setStringValue(stereotype.getQualifiedName());
+		compartment.getStyles().add(stereotypeNameStyle);
+
+		// Complete the creation
+		compartment.setElement(stereotypeApplication);
+		compartment.setType(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE);
+		ViewUtil.insertChildView(node, compartment, ViewUtil.APPEND, true);
 		compartment.setMutable(true);
+
 	}
+
 
 }

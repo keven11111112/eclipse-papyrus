@@ -119,9 +119,9 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 		}
 		// vertical representation
 		if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			return Activator.ST_LEFT + stereotypesToDisplay(Activator.ST_RIGHT + "\n" + Activator.ST_LEFT, stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;
+			return Activator.ST_LEFT + stereotypesToDisplay() + Activator.ST_RIGHT;
 		} else {// horizontal representation
-			return Activator.ST_LEFT + stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN) + Activator.ST_RIGHT;
+			return Activator.ST_LEFT + stereotypesToDisplay() + Activator.ST_RIGHT;
 
 		}
 	}

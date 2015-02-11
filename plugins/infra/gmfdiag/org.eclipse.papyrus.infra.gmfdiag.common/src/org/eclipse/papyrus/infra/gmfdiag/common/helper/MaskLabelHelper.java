@@ -15,6 +15,7 @@ import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
@@ -23,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStringStyleObservableList;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 
 
 public class MaskLabelHelper {
@@ -35,7 +37,8 @@ public class MaskLabelHelper {
 	 * @return
 	 */
 	public static Collection<String> getMaskValues(View view) {
-		if (view.getNamedStyle(NotationPackage.eINSTANCE.getStringListValueStyle(), VisualInformationPapyrusConstants.CUSTOM_MASK_LABEL) != null) {
+		EList<String> maskLabel = NotationUtils.getStringListValue(view, VisualInformationPapyrusConstants.CUSTOM_MASK_LABEL, null);
+		if (maskLabel != null) {
 			CustomStringStyleObservableList values = new CustomStringStyleObservableList(view, EMFHelper.resolveEditingDomain(view), VisualInformationPapyrusConstants.CUSTOM_MASK_LABEL);
 			Set<String> result = new HashSet<String>(values);
 			values.dispose();

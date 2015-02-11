@@ -17,12 +17,17 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -56,14 +61,43 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	@Override
 	protected String doGetAttribute(String attr) {
-		// Semantic properties
 		String parentValue = super.doGetAttribute(attr);
 		if (parentValue != null) {
 			return parentValue;
 		}
+
+		// get stereotype Label attribute
+		if (StereotypeDisplayHelper.isStereotypeLabel(semanticElement)) {
+			String value = getStereotypeLabelAttribute(attr);
+			if (value != null && !value.isEmpty()) {
+				return value;
+			}
+		}
+
+		// get stereotype Compartment attribute
+		if (StereotypeDisplayHelper.isStereotypeCompartment(semanticElement)) {
+			String value = getStereotypeCompartmentAttribute(attr);
+			if (value != null && !value.isEmpty()) {
+				return value;
+			}
+		}
+
+		// get stereotype Property attribute
+		if (StereotypeDisplayHelper.isStereotypeProperty(semanticElement)) {
+
+			String value = getStereotypePropertyAttribute(attr);
+			if (value != null && !value.isEmpty()) {
+				return value;
+			}
+		}
+
+
 		if (semanticElement instanceof Element) {
+
 			// Applied stereotypes
 			Element currentElement = (Element) semanticElement;
+
+			// Get applied STereotypes Attributes
 			if (APPLIED_STEREOTYPES_PROPERTY.equals(attr)) {
 				List<String> appliedStereotypes = new LinkedList<String>();
 				for (Stereotype stereotype : currentElement.getAppliedStereotypes()) {
@@ -109,6 +143,66 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		}
 		return null;
 	}
+
+	/**
+	 * Retrieve the Matching String Value for the StereotypeCompartment Element
+	 * 
+	 * @param attr
+	 *            Attribute of the String to match with
+	 * @return The matching value for this Attribute
+	 */
+	protected String getStereotypeCompartmentAttribute(String attr) {
+		if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
+
+			BasicCompartment propertyCompartment = (BasicCompartment) semanticElement;
+			return StereotypeDisplayHelper.getName(propertyCompartment);
+
+		}
+		return "";
+	}
+
+	/**
+	 * Retrieve the Matching String Value for the StereotypeCompartment Element
+	 * 
+	 * @param attr
+	 *            Attribute of the String to match with
+	 * @return The matching value for this Attribute
+	 */
+	protected String getStereotypePropertyAttribute(String attr) {
+		if (StereotypeDisplayUtils.STEREOTYPE_PROPERTY_NAME.equals(attr)) {
+
+			DecorationNode propertyLabel = (DecorationNode) semanticElement;
+			if (propertyLabel.getElement() instanceof Property) {
+				Property prop = (Property) propertyLabel.getElement();
+				String propLabel = prop.getName();
+				return propLabel;
+			}
+
+		}
+		return "";
+
+	}
+
+	/**
+	 * Get the matching Value of the Attribute
+	 * 
+	 * @param attr
+	 *            Attribute of the String to match with
+	 * @return The matching value for this Attribute
+	 */
+	protected String getStereotypeLabelAttribute(String attr) {
+
+		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME.equals(attr)) {
+			DecorationNode label = (DecorationNode) semanticElement;
+
+			String stereoName = StereotypeDisplayHelper.getName(label);
+			return stereoName;
+
+		}
+		return null;
+	}
+
+
 
 	@Override
 	protected String getCSSValue(EStructuralFeature feature, Object value) {

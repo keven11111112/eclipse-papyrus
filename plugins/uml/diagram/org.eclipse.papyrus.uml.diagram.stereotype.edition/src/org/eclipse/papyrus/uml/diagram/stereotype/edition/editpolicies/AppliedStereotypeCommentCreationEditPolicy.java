@@ -283,6 +283,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			// a stereotype was applied to the notifier
 			// then a new listener should be added to the stereotype application
 			getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
+			// TODO To be deleted when Bug 455311 fixed: Commented to put the SterotypeDisplay by NamedStyle
 			// createAppliedStereotypeCompartment((EObject)notification.getNewValue());
 		} else if (eventType == StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT) {
 			getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
@@ -290,23 +291,7 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 			updateAppliedStereotypeCommentShape();
 
 		}
-		// if element that has changed is a stereotype => refresh the label.
-		if (notification.getNotifier() instanceof View && (notification.getEventType() == Notification.ADD) && (notification.getNewValue() instanceof EAnnotation)) {
-			if (UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation) notification.getNewValue()).getSource()) {
-				// stereotype annotation has changed => refresh label display
-				updateAppliedStereotypeCommentShape();
-				delegateEAnnotationInCommentShape();
-				// refreshDisplay();
-			}
-		}
-		// if element that has changed is a stereotype => refresh the label.
-		if (notification.getNotifier() instanceof EAnnotation && (notification.getEventType() == Notification.ADD)) {
-			if (UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION == ((EAnnotation) notification.getNotifier()).getSource()) {
-				// stereotype annotation has changed => refresh label display
-				updateAppliedStereotypeCommentShape();
-				delegateEAnnotationInCommentShape();
-			}
-		}
+
 	}
 
 	/**

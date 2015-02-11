@@ -34,6 +34,7 @@ Export-Package: org.eclipse.papyrus.uml.diagram.common,
  org.eclipse.papyrus.uml.diagram.common.service,
  org.eclipse.papyrus.uml.diagram.common.service.palette,
  org.eclipse.papyrus.uml.diagram.common.sheet,
+ org.eclipse.papyrus.uml.diagram.common.stereotype,
  org.eclipse.papyrus.uml.diagram.common.strategy.paste,
  org.eclipse.papyrus.uml.diagram.common.ui.dialogs,
  org.eclipse.papyrus.uml.diagram.common.ui.helper,
@@ -109,6 +110,5 @@ Bundle-Version: 1.1.0.qualifier
 Eclipse-BuddyPolicy: dependent
 Bundle-Activator: org.eclipse.papyrus.uml.diagram.common.Activator
 Bundle-ManifestVersion: 2
-Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:
- =true
+Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common;singleton:=true
 

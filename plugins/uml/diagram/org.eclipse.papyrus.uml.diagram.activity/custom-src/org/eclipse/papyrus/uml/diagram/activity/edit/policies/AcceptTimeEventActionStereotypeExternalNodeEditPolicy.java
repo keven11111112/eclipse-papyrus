@@ -103,9 +103,9 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 			String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(parentView);
 
 			if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-				display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
+				display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesPropertiesToDisplay);
 			} else {
-				final String st = stereotypesToDisplay(", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
+				final String st = stereotypesToDisplay();
 				if (st != null && !st.equals("")) {
 					display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
 				}

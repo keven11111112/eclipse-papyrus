@@ -158,10 +158,9 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 	 * @return
 	 */
 	@Override
-	protected Command getApplyStereotypeCommmand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
-		CompoundCommand compoundCommand = new CompoundCommand("ApplyStereotypeCommand");
-
-		Command parentCommmand = super.getApplyStereotypeCommmand(elt, st, domain);
+	protected Command getApplyStereotypeCommand(Element elt, Stereotype st, TransactionalEditingDomain domain) {
+		CompoundCommand compoundCommand = new CompoundCommand("Apply Stereotype Command");
+		Command parentCommmand = super.getApplyStereotypeCommand(elt, st, domain);
 		compoundCommand.append(parentCommmand);
 
 		// Fix regression / Bug 431258
@@ -169,7 +168,6 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 		if (diagramElement != null) {
 			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
 			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-
 			compoundCommand.append(command);
 		}
 
