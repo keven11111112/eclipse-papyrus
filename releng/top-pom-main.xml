@@ -344,7 +344,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.4-M-builds/M-4.4.2RC2-201501281000/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.4-M-builds/M-4.4.2RC3-201502041700/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -414,7 +414,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.3/M-3.6.3RC2-20150203000141/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.3/M-3.6.3RC3-20150209165014/repository/</url>
 		</repository>
 	</repositories>
 	<pluginRepositories>
