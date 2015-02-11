@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2015 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,11 +8,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
- *  (with the help of examining table support from Vincent Lorenzo)
- *
- *****************************************************************************/
-
+ *  Ansgar Radermacher (CEA LIST) - Initial API and implementation
+ /*****************************************************************************/
 package org.eclipse.papyrus.texteditor.modelexplorer.queries;
 
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
@@ -21,15 +18,13 @@ import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
 import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 
-/** Return the name for the table */
-public class GetTextEditorName implements IJavaQuery2<TextEditorModel, String> {
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public String evaluate(TextEditorModel context, IParameterValueList2 parameterValues, IFacetManager manager)
+public class NotVisibleStructuralFeatureQuery implements IJavaQuery2<TextEditorModel, Boolean> {
+	public Boolean evaluate(final TextEditorModel context,
+			final IParameterValueList2 parameterValues,
+			final IFacetManager facetManager)
 			throws DerivedTypedElementException {
-		return context.getName();
+		// All sub-elements are invisible. EditedObject may eventually be useful, but text editor
+		// is already shown as a child of edited object within the model explorer
+		return false;
 	}
 }
