@@ -5,6 +5,7 @@ import java.util.List;
 import org.eclipse.draw2d.AbstractPointListShape;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.IBorderItemLocator;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ControlFlowEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ObjectFlowEditPart;
@@ -17,7 +18,7 @@ public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 	public AbstractPinEditPart(View view) {
 		super(view);
 	}
-
+	
 	/**
 	 * Notifies listeners that a target connection has been added.
 	 *
@@ -165,5 +166,16 @@ public abstract class AbstractPinEditPart extends BorderedBorderItemEditPart {
 		super.activate();
 		// redraw the pin arrow if no connection
 		redrawPinArrow(getTargetConnections().isEmpty() ? getSourceConnections() : getTargetConnections());
+	}
+	
+	@Override
+	public void refreshBounds() {
+		super.refreshBounds();
+		// Update location manually.
+		// Bug 454693 : This allow to refresh the pin location
+		IBorderItemLocator locator = getBorderItemLocator();
+		if (locator != null) {
+			locator.relocate(getFigure());
+		}
 	}
 }
