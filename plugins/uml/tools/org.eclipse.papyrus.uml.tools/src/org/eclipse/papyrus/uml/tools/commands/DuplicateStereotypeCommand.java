@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
+ *  Gaabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 438511
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.commands;
 
@@ -28,7 +29,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author Benoit Maggi
  */
 public class DuplicateStereotypeCommand extends RecordingCommand {
-	
+
 	protected Element element;
 
 	protected EObject stereotypeApplication;
@@ -40,9 +41,9 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 	 * Constructor.
 	 * 
 	 * @param element
-	 *        The UML Element on which the stereotype will be applied
+	 *            The UML Element on which the stereotype will be applied
 	 * @param stereotype
-	 *        The stereotypes to apply
+	 *            The stereotypes to apply
 	 */
 	public DuplicateStereotypeCommand(TransactionalEditingDomain domain, Element element, EObject stereotypeApplication) {
 		super(domain);
@@ -51,21 +52,21 @@ public class DuplicateStereotypeCommand extends RecordingCommand {
 		// reload the stereotype in the new Context-ResourceSet (Required because in org.eclipse.uml2.uml.internal.operations.PackageOperations
 		// L960 in getProfileApplication the test is using == instead of equals)
 		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-		Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, element);	
+		Stereotype stereotypeInTargetContext = EMFHelper.reloadIntoContext(stereotype, element);
 		this.stereotypeInTargetContext = stereotypeInTargetContext;
 	}
 
 	public Stereotype getStereotypeInTargetContext() {
 		return stereotypeInTargetContext;
-	}	
-	
+	}
+
 	@Override
 	protected void doExecute() {
 		EObject applyStereotype = element.applyStereotype(stereotypeInTargetContext);
-		EList<EStructuralFeature> eStructuralFeatures = applyStereotype.eClass().getEStructuralFeatures();
-		for(EStructuralFeature eStructuralFeature : eStructuralFeatures) {
+		EList<EStructuralFeature> eStructuralFeatures = applyStereotype.eClass().getEAllStructuralFeatures();
+		for (EStructuralFeature eStructuralFeature : eStructuralFeatures) {
 			String name = eStructuralFeature.getName();
-			if(!name.startsWith(Extension.METACLASS_ROLE_PREFIX) && eStructuralFeature.isChangeable()) {
+			if (!name.startsWith(Extension.METACLASS_ROLE_PREFIX) && eStructuralFeature.isChangeable()) {
 				applyStereotype.eSet(eStructuralFeature, stereotypeApplication.eGet(eStructuralFeature));
 			}
 		}

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 402525
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus (CEA) - bug 399859
+ *  Christian W. Damus - bug 456934
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.tests;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.infra.core.services.ComposedServiceTest;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistryTest;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtilsTest;
 import org.eclipse.papyrus.infra.core.utils.JobBasedFutureTest;
+import org.eclipse.papyrus.infra.core.utils.JobExecutorServiceTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -42,7 +44,7 @@ import org.junit.runners.Suite.SuiteClasses;
 		/* SaveAndDirtyServiceTest.class, */LifeCycleEventsProviderTest.class,
 		NestedEditorDelegatedOutlinePageTest.class,
 		// {oep}.core.utils
-		AdapterUtilsTest.class, JobBasedFutureTest.class
+		AdapterUtilsTest.class, JobBasedFutureTest.class, JobExecutorServiceTest.class
 })
 /**
  * Suite Class for all tests in the plugin

@@ -118,7 +118,7 @@ public class WorkspaceNewModelStorageProvider extends AbstractNewModelStoragePro
 	 * @return the diagram file name
 	 */
 	protected String getDiagramFileName(URI domainModelURI) {
-		return domainModelURI.trimFileExtension().lastSegment();
+		return URI.decode(domainModelURI.trimFileExtension().lastSegment());
 	}
 
 	protected boolean isCreateFromExistingDomainModel() {

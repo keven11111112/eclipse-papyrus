@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.texteditor.modelexplorer.queries;
 
+import org.eclipse.papyrus.emf.facet.custom.metamodel.custompt.IImage;
+import org.eclipse.papyrus.emf.facet.custom.ui.ImageUtils;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
@@ -20,13 +22,14 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractGetEditorIconQuery;
 
 /** Return the path to the icon of the corresponding table */
-public class GetTextEditorIcon extends AbstractGetEditorIconQuery implements IJavaQuery2<TextEditorModel, String> {
+public class GetTextEditorIcon extends AbstractGetEditorIconQuery implements IJavaQuery2<TextEditorModel, IImage> {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public String evaluate(TextEditorModel textInstance, IParameterValueList2 parameterValues, IFacetManager manager) {
-		return "/" + getEditorRegistry(textInstance).getEditorURLIcon(textInstance); //$NON-NLS-1$
+	public IImage evaluate(TextEditorModel textInstance, IParameterValueList2 parameterValues, IFacetManager manager) {
+		IImage image = ImageUtils.wrap("platform:/plugin/" + getEditorRegistry(textInstance).getEditorURLIcon(textInstance)); //$NON-NLS-1$
+		return image;
 	}
 }
