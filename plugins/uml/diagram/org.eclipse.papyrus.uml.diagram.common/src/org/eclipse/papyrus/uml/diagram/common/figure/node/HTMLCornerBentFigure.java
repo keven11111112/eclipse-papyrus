@@ -230,11 +230,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 	 * @param nodeList
 	 *            the list of nodes from which to generates the blockflows
 	 */
-	protected void generateBlocksFromNodeList(NodeList nodeList, BlockFlow parentFlow, Stack<Styles> stylesStack) {
+	protected void generateBlocksFromNodeList(NodeList nodeList, BlockFlow parentFlow, Stack<Styles> parentStyles) {
 		// for each element in the list, generates the corresponding blocks
 		for (int i = 0; i < nodeList.getLength(); i++) {
 			Node node = nodeList.item(i);
-
 			String nodeName = node.getNodeName();
 
 			short nodeType = node.getNodeType();
@@ -243,7 +242,7 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 				if (text == null || text.trim().isEmpty()) {
 					continue;
 				}
-				List<Styles> styles = Collections.list(stylesStack.elements());
+				List<Styles> styles = Collections.list(parentStyles.elements());
 				myStyles.add(styles);
 				generateTextFromTextNode(text, parentFlow, styles);
 			} else {
@@ -251,26 +250,26 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 					switch (HTMLTags.valueOf(nodeName)) {
 					case body: // main tag for the comment body
 						// create a block for the body
-						generateBlocksFromBodyNode(node, parentFlow, stylesStack);
+						generateBlocksFromBodyNode(node, parentFlow, parentStyles);
 						break;
 					case h3:
-						generateBlocksFromH3Node(node, parentFlow, stylesStack);
+						generateBlocksFromH3Node(node, parentFlow, parentStyles);
 						break;
 					case h4: // sub section heading
-						generateBlocksFromH4Node(node, parentFlow, stylesStack);
+						generateBlocksFromH4Node(node, parentFlow, parentStyles);
 						break;
 					case h5: // sub sub section heading
-						generateBlocksFromH5Node(node, parentFlow, stylesStack);
+						generateBlocksFromH5Node(node, parentFlow, parentStyles);
 						break;
 					case strong: // bold character
 					case b:
-						generateBlocksFromStrongNode(node, parentFlow, stylesStack);
+						generateBlocksFromStrongNode(node, parentFlow, parentStyles);
 						break;
 					case em: // italic
-						generateBlocksFromItalicNode(node, parentFlow, stylesStack);
+						generateBlocksFromItalicNode(node, parentFlow, parentStyles);
 						break;
 					case u: // underline
-						generateBlocksFromUnderlineNode(node, parentFlow, stylesStack);
+						generateBlocksFromUnderlineNode(node, parentFlow, parentStyles);
 						break;
 					case sub: // subscript
 						break;
@@ -281,13 +280,13 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 					case table: // table
 						break;
 					case p: // paragraph
-						generateBlocksFromParagraphNode(node, parentFlow, stylesStack);
+						generateBlocksFromParagraphNode(node, parentFlow, parentStyles);
 						break;
 					case br:
 						generateBlocksFromBRNode(node, parentFlow);
 						break;
 					case font:
-						generateBlocksForFontNode(node, parentFlow, stylesStack);
+						generateBlocksForFontNode(node, parentFlow, parentStyles);
 						break;
 					default:
 						break;
@@ -443,7 +442,8 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		if (styles == null || styles.isEmpty()) {
 			return (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(defaultFontData));
 		}
-		int defaultStyle = defaultFontData.getStyle();
+		FontData defaultFontDataCopy = FontDescriptor.copy(defaultFontData);
+		int defaultStyle = defaultFontDataCopy.getStyle();
 		boolean quote = false;
 		boolean codeSample = false;
 		// calculate the font to apply
@@ -463,26 +463,26 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 				break;
 			case font:
 				if (Styles.font.getData().get(FONT_NAME) != null) {
-					defaultFontData.setName((String) Styles.font.getData().get(FONT_NAME));
+					defaultFontDataCopy.setName((String) Styles.font.getData().get(FONT_NAME));
 				}
 				if (Styles.font.getData().get(FONT_SIZE) != null) {
 					// font size = [1..7] in html, but does not correspond to system
 					// size... 2 by default => 8 in real size.
 					// so: real size = (html font size)+6
-					defaultFontData.setHeight(((Integer) Styles.font.getData().get(FONT_SIZE)) * 2 + 4);
+					defaultFontDataCopy.setHeight(((Integer) Styles.font.getData().get(FONT_SIZE)) * 2 + 4);
 				}
 				break;
 			default:
 				break;
 			}
 		}
-		defaultFontData.setStyle(defaultStyle);
+		defaultFontDataCopy.setStyle(defaultStyle);
 		if (codeSample) {
-			defaultFontData = CODE_SAMPLE_FONT;
+			defaultFontDataCopy = CODE_SAMPLE_FONT;
 		} else if (quote) {
-			defaultFontData = QUOTE_FONT;
+			defaultFontDataCopy = QUOTE_FONT;
 		}
-		return (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(defaultFontData));
+		return (Font) JFaceResources.getResources().get(FontDescriptor.createFrom(defaultFontDataCopy));
 	}
 
 	/**
