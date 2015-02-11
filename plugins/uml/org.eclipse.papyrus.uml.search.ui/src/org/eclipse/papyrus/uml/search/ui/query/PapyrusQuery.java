@@ -151,9 +151,9 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 			}
 		} else {
 			while (m.find()) {
-				int start = m.start();
-				int end = m.end();
-				AttributeMatch match = new AttributeMatch(start, end, participant, scopeEntry, attribute, stereotype);
+				int offset = m.start();
+				int length = m.end() - m.start();
+				AttributeMatch match = new AttributeMatch(offset, length, participant, scopeEntry, attribute, stereotype);
 				fResults.add(match);
 			}
 		}

@@ -182,8 +182,10 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 
 						}
 						if (value != null && !this.getQuery().isRegularExpression()) {
-							if (value.length() >= match.getLength() - match.getOffset()) {
-								value = value.substring(match.getOffset(), match.getLength());
+							if (value.length() >= match.getLength() + match.getOffset()) {
+								int end = match.getLength() + match.getOffset();
+								value = value.substring(match.getOffset(), end);
+								
 								if (this.searchQuery.isCaseSensitive()) {
 									if (value.equals(this.searchQuery.getSearchQueryText())) {
 										((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
