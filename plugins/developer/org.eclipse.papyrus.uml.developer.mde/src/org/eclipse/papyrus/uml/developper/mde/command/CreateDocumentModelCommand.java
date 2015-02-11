@@ -626,7 +626,13 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 							Comment commentImg = designPackageOUT.createOwnedComment();
 							Stereotype refStereotype = commentImg.getApplicableStereotype(I_DocumentStereotype.IMAGEREF_STEREOTYPE);
 							commentImg.applyStereotype(refStereotype);
-							commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, IMGpath.toString());
+							String tmpDirectoryPath=directoryPath.substring(1);
+							String path=IMGpath.replace("\\", "/").toString();
+							int index=path.indexOf(tmpDirectoryPath);
+							if(index==0){
+								path="."+path.substring(tmpDirectoryPath.length());
+							}
+							commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
 							commentImg.setBody(hyperLinkObject.getTooltipText());
 						}
 					}
@@ -704,7 +710,13 @@ public class CreateDocumentModelCommand extends RecordingCommand {
 		Comment commentImg = currentModel.createOwnedComment();
 		Stereotype refStereotype = commentImg.getApplicableStereotype(I_DocumentStereotype.IMAGEREF_STEREOTYPE);
 		commentImg.applyStereotype(refStereotype);
-		commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, imagePath.toString());
+		String tmpDirectoryPath=directoryPath.substring(1);
+		String path=imagePath.toString();
+		int index=path.indexOf(tmpDirectoryPath);
+		if(index==0){
+			path="."+path.substring(tmpDirectoryPath.length());
+		}
+		commentImg.setValue(refStereotype, I_DocumentStereotype.IMAGEREF_REF_ATT, path);
 		commentImg.setBody(currentDiagram.getName());
 	}
 

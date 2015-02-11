@@ -1574,22 +1574,17 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ZMc7si0REeS1XdXKGPJRfg" x="300" y="320" width="921"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_mK2cEC0iEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_JM1isC0kEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JM1isS0kEeS1XdXKGPJRfg" key="tooltip_text" value="Import SysMLModel"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JM1isi0kEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_1.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_JM1isy0kEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HcXhMLHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HcXhMbHXEeSNH6rqyxslDw" key="tooltip_text" value="Import SysMLModel"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HcXhMrHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_1.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HcXhM7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_mK3DIC0iEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_mK2cES0iEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_bMSusC0gEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mK2cEi0iEeS1XdXKGPJRfg" x="20" y="400" width="1141" height="8"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_mK2cEi0iEeS1XdXKGPJRfg" x="55" y="492" width="1141" height="8"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_JutgsC0kEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_P5zJ8C0kEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5zJ8S0kEeS1XdXKGPJRfg" key="tooltip_text" value="Select import Menu of Eclipse"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5zJ8i0kEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_2.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_P5zJ8y0kEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
-      </eAnnotations>
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_dZDu8C0lEeS1XdXKGPJRfg" source="Stereotype_Annotation">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hTPFgC0lEeS1XdXKGPJRfg" key="StereotypeWithQualifiedNameList" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hTPFgS0lEeS1XdXKGPJRfg" key="StereotypeList" value=""/>
@@ -1597,65 +1592,97 @@
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hTPskS0lEeS1XdXKGPJRfg" key="PropStereoDisplay" value=""/>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hTQToC0lEeS1XdXKGPJRfg" key="StereotypePropertyLocation" value="Compartment"/>
       </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kzf1ELHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kzf1EbHXEeSNH6rqyxslDw" key="tooltip_text" value="Select import Menu of Eclipse"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kzf1ErHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_2.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kzf1E7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
+      </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_JuuHwC0kEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_JutgsS0kEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_EU4VQC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Jutgsi0kEeS1XdXKGPJRfg" x="20" y="460" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_Jutgsi0kEeS1XdXKGPJRfg" x="55" y="552" width="1141" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_dwE9QC0kEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_m3-V4C0kEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_m3-V4S0kEeS1XdXKGPJRfg" key="tooltip_text" value="Import ReqIF"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_m3-V4i0kEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_3.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_m3-V4y0kEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_O_qTgLHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_O_qTgbHXEeSNH6rqyxslDw" key="tooltip_text" value="Import ReqIF"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_O_qTgrHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_3.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_O_qTg7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_dwE9Qy0kEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_dwE9QS0kEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_dW9SoC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dwE9Qi0kEeS1XdXKGPJRfg" x="20" y="500" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_dwE9Qi0kEeS1XdXKGPJRfg" x="55" y="592" width="1141" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_rmBZYC0kEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x874IC0kEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x874IS0kEeS1XdXKGPJRfg" key="tooltip_text" value="ReqIF file Selection"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x874Ii0kEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_4.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x874Iy0kEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ULPnkLHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULPnkbHXEeSNH6rqyxslDw" key="tooltip_text" value="ReqIF file Selection"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULPnkrHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_4.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ULPnk7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_rmCAcC0kEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_rmBZYS0kEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_f2FngC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rmBZYi0kEeS1XdXKGPJRfg" x="20" y="540" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_rmBZYi0kEeS1XdXKGPJRfg" x="55" y="632" width="1141" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_0bQUsC0kEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7AsXoC0kEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7AsXoS0kEeS1XdXKGPJRfg" key="tooltip_text" value="SpecObject Type selection"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7AsXoi0kEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_5.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7AsXoy0kEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XzdrcLHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XzdrcbHXEeSNH6rqyxslDw" key="tooltip_text" value="SpecObject Type selection"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XzdrcrHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_5.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Xzdrc7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_0bQ7wC0kEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_0bQUsS0kEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_f-fVkC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0bQUsi0kEeS1XdXKGPJRfg" x="20" y="580" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_0bQUsi0kEeS1XdXKGPJRfg" x="55" y="672" width="1141" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="__amXIC0kEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_HUo1gC0lEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HUo1gS0lEeS1XdXKGPJRfg" key="tooltip_text" value="Create or select Profile"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HUo1gi0lEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_6.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_HUo1gy0lEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bzLCQLHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bzLCQbHXEeSNH6rqyxslDw" key="tooltip_text" value="Create or select Profile"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bzLCQrHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import_6.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bzLCQ7HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="__amXIy0kEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="__amXIS0kEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_gFMagC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__amXIi0kEeS1XdXKGPJRfg" x="20" y="620" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="__amXIi0kEeS1XdXKGPJRfg" x="55" y="712" width="1141" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_A57b4C0lEeS1XdXKGPJRfg" type="2018" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QkmlAC0lEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkmlAS0lEeS1XdXKGPJRfg" key="tooltip_text" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import7.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkmlAi0lEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import7.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_QkmlAy0lEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hVbw8LHXEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hVbw8bHXEeSNH6rqyxslDw" key="tooltip_text" value="Resulted model"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hVbw8rHXEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\import7.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hVbw87HXEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_A58C8C0lEeS1XdXKGPJRfg" type="5027"/>
       <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_A57b4S0lEeS1XdXKGPJRfg"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_gK1vgC0kEeS1XdXKGPJRfg"/>
-      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A57b4i0lEeS1XdXKGPJRfg" x="20" y="660" width="1141" height="21"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_A57b4i0lEeS1XdXKGPJRfg" x="54" y="803" width="1141" height="21"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_WTjOgLHwEeSvo7o7Iu6GQQ" type="2018" fillColor="10011046">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_diJjMLHwEeSvo7o7Iu6GQQ" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_diJjMbHwEeSvo7o7Iu6GQQ" key="tooltip_text" value="Two kinds of user"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_diJjMrHwEeSvo7o7Iu6GQQ" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\Userkind.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_diJjM7HwEeSvo7o7Iu6GQQ" key="is_default_navigation" value="false"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_WTkcoLHwEeSvo7o7Iu6GQQ" type="5027"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_WTjOgbHwEeSvo7o7Iu6GQQ"/>
+      <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_T7d80LHwEeSvo7o7Iu6GQQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_WTjOgrHwEeSvo7o7Iu6GQQ" x="54" y="401" width="1130"/>
+    </children>
+    <children xmi:type="notation:Shape" xmi:id="_KFCNwLHxEeSvo7o7Iu6GQQ" type="2018" fillColor="10011046">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_y6eWMLHxEeSvo7o7Iu6GQQ" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6eWMbHxEeSvo7o7Iu6GQQ" key="tooltip_text" value="Choose predefined type contained in profile"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6eWMrHxEeSvo7o7Iu6GQQ" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\Choose_Predefined_Profile.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6eWM7HxEeSvo7o7Iu6GQQ" key="is_default_navigation" value="false"/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_y6e9QLHxEeSvo7o7Iu6GQQ" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6e9QbHxEeSvo7o7Iu6GQQ" key="tooltip_text" value="The import cannot be done if the profile is not complete."/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6e9QrHxEeSvo7o7Iu6GQQ" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\CannotImport.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_y6e9Q7HxEeSvo7o7Iu6GQQ" key="is_default_navigation" value="false"/>
+      </eAnnotations>
+      <children xmi:type="notation:DecorationNode" xmi:id="_KFCNw7HxEeSvo7o7Iu6GQQ" type="5027"/>
+      <styles xmi:type="notation:HintedDiagramLinkStyle" xmi:id="_KFCNwbHxEeSvo7o7Iu6GQQ"/>
+      <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_GGDPsLHxEeSvo7o7Iu6GQQ"/>
+      <layoutConstraint xmi:type="notation:Bounds" xmi:id="_KFCNwrHxEeSvo7o7Iu6GQQ" x="52" y="746" width="1120" height="49"/>
     </children>
     <styles xmi:type="notation:StringValueStyle" xmi:id="_ma2C4S0BEeS1XdXKGPJRfg" name="diagram_compatibility_version" stringValue="1.0.0"/>
     <styles xmi:type="notation:DiagramStyle" xmi:id="_ma2C4i0BEeS1XdXKGPJRfg"/>
@@ -1967,50 +1994,50 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_ADEP4S0mEeS1XdXKGPJRfg" x="120" y="20" width="701"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_C5d1QC0mEeS1XdXKGPJRfg" type="2012" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Kp32gC0mEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kp32gS0mEeS1XdXKGPJRfg" key="tooltip_text" value="SysML Model"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kp32gi0mEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\export1.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Kp32gy0mEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_epeSQLHdEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_epeSQbHdEeSNH6rqyxslDw" key="tooltip_text" value="SysML Model"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_epeSQrHdEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\export1.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_epeSQ7HdEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_C5ecUC0mEeS1XdXKGPJRfg" type="5038"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_CZkNMC0mEeS1XdXKGPJRfg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_C5d1QS0mEeS1XdXKGPJRfg" x="120" y="100" width="701" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_MD6LkC0mEeS1XdXKGPJRfg" type="2012" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_bLt4MC0mEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bLt4MS0mEeS1XdXKGPJRfg" key="tooltip_text" value="Export Menu"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bLt4Mi0mEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_2.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_bLt4My0mEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_hbd4wLHdEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hbd4wbHdEeSNH6rqyxslDw" key="tooltip_text" value="Export Menu"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hbd4wrHdEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\export2.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_hbd4w7HdEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_MD6yoC0mEeS1XdXKGPJRfg" type="5038"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_LQdVYC0mEeS1XdXKGPJRfg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MD6LkS0mEeS1XdXKGPJRfg" x="120" y="160" width="699" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_MXAtwC0mEeS1XdXKGPJRfg" type="2012" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_lxu0oC0mEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lxu0oS0mEeS1XdXKGPJRfg" key="tooltip_text" value="Import ReqIF file"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lxu0oi0mEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\import_3.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_lxu0oy0mEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_kY0asLHdEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kY0asbHdEeSNH6rqyxslDw" key="tooltip_text" value="Import ReqIF file"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kY0asrHdEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\export3.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_kY0as7HdEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_MXBU0C0mEeS1XdXKGPJRfg" type="5038"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_LZ7acC0mEeS1XdXKGPJRfg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MXAtwS0mEeS1XdXKGPJRfg" x="120" y="200" width="699" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_MsywgC0mEeS1XdXKGPJRfg" type="2012" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_yjNjEC0mEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yjNjES0mEeS1XdXKGPJRfg" key="tooltip_text" value="Result in the ReqIf file"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yjNjEi0mEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\Export4.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_yjNjEy0mEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_vQJJkLHdEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vQJJkbHdEeSNH6rqyxslDw" key="tooltip_text" value="Result in the ReqIf file"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vQJJkrHdEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\Export4.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_vQJJk7HdEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_MszXkC0mEeS1XdXKGPJRfg" type="5038"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_Lh4ckC0mEeS1XdXKGPJRfg"/>
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_MsywgS0mEeS1XdXKGPJRfg" x="120" y="300" width="699" height="21"/>
     </children>
     <children xmi:type="notation:Shape" xmi:id="_iBBtsC0nEeS1XdXKGPJRfg" type="2012" fillColor="10011046">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_thGeoC0nEeS1XdXKGPJRfg" source="PapyrusHyperLink_Document">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_thGeoS0nEeS1XdXKGPJRfg" key="tooltip_text" value="Choose ReqIF File name"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_thGeoi0nEeS1XdXKGPJRfg" key="localization" value="C:\git\darwin\com.cea.darwin.reqif\doc\imgDOC\export5.png"/>
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_thGeoy0nEeS1XdXKGPJRfg" key="is_default_navigation" value="false"/>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_sSshALHdEeSNH6rqyxslDw" source="PapyrusHyperLink_Document">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sSshAbHdEeSNH6rqyxslDw" key="tooltip_text" value="Choose ReqIF File name"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sSshArHdEeSNH6rqyxslDw" key="localization" value="C:\git\org.eclipse.papyrus\extraplugins\req\org.eclipse.papyrus.req.reqif\doc\imgDOC\export5.png"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_sSshA7HdEeSNH6rqyxslDw" key="is_default_navigation" value="false"/>
       </eAnnotations>
       <children xmi:type="notation:DecorationNode" xmi:id="_iBCUwC0nEeS1XdXKGPJRfg" type="5038"/>
       <element xmi:type="uml:Comment" href="ReqifForDarwin.uml#_g8fHgC0nEeS1XdXKGPJRfg"/>
