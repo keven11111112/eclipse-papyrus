@@ -1,16 +1,20 @@
-/*******************************************************************************
- * Copyright (c) 2014 CEA LIST.
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- * 
+ *
  * Contributors:
- *     Juan Cadavid <juan.cadavid@cea.fr> implementation
- ******************************************************************************/
+ *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *   
+ *****************************************************************************/
+
 package org.eclipse.papyrus.infra.services.controlmode.tests.control;
 
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -25,6 +29,7 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues;
@@ -36,18 +41,24 @@ import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.uml2.uml.PackageableElement;
+import org.junit.After;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
-public class ControlModelTest extends AbstractControlModeTest {
+/**
+ * Test of Control feature with Legacy model.
+ * 
+ * @author Gabriel Pascual
+ *
+ */
+public class ControlLegacyModelTest extends AbstractControlModeTest {
 
 	private static final String PROJECT_NAME = "ControlModeTestProject"; //$NON-NLS-1$
 
-	private static final String SOURCE_PATH = "/model/ControlModelTest/"; //$NON-NLS-1$
+	private static final String SOURCE_PATH = "/model/ControlModeLegacyModelTest/"; //$NON-NLS-1$
 
-	private static final String FILE_ROOT_NAME = "ControlModeTestModel"; //$NON-NLS-1$
+	private static final String FILE_ROOT_NAME = "model"; //$NON-NLS-1$
 
 	@Override
 	protected void initTests(final Bundle bundle) throws CoreException, IOException {
@@ -58,9 +69,17 @@ public class ControlModelTest extends AbstractControlModeTest {
 		AbstractControlModeTest.bundle = bundle;
 	}
 
-	@Ignore
+	@After
+	public void cleanUp() throws NotDefinedException, ParameterValuesException {
+
+		// Set value to default
+		IParameter dialogParameter = HandlerUtils.getCommand(this.COMMAND_ID).getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
+		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter.getValues();
+		controlModePlatformValues.put("showDialog", true);
+	}
+
 	@Test
-	public void controlModelTest() {
+	public void testControlLegacyModel() {
 		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
 
 			@Override
@@ -84,14 +103,18 @@ public class ControlModelTest extends AbstractControlModeTest {
 					}
 				});
 				controlAndSave(editor, model, elements, HandlerUtils.getCommand(COMMAND_ID));
+				assertSashControl(elements);
 			}
+
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
+
+
 	}
 
 	@Test
-	public void controlModelTestWithoutDialog() throws NotDefinedException, ParameterValuesException {
+	public void testControlModelWithoutDialog() throws NotDefinedException, ParameterValuesException {
 		IParameter dialogParameter = HandlerUtils.getCommand(this.COMMAND_ID).getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
 		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter.getValues();
 		controlModePlatformValues.put("showDialog", false);
@@ -103,12 +126,12 @@ public class ControlModelTest extends AbstractControlModeTest {
 				Assert.assertTrue(Messages.ControlModelTest_4, HandlerUtils.getActiveHandlerFor(COMMAND_ID).isEnabled());
 
 				controlAndSave(editor, model, elements, HandlerUtils.getCommand(COMMAND_ID));
+				assertSashControl(elements);
 			}
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
 	}
-
 
 	/**
 	 * Assert sash control.
@@ -116,18 +139,20 @@ public class ControlModelTest extends AbstractControlModeTest {
 	 * @param elements
 	 *            the elements
 	 */
-	protected void assertSashControl(List<PackageableElement> elements) {
+	private void assertSashControl(List<PackageableElement> elements) {
 		ModelSet modelSet = null;
-		PackageableElement controlElement = elements.get(0);
+		PackageableElement controledElement = elements.get(0);
 		try {
-			modelSet = ServiceUtilsForEObject.getInstance().getModelSet(controlElement);
+			modelSet = ServiceUtilsForEObject.getInstance().getModelSet(controledElement);
 		} catch (ServiceException e) {
 			fail(e.getMessage());
 		}
-		Resource resource = modelSet.getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
-		assertTrue(resource.getContents().isEmpty());
+		Resource resource = modelSet.getAssociatedResource(controledElement, DiModel.DI_FILE_EXTENSION, true);
+		assertFalse(resource.getContents().isEmpty());
+		assertNotNull(DiUtils.lookupSashWindowsMngr(resource));
+
+
 
 	}
-
 
 }
