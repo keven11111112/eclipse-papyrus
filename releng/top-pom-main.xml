@@ -221,6 +221,8 @@
         <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.assistants.generator.ui</module>
         <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator</module>
         <module>../plugins/uml/assistants/org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui</module>
+        <module>../plugins/uml/newchild/org.eclipse.papyrus.uml.profile.newchildmenu.generator</module>
+        <module>../plugins/uml/newchild/org.eclipse.papyrus.uml.profile.newchildmenu.generator.ui</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.appearance</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.commands</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.controlmode.profile</module>
