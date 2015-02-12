@@ -29,6 +29,8 @@ import org.eclipse.uml2.uml.edit.UMLEditPlugin;
  */
 public class SysMLItemProviderAdapter extends ItemProviderAdapter implements IVisibilityOverlayImage {
 
+	private static final String FULL_OVR16_VISIBILITY_KIND = "full/ovr16/VisibilityKind_"; //$NON-NLS-1$
+
 	public SysMLItemProviderAdapter(AdapterFactory adapterFactory) {
 		super(adapterFactory);
 	}
@@ -41,11 +43,10 @@ public class SysMLItemProviderAdapter extends ItemProviderAdapter implements IVi
 	 * @param composedImage
 	 * @return {@link ComposedImage}
 	 */
-	@Override
 	public ComposedImage composeVisibilityImage(Object object, ComposedImage composedImage) {
 		NamedElement namedElement = (NamedElement) object;
 		if (namedElement.isSetVisibility()) {
-			composedImage.getImages().add(UMLEditPlugin.INSTANCE.getImage("full/ovr16/VisibilityKind_" //$NON-NLS-1$
+			composedImage.getImages().add(UMLEditPlugin.INSTANCE.getImage(FULL_OVR16_VISIBILITY_KIND
 					+ namedElement.getVisibility().getName()));
 		}
 		return composedImage;
