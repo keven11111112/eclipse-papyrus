@@ -16,12 +16,13 @@ package org.eclipse.papyrus.infra.emf.readonly;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.ConcurrentMap;
+import java.util.concurrent.atomic.AtomicInteger;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomainListenerImpl;
@@ -44,10 +45,10 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 
 	private final TransactionalEditingDomain transactionalEditingDomain;
 
-	private Transaction activeTransaction;
+	private AtomicInteger activeTransactionCount = new AtomicInteger();
 	private Map<Set<URI>, ReadOnlyState> resourceReadOnlyStates;
 	private Map<EObject, ReadOnlyState> objectReadOnlyStates;
-	private Map<AbstractReadOnlyHandler, Map<URI, ReadOnlyState>> handlerResourceReadOnlyCache;
+	private ConcurrentMap<AbstractReadOnlyHandler, ConcurrentMap<URI, ReadOnlyState>> handlerResourceReadOnlyCache;
 
 	static {
 		// Install the resource read-only cache provider
@@ -119,6 +120,7 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 * @return the previously cached read-only state, or {@code null} if it has not previously been cached
 	 */
 	public Optional<Boolean> getResources(Set<ReadOnlyAxis> axes, Set<URI> uris) {
+		final Map<Set<URI>, ReadOnlyState> resourceReadOnlyStates = getResourceReadOnlyStates();
 		ReadOnlyState state = (resourceReadOnlyStates == null) ? null : resourceReadOnlyStates.get(uris);
 		return (state == null) ? null : state.get(axes);
 	}
@@ -134,6 +136,7 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 * @return the previously cached read-only state, or {@code null} if it has not previously been cached
 	 */
 	public Optional<Boolean> getObject(Set<ReadOnlyAxis> axes, EObject object) {
+		final Map<EObject, ReadOnlyState> objectReadOnlyStates = getObjectReadOnlyStates();
 		ReadOnlyState state = (objectReadOnlyStates == null) ? null : objectReadOnlyStates.get(object);
 		return (state == null) ? null : state.get(axes);
 	}
@@ -149,6 +152,7 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 *            the read-only state to cache
 	 */
 	public void putResources(Set<ReadOnlyAxis> axes, Set<URI> uris, Optional<Boolean> readonly) {
+		final Map<Set<URI>, ReadOnlyState> resourceReadOnlyStates = getResourceReadOnlyStates();
 		if (resourceReadOnlyStates != null) {
 			ReadOnlyState state = resourceReadOnlyStates.get(uris);
 			if (state == null) {
@@ -170,6 +174,7 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 *            the read-only state to cache
 	 */
 	public void putObject(Set<ReadOnlyAxis> axes, EObject object, Optional<Boolean> readonly) {
+		final Map<EObject, ReadOnlyState> objectReadOnlyStates = getObjectReadOnlyStates();
 		if (objectReadOnlyStates != null) {
 			ReadOnlyState state = objectReadOnlyStates.get(object);
 			if (state == null) {
@@ -184,7 +189,7 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 * Clears the current cached read-only states so that they will be recomputed if needed again during the transaction.
 	 * This is necessary, for example, after resources and/or objects have been made writable that were previously read-only.
 	 */
-	public void clear() {
+	public synchronized void clear() {
 		if (resourceReadOnlyStates != null) {
 			resourceReadOnlyStates.clear();
 		}
@@ -196,32 +201,69 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 		}
 	}
 
-	@Override
-	public void transactionStarted(TransactionalEditingDomainEvent event) {
-		if ((activeTransaction == null) && !TransactionHelper.isReadOnlyCacheDisabled(event.getTransaction())) {
-			activeTransaction = event.getTransaction();
+	private Map<Set<URI>, ReadOnlyState> getResourceReadOnlyStates() {
+		if (activeTransactionCount.get() > 0) {
+			initCache();
+			return resourceReadOnlyStates;
+		}
+		return null;
+	}
+
+	private Map<EObject, ReadOnlyState> getObjectReadOnlyStates() {
+		if (activeTransactionCount.get() > 0) {
+			initCache();
+			return objectReadOnlyStates;
+		}
+		return null;
+	}
+
+	private ConcurrentMap<AbstractReadOnlyHandler, ConcurrentMap<URI, ReadOnlyState>> getHandlerResourceReadOnlyCache() {
+		if (activeTransactionCount.get() > 0) {
+			initCache();
+			return handlerResourceReadOnlyCache;
+		}
+		return null;
+	}
+
+	private synchronized void initCache() {
+		if (resourceReadOnlyStates == null) {
 			resourceReadOnlyStates = Maps.newHashMap();
 			objectReadOnlyStates = Maps.newHashMap();
-			handlerResourceReadOnlyCache = Maps.newHashMap();
+			handlerResourceReadOnlyCache = Maps.newConcurrentMap();
+		}
+	}
+
+	@Override
+	public void transactionStarted(TransactionalEditingDomainEvent event) {
+		// Any number of read-only transactions could be open concurrently, but only one of
+		// them actually *running* at any time, thanks to the cooperative "yield" API.
+		// Of course, a transaction may have the cache disabled, but the cache will still
+		// be there if some other transaction has it enabled
+		if (!TransactionHelper.isReadOnlyCacheDisabled(event.getTransaction())) {
+			activeTransactionCount.incrementAndGet();
 		}
 	}
 
 	@Override
 	public void transactionClosed(TransactionalEditingDomainEvent event) {
-		if (event.getTransaction() == activeTransaction) {
-			activeTransaction = null;
-			resourceReadOnlyStates = null;
-			objectReadOnlyStates = null;
-			handlerResourceReadOnlyCache = null;
+		// Only decrement the count for transactions that triggered an increment!
+		if (!TransactionHelper.isReadOnlyCacheDisabled(event.getTransaction()) && (activeTransactionCount.decrementAndGet() <= 0)) {
+			synchronized (this) {
+				resourceReadOnlyStates = null;
+				objectReadOnlyStates = null;
+				handlerResourceReadOnlyCache = null;
+			}
 		}
 	}
 
 	@Override
 	public void editingDomainDisposing(TransactionalEditingDomainEvent event) {
-		activeTransaction = null;
-		resourceReadOnlyStates = null;
-		objectReadOnlyStates = null;
-		handlerResourceReadOnlyCache = null;
+		activeTransactionCount.set(0);
+		synchronized (this) {
+			resourceReadOnlyStates = null;
+			objectReadOnlyStates = null;
+			handlerResourceReadOnlyCache = null;
+		}
 
 		if (Platform.inDebugMode()) {
 			Activator.log.info("Read-only cache deactivated for editing domain " + event.getSource()); //$NON-NLS-1$
@@ -253,6 +295,8 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 		return new ResourceReadOnlyCache() {
 			public Optional<Boolean> get(Set<ReadOnlyAxis> axes, URI resourceURI) {
 				Optional<Boolean> result;
+				// Only read it once in case of concurrent access by non-transactions
+				final Map<AbstractReadOnlyHandler, ? extends Map<URI, ReadOnlyState>> handlerResourceReadOnlyCache = getHandlerResourceReadOnlyCache();
 
 				if (handlerResourceReadOnlyCache == null) {
 					result = null;
@@ -270,17 +314,20 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 			}
 
 			public void put(Set<ReadOnlyAxis> axes, URI resourceURI, Optional<Boolean> readOnlyState) {
+				// Only read it once in case of concurrent access by non-transactions
+				final ConcurrentMap<AbstractReadOnlyHandler, ConcurrentMap<URI, ReadOnlyState>> handlerResourceReadOnlyCache = getHandlerResourceReadOnlyCache();
+
 				if (handlerResourceReadOnlyCache != null) {
-					Map<URI, ReadOnlyState> forHandler = handlerResourceReadOnlyCache.get(handler);
+					ConcurrentMap<URI, ReadOnlyState> forHandler = handlerResourceReadOnlyCache.get(handler);
 					if (forHandler == null) {
-						forHandler = Maps.newHashMap();
-						handlerResourceReadOnlyCache.put(handler, forHandler);
+						handlerResourceReadOnlyCache.putIfAbsent(handler, Maps.<URI, ReadOnlyState> newConcurrentMap());
+						forHandler = handlerResourceReadOnlyCache.get(handler);
 					}
 
 					ReadOnlyState state = forHandler.get(resourceURI);
 					if (state == null) {
-						state = new ReadOnlyState();
-						forHandler.put(resourceURI, state);
+						forHandler.putIfAbsent(resourceURI, new ReadOnlyState());
+						state = forHandler.get(resourceURI);
 					}
 
 					state.put(axes, readOnlyState);
