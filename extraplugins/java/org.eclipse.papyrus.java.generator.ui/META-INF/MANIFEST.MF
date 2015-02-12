@@ -19,5 +19,5 @@ Bundle-Activator: org.eclipse.papyrus.java.generator.ui.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.java.generator.ui;singleton:=
  true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
