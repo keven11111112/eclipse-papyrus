@@ -61,7 +61,7 @@
             icon="icons/obj16/Diagram_Activity.gif"
             language="uml"
             id="org.eclipse.papyrus.uml.diagram.activity.CreateActivityDiagramCommand"
-            label="UML Activity Diagram">
+            label="Activity Diagram">
       </creationCommand>
    </extension>
 

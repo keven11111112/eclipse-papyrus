@@ -562,7 +562,7 @@
             icon="icons/obj16/Diagram_StateMachine.gif"
             id="org.eclipse.papyrus.uml.diagram.statemachine.CreationCommand"
             language="uml"
-            label="UML StateMachine Diagram">
+            label="StateMachine Diagram">
       </creationCommand>
    </extension>
 

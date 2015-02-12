@@ -801,7 +801,7 @@
             icon="icons/obj16/Diagram_Timing.gif"
             id="org.eclipse.papyrus.uml.diagram.timing.CreateTimingDiagramCommand"
             language="uml"
-            label="UML Timing Diagram">
+            label="Timing Diagram">
         </creationCommand>
     </extension>
 
