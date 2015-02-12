@@ -118,6 +118,14 @@ public class Messages extends NLS {
 	public static String PapyrusSearchPage_42;
 
 	public static String PapyrusSearchPage_43;
+	
+	public static String PapyrusSearchPage_44;
+	
+	public static String PapyrusSearchPage_45;
+	
+	public static String PapyrusSearchPage_46;
+	
+	public static String PapyrusSearchPage_47;
 
 	public static String PapyrusSearchPage_5;
 

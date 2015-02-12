@@ -26,6 +26,7 @@ import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -39,6 +40,8 @@ import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
 import org.eclipse.search.ui.ISearchPageContainer;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
@@ -179,6 +182,88 @@ public class StereotypeCollector implements IStereotypeCollector {
 
 		return result;
 
+	}
+	
+	public Collection<Stereotype> computeAppliedStereotypes(ISearchPageContainer container) {
+		Set<URI> umlResources = new HashSet<URI>();
+		
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+
+		if (container == null) {
+			umlResources.addAll(createWorkspaceScope());
+
+		} else {
+			switch (container.getSelectedScope()) {
+			case ISearchPageContainer.WORKSPACE_SCOPE: {
+				umlResources.addAll(createWorkspaceScope());
+				break;
+			}
+			case ISearchPageContainer.SELECTION_SCOPE: {
+				ISelection selection = container.getSelection();
+
+				if (!selection.isEmpty()) {
+					if (selection instanceof IStructuredSelection) {
+						umlResources.addAll(createSelectionScope((IStructuredSelection) selection));
+					} else {
+						// Do a workspace search instead
+						umlResources.addAll(createWorkspaceScope());
+					}
+				} else {
+					// Do a workspace search instead
+					umlResources.addAll(createWorkspaceScope());
+				}
+				break;
+			}
+			case ISearchPageContainer.SELECTED_PROJECTS_SCOPE: {
+				String[] projects = container.getSelectedProjectNames();
+				umlResources.addAll(createProjectsScope(projects));
+				break;
+			}
+			case ISearchPageContainer.WORKING_SET_SCOPE: {
+				IWorkingSet[] workingSets = container.getSelectedWorkingSets();
+				umlResources.addAll(createWorkingSetsScope(workingSets));
+				break;
+			}
+			default: {
+				break;
+			}
+			}
+		}
+
+		for (URI uri : umlResources) {
+			ModelSet resourceSet = new ModelSet();
+			Resource resource = resourceSet.getResource(uri, true);
+
+			TreeIterator<EObject> UMLResourceContentIterator = resource.getAllContents();
+			while (UMLResourceContentIterator.hasNext()) {
+				EObject umlElement = UMLResourceContentIterator.next();
+
+				if (umlElement instanceof Model) {
+					Model umlModel = (Model) umlElement;
+					EList<Element> elements = umlModel.getOwnedElements();
+
+					
+					for (Element element : elements) {
+						if (element.getAppliedStereotypes() != null && !element.getAppliedStereotypes().isEmpty()) {
+							for (Stereotype stereotype : element.getAppliedStereotypes()) {
+								boolean exists = false;
+								for (Stereotype existingStereotype : stereotypes) {
+									if (EcoreUtil.equals(existingStereotype, stereotype)) {
+										exists = true;
+									}
+								}
+								
+								if (!exists) {
+									stereotypes.add(stereotype);									
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+
+		return stereotypes;
 	}
 
 	/**
