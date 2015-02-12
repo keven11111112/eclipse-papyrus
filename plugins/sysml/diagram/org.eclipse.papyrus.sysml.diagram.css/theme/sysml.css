@@ -26,8 +26,8 @@ Compartment[kind=structure]{
 	showTitle: false;
 }
 
-Package > Compartment[kind=packagedelements],
-Model > Compartment[kind=packagedelements]{
+Package > Compartment[kind=packagedElements],
+Model > Compartment[kind=packagedElements]{
 	visible: true;
 	showTitle: false;
 }

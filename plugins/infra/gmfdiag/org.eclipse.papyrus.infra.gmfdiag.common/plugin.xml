@@ -274,6 +274,22 @@
          humanReadableType="symbol"
          type="compartment_shape_display">
    </mapping>
+   <mapping
+         humanReadableType="packagedElements"
+         type="7016">
+   </mapping>
+   <mapping
+         humanReadableType="packagedElements"
+         type="7030">
+   </mapping>
+   <mapping
+         humanReadableType="packagedElements"
+         type="7010">
+   </mapping>
+   <mapping
+         humanReadableType="packagedElements"
+         type="7009">
+   </mapping>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.services.decoration.decorationSpecificFunctions">
