@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.uml.service.types.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -21,7 +20,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.papyrus.uml.service.types.utils.NamespaceOwnedMemberUtils;
+import org.eclipse.uml2.uml.Namespace;
 
 public class NamespaceOwnedMemberCreateCommand extends EditElementCommand {
 
@@ -35,43 +35,21 @@ public class NamespaceOwnedMemberCreateCommand extends EditElementCommand {
 		this.target = request.getTarget();
 	}
 
-	protected boolean isContainedTransitively(EObject owner, EObject owned) {
-		List<EObject> owners = new ArrayList<EObject>();
-		EObject it = owner;
-		while (it != null)
-		{
-			owners.add(it);
-			it = it.eContainer();
-		}
 
-		return owners.contains(owned);
-	}
 
 	@Override
 	public boolean canExecute() {
 		if (source == null && target == null) {
 			return false;
 		}
-		if (source != null && !(source instanceof org.eclipse.uml2.uml.Package || source instanceof org.eclipse.uml2.uml.Class)) {
+		if (source != null && !(source instanceof org.eclipse.uml2.uml.Namespace)) {
 			return false;
 		}
-		if (source instanceof org.eclipse.uml2.uml.Package && !(target instanceof org.eclipse.uml2.uml.Package)) {
+
+		if (target != null && !(target instanceof org.eclipse.uml2.uml.Namespace)) {
 			return false;
 		}
-		if (target != null && !(target instanceof org.eclipse.uml2.uml.Package || target instanceof org.eclipse.uml2.uml.Classifier)) {
-			return false;
-		}
-		if (source instanceof org.eclipse.uml2.uml.Class && !(target instanceof org.eclipse.uml2.uml.Classifier)) {
-			return false;
-		}
-		// No transitive
-		if (isContainedTransitively(source, target))
-		{
-			return false;
-		}
-		// No reflexivity
-		if (source.equals(target))
-		{
+		if (!NamespaceOwnedMemberUtils.canContainTarget((Namespace) source, (Namespace) target)) {
 			return false;
 		}
 		if (getSource() == null) {
@@ -86,11 +64,13 @@ public class NamespaceOwnedMemberCreateCommand extends EditElementCommand {
 			throw new ExecutionException("Invalid arguments in create link command"); //$NON-NLS-1$
 		}
 		if (getSource() != null && getTarget() != null) {
-			if (getSource() instanceof org.eclipse.uml2.uml.Class) {
-				((org.eclipse.uml2.uml.Class) getSource()).getNestedClassifiers().add((Classifier) getTarget());
-			} else if (getTarget() instanceof org.eclipse.uml2.uml.Package) {
-				((org.eclipse.uml2.uml.Package) getSource()).getPackagedElements().add((org.eclipse.uml2.uml.Package) getTarget());
+			Object value = getSource().eGet(NamespaceOwnedMemberUtils.getContainmentFeature(getSource(), getTarget()));
+			if (value instanceof List<?>) {
+				((List) value).add(getTarget());
+			} else if (value != null) {
+				getSource().eSet(NamespaceOwnedMemberUtils.getContainmentFeature(getSource(), getTarget()), getTarget());
 			}
+
 		}
 		return CommandResult.newOKCommandResult();
 	}

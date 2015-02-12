@@ -11,7 +11,6 @@
  */
 package org.eclipse.papyrus.uml.service.types.command;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
@@ -22,9 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRequest;
-import org.eclipse.uml2.uml.Classifier;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.PackageableElement;
+import org.eclipse.papyrus.uml.service.types.utils.NamespaceOwnedMemberUtils;
 
 public class NamespaceOwnedMemberReorientCommand extends EditElementCommand {
 
@@ -56,61 +53,25 @@ public class NamespaceOwnedMemberReorientCommand extends EditElementCommand {
 	}
 
 	protected boolean canReorientSource() {
-		if (!(oldEnd instanceof Element && (newEnd instanceof org.eclipse.uml2.uml.Class || newEnd instanceof org.eclipse.uml2.uml.Package))) {
+		if (!(newEnd instanceof org.eclipse.uml2.uml.Namespace)) {
 			return false;
 		}
-		if (getOldTarget() instanceof Classifier && !(getNewSource() instanceof org.eclipse.uml2.uml.Class))
+		// Could be smarter but here only very that
+
+		if (!NamespaceOwnedMemberUtils.canContainTarget(getNewSource(), getOldTarget()))
 		{
 			return false;
 		}
-		if (getOldTarget() instanceof Package && !(getNewSource() instanceof org.eclipse.uml2.uml.Package))
-		{
-			return false;
-		}
-		// No transitive
-		if (isContainedTransitively(getNewSource(), getOldTarget()))
-		{
-			return false;
-		}
-		// No reflexivity
-		if (getOldTarget().equals(getNewSource()))
-		{
-			return false;
-		}
+
 		return true;
 	}
 
-	protected boolean isContainedTransitively(EObject owner, EObject owned) {
-		List<EObject> owners = new ArrayList<EObject>();
-		EObject it = owner;
-		while (it != null)
-		{
-			owners.add(it);
-			it = it.eContainer();
-		}
-
-		return owners.contains(owned);
-	}
 
 	protected boolean canReorientTarget() {
-		if (!(oldEnd instanceof Element && (newEnd instanceof org.eclipse.uml2.uml.Class || newEnd instanceof org.eclipse.uml2.uml.Package))) {
+		if (!(newEnd instanceof org.eclipse.uml2.uml.Namespace)) {
 			return false;
 		}
-		if (getOldSource() instanceof org.eclipse.uml2.uml.Class && !(getNewTarget() instanceof org.eclipse.uml2.uml.Class))
-		{
-			return false;
-		}
-		if (getOldSource() instanceof Package && !(getNewTarget() instanceof org.eclipse.uml2.uml.Package))
-		{
-			return false;
-		}
-		// No transitive
-		if (isContainedTransitively(getOldSource(), getNewTarget()))
-		{
-			return false;
-		}
-		// No reflexivity
-		if (getNewTarget().equals(getOldSource()))
+		if (!NamespaceOwnedMemberUtils.canContainTarget(getOldSource(), getNewTarget()))
 		{
 			return false;
 		}
@@ -132,22 +93,22 @@ public class NamespaceOwnedMemberReorientCommand extends EditElementCommand {
 	}
 
 	protected CommandResult reorientSource() throws ExecutionException {
-		if (getNewSource() instanceof org.eclipse.uml2.uml.Package) {
-			((org.eclipse.uml2.uml.Package) getNewSource()).getPackagedElements().add((PackageableElement) getOldTarget());
-		}
-		else if (getNewSource() instanceof org.eclipse.uml2.uml.Class) {
-			((org.eclipse.uml2.uml.Class) getNewSource()).getNestedClassifiers().add((Classifier) getOldTarget());
+		Object value = getNewSource().eGet(NamespaceOwnedMemberUtils.getContainmentFeature(getNewSource(), getOldTarget()));
+		if (value instanceof List<?>) {
+			((List) value).add(getOldTarget());
+		} else if (value != null) {
+			getNewSource().eSet(NamespaceOwnedMemberUtils.getContainmentFeature(getNewSource(), getOldTarget()), getOldTarget());
 		}
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
 
 	protected CommandResult reorientTarget() throws ExecutionException {
 
-		if (getNewSource() instanceof org.eclipse.uml2.uml.Package) {
-			((org.eclipse.uml2.uml.Package) getOldSource()).getPackagedElements().add((PackageableElement) getNewTarget());
-		}
-		else if (getNewSource() instanceof org.eclipse.uml2.uml.Class) {
-			((org.eclipse.uml2.uml.Class) getOldSource()).getNestedClassifiers().add((Classifier) getNewTarget());
+		Object value = getOldSource().eGet(NamespaceOwnedMemberUtils.getContainmentFeature(getOldSource(), getNewTarget()));
+		if (value instanceof List<?>) {
+			((List) value).add(getNewTarget());
+		} else if (value != null) {
+			getOldSource().eSet(NamespaceOwnedMemberUtils.getContainmentFeature(getOldSource(), getNewTarget()), getNewTarget());
 		}
 		return CommandResult.newOKCommandResult(referenceOwner);
 	}
