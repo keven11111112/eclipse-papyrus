@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2015 Atos, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Hemery (Atos) vincent.hemery@atos.net - Initial API and implementation
+ *  Christian W. Damus - bug 459566
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.handlers;
@@ -36,9 +37,9 @@ import org.eclipse.papyrus.infra.services.resourceloading.util.LoadingUtils;
 public class UnloadHandler extends GraphicalCommandHandler {
 
 	/**
-	 * @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	 * @return the command
 	 */
+	// @see org.eclipse.papyrus.views.modelexplorer.handler.AbstractCommandHandler#getCommand()
 	@Override
 	protected Command getCommand() {
 		TransactionalEditingDomain editingDomain = getEditingDomain();

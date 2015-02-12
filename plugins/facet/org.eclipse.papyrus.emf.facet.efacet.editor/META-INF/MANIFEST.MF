@@ -20,5 +20,5 @@ Bundle-Activator: org.eclipse.papyrus.emf.facet.efacet.presentation.Ef
  acetEditorPlugin$Implementation
 Bundle-SymbolicName: org.eclipse.papyrus.emf.facet.efacet.editor;singl
  eton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

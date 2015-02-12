@@ -29,5 +29,5 @@ Bundle-ManifestVersion: 2
 Import-Package: org.apache.log4j
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui;si
  ngleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

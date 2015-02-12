@@ -16,5 +16,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.services.labelprovider.Act
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.labelprovider;
  singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

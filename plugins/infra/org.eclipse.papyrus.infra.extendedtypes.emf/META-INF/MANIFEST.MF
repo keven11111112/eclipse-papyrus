@@ -37,5 +37,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.extendedtypes.emf.Activato
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.extendedtypes.emf;singl
  eton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 

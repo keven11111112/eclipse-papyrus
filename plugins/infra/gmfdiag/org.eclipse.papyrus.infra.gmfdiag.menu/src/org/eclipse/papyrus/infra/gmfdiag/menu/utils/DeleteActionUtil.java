@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *  Christian W. Damus - bug 459566
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.menu.utils;
@@ -132,9 +133,8 @@ public final class DeleteActionUtil {
 	}
 
 	/**
-	 * Copied from {@link org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction}.
+	 * Copied from <tt>org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction</tt>.
 	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction
 	 * @param editParts
 	 *            the edit parts
 	 * @return true, if is canonical
@@ -185,9 +185,8 @@ public final class DeleteActionUtil {
 	}
 
 	/**
-	 * Copied from {@link DeleteFromDiagramAction}.
+	 * Copied from <tt>org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction</tt>.
 	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction
 	 * @param editParts
 	 *            the edit parts
 	 * @return true, if is support view
@@ -226,9 +225,8 @@ public final class DeleteActionUtil {
 	}
 
 	/**
-	 * Copied from {@link DeleteFromDiagramAction}.
+	 * Copied from <tt>org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction</tt>.
 	 *
-	 * @see org.eclipse.gmf.runtime.diagram.ui.actions.internal.DeleteFromDiagramAction
 	 * @param editPart
 	 *            the edit part
 	 * @return true, if is canonical
