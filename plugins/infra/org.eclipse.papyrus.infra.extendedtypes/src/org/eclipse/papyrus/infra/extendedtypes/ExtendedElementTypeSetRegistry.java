@@ -9,6 +9,7 @@
  * Contributors:
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 459174
+ *  Christian W. Damus - bug 459825
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.extendedtypes;
@@ -41,6 +42,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.internal.descriptors.IEditHelperAdviceDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.internal.impl.SpecializationTypeRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.extendedtypes.preferences.ExtendedTypesPreferences;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -75,6 +77,9 @@ public class ExtendedElementTypeSetRegistry {
 	 */
 	public static synchronized ExtendedElementTypeSetRegistry getInstance() {
 		if (registry == null) {
+			// Ensure the existence of element types modeled by the Element Types Configurations
+			ElementTypeSetConfigurationRegistry.getInstance();
+
 			registry = new ExtendedElementTypeSetRegistry();
 			registry.init();
 		}
