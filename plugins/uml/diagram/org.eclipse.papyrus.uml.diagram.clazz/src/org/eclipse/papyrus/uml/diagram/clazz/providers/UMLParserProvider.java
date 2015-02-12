@@ -24,8 +24,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ParserHintAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.GeneralizationSetConstraintParser;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationSourceLinkParser;
-import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationTargetLinkParser;
+import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.RoleInstanceSpecificationLinkParser;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.SlotParser;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateBindingParser;
 import org.eclipse.papyrus.uml.diagram.clazz.custom.parsers.TemplateParameterParser;
@@ -1892,14 +1891,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private RoleInstanceSpecificationSourceLinkParser instanceSpecificationLabel_6039Parser;
+	private RoleInstanceSpecificationLinkParser instanceSpecificationLabel_6039Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getInstanceSpecificationLabel_6039Parser() {
 		if (instanceSpecificationLabel_6039Parser == null) {
-			instanceSpecificationLabel_6039Parser = new RoleInstanceSpecificationSourceLinkParser();
+			instanceSpecificationLabel_6039Parser = new RoleInstanceSpecificationLinkParser();
 		}
 		return instanceSpecificationLabel_6039Parser;
 	}
@@ -1907,14 +1906,14 @@ public class UMLParserProvider extends AbstractProvider implements IParserProvid
 	/**
 	 * @generated
 	 */
-	private RoleInstanceSpecificationTargetLinkParser instanceSpecificationLabel_6038Parser;
+	private RoleInstanceSpecificationLinkParser instanceSpecificationLabel_6038Parser;
 
 	/**
 	 * @generated
 	 */
 	private IParser getInstanceSpecificationLabel_6038Parser() {
 		if (instanceSpecificationLabel_6038Parser == null) {
-			instanceSpecificationLabel_6038Parser = new RoleInstanceSpecificationTargetLinkParser();
+			instanceSpecificationLabel_6038Parser = new RoleInstanceSpecificationLinkParser();
 		}
 		return instanceSpecificationLabel_6038Parser;
 	}
