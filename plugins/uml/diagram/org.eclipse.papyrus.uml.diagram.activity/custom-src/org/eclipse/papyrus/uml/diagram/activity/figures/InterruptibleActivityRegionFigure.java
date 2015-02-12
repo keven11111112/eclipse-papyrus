@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
- *
+ * 
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.activity.figures;
@@ -19,21 +19,24 @@ import java.util.Map;
 
 import org.eclipse.draw2d.Graphics;
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
-import org.eclipse.draw2d.geometry.Insets;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleShadowBorder;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AutomaticCompartmentLayoutManager;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.SubCompartmentLayoutManager;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * This figure handles a rounded dashed rectangle Papyrus node, with no
@@ -47,17 +50,19 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	private Map<String, RectangleFigure> containerFigures;
 
 	/** The corner dimension. */
-	private Dimension cornerDimension = new Dimension();
+	protected Dimension cornerDimension = new Dimension();
 
-	/** The is oval. */
-	private boolean isOval;
+	/** True if the figure is oval. */
+	protected boolean isOval = false;
 
 	/** The is label constrained. */
-	private boolean isLabelConstrained;
+	protected boolean isLabelConstrained = false;
 
-	private Dimension floatingNameOffset = new Dimension();
+	/** The floating name offset. */
+	protected Dimension floatingNameOffset = new Dimension();
 
-	private int borderStyle = Graphics.LINE_SOLID;
+	/** The border style. */
+	protected int borderStyle = Graphics.LINE_SOLID;
 
 	/**
 	 * @param borderStyle
@@ -100,9 +105,8 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		super();
 		setOpaque(false);
 		shadowborder = new RoundedRectangleShadowBorder(getForegroundColor(), cornerDimension);
-
+		setLayoutManager(new AutomaticCompartmentLayoutManager());
 		if (compartmentFigure != null) {
-			setLayoutManager(new AutomaticCompartmentLayoutManager());
 			createContentPane(compartmentFigure);
 		}
 	}
@@ -167,82 +171,44 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 		shadowborder.setColor(getForegroundColor());
 		graphics.pushState();
 		Rectangle rectangle = getBounds().getCopy();
-		// Set the corner dimension if is oval in case of resizing
-		if (isOval) {
-			cornerDimension.width = rectangle.width;
-			cornerDimension.height = rectangle.height;
-		}
-		// paintBackground:
+
+		refreshCornerSizeWhenOval();
+
 		applyTransparency(graphics);
 		if (isUsingGradient()) {
 			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			if (isVertical && rectangle.height > ((3 * cornerDimension.height) / 2)) {
-				Rectangle upperBounds = getBounds().getCopy();
-				upperBounds.height = cornerDimension.height - getLineWidth() / 2;
-				upperBounds.y += getLineWidth() / 2;
-				Rectangle upperClip = upperBounds.getCopy().shrink(new Insets(0, 0, cornerDimension.height / 2, 0));
-				Rectangle lowerBounds = getBounds().getCopy();
-				lowerBounds.y = lowerBounds.bottom() - cornerDimension.height;
-				lowerBounds.height = cornerDimension.height - getLineWidth() / 2;
-				Rectangle lowerClip = lowerBounds.getCopy().shrink(new Insets(cornerDimension.height / 2, 0, 0, 0));
-				Rectangle innerBounds = getBounds().getCopy();
-				innerBounds.y = upperClip.bottom();
-				innerBounds.height = lowerClip.y - upperClip.bottom() + 1;
-				// fill the upper part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.clipRect(upperClip);
-				graphics.fillRoundRectangle(upperBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-				// fill the inner part
-				graphics.pushState();
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.fillGradient(innerBounds, true);
-				graphics.popState();
-				// fill the lower part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.clipRect(lowerClip);
-				graphics.fillRoundRectangle(lowerBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-			} else if (!isVertical && rectangle.width > ((3 * cornerDimension.width) / 2)) {
-				Rectangle leftBounds = getBounds().getCopy();
-				leftBounds.width = cornerDimension.width - getLineWidth() / 2;
-				leftBounds.x += getLineWidth() / 2;
-				Rectangle leftClip = leftBounds.getCopy().shrink(new Insets(0, 0, 0, cornerDimension.width / 2));
-				Rectangle rightBounds = getBounds().getCopy();
-				rightBounds.x = rightBounds.right() - cornerDimension.width;
-				rightBounds.width = cornerDimension.width - getLineWidth() / 2;
-				Rectangle rightClip = rightBounds.getCopy().shrink(new Insets(0, cornerDimension.width / 2, 0, 0));
-				Rectangle innerBounds = getBounds().getCopy();
-				innerBounds.x = leftClip.right();// - getLineWidth();
-				innerBounds.width = rightClip.x - leftClip.right() + 1;// + 2 * getLineWidth();
-				// fill the left part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.clipRect(leftClip);
-				graphics.fillRoundRectangle(leftBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-				// fill the inner part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.fillGradient(innerBounds, false);
-				graphics.popState();
-				// fill the right part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.clipRect(rightClip);
-				graphics.fillRoundRectangle(rightBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
+
+			Point startGradientPoint = rectangle.getTopLeft();
+			Point endGradientPoint = rectangle.getBottomRight();
+
+			// Place start and end point according to isVertical.
+			if (isVertical) {
+				startGradientPoint.x = rectangle.getTopLeft().x + rectangle.width() / 2;
+				endGradientPoint.x = startGradientPoint.x;
 			} else {
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
+				startGradientPoint.y = rectangle.getTopLeft().y + rectangle.height() / 2;
+				endGradientPoint.y = startGradientPoint.y;
 			}
+
+			// Take zoom into account
+			double scale = FigureUtils.getScale(this);
+			startGradientPoint.scale(scale);
+			endGradientPoint.scale(scale);
+
+			// get alpha with convert transparency from 0 -> 100 to 255 -> 0
+			int alpha = (int) ((255.0 / 100.0) * (100.0 - getTransparency()));
+
+			// create pattern to display
+			Pattern pattern = new Pattern(Display.getCurrent(), startGradientPoint.x,
+					startGradientPoint.y, endGradientPoint.x, endGradientPoint.y,
+					ColorRegistry.getInstance().getColor(getGradientColor2()), alpha,
+					ColorRegistry.getInstance().getColor(getGradientColor1()), alpha);
+
+			graphics.setBackgroundPattern(pattern);
+			graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
+			graphics.setBackgroundPattern(null);
+			pattern.dispose();
+
 		} else {
 			graphics.pushState();
 			graphics.setBackgroundColor(getBackgroundColor());
@@ -251,9 +217,6 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 			graphics.popState();
 		}
 		graphics.popState();
-		// Force to repaint the border thought setShadow()
-		// setShadow(isShadow());
-		// repaint();
 	}
 
 	/**
@@ -265,12 +228,32 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	public void setShadow(boolean shadow) {
 		super.setShadow(shadow);
 		if (!shadow) {
-			// If shadow is set to false on CSS file we set the border
+			// If shadow is set to false we set the border
 			if (getBorder() != null) {
+
+				refreshCornerSizeWhenOval();
+
 				RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height);
 				border.setWidth(getLineWidth());
 				border.setStyle(borderStyle);
 				this.setBorder(border);
+			}
+		}
+		setLineStyle(borderStyle);
+	}
+
+
+	/**
+	 * Refresh corner size when oval.
+	 */
+	private void refreshCornerSizeWhenOval() {
+		// Set the corner dimension if is oval in case of resizing
+		if (isOval) {
+			if (cornerDimension.width != getBounds().width || cornerDimension.height != getBounds().height) {
+				cornerDimension.width = getBounds().width;
+				cornerDimension.height = getBounds().height;
+				// Force to repaint the border thought setShadow()
+				setShadow(isShadow());
 			}
 		}
 	}
@@ -290,9 +273,7 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	public void setOval(boolean booleanValue) {
 		isOval = booleanValue;
 		if (booleanValue) {
-			Rectangle rectangle = getBounds().getCopy();
-			cornerDimension.width = rectangle.width;
-			cornerDimension.height = rectangle.height;
+			refreshCornerSizeWhenOval();
 		}
 	}
 
@@ -330,7 +311,6 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public void setStereotypeDisplay(String stereotypes, Image image) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -341,7 +321,6 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public void setStereotypePropertiesInBrace(String stereotypeProperties) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -352,7 +331,6 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public void setStereotypePropertiesInCompartment(String stereotypeProperties) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -362,8 +340,7 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 * @return
 	 */
 	@Override
-	public Label getStereotypesLabel() {
-		// TODO Auto-generated method stub
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return null;
 	}
 
@@ -374,7 +351,6 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public void setHasHeader(boolean hasHeader) {
-		// TODO Auto-generated method stub
 
 	}
 
@@ -385,8 +361,38 @@ public class InterruptibleActivityRegionFigure extends PapyrusNodeFigure impleme
 	 */
 	@Override
 	public boolean hasHeader() {
-		// TODO Auto-generated method stub
 		return false;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 *
+	 * @return
+	 */
+	@Override
+	public Rectangle getPackageHeader() {
+		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setShadowWidth(int)
+	 *
+	 * @param shadowWidth
+	 */
+	@Override
+	public void setShadowWidth(int shadowWidth) {
+
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setIsPackage(boolean)
+	 *
+	 * @param isPackage
+	 */
+	@Override
+	public void setIsPackage(boolean isPackage) {
+
 	}
 
 }

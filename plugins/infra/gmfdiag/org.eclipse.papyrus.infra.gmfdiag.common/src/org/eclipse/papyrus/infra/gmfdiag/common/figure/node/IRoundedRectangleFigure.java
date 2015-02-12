@@ -116,4 +116,29 @@ public interface IRoundedRectangleFigure extends IFigure {
 	 * @return true, if successful
 	 */
 	public boolean hasHeader();
+
+	/**
+	 * Gets the Package Header
+	 * 
+	 * @return
+	 */
+	public Rectangle getPackageHeader();
+
+	/**
+	 * Sets the shadow width.
+	 *
+	 * @param shadowWidth
+	 *            the new shadow width
+	 */
+	public void setShadowWidth(int shadowWidth);
+
+
+	/**
+	 * Sets the checks if is package.
+	 *
+	 * @param isPackage
+	 *            the new checks if is package
+	 */
+	public void setIsPackage(boolean isPackage);
+
 }

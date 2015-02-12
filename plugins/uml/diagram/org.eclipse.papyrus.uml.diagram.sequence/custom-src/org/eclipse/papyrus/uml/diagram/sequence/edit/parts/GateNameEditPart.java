@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
@@ -66,7 +67,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 	public GateNameEditPart(View view) {
 		super(view);
 	}
-	
+
 	@Override
 	public int getDirectEditionType() {
 		return IDirectEdition.DEFAULT_DIRECT_EDITOR;
@@ -300,7 +301,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 
 		protected static final String RIGHT_BRACE = "}";
 
-		private Label stereotypesLabel;
+		private PapyrusWrappingLabel stereotypesLabel;
 
 		private Label stereotypePropertiesLabel;
 
@@ -330,7 +331,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 				stereotypesLabel = null;
 			} else {
 				if (stereotypesLabel == null) {
-					stereotypesLabel = new Label(stereotypes, image);
+					stereotypesLabel = new PapyrusWrappingLabel(stereotypes, image);
 					this.add(stereotypesLabel, 0);
 				} else {
 					stereotypesLabel.setText(stereotypes);
@@ -365,7 +366,7 @@ public class GateNameEditPart extends BorderItemLabelEditPart implements IPapyru
 
 
 		@Override
-		public Label getStereotypesLabel() {
+		public PapyrusWrappingLabel getStereotypesLabel() {
 			return stereotypesLabel;
 		}
 	}

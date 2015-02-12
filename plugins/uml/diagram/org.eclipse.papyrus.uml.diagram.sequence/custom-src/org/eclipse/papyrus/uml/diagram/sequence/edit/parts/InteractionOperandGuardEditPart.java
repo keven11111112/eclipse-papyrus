@@ -95,6 +95,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.commands.CreateEAnnotationCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
@@ -939,7 +940,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 
 		private WrappingLabel primaryLabel;
 
-		private Label stereotypeLabel;
+		private PapyrusWrappingLabel stereotypeLabel;
 
 		private WrappingLabel stereotypePropertiesInBraceContent;
 
@@ -977,7 +978,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 				stereotypeLabel = null;
 			} else {
 				if (stereotypeLabel == null) {
-					stereotypeLabel = new Label();
+					stereotypeLabel = new PapyrusWrappingLabel();
 					add(stereotypeLabel, 0);
 				}
 				stereotypeLabel.setText(stereotypes);
@@ -1028,7 +1029,7 @@ public class InteractionOperandGuardEditPart extends ShapeEditPart implements IT
 		 */
 
 		@Override
-		public Label getStereotypesLabel() {
+		public PapyrusWrappingLabel getStereotypesLabel() {
 			return stereotypeLabel;
 		}
 

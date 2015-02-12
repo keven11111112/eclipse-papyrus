@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.usecase.figure;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.RectangleFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.PileLayout;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.helper.StereotypeFigureHelper;
@@ -121,7 +121,7 @@ public abstract class AbstractSubjectFigure extends RectangleFigure implements I
 	 */
 	@Deprecated
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return null;// fActionStereotypeLabel;
 	}
 }

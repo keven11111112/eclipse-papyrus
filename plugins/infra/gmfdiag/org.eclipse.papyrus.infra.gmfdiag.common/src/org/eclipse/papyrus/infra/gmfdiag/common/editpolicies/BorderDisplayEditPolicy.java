@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.OneTopLineResizableBorder;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PositionEnum;
 
 /**
  * this edit policy has in charge to toggle the border of its edit part's figure.
@@ -49,7 +50,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.NamedStyleProperties;
 public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IChangeListener, NotificationListener, NamedStyleProperties {
 
 	/** The default value for the line position of compartment. */
-	private static final String LINE_POSITION_DEFAULT_VALUE = NamedStyleProperties.PositionAsString.CENTER;//$NON-NLS-1$
+	private static final String LINE_POSITION_DEFAULT_VALUE = PositionEnum.CENTER.toString();
 
 	/** The default value for the line length ratio of compartment. */
 	private static final String LINE_LENGTH_RATIO_DEFAULT_VALUE = "1.0";//$NON-NLS-1$
@@ -228,21 +229,26 @@ public class BorderDisplayEditPolicy extends GraphicalEditPolicyEx implements IC
 		}
 	}
 
+	/**
+	 * Gets the line position from notation or CSS.
+	 *
+	 * @return the line position
+	 */
 	public int getlinePosition() {
 		// get the value of the CSS property
 		View view = getNotationView();
 
-		String linePosition = NotationUtils.getStringValue(view, LINE_POSITION, LINE_POSITION_DEFAULT_VALUE).toUpperCase();
+		String linePosition = NotationUtils.getStringValue(view, LINE_POSITION, LINE_POSITION_DEFAULT_VALUE);
 
 		int position = PositionConstants.CENTER;
 
-		if (NamedStyleProperties.PositionAsString.LEFT.equals(linePosition)) {
+		if (PositionEnum.LEFT.toString().equals(linePosition)) {
 			position = PositionConstants.LEFT;
 		}
-		if (NamedStyleProperties.PositionAsString.RIGHT.equals(linePosition)) {
+		if (PositionEnum.RIGHT.toString().equals(linePosition)) {
 			position = PositionConstants.RIGHT;
 		}
-		if (NamedStyleProperties.PositionAsString.CENTER.equals(linePosition)) {
+		if (PositionEnum.CENTER.toString().equals(linePosition)) {
 			position = PositionConstants.CENTER;
 		}
 

@@ -21,6 +21,8 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.OneLineBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.MapModeUtil;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
@@ -113,13 +115,13 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 	 */
 	@Override
 	public void paint(IFigure figure, Graphics graphics, Insets insets) {
+
 		tempRect.setBounds(getPaintRectangle(figure, insets));
 
 		// get the length of the line according to the corner
 		int length = getLineLength(figure);
-		tempRect.x += (tempRect.width - length - 2) / 2;
-		tempRect.width = (int) (length - 1);
 
+		tempRect.width = (int) (length);
 
 		// if the length is forced or a ratio is applied
 		if (forcedLength != -1) {
@@ -156,6 +158,12 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 		}
 		tempRect.y += halfWidthInLP;
 		tempRect.height -= getWidth();
+
+		// Applied same transparency as the parent figure
+		IRoundedRectangleFigure parentFigureRoundedRectangle = FigureUtils.findParentFigureInstance(figure, IRoundedRectangleFigure.class);
+		if (parentFigureRoundedRectangle != null) {
+			graphics.setAlpha(255 - ((NodeFigure) parentFigureRoundedRectangle).getTransparency() * 255 / 100);
+		}
 		graphics.drawLine(tempRect.getTopLeft(), tempRect.getTopRight());
 	}
 
@@ -168,10 +176,7 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 	 */
 	private int getLineLength(IFigure figure) {
 		int length = tempRect.width;
-		// // if the length is forced
-		// if (forcedLength != -1) {
-		// length = forcedLength;
-		// } else {
+
 		SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(figure, SVGNodePlateFigure.class);
 		// Get the connection anchor
 		ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
@@ -184,13 +189,18 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 			Point locationRight = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(rect.getTopLeft().translate(rect.width / 2, 0), rect.getTopRight());
 
 			if (locationLeft != null && locationRight != null) {
+
 				rect.width = locationRight.x - locationLeft.x;
 				// translate the length according to the zoom
 				figure.translateToRelative(rect);
 				length = rect.width;
+
+				// set the position at the figure bounds.x to the position on x of the left location
+				// TODO: don't do it on a getLenght method.
+				figure.translateToRelative(locationLeft);
+				tempRect.x = locationLeft.x;
 			}
 		}
-		// }
 		return (int) (length);
 	}
 

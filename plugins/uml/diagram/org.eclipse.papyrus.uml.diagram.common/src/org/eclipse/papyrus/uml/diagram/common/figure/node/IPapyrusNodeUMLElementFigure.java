@@ -13,7 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Label;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 
 /**
  * declaration of figure that can manage stereotype display
@@ -52,6 +52,6 @@ public interface IPapyrusNodeUMLElementFigure extends IPapyrusUMLElementFigure {
 	 *
 	 * @return the stereotypes label
 	 */
-	public Label getStereotypesLabel();
+	public PapyrusWrappingLabel getStereotypesLabel();
 
 }

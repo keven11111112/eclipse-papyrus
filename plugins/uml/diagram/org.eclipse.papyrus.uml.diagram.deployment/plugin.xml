@@ -148,56 +148,6 @@
 				
 				<entry
 				      defineOnly="true"
-				      description="Create a model"
-				      id="createModelCreationTool"
-				      kind="tool"
-				      label="Model"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
-					</entry>
-				<entry
-				      defineOnly="true"
-				      description="Create a Package"
-				      id="deployment.tool.package"
-				      kind="tool"
-				      label="Package"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
-					</entry>
-				<entry
-				      defineOnly="true"
-				      description="Create new Node"
-				      id="deployment.tool.node"
-				      kind="tool"
-				      label="Node"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
-					</entry>
-				<entry
-				      defineOnly="true"
-				      description="Create new Device"
-				      id="deployment.tool.device"
-				      kind="tool"
-				      label="Device"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
-					</entry>
-				<entry
-				      defineOnly="true"
-				      description="Create new ExecutionEnvironment"
-				      id="deployment.tool.executionEnvironment"
-				      kind="tool"
-				      label="Execution Environment"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
-					</entry>
-				<entry
-				      defineOnly="true"
 				      description="Create new Artifact"
 				      id="deployment.tool.artifact"
 				      kind="tool"
@@ -228,13 +178,53 @@
 					</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create new Link (Comment / Constraint)"
-				      id="deployment.tool.link"
+				      description="Create new Device"
+				      id="deployment.tool.device"
 				      kind="tool"
-				      label="Link"
-				      large_icon="icons/obj16/Link.gif"
+				      label="Device"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif"
 				      path=""
-				      small_icon="icons/obj16/Link.gif">
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Device.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new ExecutionEnvironment"
+				      id="deployment.tool.executionEnvironment"
+				      kind="tool"
+				      label="Execution Environment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExecutionEnvironment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a model"
+				      id="createModelCreationTool"
+				      kind="tool"
+				      label="Model"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Model.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Node"
+				      id="deployment.tool.node"
+				      kind="tool"
+				      label="Node"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Node.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Package"
+				      id="deployment.tool.package"
+				      kind="tool"
+				      label="Package"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif">
 					</entry>
 				<entry
 				      defineOnly="true"
@@ -258,6 +248,16 @@
 					</entry>
 				<entry
 				      defineOnly="true"
+				      description="Create new Deployment"
+				      id="deployment.tool.deployment"
+				      kind="tool"
+				      label="Deployment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
 				      description="Create new Generalization"
 				      id="deployment.tool.generalization"
 				      kind="tool"
@@ -268,13 +268,13 @@
 					</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create new Deployment"
-				      id="deployment.tool.deployment"
+				      description="Create new Link (Comment / Constraint)"
+				      id="deployment.tool.link"
 				      kind="tool"
-				      label="Deployment"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+				      label="Link"
+				      large_icon="icons/obj16/Link.gif"
 				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
+				      small_icon="icons/obj16/Link.gif">
 					</entry>
 				<entry
 				      defineOnly="true"
@@ -314,41 +314,41 @@
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
-		<predefinedEntry
-		        id="createModelCreationTool"
-		        path="/deployment.group.nodes">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="deployment.tool.package"
-		        path="/deployment.group.nodes">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="deployment.tool.node"
-		        path="/deployment.group.nodes">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="deployment.tool.device"
-		        path="/deployment.group.nodes">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="deployment.tool.executionEnvironment"
-		        path="/deployment.group.nodes">
-		  </predefinedEntry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="deployment.tool.artifact"
-		        path="/deployment.group.nodes">
+				path="/deployment.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.comment"
-		        path="/deployment.group.nodes">
+				path="/deployment.group.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.constraint"
-		        path="/deployment.group.nodes">
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.device"
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.executionEnvironment"
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="createModelCreationTool"
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.node"
+				path="/deployment.group.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.package"
+				path="/deployment.group.nodes">
 		  </predefinedEntry>
 		<entry
 		      description="Links"
@@ -358,33 +358,33 @@
 		      large_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif"
 		      path="/"
 		      small_icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif">
-		      <expand
-		             force="true">
-		      </expand>
-			</entry>
-		<predefinedEntry
-		        id="deployment.tool.link"
-		        path="/deployment.group.links">
-		  </predefinedEntry>
+		   <expand
+		         force="true">
+		   </expand>
+		</entry>
 		<predefinedEntry
 		        id="deployment.tool.dependency"
-		        path="/deployment.group.links">
+				path="/deployment.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.dependencybranch"
-		        path="/deployment.group.links">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="deployment.tool.generalization"
-		        path="/deployment.group.links">
+				path="/deployment.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.deployment"
-		        path="/deployment.group.links">
+				path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.generalization"
+				path="/deployment.group.links">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="deployment.tool.link"
+				path="/deployment.group.links">
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="deployment.tool.manifestation"
-		        path="/deployment.group.links">
+				path="/deployment.group.links">
 		  </predefinedEntry>
 		</contribution>
 		<editor id="org.eclipse.papyrus.uml.diagram.deployment"/>

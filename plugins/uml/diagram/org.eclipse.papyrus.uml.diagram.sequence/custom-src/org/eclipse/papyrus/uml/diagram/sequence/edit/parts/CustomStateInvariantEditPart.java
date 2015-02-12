@@ -51,6 +51,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.IPapyrusWrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
@@ -83,27 +84,27 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 	 * Default Margin when not present in CSS
 	 */
 	public static final int DEFAULT_MARGIN = 0;
-	
+
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; //$NON-NLS$
+	public static final String TOP_MARGIN_PROPERTY = "TopMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; //$NON-NLS$
-	
+	public static final String LEFT_MARGIN_PROPERTY = "LeftMarginLabel"; // $NON-NLS$
+
 	/**
 	 * CSS Integer property to define the horizontal Label Margin
 	 */
-	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; //$NON-NLS$
+	public static final String BOTTOM_MARGIN_PROPERTY = "BottomMarginLabel"; // $NON-NLS$
 
 	/**
 	 * CSS Integer property to define the vertical Label Margin
 	 */
-	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; //$NON-NLS$
-	
+	public static final String RIGHT_MARGIN_PROPERTY = "RightMarginLabel"; // $NON-NLS$
+
 	/**
 	 * Notfier for listen and unlistend model element.
 	 */
@@ -225,13 +226,13 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 		refreshLabels();
 		refreshLabelMargin();
 	}
-	
+
 	/**
 	 * Refresh margin of named element children labels
 	 * <ul>
-	 * <li> Get Css values </li>
-	 * <li> Get all the children figure </li>
-	 * <li> If the child is a label then apply the margin </li>
+	 * <li>Get Css values</li>
+	 * <li>Get all the children figure</li>
+	 * <li>If the child is a label then apply the margin</li>
 	 * </ul>
 	 */
 	private void refreshLabelMargin() {
@@ -254,12 +255,12 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 		}
 
 		// Get all children figures of the Edit Part and set margin according to the retrieve values
-		if (this instanceof IPapyrusEditPart){
+		if (this instanceof IPapyrusEditPart) {
 			figure = ((IPapyrusEditPart) this).getPrimaryShape();
 			List<IPapyrusWrappingLabel> labelChildFigureList = FigureUtils.findChildFigureInstances(figure, IPapyrusWrappingLabel.class);
 
-			for (IPapyrusWrappingLabel label : labelChildFigureList){
-				if (label != null){
+			for (IPapyrusWrappingLabel label : labelChildFigureList) {
+				if (label != null) {
 					label.setMarginLabel(leftMargin, topMargin, rightMargin, bottomMargin);
 				}
 			}
@@ -369,7 +370,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 
 		private CenteredWrappedLabel fFigureContinuationNameLabel;
 
-		private Label stereotypesLabel;
+		private PapyrusWrappingLabel stereotypesLabel;
 
 		private Label stereotypePropertiesLabel;
 
@@ -515,7 +516,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 				stereotypesLabel = null;
 			} else {
 				if (stereotypesLabel == null) {
-					stereotypesLabel = new Label(stereotypes, image);
+					stereotypesLabel = new PapyrusWrappingLabel(stereotypes, image);
 					labelContainer.add(stereotypesLabel, 0);
 				} else {
 					stereotypesLabel.setText(stereotypes);
@@ -565,7 +566,7 @@ public class CustomStateInvariantEditPart extends StateInvariantEditPart impleme
 		 */
 
 		@Override
-		public Label getStereotypesLabel() {
+		public PapyrusWrappingLabel getStereotypesLabel() {
 			return stereotypesLabel;
 		}
 	}

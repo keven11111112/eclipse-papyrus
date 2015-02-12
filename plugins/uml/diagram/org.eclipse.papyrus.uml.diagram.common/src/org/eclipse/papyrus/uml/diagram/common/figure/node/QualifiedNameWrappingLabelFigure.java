@@ -29,7 +29,7 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 
 
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return null;
 	}
 

@@ -14,9 +14,9 @@ package org.eclipse.papyrus.uml.diagram.component.custom.figure.nodes;
 
 import org.eclipse.draw2d.Border;
 import org.eclipse.draw2d.Graphics;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.RoundedCompartmentFigure;
 import org.eclipse.swt.SWT;
@@ -170,7 +170,7 @@ public class LollipopInterfaceFigure extends RoundedCompartmentFigure implements
 	}
 
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		// TODO Auto-generated method stub
 		return null;
 	}

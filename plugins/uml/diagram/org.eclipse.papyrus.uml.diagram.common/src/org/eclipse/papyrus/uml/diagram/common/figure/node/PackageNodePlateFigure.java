@@ -27,6 +27,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
  * @author PT202707
  *
  */
+
+@Deprecated
+// Not used anymore, RoundedRectangleFigure manage the package case.
 public class PackageNodePlateFigure extends DefaultSizeNodeFigure implements ICustomNodePlate {
 
 	protected SVGNodePlateFigure svgNodePlateFigure = null;
@@ -34,12 +37,10 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure implements ICu
 	// @unused
 	public PackageNodePlateFigure(Dimension defSize) {
 		super(defSize);
-		// TODO Auto-generated constructor stub
 	}
 
 	public PackageNodePlateFigure(int width, int height) {
 		super(width, height);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -68,16 +69,6 @@ public class PackageNodePlateFigure extends DefaultSizeNodeFigure implements ICu
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y);
 
 		PackageFigure packageFigure = getPackageFigure();
-
-		if (packageFigure != null) {
-			// take in account the header of the package
-			points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y);
-			points.addPoint(anchorableRectangle.x + packageFigure.getHeader().width, anchorableRectangle.y + packageFigure.getHeader().height);
-			points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + packageFigure.getHeader().height);
-		}// no header
-		else {
-			points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y);
-		}
 
 		points.addPoint(anchorableRectangle.x + anchorableRectangle.width, anchorableRectangle.y + anchorableRectangle.height);
 		points.addPoint(anchorableRectangle.x, anchorableRectangle.y + anchorableRectangle.height);

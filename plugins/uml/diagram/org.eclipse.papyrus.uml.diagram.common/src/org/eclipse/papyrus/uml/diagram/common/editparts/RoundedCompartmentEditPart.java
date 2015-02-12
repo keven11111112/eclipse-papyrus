@@ -1,4 +1,5 @@
 /*****************************************************************************
+
  * Copyright (c) 2010, 2014 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
@@ -48,8 +49,14 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	/** The Constant DEFAULT_IS_OVAL. */
 	private static final boolean DEFAULT_IS_OVAL = false;
 
+	/** The Constant DEFAULT_IS_PACKAGE. */
+	private static final boolean DEFAULT_IS_PACKAGE = false;
+
 	/** The Constant DEFAULT_USE_ORIGINAL_COLORS. */
 	private static final boolean DEFAULT_USE_ORIGINAL_COLORS = true;
+
+	/** The Constant DEFAULT_SHADOW_WIDTH. */
+	private static final int DEFAULT_SHADOW_WIDTH = 4;
 
 	/**
 	 * Instantiates a new rounded compartment edit part.
@@ -71,6 +78,43 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 		super.createDefaultEditPolicies();
 		// Install Edit Policy to Hide/show compartment, in particular for the symbol compartment
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
+	}
+
+	/**
+	 * Refresh visuals.
+	 *
+	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refreshVisuals()
+	 */
+	@Override
+	protected void refreshVisuals() {
+		// Refresh all visual settings for the Rounded Compartment Figure child
+		PapyrusRoundedEditPartHelper.refreshRadius(this, getDefaultCornerWidth(), getDefaultCornerHeight());
+		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
+		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
+		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
+		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
+		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
+		PapyrusRoundedEditPartHelper.refreshShadowWidth(this, getDefaultShadowWidth());
+		PapyrusRoundedEditPartHelper.refreshPackage(this, getDefaultIsPackage());
+		super.refreshVisuals();
+	}
+
+	/**
+	 * Gets the default is package.
+	 *
+	 * @return the default is package
+	 */
+	protected boolean getDefaultIsPackage() {
+		return DEFAULT_IS_PACKAGE;
+	}
+
+	/**
+	 * Gets the default shadow width.
+	 *
+	 * @return the default shadow width
+	 */
+	private int getDefaultShadowWidth() {
+		return DEFAULT_SHADOW_WIDTH;
 	}
 
 	/**
@@ -101,9 +145,9 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * Gets the default cutom dash.
+	 * Gets the default custom dash.
 	 *
-	 * @return the default cutom dash
+	 * @return the default custom dash
 	 */
 	private int[] getDefaultCutomDash() {
 		return DEFAULT_CUTOM_DASH;
@@ -155,24 +199,9 @@ public abstract class RoundedCompartmentEditPart extends NamedElementEditPart {
 	}
 
 	/**
-	 * Refresh visuals.
+	 * Gets the default has header.
 	 *
-	 * @see org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart#refreshVisuals()
-	 */
-	@Override
-	protected void refreshVisuals() {
-		// Refresh all visual settings for the Rounded Compartment Figure child
-		PapyrusRoundedEditPartHelper.refreshRadius(this, getDefaultCornerWidth(), getDefaultCornerHeight());
-		PapyrusRoundedEditPartHelper.refreshOval(this, getDefaultIsOvalValue());
-		PapyrusRoundedEditPartHelper.refreshFloatingName(this, getDefaultIsFloatingNameConstrained(), getDefaultFloatingLabelOffsetWidth(), getDefaultFloatingLabelOffsetHeight());
-		PapyrusRoundedEditPartHelper.refreshBorderStyle(this, getDefaultBorderStyle(), getDefaultCutomDash());
-		PapyrusRoundedEditPartHelper.refreshSVGOriginalColors(this, getDefaultUseOriginalColors());
-		PapyrusRoundedEditPartHelper.refreshHasHeader(this, getDefaultHasHeader());
-		super.refreshVisuals();
-	}
-
-	/**
-	 * @return
+	 * @return the default has header
 	 */
 	protected boolean getDefaultHasHeader() {
 		return DEFAULT_HAS_HEADER;

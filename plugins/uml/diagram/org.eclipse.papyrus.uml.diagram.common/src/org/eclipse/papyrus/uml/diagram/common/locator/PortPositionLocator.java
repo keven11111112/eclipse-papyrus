@@ -24,12 +24,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNode
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.PortPositionEnum;
 
 /**
  *
- * This code comes form composite diagram. I was copied to avoid dependencies
  * This class is used to constrain the position of Port when they are added on a Property or a
- * StructuredClassifier
+ * StructuredClassifier.
  *
  * <pre>
  * 	 +-------------------+
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
  * 	 +-------------------+
  * 	 |                   |
  * 	 |                   |
- * 	 |                  +-+ - Expected position of Port
+ * 	 |                  +-+ - Expected default position of Port
  * 	 |                  +-+
  * 	 |                   |
  * 	 +-------------------+
@@ -53,7 +53,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 	/** the figure around which this border item appears */
 	protected IFigure parentFigure = null;
 
-	String position = "onLine";
+	String position = PortPositionEnum.INSIDE.toString();
 
 	/** the width of the area surrounding the parent figure where border item can be put */
 	protected int borderItemOffset = 10;
@@ -224,10 +224,10 @@ public class PortPositionLocator implements IBorderItemLocator {
 	private Dimension getPortOffset() {
 		Dimension portOffset = new Dimension();
 		if (figure != null) {
-			if ("inside".equals(position)) {
+			if (PortPositionEnum.INSIDE.toString().equals(position)) {
 				portOffset.width = -figure.getBounds().width / 2;
 				portOffset.height = -figure.getBounds().height / 2;
-			} else if ("outside".equals(position)) {
+			} else if (PortPositionEnum.OUTSIDE.toString().equals(position)) {
 				portOffset.width = figure.getBounds().width / 2 - 1;
 				portOffset.height = figure.getBounds().height / 2 - 1;
 			}
@@ -327,7 +327,7 @@ public class PortPositionLocator implements IBorderItemLocator {
 		proposedLocation.setLocation(constraint.getLocation().translate(parentFigure.getBounds().getTopLeft()));
 
 		Point validLocation = getValidLocation(proposedLocation, target).getLocation();
-		if (FigureUtils.findChildFigureInstance(figure, RoundedRectangleNodePlateFigure.class) != null) {
+		if (figure instanceof RoundedRectangleNodePlateFigure || FigureUtils.findChildFigureInstance(figure, RoundedRectangleNodePlateFigure.class) != null) {
 
 			Dimension preferredSize = target.getPreferredSize();
 			Rectangle rect = new Rectangle(validLocation, preferredSize);

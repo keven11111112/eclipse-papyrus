@@ -22,10 +22,6 @@ import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstrain
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomDependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomDependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomModelEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomPackageEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomPackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomProfileEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.custom.edit.parts.CustomProfileEditPartTN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.AssociationNodeEditPart;
@@ -35,10 +31,6 @@ import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ConstraintEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyBranchEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.DependencyNodeEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ModelEditPartTN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPart;
-import org.eclipse.papyrus.uml.diagram.profile.edit.parts.PackageEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartCN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.ProfileEditPartTN;
 import org.eclipse.papyrus.uml.diagram.profile.edit.parts.UMLEditPartFactory;
@@ -63,16 +55,6 @@ public class CustomUMLeditPartFactory extends UMLEditPartFactory {
 			View view = (View) model;
 			switch (UMLVisualIDRegistry.getVisualID(view)) {
 			// redefined classes to modify the method createNodePlate
-			case PackageEditPart.VISUAL_ID:
-				return new CustomPackageEditPart(view);
-			case PackageEditPartCN.VISUAL_ID:
-				return new CustomPackageEditPartCN(view);
-			case ModelEditPartTN.VISUAL_ID:
-				return new CustomModelEditPart(view);
-				// case ContainmentCircleEditPart.VISUAL_ID:
-				// return new CContainmentCircleEditPart(view);
-			case ModelEditPartCN.VISUAL_ID:
-				return new CustomModelEditPartCN(view);
 			case AssociationNodeEditPart.VISUAL_ID:
 				return new CustomAssociationNodeEditPart(view);
 			case DependencyNodeEditPart.VISUAL_ID:

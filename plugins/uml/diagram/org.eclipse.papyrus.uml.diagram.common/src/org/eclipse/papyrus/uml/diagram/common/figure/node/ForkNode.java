@@ -13,8 +13,8 @@
  */
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
 
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.geometry.Dimension;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.swt.graphics.Image;
 
 /**
@@ -83,7 +83,7 @@ public class ForkNode extends RoundedCompartmentFigure implements IPapyrusNodeUM
 	 * {@inheritDoc}
 	 */
 	@Override
-	public Label getStereotypesLabel() {
-		return new Label();
+	public PapyrusWrappingLabel getStereotypesLabel() {
+		return new PapyrusWrappingLabel();
 	}
 }

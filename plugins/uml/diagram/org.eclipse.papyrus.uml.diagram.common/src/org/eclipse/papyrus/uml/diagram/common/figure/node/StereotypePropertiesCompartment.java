@@ -49,7 +49,7 @@ public class StereotypePropertiesCompartment extends RectangleFigure {
 				Point source = new Point(parentFigure.getBounds().x, ((IFigure) getChildren().get(i)).getBounds().getTopLeft().y);
 				Point target = null;
 				if (parentFigure instanceof PackageFigure) {
-					target = new Point(((PackageFigure) (parentFigure)).getHeader().x + ((PackageFigure) (parentFigure)).getHeader().width, ((IFigure) getChildren().get(i)).getBounds().getTopRight().y);
+					target = new Point(((PackageFigure) (parentFigure)).getPackageHeader().x + ((PackageFigure) (parentFigure)).getPackageHeader().width, ((IFigure) getChildren().get(i)).getBounds().getTopRight().y);
 
 				} else {
 					target = new Point(parentFigure.getBounds().x + parentFigure.getBounds().width, ((IFigure) getChildren().get(i)).getBounds().getTopRight().y);

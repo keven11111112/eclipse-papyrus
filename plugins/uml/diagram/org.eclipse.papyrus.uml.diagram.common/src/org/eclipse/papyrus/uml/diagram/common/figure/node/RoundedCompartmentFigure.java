@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -16,18 +16,27 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.draw2d.Border;
+import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.Graphics;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.RectangleFigure;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
+import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
-import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleShadowBorder;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.widgets.Display;
 
 /**
  * A rectangular figure that supports compartment.
@@ -55,10 +64,20 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	/** True if the figure has header. */
 	private boolean hasHeader = false;
 
+	/** The cached border. */
+	private Border cachedBorder;
+
+	/** The cached transparency. */
+	private int cachedTransparency;
+
+	/** The shadow width. */
+	private int shadowWidth = 4;
+
 	/**
 	 * @param borderStyle
 	 *            the borderStyle to set
 	 */
+	@Override
 	public void setBorderStyle(int borderStyle) {
 		this.borderStyle = borderStyle;
 		if (shadowborder != null) {
@@ -94,11 +113,26 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	public RoundedCompartmentFigure(List<String> compartmentFigure, String taggedLabelValue) {
 		super(taggedLabelValue);
 		setOpaque(false);
-		shadowborder = new RoundedRectangleShadowBorder(getForegroundColor(), cornerDimension);
 		setLayoutManager(new AutomaticCompartmentLayoutManager());
 		if (compartmentFigure != null) {
 			createContentPane(compartmentFigure);
 		}
+	}
+
+	/**
+	 * @param shadowWidth
+	 *            the shadowWidth to set
+	 */
+	public void setShadowWidth(int shadowWidth) {
+		this.shadowWidth = shadowWidth;
+	}
+
+	/**
+	 * @param isPackage
+	 *            the isPackage to set
+	 */
+	public void setIsPackage(boolean isPackage) {
+		this.isPackage = isPackage;
 	}
 
 	/**
@@ -159,96 +193,206 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public void paintFigure(Graphics graphics) {
 
-		shadowborder.setColor(getForegroundColor());
 		graphics.pushState();
 		Rectangle rectangle = getBounds().getCopy();
-
+		Rectangle clipRectangle = getBounds().getCopy();
 		refreshCornerSizeWhenOval();
 
-		// paintBackground:
 		applyTransparency(graphics);
-		if (isUsingGradient()) {
-			boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-			if (isVertical && rectangle.height > ((3 * cornerDimension.height) / 2)) {
-				Rectangle upperBounds = getBounds().getCopy();
-				upperBounds.height = cornerDimension.height - getLineWidth() / 2;
-				upperBounds.y += getLineWidth() / 2;
-				Rectangle upperClip = upperBounds.getCopy().shrink(new Insets(0, 0, cornerDimension.height / 2, 0));
-				Rectangle lowerBounds = getBounds().getCopy();
-				lowerBounds.y = lowerBounds.bottom() - cornerDimension.height;
-				lowerBounds.height = cornerDimension.height - getLineWidth() / 2;
-				Rectangle lowerClip = lowerBounds.getCopy().shrink(new Insets(cornerDimension.height / 2, 0, 0, 0));
-				Rectangle innerBounds = getBounds().getCopy();
-				innerBounds.y = upperClip.bottom();
-				innerBounds.height = lowerClip.y - upperClip.bottom() + 1;
-				// fill the upper part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.clipRect(upperClip);
-				graphics.fillRoundRectangle(upperBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-				// fill the inner part
-				graphics.pushState();
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.fillGradient(innerBounds, true);
-				graphics.popState();
-				// fill the lower part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.clipRect(lowerClip);
-				graphics.fillRoundRectangle(lowerBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-			} else if (!isVertical && rectangle.width > ((3 * cornerDimension.width) / 2)) {
-				Rectangle leftBounds = getBounds().getCopy();
-				leftBounds.width = cornerDimension.width - getLineWidth() / 2;
-				leftBounds.x += getLineWidth() / 2;
-				Rectangle leftClip = leftBounds.getCopy().shrink(new Insets(0, 0, 0, cornerDimension.width / 2));
-				Rectangle rightBounds = getBounds().getCopy();
-				rightBounds.x = rightBounds.right() - cornerDimension.width;
-				rightBounds.width = cornerDimension.width - getLineWidth() / 2;
-				Rectangle rightClip = rightBounds.getCopy().shrink(new Insets(0, cornerDimension.width / 2, 0, 0));
-				Rectangle innerBounds = getBounds().getCopy();
-				innerBounds.x = leftClip.right();// - getLineWidth();
-				innerBounds.width = rightClip.x - leftClip.right() + 1;// + 2 * getLineWidth();
-				// fill the left part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.clipRect(leftClip);
-				graphics.fillRoundRectangle(leftBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
-				// fill the inner part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
-				graphics.fillGradient(innerBounds, false);
-				graphics.popState();
-				// fill the right part
-				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.clipRect(rightClip);
-				graphics.fillRoundRectangle(rightBounds, cornerDimension.width, cornerDimension.height);
-				graphics.popState();
+
+		// in case of package polygon
+		if (isPackage) {
+			SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
+			// Get the connection anchor
+			ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
+			if (connectionAnchor instanceof SlidableRoundedRectangleAnchor) {
+
+				// get the polygon points with the Anchor.
+				PointList polygonPoints = ((SlidableRoundedRectangleAnchor) connectionAnchor).getPolygonPoints();
+				this.translateToRelative(polygonPoints);
+
+				// setClip
+				graphics.getClip(clipRectangle);
+				graphics.setClip(clipRectangle.expand(1, 1));
+
+				// Draw shadow
+				if (isShadow()) {
+					// Set the transparency for shadow
+					setShadowTransparency(graphics, true);
+
+					polygonPoints.translate(shadowWidth, shadowWidth);
+
+					// expand clip for draw shadow
+					clipRectangle.width += shadowWidth;
+					clipRectangle.height += shadowWidth;
+
+					graphics.setClip(clipRectangle);
+
+					// draw the shadow
+					graphics.setBackgroundColor(getForegroundColor());
+					graphics.fillPolygon(polygonPoints);
+
+					// reposition clip
+					polygonPoints.translate(-shadowWidth, -shadowWidth);
+					clipRectangle.width -= shadowWidth;
+					clipRectangle.height -= shadowWidth;
+					graphics.setClip(clipRectangle);
+
+					// Reset the transparency for shadow
+					setShadowTransparency(graphics, false);
+				}
+
+				// Fill figure
+				if (isUsingGradient()) {
+					Pattern pattern = getGradientPattern();
+					graphics.setBackgroundPattern(pattern);
+					graphics.fillPolygon(polygonPoints);
+					graphics.setBackgroundPattern(null);
+					pattern.dispose();
+				} else {
+					graphics.fillPolygon(polygonPoints);
+				}
+
+				graphics.setLineWidth(getLineWidth());
+				// set the lineStyle: not compatible with custom style
+				graphics.setLineStyle(borderStyle);
+
+				// border draw trough graphics
+				if (cachedBorder == null) {
+					cachedBorder = getBorder();
+				}
+
+				// no used of the border of figure
+				if (getBorder() != null) {
+					setBorder(null);
+				}
+
+				// Draw lines
+				graphics.drawPolyline(polygonPoints);
+			}
+
+		} else {
+
+			// Retrieve the border when was be set to null for package
+			if (cachedBorder != null) {
+				setBorder(cachedBorder);
+				cachedBorder = null;
+			}
+
+			// Draw shadow
+			if (isShadow()) {
+
+				// Set the transparency for shadow
+				setShadowTransparency(graphics, true);
+
+				rectangle.translate(shadowWidth, shadowWidth);
+
+				// expand clip for draw shadow
+				graphics.getClip(clipRectangle);
+				clipRectangle.width += shadowWidth;
+				clipRectangle.height += shadowWidth;
+				graphics.setClip(clipRectangle);
+
+				// draw the shadow
+				graphics.setBackgroundColor(getForegroundColor());
+				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
+
+				rectangle.translate(-shadowWidth, -shadowWidth);
+
+				// reposition clip
+				clipRectangle.width -= shadowWidth;
+				clipRectangle.height -= shadowWidth;
+				graphics.setClip(clipRectangle);
+
+				// Reset the transparency for shadow
+				setShadowTransparency(graphics, false);
+			}
+
+			if (isUsingGradient()) {
+				Pattern pattern = getGradientPattern();
+				graphics.setBackgroundPattern(pattern);
+				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
+				graphics.setBackgroundPattern(null);
+				pattern.dispose();
 			} else {
 				graphics.pushState();
-				graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
-				graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+				graphics.setBackgroundColor(getBackgroundColor());
+				graphics.setForegroundColor(getForegroundColor());
 				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
 				graphics.popState();
 			}
-		} else {
-			graphics.pushState();
-			graphics.setBackgroundColor(getBackgroundColor());
-			graphics.setForegroundColor(getForegroundColor());
-			graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
-			graphics.popState();
-		}
 
-		if (hasHeader) {
-			graphics.drawPolyline(getHeader());
+			// Draw header if needed
+			if (hasHeader) {
+				graphics.drawPolyline(getHeader());
+			}
 		}
-
 		graphics.popState();
+	}
+
+	/**
+	 * Sets the shadow transparency.
+	 *
+	 * @param graphics
+	 *            the graphics
+	 * @param toApplied
+	 *            the to applied
+	 */
+	private void setShadowTransparency(Graphics graphics, boolean toApplied) {
+		// Set transparency to be used for the shadow
+		if (toApplied) {
+			cachedTransparency = getTransparency();
+			// Set Shadow transparency
+			int transparency = cachedTransparency + (100 - cachedTransparency) / 2;
+			if (transparency > 100) {
+				transparency = 100;
+			}
+			setTransparency((int) (transparency));
+			applyTransparency(graphics);
+		} else {
+			// Reset Shadow transparency
+			setTransparency(cachedTransparency);
+			applyTransparency(graphics);
+		}
+	}
+
+
+	/**
+	 * Gets the gradient pattern.
+	 *
+	 * @return the gradient pattern
+	 */
+	private Pattern getGradientPattern() {
+		Rectangle rectangle = getBounds().getCopy();
+
+		boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
+
+		Point startGradientPoint = rectangle.getTopLeft();
+		Point endGradientPoint = rectangle.getBottomRight();
+
+		// Place start and end point according to isVertical.
+		if (isVertical) {
+			startGradientPoint.x = rectangle.getTopLeft().x + rectangle.width() / 2;
+			endGradientPoint.x = startGradientPoint.x;
+		} else {
+			startGradientPoint.y = rectangle.getTopLeft().y + rectangle.height() / 2;
+			endGradientPoint.y = startGradientPoint.y;
+		}
+
+		// Take zoom into account
+		double scale = FigureUtils.getScale(this);
+		startGradientPoint.scale(scale);
+		endGradientPoint.scale(scale);
+
+		// get alpha with convert transparency from 0 -> 100 to 255 -> 0
+		int alpha = (int) ((255.0 / 100.0) * (100.0 - getTransparency()));
+
+		// create pattern to display
+		Pattern pattern = new Pattern(Display.getCurrent(), startGradientPoint.x,
+				startGradientPoint.y, endGradientPoint.x, endGradientPoint.y,
+				ColorRegistry.getInstance().getColor(getGradientColor2()), alpha,
+				ColorRegistry.getInstance().getColor(getGradientColor1()), alpha);
+		return pattern;
 	}
 
 	/**
@@ -259,23 +403,33 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	@Override
 	public void setShadow(boolean shadow) {
 		super.setShadow(shadow);
-		if (!shadow) {
-			// If shadow is set to false we set the border
-			if (getBorder() != null) {
 
-				refreshCornerSizeWhenOval();
+		refreshCornerSizeWhenOval();
 
-				RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height);
-				border.setWidth(getLineWidth());
-				border.setStyle(borderStyle);
-				this.setBorder(border);
+		RoundedRectangleBorder border = new RoundedRectangleBorder(cornerDimension.width, cornerDimension.height) {
+			/**
+			 * @see org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder#paint(org.eclipse.draw2d.IFigure, org.eclipse.draw2d.Graphics, org.eclipse.draw2d.geometry.Insets)
+			 *
+			 * @param figure
+			 * @param graphics
+			 * @param insets
+			 */
+			@Override
+			public void paint(IFigure figure, Graphics graphics, Insets insets) {
+				int transparency = 255 - ((NodeFigure) figure).getTransparency() * 255 / 100;
+				graphics.setAlpha(transparency);
+				super.paint(figure, graphics, insets);
 			}
-		}
+		};
+
+		border.setWidth(getLineWidth());
+		border.setStyle(borderStyle);
+		setBorder(border);
 		setLineStyle(borderStyle);
 	}
 
 	/**
-	 * 
+	 * Refresh corner size when oval.
 	 */
 	private void refreshCornerSizeWhenOval() {
 		// Set the corner dimension if is oval in case of resizing
@@ -300,6 +454,11 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		this.cornerDimension = cornerDimension;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setOval(boolean)
+	 *
+	 * @param booleanValue
+	 */
 	@Override
 	public void setOval(boolean booleanValue) {
 		isOval = booleanValue;
@@ -308,33 +467,61 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		}
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#isOval()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean isOval() {
 		return isOval;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setFloatingNameConstrained(boolean)
+	 *
+	 * @param booleanValue
+	 */
 	@Override
 	public void setFloatingNameConstrained(boolean booleanValue) {
 		isLabelConstrained = booleanValue;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#isFloatingNameConstrained()
+	 *
+	 * @return
+	 */
 	@Override
 	public boolean isFloatingNameConstrained() {
 		return isLabelConstrained;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setFloatingNameOffset(org.eclipse.draw2d.geometry.Dimension)
+	 *
+	 * @param offset
+	 */
 	@Override
 	public void setFloatingNameOffset(Dimension offset) {
 		this.floatingNameOffset = offset;
 
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getFloatingNameOffset()
+	 *
+	 * @return
+	 */
 	@Override
 	public Dimension getFloatingNameOffset() {
 		return floatingNameOffset;
 	}
 
 
+	/**
+	 * @return the point list to draw an header. its width is set to the width of the name and it's position to the left.
+	 */
 	protected PointList getHeader() {
 
 		Rectangle labelBounds = nameLabel.getBounds().getCopy();
@@ -379,6 +566,41 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		horizontalEnd.y = horizontalStart.y;
 		points.addPoint(horizontalEnd);
 		return points;
+	}
+
+	/** set to true to define the figure as a package. */
+	private boolean isPackage = false;
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getPackageHeader()
+	 *
+	 * @return
+	 */
+	public Rectangle getPackageHeader() {
+		Rectangle headerBound = new Rectangle();
+		if (isPackage) {
+
+			ResizableCompartmentFigure firstCompartment = FigureUtils.findChildFigureInstance(this, ResizableCompartmentFigure.class);
+			if (firstCompartment != null) {
+				int labelWidth = 60;
+				labelWidth = Math.max(labelWidth, nameLabel.getPreferredSize().width);
+				if (stereotypesLabel != null) {
+					labelWidth = Math.max(labelWidth, stereotypesLabel.getPreferredSize().width);
+				}
+
+				// If the width of the figure is < to the label width
+				labelWidth = Math.min(labelWidth, getBounds().width);
+
+				headerBound.x = getBounds().x;
+				headerBound.y = getBounds().y;
+				headerBound.height = firstCompartment.getBounds().y - getBounds().y;
+				headerBound.width = labelWidth;
+			} else {
+				headerBound = nameLabel.getBounds().getCopy();
+			}
+		}
+
+		return headerBound;
 	}
 
 	/**

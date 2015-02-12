@@ -14,11 +14,11 @@
 package org.eclipse.papyrus.uml.diagram.sequence.figures;
 
 import org.eclipse.draw2d.Figure;
-import org.eclipse.draw2d.Label;
 import org.eclipse.draw2d.MarginBorder;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.ToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.swt.graphics.Image;
@@ -32,7 +32,7 @@ import org.eclipse.swt.graphics.Image;
 public class AppliedStereotypeLabelFigure extends Figure implements ILabelFigure, IPapyrusNodeUMLElementFigure {
 
 
-	private Label stereotypeLabel;
+	private PapyrusWrappingLabel stereotypeLabel;
 
 	private WrappingLabel stereotypePropertiesInBraceContent;
 
@@ -52,8 +52,8 @@ public class AppliedStereotypeLabelFigure extends Figure implements ILabelFigure
 		layout.setStretchMinorAxis(true);
 		this.setLayoutManager(layout);
 		this.setBorder(new MarginBorder(3));
-		stereotypeLabel = new Label();
-		stereotypeLabel.setLabelAlignment(PositionConstants.CENTER);
+		stereotypeLabel = new PapyrusWrappingLabel();
+		stereotypeLabel.setAlignment(PositionConstants.CENTER);
 
 		this.add(stereotypeLabel);
 	}
@@ -113,7 +113,7 @@ public class AppliedStereotypeLabelFigure extends Figure implements ILabelFigure
 	 */
 
 	@Override
-	public Label getStereotypesLabel() {
+	public PapyrusWrappingLabel getStereotypesLabel() {
 		return stereotypeLabel;
 	}
 

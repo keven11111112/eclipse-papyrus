@@ -111,21 +111,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATEMODELCREATIONTOOL)) {
-			return createModelCreationTool();
-		}
-		if (toolId.equals(DEPLOYMENT_TOOL_PACKAGE)) {
-			return createPackageCreationTool();
-		}
-		if (toolId.equals(DEPLOYMENT_TOOL_NODE)) {
-			return createNodeCreationTool();
-		}
-		if (toolId.equals(DEPLOYMENT_TOOL_DEVICE)) {
-			return createDeviceCreationTool();
-		}
-		if (toolId.equals(DEPLOYMENT_TOOL_EXECUTIONENVIRONMENT)) {
-			return createExecutionEnvironmentCreationTool();
-		}
 		if (toolId.equals(DEPLOYMENT_TOOL_ARTIFACT)) {
 			return createArtifactCreationTool();
 		}
@@ -135,8 +120,20 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(DEPLOYMENT_TOOL_CONSTRAINT)) {
 			return createConstraintCreationTool();
 		}
-		if (toolId.equals(DEPLOYMENT_TOOL_LINK)) {
-			return createLinkCreationTool();
+		if (toolId.equals(DEPLOYMENT_TOOL_DEVICE)) {
+			return createDeviceCreationTool();
+		}
+		if (toolId.equals(DEPLOYMENT_TOOL_EXECUTIONENVIRONMENT)) {
+			return createExecutionEnvironmentCreationTool();
+		}
+		if (toolId.equals(CREATEMODELCREATIONTOOL)) {
+			return createModelCreationTool();
+		}
+		if (toolId.equals(DEPLOYMENT_TOOL_NODE)) {
+			return createNodeCreationTool();
+		}
+		if (toolId.equals(DEPLOYMENT_TOOL_PACKAGE)) {
+			return createPackageCreationTool();
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_DEPENDENCY)) {
 			return createDependencyCreationTool();
@@ -144,11 +141,14 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(DEPLOYMENT_TOOL_DEPENDENCYBRANCH)) {
 			return createDependencyBranchCreationTool();
 		}
+		if (toolId.equals(DEPLOYMENT_TOOL_DEPLOYMENT)) {
+			return createDeploymentCreationTool();
+		}
 		if (toolId.equals(DEPLOYMENT_TOOL_GENERALIZATION)) {
 			return createGeneralizationCreationTool();
 		}
-		if (toolId.equals(DEPLOYMENT_TOOL_DEPLOYMENT)) {
-			return createDeploymentCreationTool();
+		if (toolId.equals(DEPLOYMENT_TOOL_LINK)) {
+			return createLinkCreationTool();
 		}
 		if (toolId.equals(DEPLOYMENT_TOOL_MANIFESTATION)) {
 			return createManifestationCreationTool();
