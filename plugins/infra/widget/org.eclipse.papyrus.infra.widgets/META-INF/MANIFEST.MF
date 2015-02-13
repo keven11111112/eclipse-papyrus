@@ -21,7 +21,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.tools;bundle-version="1.0.2",
  com.ibm.icu;bundle-version="4.4.2",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.0.2",
- org.eclipse.papyrus.infra.core;bundle-version="1.0.2"
+ org.eclipse.papyrus.infra.core;bundle-version="1.0.2",
+ org.eclipse.emf.ecore;bundle-version="2.10.1"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.0.2.qualifier
