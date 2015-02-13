@@ -10,6 +10,7 @@
  *  Remi Schnekenburger (CEA LIST) - Initial API and implementation
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 458197
+ *  Christian W. Damus - bug 459613
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.decoratormodel.helper;
@@ -117,6 +118,9 @@ public class DecoratorModelUtils {
 		Resource sourceResource = profileApplication.eResource();
 		ResourceSet resourceSet = (sourceResource == null) ? null : sourceResource.getResourceSet();
 
+		final Package applyingPackage = profileApplication.getApplyingPackage();
+		final Profile appliedProfile = profileApplication.getAppliedProfile();
+
 		// Ensure existence of the root package for external resource packages.
 		// The Externalization Profile is applied here so that it is not inherited
 		// by the packages in the user model
@@ -128,11 +132,25 @@ public class DecoratorModelUtils {
 		// Move the profile application to the externalizing package
 		externalPackage.getProfileApplications().add(profileApplication);
 
-		// Find all of the profile's stereotype applications in the source resource
+		// Find all of the profile's stereotype applications in the source resource or any sub-model units that do not have
+		// their own applications of the same profile. For that matter, don't move stereotype applications governed by another
+		// application of the same profile in the *same* resource (each stereotype application is tied to a particular
+		// profile application, which may not be the one that we're externalizing)
 		List<EObject> stereotypeApplications = new ArrayList<EObject>();
-		for (EObject next : sourceResource.getContents()) {
-			if (!(next instanceof Element) && isDefinedBy(profileApplication, next)) {
-				stereotypeApplications.add(next);
+		for (TreeIterator<EObject> iter = UML2Util.getAllContents(applyingPackage, true, false); iter.hasNext();) {
+			EObject next = iter.next();
+			if ((next instanceof Package) && (((Package) next).getProfileApplication(appliedProfile) != null)) {
+				// This package re-applies the same profile. Skip it
+				iter.prune();
+			} else if (next instanceof Element) {
+				for (EObject stereotypeAppl : ((Element) next).getStereotypeApplications()) {
+					if (isDefinedBy(profileApplication, stereotypeAppl)) {
+						stereotypeApplications.add(stereotypeAppl);
+					}
+				}
+			} else {
+				// EAnnotation or other non-UML content
+				iter.prune();
 			}
 		}
 

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -507,6 +507,22 @@ public abstract class AbstractDecoratorModelControlModeTest extends AbstractPapy
 
 	protected Stereotype getApplyProfilesStereotype() {
 		return getProfileExternalizationProfile().getOwnedStereotype("ApplyProfiles");
+	}
+
+	protected Profile getStandardProfile() {
+		return UML2Util.load(modelSet.getResourceSet(), URI.createURI(UMLResource.STANDARD_PROFILE_URI), UMLPackage.Literals.PROFILE);
+	}
+
+	protected URI getStandardProfileURI() {
+		return EcoreUtil.getURI(getStandardProfile());
+	}
+
+	protected Stereotype getAuxiliaryStereotype() {
+		return getStandardProfile().getOwnedStereotype("Auxiliary");
+	}
+
+	protected Stereotype getUtilityStereotype() {
+		return getStandardProfile().getOwnedStereotype("Utility");
 	}
 
 	protected boolean isDefinedIn(Stereotype stereotype, Profile profile) {

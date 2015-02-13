@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.decoratormodel.controlmode.tests;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
@@ -117,5 +118,33 @@ public class AdditionalModelStructuresTest extends AbstractDecoratorModelControl
 		assertThat(getExternalProfiles(package2_1_1, "package2_1"), is(Collections.<URI> emptySet()));
 		assertThat(getExternalProfiles(package2_1_2, "package2_1"), is(Collections.<URI> emptySet()));
 		assertThat(getExternalProfiles(package2_1_2_1, "package2_1"), is(Collections.<URI> emptySet()));
+	}
+
+	/**
+	 * Scenario: control a <b>class</b> (not a package) that has stereotypes applied, externalize the
+	 * parent unit's profile application. Verify that all of the class's stereotype applications are
+	 * moved to the decorator model resource.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=459613
+	 */
+	@Test
+	@PluginResource("/resources/classunit.di")
+	public void classUnitExternalizeParentUnitProfileApplication_bug459613() {
+		Class classUnit = (Class) getModel().getNestedPackage("Package2").getOwnedType("Class1");
+		assertThat("Class unit not found", classUnit, notNullValue());
+		EObject auxiliary = classUnit.getStereotypeApplication(getAuxiliaryStereotype());
+		assertThat("<<auxiliary>> not found", auxiliary, notNullValue());
+		EObject utility = classUnit.getStereotypeApplication(getUtilityStereotype());
+		assertThat("<<utility>> not found", utility, notNullValue());
+
+		URI resourceURI = externalize(getModel(), getStandardProfile(), "standard");
+
+		save();
+
+		Resource resource = modelSet.getResourceSet().getResource(resourceURI, false);
+		assertThat(resource, notNullValue());
+
+		assertThat(auxiliary.eResource(), is(resource));
+		assertThat(utility.eResource(), is(resource));
 	}
 }

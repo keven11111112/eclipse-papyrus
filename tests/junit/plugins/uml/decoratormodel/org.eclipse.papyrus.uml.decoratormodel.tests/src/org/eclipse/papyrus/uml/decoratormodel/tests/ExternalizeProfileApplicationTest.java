@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Test;
@@ -151,5 +152,44 @@ public class ExternalizeProfileApplicationTest extends AbstractProfileExternaliz
 		});
 
 		assertThat(stereo.eResource().getURI(), is(decoratorURI));
+	}
+
+	/**
+	 * Scenario: externalize the application of a profile on the root package where some nested package
+	 * also has the same profile applied. Verify that the stereotype applications governed by the nested
+	 * package's profile application are unaffected.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=459613
+	 */
+	@Test
+	@PluginResource("/resources/nestedpackages.di")
+	public void nestedPackageApplicationOfSameProfile_bug459613() {
+		Class entity1 = (Class) getModel().getNestedPackage("package1").getOwnedType("Entity1");
+		Class businessRules = (Class) getModel().getNestedPackage("package1").getOwnedType("BusinessRules");
+		Class bean2 = (Class) getModel().getNestedPackage("package2").getOwnedType("Bean2");
+		Class messageProcessor = (Class) getModel().getNestedPackage("package2").getOwnedType("MessageProcessor");
+
+		EObject entity1Bean = entity1.getStereotypeApplication(getBeanStereotype());
+		assertThat("<<bean>> not found", entity1Bean, notNullValue());
+		EObject businessRulesBean = businessRules.getStereotypeApplication(getBeanStereotype());
+		assertThat("<<bean>> not found", businessRulesBean, notNullValue());
+		EObject bean2Bean = bean2.getStereotypeApplication(getBeanStereotype());
+		assertThat("<<bean>> not found", bean2Bean, notNullValue());
+		EObject messageProcessorBean = messageProcessor.getStereotypeApplication(getBeanStereotype());
+		assertThat("<<bean>> not found", messageProcessorBean, notNullValue());
+
+		URI resourceURI = externalize(getModel(), getTestProfile(), "beans");
+
+		save();
+
+		Resource resource = modelSet.getResourceSet().getResource(resourceURI, false);
+		assertThat(resource, notNullValue());
+
+		assertThat(entity1Bean.eResource(), is(resource));
+		assertThat(businessRulesBean.eResource(), is(resource));
+
+		// These did not have their profile application externalized!
+		assertThat(bean2Bean.eResource(), is(getModel().eResource()));
+		assertThat(messageProcessorBean.eResource(), is(getModel().eResource()));
 	}
 }
