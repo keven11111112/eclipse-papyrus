@@ -13,9 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.modelelement;
 
-import org.eclipse.core.runtime.preferences.InstanceScope;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
-import org.eclipse.ui.preferences.ScopedPreferenceStore;
 
 
 public class PreferencesModelElementFactory extends AbstractModelElementFactory<PreferencesModelElement> {
@@ -27,12 +25,7 @@ public class PreferencesModelElementFactory extends AbstractModelElementFactory<
 
 	@Override
 	protected void updateModelElement(PreferencesModelElement modelElement, Object newSourceElement) {
-		if (!(newSourceElement instanceof DataContextElement)) {
-			throw new IllegalArgumentException("Cannot resolve DataContextElement selection: " + newSourceElement);
-		}
-
-		DataContextElement context = (DataContextElement) newSourceElement;
-		modelElement.context = context;
-		modelElement.store = new ScopedPreferenceStore(InstanceScope.INSTANCE, context.getName());
+		//The is nothing to update. We use the DataContextElement to retrieve the proper PreferenceStore, and it shouldn't have changed.
+		//We don't care about the current selection
 	}
 }
