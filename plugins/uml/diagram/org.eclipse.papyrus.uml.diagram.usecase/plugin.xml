@@ -50,7 +50,7 @@
             creationCondition="org.eclipse.papyrus.uml.diagram.usecase.UseCaseDiagramCreationCondition"
             icon="icons/obj16/Diagram_UseCase.gif"
             id="org.eclipse.papyrus.uml.diagram.usecase.CreateUseCaseDiagramCommand"
-            label="UML UseCase Diagram"
+            label="UseCase Diagram"
             language="uml">
       </creationCommand>
    </extension>
