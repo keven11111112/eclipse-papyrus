@@ -69,11 +69,11 @@ mapping inout Shape::fixMergeDecisionSize() when {
 	if layout.height = -1 then layout.height := 50 endif;
 }
 
-property partitionX : Integer = 50;
+property partitionX : Integer = 20;
 
 mapping inout Node::fixPartitionsLayout() {
 	var width: Integer := 200; //Approximation. In RSA, the layout can be computed automatically based on the Partition's Contents. In Papyrus, this must be specified explicitely
-	var marginHeight := 30;
+	var marginHeight := 10; //Note: Papyrus currently has an additional margin in the bottom of Activities, which is ~60px. As a result, marginHeight rather corresponds to "marginTop" (Bug 459888)
 	
 	var bounds : Bounds := self.layoutConstraint.oclAsType(Bounds); 
 	
@@ -90,7 +90,7 @@ mapping inout Node::fixPartitionsLayout() {
 	} else {
 		previousPartition.map fixPartitionsLayout(); /* Ensure that partition n-1 is already fixed */
 		var previousBounds := previousPartition.layoutConstraint.oclAsType(Bounds);
-		bounds.x := previousBounds.x + previousBounds.width;
+		bounds.x := previousBounds.x + previousBounds.width - 1; //-1 to force Partition border overlap 
 	} endif;
 	
 	bounds.width := width.max(bounds.width);
