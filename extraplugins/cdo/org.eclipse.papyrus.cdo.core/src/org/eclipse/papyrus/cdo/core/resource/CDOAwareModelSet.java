@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  *   Christian W. Damus (CEA) - bug 429242
  *   Christian W. Damus (CEA) - bug 422257
  *   Christian W. Damus (CEA) - bug 437052
+ *   Christian W. Damus - bug 436998
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
@@ -19,6 +20,7 @@ import java.io.IOException;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
+import java.util.Iterator;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -40,6 +42,7 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.spi.cdo.FSMUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.net4j.util.event.IEvent;
@@ -313,6 +316,19 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 	}
 
 	@Override
+	protected void cleanModelSet() {
+		Set<URI> toDelete = getResourcesToDeleteOnSave();
+		for (Iterator<Resource> iter = getResources().iterator(); iter.hasNext();) {
+			Resource next = iter.next();
+
+			// Can't remove a dirty CDO resource
+			if (toDelete.contains(next.getURI()) && (!(next instanceof CDOResource) || FSMUtil.isClean((CDOResource) next) || FSMUtil.isTransient((CDOResource) next))) {
+				iter.remove();
+			}
+		}
+	}
+
+	@Override
 	protected void handleResourcesToDelete() {
 		final int initialCount = getResourcesToDeleteOnSave().size();
 
@@ -395,13 +411,16 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 			CDOControlModeParticipant.IUpdate run = CDOControlModeParticipant.IUpdate.EMPTY;
 
 			for (CDOObject next : updates) {
-				EObject object = CDOUtil.getEObject(next);
-				if (object != null) {
-					for (EReference xref : object.eClass().getEAllReferences()) {
-						// do include containment references because we may have added a model
-						// element and controlled it in the same transaction
-						if (xref.isChangeable() && !xref.isDerived() && !xref.isTransient()) {
-							run = run.chain(control.getProxyCrossReferencesUpdate(object, xref));
+				// Resources don't have cross-references that we need to refactor
+				if (!(next instanceof CDOResource)) {
+					EObject object = CDOUtil.getEObject(next);
+					if (object != null) {
+						for (EReference xref : object.eClass().getEAllReferences()) {
+							// do include containment references because we may have added a model
+							// element and controlled it in the same transaction
+							if (xref.isChangeable() && !xref.isDerived() && !xref.isTransient()) {
+								run = run.chain(control.getProxyCrossReferencesUpdate(object, xref));
+							}
 						}
 					}
 				}

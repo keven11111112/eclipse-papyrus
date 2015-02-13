@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
+ *   Christian W. Damus - bug 436998
  *   
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.controlmode.tests;
@@ -24,7 +25,10 @@ import static org.junit.Assume.assumeThat;
 import java.util.List;
 
 import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
@@ -38,7 +42,9 @@ import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.cdo.core.tests.ResourceSetFactory;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
+import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
@@ -52,6 +58,8 @@ import org.eclipse.uml2.uml.UMLFactory;
 import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
+import org.osgi.framework.Bundle;
+import org.osgi.framework.FrameworkUtil;
 
 import com.google.common.collect.Lists;
 
@@ -87,7 +95,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 		CDOResource res2 = view.getResource(res.getPath());
 		Package root2 = getPackage(res2);
 
-		InternalEList<Package> subs = (InternalEList<Package>)root2.getNestedPackages();
+		InternalEList<Package> subs = (InternalEList<Package>) root2.getNestedPackages();
 		assertProxy(subs.basicGet(0), "sub1.uml");
 	}
 
@@ -108,7 +116,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 		CDOResource res2 = view.getResource(res.getPath());
 		Package root2 = getPackage(res2);
 
-		InternalEList<Package> subs = (InternalEList<Package>)root2.getNestedPackages();
+		InternalEList<Package> subs = (InternalEList<Package>) root2.getNestedPackages();
 		assertProxy(subs.basicGet(0), "sub1.uml");
 	}
 
@@ -129,7 +137,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 		CDOResource res2 = view.getResource(res.getPath());
 		Package root2 = getPackage(res2);
 
-		InternalEList<Package> subs = (InternalEList<Package>)root2.getNestedPackages();
+		InternalEList<Package> subs = (InternalEList<Package>) root2.getNestedPackages();
 		assumeProxy(subs.basicGet(0), "sub1.uml");
 
 		uncontrol(sub1);
@@ -140,7 +148,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 		res2 = view.getResource(res.getPath());
 		root2 = getPackage(res2);
 
-		subs = (InternalEList<Package>)root2.getNestedPackages();
+		subs = (InternalEList<Package>) root2.getNestedPackages();
 		assertNotProxy(subs.basicGet(0));
 	}
 
@@ -163,7 +171,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 
 	@After
 	public void cleanup() {
-		for(Runnable next : cleanupActions) {
+		for (Runnable next : cleanupActions) {
 			next.run();
 		}
 
@@ -175,12 +183,13 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 	}
 
 	@ResourceSetFactory
-	public ModelSet createModelSet() {
+	public ModelSet createModelSet() throws ServiceException {
 		ModelSet result = null;
 
-		try {
-			final ServicesRegistry services = new ServicesRegistry();
+		// Since Mars, an IUncontrolledObjectsProvider service is required by the control-mode framework
+		final ServicesRegistry services = new ExtensionServicesRegistry(Activator.PLUGIN_ID);
 
+		try {
 			cleanupLater(new Runnable() {
 
 				@Override
@@ -193,13 +202,14 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 				}
 			});
 
-			services.add(ModelSet.class, 10, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
+			services.add(ModelSet.class, Integer.MAX_VALUE, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
 			services.startRegistry();
 
 			result = services.getService(ModelSet.class);
 		} catch (ServiceException e) {
-			e.printStackTrace();
-			fail("Failed to create ServiceRegistry for ModelSet: " + e.getLocalizedMessage());
+			Bundle me = FrameworkUtil.getBundle(getClass());
+			Platform.getLog(me).log(new Status(IStatus.ERROR, me.getSymbolicName(), "Exception in creating service registry for ModelSet", e));
+			result = services.getService(ModelSet.class);
 		}
 
 		return result;
@@ -241,7 +251,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 	}
 
 	Package getPackage(Resource resource) {
-		return (Package)find(resource.getContents(), instanceOf(Package.class), null);
+		return (Package) find(resource.getContents(), instanceOf(Package.class), null);
 	}
 
 	void save(Resource context) {

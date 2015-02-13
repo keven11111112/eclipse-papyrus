@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008, 2014 CEA LIST and others.
+ * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -19,6 +19,7 @@
  *  Christian W. Damus (CEA) - bug 437052
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436998
+ *  Christian W. Damus - bug 436998
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -749,7 +750,7 @@ public class ModelSet extends ResourceSetImpl {
 			}
 		}
 
-		// Clean Model set of deleted Resource
+		// Clean Model set of deleted resources
 		cleanModelSet();
 
 		try {
@@ -789,7 +790,7 @@ public class ModelSet extends ResourceSetImpl {
 	/**
 	 * Clean model set.
 	 */
-	private void cleanModelSet() {
+	protected void cleanModelSet() {
 
 		// Get referenced resources by Model Set
 		Iterator<Resource> resourcesIterator = getResources().iterator();
@@ -814,7 +815,7 @@ public class ModelSet extends ResourceSetImpl {
 	}
 
 	/**
-	 * Delete resources pointed by {@link ModelSet#toDeleteOnSave}set.
+	 * Delete resources pointed by {@link #getResourcesToDeleteOnSave()} set.
 	 */
 	protected void handleResourcesToDelete() {
 		Iterator<URI> uriIterator = getResourcesToDeleteOnSave().iterator();
