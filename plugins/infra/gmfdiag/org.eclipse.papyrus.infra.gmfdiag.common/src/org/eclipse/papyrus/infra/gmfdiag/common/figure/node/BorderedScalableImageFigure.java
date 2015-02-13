@@ -48,13 +48,34 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 		// Get the parent bounds
 		Rectangle parentBounds = getParent().getBounds().getCopy();
 
+		// Get the main figure where are color informations.
+		IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
+
 		// Set the color from the color of the parent
-		setBackgroundColor(getParent().getBackgroundColor());
-		setForegroundColor(getParent().getForegroundColor());
+		if (roundedCompartmentFigure != null) {
+			setBackgroundColor(roundedCompartmentFigure.getBackgroundColor());
+			setForegroundColor(roundedCompartmentFigure.getForegroundColor());
+		} else {
+			// Set the color from the color of the parent
+			setBackgroundColor(getParent().getBackgroundColor());
+			setForegroundColor(getParent().getForegroundColor());
+		}
 
 		// set the clip of the graphics to the parent clip
 		graphics.setClip(parentBounds);
 		super.paintFigure(graphics);
+	}
+
+	/**
+	 * Gets the main figure.
+	 * 
+	 * @return the roundedRectangleFigure
+	 */
+	private IRoundedRectangleFigure getMainFigure() {
+		// If it's called by SVGNodePlate, the parent have not always the foreground color, need to locate
+		SVGNodePlateFigure SVGNodePlate = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
+		IRoundedRectangleFigure roundedCompartmentFigure = FigureUtils.findChildFigureInstance(SVGNodePlate, IRoundedRectangleFigure.class);
+		return roundedCompartmentFigure;
 	}
 
 	class BorderedLayoutManager extends AbstractLayout {
