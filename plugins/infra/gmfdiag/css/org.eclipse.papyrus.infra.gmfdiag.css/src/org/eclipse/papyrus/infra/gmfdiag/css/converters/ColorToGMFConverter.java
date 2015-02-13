@@ -18,6 +18,7 @@ import org.eclipse.e4.ui.css.core.dom.properties.converters.AbstractCSSValueConv
 import org.eclipse.e4.ui.css.core.dom.properties.converters.ICSSValueConverterConfig;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.e4.ui.css.core.impl.dom.Measure;
+import org.w3c.css.sac.LexicalUnit;
 import org.w3c.dom.css.CSSPrimitiveValue;
 import org.w3c.dom.css.CSSValue;
 import org.w3c.dom.css.RGBColor;
@@ -50,6 +51,14 @@ public class ColorToGMFConverter extends AbstractCSSValueConverter {
 			color = (RGBColor) value;
 		} else if (value instanceof CSSPrimitiveValue) {
 			CSSPrimitiveValue cssValue = (CSSPrimitiveValue) value;
+			
+			try {
+				int intValue = (int)cssValue.getFloatValue(LexicalUnit.SAC_INTEGER);
+				return intValue;
+			} catch (Exception ex){
+				//Ignore: treat as a String
+			}
+			
 			color = CSS2ColorHelper.getRGBColor(cssValue.getStringValue());
 		} else {
 			throw new IllegalArgumentException("Cannot convert " + value + " to GMF Color");
