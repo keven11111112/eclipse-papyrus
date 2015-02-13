@@ -14,7 +14,9 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.Label;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionGuardEditPart;
@@ -50,97 +52,19 @@ public class CustomTransitionGuardEditPart extends TransitionGuardEditPart {
 		}
 	}
 
-	/**
-	 * The following code has been commented, since the custom class was not in use (CustomUMLEditPartFactory
-	 * returned generated TransitionGuardEditPart instead of this one) before adding setLabelTextHelper above.
-	 *
-	 *
-	 * public String getInformationFromTransition(Transition transition) {
-	 * String textToEdit = "";
-	 *
-	 * // Triggers
-	 * if(!transition.getTriggers().isEmpty()) {
-	 * boolean isFirstTrigger = true;
-	 * for(Trigger t : transition.getTriggers()) {
-	 * if(!isFirstTrigger)
-	 * textToEdit = textToEdit + ", ";
-	 * else
-	 * isFirstTrigger = false;
-	 * Event e = t.getEvent();
-	 * if(e instanceof CallEvent) {
-	 * if(((CallEvent)e).getOperation() != null)
-	 * textToEdit = textToEdit + ((CallEvent)e).getOperation().getName();
-	 * else
-	 * textToEdit = textToEdit + ((CallEvent)e).getName();
-	 *
-	 * } else if(e instanceof SignalEvent) {
-	 * if(((SignalEvent)e).getSignal() != null)
-	 * textToEdit = textToEdit + ((SignalEvent)e).getSignal().getName();
-	 * else
-	 * textToEdit = textToEdit + ((SignalEvent)e).getName();
-	 * } else if(e instanceof ChangeEvent) {
-	 *
-	 * textToEdit = textToEdit + "when " + "\"" + retrieveBody((OpaqueExpression)((ChangeEvent)e).getChangeExpression(), "Natural language") + "\"";
-	 * } else if(e instanceof TimeEvent) {
-	 * String absRelPrefix = "" + (((TimeEvent)e).isRelative() ? "after " : "at ");
-	 * textToEdit = textToEdit + absRelPrefix + "\"" + retrieveBody((OpaqueExpression)((TimeEvent)e).getWhen().getExpr(), "Natural language") + "\"";
-	 * } else { // any receive event
-	 * textToEdit = textToEdit + "all";
-	 * }
-	 * }
-	 * }
-	 *
-	 * // Guard
-	 * if(transition.getGuard() != null && transition.getGuard().getSpecification() != null) {
-	 * textToEdit = textToEdit + " [" + "\"" + retrieveBody((OpaqueExpression)transition.getGuard().getSpecification(), "Natural language") + "\"" +
-	 * "]";
-	 * }
-	 *
-	 * if(transition.getEffect() != null) {
-	 * textToEdit = textToEdit + " / ";
-	 * String behaviorKind = "";
-	 * behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof Activity)) ? "Activity " : "");
-	 * behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof StateMachine)) ? "StateMachine " : "");
-	 * behaviorKind = behaviorKind + ((behaviorKind.equals("") && (transition.getEffect() instanceof OpaqueBehavior)) ? "OpaqueBehavior " : "");
-	 * textToEdit = textToEdit + behaviorKind + " " + transition.getEffect().getName();
-	 * }
-	 *
-	 * return textToEdit;
-	 * }
-	 *
-	 * @Override
-	 *           protected void handleNotificationEvent(Notification notification) {
-	 *           // TODO Auto-generated method stub
-	 *           super.handleNotificationEvent(notification);
-	 *
-	 *
-	 *           refreshVisuals();
-	 *           }
-	 * @Override
-	 *           protected void refreshVisuals() {
-	 *           // TODO Auto-generated method stub
-	 *           super.refreshVisuals();
-	 *
-	 *           WrappingLabel transitionGuardLabel = (WrappingLabel)getFigure();
-	 *           Transition transition = (Transition)((View)getModel()).getElement();
-	 *           transitionGuardLabel.setText(getInformationFromTransition(transition));
-	 *           }
-	 *
-	 *           private String retrieveBody(OpaqueExpression exp, String languageName) {
-	 *           String body = "";
-	 *           if(exp == null)
-	 *           return body;
-	 *           int index = 0;
-	 *           for(String _languageName : exp.getLanguages()) {
-	 *           if(_languageName.equals(languageName)) {
-	 *           if(index < exp.getBodies().size())
-	 *           return exp.getBodies().get(index);
-	 *           else
-	 *           return "";
-	 *           }
-	 *           index++;
-	 *           }
-	 *           return body;
-	 *           }
-	 */
+
+	@Override
+	protected String getLabelText() {
+		String text = null;
+		EObject parserElement = getParserElement();
+		if (parserElement != null && getParser() != null) {
+			text = getParser().getPrintString(
+					new EObjectAdapter((View) getModel()),
+					getParserOptions().intValue());
+		}
+		if (text == null || text.length() == 0) {
+			text = super.getLabelText();
+		}
+		return text;
+	}
 }

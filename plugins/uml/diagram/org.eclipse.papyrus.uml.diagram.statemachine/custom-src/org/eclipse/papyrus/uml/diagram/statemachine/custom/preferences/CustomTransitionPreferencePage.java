@@ -15,7 +15,9 @@ public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
 	public CustomTransitionPreferencePage() {
 		super(GRID);
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
-		setDescription("This preference page allows to customize label appearance on transitions");
+		setDescription(
+				"This preference page allows to customize label appearance on transitions. " +  //$NON-NLS-1$
+				"Please note that per diagram or element settings can be done via CSS."); //$NON-NLS-1$
 	}
 
 	boolean updatePending;
