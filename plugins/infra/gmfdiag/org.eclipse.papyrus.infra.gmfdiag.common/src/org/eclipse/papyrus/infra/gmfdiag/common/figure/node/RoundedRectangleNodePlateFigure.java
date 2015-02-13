@@ -288,4 +288,25 @@ public class RoundedRectangleNodePlateFigure extends DefaultSizeNodeFigure imple
 
 	}
 
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#getShadowColor()
+	 *
+	 * @return
+	 */
+	@Override
+	public String getShadowColor() {
+		return null;
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure#setShadowColor(java.lang.String)
+	 *
+	 * @param shadowColor
+	 */
+	@Override
+	public void setShadowColor(String shadowColor) {
+	}
+
 }

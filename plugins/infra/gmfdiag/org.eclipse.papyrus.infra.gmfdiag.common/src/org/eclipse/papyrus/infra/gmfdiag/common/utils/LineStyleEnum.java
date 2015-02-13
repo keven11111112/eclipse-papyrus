@@ -1,15 +1,16 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2010, 2014 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *
  *****************************************************************************/
+
 
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -25,22 +26,22 @@ import org.eclipse.draw2d.Graphics;
 public enum LineStyleEnum {
 
 	/** The dash. */
-	DASH(Graphics.LINE_DASH, "dash"), //$NON-NLS-N$
+	DASH(Graphics.LINE_DASH, "dash"), //$NON-NLS-1$
 
 	/** The dash dot. */
-	DASH_DOT(Graphics.LINE_DASHDOT, "dashDot"), //$NON-NLS-N$
+	DASH_DOT(Graphics.LINE_DASHDOT, "dashDot"), //$NON-NLS-1$
 
 	/** The dash dot dot. */
-	DASH_DOT_DOT(Graphics.LINE_DASHDOTDOT, "dashDotDot"), //$NON-NLS-N$
+	DASH_DOT_DOT(Graphics.LINE_DASHDOTDOT, "dashDotDot"), //$NON-NLS-1$
 
 	/** The dot. */
-	DOT(Graphics.LINE_DOT, "dot"), //$NON-NLS-N$
+	DOT(Graphics.LINE_DOT, "dot"), //$NON-NLS-1$
 
 	/** The solid. */
-	SOLID(Graphics.LINE_SOLID, "solid"), //$NON-NLS-N$
+	SOLID(Graphics.LINE_SOLID, "solid"), //$NON-NLS-1$
 
 	/** The custom. */
-	CUSTOM(Graphics.LINE_CUSTOM, "custom"); //$NON-NLS-N$
+	CUSTOM(Graphics.LINE_CUSTOM, "custom"); //$NON-NLS-1$
 
 	/** The line style. */
 	private int lineStyle;

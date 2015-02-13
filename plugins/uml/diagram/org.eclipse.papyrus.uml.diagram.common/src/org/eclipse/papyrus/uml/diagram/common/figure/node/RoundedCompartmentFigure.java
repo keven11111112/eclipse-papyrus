@@ -26,6 +26,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.draw2d.geometry.PointList;
 import org.eclipse.draw2d.geometry.Rectangle;
+import org.eclipse.e4.ui.css.core.css2.CSS2ColorHelper;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
@@ -35,8 +36,11 @@ import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFig
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
+import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
+import org.w3c.dom.css.RGBColor;
 
 /**
  * A rectangular figure that supports compartment.
@@ -72,6 +76,28 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 	/** The shadow width. */
 	private int shadowWidth = 4;
+
+	/** The shadow color. */
+	String shadowColor = null;
+
+	/**
+	 * Gets the shadow color.
+	 *
+	 * @return the shadowColor
+	 */
+	public String getShadowColor() {
+		return shadowColor;
+	}
+
+	/**
+	 * Sets the shadow color.
+	 *
+	 * @param shadowColor
+	 *            the shadowColor to set
+	 */
+	public void setShadowColor(String shadowColor) {
+		this.shadowColor = shadowColor;
+	}
 
 	/**
 	 * @param borderStyle
@@ -228,8 +254,10 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 					graphics.setClip(clipRectangle);
 
-					// draw the shadow
-					graphics.setBackgroundColor(getForegroundColor());
+					// set the background color
+					setShadowBackgroudColor(graphics);
+
+					// Draw the shadow
 					graphics.fillPolygon(polygonPoints);
 
 					// reposition clip
@@ -293,8 +321,10 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				clipRectangle.height += shadowWidth;
 				graphics.setClip(clipRectangle);
 
+				// set the background color
+				setShadowBackgroudColor(graphics);
+
 				// draw the shadow
-				graphics.setBackgroundColor(getForegroundColor());
 				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
 
 				rectangle.translate(-shadowWidth, -shadowWidth);
@@ -328,6 +358,28 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			}
 		}
 		graphics.popState();
+	}
+
+	/**
+	 * @param graphics
+	 */
+	private void setShadowBackgroudColor(Graphics graphics) {
+
+		if (shadowColor != null) {
+			// get the the RGBColor from string
+			RGBColor rgbColor = CSS2ColorHelper.getRGBColor(shadowColor);
+
+			// extract RGB
+			int red = Integer.parseInt(rgbColor.getRed().toString());
+			int green = Integer.parseInt(rgbColor.getGreen().toString());
+			int blue = Integer.parseInt(rgbColor.getBlue().toString());
+
+			// get the the Color from RGB
+			Color color = new Color(Display.getCurrent(), new RGB(red, green, blue));
+			graphics.setBackgroundColor(color);
+		} else {
+			graphics.setBackgroundColor(getForegroundColor());
+		}
 	}
 
 	/**

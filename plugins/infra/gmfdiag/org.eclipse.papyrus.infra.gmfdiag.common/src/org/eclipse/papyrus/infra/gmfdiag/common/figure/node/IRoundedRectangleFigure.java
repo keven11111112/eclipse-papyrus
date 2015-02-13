@@ -141,4 +141,19 @@ public interface IRoundedRectangleFigure extends IFigure {
 	 */
 	public void setIsPackage(boolean isPackage);
 
+	/**
+	 * Gets the shadow color.
+	 *
+	 * @return the shadowColor
+	 */
+	public String getShadowColor();
+
+	/**
+	 * Sets the shadow color.
+	 *
+	 * @param shadowColor
+	 *            the shadowColor to set
+	 */
+	public void setShadowColor(String shadowColor);
+
 }

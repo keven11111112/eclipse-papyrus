@@ -1,15 +1,16 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
- * 
+ * Copyright (c) 2010, 2014 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *
  *****************************************************************************/
+
 
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 
@@ -22,31 +23,31 @@ package org.eclipse.papyrus.infra.gmfdiag.common.utils;
 public enum PositionEnum {
 
 	/** The north. */
-	NORTH("NORTH", "north"), //$NON-NLS-N$
+	NORTH("NORTH", "north"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The south. */
-	SOUTH("SOUTH", "south"), //$NON-NLS-N$
+	SOUTH("SOUTH", "south"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The east. */
-	EAST("EAST", "east"), //$NON-NLS-N$
+	EAST("EAST", "east"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The west. */
-	WEST("WEST", "west"), //$NON-NLS-N$
+	WEST("WEST", "west"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The none. */
-	NONE("NONE", "none"), //$NON-NLS-N$
+	NONE("NONE", "none"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The auto. */
-	AUTO("AUTO", "AUTO"), //$NON-NLS-N$
+	AUTO("AUTO", "AUTO"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The left. */
-	LEFT("LEFT", "left"), //$NON-NLS-N$
+	LEFT("LEFT", "left"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The right. */
-	RIGHT("RIGHT", "right"), //$NON-NLS-N$
+	RIGHT("RIGHT", "right"), //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The center. */
-	CENTER("CENTER", "center"); //$NON-NLS-N$
+	CENTER("CENTER", "center"); //$NON-NLS-1$ //$NON-NLS-2$
 
 	/** The name. */
 	private String name;

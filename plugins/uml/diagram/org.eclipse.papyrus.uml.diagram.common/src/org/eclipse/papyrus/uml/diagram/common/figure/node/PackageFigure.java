@@ -8,6 +8,7 @@
  * Contributors:
  *     CEA List - initial API and implementation
  *     Christian W. Damus (CEA) - bug 392301
+ *     Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - use of roundedCompartmentFigure
  *
  *******************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -27,7 +28,7 @@ public class PackageFigure extends RoundedCompartmentFigure {
 
 
 	/** The Internal Structure Compartment */
-	private final static String PACKAGE_COMPARTMENT = "packageCompartment";
+	private final static String PACKAGE_COMPARTMENT = "packageCompartment"; //$NON-NLS-1$
 
 	/** The List of Compartment */
 	private final static List<String> COMPARTMENT = new ArrayList<String>() {
