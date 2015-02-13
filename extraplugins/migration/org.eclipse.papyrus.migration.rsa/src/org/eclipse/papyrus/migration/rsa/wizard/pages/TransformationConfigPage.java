@@ -26,7 +26,7 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class TransformationConfigPage extends WizardPage {
 
-	protected ConfigurationComposite configComposite;
+	protected DialogDataConfigComposite dialogDataConfigComposite;
 
 	protected DialogData dialogData;
 
@@ -56,7 +56,7 @@ public class TransformationConfigPage extends WizardPage {
 		Composite pageComposite = new Composite(parent, SWT.NONE);
 		pageComposite.setLayout(new GridLayout());
 
-		configComposite = new ConfigurationComposite(pageComposite, SWT.NONE, dialogData);
+		dialogDataConfigComposite = new DialogDataConfigComposite(pageComposite, SWT.NONE, dialogData);
 
 		setControl(pageComposite);
 	}
@@ -67,7 +67,7 @@ public class TransformationConfigPage extends WizardPage {
 	 * 
 	 */
 	public void resetViewerInput() {
-		configComposite.setViewerInput(dialogData.getSelectedFiles());
+		dialogDataConfigComposite.setViewerInput(dialogData.getAllSelectedFiles());
 	}
 
 }

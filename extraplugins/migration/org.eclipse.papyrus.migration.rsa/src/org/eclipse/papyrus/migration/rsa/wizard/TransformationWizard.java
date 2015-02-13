@@ -11,23 +11,23 @@
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.wizard;
 
-import java.util.HashSet;
 import java.util.LinkedList;
 import java.util.List;
-import java.util.Set;
 
 import org.eclipse.core.resources.IFile;
+import org.eclipse.core.resources.IProject;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.messages.Messages;
 import org.eclipse.papyrus.migration.rsa.transformation.ImportTransformationLauncher;
 import org.eclipse.papyrus.migration.rsa.wizard.pages.TransformationConfigPage;
 import org.eclipse.papyrus.migration.rsa.wizard.pages.TransformationSelectionPage;
 import org.eclipse.papyrus.migration.rsa.wizard.pages.DialogData;
-import org.eclipse.swt.SWT;
 import org.eclipse.ui.IImportWizard;
 import org.eclipse.ui.IWorkbench;
 
@@ -64,7 +64,7 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 	public IWizardPage getNextPage(IWizardPage currentPage) {
 		if (currentPage == selectionPage) {
 			this.currentPage = configPage;
-			// Reset the viewer input in order to show the newly selected elements from the selectionPage
+			// Resets the viewer input in order to show the newly selected elements from the selectionPage
 			configPage.resetViewerInput();
 			return configPage;
 		}
@@ -82,6 +82,11 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 		return false;
 	}
 
+	@Override
+	public boolean performCancel() {
+		removeWizardImportedProjects();
+		return super.performCancel();
+	}
 
 	@Override
 	public boolean performFinish() {
@@ -89,9 +94,32 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 		dialogData.setSelectionMap();
 		importFiles();
 
+		// Remove the imported projects from the workspace
+		// removeWizardImportedProjects();
+
 		return true;
 	}
 
+
+	/**
+	 * 
+	 * Remove any imported projects, through the wizard, from the workspace
+	 * 
+	 */
+	public void removeWizardImportedProjects() {
+		if (/* dialogData != null && */dialogData.getImportedProjects() != null) {
+			for (Object object : dialogData.getImportedProjects()) {
+				if (object instanceof IProject) {
+					IProject project = (IProject) object;
+					try {
+						project.delete(false, true, null);
+					} catch (CoreException e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+		}
+	}
 
 	/**
 	 *
@@ -104,19 +132,17 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 			return;
 		}
 
-		Set<IFile> selectedFiles = new HashSet<IFile>();
-		for (Object file : dialogData.getTransformationFiles()) {
-			if (file instanceof IFile) {
-				selectedFiles.add((IFile) file);
-			}
-		}
-
 		List<URI> urisToImport = new LinkedList<URI>();
 
-		for (IFile selectedFile : selectedFiles) {
-			URI uri = URI.createPlatformResourceURI(selectedFile.getFullPath().toString(), true);
-
-			urisToImport.add(uri);
+		for (Object selectedFile : dialogData.getTransformationFiles()) {
+			String path = null;
+			if (selectedFile instanceof IFile) {
+				path = ((IFile) selectedFile).getFullPath().toString();
+			}
+			if (path != null) {
+				URI uri = URI.createPlatformResourceURI(path, true);
+				urisToImport.add(uri);
+			}
 		}
 
 		// The wizard's Shell will be disposed because the transformation is asynchronous. Use the Shell's parent instead
@@ -126,8 +152,7 @@ public class TransformationWizard extends Wizard implements IImportWizard {
 
 	@Override
 	public void init(IWorkbench workbench, IStructuredSelection selection) {
-		// TODO Auto-generated method stub
-
+		// nothing
 	}
 
 

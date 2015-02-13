@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.migration.rsa.wizard.pages;
 
+import java.io.File;
 import java.util.Arrays;
 import java.util.Collection;
 import java.util.LinkedList;
@@ -34,15 +35,19 @@ public class DialogData {
 
 	protected Collection<Object> selectedFiles;
 
+	protected Collection<Object> systemSelectedFiles;
+
 	protected Collection<Object> transformationFiles;
 
 	protected Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
 
 	protected Collection<String> unselectedFiles;
 
-	protected IDialogSettings dialogSection;
+	public IDialogSettings dialogSection;
 
 	protected Collection<Object> uncheckedFiles;
+
+	protected Collection<Object> importedProjects;
 
 	/**
 	 * 
@@ -55,6 +60,8 @@ public class DialogData {
 		if (dialogSection == null) {
 			dialogSection = Activator.getDefault().getDialogSettings().addNewSection(TransformationWizardConstants.TRANSFORMATION_WIZARD_SETTINGS);
 		}
+
+		systemSelectedFiles = new LinkedList<Object>();
 	}
 
 	/**
@@ -64,6 +71,20 @@ public class DialogData {
 	 */
 	public void setSelectedFiles(Collection<Object> selectedFiles) {
 		this.selectedFiles = selectedFiles;
+	}
+
+	/**
+	 * 
+	 * @param selectedFiles
+	 *            The selected files outside of the workspace to be displayed in the transformation page
+	 */
+	public void setSystemSelectedFiles(Collection<String> systemPaths) {
+		for (String filePath : systemPaths) {
+			File file = new File(filePath);
+			if (file != null && !systemSelectedFiles.contains(file)) {
+				systemSelectedFiles.add(file);
+			}
+		}
 	}
 
 	/**
@@ -105,6 +126,39 @@ public class DialogData {
 	/**
 	 * 
 	 * @return
+	 *         The selected files outside of the workspace
+	 */
+	public Collection<Object> getSystemSelectedFiles() {
+		return systemSelectedFiles;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         The selected files from both workspace and outside selections
+	 */
+	public Collection<Object> getAllSelectedFiles() {
+		Collection<Object> allSelectedFiles = new LinkedList<Object>();
+		if (selectedFiles != null && selectedFiles.size() > 0) {
+			// TODO select only the files that are not already present in the selection done outside of the workspace
+			// Test
+			// for (Object object : selectedFiles) {
+			// if (!systemSelectedFiles.contains(object)) {
+			// allSelectedFiles.add(object);
+			// }
+			// }
+			// endTest
+			allSelectedFiles.addAll(selectedFiles);
+		}
+		// if (systemSelectedFiles != null && systemSelectedFiles.size() > 0) {
+		// allSelectedFiles.addAll(systemSelectedFiles);
+		// }
+		return allSelectedFiles;
+	}
+
+	/**
+	 * 
+	 * @return
 	 *         The parameters used for the transformation
 	 */
 	public Config getConfig() {
@@ -131,6 +185,26 @@ public class DialogData {
 
 	/**
 	 * 
+	 * Sets or updates the projects to be imported in the workspace
+	 * 
+	 * @param importedProjects
+	 *            The selcted projects
+	 */
+	public void setImportedProjects(Collection<Object> importedProjects) {
+		this.importedProjects = importedProjects;
+	}
+
+	/**
+	 * 
+	 * @return
+	 *         The imported projects
+	 */
+	public Collection<Object> getImportedProjects() {
+		return this.importedProjects;
+	}
+
+	/**
+	 * 
 	 * Update or create the selection map stored inside the configuration file in order to remember the previous selection choices
 	 * 
 	 */
@@ -145,8 +219,15 @@ public class DialogData {
 		// Updates the unselected files for future references
 		for (Object object : uncheckedFiles) {
 			if (object instanceof IFile) {
-				IFile file = (IFile) object;
-				String filePath = FileUtil.getPath(file, true);
+				IFile ifile = (IFile) object;
+				String ifilePath = FileUtil.getPath(ifile, true);
+				if (!unselectedFiles.contains(ifilePath)) {
+					unselectedFiles.add(ifilePath);
+				}
+			}
+			if (object instanceof File) {
+				File file = (File) object;
+				String filePath = file.getAbsolutePath();
 				if (!unselectedFiles.contains(filePath)) {
 					unselectedFiles.add(filePath);
 				}
@@ -155,8 +236,15 @@ public class DialogData {
 		// Remove any newly selected files from the unselected files pool
 		for (Object object : transformationFiles) {
 			if (object instanceof IFile) {
-				IFile file = (IFile) object;
-				String filePath = FileUtil.getPath(file, true);
+				IFile ifile = (IFile) object;
+				String ifilePath = FileUtil.getPath(ifile, true);
+				if (unselectedFiles.contains(ifilePath)) {
+					unselectedFiles.remove(ifilePath);
+				}
+			}
+			if (object instanceof File) {
+				File file = (File) object;
+				String filePath = file.getAbsolutePath();
 				if (unselectedFiles.contains(filePath)) {
 					unselectedFiles.remove(filePath);
 				}
@@ -164,7 +252,7 @@ public class DialogData {
 		}
 
 		// Update the map
-		dialogSection.put(TransformationWizardConstants.SELECTION_KEY, unselectedFiles.toArray(new String[unselectedFiles.size()]));
+		dialogSection.put(TransformationWizardConstants.WIZARD_SELECTION_KEY, unselectedFiles.toArray(new String[unselectedFiles.size()]));
 	}
 
 	/**
@@ -175,7 +263,7 @@ public class DialogData {
 	 *         The user's previously unchecked files in the configPage
 	 */
 	public String[] getUnSelectionArray() {
-		return dialogSection.getArray(TransformationWizardConstants.SELECTION_KEY);
+		return dialogSection.getArray(TransformationWizardConstants.WIZARD_SELECTION_KEY);
 	}
 
 }

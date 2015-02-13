@@ -52,9 +52,8 @@ public class TransformationSelectionPage extends WizardPage {
 		Composite pageComposite = new Composite(parent, SWT.NONE);
 		pageComposite.setLayout(new GridLayout());
 
-		new SelectionTreeComposite(pageComposite, SWT.NONE, dialogData);
+		new DialogDataTreeComposite(pageComposite, SWT.NONE, dialogData);
 
 		setControl(pageComposite);
 	}
-
 }
