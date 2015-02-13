@@ -33,6 +33,15 @@ public interface TransformationWizardConstants {
 	/**
 	 * The key to retrieve the selection preferences from the settings file
 	 */
-	public static final String SELECTION_KEY = "selectionPeferences"; //$NON-NLS-1$
+	public static final String WIZARD_SELECTION_KEY = "selectionPeferences"; //$NON-NLS-1$
+
+	public static final String FILEDIALOG_SELECTION_KEY = "previousDialogSelection"; //$NON-NLS-1$
+
+	/**
+	 * The name of the newly created project's folders
+	 */
+	public static final String SRC_FOLDER = "src"; //$NON-NLS-1$
+
+	public static final String RSC_FOLDER = "resources"; //$NON-NLS-1$
 
 }
