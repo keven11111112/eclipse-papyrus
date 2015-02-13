@@ -91,6 +91,23 @@ public class DiUtils {
 	}
 
 	/**
+	 * Lookup for the current selection TabFolder object in the resource.
+	 *
+	 * @param diResource
+	 * @return The {@link TabFolder} or null if not found.
+	 */
+	static public TabFolder lookupCurrentTabFolderSelection(Resource diResource) {
+		SashWindowsMngr lookupSashWindowsMngr = lookupSashWindowsMngr(diResource);
+		if (lookupSashWindowsMngr != null){
+			SashModel sashModel = lookupSashWindowsMngr.getSashModel();
+			if (sashModel != null){
+				return sashModel.getCurrentSelection();
+			}
+		}
+		return null;
+	}	
+	
+	/**
 	 * Gets the page reference of the specified eObject
 	 *
 	 * @param diResource
