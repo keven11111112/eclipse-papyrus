@@ -247,6 +247,7 @@
 		</repository>
 	</repositories>
 	<build>
+		<pluginManagement>
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -261,10 +262,10 @@
 				<artifactId>tycho-compiler-plugin</artifactId>
 				<version>${tycho-version}</version>
 				<configuration>
-					<source>1.6</source>
-					<target>1.6</target>
 					<optimize>true</optimize>
 					<showWarnings>true</showWarnings>
+                    <!-- Tycho build using the project's JDT settings. -->
+                    <useProjectSettings>true</useProjectSettings>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -306,6 +307,25 @@
 						 </environment>
 					 </environments>
 				</configuration>
+			</plugin>
+			</plugins>
+		</pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-resources-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-compiler-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>tycho-maven-plugin</artifactId>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.tycho</groupId>
+				<artifactId>target-platform-configuration</artifactId>
 			</plugin>
 			<plugin>
 				<groupId>org.eclipse.tycho</groupId>
