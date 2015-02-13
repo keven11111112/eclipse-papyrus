@@ -27,6 +27,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
+import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
+import org.eclipse.papyrus.uml.service.types.Activator;
+import org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice;
 import org.eclipse.papyrus.uml.service.types.ui.AssociationSelectionDialog;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.swt.SWT;
@@ -108,26 +113,7 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 
 	@Override
 	public boolean canExecute() {
-		/*
-		 * Case 0: Only the target is null
-		 */
-		if (source != null && target == null) {
-			return source instanceof InstanceSpecification && ((InstanceSpecification) source).getClassifiers().size() > 0;
-		}
-		/*
-		 * Case 1 : source and target != null
-		 * look for if it exist at least a common association between classifiers referenced between these instances
-		 */
-		if (source == null || target == null) {
-			return false;
-		}
-		if (false == source instanceof InstanceSpecification) {
-			return false;
-		}
-		if (false == target instanceof InstanceSpecification) {
-			return false;
-		}
-		return ((InstanceSpecification) source).getClassifiers().size() > 0 && ((InstanceSpecification) target).getClassifiers().size() > 0;
+		return InstanceSpecificationEditHelperAdvice.canCreate(source, target);
 	}
 
 	/**
@@ -212,7 +198,14 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 		if (((InstanceSpecification) source).getClassifiers().isEmpty() || ((InstanceSpecification) target).getClassifiers().isEmpty()) {
 			return CommandResult.newCancelledCommandResult();
 		}
-		AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, getModelAssociations());
+		ServicesRegistry registry;
+		try {
+			registry = ServiceUtilsForResource.getInstance().getServiceRegistry(source.eResource());
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return CommandResult.newCancelledCommandResult();
+		}
+		AssociationSelectionDialog associationSelectionDialog = new AssociationSelectionDialog(new Shell(), SWT.NATIVE, getModelAssociations(), registry);
 		associationSelectionDialog.open();
 		Association selectedAssociation = associationSelectionDialog.getSelectedAssociation();
 		if (selectedAssociation == null && associationSelectionDialog.isCanceled()) {
