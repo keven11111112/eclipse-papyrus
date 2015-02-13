@@ -663,6 +663,7 @@
 						<configuration>
 							<findbugsXmlOutput>true</findbugsXmlOutput>
 							<failOnError>false</failOnError>
+							<maxHeap>1024</maxHeap>
 						</configuration>
 						<executions>
 							<execution>
