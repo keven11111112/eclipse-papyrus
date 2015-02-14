@@ -32,7 +32,17 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class InvalidStringUtil {
 
-	public static String ACTION_LANGUAGE_PROFILE_NAME = "ActionLanguage";
+	/**
+	 * Stereotype name for textual representation
+	 */
+	public static final String TEXTUAL_REPRESENTATION = "TextualRepresentation"; //$NON-NLS-1$
+
+	/**
+	 * Attribute of TextualRepresentation stereotype that indicates used language
+	 */
+	public static final String LANGUAGE = "language"; //$NON-NLS-1$
+
+	public static String ACTION_LANGUAGE_PROFILE_NAME = "ActionLanguage"; //$NON-NLS-1$
 
 	/**
 	 * The Action Language profile
@@ -83,17 +93,13 @@ public class InvalidStringUtil {
 					textualRepresentationStereotype);
 		} else {
 			// There is a chance to find it if the root model has ActionLanguage
-			// profile applied
-			// In this case, the stereotype is included in
+			// profile applied. In this case, the stereotype is included in 
 			// comment.getApplicableStereotypes()
-			List<Stereotype> applicableStereotypes = comment
-					.getApplicableStereotypes();
+			List<Stereotype> applicableStereotypes = comment.getApplicableStereotypes();
 			for (int i = 0; i < applicableStereotypes.size()
 					&& textualRepresentationStereotype == null; i++) {
-				if (applicableStereotypes.get(i).getName()
-						.equals("TextualRepresentation")) {
-					textualRepresentationStereotype = applicableStereotypes
-							.get(i);
+				if (applicableStereotypes.get(i).getName().equals(TEXTUAL_REPRESENTATION)) {
+					textualRepresentationStereotype = applicableStereotypes.get(i);
 				}
 			}
 		}
@@ -106,15 +112,14 @@ public class InvalidStringUtil {
 	 */
 	public static boolean isActionLanguageProfileApplied(Element element) {
 		if (actionLanguageProfile == null) {
-			IRegisteredProfile registeredActionLanguageProfile = Registry.getRegisteredProfile(ACTION_LANGUAGE_PROFILE_NAME, null);
+			IRegisteredProfile registeredActionLanguageProfile =
+					Registry.getRegisteredProfile(ACTION_LANGUAGE_PROFILE_NAME, null);
 			URI modelUri = registeredActionLanguageProfile.getUri();
 			Package root = PackageUtil.getRootPackage(element);
 
-			Resource modelResource = root.eResource().getResourceSet()
-					.getResource(modelUri, true);
+			Resource modelResource = root.eResource().getResourceSet().getResource(modelUri, true);
 			if (modelResource.getContents().get(0) instanceof Profile) {
-				actionLanguageProfile = (Profile) modelResource.getContents()
-						.get(0);
+				actionLanguageProfile = (Profile) modelResource.getContents().get(0);
 			}
 		}
 		List<Profile> appliedProfiles = PackageUtil.getRootPackage(element).getAppliedProfiles();
@@ -123,6 +128,7 @@ public class InvalidStringUtil {
 
 	/**
 	 * @param element
+	 * @param languageId
 	 * @return
 	 */
 	public static Comment createTextualRepresentationComment(Element element, String languageId) {
@@ -133,12 +139,11 @@ public class InvalidStringUtil {
 					actionLanguageProfile, true);
 		}
 		clean();
-		// This is just to force retrieval of the textual representation
-		// stereotype
+		// Force retrieval of variable textualRepresentationStereotype (side effect of evaluation below)
 		isATextualRepresentationComment(textualRepresentationComment);
 		textualRepresentationComment
 				.applyStereotype(textualRepresentationStereotype);
-		textualRepresentationComment.setValue(textualRepresentationStereotype, "language", languageId);
+		textualRepresentationComment.setValue(textualRepresentationStereotype, LANGUAGE, languageId);
 		return textualRepresentationComment;
 	}
 
