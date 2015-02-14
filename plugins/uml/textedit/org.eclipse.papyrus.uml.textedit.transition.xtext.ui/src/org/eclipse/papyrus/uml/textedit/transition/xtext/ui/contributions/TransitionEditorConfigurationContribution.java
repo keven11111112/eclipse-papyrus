@@ -87,7 +87,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.xtext.glue.PopupEditorConfiguration#getTextToEdit(java.lang.Object)
 	 */
 	@SuppressWarnings("nls")
@@ -183,7 +183,7 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 		/*
 		 * (non-Javadoc)
-		 *
+		 * 
 		 * @see
 		 * org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor
 		 * , org.eclipse.core.runtime.IAdaptable)
@@ -214,44 +214,54 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 			// ////////////////////////////////////////////////////////////////////////////////////////////////
 
 			// Create the new triggers
-			if (transitionRuleObject.getTriggers() != null) {
-				for (EventRule eventRule : transitionRuleObject.getTriggers()) {
-					Trigger newTrigger = UMLFactory.eINSTANCE.createTrigger();
-					this.newTriggers.add(newTrigger);
-					newTrigger.setEvent(createUMLEvent(eventRule));
+			if (transitionRuleObject != null) {
+				if (transitionRuleObject.getTriggers() != null) {
+					for (EventRule eventRule : transitionRuleObject.getTriggers()) {
+						Trigger newTrigger = UMLFactory.eINSTANCE.createTrigger();
+						this.newTriggers.add(newTrigger);
+						newTrigger.setEvent(createUMLEvent(eventRule));
+					}
+					transition.getTriggers().addAll(this.newTriggers);
 				}
-				transition.getTriggers().addAll(this.newTriggers);
-			}
-			// Create the new constraint
-			if (transitionRuleObject.getGuard() != null && transitionRuleObject.getGuard().getConstraint() != null) {
-				this.newConstraint = transition.createGuard(EMPTY);
-				OpaqueExpression guardSpecification = UMLFactory.eINSTANCE.createOpaqueExpression();
-				guardSpecification.getLanguages().add(NATURAL_LANGUAGE);
-				guardSpecification.getBodies().add(EMPTY + transitionRuleObject.getGuard().getConstraint());
-				this.newConstraint.setSpecification(guardSpecification);
-			}
+				// Create the new constraint
+				if (transitionRuleObject.getGuard() != null && transitionRuleObject.getGuard().getConstraint() != null) {
+					this.newConstraint = transition.createGuard(EMPTY);
+					OpaqueExpression guardSpecification = UMLFactory.eINSTANCE.createOpaqueExpression();
+					guardSpecification.getLanguages().add(NATURAL_LANGUAGE);
+					guardSpecification.getBodies().add(EMPTY + transitionRuleObject.getGuard().getConstraint());
+					this.newConstraint.setSpecification(guardSpecification);
+				}
 
-			boolean hasEffect = transitionRuleObject.getEffect() != null && transitionRuleObject.getEffect().getKind() != null && transitionRuleObject.getEffect().getBehaviorName() != null;
-			BehaviorKind oldKind = getBehaviorKind(transition.getEffect());
+				boolean hasEffect = transitionRuleObject.getEffect() != null && transitionRuleObject.getEffect().getKind() != null && transitionRuleObject.getEffect().getBehaviorName() != null;
+				BehaviorKind oldKind = getBehaviorKind(transition.getEffect());
 
-			if ((!hasEffect) || (transitionRuleObject.getEffect().getKind() != oldKind)) {
-				// delete owned effect behavior
+				if ((!hasEffect) || (transitionRuleObject.getEffect().getKind() != oldKind)) {
+					// delete owned effect behavior
+					Behavior effect = transition.getEffect();
+					transition.setEffect(null);
+					if (effect != null) {
+						effect.destroy();
+					}
+				}
+
+				// Create the new behavior
+				if (hasEffect) {
+					String behaviorName = transitionRuleObject.getEffect().getBehaviorName();
+					if (transition.getEffect() == null) {
+						// behavior does exist yet => create
+						Behavior newEffectBehavior = createUMLBehavior(transitionRuleObject.getEffect().getKind(), behaviorName);
+						transition.setEffect(newEffectBehavior);
+					} else {
+						transition.getEffect().setName(behaviorName);
+					}
+				}
+			}
+			else {
+				// no effect, remove it.
 				Behavior effect = transition.getEffect();
 				transition.setEffect(null);
 				if (effect != null) {
 					effect.destroy();
-				}
-			}
-
-			// Create the new behavior
-			if (hasEffect) {
-				String behaviorName = transitionRuleObject.getEffect().getBehaviorName();
-				if (transition.getEffect() == null) {
-					// behavior does exist yet => create
-					Behavior newEffectBehavior = createUMLBehavior(transitionRuleObject.getEffect().getKind(), behaviorName);
-					transition.setEffect(newEffectBehavior);
-				} else {
-					transition.getEffect().setName(behaviorName);
 				}
 			}
 
@@ -501,8 +511,6 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 	@Override
 	protected ICommand getParseCommand(EObject modelObject, EObject xtextObject) {
-		// first: retrieves / determines if the xtextObject is a TransitionRule object
-		EObject modifiedObject = xtextObject;
 
 		if (!(modelObject instanceof Transition)) {
 			return null;
@@ -510,13 +518,8 @@ public class TransitionEditorConfigurationContribution extends DefaultXtextDirec
 
 		Transition transition = (Transition) modelObject;
 
-		while (xtextObject != null && !(xtextObject instanceof TransitionRule)) {
-			modifiedObject = modifiedObject.eContainer();
-		}
-		if (modifiedObject == null) {
-			return null;
-		}
 		TransitionRule transitionRuleObject = (TransitionRule) xtextObject;
+		// transitionRuleObject may be null, if we have no input left
 
 		// Creates and executes the update command
 		try {

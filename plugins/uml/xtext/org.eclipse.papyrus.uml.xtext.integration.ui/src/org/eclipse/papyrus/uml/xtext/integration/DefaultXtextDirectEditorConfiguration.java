@@ -145,7 +145,10 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 				EcoreUtil2.resolveLazyCrossReferences(context.getFakeResource(), CancelIndicator.NullImpl);
 				if (!context.getFakeResource().getParseResult().hasSyntaxErrors() && context.getFakeResource().getErrors().size() == 0) {
 					EObject xtextObject = context.getFakeResource().getParseResult().getRootASTElement();
-					result.add(DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject));
+					ICommand cmd = DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject);
+					if (cmd != null) {
+						result.add(DefaultXtextDirectEditorConfiguration.this.getParseCommand(semanticObject, xtextObject));
+					}
 				} else {
 					result.add(createInvalidStringCommand(newString, semanticObject));
 				}
@@ -179,6 +182,9 @@ public abstract class DefaultXtextDirectEditorConfiguration extends DefaultDirec
 		if (semanticObject instanceof Element) {
 			String textualRepresentation = InvalidStringUtil.getTextualRepresentation((Element) semanticObject);
 			if (textualRepresentation != null) {
+				// register invalid string adapter. If we edit existing models, the invalid string may exist
+				// although we have not created the invalid string in this session.
+				registerInvalidStringAdapter(semanticObject);
 				return textualRepresentation;
 			}
 		}
