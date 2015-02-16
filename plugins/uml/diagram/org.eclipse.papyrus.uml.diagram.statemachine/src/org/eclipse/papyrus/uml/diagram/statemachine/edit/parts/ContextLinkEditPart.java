@@ -16,7 +16,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomContextLinkFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
@@ -25,7 +25,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.ContextLinkIte
 /**
  * @generated
  */
-public class ContextLinkEditPart extends ConnectionEditPart implements ITreeBranchEditPart {
+public class ContextLinkEditPart extends UMLConnectionNodeEditPart implements ITreeBranchEditPart {
 
 	/**
 	 * @generated

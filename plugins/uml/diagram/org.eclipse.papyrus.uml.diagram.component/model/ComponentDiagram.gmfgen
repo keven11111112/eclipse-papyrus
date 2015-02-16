@@ -3353,7 +3353,7 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Label in charge to display applied stereotypes on links"
-        genView="/0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13 /0/@diagram/@links.0 /0/@diagram/@links.1"
+        genView="/0/@diagram/@links.2 /0/@diagram/@links.3 /0/@diagram/@links.4 /0/@diagram/@links.5 /0/@diagram/@links.6 /0/@diagram/@links.10 /0/@diagram/@links.11 /0/@diagram/@links.13 /0/@diagram/@links.0 /0/@diagram/@links.1 /0/@diagram/@links.9"
         name="ExtendedUMLLinks"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart"/>
     <extensionNodes
