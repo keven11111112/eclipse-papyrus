@@ -35,6 +35,7 @@ import org.eclipse.papyrus.uml.diagram.common.parser.OperationLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.ReceptionLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.SlotLabelParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 /**
@@ -74,7 +75,8 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_SOURCE_MULTIPLICITY_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_ROLE_ID, new AssociationEndLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_ASSOCIATION_TARGET_MULTIPLICITY_ID, new AssociationEndLabelParser());
-
+		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_APPLIEDSTEREOTYPE_ID, new AppliedStereotypeParser());
+		
 		graphicalHintToParser.put(ElementTypes.INSTANCE_SPECIFICATION_SLOT_CLN.getSemanticHint(), new SlotLabelParser());
 
 		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, new PropertyLabelParser());
