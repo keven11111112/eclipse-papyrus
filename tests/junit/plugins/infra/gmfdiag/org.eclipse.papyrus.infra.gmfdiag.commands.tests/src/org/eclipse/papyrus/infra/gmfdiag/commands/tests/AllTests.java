@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +8,12 @@
  *
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
+ *  Christian W. Damus - bug 459746
  */
 package org.eclipse.papyrus.infra.gmfdiag.commands.tests;
 
 import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStackTest;
+import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStackTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -22,8 +24,8 @@ import org.junit.runners.Suite.SuiteClasses;
  */
 @RunWith(Suite.class)
 @SuiteClasses({
-// {oep.commands}
-NestingNotifyingWorkspaceCommandStackTest.class })
+		// {oep.commands}
+		NotifyingWorkspaceCommandStackTest.class, NestingNotifyingWorkspaceCommandStackTest.class })
 public class AllTests {
 
 }

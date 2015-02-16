@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos, CEA, and others.
+ * Copyright (c) 2011, 2015 Atos, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -14,6 +14,7 @@
  *  Christian W. Damus (CEA) - bug 430648
  *  Christian W. Damus (CEA) - bug 431023
  *  Christian W. Damus (CEA) - bug 384169
+ *  Christian W. Damus - bug 459746
  *
  *****************************************************************************/
 package org.eclipse.papyrus.commands;
@@ -628,10 +629,8 @@ public class NotifyingWorkspaceCommandStack extends AbstractTransactionalCommand
 		// => so we have to implement the isSaveNeeded method here.
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if (nextUndoableOperation == null) {
-			// this is the last undoable operation. But the document might have been save
-			// CAVEAT: will trigger 410310, if the model has been saved before => use superclass method in this case.
-			// return savedContext != null;
-			return super.isSaveNeeded();
+			// this is the last undoable operation. But the document might have been saved at some operation now on the redo stack
+			return savedContext != null;
 		}
 		return savedContext != null ? !nextUndoableOperation.hasContext(getSavedContext()) && isDirty(history.getUndoHistory(getDefaultUndoContext()), history.getRedoHistory(getDefaultUndoContext()), history.getUndoOperation(savedContext))
 				: anyDirtying(history.getUndoHistory(getDefaultUndoContext()));
@@ -655,6 +654,8 @@ public class NotifyingWorkspaceCommandStack extends AbstractTransactionalCommand
 		}
 		IUndoableOperation nextUndoableOperation = history.getUndoOperation(getDefaultUndoContext());
 		if (nextUndoableOperation == null) {
+			// We no longer have any operation that was saved
+			savedContext = null;
 			return;
 		}
 		nextUndoableOperation.addContext(getSavedContext());
