@@ -23,11 +23,13 @@ public class Messages extends NLS {
 	public static String TransformationSelectionPage_Name;
 	public static String TransformationSelectionPage_Title;
 	public static String TransformationSelectionPage_Description;
+	public static String FileDialogTitle;
 	public static String TransformationConfigPage_Name;
 	public static String TransformationConfigPage_Title;
 	public static String TransformationConfigPage_Description;
 	public static String Button_SelectAll;
 	public static String Button_DeselectAll;
+	public static String Button_FileSystemSelection;
 	public static String MultipleStringFileEditor_2;
 	public static String WrongFileType;
 
