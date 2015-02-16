@@ -20,5 +20,6 @@ public class Testing {
 		args2[0]=new String("generate");
 		args2[1]=new String("../src/test/resources/models/extlibrary/extlibrary.genmodel");
 		myG.run(args2);
+		System.out.println("jhj");
 	} 
 }
