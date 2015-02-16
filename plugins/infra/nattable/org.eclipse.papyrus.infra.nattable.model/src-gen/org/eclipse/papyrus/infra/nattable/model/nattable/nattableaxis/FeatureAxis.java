@@ -26,7 +26,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration
+ * </em>}</li>
  * </ul>
  * </p>
  *
@@ -35,6 +36,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.F
  * @generated
  */
 public interface FeatureAxis extends IAxis {
+
 	/**
 	 * Returns the value of the '<em><b>Local Label Configuration</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -54,15 +56,15 @@ public interface FeatureAxis extends IAxis {
 	FeatureLabelProviderConfiguration getLocalLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration
+	 * <em>Local Label Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Local Label Configuration</em>' containment reference.
+	 *        the new value of the '<em>Local Label Configuration</em>' containment reference.
 	 * @see #getLocalLabelConfiguration()
 	 * @generated
 	 */
 	void setLocalLabelConfiguration(FeatureLabelProviderConfiguration value);
-
 } // FeatureAxis

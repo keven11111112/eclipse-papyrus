@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValueStyle {
+
 	/**
 	 * The cached value of the '{@link #getIntListValue() <em>Int List Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -74,7 +75,7 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 */
 	@Override
 	public EList<Integer> getIntListValue() {
-		if (intListValue == null) {
+		if(intListValue == null) {
 			intListValue = new EDataTypeEList<Integer>(Integer.class, this, NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE);
 		}
 		return intListValue;
@@ -88,7 +89,7 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
 			return getIntListValue();
 		}
@@ -104,10 +105,10 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
 			getIntListValue().clear();
-			getIntListValue().addAll((Collection<? extends Integer>) newValue);
+			getIntListValue().addAll((Collection<? extends Integer>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,7 +122,7 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
 			getIntListValue().clear();
 			return;
@@ -137,7 +138,7 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.INT_LIST_VALUE_STYLE__INT_LIST_VALUE:
 			return intListValue != null && !intListValue.isEmpty();
 		}
@@ -152,15 +153,13 @@ public class IntListValueStyleImpl extends NamedStyleImpl implements IntListValu
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (intListValue: "); //$NON-NLS-1$
 		result.append(intListValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // IntListValueStyleImpl

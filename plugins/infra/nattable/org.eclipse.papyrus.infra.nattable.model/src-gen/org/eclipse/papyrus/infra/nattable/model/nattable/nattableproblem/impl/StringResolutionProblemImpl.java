@@ -29,14 +29,17 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getValueAsString <em>Value As String</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getUnresolvedString <em>Unresolved String</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getValueAsString <em>Value As String
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl#getUnresolvedString <em>Unresolved
+ * String</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class StringResolutionProblemImpl extends ProblemImpl implements StringResolutionProblem {
+
 	/**
 	 * The default value of the '{@link #getValueAsString() <em>Value As String</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -112,7 +115,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	public void setValueAsString(String newValueAsString) {
 		String oldValueAsString = valueAsString;
 		valueAsString = newValueAsString;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING, oldValueAsString, valueAsString));
 		}
 	}
@@ -125,7 +128,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 */
 	@Override
 	public EList<String> getUnresolvedString() {
-		if (unresolvedString == null) {
+		if(unresolvedString == null) {
 			unresolvedString = new EDataTypeUniqueEList<String>(String.class, this, NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING);
 		}
 		return unresolvedString;
@@ -139,7 +142,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
 			return getValueAsString();
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
@@ -157,13 +160,13 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
-			setValueAsString((String) newValue);
+			setValueAsString((String)newValue);
 			return;
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
 			getUnresolvedString().clear();
-			getUnresolvedString().addAll((Collection<? extends String>) newValue);
+			getUnresolvedString().addAll((Collection<? extends String>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -177,7 +180,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
 			setValueAsString(VALUE_AS_STRING_EDEFAULT);
 			return;
@@ -196,7 +199,7 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING:
 			return VALUE_AS_STRING_EDEFAULT == null ? valueAsString != null : !VALUE_AS_STRING_EDEFAULT.equals(valueAsString);
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING:
@@ -213,10 +216,9 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (valueAsString: "); //$NON-NLS-1$
 		result.append(valueAsString);
@@ -225,5 +227,4 @@ public class StringResolutionProblemImpl extends ProblemImpl implements StringRe
 		result.append(')');
 		return result.toString();
 	}
-
 } // StringResolutionProblemImpl

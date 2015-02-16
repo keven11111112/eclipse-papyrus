@@ -35,7 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.p
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.Table} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class TableItemProvider extends TableNamedElementItemProvider {
@@ -43,7 +43,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public TableItemProvider(AdapterFactory adapterFactory) {
@@ -54,7 +54,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +77,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Context feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addContextPropertyDescriptor(Object object) {
@@ -100,7 +100,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Owner feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addOwnerPropertyDescriptor(Object object) {
@@ -123,7 +123,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Prototype feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addPrototypePropertyDescriptor(Object object) {
@@ -146,7 +146,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Table Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addTableConfigurationPropertyDescriptor(Object object) {
@@ -169,7 +169,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Invert Axis feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addInvertAxisPropertyDescriptor(Object object) {
@@ -192,7 +192,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Current Row Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addCurrentRowAxisProviderPropertyDescriptor(Object object) {
@@ -215,7 +215,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This adds a property descriptor for the Current Column Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addCurrentColumnAxisProviderPropertyDescriptor(Object object) {
@@ -239,7 +239,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -258,7 +258,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -273,7 +273,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This returns Table.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -285,7 +285,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -302,7 +302,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -329,7 +329,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -376,7 +376,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -401,7 +401,7 @@ public class TableItemProvider extends TableNamedElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

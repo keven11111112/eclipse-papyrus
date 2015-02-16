@@ -74,7 +74,7 @@ public class EMFEObjectHeaderLabelProvider extends AbstractNattableCellLabelProv
 			conf = getLabelConfiguration((LabelProviderCellContextElementWrapper) element);
 		}
 		if (conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration) conf).isDisplayLabel()) {
-			return "";
+			return ""; //$NON-NLS-1$
 		}
 		return serv.getLabelProvider(object).getText(object);
 	}

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * @generated
  */
 public class NattableconfigurationValidator extends EObjectValidator {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -43,7 +44,8 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	public static final NattableconfigurationValidator INSTANCE = new NattableconfigurationValidator();
 
 	/**
-	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
+	 * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -103,13 +105,13 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 */
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		switch (classifierID) {
+		switch(classifierID) {
 		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT:
-			return validateTableNamedElement((TableNamedElement) value, diagnostics, context);
+			return validateTableNamedElement((TableNamedElement)value, diagnostics, context);
 		case NattableconfigurationPackage.TABLE_CONFIGURATION:
-			return validateTableConfiguration((TableConfiguration) value, diagnostics, context);
+			return validateTableConfiguration((TableConfiguration)value, diagnostics, context);
 		case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
-			return validateCellEditorDeclaration((CellEditorDeclaration) value, diagnostics, context);
+			return validateCellEditorDeclaration((CellEditorDeclaration)value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -122,32 +124,32 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableNamedElement(TableNamedElement tableNamedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(tableNamedElement, diagnostics, context)) {
+		if(!validate_NoCircularContainment(tableNamedElement, diagnostics, context)) {
 			return false;
 		}
 		boolean result = validate_EveryMultiplicityConforms(tableNamedElement, diagnostics, context);
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryDataValueConforms(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryReferenceIsContained(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryBidirectionalReferenceIsPaired(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryProxyResolves(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_UniqueID(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryKeyUnique(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryMapEntryUnique(tableNamedElement, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableNamedElement_nonEmptyName(tableNamedElement, diagnostics, context);
 		}
 		return result;
@@ -170,15 +172,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableNamedElement_nonEmptyName(TableNamedElement tableNamedElement, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_NAMED_ELEMENT,
-				tableNamedElement,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"nonEmptyName", //$NON-NLS-1$
-				TABLE_NAMED_ELEMENT__NON_EMPTY_NAME__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_NAMED_ELEMENT, tableNamedElement, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"nonEmptyName", //$NON-NLS-1$
+			TABLE_NAMED_ELEMENT__NON_EMPTY_NAME__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -188,47 +184,47 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(tableConfiguration, diagnostics, context)) {
+		if(!validate_NoCircularContainment(tableConfiguration, diagnostics, context)) {
 			return false;
 		}
 		boolean result = validate_EveryMultiplicityConforms(tableConfiguration, diagnostics, context);
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryDataValueConforms(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryReferenceIsContained(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryBidirectionalReferenceIsPaired(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryProxyResolves(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_UniqueID(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryKeyUnique(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryMapEntryUnique(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableNamedElement_nonEmptyName(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableConfiguration_defaultRowAxisProviderExistsInCollection(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableConfiguration_defaultColumnAxisProviderExistsInCollection(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableConfiguration_defaultAxisProvidersTypes(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableConfiguration_typeNonNullNonEmpty(tableConfiguration, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTableConfiguration_iconPath(tableConfiguration, diagnostics, context);
 		}
 		return result;
@@ -251,15 +247,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration_defaultRowAxisProviderExistsInCollection(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION,
-				tableConfiguration,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"defaultRowAxisProviderExistsInCollection", //$NON-NLS-1$
-				TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER_EXISTS_IN_COLLECTION__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION, tableConfiguration, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"defaultRowAxisProviderExistsInCollection", //$NON-NLS-1$
+			TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER_EXISTS_IN_COLLECTION__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -279,15 +269,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration_defaultColumnAxisProviderExistsInCollection(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION,
-				tableConfiguration,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"defaultColumnAxisProviderExistsInCollection", //$NON-NLS-1$
-				TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER_EXISTS_IN_COLLECTION__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION, tableConfiguration, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"defaultColumnAxisProviderExistsInCollection", //$NON-NLS-1$
+			TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER_EXISTS_IN_COLLECTION__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -307,15 +291,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration_defaultAxisProvidersTypes(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION,
-				tableConfiguration,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"defaultAxisProvidersTypes", //$NON-NLS-1$
-				TABLE_CONFIGURATION__DEFAULT_AXIS_PROVIDERS_TYPES__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION, tableConfiguration, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"defaultAxisProvidersTypes", //$NON-NLS-1$
+			TABLE_CONFIGURATION__DEFAULT_AXIS_PROVIDERS_TYPES__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -335,15 +313,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration_typeNonNullNonEmpty(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION,
-				tableConfiguration,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"typeNonNullNonEmpty", //$NON-NLS-1$
-				TABLE_CONFIGURATION__TYPE_NON_NULL_NON_EMPTY__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION, tableConfiguration, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"typeNonNullNonEmpty", //$NON-NLS-1$
+			TABLE_CONFIGURATION__TYPE_NON_NULL_NON_EMPTY__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -363,15 +335,9 @@ public class NattableconfigurationValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTableConfiguration_iconPath(TableConfiguration tableConfiguration, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION,
-				tableConfiguration,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"iconPath", //$NON-NLS-1$
-				TABLE_CONFIGURATION__ICON_PATH__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattableconfigurationPackage.Literals.TABLE_CONFIGURATION, tableConfiguration, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"iconPath", //$NON-NLS-1$
+			TABLE_CONFIGURATION__ICON_PATH__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -398,5 +364,4 @@ public class NattableconfigurationValidator extends EObjectValidator {
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
 	}
-
 } // NattableconfigurationValidator

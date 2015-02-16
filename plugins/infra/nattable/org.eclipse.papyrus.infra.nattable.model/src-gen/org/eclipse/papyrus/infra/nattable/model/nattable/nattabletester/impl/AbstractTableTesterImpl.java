@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * @generated
  */
 public abstract class AbstractTableTesterImpl extends StyledElementImpl implements AbstractTableTester {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -72,11 +73,10 @@ public abstract class AbstractTableTesterImpl extends StyledElementImpl implemen
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
+		switch(operationID) {
 		case NattabletesterPackage.ABSTRACT_TABLE_TESTER___GET_TESTER:
 			return getTester();
 		}
 		return super.eInvoke(operationID, arguments);
 	}
-
 } // AbstractTableTesterImpl

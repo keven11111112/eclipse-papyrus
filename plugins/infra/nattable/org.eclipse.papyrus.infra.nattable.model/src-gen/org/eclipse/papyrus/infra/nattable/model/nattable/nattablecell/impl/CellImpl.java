@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
  * @generated
  */
 public class CellImpl extends EModelElementImpl implements Cell {
+
 	/**
 	 * The cached value of the '{@link #getColumnWrapper() <em>Column Wrapper</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -118,9 +119,9 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	public NotificationChain basicSetColumnWrapper(ICellAxisWrapper newColumnWrapper, NotificationChain msgs) {
 		ICellAxisWrapper oldColumnWrapper = columnWrapper;
 		columnWrapper = newColumnWrapper;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablecellPackage.CELL__COLUMN_WRAPPER, oldColumnWrapper, newColumnWrapper);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -137,20 +138,19 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public void setColumnWrapper(ICellAxisWrapper newColumnWrapper) {
-		if (newColumnWrapper != columnWrapper) {
+		if(newColumnWrapper != columnWrapper) {
 			NotificationChain msgs = null;
-			if (columnWrapper != null) {
-				msgs = ((InternalEObject) columnWrapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__COLUMN_WRAPPER, null, msgs);
+			if(columnWrapper != null) {
+				msgs = ((InternalEObject)columnWrapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__COLUMN_WRAPPER, null, msgs);
 			}
-			if (newColumnWrapper != null) {
-				msgs = ((InternalEObject) newColumnWrapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__COLUMN_WRAPPER, null, msgs);
+			if(newColumnWrapper != null) {
+				msgs = ((InternalEObject)newColumnWrapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__COLUMN_WRAPPER, null, msgs);
 			}
 			msgs = basicSetColumnWrapper(newColumnWrapper, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablecellPackage.CELL__COLUMN_WRAPPER, newColumnWrapper, newColumnWrapper));
 		}
 	}
@@ -175,9 +175,9 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	public NotificationChain basicSetRowWrapper(ICellAxisWrapper newRowWrapper, NotificationChain msgs) {
 		ICellAxisWrapper oldRowWrapper = rowWrapper;
 		rowWrapper = newRowWrapper;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattablecellPackage.CELL__ROW_WRAPPER, oldRowWrapper, newRowWrapper);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -194,20 +194,19 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public void setRowWrapper(ICellAxisWrapper newRowWrapper) {
-		if (newRowWrapper != rowWrapper) {
+		if(newRowWrapper != rowWrapper) {
 			NotificationChain msgs = null;
-			if (rowWrapper != null) {
-				msgs = ((InternalEObject) rowWrapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__ROW_WRAPPER, null, msgs);
+			if(rowWrapper != null) {
+				msgs = ((InternalEObject)rowWrapper).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__ROW_WRAPPER, null, msgs);
 			}
-			if (newRowWrapper != null) {
-				msgs = ((InternalEObject) newRowWrapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__ROW_WRAPPER, null, msgs);
+			if(newRowWrapper != null) {
+				msgs = ((InternalEObject)newRowWrapper).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattablecellPackage.CELL__ROW_WRAPPER, null, msgs);
 			}
 			msgs = basicSetRowWrapper(newRowWrapper, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablecellPackage.CELL__ROW_WRAPPER, newRowWrapper, newRowWrapper));
 		}
 	}
@@ -220,7 +219,7 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public EList<Problem> getProblems() {
-		if (problems == null) {
+		if(problems == null) {
 			problems = new EObjectContainmentEList<Problem>(Problem.class, this, NattablecellPackage.CELL__PROBLEMS);
 		}
 		return problems;
@@ -234,13 +233,13 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.CELL__COLUMN_WRAPPER:
 			return basicSetColumnWrapper(null, msgs);
 		case NattablecellPackage.CELL__ROW_WRAPPER:
 			return basicSetRowWrapper(null, msgs);
 		case NattablecellPackage.CELL__PROBLEMS:
-			return ((InternalEList<?>) getProblems()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getProblems()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -253,7 +252,7 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.CELL__COLUMN_WRAPPER:
 			return getColumnWrapper();
 		case NattablecellPackage.CELL__ROW_WRAPPER:
@@ -273,16 +272,16 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.CELL__COLUMN_WRAPPER:
-			setColumnWrapper((ICellAxisWrapper) newValue);
+			setColumnWrapper((ICellAxisWrapper)newValue);
 			return;
 		case NattablecellPackage.CELL__ROW_WRAPPER:
-			setRowWrapper((ICellAxisWrapper) newValue);
+			setRowWrapper((ICellAxisWrapper)newValue);
 			return;
 		case NattablecellPackage.CELL__PROBLEMS:
 			getProblems().clear();
-			getProblems().addAll((Collection<? extends Problem>) newValue);
+			getProblems().addAll((Collection<? extends Problem>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -296,12 +295,12 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.CELL__COLUMN_WRAPPER:
-			setColumnWrapper((ICellAxisWrapper) null);
+			setColumnWrapper((ICellAxisWrapper)null);
 			return;
 		case NattablecellPackage.CELL__ROW_WRAPPER:
-			setRowWrapper((ICellAxisWrapper) null);
+			setRowWrapper((ICellAxisWrapper)null);
 			return;
 		case NattablecellPackage.CELL__PROBLEMS:
 			getProblems().clear();
@@ -318,7 +317,7 @@ public class CellImpl extends EModelElementImpl implements Cell {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.CELL__COLUMN_WRAPPER:
 			return columnWrapper != null;
 		case NattablecellPackage.CELL__ROW_WRAPPER:
@@ -328,5 +327,4 @@ public class CellImpl extends EModelElementImpl implements Cell {
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // CellImpl

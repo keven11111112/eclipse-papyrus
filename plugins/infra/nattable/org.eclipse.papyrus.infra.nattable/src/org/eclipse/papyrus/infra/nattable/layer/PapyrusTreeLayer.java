@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.nattable.layer;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.NatTable;
 import org.eclipse.nebula.widgets.nattable.command.ILayerCommand;
 import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
@@ -34,10 +35,10 @@ import org.eclipse.nebula.widgets.nattable.tree.config.DefaultTreeLayerConfigura
 import org.eclipse.nebula.widgets.nattable.tree.painter.IndentedTreeImagePainter;
 import org.eclipse.nebula.widgets.nattable.ui.binding.UiBindingRegistry;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusTreeLayerConfiguration;
-import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.StyleUtils;
@@ -55,7 +56,7 @@ public class PapyrusTreeLayer extends TreeLayer {
 	/**
 	 * the table manager
 	 */
-	private INattableModelManager tableManager;
+	private ITreeNattableModelManager tableManager;
 
 	/**
 	 * the managed tree list
@@ -124,8 +125,10 @@ public class PapyrusTreeLayer extends TreeLayer {
 	@Override
 	public void configure(ConfigRegistry configRegistry, UiBindingRegistry uiBindingRegistry) {
 		super.configure(configRegistry, uiBindingRegistry);
-		this.tableManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-		this.treeList = (TreeList<?>) this.tableManager.getRowElementsList();
+		Object tmp = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		Assert.isTrue(tmp instanceof ITreeNattableModelManager);
+		this.tableManager = (ITreeNattableModelManager) tmp;
+		this.treeList = (TreeList<?>) this.tableManager.getTreeList();
 		addListListener();
 	}
 
@@ -168,7 +171,7 @@ public class PapyrusTreeLayer extends TreeLayer {
 
 	/**
 	 * This method do the stuff for insert event
-	 *
+	 * 
 	 * @param index
 	 *            the modified index
 	 * @param natTable
@@ -210,7 +213,7 @@ public class PapyrusTreeLayer extends TreeLayer {
 
 	/**
 	 * This method do the stuff for update event
-	 *
+	 * 
 	 * @param index
 	 *            the modified index
 	 * @param natTable
@@ -224,7 +227,7 @@ public class PapyrusTreeLayer extends TreeLayer {
 
 	/**
 	 * This method do the stuff for delete event
-	 *
+	 * 
 	 * @param index
 	 *            the modified index
 	 * @param natTable
@@ -366,7 +369,7 @@ public class PapyrusTreeLayer extends TreeLayer {
 			// if categories are hidden for this depth, we need to hide them and to expand their children
 			if (!(curr.getElement() instanceof TreeFillingConfiguration) && !curr.getChildren().isEmpty()) {
 				List<Integer> hidden = StyleUtils.getHiddenDepths(tableManager);
-				int deth = ((NattableModelManager) tableManager).getSemanticDepth(curr) + 1;
+				int deth = ((ITreeNattableModelManager) tableManager).getSemanticDepth(curr) + 1;
 				if (hidden.contains(Integer.valueOf(deth))) {
 					for (ITreeItemAxis child : curr.getChildren()) {
 						int childIndex = tableManager.getRowElementsList().indexOf(child);

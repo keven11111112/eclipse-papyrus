@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvider {
@@ -37,7 +37,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public MasterObjectAxisProviderItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -65,7 +65,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * This adds a property descriptor for the Disconnect Slave feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisconnectSlavePropertyDescriptor(Object object) {
@@ -88,7 +88,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * This returns MasterObjectAxisProvider.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -100,7 +100,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -117,7 +117,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -137,7 +137,7 @@ public class MasterObjectAxisProviderItemProvider extends AxisProviderItemProvid
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

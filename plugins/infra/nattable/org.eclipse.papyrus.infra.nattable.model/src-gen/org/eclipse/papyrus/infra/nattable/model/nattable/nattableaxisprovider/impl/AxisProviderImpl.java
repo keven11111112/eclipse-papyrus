@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.Na
  * @generated
  */
 public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implements AxisProvider {
+
 	/**
 	 * The cached value of the '{@link #getAxis() <em>Axis</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -78,7 +79,7 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	 */
 	@Override
 	public EList<IAxis> getAxis() {
-		if (axis == null) {
+		if(axis == null) {
 			axis = new EObjectContainmentEList<IAxis>(IAxis.class, this, NattableaxisproviderPackage.AXIS_PROVIDER__AXIS);
 		}
 		return axis;
@@ -92,9 +93,9 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
-			return ((InternalEList<?>) getAxis()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getAxis()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -107,7 +108,7 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
 			return getAxis();
 		}
@@ -123,10 +124,10 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
 			getAxis().clear();
-			getAxis().addAll((Collection<? extends IAxis>) newValue);
+			getAxis().addAll((Collection<? extends IAxis>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +141,7 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
 			getAxis().clear();
 			return;
@@ -156,11 +157,10 @@ public abstract class AxisProviderImpl extends AbstractAxisProviderImpl implemen
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisproviderPackage.AXIS_PROVIDER__AXIS:
 			return axis != null && !axis.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // AxisProviderImpl

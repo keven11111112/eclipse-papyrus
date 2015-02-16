@@ -38,6 +38,7 @@ import org.eclipse.emf.ecore.EcorePackage;
  * @generated
  */
 public interface NattablestylePackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -126,7 +127,8 @@ public interface NattablestylePackage extends EPackage {
 	int STYLE_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl <em>Named Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl <em>Named Style</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -187,7 +189,8 @@ public interface NattablestylePackage extends EPackage {
 	int NAMED_STYLE_OPERATION_COUNT = STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl <em>Font Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl <em>Font Style</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -308,7 +311,8 @@ public interface NattablestylePackage extends EPackage {
 	int FONT_STYLE_OPERATION_COUNT = STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl <em>Cell Text Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl
+	 * <em>Cell Text Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -369,7 +373,8 @@ public interface NattablestylePackage extends EPackage {
 	int CELL_TEXT_STYLE_OPERATION_COUNT = STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl <em>Int Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl
+	 * <em>Int Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -440,7 +445,8 @@ public interface NattablestylePackage extends EPackage {
 	int INT_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl <em>Int List Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl
+	 * <em>Int List Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -511,7 +517,8 @@ public interface NattablestylePackage extends EPackage {
 	int INT_LIST_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanValueStyleImpl <em>Boolean Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanValueStyleImpl
+	 * <em>Boolean Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -582,7 +589,8 @@ public interface NattablestylePackage extends EPackage {
 	int BOOLEAN_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl <em>Boolean List Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl
+	 * <em>Boolean List Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -653,7 +661,8 @@ public interface NattablestylePackage extends EPackage {
 	int BOOLEAN_LIST_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleValueStyleImpl <em>Double Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleValueStyleImpl
+	 * <em>Double Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -724,7 +733,8 @@ public interface NattablestylePackage extends EPackage {
 	int DOUBLE_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl <em>Double List Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl
+	 * <em>Double List Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -795,7 +805,8 @@ public interface NattablestylePackage extends EPackage {
 	int DOUBLE_LIST_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl <em>String Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl
+	 * <em>String Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -866,7 +877,8 @@ public interface NattablestylePackage extends EPackage {
 	int STRING_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl <em>String List Value Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl
+	 * <em>String List Value Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -937,7 +949,8 @@ public interface NattablestylePackage extends EPackage {
 	int STRING_LIST_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl <em>Styled Element</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl
+	 * <em>Styled Element</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1028,7 +1041,8 @@ public interface NattablestylePackage extends EPackage {
 	int STYLED_ELEMENT_OPERATION_COUNT = EcorePackage.EMODEL_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl <em>Table Display Style</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl
+	 * <em>Table Display Style</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1089,7 +1103,152 @@ public interface NattablestylePackage extends EPackage {
 	int TABLE_DISPLAY_STYLE_OPERATION_COUNT = STYLE_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment <em>Cell Text Alignment</em>}' enum.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl
+	 * <em>EObject Value Style</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getEObjectValueStyle()
+	 * @generated
+	 */
+	int EOBJECT_VALUE_STYLE = 14;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE__EANNOTATIONS = NAMED_STYLE__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE__NAME = NAMED_STYLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>EObject Value</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE__EOBJECT_VALUE = NAMED_STYLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EObject Value Style</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE_FEATURE_COUNT = NAMED_STYLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE___GET_EANNOTATION__STRING = NAMED_STYLE___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>EObject Value Style</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl
+	 * <em>EObject List Value Style</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getEObjectListValueStyle()
+	 * @generated
+	 */
+	int EOBJECT_LIST_VALUE_STYLE = 15;
+
+	/**
+	 * The feature id for the '<em><b>EAnnotations</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE__EANNOTATIONS = NAMED_STYLE__EANNOTATIONS;
+
+	/**
+	 * The feature id for the '<em><b>Name</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE__NAME = NAMED_STYLE__NAME;
+
+	/**
+	 * The feature id for the '<em><b>EObject Value</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE = NAMED_STYLE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>EObject List Value Style</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE_FEATURE_COUNT = NAMED_STYLE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Get EAnnotation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE___GET_EANNOTATION__STRING = NAMED_STYLE___GET_EANNOTATION__STRING;
+
+	/**
+	 * The number of operations of the '<em>EObject List Value Style</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int EOBJECT_LIST_VALUE_STYLE_OPERATION_COUNT = NAMED_STYLE_OPERATION_COUNT + 0;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
+	 * <em>Cell Text Alignment</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1097,7 +1256,7 @@ public interface NattablestylePackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getCellTextAlignment()
 	 * @generated
 	 */
-	int CELL_TEXT_ALIGNMENT = 14;
+	int CELL_TEXT_ALIGNMENT = 16;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle <em>Display Style</em>}' enum.
@@ -1108,8 +1267,7 @@ public interface NattablestylePackage extends EPackage {
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getDisplayStyle()
 	 * @generated
 	 */
-	int DISPLAY_STYLE = 15;
-
+	int DISPLAY_STYLE = 17;
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style <em>Style</em>}'.
@@ -1134,7 +1292,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getNamedStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle#getName <em>Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle#getName
+	 * <em>Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1157,7 +1316,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getFontStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor
+	 * <em>Font Color</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1169,7 +1329,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_FontColor();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName
+	 * <em>Font Name</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1181,7 +1342,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_FontName();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight
+	 * <em>Font Height</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1193,7 +1355,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_FontHeight();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isBold <em>Bold</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isBold
+	 * <em>Bold</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1205,7 +1368,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_Bold();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isItalic <em>Italic</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isItalic
+	 * <em>Italic</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1217,7 +1381,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_Italic();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline
+	 * <em>Underline</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1229,7 +1394,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_Underline();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough <em>Strike Through</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough
+	 * <em>Strike Through</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1241,7 +1407,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getFontStyle_StrikeThrough();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle <em>Cell Text Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle
+	 * <em>Cell Text Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1252,7 +1419,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getCellTextStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment
+	 * <em>Alignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1264,7 +1432,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getCellTextStyle_Alignment();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle <em>Int Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle
+	 * <em>Int Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1275,7 +1444,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getIntValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue
+	 * <em>Int Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1287,7 +1457,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getIntValueStyle_IntValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle <em>Int List Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle
+	 * <em>Int List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1298,7 +1469,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getIntListValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle#getIntListValue <em>Int List Value</em>}'.
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle#getIntListValue <em>Int List Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1310,7 +1482,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getIntListValueStyle_IntListValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle <em>Boolean Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle
+	 * <em>Boolean Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1321,7 +1494,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getBooleanValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle#isBooleanValue <em>Boolean Value</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle#isBooleanValue <em>Boolean Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1333,7 +1507,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getBooleanValueStyle_BooleanValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle <em>Boolean List Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle
+	 * <em>Boolean List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1344,7 +1519,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getBooleanListValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle#getBooleanListValue <em>Boolean List Value</em>}'.
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle#getBooleanListValue <em>Boolean List Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1356,7 +1532,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getBooleanListValueStyle_BooleanListValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle <em>Double Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle
+	 * <em>Double Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1367,7 +1544,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getDoubleValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle#getDoubleValue <em>Double Value</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle#getDoubleValue <em>Double Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1379,7 +1557,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getDoubleValueStyle_DoubleValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle <em>Double List Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle
+	 * <em>Double List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1390,7 +1569,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getDoubleListValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle#getDoubleListValue <em>Double List Value</em>}'.
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle#getDoubleListValue <em>Double List Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1402,7 +1582,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getDoubleListValueStyle_DoubleListValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle <em>String Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle
+	 * <em>String Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1413,7 +1594,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getStringValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1425,7 +1607,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getStringValueStyle_StringValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle <em>String List Value Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle
+	 * <em>String List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1436,7 +1619,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getStringListValueStyle();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle#getStringListValue <em>String List Value</em>}'.
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle#getStringListValue <em>String List Value</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1448,7 +1632,8 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getStringListValueStyle_StringListValue();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
+	 * <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1459,7 +1644,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getStyledElement();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyles <em>Styles</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyles <em>Styles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1471,18 +1657,23 @@ public interface NattablestylePackage extends EPackage {
 	EReference getStyledElement_Styles();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getNamedStyle(org.eclipse.emf.ecore.EClass, java.lang.String) <em>Get Named Style</em>}' operation.
+	 * Returns the meta object for the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getNamedStyle(org.eclipse.emf.ecore.EClass, java.lang.String)
+	 * <em>Get Named Style</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @return the meta object for the '<em>Get Named Style</em>' operation.
-	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getNamedStyle(org.eclipse.emf.ecore.EClass, java.lang.String)
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getNamedStyle(org.eclipse.emf.ecore.EClass,
+	 *      java.lang.String)
 	 * @generated
 	 */
 	EOperation getStyledElement__GetNamedStyle__EClass_String();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyle(org.eclipse.emf.ecore.EClass) <em>Get Style</em>}' operation.
+	 * Returns the meta object for the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#getStyle(org.eclipse.emf.ecore.EClass) <em>Get Style</em>}
+	 * ' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1493,7 +1684,9 @@ public interface NattablestylePackage extends EPackage {
 	EOperation getStyledElement__GetStyle__EClass();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#createStyle(org.eclipse.emf.ecore.EClass) <em>Create Style</em>}' operation.
+	 * Returns the meta object for the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement#createStyle(org.eclipse.emf.ecore.EClass)
+	 * <em>Create Style</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1504,7 +1697,8 @@ public interface NattablestylePackage extends EPackage {
 	EOperation getStyledElement__CreateStyle__EClass();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle <em>Table Display Style</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle
+	 * <em>Table Display Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1515,7 +1709,8 @@ public interface NattablestylePackage extends EPackage {
 	EClass getTableDisplayStyle();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1527,7 +1722,58 @@ public interface NattablestylePackage extends EPackage {
 	EAttribute getTableDisplayStyle_DisplayStyle();
 
 	/**
-	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment <em>Cell Text Alignment</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle
+	 * <em>EObject Value Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>EObject Value Style</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle
+	 * @generated
+	 */
+	EClass getEObjectValueStyle();
+
+	/**
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue <em>EObject Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>EObject Value</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle#getEObjectValue()
+	 * @see #getEObjectValueStyle()
+	 * @generated
+	 */
+	EReference getEObjectValueStyle_EObjectValue();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle
+	 * <em>EObject List Value Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>EObject List Value Style</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle
+	 * @generated
+	 */
+	EClass getEObjectListValueStyle();
+
+	/**
+	 * Returns the meta object for the reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle#getEObjectValue <em>EObject Value</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>EObject Value</em>'.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle#getEObjectValue()
+	 * @see #getEObjectListValueStyle()
+	 * @generated
+	 */
+	EReference getEObjectListValueStyle_EObjectValue();
+
+	/**
+	 * Returns the meta object for enum '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
+	 * <em>Cell Text Alignment</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1573,6 +1819,7 @@ public interface NattablestylePackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style <em>Style</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -1585,7 +1832,8 @@ public interface NattablestylePackage extends EPackage {
 		EClass STYLE = eINSTANCE.getStyle();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl <em>Named Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NamedStyleImpl
+		 * <em>Named Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1605,7 +1853,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute NAMED_STYLE__NAME = eINSTANCE.getNamedStyle_Name();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl <em>Font Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.FontStyleImpl
+		 * <em>Font Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1679,7 +1928,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute FONT_STYLE__STRIKE_THROUGH = eINSTANCE.getFontStyle_StrikeThrough();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl <em>Cell Text Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.CellTextStyleImpl
+		 * <em>Cell Text Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1699,7 +1949,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute CELL_TEXT_STYLE__ALIGNMENT = eINSTANCE.getCellTextStyle_Alignment();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl <em>Int Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntValueStyleImpl
+		 * <em>Int Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1719,7 +1970,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute INT_VALUE_STYLE__INT_VALUE = eINSTANCE.getIntValueStyle_IntValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl <em>Int List Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.IntListValueStyleImpl
+		 * <em>Int List Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1739,7 +1991,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute INT_LIST_VALUE_STYLE__INT_LIST_VALUE = eINSTANCE.getIntListValueStyle_IntListValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanValueStyleImpl <em>Boolean Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanValueStyleImpl
+		 * <em>Boolean Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1759,7 +2012,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE = eINSTANCE.getBooleanValueStyle_BooleanValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl <em>Boolean List Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl
+		 * <em>Boolean List Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1779,7 +2033,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE = eINSTANCE.getBooleanListValueStyle_BooleanListValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleValueStyleImpl <em>Double Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleValueStyleImpl
+		 * <em>Double Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1799,7 +2054,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute DOUBLE_VALUE_STYLE__DOUBLE_VALUE = eINSTANCE.getDoubleValueStyle_DoubleValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl <em>Double List Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.DoubleListValueStyleImpl
+		 * <em>Double List Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1819,7 +2075,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE = eINSTANCE.getDoubleListValueStyle_DoubleListValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl <em>String Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringValueStyleImpl
+		 * <em>String Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1839,7 +2096,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute STRING_VALUE_STYLE__STRING_VALUE = eINSTANCE.getStringValueStyle_StringValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl <em>String List Value Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl
+		 * <em>String List Value Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1859,7 +2117,8 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE = eINSTANCE.getStringListValueStyle_StringListValue();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl <em>Styled Element</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StyledElementImpl
+		 * <em>Styled Element</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1906,7 +2165,8 @@ public interface NattablestylePackage extends EPackage {
 		EOperation STYLED_ELEMENT___CREATE_STYLE__ECLASS = eINSTANCE.getStyledElement__CreateStyle__EClass();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl <em>Table Display Style</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.TableDisplayStyleImpl
+		 * <em>Table Display Style</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1926,7 +2186,50 @@ public interface NattablestylePackage extends EPackage {
 		EAttribute TABLE_DISPLAY_STYLE__DISPLAY_STYLE = eINSTANCE.getTableDisplayStyle_DisplayStyle();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment <em>Cell Text Alignment</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl
+		 * <em>EObject Value Style</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectValueStyleImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getEObjectValueStyle()
+		 * @generated
+		 */
+		EClass EOBJECT_VALUE_STYLE = eINSTANCE.getEObjectValueStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>EObject Value</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference EOBJECT_VALUE_STYLE__EOBJECT_VALUE = eINSTANCE.getEObjectValueStyle_EObjectValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl
+		 * <em>EObject List Value Style</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.EObjectListValueStyleImpl
+		 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.NattablestylePackageImpl#getEObjectListValueStyle()
+		 * @generated
+		 */
+		EClass EOBJECT_LIST_VALUE_STYLE = eINSTANCE.getEObjectListValueStyle();
+
+		/**
+		 * The meta object literal for the '<em><b>EObject Value</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE = eINSTANCE.getEObjectListValueStyle_EObjectValue();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
+		 * <em>Cell Text Alignment</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1937,7 +2240,8 @@ public interface NattablestylePackage extends EPackage {
 		EEnum CELL_TEXT_ALIGNMENT = eINSTANCE.getCellTextAlignment();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle <em>Display Style</em>}' enum.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle
+		 * <em>Display Style</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1946,7 +2250,5 @@ public interface NattablestylePackage extends EPackage {
 		 * @generated
 		 */
 		EEnum DISPLAY_STYLE = eINSTANCE.getDisplayStyle();
-
 	}
-
 } // NattablestylePackage

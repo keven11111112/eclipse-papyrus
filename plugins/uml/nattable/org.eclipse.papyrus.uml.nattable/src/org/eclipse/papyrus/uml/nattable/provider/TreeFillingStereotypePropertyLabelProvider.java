@@ -42,7 +42,7 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 				ITreeItemAxis curr = (ITreeItemAxis) object;
 				Object el = curr.getElement();
 				if (el instanceof TreeFillingConfiguration) {
-					final IAxis axis =((TreeFillingConfiguration) el).getAxisUsedAsAxisProvider();
+					final IAxis axis = ((TreeFillingConfiguration) el).getAxisUsedAsAxisProvider();
 					String id = AxisUtils.getPropertyId(axis);
 					return (id != null && id.startsWith(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX));
 				}
@@ -50,7 +50,7 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 		}
 		return false;
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.provider.AbstractNattableCellLabelProvider#getLabelConfiguration(org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper)
 	 *
@@ -61,13 +61,13 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 	protected ILabelProviderConfiguration getLabelConfiguration(LabelProviderCellContextElementWrapper element) {
 		if (element instanceof ILabelProviderContextElementWrapper) {
 			final Object object = ((ILabelProviderContextElementWrapper) element).getObject();
-			if (object instanceof IAxis && ((IAxis)object).getElement() instanceof TreeFillingConfiguration) {
-				return ((TreeFillingConfiguration) ((IAxis)object).getElement()).getLabelProvider();
+			if (object instanceof IAxis && ((IAxis) object).getElement() instanceof TreeFillingConfiguration) {
+				return ((TreeFillingConfiguration) ((IAxis) object).getElement()).getLabelProvider();
 			}
 		}
 		return null;
 	}
-	
+
 	/**
 	 * 
 	 * @param wrapper
@@ -77,8 +77,8 @@ public class TreeFillingStereotypePropertyLabelProvider extends StereotypeProper
 	@Override
 	protected Object getWrappedValue(final ILabelProviderContextElementWrapper wrapper) {
 		Object value = wrapper.getObject();
-		if (value instanceof IAxis && ((IAxis)value).getElement() instanceof TreeFillingConfiguration) {
-			return ((TreeFillingConfiguration) ((IAxis)value).getElement()).getAxisUsedAsAxisProvider();
+		if (value instanceof IAxis && ((IAxis) value).getElement() instanceof TreeFillingConfiguration) {
+			return ((TreeFillingConfiguration) ((IAxis) value).getElement()).getAxisUsedAsAxisProvider();
 		}
 		return super.getWrappedValue(wrapper);
 	}

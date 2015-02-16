@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
 public class CollapseExpandActionHelper {
 
 	/**
-	 *
+	 * 
 	 * Constructor.
 	 *
 	 */
@@ -46,7 +46,7 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * This method is not in the API.
-	 *
+	 * 
 	 * @param actionId
 	 *            the id of the action to do
 	 * @param axisProvider
@@ -76,9 +76,9 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * This method does the wanted action according to the current selection of the table
-	 *
+	 * 
 	 * @param actionId
 	 *            the id of the action to do
 	 * @param axisProvider
@@ -112,9 +112,9 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * This method does the wanted action according to the @param selectedRows
-	 *
+	 * 
 	 * @param actionId
 	 *            the id of the action to do
 	 * @param selectedRows
@@ -151,9 +151,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * This method allows to expand the selected rows on 2 levels
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void expandOn2LevelsRows(List<ITreeItemAxis> axis, ITableAxisElementProvider axisProvider, NatTable natTable) {
 		List<ITreeItemAxis> toExpand = new ArrayList<ITreeItemAxis>();
@@ -180,7 +180,7 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param axis
 	 * @param axisProvider
 	 * @param natTable
@@ -197,7 +197,7 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param axis
 	 * @param axisProvider
 	 * @param natTable
@@ -209,7 +209,7 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param axis
 	 * @param axisProvider
 	 * @param natTable
@@ -226,7 +226,7 @@ public class CollapseExpandActionHelper {
 	 * @param axis
 	 *            the list of axis to collapse
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void collapseRows(List<ITreeItemAxis> axis, ITableAxisElementProvider axisProvider, NatTable natTable) {
 		for (ITreeItemAxis current : axis) {
@@ -238,9 +238,9 @@ public class CollapseExpandActionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * This method expands parents of nodes to display these nodes in the table
-	 *
+	 * 
 	 * @param axis
 	 *            a list of axis to show in the table
 	 * @param axisProvider
@@ -256,7 +256,7 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * This action expands the parents axis of the axis, in order to display it
-	 *
+	 * 
 	 * @param axis
 	 *            an axis
 	 * @param axisProvider
@@ -281,9 +281,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * this method allows to collapse the selection
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void collapseSelectedRows(ITableAxisElementProvider axisProvider, NatTable natTable) {
 		for (Entry<Integer, Object> current : getFullySelectedRows().entrySet()) {
@@ -299,9 +299,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * this method allows to expand the selection
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void expandFromSelectedRows(ITableAxisElementProvider axisProvider, NatTable natTable) {
 		for (Entry<Integer, Object> current : getFullySelectedRows().entrySet()) {
@@ -317,9 +317,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * this method allows to collapse all nodes for the selection
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void collapseAllFromSelectedRows(ITableAxisElementProvider axisProvider, NatTable natTable) {
 		for (Entry<Integer, Object> current : getFullySelectedRows().entrySet()) {
@@ -327,19 +327,19 @@ public class CollapseExpandActionHelper {
 			if (value instanceof ITreeItemAxis) {
 				ITreeItemAxis axis = (ITreeItemAxis) value;
 				if (axis.isExpanded()) {
-					collapseFullBranch(axis, axisProvider, natTable);
+					collapseFullBranch((ITreeItemAxis) axis, axisProvider, natTable);
 				}
 			}
 		}
 	}
 
 	/**
-	 *
+	 * 
 	 * @param axis
 	 *            an axis
 	 *            this method collapse all ITreeItemAxis of the branch
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void collapseFullBranch(ITreeItemAxis axis, ITableAxisElementProvider axisProvider, NatTable natTable) {
 		// NatTable nattable = this.eventData.getNatTable();
@@ -354,9 +354,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * This method allows to expand the selected rows on 2 levels
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void expandOn2LevelsSelectedRows(ITableAxisElementProvider axisProvider, NatTable natTable) {
 		List<ITreeItemAxis> toExpand = new ArrayList<ITreeItemAxis>();
@@ -397,9 +397,9 @@ public class CollapseExpandActionHelper {
 
 	/**
 	 * This method allows to expand all the sub-item of the selected items
-	 *
+	 * 
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void expandAllFromSelectedRows(ITableAxisElementProvider axisProvider, NatTable natTable) {
 		for (Entry<Integer, Object> current : getFullySelectedRows().entrySet()) {
@@ -415,7 +415,7 @@ public class CollapseExpandActionHelper {
 	 * @param axis
 	 *            the axis for which we want to expand the whole branch
 	 * @param natTable
-	 *
+	 * 
 	 */
 	private static final void expandFullBranch(ITreeItemAxis axis, ITableAxisElementProvider axisProvider, NatTable natTable) {
 		if (!axis.isExpanded() && axis.getChildren().size() > 0) {

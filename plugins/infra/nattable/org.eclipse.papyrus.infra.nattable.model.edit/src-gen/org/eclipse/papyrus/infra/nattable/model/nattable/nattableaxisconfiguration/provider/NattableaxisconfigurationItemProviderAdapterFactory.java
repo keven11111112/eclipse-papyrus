@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class NattableaxisconfigurationItemProviderAdapterFactory extends NattableaxisconfigurationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -46,7 +46,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,7 +55,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,7 +64,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -73,7 +73,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NattableaxisconfigurationItemProviderAdapterFactory() {
@@ -88,7 +88,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected AxisManagerRepresentationItemProvider axisManagerRepresentationItemProvider;
@@ -97,7 +97,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected AxisManagerConfigurationItemProvider axisManagerConfigurationItemProvider;
@@ -122,7 +122,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -138,7 +138,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected TableHeaderAxisConfigurationItemProvider tableHeaderAxisConfigurationItemProvider;
@@ -147,7 +147,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -163,7 +163,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected LocalTableHeaderAxisConfigurationItemProvider localTableHeaderAxisConfigurationItemProvider;
@@ -172,7 +172,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +188,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected FeatureAxisConfigurationItemProvider featureAxisConfigurationItemProvider;
@@ -197,7 +197,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.FeatureAxisConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -213,7 +213,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected EStructuralFeatureValueFillingConfigurationItemProvider eStructuralFeatureValueFillingConfigurationItemProvider;
@@ -222,7 +222,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.EStructuralFeatureValueFillingConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -238,7 +238,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IPasteConfigurationItemProvider iPasteConfigurationItemProvider;
@@ -247,7 +247,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.IPasteConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +263,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected PasteEObjectConfigurationItemProvider pasteEObjectConfigurationItemProvider;
@@ -272,7 +272,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -288,7 +288,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected TreeFillingConfigurationItemProvider treeFillingConfigurationItemProvider;
@@ -297,7 +297,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -313,7 +313,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -325,7 +325,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -336,7 +336,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -348,7 +348,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -359,7 +359,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -378,7 +378,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -390,7 +390,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -402,7 +402,7 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -418,38 +418,29 @@ public class NattableaxisconfigurationItemProviderAdapterFactory extends Nattabl
 	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (axisManagerRepresentationItemProvider != null) {
+		if (axisManagerRepresentationItemProvider != null)
 			axisManagerRepresentationItemProvider.dispose();
-		}
-		if (axisManagerConfigurationItemProvider != null) {
+		if (axisManagerConfigurationItemProvider != null)
 			axisManagerConfigurationItemProvider.dispose();
-		}
-		if (tableHeaderAxisConfigurationItemProvider != null) {
+		if (tableHeaderAxisConfigurationItemProvider != null)
 			tableHeaderAxisConfigurationItemProvider.dispose();
-		}
-		if (localTableHeaderAxisConfigurationItemProvider != null) {
+		if (localTableHeaderAxisConfigurationItemProvider != null)
 			localTableHeaderAxisConfigurationItemProvider.dispose();
-		}
-		if (featureAxisConfigurationItemProvider != null) {
+		if (featureAxisConfigurationItemProvider != null)
 			featureAxisConfigurationItemProvider.dispose();
-		}
-		if (eStructuralFeatureValueFillingConfigurationItemProvider != null) {
+		if (eStructuralFeatureValueFillingConfigurationItemProvider != null)
 			eStructuralFeatureValueFillingConfigurationItemProvider.dispose();
-		}
-		if (iPasteConfigurationItemProvider != null) {
+		if (iPasteConfigurationItemProvider != null)
 			iPasteConfigurationItemProvider.dispose();
-		}
-		if (pasteEObjectConfigurationItemProvider != null) {
+		if (pasteEObjectConfigurationItemProvider != null)
 			pasteEObjectConfigurationItemProvider.dispose();
-		}
-		if (treeFillingConfigurationItemProvider != null) {
+		if (treeFillingConfigurationItemProvider != null)
 			treeFillingConfigurationItemProvider.dispose();
-		}
 	}
 
 }

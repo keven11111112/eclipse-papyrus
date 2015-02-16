@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.wizard;
@@ -110,7 +110,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param selector
 	 *            the reference selector
 	 * @return
@@ -139,7 +139,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the created and initialized reference selector
 	 */
@@ -148,7 +148,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 
 
 			/**
-			 *
+			 * 
 			 * @see org.eclipse.papyrus.infra.widgets.selectors.ReferenceSelector#createControls(org.eclipse.swt.widgets.Composite)
 			 *
 			 * @param parent
@@ -169,7 +169,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the page to use to select the categories to listen in the table
 	 */
@@ -182,7 +182,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the paste page used to configure the paste
 	 */
@@ -206,7 +206,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * The label provider to use for the selected elements viewer
 	 *
 	 */
@@ -220,7 +220,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 		private NatTable natTable;
 
 		/**
-		 *
+		 * 
 		 * Constructor.
 		 *
 		 * @param wrappedProvider
@@ -317,7 +317,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the initial selection to use in the wizard page
 	 */
@@ -483,7 +483,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param table
 	 * @param representedAxisManager
 	 * @param depth
@@ -502,7 +502,7 @@ public class ConfigureTableCategoriesWizard extends AbstractTableWizard {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param table
 	 *            the table
 	 * @return

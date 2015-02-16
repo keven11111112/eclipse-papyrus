@@ -33,6 +33,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * @generated
  */
 public interface StyledElement extends EModelElement {
+
 	/**
 	 * Returns the value of the '<em><b>Styles</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style}.
@@ -75,5 +76,4 @@ public interface StyledElement extends EModelElement {
 	 * @generated
 	 */
 	Style createStyle(EClass eClass);
-
 } // StyledElement

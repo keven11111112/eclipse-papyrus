@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.N
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.FeatureLabelProviderConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelProviderConfigurationItemProvider {
@@ -37,7 +37,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public FeatureLabelProviderConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +68,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This adds a property descriptor for the Display Is Derived feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayIsDerivedPropertyDescriptor(Object object) {
@@ -91,7 +91,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This adds a property descriptor for the Display Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayTypePropertyDescriptor(Object object) {
@@ -114,7 +114,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This adds a property descriptor for the Display Multiplicity feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayMultiplicityPropertyDescriptor(Object object) {
@@ -137,7 +137,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This adds a property descriptor for the Display Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayNamePropertyDescriptor(Object object) {
@@ -160,7 +160,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This returns FeatureLabelProviderConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -172,7 +172,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -187,7 +187,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -210,7 +210,7 @@ public class FeatureLabelProviderConfigurationItemProvider extends ObjectLabelPr
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

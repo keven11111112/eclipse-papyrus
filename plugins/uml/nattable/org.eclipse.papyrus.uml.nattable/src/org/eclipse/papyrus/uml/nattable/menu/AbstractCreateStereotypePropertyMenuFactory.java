@@ -107,7 +107,7 @@ public abstract class AbstractCreateStereotypePropertyMenuFactory extends Extens
 				if (current instanceof FeatureIdAxis) {
 					String el = ((FeatureIdAxis) current).getElement();
 					if (el.startsWith(Constants.PROPERTY_OF_STEREOTYPE_PREFIX)) {
-						initialSelection.add(((FeatureIdAxis) current).getElement().replace(Constants.PROPERTY_OF_STEREOTYPE_PREFIX, ""));
+						initialSelection.add(((FeatureIdAxis) current).getElement().replace(Constants.PROPERTY_OF_STEREOTYPE_PREFIX, "")); //$NON-NLS-1$
 					}
 				}
 			}

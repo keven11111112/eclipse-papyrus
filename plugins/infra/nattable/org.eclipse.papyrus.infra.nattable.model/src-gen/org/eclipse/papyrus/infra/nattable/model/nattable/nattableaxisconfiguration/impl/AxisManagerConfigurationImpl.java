@@ -34,15 +34,21 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getAxisManager <em>Axis Manager</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalHeaderLabelConfiguration
+ * <em>Local Header Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getAxisManager <em>Axis
+ * Manager</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AxisManagerConfigurationImpl#getLocalSpecificConfigurations
+ * <em>Local Specific Configurations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class AxisManagerConfigurationImpl extends StyledElementImpl implements AxisManagerConfiguration {
+
 	/**
 	 * The cached value of the '{@link #getLocalHeaderLabelConfiguration() <em>Local Header Label Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -105,11 +111,11 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public ILabelProviderConfiguration getLocalHeaderLabelConfiguration() {
-		if (localHeaderLabelConfiguration != null && localHeaderLabelConfiguration.eIsProxy()) {
-			InternalEObject oldLocalHeaderLabelConfiguration = (InternalEObject) localHeaderLabelConfiguration;
-			localHeaderLabelConfiguration = (ILabelProviderConfiguration) eResolveProxy(oldLocalHeaderLabelConfiguration);
-			if (localHeaderLabelConfiguration != oldLocalHeaderLabelConfiguration) {
-				if (eNotificationRequired()) {
+		if(localHeaderLabelConfiguration != null && localHeaderLabelConfiguration.eIsProxy()) {
+			InternalEObject oldLocalHeaderLabelConfiguration = (InternalEObject)localHeaderLabelConfiguration;
+			localHeaderLabelConfiguration = (ILabelProviderConfiguration)eResolveProxy(oldLocalHeaderLabelConfiguration);
+			if(localHeaderLabelConfiguration != oldLocalHeaderLabelConfiguration) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION, oldLocalHeaderLabelConfiguration, localHeaderLabelConfiguration));
 				}
 			}
@@ -137,7 +143,7 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	public void setLocalHeaderLabelConfiguration(ILabelProviderConfiguration newLocalHeaderLabelConfiguration) {
 		ILabelProviderConfiguration oldLocalHeaderLabelConfiguration = localHeaderLabelConfiguration;
 		localHeaderLabelConfiguration = newLocalHeaderLabelConfiguration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION, oldLocalHeaderLabelConfiguration, localHeaderLabelConfiguration));
 		}
 	}
@@ -150,11 +156,11 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public AxisManagerRepresentation getAxisManager() {
-		if (axisManager != null && axisManager.eIsProxy()) {
-			InternalEObject oldAxisManager = (InternalEObject) axisManager;
-			axisManager = (AxisManagerRepresentation) eResolveProxy(oldAxisManager);
-			if (axisManager != oldAxisManager) {
-				if (eNotificationRequired()) {
+		if(axisManager != null && axisManager.eIsProxy()) {
+			InternalEObject oldAxisManager = (InternalEObject)axisManager;
+			axisManager = (AxisManagerRepresentation)eResolveProxy(oldAxisManager);
+			if(axisManager != oldAxisManager) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER, oldAxisManager, axisManager));
 				}
 			}
@@ -182,7 +188,7 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	public void setAxisManager(AxisManagerRepresentation newAxisManager) {
 		AxisManagerRepresentation oldAxisManager = axisManager;
 		axisManager = newAxisManager;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER, oldAxisManager, axisManager));
 		}
 	}
@@ -195,7 +201,7 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public EList<IAxisConfiguration> getLocalSpecificConfigurations() {
-		if (localSpecificConfigurations == null) {
+		if(localSpecificConfigurations == null) {
 			localSpecificConfigurations = new EObjectResolvingEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS);
 		}
 		return localSpecificConfigurations;
@@ -209,14 +215,14 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION:
-			if (resolve) {
+			if(resolve) {
 				return getLocalHeaderLabelConfiguration();
 			}
 			return basicGetLocalHeaderLabelConfiguration();
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
-			if (resolve) {
+			if(resolve) {
 				return getAxisManager();
 			}
 			return basicGetAxisManager();
@@ -235,16 +241,16 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION:
-			setLocalHeaderLabelConfiguration((ILabelProviderConfiguration) newValue);
+			setLocalHeaderLabelConfiguration((ILabelProviderConfiguration)newValue);
 			return;
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
-			setAxisManager((AxisManagerRepresentation) newValue);
+			setAxisManager((AxisManagerRepresentation)newValue);
 			return;
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
 			getLocalSpecificConfigurations().clear();
-			getLocalSpecificConfigurations().addAll((Collection<? extends IAxisConfiguration>) newValue);
+			getLocalSpecificConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -258,12 +264,12 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION:
-			setLocalHeaderLabelConfiguration((ILabelProviderConfiguration) null);
+			setLocalHeaderLabelConfiguration((ILabelProviderConfiguration)null);
 			return;
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
-			setAxisManager((AxisManagerRepresentation) null);
+			setAxisManager((AxisManagerRepresentation)null);
 			return;
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_SPECIFIC_CONFIGURATIONS:
 			getLocalSpecificConfigurations().clear();
@@ -280,7 +286,7 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__LOCAL_HEADER_LABEL_CONFIGURATION:
 			return localHeaderLabelConfiguration != null;
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION__AXIS_MANAGER:
@@ -290,5 +296,4 @@ public class AxisManagerConfigurationImpl extends StyledElementImpl implements A
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // AxisManagerConfigurationImpl

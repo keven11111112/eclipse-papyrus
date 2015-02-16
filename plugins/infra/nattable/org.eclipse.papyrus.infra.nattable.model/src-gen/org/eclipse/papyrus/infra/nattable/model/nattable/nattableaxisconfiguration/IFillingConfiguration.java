@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IFilling Configuration</b></em>'.

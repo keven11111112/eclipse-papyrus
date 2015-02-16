@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * @generated
  */
 public class NattableproblemPackageImpl extends EPackageImpl implements NattableproblemPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -65,10 +66,12 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	private EClass stringResolutionProblemEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.NattableproblemPackage#eNS_URI
@@ -91,8 +94,8 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link NattableproblemPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This method is used to initialize {@link NattableproblemPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -100,41 +103,24 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 * @generated
 	 */
 	public static NattableproblemPackage init() {
-		if (isInited) {
-			return (NattableproblemPackage) EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI);
+		if(isInited) {
+			return (NattableproblemPackage)EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI);
 		}
-
 		// Obtain or create and register package
-		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableproblemPackageImpl());
-
+		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableproblemPackageImpl());
 		isInited = true;
-
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
-		NattablePackageImpl theNattablePackage = (NattablePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI)
-				: NattablePackage.eINSTANCE);
-		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableconfigurationPackage.eNS_URI)
-				: NattableconfigurationPackage.eINSTANCE);
-		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
-		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablelabelproviderPackage.eNS_URI)
-				: NattablelabelproviderPackage.eINSTANCE);
-		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisconfigurationPackage.eNS_URI)
-				: NattableaxisconfigurationPackage.eINSTANCE);
-		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
-		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI)
-				: NattableaxisPackage.eINSTANCE);
-		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI)
-				: NattablecellPackage.eINSTANCE);
-		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
-
+		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
+		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
+		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
+		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
+		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
+		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
 		// Create package meta-data objects
 		theNattableproblemPackage.createPackageContents();
 		theNattablePackage.createPackageContents();
@@ -146,7 +132,6 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 		theNattableaxisPackage.createPackageContents();
 		theNattablecellPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
-
 		// Initialize created meta-data
 		theNattableproblemPackage.initializePackageContents();
 		theNattablePackage.initializePackageContents();
@@ -158,11 +143,8 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 		theNattableaxisPackage.initializePackageContents();
 		theNattablecellPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
-
 		// Mark meta-data to indicate it can't be changed
 		theNattableproblemPackage.freeze();
-
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattableproblemPackage.eNS_URI, theNattableproblemPackage);
 		return theNattableproblemPackage;
@@ -198,7 +180,7 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 */
 	@Override
 	public EAttribute getStringResolutionProblem_ValueAsString() {
-		return (EAttribute) stringResolutionProblemEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)stringResolutionProblemEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -209,7 +191,7 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 */
 	@Override
 	public EAttribute getStringResolutionProblem_UnresolvedString() {
-		return (EAttribute) stringResolutionProblemEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)stringResolutionProblemEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -220,7 +202,7 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 */
 	@Override
 	public NattableproblemFactory getNattableproblemFactory() {
-		return (NattableproblemFactory) getEFactoryInstance();
+		return (NattableproblemFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -240,14 +222,12 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
+		if(isCreated) {
 			return;
 		}
 		isCreated = true;
-
 		// Create classes and their features
 		problemEClass = createEClass(PROBLEM);
-
 		stringResolutionProblemEClass = createEClass(STRING_RESOLUTION_PROBLEM);
 		createEAttribute(stringResolutionProblemEClass, STRING_RESOLUTION_PROBLEM__VALUE_AS_STRING);
 		createEAttribute(stringResolutionProblemEClass, STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING);
@@ -270,34 +250,25 @@ public class NattableproblemPackageImpl extends EPackageImpl implements Nattable
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
+		if(isInitialized) {
 			return;
 		}
 		isInitialized = true;
-
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
-
 		// Obtain other dependent packages
-		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
-
+		NattableconfigurationPackage theNattableconfigurationPackage = (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 		// Create type parameters
-
 		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		problemEClass.getESuperTypes().add(theNattableconfigurationPackage.getTableNamedElement());
 		stringResolutionProblemEClass.getESuperTypes().add(this.getProblem());
-
 		// Initialize classes, features, and operations; add parameters
 		initEClass(problemEClass, Problem.class, "Problem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(stringResolutionProblemEClass, StringResolutionProblem.class, "StringResolutionProblem", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringResolutionProblem_ValueAsString(), ecorePackage.getEString(), "valueAsString", null, 1, 1, StringResolutionProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getStringResolutionProblem_UnresolvedString(), ecorePackage.getEString(),
-				"unresolvedString", null, 1, -1, StringResolutionProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getStringResolutionProblem_UnresolvedString(), ecorePackage.getEString(), "unresolvedString", null, 1, -1, StringResolutionProblem.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 	}
-
 } // NattableproblemPackageImpl

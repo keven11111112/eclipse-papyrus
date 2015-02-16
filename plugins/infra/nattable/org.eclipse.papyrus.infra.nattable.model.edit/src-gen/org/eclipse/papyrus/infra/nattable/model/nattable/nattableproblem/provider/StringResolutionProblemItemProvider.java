@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class StringResolutionProblemItemProvider extends ProblemItemProvider {
@@ -37,7 +37,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public StringResolutionProblemItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This adds a property descriptor for the Value As String feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addValueAsStringPropertyDescriptor(Object object) {
@@ -89,7 +89,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This adds a property descriptor for the Unresolved String feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addUnresolvedStringPropertyDescriptor(Object object) {
@@ -112,7 +112,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This returns StringResolutionProblem.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -141,7 +141,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,7 +162,7 @@ public class StringResolutionProblemItemProvider extends ProblemItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.N
  * @generated
  */
 public interface NattableaxisproviderPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -74,7 +75,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	NattableaxisproviderPackage eINSTANCE = org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.NattableaxisproviderPackageImpl.init();
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl <em>Abstract Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
+	 * <em>Abstract Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -195,7 +197,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
+	 * <em>Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -326,7 +329,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int AXIS_PROVIDER_OPERATION_COUNT = ABSTRACT_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
+	 * <em>IMaster Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -467,7 +471,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int IMASTER_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+	 * <em>ISlave Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -598,7 +603,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int ISLAVE_AXIS_PROVIDER_OPERATION_COUNT = AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
+	 * <em>Slave Object Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -729,7 +735,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	int SLAVE_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = ISLAVE_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
+	 * <em>Master Object Axis Provider</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -869,9 +876,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 */
 	int MASTER_OBJECT_AXIS_PROVIDER_OPERATION_COUNT = IMASTER_AXIS_PROVIDER_OPERATION_COUNT + 0;
 
-
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider <em>Abstract Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider
+	 * <em>Abstract Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -882,7 +889,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAbstractAxisProvider();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis() <em>Get Axis</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider#getAxis()
+	 * <em>Get Axis</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -893,7 +901,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EOperation getAbstractAxisProvider__GetAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
+	 * <em>IMaster Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -904,7 +913,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getIMasterAxisProvider();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -916,7 +927,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EAttribute getIMasterAxisProvider_DisconnectSlave();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+	 * <em>ISlave Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -927,7 +939,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getISlaveAxisProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider <em>Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider
+	 * <em>Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -938,7 +951,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getAxisProvider();
 
 	/**
-	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}'.
+	 * Returns the meta object for the containment reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AxisProvider#getAxis <em>Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -950,7 +964,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EReference getAxisProvider_Axis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider <em>Slave Object Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.SlaveObjectAxisProvider
+	 * <em>Slave Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -961,7 +976,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 	EClass getSlaveObjectAxisProvider();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider <em>Master Object Axis Provider</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.MasterObjectAxisProvider
+	 * <em>Master Object Axis Provider</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -996,8 +1012,11 @@ public interface NattableaxisproviderPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl <em>Abstract Axis Provider</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AbstractAxisProviderImpl
+		 * <em>Abstract Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1017,7 +1036,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EOperation ABSTRACT_AXIS_PROVIDER___GET_AXIS = eINSTANCE.getAbstractAxisProvider__GetAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider <em>IMaster Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider
+		 * <em>IMaster Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1037,7 +1057,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EAttribute IMASTER_AXIS_PROVIDER__DISCONNECT_SLAVE = eINSTANCE.getIMasterAxisProvider_DisconnectSlave();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider <em>ISlave Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.ISlaveAxisProvider
+		 * <em>ISlave Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1048,7 +1069,8 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass ISLAVE_AXIS_PROVIDER = eINSTANCE.getISlaveAxisProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl <em>Axis Provider</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.AxisProviderImpl
+		 * <em>Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1068,7 +1090,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EReference AXIS_PROVIDER__AXIS = eINSTANCE.getAxisProvider_Axis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl <em>Slave Object Axis Provider</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.SlaveObjectAxisProviderImpl
+		 * <em>Slave Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1079,7 +1103,9 @@ public interface NattableaxisproviderPackage extends EPackage {
 		EClass SLAVE_OBJECT_AXIS_PROVIDER = eINSTANCE.getSlaveObjectAxisProvider();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl <em>Master Object Axis Provider</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.impl.MasterObjectAxisProviderImpl
+		 * <em>Master Object Axis Provider</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -1088,7 +1114,5 @@ public interface NattableaxisproviderPackage extends EPackage {
 		 * @generated
 		 */
 		EClass MASTER_OBJECT_AXIS_PROVIDER = eINSTANCE.getMasterObjectAxisProvider();
-
 	}
-
 } // NattableaxisproviderPackage

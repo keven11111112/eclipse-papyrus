@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * @generated
  */
 public interface AbstractAxisProvider extends TableNamedElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45,5 +46,4 @@ public interface AbstractAxisProvider extends TableNamedElement {
 	 * @generated
 	 */
 	EList<IAxis> getAxis();
-
 } // AbstractAxisProvider

@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Boolean Value Style</b></em>'.
@@ -34,6 +33,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface BooleanValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>Boolean Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,15 +51,15 @@ public interface BooleanValueStyle extends NamedStyle {
 	boolean isBooleanValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle#isBooleanValue <em>Boolean Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle#isBooleanValue
+	 * <em>Boolean Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Boolean Value</em>' attribute.
+	 *        the new value of the '<em>Boolean Value</em>' attribute.
 	 * @see #isBooleanValue()
 	 * @generated
 	 */
 	void setBooleanValue(boolean value);
-
 } // BooleanValueStyle

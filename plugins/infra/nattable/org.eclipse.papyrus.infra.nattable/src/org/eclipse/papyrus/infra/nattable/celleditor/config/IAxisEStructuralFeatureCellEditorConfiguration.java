@@ -21,7 +21,9 @@ import org.eclipse.emf.ecore.EStructuralFeature;
  *
  * A specific interface to declare editor on specific EStructuralFeature
  *
+ * @deprecated because never used, since Papyrus 1.1.0
  */
+@Deprecated
 public interface IAxisEStructuralFeatureCellEditorConfiguration extends IAxisCellEditorConfiguration {
 
 	/**

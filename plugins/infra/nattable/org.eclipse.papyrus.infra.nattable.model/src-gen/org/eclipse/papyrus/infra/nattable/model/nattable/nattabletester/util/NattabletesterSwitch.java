@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * @generated
  */
 public class NattabletesterSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattabletesterSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattabletesterPackage.eINSTANCE;
 		}
 	}
@@ -81,34 +82,36 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattabletesterPackage.ABSTRACT_TABLE_TESTER: {
-			AbstractTableTester abstractTableTester = (AbstractTableTester) theEObject;
+		switch(classifierID) {
+		case NattabletesterPackage.ABSTRACT_TABLE_TESTER:
+		{
+			AbstractTableTester abstractTableTester = (AbstractTableTester)theEObject;
 			T result = caseAbstractTableTester(abstractTableTester);
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(abstractTableTester);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(abstractTableTester);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattabletesterPackage.JAVA_TABLE_TESTER: {
-			JavaTableTester javaTableTester = (JavaTableTester) theEObject;
+		case NattabletesterPackage.JAVA_TABLE_TESTER:
+		{
+			JavaTableTester javaTableTester = (JavaTableTester)theEObject;
 			T result = caseJavaTableTester(javaTableTester);
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractTableTester(javaTableTester);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(javaTableTester);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(javaTableTester);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -126,7 +129,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Abstract Table Tester</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -143,7 +146,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Java Table Tester</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -160,7 +163,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -177,7 +180,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -194,7 +197,7 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -203,5 +206,4 @@ public class NattabletesterSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattabletesterSwitch

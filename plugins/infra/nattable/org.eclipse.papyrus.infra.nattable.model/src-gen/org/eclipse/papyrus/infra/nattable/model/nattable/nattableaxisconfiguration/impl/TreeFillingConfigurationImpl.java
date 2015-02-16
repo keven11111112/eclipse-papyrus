@@ -31,17 +31,22 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getAxisUsedAsAxisProvider <em>Axis Used As Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getPasteConfiguration <em>Paste Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getAxisUsedAsAxisProvider
+ * <em>Axis Used As Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getPasteConfiguration <em>
+ * Paste Configuration</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getDepth <em>Depth</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProvider <em>Label Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProviderContext <em>Label Provider Context</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProvider <em>Label
+ * Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.TreeFillingConfigurationImpl#getLabelProviderContext
+ * <em>Label Provider Context</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class TreeFillingConfigurationImpl extends StyledElementImpl implements TreeFillingConfiguration {
+
 	/**
 	 * The cached value of the '{@link #getAxisUsedAsAxisProvider() <em>Axis Used As Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
@@ -160,9 +165,9 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public NotificationChain basicSetAxisUsedAsAxisProvider(IAxis newAxisUsedAsAxisProvider, NotificationChain msgs) {
 		IAxis oldAxisUsedAsAxisProvider = axisUsedAsAxisProvider;
 		axisUsedAsAxisProvider = newAxisUsedAsAxisProvider;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, oldAxisUsedAsAxisProvider, newAxisUsedAsAxisProvider);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -179,20 +184,19 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public void setAxisUsedAsAxisProvider(IAxis newAxisUsedAsAxisProvider) {
-		if (newAxisUsedAsAxisProvider != axisUsedAsAxisProvider) {
+		if(newAxisUsedAsAxisProvider != axisUsedAsAxisProvider) {
 			NotificationChain msgs = null;
-			if (axisUsedAsAxisProvider != null) {
-				msgs = ((InternalEObject) axisUsedAsAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, null, msgs);
+			if(axisUsedAsAxisProvider != null) {
+				msgs = ((InternalEObject)axisUsedAsAxisProvider).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, null, msgs);
 			}
-			if (newAxisUsedAsAxisProvider != null) {
-				msgs = ((InternalEObject) newAxisUsedAsAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, null, msgs);
+			if(newAxisUsedAsAxisProvider != null) {
+				msgs = ((InternalEObject)newAxisUsedAsAxisProvider).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, null, msgs);
 			}
 			msgs = basicSetAxisUsedAsAxisProvider(newAxisUsedAsAxisProvider, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER, newAxisUsedAsAxisProvider, newAxisUsedAsAxisProvider));
 		}
 	}
@@ -205,11 +209,11 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public PasteEObjectConfiguration getPasteConfiguration() {
-		if (pasteConfiguration != null && pasteConfiguration.eIsProxy()) {
-			InternalEObject oldPasteConfiguration = (InternalEObject) pasteConfiguration;
-			pasteConfiguration = (PasteEObjectConfiguration) eResolveProxy(oldPasteConfiguration);
-			if (pasteConfiguration != oldPasteConfiguration) {
-				if (eNotificationRequired()) {
+		if(pasteConfiguration != null && pasteConfiguration.eIsProxy()) {
+			InternalEObject oldPasteConfiguration = (InternalEObject)pasteConfiguration;
+			pasteConfiguration = (PasteEObjectConfiguration)eResolveProxy(oldPasteConfiguration);
+			if(pasteConfiguration != oldPasteConfiguration) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION, oldPasteConfiguration, pasteConfiguration));
 				}
 			}
@@ -237,7 +241,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public void setPasteConfiguration(PasteEObjectConfiguration newPasteConfiguration) {
 		PasteEObjectConfiguration oldPasteConfiguration = pasteConfiguration;
 		pasteConfiguration = newPasteConfiguration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION, oldPasteConfiguration, pasteConfiguration));
 		}
 	}
@@ -263,7 +267,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public void setDepth(int newDepth) {
 		int oldDepth = depth;
 		depth = newDepth;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH, oldDepth, depth));
 		}
 	}
@@ -276,11 +280,11 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public ILabelProviderConfiguration getLabelProvider() {
-		if (labelProvider != null && labelProvider.eIsProxy()) {
-			InternalEObject oldLabelProvider = (InternalEObject) labelProvider;
-			labelProvider = (ILabelProviderConfiguration) eResolveProxy(oldLabelProvider);
-			if (labelProvider != oldLabelProvider) {
-				if (eNotificationRequired()) {
+		if(labelProvider != null && labelProvider.eIsProxy()) {
+			InternalEObject oldLabelProvider = (InternalEObject)labelProvider;
+			labelProvider = (ILabelProviderConfiguration)eResolveProxy(oldLabelProvider);
+			if(labelProvider != oldLabelProvider) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER, oldLabelProvider, labelProvider));
 				}
 			}
@@ -308,7 +312,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public void setLabelProvider(ILabelProviderConfiguration newLabelProvider) {
 		ILabelProviderConfiguration oldLabelProvider = labelProvider;
 		labelProvider = newLabelProvider;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER, oldLabelProvider, labelProvider));
 		}
 	}
@@ -334,7 +338,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	public void setLabelProviderContext(String newLabelProviderContext) {
 		String oldLabelProviderContext = labelProviderContext;
 		labelProviderContext = newLabelProviderContext;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT, oldLabelProviderContext, labelProviderContext));
 		}
 	}
@@ -347,7 +351,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
 			return basicSetAxisUsedAsAxisProvider(null, msgs);
 		}
@@ -362,18 +366,18 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
 			return getAxisUsedAsAxisProvider();
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION:
-			if (resolve) {
+			if(resolve) {
 				return getPasteConfiguration();
 			}
 			return basicGetPasteConfiguration();
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH:
 			return getDepth();
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER:
-			if (resolve) {
+			if(resolve) {
 				return getLabelProvider();
 			}
 			return basicGetLabelProvider();
@@ -391,21 +395,21 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
-			setAxisUsedAsAxisProvider((IAxis) newValue);
+			setAxisUsedAsAxisProvider((IAxis)newValue);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION:
-			setPasteConfiguration((PasteEObjectConfiguration) newValue);
+			setPasteConfiguration((PasteEObjectConfiguration)newValue);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH:
-			setDepth((Integer) newValue);
+			setDepth((Integer)newValue);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER:
-			setLabelProvider((ILabelProviderConfiguration) newValue);
+			setLabelProvider((ILabelProviderConfiguration)newValue);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
-			setLabelProviderContext((String) newValue);
+			setLabelProviderContext((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -419,18 +423,18 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
-			setAxisUsedAsAxisProvider((IAxis) null);
+			setAxisUsedAsAxisProvider((IAxis)null);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION:
-			setPasteConfiguration((PasteEObjectConfiguration) null);
+			setPasteConfiguration((PasteEObjectConfiguration)null);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__DEPTH:
 			setDepth(DEPTH_EDEFAULT);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER:
-			setLabelProvider((ILabelProviderConfiguration) null);
+			setLabelProvider((ILabelProviderConfiguration)null);
 			return;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__LABEL_PROVIDER_CONTEXT:
 			setLabelProviderContext(LABEL_PROVIDER_CONTEXT_EDEFAULT);
@@ -447,7 +451,7 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__AXIS_USED_AS_AXIS_PROVIDER:
 			return axisUsedAsAxisProvider != null;
 		case NattableaxisconfigurationPackage.TREE_FILLING_CONFIGURATION__PASTE_CONFIGURATION:
@@ -470,10 +474,9 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (depth: "); //$NON-NLS-1$
 		result.append(depth);
@@ -482,5 +485,4 @@ public class TreeFillingConfigurationImpl extends StyledElementImpl implements T
 		result.append(')');
 		return result.toString();
 	}
-
 } // TreeFillingConfigurationImpl

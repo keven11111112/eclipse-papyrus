@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * @generated
  */
 public class JavaTableTesterImpl extends AbstractTableTesterImpl implements JavaTableTester {
+
 	/**
 	 * The default value of the '{@link #getTester() <em>Tester</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,7 +97,7 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	public void setTester(String newTester) {
 		String oldTester = tester;
 		tester = newTester;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattabletesterPackage.JAVA_TABLE_TESTER__TESTER, oldTester, tester));
 		}
 	}
@@ -109,7 +110,7 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 			return getTester();
 		}
@@ -124,9 +125,9 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
-			setTester((String) newValue);
+			setTester((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +141,7 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 			setTester(TESTER_EDEFAULT);
 			return;
@@ -156,7 +157,7 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattabletesterPackage.JAVA_TABLE_TESTER__TESTER:
 			return TESTER_EDEFAULT == null ? tester != null : !TESTER_EDEFAULT.equals(tester);
 		}
@@ -171,15 +172,13 @@ public class JavaTableTesterImpl extends AbstractTableTesterImpl implements Java
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (tester: "); //$NON-NLS-1$
 		result.append(tester);
 		result.append(')');
 		return result.toString();
 	}
-
 } // JavaTableTesterImpl

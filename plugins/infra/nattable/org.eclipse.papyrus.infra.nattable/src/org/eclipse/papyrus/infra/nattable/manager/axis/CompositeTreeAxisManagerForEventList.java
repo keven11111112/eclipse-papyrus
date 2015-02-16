@@ -119,7 +119,7 @@ public class CompositeTreeAxisManagerForEventList extends CompositeAxisManagerFo
 	}
 
 	/**
-	 *
+	 * 
 	 * @param conf
 	 *            a tree filling configuration
 	 * @return

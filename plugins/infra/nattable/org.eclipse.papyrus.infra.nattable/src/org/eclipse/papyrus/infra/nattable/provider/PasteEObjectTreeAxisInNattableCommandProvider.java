@@ -280,7 +280,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						}
 					}
 					if (categoryName.equals(featureName)) {
-						return curr.getPasteConfiguration();
+						return (IPasteConfiguration) curr.getPasteConfiguration();
 					}
 
 				}
@@ -803,11 +803,11 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param iterator
 	 *            the cellIterator
 	 * @param nbReadCell
-	 *
+	 * 
 	 */
 	protected void crossCellIteratorToFirstBodyCell(CellIterator cellIter, int nbReadCell) {
 		if (TableHelper.isSingleColumnTreeTable(table)) {
@@ -923,7 +923,7 @@ public class PasteEObjectTreeAxisInNattableCommandProvider {
 						}
 
 						// we get the paste configuration to use
-						PasteEObjectConfiguration pasteConfToUse = confMap.get(Integer.valueOf(depth));
+						PasteEObjectConfiguration pasteConfToUse = (PasteEObjectConfiguration) confMap.get(Integer.valueOf(depth));
 						if (pasteConfToUse == null) {
 							pasteConfToUse = (PasteEObjectConfiguration) getPasteConfigurationsFor(depth, null);
 							if (pasteConfToUse != null) {

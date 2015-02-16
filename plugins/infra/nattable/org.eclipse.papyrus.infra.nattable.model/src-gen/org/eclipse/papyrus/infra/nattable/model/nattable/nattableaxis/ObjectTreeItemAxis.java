@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Object Tree Item Axis</b></em>'.

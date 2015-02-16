@@ -58,4 +58,35 @@
           order="1000">
     </cellManager>
  </extension>
+ <extension
+       point="org.eclipse.papyrus.infra.nattable.filter.configuration">
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EReferenceFilterRowComboBoxCellEditorConfiguration"
+          order="9000">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EBooleanComboBoxCellEditorFilterConfiguration"
+          order="9000">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EBooleanFilterRowComboBoxCellEditorFilterConfiguration"
+          order="8800">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EReferenceTextEditorFilterConfiguration"
+          order="8900">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EIntegereEditorFilterConfiguration"
+          order="9000">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EDoubleEditorFilterConfiguration"
+          order="9000">
+    </configuration>
+    <configuration
+          class="org.eclipse.papyrus.infra.emf.nattable.filter.configuration.EEnumFilterCellEditorFilterConfiguration"
+          order="8000">
+    </configuration>
+ </extension>
 </plugin>

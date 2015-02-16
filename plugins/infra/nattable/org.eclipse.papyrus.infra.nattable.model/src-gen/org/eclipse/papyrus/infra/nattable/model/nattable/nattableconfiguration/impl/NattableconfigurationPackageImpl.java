@@ -53,6 +53,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * @generated
  */
 public class NattableconfigurationPackageImpl extends EPackageImpl implements NattableconfigurationPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -78,10 +79,12 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	private EEnum cellEditorDeclarationEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#eNS_URI
@@ -104,8 +107,8 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link NattableconfigurationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
-	 * end-user-doc -->
+	 * This method is used to initialize {@link NattableconfigurationPackage#eINSTANCE} when that field is accessed. Clients should not invoke it
+	 * directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -113,41 +116,24 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	public static NattableconfigurationPackage init() {
-		if (isInited) {
-			return (NattableconfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
+		if(isInited) {
+			return (NattableconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI);
 		}
-
 		// Obtain or create and register package
-		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new NattableconfigurationPackageImpl());
-
+		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableconfigurationPackageImpl());
 		isInited = true;
-
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
-		NattablePackageImpl theNattablePackage = (NattablePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI)
-				: NattablePackage.eINSTANCE);
-		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
-		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablelabelproviderPackage.eNS_URI)
-				: NattablelabelproviderPackage.eINSTANCE);
-		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisconfigurationPackage.eNS_URI)
-				: NattableaxisconfigurationPackage.eINSTANCE);
-		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
-		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI)
-				: NattableaxisPackage.eINSTANCE);
-		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI)
-				: NattablecellPackage.eINSTANCE);
-		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
-		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
-
+		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
+		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
+		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
+		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
+		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
+		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
 		// Create package meta-data objects
 		theNattableconfigurationPackage.createPackageContents();
 		theNattablePackage.createPackageContents();
@@ -159,7 +145,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
-
 		// Initialize created meta-data
 		theNattableconfigurationPackage.initializePackageContents();
 		theNattablePackage.initializePackageContents();
@@ -171,21 +156,16 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
-
 		// Register package validator
-		EValidator.Registry.INSTANCE.put
-				(theNattableconfigurationPackage,
-						new EValidator.Descriptor() {
-							@Override
-							public EValidator getEValidator() {
-								return NattableconfigurationValidator.INSTANCE;
-							}
-						});
+		EValidator.Registry.INSTANCE.put(theNattableconfigurationPackage, new EValidator.Descriptor() {
 
+			@Override
+			public EValidator getEValidator() {
+				return NattableconfigurationValidator.INSTANCE;
+			}
+		});
 		// Mark meta-data to indicate it can't be changed
 		theNattableconfigurationPackage.freeze();
-
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattableconfigurationPackage.eNS_URI, theNattableconfigurationPackage);
 		return theNattableconfigurationPackage;
@@ -210,7 +190,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EAttribute getTableNamedElement_Description() {
-		return (EAttribute) tableNamedElementEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)tableNamedElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -221,7 +201,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EAttribute getTableNamedElement_Name() {
-		return (EAttribute) tableNamedElementEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)tableNamedElementEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -243,7 +223,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EAttribute getTableConfiguration_Type() {
-		return (EAttribute) tableConfigurationEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -254,7 +234,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EAttribute getTableConfiguration_IconPath() {
-		return (EAttribute) tableConfigurationEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -265,7 +245,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_CreationTester() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(2);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -276,7 +256,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EAttribute getTableConfiguration_CellEditorDeclaration() {
-		return (EAttribute) tableConfigurationEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)tableConfigurationEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -287,7 +267,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_RowHeaderAxisConfiguration() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(4);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -298,7 +278,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_ColumnHeaderAxisConfiguration() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(5);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -309,7 +289,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_ColumnAxisProviders() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(6);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -320,7 +300,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_RowAxisProviders() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(7);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -331,7 +311,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_DefaultRowAxisProvider() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(8);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(8);
 	}
 
 	/**
@@ -342,7 +322,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public EReference getTableConfiguration_DefaultColumnAxisProvider() {
-		return (EReference) tableConfigurationEClass.getEStructuralFeatures().get(9);
+		return (EReference)tableConfigurationEClass.getEStructuralFeatures().get(9);
 	}
 
 	/**
@@ -364,7 +344,7 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	@Override
 	public NattableconfigurationFactory getNattableconfigurationFactory() {
-		return (NattableconfigurationFactory) getEFactoryInstance();
+		return (NattableconfigurationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -384,16 +364,14 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
+		if(isCreated) {
 			return;
 		}
 		isCreated = true;
-
 		// Create classes and their features
 		tableNamedElementEClass = createEClass(TABLE_NAMED_ELEMENT);
 		createEAttribute(tableNamedElementEClass, TABLE_NAMED_ELEMENT__DESCRIPTION);
 		createEAttribute(tableNamedElementEClass, TABLE_NAMED_ELEMENT__NAME);
-
 		tableConfigurationEClass = createEClass(TABLE_CONFIGURATION);
 		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__TYPE);
 		createEAttribute(tableConfigurationEClass, TABLE_CONFIGURATION__ICON_PATH);
@@ -405,7 +383,6 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 		createEReference(tableConfigurationEClass, TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS);
 		createEReference(tableConfigurationEClass, TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER);
 		createEReference(tableConfigurationEClass, TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER);
-
 		// Create enums
 		cellEditorDeclarationEEnum = createEEnum(CELL_EDITOR_DECLARATION);
 	}
@@ -427,61 +404,44 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
+		if(isInitialized) {
 			return;
 		}
 		isInitialized = true;
-
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
-
 		// Obtain other dependent packages
-		NattablestylePackage theNattablestylePackage = (NattablestylePackage) EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
-		NattabletesterPackage theNattabletesterPackage = (NattabletesterPackage) EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
-		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
-		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage) EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
-
+		NattablestylePackage theNattablestylePackage = (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
+		NattabletesterPackage theNattabletesterPackage = (NattabletesterPackage)EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI);
+		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
+		NattableaxisproviderPackage theNattableaxisproviderPackage = (NattableaxisproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI);
 		// Create type parameters
-
 		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		tableNamedElementEClass.getESuperTypes().add(theNattablestylePackage.getStyledElement());
 		tableConfigurationEClass.getESuperTypes().add(this.getTableNamedElement());
-
 		// Initialize classes, features, and operations; add parameters
 		initEClass(tableNamedElementEClass, TableNamedElement.class, "TableNamedElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableNamedElement_Description(), ecorePackage.getEString(), "description", null, 0, 1, TableNamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableNamedElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, TableNamedElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(tableConfigurationEClass, TableConfiguration.class, "TableConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableConfiguration_Type(), ecorePackage.getEString(), "type", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getTableConfiguration_IconPath(), ecorePackage.getEString(), "iconPath", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_CreationTester(), theNattabletesterPackage.getAbstractTableTester(), null,
-				"creationTester", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEAttribute(getTableConfiguration_CellEditorDeclaration(), this.getCellEditorDeclaration(),
-				"cellEditorDeclaration", "COLUMN", 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getTableConfiguration_RowHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getTableHeaderAxisConfiguration(), null,
-				"rowHeaderAxisConfiguration", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_ColumnHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getTableHeaderAxisConfiguration(), null,
-				"columnHeaderAxisConfiguration", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_ColumnAxisProviders(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null,
-				"columnAxisProviders", null, 1, -1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_RowAxisProviders(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null,
-				"rowAxisProviders", null, 1, -1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_DefaultRowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null,
-				"defaultRowAxisProvider", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-		initEReference(getTableConfiguration_DefaultColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null,
-				"defaultColumnAxisProvider", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEReference(getTableConfiguration_CreationTester(), theNattabletesterPackage.getAbstractTableTester(), null, "creationTester", null, 0, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEAttribute(getTableConfiguration_CellEditorDeclaration(), this.getCellEditorDeclaration(), "cellEditorDeclaration", "COLUMN", 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
+		initEReference(getTableConfiguration_RowHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getTableHeaderAxisConfiguration(), null, "rowHeaderAxisConfiguration", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_ColumnHeaderAxisConfiguration(), theNattableaxisconfigurationPackage.getTableHeaderAxisConfiguration(), null, "columnHeaderAxisConfiguration", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_ColumnAxisProviders(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "columnAxisProviders", null, 1, -1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_RowAxisProviders(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "rowAxisProviders", null, 1, -1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_DefaultRowAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "defaultRowAxisProvider", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getTableConfiguration_DefaultColumnAxisProvider(), theNattableaxisproviderPackage.getAbstractAxisProvider(), null, "defaultColumnAxisProvider", null, 1, 1, TableConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		// Initialize enums and add enum literals
 		initEEnum(cellEditorDeclarationEEnum, CellEditorDeclaration.class, "CellEditorDeclaration"); //$NON-NLS-1$
 		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.COLUMN);
 		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.ROW);
 		addEEnumLiteral(cellEditorDeclarationEEnum, CellEditorDeclaration.CELL);
-
 		// Create annotations
 		// http://www.eclipse.org/emf/2002/Ecore
 		createEcoreAnnotations();
@@ -498,20 +458,14 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	protected void createEcoreAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore"; //$NON-NLS-1$
-		addAnnotation(this,
-				source,
-				new String[] { "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-						"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
-						"validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
-				});
-		addAnnotation(tableNamedElementEClass,
-				source,
-				new String[] { "constraints", "nonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
-				});
-		addAnnotation(tableConfigurationEClass,
-				source,
-				new String[] { "constraints", "defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath" //$NON-NLS-1$ //$NON-NLS-2$
-				});
+		addAnnotation(this, source, new String[]{ "invocationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+		"settingDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$ //$NON-NLS-2$
+		"validationDelegates", "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tableNamedElementEClass, source, new String[]{ "constraints", "nonEmptyName" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tableConfigurationEClass, source, new String[]{ "constraints", "defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
 
 	/**
@@ -523,18 +477,13 @@ public class NattableconfigurationPackageImpl extends EPackageImpl implements Na
 	 */
 	protected void createPivotAnnotations() {
 		String source = "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot"; //$NON-NLS-1$
-		addAnnotation(tableNamedElementEClass,
-				source,
-				new String[] { "nonEmptyName", "not (name.oclIsUndefined() or name = \'\')" //$NON-NLS-1$ //$NON-NLS-2$
-				});
-		addAnnotation(tableConfigurationEClass,
-				source,
-				new String[] { "defaultRowAxisProviderExistsInCollection", "rowAxisProviders->includes(defaultRowAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
-						"defaultColumnAxisProviderExistsInCollection", "columnAxisProviders->includes(defaultColumnAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
-						"typeNonNullNonEmpty", "not (type.oclIsUndefined() or type = \'\')", //$NON-NLS-1$ //$NON-NLS-2$
-						"iconPath", "not (iconPath.oclIsUndefined() or iconPath = \'\')", //$NON-NLS-1$ //$NON-NLS-2$
-						"defaultAxisProvidersTypes", "not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))" //$NON-NLS-1$ //$NON-NLS-2$
-				});
+		addAnnotation(tableNamedElementEClass, source, new String[]{ "nonEmptyName", "not (name.oclIsUndefined() or name = \'\')" //$NON-NLS-1$ //$NON-NLS-2$
+		});
+		addAnnotation(tableConfigurationEClass, source, new String[]{ "defaultRowAxisProviderExistsInCollection", "rowAxisProviders->includes(defaultRowAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
+		"defaultColumnAxisProviderExistsInCollection", "columnAxisProviders->includes(defaultColumnAxisProvider)", //$NON-NLS-1$ //$NON-NLS-2$
+		"typeNonNullNonEmpty", "not (type.oclIsUndefined() or type = \'\')", //$NON-NLS-1$ //$NON-NLS-2$
+		"iconPath", "not (iconPath.oclIsUndefined() or iconPath = \'\')", //$NON-NLS-1$ //$NON-NLS-2$
+		"defaultAxisProvidersTypes", "not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))" //$NON-NLS-1$ //$NON-NLS-2$
+		});
 	}
-
 } // NattableconfigurationPackageImpl

@@ -42,6 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * @generated
  */
 public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
+
 	/**
 	 * The cached value of the '{@link #getParent() <em>Parent</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -115,11 +116,11 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public ITreeItemAxis getParent() {
-		if (parent != null && parent.eIsProxy()) {
-			InternalEObject oldParent = (InternalEObject) parent;
-			parent = (ITreeItemAxis) eResolveProxy(oldParent);
-			if (parent != oldParent) {
-				if (eNotificationRequired()) {
+		if(parent != null && parent.eIsProxy()) {
+			InternalEObject oldParent = (InternalEObject)parent;
+			parent = (ITreeItemAxis)eResolveProxy(oldParent);
+			if(parent != oldParent) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT, oldParent, parent));
 				}
 			}
@@ -146,9 +147,9 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	public NotificationChain basicSetParent(ITreeItemAxis newParent, NotificationChain msgs) {
 		ITreeItemAxis oldParent = parent;
 		parent = newParent;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT, oldParent, newParent);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -165,20 +166,19 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public void setParent(ITreeItemAxis newParent) {
-		if (newParent != parent) {
+		if(newParent != parent) {
 			NotificationChain msgs = null;
-			if (parent != null) {
-				msgs = ((InternalEObject) parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
+			if(parent != null) {
+				msgs = ((InternalEObject)parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
 			}
-			if (newParent != null) {
-				msgs = ((InternalEObject) newParent).eInverseAdd(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
+			if(newParent != null) {
+				msgs = ((InternalEObject)newParent).eInverseAdd(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
 			}
 			msgs = basicSetParent(newParent, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT, newParent, newParent));
 		}
 	}
@@ -204,7 +204,7 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	public void setExpanded(boolean newExpanded) {
 		boolean oldExpanded = expanded;
 		expanded = newExpanded;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.ID_TREE_ITEM_AXIS__EXPANDED, oldExpanded, expanded));
 		}
 	}
@@ -217,7 +217,7 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public EList<ITreeItemAxis> getChildren() {
-		if (children == null) {
+		if(children == null) {
 			children = new EObjectWithInverseResolvingEList<ITreeItemAxis>(ITreeItemAxis.class, this, NattableaxisPackage.ID_TREE_ITEM_AXIS__CHILDREN, NattableaxisPackage.ITREE_ITEM_AXIS__PARENT);
 		}
 		return children;
@@ -232,14 +232,14 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
-			if (parent != null) {
-				msgs = ((InternalEObject) parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
+			if(parent != null) {
+				msgs = ((InternalEObject)parent).eInverseRemove(this, NattableaxisPackage.ITREE_ITEM_AXIS__CHILDREN, ITreeItemAxis.class, msgs);
 			}
-			return basicSetParent((ITreeItemAxis) otherEnd, msgs);
+			return basicSetParent((ITreeItemAxis)otherEnd, msgs);
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__CHILDREN:
-			return ((InternalEList<InternalEObject>) (InternalEList<?>) getChildren()).basicAdd(otherEnd, msgs);
+			return ((InternalEList<InternalEObject>)(InternalEList<?>)getChildren()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -252,11 +252,11 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
 			return basicSetParent(null, msgs);
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__CHILDREN:
-			return ((InternalEList<?>) getChildren()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getChildren()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -269,9 +269,9 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
-			if (resolve) {
+			if(resolve) {
 				return getParent();
 			}
 			return basicGetParent();
@@ -292,16 +292,16 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
-			setParent((ITreeItemAxis) newValue);
+			setParent((ITreeItemAxis)newValue);
 			return;
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__EXPANDED:
-			setExpanded((Boolean) newValue);
+			setExpanded((Boolean)newValue);
 			return;
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__CHILDREN:
 			getChildren().clear();
-			getChildren().addAll((Collection<? extends ITreeItemAxis>) newValue);
+			getChildren().addAll((Collection<? extends ITreeItemAxis>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,9 +315,9 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
-			setParent((ITreeItemAxis) null);
+			setParent((ITreeItemAxis)null);
 			return;
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__EXPANDED:
 			setExpanded(EXPANDED_EDEFAULT);
@@ -337,7 +337,7 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
 			return parent != null;
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS__EXPANDED:
@@ -356,8 +356,8 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
-		if (baseClass == ITreeItemAxis.class) {
-			switch (derivedFeatureID) {
+		if(baseClass == ITreeItemAxis.class) {
+			switch(derivedFeatureID) {
 			case NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT:
 				return NattableaxisPackage.ITREE_ITEM_AXIS__PARENT;
 			case NattableaxisPackage.ID_TREE_ITEM_AXIS__EXPANDED:
@@ -379,8 +379,8 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
-		if (baseClass == ITreeItemAxis.class) {
-			switch (baseFeatureID) {
+		if(baseClass == ITreeItemAxis.class) {
+			switch(baseFeatureID) {
 			case NattableaxisPackage.ITREE_ITEM_AXIS__PARENT:
 				return NattableaxisPackage.ID_TREE_ITEM_AXIS__PARENT;
 			case NattableaxisPackage.ITREE_ITEM_AXIS__EXPANDED:
@@ -402,15 +402,13 @@ public class IdTreeItemAxisImpl extends IdAxisImpl implements IdTreeItemAxis {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (expanded: "); //$NON-NLS-1$
 		result.append(expanded);
 		result.append(')');
 		return result.toString();
 	}
-
 } // IdTreeItemAxisImpl

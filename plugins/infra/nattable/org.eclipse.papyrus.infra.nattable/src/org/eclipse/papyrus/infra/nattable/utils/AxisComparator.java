@@ -67,8 +67,8 @@ public class AxisComparator implements Comparator<IAxis> {
 	@Override
 	public int compare(IAxis arg0, IAxis arg1) {
 		final LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final String str1 = getText(serv, arg0).replaceAll(AxisUtils.REGEX, "");// we keep only words characters (letters + numbers) + whitespace
-		final String str2 = getText(serv, arg1).replaceAll(AxisUtils.REGEX, "");
+		final String str1 = getText(serv, arg0).replaceAll(AxisUtils.REGEX, "");// we keep only words characters (letters + numbers) + whitespace //$NON-NLS-1$
+		final String str2 = getText(serv, arg1).replaceAll(AxisUtils.REGEX, ""); //$NON-NLS-1$
 		if (this.alphabeticOrder) {
 			return str1.compareToIgnoreCase(str2);
 		}

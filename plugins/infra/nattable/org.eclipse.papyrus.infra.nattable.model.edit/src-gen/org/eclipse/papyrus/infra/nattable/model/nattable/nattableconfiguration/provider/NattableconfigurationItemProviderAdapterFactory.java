@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.u
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class NattableconfigurationItemProviderAdapterFactory extends NattableconfigurationAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -46,7 +46,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,7 +55,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,7 +64,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -73,7 +73,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NattableconfigurationItemProviderAdapterFactory() {
@@ -88,7 +88,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected TableConfigurationItemProvider tableConfigurationItemProvider;
@@ -97,7 +97,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,7 +125,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +136,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +148,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +159,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,7 +178,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +190,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,7 +202,7 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,14 +218,13 @@ public class NattableconfigurationItemProviderAdapterFactory extends Nattablecon
 	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (tableConfigurationItemProvider != null) {
+		if (tableConfigurationItemProvider != null)
 			tableConfigurationItemProvider.dispose();
-		}
 	}
 
 }

@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Double Value Style</b></em>'.
@@ -34,6 +33,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface DoubleValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>Double Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,15 +51,15 @@ public interface DoubleValueStyle extends NamedStyle {
 	double getDoubleValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle#getDoubleValue <em>Double Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle#getDoubleValue
+	 * <em>Double Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Double Value</em>' attribute.
+	 *        the new value of the '<em>Double Value</em>' attribute.
 	 * @see #getDoubleValue()
 	 * @generated
 	 */
 	void setDoubleValue(double value);
-
 } // DoubleValueStyle

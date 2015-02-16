@@ -114,7 +114,7 @@ public class TablePasteStrategy extends AbstractPasteStrategy implements IPasteS
 				Object object = iterator.next();
 				// get target Element
 				EObject target = papyrusClipboard.getTragetCopyFromInternalClipboardCopy(object);
-				if (target != null && target instanceof EObject) {
+				if (target != null) {
 					// get affiliate additionalDataMap
 
 					additionalData = additionalDataMap.get(object);
@@ -203,7 +203,7 @@ public class TablePasteStrategy extends AbstractPasteStrategy implements IPasteS
 
 
 
-	protected class TableClipboardAdditionalData implements IClipboardAdditionalData {
+	protected static class TableClipboardAdditionalData implements IClipboardAdditionalData {
 
 		/** The internal copies of tables */
 		protected Collection<Table> tables;

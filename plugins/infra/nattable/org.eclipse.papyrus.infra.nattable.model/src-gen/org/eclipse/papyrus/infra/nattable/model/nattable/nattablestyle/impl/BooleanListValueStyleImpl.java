@@ -27,13 +27,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl#getBooleanListValue <em>Boolean List Value</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.BooleanListValueStyleImpl#getBooleanListValue <em>Boolean List
+ * Value</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class BooleanListValueStyleImpl extends NamedStyleImpl implements BooleanListValueStyle {
+
 	/**
 	 * The cached value of the '{@link #getBooleanListValue() <em>Boolean List Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -74,7 +76,7 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	 */
 	@Override
 	public EList<Boolean> getBooleanListValue() {
-		if (booleanListValue == null) {
+		if(booleanListValue == null) {
 			booleanListValue = new EDataTypeEList<Boolean>(Boolean.class, this, NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE);
 		}
 		return booleanListValue;
@@ -88,7 +90,7 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
 			return getBooleanListValue();
 		}
@@ -104,10 +106,10 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
 			getBooleanListValue().clear();
-			getBooleanListValue().addAll((Collection<? extends Boolean>) newValue);
+			getBooleanListValue().addAll((Collection<? extends Boolean>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,7 +123,7 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
 			getBooleanListValue().clear();
 			return;
@@ -137,7 +139,7 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE:
 			return booleanListValue != null && !booleanListValue.isEmpty();
 		}
@@ -152,15 +154,13 @@ public class BooleanListValueStyleImpl extends NamedStyleImpl implements Boolean
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (booleanListValue: "); //$NON-NLS-1$
 		result.append(booleanListValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // BooleanListValueStyleImpl

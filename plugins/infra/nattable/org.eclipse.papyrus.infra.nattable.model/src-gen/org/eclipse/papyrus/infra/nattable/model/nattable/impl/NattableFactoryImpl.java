@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
  * @generated
  */
 public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -38,8 +39,8 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 */
 	public static NattableFactory init() {
 		try {
-			NattableFactory theNattableFactory = (NattableFactory) EPackage.Registry.INSTANCE.getEFactory(NattablePackage.eNS_URI);
-			if (theNattableFactory != null) {
+			NattableFactory theNattableFactory = (NattableFactory)EPackage.Registry.INSTANCE.getEFactory(NattablePackage.eNS_URI);
+			if(theNattableFactory != null) {
 				return theNattableFactory;
 			}
 		} catch (Exception exception) {
@@ -67,7 +68,7 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattablePackage.TABLE:
 			return createTable();
 		default:
@@ -95,7 +96,7 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	 */
 	@Override
 	public NattablePackage getNattablePackage() {
-		return (NattablePackage) getEPackage();
+		return (NattablePackage)getEPackage();
 	}
 
 	/**
@@ -109,5 +110,4 @@ public class NattableFactoryImpl extends EFactoryImpl implements NattableFactory
 	public static NattablePackage getPackage() {
 		return NattablePackage.eINSTANCE;
 	}
-
 } // NattableFactoryImpl

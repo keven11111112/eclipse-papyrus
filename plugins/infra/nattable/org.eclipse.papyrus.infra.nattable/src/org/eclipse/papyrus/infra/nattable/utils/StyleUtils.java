@@ -77,7 +77,7 @@ public class StyleUtils {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param manager
 	 *            a table manager
 	 * @param depth
@@ -90,7 +90,7 @@ public class StyleUtils {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param table
 	 *            a table
 	 * @param depth

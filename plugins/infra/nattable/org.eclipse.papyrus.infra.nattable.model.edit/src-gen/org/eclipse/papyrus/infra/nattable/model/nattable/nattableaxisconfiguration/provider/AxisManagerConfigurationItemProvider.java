@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class AxisManagerConfigurationItemProvider extends StyledElementItemProvider {
@@ -37,7 +37,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public AxisManagerConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +67,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This adds a property descriptor for the Local Header Label Configuration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addLocalHeaderLabelConfigurationPropertyDescriptor(Object object) {
@@ -90,7 +90,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This adds a property descriptor for the Axis Manager feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addAxisManagerPropertyDescriptor(Object object) {
@@ -113,7 +113,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This adds a property descriptor for the Local Specific Configurations feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addLocalSpecificConfigurationsPropertyDescriptor(Object object) {
@@ -136,7 +136,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns AxisManagerConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +148,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -162,7 +162,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -176,7 +176,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +188,7 @@ public class AxisManagerConfigurationItemProvider extends StyledElementItemProvi
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

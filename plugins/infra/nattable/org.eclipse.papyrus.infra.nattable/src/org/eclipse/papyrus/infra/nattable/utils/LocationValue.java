@@ -223,7 +223,7 @@ public class LocationValue {
 	 */
 	@Override
 	public String toString() {
-		String message = "location : " + this.kind + ", columnIndex :" + this.columnIndex + ", rowIndex :" + this.rowIndex + ", columnObject :" + this.columnObject + ", rowObject :" + this.rowObject;
+		String message = "location : " + this.kind + ", columnIndex :" + this.columnIndex + ", rowIndex :" + this.rowIndex + ", columnObject :" + this.columnObject + ", rowObject :" + this.rowObject; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$
 		return message;
 	}
 }

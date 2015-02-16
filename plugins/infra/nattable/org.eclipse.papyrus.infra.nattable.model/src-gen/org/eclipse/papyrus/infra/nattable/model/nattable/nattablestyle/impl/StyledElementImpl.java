@@ -83,7 +83,7 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public EList<Style> getStyles() {
-		if (styles == null) {
+		if(styles == null) {
 			styles = new EObjectContainmentEList<Style>(Style.class, this, NattablestylePackage.STYLED_ELEMENT__STYLES);
 		}
 		return styles;
@@ -97,12 +97,12 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public NamedStyle getNamedStyle(EClass eClass, String name) {
-		if (eClass != null && eIsSet(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES) && NattablestylePackage.eINSTANCE.getNamedStyle().isSuperTypeOf(eClass)) {
-			for (Iterator i = getStyles().iterator(); i.hasNext();) {
-				Style style = (Style) i.next();
-				if (style.eClass() == eClass || eClass.isInstance(style)) {
-					if (style.eGet(NattablestylePackage.eINSTANCE.getNamedStyle_Name()).equals(name)) {
-						return (NamedStyle) style;
+		if(eClass != null && eIsSet(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES) && NattablestylePackage.eINSTANCE.getNamedStyle().isSuperTypeOf(eClass)) {
+			for(Iterator i = getStyles().iterator(); i.hasNext();) {
+				Style style = (Style)i.next();
+				if(style.eClass() == eClass || eClass.isInstance(style)) {
+					if(style.eGet(NattablestylePackage.eINSTANCE.getNamedStyle_Name()).equals(name)) {
+						return (NamedStyle)style;
 					}
 				}
 			}
@@ -118,14 +118,14 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public Style getStyle(EClass eClass) {
-		if (eClass != null && NattablestylePackage.eINSTANCE.getStyle().isSuperTypeOf(eClass)) {
-			if (eClass.isSuperTypeOf(eClass())) {
-				return (Style) this;
+		if(eClass != null && NattablestylePackage.eINSTANCE.getStyle().isSuperTypeOf(eClass)) {
+			if(eClass.isSuperTypeOf(eClass())) {
+				return (Style)this;
 			}
-			if (eIsSet(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES)) {
-				for (Iterator<?> i = getStyles().iterator(); i.hasNext();) {
-					Style style = (Style) i.next();
-					if (style.eClass() == eClass || eClass.isInstance(style)) {
+			if(eIsSet(NattablestylePackage.Literals.STYLED_ELEMENT__STYLES)) {
+				for(Iterator<?> i = getStyles().iterator(); i.hasNext();) {
+					Style style = (Style)i.next();
+					if(style.eClass() == eClass || eClass.isInstance(style)) {
 						return style;
 					}
 				}
@@ -142,7 +142,7 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public Style createStyle(EClass eClass) {
-		Style newStyle = (Style) eClass.getEPackage().getEFactoryInstance().create(eClass);
+		Style newStyle = (Style)eClass.getEPackage().getEFactoryInstance().create(eClass);
 		getStyles().add(newStyle);
 		return newStyle;
 	}
@@ -155,9 +155,9 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STYLED_ELEMENT__STYLES:
-			return ((InternalEList<?>) getStyles()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getStyles()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -170,7 +170,7 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STYLED_ELEMENT__STYLES:
 			return getStyles();
 		}
@@ -186,10 +186,10 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STYLED_ELEMENT__STYLES:
 			getStyles().clear();
-			getStyles().addAll((Collection<? extends Style>) newValue);
+			getStyles().addAll((Collection<? extends Style>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -203,7 +203,7 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STYLED_ELEMENT__STYLES:
 			getStyles().clear();
 			return;
@@ -219,7 +219,7 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STYLED_ELEMENT__STYLES:
 			return styles != null && !styles.isEmpty();
 		}
@@ -234,13 +234,13 @@ public abstract class StyledElementImpl extends EModelElementImpl implements Sty
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
+		switch(operationID) {
 		case NattablestylePackage.STYLED_ELEMENT___GET_NAMED_STYLE__ECLASS_STRING:
-			return getNamedStyle((EClass) arguments.get(0), (String) arguments.get(1));
+			return getNamedStyle((EClass)arguments.get(0), (String)arguments.get(1));
 		case NattablestylePackage.STYLED_ELEMENT___GET_STYLE__ECLASS:
-			return getStyle((EClass) arguments.get(0));
+			return getStyle((EClass)arguments.get(0));
 		case NattablestylePackage.STYLED_ELEMENT___CREATE_STYLE__ECLASS:
-			return createStyle((EClass) arguments.get(0));
+			return createStyle((EClass)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

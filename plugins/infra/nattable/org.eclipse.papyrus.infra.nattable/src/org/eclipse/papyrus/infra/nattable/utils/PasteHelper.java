@@ -23,12 +23,12 @@ public class PasteHelper {
 	/**
 	 * the default separator used for row
 	 */
-	public static final String DEFAULT_ROW_SEPARATOR = "\n"; //$NON-NLS-1"
+	public static final String DEFAULT_ROW_SEPARATOR = "\n"; //$NON-NLS-1" //$NON-NLS-1$
 
 	/**
 	 * the default separator used for columns
 	 */
-	public static final String DEFAULT_COLUMN_SEPARATOR = "\t";//$NON-NLS-1"
+	public static final String DEFAULT_COLUMN_SEPARATOR = "\t";//$NON-NLS-1" //$NON-NLS-1$
 
 	/**
 	 * the default separator used for multivalue
@@ -110,7 +110,7 @@ public class PasteHelper {
 			int nbColumn = rows[0].split(columnSeparator).length;
 			String[] columns = new String[nbColumn];
 			for (int columnIndex = 0; columnIndex < nbColumn; columnIndex++) {
-				columns[columnIndex] = "";
+				columns[columnIndex] = ""; //$NON-NLS-1$
 			}
 
 			for (int rowIndex = 0; rowIndex < rows.length; rowIndex++) {

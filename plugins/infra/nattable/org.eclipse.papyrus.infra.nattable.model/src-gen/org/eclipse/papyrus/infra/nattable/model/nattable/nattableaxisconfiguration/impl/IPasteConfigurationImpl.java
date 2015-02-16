@@ -30,14 +30,17 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.IPasteConfigurationImpl#getPostActions <em>Post Actions</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.IPasteConfigurationImpl#isDetachedMode <em>Detached Mode</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.IPasteConfigurationImpl#getPostActions <em>Post Actions
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.IPasteConfigurationImpl#isDetachedMode <em>Detached
+ * Mode</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class IPasteConfigurationImpl extends StyledElementImpl implements IPasteConfiguration {
+
 	/**
 	 * The cached value of the '{@link #getPostActions() <em>Post Actions</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -100,7 +103,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	 */
 	@Override
 	public EList<String> getPostActions() {
-		if (postActions == null) {
+		if(postActions == null) {
 			postActions = new EDataTypeUniqueEList<String>(String.class, this, NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS);
 		}
 		return postActions;
@@ -127,7 +130,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	public void setDetachedMode(boolean newDetachedMode) {
 		boolean oldDetachedMode = detachedMode;
 		detachedMode = newDetachedMode;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__DETACHED_MODE, oldDetachedMode, detachedMode));
 		}
 	}
@@ -140,7 +143,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS:
 			return getPostActions();
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__DETACHED_MODE:
@@ -158,13 +161,13 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS:
 			getPostActions().clear();
-			getPostActions().addAll((Collection<? extends String>) newValue);
+			getPostActions().addAll((Collection<? extends String>)newValue);
 			return;
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__DETACHED_MODE:
-			setDetachedMode((Boolean) newValue);
+			setDetachedMode((Boolean)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -178,7 +181,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS:
 			getPostActions().clear();
 			return;
@@ -197,7 +200,7 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__POST_ACTIONS:
 			return postActions != null && !postActions.isEmpty();
 		case NattableaxisconfigurationPackage.IPASTE_CONFIGURATION__DETACHED_MODE:
@@ -214,10 +217,9 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (postActions: "); //$NON-NLS-1$
 		result.append(postActions);
@@ -226,5 +228,4 @@ public class IPasteConfigurationImpl extends StyledElementImpl implements IPaste
 		result.append(')');
 		return result.toString();
 	}
-
 } // IPasteConfigurationImpl

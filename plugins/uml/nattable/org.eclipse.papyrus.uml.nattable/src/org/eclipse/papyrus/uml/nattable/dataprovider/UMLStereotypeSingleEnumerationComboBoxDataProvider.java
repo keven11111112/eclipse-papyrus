@@ -10,18 +10,18 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 402525
- *
+ *  Vincent Lorenzo (CEA-LIST) - bug 458492
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.dataprovider;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.emf.ecore.EAttribute;
+import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.edit.editor.IComboBoxDataProvider;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -57,7 +57,7 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 	 *            The table axis element provider
 	 */
 	public UMLStereotypeSingleEnumerationComboBoxDataProvider(final Object axisElement, final ITableAxisElementProvider elementProvider) {
-		this.axisElement = AxisUtils.getRepresentedElement(axisElement);
+		this.axisElement = axisElement;
 		this.elementProvider = elementProvider;
 	}
 
@@ -79,9 +79,9 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 		el = AxisUtils.getRepresentedElement(el);
 		rowElement = AxisUtils.getRepresentedElement(rowElement);
 		Element modelElement = null;
-		if (rowElement instanceof Element && el == this.axisElement) {
+		if (rowElement instanceof Element && el.equals(AxisUtils.getRepresentedElement(this.axisElement))) {
 			modelElement = (Element) rowElement;
-		} else if (rowElement == this.axisElement && el instanceof Element) {
+		} else if (rowElement.equals(AxisUtils.getRepresentedElement(this.axisElement)) && el instanceof Element) {
 			modelElement = (Element) el;
 		}
 		if (modelElement != null) {
@@ -90,31 +90,25 @@ public class UMLStereotypeSingleEnumerationComboBoxDataProvider implements IComb
 			final List<Stereotype> ste = UMLTableUtils.getApplicableStereotypesWithThisProperty(modelElement, id);
 			if (ste.size() == 1) {
 				final Stereotype current = ste.get(0);
-				EEnum eenum = (EEnum) current.getProfile().getDefinition(property.getType());
-				if (eenum == null) {
-					// the enum is declared in an other file (external library)
-					EClass stereotypeDef = (EClass) current.getProfile().getDefinition(current);
-					List<EAttribute> attributes = stereotypeDef.getEAllAttributes();
-					int i = 0;
-					while (eenum == null && i < attributes.size()) {
-						EAttribute attr = attributes.get(i);
-						if (property.getName().equals(attr.getName())) {
-							EClassifier tmp = attr.getEType();
-							if (tmp instanceof EEnum) {
-								eenum = (EEnum) tmp;
+				// the stereotype is maybe not applied on the element, but we allow to edit its values
+				EClass stereotypeDefinition = (EClass) current.getProfile().getDefinition(current);
+				if (stereotypeDefinition != null) {
+					EStructuralFeature feature = stereotypeDefinition.getEStructuralFeature(property.getName());
+					if (feature != null) {
+						EEnum eenum = null;
+						if (feature != null && feature.getEType() instanceof EEnum) {
+							eenum = (EEnum) feature.getEType();
+						}
+						if (eenum != null) {
+							for (EEnumLiteral literal : eenum.getELiterals()) {
+								Enumerator value = literal.getInstance();
+								literals.add(value);
 							}
 						}
-						i++;
-					}
-				}
-				if (eenum != null) {
-					for (final EEnumLiteral instances : eenum.getELiterals()) {
-						literals.add(instances.getInstance());
 					}
 				}
 			}
 		}
 		return literals;
 	}
-
 }

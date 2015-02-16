@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.converter;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
@@ -55,7 +56,7 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	 */
 	@Override
 	public Object displayToCanonicalValue(Object displayValue) {
-		throw new UnsupportedOperationException();
+		return displayValue.toString();
 	}
 
 	/**
@@ -68,11 +69,15 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	 * @return
 	 */
 	@Override
-	public Object canonicalToDisplayValue(final ILayerCell cell, final IConfigRegistry configRegistry, final Object canonicalValue) {
+	public Object canonicalToDisplayValue(ILayerCell cell, final IConfigRegistry configRegistry, final Object canonicalValue) {
+		if (canonicalValue == null) {
+			return null;
+		}
+
 		final LabelProviderService service = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 		final ILabelProvider labelProvider = service.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT);
 		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, canonicalValue, configRegistry);
-		assert labelProvider != null;
+		Assert.isNotNull(labelProvider);
 		return labelProvider.getText(contextElement);
 	}
 
@@ -88,9 +93,7 @@ public class GenericDisplayConverter implements IDisplayConverter {
 	 */
 	@Override
 	public Object displayToCanonicalValue(ILayerCell cell, IConfigRegistry configRegistry, Object displayValue) {
-		// throw new UnsupportedOperationException();
 		return displayValue;
 	}
-
 
 }

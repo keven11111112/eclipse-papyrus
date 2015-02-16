@@ -409,7 +409,7 @@ public class TableCommands {
 	 *         the command doing the set value
 	 */
 	public static ICommand getSetIAxisConfigurationValueCommand(final Table table, final IAxisConfiguration editedConfiguration, final EStructuralFeature managedFeature, final Object value, boolean onColumn) {
-		final CompositeCommand compositeCommand = new CompositeCommand("Set IAxis Value Command");
+		final CompositeCommand compositeCommand = new CompositeCommand("Set IAxis Value Command"); //$NON-NLS-1$
 		final TransactionalEditingDomain domain = TableEditingDomainUtils.getTableEditingDomain(table);
 		final EObject parent = editedConfiguration.eContainer();
 		IAxisConfiguration realEditedObject = editedConfiguration;

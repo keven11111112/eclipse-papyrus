@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public class FontStyleImpl extends EModelElementImpl implements FontStyle {
+
 	/**
 	 * The default value of the '{@link #getFontColor() <em>Font Color</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -235,7 +236,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setFontColor(int newFontColor) {
 		int oldFontColor = fontColor;
 		fontColor = newFontColor;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_COLOR, oldFontColor, fontColor));
 		}
 	}
@@ -261,7 +262,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setFontName(String newFontName) {
 		String oldFontName = fontName;
 		fontName = newFontName;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_NAME, oldFontName, fontName));
 		}
 	}
@@ -287,7 +288,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setFontHeight(int newFontHeight) {
 		int oldFontHeight = fontHeight;
 		fontHeight = newFontHeight;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__FONT_HEIGHT, oldFontHeight, fontHeight));
 		}
 	}
@@ -313,7 +314,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setBold(boolean newBold) {
 		boolean oldBold = bold;
 		bold = newBold;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__BOLD, oldBold, bold));
 		}
 	}
@@ -339,7 +340,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setItalic(boolean newItalic) {
 		boolean oldItalic = italic;
 		italic = newItalic;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__ITALIC, oldItalic, italic));
 		}
 	}
@@ -365,7 +366,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setUnderline(boolean newUnderline) {
 		boolean oldUnderline = underline;
 		underline = newUnderline;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__UNDERLINE, oldUnderline, underline));
 		}
 	}
@@ -391,7 +392,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	public void setStrikeThrough(boolean newStrikeThrough) {
 		boolean oldStrikeThrough = strikeThrough;
 		strikeThrough = newStrikeThrough;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.FONT_STYLE__STRIKE_THROUGH, oldStrikeThrough, strikeThrough));
 		}
 	}
@@ -404,7 +405,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
 			return getFontColor();
 		case NattablestylePackage.FONT_STYLE__FONT_NAME:
@@ -431,27 +432,27 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
-			setFontColor((Integer) newValue);
+			setFontColor((Integer)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__FONT_NAME:
-			setFontName((String) newValue);
+			setFontName((String)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__FONT_HEIGHT:
-			setFontHeight((Integer) newValue);
+			setFontHeight((Integer)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__BOLD:
-			setBold((Boolean) newValue);
+			setBold((Boolean)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__ITALIC:
-			setItalic((Boolean) newValue);
+			setItalic((Boolean)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__UNDERLINE:
-			setUnderline((Boolean) newValue);
+			setUnderline((Boolean)newValue);
 			return;
 		case NattablestylePackage.FONT_STYLE__STRIKE_THROUGH:
-			setStrikeThrough((Boolean) newValue);
+			setStrikeThrough((Boolean)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -465,7 +466,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
 			setFontColor(FONT_COLOR_EDEFAULT);
 			return;
@@ -499,7 +500,7 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.FONT_STYLE__FONT_COLOR:
 			return fontColor != FONT_COLOR_EDEFAULT;
 		case NattablestylePackage.FONT_STYLE__FONT_NAME:
@@ -526,10 +527,9 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fontColor: "); //$NON-NLS-1$
 		result.append(fontColor);
@@ -548,5 +548,4 @@ public class FontStyleImpl extends EModelElementImpl implements FontStyle {
 		result.append(')');
 		return result.toString();
 	}
-
 } // FontStyleImpl

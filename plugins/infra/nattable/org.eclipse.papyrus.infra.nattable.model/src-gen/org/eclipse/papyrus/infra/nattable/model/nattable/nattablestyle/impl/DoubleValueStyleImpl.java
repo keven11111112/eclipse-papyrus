@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueStyle {
+
 	/**
 	 * The default value of the '{@link #getDoubleValue() <em>Double Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,7 +97,7 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	public void setDoubleValue(double newDoubleValue) {
 		double oldDoubleValue = doubleValue;
 		doubleValue = newDoubleValue;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.DOUBLE_VALUE_STYLE__DOUBLE_VALUE, oldDoubleValue, doubleValue));
 		}
 	}
@@ -109,7 +110,7 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.DOUBLE_VALUE_STYLE__DOUBLE_VALUE:
 			return getDoubleValue();
 		}
@@ -124,9 +125,9 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.DOUBLE_VALUE_STYLE__DOUBLE_VALUE:
-			setDoubleValue((Double) newValue);
+			setDoubleValue((Double)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +141,7 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.DOUBLE_VALUE_STYLE__DOUBLE_VALUE:
 			setDoubleValue(DOUBLE_VALUE_EDEFAULT);
 			return;
@@ -156,7 +157,7 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.DOUBLE_VALUE_STYLE__DOUBLE_VALUE:
 			return doubleValue != DOUBLE_VALUE_EDEFAULT;
 		}
@@ -171,15 +172,13 @@ public class DoubleValueStyleImpl extends NamedStyleImpl implements DoubleValueS
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (doubleValue: "); //$NON-NLS-1$
 		result.append(doubleValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // DoubleValueStyleImpl

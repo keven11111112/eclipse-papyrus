@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.util.Nat
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -46,7 +46,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -55,7 +55,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -64,7 +64,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -73,7 +73,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NattabletesterItemProviderAdapterFactory() {
@@ -88,7 +88,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected JavaTableTesterItemProvider javaTableTesterItemProvider;
@@ -97,7 +97,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.JavaTableTester}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,7 +113,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -125,7 +125,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -136,7 +136,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +148,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +159,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -178,7 +178,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -190,7 +190,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -202,7 +202,7 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -218,14 +218,13 @@ public class NattabletesterItemProviderAdapterFactory extends NattabletesterAdap
 	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (javaTableTesterItemProvider != null) {
+		if (javaTableTesterItemProvider != null)
 			javaTableTesterItemProvider.dispose();
-		}
 	}
 
 }

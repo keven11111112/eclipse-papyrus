@@ -19,6 +19,10 @@ public class Messages extends NLS {
 	public static String CreateNattableFromCatalogWizard_1;
 
 	public static String CreateNattableFromCatalogWizard_2;
+
+	public static String RenameTableHandler_NewName;
+
+	public static String RenameTableHandler_RenameAnExistingTable;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

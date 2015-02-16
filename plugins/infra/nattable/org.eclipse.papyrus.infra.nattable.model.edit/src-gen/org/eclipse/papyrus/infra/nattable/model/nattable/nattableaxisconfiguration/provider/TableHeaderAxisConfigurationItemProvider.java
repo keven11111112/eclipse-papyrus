@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxisConfigurationItemProvider {
@@ -38,7 +38,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public TableHeaderAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -49,7 +49,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -81,7 +81,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -96,7 +96,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * This returns TableHeaderAxisConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -108,7 +108,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -126,7 +126,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -146,7 +146,7 @@ public class TableHeaderAxisConfigurationItemProvider extends AbstractHeaderAxis
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

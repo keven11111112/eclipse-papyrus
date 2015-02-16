@@ -29,13 +29,18 @@ import org.eclipse.papyrus.infra.nattable.painter.CustomizedCellPainter;
  */
 public class StyleConfiguration extends DefaultNatTableStyleConfiguration {
 
+	/**
+	 * 
+	 * @see org.eclipse.nebula.widgets.nattable.config.DefaultNatTableStyleConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
+	 *
+	 * @param configRegistry
+	 */
 	@Override
 	public void configureRegistry(final IConfigRegistry configRegistry) {
 		super.configureRegistry(configRegistry);
 		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new CustomizedCellPainter());
 		configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter());
 		configRegistry.registerConfigAttribute(ExportConfigAttributes.EXPORT_FORMATTER, new PapyrusExportFormatter());
-
 	}
 
 

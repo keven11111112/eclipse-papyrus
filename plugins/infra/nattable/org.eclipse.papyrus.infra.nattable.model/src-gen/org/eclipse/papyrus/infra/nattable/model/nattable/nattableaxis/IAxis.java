@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public interface IAxis extends StyledElement {
+
 	/**
 	 * Returns the value of the '<em><b>Manager</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -60,7 +61,7 @@ public interface IAxis extends StyledElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Manager</em>' reference.
+	 *        the new value of the '<em>Manager</em>' reference.
 	 * @see #getManager()
 	 * @generated
 	 */
@@ -88,7 +89,7 @@ public interface IAxis extends StyledElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Alias</em>' attribute.
+	 *        the new value of the '<em>Alias</em>' attribute.
 	 * @see #getAlias()
 	 * @generated
 	 */
@@ -118,5 +119,4 @@ public interface IAxis extends StyledElement {
 	 * @generated
 	 */
 	ILabelProviderConfiguration getLocalLabelConfiguration();
-
 } // IAxis

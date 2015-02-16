@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
  * @generated
  */
 public interface Cell extends EModelElement {
+
 	/**
 	 * Returns the value of the '<em><b>Column Wrapper</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
@@ -56,12 +57,13 @@ public interface Cell extends EModelElement {
 	ICellAxisWrapper getColumnWrapper();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell#getColumnWrapper <em>Column Wrapper</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell#getColumnWrapper <em>Column Wrapper</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Column Wrapper</em>' containment reference.
+	 *        the new value of the '<em>Column Wrapper</em>' containment reference.
 	 * @see #getColumnWrapper()
 	 * @generated
 	 */
@@ -84,12 +86,13 @@ public interface Cell extends EModelElement {
 	ICellAxisWrapper getRowWrapper();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell#getRowWrapper <em>Row Wrapper</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Cell#getRowWrapper <em>Row Wrapper</em>}'
+	 * containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Row Wrapper</em>' containment reference.
+	 *        the new value of the '<em>Row Wrapper</em>' containment reference.
 	 * @see #getRowWrapper()
 	 * @generated
 	 */
@@ -110,5 +113,4 @@ public interface Cell extends EModelElement {
 	 * @generated
 	 */
 	EList<Problem> getProblems();
-
 } // Cell

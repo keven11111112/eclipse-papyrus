@@ -42,6 +42,7 @@ public abstract class AbstractCompositeDataProvider implements IDataProvider, ID
 	 */
 	public AbstractCompositeDataProvider(final INattableModelManager manager) {
 		this.providers = new ArrayList<IDataProvider>();
+		this.manager = manager;
 	}
 
 	/**

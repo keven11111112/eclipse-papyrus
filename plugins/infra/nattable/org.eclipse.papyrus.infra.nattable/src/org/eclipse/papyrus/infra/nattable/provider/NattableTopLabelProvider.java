@@ -74,11 +74,14 @@ public class NattableTopLabelProvider extends AbstractNattableCellLabelProvider 
 		final ILabelProviderCellContextElementWrapper contextElement = (ILabelProviderCellContextElementWrapper) element;
 		final IConfigRegistry configRegistry = contextElement.getConfigRegistry();
 		final LabelStack labels = getLabelStack(contextElement, configRegistry);
+		if (labels.hasLabel(GridRegion.FILTER_ROW)) {
+			return getBodyLabel(contextElement, configRegistry);
+		}
 		if (labels.hasLabel(GridRegion.COLUMN_HEADER)) {
 			return getColumnHeaderLabel(contextElement, configRegistry);
 		} else if (labels.hasLabel(GridRegion.ROW_HEADER)) {
 			return getRowHeaderLabel(contextElement, configRegistry);
-		} else if (labels.hasLabel(GridRegion.BODY)) {
+		} else if (labels.hasLabel(GridRegion.BODY) || labels.hasLabel(GridRegion.FILTER_ROW)) {
 			return getBodyLabel(contextElement, configRegistry);
 		}
 		Object value = contextElement.getObject();

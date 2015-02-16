@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface BooleanListValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>Boolean List Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Boolean}.
@@ -50,5 +51,4 @@ public interface BooleanListValueStyle extends NamedStyle {
 	 * @generated
 	 */
 	EList<Boolean> getBooleanListValue();
-
 } // BooleanListValueStyle

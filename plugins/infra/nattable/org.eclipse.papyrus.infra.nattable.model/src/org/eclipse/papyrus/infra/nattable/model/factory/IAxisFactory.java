@@ -10,7 +10,6 @@
  *   CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.nattable.model.factory;
 
 import org.eclipse.emf.ecore.EObject;
@@ -43,35 +42,33 @@ public class IAxisFactory {
 	/**
 	 *
 	 * @param parent
-	 *            the parent for the tree axis item
+	 *        the parent for the tree axis item
 	 * @param object
-	 *            the object to represent with a ITreeItemAxis
+	 *        the object to represent with a ITreeItemAxis
 	 * @param manager
-	 *            the axis manager representation for the new axis
+	 *        the axis manager representation for the new axis
 	 * @return
 	 *         the created ITreeAxisItem for the object
 	 */
 	public static final ITreeItemAxis createITreeItemAxis(ITreeItemAxis parent, Object object, AxisManagerRepresentation manager, String alias) {
 		ITreeItemAxis createdAxis = null;
-
-		if (object instanceof Integer || object instanceof Float || object instanceof Boolean) {
+		if(object instanceof Integer || object instanceof Float || object instanceof Boolean) {
 			object = object.toString();
 		}
-		if (object instanceof String) {
+		if(object instanceof String) {
 			IdTreeItemAxis newAxis = NattableaxisFactory.eINSTANCE.createIdTreeItemAxis();
-			newAxis.setElement((String) object);
+			newAxis.setElement((String)object);
 			createdAxis = newAxis;
-		} else if (object instanceof EStructuralFeature) {
+		} else if(object instanceof EStructuralFeature) {
 			EStructuralFeatureTreeItemAxis newAxis = NattableaxisFactory.eINSTANCE.createEStructuralFeatureTreeItemAxis();
-			newAxis.setElement((EStructuralFeature) object);
+			newAxis.setElement((EStructuralFeature)object);
 			createdAxis = newAxis;
-		} else if (object instanceof EObject) {
+		} else if(object instanceof EObject) {
 			EObjectTreeItemAxis newAxis = NattableaxisFactory.eINSTANCE.createEObjectTreeItemAxis();
-			newAxis.setElement((EObject) object);
+			newAxis.setElement((EObject)object);
 			createdAxis = newAxis;
 		}
-
-		if (createdAxis == null) {
+		if(createdAxis == null) {
 			throw new UnsupportedOperationException(NLS.bind("The creation for {0} is not yet implemented", object)); //$NON-NLS-1$
 		} else {
 			createdAxis.setParent(parent);
@@ -84,19 +81,19 @@ public class IAxisFactory {
 	/**
 	 *
 	 * @param object
-	 *            an object representing a feature
+	 *        an object representing a feature
 	 * @return
 	 *         a feature axis to represent it
 	 */
 	public static final FeatureAxis createAxisForFeature(Object object, AxisManagerRepresentation manager, String alias) {
-		if (object instanceof String) {
+		if(object instanceof String) {
 			FeatureIdAxis axis = NattableaxisFactory.eINSTANCE.createFeatureIdAxis();
-			axis.setElement((String) object);
+			axis.setElement((String)object);
 			return axis;
 		}
-		if (object instanceof EStructuralFeature) {
+		if(object instanceof EStructuralFeature) {
 			EStructuralFeatureAxis axis = NattableaxisFactory.eINSTANCE.createEStructuralFeatureAxis();
-			axis.setElement((EStructuralFeature) object);
+			axis.setElement((EStructuralFeature)object);
 			return axis;
 		}
 		throw new UnsupportedOperationException(NLS.bind("The creation for {0} is not yet implemented", object)); //$NON-NLS-1$

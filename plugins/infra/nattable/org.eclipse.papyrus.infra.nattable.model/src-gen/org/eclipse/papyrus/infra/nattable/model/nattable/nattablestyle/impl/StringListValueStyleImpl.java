@@ -27,13 +27,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringLis
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl#getStringListValue <em>String List Value</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.StringListValueStyleImpl#getStringListValue <em>String List Value
+ * </em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class StringListValueStyleImpl extends NamedStyleImpl implements StringListValueStyle {
+
 	/**
 	 * The cached value of the '{@link #getStringListValue() <em>String List Value</em>}' attribute list.
 	 * <!-- begin-user-doc -->
@@ -74,7 +76,7 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	 */
 	@Override
 	public EList<String> getStringListValue() {
-		if (stringListValue == null) {
+		if(stringListValue == null) {
 			stringListValue = new EDataTypeEList<String>(String.class, this, NattablestylePackage.STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE);
 		}
 		return stringListValue;
@@ -88,7 +90,7 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE:
 			return getStringListValue();
 		}
@@ -104,10 +106,10 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE:
 			getStringListValue().clear();
-			getStringListValue().addAll((Collection<? extends String>) newValue);
+			getStringListValue().addAll((Collection<? extends String>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -121,7 +123,7 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE:
 			getStringListValue().clear();
 			return;
@@ -137,7 +139,7 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE:
 			return stringListValue != null && !stringListValue.isEmpty();
 		}
@@ -152,15 +154,13 @@ public class StringListValueStyleImpl extends NamedStyleImpl implements StringLi
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stringListValue: "); //$NON-NLS-1$
 		result.append(stringListValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // StringListValueStyleImpl

@@ -14,16 +14,24 @@
 package org.eclipse.papyrus.uml.nattable.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.Assert;
+import org.eclipse.emf.common.util.Enumerator;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EEnum;
+import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Property;
@@ -43,6 +51,32 @@ public class UMLTableUtils {
 	}
 
 	/**
+	 * 
+	 * @param aString
+	 *            a string
+	 * @return
+	 *         <code>true</code> if the string start with {@link #PROPERTY_OF_STEREOTYPE_PREFIX}
+	 */
+	public static final boolean isStringRepresentingStereotypeProperty(String aString) {
+		return aString.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+	}
+
+	/**
+	 * 
+	 * @param anAxis
+	 *            an object axis
+	 * @return
+	 *         <code>true</code> if the axis represents a property of stereotype (so a string starting with {@link #PROPERTY_OF_STEREOTYPE_PREFIX}
+	 */
+	public static final boolean isStringRepresentingStereotypeProperty(Object anAxis) {
+		anAxis = AxisUtils.getRepresentedElement(anAxis);
+		if (anAxis instanceof String) {
+			return isStringRepresentingStereotypeProperty((String) anAxis);
+		}
+		return false;
+	}
+
+	/**
 	 *
 	 * @param eobject
 	 *            an element of the model (currently, if it is not an UML::Element, we can't find the property)
@@ -56,12 +90,14 @@ public class UMLTableUtils {
 		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		if (eobject instanceof Element) {
 			final Element element = (Element) eobject;
+			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+			final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
+			final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
+			final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
+			final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
+
+			// 1. we check if the profile is applied on the nearest package
 			if (element.getNearestPackage() != null) {
-				final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-				final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
-				final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
-				final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
-				final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
 				final Profile profile = element.getNearestPackage().getAppliedProfile(profileQN, true);
 				if (profile != null) {
 					final Stereotype ste = profile.getOwnedStereotype(stereotypeName);
@@ -69,8 +105,80 @@ public class UMLTableUtils {
 				}
 			}
 
+			// 2. if not, the profile could be applied on a sub-package of the nearest package
+			/* the table can show element which are not children of its context, so the profile could not be available in its context */
+			return getProperty(element.getNearestPackage().getNestedPackages(), propertyQN);
 		}
 		return null;
+	}
+
+	/**
+	 * 
+	 * @param packages
+	 *            a list of package
+	 * @param propertyQN
+	 *            the qualified name of the wanted property
+	 * @return
+	 *         the property or <code>null</code> if not found
+	 */
+	protected static Property getProperty(Collection<Package> packages, String propertyQN) {
+		final String propertyName = NamedElementUtil.getNameFromQualifiedName(propertyQN);
+		final String stereotypeQN = NamedElementUtil.getParentQualifiedName(propertyQN);
+		final String stereotypeName = NamedElementUtil.getNameFromQualifiedName(stereotypeQN);
+		final String profileQN = NamedElementUtil.getParentQualifiedName(stereotypeQN);
+		for (Package package1 : packages) {
+			for (Profile prof : package1.getAppliedProfiles()) {
+				if (prof.getQualifiedName().equals(profileQN)) {
+					NamedElement ste = prof.getMember(stereotypeName);
+					if (ste instanceof Stereotype) {
+						NamedElement prop = ((Stereotype) ste).getMember(propertyName);
+						if (prop instanceof Property && prop.getQualifiedName().equals(propertyQN)) {
+							return (Property) prop;
+						}
+					}
+				}
+				Property p = getProperty(package1.getNestedPackages(), propertyQN);
+				if (p != null) {
+					return p;
+				}
+			}
+		}
+		return null;
+	}
+
+	/**
+	 *
+	 * @param eobject
+	 *            an element of the model (currently, if it is not an UML::Element, we can't find the property)
+	 * @param id
+	 *            the id used to identify the property of the stereotype
+	 * @return
+	 *         a list of enumerator which contains the available literal
+	 */
+	public static final List<Enumerator> getLiteralsToTypeProperty(final EObject modelElement, final String id) {
+		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
+		if (modelElement instanceof Element) {
+			final Property property = UMLTableUtils.getRealStereotypeProperty(modelElement, id);
+			final Stereotype current = (Stereotype) property.getOwner();
+
+			EClass stereotypeDef = (EClass) current.getProfile().getDefinition(current);
+			EStructuralFeature feature = stereotypeDef.getEStructuralFeature(property.getName());
+			EEnum eenum = null;
+			if (feature != null && feature.getEType() instanceof EEnum) {
+				eenum = (EEnum) feature.getEType();
+			}
+
+			if (eenum != null) {
+				final List<Enumerator> literals = new ArrayList<Enumerator>();
+				for (EEnumLiteral literal : eenum.getELiterals()) {
+					Enumerator value = literal.getInstance();
+					literals.add(value);
+				}
+				return literals;
+			}
+		}
+		return Collections.emptyList();
+
 	}
 
 	/**
@@ -86,7 +194,7 @@ public class UMLTableUtils {
 	 *         the UML::Property or <code>null</code> if we can't resolve it (the required profile is not applied)
 	 */
 	public static Property getRealStereotypeProperty(final EObject eobject, final String id, final Map<?, ?> sharedMap) {
-		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		if (eobject instanceof Element) {
 			final Element element = (Element) eobject;
 			final String propertyQN = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
@@ -125,7 +233,7 @@ public class UMLTableUtils {
 	 *         we can't resolve it (the required profile is not applied)
 	 */
 	public static final List<Stereotype> getAppliedStereotypesWithThisProperty(final Element element, final String id) {
-		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 		if (element.eResource() != null) {
 			final Object prop = getRealStereotypeProperty(element, id);
@@ -152,7 +260,7 @@ public class UMLTableUtils {
 	 *         we can't resolve it (the required profile is not applied)
 	 */
 	public static final List<Stereotype> getApplicableStereotypesWithThisProperty(final Element element, final String id) {
-		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 		if (element.eResource() != null) {
 			final Object prop = getRealStereotypeProperty(element, id);
@@ -181,7 +289,7 @@ public class UMLTableUtils {
 	 *         we can't resolve it (the required profile is not applied)
 	 */
 	public static final List<Stereotype> getAppliedStereotypesWithThisProperty(final Element element, final String id, Map<?, ?> sharedMap) {
-		assert id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX);
+		Assert.isTrue(id.startsWith(PROPERTY_OF_STEREOTYPE_PREFIX));
 		final List<Stereotype> stereotypes = new ArrayList<Stereotype>();
 		if (sharedMap != null) {
 			final List<StereotypeApplicationStructure> struct = findStereotypeApplicationDataStructure(element, id, sharedMap);

@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface NattableaxisconfigurationFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -132,5 +133,4 @@ public interface NattableaxisconfigurationFactory extends EFactory {
 	 * @generated
 	 */
 	NattableaxisconfigurationPackage getNattableaxisconfigurationPackage();
-
 } // NattableaxisconfigurationFactory

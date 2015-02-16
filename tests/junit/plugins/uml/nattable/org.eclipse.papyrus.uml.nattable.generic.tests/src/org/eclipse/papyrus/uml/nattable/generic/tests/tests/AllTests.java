@@ -19,7 +19,12 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ RevealGenericTableTest.class })
+@SuiteClasses({ Bug458492_Edition_Enumeration.class, 
+		RevealGenericTableTest.class,
+		FilterStringMatcherTest.class,
+		FilterEEnumMatcherTest.class,
+		FilterNumericMatcherTest.class, 
+		FilterUMLEnumerationMatcherTest.class })
 public class AllTests {
 	// JUnit 4 test suite
 }

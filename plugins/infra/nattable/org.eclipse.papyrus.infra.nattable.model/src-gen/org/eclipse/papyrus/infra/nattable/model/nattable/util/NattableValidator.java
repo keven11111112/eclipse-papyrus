@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.u
  * @generated
  */
 public class NattableValidator extends EObjectValidator {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -42,7 +43,8 @@ public class NattableValidator extends EObjectValidator {
 	public static final NattableValidator INSTANCE = new NattableValidator();
 
 	/**
-	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
+	 * A constant for the {@link org.eclipse.emf.common.util.Diagnostic#getSource() source} of diagnostic
+	 * {@link org.eclipse.emf.common.util.Diagnostic#getCode() codes} from this package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -112,9 +114,9 @@ public class NattableValidator extends EObjectValidator {
 	 */
 	@Override
 	protected boolean validate(int classifierID, Object value, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		switch (classifierID) {
+		switch(classifierID) {
 		case NattablePackage.TABLE:
-			return validateTable((Table) value, diagnostics, context);
+			return validateTable((Table)value, diagnostics, context);
 		default:
 			return true;
 		}
@@ -127,41 +129,41 @@ public class NattableValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTable(Table table, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(table, diagnostics, context)) {
+		if(!validate_NoCircularContainment(table, diagnostics, context)) {
 			return false;
 		}
 		boolean result = validate_EveryMultiplicityConforms(table, diagnostics, context);
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryDataValueConforms(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryReferenceIsContained(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryBidirectionalReferenceIsPaired(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryProxyResolves(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_UniqueID(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryKeyUnique(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validate_EveryMapEntryUnique(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= nattableconfigurationValidator.validateTableNamedElement_nonEmptyName(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTable_currentRowAxisInHistory(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTable_currentColumnAxisInHistory(table, diagnostics, context);
 		}
-		if (result || diagnostics != null) {
+		if(result || diagnostics != null) {
 			result &= validateTable_currentAxisProvidersTypes(table, diagnostics, context);
 		}
 		return result;
@@ -184,15 +186,9 @@ public class NattableValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTable_currentRowAxisInHistory(Table table, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattablePackage.Literals.TABLE,
-				table,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"currentRowAxisInHistory", //$NON-NLS-1$
-				TABLE__CURRENT_ROW_AXIS_IN_HISTORY__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattablePackage.Literals.TABLE, table, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"currentRowAxisInHistory", //$NON-NLS-1$
+			TABLE__CURRENT_ROW_AXIS_IN_HISTORY__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -212,15 +208,9 @@ public class NattableValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTable_currentColumnAxisInHistory(Table table, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattablePackage.Literals.TABLE,
-				table,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"currentColumnAxisInHistory", //$NON-NLS-1$
-				TABLE__CURRENT_COLUMN_AXIS_IN_HISTORY__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattablePackage.Literals.TABLE, table, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"currentColumnAxisInHistory", //$NON-NLS-1$
+			TABLE__CURRENT_COLUMN_AXIS_IN_HISTORY__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -240,15 +230,9 @@ public class NattableValidator extends EObjectValidator {
 	 * @generated
 	 */
 	public boolean validateTable_currentAxisProvidersTypes(Table table, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate(NattablePackage.Literals.TABLE,
-				table,
-				diagnostics,
-				context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
-				"currentAxisProvidersTypes", //$NON-NLS-1$
-				TABLE__CURRENT_AXIS_PROVIDERS_TYPES__EEXPRESSION,
-				Diagnostic.ERROR,
-				DIAGNOSTIC_SOURCE,
-				0);
+		return validate(NattablePackage.Literals.TABLE, table, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot", //$NON-NLS-1$
+			"currentAxisProvidersTypes", //$NON-NLS-1$
+			TABLE__CURRENT_AXIS_PROVIDERS_TYPES__EEXPRESSION, Diagnostic.ERROR, DIAGNOSTIC_SOURCE, 0);
 	}
 
 	/**
@@ -265,5 +249,4 @@ public class NattableValidator extends EObjectValidator {
 		// Ensure that you remove @generated or mark it @generated NOT
 		return super.getResourceLocator();
 	}
-
 } // NattableValidator

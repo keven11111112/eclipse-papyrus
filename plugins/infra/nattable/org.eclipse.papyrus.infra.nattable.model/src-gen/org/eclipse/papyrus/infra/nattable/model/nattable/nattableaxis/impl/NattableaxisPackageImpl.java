@@ -65,6 +65,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * @generated
  */
 public class NattableaxisPackageImpl extends EPackageImpl implements NattableaxisPackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -202,10 +203,12 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	private EClass axisGroupEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.NattableaxisPackage#eNS_URI
@@ -228,8 +231,8 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link NattableaxisPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This method is used to initialize {@link NattableaxisPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -237,41 +240,24 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * @generated
 	 */
 	public static NattableaxisPackage init() {
-		if (isInited) {
-			return (NattableaxisPackage) EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
+		if(isInited) {
+			return (NattableaxisPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI);
 		}
-
 		// Obtain or create and register package
-		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableaxisPackageImpl());
-
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattableaxisPackageImpl());
 		isInited = true;
-
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
-		NattablePackageImpl theNattablePackage = (NattablePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI)
-				: NattablePackage.eINSTANCE);
-		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableconfigurationPackage.eNS_URI)
-				: NattableconfigurationPackage.eINSTANCE);
-		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
-		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablelabelproviderPackage.eNS_URI)
-				: NattablelabelproviderPackage.eINSTANCE);
-		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisconfigurationPackage.eNS_URI)
-				: NattableaxisconfigurationPackage.eINSTANCE);
-		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
-		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI)
-				: NattablecellPackage.eINSTANCE);
-		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
-		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
-
+		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
+		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
+		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
+		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
+		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
+		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI) : NattablestylePackage.eINSTANCE);
 		// Create package meta-data objects
 		theNattableaxisPackage.createPackageContents();
 		theNattablePackage.createPackageContents();
@@ -283,7 +269,6 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
 		theNattablestylePackage.createPackageContents();
-
 		// Initialize created meta-data
 		theNattableaxisPackage.initializePackageContents();
 		theNattablePackage.initializePackageContents();
@@ -295,11 +280,8 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
 		theNattablestylePackage.initializePackageContents();
-
 		// Mark meta-data to indicate it can't be changed
 		theNattableaxisPackage.freeze();
-
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattableaxisPackage.eNS_URI, theNattableaxisPackage);
 		return theNattableaxisPackage;
@@ -324,7 +306,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getIAxis_Manager() {
-		return (EReference) iAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)iAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -335,7 +317,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EAttribute getIAxis_Alias() {
-		return (EAttribute) iAxisEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)iAxisEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -379,7 +361,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getITreeItemAxis_Parent() {
-		return (EReference) iTreeItemAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)iTreeItemAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -390,7 +372,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EAttribute getITreeItemAxis_Expanded() {
-		return (EAttribute) iTreeItemAxisEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)iTreeItemAxisEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -401,7 +383,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getITreeItemAxis_Children() {
-		return (EReference) iTreeItemAxisEClass.getEStructuralFeatures().get(2);
+		return (EReference)iTreeItemAxisEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -423,7 +405,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EAttribute getIdAxis_Element() {
-		return (EAttribute) idAxisEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)idAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -456,7 +438,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getEObjectAxis_Element() {
-		return (EReference) eObjectAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)eObjectAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -489,7 +471,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getFeatureAxis_LocalLabelConfiguration() {
-		return (EReference) featureAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)featureAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -522,7 +504,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getObjectAxis_LocalLabelConfiguration() {
-		return (EReference) objectAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)objectAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -577,7 +559,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getEStructuralFeatureAxis_Element() {
-		return (EReference) eStructuralFeatureAxisEClass.getEStructuralFeatures().get(0);
+		return (EReference)eStructuralFeatureAxisEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -632,7 +614,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public EReference getAxisGroup_GroupedAxis() {
-		return (EReference) axisGroupEClass.getEStructuralFeatures().get(0);
+		return (EReference)axisGroupEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -643,7 +625,7 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 */
 	@Override
 	public NattableaxisFactory getNattableaxisFactory() {
-		return (NattableaxisFactory) getEFactoryInstance();
+		return (NattableaxisFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -663,56 +645,39 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
+		if(isCreated) {
 			return;
 		}
 		isCreated = true;
-
 		// Create classes and their features
 		iAxisEClass = createEClass(IAXIS);
 		createEReference(iAxisEClass, IAXIS__MANAGER);
 		createEAttribute(iAxisEClass, IAXIS__ALIAS);
 		createEOperation(iAxisEClass, IAXIS___GET_ELEMENT);
 		createEOperation(iAxisEClass, IAXIS___GET_LOCAL_LABEL_CONFIGURATION);
-
 		iTreeItemAxisEClass = createEClass(ITREE_ITEM_AXIS);
 		createEReference(iTreeItemAxisEClass, ITREE_ITEM_AXIS__PARENT);
 		createEAttribute(iTreeItemAxisEClass, ITREE_ITEM_AXIS__EXPANDED);
 		createEReference(iTreeItemAxisEClass, ITREE_ITEM_AXIS__CHILDREN);
-
 		idAxisEClass = createEClass(ID_AXIS);
 		createEAttribute(idAxisEClass, ID_AXIS__ELEMENT);
-
 		idTreeItemAxisEClass = createEClass(ID_TREE_ITEM_AXIS);
-
 		eObjectAxisEClass = createEClass(EOBJECT_AXIS);
 		createEReference(eObjectAxisEClass, EOBJECT_AXIS__ELEMENT);
-
 		eObjectTreeItemAxisEClass = createEClass(EOBJECT_TREE_ITEM_AXIS);
-
 		featureAxisEClass = createEClass(FEATURE_AXIS);
 		createEReference(featureAxisEClass, FEATURE_AXIS__LOCAL_LABEL_CONFIGURATION);
-
 		featureTreeItemAxisEClass = createEClass(FEATURE_TREE_ITEM_AXIS);
-
 		objectAxisEClass = createEClass(OBJECT_AXIS);
 		createEReference(objectAxisEClass, OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION);
-
 		objectTreeItemAxisEClass = createEClass(OBJECT_TREE_ITEM_AXIS);
-
 		featureIdAxisEClass = createEClass(FEATURE_ID_AXIS);
-
 		featureIdTreeItemAxisEClass = createEClass(FEATURE_ID_TREE_ITEM_AXIS);
-
 		eStructuralFeatureAxisEClass = createEClass(ESTRUCTURAL_FEATURE_AXIS);
 		createEReference(eStructuralFeatureAxisEClass, ESTRUCTURAL_FEATURE_AXIS__ELEMENT);
-
 		eStructuralFeatureTreeItemAxisEClass = createEClass(ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS);
-
 		objectIdAxisEClass = createEClass(OBJECT_ID_AXIS);
-
 		objectIdTreeItemAxisEClass = createEClass(OBJECT_ID_TREE_ITEM_AXIS);
-
 		axisGroupEClass = createEClass(AXIS_GROUP);
 		createEReference(axisGroupEClass, AXIS_GROUP__GROUPED_AXIS);
 	}
@@ -734,25 +699,20 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
+		if(isInitialized) {
 			return;
 		}
 		isInitialized = true;
-
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
-
 		// Obtain other dependent packages
-		NattablestylePackage theNattablestylePackage = (NattablestylePackage) EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
-		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage) EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
-		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage) EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
-
+		NattablestylePackage theNattablestylePackage = (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
+		NattableaxisconfigurationPackage theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI);
+		NattablelabelproviderPackage theNattablelabelproviderPackage = (NattablelabelproviderPackage)EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI);
 		// Create type parameters
-
 		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		iAxisEClass.getESuperTypes().add(theNattablestylePackage.getStyledElement());
 		iTreeItemAxisEClass.getESuperTypes().add(this.getIAxis());
@@ -780,62 +740,36 @@ public class NattableaxisPackageImpl extends EPackageImpl implements Nattableaxi
 		objectIdTreeItemAxisEClass.getESuperTypes().add(this.getObjectIdAxis());
 		objectIdTreeItemAxisEClass.getESuperTypes().add(this.getITreeItemAxis());
 		axisGroupEClass.getESuperTypes().add(this.getIAxis());
-
 		// Initialize classes, features, and operations; add parameters
 		initEClass(iAxisEClass, IAxis.class, "IAxis", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getIAxis_Manager(), theNattableaxisconfigurationPackage.getAxisManagerRepresentation(), null,
-				"manager", null, 1, 1, IAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getIAxis_Manager(), theNattableaxisconfigurationPackage.getAxisManagerRepresentation(), null, "manager", null, 1, 1, IAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getIAxis_Alias(), ecorePackage.getEString(), "alias", null, 0, 1, IAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEOperation(getIAxis__GetElement(), ecorePackage.getEJavaObject(), "getElement", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEOperation(getIAxis__GetLocalLabelConfiguration(), theNattablelabelproviderPackage.getILabelProviderConfiguration(), "getLocalLabelConfiguration", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(iTreeItemAxisEClass, ITreeItemAxis.class, "ITreeItemAxis", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getITreeItemAxis_Parent(), this.getITreeItemAxis(), this.getITreeItemAxis_Children(),
-				"parent", null, 0, 1, ITreeItemAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEReference(getITreeItemAxis_Parent(), this.getITreeItemAxis(), this.getITreeItemAxis_Children(), "parent", null, 0, 1, ITreeItemAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEAttribute(getITreeItemAxis_Expanded(), ecorePackage.getEBoolean(), "expanded", "false", 1, 1, ITreeItemAxis.class, IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-		initEReference(getITreeItemAxis_Children(), this.getITreeItemAxis(), this.getITreeItemAxis_Parent(),
-				"children", null, 0, -1, ITreeItemAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEReference(getITreeItemAxis_Children(), this.getITreeItemAxis(), this.getITreeItemAxis_Parent(), "children", null, 0, -1, ITreeItemAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(idAxisEClass, IdAxis.class, "IdAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIdAxis_Element(), ecorePackage.getEString(), "element", null, 1, 1, IdAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(idTreeItemAxisEClass, IdTreeItemAxis.class, "IdTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(eObjectAxisEClass, EObjectAxis.class, "EObjectAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getEObjectAxis_Element(), ecorePackage.getEObject(), null, "element", null, 1, 1, EObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(eObjectTreeItemAxisEClass, EObjectTreeItemAxis.class, "EObjectTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(featureAxisEClass, FeatureAxis.class, "FeatureAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getFeatureAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getFeatureLabelProviderConfiguration(), null,
-				"localLabelConfiguration", null, 0, 1, FeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEReference(getFeatureAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getFeatureLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, FeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(featureTreeItemAxisEClass, FeatureTreeItemAxis.class, "FeatureTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(objectAxisEClass, ObjectAxis.class, "ObjectAxis", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getObjectAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getObjectLabelProviderConfiguration(), null,
-				"localLabelConfiguration", null, 0, 1, ObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEReference(getObjectAxis_LocalLabelConfiguration(), theNattablelabelproviderPackage.getObjectLabelProviderConfiguration(), null, "localLabelConfiguration", null, 0, 1, ObjectAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(objectTreeItemAxisEClass, ObjectTreeItemAxis.class, "ObjectTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(featureIdAxisEClass, FeatureIdAxis.class, "FeatureIdAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(featureIdTreeItemAxisEClass, FeatureIdTreeItemAxis.class, "FeatureIdTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(eStructuralFeatureAxisEClass, EStructuralFeatureAxis.class, "EStructuralFeatureAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEReference(getEStructuralFeatureAxis_Element(), ecorePackage.getEStructuralFeature(), null,
-				"element", null, 1, 1, EStructuralFeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEReference(getEStructuralFeatureAxis_Element(), ecorePackage.getEStructuralFeature(), null, "element", null, 1, 1, EStructuralFeatureAxis.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(eStructuralFeatureTreeItemAxisEClass, EStructuralFeatureTreeItemAxis.class, "EStructuralFeatureTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(objectIdAxisEClass, ObjectIdAxis.class, "ObjectIdAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(objectIdTreeItemAxisEClass, ObjectIdTreeItemAxis.class, "ObjectIdTreeItemAxis", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(axisGroupEClass, AxisGroup.class, "AxisGroup", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getAxisGroup_GroupedAxis(), this.getIAxis(), null, "groupedAxis", null, 0, -1, AxisGroup.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 	}
-
 } // NattableaxisPackageImpl

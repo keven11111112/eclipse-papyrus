@@ -36,18 +36,27 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getIndexStyle <em>Index Style</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayFilter <em>Display Filter</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayIndex <em>Display Index</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfigurations <em>Owned Label Configurations</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfigurations <em>Owned Axis Configurations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getIndexStyle <em>
+ * Index Style</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayLabel <em>
+ * Display Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayFilter
+ * <em>Display Filter</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#isDisplayIndex <em>
+ * Display Index</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedLabelConfigurations
+ * <em>Owned Label Configurations</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.AbstractHeaderAxisConfigurationImpl#getOwnedAxisConfigurations
+ * <em>Owned Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementImpl implements AbstractHeaderAxisConfiguration {
+
 	/**
 	 * The default value of the '{@link #getIndexStyle() <em>Index Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -200,7 +209,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	public void setIndexStyle(AxisIndexStyle newIndexStyle) {
 		AxisIndexStyle oldIndexStyle = indexStyle;
 		indexStyle = newIndexStyle == null ? INDEX_STYLE_EDEFAULT : newIndexStyle;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE, oldIndexStyle, indexStyle));
 		}
 	}
@@ -226,7 +235,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	public void setDisplayLabel(boolean newDisplayLabel) {
 		boolean oldDisplayLabel = displayLabel;
 		displayLabel = newDisplayLabel;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
 		}
 	}
@@ -252,7 +261,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	public void setDisplayFilter(boolean newDisplayFilter) {
 		boolean oldDisplayFilter = displayFilter;
 		displayFilter = newDisplayFilter;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER, oldDisplayFilter, displayFilter));
 		}
 	}
@@ -278,7 +287,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	public void setDisplayIndex(boolean newDisplayIndex) {
 		boolean oldDisplayIndex = displayIndex;
 		displayIndex = newDisplayIndex;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX, oldDisplayIndex, displayIndex));
 		}
 	}
@@ -291,7 +300,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public EList<ILabelProviderConfiguration> getOwnedLabelConfigurations() {
-		if (ownedLabelConfigurations == null) {
+		if(ownedLabelConfigurations == null) {
 			ownedLabelConfigurations = new EObjectContainmentEList<ILabelProviderConfiguration>(ILabelProviderConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS);
 		}
 		return ownedLabelConfigurations;
@@ -305,7 +314,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public EList<IAxisConfiguration> getOwnedAxisConfigurations() {
-		if (ownedAxisConfigurations == null) {
+		if(ownedAxisConfigurations == null) {
 			ownedAxisConfigurations = new EObjectContainmentEList<IAxisConfiguration>(IAxisConfiguration.class, this, NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS);
 		}
 		return ownedAxisConfigurations;
@@ -319,11 +328,11 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
-			return ((InternalEList<?>) getOwnedLabelConfigurations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getOwnedLabelConfigurations()).basicRemove(otherEnd, msgs);
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
-			return ((InternalEList<?>) getOwnedAxisConfigurations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getOwnedAxisConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -336,7 +345,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
 			return getIndexStyle();
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
@@ -362,26 +371,26 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
-			setIndexStyle((AxisIndexStyle) newValue);
+			setIndexStyle((AxisIndexStyle)newValue);
 			return;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel((Boolean) newValue);
+			setDisplayLabel((Boolean)newValue);
 			return;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_FILTER:
-			setDisplayFilter((Boolean) newValue);
+			setDisplayFilter((Boolean)newValue);
 			return;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_INDEX:
-			setDisplayIndex((Boolean) newValue);
+			setDisplayIndex((Boolean)newValue);
 			return;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_LABEL_CONFIGURATIONS:
 			getOwnedLabelConfigurations().clear();
-			getOwnedLabelConfigurations().addAll((Collection<? extends ILabelProviderConfiguration>) newValue);
+			getOwnedLabelConfigurations().addAll((Collection<? extends ILabelProviderConfiguration>)newValue);
 			return;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__OWNED_AXIS_CONFIGURATIONS:
 			getOwnedAxisConfigurations().clear();
-			getOwnedAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>) newValue);
+			getOwnedAxisConfigurations().addAll((Collection<? extends IAxisConfiguration>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -395,7 +404,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
 			setIndexStyle(INDEX_STYLE_EDEFAULT);
 			return;
@@ -426,7 +435,7 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__INDEX_STYLE:
 			return indexStyle != INDEX_STYLE_EDEFAULT;
 		case NattableaxisconfigurationPackage.ABSTRACT_HEADER_AXIS_CONFIGURATION__DISPLAY_LABEL:
@@ -451,10 +460,9 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (indexStyle: "); //$NON-NLS-1$
 		result.append(indexStyle);
@@ -467,5 +475,4 @@ public abstract class AbstractHeaderAxisConfigurationImpl extends StyledElementI
 		result.append(')');
 		return result.toString();
 	}
-
 } // AbstractHeaderAxisConfigurationImpl

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
@@ -30,7 +30,7 @@ import org.eclipse.papyrus.infra.tools.util.SelectionHelper;
 public class TableSelectionHelper {
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the current table selection
 	 */
@@ -43,7 +43,7 @@ public class TableSelectionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         a map with the index and the object of the fully selected rows
 	 */
@@ -59,7 +59,7 @@ public class TableSelectionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         a map with the index and the object of the fully selected columns
 	 */
@@ -75,7 +75,7 @@ public class TableSelectionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the position coordinate of the selected cells, or <code>null</code>
 	 */
@@ -105,10 +105,10 @@ public class TableSelectionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param tableManager
 	 *            the tableManager for which we want the selected columns
-	 *
+	 * 
 	 * @return
 	 *         a map with the index and the object of the fully selected columns
 	 */
@@ -121,7 +121,7 @@ public class TableSelectionHelper {
 	}
 
 	/**
-	 *
+	 * 
 	 * @param tableManager
 	 *            the tableManager for which we want the selected rows
 	 * @return

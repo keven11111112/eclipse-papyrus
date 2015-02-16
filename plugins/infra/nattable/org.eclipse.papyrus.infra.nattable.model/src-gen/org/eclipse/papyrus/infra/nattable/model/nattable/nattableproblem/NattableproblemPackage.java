@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.N
  * @generated
  */
 public interface NattableproblemPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -183,7 +184,8 @@ public interface NattableproblemPackage extends EPackage {
 	int PROBLEM_OPERATION_COUNT = NattableconfigurationPackage.TABLE_NAMED_ELEMENT_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl <em>String Resolution Problem</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl
+	 * <em>String Resolution Problem</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -313,7 +315,6 @@ public interface NattableproblemPackage extends EPackage {
 	 */
 	int STRING_RESOLUTION_PROBLEM_OPERATION_COUNT = PROBLEM_OPERATION_COUNT + 0;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem <em>Problem</em>}'.
 	 * <!-- begin-user-doc -->
@@ -326,7 +327,8 @@ public interface NattableproblemPackage extends EPackage {
 	EClass getProblem();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem <em>String Resolution Problem</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem
+	 * <em>String Resolution Problem</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -337,7 +339,8 @@ public interface NattableproblemPackage extends EPackage {
 	EClass getStringResolutionProblem();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString <em>Value As String</em>}'.
+	 * Returns the meta object for the attribute '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getValueAsString <em>Value As String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -349,7 +352,9 @@ public interface NattableproblemPackage extends EPackage {
 	EAttribute getStringResolutionProblem_ValueAsString();
 
 	/**
-	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getUnresolvedString <em>Unresolved String</em>}'.
+	 * Returns the meta object for the attribute list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringResolutionProblem#getUnresolvedString
+	 * <em>Unresolved String</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -385,8 +390,10 @@ public interface NattableproblemPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.ProblemImpl <em>Problem</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.ProblemImpl
+		 * <em>Problem</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -397,7 +404,8 @@ public interface NattableproblemPackage extends EPackage {
 		EClass PROBLEM = eINSTANCE.getProblem();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl <em>String Resolution Problem</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.impl.StringResolutionProblemImpl
+		 * <em>String Resolution Problem</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -424,7 +432,5 @@ public interface NattableproblemPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute STRING_RESOLUTION_PROBLEM__UNRESOLVED_STRING = eINSTANCE.getStringResolutionProblem_UnresolvedString();
-
 	}
-
 } // NattableproblemPackage

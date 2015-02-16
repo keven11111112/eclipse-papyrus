@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Nattablece
  * @generated
  */
 public class NattablecellFactoryImpl extends EFactoryImpl implements NattablecellFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -40,8 +41,8 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	 */
 	public static NattablecellFactory init() {
 		try {
-			NattablecellFactory theNattablecellFactory = (NattablecellFactory) EPackage.Registry.INSTANCE.getEFactory(NattablecellPackage.eNS_URI);
-			if (theNattablecellFactory != null) {
+			NattablecellFactory theNattablecellFactory = (NattablecellFactory)EPackage.Registry.INSTANCE.getEFactory(NattablecellPackage.eNS_URI);
+			if(theNattablecellFactory != null) {
 				return theNattablecellFactory;
 			}
 		} catch (Exception exception) {
@@ -69,7 +70,7 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattablecellPackage.CELL:
 			return createCell();
 		case NattablecellPackage.EOBJECT_AXIS_WRAPPER:
@@ -125,7 +126,7 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	 */
 	@Override
 	public NattablecellPackage getNattablecellPackage() {
-		return (NattablecellPackage) getEPackage();
+		return (NattablecellPackage)getEPackage();
 	}
 
 	/**
@@ -139,5 +140,4 @@ public class NattablecellFactoryImpl extends EFactoryImpl implements Nattablecel
 	public static NattablecellPackage getPackage() {
 		return NattablecellPackage.eINSTANCE;
 	}
-
 } // NattablecellFactoryImpl

@@ -22,13 +22,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
 import org.eclipse.papyrus.infra.nattable.tree.CollapseAndExpandActionsEnum;
 import org.eclipse.papyrus.infra.nattable.tree.DatumTreeFormat;
 
+import ca.odell.glazedlists.TreeList;
+
 /**
  * This interface provides methods for Tree Table table manager
  *
  * @author VL222926
  *
  */
-public interface ITreeNattableModelManager {
+public interface ITreeNattableModelManager extends INattableModelManager {
 
 	/**
 	 *
@@ -106,4 +108,6 @@ public interface ITreeNattableModelManager {
 	 *            </ul>
 	 */
 	public void doCollapseExpandAction(CollapseAndExpandActionsEnum actionId, List<ITreeItemAxis> selectedAxis);
+
+	public TreeList getTreeList();
 }

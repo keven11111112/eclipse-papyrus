@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.O
  * @generated
  */
 public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements NattablelabelproviderFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -39,8 +40,8 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	 */
 	public static NattablelabelproviderFactory init() {
 		try {
-			NattablelabelproviderFactory theNattablelabelproviderFactory = (NattablelabelproviderFactory) EPackage.Registry.INSTANCE.getEFactory(NattablelabelproviderPackage.eNS_URI);
-			if (theNattablelabelproviderFactory != null) {
+			NattablelabelproviderFactory theNattablelabelproviderFactory = (NattablelabelproviderFactory)EPackage.Registry.INSTANCE.getEFactory(NattablelabelproviderPackage.eNS_URI);
+			if(theNattablelabelproviderFactory != null) {
 				return theNattablelabelproviderFactory;
 			}
 		} catch (Exception exception) {
@@ -68,7 +69,7 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION:
 			return createFeatureLabelProviderConfiguration();
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION:
@@ -110,7 +111,7 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public NattablelabelproviderPackage getNattablelabelproviderPackage() {
-		return (NattablelabelproviderPackage) getEPackage();
+		return (NattablelabelproviderPackage)getEPackage();
 	}
 
 	/**
@@ -124,5 +125,4 @@ public class NattablelabelproviderFactoryImpl extends EFactoryImpl implements Na
 	public static NattablelabelproviderPackage getPackage() {
 		return NattablelabelproviderPackage.eINSTANCE;
 	}
-
 } // NattablelabelproviderFactoryImpl

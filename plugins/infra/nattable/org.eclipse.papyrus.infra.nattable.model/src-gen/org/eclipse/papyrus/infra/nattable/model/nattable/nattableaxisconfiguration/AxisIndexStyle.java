@@ -42,7 +42,6 @@ public enum AxisIndexStyle implements Enumerator {
 	 * @ordered
 	 */
 	ALPHABETIC(1, "ALPHABETIC", "ALPHABETIC"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>NUMERIC</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -91,11 +90,7 @@ public enum AxisIndexStyle implements Enumerator {
 	 *
 	 * @generated
 	 */
-	private static final AxisIndexStyle[] VALUES_ARRAY =
-			new AxisIndexStyle[] {
-					ALPHABETIC,
-					NUMERIC,
-			};
+	private static final AxisIndexStyle[] VALUES_ARRAY = new AxisIndexStyle[]{ ALPHABETIC, NUMERIC, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Axis Index Style</b></em>' enumerators.
@@ -114,9 +109,9 @@ public enum AxisIndexStyle implements Enumerator {
 	 * @generated
 	 */
 	public static AxisIndexStyle get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AxisIndexStyle result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -131,9 +126,9 @@ public enum AxisIndexStyle implements Enumerator {
 	 * @generated
 	 */
 	public static AxisIndexStyle getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			AxisIndexStyle result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -148,7 +143,7 @@ public enum AxisIndexStyle implements Enumerator {
 	 * @generated
 	 */
 	public static AxisIndexStyle get(int value) {
-		switch (value) {
+		switch(value) {
 		case ALPHABETIC_VALUE:
 			return ALPHABETIC;
 		case NUMERIC_VALUE:
@@ -238,5 +233,4 @@ public enum AxisIndexStyle implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // AxisIndexStyle

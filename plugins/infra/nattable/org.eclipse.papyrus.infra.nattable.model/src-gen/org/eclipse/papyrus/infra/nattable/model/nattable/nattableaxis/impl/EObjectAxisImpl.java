@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * @generated
  */
 public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
+
 	/**
 	 * The cached value of the '{@link #getElement() <em>Element</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -74,11 +75,11 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	 */
 	@Override
 	public EObject getElement() {
-		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject) element;
+		if(element != null && element.eIsProxy()) {
+			InternalEObject oldElement = (InternalEObject)element;
 			element = eResolveProxy(oldElement);
-			if (element != oldElement) {
-				if (eNotificationRequired()) {
+			if(element != oldElement) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
 				}
 			}
@@ -106,7 +107,7 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	public void setElement(EObject newElement) {
 		EObject oldElement = element;
 		element = newElement;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.EOBJECT_AXIS__ELEMENT, oldElement, element));
 		}
 	}
@@ -119,9 +120,9 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.EOBJECT_AXIS__ELEMENT:
-			if (resolve) {
+			if(resolve) {
 				return getElement();
 			}
 			return basicGetElement();
@@ -137,9 +138,9 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.EOBJECT_AXIS__ELEMENT:
-			setElement((EObject) newValue);
+			setElement((EObject)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -153,9 +154,9 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.EOBJECT_AXIS__ELEMENT:
-			setElement((EObject) null);
+			setElement((EObject)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -169,11 +170,10 @@ public class EObjectAxisImpl extends ObjectAxisImpl implements EObjectAxis {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.EOBJECT_AXIS__ELEMENT:
 			return element != null;
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // EObjectAxisImpl
