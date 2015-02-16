@@ -45,7 +45,7 @@ public class ControlResourceDialog extends ResourceDialog {
 	 * @param defaultName
 	 */
 	public ControlResourceDialog(Shell parent, EditingDomain theDomain, Resource theCurrentResource, String defaultName) {
-		super(parent, EMFEditUIPlugin.INSTANCE.getString("_UI_ControlDialog_title"), SWT.SAVE);
+		super(parent, EMFEditUIPlugin.INSTANCE.getString("_UI_ControlDialog_title"), SWT.SAVE); //$NON-NLS-1$
 		this.domain = theDomain;
 		this.currentResource = theCurrentResource;
 		this.defaultName = defaultName;
@@ -81,11 +81,11 @@ public class ControlResourceDialog extends ResourceDialog {
 		boolean resourceInSet = resource != null;
 
 		if (resource == currentResource) {
-			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AlreadyInResource"));
+			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AlreadyInResource")); //$NON-NLS-1$ //$NON-NLS-2$
 			return false;
 		}
 		if (domain.isReadOnly(resource)) {
-			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReadOnlyResource"));
+			MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReadOnlyResource")); //$NON-NLS-1$ //$NON-NLS-2$
 			return false;
 		}
 
@@ -95,7 +95,7 @@ public class ControlResourceDialog extends ResourceDialog {
 		if (!resourceInSet) {
 			resource = resourceSet.createResource(uri);
 			if (resource == null) {
-				MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource"));
+				MessageDialog.openError(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_InvalidURI_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_CannotCreateResource")); //$NON-NLS-1$ //$NON-NLS-2$
 				return false;
 			}
 
@@ -111,9 +111,9 @@ public class ControlResourceDialog extends ResourceDialog {
 
 		boolean result = true;
 		if (resourceBad) {
-			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReplaceResource"));
+			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_ReplaceResource")); //$NON-NLS-1$ //$NON-NLS-2$
 		} else if (resourceExists) {
-			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource"));
+			result = MessageDialog.openQuestion(getShell(), EMFEditUIPlugin.INSTANCE.getString("_UI_ExistingResource_label"), EMFEditUIPlugin.INSTANCE.getString("_WARN_AddToResource")); //$NON-NLS-1$ //$NON-NLS-2$
 		}
 
 		if (!result && !resourceInSet && resource != null) {

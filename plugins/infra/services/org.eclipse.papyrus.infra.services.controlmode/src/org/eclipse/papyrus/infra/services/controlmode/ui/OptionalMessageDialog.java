@@ -14,6 +14,7 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.IDialogSettings;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.infra.core.Activator;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -32,7 +33,7 @@ import org.eclipse.swt.widgets.Shell;
 public class OptionalMessageDialog extends MessageDialog {
 
 	// String constants for widgets
-	private static final String CHECKBOX_TEXT = "Do not show this message again";
+	private static final String CHECKBOX_TEXT = Messages.getString("OptionalMessageDialog.checkbox.label"); //$NON-NLS-1$
 
 	// Dialog store id constants
 	private static final String STORE_ID = "OptionalMessageDialog.hide."; //$NON-NLS-1$

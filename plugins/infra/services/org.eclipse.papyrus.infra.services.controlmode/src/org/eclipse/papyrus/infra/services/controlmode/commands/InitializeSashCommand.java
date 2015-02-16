@@ -38,6 +38,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * Initialise a correct Sash Model in the right location. Two case:
@@ -54,10 +55,10 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParamete
 public class InitializeSashCommand extends AbstractControlCommand {
 
 	/** The Constant SASH_RESOURCE_ERROR. */
-	private static final String SASH_RESOURCE_ERROR = "Unable to find Sash resource";
+	private static final String SASH_RESOURCE_ERROR = Messages.getString("InitializeSashCommand.resource.error"); //$NON-NLS-1$
 
 	/** The Constant SASH_COMMAND_TITLE. */
-	private static final String SASH_COMMAND_TITLE = "Initialize Sash model";
+	private static final String SASH_COMMAND_TITLE = Messages.getString("InitializeSashCommand.command.title"); //$NON-NLS-1$
 
 	/**
 	 * Instantiates a new initialize sash command.
@@ -154,7 +155,7 @@ public class InitializeSashCommand extends AbstractControlCommand {
 		Resource rootSashModel = SashModelUtils.getSashModel(request.getModelSet()).getResource();
 
 		SashWindowsMngr rootSashMngr = DiUtils.lookupSashWindowsMngr(rootSashModel);
-		if (rootSashMngr == null){
+		if (rootSashMngr == null) {
 			rootSashMngr = DiUtils.createDefaultSashWindowsMngr();
 			rootSashModel.getContents().add(rootSashMngr);
 		}

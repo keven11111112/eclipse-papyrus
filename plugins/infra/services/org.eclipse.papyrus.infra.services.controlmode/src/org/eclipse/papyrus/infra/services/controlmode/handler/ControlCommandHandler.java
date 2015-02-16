@@ -15,7 +15,7 @@
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.services.handler;
+package org.eclipse.papyrus.infra.services.controlmode.handler;
 
 import java.util.regex.Pattern;
 
@@ -46,6 +46,8 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.IControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues;
+import org.eclipse.papyrus.infra.services.controlmode.commands.ResourceLocationParameterValues;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.ui.IControlModeFragmentDialogProvider;
 import org.eclipse.papyrus.infra.services.controlmode.util.LabelHelper;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
@@ -59,11 +61,23 @@ import org.eclipse.ui.handlers.HandlerUtil;
  */
 public class ControlCommandHandler extends AbstractHandler {
 
+	/** The Constant PARAMETER_ERROR. */
+	private static final String PARAMETER_ERROR = Messages.getString("ControlCommandHandler.parameter.error"); //$NON-NLS-1$
+
+	/** The Constant PARAMETER_VALUE_ERROR. */
+	private static final String PARAMETER_VALUE_ERROR = Messages.getString("ControlCommandHandler.parameter.value.error"); //$NON-NLS-1$
+
+	/** The Constant MODELSET_ERROR. */
+	private static final String MODELSET_ERROR = Messages.getString("ControlCommandHandler.modelset.error"); //$NON-NLS-1$
+
+	/** The Constant SHOW_DIALOG_PARAMETER. */
+	private static final String SHOW_DIALOG_PARAMETER = "showDialog"; //$NON-NLS-1$
+
 	/** The Constant NO_EDITING_DOMAIN_MESSAGE. */
-	private static final String NO_EDITING_DOMAIN_MESSAGE = "No editing domain has not be found. The Uncontrol failed.";
+	private static final String NO_EDITING_DOMAIN_MESSAGE = Messages.getString("ControlCommandHandler.editing.domain.error"); //$NON-NLS-1$
 
 	/** The Constant EMPTY_SELECTION_MESSAGE. */
-	private static final String EMPTY_SELECTION_MESSAGE = "Nothing to control";
+	private static final String EMPTY_SELECTION_MESSAGE = Messages.getString("ControlCommandHandler.empty.selection.message"); //$NON-NLS-1$
 
 	/** The Constant CONTROLMODE_USE_DIALOG_PARAMETER. */
 	public static final String CONTROLMODE_USE_DIALOG_PARAMETER = "org.eclipse.papyrus.infra.services.controlmode.useDialogParameter"; //$NON-NLS-1$
@@ -89,8 +103,12 @@ public class ControlCommandHandler extends AbstractHandler {
 						editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
 					}
 				} else {
-					URI defaultURI = computeDefaultURI(eObjectToControl.eResource(), getDefaultLabelResource(eObjectToControl));
-					ControlModeRequest controlRequest = ControlModeRequest.createUIControlModelRequest(editingDomain, eObjectToControl, defaultURI);
+					URI resourceURI = getParameterisedURI(event);
+					if (resourceURI == null) {
+						// Use the default value as location
+						resourceURI = computeDefaultURI(eObjectToControl.eResource(), getDefaultLabelResource(eObjectToControl));
+					}
+					ControlModeRequest controlRequest = ControlModeRequest.createUIControlModelRequest(editingDomain, eObjectToControl, resourceURI);
 					IControlModeManager controlMng = ControlModeManager.getInstance();
 					ICommand controlCommand = controlMng.getControlCommand(controlRequest);
 					editingDomain.getCommandStack().execute(new GMFtoEMFCommandWrapper(controlCommand));
@@ -103,6 +121,26 @@ public class ControlCommandHandler extends AbstractHandler {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Gets the parameterised uri.
+	 *
+	 * @param event
+	 *            the event
+	 * @return the parameterised uri
+	 */
+	private URI getParameterisedURI(ExecutionEvent event) {
+		ResourceLocationParameterValues parameterValues = null;
+		Command command = event.getCommand();
+		try {
+			parameterValues = (ResourceLocationParameterValues) command.getParameter(ResourceLocationParameterValues.ID).getValues();
+		} catch (ParameterValuesException e) {
+			ControlModePlugin.log.error(e);
+		} catch (NotDefinedException e) {
+			ControlModePlugin.log.error(e);
+		}
+		return parameterValues.getResourceLocation();
 	}
 
 	public URI computeDefaultURI(Resource currentResource, String defaultName) {
@@ -124,14 +162,14 @@ public class ControlCommandHandler extends AbstractHandler {
 		try {
 			Command command = event.getCommand();
 			parameterValues = (ControlModeCommandParameterValues) command.getParameter(CONTROLMODE_USE_DIALOG_PARAMETER).getValues();
-			showDialogValue = parameterValues.get("showDialog");
+			showDialogValue = parameterValues.get(SHOW_DIALOG_PARAMETER);
 			if (showDialogValue == null) {
 				showDialogValue = true; // By default, the dialog is always displayed to the user
 			}
 		} catch (ParameterValuesException e) {
-			ControlModePlugin.log.error("Parameter values exception in control mode command.", e);
+			ControlModePlugin.log.error(PARAMETER_VALUE_ERROR, e);
 		} catch (NotDefinedException e) {
-			ControlModePlugin.log.error("Parameter not defined for control mode command.", e);
+			ControlModePlugin.log.error(PARAMETER_ERROR, e);
 		}
 		return showDialogValue;
 	}
@@ -142,7 +180,7 @@ public class ControlCommandHandler extends AbstractHandler {
 			return AdapterUtils.adapt(modelSet, IControlModeFragmentDialogProvider.class, IControlModeFragmentDialogProvider.DEFAULT);
 		} catch (ServiceException e) {
 			// can't get the model set? Odd
-			ControlModePlugin.log.error("Cannot obtain ModelSet for controlled object.", e);
+			ControlModePlugin.log.error(MODELSET_ERROR, e);
 			return IControlModeFragmentDialogProvider.DEFAULT;
 		}
 	}
@@ -156,7 +194,7 @@ public class ControlCommandHandler extends AbstractHandler {
 	 */
 	protected String getDefaultLabelResource(EObject eObject) {
 		String defaultName = null;
-		EStructuralFeature feature = eObject.eClass().getEStructuralFeature("name");
+		EStructuralFeature feature = eObject.eClass().getEStructuralFeature("name"); //$NON-NLS-1$
 		if (feature != null) {
 			Object eGet = eObject.eGet(feature);
 			if (eGet instanceof String) {
@@ -165,15 +203,15 @@ public class ControlCommandHandler extends AbstractHandler {
 		}
 		if (defaultName == null) {
 			defaultName = LabelHelper.getPrettyLabel(eObject);
-			Pattern p = Pattern.compile("<<.*?>>|<.*?>");
-			defaultName = p.matcher(defaultName).replaceAll("").trim();
+			Pattern p = Pattern.compile("<<.*?>>|<.*?>"); //$NON-NLS-1$
+			defaultName = p.matcher(defaultName).replaceAll("").trim(); //$NON-NLS-1$
 		}
 		StringBuilder b = new StringBuilder();
 		for (Character c : defaultName.toCharArray()) {
 			if (Character.isJavaIdentifierPart(c)) {
 				b.append(c);
 			} else {
-				b.append("_");
+				b.append("_"); //$NON-NLS-1$
 			}
 		}
 		return b.toString();

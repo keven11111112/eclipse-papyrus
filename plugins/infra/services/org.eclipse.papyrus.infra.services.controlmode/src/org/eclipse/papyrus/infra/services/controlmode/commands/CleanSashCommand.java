@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * Command to clean all traces of Sash model.
@@ -34,13 +35,13 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 public class CleanSashCommand extends AbstractControlCommand {
 
 	/** The Constant SASH_CLEAN_COMMAND_LABEL. */
-	static final String SASH_CLEAN_COMMAND_LABEL = "Clear di command";
+	static final String SASH_CLEAN_COMMAND_LABEL = Messages.getString("CleanSashCommand.command.title"); //$NON-NLS-1$
 
 	/** The Constant MODEL_SET_ERROR_MESSAGE. */
-	static final String MODEL_SET_ERROR_MESSAGE = "Unable to retrieve resource set";
+	static final String MODEL_SET_ERROR_MESSAGE = Messages.getString("CleanSashCommand.resourceset.error"); //$NON-NLS-1$
 
 	/** The Constant OLD_DI_MESSAGE_ERROR. */
-	static final String OLD_DI_MESSAGE_ERROR = "Unable to retrieve old di resource";
+	static final String OLD_DI_MESSAGE_ERROR = Messages.getString("CleanSashCommand.old.resource.error"); //$NON-NLS-1$
 
 	/**
 	 * Instantiates a new clean sash command.

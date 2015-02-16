@@ -8,60 +8,58 @@
  * Contributors:
  *     Juan Cadavid <juan.cadavid@cea.fr> implementation
  *     Christian W. Damus (CEA) - bug 437217 - control-mode strategy changes interfere with later tests
- *     
+ *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459427
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol;
 
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
-import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.tests.StrategyChooserFixture;
-import org.eclipse.papyrus.infra.services.controlmode.tests.control.Activator;
+import org.eclipse.papyrus.infra.services.controlmode.util.ControlHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
-import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
-import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
-import org.osgi.framework.Bundle;
 
+/**
+ * The Class AbstractUncontrolModelTest.
+ */
 public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 
 	protected static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.reintegratesubmodel"; //$NON-NLS-1$
 
 	protected static ModelExplorerView view;
 
-	protected static IFile modelFile;
+	protected List<PackageableElement> selectedElements;
 
-	protected static Bundle bundle;
+	protected IMultiDiagramEditor editor = null;
 
-	protected static SWTWorkbenchBot bot;
+	protected Model model;
 
-	protected static IFile subModelfile;
-	
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
-	
-	protected IMultiDiagramEditor editor = null;
-	protected Model model;
+
+	@Rule
+	public final PapyrusEditorFixture editorFixture = new PapyrusEditorFixture();
 
 	public AbstractUncontrolModelTest() {
 		super();
@@ -69,64 +67,172 @@ public abstract class AbstractUncontrolModelTest extends AbstractPapyrusTest {
 
 	@Before
 	public void setUp() {
-		//Set the current resource loading strategy to the default
+		// Set the current resource loading strategy to the default
 		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
-		
-		try {
-			initTests(Activator.getDefault().getBundle());
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
-		}
+
+		openEditor();
 	}
 
-	@After
-	public void after() throws CoreException {
-		GenericUtils.closeAllEditors();
-		GenericUtils.cleanWorkspace();
-		ProjectUtils.removeAllProjectFromTheWorkspace();
+	/**
+	 * Open the Papyrus Editor.
+	 */
+	protected void openEditor() {
+		editor = editorFixture.open();
+		view = editorFixture.getModelExplorerView();
+		model = (Model) ModelExplorerUtils.getRootInModelExplorer(view);
+
 	}
 
-	public abstract void initTests(final Bundle bundle) throws CoreException, IOException;
+	/**
+	 * Undo.
+	 */
+	protected void undo() {
+		editorFixture.getEditingDomain().getCommandStack().undo();
+	}
 
-	protected PackageableElement selectElementToUncontrol() {
-		try {
-			editor = houseKeeper.openPapyrusEditor(modelFile);
-			UncontrolModelTest.view = ModelExplorerUtils.openModelExplorerView();
-		} catch (Exception e) {
-			fail(e.getMessage());
-		}
-	
-		model = (Model)ModelExplorerUtils.getRootInModelExplorer(view);
-		List<PackageableElement> elements = new ArrayList<PackageableElement>();
-		for(PackageableElement packageableElement : model.getPackagedElements()) {
-			if(packageableElement instanceof org.eclipse.uml2.uml.Package) {
-				elements.add(packageableElement);
+	/**
+	 * Redo.
+	 */
+	protected void redo() {
+		editorFixture.getEditingDomain().getCommandStack().redo();
+	}
+
+	/**
+	 * Gets the URI file in project.
+	 *
+	 * @param file
+	 *            the file
+	 * @return the URI file in project
+	 */
+	protected URI getURIFileInProject(String file) {
+		return URI.createPlatformResourceURI(editorFixture.getProject().getProject().getFile(file).getFullPath().toString(), true);
+
+	}
+
+
+	protected List<PackageableElement> getControlledElements() {
+		List<PackageableElement> controlledElements = new ArrayList<PackageableElement>();
+		for (PackageableElement packageableElement : model.getPackagedElements()) {
+			if (packageableElement instanceof org.eclipse.uml2.uml.Package && ControlHelper.isRootControlledObject(packageableElement)) {
+				controlledElements.add(packageableElement);
 			}
 		}
-		// Assert that this element is controlled
-		PackageableElement submodel = elements.get(0);
-		Assert.assertNotNull(submodel);
-		Assert.assertNotEquals("The controlled submodel's resource equals its parent's", model.eResource(), submodel.eResource());
-		ModelExplorerUtils.setSelectionInTheModelexplorer(view, elements);
-		return submodel;
+
+		return controlledElements;
 	}
 
-	public void uncontrolAndSave(PackageableElement submodel, Command cmd) {
-		try {
-			HandlerUtils.executeCommand(cmd);
-	
-			// Execute save
-			ISaveAndDirtyService saveService = editor.getServicesRegistry().getService(ISaveAndDirtyService.class);
-			saveService.doSave(new NullProgressMonitor());
-		} catch (Exception e) {
-			fail(e.getMessage());
+
+	/**
+	 * Save.
+	 * 
+	 * @throws ServiceException
+	 */
+	protected void save() throws ServiceException {
+		ISaveAndDirtyService saveService = editorFixture.getServiceRegistry().getService(ISaveAndDirtyService.class);
+		saveService.doSave(new NullProgressMonitor());
+	}
+
+
+
+	/**
+	 * The Class UncontrolModeRunnableAssertion.
+	 */
+	public class UncontrolModeAssertion {
+
+		private String message;
+
+		/**
+		 * Constructor.
+		 *
+		 */
+		public UncontrolModeAssertion(String assertionMessage) {
+			message = assertionMessage;
 		}
-	
-		// Assert that the resource for the model and the submodel
-		// are the same
-		Assert.assertEquals(Messages.AbstractUncontrolModelTest_1, model.eResource(), submodel.eResource());
-	}
 
+
+
+		public void assertUncontrol() {
+
+			selectElementToUncontrol();
+			assertBeforeUncontrol();
+			uncontrol(HandlerUtils.getCommand(getCommandId()));
+			assertBeforeSave();
+			save();
+			assertAfterSave();
+		}
+
+		protected String getCommandId() {
+			return COMMAND_ID;
+		}
+
+		private void selectElementToUncontrol() {
+
+			selectedElements = new ArrayList<PackageableElement>();
+			for (PackageableElement packageableElement : model.getPackagedElements()) {
+				if (packageableElement instanceof org.eclipse.uml2.uml.Package) {
+					selectedElements.add(packageableElement);
+				}
+			}
+
+			// Assert that this element is controlled
+			ModelExplorerUtils.setSelectionInTheModelexplorer(view, Arrays.asList(getElementToUnControl()));
+		}
+
+		/**
+		 * Assert before uncontrol.
+		 */
+		protected void assertBeforeUncontrol() {
+			Assert.assertNotNull(getElementToUnControl());
+			Assert.assertNotSame("The controlled submodel's resource equals its parent's", model.eResource(), getElementToUnControl().eResource());
+			Assert.assertTrue(message, HandlerUtils.getActiveHandlerFor(getCommandId()).isEnabled());
+
+		}
+
+
+		protected void uncontrol(Command cmd) {
+			try {
+				HandlerUtils.executeCommand(cmd);
+			} catch (Exception e) {
+				fail(e.getMessage());
+			}
+
+		}
+
+
+		/**
+		 * Assert before save.
+		 */
+		protected void assertBeforeSave() {
+
+		}
+
+
+		/**
+		 * Save.
+		 */
+		protected void save() {
+			editorFixture.saveAll();
+		}
+
+
+		/**
+		 * Assert after save.
+		 */
+		protected void assertAfterSave() {
+
+			// Assert that the resource for the model and the submodel
+			// are the same
+			Assert.assertSame(Messages.AbstractUncontrolModelTest_1, model.eResource(), getElementToUnControl().eResource());
+
+		}
+
+
+		/**
+		 * @param submodel
+		 */
+		protected Element getElementToUnControl() {
+			return selectedElements.get(0);
+		}
+
+	}
 }

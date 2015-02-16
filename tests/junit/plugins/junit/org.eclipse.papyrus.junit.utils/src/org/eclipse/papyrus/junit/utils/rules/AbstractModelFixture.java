@@ -197,9 +197,22 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			initialResourceURIs = uris;
 		} else {
 			ResourceSet rset = getResourceSet();
+			boolean bootstrapResourceSet = rset == null;
+			if (bootstrapResourceSet) {
+				// Bootstrap the initialization of the test model with a plain resource set
+				rset = new ResourceSetImpl();
+				rset.getLoadOptions().put(XMLResource.OPTION_RECORD_UNKNOWN_FEATURE, true);
+				rset.getLoadOptions().put(XMLResource.OPTION_LAX_FEATURE_PROCESSING, true);
+			}
 			result = Lists.newArrayList();
-			for (URI next : initialResourceURIs) {
-				result.add(rset.getResource(next, true));
+			try {
+				for (URI next : initialResourceURIs) {
+					result.add(rset.getResource(next, true));
+				}
+			} finally {
+				if (bootstrapResourceSet) {
+					EMFHelper.unload(rset);
+				}
 			}
 		}
 

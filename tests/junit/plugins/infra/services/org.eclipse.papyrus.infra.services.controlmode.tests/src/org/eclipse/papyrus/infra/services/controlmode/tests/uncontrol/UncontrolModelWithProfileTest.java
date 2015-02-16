@@ -6,63 +6,279 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Juan Cadavid <juan.cadavid@cea.fr> implementation
+ *     Juan Cadavid (CEA) juan.cadavid@cea.fr - Initial implementation and API
+ *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug459427
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol;
 
-import java.io.IOException;
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotSame;
+import static org.junit.Assert.assertTrue;
 
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
-import org.eclipse.emf.transaction.RunnableWithResult;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
-import org.eclipse.papyrus.junit.utils.HandlerUtils;
-import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.swt.widgets.Display;
-import org.junit.Assert;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Package;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
 
+/**
+ * Class for test uncontrol mode on model with applied profile.
+ * 
+ * @author Juan Cadavid
+ */
+@PluginResource("model/UncontrolModeWithProfileTest/UncontrolModeWithProfileTestModel.di")
 public class UncontrolModelWithProfileTest extends AbstractUncontrolModelTest {
 
-	private static final String PROJECT_NAME = "UncontrolModelWithProfileTestProject"; //$NON-NLS-1$
-
-	private static final String SOURCE_PATH = "/model/UncontrolModeWithProfileTest/"; //$NON-NLS-1$
-
-	private static final String MODEL_FILE_ROOT_NAME = "UncontrolModeWithProfileTestModel"; //$NON-NLS-1$
-
-	private static final String SUBMODEL_FILE_ROOT_NAME = "submodel"; //$NON-NLS-1$
-
-	private static final String PROFILE_FILE_NAME = "testProfile.profile"; //$NON-NLS-1$
-
-	public void initTests(final Bundle bundle) throws CoreException, IOException {
-		ProjectUtils.removeAllProjectFromTheWorkspace();
-		IProject testProject = ProjectUtils.createProject(PROJECT_NAME);
-
-		//Copy the profile
-		PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, PROFILE_FILE_NAME);
-
-		//Copy the controlled model
-		modelFile = PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, MODEL_FILE_ROOT_NAME);
-
-		//Copy the submodel
-		subModelfile = PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, SUBMODEL_FILE_ROOT_NAME);
-		UncontrolModelWithProfileTest.bundle = bundle;
-	}
-
+	/**
+	 * Uncontrol model with profile test.
+	 */
 	@Test
-	public void uncontrolModelWithProfileTest() {
-		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
+	public void testUncontrolModelWithProfile() {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
 
 			@Override
-			public void run() {
-				Assert.assertTrue(Messages.UncontrolModelWithProfileTest_5, HandlerUtils.getActiveHandlerFor(COMMAND_ID).isEnabled());
-				uncontrolAndSave(selectElementToUncontrol(), HandlerUtils.getCommand(COMMAND_ID));
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+
+
+		runnableWithResult.assertUncontrol();
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled element.", getControlledElements().isEmpty());
+
+
+	}
+
+	/**
+	 * Uncontrol model with profile test.
+	 * 
+	 * @throws ServiceException
+	 */
+	@Test
+	public void testUndoUncontrolModelWithProfile() throws ServiceException {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		undo();
+		assertThat(selectedElements.get(0), instanceOf(Package.class));
+		assertNotSame(model.eResource(), selectedElements.get(0).eResource());
+		assertFalse(((Package) selectedElements.get(0)).getAppliedProfiles().isEmpty());
+
+		save();
+		assertTrue(editorFixture.getProject().getProject().getFile(selectedElements.get(0).getName() + ".uml").exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there is not controlled element.", getControlledElements().isEmpty());
+
+	}
+
+
+	/**
+	 * Uncontrol model with profile test.
+	 */
+	@Test
+	@PluginResource("model/UncontrolModeWithProfileSeveralFragments/model.di")
+	public void testUncontrolSeveralModelsWithProfile() {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected Element getElementToUnControl() {
+				return selectedElements.get(1);
 			}
 
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
 		};
-		Display.getDefault().syncExec(runnableWithResult);
+		runnableWithResult.assertUncontrol();
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+
+	}
+
+
+	/**
+	 * Uncontrol model with profile test.
+	 * 
+	 * @throws ServiceException
+	 */
+	@Test
+	@PluginResource("model/UncontrolModeWithProfileSeveralFragments/model.di")
+	public void testUndoUncontrolSeveralModelsWithProfile() throws ServiceException {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected Element getElementToUnControl() {
+				return selectedElements.get(1);
+			}
+
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		undo();
+		assertThat(selectedElements.get(1), instanceOf(Package.class));
+		assertNotSame(model.eResource(), selectedElements.get(1).eResource());
+		assertFalse(((Package) selectedElements.get(1)).getAppliedProfiles().isEmpty());
+
+		undo();
+		assertThat(selectedElements.get(0), instanceOf(Package.class));
+		assertNotSame(model.eResource(), selectedElements.get(0).eResource());
+		assertFalse(((Package) selectedElements.get(0)).getAppliedProfiles().isEmpty());
+
+		save();
+		assertTrue(editorFixture.getProject().getProject().getFile(selectedElements.get(0).eResource().getURI().lastSegment()).exists());
+		assertTrue(editorFixture.getProject().getProject().getFile(selectedElements.get(1).eResource().getURI().lastSegment()).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
+
+	}
+
+
+	/**
+	 * Uncontrol model with profile test.
+	 */
+	@Test
+	@PluginResource("model/UncontrolModeWithProfileSameResource/model.di")
+	public void testUncontrolSeveralModelsWithProfileInSameResource() {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected Element getElementToUnControl() {
+				return selectedElements.get(1);
+			}
+
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+
+	}
+
+
+	/**
+	 * Uncontrol model with profile test.
+	 * 
+	 * @throws ServiceException
+	 */
+	@Test
+	@PluginResource("model/UncontrolModeWithProfileSameResource/model.di")
+	public void testUndoUncontrolSeveralModelsWithProfileInSameResource() throws ServiceException {
+		UncontrolModeAssertion runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		runnableWithResult = new UncontrolModeAssertion(Messages.UncontrolModelWithProfileTest_5) {
+
+			@Override
+			protected Element getElementToUnControl() {
+				return selectedElements.get(1);
+			}
+
+
+			@Override
+			protected void assertBeforeSave() {
+				assertThat(getElementToUnControl(), instanceOf(Package.class));
+				assertTrue(((Package) getElementToUnControl()).getAppliedProfiles().isEmpty());
+			}
+		};
+		runnableWithResult.assertUncontrol();
+
+		undo();
+		assertThat(selectedElements.get(1), instanceOf(Package.class));
+		assertNotSame(model.eResource(), selectedElements.get(1).eResource());
+		assertFalse(((Package) selectedElements.get(1)).getAppliedProfiles().isEmpty());
+
+		undo();
+		assertThat(selectedElements.get(0), instanceOf(Package.class));
+		assertNotSame(model.eResource(), selectedElements.get(0).eResource());
+		assertFalse(((Package) selectedElements.get(0)).getAppliedProfiles().isEmpty());
+
+		save();
+		assertTrue(editorFixture.getProject().getProject().getFile("SubModels.uml").exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
+
 	}
 
 

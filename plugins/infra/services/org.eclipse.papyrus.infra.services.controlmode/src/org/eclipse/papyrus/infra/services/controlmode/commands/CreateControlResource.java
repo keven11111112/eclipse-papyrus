@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * Command used to create new controlled resource.
@@ -35,12 +36,18 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
  */
 public class CreateControlResource extends AbstractControlResourceCommand {
 
+	/** The Constant MODELSET_ERROR. */
+	private static final String MODELSET_ERROR = Messages.getString("CreateControlResource.modelset.error"); //$NON-NLS-1$
+
+	/** The Constant CREATION_RESOURCE_ERROR. */
+	private static final String CREATION_RESOURCE_ERROR = Messages.getString("CreateControlResource.resource.error"); //$NON-NLS-1$
+
 	/**
 	 * @param request
 	 *            {@link CreateControlResource#request}
 	 */
 	public CreateControlResource(ControlModeRequest request) {
-		super(request, "Create a control resource", null);
+		super(request, Messages.getString("CreateControlResource.command.title"), null); //$NON-NLS-1$
 	}
 
 	/**
@@ -75,7 +82,7 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 		if (resource == null) {
 			newResource = getResourceSet().createResource(getTargetUri());
 			if (newResource == null) {
-				return CommandResult.newErrorCommandResult("Unable to create new resource to control");
+				return CommandResult.newErrorCommandResult(CREATION_RESOURCE_ERROR);
 			}
 		} else {
 			// Conserve existing resource to add new controlled object
@@ -134,7 +141,7 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 
 		ModelSet modelSet = getRequest().getModelSet();
 		if (modelSet == null) {
-			return CommandResult.newErrorCommandResult("Unable to get model set").getStatus();
+			return CommandResult.newErrorCommandResult(MODELSET_ERROR).getStatus();
 		}
 
 		// Force the main resource to update during save
@@ -171,7 +178,7 @@ public class CreateControlResource extends AbstractControlResourceCommand {
 
 		ModelSet modelSet = getRequest().getModelSet();
 		if (modelSet == null) {
-			return CommandResult.newErrorCommandResult("Unable to get model set").getStatus();
+			return CommandResult.newErrorCommandResult(MODELSET_ERROR).getStatus();
 		}
 
 		modelSet.getResourcesToDeleteOnSave().remove(oldResource.getURI());

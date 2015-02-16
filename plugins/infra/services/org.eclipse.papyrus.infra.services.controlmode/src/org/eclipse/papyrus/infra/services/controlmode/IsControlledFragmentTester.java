@@ -27,12 +27,12 @@ public class IsControlledFragmentTester extends org.eclipse.core.expressions.Pro
 	/**
 	 * Property testing that an element is a model fragment
 	 */
-	public static String IS_MODEL_FRAGMENT_PROP = "isFragmentModel";
+	public static String IS_MODEL_FRAGMENT_PROP = "isFragmentModel"; //$NON-NLS-1$
 
 	/**
 	 * Property used to test that the container of an element is loaded
 	 */
-	public static String ID_PARENT_LOADED = "isParentLoaded";
+	public static String ID_PARENT_LOADED = "isParentLoaded"; //$NON-NLS-1$
 
 	public boolean test(Object receiver, String property, Object[] args, Object expectedValue) {
 		if (IS_MODEL_FRAGMENT_PROP.equals(property)) {

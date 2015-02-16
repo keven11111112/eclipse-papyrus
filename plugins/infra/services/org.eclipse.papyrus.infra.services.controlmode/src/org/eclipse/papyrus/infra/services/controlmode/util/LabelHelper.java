@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.services.controlmode.util;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * General label helper
@@ -23,6 +24,11 @@ import org.eclipse.emf.edit.provider.IItemLabelProvider;
  *
  */
 public class LabelHelper {
+
+	/**
+	 * 
+	 */
+	private static final String LABEL_ERROR = Messages.getString("LabelHelper.label.error"); //$NON-NLS-1$
 
 	/**
 	 * Return an user understandable label for an {@link EObject}
@@ -42,7 +48,7 @@ public class LabelHelper {
 			adapterFactory.dispose();
 		}
 
-		return "Error in getting correct label";
+		return LABEL_ERROR;
 	}
 
 

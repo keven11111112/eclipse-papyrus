@@ -531,7 +531,7 @@ public abstract class AbstractDecoratorModelControlModeTest extends AbstractPapy
 
 	@SuppressWarnings("restriction")
 	protected Set<URI> getExternalProfiles(Package package_, String decoratorResourceKey) {
-		final URI packageURI = EcoreUtil.getURI(getPackage2_1());
+		final URI packageURI = EcoreUtil.getURI(package_);
 		try {
 			return org.eclipse.papyrus.uml.decoratormodel.internal.resource.DecoratorModelIndex.getInstance().getAppliedProfiles(packageURI, createDecoratorModelURI(decoratorResourceKey));
 		} catch (CoreException e) {

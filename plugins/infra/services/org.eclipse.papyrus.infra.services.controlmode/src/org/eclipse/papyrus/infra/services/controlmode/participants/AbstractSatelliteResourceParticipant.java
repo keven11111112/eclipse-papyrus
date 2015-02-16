@@ -21,6 +21,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.commands.CreateControlResource;
 import org.eclipse.papyrus.infra.services.controlmode.commands.RemoveControlResourceCommand;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * Abstract implementation for {@link IControlCommandParticipant} and {@link IUncontrolCommandParticipant} for satellite resources such as notation,
@@ -31,6 +32,21 @@ import org.eclipse.papyrus.infra.services.controlmode.commands.RemoveControlReso
  *
  */
 public abstract class AbstractSatelliteResourceParticipant implements IControlCommandParticipant, IUncontrolCommandParticipant {
+
+	/** The Constant POST_CONTROL_COMMAND_TITLE. */
+	private static final String POST_CONTROL_COMMAND_TITLE = Messages.getString("AbstractSatelliteResourceParticipant.control.post.label"); //$NON-NLS-1$
+
+	/** The Constant PRE_CONTROL_COMMAND_TITLE. */
+	private static final String PRE_CONTROL_COMMAND_TITLE = Messages.getString("AbstractSatelliteResourceParticipant.control.pre.label"); //$NON-NLS-1$
+
+	/** The Constant POST_UNCONTROL_COMMAND_TITLE. */
+	private static final String POST_UNCONTROL_COMMAND_TITLE = Messages.getString("AbstractSatelliteResourceParticipant.uncontrol.post.label"); //$NON-NLS-1$
+
+	/** The Constant PRE_UNCONTROL_COMMAND_TITLE. */
+	private static final String PRE_UNCONTROL_COMMAND_TITLE = Messages.getString("AbstractSatelliteResourceParticipant.uncontrol.pre.label"); //$NON-NLS-1$
+
+	/** The Constant COMMAND_LABEL. */
+	private static final String COMMAND_LABEL = Messages.getString("AbstractSatelliteResourceParticipant.command.title"); //$NON-NLS-1$
 
 	/**
 	 * Get the satellite resource file extension
@@ -69,7 +85,7 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 	 * @return
 	 */
 	protected String getCorrectCompositeLabel(String type) {
-		return type + "Composite Command [" + getParticipantLabel() + "]";
+		return Messages.getString(COMMAND_LABEL, type, getParticipantLabel());
 	}
 
 	/**
@@ -89,7 +105,7 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 		 */
 		boolean result = setSatelliteTargetRequest(request);
 		if (result) {
-			CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, "Pre Uncontrol");
+			CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, PRE_UNCONTROL_COMMAND_TITLE);
 			for (ICommand cmd : getPreUncontrolCommands(request)) {
 				cc.compose(cmd);
 			}
@@ -111,7 +127,7 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 	protected abstract List<ICommand> getPreUncontrolCommands(ControlModeRequest request);
 
 	public ICommand getPostUncontrolCommand(ControlModeRequest request) {
-		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, "Post Uncontrol");
+		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, POST_UNCONTROL_COMMAND_TITLE);
 		for (ICommand cmd : getPostUncontrolCommands(request)) {
 			cc.compose(cmd);
 		}
@@ -137,7 +153,7 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 	}
 
 	public ICommand getPreControlCommand(ControlModeRequest request) {
-		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, "Pre Control");
+		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, PRE_CONTROL_COMMAND_TITLE);
 		for (ICommand cmd : getPreControlCommands(request)) {
 			cc.compose(cmd);
 		}
@@ -156,7 +172,7 @@ public abstract class AbstractSatelliteResourceParticipant implements IControlCo
 	protected abstract List<ICommand> getPreControlCommands(ControlModeRequest request);
 
 	public ICommand getPostControlCommand(ControlModeRequest request) {
-		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, "Post Control");
+		CompositeTransactionalCommand cc = createCompositeTransactionalCommand(request, POST_CONTROL_COMMAND_TITLE);
 		if (createNewResource()) {
 			cc.compose(new CreateControlResource(request, getResourceFileExtension()));
 		}

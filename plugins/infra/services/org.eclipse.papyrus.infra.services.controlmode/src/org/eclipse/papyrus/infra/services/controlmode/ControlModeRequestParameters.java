@@ -26,21 +26,21 @@ public interface ControlModeRequestParameters {
 	/**
 	 * Parameter used to indicated that the action has been launch from UI
 	 */
-	public static String IS_UI_ACTION = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.IsUIAction";//
+	public static String IS_UI_ACTION = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.IsUIAction"; //$NON-NLS-1$
 
 	/**
 	 * Base key for referencing a target resource into the request
 	 */
-	public static String TARGET_RESOURCE = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.TargetResource";//
+	public static String TARGET_RESOURCE = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.TargetResource"; //$NON-NLS-1$
 
 	/**
 	 * Base key for referencing a source resource into the request
 	 */
-	public static String SOURCE_RESOURCE = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.SourceResource";//
+	public static String SOURCE_RESOURCE = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.SourceResource"; //$NON-NLS-1$
 
 	/**
 	 * Key used to store moved diagrams into the request
 	 */
-	public static String MOVED_OPENABLES = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.MovedOpenables";//
+	public static String MOVED_OPENABLES = "org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters.MovedOpenables"; //$NON-NLS-1$
 
 }

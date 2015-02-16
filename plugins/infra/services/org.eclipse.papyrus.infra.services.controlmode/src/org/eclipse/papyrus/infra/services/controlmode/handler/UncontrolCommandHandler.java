@@ -12,7 +12,7 @@
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 436952
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.services.handler;
+package org.eclipse.papyrus.infra.services.controlmode.handler;
 
 import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForSelection;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeManager;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.IControlModeManager;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -41,10 +42,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 public class UncontrolCommandHandler extends AbstractHandler {
 
 	/** The Constant NO_EDITING_DOMAIN_MESSAGE. */
-	private static final String NO_EDITING_DOMAIN_MESSAGE = "No editing domain has not be found. The Uncontrol failed.";
+	private static final String NO_EDITING_DOMAIN_MESSAGE = Messages.getString("UncontrolCommandHandler.domain.error"); //$NON-NLS-1$
 
 	/** The Constant EMPTY_SELECTION_MESSAGE. */
-	private static final String EMPTY_SELECTION_MESSAGE = "Nothing to Uncontrol";
+	private static final String EMPTY_SELECTION_MESSAGE = Messages.getString("UncontrolCommandHandler.selection.empty.message"); //$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)

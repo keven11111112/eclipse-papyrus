@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.service.IUncontrolledObjectsProvider;
 
 /**
@@ -37,12 +38,20 @@ import org.eclipse.papyrus.infra.services.controlmode.service.IUncontrolledObjec
  */
 public class BasicUncontrolCommand extends AbstractControlCommand {
 
+	/** The Constant CONTROL_COMMAND_TITLE. */
+	private static final String CONTROL_COMMAND_TITLE = Messages.getString("BasicUncontrolCommand.uncontrol.command.title"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_OBJECT_ERROR. */
+	private static final String UNCONTROL_OBJECT_ERROR = Messages.getString("BasicUncontrolCommand.uncontrol.object.error"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_RESOURCE_ERROR. */
+	private static final String UNCONTROL_RESOURCE_ERROR = Messages.getString("BasicUncontrolCommand.uncontrol.object.resource.error"); //$NON-NLS-1$
 
 	/**
 	 * @param request
 	 */
 	public BasicUncontrolCommand(ControlModeRequest request) {
-		super("Basic uncontrol files", Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
+		super(CONTROL_COMMAND_TITLE, Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
 	}
 
 	/**
@@ -76,7 +85,7 @@ public class BasicUncontrolCommand extends AbstractControlCommand {
 				IUncontrolledObjectsProvider service = ServiceUtilsForResource.getInstance().getService(IUncontrolledObjectsProvider.class, resource);
 				service.addUncontrolledObject(resource, uncontrolledObject);
 			} catch (ServiceException e) {
-				ControlModePlugin.log.error("Impossible to retrieve the service for uncontrolling objects", e);
+				ControlModePlugin.log.error(UNCONTROL_OBJECT_ERROR, e); //$NON-NLS-1$
 			}
 
 			// Remove uncontrolled object to its resource
@@ -87,6 +96,6 @@ public class BasicUncontrolCommand extends AbstractControlCommand {
 			return CommandResult.newOKCommandResult();
 		}
 
-		return CommandResult.newErrorCommandResult("The object is not contained in a resource");
+		return CommandResult.newErrorCommandResult(UNCONTROL_RESOURCE_ERROR); //$NON-NLS-1$
 	}
 }

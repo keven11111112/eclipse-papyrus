@@ -16,6 +16,7 @@ import org.eclipse.emf.common.ui.dialogs.ResourceDialog;
 import org.eclipse.emf.common.ui.dialogs.WorkspaceResourceDialog;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -33,7 +34,7 @@ import org.eclipse.swt.widgets.Shell;
 public class CreateModelFragmentDialog extends ResourceDialog {
 
 	/** The Constant DIALOG_TITLE. */
-	private static final String DIALOG_TITLE = "Submodel Resource";
+	private static final String DIALOG_TITLE = Messages.getString("CreateModelFragmentDialog.dialog.title"); //$NON-NLS-1$
 
 	private URI uri;
 

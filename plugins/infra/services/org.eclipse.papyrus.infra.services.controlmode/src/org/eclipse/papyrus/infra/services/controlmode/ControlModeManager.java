@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.services.controlmode.commands.BasicControlComma
 import org.eclipse.papyrus.infra.services.controlmode.commands.BasicUncontrolCommand;
 import org.eclipse.papyrus.infra.services.controlmode.commands.CreateControlResource;
 import org.eclipse.papyrus.infra.services.controlmode.commands.RemoveControlResourceCommand;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IControlCommandParticipant;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IControlModeParticipant;
 import org.eclipse.papyrus.infra.services.controlmode.participants.IUncontrolCommandParticipant;
@@ -40,6 +41,24 @@ import org.eclipse.papyrus.infra.services.controlmode.participants.IUncontrolCom
  *
  */
 public class ControlModeManager implements IControlModeManager {
+
+	/** The Constant CONTROL_COMMAND_POST_COMMANDS. */
+	private static final String CONTROL_COMMAND_POST_COMMANDS = Messages.getString("ControlModeManager.post.commands.label"); //$NON-NLS-1$
+
+	/** The Constant CONTROL_COMMAND_PRE_COMMAND_TITLE. */
+	private static final String CONTROL_COMMAND_PRE_COMMAND_TITLE = Messages.getString("ControlModeManager.pre.commands.label"); //$NON-NLS-1$
+
+	/** The Constant CONTROL_COMMAND_TITLE. */
+	private static final String CONTROL_COMMAND_TITLE = Messages.getString("ControlModeManager.control.command.parent.title"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_COMMAND_PRE_COMMAND_TITLE. */
+	private static final String UNCONTROL_COMMAND_PRE_COMMAND_TITLE = Messages.getString("ControlModeManager.uncontrol.command.pre.title"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_COMMAND_POST_COMMANDS. */
+	private static final String UNCONTROL_COMMAND_POST_COMMANDS = Messages.getString("ControlModeManager.uncontrol.command.post.title"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_COMMAND_PARENT_TITLE. */
+	private static final String UNCONTROL_COMMAND_PARENT_TITLE = Messages.getString("ControlModeManager.uncontrol.command.parent.title"); //$NON-NLS-1$
 
 	/**
 	 * Comparator that will sort the participant by priority
@@ -68,12 +87,12 @@ public class ControlModeManager implements IControlModeManager {
 	/**
 	 * Extension if for registering participants
 	 */
-	protected static String EXTENSION_ID = "org.eclipse.papyrus.infra.services.controlmode.participant";//
+	protected static String EXTENSION_ID = "org.eclipse.papyrus.infra.services.controlmode.participant"; //$NON-NLS-1$
 
 	/**
 	 * Extension propertyy refering to the participant implementaion class
 	 */
-	protected static String PARTICPANT_ATTRIBUTE = "class";
+	protected static String PARTICPANT_ATTRIBUTE = "class"; //$NON-NLS-1$
 
 	/**
 	 * @return the unique instance of the manager
@@ -104,7 +123,7 @@ public class ControlModeManager implements IControlModeManager {
 		if (!isOK) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), "Control command [Composite parent]");
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), CONTROL_COMMAND_TITLE);
 		ICompositeCommand preCommand = getPreCommand(request);
 		if (preCommand != null && !preCommand.isEmpty()) {
 			cc.compose(preCommand);
@@ -150,7 +169,7 @@ public class ControlModeManager implements IControlModeManager {
 	 */
 	protected ICompositeCommand getPostCommand(ControlModeRequest request) {
 		boolean isControlRequest = request.isControlRequest();
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), isControlRequest ? "Control Command [ Post commands]" : "UnControl Command [ post commands]");//////$NON-NLS-1$
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), isControlRequest ? CONTROL_COMMAND_POST_COMMANDS : UNCONTROL_COMMAND_POST_COMMANDS);//////$NON-NLS-1$ //$NON-NLS-2$
 		if (isControlRequest) {
 			getPostControlCommand(request, cc);
 		} else {
@@ -207,7 +226,7 @@ public class ControlModeManager implements IControlModeManager {
 	 */
 	protected ICompositeCommand getPreCommand(ControlModeRequest request) {
 		boolean isControlRequest = request.isControlRequest();
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), isControlRequest ? "Control Command [ Pre commands]" : "UnControl Command [ Pre commands]");//////$NON-NLS-1$
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), isControlRequest ? CONTROL_COMMAND_PRE_COMMAND_TITLE : UNCONTROL_COMMAND_PRE_COMMAND_TITLE);
 		if (isControlRequest) {
 			getPreControlCommand(request, cc);
 		} else {
@@ -261,7 +280,7 @@ public class ControlModeManager implements IControlModeManager {
 		if (!isOK) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), "Uncontrol command [Composite parent]");
+		CompositeTransactionalCommand cc = new CompositeTransactionalCommand(request.getEditingDomain(), UNCONTROL_COMMAND_PARENT_TITLE);
 		ICompositeCommand preCommand = getPreCommand(request);
 		if (preCommand != null && !preCommand.isEmpty()) {
 			cc.compose(preCommand);

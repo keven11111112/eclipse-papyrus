@@ -6,128 +6,530 @@
  * http://www.eclipse.org/legal/epl-v10.html
  * 
  * Contributors:
- *     Juan Cadavid <juan.cadavid@cea.fr> implementation
+ *     Juan Cadavid <juan.cadavid@cea.fr> - Initial implementation and API
+ *     Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 459427
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.control;
 
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertNotSame;
 import static org.junit.Assert.assertTrue;
-import static org.junit.Assert.fail;
 
-import java.io.IOException;
-import java.util.List;
-
-import org.eclipse.core.commands.IParameter;
-import org.eclipse.core.commands.ParameterValuesException;
-import org.eclipse.core.commands.common.NotDefinedException;
-import org.eclipse.core.resources.IProject;
-import org.eclipse.core.runtime.CoreException;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
-import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
-import org.eclipse.papyrus.infra.services.handler.ControlCommandHandler;
-import org.eclipse.papyrus.junit.utils.HandlerUtils;
-import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
-import org.eclipse.swt.widgets.Display;
-import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
-import org.osgi.framework.Bundle;
 
+/**
+ * The test class for Control Mode feature.
+ */
+@PluginResource("model/ControlModeTest/ControlModeTestModel.di")
 public class ControlModelTest extends AbstractControlModeTest {
 
-	private static final String PROJECT_NAME = "ControlModeTestProject"; //$NON-NLS-1$
+	/**
+	 * Test of controlling one sub-model with the default dialog box.
+	 */
+	@Test
+	public void testControlOneSubmodel() throws Exception {
+		desactivateDialog();
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4);
 
-	private static final String SOURCE_PATH = "/model/ControlModelTest/"; //$NON-NLS-1$
+		runnableWithResult.testControl();
 
-	private static final String FILE_ROOT_NAME = "ControlModeTestModel"; //$NON-NLS-1$
 
-	@Override
-	protected void initTests(final Bundle bundle) throws CoreException, IOException {
-		bot = new SWTWorkbenchBot();
-		ProjectUtils.removeAllProjectFromTheWorkspace();
-		IProject testProject = ProjectUtils.createProject(PROJECT_NAME);
-		modelFile = PapyrusProjectUtils.copyPapyrusModel(testProject, bundle, SOURCE_PATH, FILE_ROOT_NAME);
-		AbstractControlModeTest.bundle = bundle;
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
+
 	}
 
-	@Ignore
+	/**
+	 * Test of controlling one sub-model with the default dialog box.
+	 * 
+	 * @throws Exception
+	 */
 	@Test
-	public void controlModelTest() {
-		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
+	public void testUndoControlOneSubmodel() throws Exception {
+		desactivateDialog();
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4);
 
-			@Override
-			public void run() {
-				List<PackageableElement> elements = selectElementToControl();
-				Assert.assertTrue(Messages.ControlModelTest_4, HandlerUtils.getActiveHandlerFor(COMMAND_ID).isEnabled());
-				// Click "ok" with SWTBot
-				Display.getDefault().asyncExec(new Runnable() {
+		runnableWithResult.testControl();
 
-					@Override
-					public void run() {
-						try {
-							Thread.sleep(5000);
-						} catch (InterruptedException e) {
-							fail(e.getLocalizedMessage());
-						}
+		Resource submodelResource = selectedElements.get(0).eResource();
+		undo();
 
+		Assert.assertNotNull(submodelResource);
+		Assert.assertSame(selectedElements.get(0).eResource(), model.eResource());
 
-						bot.button("OK").click(); //$NON-NLS-1$
+		save();
+		Assert.assertFalse(editorFixture.getProject().getProject().getFile(submodelResource.getURI().lastSegment()).exists());
 
-					}
-				});
-				controlAndSave(editor, model, elements, HandlerUtils.getCommand(COMMAND_ID));
-			}
+		editorFixture.close(editor);
+		openEditor();
 
-		};
-		Display.getDefault().syncExec(runnableWithResult);
-	}
+		assertTrue("After have reloaded the editor, there are not controlled element.", getControlledElements().isEmpty());
 
-	@Test
-	public void controlModelTestWithoutDialog() throws NotDefinedException, ParameterValuesException {
-		IParameter dialogParameter = HandlerUtils.getCommand(this.COMMAND_ID).getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
-		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter.getValues();
-		controlModePlatformValues.put("showDialog", false);
-		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
-
-			@Override
-			public void run() {
-				List<PackageableElement> elements = selectElementToControl();
-				Assert.assertTrue(Messages.ControlModelTest_4, HandlerUtils.getActiveHandlerFor(COMMAND_ID).isEnabled());
-
-				controlAndSave(editor, model, elements, HandlerUtils.getCommand(COMMAND_ID));
-			}
-
-		};
-		Display.getDefault().syncExec(runnableWithResult);
 	}
 
 
 	/**
-	 * Assert sash control.
-	 *
-	 * @param elements
-	 *            the elements
+	 * Test of controlling several sub-models in a common resource.
 	 */
-	protected void assertSashControl(List<PackageableElement> elements) {
-		ModelSet modelSet = null;
-		PackageableElement controlElement = elements.get(0);
-		try {
-			modelSet = ServiceUtilsForEObject.getInstance().getModelSet(controlElement);
-		} catch (ServiceException e) {
-			fail(e.getMessage());
-		}
-		Resource resource = modelSet.getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
-		assertTrue(resource.getContents().isEmpty());
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testControlSeveralModels() throws Exception {
+		desactivateDialog();
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
 
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The submodel resource doesn't contain the control element", 1, getElementToControl().eResource().getContents().size());
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+
+
+
+		runnableWithResult.testControl();
+
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(1);
+
+			}
+
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The submodel resource doesn't contain the control element", 1, getElementToControl().eResource().getContents().size());
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+
+		};
+
+		runnableWithResult.testControl();
+
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
+	}
+
+	/**
+	 * Test of controlling several sub-models in a common resource.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testUndoControlSeveralModels() throws Exception {
+		desactivateDialog();
+
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+
+
+		// Control first Package
+		runnableWithResult.testControl();
+
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(1);
+
+			}
+
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+		// Control second Package
+		runnableWithResult.testControl();
+
+		Resource firstFragment = selectedElements.get(0).eResource();
+		Resource secondFragment = selectedElements.get(1).eResource();
+		assertNotSame("The control was done in the same resource.", firstFragment, secondFragment);
+
+		// Undo the last control
+		undo();
+		Assert.assertTrue(secondFragment.getContents().isEmpty());
+
+
+		// Undo the first control
+		undo();
+		Assert.assertTrue(firstFragment.getContents().isEmpty());
+
+		// Save undo action
+		String firstFragmentName = firstFragment.getURI().lastSegment();
+		String secondFragmentName = secondFragment.getURI().lastSegment();
+
+		save();
+		Assert.assertFalse(editorFixture.getProject().getProject().getFile(firstFragmentName).exists());
+		Assert.assertFalse(editorFixture.getProject().getProject().getFile(secondFragmentName).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+	}
+
+	/**
+	 * Test of controlling several sub-models in a common resource.
+	 */
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testControlSeveralModelsInSameResource() throws Exception {
+		desactivateDialog();
+		final URI commonResourceURI = getURIFileInProject("CommonPackages.uml");
+		setSubmodelLocation("CommonPackages.uml");
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The common resource was not used.", commonResourceURI, getElementToControl().eResource().getURI());
+				Assert.assertEquals("The submodel resource doesn't contain the control element", 1, getElementToControl().eResource().getContents().size());
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+
+
+
+		runnableWithResult.testControl();
+
+		setSubmodelLocation("CommonPackages.uml");
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(1);
+
+			}
+
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The common resource was not used.", commonResourceURI, getElementToControl().eResource().getURI());
+				Assert.assertEquals("The submodel resource doesn't contain the control element", selectedElements.size(), getElementToControl().eResource().getContents().size());
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+
+		};
+
+		runnableWithResult.testControl();
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
 	}
 
 
+	/**
+	 * Test of controlling several sub-models in a common resource.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testUndoControlSeveralModelsInSameResource() throws Exception {
+		desactivateDialog();
+		final URI commonResourceURI = getURIFileInProject("CommonPackages.uml");
+		setSubmodelLocation("CommonPackages.uml");
+
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The common resource was not used.", commonResourceURI, getElementToControl().eResource().getURI());
+				Assert.assertEquals("The submodel resource doesn't contain the control element", 1, getElementToControl().eResource().getContents().size());
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+
+
+		// Control first Package
+		runnableWithResult.testControl();
+
+		setSubmodelLocation("CommonPackages.uml");
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(1);
+
+			}
+
+
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+				Assert.assertEquals("The common resource was not used.", commonResourceURI, getElementToControl().eResource().getURI());
+				Assert.assertEquals("The submodel resource doesn't contain the control element", 2, getElementToControl().eResource().getContents().size());
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, true);
+				assertTrue(resource.getContents().isEmpty());
+			}
+		};
+
+		// Control second Package
+		runnableWithResult.testControl();
+
+		Resource submodelResource = selectedElements.get(0).eResource();
+
+		// Undo the last control
+		undo();
+		Assert.assertFalse(submodelResource.getContents().isEmpty());
+		Assert.assertEquals(1, submodelResource.getContents().size());
+
+		// Undo the first control
+		undo();
+		Assert.assertTrue(submodelResource.getContents().isEmpty());
+
+		// Save undo action
+		save();
+		Assert.assertFalse(editorFixture.getProject().getProject().getFile(submodelResource.getURI().lastSegment()).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+	}
+
+	/**
+	 * Test for use case described below :
+	 * <ol>
+	 * <li>Control the package</li>
+	 * <li>Undo</li>
+	 * <li>Redo</li>
+	 * <li>save</li>
+	 * </ol>
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	public void testControlModeUseCase1() throws Exception {
+		desactivateDialog();
+		ControlModeAssertion fixture = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#save()
+			 *
+			 */
+			@Override
+			protected void save() {
+				// No save
+			}
+		};
+
+		fixture.testControl();
+		assertFalse(getControlledElements().isEmpty());
+
+		undo();
+		assertTrue(getControlledElements().isEmpty());
+
+		redo();
+		assertFalse(getControlledElements().isEmpty());
+
+		save();
+		URI fragmentURi = getURIFileInProject("Package.uml");
+		assertTrue("The fragmented resource was not created.", editorFixture.getProject().getFile(fragmentURi).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertFalse("After have reloaded the editor, there are not controlled elements.", getControlledElements().isEmpty());
+
+
+	}
+
+	/**
+	 * Test of controlling several sub-models in a common resource.
+	 * 
+	 * @throws Exception
+	 */
+	@Test
+	@PluginResource("model/ControlModelsSeveralFragments/ControlModeSameResource.di")
+	public void testControlModeUseCase2() throws Exception {
+		desactivateDialog();
+
+		ControlModeAssertion runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#save()
+			 *
+			 */
+			@Override
+			protected void save() {
+				// Not save
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, false);
+				assertNotNull(resource);
+			}
+		};
+
+
+
+		// Control first Package
+		runnableWithResult.testControl();
+
+		runnableWithResult = new ControlModeAssertion(Messages.ControlModelTest_4) {
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#getElementToControl()
+			 *
+			 * @return
+			 */
+			@Override
+			protected Element getElementToControl() {
+				return getSelectedElements().get(1);
+
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#save()
+			 *
+			 */
+			@Override
+			protected void save() {
+				// Not save
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.services.controlmode.tests.control.AbstractControlModeTest.ControlModeAssertion#assertBeforeSave()
+			 *
+			 */
+			@Override
+			protected void assertAfterSave() {
+
+				PackageableElement controlElement = (PackageableElement) getElementToControl();
+				Resource resource = ((ModelSet) editorFixture.getResourceSet()).getAssociatedResource(controlElement, DiModel.DI_FILE_EXTENSION, false);
+				assertNotNull(resource);
+			}
+		};
+
+		// Control second Package
+		runnableWithResult.testControl();
+
+		Resource firstFragment = selectedElements.get(0).eResource();
+		Resource secondFragment = selectedElements.get(1).eResource();
+		assertNotSame("The control was done in the same resource.", firstFragment, secondFragment);
+
+		// Undo the last control
+		undo();
+		Assert.assertTrue(secondFragment.getContents().isEmpty());
+
+
+		// Undo the first control
+		undo();
+		Assert.assertTrue(firstFragment.getContents().isEmpty());
+
+		// Save undo action
+		String firstFragmentName = firstFragment.getURI().lastSegment();
+		String secondFragmentName = secondFragment.getURI().lastSegment();
+
+		assertFalse(editor.isDirty());
+		assertFalse(editorFixture.getProject().getProject().getFile(firstFragmentName).exists());
+		assertFalse(editorFixture.getProject().getProject().getFile(secondFragmentName).exists());
+
+		editorFixture.close(editor);
+		openEditor();
+
+		assertTrue("After have reloaded the editor, there are still controlled elements.", getControlledElements().isEmpty());
+	}
 }
