@@ -10,7 +10,6 @@
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *   
  *****************************************************************************/
-
 package org.eclipse.papyrus.infra.services.controlmode.tests.control;
 
 import static org.junit.Assert.assertFalse;
@@ -43,6 +42,7 @@ import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.junit.After;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.osgi.framework.Bundle;
 
@@ -78,6 +78,7 @@ public class ControlLegacyModelTest extends AbstractControlModeTest {
 		controlModePlatformValues.put("showDialog", true);
 	}
 
+	@Ignore
 	@Test
 	public void testControlLegacyModel() {
 		RunnableWithResult<?> runnableWithResult = new RunnableWithResult.Impl<Object>() {
@@ -109,8 +110,6 @@ public class ControlLegacyModelTest extends AbstractControlModeTest {
 
 		};
 		Display.getDefault().syncExec(runnableWithResult);
-
-
 	}
 
 	@Test
@@ -150,9 +149,6 @@ public class ControlLegacyModelTest extends AbstractControlModeTest {
 		Resource resource = modelSet.getAssociatedResource(controledElement, DiModel.DI_FILE_EXTENSION, true);
 		assertFalse(resource.getContents().isEmpty());
 		assertNotNull(DiUtils.lookupSashWindowsMngr(resource));
-
-
-
 	}
 
 }
