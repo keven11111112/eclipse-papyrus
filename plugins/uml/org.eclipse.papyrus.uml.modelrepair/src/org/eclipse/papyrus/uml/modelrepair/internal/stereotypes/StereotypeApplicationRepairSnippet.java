@@ -30,6 +30,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.IModelSetSnippet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -143,8 +144,14 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		ZombieStereotypesDescriptor result = null;
 		Element root = getRootUMLElement(resource);
 
+		EditingDomain domain = EMFHelper.resolveEditingDomain(root);
+		if ((domain == null) && (adapter != null)) {
+			// Assume our editing domain context
+			domain = ((ModelSet) adapter.getResourceSet()).getTransactionalEditingDomain();
+		}
+
 		// Only check for zombies in resources that we can modify (those being the resources in the user model opened in the editor)
-		if ((root instanceof Element) && !EMFHelper.isReadOnly(resource, EMFHelper.resolveEditingDomain(root))) {
+		if ((root instanceof Element) && !EMFHelper.isReadOnly(resource, domain)) {
 			Element rootElement = root;
 			if (rootElement.getNearestPackage() != null) {
 				result = getZombieStereotypes(resource, rootElement);
