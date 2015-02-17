@@ -12,6 +12,7 @@
  *   Christian W. Damus - bug 455329
  *   Christian W. Damus - bug 458736
  *   Christian W. Damus - bug 458652
+ *   Christian W. Damus - bug 459488
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -221,8 +222,11 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		Element root = getRootUMLElement(resource);
 
 		// Only check for zombies in resources that we can modify (those being the resources in the user model opened in the editor)
-		if ((root instanceof Package) && !EMFHelper.isReadOnly(resource, EMFHelper.resolveEditingDomain(root))) {
-			result = getZombieStereotypes(resource, (Package) root);
+		if ((root instanceof Element) && !EMFHelper.isReadOnly(resource, EMFHelper.resolveEditingDomain(root))) {
+			Element rootElement = root;
+			if (rootElement.getNearestPackage() != null) {
+				result = getZombieStereotypes(resource, rootElement);
+			}
 		}
 
 		return result;
@@ -232,7 +236,18 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		return (Element) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.ELEMENT);
 	}
 
-	protected ZombieStereotypesDescriptor getZombieStereotypes(Resource resource, Package root) {
+	/**
+	 * Gets the zombie stereotypes (if any) in the scope of the specified {@code root} element.
+	 * 
+	 * @param resource
+	 *            the resource being scanned for zombie stereotypes
+	 * @param root
+	 *            the root element of the {@code resource}
+	 * @return the zombie stereotypes, or {@code null} if there are none needing repair
+	 * 
+	 * @precondition the {@code root} has a {@linkplain Element#getNearestPackage() package context} that can provide stereotype applications
+	 */
+	protected ZombieStereotypesDescriptor getZombieStereotypes(Resource resource, Element root) {
 		ZombieStereotypesDescriptor result = null;
 
 		Collection<ProfileApplication> profileApplications = Lists.newArrayList();
@@ -247,7 +262,8 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 			}
 		}
 
-		// We also need to get all profile applications inherited from containing packages in parent model units
+		// We also need to get all profile applications inherited from containing packages in parent model units.
+		// Especially in the case that the 'root' is not a Package!
 		if (root.eContainer() instanceof Element) {
 			Package containingPackage = ((Element) root.eContainer()).getNearestPackage();
 			if (containingPackage != null) {
@@ -262,7 +278,7 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 			profileSupplier = presenter.getDynamicProfileSupplier();
 		}
 
-		ZombieStereotypesDescriptor zombies = new ZombieStereotypesDescriptor(resource, root, appliedDefinitions, profileSupplier, getLabelProvider());
+		ZombieStereotypesDescriptor zombies = new ZombieStereotypesDescriptor(resource, root.getNearestPackage(), appliedDefinitions, profileSupplier, getLabelProvider());
 
 		for (EObject next : resource.getContents()) {
 			if (!(next instanceof Element)) {
