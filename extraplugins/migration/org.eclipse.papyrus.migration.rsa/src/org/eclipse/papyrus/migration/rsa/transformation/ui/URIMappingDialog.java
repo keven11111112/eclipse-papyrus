@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.widgets.providers.WorkspaceContentProvider;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
+import org.eclipse.papyrus.migration.rsa.transformation.DependencyAnalysisHelper;
 import org.eclipse.papyrus.uml.extensionpoints.IRegisteredItem;
 import org.eclipse.papyrus.uml.extensionpoints.Registry;
 import org.eclipse.swt.SWT;
@@ -83,9 +84,12 @@ public class URIMappingDialog extends SelectionDialog {
 	private static final int BROWSE_PROFILES_ID = IDialogConstants.CLIENT_ID + 3;
 
 	List<URIMapping> allMappings;
+	
+	final DependencyAnalysisHelper dependencyHelper;
 
-	public URIMappingDialog(Shell shell, MappingParameters mappingParameters) {
+	public URIMappingDialog(Shell shell, MappingParameters mappingParameters, DependencyAnalysisHelper dependencyHelper) {
 		super(shell);
+		this.dependencyHelper = dependencyHelper;
 		this.mappingParameters = mappingParameters;
 	}
 
@@ -170,11 +174,7 @@ public class URIMappingDialog extends SelectionDialog {
 			}
 		});
 
-		allMappings = new LinkedList<URIMapping>();
-		allMappings.addAll(result.getUriMappings());
-		allMappings.addAll(result.getProfileUriMappings());
-
-		removeDuplicates(allMappings);
+		allMappings = dependencyHelper.flattenURIMappings(result);
 
 		viewer.setInput(allMappings);
 
@@ -189,57 +189,6 @@ public class URIMappingDialog extends SelectionDialog {
 		updateControls();
 
 		return self;
-	}
-
-	/**
-	 * Remove duplicate mappings. Mappings are duplicate if they have the same SourceURI.
-	 * Less specific mappings will be discarded (Usually, the ones with the same Source and Target URI)
-	 */
-	protected void removeDuplicates(List<URIMapping> allMappings) {
-		List<URIMapping> mappingsCopy = new LinkedList<URIMapping>(allMappings);
-
-		for (URIMapping mapping : mappingsCopy) {
-			for (URIMapping m : allMappings) {
-				if (m == mapping) {
-					continue;
-				}
-
-				// This is a duplicate
-				if (mapping.getSourceURI().equals(m.getSourceURI())) {
-					// If both mappings are still present, remove one of them
-					if (allMappings.contains(mapping) && allMappings.contains(m)) {
-						URIMapping mappingToRemove = findLessSpecificMapping(mapping, m);
-
-						allMappings.remove(mappingToRemove);
-						break;
-					}
-				}
-			}
-		}
-	}
-
-	/**
-	 * If 2 mappings have the same sourceURI but different targetURI, returns the less pertinent one
-	 * (Usually, the one with the same Source and Target)
-	 *
-	 * @param mapping1
-	 * @param mapping2
-	 * @return
-	 */
-	protected URIMapping findLessSpecificMapping(URIMapping mapping1, URIMapping mapping2) {
-		if (!isUsefulMapping(mapping1)) {
-			return mapping1;
-		}
-
-		return mapping2;
-	}
-
-	protected boolean isUsefulMapping(URIMapping mapping) {
-		if (mapping.getTargetURI() == null || "".equals(mapping.getTargetURI()) || mapping.getTargetURI().equals(mapping.getSourceURI())) {
-			return false;
-		}
-
-		return true;
 	}
 
 	@Override
@@ -369,27 +318,12 @@ public class URIMappingDialog extends SelectionDialog {
 
 	@Override
 	protected void okPressed() {
-		propagateURIMappings();
+		dependencyHelper.propagateURIMappings(allMappings, result);
 		setResult(Collections.singletonList(result)); // Set the new result
 		super.okPressed();
 	}
 
-	/** Propagates the URI Mappings to all duplicates */
-	protected void propagateURIMappings() {
-		for (URIMapping mapping : allMappings) {
-			for (URIMapping uriMapping : result.getUriMappings()) {
-				if (uriMapping.getSourceURI().equals(mapping.getSourceURI())) {
-					uriMapping.setTargetURI(mapping.getTargetURI());
-				}
-			}
-
-			for (URIMapping profileURIMapping : result.getProfileUriMappings()) {
-				if (profileURIMapping.getSourceURI().equals(mapping.getSourceURI())) {
-					profileURIMapping.setTargetURI(mapping.getTargetURI());
-				}
-			}
-		}
-	}
+	
 
 	private class URIColumnsLabelProvider extends ColumnLabelProvider {
 

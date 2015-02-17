@@ -663,6 +663,9 @@ public class ImportTransformationLauncher {
 	}
 
 	protected MappingParameters confirmURIMappings(final MappingParameters mappingParameters) {
+		List<URIMapping> flatMappings = analysisHelper.flattenURIMappings(mappingParameters);
+		analysisHelper.propagateURIMappings(flatMappings, mappingParameters);
+		
 		if (config.isAlwaysAcceptSuggestedMappings()) {
 			return mappingParameters;
 		}
@@ -684,7 +687,7 @@ public class ImportTransformationLauncher {
 	protected MappingParameters openMappingsDialog(final MappingParameters mappingParameters) {
 		final Shell shell = baseControl.getShell();
 
-		SelectionDialog dialog = new URIMappingDialog(shell, mappingParameters);
+		SelectionDialog dialog = new URIMappingDialog(shell, mappingParameters, analysisHelper);
 
 		dialog.open();
 		return (MappingParameters) dialog.getResult()[0];
