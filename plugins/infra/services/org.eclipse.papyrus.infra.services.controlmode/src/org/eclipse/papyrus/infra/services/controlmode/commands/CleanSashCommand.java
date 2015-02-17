@@ -81,8 +81,9 @@ public class CleanSashCommand extends AbstractControlCommand {
 		} else {
 			// Case : Standard
 			SashModel sashModel = SashModelUtils.getSashModel(modelSet);
+			sashModel.getResource().setModified(true);
 			sashModel.loadModel(oldDiresource.getURI().trimFileExtension());
-			modelSet.getResourcesToDeleteOnSave().add(SashModelUtils.getSashModel(modelSet).getResourceURI());
+			SashModelUtils.getSashModel(modelSet).getResource().getContents().clear();
 		}
 
 		return CommandResult.newOKCommandResult();
