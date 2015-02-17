@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -123,6 +123,40 @@ public class PapyrusStereotypeApplicationHelperTest extends AbstractPapyrusTest 
 
 			assertThat(UMLUtil.getBaseElement(stereotypeApplication), is((Element) foo));
 			assertThat(uml.getContents(), hasItem(stereotypeApplication));
+		} finally {
+			EMFHelper.unload(rset);
+		}
+	}
+
+	/**
+	 * Scenario: apply a stereotype to an element in a sub-model unit that is not a package (e.g., a class unit).
+	 * The stereotype application must be added to the sub-model unit containing the base element, not the unit
+	 * containing the profile application.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=459613
+	 */
+	@Test
+	public void stereotypeApplication_inNonPackageSubmodelUnit_bug459613() {
+		ResourceSet rset = new ResourceSetImpl();
+
+		try {
+			Resource uml = rset.createResource(URI.createURI("bogus://test"), UMLPackage.eCONTENT_TYPE);
+			Package package_ = UMLFactory.eINSTANCE.createPackage();
+			uml.getContents().add(package_);
+
+			Profile profile = createProfile(rset);
+			package_.applyProfile(profile);
+
+			EClass stereotype = (EClass) package_.getProfileApplications().get(0).getAppliedDefinition(profile.getOwnedStereotype("Stereo"));
+
+			Package nested = package_.createNestedPackage("nested");
+			Class foo = nested.createOwnedClass("Foo", false);
+			Resource subUnit = rset.createResource(URI.createURI("bogus://test/class1"), UMLPackage.eCONTENT_TYPE);
+			subUnit.getContents().add(foo);
+			EObject stereotypeApplication = fixture.applyStereotype(foo, stereotype);
+
+			assertThat(UMLUtil.getBaseElement(stereotypeApplication), is((Element) foo));
+			assertThat(subUnit.getContents(), hasItem(stereotypeApplication));
 		} finally {
 			EMFHelper.unload(rset);
 		}
