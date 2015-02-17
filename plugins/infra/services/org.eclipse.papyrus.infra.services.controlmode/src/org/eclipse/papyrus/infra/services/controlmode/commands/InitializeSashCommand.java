@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.services.controlmode.commands;
 
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Iterator;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
@@ -24,13 +25,16 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.SashModelUtils;
-import org.eclipse.papyrus.infra.core.sasheditor.contentprovider.IPageManager;
+import org.eclipse.papyrus.infra.core.sashwindows.di.AbstractPanel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.PageRef;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashModel;
+import org.eclipse.papyrus.infra.core.sashwindows.di.SashPanel;
 import org.eclipse.papyrus.infra.core.sashwindows.di.SashWindowsMngr;
+import org.eclipse.papyrus.infra.core.sashwindows.di.TabFolder;
+import org.eclipse.papyrus.infra.core.sashwindows.di.Window;
 import org.eclipse.papyrus.infra.core.sashwindows.di.exception.SashEditorException;
 import org.eclipse.papyrus.infra.core.sashwindows.di.util.DiUtils;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModePlugin;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequestParameters;
@@ -147,15 +151,115 @@ public class InitializeSashCommand extends AbstractControlCommand {
 
 		// Create a new SashWindowManager
 		SashWindowsMngr windowsMngr = DiUtils.createDefaultSashWindowsMngr();
-		IPageManager pageManager = ServiceUtilsForResourceSet.getInstance().getIPageManager(request.getModelSet());
+		Resource rootSashModel = SashModelUtils.getSashModel(request.getModelSet()).getResource();
+
+		SashWindowsMngr rootSashMngr = DiUtils.lookupSashWindowsMngr(rootSashModel);
+		if (rootSashMngr == null){
+			rootSashMngr = DiUtils.createDefaultSashWindowsMngr();
+			rootSashModel.getContents().add(rootSashMngr);
+		}
 
 		// Complete SashWindow Manager filling the default TabFolder with opened diagram
 		for (EObject openable : openables) {
-			if (pageManager.isOpen(openable)) {
-				windowsMngr.getSashModel().addPage(windowsMngr.getSashModel().getCurrentSelection(), openable);
+
+			PageRef pageRef = getPageRef(rootSashMngr, openable);
+			if (pageRef != null) {
+				windowsMngr.getSashModel().addPage(windowsMngr.getSashModel().getCurrentSelection(), pageRef.getPageIdentifier());
 			}
 		}
 
+		// Force update of old sash resource
+		rootSashModel.setModified(!openables.isEmpty());
+
+
 		return windowsMngr;
+	}
+
+
+	/**
+	 * Gets the page ref.
+	 *
+	 * @param sashWindowsManager
+	 *            the sash windows manager
+	 * @param emfPageIdentifier
+	 *            the emf page identifier
+	 * @return the page ref
+	 */
+	private PageRef getPageRef(SashWindowsMngr sashWindowsManager, EObject emfPageIdentifier) {
+
+		// Get iterator on all pages of current Tab folder
+		PageRef pageRef = null;
+		boolean match = false;
+		Iterator<Window> windowsIterator = sashWindowsManager.getSashModel().getWindows().iterator();
+
+		// Explore each window
+		while (!match && windowsIterator.hasNext()) {
+
+			Window window = windowsIterator.next();
+			Iterator<AbstractPanel> panelIterator = window.getChildren().iterator();
+
+			// Explore each panel which is a TabFolder
+			while (!match && panelIterator.hasNext()) {
+
+				pageRef = parsePanel(panelIterator.next(), emfPageIdentifier);
+				match = pageRef != null;
+			}
+		}
+
+		return pageRef;
+
+	}
+
+
+	/**
+	 * Parses the panel.
+	 *
+	 * @param panel
+	 *            the panel
+	 * @param emfPageIdentifier
+	 *            the emf page identifier
+	 * @return the page ref
+	 */
+	private PageRef parsePanel(AbstractPanel panel, EObject emfPageIdentifier) {
+		PageRef pageRef = null;
+
+		if (panel instanceof TabFolder) {
+			pageRef = parseTabFolder((TabFolder) panel, emfPageIdentifier);
+		} else if (panel instanceof SashPanel) {
+			Iterator<AbstractPanel> panelIterator = ((SashPanel) panel).getChildren().iterator();
+			// Explorer each child
+			while (pageRef == null && panelIterator.hasNext()) {
+				pageRef = parsePanel(panelIterator.next(), emfPageIdentifier);
+			}
+		}
+
+		return pageRef;
+	}
+
+	/**
+	 * Parses the tab folder.
+	 *
+	 * @param panel
+	 *            the panel
+	 * @param emfPageIdentifier
+	 *            the emf page identifier
+	 * @return the page ref
+	 */
+	private PageRef parseTabFolder(TabFolder panel, EObject emfPageIdentifier) {
+		PageRef pageRef = null;
+		boolean match = false;
+		// Explore each pageRef
+		Iterator<PageRef> pageRefsIterator = panel.getChildren().iterator();
+		while (!match && pageRefsIterator.hasNext()) {
+
+			PageRef currentPage = pageRefsIterator.next();
+
+			// Check if the associated pageRef
+			match = currentPage.getEmfPageIdentifier() != null && emfPageIdentifier.equals(currentPage.getEmfPageIdentifier());
+			if (match) {
+				pageRef = currentPage;
+			}
+		}
+		return pageRef;
 	}
 }
