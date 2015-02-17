@@ -1,5 +1,7 @@
 package org.eclipse.papyrus.emfgen.core;
 
+import java.io.IOException;
+
 import org.apache.log4j.Logger;
 import org.kohsuke.args4j.CmdLineException;
 import org.kohsuke.args4j.CmdLineParser;
@@ -20,27 +22,27 @@ public class EmfGeneratorApp {
 
 	@Option(name = "-o", required = true, usage="Required")
 	public String outputDirectory;
-	
+
 	@Option(name = "-r", required = false, usage="Required")
 	public Boolean relocate;
-	
+
 	@Option(name = "-model", required = false, usage="Required")
 	public Boolean model;
-	
+
 	@Option(name = "-edit", required = false, usage="Required")
 	public Boolean edit;
-	
+
 	@Option(name = "-editor", required = false, usage="Required")
 	public Boolean editor;
-	
+
 	@Option(name = "-tests", required = false, usage="Required")
 	public Boolean tests;
 
-	public static void main(String[] args) {
+	public static void main(String[] args) throws IOException {
 		System.exit(new EmfGeneratorApp().run(args));
 	}
 
-	private int run(String[] args) {
+	private int run(String[] args) throws IOException {
 		CmdLineParser p = new CmdLineParser(this);
 		try {
 			p.parseArgument(args);
@@ -53,7 +55,7 @@ public class EmfGeneratorApp {
 		}
 	}
 
-	private void run() {
+	private void run() throws IOException {
 		logger.info("Welcome to EmfGenerator");       
 		EmfGeneratorAppOptions emfGeneratorAppOptions = new EmfGeneratorAppOptions(genModel,ecore,outputDirectory,relocate,model,edit,editor,tests);
 		EmfGenerator emfGenerator = new EmfGenerator();

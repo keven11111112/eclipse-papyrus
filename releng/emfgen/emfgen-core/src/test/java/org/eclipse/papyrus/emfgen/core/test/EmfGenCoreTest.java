@@ -1,5 +1,6 @@
 package org.eclipse.papyrus.emfgen.core.test;
 
+import java.io.IOException;
 import java.util.HashMap;
 
 import org.apache.log4j.Logger;
@@ -27,7 +28,12 @@ public class EmfGenCoreTest
 	{
 		EmfGeneratorAppOptions myEmfGeneratorAppOptions = new EmfGeneratorAppOptions(genModel,ecoreModel,outputDirectory,false, true,true,true,true);
 		EmfGenerator myEmfGenerator = new EmfGenerator();
-		myEmfGenerator.execute(myEmfGeneratorAppOptions.getEmfModel(), myEmfGeneratorAppOptions.getEmfGeneratorOptions());
+		try {
+			myEmfGenerator.execute(myEmfGeneratorAppOptions.getEmfModel(), myEmfGeneratorAppOptions.getEmfGeneratorOptions());
+		} catch (IOException e) {
+			e.printStackTrace();
+			
+		}
 		HashMap<String,String> file2md5 = new HashMap<String,String>();
 		/*
 		String relativeRootPath = new String();
