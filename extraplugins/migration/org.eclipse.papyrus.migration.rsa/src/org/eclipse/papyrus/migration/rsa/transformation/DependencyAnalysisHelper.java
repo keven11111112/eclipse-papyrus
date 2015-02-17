@@ -14,6 +14,8 @@ package org.eclipse.papyrus.migration.rsa.transformation;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 import java.util.Set;
@@ -31,6 +33,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
+import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersFactory;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
 import org.eclipse.papyrus.migration.rsa.concurrent.ThreadSafeResourceSet;
@@ -389,5 +392,83 @@ public class DependencyAnalysisHelper {
 	protected URIMapping findExistingMapping(EObject proxy, ResourceSet resourceSet) {
 		URI proxyURI = EcoreUtil.getURI(proxy);
 		return findExistingMapping(proxyURI, resourceSet);
+	}
+
+	/** Propagates the URI Mappings to all duplicates */
+	public void propagateURIMappings(List<URIMapping> allMappings, MappingParameters result) {
+		for (URIMapping mapping : allMappings) {
+			for (URIMapping uriMapping : result.getUriMappings()) {
+				if (uriMapping.getSourceURI().equals(mapping.getSourceURI())) {
+					uriMapping.setTargetURI(mapping.getTargetURI());
+				}
+			}
+
+			for (URIMapping profileURIMapping : result.getProfileUriMappings()) {
+				if (profileURIMapping.getSourceURI().equals(mapping.getSourceURI())) {
+					profileURIMapping.setTargetURI(mapping.getTargetURI());
+				}
+			}
+		}
+	}
+
+	public List<URIMapping> flattenURIMappings(MappingParameters result) {
+		List<URIMapping> allMappings = new LinkedList<URIMapping>();
+		allMappings.addAll(result.getUriMappings());
+		allMappings.addAll(result.getProfileUriMappings());
+		
+		removeDuplicates(allMappings);
+
+		return allMappings;
+	}
+	
+	/**
+	 * Remove duplicate mappings. Mappings are duplicate if they have the same SourceURI.
+	 * Less specific mappings will be discarded (Usually, the ones with the same Source and Target URI)
+	 */
+	protected void removeDuplicates(List<URIMapping> allMappings) {
+		List<URIMapping> mappingsCopy = new LinkedList<URIMapping>(allMappings);
+
+		for (URIMapping mapping : mappingsCopy) {
+			for (URIMapping m : allMappings) {
+				if (m == mapping) {
+					continue;
+				}
+
+				// This is a duplicate
+				if (mapping.getSourceURI().equals(m.getSourceURI())) {
+					// If both mappings are still present, remove one of them
+					if (allMappings.contains(mapping) && allMappings.contains(m)) {
+						URIMapping mappingToRemove = findLessSpecificMapping(mapping, m);
+
+						allMappings.remove(mappingToRemove);
+						break;
+					}
+				}
+			}
+		}
+	}
+
+	/**
+	 * If 2 mappings have the same sourceURI but different targetURI, returns the less pertinent one
+	 * (Usually, the one with the same Source and Target)
+	 *
+	 * @param mapping1
+	 * @param mapping2
+	 * @return
+	 */
+	protected URIMapping findLessSpecificMapping(URIMapping mapping1, URIMapping mapping2) {
+		if (!isUsefulMapping(mapping1)) {
+			return mapping1;
+		}
+
+		return mapping2;
+	}
+	
+	protected boolean isUsefulMapping(URIMapping mapping) {
+		if (mapping.getTargetURI() == null || "".equals(mapping.getTargetURI()) || mapping.getTargetURI().equals(mapping.getSourceURI())) {
+			return false;
+		}
+
+		return true;
 	}
 }
