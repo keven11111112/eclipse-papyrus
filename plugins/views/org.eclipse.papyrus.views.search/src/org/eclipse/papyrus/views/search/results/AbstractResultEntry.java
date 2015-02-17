@@ -115,16 +115,16 @@ public abstract class AbstractResultEntry extends Match {
 			ResultEntry theParent = null;
 
 			while (potentialParent != null) {
-				theParent = new ResultEntry(potentialParent, scopeEntry);
-				theParent.setParent(new ResultEntry(scopeEntry.getResourceURI(), scopeEntry));
-
+				if (potentialParent.eContainer() == null) {
+					theParent = new ResultEntry(potentialParent, scopeEntry);
+					theParent.setParent(new ResultEntry(scopeEntry.getResourceURI(), scopeEntry));
+				}
+				
 				potentialParent = potentialParent.eContainer();
 			}
 
 			if (theParent == null) {
-
 				theParent = new ResultEntry(scopeEntry.getResourceURI(), scopeEntry);
-
 			}
 			return theParent;
 

@@ -448,6 +448,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		Button btnSelectSub = new Button(participantManipualtionComposite, SWT.PUSH);
 		btnSelectSub.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnSelectSub.setText(Messages.PapyrusSearchPage_14);
+		btnSelectSub.setToolTipText(Messages.PapyrusSearchPageTooltip_1);
 		btnSelectSub.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -573,6 +574,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		Button btnRefreshTypes = new Button(participantManipualtionComposite, SWT.PUSH);
 		btnRefreshTypes.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnRefreshTypes.setText(Messages.PapyrusSearchPage_15);
+		btnRefreshTypes.setToolTipText(Messages.PapyrusSearchPageTooltip_2);
 		btnRefreshTypes.addMouseListener(new MouseAdapter() {
 
 			@Override

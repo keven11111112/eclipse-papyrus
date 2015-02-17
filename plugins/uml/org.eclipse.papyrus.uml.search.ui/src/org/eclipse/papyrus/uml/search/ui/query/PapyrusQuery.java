@@ -174,7 +174,6 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 	 * @param scopeEntry
 	 */
 	protected void evaluate(Collection<EObject> participants, ScopeEntry scopeEntry) {
-
 		for (EObject participant : participants) {
 
 			String query = searchQueryText;
@@ -220,11 +219,9 @@ public class PapyrusQuery extends AbstractPapyrusQuery {
 						evaluateAndAddToResult(umlElementName, UMLPackage.eINSTANCE.getNamedElement_Name(), pattern, participant, scopeEntry, null);
 					}
 				}
-
-
 			}
 		}
-
+		
 		// Now, find in diagram and others the elements we found
 		ViewerSearchService viewerSearcherService = new ViewerSearchService();
 		try {
