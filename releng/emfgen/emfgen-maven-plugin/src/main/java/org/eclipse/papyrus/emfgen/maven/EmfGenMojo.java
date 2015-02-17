@@ -35,50 +35,55 @@ public class EmfGenMojo extends AbstractMojo
 	{
 		getLog().info("Welcome to EmfGen");
 		getLog().info("dealing with "+genModel+" and "+ ecoreModel +" output: "+ outputDirectory);
-		if ( !buildContext.hasDelta( genModel ) && !buildContext.hasDelta( ecoreModel ) )
-		{
-			getLog().debug( "Skipping unchanged data: " + genModel + " @ " +  ecoreModel);
+		if(buildContext!=null){
+			if (!buildContext.hasDelta( genModel ) && !buildContext.hasDelta( ecoreModel ) )
+			{
+				getLog().debug( "Skipping unchanged data: " + genModel + " @ " +  ecoreModel);
+			}
+			else{
+				getLog().info("Welcome to EmfGen");
+				getLog().info("dealing with "+genModel+" and "+ ecoreModel +" output: "+ outputDirectory);
+
+				File genModelFile = new File(genModel);
+				buildContext.removeMessages( genModelFile );
+
+				EmfGeneratorAppOptions emfGeneratorAppOptions = new EmfGeneratorAppOptions(genModel,ecoreModel, outputDirectory,isRelocate, isGenModel, isGenEdit,isGenEditor,isGenTests);
+				EmfGenerator myEmfGenerator = new EmfGenerator();
+				try {
+					myEmfGenerator.execute(emfGeneratorAppOptions.getEmfModel(), emfGeneratorAppOptions.getEmfGeneratorOptions());
+
+					GenModel genModel = myEmfGenerator.getGenModel(emfGeneratorAppOptions.getEmfModel(), emfGeneratorAppOptions.getEmfGeneratorOptions() );
+					Generator generator = myEmfGenerator.getGenerator(genModel);
+
+					myEmfGenerator.generateProjectTypeModel(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
+					File outDir = new File(outputDirectory+"/"+genModel.getModelDirectory()) ;
+					buildContext.refresh( outDir );
+
+					myEmfGenerator.generateProjectTypeEdit(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
+					outDir = new File(outputDirectory+"/"+genModel.getEditDirectory()) ;
+					buildContext.refresh( outDir );
+
+					myEmfGenerator.generateProjectTypeEditor(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
+					outDir = new File(outputDirectory+"/"+genModel.getEditorDirectory()) ;
+					buildContext.refresh( outDir );
+
+					myEmfGenerator.generateProjectTypeTest(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
+					//outDir = new File(outputDirectory+"/"+genModel.getTestsDirectory()) ;
+					//buildContext.refresh( outDir );
+
+
+				}	catch ( IOException e )
+				{
+					MojoExecutionException mojoExecutionException =
+							new MojoExecutionException( "Couldn't read file: " + e.getMessage(), e );
+					buildContext.addMessage( genModelFile, 1 /* line */, 1 /* column */, mojoExecutionException.getMessage(),
+							BuildContext.SEVERITY_ERROR, mojoExecutionException );
+					throw mojoExecutionException;
+				}
+			}
 		}
 		else{
-			getLog().info("Welcome to EmfGen");
-			getLog().info("dealing with "+genModel+" and "+ ecoreModel +" output: "+ outputDirectory);
-
-			File genModelFile = new File(genModel);
-			buildContext.removeMessages( genModelFile );
-
-			EmfGeneratorAppOptions emfGeneratorAppOptions = new EmfGeneratorAppOptions(genModel,ecoreModel, outputDirectory,isRelocate, isGenModel, isGenEdit,isGenEditor,isGenTests);
-			EmfGenerator myEmfGenerator = new EmfGenerator();
-			try {
-				myEmfGenerator.execute(emfGeneratorAppOptions.getEmfModel(), emfGeneratorAppOptions.getEmfGeneratorOptions());
-
-				GenModel genModel = myEmfGenerator.getGenModel(emfGeneratorAppOptions.getEmfModel(), emfGeneratorAppOptions.getEmfGeneratorOptions() );
-				Generator generator = myEmfGenerator.getGenerator(genModel);
-				
-				myEmfGenerator.generateProjectTypeModel(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
-				File outDir = new File(outputDirectory+"/"+genModel.getModelDirectory()) ;
-				buildContext.refresh( outDir );
-				
-				myEmfGenerator.generateProjectTypeEdit(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
-				outDir = new File(outputDirectory+"/"+genModel.getEditDirectory()) ;
-				buildContext.refresh( outDir );
-				
-				myEmfGenerator.generateProjectTypeEditor(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
-				outDir = new File(outputDirectory+"/"+genModel.getEditorDirectory()) ;
-				buildContext.refresh( outDir );
-				
-				myEmfGenerator.generateProjectTypeTest(generator,genModel, emfGeneratorAppOptions.getEmfGeneratorOptions());
-				//outDir = new File(outputDirectory+"/"+genModel.getTestsDirectory()) ;
-				//buildContext.refresh( outDir );
-				
-
-			}	catch ( IOException e )
-			{
-				MojoExecutionException mojoExecutionException =
-						new MojoExecutionException( "Couldn't read file: " + e.getMessage(), e );
-				buildContext.addMessage( genModelFile, 1 /* line */, 1 /* column */, mojoExecutionException.getMessage(),
-						BuildContext.SEVERITY_ERROR, mojoExecutionException );
-				throw mojoExecutionException;
-			}
+			getLog().error("BuildContext is null");
 		}
 	}
 
