@@ -11,11 +11,13 @@
  *   Christian W. Damus - bug 455248
  *   Christian W. Damus - bug 455329
  *   Christian W. Damus - bug 436666
+ *   Christian W. Damus - bug 459488
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
 
 import static org.hamcrest.CoreMatchers.is;
+import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -25,24 +27,31 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 import java.lang.reflect.Method;
+import java.util.Arrays;
 import java.util.Collection;
 import java.util.Set;
 
+import org.eclipse.core.resources.IFile;
+import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.common.util.ECollections;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.junit.utils.rules.ModelSetFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -50,6 +59,7 @@ import org.junit.Test;
 import com.google.common.base.Function;
 import com.google.common.base.Functions;
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 
 
 /**
@@ -274,6 +284,38 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		assertThat(model.eResource().getContents(), is(ECollections.singletonEList((EObject) model)));
 	}
 
+	/**
+	 * Tests that a scenario involving a malformed XSI schema-location for a profile schema in a non-package model fragment
+	 * (sub-unit resource) is correctly detected and repaired.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=459488
+	 */
+	@Test
+	@Bug("459488")
+	@PluginResource("/resources/regression/bug459488/model.di")
+	public void badSchemaLocationInNonPackageFragment_bug459488() throws InterruptedException {
+		// Load the sub-unit, triggering (we hope) repair
+		EcoreUtil.resolveAll(modelSet.getModelResource());
+
+		Class class1 = (Class) model.getOwnedType("Class1");
+
+		// Scan the sub-unit for stereotype problems
+		zombies = fixture.getZombieStereotypes(class1.eResource(), class1);
+
+		IAdaptable schema = getOnlyZombieSchema();
+		IRepairAction action = zombies.getSuggestedRepairAction(schema);
+		assertThat("Wrong suggested repair action", action.kind(), is(IRepairAction.Kind.APPLY_LATEST_PROFILE_DEFINITION));
+
+		repair(schema, action);
+
+		// Verify the stereotype application that was migrated
+		Stereotype stereotype1 = class1.getAppliedStereotype("profile::Stereotype1");
+		assertThat("Stereotype1 does not seem to be applied", stereotype1, notNullValue());
+
+		// And that the migrated stereotype application is in the correct resource (the sub-model unit)
+		assertThat("Stereotype1 application in wrong resource", class1.getStereotypeApplication(stereotype1).eResource(), is(class1.eResource()));
+	}
+
 	//
 	// Test framework
 	//
@@ -361,6 +403,23 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(Functions.constant((Profile) null)), "dispose", modelSet.getResourceSet());
 	}
 
+	@Bug("459488")
+	protected StereotypeApplicationRepairSnippet createLocalProfileFixture() throws CoreException {
+		// Get the profile to supply for repairing
+		URI profileURI = null;
+		for (IFile next : Iterables.filter(Arrays.asList(modelSet.getProject().getProject().members()), IFile.class)) {
+			if (next.getName().endsWith(".profile.uml")) {
+				// This looks like our "local profile"
+				profileURI = URI.createPlatformResourceURI(next.getFullPath().toString(), true);
+				break;
+			}
+		}
+		assertThat("No profile resource found in test project", profileURI, notNullValue());
+		Profile profile = UML2Util.load(modelSet.getResourceSet(), profileURI, UMLPackage.Literals.PROFILE);
+
+		return houseKeeper.cleanUpLater(new StereotypeApplicationRepairSnippet(Functions.constant(profile)), "dispose", modelSet.getResourceSet());
+	}
+
 	void repair(final IAdaptable schema, final IRepairAction action) {
 		try {
 			TransactionHelper.run(modelSet.getEditingDomain(), new Runnable() {
@@ -377,6 +436,7 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	}
 
 	IAdaptable getOnlyZombieSchema() {
+		assertThat("No zombie packages found", zombies, notNullValue());
 		Collection<? extends IAdaptable> schemata = zombies.getZombieSchemas();
 		assertThat("Wrong number of zombie packages", schemata.size(), is(1));
 		return schemata.iterator().next();
