@@ -55,5 +55,11 @@
             priority="100">
       </configuration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel
+            model="newchildmenu/newChildMenu.xmi">
+      </menuCreationModel>
+   </extension>
 
 </plugin>
