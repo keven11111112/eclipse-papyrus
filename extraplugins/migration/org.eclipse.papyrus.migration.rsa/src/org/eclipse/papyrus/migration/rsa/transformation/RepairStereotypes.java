@@ -97,12 +97,13 @@ public class RepairStereotypes {
 
 		for (Resource resource : resourcesToRepair) {
 			Element rootElement = (Element) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.ELEMENT);
-			if (!(rootElement instanceof Package)) {
+			
+			if (rootElement == null || rootElement.getNearestPackage() == null){
 				continue;
 			}
-
-			Package rootPackage = (Package) rootElement;
-
+			
+			Package rootPackage = rootElement.getNearestPackage();
+			
 			Collection<ProfileApplication> profileApplications = Lists.newArrayList();
 			for (TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(Collections.singleton(rootPackage), false); iter.hasNext();) {
 				EObject next = iter.next();
