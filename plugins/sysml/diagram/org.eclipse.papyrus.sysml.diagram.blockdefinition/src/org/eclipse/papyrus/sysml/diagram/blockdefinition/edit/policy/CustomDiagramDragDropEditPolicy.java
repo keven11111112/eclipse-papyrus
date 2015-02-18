@@ -38,7 +38,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.gmf.diagram.common.commands.IdentityCommandWithNotification;
 import org.eclipse.papyrus.gmf.diagram.common.edit.policy.CommonDiagramDragDropEditPolicy;
@@ -83,7 +82,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	protected ICommand getSpecificDropCommand(DropObjectsRequest dropRequest, EObject droppedEObject, String nodeType, String edgeType) {
 		if (ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint().equalsIgnoreCase(nodeType) ||
 				ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint().equalsIgnoreCase(edgeType)) {
-			return new CommandProxy(dropInstanceSpecification(dropRequest, droppedEObject));
+			return new CommandProxy(dropInstanceSpecification(nodeType, dropRequest, droppedEObject));
 		}
 		return super.getSpecificDropCommand(dropRequest, droppedEObject, nodeType, edgeType);
 	}
@@ -99,23 +98,19 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 	 *            the edge type
 	 * @return the command in charge of the drop
 	 */
-	protected Command dropInstanceSpecification(DropObjectsRequest dropRequest, EObject droppedEObject) {
+	protected Command dropInstanceSpecification(String droppedNodeType, DropObjectsRequest dropRequest, EObject droppedEObject) {
 		if (false == droppedEObject instanceof InstanceSpecification) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		// DROP AS LINK
+		// Drop as link
 		List<InstanceSpecification> endTypes = InstanceSpecificationLinkHelper.getEnds(((InstanceSpecification) droppedEObject));
 		if (endTypes.size() > 0) {
 			Element source = endTypes.get(0);
 			Element target = endTypes.get(1);
 			return new ICommandProxy(dropBinaryLink(new CompositeCommand("drop InstanceSpecification link"), source, target, ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint(), dropRequest.getLocation(), (Element) droppedEObject));
 		}
-		// DROP AS A NODE
-		// drop into diagram
-		if (getHost().getModel() instanceof Diagram) {
-			return new ICommandProxy(getDefaultDropNodeCommand(ElementTypes.INSTANCE_SPECIFICATION.getSemanticHint(), dropRequest.getLocation(), droppedEObject));
-		}
-		return UnexecutableCommand.INSTANCE;
+		// Drop as node
+		return new ICommandProxy(getDefaultDropNodeCommand(droppedNodeType, droppedEObject, dropRequest.getLocation()));
 	}
 
 	/**
