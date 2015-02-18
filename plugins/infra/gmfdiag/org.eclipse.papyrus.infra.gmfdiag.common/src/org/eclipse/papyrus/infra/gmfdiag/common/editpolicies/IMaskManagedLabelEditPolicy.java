@@ -22,7 +22,7 @@ import java.util.Map;
 public interface IMaskManagedLabelEditPolicy {
 
 	/** key for this edit policy */
-	public String MASK_MANAGED_LABEL_EDIT_POLICY = "MaskManagedLabelPolicy";
+	public String MASK_MANAGED_LABEL_EDIT_POLICY = "MaskManagedLabelPolicy"; //$NON-NLS-1$
 
 	/**
 	 * Returns the {@link Map} of masks. The key is the mask ID, the value is the mask Label

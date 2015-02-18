@@ -19,5 +19,5 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
 public interface IndirectMaskLabelEditPolicy {
 
-	public String INDRIRECT_MASK_MANAGED_LABEL = "INDRIRECT_MASK_MANAGED_LABEL";
+	public String INDRIRECT_MASK_MANAGED_LABEL = "INDRIRECT_MASK_MANAGED_LABEL"; //$NON-NLS-1$
 }
