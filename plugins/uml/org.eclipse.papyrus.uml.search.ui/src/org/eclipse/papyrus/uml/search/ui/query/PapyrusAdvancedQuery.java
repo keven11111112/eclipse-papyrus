@@ -27,10 +27,12 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.NotFoundException;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
@@ -42,6 +44,7 @@ import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeElement;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.papyrus.uml.search.ui.validator.ParticipantValidator;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.search.regex.PatternHelper;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.AttributeMatch;
@@ -53,8 +56,11 @@ import org.eclipse.search.ui.ISearchResult;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.PrimitiveType;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -156,9 +162,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 		for (ScopeEntry scopeEntry : scopeEntries) {
 			try {
-
 				if (scopeEntry.getModelSet() != null) {
-
 					UmlModel umlModel = (UmlModel) scopeEntry.getModelSet().getModelChecked(UmlModel.MODEL_ID);
 
 					EObject root = umlModel.lookupRoot();
@@ -167,7 +171,6 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					Collection<EObject> stereotypedParticipants = ParticipantValidator.getInstance().getParticipantsStereotype(root, stereotypeList.keySet().toArray());
 
 					if (searchForAllSter) {
-
 						if (participantsList.keySet().size() == 0) {
 							stereotypedParticipants = getElementsWithAllSter(stereotypedParticipants);
 							evaluate(stereotypedParticipants, scopeEntry);
@@ -177,20 +180,16 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 							evaluate(participants, scopeEntry);
 							evaluateStereotypes(participants, scopeEntry);
 						}
-
 					} else {
 						evaluate(participants, scopeEntry);
 						evaluateStereotypes(stereotypedParticipants, scopeEntry);
 					}
-
-
-
-
 				}
 			} catch (NotFoundException e) {
 				Activator.log.error(Messages.PapyrusQuery_0 + scopeEntry.getModelSet(), e);
 			}
 		}
+		
 		monitor.done();
 
 		return Status.OK_STATUS;
@@ -278,10 +277,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 		for (EObject participant : participants) {
 
 			if (searchQueryText.equals("")) { //$NON-NLS-1$
-
-
 				fResults.add(new ModelElementMatch(participant, scopeEntry));
-
 			} else {
 				String query = searchQueryText;
 				if (searchQueryText.equals("")) { //$NON-NLS-1$
@@ -293,16 +289,10 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 				if (pattern != null) {
 					if (participantsList.get(participant.eClass()).size() == 0) {
 						attributesList = participant.eClass().getEAllAttributes();
-
-
-
-
 					} else {
-
 						attributesList = participantsList.get(participant.eClass());
-
 					}
-
+					
 					for (EAttribute attribute : attributesList) {
 
 						Object value = participant.eGet(attribute);
@@ -320,8 +310,8 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 			}
 		}
+		
 		findInDiagram(scopeEntry);
-
 	}
 
 
@@ -345,33 +335,17 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					for (Stereotype stereotype : stereotypesApplied) {
 						for (Stereotype stereotypeSelected : stereotypeList.keySet()) {
 							if (EcoreUtil.equals(stereotype, stereotypeSelected)) {
-								if (stereotypeList.get(stereotypeSelected).size() == 0) {
-
-									propertyList = this.getStereotypesAttributes(stereotype);
-									for (Property property : propertyList) {
-
-										Object value = ((Element) participant).getValue(stereotype, property.getName());
-										if (value != null) {
-											if (value instanceof String) {
-												String stringValue = (String) value;
-												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
-											} else {
-												String stringValue = String.valueOf(value);
-												evaluateAndAddToResult(stringValue, property, pattern, participant, scopeEntry, stereotype);
-											}
-										}
-									}
-								} else {
-									propertyList = this.getStereotypesAttributes(stereotype);
-									for (Property property : propertyList) {
+								propertyList = this.getStereotypesAttributes(stereotype);
+								
+								for (Property property : propertyList) {
+									if (stereotypeList.get(stereotypeSelected).size() == 0) {
+										String value = "[" + StereotypeUtil.displayPropertyValue(stereotype, property, (Element) participant, ";") + "]";
+										evaluateAndAddToResult(value, property, pattern, participant, scopeEntry, stereotype);
+									} else {
 										for (Property property2 : (stereotypeList.get(stereotypeSelected))) {
-											if (EcoreUtil.equals(property, property2)) {
-
-												String value = getStringValueOfProperty((Element) participant, stereotype, property);
-
-												if (value != null) {
-													evaluateAndAddToResult(value, property, pattern, participant, scopeEntry, stereotype);
-												}
+											if (EcoreUtil.equals(property, property2)) { // We loop through all selected attributes of all stereotypes, therefore this test is necessary to compare to currently searched stereotype's attributes
+												String value = StereotypeUtil.displayPropertyValueOnly(stereotype, property, (Element) participant, "");
+												evaluateAndAddToResult(value, property, pattern, participant, scopeEntry, stereotype);
 											}
 										}
 									}
@@ -381,23 +355,44 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					}
 				}
 			}
-
-
 		}
 
 		findInDiagram(scopeEntry);
 
 	}
 
-	private String getStringValueOfProperty(Element element, Stereotype stereotype, Property property) {
-		Object value = element.getValue(stereotype, property.getName());
-		if (value instanceof String) {
+	private String getStringValue(Object value) {
+		if (value == null) {
+			return "";
+		}
+		
+		if (value instanceof String) { // Primitive types will hit this case
 			return (String) value;
 		} else if (value instanceof EnumerationLiteral) {
 			return ((EnumerationLiteral) value).getName();
+		} else if (value instanceof NamedElement) {
+			return ((NamedElement) value).getName();
+		} else if (value instanceof EObject) { // Ref to an element in a model
+			Element baseElement = UMLUtil.getBaseElement((EObject) value);
+			return getStringValue(baseElement);
 		} else {
 			return String.valueOf(value);
 		}
+	}
+	
+	private EList<String> getStringValuesOfProperty(Element element, Stereotype stereotype, Property property) {
+		BasicEList<String> results = new BasicEList<String>();
+		
+		Object values = element.getValue(stereotype, property.getName());
+		if (values instanceof EList) {
+			for (Object val : (EList) values) {
+				results.add(getStringValue(val));
+			}
+		} else {
+			results.add(getStringValue(values));
+		}
+		
+		return results;
 	}
 
 	public List<Property> getStereotypesAttributes(Object parentElement) {
@@ -408,20 +403,12 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 
 				if (!property.getName().startsWith("base_")) { //$NON-NLS-1$
 					if (property.getType() instanceof Element) {
-
-						if (UMLUtil.isBoolean(property.getType()) || UMLUtil.isString(property.getType()) || UMLUtil.isInteger(property.getType()) || UMLUtil.isReal(property.getType()) || UMLUtil.isUnlimitedNatural(property.getType())
-								|| property.getType() instanceof Enumeration) {
-							result.add(property);
-
-
-						}
+						result.add(property);
 					}
 				}
 			}
 
 		}
-
-
 
 		return result;
 	}

@@ -343,13 +343,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 					for (Property property : ((Stereotype) parentElement.getElement()).getAllAttributes()) {
 						if (!property.getName().startsWith("base_")) { //$NON-NLS-1$
 							if (property.getType() instanceof Element) {
-								// TODO Why these types only?
-								//if (UMLUtil.isBoolean(property.getType()) || UMLUtil.isString(property.getType()) || UMLUtil.isInteger(property.getType()) || UMLUtil.isReal(property.getType()) || UMLUtil.isUnlimitedNatural(property.getType())
-								//		|| property.getType() instanceof Enumeration) {
-									ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, parentElement);
-									attributeList.add(attribute);
-								//}
-
+								ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, parentElement);
+								attributeList.add(attribute);
 							}
 						}
 

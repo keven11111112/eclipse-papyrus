@@ -240,9 +240,8 @@ public class StereotypeCollector implements IStereotypeCollector {
 
 				if (umlElement instanceof Model) {
 					Model umlModel = (Model) umlElement;
-					EList<Element> elements = umlModel.getOwnedElements();
+					EList<Element> elements = umlModel.allOwnedElements();
 
-					
 					for (Element element : elements) {
 						if (element.getAppliedStereotypes() != null && !element.getAppliedStereotypes().isEmpty()) {
 							for (Stereotype stereotype : element.getAppliedStereotypes()) {
