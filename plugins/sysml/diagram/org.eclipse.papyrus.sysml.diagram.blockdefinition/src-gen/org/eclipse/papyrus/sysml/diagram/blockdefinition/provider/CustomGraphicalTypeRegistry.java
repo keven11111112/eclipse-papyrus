@@ -540,9 +540,6 @@ public class CustomGraphicalTypeRegistry extends GraphicalTypeRegistry {
 			if (SysMLGraphicalTypes.COMPARTMENT_SYSML_VALUE_AS_LIST_ID.equals(containerType)) {
 				return SysMLGraphicalTypes.SHAPE_SYSML_VALUE_AS_LABEL_ID;
 			}
-			if (SysMLGraphicalTypes.COMPARTMENT_SYSML_PARAMETER_AS_LIST_ID.equals(containerType)) {
-				return SysMLGraphicalTypes.SHAPE_SYSML_VALUE_AS_LABEL_ID;
-			}
 			return UNDEFINED_TYPE;
 		}
 		if (SysMLElementTypes.ACTOR_PART_PROPERTY.getSemanticHint().equals(proposedType)) {
