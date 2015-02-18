@@ -28,4 +28,4 @@ Bundle-Activator: org.eclipse.papyrus.cdo.internal.ui.hyperlink.Activa
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.ui.hyperlink;singleton:=t
  rue
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

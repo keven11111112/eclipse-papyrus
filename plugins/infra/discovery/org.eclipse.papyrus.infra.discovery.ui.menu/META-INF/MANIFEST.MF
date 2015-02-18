@@ -15,4 +15,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.discovery.ui.menu;singl
  eton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

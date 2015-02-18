@@ -28,4 +28,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.sysml.nattable;singleton:=tru
  e
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

@@ -26,4 +26,4 @@ Bundle-Description: The purpose of this plugin is to model the archite
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipsetool;singleton:=tr
  ue
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

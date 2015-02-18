@@ -18,4 +18,4 @@ Bundle-Activator: org.eclipse.papyrus.cdo.uml.internal.ui.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.cdo.uml.ui;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

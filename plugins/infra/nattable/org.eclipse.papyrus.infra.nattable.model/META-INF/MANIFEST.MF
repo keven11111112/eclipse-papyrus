@@ -45,4 +45,4 @@ Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.nattable.model;singleto
  n:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

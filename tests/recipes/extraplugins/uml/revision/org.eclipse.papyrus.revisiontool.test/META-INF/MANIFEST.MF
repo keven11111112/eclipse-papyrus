@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
+Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.revisiontool.test
 Bundle-Version: 1.0.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.revisiontool.test.Activator

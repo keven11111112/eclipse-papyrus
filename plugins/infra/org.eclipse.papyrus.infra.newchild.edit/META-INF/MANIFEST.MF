@@ -18,4 +18,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.newchild.elementcreationme
 Bundle-SymbolicName: org.eclipse.papyrus.infra.newchild.edit;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

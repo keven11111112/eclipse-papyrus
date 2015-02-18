@@ -43,4 +43,3 @@ Export-Package: org.eclipse.papyrus.revision.tool,
 Bundle-ActivationPolicy: lazy
 Bundle-Description: The goal of this plugin is to bring functionality about revision of model
 Bundle-Vendor: %providerName
-Bundle-Localization: plugin
