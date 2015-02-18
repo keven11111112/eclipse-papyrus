@@ -52,7 +52,9 @@ public class BundlesTests extends AbstractPapyrusTest {
 
 	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
-	private static final String NATTABLE_VERSION = "1.1.0"; //$NON-NLS-1$
+	private static final String NATTABLE_VERSION = "1.2.0"; //$NON-NLS-1$
+	
+	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
 	private static final String PAPYRUS_VERSION = BundleTestsUtils.PAPYRUS_VERSION;
 
@@ -283,6 +285,11 @@ public class BundlesTests extends AbstractPapyrusTest {
 		testPapyrusDependencies2("org.eclipse.nebula.widgets.nattable", NATTABLE_VERSION);//$NON-NLS-1$
 	}
 
+	@Test
+	public void glazedListDependencyVersionTest() {
+		testPapyrusDependencies2("ca.odell.glazedlists", NATTABLE_VERSION);//$NON-NLS-1$
+	}
+	
 	@Test
 	public void guavaDependencyVersionText() {
 		testPapyrusDependencies2("com.google.guava", "11.0.0");//$NON-NLS-1$ //$NON-NLS-2$

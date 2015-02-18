@@ -234,4 +234,17 @@ public class ColumnSortModel implements IPapyrusSortModel {
 		setAxisComparator();
 	}
 
+	/**
+	 * @see org.eclipse.nebula.widgets.nattable.sort.ISortModel#getColumnComparator(int)
+	 *
+	 * @param columnIndex
+	 * @return
+	 */
+	@Override
+	public Comparator<?> getColumnComparator(int columnIndex) {
+		// TODO Auto-generated method stub
+		//TODO : new method coming from nattable 1.2.0
+		return null;
+	}
+
 }
