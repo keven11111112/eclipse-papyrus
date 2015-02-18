@@ -456,7 +456,7 @@
     <!-- MDT OCL -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("MDT OCL 5.0",0) -->
-      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.4/S201502010829">
+      <rm:uri format="{0}/modeling/mdt/ocl/updates/milestones/5.0.4/S201502151102">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>    
@@ -568,7 +568,7 @@
     <!-- WST -->
     <rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
       <!-- updateFrom("WebTools",0) -->
-      <rm:uri format="{0}/webtools/downloads/drops/R3.6.3/M-3.6.3RC3-20150209165014/repository/">
+      <rm:uri format="{0}/webtools/downloads/drops/R3.6.3/M-3.6.3RC4-20150216091848/repository/">
         <bc:propertyRef key="eclipse.downloads"/>
       </rm:uri>
     </rm:provider>
@@ -576,7 +576,7 @@
     <!-- Eclipse Platform Milestones -->
 	<rm:provider componentTypes="eclipse.feature,osgi.bundle" mutable="false" readerType="p2" source="false">
 		<!-- updateFrom("Eclipse",0) -->
-		<rm:uri format="{0}/eclipse/updates/4.4-M-builds/M-4.4.2RC3-201502041700/">
+		<rm:uri format="{0}/eclipse/updates/4.4-M-builds/M-4.4.2RC4-201502041700/">
 			<bc:propertyRef key="eclipse.downloads"/>
 		</rm:uri>
 	</rm:provider>

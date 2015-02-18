@@ -114,7 +114,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.4-M-builds/M-4.4.2RC3-201502041700/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.4-M-builds/M-4.4.2RC4-201502041700/</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -156,7 +156,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 5.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.0.4/S201502010829</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/5.0.4/S201502151102</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -196,7 +196,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.3/M-3.6.3RC3-20150209165014/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.6.3/M-3.6.3RC4-20150216091848/repository/</url>
 		</repository>
 	</repositories>
 	<build>
