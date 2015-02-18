@@ -28,10 +28,6 @@
 			<aspectTool description="Create a new DirectedAggregation" id="blockdefinition_associations.tool.association_shared_directed"
 				name="DirectedAggregation" refToolId="blockdefinition.tool.association_shared_directed">
 			</aspectTool>
-			
-			<aspectTool description="Create a new InstanceSpecificationLink" id="blockdefinition_associations.tool.instance_specification_link"
-				name="InstanceSpecificationLink" refToolId="blockdefinition.tool.instance_specification_link">
-			</aspectTool>
 											
 		</drawer>
 	</content>

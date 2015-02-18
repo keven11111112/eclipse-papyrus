@@ -91,8 +91,6 @@ public class DiagramPaletteFactory extends PaletteFactory.Adapter {
 
 			put("blockdefinition.tool.comment_constraint_link", new IElementType[] { ElementTypes.COMMENT_ANNOTATED_ELEMENT, ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT });
 
-			put("blockdefinition.tool.instance_specification_link", new IElementType[] { ElementTypes.INSTANCE_SPECIFICATION_LINK });
-
 			// End of user code
 		}
 	};

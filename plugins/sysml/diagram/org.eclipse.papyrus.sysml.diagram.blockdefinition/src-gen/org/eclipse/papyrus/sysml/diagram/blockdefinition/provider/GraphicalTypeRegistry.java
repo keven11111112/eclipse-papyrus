@@ -43,7 +43,6 @@ public class GraphicalTypeRegistry implements IGraphicalTypeRegistry {
 		// Fill known edges set
 		knownEdges.add(ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint());
 		knownEdges.add(ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint());
-		knownEdges.add(ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint());
 
 		// Fill known nodes set (primary nodes)
 		knownNodes.add(UMLElementTypes.MODEL.getSemanticHint());

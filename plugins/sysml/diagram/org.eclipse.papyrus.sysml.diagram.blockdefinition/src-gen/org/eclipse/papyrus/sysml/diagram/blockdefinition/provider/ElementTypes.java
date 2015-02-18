@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.sysml.diagram.blockdefinition.provider;
 
 import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 
 public class ElementTypes extends AbstractElementTypeEnumerator {
@@ -65,9 +64,6 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** ClassDiagram :: INSTANCE_SPECIFICATION */
 	public static final IHintedType INSTANCE_SPECIFICATION = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001"); //$NON-NLS-1$
 
-	/** ClassDiagram :: INSTANCE_SPECIFICATION_LINK */
-	public static final IHintedType INSTANCE_SPECIFICATION_LINK = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecificationLink_4021"); //$NON-NLS-1$
-
 	public static final String INSTANCE_SPECIFICATION_COMPARTMENT_SLOT_HINT = "7001"; //$NON-NLS-1$
 
 	public static final String INSTANCE_SPECIFICATION_LABEL_NAME_HINT = "5002"; //$NON-NLS-1$
@@ -113,11 +109,4 @@ public class ElementTypes extends AbstractElementTypeEnumerator {
 	/** ClassDiagram :: ChildLabelNodes */
 	public static final IHintedType INSTANCE_SPECIFICATION_SLOT_CLN = (IHintedType) getElementType("org.eclipse.papyrus.uml.diagram.clazz.Slot_3030"); //$NON-NLS-1$
 
-
-	public static IElementType getElementTypeByID(String visualID) {
-		if (ElementTypes.INSTANCE_SPECIFICATION_LINK.getSemanticHint().equalsIgnoreCase(visualID)) {
-			return ElementTypes.INSTANCE_SPECIFICATION_LINK;
-		}
-		return null;
-	}
 }

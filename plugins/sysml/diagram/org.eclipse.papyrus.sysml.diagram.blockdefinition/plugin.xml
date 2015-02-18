@@ -390,18 +390,6 @@
 			large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 			small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
 		</entry>
-		
-		<!-- blockdefinition.tool.instance_specification_link -->
-		<entry
-			defineOnly="true"
-			description="Create an InstanceSpecification link"
-			id="blockdefinition.tool.instance_specification_link"
-			kind="tool"
-			label="InstanceSpecification link"
-			path=""
-			large_icon="icons/obj16/InstanceLink.gif"
-			small_icon="icons/obj16/InstanceLink.gif">
-		</entry>
 			
 		<!-- blockdefinition.tool.dependency -->
 		<entry
