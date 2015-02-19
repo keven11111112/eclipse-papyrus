@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
+ *   Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
  *   
  *****************************************************************************/
 
@@ -21,6 +22,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.widgets.util.RevealResultCommand;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;
 import org.eclipse.papyrus.views.modelexplorer.core.ui.pagebookview.MultiViewPageBookView;
@@ -56,12 +58,12 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 *
 	 * @param reference
 	 * @param container
-	 * @param extendedType
+	 * @param creationMenu 
 	 * @return
 	 */
 	@Override
-	protected Command buildCommand(EReference reference, EObject container, String extendedType, Map<?, ?> advice) {
-		Command buildCommand = super.buildCommand(reference, container, extendedType, advice);
+	protected Command buildCommand(EReference reference, EObject container, CreationMenu creationMenu, Map<?, ?> advice) {
+		Command buildCommand = super.buildCommand(reference, container, creationMenu, advice);
 
 		if (buildCommand == null || buildCommand == UnexecutableCommand.INSTANCE) {
 			return buildCommand;
@@ -71,7 +73,6 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 			// Wrap command to select created element
 			buildCommand = RevealResultCommand.wrap(buildCommand, viewPart, container);
 		}
-
 		return buildCommand;
 	}
 
