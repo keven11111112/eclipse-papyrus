@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.UMLPackage
+import java.util.Set
 
 /**
  * Utility extensions for working with and generating objects for the base UML element types specialized by the profile.
@@ -115,10 +116,6 @@ class UMLElementTypes {
         ]
     }
 
-    def isRelationship(EClass eClass) {
-        UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(eClass)
-    }
-    
     def isRelationship(IElementType elementType) {
         // If the EClass is null, then assume it's something like the Constraint::annotatedElement reference type
         // which is like a relationship
@@ -179,7 +176,7 @@ class UMLElementTypes {
     def dispatch canSourceToType(ElementTypeConfiguration sourceType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
         relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
             val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
-            (supertype != null) && UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(supertype.EClass) && sourceType.canSourceTo(supertype.EClass)
+            (supertype != null) && supertype.EClass.isRelationship && sourceType.canSourceTo(supertype.EClass)
         ]
     }
 
@@ -202,7 +199,7 @@ class UMLElementTypes {
     def dispatch canTargetFromType(ElementTypeConfiguration targetType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
         relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
             val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
-            (supertype != null) && UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(supertype.EClass) && targetType.canTargetFrom(supertype.EClass)
+            (supertype != null) && supertype.EClass.isRelationship && targetType.canTargetFrom(supertype.EClass)
         ]
     }
 }

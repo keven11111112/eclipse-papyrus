@@ -23,7 +23,7 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 		BasicAssistantsGenerationTest.class, DiagramSpecificAssistantsGenerationTest.class,
-		ProfilesWithPackageNestingTest.class })
+		ProfilesWithPackageNestingTest.class, ConnectionTypesTest.class })
 public class AllTests {
 	// Nothing required
 }
