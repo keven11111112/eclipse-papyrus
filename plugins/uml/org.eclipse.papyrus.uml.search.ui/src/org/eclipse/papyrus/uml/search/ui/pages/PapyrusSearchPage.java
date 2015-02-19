@@ -204,8 +204,9 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	private Composite textQueryFieldsComposite;
 
-
 	private Button fBtnSearchForAllSelected;
+	
+	private Button fBtnSearchForAnySelected;
 
 	private Label elementsLabel;
 	
@@ -214,6 +215,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	private Label emptyLabel;
 	
 	private Label emptyLabel2;
+	
+	private Label emptyLabel3;
+	
+	private Label emptyLabel4;
 
 
 	protected void createSimpleSearchQueryField() {
@@ -599,6 +604,20 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		fBtnSearchForAllSelected = new Button(advancedSearchComposite, SWT.CHECK);
 		fBtnSearchForAllSelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		fBtnSearchForAllSelected.setText(Messages.PapyrusSearchPage_13);
+		
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel3 = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel3.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel3.setText("");
+		
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel4 = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel4.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel4.setText("");
+		
+		fBtnSearchForAnySelected = new Button(advancedSearchComposite, SWT.CHECK);
+		fBtnSearchForAnySelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		fBtnSearchForAnySelected.setText(Messages.PapyrusSearchPage_49);
 		
 		currentSearchKind = ADVANCED_SEARCH;
 	}
@@ -1094,7 +1113,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 						return false;
 					} else {
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection());
+						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection());
 						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 					}
 
@@ -1191,7 +1210,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 								}
 							}
 						}
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection());
+						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection());
 						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 
 					}

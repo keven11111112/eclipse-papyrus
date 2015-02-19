@@ -107,12 +107,14 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 	private List<Property> propertyList;
 
 	private boolean searchForAllSter;
+	
+	private boolean searchForAnySter;
 
 
 
 
 
-	public PapyrusAdvancedQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsChecked, boolean searchForAllSter) {
+	public PapyrusAdvancedQuery(String searchQueryText, boolean isCaseSensitive, boolean isRegularExpression, Collection<ScopeEntry> scopeEntries, Object[] participantsChecked, boolean searchForAllSter, boolean searchForAnySter) {
 		this.propertyList = new ArrayList<Property>();
 		this.sources = new HashSet<Object>();
 		this.searchQueryText = searchQueryText;
@@ -121,6 +123,7 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 		this.scopeEntries = scopeEntries;
 		this.participantsChecked = participantsChecked;
 		this.searchForAllSter = searchForAllSter;
+		this.searchForAnySter = searchForAnySter;
 		results = new PapyrusSearchResult(this);
 
 		participantsList = new HashMap<EObject, List<EAttribute>>();
@@ -174,11 +177,29 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 						if (participantsList.keySet().size() == 0) {
 							stereotypedParticipants = getElementsWithAllSter(stereotypedParticipants);
 							evaluate(stereotypedParticipants, scopeEntry);
-							evaluateStereotypes(stereotypedParticipants, scopeEntry);
+							if (!searchQueryText.equals("")) {
+								evaluateStereotypes(stereotypedParticipants, scopeEntry);
+							}
 						} else {
 							participants = getElementsWithAllSter(participants);
 							evaluate(participants, scopeEntry);
-							evaluateStereotypes(participants, scopeEntry);
+							if (!searchQueryText.equals("")) {
+								evaluateStereotypes(participants, scopeEntry);
+							}
+						}
+					} else if (searchForAnySter) {
+						if (participantsList.keySet().size() == 0) {
+							stereotypedParticipants = getElementsWithAnySter(stereotypedParticipants);
+							evaluate(stereotypedParticipants, scopeEntry);
+							if (!searchQueryText.equals("")) {
+								evaluateStereotypes(stereotypedParticipants, scopeEntry);
+							}
+						} else {
+							participants = getElementsWithAnySter(participants);
+							evaluate(participants, scopeEntry);
+							if (!searchQueryText.equals("")) {
+								evaluateStereotypes(participants, scopeEntry);
+							}
 						}
 					} else {
 						evaluate(participants, scopeEntry);
@@ -209,12 +230,38 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 							}
 						}
 					}
+					
 					if (numberOfStereotypeMatching == numberOfStereotypeToBeApplied) {
 						participantsToKeep.add(participants);
 					}
 				}
 			}
 		}
+		return participantsToKeep;
+	}
+	
+	private Collection<EObject> getElementsWithAnySter(Collection<EObject> initialParticipants) {
+		Collection<EObject> participantsToKeep = new ArrayList<EObject>();
+		for (EObject participants : initialParticipants) {
+			if (participants instanceof Element) {
+				boolean added = false;
+				
+				for (Stereotype stereotypeToBeApplied : stereotypeList.keySet()) {	
+					for (Stereotype stereotypeApplied : ((Element) participants).getAppliedStereotypes()) {
+						if (EcoreUtil.equals(stereotypeToBeApplied, stereotypeApplied)) {
+							participantsToKeep.add(participants);
+							added = true;
+							break;
+						}
+					}
+
+					if (added) {
+						break;
+					}
+				}
+			}
+		}
+		
 		return participantsToKeep;
 	}
 

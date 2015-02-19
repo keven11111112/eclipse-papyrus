@@ -34,6 +34,8 @@ public class QueryInfo {
 	private Collection<? extends ParticipantTypeElement> participantTypes;
 
 	private boolean searchForAllSter;
+	
+	private boolean searchForAnySter;
 
 	private Collection<URI> scope;
 
@@ -76,11 +78,13 @@ public class QueryInfo {
 	 * @param participantTypes
 	 *            the participant types (identifying specific metaclasses and/or attributes) to include in the search
 	 * @param searchForAllSter
-	 *            stereotype application must all applied or not
+	 *            all and only selected stereotypes must be applied
+	 * @param searchForAnySter
+	 *            at least one selected stereotype is applied or not
 	 * @param scope
 	 *            the domain-specific search scope
 	 */
-	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter) {
+	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter, boolean searchForAnySter) {
 		super();
 
 		this.queryText = queryText;
@@ -90,6 +94,7 @@ public class QueryInfo {
 		this.participantTypes = participantTypes;
 		this.scope = scope;
 		this.searchForAllSter = searchForAllSter;
+		this.searchForAnySter = searchForAnySter;
 	}
 
 	/**
@@ -104,6 +109,7 @@ public class QueryInfo {
 		this.searchAllStringAttributes = original.searchAllStringAttributes;
 		this.participantTypes = original.participantTypes;
 		this.searchForAllSter = original.searchForAllSter;
+		this.searchForAnySter = original.searchForAnySter;
 		this.scope = scope;
 	}
 
@@ -133,6 +139,10 @@ public class QueryInfo {
 
 	public boolean isSearchForAllSter() {
 		return searchForAllSter;
+	}
+	
+	public boolean isSearchForAnySter() {
+		return searchForAnySter;
 	}
 
 
