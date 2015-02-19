@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser;
@@ -33,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeLocationEnum;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -150,7 +152,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			final View view = ((View) element.getAdapter(View.class));
 
 			if (view != null && property != null) {
-				return StereotypeDisplayHelper.getStereotypePropertyToDisplay(view, property);
+				return StereotypeDisplayHelper.getStereotypePropertyToDisplay(view, property, StereotypeLocationEnum.IN_COMPARTMENT);
 			}
 		}
 		return "<UNDEFINED>";

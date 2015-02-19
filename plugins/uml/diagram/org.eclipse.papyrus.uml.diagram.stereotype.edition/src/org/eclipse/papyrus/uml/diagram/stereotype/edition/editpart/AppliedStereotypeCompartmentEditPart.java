@@ -149,11 +149,6 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 
 	@Override
 	protected void refreshBounds() {
-		// int width = ((GraphicalEditPart)getParent()).getFigure().getBounds().getSize().width;
-		// int height = 20;
-		// Dimension size = new Dimension(width, height);
-		// Point loc = new Point(10, 10);
-		// ((GraphicalEditPart)getParent()).setLayoutConstraint(this, getFigure(), new Rectangle(loc, size));
 	}
 
 	/**

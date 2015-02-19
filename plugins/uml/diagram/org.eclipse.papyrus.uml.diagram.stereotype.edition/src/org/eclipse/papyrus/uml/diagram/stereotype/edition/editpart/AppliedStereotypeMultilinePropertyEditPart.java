@@ -180,8 +180,10 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 */
 	protected void generateBlockForText(String text, FlowPage page) {
 		// return only one text flow with the content of the text
-		TextFlowEx textFlow = new TextFlowEx(text);
-		page.add(textFlow);
+		if (text != null && text.length() != 0) {
+			TextFlowEx textFlow = new TextFlowEx(text);
+			page.add(textFlow);
+		}
 	}
 
 	/**
@@ -212,7 +214,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 *
 	 */
 	@Override
-	protected List getModelChildren() {
+	protected List<?> getModelChildren() {
 		return Collections.EMPTY_LIST;
 	}
 

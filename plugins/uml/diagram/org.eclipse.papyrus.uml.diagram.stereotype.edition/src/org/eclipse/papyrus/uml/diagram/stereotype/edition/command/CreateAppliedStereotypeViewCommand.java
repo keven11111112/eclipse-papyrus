@@ -37,8 +37,6 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 
 	protected EObject stereotypeApplication;
 
-	protected boolean displayit = false;
-
 	protected Node parent;
 
 	/**
@@ -51,11 +49,10 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	 * @param StereotypeApplication
 	 * @param displayit
 	 */
-	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View node, EObject stereotypeApplication, boolean displayit) {
+	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View node, EObject stereotypeApplication) {
 		super(domain, "CreateStereotypeCompartment");
 		this.node = node;
 		this.stereotypeApplication = stereotypeApplication;
-		this.displayit = displayit;
 		parent = StereotypeDisplayHelper.getStereotypeLabel(node, stereotypeApplication);
 
 	}

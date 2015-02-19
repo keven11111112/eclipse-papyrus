@@ -24,8 +24,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
@@ -41,26 +39,20 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 
 	protected Element element;
 
-	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property, EObject stereotypeApplication) {
+	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property) {
 
 		super(domain, "CreateStereotypePropertyView");
 		this.owner = owner;
 		this.property = property;
-		this.stereotypeApplication = stereotypeApplication;
-		this.element = UMLUtil.getBaseElement(stereotypeApplication);
+
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
 
 		// Create Stereotype Property into Notation Structure
-		// Init
-		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-		String propertyName = property.getName();
-		Object value = element.getValue(stereotype, propertyName);
 
-		// Create Label
+		// Create property Label
 		DecorationNode propertyLabel = NotationFactory.eINSTANCE.createDecorationNode();
 		propertyLabel.setType(StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE);
 		propertyLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
