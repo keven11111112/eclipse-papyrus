@@ -10,6 +10,15 @@
   <packagedElement xmi:type="uml:Package" xmi:id="_QXo3EKCUEeSnB9OLYxGCdw" name="TestPackage1"/>
   <packagedElement xmi:type="uml:Package" xmi:id="_StTG4KCUEeSnB9OLYxGCdw" name="TestPackage2"/>
   <packagedElement xmi:type="uml:Class" xmi:id="_VrvN8KCUEeSnB9OLYxGCdw" name="TestClass2"/>
+  <packagedElement xmi:type="uml:Component" xmi:id="_XWJvMMiSEeSJFKehMtol4w" name="TestComponent"/>
+  <packagedElement xmi:type="uml:Artifact" xmi:id="_bw4OEMiSEeSJFKehMtol4w" name="TestArtifact" fileName=""/>
+  <packagedElement xmi:type="uml:Node" xmi:id="_fgaa4MiSEeSJFKehMtol4w" name="TestNode"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_ALEHoMidEeSJFKehMtol4w" name="TestUseCase1"/>
+  <packagedElement xmi:type="uml:UseCase" xmi:id="_CvdXAMidEeSJFKehMtol4w" name="TestUseCase2"/>
+  <packagedElement xmi:type="uml:Actor" xmi:id="_FAV0gMidEeSJFKehMtol4w" name="TestActor1"/>
+  <packagedElement xmi:type="uml:Interface" xmi:id="_TG8acMirEeSUcNQ8eZKXjQ" name="TestInterface1"/>
+  <packagedElement xmi:type="uml:ProtocolStateMachine" xmi:id="_0OMvMMirEeSUcNQ8eZKXjQ" name="ProtocolStateMachine1"/>
+  <packagedElement xmi:type="uml:ProtocolStateMachine" xmi:id="_1_g70MirEeSUcNQ8eZKXjQ" name="ProtocolStateMachine2"/>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0-WXUJLTEeK-Fomwlc5mQg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0-YMgJLTEeK-Fomwlc5mQg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>
@@ -75,5 +84,11 @@
       <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//usecases"/>
     </eAnnotations>
     <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_neZmMLX8EduFmqQsrNB9lw"/>
+  </profileApplication>
+  <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_KzoXwOT3EeSeE-CU3raqZQ">
+    <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_KzueYOT3EeSeE-CU3raqZQ" source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+    </eAnnotations>
+    <appliedProfile xmi:type="uml:Profile" href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
   </profileApplication>
 </uml:Model>

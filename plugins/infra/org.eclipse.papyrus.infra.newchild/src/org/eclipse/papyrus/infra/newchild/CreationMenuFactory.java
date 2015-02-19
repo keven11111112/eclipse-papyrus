@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *
+ *		Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
  *****************************************************************************/
 package org.eclipse.papyrus.infra.newchild;
 
@@ -39,12 +39,14 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
@@ -52,7 +54,10 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
+import org.eclipse.papyrus.uml.tools.providers.SemanticUMLContentProvider;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
@@ -232,7 +237,9 @@ public class CreationMenuFactory {
 			Menu topMenu = new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
-
+				if (!(eStructuralFeature instanceof EReference)) {
+					continue;
+				}
 				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu, adviceCache);
 				if (cmd.canExecute()) {
 					MenuItem item = new MenuItem(topMenu, SWT.NONE);
@@ -408,7 +415,7 @@ public class CreationMenuFactory {
 		}
 		
 		if (createGMFCommand != null) {
-			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
+			Command emfCommand = org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper.wrap(createGMFCommand);
 			return emfCommand;
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -446,20 +453,21 @@ public class CreationMenuFactory {
 	 * @return
 	 * 		the creation request to use in this handler
 	 */
-	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, CreationMenu creationMenu) {
+		String typeId = creationMenu.getElementTypeIdRef();
 		if (reference == null) {
 			if (creationMenu instanceof CreateRelationshipMenu) {
-				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(extendedType));
+				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(typeId));
 				return createRelationshipRequest;
 			} else {
-				return new CreateElementRequest(editingDomain, container, getElementType(extendedType));
+				return new CreateElementRequest(editingDomain, container, getElementType(typeId));
 			}
 		} else {
 			if (creationMenu instanceof CreateRelationshipMenu) {
-				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(extendedType), reference);
+				CreateRelationshipRequest createRelationshipRequest = new CreateRelationshipRequest(editingDomain, null, container, null, getElementType(typeId), reference);
 				return createRelationshipRequest;
 			} else {
-				return new CreateElementRequest(editingDomain, container, getElementType(extendedType), reference);
+				return new CreateElementRequest(editingDomain, container, getElementType(typeId), reference);
 			}
 		}
 

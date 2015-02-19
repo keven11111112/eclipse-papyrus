@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.emf.ecore.impl.EPackageImpl;
+import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreateRelationshipMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelFactory;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage;
@@ -28,14 +29,12 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Package</b>.
  * <!-- end-user-doc -->
- *
  * @generated
  */
 public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements ElementCreationMenuModelPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EClass folderEClass = null;
@@ -43,7 +42,6 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EClass menuEClass = null;
@@ -51,17 +49,26 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private EClass creationMenuEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	private EClass createRelationshipMenuEClass = null;
+
+	/**
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
-	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
-	 *
+	 * <p>Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.ElementCreationMenuModelPackage#eNS_URI
 	 * @see #init()
@@ -74,31 +81,27 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private static boolean isInited = false;
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 *
-	 * <p>
-	 * This method is used to initialize {@link ElementCreationMenuModelPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!--
+	 * 
+	 * <p>This method is used to initialize {@link ElementCreationMenuModelPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
 	public static ElementCreationMenuModelPackage init() {
-		if (isInited) {
-			return (ElementCreationMenuModelPackage) EPackage.Registry.INSTANCE.getEPackage(ElementCreationMenuModelPackage.eNS_URI);
-		}
+		if (isInited) return (ElementCreationMenuModelPackage)EPackage.Registry.INSTANCE.getEPackage(ElementCreationMenuModelPackage.eNS_URI);
 
 		// Obtain or create and register package
-		ElementCreationMenuModelPackageImpl theElementCreationMenuModelPackage = (ElementCreationMenuModelPackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ElementCreationMenuModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI)
-				: new ElementCreationMenuModelPackageImpl());
+		ElementCreationMenuModelPackageImpl theElementCreationMenuModelPackage = (ElementCreationMenuModelPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof ElementCreationMenuModelPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new ElementCreationMenuModelPackageImpl());
 
 		isInited = true;
 
@@ -114,7 +117,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		// Mark meta-data to indicate it can't be changed
 		theElementCreationMenuModelPackage.freeze();
 
-
+  
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(ElementCreationMenuModelPackage.eNS_URI, theElementCreationMenuModelPackage);
 		return theElementCreationMenuModelPackage;
@@ -123,7 +126,6 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EClass getFolder() {
@@ -133,17 +135,15 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EReference getFolder_Menu() {
-		return (EReference) folderEClass.getEStructuralFeatures().get(0);
+		return (EReference)folderEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EClass getMenu() {
@@ -153,37 +153,33 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getMenu_Label() {
-		return (EAttribute) menuEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)menuEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getMenu_Icon() {
-		return (EAttribute) menuEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)menuEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getMenu_Visible() {
-		return (EAttribute) menuEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)menuEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EClass getCreationMenu() {
@@ -193,63 +189,64 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getCreationMenu_ElementTypeIdRef() {
-		return (EAttribute) creationMenuEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getCreationMenu_Role() {
-		return (EAttribute) creationMenuEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EAttribute getCreationMenu_DisplayAllRoles() {
-		return (EAttribute) creationMenuEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)creationMenuEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * @generated
+	 */
+	public EClass getCreateRelationshipMenu() {
+		return createRelationshipMenuEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public ElementCreationMenuModelFactory getElementCreationMenuModelFactory() {
-		return (ElementCreationMenuModelFactory) getEFactoryInstance();
+		return (ElementCreationMenuModelFactory)getEFactoryInstance();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private boolean isCreated = false;
 
 	/**
-	 * Creates the meta-model objects for the package. This method is
+	 * Creates the meta-model objects for the package.  This method is
 	 * guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
-			return;
-		}
+		if (isCreated) return;
 		isCreated = true;
 
 		// Create classes and their features
@@ -265,28 +262,26 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		createEAttribute(creationMenuEClass, CREATION_MENU__ELEMENT_TYPE_ID_REF);
 		createEAttribute(creationMenuEClass, CREATION_MENU__ROLE);
 		createEAttribute(creationMenuEClass, CREATION_MENU__DISPLAY_ALL_ROLES);
+
+		createRelationshipMenuEClass = createEClass(CREATE_RELATIONSHIP_MENU);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	private boolean isInitialized = false;
 
 	/**
-	 * Complete the initialization of the package and its meta-model. This
+	 * Complete the initialization of the package and its meta-model.  This
 	 * method is guarded to have no affect on any invocation but its first.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
-			return;
-		}
+		if (isInitialized) return;
 		isInitialized = true;
 
 		// Initialize package
@@ -295,7 +290,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		setNsURI(eNS_URI);
 
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 
 		// Create type parameters
 
@@ -304,6 +299,7 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		// Add supertypes to classes
 		folderEClass.getESuperTypes().add(this.getMenu());
 		creationMenuEClass.getESuperTypes().add(this.getMenu());
+		createRelationshipMenuEClass.getESuperTypes().add(this.getCreationMenu());
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(folderEClass, Folder.class, "Folder", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
@@ -318,6 +314,8 @@ public class ElementCreationMenuModelPackageImpl extends EPackageImpl implements
 		initEAttribute(getCreationMenu_ElementTypeIdRef(), theEcorePackage.getEString(), "elementTypeIdRef", null, 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCreationMenu_Role(), theEcorePackage.getEString(), "role", null, 0, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
 		initEAttribute(getCreationMenu_DisplayAllRoles(), theEcorePackage.getEBoolean(), "displayAllRoles", "true", 1, 1, CreationMenu.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, !IS_ORDERED);
+
+		initEClass(createRelationshipMenuEClass, CreateRelationshipMenu.class, "CreateRelationshipMenu", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 
 		// Create resource
 		createResource(eNS_URI);

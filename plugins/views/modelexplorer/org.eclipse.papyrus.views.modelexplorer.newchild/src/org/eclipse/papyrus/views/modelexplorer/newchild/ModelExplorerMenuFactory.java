@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.fr - Initial API and implementation
+ *   Patrik Nandorf (Ericsson AB) patrik.nandorf@ericsson.com - Bug 425565 
  *   
  *****************************************************************************/
 
@@ -57,7 +58,7 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 *
 	 * @param reference
 	 * @param container
-	 * @param extendedType
+	 * @param creationMenu 
 	 * @return
 	 */
 	@Override
