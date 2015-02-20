@@ -32,6 +32,7 @@ import org.eclipse.papyrus.uml.nattable.utils.Constants;
 import org.eclipse.papyrus.uml.tools.utils.CustomElementOperations;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
@@ -80,7 +81,7 @@ public class ApplyStereotypePastePostAction implements IPastePostAction {
 		}
 
 		for (final Property current : StereotypeUtil.getAllStereotypePropertiesWithoutBaseProperties(ste)) {
-			EStructuralFeature f = features.get(current.getName());
+			EStructuralFeature f = features.get(UML2Util.getValidJavaIdentifier(current.getName()));
 			Assert.isNotNull(f);
 			map.put(current, f);
 		}

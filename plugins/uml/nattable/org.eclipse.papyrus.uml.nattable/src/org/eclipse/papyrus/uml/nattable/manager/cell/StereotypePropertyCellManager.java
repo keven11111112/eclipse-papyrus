@@ -53,6 +53,7 @@ import org.eclipse.papyrus.uml.nattable.utils.UMLTableUtils;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
 import org.eclipse.papyrus.uml.tools.utils.CustomElementOperations;
 import org.eclipse.papyrus.uml.tools.utils.EnumerationUtil;
+import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
 import org.eclipse.uml2.uml.EnumerationLiteral;
@@ -249,7 +250,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 
 			if (stereotypes.size() == 1) {
 				final EObject stereotypeApplication = el.getStereotypeApplication(stereotypes.get(0));
-				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+				final EStructuralFeature steApFeature = stereotypeApplication.eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(prop.getName()));
 				return getSetValueCommand(domain, stereotypeApplication, steApFeature, newValue, columnElement, rowElement, tableManager);
 			} else {
 				// TODO : not yet managed
@@ -328,7 +329,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 			return null;
 		}
 		solvedValue = valueSolver.deduceValueFromString(prop, newValue);
-		steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+		steApFeature = stereotypeApplication.eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(prop.getName()));
 		if (prop.getType() instanceof Enumeration) {// Enumeration AND not EnumerationLiteral
 			EEnum eenum = (EEnum) steApFeature.getEType();
 			Object value = solvedValue.getConvertedValue();
@@ -469,7 +470,7 @@ public class StereotypePropertyCellManager extends UMLFeatureCellManager {
 					}
 				}
 			}
-			steApFeature = stereotypeApplication.eClass().getEStructuralFeature(prop.getName());
+			steApFeature = stereotypeApplication.eClass().getEStructuralFeature(UML2Util.getValidJavaIdentifier(prop.getName()));
 		}
 		solvedValue = valueSolver.deduceValueFromString(prop, valueAsString);
 
