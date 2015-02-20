@@ -17,15 +17,18 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.Deque;
 import java.util.List;
 import java.util.Map;
-import java.util.Queue;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.ConcurrentLinkedQueue;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Future;
+import java.util.concurrent.Semaphore;
+import java.util.concurrent.atomic.AtomicBoolean;
+import java.util.concurrent.atomic.AtomicInteger;
 import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
@@ -46,6 +49,7 @@ import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.core.runtime.QualifiedName;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.core.runtime.content.IContentType;
 import org.eclipse.core.runtime.content.IContentTypeManager;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
@@ -69,7 +73,6 @@ import com.google.common.collect.Maps;
 import com.google.common.collect.Multimap;
 import com.google.common.collect.Queues;
 import com.google.common.collect.SetMultimap;
-import com.google.common.collect.Sets;
 import com.google.common.util.concurrent.Futures;
 import com.google.common.util.concurrent.ListenableFuture;
 
@@ -88,9 +91,10 @@ public class WorkspaceModelIndex<T> {
 	private final IResourceChangeListener workspaceListener = new WorkspaceListener();
 
 	private final Map<IProject, AbstractIndexJob> activeJobs = Maps.newHashMap();
-	private final JobWrangler jobWrangler;
 	private final ContentTypeService contentTypeService;
 	private final Set<String> fileExtensions;
+
+	private final JobWrangler jobWrangler;
 
 	private final CopyOnWriteArrayList<IWorkspaceModelIndexListener> listeners = Lists.newCopyOnWriteArrayList();
 
@@ -144,11 +148,15 @@ public class WorkspaceModelIndex<T> {
 	}
 
 	void index(Collection<? extends IProject> projects) {
-		List<Job> jobs = Lists.newArrayListWithCapacity(projects.size());
+		List<IndexProjectJob> jobs = Lists.newArrayListWithCapacity(projects.size());
 		for (IProject next : projects) {
 			jobs.add(new IndexProjectJob(next));
 		}
 		schedule(jobs);
+	}
+
+	void index(IProject project) {
+		schedule(new IndexProjectJob(project));
 	}
 
 	/**
@@ -368,10 +376,17 @@ public class WorkspaceModelIndex<T> {
 		};
 	}
 
-	private void schedule(Collection<? extends Job> jobs) {
+	private void schedule(Collection<? extends AbstractIndexJob> jobs) {
 		// Synchronize on the active jobs because this potentially alters the wrangler's follow-up job
 		synchronized (activeJobs) {
 			jobWrangler.add(jobs);
+		}
+	}
+
+	private void schedule(AbstractIndexJob job) {
+		// Synchronize on the active jobs because this potentially alters the wrangler's follow-up job
+		synchronized (activeJobs) {
+			jobWrangler.add(job);
 		}
 	}
 
@@ -496,10 +511,13 @@ public class WorkspaceModelIndex<T> {
 	private abstract class AbstractIndexJob extends Job {
 		private final IProject project;
 
+		private volatile Semaphore permit;
+
 		AbstractIndexJob(String name, IProject project) {
 			super(name);
 
 			this.project = project;
+			this.permit = permit;
 
 			if (project != null) {
 				setRule(project);
@@ -544,12 +562,20 @@ public class WorkspaceModelIndex<T> {
 
 					if (followup != null) {
 						// Kick off the follow-up job
-						followup.schedule();
+						WorkspaceModelIndex.this.schedule(followup);
 					}
 				}
 			}
 
 			return result;
+		}
+
+		final Semaphore getPermit() {
+			return permit;
+		}
+
+		final void setPermit(Semaphore permit) {
+			this.permit = permit;
 		}
 
 		protected abstract IStatus doRun(IProgressMonitor monitor);
@@ -560,19 +586,17 @@ public class WorkspaceModelIndex<T> {
 	}
 
 	private class JobWrangler extends AbstractIndexJob {
-		private final Queue<Job> queue = Queues.newArrayDeque();
-		private final Set<Job> pending = Sets.newHashSet();
-		private final Set<IProject> failedProjects = Sets.newHashSet();
+		private final Lock lock = new ReentrantLock();
 
-		private final Lock pendingLock = new ReentrantLock();
-		private final Condition pendingCheck = pendingLock.newCondition();
+		private final Deque<AbstractIndexJob> queue = Queues.newArrayDeque();
 
-		private final int maxPending;
+		private final AtomicBoolean active = new AtomicBoolean();
+		private final int maxConcurrentJobs;
 
 		JobWrangler(int maxConcurrentJobs) {
 			super("Workspace model indexer", null);
 
-			this.maxPending = (maxConcurrentJobs <= 0) ? Integer.MAX_VALUE : maxConcurrentJobs;
+			this.maxConcurrentJobs = maxConcurrentJobs;
 		}
 
 		@Override
@@ -580,32 +604,60 @@ public class WorkspaceModelIndex<T> {
 			return JobKind.MASTER;
 		}
 
-		void add(Iterable<? extends Job> jobs) {
-			pendingLock.lock();
+		void add(AbstractIndexJob job) {
+			lock.lock();
 
 			try {
-				if (queue.isEmpty() && pending.isEmpty()) {
-					// I am a new job
-					schedule();
-				}
-
-				Iterables.addAll(queue, jobs);
-				pendingCheck.signalAll();
+				scheduleIfNeeded();
+				queue.add(job);
 			} finally {
-				pendingLock.unlock();
+				lock.unlock();
+			}
+		}
+
+		private void scheduleIfNeeded() {
+			if (active.compareAndSet(false, true)) {
+				// I am a new job
+				schedule();
+			}
+		}
+
+		void add(Iterable<? extends AbstractIndexJob> jobs) {
+			lock.lock();
+
+			try {
+				for (AbstractIndexJob next : jobs) {
+					add(next);
+				}
+			} finally {
+				lock.unlock();
 			}
 		}
 
 		@Override
-		protected IStatus doRun(IProgressMonitor monitor) {
+		protected IStatus doRun(IProgressMonitor progressMonitor) {
+			final Semaphore indexJobSemaphore = new Semaphore((maxConcurrentJobs <= 0) ? Integer.MAX_VALUE : maxConcurrentJobs);
+			final AtomicInteger pending = new AtomicInteger(); // How many permits have we issued?
+			final Condition pendingChanged = lock.newCondition();
+
+			final SubMonitor monitor = SubMonitor.convert(progressMonitor, IProgressMonitor.UNKNOWN);
+
+			IStatus result = Status.OK_STATUS;
+
 			IJobChangeListener listener = new JobChangeAdapter() {
 				private final Map<IProject, Integer> retries = Maps.newHashMap();
+
+				private Semaphore getIndexJobPermit(Job job) {
+					return (job instanceof WorkspaceModelIndex<?>.AbstractIndexJob)
+							? ((WorkspaceModelIndex<?>.AbstractIndexJob) job).getPermit()
+							: null;
+				}
 
 				@Override
 				public void aboutToRun(IJobChangeEvent event) {
 					Job starting = event.getJob();
 
-					if (pending.contains(starting)) {
+					if (getIndexJobPermit(starting) == indexJobSemaphore) {
 						// one of mine is starting
 						@SuppressWarnings("unchecked")
 						AbstractIndexJob indexJob = (AbstractIndexJob) starting;
@@ -615,74 +667,125 @@ public class WorkspaceModelIndex<T> {
 
 				@Override
 				public void done(IJobChangeEvent event) {
-					pendingLock.lock();
-					try {
-						final Job finished = event.getJob();
-						if (pending.remove(finished)) {
-							// one of mine finished
-							pendingCheck.signalAll();
-
+					final Job finished = event.getJob();
+					if (getIndexJobPermit(finished) == indexJobSemaphore) {
+						try {
+							// one of mine has finished
 							@SuppressWarnings("unchecked")
 							AbstractIndexJob indexJob = (AbstractIndexJob) finished;
 							IProject project = indexJob.getProject();
 
 							notifyFinished(indexJob, event.getResult());
 
-							if ((event.getResult() != null) && (event.getResult().getSeverity() >= IStatus.ERROR)) {
-								// Indexing failed to complete. Need to re-build the index
-								if (project != null) {
-									int count = retries.containsKey(project) ? retries.get(project) : 0;
-									if (count++ < MAX_INDEX_RETRIES) {
-										// Only retry up to three times
-										failedProjects.add(project);
+							if (project != null) {
+								synchronized (retries) {
+									if ((event.getResult() != null) && (event.getResult().getSeverity() >= IStatus.ERROR)) {
+										// Indexing failed to complete. Need to re-build the index
+										int count = retries.containsKey(project) ? retries.get(project) : 0;
+										if (count++ < MAX_INDEX_RETRIES) {
+											// Only retry up to three times
+											index(project);
+										}
+										retries.put(project, ++count);
+									} else {
+										// Successful re-indexing. Forget the retries
+										retries.remove(project);
 									}
-									retries.put(project, ++count);
 								}
 							}
+						} finally {
+							// Release this job's permit for the next one in the queue
+							indexJobSemaphore.release();
+
+							// And it's no longer pending
+							pending.decrementAndGet();
+
+							lock.lock();
+							try {
+								pendingChanged.signalAll();
+							} finally {
+								lock.unlock();
+							}
 						}
-					} finally {
-						pendingLock.unlock();
 					}
 				}
 			};
 
 			getJobManager().addJobChangeListener(listener);
 
+			lock.lock();
+
 			try {
-				pendingLock.lock();
-
-				try {
-					for (;;) {
-						for (Job next = queue.poll(); next != null; next = queue.poll()) {
-							while (pending.size() >= maxPending) {
-								pendingCheck.awaitUninterruptibly();
+				out: for (;;) {
+					for (AbstractIndexJob next = queue.poll(); next != null; next = queue.poll()) {
+						lock.unlock();
+						try {
+							if (monitor.isCanceled()) {
+								Thread.currentThread().interrupt();
 							}
-							pending.add(next);
+
+							// Enforce the concurrent jobs limit
+							indexJobSemaphore.acquire();
+							next.setPermit(indexJobSemaphore);
+							pending.incrementAndGet();
+
+							// Now go
 							next.schedule();
-						}
-
-						if (pending.isEmpty() && queue.isEmpty()) {
-							if (failedProjects.isEmpty()) {
-								// Done with wrangling jobs, for now
-								break;
-							} else {
-								// Rebuild the index for these projects, from scratch
-								index(failedProjects); // This adds to my queue
-								failedProjects.clear();
+						} catch (InterruptedException e) {
+							// We were cancelled. Push this job back and re-schedule
+							lock.lock();
+							try {
+								queue.addFirst(next);
+							} finally {
+								lock.unlock();
 							}
-						} else {
-							// Wait for something new to come into the queue or for the pending set to drain
-							pendingCheck.awaitUninterruptibly();
+							result = Status.CANCEL_STATUS;
+							break out;
+						} finally {
+							lock.lock();
 						}
 					}
-				} finally {
-					pendingLock.unlock();
+
+					if ((pending.get() <= 0) && queue.isEmpty()) {
+						// Nothing left to wait for
+						break out;
+					} else if (pending.get() > 0) {
+						try {
+							if (monitor.isCanceled()) {
+								Thread.currentThread().interrupt();
+							}
+
+							pendingChanged.await();
+						} catch (InterruptedException e) {
+							// We were cancelled. Re-schedule
+							result = Status.CANCEL_STATUS;
+							break out;
+						}
+					}
 				}
+
+				// We've finished wrangling index jobs, for now
 			} finally {
+				active.compareAndSet(true, false);
+
+				// If we were canceled then we re-schedule after a delay to recover
+				if (result == Status.CANCEL_STATUS) {
+					// We cannot un-cancel a job, so we must replace ourselves with a new job
+					schedule(1000L);
+				} else {
+					// Double-check
+					if (!queue.isEmpty()) {
+						// We'll have to go around again
+						scheduleIfNeeded();
+					}
+				}
+
+				lock.unlock();
+
 				getJobManager().removeJobChangeListener(listener);
 			}
 
-			return Status.OK_STATUS;
+			return result;
 		}
 	}
 
@@ -770,7 +873,7 @@ public class WorkspaceModelIndex<T> {
 			}
 
 			if (!deltas.isEmpty()) {
-				List<Job> jobs = Lists.newArrayListWithCapacity(deltas.keySet().size());
+				List<ReindexProjectJob> jobs = Lists.newArrayListWithCapacity(deltas.keySet().size());
 				for (IProject next : deltas.keySet()) {
 					ReindexProjectJob reindex = reindex(next, deltas.get(next));
 					if (reindex != null) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.uml2.uml.resource.UMLResource;
+import org.junit.After;
 import org.junit.AfterClass;
 import org.junit.Before;
 import org.junit.BeforeClass;
@@ -56,6 +57,7 @@ import org.junit.Test;
 
 import com.google.common.collect.Maps;
 import com.google.common.collect.Sets;
+import com.google.common.util.concurrent.Uninterruptibles;
 
 /**
  * Test suite for the {@link WorkspaceModelIndex} class.
@@ -64,6 +66,7 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 
 	private static final CrossReferenceIndexer index = new CrossReferenceIndexer();
 	private static WorkspaceModelIndex<CrossReferenceIndex> fixture;
+	private static boolean delayIndexing;
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
@@ -202,6 +205,47 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 		assertThat(listener.ended, is(1));
 	}
 
+	@Test
+	public void indexRecoversFromCancel() throws Exception {
+		// Initial build
+		Map<IFile, CrossReferenceIndex> index = fixture.getIndex().get();
+
+		// Ensure that indexing will take a bit of time
+		delayIndexing = true;
+
+		final String newFileName = "the_referencing_model.uml";
+
+		// Rename the file
+		referencingFile.move(referencingFile.getFullPath().removeLastSegments(1).append(newFileName), true, null);
+
+		// Update the identity of the file
+		referencingFile = referencingProject.getFile(new Path(newFileName));
+		referencingURI = uri(referencingFile);
+
+		// Cancel the index control job
+		Job[] family = Job.getJobManager().find(fixture);
+		Job controlJob = null;
+		for (Job job : family) {
+			if (job.getClass().getSimpleName().contains("JobWrangler")) {
+				controlJob = job;
+				break;
+			}
+		}
+		assertThat("Control job not found", controlJob, notNullValue());
+		controlJob.cancel();
+
+		long requestIndex = System.currentTimeMillis();
+
+		// Check the index
+		index = fixture.getIndex().get();
+
+		long gotIndex = System.currentTimeMillis();
+
+		assertThat("Didn't have to wait for the index to recover", (gotIndex - requestIndex), greaterThan(1000L));
+
+		assertIndex(index);
+	}
+
 	//
 	// Test framework
 	//
@@ -239,6 +283,11 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 			input.close();
 		}
 		referencingURI = uri(referencingFile);
+	}
+
+	@After
+	public void reset() {
+		delayIndexing = false;
 	}
 
 	static URI uri(IFile file) {
@@ -333,6 +382,10 @@ public class WorkspaceModelIndexTest extends AbstractPapyrusTest {
 				}
 			} finally {
 				EMFHelper.unload(resourceSet);
+			}
+
+			if (delayIndexing) {
+				Uninterruptibles.sleepUninterruptibly(1L, TimeUnit.SECONDS);
 			}
 
 			return result;
