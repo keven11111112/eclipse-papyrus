@@ -162,7 +162,7 @@ public class EObjectContentsEditor extends Composite {
 					propertyEditor.setValueFactory(getUMLPropertyEditorFactory(dataTypeInstance, (EReference) feature));
 				}
 
-				propertyEditor.setFeatureToEdit(feature, dataTypeInstance);
+				propertyEditor.setFeatureToEdit(feature.getName(), feature, dataTypeInstance);
 			}
 		}
 
