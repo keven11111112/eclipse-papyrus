@@ -97,7 +97,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		return new Composite(pageBook, style);
 	}
 
-	public void setFeatureToEdit(EStructuralFeature feature, EObject element) {
+	public void setFeatureToEdit(String title, EStructuralFeature feature, EObject element) {
 		if (currentPage != null) {
 			currentPage.dispose();
 			currentPage = null;
@@ -106,7 +106,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		if (feature instanceof EReference) {
 			if (feature.isMany()) {
 				MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
-				setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, feature);
+				setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 
 				editor.setProviders(contentProvider, labelProvider);
 				editor.setFactory(valueFactory);
@@ -119,7 +119,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 					currentPage = editor;
 				} else {
 					ReferenceDialog editor = new ReferenceDialog(pageBook, style);
-					setValueEditorProperties(editor, element, feature);
+					setValueEditorProperties(editor, element, title, feature);
 
 					editor.setContentProvider(contentProvider);
 					editor.setLabelProvider(labelProvider);
@@ -136,7 +136,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 			if (type instanceof EEnum) {
 				if (feature.isMany()) {
 					MultipleReferenceEditor editor = new MultipleReferenceEditor(pageBook, style);
-					setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, feature);
+					setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 
 					editor.setProviders(contentProvider, labelProvider);
 					editor.setFactory(valueFactory);
@@ -144,7 +144,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 
 				} else {
 					EnumCombo editor = new EnumCombo(pageBook, style);
-					setValueEditorProperties(editor, element, feature);
+					setValueEditorProperties(editor, element, title, feature);
 					editor.setContentProvider(new EMFEnumeratorContentProvider(feature));
 					currentPage = editor;
 				}
@@ -153,21 +153,21 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 				if ("java.lang.String".equalsIgnoreCase(instanceClassName) || "string".equalsIgnoreCase(instanceClassName)) {
 					if (feature.isMany()) {
 						MultipleStringEditor editor = new MultipleStringEditor(pageBook, style, true);
-						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, feature);
+						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 						currentPage = editor;
 					} else {
 						StringEditor editor = new StringEditor(pageBook, style | SWT.MULTI);
-						setValueEditorProperties(editor, element, feature);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				} else if ("java.lang.Integer".equalsIgnoreCase(instanceClassName) || "integer".equalsIgnoreCase(instanceClassName) || "int".equalsIgnoreCase(instanceClassName)) {
 					if (feature.isMany()) {
 						MultipleIntegerEditor editor = new MultipleIntegerEditor(pageBook, style);
-						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, feature);
+						setMultipleValueEditorProperties(editor, (List<?>) element.eGet(feature), element, title, feature);
 						currentPage = editor;
 					} else {
 						IntegerEditor editor = new IntegerEditor(pageBook, style);
-						setValueEditorProperties(editor, element, feature);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				} else if ("java.lang.Boolean".equals(instanceClassName) || "boolean".equalsIgnoreCase(instanceClassName) || "bool".equalsIgnoreCase(instanceClassName)) {
@@ -175,7 +175,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						// TODO widget not available
 					} else {
 						BooleanCombo editor = new BooleanCombo(pageBook, style);
-						setValueEditorProperties(editor, element, feature);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				} else if ("java.lang.Float".equals(instanceClassName) || "float".equalsIgnoreCase(instanceClassName)) {
@@ -183,7 +183,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						// TODO widget not available
 					} else {
 						FloatEditor editor = new FloatEditor(pageBook, style);
-						setValueEditorProperties(editor, element, feature);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				} else if ("java.lang.Double".equals(instanceClassName) || "double".equalsIgnoreCase(instanceClassName)) {
@@ -191,7 +191,7 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						// TODO widget not available
 					} else {
 						DoubleEditor editor = new DoubleEditor(pageBook, style);
-						setValueEditorProperties(editor, element, feature);
+						setValueEditorProperties(editor, element, title, feature);
 						currentPage = editor;
 					}
 				} else if ("java.lang.Long".equals(instanceClassName) || "long".equalsIgnoreCase(instanceClassName)) {
@@ -199,7 +199,6 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 						// TODO widget not available
 					} else {
 						LongEditor editor = new LongEditor(pageBook, style);
-						setValueEditorProperties(editor, element, feature);
 						currentPage = editor;
 					}
 				}
@@ -213,8 +212,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		pageBook.showPage(currentPage);
 	}
 
-	protected void setValueEditorProperties(AbstractValueEditor editor, EObject stereotypeApplication, EStructuralFeature feature) {
-		editor.setLabel(feature.getName());
+	protected void setValueEditorProperties(AbstractValueEditor editor, EObject stereotypeApplication, String title, EStructuralFeature feature) {
+		editor.setLabel(title);
 
 		if (!isEditable(stereotypeApplication, feature)) {
 			editor.setReadOnly(true);
@@ -227,8 +226,8 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 		observable.addValueChangeListener(this);
 	}
 
-	protected void setMultipleValueEditorProperties(MultipleValueEditor editor, List<?> initialList, EObject stereotypeApplication, EStructuralFeature feature) {
-		editor.setLabel(feature.getName());
+	protected void setMultipleValueEditorProperties(MultipleValueEditor editor, List<?> initialList, EObject stereotypeApplication, String title, EStructuralFeature feature) {
+		editor.setLabel(title);
 		editor.setUnique(feature.isUnique());
 		editor.setOrdered(feature.isOrdered());
 		editor.setUpperBound(feature.getUpperBound());

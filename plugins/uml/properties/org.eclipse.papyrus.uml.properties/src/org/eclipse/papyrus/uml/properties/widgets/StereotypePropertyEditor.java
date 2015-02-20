@@ -80,9 +80,9 @@ public class StereotypePropertyEditor implements ISelectionChangedListener, ICha
 					eStructuralFeatureEditor.setValueFactory(getUMLPropertyEditorFactory(stereotypeApplication, (EReference) feature));
 				}
 
-				eStructuralFeatureEditor.setFeatureToEdit(feature, stereotypeApplication);
+				eStructuralFeatureEditor.setFeatureToEdit(pTO.getProperty().getName(), feature, stereotypeApplication);
 			} else {
-				eStructuralFeatureEditor.setFeatureToEdit(null, null);
+				eStructuralFeatureEditor.setFeatureToEdit(null, null, null);
 			}
 		}
 	}
