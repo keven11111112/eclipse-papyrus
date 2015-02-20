@@ -151,18 +151,6 @@ public class ScopeEntry {
 					Activator.log.error(e1);
 				}
 			}
-			
-			/*try {
-				modelSet = ModelUtils.openResource(getResourceURI());
-				getServicesRegistry().add(ModelSet.class, 10, modelSet);
-				getServicesRegistry().startServicesByClassKeys(ModelSet.class);
-			} catch (ModelMultiException modelMultiException) {
-				Activator.log.error(Messages.ScopeEntry_1 + this.getResourceURI(), modelMultiException);
-			} catch (ServiceMultiException e1) {
-				Activator.log.error(e1);
-			} catch (ServiceNotFoundException e1) {
-				Activator.log.error(e1);
-			}*/
 		}
 		
 		return modelSet;
