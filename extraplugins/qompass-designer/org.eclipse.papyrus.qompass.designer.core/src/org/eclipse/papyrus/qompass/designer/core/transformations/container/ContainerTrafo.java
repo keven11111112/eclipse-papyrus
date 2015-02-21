@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.transformations;
+package org.eclipse.papyrus.qompass.designer.core.transformations.container;
 
 import java.util.HashMap;
 import java.util.Iterator;
@@ -39,6 +39,12 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.AbstractContainerTrafo;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
+import org.eclipse.papyrus.qompass.designer.core.transformations.RuleManagement;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
+import org.eclipse.papyrus.qompass.designer.core.transformations.connector.ConnectorReification;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Association;

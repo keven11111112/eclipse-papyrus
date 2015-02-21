@@ -2,7 +2,7 @@ package org.eclipse.papyrus.qompass.modellibs.tracing;
 
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
-import org.eclipse.papyrus.qompass.designer.core.transformations.ContainerTrafo;
+import org.eclipse.papyrus.qompass.designer.core.transformations.container.ContainerTrafo;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;

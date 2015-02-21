@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.1" xmlns:xmi="http://schema.omg.org/spec/XMI/2.1" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Profile xmi:id="_5mvT0MtjEd2H_o0jIC6qDQ" name="FCM" metaclassReference="_NYUA4MtkEd2H_o0jIC6qDQ _pb8DsMtkEd2H_o0jIC6qDQ _WPBJkMtpEd2H_o0jIC6qDQ _WSSgAMtpEd2H_o0jIC6qDQ _4Sf2AMtpEd2H_o0jIC6qDQ _IDbl4MtvEd2H_o0jIC6qDQ _ofc4YMuHEd2H_o0jIC6qDQ _asQCAC5SEd6q9cO948d5Fw _5OunYGV9Ed6b6erIXzmEEA _nKCJAGu2Ed647PfocwT3eg _wo2GgMewEd6zpahAtGCOkA _9HS28MnvEd6fKfvcq7rbxA _Y3dP0DdMEd-Qn7_dAqT11Q _Zc-ksJODEd-5qPBhYeIVtw _wTDjYKvTEd-i17GN-GaZ6g _kK724LTaEd-jOpA9YHRXqw _03w64NXnEd-CUqOXH3INsw _eAlkcCm_EeKgOdm6HirHfA _4r98wIR_EeO2oJGF2cvpFw">
     <ownedComment xmi:type="uml:Comment" xmi:id="_D0js0O69Ed2rSKyRUaSRjw">
       <body>The associations between PortKind and Operation simply denote the fact that we want to target something that encapsulates the definition of interface mapping rules (i.e. the rules that determine the interfaces that are provided/required on a port &#xD;
@@ -140,9 +140,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_r2VLUJD2Ed-I9dVdNhZAGQ" name="containerRule" visibility="public" type="_5SI38AAhEd-0dMgailnZgA" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_zTT6QJD2Ed-I9dVdNhZAGQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_zTVIYJD2Ed-I9dVdNhZAGQ" value="*"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_i5ZywO34EeCMv89l8IxFBg">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_DZQuYCNaEeKGuM7MKNu-KA" name="base_Package" association="_DaA8UCNaEeKGuM7MKNu-KA">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Package"/>
@@ -253,9 +250,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_lznjEMttEd2H_o0jIC6qDQ" name="ic" visibility="public" type="_Z1W68MtlEd2H_o0jIC6qDQ" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9HGQoMttEd2H_o0jIC6qDQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9HQBoMttEd2H_o0jIC6qDQ" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_XdkcsEzvEeG_JK8KIEXPxQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_GEXGkMtuEd2H_o0jIC6qDQ" name="base_Property" isUnique="false" association="_F_vFQMtuEd2H_o0jIC6qDQ">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
@@ -457,17 +451,11 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_JZaBAAAjEd-0dMgailnZgA" name="interceptionKind" visibility="public" type="_-ZqycAAhEd-0dMgailnZgA" isUnique="false">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MIadkAAmEd-0dMgailnZgA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MIcSwAAmEd-0dMgailnZgA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_KFrZsPS3EeCLI_ythlfGJw">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_3SMAIAAmEd-0dMgailnZgA" name="interceptionSet" visibility="public" isUnique="false">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Feature"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_uqZjkAApEd-0dMgailnZgA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_uqkisAApEd-0dMgailnZgA" value="*"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_XpuwECm_EeKgOdm6HirHfA">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_QnaoYPS3EeCLI_ythlfGJw" name="base_Property" association="_Qnb2gPS3EeCLI_ythlfGJw">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Property"/>
@@ -480,16 +468,10 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="__5rAUGE_Ed-eArNXja7SuA" name="targetArch" visibility="public" type="_361C4FapEd-w9f5DG2hQCA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Glq-QGFAEd-eArNXja7SuA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GlszcGFAEd-eArNXja7SuA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_GltagGFAEd-eArNXja7SuA">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_C5WBYGGLEd-yH9S4VNNbSQ" name="options" visibility="public" type="_JSKpIHiLEd-iNcV8QPhhiQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FGz-gGGLEd-yH9S4VNNbSQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FG1MoGGLEd-yH9S4VNNbSQ" value="*"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_FG1zsGGLEd-yH9S4VNNbSQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_biZZEJODEd-5qPBhYeIVtw" name="base_Node" association="_biaAIJODEd-5qPBhYeIVtw">
         <type xmi:type="uml:Class" href="pathmap://UML_METAMODELS/UML.metamodel.uml#Node"/>
@@ -497,32 +479,20 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_BZCjMJOGEd-5qPBhYeIVtw" name="usedOS" visibility="public" type="_1rKtYFapEd-w9f5DG2hQCA">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_E7f9UJOGEd-5qPBhYeIVtw" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_E7nSEJOGEd-5qPBhYeIVtw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_E7qVYJOGEd-5qPBhYeIVtw">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_D-cckJPxEd-UMN59oR7XbA" name="availRAM" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_GX4ZIJPxEd-UMN59oR7XbA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_GX8DgJPxEd-UMN59oR7XbA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_GX_G0JPxEd-UMN59oR7XbA">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_HtMmQJPxEd-UMN59oR7XbA" name="availROM" visibility="public">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JzMpcJPxEd-UMN59oR7XbA" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Jzar4JPxEd-UMN59oR7XbA" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_JzeWQJPxEd-UMN59oR7XbA">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_8g_IsNTGEeKiLbHSN_MIRQ" name="compiler" visibility="public" type="_iDiaINRxEeKiLbHSN_MIRQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_AIgB8NTHEeKiLbHSN_MIRQ"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_AJC0gNTHEeKiLbHSN_MIRQ" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_AKHykNTHEeKiLbHSN_MIRQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_biaAIJODEd-5qPBhYeIVtw" name="E_Target_Node0" memberEnd="_biaAIZODEd-5qPBhYeIVtw _biZZEJODEd-5qPBhYeIVtw">
@@ -595,9 +565,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_RgadAOHNEeKl1vaXi7stuw" name="boundType" visibility="public" type="_tBRZYMtpEd2H_o0jIC6qDQ" isDerived="true">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_VfrH4OHNEeKl1vaXi7stuw"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_VgfAMOHNEeKl1vaXi7stuw" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_VidWIOHNEeKl1vaXi7stuw">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_beqmAEZ0EeCLCJBkU67iDQ" name="UseInstanceConfigurator">
@@ -607,9 +574,6 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_vkwxkEZ0EeCLCJBkU67iDQ" name="configurator" visibility="public" type="_kDGFMEZ0EeCLCJBkU67iDQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_x906sEZ0EeCLCJBkU67iDQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_x-ozAEZ0EeCLCJBkU67iDQ" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_yA41wEZ0EeCLCJBkU67iDQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Extension" xmi:id="_ejj6YEZ0EeCLCJBkU67iDQ" name="E_UseInstanceConfigurator_Class0" memberEnd="_ejj6YUZ0EeCLCJBkU67iDQ _ejisQEZ0EeCLCJBkU67iDQ">
@@ -673,16 +637,10 @@ For instance, we cound type a port with &quot;MyType&quot; and use an extended p
       <ownedAttribute xmi:type="uml:Property" xmi:id="_fi6s8NRwEeKiLbHSN_MIRQ" name="compToOOmapping" visibility="public" type="_HjF2wNRwEeKiLbHSN_MIRQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_mp59wNRwEeKiLbHSN_MIRQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_mqyukNRwEeKiLbHSN_MIRQ" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_mspIsNRwEeKiLbHSN_MIRQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_oTWn0NRwEeKiLbHSN_MIRQ" name="progLanguage" visibility="public" type="__QLv8NRwEeKiLbHSN_MIRQ">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_p94P8NRwEeKiLbHSN_MIRQ" value="1"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_p-DPENRwEeKiLbHSN_MIRQ" value="1"/>
-        <defaultValue xmi:type="uml:LiteralString" xmi:id="_p-XYINRwEeKiLbHSN_MIRQ">
-          <value xsi:nil="true"/>
-        </defaultValue>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Stereotype" xmi:id="_HjF2wNRwEeKiLbHSN_MIRQ" name="CompToOOmapping">

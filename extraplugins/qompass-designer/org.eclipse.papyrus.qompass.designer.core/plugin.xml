@@ -3,6 +3,7 @@
 <plugin>
    <extension-point id="instanceConfig" name="instanceConfigName" schema="schema/instanceConfig.exsd"/>
    <extension-point id="externalGenerator" name="externalGenerator" schema="schema/externalGenerator.exsd"/>
+   <extension-point id="ooTransformation" name="ooTransformation" schema="schema/ooTransformation.exsd"/>
    <extension
          point="org.eclipse.papyrus.infra.core.modelListener">
       <listener

@@ -235,7 +235,9 @@ public class CompImplSync {
 	 * add derived realization relationships of a component implementation
 	 * due to provided interfaces of its ports
 	 *
-	 * @param implementation
+	 * TODO: depends on OOTrafo, duplicate functionality
+	 * 
+	 * @param implementation a component implementation
 	 */
 	public static EList<Interface> addRealizations(Class implementation) {
 		// create a list of all provided interfaces and check whether realization relationship

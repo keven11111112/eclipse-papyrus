@@ -482,6 +482,41 @@ public class DepUtils {
 	}
 
 	/**
+	 * Return the target language when given the mainInstance 
+	 * @param mainInstance the mainInstance of an application
+	 * @return target language
+	 */
+	public static String getTargetLanguage(InstanceSpecification mainInstance) {
+		Classifier cl = DepUtils.getClassifier(mainInstance);
+		String targetLanguage = DepUtils.getLanguageFromPackage(cl.getNearestPackage());
+		if (targetLanguage == null) {
+			targetLanguage = "C++"; //$NON-NLS-1$
+		}
+		return targetLanguage;
+	}
+	
+	/**
+	 * Determine the component to OO language. The stereotype CodeGenOptions
+	 * (which could be on any owning package) is evaluated.
+	 *
+	 * @param pkg
+	 *            a classifier
+	 * @return the programming language
+	 */
+	public static String getOOTransformationFromPackage(Package pkg) {
+		CodeGenOptions codeGenOpt = UMLUtil.getStereotypeApplication(pkg, CodeGenOptions.class);
+		if ((codeGenOpt != null) && (codeGenOpt.getProgLanguage() != null)) {
+			return codeGenOpt.getCompToOOmapping().getBase_Class().getName();
+		}
+		else if (pkg.getOwner() instanceof Package) {
+			return getLanguageFromPackage((Package) pkg.getOwner());
+		}
+		else {
+			return null;
+		}
+	}
+	
+	/**
 	 * Get all instances within a package that comply with a filter criterion. Recurse into sub-packages.
 	 *
 	 * @param pkg

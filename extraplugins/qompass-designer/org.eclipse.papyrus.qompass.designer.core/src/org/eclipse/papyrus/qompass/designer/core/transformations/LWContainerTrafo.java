@@ -207,7 +207,7 @@ public class LWContainerTrafo extends AbstractContainerTrafo {
 			Type type = part.getType();
 			if (type == null) {
 				String ruleName = (smContainerRule.getBase_Class() != null) ? smContainerRule.getBase_Class().getName() : "undefined"; //$NON-NLS-1$
-				throw new TransformationException(String.format(Messages.LWContainerTrafo_0, ruleName));
+				throw new TransformationException(String.format(Messages.LWContainerTrafo_CannotApplyRule, ruleName));
 			}
 			if (part instanceof Port) {
 				Port newPort = tmClass.createOwnedPort(part.getName(), part.getType());

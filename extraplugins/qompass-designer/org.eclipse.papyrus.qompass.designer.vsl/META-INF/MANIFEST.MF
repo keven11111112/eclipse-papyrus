@@ -13,5 +13,5 @@ Bundle-Name: %pluginName
 Bundle-Activator: org.eclipse.papyrus.qompass.designer.vsl.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.vsl
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

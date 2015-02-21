@@ -33,7 +33,7 @@ public class Messages extends NLS {
 	public static String Description_NoAvail;
 
 	public static String LWContainerTrafo_CannotApplyRule;
-
+	
 	public static String ConnectorBinding_CannotFindBinding;
 	public static String ConnectorBinding_CannotFindBindingForPort;
 	public static String ConnectorBinding_CannotFindConsistentBinding;
@@ -102,8 +102,7 @@ public class Messages extends NLS {
 	public static String InstantiateDepPlan_InfoImportPackage;
 	public static String InstantiateDepPlan_InfoNoneAllocated;
 	public static String InstantiateDepPlan_TransformationException;
-	public static String LWContainerTrafo_0;
-	public static String LWContainerTrafo_1;
+
 	public static String MainModelTrafo_ChangePartType;
 	public static String MainModelTrafo_NoDefiningFeature;
 	public static String MainModelTrafo_NoInstanceAssociated;

@@ -12,7 +12,7 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.transformations;
+package org.eclipse.papyrus.qompass.designer.core.transformations.connector;
 
 /**
  * This file is part of Qompass GenTools
@@ -35,6 +35,8 @@ import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.templates.ConnectorBinding;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateInstantiation;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
+import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
 import org.eclipse.papyrus.uml.tools.utils.ConnectorUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ConnectableElement;
