@@ -63,7 +63,10 @@ class Identifiers {
             if (!supertype.hint.nullOrEmpty && (umlExtension.metaclass.diagramSpecificElementTypes.size > 1)) add(supertype.hint)
         ]
         
-        if (discriminators.nullOrEmpty) stereo.name else stereo.name + discriminators.join(" (", ", ", ")")[toString]
+        if (discriminators.nullOrEmpty) 
+        	if (stereo.allExtendedMetaclasses.size <= 1) stereo.name 
+        	else stereo.name + " " + umlExtension.metaclass.name 
+        else stereo.name + discriminators.join(" (", ", ", ")")[toString]
     }
     
     def dispatch hintSuffix(ElementTypeConfiguration elementType) {
