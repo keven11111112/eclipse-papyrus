@@ -27,7 +27,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.providers.RestrictedAbstractEdit
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 
 
@@ -45,8 +45,8 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 
 		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE, AppliedStereotypeCompartmentEditPart.class);
 		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE, AppliedStereotypeMultilinePropertyEditPart.class);
-		nodeMap.put(AppliedStereotypesCommentEditPart.ID, AppliedStereotypesCommentEditPart.class);
-		edgeMap.put(AppliedStereotypesCommentLinkEditPart.ID, AppliedStereotypesCommentLinkEditPart.class);
+		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMMENT_TYPE, AppliedStereotypeCommentEditPart.class);
+		edgeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE, AppliedStereotypesCommentLinkEditPart.class);
 
 	}
 

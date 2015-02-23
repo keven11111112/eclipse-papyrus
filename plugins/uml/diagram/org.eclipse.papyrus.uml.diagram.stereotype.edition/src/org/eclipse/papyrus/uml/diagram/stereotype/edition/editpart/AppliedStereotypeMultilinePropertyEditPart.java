@@ -161,6 +161,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 * set the text if not
 	 */
 	protected void setLabelTextHelper(IFigure figure, String text) {
+
 		if (figure instanceof FlowPage) {
 			// remove all children from page.
 			((FlowPage) figure).removeAll();
@@ -923,7 +924,8 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getAdapter(java.lang.Class)
 	 *
 	 * @param key
-	 * @return
+	 *            Class for which the adapter is required
+	 * @return the adapter Option according to the key class.
 	 */
 	@Override
 	public Object getAdapter(Class key) {
@@ -940,7 +942,7 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 
 
 	/**
-	 * locator for the multiline Cell
+	 * Locator for the multiline Cell
 	 *
 	 */
 	static public class MultilineCellEditorLocator implements CellEditorLocator {

@@ -9,13 +9,17 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -38,10 +42,31 @@ public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends Appli
 		if ((Element) getView().getElement() != null) {
 			return (Element) getView().getElement();
 		}
-		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT") != null) {
-			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT");
+		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME) != null) {
+			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
 			return (Element) eObjectValueStyle.getEObjectValue();
 		}
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy#refreshAppliedStereotypesPropertiesInBrace(org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure)
+	 *
+	 * @param figure
+	 */
+	@Override
+	protected void refreshAppliedStereotypesPropertiesInBrace(IPapyrusNodeUMLElementFigure figure) {
+
+		String toDisplayInBrace = helper.getStereotypePropertiesInBrace(((GraphicalEditPart) getHost()).getNotationView());
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
+		if (!"".equals(toDisplayInBrace)) {
+			// it has to be displayed in braces, so compute the string to
+			// display
+			figure.setStereotypePropertiesInBrace(toDisplayInBrace);
+		} else {
+			figure.setStereotypePropertiesInBrace(null);
+		}
+
 	}
 }

@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -337,6 +338,31 @@ public class NotationUtils {
 		}
 		return value;
 	}
+
+	/**
+	 * Gets the EObject value from a NamedStyle property.
+	 *
+	 * @param view
+	 *            the view
+	 * @param property
+	 *            the property
+	 * @param defaultValue
+	 *            the default value
+	 * @return the EObject
+	 */
+	public static EObject getEObjectValue(View view, String property, EObject defaultValue) {
+		EObject value = defaultValue;
+		EClass eObjectValueStyle = NotationPackage.eINSTANCE.getEObjectValueStyle();
+
+		if (eObjectValueStyle != null) {
+			NamedStyle style = view.getNamedStyle(eObjectValueStyle, property);
+			if (style instanceof EObjectValueStyle) {
+				value = ((EObjectValueStyle) style).getEObjectValue();
+			}
+		}
+		return value;
+	}
+
 
 	/**
 	 * Get the list as a String list and convert it to Int list

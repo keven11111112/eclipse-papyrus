@@ -1,6 +1,5 @@
 Manifest-Version: 1.0
-Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.command,
- org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
+Export-Package: org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart,
  org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies
 Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.0",
@@ -14,7 +13,8 @@ Require-Bundle: org.eclipse.gmf.runtime.diagram.ui,
  org.eclipse.papyrus.infra.core.log;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.0",
  org.eclipse.papyrus.extensionpoints.editors;bundle-version="1.1.0",
- org.eclipse.papyrus.uml.profile;bundle-version="1.1.0"
+ org.eclipse.papyrus.uml.profile;bundle-version="1.1.0",
+ org.eclipse.gmf.runtime.notation
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier

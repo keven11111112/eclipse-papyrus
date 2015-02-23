@@ -67,7 +67,7 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 	protected Label qualifiedLabel;
 
 	/**
-	 * Added for stereptypes properties
+	 * Added for stereotypes properties
 	 */
 	private RectangleFigure stereotypePropertiesContent;
 

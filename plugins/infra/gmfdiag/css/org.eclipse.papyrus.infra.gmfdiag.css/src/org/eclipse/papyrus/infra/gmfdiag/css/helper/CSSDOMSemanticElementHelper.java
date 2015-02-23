@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.helper;
 
@@ -18,6 +19,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 
 
 /**
@@ -44,6 +46,7 @@ public class CSSDOMSemanticElementHelper {
 	 */
 	public static EObject findSemanticElement(EObject notationElement) {
 
+
 		if (notationElement == null) {
 			return null;
 		}
@@ -53,9 +56,24 @@ public class CSSDOMSemanticElementHelper {
 			return notationElement;
 		}
 
+		// Add Stereotype Comment
+		if (notationElement instanceof Shape) {
+			if (StereotypeDisplayHelper.getInstance().isStereotypeComment(notationElement)) {
+				return notationElement;
+			}
+		}
+
 		// Add compartments to the DOM model
 		if (notationElement instanceof BasicCompartment) {
 			return notationElement;
+		}
+
+
+		// Add StereotypeProperty to the DOM model
+		if (notationElement instanceof DecorationNode) {
+			if (StereotypeDisplayHelper.getInstance().isStereotypeProperty(notationElement)) {
+				return notationElement;
+			}
 		}
 
 		// Add floating labels to the DOM model
@@ -70,6 +88,7 @@ public class CSSDOMSemanticElementHelper {
 			if (semanticElement != null) {
 				return semanticElement;
 			}
+
 
 			// The graphical element isn't related to a Semantic Element. The view becomes the semantic element.
 			// e.g. : Links in UML
@@ -165,13 +184,6 @@ public class CSSDOMSemanticElementHelper {
 		}
 
 		if (node.eContainer() instanceof Shape) {
-			if (node.getLayoutConstraint() != null) {
-				return true;
-			}
-		}
-
-		// TODO Check if relevant
-		if (node.eContainer() instanceof BasicCompartment) {
 			if (node.getLayoutConstraint() != null) {
 				return true;
 			}

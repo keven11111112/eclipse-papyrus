@@ -233,7 +233,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 	 * @param stereotypes
 	 *            the string representing the stereotypes to be displayed
 	 */
-	public void setStereotypes(String stereotypes) {
+	protected void setStereotypes(String stereotypes) {
 		if (stereotypes == null) {
 			// Remove label if any
 			if (this.stereotypesLabel != null) {

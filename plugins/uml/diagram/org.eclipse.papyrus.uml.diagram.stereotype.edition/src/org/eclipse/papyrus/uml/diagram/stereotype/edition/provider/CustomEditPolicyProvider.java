@@ -23,10 +23,10 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPolicies
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeLabelEditPolicy;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 
 /**
@@ -51,7 +51,9 @@ public class CustomEditPolicyProvider extends AbstractProvider implements IEditP
 
 				}
 				if (editPart instanceof NamedElementEditPart) {
-					editPart.installEditPolicy(AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+					editPart.installEditPolicy(AppliedStereotypeCompartmentEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeCompartmentEditPolicy());
+					editPart.installEditPolicy(AppliedStereotypeLabelEditPolicy.STEREOTYPE_LABEL_POLICY, new AppliedStereotypeLabelEditPolicy());
+
 				}
 			}
 		}

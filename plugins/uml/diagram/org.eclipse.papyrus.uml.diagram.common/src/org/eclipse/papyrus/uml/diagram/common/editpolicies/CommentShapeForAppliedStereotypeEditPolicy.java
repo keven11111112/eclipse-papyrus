@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
@@ -23,46 +24,50 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
+import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * this editpolicy attached to StereotypeCommentEdipart has in charge to prevent the remove form model
- * and launch command of deletion if it detect that any properties of applied stereotype are displayed
+ * This Edit Policy is attached to AppliedStereotypeCommentEdipart, and is in charge to prevent the deletion of the Comment from model
+ * and launch command of deletion if it detect that no property of applied stereotype are displayed.
  *
  */
-public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	@Override
 	public void notifyChanged(Notification notification) {
 		View commentNode = getView();
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
-		if (getUMLElement() == null) {
-			executeAppliedStereotypeCommentDeletion(domain, commentNode);
-		}
-		final int eventType = notification.getEventType();
-		if (eventType == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getView_Visible())) {
+		if (commentNode != null) {
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
 
-			if (getView() != null) {
+			// if Base_Element is deleted, the Comment is deleted as well
+			if (getUMLElement() == null) {
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
 
-				if (getvisibleAppliedStereotypeCompartment(commentNode, getUMLElement()) == 0) {
-
+			// if notification Set the visibility and none of Compartment is Visible, delete the Comment
+			final int eventType = notification.getEventType();
+			if (eventType == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getView_Visible())) {
+				if (getVisibleAppliedStereotypeCompartmentNumber(commentNode) == 0) {
 					executeAppliedStereotypeCommentDeletion(domain, commentNode);
-
 				}
+
 			}
 		}
 	}
@@ -73,14 +78,23 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 * @return the uml element controlled by the host edit part
 	 */
 	protected Element getUMLElement() {
+		Element element = null;
 		if ((Element) getView().getElement() != null) {
-			return (Element) getView().getElement();
+			element = (Element) getView().getElement();
+		} else {
+
+			EObject object = NotationUtils.getEObjectValue(getView(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			if (object != null) {
+				if (object instanceof Element) {
+					element = (Element) object;
+				} else {
+					if (UMLUtil.getStereotype(object) != null) {
+						element = UMLUtil.getStereotype(object);
+					}
+				}
+			}
 		}
-		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT") != null) {
-			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT");
-			return (Element) eObjectValueStyle.getEObjectValue();
-		}
-		return null;
+		return element;
 	}
 
 	@Override
@@ -94,32 +108,61 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	}
 
 
-	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
-		if (commentNode != null) {
-			Display.getCurrent().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					// because it is asynchronous the comment node's domain maybe become null
-					if (TransactionUtil.getEditingDomain(commentNode) == domain) {
-						DeleteCommand command = new DeleteCommand(commentNode);
-						try {
-							GMFUnsafe.write(domain, command);
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
-					}
-				}
-			});
+	/**
+	 * @see org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx#refresh()
+	 *
+	 */
+	@Override
+	public void refresh() {
+		View commentNode = getView();
+		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
+		if (getVisibleAppliedStereotypeCompartmentNumber(commentNode) == 0) {
+			executeAppliedStereotypeCommentDeletion(domain, commentNode);
 		}
+		super.refresh();
 	}
 
-	protected int getvisibleAppliedStereotypeCompartment(View view, EObject eobject) {
+	/**
+	 * Execute Comment Deletion
+	 * 
+	 * @param domain
+	 *            TransactionalDomain
+	 * @param commentNode
+	 *            Node of the Comment to be deleted.
+	 */
+	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
+
+		Display.getCurrent().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				// because it is asynchronous the comment node's domain maybe become null
+				if (TransactionUtil.getEditingDomain(commentNode) == domain) {
+					DeleteCommand command = new DeleteCommand(commentNode);
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
+				}
+			}
+		});
+	}
+
+	/**
+	 * Get the number of Visible Compartments
+	 * 
+	 * @param view
+	 *            The View where the number of visible Compartment are evaluated
+	 * 
+	 * @return the number of Visible Stereotype Compartment
+	 */
+	protected int getVisibleAppliedStereotypeCompartmentNumber(View view) {
 		int nbVisibleCompartment = 0;
 		Iterator<View> iteratorView = view.getChildren().iterator();
 		while (iteratorView.hasNext()) {
 			View subview = iteratorView.next();
-			if (subview.isVisible() == true) {
+			if (subview.isVisible() && StereotypeDisplayHelper.getInstance().isStereotypeCompartment(subview)) {
 				nbVisibleCompartment++;
 			}
 		}

@@ -43,6 +43,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.modelrepair.service.IStereotypeRepairService;
 import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
 import org.eclipse.swt.graphics.Image;
@@ -63,6 +64,9 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 
 	/** host semantic element */
 	protected Element hostSemanticElement;
+
+	/** Helper to manipulate applied Stereotype Display model */
+	protected StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
 
 	/**
 	 * Creates a new AppliedStereotype display edit policy
@@ -155,8 +159,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
 		}
 		refreshDisplay();
-		// try to display stereotype properties
-		cleanStereotypeDisplayInEAnnotation();
+
 	}
 
 	/**

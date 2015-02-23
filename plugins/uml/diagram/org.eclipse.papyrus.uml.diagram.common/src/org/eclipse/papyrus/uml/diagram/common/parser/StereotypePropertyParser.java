@@ -30,6 +30,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -46,6 +47,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  */
 public class StereotypePropertyParser implements IParser, ISemanticParser {
+
+	private static final String DEFAULT_VALUE = "<UNDEFINED>";
 
 	/**
 	 *
@@ -88,7 +91,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			}
 
 		}
-		return "<UNDEFINED>";
+		return DEFAULT_VALUE;
 	}
 
 	/**
@@ -147,15 +150,23 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
+		StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
 			final View view = ((View) element.getAdapter(View.class));
 
+			StereotypeLocationEnum location;
+			if (helper.isInStereotypeComment((Node) view)) {
+				location = StereotypeLocationEnum.IN_COMMENT_COMPARTMENT;
+			} else {
+				location = StereotypeLocationEnum.IN_COMPARTMENT;
+			}
+
 			if (view != null && property != null) {
-				return StereotypeDisplayHelper.getStereotypePropertyToDisplay(view, property, StereotypeLocationEnum.IN_COMPARTMENT);
+				return helper.getStereotypePropertyToDisplay(view, property, location);
 			}
 		}
-		return "<UNDEFINED>";
+		return DEFAULT_VALUE;
 	}
 
 	/**

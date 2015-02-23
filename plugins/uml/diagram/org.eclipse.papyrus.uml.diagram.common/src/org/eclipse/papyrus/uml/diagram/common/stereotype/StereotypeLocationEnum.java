@@ -7,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
+ *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *   
  *****************************************************************************/
 
@@ -15,17 +16,31 @@ package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
 
 /**
+ * This enumeration is used to list the existing possible locations of a Stereotype property to be displayed
+ * 
  * @author Céline JANSSENS
  *
  */
 public enum StereotypeLocationEnum {
-
+	/**
+	 * Defines the Brace Label on top of the figure that contains the list of Stereotype Properties
+	 */
 	IN_BRACE,
 
+	/**
+	 * Defines the Compartment into the figure dedicated to the Stereotype Properties
+	 */
 	IN_COMPARTMENT,
 
-	IN_COMMENT
+	/**
+	 * Defines the Brace Label into a separate Comment Figure that contains the list of Stereotype Properties
+	 */
+	IN_COMMENT_BRACE,
 
+	/**
+	 * Defines the Compartment into a separate Comment Figure dedicated to the Stereotype Properties
+	 */
+	IN_COMMENT_COMPARTMENT
 
 
 }

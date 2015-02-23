@@ -11,7 +11,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.stereotype.edition.command;
+package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -22,8 +22,6 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -32,6 +30,8 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  *
  */
 public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
+
+	protected StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
 
 	protected View node;
 
@@ -53,7 +53,7 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		super(domain, "CreateStereotypeCompartment");
 		this.node = node;
 		this.stereotypeApplication = stereotypeApplication;
-		parent = StereotypeDisplayHelper.getStereotypeLabel(node, stereotypeApplication);
+		parent = helper.getStereotypeLabel(node, stereotypeApplication);
 
 	}
 

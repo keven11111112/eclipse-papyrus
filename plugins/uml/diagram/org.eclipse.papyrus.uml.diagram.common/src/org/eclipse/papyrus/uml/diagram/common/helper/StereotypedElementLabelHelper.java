@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
@@ -196,7 +197,7 @@ public abstract class StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * get the list of stereotype to display from the eannotation
+	 * get Stereotype String to display
 	 *
 	 * @return the list of stereotypes to display
 	 */
@@ -204,115 +205,11 @@ public abstract class StereotypedElementLabelHelper {
 		View view = (View) editPart.getModel();
 		// retrieve all stereotypes to be displayed
 		// try to display stereotype properties
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(view);
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(view);
-		// now check presentation.
-		// if horizontal => equivalent to the inBrace visualization in nodes
-		// (i.e. only name =
-		// value, separator = comma, delimited with brace
-		// if vertical => equivalent to compartment visualization name of
-		// stereotype, NL, property =
-		// value, NL, etC.
-		// check the presentation kind. if only icon => do not display
-		// stereotype, only values
-		if (UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
-		}
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(view);
-		String display = "";
-		if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			display += stereotypesAndPropertiesToDisplay(editPart, "\n", stereotypesToDisplay, stereotypesToDisplayWithQN, stereotypesPropertiesToDisplay);
-		} else {
-			final String st = stereotypesToDisplay(editPart, ", ", stereotypesToDisplay, stereotypesToDisplayWithQN);
-			if (st != null && !st.equals("")) {
-				display += Activator.ST_LEFT + st + Activator.ST_RIGHT + " ";
-			}
-			final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
-			if (propSt != null && !propSt.equals("")) {
-				if (st != null && !st.equals("")) {
-					// display += "\n";
-				}
-				display += "{" + propSt + "} ";
-			}
-		}
-		return display;
+		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay(view);
+
+		return stereotypesToDisplay;
 	}
 
-	/**
-	 * Computes the string that displays the stereotypes for the current element
-	 *
-	 * @param separator
-	 *            the separator used to split the string representing the
-	 *            stereotypes.
-	 * @param stereotypesToDisplay
-	 *            the list of stereotypes displayed
-	 * @param stereotypeWithQualifiedName
-	 *            the list of stereotypes displayed using their qualified names
-	 * @return the string that represent the stereotypes
-	 */
-	public String stereotypesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypeWithQualifiedName) {
-		// AL Changes Feb. 07 - Beg
-		// Style Handling for STEREOTYPE_NAME_APPEARANCE from
-		// ProfileApplicationPreferencePage
-		// Stereotype displayed according to UML standard (first letter forced
-		// to lower case) -
-		// default -
-		// or kept as entered by user (user controlled)
-		// Get the preference from PreferenceStore. there should be an assert
-		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		if (store == null) {
-			Activator.log.warn("The preference store was not found");
-			return "";
-		}
-		String sNameAppearance = store.getString(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
-		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
-		String out = "";
-		while (strQualifiedName.hasMoreElements()) {
-			String currentStereotype = strQualifiedName.nextToken();
-			// check if current stereotype is applied
-			final Element umlElement = getUMLElement(editPart);
-			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
-			if (stereotype != null) {
-				String name = currentStereotype;
-				if ((stereotypeWithQualifiedName.indexOf(currentStereotype)) == -1) {
-					// property value contains qualifiedName ==> extract name
-					// from it
-					StringTokenizer strToken = new StringTokenizer(currentStereotype, "::");
-					while (strToken.hasMoreTokens()) {
-						name = strToken.nextToken();
-					}
-				}
-				// AL Changes Feb. 07 - Beg
-				// Handling STEREOTYPE_NAME_APPEARANCE preference (from
-				// ProfileApplicationPreferencePage)
-				// Previously lowercase forced onto first letter (standard UML)
-				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1,
-				// name.length())+","+separator;
-				// check that the name has not already been added to the
-				// displayed string
-				if (sNameAppearance.equals(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
-					if (out.indexOf(name) == -1) {
-						out = out + name + separator;
-					}
-				} else { // VisualInformationPapyrusConstants.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
-					// {
-					name = name.substring(0, 1).toLowerCase() + name.substring(1, name.length());
-					if (out.indexOf(name) == -1) {
-						out = out + name + separator;
-					}
-				}
-			}
-		}
-		if (out.endsWith(",")) {
-			return out.substring(0, out.length() - 1);
-		}
-		if (out.endsWith(separator)) {
-			return out.substring(0, out.length() - separator.length());
-		}
-		return out;
-	}
 
 	/**
 	 * Refreshes the label of the figure associated to the specified edit part

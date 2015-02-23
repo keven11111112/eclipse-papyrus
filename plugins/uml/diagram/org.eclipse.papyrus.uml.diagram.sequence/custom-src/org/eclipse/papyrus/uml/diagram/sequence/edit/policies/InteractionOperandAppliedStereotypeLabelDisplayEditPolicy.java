@@ -16,20 +16,19 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.swt.graphics.Image;
 
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
+public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeCompartmentEditPolicy {
 
 	@Override
 	protected void refreshStereotypeDisplay() {
@@ -43,7 +42,7 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		}
 		GuardFigure figure = ((InteractionOperandGuardEditPart) guard).getPrimaryFigure();
 		// calculate text and icon to display
-		final String stereotypesToDisplay = StereotypeDisplayHelper.getStereotypeTextToDisplay((View) getHost().getModel());
+		final String stereotypesToDisplay = helper.getStereotypeTextToDisplay((View) getHost().getModel());
 		// computes the icon to be displayed
 		final Image imageToDisplay = stereotypeIconToDisplay();
 
@@ -54,7 +53,7 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		if (figure instanceof IPapyrusNodeUMLElementFigure) {
 			((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay == null ? "" : stereotypesToDisplay), imageToDisplay);
 			if (figure instanceof IPapyrusNodeNamedElementFigure) {
-				refreshAppliedStereotypesProperties((IPapyrusNodeNamedElementFigure) figure);
+				refreshAppliedStereotypesPropertiesInBrace(figure);
 			}
 		}
 	}

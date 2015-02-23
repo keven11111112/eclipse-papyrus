@@ -17,11 +17,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -81,44 +79,10 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 		// try to display stereotype properties
 		String stereotypespresentationLocation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(parentView);
 		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(parentView);
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(parentView);
+		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay(parentView);
 		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(parentView);
+		return stereotypesToDisplay;
 
-
-		// now check presentation.
-		// if horizontal => equivalent to the inBrace visualization in nodes
-		// (i.e. only name =
-		// value, separator = comma, delimited with brace
-		// if vertical => equivalent to compartment visualization name of
-		// stereotype, NL, property =
-		// value, NL, etC.
-
-		// check the presentation kind. if only icon => do not display
-		// stereotype, only values
-		if (UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
-		}
-		String display = "";
-		if (!UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION.equals(stereotypespresentationLocation)) {
-			String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(parentView);
-
-			if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-				display += stereotypesAndPropertiesToDisplay("\n", stereotypesToDisplay, stereotypesPropertiesToDisplay);
-			} else {
-				final String st = stereotypesToDisplay();
-				if (st != null && !st.equals("")) {
-					display += Activator.ST_LEFT + st + Activator.ST_RIGHT;
-				}
-				final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
-				if (propSt != null && !propSt.equals("")) {
-					if (st != null && !st.equals("")) {
-						display += "\n";
-					}
-					display += "{" + propSt + "}";
-				}
-			}
-		}
-		return display;
 	}
 
 	/**

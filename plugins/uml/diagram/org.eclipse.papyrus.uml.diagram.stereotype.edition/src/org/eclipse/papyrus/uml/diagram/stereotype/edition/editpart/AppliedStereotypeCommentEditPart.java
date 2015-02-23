@@ -41,9 +41,9 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedSt
  *
  */
 
-public class AppliedStereotypesCommentEditPart extends NodeEditPart implements IGraphicalEditPart, IPrimaryEditPart {
+public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IGraphicalEditPart, IPrimaryEditPart {
 
-	public AppliedStereotypesCommentEditPart(View view) {
+	public AppliedStereotypeCommentEditPart(View view) {
 		super(view);
 	}
 
@@ -143,6 +143,8 @@ public class AppliedStereotypesCommentEditPart extends NodeEditPart implements I
 		}
 		return nodeShape; // use nodeShape itself as contentPane
 	}
+
+
 
 	/**
 	 * @generated

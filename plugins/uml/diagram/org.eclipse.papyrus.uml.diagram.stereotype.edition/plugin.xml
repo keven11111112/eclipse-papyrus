@@ -20,7 +20,7 @@
 			<object
 	     		class="org.eclipse.gmf.runtime.notation.Node(org.eclipse.gmf.runtime.notation)"
 		    	id="StereotypePropertiesEditPartProvider">
-			    <method name="getType()" value="StereotypeCompartment,StereotypeProperty,AppliedStereotypesComment,AppliedStereotypesCommentLink"/>
+			    <method name="getType()" value="StereotypeComment,StereotypeCompartment,StereotypeProperty,StereotypeCommentLink"/>
 		   </object>
 	   </editpartProvider>
    </extension>

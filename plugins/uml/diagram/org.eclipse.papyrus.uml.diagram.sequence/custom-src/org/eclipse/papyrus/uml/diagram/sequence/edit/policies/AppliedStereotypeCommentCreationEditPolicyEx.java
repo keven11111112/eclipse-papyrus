@@ -15,14 +15,12 @@
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.eclipse.emf.ecore.EAnnotation;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
@@ -45,9 +43,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeCommentViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.command.CreateAppliedStereotypeCommentViewCommand;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
 import org.eclipse.swt.widgets.Display;
@@ -98,13 +97,13 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 			ts.setShowTitle(true);
 			node.getStyles().add(ts);
 			node.setElement(null);
-			node.setType(AppliedStereotypesCommentEditPart.ID);
+			node.setType(AppliedStereotypeCommentEditPart.ID);
 
 			connectCommentNode(owner, node);
 
 			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) node.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 			eObjectValueStyle.setEObjectValue(base_element);
-			eObjectValueStyle.setName("BASE_ELEMENT");
+			eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
 
 			// create the link
 			Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -131,7 +130,7 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 			edge.setElement(null);
 			eObjectValueStyle = (EObjectValueStyle) edge.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 			eObjectValueStyle.setEObjectValue(base_element);
-			eObjectValueStyle.setName("BASE_ELEMENT");
+			eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
 
 			// copy EAnnotation
 			final EAnnotation stereotypeAnnotation = owner.getEAnnotation(UMLVisualInformationPapyrusConstant.STEREOTYPE_ANNOTATION);
@@ -155,35 +154,7 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 		 */
 		private void connectCommentNode(View owner, Node commentNode) {
 
-			// in the case of the edge the comment has to be placed into the common parent of each end
-			// if(owner instanceof Edge) {
-			// View viewSource = ((Edge)owner).getSource();
-			// View viewTarget = ((Edge)owner).getSource();
-			// //list of source parents
-			// ArrayList<View> parentsSource = getParentTree(viewSource);
-			// //list of source targets
-			// ArrayList<View> parentsTarget = getParentTree(viewTarget);
-			// View commonParent = null;
-			// int index = 0;
-			// //find the common
-			// while(commonParent == null && index < parentsSource.size()) {
-			// if(parentsTarget.contains(parentsSource.get(index))) {
-			// commonParent = parentsSource.get(index);
-			// if(!(commonParent instanceof BasicCompartment)) {
-			// commonParent = null;
-			// }
-			// }
-			// index++;
-			// }
-			// // a common has been found
-			// if(commonParent != null) {
-			// ((Bounds)commentNode.getLayoutConstraint()).setX(100);
-			// ((Bounds)commentNode.getLayoutConstraint()).setY(100);
-			// ViewUtil.insertChildView(commonParent, commentNode, ViewUtil.APPEND, true);
-			// return;
-			// }
-			// }
-			// generic case
+
 			View econtainer = (View) owner.eContainer();
 			if (owner instanceof Edge) {
 				econtainer = (View) ((Edge) owner).getSource().eContainer();
@@ -233,25 +204,29 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 		}
 	}
 
+
+
 	@Override
-	protected void executeAppliedStereotypeCommentCreation(final EditPart editPart, final TransactionalEditingDomain domain, final EObject semanticElement) {
+	protected void executeAppliedStereotypeCommentCreation(final EObject semanticElement) {
+
+		final TransactionalEditingDomain domain = hostEditPart.getEditingDomain();
 		Display.getCurrent().asyncExec(new Runnable() {
 
 			@Override
 			public void run() {
 				int x = 200;
 				int y = 100;
-				if (editPart.getModel() instanceof Node) {
-					LayoutConstraint constraint = ((Node) editPart.getModel()).getLayoutConstraint();
+				if (hostEditPart.getModel() instanceof Node) {
+					LayoutConstraint constraint = ((Node) hostEditPart.getModel()).getLayoutConstraint();
 					if (constraint instanceof Bounds) {
 						x = x + ((Bounds) constraint).getX();
 						y = ((Bounds) constraint).getY();
 					}
 
 				}
-				if (editPart.getModel() instanceof Edge && ((((Edge) editPart.getModel()).getSource()) instanceof Node)) {
+				if (hostEditPart.getModel() instanceof Edge && ((((Edge) hostEditPart.getModel()).getSource()) instanceof Node)) {
 
-					LayoutConstraint constraint = ((Node) ((Edge) editPart.getModel()).getSource()).getLayoutConstraint();
+					LayoutConstraint constraint = ((Node) ((Edge) hostEditPart.getModel()).getSource()).getLayoutConstraint();
 					if (constraint instanceof Bounds) {
 						x = x + ((Bounds) constraint).getX();
 						y = ((Bounds) constraint).getY() - 100;
@@ -259,13 +234,13 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 
 				}
 				boolean isBorderElement = false;
-				if (!(editPart instanceof CustomDurationConstraintEditPart)) {
-					if (editPart instanceof BorderedBorderItemEditPart) {
+				if (!(hostEditPart instanceof CustomDurationConstraintEditPart)) {
+					if (hostEditPart instanceof BorderedBorderItemEditPart) {
 						isBorderElement = true;
 					}
 				}
-				if (getAppliedStereotypeCommentNode() == null) {
-					CreateAppliedStereotypeCommentViewCommandEx command = new CreateAppliedStereotypeCommentViewCommandEx(domain, (View) editPart.getModel(), x, y, semanticElement, isBorderElement);
+				if (helper.getStereotypeComment((View) getHost().getModel()) == null) {
+					CreateAppliedStereotypeCommentViewCommandEx command = new CreateAppliedStereotypeCommentViewCommandEx(domain, (View) hostEditPart.getModel(), x, y, semanticElement, isBorderElement);
 					// use to avoid to put it in the command stack
 					try {
 						GMFUnsafe.write(domain, command);
@@ -278,35 +253,4 @@ public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereot
 		});
 	}
 
-	@Override
-	protected Node getAppliedStereotypeCommentNode() {
-		Node node = super.getAppliedStereotypeCommentNode();
-		if (node != null) {
-			return node;
-		}
-		View view = (View) getHost().getModel();
-		View semanticView = view;
-		while (semanticView != null && !(semanticView instanceof Shape || semanticView instanceof Edge)) {
-			semanticView = (View) semanticView.eContainer();
-		}
-		if (semanticView == null) {
-			return null;
-		}
-		Edge appliedStereotypeLink = null;
-		// look for all links with the id AppliedStereotypesCommentLinkEditPart.ID
-		@SuppressWarnings("unchecked")
-		Iterator<Edge> edgeIterator = semanticView.getSourceEdges().iterator();
-		while (edgeIterator.hasNext()) {
-			Edge edge = edgeIterator.next();
-			if (edge.getType().equals(AppliedStereotypesCommentLinkEditPart.ID)) {
-				appliedStereotypeLink = edge;
-			}
-
-		}
-		if (appliedStereotypeLink == null) {
-			return null;
-		}
-		return (Node) appliedStereotypeLink.getTarget();
-
-	}
 }

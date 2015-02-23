@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
@@ -31,7 +32,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypePropertiesEditPolicy;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -43,6 +44,8 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 
 	public static String ID = "AppliedStereotypeCompartment";
 
+	private static final String NO_STEREOTYPE_COMPARTMENT = "Bad compartement stereotype";
+
 	public AppliedStereotypeCompartmentEditPart(View view) {
 		super(view);
 	}
@@ -52,20 +55,30 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		return false;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart#refreshBounds()
+	 *
+	 */
+	@Override
+	protected void refreshBounds() {
+		// nothingToDo
+	}
+
 	@Override
 	public String getCompartmentName() {
 
-		Stereotype stereotype = UMLUtil.getStereotype(this.resolveSemanticElement());
+		Stereotype stereotype = UMLUtil.getStereotype(resolveSemanticElement());
 		if (stereotype != null) {
-			return "" + String.valueOf("\u00AB") + stereotype.getName() + String.valueOf("\u00BB");
+			return (StereotypeDisplayUtils.BRACE_LEFT + stereotype.getName() + StereotypeDisplayUtils.BRACE_RIGHT);
 		}
-		return "bad compartement stereotype";
+		return NO_STEREOTYPE_COMPARTMENT;
 	}
 
 
+
 	/**
-	 * this method has bee rewritten in order to add its wn figure to ensure to mange it
-	 * in papyrus Figure.
+	 * this method has be rewritten in order to add its own figure to ensure to manage it
+	 * in Papyrus Figure.
 	 *
 	 * Adds a constrained flow layout algorithm to the content pane of compartment figure
 	 *
@@ -74,14 +87,17 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 	@Override
 	public IFigure createFigure() {
 		ResizableCompartmentFigure rcf;
-		if (getParent() == getTopGraphicEditPart()) {
-			// replace ResizableCompartmentFigure by it own figure in order to manage it.
+
+
+		// If the EditPart is the direct Children
+		if ((getParent() == getTopGraphicEditPart())) {
+			// replace ResizableCompartmentFigure by its own figure in order to manage it.
 			rcf = new AppliedStereotypeCompartmentFigure(getCompartmentName(), getMapMode());
 		} else {
 			rcf = new NestedResizableCompartmentFigure(getMapMode());
-
 		}
-		if (this.getParent() instanceof AppliedStereotypesCommentEditPart) {
+
+		if (getParent() instanceof AppliedStereotypeCommentEditPart) {
 			rcf.setBorder(null);
 			if (rcf.getTextPane().getChildren().size() > 0 && rcf.getTextPane().getChildren().get(0) instanceof WrappingLabel) {
 				WrappingLabel label = (WrappingLabel) rcf.getTextPane().getChildren().get(0);
@@ -111,7 +127,6 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		installEditPolicy(AppliedStereotypePropertiesEditPolicy.APPLIED_STEREOTYPE_VISIBILITY_COMPARTMENT, new AppliedStereotypePropertiesEditPolicy());
 
 	}
 
@@ -145,10 +160,6 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 		if (resolveSemanticElement() != null) {
 			super.handleNotificationEvent(notification);
 		}
-	}
-
-	@Override
-	protected void refreshBounds() {
 	}
 
 	/**

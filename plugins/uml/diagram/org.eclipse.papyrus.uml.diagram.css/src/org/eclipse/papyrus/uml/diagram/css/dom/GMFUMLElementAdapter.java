@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display 
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
@@ -40,6 +41,7 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class GMFUMLElementAdapter extends GMFElementAdapter {
 
+	public final StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
 	public static final String APPLIED_STEREOTYPES_PROPERTY = "appliedStereotypes"; //$NON-NLS-1$
 
 	/**
@@ -61,13 +63,16 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	@Override
 	protected String doGetAttribute(String attr) {
+
 		String parentValue = super.doGetAttribute(attr);
+
 		if (parentValue != null) {
 			return parentValue;
 		}
 
+
 		// get stereotype Label attribute
-		if (StereotypeDisplayHelper.isStereotypeLabel(semanticElement)) {
+		if (helper.isStereotypeLabel(semanticElement)) {
 			String value = getStereotypeLabelAttribute(attr);
 			if (value != null && !value.isEmpty()) {
 				return value;
@@ -75,22 +80,22 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		}
 
 		// get stereotype Compartment attribute
-		if (StereotypeDisplayHelper.isStereotypeCompartment(semanticElement)) {
+		if (helper.isStereotypeCompartment(semanticElement)) {
 			String value = getStereotypeCompartmentAttribute(attr);
 			if (value != null && !value.isEmpty()) {
 				return value;
 			}
 		}
 
+
 		// get stereotype Property attribute
-		if (StereotypeDisplayHelper.isStereotypeProperty(semanticElement)) {
+		if (helper.isStereotypeProperty(semanticElement)) {
 
 			String value = getStereotypePropertyAttribute(attr);
 			if (value != null && !value.isEmpty()) {
 				return value;
 			}
 		}
-
 
 		if (semanticElement instanceof Element) {
 
@@ -125,6 +130,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 					}
 				}
 			}
+
 			if (attr.contains(QUALIFIER_SEPARATOR)) {
 				List<String> qualifiers = ListHelper.asList(attr.split(QUALIFIER_SEPARATOR)); // Writable list
 				String propertyName = qualifiers.remove(qualifiers.size() - 1); // Last element is the property name
@@ -144,6 +150,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		return null;
 	}
 
+
 	/**
 	 * Retrieve the Matching String Value for the StereotypeCompartment Element
 	 * 
@@ -155,7 +162,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
 
 			BasicCompartment propertyCompartment = (BasicCompartment) semanticElement;
-			return StereotypeDisplayHelper.getName(propertyCompartment);
+			return helper.getName(propertyCompartment);
 
 		}
 		return "";
@@ -169,6 +176,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 * @return The matching value for this Attribute
 	 */
 	protected String getStereotypePropertyAttribute(String attr) {
+		// CSS can match property level
 		if (StereotypeDisplayUtils.STEREOTYPE_PROPERTY_NAME.equals(attr)) {
 
 			DecorationNode propertyLabel = (DecorationNode) semanticElement;
@@ -176,6 +184,14 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 				Property prop = (Property) propertyLabel.getElement();
 				String propLabel = prop.getName();
 				return propLabel;
+			}
+			// CSS can match Container Name
+		} else if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
+
+			EObject propertyCompartment = ((DecorationNode) semanticElement).eContainer();
+			if (helper.isStereotypeCompartment(propertyCompartment)) {
+
+				return helper.getName((DecorationNode) propertyCompartment);
 			}
 
 		}
@@ -195,7 +211,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME.equals(attr)) {
 			DecorationNode label = (DecorationNode) semanticElement;
 
-			String stereoName = StereotypeDisplayHelper.getName(label);
+			String stereoName = helper.getName(label);
 			return stereoName;
 
 		}
