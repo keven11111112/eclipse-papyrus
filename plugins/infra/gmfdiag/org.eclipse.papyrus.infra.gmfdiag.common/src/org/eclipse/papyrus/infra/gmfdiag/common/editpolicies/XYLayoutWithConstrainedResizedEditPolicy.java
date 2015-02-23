@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
+import java.util.Collections;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
@@ -31,6 +32,7 @@ import org.eclipse.gef.NodeEditPart;
 import org.eclipse.gef.SnapToHelper;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gef.editparts.AbstractConnectionEditPart;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
@@ -207,20 +209,48 @@ public class XYLayoutWithConstrainedResizedEditPolicy extends XYLayoutEditPolicy
 	protected Command createChangeConstraintCommand(ChangeBoundsRequest request, EditPart child, Object constraint) {
 		final Command cmd = super.createChangeConstraintCommand(request, child, constraint);
 		if (org.eclipse.gef.RequestConstants.REQ_MOVE_CHILDREN.equals(request.getType()) && child instanceof INodeEditPart) {
-			List<?> sources = ((INodeEditPart) child).getSourceConnections();
-			List<?> targets = ((INodeEditPart) child).getTargetConnections();
-			Set<Object> connections = new HashSet<Object>();
-			connections.addAll(sources);
-			connections.addAll(targets);
-			if (!connections.isEmpty()) {
+			Set<Object> notBeingMovedConnections = getConnectionsToElementsNotBeingMoved(request, child);
+			if (!notBeingMovedConnections.isEmpty()) {
 				final CompoundCommand cc = new CompoundCommand();
 				cc.add(cmd);
 				// see bug 430702: [Diagram] Moving source of a link moves the target too.
-				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart) getHost(), connections)));
+				cc.add(new ICommandProxy(new FixEdgeAnchorsDeferredCommand(getEditingDomain(), (IGraphicalEditPart) getHost(), notBeingMovedConnections)));
 				return cc;
 			}
 		}
 		return cmd;
+	}
+
+	/*
+	 * {@link FixEdgeAnchorsDeferredCommand} should not be applied to the multiple selection move request
+	 * see Bug 459839 - [All Diagrams] unexpected behavior moving multiple linked elements
+	 */
+	private Set<Object> getConnectionsToElementsNotBeingMoved(ChangeBoundsRequest request, EditPart child) {
+		List<?> sources = ((INodeEditPart) child).getSourceConnections();
+		List<?> targets = ((INodeEditPart) child).getTargetConnections();
+		Set<Object> connections = new HashSet<Object>();
+		connections.addAll(sources);
+		connections.addAll(targets);
+		if (connections.isEmpty()) {
+			return Collections.emptySet();
+		}
+		PapyrusResizableShapeEditPolicy.CachedEditPartsSet movedEditPartsSet = PapyrusResizableShapeEditPolicy.getMovedEditPartsSet(request);
+		final Set<Object> result = new HashSet<Object>();
+		final Iterator<?> connectionsIter = connections.iterator();
+		while (connectionsIter.hasNext()) {
+			final Object nextConnection = connectionsIter.next();
+			if (false == nextConnection instanceof AbstractConnectionEditPart) {
+				continue;
+			}
+			AbstractConnectionEditPart nextTypedConnection = (AbstractConnectionEditPart) nextConnection;
+			EditPart sourceEnd = nextTypedConnection.getSource();
+			EditPart targetEnd = nextTypedConnection.getTarget();
+			if (movedEditPartsSet.isMovedEditPart(sourceEnd) && movedEditPartsSet.isMovedEditPart(targetEnd)) {
+				continue;
+			}
+			result.add(nextConnection);
+		}
+		return result;
 	}
 
 	protected final TransactionalEditingDomain getEditingDomain() {
