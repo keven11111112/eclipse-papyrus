@@ -41,6 +41,13 @@
                context="org.eclipse.papyrus.infra.nattable.header.treefilling.feature.labelprovider">
          </labelProviderContext>
       </labelProvider>
+      <labelProvider
+            priority="1700"
+            provider="org.eclipse.papyrus.uml.nattable.provider.UMLTypedElementCellLabelProvider">
+         <labelProviderContext
+               context="org.eclipse.papyrus.infra.nattable.body.labelprovider">
+         </labelProviderContext>
+      </labelProvider>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.axismanager">

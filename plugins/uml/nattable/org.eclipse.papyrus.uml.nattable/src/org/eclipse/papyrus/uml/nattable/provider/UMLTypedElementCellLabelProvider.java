@@ -11,8 +11,9 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.infra.nattable.provider;
+package org.eclipse.papyrus.uml.nattable.provider;
 
+import org.eclipse.papyrus.infra.nattable.provider.GenericCellLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.uml2.uml.TypedElement;
 
