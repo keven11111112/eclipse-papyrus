@@ -32,14 +32,13 @@ class ModelingAssistantProviderRule extends org.eclipse.papyrus.uml.profile.assi
     @Inject extension UMLElementTypes
 
     def create createModelingAssistantProvider toModelingAssistantProvider(ElementTypeSetConfiguration elementTypeSet) {
-
         name = elementTypeSet.name
         
         elementTypeSet.elementTypeConfigurations.forEach[ type |
-            elementTypeIDs.add(type.identifier)
             
             if (!type.relationship) {
                 // Popup assistants to create non-relationships
+                elementTypeIDs.add(type.identifier)
                 popupAssistants.add(type.toPopupAssistant)
             } else {
                 relationshipTypeIDs.add(type.identifier)
@@ -52,7 +51,6 @@ class ModelingAssistantProviderRule extends org.eclipse.papyrus.uml.profile.assi
         name = editor.modelID
         elementTypeIDs.addAll(editor.diagram.validNodes.map[elementType?.uniqueIdentifier].filterNull)
         relationshipTypeIDs.addAll(editor.diagram.validLinks.map[elementType?.uniqueIdentifier].filterNull)
-        elementTypeIDs.addAll(relationshipTypeIDs)
         
         popupAssistants.addAll(editor.diagram.validNodes.map[toPopupAssistant])
         connectionAssistants.addAll(editor.diagram.validLinks.map[toConnectionAssistant])

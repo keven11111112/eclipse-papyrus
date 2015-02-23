@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.gmfdiag.assistant.PopupAssistant;
 import org.eclipse.papyrus.infra.gmfdiag.assistant.internal.operations.ModelingAssistantProviderOperations;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
+import org.eclipse.uml2.common.util.SubsetSupersetEDataTypeUniqueEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -473,7 +474,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	{
 		if (elementTypeIDs == null)
 		{
-			elementTypeIDs = new EDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID);
+			elementTypeIDs = new SubsetSupersetEDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__ELEMENT_TYPE_ID, null, ELEMENT_TYPE_ID_ESUBSETS);
 		}
 		return elementTypeIDs;
 	}
@@ -613,7 +614,7 @@ public class ModelingAssistantProviderImpl extends MinimalEObjectImpl.Container 
 	{
 		if (relationshipTypeIDs == null)
 		{
-			relationshipTypeIDs = new EDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID);
+			relationshipTypeIDs = new SubsetSupersetEDataTypeUniqueEList<String>(String.class, this, AssistantPackage.MODELING_ASSISTANT_PROVIDER__RELATIONSHIP_TYPE_ID, RELATIONSHIP_TYPE_ID_ESUPERSETS, null);
 		}
 		return relationshipTypeIDs;
 	}

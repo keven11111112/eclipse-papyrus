@@ -46,13 +46,13 @@ class ModelingAssistantProviderRule {
         umlProfile.allExtensions.forEach [ ext |
             // Add the diagram-specific element types for our profile
             var profileElementTypes = ext.metaclass.diagramSpecificElementTypes.map[ext.toElementTypeID(it)]
-            elementTypeIDs.addAll(profileElementTypes)
             
             // And filters for the same, which the user may employ in edits of the model
             profileElementTypes.forEach[toElementTypeFilter(umlProfile)]
             
             if (!ext.metaclass.EClass.isRelationship) {
                 // Popup assistants to create non-relationships
+                elementTypeIDs.addAll(profileElementTypes)
                 popupAssistants.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toPopupAssistant(it)])
             } else {
                 // Connection assistants to create relationships
