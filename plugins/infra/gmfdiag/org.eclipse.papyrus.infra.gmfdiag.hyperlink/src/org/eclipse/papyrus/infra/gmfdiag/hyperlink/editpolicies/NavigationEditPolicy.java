@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 Atos Origin, CEA, and others.
+ * Copyright (c) 2010, 2015 Atos Origin, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Patrick Tessier (CEA LIST)-modification
  *  Christian W. Damus (CEA) - bug 421411
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Bug 454386
+ *  Christian W. Damus - bug 460583
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies;
 
@@ -34,11 +35,11 @@ import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.OpenEditPolicy;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.INonDirtying;
 import org.eclipse.papyrus.commands.util.NonDirtyingUtils;
@@ -67,7 +68,7 @@ import org.eclipse.papyrus.infra.hyperlink.util.HyperLinkHelpersRegistrationUtil
  */
 public class NavigationEditPolicy extends OpenEditPolicy {
 
-	public static final String NAVIGATION_POLICY =  "NavigationEditPolicy";
+	public static final String NAVIGATION_POLICY = "NavigationEditPolicy";
 
 	public NavigationEditPolicy() {
 	}
@@ -81,13 +82,13 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 	@Override
 	protected Command getOpenCommand(Request request) {
 		Command openCommand = getHyperlinkOpenCommand(request);
-		if (openCommand== null || !openCommand.canExecute()){
+		if (openCommand == null || !openCommand.canExecute()) {
 			openCommand = getShortCutOpenCommand(request);
 		}
 		return openCommand;
 	}
-	
-	
+
+
 	/**
 	 *
 	 * @param request
@@ -436,17 +437,20 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 	/**
 	 * Get the open command previously defined by ShortCutEditPolicy
+	 * 
 	 * @param request
 	 * @return
 	 */
 	protected Command getShortCutOpenCommand(Request request) {
-		if (((GraphicalEditPart) getHost()).getNotationView().getElement() instanceof Diagram && ((GraphicalEditPart) getHost()).getNotationView().getElement().eResource() != null) {
-			Diagram diagram = (Diagram) ((GraphicalEditPart) getHost()).getNotationView().getElement();
-			OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(((GraphicalEditPart) getHost()).getEditingDomain(), diagram);
+		IGraphicalEditPart host = (IGraphicalEditPart) getHost();
+		View view = host.getNotationView();
+		EObject element = (view == null) ? null : view.getElement();
+		if ((element instanceof Diagram) && (element.eResource() != null)) {
+			OpenDiagramCommand openDiagramCommand = new OpenDiagramCommand(host.getEditingDomain(), (Diagram) element);
 			return new ICommandProxy(openDiagramCommand);
 		} else {
 			return UnexecutableCommand.INSTANCE;
 		}
 	}
-	
+
 }
