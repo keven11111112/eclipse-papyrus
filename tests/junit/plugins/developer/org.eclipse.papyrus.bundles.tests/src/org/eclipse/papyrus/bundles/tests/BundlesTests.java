@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - Skip the feature-version test when running in development mode
  *
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
@@ -21,9 +22,12 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
+import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
+import org.eclipse.papyrus.junit.framework.classification.rules.Conditional;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.hamcrest.BaseMatcher;
@@ -45,7 +49,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	// Adds .* (Valid version numbers are e.g. 0.10.1.qualifier)
 	private static final String REGEX_VERSION_NUMBER = BundleTestsUtils.PAPYRUS_VERSION.replaceAll("\\.", "\\\\.") + "\\..*"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 
-	//Indicates that the bundle name must contain the (Incubation) string
+	// Indicates that the bundle name must contain the (Incubation) string
 	//private static final String REGEX_INCUBATION = ".*\\(Incubation\\)"; //$NON-NLS-1$
 
 	private static final String INCUBATION_KEYWORD = "(Incubation)"; //$NON-NLS-1$
@@ -53,19 +57,23 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private static final String BATIK_VERSION = "[1.6.0,1.7.0)"; //$NON-NLS-1$
 
 	private static final String NATTABLE_VERSION = "1.2.0"; //$NON-NLS-1$
-	
+
 	private static final String GLAZED_LIST_VERSION = "1.9.0";//$NON-NLS-1$
 
 	private static final String PAPYRUS_VERSION = BundleTestsUtils.PAPYRUS_VERSION;
 
+	@Condition
+	public final boolean notDevMode = !Platform.inDevelopmentMode();
+
 	@Test
+	@Conditional(key = "notDevMode")
 	public void featureVersionNumberTest() {
 		StringBuffer message = new StringBuffer("Wrong version number for the features:"); //$NON-NLS-1$
 		int nbProblem = 0;
 		final List<Feature> features = BundleTestsUtils.getPapyrusFeature();
-		for(final Feature feature : features) {
+		for (final Feature feature : features) {
 			String version = feature.getVersion();
-			if(!version.matches(REGEX_VERSION_NUMBER)) {
+			if (!version.matches(REGEX_VERSION_NUMBER)) {
 				message.append("\n"); //$NON-NLS-1$
 				message.append(feature.getId());
 				nbProblem++;
@@ -86,10 +94,12 @@ public class BundlesTests extends AbstractPapyrusTest {
 	public void incubationTest() {
 		org.hamcrest.Matcher<String> matcher = new BaseMatcher<String>() {
 
+			@Override
 			public boolean matches(Object item) {
-				return item instanceof String && !((String)item).contains(INCUBATION_KEYWORD);
+				return item instanceof String && !((String) item).contains(INCUBATION_KEYWORD);
 			}
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("Does not contain ");
 				description.appendText(INCUBATION_KEYWORD);
@@ -147,27 +157,27 @@ public class BundlesTests extends AbstractPapyrusTest {
 	public void reexportDependencies() {
 		StringBuffer message = new StringBuffer();
 		int nb = 0;
-		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
-			if(value == null) {
+			if (value == null) {
 				continue;
 			}
 			final String[] bundles = value.split(","); //$NON-NLS-1$
 			StringBuffer localMessage = new StringBuffer();
-			for(final String bundle : bundles) {
-				if(bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
+			for (final String bundle : bundles) {
+				if (bundle.contains("visibility:=reexport")) { //$NON-NLS-1$
 					nb++;
-					if(localMessage.length() == 0) {
+					if (localMessage.length() == 0) {
 						localMessage.append(NLS.bind("{0} re-exports:", current.getSymbolicName())); //$NON-NLS-1$
 					}
-					if(bundle.contains(";")) { //$NON-NLS-1$
+					if (bundle.contains(";")) { //$NON-NLS-1$
 						localMessage.append(NLS.bind("\n  - {0}", bundle.substring(0, bundle.indexOf(";")))); //$NON-NLS-1$ //$NON-NLS-2$
 					} else {
 						localMessage.append(NLS.bind("\n  - {0}", bundle)); //$NON-NLS-1$
 					}
 				}
 			}
-			if(localMessage.length() != 0) {
+			if (localMessage.length() != 0) {
 				message.append(localMessage);
 				message.append("\n");//$NON-NLS-1$
 			}
@@ -183,22 +193,24 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 * Tests if a the value of a property in the Manifest is correct
 	 *
 	 * @param property
-	 *        the property to test
+	 *            the property to test
 	 * @param regex
-	 *        the regular expression to test the property
+	 *            the regular expression to test the property
 	 * @param mustBeNull
-	 *        indicates that the value for the property must be <code>null</code>
+	 *            indicates that the value for the property must be <code>null</code>
 	 * @param onlyOnJavaProject
-	 *        boolean indicating if the tests should only be done on
-	 *        JavaProject
+	 *            boolean indicating if the tests should only be done on
+	 *            JavaProject
 	 */
 	private void testManifestProperty(final String property, final String regex, final boolean mustBeNull, final boolean onlyOnJavaProject) {
 		org.hamcrest.Matcher<String> regexMatcher = new org.hamcrest.BaseMatcher<String>() {
 
+			@Override
 			public boolean matches(Object item) {
-				return item instanceof String && ((String)item).matches(regex);
+				return item instanceof String && ((String) item).matches(regex);
 			}
 
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("Matching regex(");
 				description.appendValue(regex);
@@ -213,19 +225,19 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private void testManifestProperty(final String property, final org.hamcrest.Matcher<String> matcher, final boolean mustBeNull, final boolean onlyOnJavaProject) {
 		String message = null;
 		int nb = 0;
-		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			if(onlyOnJavaProject && !BundleTestsUtils.isJavaProject(current)) {
+		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			if (onlyOnJavaProject && !BundleTestsUtils.isJavaProject(current)) {
 				continue; // useful for oep.infra.gmfdiag.css.theme for example
 			}
 			final String value = current.getHeaders().get(property);
 			boolean result = false;
-			if(mustBeNull) {
+			if (mustBeNull) {
 				result = (value == null);
-			} else if(value != null) {
-				result = matcher.matches(value); //Don't fail yet if invalid
+			} else if (value != null) {
+				result = matcher.matches(value); // Don't fail yet if invalid
 			}
-			if(!result) {
-				if(message == null) {
+			if (!result) {
+				if (message == null) {
 					message = "Wrong " + property + " for :"; //$NON-NLS-1$ //$NON-NLS-2$
 				}
 				message += "\n "; //$NON-NLS-1$
@@ -240,15 +252,15 @@ public class BundlesTests extends AbstractPapyrusTest {
 	 * Tests if the file is owned by the bundle
 	 *
 	 * @param filepath
-	 *        the file path
+	 *            the file path
 	 */
 	private void fileTest(final String filepath) {
 		StringBuffer buffer = new StringBuffer();
 		int nb = 0;
-		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			URL url = current.getEntry(filepath);
-			if(url == null) {
-				if(buffer.length() == 0) {
+			if (url == null) {
+				if (buffer.length() == 0) {
 					buffer.append(NLS.bind("The following bundles don't have the file {0}.", filepath)); //$NON-NLS-1$
 				}
 				buffer.append("\n");//$NON-NLS-1$
@@ -289,7 +301,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 	public void glazedListDependencyVersionTest() {
 		testPapyrusDependencies2("ca.odell.glazedlists", NATTABLE_VERSION);//$NON-NLS-1$
 	}
-	
+
 	@Test
 	public void guavaDependencyVersionText() {
 		testPapyrusDependencies2("com.google.guava", "11.0.0");//$NON-NLS-1$ //$NON-NLS-2$
@@ -316,62 +328,62 @@ public class BundlesTests extends AbstractPapyrusTest {
 		public Version(final String versionAsString) {
 			this.minIncluding = true;
 			this.maxIncluding = true;
-			if(versionAsString != null) {
+			if (versionAsString != null) {
 				this.minIncluding = !versionAsString.startsWith("("); //$NON-NLS-1$
 				this.maxIncluding = !versionAsString.endsWith(")"); //$NON-NLS-1$
 				final Pattern versionNumber = Pattern.compile("\\d+(\\.\\d+)*"); //$NON-NLS-1$
 				final Matcher matcher = versionNumber.matcher(versionAsString);
-				while(matcher.find()) {
+				while (matcher.find()) {
 					final String grp = matcher.group();
 					final String[] versions = grp.split("\\."); //$NON-NLS-1$
 					int[] vers = new int[versions.length];
-					for(int i = 0; i < versions.length; i++) {
+					for (int i = 0; i < versions.length; i++) {
 						vers[i] = Integer.parseInt(versions[i]);
 					}
-					if(min == null) {
+					if (min == null) {
 						min = vers;
 					} else {
 						max = vers;
 					}
 				}
 			}
-			if(min == null) {
-				min = new int[]{ 0, 0, 0 };
+			if (min == null) {
+				min = new int[] { 0, 0, 0 };
 			}
-			if(max == null) {
-				max = new int[]{ 99, 99, 99 };
+			if (max == null) {
+				max = new int[] { 99, 99, 99 };
 			}
 		}
 
 		public boolean inIncludedIn(final Version version) {
 			// verifying intersection between versions!
-			if(compare(this.max, version.min) < 0) {
+			if (compare(this.max, version.min) < 0) {
 				return false;
 			}
-			if(compare(version.max, this.min) < 0) {
+			if (compare(version.max, this.min) < 0) {
 				return false;
 			}
-			if(compare(this.max, version.min) == 0 && (!this.maxIncluding || !version.minIncluding)) {
+			if (compare(this.max, version.min) == 0 && (!this.maxIncluding || !version.minIncluding)) {
 				return false;
 			}
-			if(compare(version.max, this.min) == 0 && (!version.maxIncluding || !this.minIncluding)) {
+			if (compare(version.max, this.min) == 0 && (!version.maxIncluding || !this.minIncluding)) {
 				return false;
 			}
 
 			// verifying inclusion
-			if(compare(this.min, version.min) < 0) {
+			if (compare(this.min, version.min) < 0) {
 				return false;
 			}
 
-			if(compare(this.min, version.min) == 0 && (this.minIncluding != version.minIncluding)) {
+			if (compare(this.min, version.min) == 0 && (this.minIncluding != version.minIncluding)) {
 				return false;
 			}
 
-			if(compare(this.max, version.max) > 0) {
+			if (compare(this.max, version.max) > 0) {
 				return false;
 			}
 
-			if(compare(this.max, version.max) == 0 && (this.maxIncluding != version.maxIncluding)) {
+			if (compare(this.max, version.max) == 0 && (this.maxIncluding != version.maxIncluding)) {
 				return false;
 			}
 			return true;
@@ -389,16 +401,16 @@ public class BundlesTests extends AbstractPapyrusTest {
 		 */
 		protected int compare(int[] first, int[] second) {
 			int min = Math.min(first.length, second.length);
-			for(int i = 0; i < min; i++) {
-				if(first[i] < second[i]) {
+			for (int i = 0; i < min; i++) {
+				if (first[i] < second[i]) {
 					return -1;
-				} else if(first[i] > second[i]) {
+				} else if (first[i] > second[i]) {
 					return 1;
 				}
 			}
-			if(first.length == second.length) {
+			if (first.length == second.length) {
 				return 0;
-			} else if(first.length > second.length) {
+			} else if (first.length > second.length) {
 				return 1;
 			}
 			return -1;
@@ -408,38 +420,38 @@ public class BundlesTests extends AbstractPapyrusTest {
 	/**
 	 *
 	 * @param partialDependencyName
-	 *        the fullName or a part of the name of the plugin
+	 *            the fullName or a part of the name of the plugin
 	 * @param wantedBundleVersionRegex
-	 *        a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
+	 *            a string like this : "bundle-version=\"[1.6.0,1.7.0)\")"
 	 */
 	protected void testPapyrusDependencies2(final String partialDependencyName, final String wantedVersion) {
 		final StringBuilder builder = new StringBuilder();
 		int nb = 0;
 		final Version wanted = new Version(wantedVersion);
-		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
 			final String value = current.getHeaders().get(BundleTestsUtils.REQUIRE_BUNDLE);
-			if(value == null) {
+			if (value == null) {
 				continue;
 			}
 			Pattern pattern = Pattern.compile("(" + partialDependencyName + REGEX_PLUGIN + ")" + REGEX_DEPENDENCY); //$NON-NLS-1$ //$NON-NLS-2$
 			Matcher matcher = pattern.matcher(value);
 			final StringBuilder localBuilder = new StringBuilder();
-			while(matcher.find()) {
+			while (matcher.find()) {
 				final String pluginName = matcher.group(1);
 				String versionString = null;
-				if(matcher.groupCount() > 1) {
+				if (matcher.groupCount() > 1) {
 					versionString = matcher.group(2);
 				}
-				if(versionString == null) {
-					if(localBuilder.length() == 0) {
+				if (versionString == null) {
+					if (localBuilder.length() == 0) {
 						localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
 					}
 					localBuilder.append(NLS.bind("No Version number for {0}\n", pluginName)); //$NON-NLS-1$
 					nb++;
 				} else {
 					Version version = new Version(versionString);
-					if(!version.inIncludedIn(wanted)) {
-						if(localBuilder.length() == 0) {
+					if (!version.inIncludedIn(wanted)) {
+						if (localBuilder.length() == 0) {
 							localBuilder.append(NLS.bind("{0} incorrect required bundle-version:\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
 						localBuilder.append(NLS.bind("Bad version for {0}\n", pluginName)); //$NON-NLS-1$
@@ -447,13 +459,13 @@ public class BundlesTests extends AbstractPapyrusTest {
 					}
 				}
 			}
-			if(localBuilder.length() != 0) {
+			if (localBuilder.length() != 0) {
 				builder.append(localBuilder.toString());
 				builder.append("\n");//$NON-NLS-1$
 			}
 		}
-		if(builder.length() != 0) {
-			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[]{ Integer.toString(nb), wantedVersion, partialDependencyName })); //$NON-NLS-1$
+		if (builder.length() != 0) {
+			builder.insert(0, NLS.bind("{0} problems. We want this version : {1} for the plugin {2}\n", new String[] { Integer.toString(nb), wantedVersion, partialDependencyName })); //$NON-NLS-1$
 		}
 		Assert.assertTrue(builder.toString(), builder.length() == 0);
 	}
@@ -466,11 +478,11 @@ public class BundlesTests extends AbstractPapyrusTest {
 	public void documentationFileTest() {
 		String message = null;
 		int nb = 0;
-		for(final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
+		for (final Bundle bundle : BundleTestsUtils.getPapyrusBundles()) {
 			final URL res = bundle.getResource("plugin.pdoc"); //$NON-NLS-1$
-			if(res == null) {
+			if (res == null) {
 				nb++;
-				if(message == null) {
+				if (message == null) {
 					message = "No file plugin.pdoc found for:"; //$NON-NLS-1$
 				}
 				message += NLS.bind("\n  - {0}", bundle.getSymbolicName()); //$NON-NLS-1$
@@ -491,25 +503,25 @@ public class BundlesTests extends AbstractPapyrusTest {
 		possibleIds.add("PLUGIN_ID");//$NON-NLS-1$
 		int nbError = 0;
 		int nbWarning = 0;
-		for(final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
-			if(!BundleTestsUtils.isJavaProject(current)) {
+		for (final Bundle current : BundleTestsUtils.getPapyrusBundles()) {
+			if (!BundleTestsUtils.isJavaProject(current)) {
 				continue; // useful for oep.infra.gmfdiag.css.theme for example
 			}
 			final String activator = current.getHeaders().get("Bundle-Activator"); //$NON-NLS-1$
-			if(activator != null) {
+			if (activator != null) {
 				try {
 					final Class<?> activatorClass = current.loadClass(activator);
 					Field plugin_id_field = null;
-					for(final Field currentField : activatorClass.getFields()) {
+					for (final Field currentField : activatorClass.getFields()) {
 						final String fieldName = currentField.getName();
-						if(possibleIds.contains(fieldName)) {
+						if (possibleIds.contains(fieldName)) {
 							plugin_id_field = currentField;
 							break;
 						}
 					}
-					if(plugin_id_field != null) {
-						final String plugin_id = (String)plugin_id_field.get(activatorClass);
-						if(!plugin_id.equals(current.getSymbolicName())) {
+					if (plugin_id_field != null) {
+						final String plugin_id = (String) plugin_id_field.get(activatorClass);
+						if (!plugin_id.equals(current.getSymbolicName())) {
 							nbError++;
 							errorMessage.append(NLS.bind("The field PLUGIN_ID of the plugin {0} is not equals to the plugin name.\n", current.getSymbolicName())); //$NON-NLS-1$
 						}
@@ -519,7 +531,7 @@ public class BundlesTests extends AbstractPapyrusTest {
 						warningMessage.append(NLS.bind("The activator of {0} has no field named PLUGIN_ID.\n", current.getSymbolicName())); //$NON-NLS-1$
 					}
 				} catch (final Exception e) {
-					errorMessage.append(NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[]{ current.getSymbolicName(), e })); //$NON-NLS-1$
+					errorMessage.append(NLS.bind("Exception occured with the plugin {0} \n {1} \n", new Object[] { current.getSymbolicName(), e })); //$NON-NLS-1$
 				}
 			}
 
