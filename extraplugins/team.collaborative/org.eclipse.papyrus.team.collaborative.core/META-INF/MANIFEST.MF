@@ -2,7 +2,7 @@ Manifest-Version: 1.0
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
- com.google.guava,
+ com.google.guava;bundle-version="11.0.0",
  org.eclipse.core.resources;bundle-version="3.7.101",
  org.eclipse.emf.workspace
 Export-Package: org.eclipse.papyrus.team.collaborative.core,
