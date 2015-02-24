@@ -37,7 +37,7 @@ import org.eclipse.papyrus.infra.tools.util.TypeUtils;
  * 
  * This extension point allows to register the filter configuration
  */
-public class FilterConfigurationFactory {
+public class FilterConfigurationRegistry {
 
 	/**
 	 * this map store the contribution to the extension point
@@ -66,14 +66,14 @@ public class FilterConfigurationFactory {
 	/**
 	 * this class is a singleton
 	 */
-	public static final FilterConfigurationFactory INSTANCE = new FilterConfigurationFactory();
+	public static final FilterConfigurationRegistry INSTANCE = new FilterConfigurationRegistry();
 
 	/**
 	 * 
 	 * Constructor.
 	 *
 	 */
-	private FilterConfigurationFactory() {
+	private FilterConfigurationRegistry() {
 		// to prevent instanciation
 		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
 		this.contributionByOrder = new TreeMap<Integer, List<IFilterConfiguration>>();

@@ -31,6 +31,7 @@ import org.eclipse.nebula.widgets.nattable.util.GUIHelper;
 import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.converter.GenericDisplayConverter;
 import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationFactory;
+import org.eclipse.papyrus.infra.nattable.filter.configuration.FilterConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
@@ -67,7 +68,7 @@ public class FilterRowCustomConfiguration extends AbstractRegistryConfiguration 
 		for (int i = 0; i < columnElement.size(); i++) {
 			StringBuilder builder = new StringBuilder(FilterRowDataLayer.FILTER_ROW_COLUMN_LABEL_PREFIX);
 			builder.append(Integer.valueOf(i).toString());
-			FilterConfigurationFactory.INSTANCE.configureFilter(configRegistry, columnElement.get(i), builder.toString());
+			FilterConfigurationRegistry.INSTANCE.configureFilter(configRegistry, columnElement.get(i), builder.toString());
 			nattable.doCommand(new UpdateFilterMapCommand(i));
 		}
 	}
