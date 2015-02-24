@@ -107,13 +107,14 @@ public class ProblemsManagerTest
 				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount(getClass2());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> problems = collect(mgr
 				.getAllProblems(getClass2(resource)));
-		assertThat(problems.size(), equalTo(2));
+		assertThat(problems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
@@ -129,13 +130,14 @@ public class ProblemsManagerTest
 				.add(new ECrossReferenceAdapter());
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount(getClass2());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> problems = collect(mgr
 				.getAllProblems(getClass2(resource)));
-		assertThat(problems.size(), equalTo(2));
+		assertThat(problems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
