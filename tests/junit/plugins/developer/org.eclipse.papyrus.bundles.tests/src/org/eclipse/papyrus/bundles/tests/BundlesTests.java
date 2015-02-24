@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
-import org.eclipse.core.runtime.Platform;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
@@ -63,10 +62,10 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private static final String PAPYRUS_VERSION = BundleTestsUtils.PAPYRUS_VERSION;
 
 	@Condition
-	public final boolean notDevMode = !Platform.inDevelopmentMode();
+	public final boolean isTychoExecution = Activator.getDefault().getRunningApplicationID().startsWith("org.eclipse.tycho."); //$NON-NLS-1$
 
 	@Test
-	@Conditional(key = "notDevMode")
+	@Conditional(key = "isTychoExecution")
 	public void featureVersionNumberTest() {
 		StringBuffer message = new StringBuffer("Wrong version number for the features:"); //$NON-NLS-1$
 		int nbProblem = 0;
