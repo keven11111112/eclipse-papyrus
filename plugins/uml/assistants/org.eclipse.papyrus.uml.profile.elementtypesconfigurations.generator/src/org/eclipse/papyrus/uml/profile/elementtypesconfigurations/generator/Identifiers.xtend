@@ -20,6 +20,11 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfigura
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration
 import javax.inject.Inject
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration
+import org.eclipse.emf.common.notify.AdapterFactory
+import org.eclipse.emf.ecore.EObject
+import org.eclipse.emf.edit.provider.IItemLabelProvider
+import org.eclipse.emf.ecore.EClassifier
+import org.eclipse.emf.common.util.ResourceLocator
 
 /**
  * Utility extensions for working with and generating unique identifiers in the element types model.
@@ -39,6 +44,9 @@ class Identifiers {
 
     @Accessors
     final String umlElementTypesSet = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"
+    
+    @Accessors
+    AdapterFactory adapterFactory
     
     String identifierBase
 
@@ -75,5 +83,24 @@ class Identifiers {
     
     def dispatch hintSuffix(SpecializationTypeConfiguration elementType) {
         if (elementType.hint.nullOrEmpty) "" else "_" + elementType.hint
+    }
+    
+    def dispatch getLabel(EObject object) {
+        val labels = adapterFactory?.adapt(object, IItemLabelProvider) as IItemLabelProvider
+        labels?.getText(object)
+    }
+    
+    def dispatch getLabel(EClassifier eClassifier) {
+        try {
+            eClassifier.resourceLocator?.getString("_UI_" + eClassifier.name + "_type")
+        } catch (Exception e) {
+            eClassifier.name
+        }
+    }
+    
+    private def ResourceLocator getResourceLocator(EObject object) {
+        switch adapter : adapterFactory?.adapt(object, IItemLabelProvider) {
+            ResourceLocator : adapter
+        }
     }
 }

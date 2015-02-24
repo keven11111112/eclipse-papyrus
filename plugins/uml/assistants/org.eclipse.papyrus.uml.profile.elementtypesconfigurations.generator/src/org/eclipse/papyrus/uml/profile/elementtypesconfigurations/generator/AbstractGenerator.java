@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.internal.Activator;
 import org.eclipse.uml2.common.util.UML2Util;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Sets;
 import com.google.inject.Guice;
 import com.google.inject.Inject;
@@ -55,6 +56,13 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 	@InputModel
 	private EClass inputType;
 
+	@Inject
+	@OutputModel
+	private EClass outputType;
+
+	@Inject
+	private Identifiers identifiers;
+
 	public AbstractGenerator(Identifiers identifiers) {
 		this(new GeneratorModule(identifiers));
 	}
@@ -64,6 +72,12 @@ public abstract class AbstractGenerator<I extends EObject, O extends EObject> {
 
 		this.injector = Guice.createInjector(module);
 		injector.injectMembers(this);
+	}
+
+	public String getLabel() {
+		String result = identifiers.getLabel(outputType);
+
+		return Strings.isNullOrEmpty(result) ? "output model" : result;
 	}
 
 	public IStatus generate(URI inputURI, URI outputURI) {

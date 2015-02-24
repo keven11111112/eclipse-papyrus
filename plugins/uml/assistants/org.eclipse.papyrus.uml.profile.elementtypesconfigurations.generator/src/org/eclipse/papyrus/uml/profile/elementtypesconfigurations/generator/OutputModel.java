@@ -21,11 +21,11 @@ import java.lang.annotation.Target;
 import com.google.inject.BindingAnnotation;
 
 /**
- * Injector annotation for the model-to-model transformation's input model type.
+ * Injector annotation for the model-to-model transformation's output model type.
  */
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)
 @Target({ ElementType.FIELD, ElementType.METHOD, ElementType.PARAMETER })
-public @interface InputModel {
+public @interface OutputModel {
 	// Empty
 }

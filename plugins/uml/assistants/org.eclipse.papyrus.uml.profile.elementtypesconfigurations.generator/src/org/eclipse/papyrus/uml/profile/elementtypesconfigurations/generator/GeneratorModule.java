@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 import org.eclipse.uml2.uml.UMLPackage;
 
 import com.google.inject.AbstractModule;
@@ -34,6 +35,7 @@ public class GeneratorModule extends AbstractModule {
 	protected void configure() {
 		// bind transformation parameters
 		bindInputType();
+		bindOutputType();
 
 		// bind extensions
 		bindIdentifiers();
@@ -47,6 +49,10 @@ public class GeneratorModule extends AbstractModule {
 
 	protected void bindInputType() {
 		bind(EClass.class).annotatedWith(InputModel.class).toInstance(UMLPackage.Literals.PROFILE);
+	}
+
+	protected void bindOutputType() {
+		bind(EClass.class).annotatedWith(OutputModel.class).toInstance(ElementtypesconfigurationsPackage.Literals.ELEMENT_TYPE_SET_CONFIGURATION);
 	}
 
 	protected void bindIdentifiers() {
