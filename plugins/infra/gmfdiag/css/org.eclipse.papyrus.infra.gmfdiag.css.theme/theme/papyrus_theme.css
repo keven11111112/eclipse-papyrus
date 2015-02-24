@@ -147,7 +147,6 @@ InteractionOverviewDiagram DecisionNode
 	fillColor:white;
 }
 
-
 ActivityDiagram InitialNode,
 InteractionOverviewDiagram InitialNode{
 	gradient:none;
@@ -178,5 +177,12 @@ StateMachineDiagram Pseudostate[kind="exitPoint"],
 StateMachineDiagram Pseudostate[kind="entryPoint"]
 {
 	fillColor:white;
+}
+
+StateMachineDiagram Pseudostate[kind="initial"],
+StateMachineDiagram Pseudostate[kind="junction"]
+{
+	gradient:none;
+	fillColor:black;
 }
 
