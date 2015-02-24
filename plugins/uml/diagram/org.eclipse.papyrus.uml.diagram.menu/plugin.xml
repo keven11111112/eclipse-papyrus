@@ -653,6 +653,26 @@
          </visibleWhen>
       </command>
       <separator
+            name="org.eclipse.papyrus.menu.showhide.toolbar.separator1"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.toggleCanonical"
+            label="Synchronized with Model"
+            style="toggle"
+            tooltip="Automatically synchronize contents with the underlying model elements">
+         <visibleWhen>
+            <and>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </and>
+         </visibleWhen>
+      </command>
+      <separator
             name="org.eclipse.papyrus.menu.showhide.toolbar.separator0"
             visible="true">
       </separator>
@@ -1366,6 +1386,16 @@
                label="Sort/&amp;Filter Compartments Items..."
                style="push"
                tooltip="Sort or Filter Compartments Items for this shape">
+         </command>
+         <separator
+               name="org.eclipse.papyrus.uml.diagram.ui.menu.filtersMenu.separator1"
+               visible="true">
+         </separator>
+         <command
+               commandId="org.eclipse.papyrus.infra.gmfdiag.menu.toggleCanonical"
+               label="Synchronized with Model"
+               style="toggle"
+               tooltip="Automatically synchronize contents with the underlying model elements">
          </command>
          <separator
                name="org.eclipse.papyrus.uml.diagram.ui.menu.filtersMenu.separator0"
@@ -2113,6 +2143,16 @@
             label="Sort/&amp;Filter Compartments Items..."
             style="push"
             tooltip="Sort or Filter Compartments Items for this shape">
+      </command>
+      <separator
+            name="org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters.separator1"
+            visible="true">
+      </separator>
+      <command
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.toggleCanonical"
+            label="Synchronized with Model"
+            style="toggle"
+            tooltip="Automatically synchronize contents with the underlying model elements">
       </command>
       <separator
             name="org.eclipse.papyrus.uml.diagram.ui.popupmenu.filters.separator0"
@@ -3570,6 +3610,10 @@
       </variable>
       <variable
             name="showHideCompartments"
+            priorityLevel="workbench">
+      </variable>
+      <variable
+            name="toggleCanonical"
             priorityLevel="workbench">
       </variable>
       <variable

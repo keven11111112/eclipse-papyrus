@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429422
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
@@ -35,7 +36,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.swt.widgets.Display;
 
 /**
  * A CSS Engine for the current Eclipse Project
@@ -60,14 +60,7 @@ public class ProjectCSSEngine extends ExtendedCSSEngineImpl {
 							public boolean visit(IResourceDelta delta) throws CoreException {
 								if (delta.getResource().equals(stylesheetPreferences)) {
 									ProjectCSSEngine.this.reset();
-									DiagramHelper.setNeedsRefresh();
-									Display.getDefault().asyncExec(new Runnable() {
-
-										@Override
-										public void run() {
-											DiagramHelper.refreshDiagrams();
-										}
-									});
+									DiagramHelper.scheduleRefresh();
 
 									return false;
 								}

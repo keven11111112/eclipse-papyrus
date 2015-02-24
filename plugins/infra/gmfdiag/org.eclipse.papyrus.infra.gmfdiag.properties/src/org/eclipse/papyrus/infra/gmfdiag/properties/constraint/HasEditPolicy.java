@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 CEA LIST.
+ * Copyright (c) 2011, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.properties.constraint;
 
@@ -15,6 +16,8 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.papyrus.infra.constraints.SimpleConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.AbstractConstraint;
 import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+
+import com.google.common.base.Objects;
 
 /**
  *
@@ -59,7 +62,7 @@ public class HasEditPolicy extends AbstractConstraint {
 			return false;
 		}
 
-		return constraint instanceof HasEditPolicy && ((HasEditPolicy) constraint).editPolicyID == editPolicyID;
+		return constraint instanceof HasEditPolicy && Objects.equal(((HasEditPolicy) constraint).editPolicyID, editPolicyID);
 	}
 
 }

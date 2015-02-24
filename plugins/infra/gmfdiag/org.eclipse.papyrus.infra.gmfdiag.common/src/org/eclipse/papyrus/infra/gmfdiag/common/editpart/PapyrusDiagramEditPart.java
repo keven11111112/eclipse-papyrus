@@ -11,9 +11,15 @@
  *  Christian W. Damus (CEA) - support pluggable edit-part conflict detection (CDO)
  *  C�line Janssens (ALL4TEC) - Override getDragTracker with the PapyrusRubberbandDragTracker
  *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
+
+import java.util.Collections;
+import java.util.Map;
+import java.util.Set;
+import java.util.WeakHashMap;
 
 import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPart;
@@ -23,12 +29,17 @@ import org.eclipse.gef.requests.SelectionRequest;
 import org.eclipse.gef.tools.DeselectAllTracker;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.PapyrusPopupBarEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.XYLayoutWithConstrainedResizedEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.selection.PapyrusRubberbandDragTracker;
 
+import com.google.common.collect.Sets;
+
 public class PapyrusDiagramEditPart extends DiagramEditPart {
+	// We store weak-referencing sets in the values
+	private static final Map<Diagram, Set<PapyrusDiagramEditPart>> diagrams = new WeakHashMap<Diagram, Set<PapyrusDiagramEditPart>>();
 
 	private IConflictingEditPartFilter conflictFilter = IConflictingEditPartFilter.DEFAULT;
 
@@ -39,6 +50,46 @@ public class PapyrusDiagramEditPart extends DiagramEditPart {
 
 	public PapyrusDiagramEditPart(View diagramView) {
 		super(diagramView);
+
+		register(diagramView, this);
+	}
+
+	private static void register(View diagramView, PapyrusDiagramEditPart editPart) {
+		if (diagramView instanceof Diagram) {
+			Diagram diagram = (Diagram) diagramView;
+
+			synchronized (diagrams) {
+				Set<PapyrusDiagramEditPart> diagramEditParts = diagrams.get(diagram);
+				if (diagramEditParts == null) {
+					// A weak-referencing set
+					diagramEditParts = Sets.newSetFromMap(new WeakHashMap<PapyrusDiagramEditPart, Boolean>());
+					diagrams.put(diagram, diagramEditParts);
+				}
+				diagramEditParts.add(editPart);
+			}
+		}
+	}
+
+	/**
+	 * Obtains the edit-parts currently managing the specified {@code diagram} in editors.
+	 * 
+	 * @param diagram
+	 *            a diagram (may be {@code null})
+	 * 
+	 * @return the set of edit-parts for the diagram, or an empty set if none (such as when the {@code diagram} is {@code null})
+	 */
+	public static Set<? extends DiagramEditPart> getDiagramEditPartsFor(Diagram diagram) {
+		Set<? extends PapyrusDiagramEditPart> result;
+
+		synchronized (diagrams) {
+			result = diagrams.get(diagram);
+		}
+
+		if (result == null) {
+			result = Collections.emptySet();
+		}
+
+		return result;
 	}
 
 	@Override

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *	Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
+ *	Christian W. Damus - bug 461629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.properties.preferences;
 
@@ -1073,8 +1074,7 @@ public class ThemePreferencesPage extends FieldEditorPreferencePage implements I
 		boolean result = super.performOk();
 		if (needsRefresh) {
 			WorkspaceCSSEngine.instance.reset();
-			DiagramHelper.setNeedsRefresh();
-			DiagramHelper.refreshDiagrams();
+			DiagramHelper.forceRefresh();
 		}
 
 

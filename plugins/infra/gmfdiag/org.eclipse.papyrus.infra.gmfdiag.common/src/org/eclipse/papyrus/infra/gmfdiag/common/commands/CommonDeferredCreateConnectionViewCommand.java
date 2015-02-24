@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2008 CEA LIST.
+ * Copyright (c) 2008, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr
+ *  Christian W. Damus - bug 433206
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.commands;
 
@@ -180,7 +181,7 @@ public class CommonDeferredCreateConnectionViewCommand extends DeferredCreateCon
 			((View) (createRequest.getConnectionViewDescriptor().getAdapter(View.class))).setElement(element);
 		}
 		viewer = null;// for garbage collection
-		return CommandResult.newOKCommandResult();
+		return CommandResult.newOKCommandResult(viewDescriptor);
 	}
 
 	public void setElement(EObject element) {

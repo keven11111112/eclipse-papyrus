@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 461629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
@@ -32,6 +33,10 @@ import org.eclipse.e4.ui.css.core.impl.dom.CSSStyleDeclarationImpl;
 import org.eclipse.e4.ui.css.core.impl.engine.AbstractCSSEngine;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSConditionFactoryImpl;
 import org.eclipse.e4.ui.css.core.impl.sac.CSSSelectorFactoryImpl;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.BooleanConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
@@ -43,7 +48,6 @@ import org.eclipse.papyrus.infra.gmfdiag.css.lists.ExtendedStyleSheetList;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.swt.widgets.Display;
 import org.w3c.css.sac.ConditionFactory;
 import org.w3c.dom.Element;
 import org.w3c.dom.css.CSSStyleDeclaration;
@@ -364,15 +368,16 @@ public abstract class ExtendedCSSEngineImpl extends AbstractCSSEngine implements
 
 		// FIXME: It seems the refresh can create a deadlock in some cases
 
-		DiagramHelper.setNeedsRefresh();
-		Display.getDefault().asyncExec(new Runnable() {
-
-			@Override
-			public void run() {
-				DiagramHelper.refreshDiagrams(); // TODO: Contextual refresh
+		Diagram diagram = AdapterUtils.adapt(elementAdapter, Diagram.class, null);
+		Set<? extends DiagramEditPart> diagramEditParts = PapyrusDiagramEditPart.getDiagramEditPartsFor(diagram);
+		if (!diagramEditParts.isEmpty()) {
+			// TODO: Contextual refresh more specific than the diagram?
+			for (DiagramEditPart next : diagramEditParts) {
+				DiagramHelper.scheduleRefresh(next);
 			}
-		});
-
+		} else {
+			DiagramHelper.scheduleRefresh();
+		}
 	}
 
 	/**

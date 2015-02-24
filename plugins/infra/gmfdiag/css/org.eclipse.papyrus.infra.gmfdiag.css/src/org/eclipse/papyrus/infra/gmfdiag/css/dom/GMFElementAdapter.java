@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 461629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
 
@@ -26,6 +27,7 @@ import java.util.Set;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.e4.ui.css.core.dom.ElementAdapter;
 import org.eclipse.e4.ui.css.core.engine.CSSEngine;
 import org.eclipse.emf.common.notify.Adapter;
@@ -59,7 +61,7 @@ import org.w3c.dom.NodeList;
  * @author Camille Letavernier
  */
 @SuppressWarnings("restriction")
-public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView {
+public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView, IAdaptable {
 
 	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
 
@@ -202,6 +204,21 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 		notationElement = view;
 		listenNotationElement();
+	}
+
+	/**
+	 * I provide adapters for
+	 * 
+	 * <ul>
+	 * <li>{@link Diagram} - the diagram containing my {@linkplain #getNotationElement() notation element}</li>
+	 * </ul>
+	 */
+	@Override
+	public Object getAdapter(@SuppressWarnings("rawtypes") Class adapter) {
+		if (adapter == Diagram.class) {
+			return getNotationElement().getDiagram();
+		}
+		return null;
 	}
 
 	/**
@@ -517,20 +534,20 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 		/*
 		 * <--------------------
-		 *
+		 * 
 		 * //Allows both notations Class > Property and Class > Compartment > Property
-		 *
+		 * 
 		 * //FIXME: The Tree is computed through "getParentNode". "getChildren" is barely used. Moreover,
 		 * //there is a mapping between Notation element and DOM element, which makes it impossible to associate the same
 		 * //notation element to different DOM elements.
-		 *
+		 * 
 		 * // for(EObject child : notationElement.eContents()) {
 		 * // if(child instanceof BasicCompartment) {
 		 * // //Add the Compartment's children to this' children
 		 * // childList.addAll(Arrays.asList(computeChildren((View)child, engine)));
 		 * // }
 		 * // }
-		 *
+		 * 
 		 * -------------------->
 		 */
 
@@ -693,7 +710,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#addStates(java.util.Set)
 	 */
 	@Override
@@ -706,7 +723,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.gmfdiag.css.notation.StatefulView#removeStates(java.util.Set)
 	 */
 	@Override

@@ -11,6 +11,7 @@
  *  Christian W. Damus (CEA) - bugs 402525, 323802, 431953, 433310, 434993
  *  Christian W. Damus - bug 399859
  *  Christian W. Damus - bug 451230
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.tests;
@@ -58,6 +59,7 @@ public class AllTests {
 		// suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.services.openelement.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.commands.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.gmfdiag.commands.tests.AllTests"));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.common.Activator.ID, "org.eclipse.papyrus.infra.gmfdiag.common.tests.AllTests"));
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AllTests.class));
 		suiteClasses.add(new FragmentTestSuiteClass(org.eclipse.papyrus.infra.emf.readonly.Activator.PLUGIN_ID, "org.eclipse.papyrus.infra.emf.readonly.tests.AllTests"));
 
 		/* views */

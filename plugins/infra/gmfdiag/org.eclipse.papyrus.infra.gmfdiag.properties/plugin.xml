@@ -10,6 +10,9 @@
       <context
             contextModel="model/notation/notation.ctx">
       </context>
+      <context
+            contextModel="model/synchronization/synchronization.ctx">
+      </context>
    </extension>
    <extension
          point="org.eclipse.papyrus.views.properties.environment">

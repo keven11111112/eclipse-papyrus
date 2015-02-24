@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *
  */
 package org.eclipse.papyrus.editor.integration.tests.tests;
@@ -16,6 +17,7 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
@@ -29,11 +31,16 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule;
 import org.eclipse.papyrus.junit.framework.classification.rules.MemoryLeakRule.SoftReferenceSensitive;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.nattable.menu.util.TableMenuUtils;
 import org.eclipse.ui.IEditorPart;
+import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Enumeration;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -83,7 +90,7 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 
 		IEditorPart tableEditor = fixture.getActiveEditor();
 		assertThat("Not a table editor", tableEditor, instanceOf(NatTableEditor.class));
-		INattableModelManager manager = (INattableModelManager)tableEditor.getAdapter(INattableModelManager.class);
+		INattableModelManager manager = (INattableModelManager) tableEditor.getAdapter(INattableModelManager.class);
 		assertThat(manager, notNullValue());
 		IAxisManager axisManager = manager.getRowAxisManager();
 		final int originalAxisSize = axisManager.getAllManagedAxis().size();
@@ -105,6 +112,41 @@ public class EditingScenariosMemoryLeakTest extends AbstractPapyrusTest {
 		} catch (AssertionError failure) {
 			// Doesn't matter to our purposes
 		}
+	}
+
+	/**
+	 * Verify that diagrams having active canonical edit policies do not cause leaks.
+	 */
+	@Test
+	@SoftReferenceSensitive
+	@PluginResource("model/canonical/css_leaktest.di")
+	@ActiveDiagram("main")
+	public void testCanonicalEditPolicy_bug433206() {
+		memory.add(editor.getModel());
+		memory.add(editor.getActiveDiagramEditor().getDiagram());
+
+		// Cause some views to be created canonically
+		editor.getEditingDomain().getCommandStack().execute(new RecordingCommand(editor.getEditingDomain()) {
+
+			@Override
+			protected void doExecute() {
+				final Package model = editor.getModel();
+
+				final Class class1 = (Class) model.getOwnedType("Class1");
+				class1.createOwnedAttribute("name", null);
+				class1.createOwnedOperation("doIt", null, null);
+				class1.createNestedClassifier("nested", UMLPackage.Literals.PRIMITIVE_TYPE);
+
+				final Enumeration enum1 = (Enumeration) model.getOwnedType("Enumeration1");
+				enum1.createOwnedLiteral("one");
+				enum1.createOwnedLiteral("two");
+
+				final Package package1 = model.getNestedPackage("Package1");
+				package1.createOwnedClass("Foo", false);
+			}
+		});
+		editor.flushDisplayEvents();
+
 	}
 
 	//

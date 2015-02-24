@@ -374,6 +374,23 @@
             </and>
          </activeWhen>
       </handler>
+      <handler
+            commandId="org.eclipse.papyrus.infra.gmfdiag.menu.toggleCanonical">
+         <activeWhen>
+            <iterate operator="and" ifEmpty="false">
+               <adapt
+                     type="org.eclipse.gef.EditPart">
+                  <test
+                        property="org.eclipse.papyrus.infra.gmfdiag.hasEditPolicy"
+                        args="Canonical">
+                  </test>
+               </adapt>
+            </iterate>
+         </activeWhen>
+         <class
+               class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.ToggleCanonicalHandler">
+         </class>
+      </handler>
    </extension>
    <extension
          point="org.eclipse.ui.commands">
@@ -411,6 +428,16 @@
             id="org.eclipse.papyrus.uml.diagram.common.commands.DeleteFromDiagram"
             name="Delete From Diagram Command">
       </command>                      
+      <command
+            categoryId="org.eclipse.papyrus.editor.category"
+            description="Automatically synchronize contents with the underlying model elements"
+            id="org.eclipse.papyrus.infra.gmfdiag.menu.toggleCanonical"
+            name="Synchronized with Model">
+         <state
+               class="org.eclipse.papyrus.infra.gmfdiag.menu.handlers.CanonicalState"
+               id="org.eclipse.ui.commands.toggleState">
+         </state>
+      </command>
    </extension>
    <extension
          point="org.eclipse.ui.bindings">

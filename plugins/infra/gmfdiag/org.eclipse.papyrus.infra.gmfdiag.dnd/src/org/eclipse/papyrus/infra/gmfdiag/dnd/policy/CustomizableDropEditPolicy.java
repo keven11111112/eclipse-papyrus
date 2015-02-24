@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
@@ -39,6 +40,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.DefaultActionHandler;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SelectAndExecuteCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DefaultDropStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy;
@@ -97,8 +99,13 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 				command = getCustomCommand(request);
 			}
 		} else if (this.understands(request)) {
-			// Add request
-			command = getCreationCommand(request);
+			if (CanonicalDropObjectsRequest.REQ_CANONICAL_DROP_OBJECTS.equals(request.getType())) {
+				// Forward canonical drop to the default drop policy
+				command = getCanonicalDropObjectsCommand(request);
+			} else {
+				// Add request
+				command = getCreationCommand(request);
+			}
 		} else if (defaultCreationEditPolicy != null) {
 			// Creation request
 			if (defaultCreationEditPolicy.understandsRequest(request)) {
@@ -129,7 +136,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	}
 
 	protected boolean understands(Request request) {
-		return org.eclipse.gef.RequestConstants.REQ_ADD.equals(request.getType());
+		return org.eclipse.gef.RequestConstants.REQ_ADD.equals(request.getType())
+				|| CanonicalDropObjectsRequest.REQ_CANONICAL_DROP_OBJECTS.equals(request.getType());
 	}
 
 	protected boolean isCustomRequest(Request request) {
@@ -138,6 +146,16 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 
 	protected Command getCreationCommand(Request request) {
 		return getCustomCommand(request);
+	}
+
+	protected Command getCanonicalDropObjectsCommand(Request request) {
+		Command result = null;
+
+		if ((defaultDropEditPolicy != null) && (request instanceof CanonicalDropObjectsRequest)) {
+			result = defaultDropEditPolicy.getCommand(((CanonicalDropObjectsRequest) request).getDropObjectsRequest());
+		}
+
+		return result;
 	}
 
 	/**

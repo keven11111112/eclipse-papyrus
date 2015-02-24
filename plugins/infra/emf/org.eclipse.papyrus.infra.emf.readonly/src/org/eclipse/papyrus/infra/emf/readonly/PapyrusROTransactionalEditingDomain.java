@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos Origin, CEA, Christian W. Damus, and others.
+ * Copyright (c) 2011, 2015 Atos Origin, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -15,6 +15,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus (CEA) - bug 415639
  *  Christian W. Damus - bug 399859
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -32,6 +33,7 @@ import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.AdapterFactory;
@@ -43,6 +45,8 @@ import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.RunnableWithResult;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.impl.InternalTransaction;
@@ -242,6 +246,53 @@ public class PapyrusROTransactionalEditingDomain extends TransactionalEditingDom
 			adapterFactory = null;
 			ReadOnlyManager.roHandlers.remove(this);
 		}
+	}
+
+	/**
+	 * Overrides the inherited method to support an {@linkplain TransactionHelper#TRANSACTION_OPTION_MERGE_NESTED_READ option} to merge nested read-only transactions into parent write transactions.
+	 */
+	@Override
+	public Object runExclusive(Runnable read) throws InterruptedException {
+
+		Transaction active = getActiveTransaction();
+		Transaction tx = null;
+
+		if ((active == null) || !(active.isActive() && isReadOnlyCompatible(active))) {
+			// only need to start a new transaction if we don't already have
+			// exclusive read-only access
+			tx = startTransaction(true, null);
+		}
+
+		final RunnableWithResult<?> rwr = (read instanceof RunnableWithResult) ?
+				(RunnableWithResult<?>) read : null;
+
+		try {
+			read.run();
+		} finally {
+			if ((tx != null) && (tx.isActive())) {
+				// commit the transaction now
+				try {
+					tx.commit();
+
+					if (rwr != null) {
+						rwr.setStatus(Status.OK_STATUS);
+					}
+				} catch (RollbackException e) {
+					Activator.log.error("Read-only transaction was rolled back.", e); //$NON-NLS-1$
+
+					if (rwr != null) {
+						rwr.setStatus(e.getStatus());
+					}
+				}
+			}
+		}
+
+		return (rwr != null) ? rwr.getResult() : null;
+	}
+
+	private boolean isReadOnlyCompatible(Transaction parentTransaction) {
+		return (parentTransaction.isReadOnly() || TransactionHelper.isMergeReadOnly(parentTransaction))
+				&& (parentTransaction.getOwner() == Thread.currentThread());
 	}
 
 	protected Adapter createResourceUndoContextHandler() {

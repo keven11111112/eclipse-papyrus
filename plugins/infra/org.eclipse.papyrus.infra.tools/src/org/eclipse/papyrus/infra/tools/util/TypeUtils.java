@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014, 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *   
  *****************************************************************************/
 
@@ -108,10 +109,77 @@ public class TypeUtils {
 			}
 			return true;
 		}
-		if(object instanceof Integer || object instanceof Double || object instanceof Float){
+		if (object instanceof Integer || object instanceof Double || object instanceof Float) {
 			return true;
 		}
 		return false;
-	
+
+	}
+
+	/**
+	 * Attempts to cast an {@code object} as the required {@code type}.
+	 * 
+	 * @param object
+	 *            an object to cast
+	 * @param type
+	 *            the type to cast it to
+	 * 
+	 * @return the {@code object} or {@code null} if it is not of the required {@code type}
+	 */
+	public static <T> T as(Object object, Class<T> type) {
+		T result = null;
+
+		if (type.isInstance(object)) {
+			result = type.cast(object);
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to cast an {@code object} as an instance of the type implied by the given {@code default_}.
+	 * 
+	 * @param object
+	 *            an object to cast
+	 * @param default_
+	 *            the default value to return if it is not of the required type. May not be {@code null}
+	 * 
+	 * @return the {@code object} or {@code default_} if it is not of the required type
+	 * 
+	 * @throws NullPointerException
+	 *             if {@code default_} is {@code null}
+	 */
+	@SuppressWarnings("unchecked")
+	public static <T> T as(Object object, T default_) {
+		T result = default_;
+
+		if (default_.getClass().isInstance(object)) {
+			result = (T) object;
+		}
+
+		return result;
+	}
+
+	/**
+	 * Attempts to cast the object at an {@code index} of an {@code array} as the required {@code type}.
+	 * 
+	 * @param array
+	 *            an array of objects
+	 * @param index
+	 *            the position of an object in the {@code array}
+	 * @param type
+	 *            the type to cast it to
+	 * 
+	 * @return the {@code index}-th object in the {@code array} or {@code null} if it is not of the required {@code type} or the {@code array} has no such {@code index}
+	 */
+	public static <T> T as(Object[] array, int index, Class<T> type) {
+		Object object = ((index >= 0) && (index < array.length)) ? array[index] : null;
+		T result = null;
+
+		if (type.isInstance(object)) {
+			result = type.cast(object);
+		}
+
+		return result;
 	}
 }

@@ -3,13 +3,15 @@
 
 <!--
 ##########################################################################################
-# Copyright (c) 2008 Conselleria de Infraestructuras y Transporte, Generalitat 
-# de la Comunitat Valenciana . All rights reserved. This program
-# and the accompanying materials are made available under the terms of the
-# Eclipse Public License v1.0 which accompanies this distribution, and is
-# available at http://www.eclipse.org/legal/epl-v10.html
+# Copyright (c) 2008, 2015 Conselleria de Infraestructuras y Transporte, Generalitat de la Comunitat Valenciana, Christian W. Damus, and others.
+# All rights reserved. This program  and the accompanying materials
+# are made available under the terms of the Eclipse Public License v1.0
+# which accompanies this distribution, and is available at
+# http://www.eclipse.org/legal/epl-v10.html
 # 
-# Contributors: Francisco Javier Cano MuÃƒÂ±oz (Prodevelop) - initial API implementation
+# Contributors:
+#   Francisco Javier Cano Muñoz (Prodevelop) - initial API implementation
+#   Christian W. Damus - bug 433206
 #
 ########################################################################################
 -->
@@ -547,4 +549,19 @@
             type="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
       </propertyTester>
    </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+   <defaultSemanticChildrenStrategy
+         class="org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy"
+         priority="10">
+      <enablement>
+         <with
+               variable="element">
+            <instanceof
+                  value="org.eclipse.uml2.uml.Element">
+            </instanceof>
+         </with>
+      </enablement>
+   </defaultSemanticChildrenStrategy>
+</extension>
 </plugin>

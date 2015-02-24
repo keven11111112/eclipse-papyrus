@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,9 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		
  *  CEA LIST - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 436047
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.sysml.diagram.internalblock.tests.utils;
@@ -86,6 +86,8 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.util.UMLUtil;
 import org.junit.Assert;
 
+import com.google.common.collect.Iterables;
+
 public class TestUtils {
 
 	public static void deleteView(IElementType elementType, View containerView, boolean isAllowed) throws Exception {
@@ -99,14 +101,14 @@ public class TestUtils {
 		// Get delete view command
 		Command command = containerEditPart.getCommand(new GroupRequest(RequestConstants.REQ_DELETE));
 		// if the view deletion is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -130,14 +132,14 @@ public class TestUtils {
 		// Get delete command
 		Command command = containerEditPart.getCommand(new EditCommandRequestWrapper(destroyRequest));
 		// if the deletion is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -165,14 +167,14 @@ public class TestUtils {
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
 		// if the drop is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
@@ -195,19 +197,19 @@ public class TestUtils {
 		// Get drop command
 		Command command = containerEditPart.getCommand(dropRequest);
 		// if the drop is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Simple command
-				if(expectedCommandNames.size() == 1) {
-					if(expectedCommandNames.get(0).equals(command.getLabel())) {
+				if (expectedCommandNames.size() == 1) {
+					if (expectedCommandNames.get(0).equals(command.getLabel())) {
 						// Ok the command can be executed.
 						defaultExecutionTest(command);
 						// Test the results then
@@ -216,30 +218,39 @@ public class TestUtils {
 					} else {
 						fail("The expected kind of command was {" + expectedCommandNames.get(0) + "}, but was {" + command.getLabel() + "}");
 					}
-				} else if(expectedCommandNames.size() > 1) {
-					ICommand tmpCommand = (command instanceof ICommandProxy) ? ((ICommandProxy)command).getICommand() : null;
-					if((tmpCommand == null) || !(tmpCommand instanceof SelectAndExecuteCommand)) {
+				} else if (expectedCommandNames.size() > 1) {
+					ICommandProxy proxy = null;
+					if (command instanceof ICommandProxy) {
+						proxy = (ICommandProxy) command;
+					} else if (command instanceof CompoundCommand) {
+						// Search for the nested ICommandProxy (there could be ToggleCanonicalModeCommands bracketing it)
+						proxy = Iterables.getFirst(Iterables.filter(((CompoundCommand) command).getCommands(), ICommandProxy.class), null);
+					}
+					ICommand tmpCommand = (proxy != null) ? proxy.getICommand() : null;
+					if ((tmpCommand == null) || !(tmpCommand instanceof SelectAndExecuteCommand)) {
 						fail("The drop command is not a selact and execute command.");
 					}
 					// Field accessibility modification to review elementary drop command available as
 					// SelectAndExecuteCommand choices.
-					SelectAndExecuteCommand selectCommand = (SelectAndExecuteCommand)tmpCommand;
+					SelectAndExecuteCommand selectCommand = (SelectAndExecuteCommand) tmpCommand;
 					Field popupField = PopupMenuCommand.class.getDeclaredField("popupMenu");
 					popupField.setAccessible(true);
-					PopupMenu menu = (PopupMenu)popupField.get(selectCommand);
+					PopupMenu menu = (PopupMenu) popupField.get(selectCommand);
 					Field content = PopupMenu.class.getDeclaredField("content");
 					content.setAccessible(true);
-					List<CompoundCommand> commandList = (List<CompoundCommand>)content.get(menu);
-					if(commandList.size() != expectedCommandNames.size()) {
+					@SuppressWarnings("unchecked")
+					List<CompoundCommand> commandList = (List<CompoundCommand>) content.get(menu);
+					if (commandList.size() != expectedCommandNames.size()) {
 						fail("Unexpected number of possible alternate drop command.");
 					}
-					for(int i = 0; i < commandList.size(); i++) {
+					for (int i = 0; i < commandList.size(); i++) {
 						CompoundCommand subCommand = commandList.get(i);
-						if(expectedCommandNames.get(i).equals(subCommand.getLabel())) {
+						if (expectedCommandNames.get(i).equals(subCommand.getLabel())) {
 							// Ok the command can be executed.
 							defaultExecutionTest(subCommand);
 							// Add one more undo to go back in initial state before testing next command
-							EditorUtils.getCommandStack().undo();;
+							EditorUtils.getCommandStack().undo();
+							;
 							// Test the results then
 							// fail("Result tests not implemented.");
 						} else {
@@ -252,7 +263,7 @@ public class TestUtils {
 	}
 
 	public static void createNodeFromPalette(String toolId, View containerView, boolean isAllowed) throws Exception {
-		if(isAllowed) {
+		if (isAllowed) {
 			createNodeFromPalette(toolId, containerView, isAllowed, true);
 		} else {
 			createNodeFromPalette(toolId, containerView, isAllowed, false);
@@ -268,18 +279,18 @@ public class TestUtils {
 		// Get creation command for request
 		Command command = containerEditPart.getCommand(createRequest);
 		// if the creation is not allowed the command should not be executable
-		if(!isAllowed) {
-			if((command == null) || (!command.canExecute())) {
+		if (!isAllowed) {
+			if ((command == null) || (!command.canExecute())) {
 				// Ok the command cannot be executed.
 			} else {
 				fail("The command should not be executable.");
 			}
 		} else {
-			if((command == null) || (!command.canExecute())) {
+			if ((command == null) || (!command.canExecute())) {
 				fail("The command should be executable.");
 			} else {
 				// Ok the command can be executed.
-				if(execute) {
+				if (execute) {
 					defaultExecutionTest(command);
 				}
 				// Test the results then
@@ -304,11 +315,11 @@ public class TestUtils {
 			}
 		});
 
-		if(tool instanceof AspectUnspecifiedTypeCreationTool) {
-			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool)tool;
+		if (tool instanceof AspectUnspecifiedTypeCreationTool) {
+			AspectUnspecifiedTypeCreationTool creationTool = (AspectUnspecifiedTypeCreationTool) tool;
 			return creationTool.createCreateRequest();
-		} else if(tool instanceof AspectUnspecifiedTypeConnectionTool) {
-			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool)tool;
+		} else if (tool instanceof AspectUnspecifiedTypeConnectionTool) {
+			AspectUnspecifiedTypeConnectionTool connectionTool = (AspectUnspecifiedTypeConnectionTool) tool;
 			return connectionTool.new CreateAspectUnspecifiedTypeConnectionRequest(connectionTool.getElementTypes(), false, Activator.DIAGRAM_PREFERENCES_HINT);
 		}
 
@@ -323,15 +334,15 @@ public class TestUtils {
 	public static EObject createEdgeFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute) throws Exception {
 		// Find palette tool to simulate element creation and prepare request
 		Tool tool = getPaletteTool(toolId);
-		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest)getCreateRequest(tool);
+		CreateAspectUnspecifiedTypeConnectionRequest createRequest = (CreateAspectUnspecifiedTypeConnectionRequest) getCreateRequest(tool);
 		// Test source creation command
 		createRequest.setSourceEditPart(getEditPart(sourceView));
 		createRequest.setType(RequestConstants.REQ_CONNECTION_START);
 		Command srcCommand = getEditPart(sourceView).getCommand(createRequest);
 		// Test source command
-		if((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
-			if(targetView == null) { // Only test behavior on source
-				if(!isAllowed) {
+		if ((srcCommand == null) || !(srcCommand.canExecute())) { // Non-executable command
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) {
 					// Current behavior matches the expected results
 					return null;
 				} else {
@@ -341,8 +352,8 @@ public class TestUtils {
 				fail("The command should be executable.");
 			}
 		} else { // Executable command
-			if(targetView == null) { // Only test behavior on source
-				if(!isAllowed) {
+			if (targetView == null) { // Only test behavior on source
+				if (!isAllowed) {
 					fail("The command should not be executable.");
 				} else {
 					// Current behavior matches the expected results - no execution test.
@@ -355,28 +366,28 @@ public class TestUtils {
 				createRequest.setType(RequestConstants.REQ_CONNECTION_END);
 				Command tgtCommand = getEditPart(targetView).getCommand(createRequest);
 				// Test the target command
-				if((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
-					if(!isAllowed) {
+				if ((tgtCommand == null) || !(tgtCommand.canExecute())) { // Non-executable command
+					if (!isAllowed) {
 						// Current behavior matches the expected results
 						return null;
 					} else {
 						fail("The command should be executable.");
 					}
 				} else { // Executable command
-					if(!isAllowed) {
+					if (!isAllowed) {
 						fail("The command should not be executable.");
 					} else {
 						// Current behavior matches the expected results
-						if(execute) { // Test command execution
+						if (execute) { // Test command execution
 							defaultExecutionTest(tgtCommand);
 							// Retrieve created object via nested ElementAndViewCreationRequest.
 							View newView = null;
 							Iterator<?> it = createRequest.getAllRequests().iterator();
-							while(it.hasNext() && newView == null) {
-								CreateConnectionViewAndElementRequest subRequest = (CreateConnectionViewAndElementRequest)it.next();
-								newView = (View)subRequest.getConnectionViewDescriptor().getAdapter(View.class);
+							while (it.hasNext() && newView == null) {
+								CreateConnectionViewAndElementRequest subRequest = (CreateConnectionViewAndElementRequest) it.next();
+								newView = (View) subRequest.getConnectionViewDescriptor().getAdapter(View.class);
 							}
-							if(newView != null) {
+							if (newView != null) {
 								return newView.getElement();
 							} else {
 								fail("No edge seem to have been created.");
@@ -398,35 +409,35 @@ public class TestUtils {
 	public static void createEdgeConnectorFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute, List<Property> nestedSourcePath, List<Property> nestedTargetPath) throws Exception {
 		EObject newLink = createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, execute);
 		// Abort if the command is not supposed to be executable
-		if(!isAllowed) {
+		if (!isAllowed) {
 			return;
 		}
-		if((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
+		if ((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
 			fail("No edge or unexpected kind of edge created.");
 		}
 		// If previous test have not failed the execution / undo / re-do has been done
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)newLink;
-		// Test source connector end	
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) newLink;
+		// Test source connector end
 		NestedConnectorEnd sourceNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(0), NestedConnectorEnd.class);
-		if(nestedSourcePath.isEmpty()) {
+		if (nestedSourcePath.isEmpty()) {
 			Assert.assertNull("No nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on source.", sourceNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for source", nestedSourcePath, sourceNestedConnectorEnd.getPropertyPath());
-			//			if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
-			//				fail("The nested property path is incorrect for source.");
-			//			}
+			// if(!sourceNestedConnectorEnd.getPropertyPath().equals(nestedSourcePath)) {
+			// fail("The nested property path is incorrect for source.");
+			// }
 		}
-		// Test target connector end	
+		// Test target connector end
 		NestedConnectorEnd targetNestedConnectorEnd = UMLUtil.getStereotypeApplication(connector.getEnds().get(1), NestedConnectorEnd.class);
-		if(nestedTargetPath.isEmpty()) {
+		if (nestedTargetPath.isEmpty()) {
 			Assert.assertNull("No nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied on target.", targetNestedConnectorEnd);
 			Assert.assertEquals("Nested property path is incorrect for target", nestedTargetPath, targetNestedConnectorEnd.getPropertyPath());
-			//			if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
-			//				fail("The nested property path is incorrect for target.");
-			//			}
+			// if(!targetNestedConnectorEnd.getPropertyPath().equals(nestedTargetPath)) {
+			// fail("The nested property path is incorrect for target.");
+			// }
 		}
 	}
 
@@ -434,35 +445,36 @@ public class TestUtils {
 		createEdgeConnectorAndTestDelegateFromPalette(toolId, sourceView, targetView, isAllowed, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
 	}
 
-	public static void createEdgeConnectorAndTestDelegateFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
+	public static void createEdgeConnectorAndTestDelegateFromPalette(String toolId, View sourceView, View targetView, boolean isAllowed, boolean execute, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort)
+			throws Exception {
 		EObject newLink = createEdgeFromPalette(toolId, sourceView, targetView, isAllowed, execute);
 		// Abort if the command is not supposed to be executable
-		if(!isAllowed) {
+		if (!isAllowed) {
 			return;
 		}
-		if((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
+		if ((newLink == null) || (!(newLink instanceof org.eclipse.uml2.uml.Connector))) {
 			fail("No edge or unexpected kind of edge created.");
 		}
 		// If previous test have not failed the execution / undo / re-do has been done
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)newLink;
-		// Test source connector end	
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) newLink;
+		// Test source connector end
 		ConnectorEnd sourceConnectorEnd = connector.getEnds().get(0);
-		if(sourceConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+		if (sourceConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
 			fail("The partWithPort is incorrect for source.");
 		}
-		// Test target connector end	
+		// Test target connector end
 		ConnectorEnd targetConnectorEnd = connector.getEnds().get(1);
-		if(targetConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+		if (targetConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
 			fail("The partWithPort is incorrect for target.");
 		}
 	}
 
 	public static void reorientRelationshipSource(View relationshipView, View newSourceView, boolean isAllowed) throws Exception {
-		reorientRelationship((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed);
+		reorientRelationship((Connector) relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed);
 	}
 
 	public static void reorientRelationshipTarget(View relationshipView, View newTargetView, boolean isAllowed) throws Exception {
-		reorientRelationship((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed);
+		reorientRelationship((Connector) relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed);
 	}
 
 	public static void reorientRelationship(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed) throws Exception {
@@ -470,20 +482,20 @@ public class TestUtils {
 		String reconnectDirection = (ReorientRelationshipRequest.REORIENT_SOURCE == reorientDirection) ? RequestConstants.REQ_RECONNECT_SOURCE : RequestConstants.REQ_RECONNECT_TARGET;
 		ReconnectRequest reconnectRequest = new ReconnectRequest(relationshipView);
 		reconnectRequest.setTargetEditPart(getEditPart(newEndView));
-		reconnectRequest.setConnectionEditPart((ConnectionEditPart)getEditPart(relationshipView));
+		reconnectRequest.setConnectionEditPart((ConnectionEditPart) getEditPart(relationshipView));
 		reconnectRequest.setType(reconnectDirection);
 		// Get command
 		Command reorientCommand = getEditPart(newEndView).getCommand(reconnectRequest);
 		// Test the target command
-		if((reorientCommand == null) || !(reorientCommand.canExecute())) { // Non-executable command
-			if(!isAllowed) {
+		if ((reorientCommand == null) || !(reorientCommand.canExecute())) { // Non-executable command
+			if (!isAllowed) {
 				// Current behavior matches the expected results
 				return;
 			} else {
 				fail("The command should be executable.");
 			}
 		} else { // Executable command
-			if(!isAllowed) {
+			if (!isAllowed) {
 				fail("The command should not be executable.");
 			} else {
 				defaultExecutionTest(reorientCommand);
@@ -504,98 +516,98 @@ public class TestUtils {
 	}
 
 	public static void reorientConnectorSource(View relationshipView, View newSourceView, boolean isAllowed, List<Property> nestedPath) throws Exception {
-		reorientConnector((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, nestedPath);
+		reorientConnector((Connector) relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, nestedPath);
 	}
 
 	public static void reorientConnectorTarget(View relationshipView, View newTargetView, boolean isAllowed, List<Property> nestedPath) throws Exception {
-		reorientConnector((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, nestedPath);
+		reorientConnector((Connector) relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, nestedPath);
 	}
 
 	public static void reorientConnector(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed, List<Property> nestedPath) throws Exception {
 		reorientRelationship(relationshipView, newEndView, reorientDirection, isAllowed);
 		// Abort if the command is not supposed to be executable
-		if(!isAllowed) {
+		if (!isAllowed) {
 			return;
 		}
 		// If previous test have not failed the execution / undo / re-do has been done
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)relationshipView.getElement();
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) relationshipView.getElement();
 		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
 		NestedConnectorEnd nestedConnectorEnd = UMLUtil.getStereotypeApplication(modifiedConnectorEnd, NestedConnectorEnd.class);
-		if(nestedPath.isEmpty()) {
+		if (nestedPath.isEmpty()) {
 			Assert.assertNull("No nested connector end stereotype should be applied.", nestedConnectorEnd);
 		} else {
 			Assert.assertNotNull("Nested connector end stereotype should be applied.", nestedConnectorEnd);
-			Assert.assertEquals("Invalid nested path", nestedPath, nestedConnectorEnd.getPropertyPath()); 
+			Assert.assertEquals("Invalid nested path", nestedPath, nestedConnectorEnd.getPropertyPath());
 		}
 	}
 
 	public static void reorientConnectorSourceAndTestDelegate(View relationshipView, View newSourceView, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
-		reorientConnectorAndTestDelegate((Connector)relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
+		reorientConnectorAndTestDelegate((Connector) relationshipView, newSourceView, ReorientRelationshipRequest.REORIENT_SOURCE, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
 	}
 
 	public static void reorientConnectorTargetAndTestDelegate(View relationshipView, View newTargetView, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
-		reorientConnectorAndTestDelegate((Connector)relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
+		reorientConnectorAndTestDelegate((Connector) relationshipView, newTargetView, ReorientRelationshipRequest.REORIENT_TARGET, isAllowed, expectedSourcePartWithPort, expectedTargetPartWithPort);
 	}
 
 	public static void reorientConnectorAndTestDelegate(Connector relationshipView, View newEndView, int reorientDirection, boolean isAllowed, ConnectableElement expectedSourcePartWithPort, ConnectableElement expectedTargetPartWithPort) throws Exception {
 		reorientRelationship(relationshipView, newEndView, reorientDirection, isAllowed);
 		// Abort if the command is not supposed to be executable
-		if(!isAllowed) {
+		if (!isAllowed) {
 			return;
 		}
 		// If previous test have not failed the execution / undo / re-do has been done
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)relationshipView.getElement();
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) relationshipView.getElement();
 		ConnectorEnd modifiedConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(0) : connector.getEnds().get(1);
 		ConnectorEnd oppositeConnectorEnd = (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) ? connector.getEnds().get(1) : connector.getEnds().get(0);
-		if(reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) { // re-orient source
+		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) { // re-orient source
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (re-oriented).", expectedSourcePartWithPort, modifiedConnectorEnd.getPartWithPort());
-			//			if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-			//				fail("The partWithPort is incorrect for source (re-oriented).");
-			//			}
+			// if(modifiedConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+			// fail("The partWithPort is incorrect for source (re-oriented).");
+			// }
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (opposite end).", expectedTargetPartWithPort, oppositeConnectorEnd.getPartWithPort());
-			//			if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-			//				fail("The partWithPort is incorrect for target (opposite end).");
-			//			}
+			// if(oppositeConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+			// fail("The partWithPort is incorrect for target (opposite end).");
+			// }
 		} else { // re-orient target
 			// Test source connector end
 			Assert.assertEquals("The partWithPort is incorrect for target (re-oriented).", expectedTargetPartWithPort, modifiedConnectorEnd.getPartWithPort());
-			//			if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
-			//				fail("The partWithPort is incorrect for target .");
-			//			}
+			// if(modifiedConnectorEnd.getPartWithPort() != expectedTargetPartWithPort) {
+			// fail("The partWithPort is incorrect for target .");
+			// }
 			// Test target connector end
 			Assert.assertEquals("The partWithPort is incorrect for source (opposite end).", expectedSourcePartWithPort, oppositeConnectorEnd.getPartWithPort());
-			//			if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
-			//				fail("The partWithPort is incorrect for source (opposite end).");
-			//			}
+			// if(oppositeConnectorEnd.getPartWithPort() != expectedSourcePartWithPort) {
+			// fail("The partWithPort is incorrect for source (opposite end).");
+			// }
 		}
 	}
 
 	public static void setEncapsulationDeleteConnectorTest(Element block, View sourceView, View targetView, boolean canCreateConnector, boolean isConnectorDestroyExpected) throws Exception {
-		if(!canCreateConnector) {
+		if (!canCreateConnector) {
 			return; // abort
 		}
 		// Make sure the block is not encapsulated before Connector creation.
 		TestPrepareUtils.setBlockIsEncapsulated(block, false);
 		// Create connector
-		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector)createEdgeFromPalette("internalblock.tool.connector", sourceView, targetView, true, true);
+		org.eclipse.uml2.uml.Connector connector = (org.eclipse.uml2.uml.Connector) createEdgeFromPalette("internalblock.tool.connector", sourceView, targetView, true, true);
 		// Prepare set encapsulated command and execute (with undo, re-do).
 		Block blockApp = UMLUtil.getStereotypeApplication(block, Block.class);
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(blockApp);
-		if(provider == null) {
+		if (provider == null) {
 			fail("Could not get IElementEditService for Block stereotype application.");
 		}
 		IEditCommandRequest setEncapsulationRequest = new SetRequest(getTransactionalEditingDomain(), blockApp, BlocksPackage.eINSTANCE.getBlock_IsEncapsulated(), true);
 		ICommand setEncapsulationCommand = provider.getEditCommand(setEncapsulationRequest);
 		defaultExecutionTest(new ICommandProxy(setEncapsulationCommand));
 		// Test if the Connector have been destroyed
-		if(isConnectorDestroyExpected) {
-			if(connector.eResource() != null) { // connector destroyed has no container 
+		if (isConnectorDestroyExpected) {
+			if (connector.eResource() != null) { // connector destroyed has no container
 				fail("Connector was expected to be destroyed.");
 			}
 		} else {
-			if(connector.eResource() == null) { // connector destroyed has no container 
+			if (connector.eResource() == null) { // connector destroyed has no container
 				fail("Connector was not expected to be destroyed.");
 			}
 		}
@@ -605,9 +617,9 @@ public class TestUtils {
 	 * Copy the list of objects into the Clipboard
 	 * 
 	 * @param objectsToCopy
-	 *        the list of objects to copy. should not be <code>null</code>, at least an empty list
+	 *            the list of objects to copy. should not be <code>null</code>, at least an empty list
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void copyEditParts(List<Object> objectsToCopy) throws Exception {
 		// select elements to copy
@@ -615,16 +627,16 @@ public class TestUtils {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().bringToTop(EditorUtils.getEditor());
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(objectsToCopy));
 		ISelection selection = EditorUtils.getEditor().getSite().getSelectionProvider().getSelection();
-		Assert.assertEquals("Selection size should be " + objectsToCopy.size(), objectsToCopy.size(), ((IStructuredSelection)selection).size());
+		Assert.assertEquals("Selection size should be " + objectsToCopy.size(), objectsToCopy.size(), ((IStructuredSelection) selection).size());
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_COPY, null);
 		org.eclipse.core.commands.Command copyCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_COPY);
-		((GlobalCopyAction)((ActionHandler)copyCommand.getHandler()).getAction()).setEnabled(true);
+		((GlobalCopyAction) ((ActionHandler) copyCommand.getHandler()).getAction()).setEnabled(true);
 		Assert.assertNotNull("Impossible to find copy command", copyCommand);
-		//EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
+		// EditorUtils.getDiagramEditor().getEditingDomain().setClipboard(objectsToCopy);
 		// retrieve handler service for the copy command
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(copyCommand, null);
 		// retrieve the command and set some parameters on it
@@ -639,27 +651,27 @@ public class TestUtils {
 	 * paste the list of objects into the Clipboard into the current diagram
 	 * 
 	 * @param target
-	 *        object on which content of the clipboard should be added
+	 *            object on which content of the clipboard should be added
 	 * @param executable
-	 *        indicates if the paste command should be executable.
+	 *            indicates if the paste command should be executable.
 	 * 
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void pasteEditParts(Object target, boolean executable) throws Exception {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
 		org.eclipse.core.commands.Command pasteCommand = commandService.getCommand(IWorkbenchCommandConstants.EDIT_PASTE);
 		Assert.assertNotNull("Impossible to find paste command", pasteCommand);
-		((GlobalAction)((ActionHandler)pasteCommand.getHandler()).getAction()).refresh();
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		((GlobalAction) ((ActionHandler) pasteCommand.getHandler()).getAction()).refresh();
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteCommand, null);
 		Assert.assertEquals("Command is not executable as expected", pasteCommand.isEnabled(), executable);
-		if(executable) {
+		if (executable) {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
@@ -669,27 +681,27 @@ public class TestUtils {
 	 * paste with model element the list of objects into the Clipboard into the current diagram
 	 * 
 	 * @param target
-	 *        object on which content of the clipboard should be added
+	 *            object on which content of the clipboard should be added
 	 * @param executable
-	 *        indicates if the paste command should be executable.
+	 *            indicates if the paste command should be executable.
 	 * 
 	 * @throws Exception
-	 *         exception thrown in case of problems
+	 *             exception thrown in case of problems
 	 */
 	public static void pasteWithModelEditParts(Object target, boolean executable) throws Exception {
 		PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage().activate(EditorUtils.getEditor());
 		EditorUtils.getDiagramEditor().getEditorSite().getSelectionProvider().setSelection(new StructuredSelection(target));
 		// retrieve the command for copy
-		ICommandService commandService = (ICommandService)PlatformUI.getWorkbench().getService(ICommandService.class);
+		ICommandService commandService = PlatformUI.getWorkbench().getService(ICommandService.class);
 		commandService.refreshElements(IWorkbenchCommandConstants.EDIT_PASTE, null);
 		org.eclipse.core.commands.Command pasteWithModelCommand = commandService.getCommand("org.eclipse.papyrus.uml.diagram.common.commands.PasteWithModelCommand");
 		Assert.assertNotNull("Impossible to find paste command", pasteWithModelCommand);
 		// ((GlobalAction)((AbstractHandlerWithState)pasteWithModelCommand.getHandler()).getAction()).refresh();
-		IHandlerService handlerService = (IHandlerService)PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
 		Assert.assertNotNull("Impossible to find handler service", handlerService);
 		final ParameterizedCommand parameterizedCommand = new ParameterizedCommand(pasteWithModelCommand, null);
 		Assert.assertEquals("Command is not executable as expected", pasteWithModelCommand.isEnabled(), executable);
-		if(executable) {
+		if (executable) {
 			// execute the copy command
 			handlerService.executeCommand(parameterizedCommand, null);
 		}
@@ -702,13 +714,13 @@ public class TestUtils {
 	 * Test execution, undo, redo of the given command.
 	 * 
 	 * @param command
-	 *        the command to test.
+	 *            the command to test.
 	 * @throws Exception
 	 */
 	public static void defaultExecutionTest(Command command) throws Exception {
 		// Execution in the diagram command stack (like Papyrus usual execution for GEF commands). This is important especially for
 		// composed command like Drop links which create intermediate view during execution. With EMF command stack, the whole command
-		// tries to execute and the edit part of the intermediate created views are not created before the command ends. 
+		// tries to execute and the edit part of the intermediate created views are not created before the command ends.
 		// The diagram command stack let edit part being created after each view creation.
 		// The problem in using the DiagramCommandStack (vs EMF CommandStack) is that it hides any exception that can possibly occur during
 		// command execution. This would let the test finish without error (the command result is not tested currently) while the execution failed.
@@ -723,24 +735,24 @@ public class TestUtils {
 			}
 		};
 		history.addOperationHistoryListener(historyChange);
-		
+
 		try {
 			// Test execution
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().execute(command);
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command execution failed ()");
 			}
 			// Test undo
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().undo();
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command undo failed ()");
 			}
 			// Test redo
 			historyEventType = OperationHistoryEvent.DONE;
 			EditorUtils.getDiagramCommandStack().redo();
-			if(historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
+			if (historyEventType == OperationHistoryEvent.OPERATION_NOT_OK) {
 				fail("Command redo failed ()");
 			}
 		} finally {

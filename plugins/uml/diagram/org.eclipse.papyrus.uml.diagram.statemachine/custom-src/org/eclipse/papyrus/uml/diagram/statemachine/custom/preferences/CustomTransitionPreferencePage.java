@@ -1,3 +1,16 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 461629
+ *  
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences;
 
 import org.eclipse.jface.preference.BooleanFieldEditor;
@@ -16,7 +29,7 @@ public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
 		super(GRID);
 		setPreferenceStore(UMLDiagramEditorPlugin.getInstance().getPreferenceStore());
 		setDescription(
-				"This preference page allows to customize label appearance on transitions. " +  //$NON-NLS-1$
+		"This preference page allows to customize label appearance on transitions. " + //$NON-NLS-1$
 				"Please note that per diagram or element settings can be done via CSS."); //$NON-NLS-1$
 	}
 
@@ -49,8 +62,7 @@ public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
 
 				@Override
 				public void run() {
-					DiagramHelper.setNeedsRefresh();
-					DiagramHelper.refreshDiagrams();
+					DiagramHelper.forceRefresh();
 					updatePending = false;
 				}
 			});
@@ -66,6 +78,7 @@ public class CustomTransitionPreferencePage extends FieldEditorPreferencePage
 	 *
 	 * @param workbench
 	 */
+	@Override
 	public void init(IWorkbench workbench) {
 	}
 }

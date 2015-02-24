@@ -19,7 +19,7 @@ import org.junit.rules.TestRule;
 import org.junit.runner.Description;
 
 /**
- * Utilities for working with the JUnit data model.
+ * Utilities for working with the JUnit data model and execution environment.
  */
 public class JUnitUtils {
 
@@ -112,5 +112,15 @@ public class JUnitUtils {
 		}
 
 		return result;
+	}
+
+	/**
+	 * Queries whether the current JUnit test execution is running in the automated build environment
+	 * (whether actually on the build server or not; users can run local builds on their development systems, too).
+	 * 
+	 * @return whether the tests are running in the automated build environment
+	 */
+	public static boolean isAutomatedBuildExecution() {
+		return Activator.getDefault().getRunningApplicationID().startsWith("org.eclipse.tycho."); //$NON-NLS-1$
 	}
 }
