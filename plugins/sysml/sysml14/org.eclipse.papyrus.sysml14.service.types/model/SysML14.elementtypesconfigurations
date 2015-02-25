@@ -1,962 +1,962 @@
 <?xml version="1.0" encoding="ASCII"?>
-<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration" xmi:id="_EIEqwLBqEeSbOe4Ay0wIRg" name="SysML" identifier="org.eclipse.papyrus.SysML14.elementTypes" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIEqwbBqEeSbOe4Ay0wIRg" name="ValueType" identifier="org.eclipse.papyrus.SysML14.ValueType" hint="UML::DataType">
-    <iconEntry xmi:id="_EIEqwrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+<elementtypesconfigurations:ElementTypeSetConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:applystereotypeadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/uml/applystereotypeadvice/1.0" xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0" xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration" xmi:id="_k4SmgLwFEeSwNLK2W02HwA" name="SysML" identifier="org.eclipse.papyrus.SysML14.elementTypes" metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmgbwFEeSwNLK2W02HwA" name="ValueType" identifier="org.eclipse.papyrus.SysML14.ValueType" hint="UML::DataType">
+    <iconEntry xmi:id="_k4SmgrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DataType</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0sLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smg7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::ValueType</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0sbBqEeSbOe4Ay0wIRg" name="DistributedProperty" identifier="org.eclipse.papyrus.SysML14.DistributedProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN0srBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmhLwFEeSwNLK2W02HwA" name="DistributedProperty" identifier="org.eclipse.papyrus.SysML14.DistributedProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmhbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0s7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmhrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::DistributedProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0tLBqEeSbOe4Ay0wIRg" name="ConnectorProperty" identifier="org.eclipse.papyrus.SysML14.ConnectorProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN0tbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smh7wFEeSwNLK2W02HwA" name="ConnectorProperty" identifier="org.eclipse.papyrus.SysML14.ConnectorProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmiLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0trBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmibwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::ConnectorProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0t7BqEeSbOe4Ay0wIRg" name="ParticipantProperty" identifier="org.eclipse.papyrus.SysML14.ParticipantProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN0uLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmirwFEeSwNLK2W02HwA" name="ParticipantProperty" identifier="org.eclipse.papyrus.SysML14.ParticipantProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4Smi7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0ubBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmjLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::ParticipantProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0urBqEeSbOe4Ay0wIRg" name="BindingConnector" identifier="org.eclipse.papyrus.SysML14.BindingConnector" hint="UML::Connector">
-    <iconEntry xmi:id="_EIN0u7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Connector.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmjbwFEeSwNLK2W02HwA" name="BindingConnector" identifier="org.eclipse.papyrus.SysML14.BindingConnector" hint="UML::Connector">
+    <iconEntry xmi:id="_k4SmjrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Connector.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Connector</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0vLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smj7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::BindingConnector</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0vbBqEeSbOe4Ay0wIRg" name="Block" identifier="org.eclipse.papyrus.SysML14.Block" hint="UML::Class">
-    <iconEntry xmi:id="_EIN0vrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmkLwFEeSwNLK2W02HwA" name="Block" identifier="org.eclipse.papyrus.SysML14.Block" hint="UML::Class">
+    <iconEntry xmi:id="_k4SmkbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0v7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmkrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::Block</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0wLBqEeSbOe4Ay0wIRg" name="PropertySpecificType" identifier="org.eclipse.papyrus.SysML14.PropertySpecificType" hint="UML::Classifier">
-    <iconEntry xmi:id="_EIN0wbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Classifier.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smk7wFEeSwNLK2W02HwA" name="PropertySpecificType" identifier="org.eclipse.papyrus.SysML14.PropertySpecificType" hint="UML::Classifier">
+    <iconEntry xmi:id="_k4SmlLwFEeSwNLK2W02HwA" iconPath="/icons/Classifier.gif" bundleId="org.eclipse.papyrus.uml.service.types"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Classifier</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0wrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmlbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::PropertySpecificType</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0w7BqEeSbOe4Ay0wIRg" name="NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.NestedConnectorEnd_ConnectorEnd" hint="UML::ConnectorEnd">
-    <iconEntry xmi:id="_EIN0xLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ConnectorEnd.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmlrwFEeSwNLK2W02HwA" name="NestedConnectorEnd ConnectorEnd" identifier="org.eclipse.papyrus.SysML14.NestedConnectorEnd_ConnectorEnd" hint="UML::ConnectorEnd">
+    <iconEntry xmi:id="_k4Sml7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ConnectorEnd.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ConnectorEnd</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0xbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmmLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::NestedConnectorEnd</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0xrBqEeSbOe4Ay0wIRg" name="NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.NestedConnectorEnd_Element" hint="UML::Element">
-    <iconEntry xmi:id="_EIN0x7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmmbwFEeSwNLK2W02HwA" name="NestedConnectorEnd Element" identifier="org.eclipse.papyrus.SysML14.NestedConnectorEnd_Element" hint="UML::Element">
+    <iconEntry xmi:id="_k4SmmrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Element</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0yLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smm7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::NestedConnectorEnd</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0ybBqEeSbOe4Ay0wIRg" name="DirectedRelationshipPropertyPath" identifier="org.eclipse.papyrus.SysML14.DirectedRelationshipPropertyPath" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIN0yrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmnLwFEeSwNLK2W02HwA" name="DirectedRelationshipPropertyPath" identifier="org.eclipse.papyrus.SysML14.DirectedRelationshipPropertyPath" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SmnbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0y7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmnrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::DirectedRelationshipPropertyPath</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0zLBqEeSbOe4Ay0wIRg" name="ElementPropertyPath" identifier="org.eclipse.papyrus.SysML14.ElementPropertyPath" hint="UML::Element">
-    <iconEntry xmi:id="_EIN0zbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smn7wFEeSwNLK2W02HwA" name="ElementPropertyPath" identifier="org.eclipse.papyrus.SysML14.ElementPropertyPath" hint="UML::Element">
+    <iconEntry xmi:id="_k4SmoLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Element</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0zrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmobwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::ElementPropertyPath</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0z7BqEeSbOe4Ay0wIRg" name="EndPathMultiplicity" identifier="org.eclipse.papyrus.SysML14.EndPathMultiplicity" hint="UML::Property">
-    <iconEntry xmi:id="_EIN00LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmorwFEeSwNLK2W02HwA" name="EndPathMultiplicity" identifier="org.eclipse.papyrus.SysML14.EndPathMultiplicity" hint="UML::Property">
+    <iconEntry xmi:id="_k4Smo7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN00bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmpLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::EndPathMultiplicity</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN00rBqEeSbOe4Ay0wIRg" name="BoundReference" identifier="org.eclipse.papyrus.SysML14.BoundReference" hint="UML::Property">
-    <iconEntry xmi:id="_EIN007BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmpbwFEeSwNLK2W02HwA" name="BoundReference" identifier="org.eclipse.papyrus.SysML14.BoundReference" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmprwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN01LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smp7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::BoundReference</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN01bBqEeSbOe4Ay0wIRg" name="AdjunctProperty" identifier="org.eclipse.papyrus.SysML14.AdjunctProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN01rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmqLwFEeSwNLK2W02HwA" name="AdjunctProperty" identifier="org.eclipse.papyrus.SysML14.AdjunctProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmqbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN017BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmqrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::AdjunctProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN02LBqEeSbOe4Ay0wIRg" name="ClassifierBehaviorProperty" identifier="org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN02bBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smq7wFEeSwNLK2W02HwA" name="ClassifierBehaviorProperty" identifier="org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmrLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN02rBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmrbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Blocks::ClassifierBehaviorProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN027BqEeSbOe4Ay0wIRg" name="ItemFlow" identifier="org.eclipse.papyrus.SysML14.ItemFlow" hint="UML::InformationFlow">
-    <iconEntry xmi:id="_EIN03LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/InformationFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmrrwFEeSwNLK2W02HwA" name="ItemFlow" identifier="org.eclipse.papyrus.SysML14.ItemFlow" hint="UML::InformationFlow">
+    <iconEntry xmi:id="_k4Smr7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/InformationFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InformationFlow</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN03bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmsLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::ItemFlow</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN03rBqEeSbOe4Ay0wIRg" name="FlowProperty" identifier="org.eclipse.papyrus.SysML14.FlowProperty" hint="UML::Property">
-    <iconEntry xmi:id="_EIN037BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmsbwFEeSwNLK2W02HwA" name="FlowProperty" identifier="org.eclipse.papyrus.SysML14.FlowProperty" hint="UML::Property">
+    <iconEntry xmi:id="_k4SmsrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN04LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sms7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::FlowProperty</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN04bBqEeSbOe4Ay0wIRg" name="FullPort" identifier="org.eclipse.papyrus.SysML14.FullPort" hint="UML::Port">
-    <iconEntry xmi:id="_EIN04rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmtLwFEeSwNLK2W02HwA" name="FullPort" identifier="org.eclipse.papyrus.SysML14.FullPort" hint="UML::Port">
+    <iconEntry xmi:id="_k4SmtbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Port</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN047BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmtrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::FullPort</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN05LBqEeSbOe4Ay0wIRg" name="InterfaceBlock" identifier="org.eclipse.papyrus.SysML14.InterfaceBlock" hint="UML::Class">
-    <iconEntry xmi:id="_EIN05bBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smt7wFEeSwNLK2W02HwA" name="InterfaceBlock" identifier="org.eclipse.papyrus.SysML14.InterfaceBlock" hint="UML::Class">
+    <iconEntry xmi:id="_k4SmuLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN05rBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmubwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::InterfaceBlock</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN057BqEeSbOe4Ay0wIRg" name="ProxyPort" identifier="org.eclipse.papyrus.SysML14.ProxyPort" hint="UML::Port">
-    <iconEntry xmi:id="_EIN06LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmurwFEeSwNLK2W02HwA" name="ProxyPort" identifier="org.eclipse.papyrus.SysML14.ProxyPort" hint="UML::Port">
+    <iconEntry xmi:id="_k4Smu7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Port</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN06bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmvLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::ProxyPort</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN06rBqEeSbOe4Ay0wIRg" name="AcceptChangeStructuralFeatureEventAction" identifier="org.eclipse.papyrus.SysML14.AcceptChangeStructuralFeatureEventAction" hint="UML::AcceptEventAction">
-    <iconEntry xmi:id="_EIN067BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/AcceptEventAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmvbwFEeSwNLK2W02HwA" name="AcceptChangeStructuralFeatureEventAction" identifier="org.eclipse.papyrus.SysML14.AcceptChangeStructuralFeatureEventAction" hint="UML::AcceptEventAction">
+    <iconEntry xmi:id="_k4SmvrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/AcceptEventAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.AcceptEventAction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN07LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smv7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::AcceptChangeStructuralFeatureEventAction</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN07bBqEeSbOe4Ay0wIRg" name="ChangeStructuralFeatureEvent" identifier="org.eclipse.papyrus.SysML14.ChangeStructuralFeatureEvent" hint="UML::ChangeEvent">
-    <iconEntry xmi:id="_EIN07rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ChangeEvent.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmwLwFEeSwNLK2W02HwA" name="ChangeStructuralFeatureEvent" identifier="org.eclipse.papyrus.SysML14.ChangeStructuralFeatureEvent" hint="UML::ChangeEvent">
+    <iconEntry xmi:id="_k4SmwbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ChangeEvent.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ChangeEvent</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN077BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmwrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::ChangeStructuralFeatureEvent</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN08LBqEeSbOe4Ay0wIRg" name="DirectedFeature" identifier="org.eclipse.papyrus.SysML14.DirectedFeature" hint="UML::Feature">
-    <iconEntry xmi:id="_EIN08bBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Feature.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smw7wFEeSwNLK2W02HwA" name="DirectedFeature" identifier="org.eclipse.papyrus.SysML14.DirectedFeature" hint="UML::Feature">
+    <iconEntry xmi:id="_k4SmxLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Feature.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Feature</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN08rBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmxbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::DirectedFeature</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN087BqEeSbOe4Ay0wIRg" name="InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_InvocationAction" hint="UML::InvocationAction">
-    <iconEntry xmi:id="_EIN09LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/InvocationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmxrwFEeSwNLK2W02HwA" name="InvocationOnNestedPortAction InvocationAction" identifier="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_InvocationAction" hint="UML::InvocationAction">
+    <iconEntry xmi:id="_k4Smx7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/InvocationAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InvocationAction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN09bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmyLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::InvocationOnNestedPortAction</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN09rBqEeSbOe4Ay0wIRg" name="InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_Element" hint="UML::Element">
-    <iconEntry xmi:id="_EIN097BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmybwFEeSwNLK2W02HwA" name="InvocationOnNestedPortAction Element" identifier="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_Element" hint="UML::Element">
+    <iconEntry xmi:id="_k4SmyrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Element</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0-LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Smy7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::InvocationOnNestedPortAction</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0-bBqEeSbOe4Ay0wIRg" name="TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Trigger" hint="UML::Trigger">
-    <iconEntry xmi:id="_EIN0-rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Trigger.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SmzLwFEeSwNLK2W02HwA" name="TriggerOnNestedPort Trigger" identifier="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Trigger" hint="UML::Trigger">
+    <iconEntry xmi:id="_k4SmzbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Trigger.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Trigger</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0-7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SmzrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::TriggerOnNestedPort</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0_LBqEeSbOe4Ay0wIRg" name="TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Element" hint="UML::Element">
-    <iconEntry xmi:id="_EIN0_bBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Smz7wFEeSwNLK2W02HwA" name="TriggerOnNestedPort Element" identifier="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Element" hint="UML::Element">
+    <iconEntry xmi:id="_k4Sm0LwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Element.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Element</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN0_rBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm0bwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::PortsandFlows::TriggerOnNestedPort</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN0_7BqEeSbOe4Ay0wIRg" name="Overwrite" identifier="org.eclipse.papyrus.SysML14.Overwrite" hint="UML::ObjectNode">
-    <iconEntry xmi:id="_EIN1ALBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ObjectNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm0rwFEeSwNLK2W02HwA" name="Overwrite" identifier="org.eclipse.papyrus.SysML14.Overwrite" hint="UML::ObjectNode">
+    <iconEntry xmi:id="_k4Sm07wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ObjectNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ObjectNode</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1AbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm1LwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Overwrite</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1ArBqEeSbOe4Ay0wIRg" name="ControlOperator" identifier="org.eclipse.papyrus.SysML14.ControlOperator_Behavior" hint="UML::Behavior">
-    <iconEntry xmi:id="_EIN1A7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm1bwFEeSwNLK2W02HwA" name="ControlOperator Behavior" identifier="org.eclipse.papyrus.SysML14.ControlOperator_Behavior" hint="UML::Behavior">
+    <iconEntry xmi:id="_k4Sm1rwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1BLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm17wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::ControlOperator</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1BbBqEeSbOe4Ay0wIRg" name="ControlOperator" identifier="org.eclipse.papyrus.SysML14.ControlOperator_Operation" hint="UML::Operation">
-    <iconEntry xmi:id="_EIN1BrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Operation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm2LwFEeSwNLK2W02HwA" name="ControlOperator Operation" identifier="org.eclipse.papyrus.SysML14.ControlOperator_Operation" hint="UML::Operation">
+    <iconEntry xmi:id="_k4Sm2bwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Operation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Operation</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1B7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm2rwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::ControlOperator</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1CLBqEeSbOe4Ay0wIRg" name="Rate" identifier="org.eclipse.papyrus.SysML14.Rate_ActivityEdge" hint="UML::ActivityEdge">
-    <iconEntry xmi:id="_EIN1CbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm27wFEeSwNLK2W02HwA" name="Rate ActivityEdge" identifier="org.eclipse.papyrus.SysML14.Rate_ActivityEdge" hint="UML::ActivityEdge">
+    <iconEntry xmi:id="_k4Sm3LwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityEdge</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1CrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm3bwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Rate</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1C7BqEeSbOe4Ay0wIRg" name="Rate" identifier="org.eclipse.papyrus.SysML14.Rate_Parameter" hint="UML::Parameter">
-    <iconEntry xmi:id="_EIN1DLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm3rwFEeSwNLK2W02HwA" name="Rate Parameter" identifier="org.eclipse.papyrus.SysML14.Rate_Parameter" hint="UML::Parameter">
+    <iconEntry xmi:id="_k4Sm37wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Parameter</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1DbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm4LwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Rate</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1DrBqEeSbOe4Ay0wIRg" name="NoBuffer" identifier="org.eclipse.papyrus.SysML14.NoBuffer" hint="UML::ObjectNode">
-    <iconEntry xmi:id="_EIN1D7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ObjectNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm4bwFEeSwNLK2W02HwA" name="NoBuffer" identifier="org.eclipse.papyrus.SysML14.NoBuffer" hint="UML::ObjectNode">
+    <iconEntry xmi:id="_k4Sm4rwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ObjectNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ObjectNode</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1ELBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm47wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::NoBuffer</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1EbBqEeSbOe4Ay0wIRg" name="Discrete" identifier="org.eclipse.papyrus.SysML14.Discrete_ActivityEdge" hint="UML::ActivityEdge">
-    <iconEntry xmi:id="_EIN1ErBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm5LwFEeSwNLK2W02HwA" name="Discrete ActivityEdge" identifier="org.eclipse.papyrus.SysML14.Discrete_ActivityEdge" hint="UML::ActivityEdge">
+    <iconEntry xmi:id="_k4Sm5bwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityEdge</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1E7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm5rwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Discrete</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1FLBqEeSbOe4Ay0wIRg" name="Discrete" identifier="org.eclipse.papyrus.SysML14.Discrete_Parameter" hint="UML::Parameter">
-    <iconEntry xmi:id="_EIN1FbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm57wFEeSwNLK2W02HwA" name="Discrete Parameter" identifier="org.eclipse.papyrus.SysML14.Discrete_Parameter" hint="UML::Parameter">
+    <iconEntry xmi:id="_k4Sm6LwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Parameter</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1FrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm6bwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Discrete</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1F7BqEeSbOe4Ay0wIRg" name="Continuous" identifier="org.eclipse.papyrus.SysML14.Continuous_ActivityEdge" hint="UML::ActivityEdge">
-    <iconEntry xmi:id="_EIN1GLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm6rwFEeSwNLK2W02HwA" name="Continuous ActivityEdge" identifier="org.eclipse.papyrus.SysML14.Continuous_ActivityEdge" hint="UML::ActivityEdge">
+    <iconEntry xmi:id="_k4Sm67wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityEdge</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1GbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm7LwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Continuous</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1GrBqEeSbOe4Ay0wIRg" name="Continuous" identifier="org.eclipse.papyrus.SysML14.Continuous_Parameter" hint="UML::Parameter">
-    <iconEntry xmi:id="_EIN1G7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm7bwFEeSwNLK2W02HwA" name="Continuous Parameter" identifier="org.eclipse.papyrus.SysML14.Continuous_Parameter" hint="UML::Parameter">
+    <iconEntry xmi:id="_k4Sm7rwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Parameter</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1HLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm77wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Continuous</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1HbBqEeSbOe4Ay0wIRg" name="Probability" identifier="org.eclipse.papyrus.SysML14.Probability_ActivityEdge" hint="UML::ActivityEdge">
-    <iconEntry xmi:id="_EIN1HrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm8LwFEeSwNLK2W02HwA" name="Probability ActivityEdge" identifier="org.eclipse.papyrus.SysML14.Probability_ActivityEdge" hint="UML::ActivityEdge">
+    <iconEntry xmi:id="_k4Sm8bwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ActivityEdge.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityEdge</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1H7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm8rwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Probability</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1ILBqEeSbOe4Ay0wIRg" name="Probability" identifier="org.eclipse.papyrus.SysML14.Probability_ParameterSet" hint="UML::ParameterSet">
-    <iconEntry xmi:id="_EIN1IbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ParameterSet.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm87wFEeSwNLK2W02HwA" name="Probability ParameterSet" identifier="org.eclipse.papyrus.SysML14.Probability_ParameterSet" hint="UML::ParameterSet">
+    <iconEntry xmi:id="_k4Sm9LwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ParameterSet.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ParameterSet</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1IrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm9bwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Probability</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1I7BqEeSbOe4Ay0wIRg" name="Optional" identifier="org.eclipse.papyrus.SysML14.Optional" hint="UML::Parameter">
-    <iconEntry xmi:id="_EIN1JLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm9rwFEeSwNLK2W02HwA" name="Optional" identifier="org.eclipse.papyrus.SysML14.Optional" hint="UML::Parameter">
+    <iconEntry xmi:id="_k4Sm97wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Parameter.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Parameter</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1JbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm-LwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Activities::Optional</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1JrBqEeSbOe4Ay0wIRg" name="Rationale" identifier="org.eclipse.papyrus.SysML14.Rationale" hint="UML::Comment">
-    <iconEntry xmi:id="_EIN1J7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm-bwFEeSwNLK2W02HwA" name="Rationale" identifier="org.eclipse.papyrus.SysML14.Rationale" hint="UML::Comment">
+    <iconEntry xmi:id="_k4Sm-rwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1KLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm-7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Rationale</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1KbBqEeSbOe4Ay0wIRg" name="View" identifier="org.eclipse.papyrus.SysML14.View_Package" hint="UML::Package">
-    <iconEntry xmi:id="_EIN1KrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Package.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm_LwFEeSwNLK2W02HwA" name="View Package" identifier="org.eclipse.papyrus.SysML14.View_Package" hint="UML::Package">
+    <iconEntry xmi:id="_k4Sm_bwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Package.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1K7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4Sm_rwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::View</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1LLBqEeSbOe4Ay0wIRg" name="View" identifier="org.eclipse.papyrus.SysML14.View_Class" hint="UML::Class">
-    <iconEntry xmi:id="_EIN1LbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sm_7wFEeSwNLK2W02HwA" name="View Class" identifier="org.eclipse.papyrus.SysML14.View_Class" hint="UML::Class">
+    <iconEntry xmi:id="_k4SnALwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1LrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnAbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::View</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1L7BqEeSbOe4Ay0wIRg" name="Conform" identifier="org.eclipse.papyrus.SysML14.Conform_Dependency" hint="UML::Dependency">
-    <iconEntry xmi:id="_EIN1MLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnArwFEeSwNLK2W02HwA" name="Conform Dependency" identifier="org.eclipse.papyrus.SysML14.Conform_Dependency" hint="UML::Dependency">
+    <iconEntry xmi:id="_k4SnA7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1MbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnBLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Conform</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1MrBqEeSbOe4Ay0wIRg" name="Conform" identifier="org.eclipse.papyrus.SysML14.Conform_Generalization" hint="UML::Generalization">
-    <iconEntry xmi:id="_EIN1M7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnBbwFEeSwNLK2W02HwA" name="Conform Generalization" identifier="org.eclipse.papyrus.SysML14.Conform_Generalization" hint="UML::Generalization">
+    <iconEntry xmi:id="_k4SnBrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Generalization</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1NLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnB7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Conform</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1NbBqEeSbOe4Ay0wIRg" name="Problem" identifier="org.eclipse.papyrus.SysML14.Problem" hint="UML::Comment">
-    <iconEntry xmi:id="_EIN1NrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnCLwFEeSwNLK2W02HwA" name="Problem" identifier="org.eclipse.papyrus.SysML14.Problem" hint="UML::Comment">
+    <iconEntry xmi:id="_k4SnCbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1N7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnCrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Problem</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1OLBqEeSbOe4Ay0wIRg" name="ViewPoint" identifier="org.eclipse.papyrus.SysML14.ViewPoint" hint="UML::Class">
-    <iconEntry xmi:id="_EIN1ObBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnC7wFEeSwNLK2W02HwA" name="ViewPoint" identifier="org.eclipse.papyrus.SysML14.ViewPoint" hint="UML::Class">
+    <iconEntry xmi:id="_k4SnDLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1OrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnDbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::ViewPoint</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1O7BqEeSbOe4Ay0wIRg" name="Stakeholder" identifier="org.eclipse.papyrus.SysML14.Stakeholder" hint="UML::Classifier">
-    <iconEntry xmi:id="_EIN1PLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Classifier.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnDrwFEeSwNLK2W02HwA" name="Stakeholder" identifier="org.eclipse.papyrus.SysML14.Stakeholder" hint="UML::Classifier">
+    <iconEntry xmi:id="_k4SnD7wFEeSwNLK2W02HwA" iconPath="/icons/Classifier.gif" bundleId="org.eclipse.papyrus.uml.service.types"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Classifier</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1PbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnELwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Stakeholder</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1PrBqEeSbOe4Ay0wIRg" name="Expose" identifier="org.eclipse.papyrus.SysML14.Expose" hint="UML::Dependency">
-    <iconEntry xmi:id="_EIN1P7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnEbwFEeSwNLK2W02HwA" name="Expose" identifier="org.eclipse.papyrus.SysML14.Expose" hint="UML::Dependency">
+    <iconEntry xmi:id="_k4SnErwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1QLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnE7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::Expose</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1QbBqEeSbOe4Ay0wIRg" name="ElementGroup" identifier="org.eclipse.papyrus.SysML14.ElementGroup" hint="UML::Comment">
-    <iconEntry xmi:id="_EIN1QrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnFLwFEeSwNLK2W02HwA" name="ElementGroup" identifier="org.eclipse.papyrus.SysML14.ElementGroup" hint="UML::Comment">
+    <iconEntry xmi:id="_k4SnFbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1Q7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnFrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ModelElements::ElementGroup</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1RLBqEeSbOe4Ay0wIRg" name="ConstraintBlock" identifier="org.eclipse.papyrus.SysML14.ConstraintBlock" hint="UML::Class">
-    <iconEntry xmi:id="_EIN1RbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnF7wFEeSwNLK2W02HwA" name="ConstraintBlock" identifier="org.eclipse.papyrus.SysML14.ConstraintBlock" hint="UML::Class">
+    <iconEntry xmi:id="_k4SnGLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1RrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnGbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::ConstraintBlocks::ConstraintBlock</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1R7BqEeSbOe4Ay0wIRg" name="AllocateActivityPartition" identifier="org.eclipse.papyrus.SysML14.AllocateActivityPartition" hint="UML::ActivityPartition">
-    <iconEntry xmi:id="_EIN1SLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ActivityPartition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnGrwFEeSwNLK2W02HwA" name="AllocateActivityPartition" identifier="org.eclipse.papyrus.SysML14.AllocateActivityPartition" hint="UML::ActivityPartition">
+    <iconEntry xmi:id="_k4SnG7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ActivityPartition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActivityPartition</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1SbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnHLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Allocations::AllocateActivityPartition</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1SrBqEeSbOe4Ay0wIRg" name="Allocate" identifier="org.eclipse.papyrus.SysML14.Allocate_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIN1S7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnHbwFEeSwNLK2W02HwA" name="Allocate Abstraction" identifier="org.eclipse.papyrus.SysML14.Allocate_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnHrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1TLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnH7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Allocations::Allocate</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1TbBqEeSbOe4Ay0wIRg" name="Allocate" identifier="org.eclipse.papyrus.SysML14.Allocate_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIN1TrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnILwFEeSwNLK2W02HwA" name="Allocate DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Allocate_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnIbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1T7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnIrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Allocations::Allocate</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1ULBqEeSbOe4Ay0wIRg" name="DeriveReqt" identifier="org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIN1UbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnI7wFEeSwNLK2W02HwA" name="DeriveReqt Abstraction" identifier="org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnJLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1UrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnJbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::DeriveReqt</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1U7BqEeSbOe4Ay0wIRg" name="DeriveReqt" identifier="org.eclipse.papyrus.SysML14.DeriveReqt_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIN1VLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnJrwFEeSwNLK2W02HwA" name="DeriveReqt DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.DeriveReqt_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnJ7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1VbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnKLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::DeriveReqt</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1VrBqEeSbOe4Ay0wIRg" name="Copy" identifier="org.eclipse.papyrus.SysML14.Copy_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIN1V7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnKbwFEeSwNLK2W02HwA" name="Copy Abstraction" identifier="org.eclipse.papyrus.SysML14.Copy_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnKrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1WLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnK7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Copy</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1WbBqEeSbOe4Ay0wIRg" name="Copy" identifier="org.eclipse.papyrus.SysML14.Copy_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIN1WrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnLLwFEeSwNLK2W02HwA" name="Copy DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Copy_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnLbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1W7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnLrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Copy</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1XLBqEeSbOe4Ay0wIRg" name="Satisfy" identifier="org.eclipse.papyrus.SysML14.Satisfy_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIN1XbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnL7wFEeSwNLK2W02HwA" name="Satisfy Abstraction" identifier="org.eclipse.papyrus.SysML14.Satisfy_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnMLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1XrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnMbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Satisfy</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1X7BqEeSbOe4Ay0wIRg" name="Satisfy" identifier="org.eclipse.papyrus.SysML14.Satisfy_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIN1YLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnMrwFEeSwNLK2W02HwA" name="Satisfy DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Satisfy_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnM7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1YbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnNLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Satisfy</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1YrBqEeSbOe4Ay0wIRg" name="TestCase" identifier="org.eclipse.papyrus.SysML14.TestCase_Operation" hint="UML::Operation">
-    <iconEntry xmi:id="_EIN1Y7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Operation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnNbwFEeSwNLK2W02HwA" name="TestCase Operation" identifier="org.eclipse.papyrus.SysML14.TestCase_Operation" hint="UML::Operation">
+    <iconEntry xmi:id="_k4SnNrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Operation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Operation</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1ZLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnN7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::TestCase</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1ZbBqEeSbOe4Ay0wIRg" name="TestCase" identifier="org.eclipse.papyrus.SysML14.TestCase_Behavior" hint="UML::Behavior">
-    <iconEntry xmi:id="_EIN1ZrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnOLwFEeSwNLK2W02HwA" name="TestCase Behavior" identifier="org.eclipse.papyrus.SysML14.TestCase_Behavior" hint="UML::Behavior">
+    <iconEntry xmi:id="_k4SnObwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Behavior.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Behavior</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIN1Z7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnOrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::TestCase</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIN1aLBqEeSbOe4Ay0wIRg" name="Requirement" identifier="org.eclipse.papyrus.SysML14.Requirement" hint="UML::Class">
-    <iconEntry xmi:id="_EIN1abBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnO7wFEeSwNLK2W02HwA" name="Requirement" identifier="org.eclipse.papyrus.SysML14.Requirement" hint="UML::Class">
+    <iconEntry xmi:id="_k4SnPLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlsLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnPbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Requirement</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlsbBqEeSbOe4Ay0wIRg" name="Verify" identifier="org.eclipse.papyrus.SysML14.Verify_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIXlsrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnPrwFEeSwNLK2W02HwA" name="Verify Abstraction" identifier="org.eclipse.papyrus.SysML14.Verify_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnP7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXls7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnQLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Verify</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXltLBqEeSbOe4Ay0wIRg" name="Verify" identifier="org.eclipse.papyrus.SysML14.Verify_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIXltbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnQbwFEeSwNLK2W02HwA" name="Verify DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Verify_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnQrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXltrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnQ7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Verify</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlt7BqEeSbOe4Ay0wIRg" name="Trace" identifier="org.eclipse.papyrus.SysML14.Trace_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIXluLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnRLwFEeSwNLK2W02HwA" name="Trace Abstraction" identifier="org.eclipse.papyrus.SysML14.Trace_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnRbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlubBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnRrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Trace</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlurBqEeSbOe4Ay0wIRg" name="Trace" identifier="org.eclipse.papyrus.SysML14.Trace_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIXlu7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnR7wFEeSwNLK2W02HwA" name="Trace DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Trace_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnSLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlvLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnSbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Trace</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlvbBqEeSbOe4Ay0wIRg" name="Refine" identifier="org.eclipse.papyrus.SysML14.Refine_Abstraction" hint="UML::Abstraction">
-    <iconEntry xmi:id="_EIXlvrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnSrwFEeSwNLK2W02HwA" name="Refine Abstraction" identifier="org.eclipse.papyrus.SysML14.Refine_Abstraction" hint="UML::Abstraction">
+    <iconEntry xmi:id="_k4SnS7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Abstraction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlv7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnTLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Refine</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlwLBqEeSbOe4Ay0wIRg" name="Refine" identifier="org.eclipse.papyrus.SysML14.Refine_DirectedRelationship" hint="UML::DirectedRelationship">
-    <iconEntry xmi:id="_EIXlwbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnTbwFEeSwNLK2W02HwA" name="Refine DirectedRelationship" identifier="org.eclipse.papyrus.SysML14.Refine_DirectedRelationship" hint="UML::DirectedRelationship">
+    <iconEntry xmi:id="_k4SnTrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DirectedRelationship.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DirectedRelationship</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlwrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnT7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::Requirements::Refine</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlw7BqEeSbOe4Ay0wIRg" name="FlowPort" identifier="org.eclipse.papyrus.SysML14.FlowPort" hint="UML::Port">
-    <iconEntry xmi:id="_EIXlxLBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnULwFEeSwNLK2W02HwA" name="FlowPort" identifier="org.eclipse.papyrus.SysML14.FlowPort" hint="UML::Port">
+    <iconEntry xmi:id="_k4SnUbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Port.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Port</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlxbBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnUrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlxrBqEeSbOe4Ay0wIRg" name="FlowSpecification" identifier="org.eclipse.papyrus.SysML14.FlowSpecification" hint="UML::Interface">
-    <iconEntry xmi:id="_EIXlx7BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Interface.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnU7wFEeSwNLK2W02HwA" name="FlowSpecification" identifier="org.eclipse.papyrus.SysML14.FlowSpecification" hint="UML::Interface">
+    <iconEntry xmi:id="_k4SnVLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Interface.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Interface</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlyLBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnVbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowSpecification</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlybBqEeSbOe4Ay0wIRg" name="Allocated" identifier="org.eclipse.papyrus.SysML14.Allocated" hint="UML::NamedElement">
-    <iconEntry xmi:id="_EIXlyrBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnVrwFEeSwNLK2W02HwA" name="Allocated" identifier="org.eclipse.papyrus.SysML14.Allocated" hint="UML::NamedElement">
+    <iconEntry xmi:id="_k4SnV7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.NamedElement</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXly7BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnWLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Allocated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlzLBqEeSbOe4Ay0wIRg" name="RequirementRelated" identifier="org.eclipse.papyrus.SysML14.RequirementRelated" hint="UML::NamedElement">
-    <iconEntry xmi:id="_EIXlzbBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnWbwFEeSwNLK2W02HwA" name="RequirementRelated" identifier="org.eclipse.papyrus.SysML14.RequirementRelated" hint="UML::NamedElement">
+    <iconEntry xmi:id="_k4SnWrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.NamedElement</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXlzrBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnW7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::RequirementRelated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXlz7BqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification" hint="UML::ValueSpecification">
-    <iconEntry xmi:id="_EIXl0LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/ValueSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnXLwFEeSwNLK2W02HwA" name="Deprecated ValueSpecification" identifier="org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification" hint="UML::ValueSpecification">
+    <iconEntry xmi:id="_k4SnXbwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/ValueSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValueSpecification</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl0bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnXrwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl0rBqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_Property" hint="UML::Property">
-    <iconEntry xmi:id="_EIXl07BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnX7wFEeSwNLK2W02HwA" name="Deprecated Property" identifier="org.eclipse.papyrus.SysML14.Deprecated_Property" hint="UML::Property">
+    <iconEntry xmi:id="_k4SnYLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl1LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnYbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl1bBqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification" hint="UML::InstanceSpecification">
-    <iconEntry xmi:id="_EIXl1rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/InstanceSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnYrwFEeSwNLK2W02HwA" name="Deprecated InstanceSpecification" identifier="org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification" hint="UML::InstanceSpecification">
+    <iconEntry xmi:id="_k4SnY7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/InstanceSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl17BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnZLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl2LBqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_Class" hint="UML::Class">
-    <iconEntry xmi:id="_EIXl2bBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnZbwFEeSwNLK2W02HwA" name="Deprecated Class" identifier="org.eclipse.papyrus.SysML14.Deprecated_Class" hint="UML::Class">
+    <iconEntry xmi:id="_k4SnZrwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Class.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl2rBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnZ7wFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl27BqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_Association_UML::Association" hint="UML::Association">
-    <iconEntry xmi:id="_EIXl3LBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnaLwFEeSwNLK2W02HwA" name="Deprecated Association" identifier="org.eclipse.papyrus.SysML14.Deprecated_Association_UML::Association" hint="UML::Association">
+    <iconEntry xmi:id="_k4SnabwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Association.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Association</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl3bBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnarwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl3rBqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_Generalization" hint="UML::Generalization">
-    <iconEntry xmi:id="_EIXl37BqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4Sna7wFEeSwNLK2W02HwA" name="Deprecated Generalization" identifier="org.eclipse.papyrus.SysML14.Deprecated_Generalization" hint="UML::Generalization">
+    <iconEntry xmi:id="_k4SnbLwFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/Generalization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Generalization</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl4LBqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SnbbwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EIXl4bBqEeSbOe4Ay0wIRg" name="Deprecated" identifier="org.eclipse.papyrus.SysML14.Deprecated_DataType" hint="UML::DataType">
-    <iconEntry xmi:id="_EIXl4rBqEeSbOe4Ay0wIRg" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_k4SnbrwFEeSwNLK2W02HwA" name="Deprecated DataType" identifier="org.eclipse.papyrus.SysML14.Deprecated_DataType" hint="UML::DataType">
+    <iconEntry xmi:id="_k4Snb7wFEeSwNLK2W02HwA" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.DataType</specializedTypesID>
-    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_EIXl47BqEeSbOe4Ay0wIRg">
+    <matcherConfiguration xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration" xmi:id="_k4SncLwFEeSwNLK2W02HwA">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl5LBqEeSbOe4Ay0wIRg" name="Apply ValueType" identifier="org.eclipse.papyrus.SysML14.valueType" target="_EIEqwbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl5bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::ValueType" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SncbwFEeSwNLK2W02HwA" name="Apply ValueType" identifier="org.eclipse.papyrus.SysML14.valueType" target="_k4SmgbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SncrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::ValueType" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl5rBqEeSbOe4Ay0wIRg" name="Apply DistributedProperty" identifier="org.eclipse.papyrus.SysML14.distributedProperty" target="_EIN0sbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl57BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::DistributedProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snc7wFEeSwNLK2W02HwA" name="Apply DistributedProperty" identifier="org.eclipse.papyrus.SysML14.distributedProperty" target="_k4SmhLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SndLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::DistributedProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl6LBqEeSbOe4Ay0wIRg" name="Apply ConnectorProperty" identifier="org.eclipse.papyrus.SysML14.connectorProperty" target="_EIN0tLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl6bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::ConnectorProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SndbwFEeSwNLK2W02HwA" name="Apply ConnectorProperty" identifier="org.eclipse.papyrus.SysML14.connectorProperty" target="_k4Smh7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SndrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::ConnectorProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl6rBqEeSbOe4Ay0wIRg" name="Apply ParticipantProperty" identifier="org.eclipse.papyrus.SysML14.participantProperty" target="_EIN0t7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl67BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::ParticipantProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snd7wFEeSwNLK2W02HwA" name="Apply ParticipantProperty" identifier="org.eclipse.papyrus.SysML14.participantProperty" target="_k4SmirwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SneLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::ParticipantProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl7LBqEeSbOe4Ay0wIRg" name="Apply BindingConnector" identifier="org.eclipse.papyrus.SysML14.bindingConnector" target="_EIN0urBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl7bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::BindingConnector" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnebwFEeSwNLK2W02HwA" name="Apply BindingConnector" identifier="org.eclipse.papyrus.SysML14.bindingConnector" target="_k4SmjbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnerwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::BindingConnector" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl7rBqEeSbOe4Ay0wIRg" name="Apply Block" identifier="org.eclipse.papyrus.SysML14.block" target="_EIN0vbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl77BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::Block" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sne7wFEeSwNLK2W02HwA" name="Apply Block" identifier="org.eclipse.papyrus.SysML14.block" target="_k4SmkLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnfLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::Block" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl8LBqEeSbOe4Ay0wIRg" name="Apply PropertySpecificType" identifier="org.eclipse.papyrus.SysML14.propertySpecificType" target="_EIN0wLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl8bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::PropertySpecificType" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnfbwFEeSwNLK2W02HwA" name="Apply PropertySpecificType" identifier="org.eclipse.papyrus.SysML14.propertySpecificType" target="_k4Smk7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnfrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::PropertySpecificType" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl8rBqEeSbOe4Ay0wIRg" name="Apply NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.nestedConnectorEnd" target="_EIN0w7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl87BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snf7wFEeSwNLK2W02HwA" name="Apply NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.nestedConnectorEnd" target="_k4SmlrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SngLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl9LBqEeSbOe4Ay0wIRg" name="Apply NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.nestedConnectorEnd" target="_EIN0xrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl9bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SngbwFEeSwNLK2W02HwA" name="Apply NestedConnectorEnd" identifier="org.eclipse.papyrus.SysML14.nestedConnectorEnd" target="_k4SmmbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SngrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::NestedConnectorEnd" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl9rBqEeSbOe4Ay0wIRg" name="Apply DirectedRelationshipPropertyPath" identifier="org.eclipse.papyrus.SysML14.directedRelationshipPropertyPath" target="_EIN0ybBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl97BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::DirectedRelationshipPropertyPath" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sng7wFEeSwNLK2W02HwA" name="Apply DirectedRelationshipPropertyPath" identifier="org.eclipse.papyrus.SysML14.directedRelationshipPropertyPath" target="_k4SmnLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnhLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::DirectedRelationshipPropertyPath" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl-LBqEeSbOe4Ay0wIRg" name="Apply ElementPropertyPath" identifier="org.eclipse.papyrus.SysML14.elementPropertyPath" target="_EIN0zLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl-bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::ElementPropertyPath" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnhbwFEeSwNLK2W02HwA" name="Apply ElementPropertyPath" identifier="org.eclipse.papyrus.SysML14.elementPropertyPath" target="_k4Smn7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnhrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::ElementPropertyPath" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl-rBqEeSbOe4Ay0wIRg" name="Apply EndPathMultiplicity" identifier="org.eclipse.papyrus.SysML14.endPathMultiplicity" target="_EIN0z7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl-7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::EndPathMultiplicity" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snh7wFEeSwNLK2W02HwA" name="Apply EndPathMultiplicity" identifier="org.eclipse.papyrus.SysML14.endPathMultiplicity" target="_k4SmorwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SniLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::EndPathMultiplicity" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl_LBqEeSbOe4Ay0wIRg" name="Apply BoundReference" identifier="org.eclipse.papyrus.SysML14.boundReference" target="_EIN00rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl_bBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::BoundReference" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnibwFEeSwNLK2W02HwA" name="Apply BoundReference" identifier="org.eclipse.papyrus.SysML14.boundReference" target="_k4SmpbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnirwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::BoundReference" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXl_rBqEeSbOe4Ay0wIRg" name="Apply AdjunctProperty" identifier="org.eclipse.papyrus.SysML14.adjunctProperty" target="_EIN01bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXl_7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::AdjunctProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sni7wFEeSwNLK2W02HwA" name="Apply AdjunctProperty" identifier="org.eclipse.papyrus.SysML14.adjunctProperty" target="_k4SmqLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnjLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::AdjunctProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmALBqEeSbOe4Ay0wIRg" name="Apply ClassifierBehaviorProperty" identifier="org.eclipse.papyrus.SysML14.classifierBehaviorProperty" target="_EIN02LBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmAbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Blocks::ClassifierBehaviorProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnjbwFEeSwNLK2W02HwA" name="Apply ClassifierBehaviorProperty" identifier="org.eclipse.papyrus.SysML14.classifierBehaviorProperty" target="_k4Smq7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnjrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Blocks::ClassifierBehaviorProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmArBqEeSbOe4Ay0wIRg" name="Apply ItemFlow" identifier="org.eclipse.papyrus.SysML14.itemFlow" target="_EIN027BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmA7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::ItemFlow" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snj7wFEeSwNLK2W02HwA" name="Apply ItemFlow" identifier="org.eclipse.papyrus.SysML14.itemFlow" target="_k4SmrrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnkLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::ItemFlow" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmBLBqEeSbOe4Ay0wIRg" name="Apply FlowProperty" identifier="org.eclipse.papyrus.SysML14.flowProperty" target="_EIN03rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmBbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::FlowProperty" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnkbwFEeSwNLK2W02HwA" name="Apply FlowProperty" identifier="org.eclipse.papyrus.SysML14.flowProperty" target="_k4SmsbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnkrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::FlowProperty" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmBrBqEeSbOe4Ay0wIRg" name="Apply FullPort" identifier="org.eclipse.papyrus.SysML14.fullPort" target="_EIN04bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmB7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::FullPort" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snk7wFEeSwNLK2W02HwA" name="Apply FullPort" identifier="org.eclipse.papyrus.SysML14.fullPort" target="_k4SmtLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnlLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::FullPort" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmCLBqEeSbOe4Ay0wIRg" name="Apply InterfaceBlock" identifier="org.eclipse.papyrus.SysML14.interfaceBlock" target="_EIN05LBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmCbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::InterfaceBlock" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnlbwFEeSwNLK2W02HwA" name="Apply InterfaceBlock" identifier="org.eclipse.papyrus.SysML14.interfaceBlock" target="_k4Smt7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnlrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::InterfaceBlock" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmCrBqEeSbOe4Ay0wIRg" name="Apply ProxyPort" identifier="org.eclipse.papyrus.SysML14.proxyPort" target="_EIN057BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmC7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::ProxyPort" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snl7wFEeSwNLK2W02HwA" name="Apply ProxyPort" identifier="org.eclipse.papyrus.SysML14.proxyPort" target="_k4SmurwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnmLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::ProxyPort" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmDLBqEeSbOe4Ay0wIRg" name="Apply AcceptChangeStructuralFeatureEventAction" identifier="org.eclipse.papyrus.SysML14.acceptChangeStructuralFeatureEventAction" target="_EIN06rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmDbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::AcceptChangeStructuralFeatureEventAction" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnmbwFEeSwNLK2W02HwA" name="Apply AcceptChangeStructuralFeatureEventAction" identifier="org.eclipse.papyrus.SysML14.acceptChangeStructuralFeatureEventAction" target="_k4SmvbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnmrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::AcceptChangeStructuralFeatureEventAction" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmDrBqEeSbOe4Ay0wIRg" name="Apply ChangeStructuralFeatureEvent" identifier="org.eclipse.papyrus.SysML14.changeStructuralFeatureEvent" target="_EIN07bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmD7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::ChangeStructuralFeatureEvent" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snm7wFEeSwNLK2W02HwA" name="Apply ChangeStructuralFeatureEvent" identifier="org.eclipse.papyrus.SysML14.changeStructuralFeatureEvent" target="_k4SmwLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnnLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::ChangeStructuralFeatureEvent" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmELBqEeSbOe4Ay0wIRg" name="Apply DirectedFeature" identifier="org.eclipse.papyrus.SysML14.directedFeature" target="_EIN08LBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmEbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::DirectedFeature" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnnbwFEeSwNLK2W02HwA" name="Apply DirectedFeature" identifier="org.eclipse.papyrus.SysML14.directedFeature" target="_k4Smw7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnnrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::DirectedFeature" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmErBqEeSbOe4Ay0wIRg" name="Apply InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.invocationOnNestedPortAction" target="_EIN087BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmE7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::InvocationOnNestedPortAction" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snn7wFEeSwNLK2W02HwA" name="Apply InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.invocationOnNestedPortAction" target="_k4SmxrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnoLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::InvocationOnNestedPortAction" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmFLBqEeSbOe4Ay0wIRg" name="Apply InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.invocationOnNestedPortAction" target="_EIN09rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmFbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::InvocationOnNestedPortAction" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnobwFEeSwNLK2W02HwA" name="Apply InvocationOnNestedPortAction" identifier="org.eclipse.papyrus.SysML14.invocationOnNestedPortAction" target="_k4SmybwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnorwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::InvocationOnNestedPortAction" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmFrBqEeSbOe4Ay0wIRg" name="Apply TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.triggerOnNestedPort" target="_EIN0-bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmF7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::TriggerOnNestedPort" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sno7wFEeSwNLK2W02HwA" name="Apply TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.triggerOnNestedPort" target="_k4SmzLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnpLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::TriggerOnNestedPort" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmGLBqEeSbOe4Ay0wIRg" name="Apply TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.triggerOnNestedPort" target="_EIN0_LBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmGbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::PortsandFlows::TriggerOnNestedPort" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnpbwFEeSwNLK2W02HwA" name="Apply TriggerOnNestedPort" identifier="org.eclipse.papyrus.SysML14.triggerOnNestedPort" target="_k4Smz7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnprwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::PortsandFlows::TriggerOnNestedPort" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmGrBqEeSbOe4Ay0wIRg" name="Apply Overwrite" identifier="org.eclipse.papyrus.SysML14.overwrite" target="_EIN0_7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmG7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Overwrite" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snp7wFEeSwNLK2W02HwA" name="Apply Overwrite" identifier="org.eclipse.papyrus.SysML14.overwrite" target="_k4Sm0rwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnqLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Overwrite" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmHLBqEeSbOe4Ay0wIRg" name="Apply ControlOperator" identifier="org.eclipse.papyrus.SysML14.controlOperator" target="_EIN1ArBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmHbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::ControlOperator" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnqbwFEeSwNLK2W02HwA" name="Apply ControlOperator" identifier="org.eclipse.papyrus.SysML14.controlOperator" target="_k4Sm1bwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnqrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::ControlOperator" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmHrBqEeSbOe4Ay0wIRg" name="Apply ControlOperator" identifier="org.eclipse.papyrus.SysML14.controlOperator" target="_EIN1BbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmH7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::ControlOperator" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snq7wFEeSwNLK2W02HwA" name="Apply ControlOperator" identifier="org.eclipse.papyrus.SysML14.controlOperator" target="_k4Sm2LwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnrLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::ControlOperator" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmILBqEeSbOe4Ay0wIRg" name="Apply Rate" identifier="org.eclipse.papyrus.SysML14.rate" target="_EIN1CLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmIbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Rate" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnrbwFEeSwNLK2W02HwA" name="Apply Rate" identifier="org.eclipse.papyrus.SysML14.rate" target="_k4Sm27wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnrrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Rate" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmIrBqEeSbOe4Ay0wIRg" name="Apply Rate" identifier="org.eclipse.papyrus.SysML14.rate" target="_EIN1C7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmI7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Rate" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snr7wFEeSwNLK2W02HwA" name="Apply Rate" identifier="org.eclipse.papyrus.SysML14.rate" target="_k4Sm3rwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnsLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Rate" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmJLBqEeSbOe4Ay0wIRg" name="Apply NoBuffer" identifier="org.eclipse.papyrus.SysML14.noBuffer" target="_EIN1DrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmJbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::NoBuffer" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnsbwFEeSwNLK2W02HwA" name="Apply NoBuffer" identifier="org.eclipse.papyrus.SysML14.noBuffer" target="_k4Sm4bwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnsrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::NoBuffer" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmJrBqEeSbOe4Ay0wIRg" name="Apply Discrete" identifier="org.eclipse.papyrus.SysML14.discrete" target="_EIN1EbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmJ7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Discrete" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sns7wFEeSwNLK2W02HwA" name="Apply Discrete" identifier="org.eclipse.papyrus.SysML14.discrete" target="_k4Sm5LwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SntLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Discrete" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmKLBqEeSbOe4Ay0wIRg" name="Apply Discrete" identifier="org.eclipse.papyrus.SysML14.discrete" target="_EIN1FLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmKbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Discrete" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SntbwFEeSwNLK2W02HwA" name="Apply Discrete" identifier="org.eclipse.papyrus.SysML14.discrete" target="_k4Sm57wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SntrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Discrete" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmKrBqEeSbOe4Ay0wIRg" name="Apply Continuous" identifier="org.eclipse.papyrus.SysML14.continuous" target="_EIN1F7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmK7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Continuous" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snt7wFEeSwNLK2W02HwA" name="Apply Continuous" identifier="org.eclipse.papyrus.SysML14.continuous" target="_k4Sm6rwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnuLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Continuous" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmLLBqEeSbOe4Ay0wIRg" name="Apply Continuous" identifier="org.eclipse.papyrus.SysML14.continuous" target="_EIN1GrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmLbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Continuous" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnubwFEeSwNLK2W02HwA" name="Apply Continuous" identifier="org.eclipse.papyrus.SysML14.continuous" target="_k4Sm7bwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnurwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Continuous" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmLrBqEeSbOe4Ay0wIRg" name="Apply Probability" identifier="org.eclipse.papyrus.SysML14.probability" target="_EIN1HbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmL7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Probability" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snu7wFEeSwNLK2W02HwA" name="Apply Probability" identifier="org.eclipse.papyrus.SysML14.probability" target="_k4Sm8LwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnvLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Probability" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmMLBqEeSbOe4Ay0wIRg" name="Apply Probability" identifier="org.eclipse.papyrus.SysML14.probability" target="_EIN1ILBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmMbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Probability" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnvbwFEeSwNLK2W02HwA" name="Apply Probability" identifier="org.eclipse.papyrus.SysML14.probability" target="_k4Sm87wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnvrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Probability" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmMrBqEeSbOe4Ay0wIRg" name="Apply Optional" identifier="org.eclipse.papyrus.SysML14.optional" target="_EIN1I7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmM7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Activities::Optional" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snv7wFEeSwNLK2W02HwA" name="Apply Optional" identifier="org.eclipse.papyrus.SysML14.optional" target="_k4Sm9rwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnwLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Activities::Optional" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmNLBqEeSbOe4Ay0wIRg" name="Apply Rationale" identifier="org.eclipse.papyrus.SysML14.rationale" target="_EIN1JrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmNbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Rationale" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnwbwFEeSwNLK2W02HwA" name="Apply Rationale" identifier="org.eclipse.papyrus.SysML14.rationale" target="_k4Sm-bwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnwrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Rationale" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmNrBqEeSbOe4Ay0wIRg" name="Apply View" identifier="org.eclipse.papyrus.SysML14.view" target="_EIN1KbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmN7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::View" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snw7wFEeSwNLK2W02HwA" name="Apply View" identifier="org.eclipse.papyrus.SysML14.view" target="_k4Sm_LwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnxLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::View" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmOLBqEeSbOe4Ay0wIRg" name="Apply View" identifier="org.eclipse.papyrus.SysML14.view" target="_EIN1LLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmObBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::View" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnxbwFEeSwNLK2W02HwA" name="Apply View" identifier="org.eclipse.papyrus.SysML14.view" target="_k4Sm_7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnxrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::View" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmOrBqEeSbOe4Ay0wIRg" name="Apply Conform" identifier="org.eclipse.papyrus.SysML14.conform" target="_EIN1L7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmO7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Conform" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snx7wFEeSwNLK2W02HwA" name="Apply Conform" identifier="org.eclipse.papyrus.SysML14.conform" target="_k4SnArwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnyLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Conform" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmPLBqEeSbOe4Ay0wIRg" name="Apply Conform" identifier="org.eclipse.papyrus.SysML14.conform" target="_EIN1MrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmPbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Conform" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnybwFEeSwNLK2W02HwA" name="Apply Conform" identifier="org.eclipse.papyrus.SysML14.conform" target="_k4SnBbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnyrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Conform" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmPrBqEeSbOe4Ay0wIRg" name="Apply Problem" identifier="org.eclipse.papyrus.SysML14.problem" target="_EIN1NbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmP7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Problem" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sny7wFEeSwNLK2W02HwA" name="Apply Problem" identifier="org.eclipse.papyrus.SysML14.problem" target="_k4SnCLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnzLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Problem" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmQLBqEeSbOe4Ay0wIRg" name="Apply ViewPoint" identifier="org.eclipse.papyrus.SysML14.viewPoint" target="_EIN1OLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmQbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::ViewPoint" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SnzbwFEeSwNLK2W02HwA" name="Apply ViewPoint" identifier="org.eclipse.papyrus.SysML14.viewPoint" target="_k4SnC7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SnzrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::ViewPoint" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmQrBqEeSbOe4Ay0wIRg" name="Apply Stakeholder" identifier="org.eclipse.papyrus.SysML14.stakeholder" target="_EIN1O7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmQ7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Stakeholder" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Snz7wFEeSwNLK2W02HwA" name="Apply Stakeholder" identifier="org.eclipse.papyrus.SysML14.stakeholder" target="_k4SnDrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn0LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Stakeholder" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmRLBqEeSbOe4Ay0wIRg" name="Apply Expose" identifier="org.eclipse.papyrus.SysML14.expose" target="_EIN1PrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmRbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::Expose" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn0bwFEeSwNLK2W02HwA" name="Apply Expose" identifier="org.eclipse.papyrus.SysML14.expose" target="_k4SnEbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn0rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::Expose" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmRrBqEeSbOe4Ay0wIRg" name="Apply ElementGroup" identifier="org.eclipse.papyrus.SysML14.elementGroup" target="_EIN1QbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmR7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ModelElements::ElementGroup" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn07wFEeSwNLK2W02HwA" name="Apply ElementGroup" identifier="org.eclipse.papyrus.SysML14.elementGroup" target="_k4SnFLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn1LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ModelElements::ElementGroup" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmSLBqEeSbOe4Ay0wIRg" name="Apply ConstraintBlock" identifier="org.eclipse.papyrus.SysML14.constraintBlock" target="_EIN1RLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmSbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn1bwFEeSwNLK2W02HwA" name="Apply ConstraintBlock" identifier="org.eclipse.papyrus.SysML14.constraintBlock" target="_k4SnF7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn1rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmSrBqEeSbOe4Ay0wIRg" name="Apply AllocateActivityPartition" identifier="org.eclipse.papyrus.SysML14.allocateActivityPartition" target="_EIN1R7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmS7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Allocations::AllocateActivityPartition" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn17wFEeSwNLK2W02HwA" name="Apply AllocateActivityPartition" identifier="org.eclipse.papyrus.SysML14.allocateActivityPartition" target="_k4SnGrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn2LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Allocations::AllocateActivityPartition" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmTLBqEeSbOe4Ay0wIRg" name="Apply Allocate" identifier="org.eclipse.papyrus.SysML14.allocate" target="_EIN1SrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmTbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Allocations::Allocate" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn2bwFEeSwNLK2W02HwA" name="Apply Allocate" identifier="org.eclipse.papyrus.SysML14.allocate" target="_k4SnHbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn2rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Allocations::Allocate" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmTrBqEeSbOe4Ay0wIRg" name="Apply Allocate" identifier="org.eclipse.papyrus.SysML14.allocate" target="_EIN1TbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmT7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Allocations::Allocate" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn27wFEeSwNLK2W02HwA" name="Apply Allocate" identifier="org.eclipse.papyrus.SysML14.allocate" target="_k4SnILwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn3LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Allocations::Allocate" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmULBqEeSbOe4Ay0wIRg" name="Apply DeriveReqt" identifier="org.eclipse.papyrus.SysML14.deriveReqt" target="_EIN1ULBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmUbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::DeriveReqt" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn3bwFEeSwNLK2W02HwA" name="Apply DeriveReqt" identifier="org.eclipse.papyrus.SysML14.deriveReqt" target="_k4SnI7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn3rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::DeriveReqt" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmUrBqEeSbOe4Ay0wIRg" name="Apply DeriveReqt" identifier="org.eclipse.papyrus.SysML14.deriveReqt" target="_EIN1U7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmU7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::DeriveReqt" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn37wFEeSwNLK2W02HwA" name="Apply DeriveReqt" identifier="org.eclipse.papyrus.SysML14.deriveReqt" target="_k4SnJrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn4LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::DeriveReqt" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmVLBqEeSbOe4Ay0wIRg" name="Apply Copy" identifier="org.eclipse.papyrus.SysML14.copy" target="_EIN1VrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmVbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Copy" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn4bwFEeSwNLK2W02HwA" name="Apply Copy" identifier="org.eclipse.papyrus.SysML14.copy" target="_k4SnKbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn4rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Copy" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmVrBqEeSbOe4Ay0wIRg" name="Apply Copy" identifier="org.eclipse.papyrus.SysML14.copy" target="_EIN1WbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmV7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Copy" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn47wFEeSwNLK2W02HwA" name="Apply Copy" identifier="org.eclipse.papyrus.SysML14.copy" target="_k4SnLLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn5LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Copy" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmWLBqEeSbOe4Ay0wIRg" name="Apply Satisfy" identifier="org.eclipse.papyrus.SysML14.satisfy" target="_EIN1XLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmWbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Satisfy" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn5bwFEeSwNLK2W02HwA" name="Apply Satisfy" identifier="org.eclipse.papyrus.SysML14.satisfy" target="_k4SnL7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn5rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Satisfy" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmWrBqEeSbOe4Ay0wIRg" name="Apply Satisfy" identifier="org.eclipse.papyrus.SysML14.satisfy" target="_EIN1X7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmW7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Satisfy" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn57wFEeSwNLK2W02HwA" name="Apply Satisfy" identifier="org.eclipse.papyrus.SysML14.satisfy" target="_k4SnMrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn6LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Satisfy" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmXLBqEeSbOe4Ay0wIRg" name="Apply TestCase" identifier="org.eclipse.papyrus.SysML14.testCase" target="_EIN1YrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmXbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::TestCase" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn6bwFEeSwNLK2W02HwA" name="Apply TestCase" identifier="org.eclipse.papyrus.SysML14.testCase" target="_k4SnNbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn6rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::TestCase" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmXrBqEeSbOe4Ay0wIRg" name="Apply TestCase" identifier="org.eclipse.papyrus.SysML14.testCase" target="_EIN1ZbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmX7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::TestCase" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn67wFEeSwNLK2W02HwA" name="Apply TestCase" identifier="org.eclipse.papyrus.SysML14.testCase" target="_k4SnOLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn7LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::TestCase" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmYLBqEeSbOe4Ay0wIRg" name="Apply Requirement" identifier="org.eclipse.papyrus.SysML14.requirement" target="_EIN1aLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmYbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Requirement" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn7bwFEeSwNLK2W02HwA" name="Apply Requirement" identifier="org.eclipse.papyrus.SysML14.requirement" target="_k4SnO7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn7rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Requirement" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmYrBqEeSbOe4Ay0wIRg" name="Apply Verify" identifier="org.eclipse.papyrus.SysML14.verify" target="_EIXlsbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmY7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Verify" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn77wFEeSwNLK2W02HwA" name="Apply Verify" identifier="org.eclipse.papyrus.SysML14.verify" target="_k4SnPrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn8LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Verify" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmZLBqEeSbOe4Ay0wIRg" name="Apply Verify" identifier="org.eclipse.papyrus.SysML14.verify" target="_EIXltLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmZbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Verify" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn8bwFEeSwNLK2W02HwA" name="Apply Verify" identifier="org.eclipse.papyrus.SysML14.verify" target="_k4SnQbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn8rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Verify" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmZrBqEeSbOe4Ay0wIRg" name="Apply Trace" identifier="org.eclipse.papyrus.SysML14.trace" target="_EIXlt7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmZ7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Trace" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn87wFEeSwNLK2W02HwA" name="Apply Trace" identifier="org.eclipse.papyrus.SysML14.trace" target="_k4SnRLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn9LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Trace" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmaLBqEeSbOe4Ay0wIRg" name="Apply Trace" identifier="org.eclipse.papyrus.SysML14.trace" target="_EIXlurBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmabBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Trace" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn9bwFEeSwNLK2W02HwA" name="Apply Trace" identifier="org.eclipse.papyrus.SysML14.trace" target="_k4SnR7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn9rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Trace" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmarBqEeSbOe4Ay0wIRg" name="Apply Refine" identifier="org.eclipse.papyrus.SysML14.refine" target="_EIXlvbBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXma7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Refine" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn97wFEeSwNLK2W02HwA" name="Apply Refine" identifier="org.eclipse.papyrus.SysML14.refine" target="_k4SnSrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn-LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Refine" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmbLBqEeSbOe4Ay0wIRg" name="Apply Refine" identifier="org.eclipse.papyrus.SysML14.refine" target="_EIXlwLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmbbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::Requirements::Refine" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn-bwFEeSwNLK2W02HwA" name="Apply Refine" identifier="org.eclipse.papyrus.SysML14.refine" target="_k4SnTbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn-rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::Requirements::Refine" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmbrBqEeSbOe4Ay0wIRg" name="Apply FlowPort" identifier="org.eclipse.papyrus.SysML14.flowPort" target="_EIXlw7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmb7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::FlowPort" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn-7wFEeSwNLK2W02HwA" name="Apply FlowPort" identifier="org.eclipse.papyrus.SysML14.flowPort" target="_k4SnULwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn_LwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::FlowPort" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmcLBqEeSbOe4Ay0wIRg" name="Apply FlowSpecification" identifier="org.eclipse.papyrus.SysML14.flowSpecification" target="_EIXlxrBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmcbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::FlowSpecification" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn_bwFEeSwNLK2W02HwA" name="Apply FlowSpecification" identifier="org.eclipse.papyrus.SysML14.flowSpecification" target="_k4SnU7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4Sn_rwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::FlowSpecification" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmcrBqEeSbOe4Ay0wIRg" name="Apply Allocated" identifier="org.eclipse.papyrus.SysML14.allocated" target="_EIXlybBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmc7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Allocated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4Sn_7wFEeSwNLK2W02HwA" name="Apply Allocated" identifier="org.eclipse.papyrus.SysML14.allocated" target="_k4SnVrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoALwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Allocated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmdLBqEeSbOe4Ay0wIRg" name="Apply RequirementRelated" identifier="org.eclipse.papyrus.SysML14.requirementRelated" target="_EIXlzLBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmdbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::RequirementRelated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoAbwFEeSwNLK2W02HwA" name="Apply RequirementRelated" identifier="org.eclipse.papyrus.SysML14.requirementRelated" target="_k4SnWbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoArwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::RequirementRelated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmdrBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXlz7BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmd7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoA7wFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4SnXLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoBLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmeLBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXl0rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmebBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoBbwFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4SnX7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoBrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmerBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXl1bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXme7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoB7wFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4SnYrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoCLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmfLBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXl2LBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmfbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoCbwFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4SnZbwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoCrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmfrBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated_UML::Association" target="_EIXl27BqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmf7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoC7wFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated_UML::Association" target="_k4SnaLwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoDLwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmgLBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXl3rBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmgbBqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoDbwFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4Sna7wFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoDrwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_EIXmgrBqEeSbOe4Ay0wIRg" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_EIXl4bBqEeSbOe4Ay0wIRg">
-    <stereotypesToApply xmi:id="_EIXmg7BqEeSbOe4Ay0wIRg" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
+  <adviceBindingsConfigurations xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration" xmi:id="_k4SoD7wFEeSwNLK2W02HwA" name="Apply Deprecated" identifier="org.eclipse.papyrus.SysML14.deprecated" target="_k4SnbrwFEeSwNLK2W02HwA">
+    <stereotypesToApply xmi:id="_k4SoELwFEeSwNLK2W02HwA" stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated" updateName="true">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
