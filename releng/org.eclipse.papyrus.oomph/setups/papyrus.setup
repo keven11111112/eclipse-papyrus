@@ -2432,8 +2432,7 @@
         <description>Projects related to Papyrus Layers.</description>
       </setupTask>
       <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="">
+          xsi:type="projects:ProjectsImportTask">
         <sourceLocator
             rootFolder="${papyrus.git.clone.location/tests/integration/plugins}/org.eclipse.papyrus.integrationtests.editor"/>
         <description>Import plugin requested by Layers</description>
@@ -2768,7 +2767,6 @@
         label="Oomph Setup">
       <setupTask
           xsi:type="setup:EclipseIniTask"
-          id=""
           option="-Doomph.redirection.papyrussetups"
           value="=http://git.eclipse.org/c/papyrus/org.eclipse.papyrus.git/plain/releng/org.eclipse.papyrus.oomph/setups/->${papyrus.git.clone.location|uri}/releng/org.eclipse.papyrus.oomph/setups/"
           vm="true"/>
