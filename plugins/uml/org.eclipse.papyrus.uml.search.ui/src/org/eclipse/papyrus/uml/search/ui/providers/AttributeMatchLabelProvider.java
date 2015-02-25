@@ -68,7 +68,7 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 						return printResult(value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					} else {
 						String value = String.valueOf(target.eGet(source));
-						return printResult(value, attributeMatch.getOffset(), attributeMatch.getOffset(), source.getName());
+						return printResult(value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					}
 				} else if (attributeMatch.getMetaAttribute() instanceof Property) {
 

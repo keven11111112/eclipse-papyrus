@@ -191,14 +191,14 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 
 								if (this.searchQuery.isCaseSensitive()) {
 									if (value.equals(this.searchQuery.getSearchQueryText())) {
-										((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
+										//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
 										matchToKeep.add(match);
 										sourceList.add(((AbstractResultEntry) match).getSource());
 									}
 								} else {
 									if (value.equalsIgnoreCase(this.searchQuery.getSearchQueryText())) {
 
-										((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
+										//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
 
 										matchToKeep.add(match);
 										sourceList.add(((AbstractResultEntry) match).getSource());
@@ -220,7 +220,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 							}
 						}
 					} else if (match instanceof ModelElementMatch) {
-						((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) match);
+						//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) match);
 
 						matchToKeep.add(match);
 						sourceList.add(((AbstractResultEntry) match).getSource());

@@ -62,7 +62,9 @@ public class AttributeMatch extends ModelMatch {
 		// this.uriSource = EcoreUtil.getURI((EObject)target);
 		// }
 		this.parent = new ResultEntry(target, scopeEntry);
-		recursiveHierarchy((AbstractResultEntry) parent);
+		((ResultEntry) this.parent).setParent(new ResultEntry(scopeEntry.getResourceURI(), scopeEntry));
+		
+		// recursiveHierarchy((AbstractResultEntry) parent);
 	}
 
 	/**
@@ -99,11 +101,15 @@ public class AttributeMatch extends ModelMatch {
 			if (super.equals(obj)) {
 				if (((AttributeMatch) obj).getSource() instanceof EObject && this.getSource() instanceof EObject) {
 					if (EcoreUtil.equals((EObject) ((AttributeMatch) obj).getSource(), (EObject) this.getSource())) {
-						return true;
+						if (obj.hashCode() == this.hashCode()) {
+							return true;
+						}
 					}
 				} else {
 					if (((AttributeMatch) obj).getSource().equals(this.getSource())) {
-						return true;
+						if (obj.hashCode() == this.hashCode()) {
+							return true;
+						}
 					}
 				}
 			}
@@ -112,6 +118,18 @@ public class AttributeMatch extends ModelMatch {
 		} else {
 			return false;
 		}
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.views.search.results.AbstractResultEntry#hashCode()
+	 * 
+	 * Adds the identity hash since two instances of match with same offset and length will have
+	 * the same hash code, although they should not if they are two different attributes.
+	 * 
+	 */
+	@Override
+	public int hashCode() {
+		return super.hashCode() + System.identityHashCode(this);
 	}
 
 	// public Object getTarget() {
