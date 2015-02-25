@@ -148,6 +148,56 @@
 		<!-- Module EPF -->
 		<module>../extraplugins/epf-richtext/org.eclipse.papyrus.infra.widgets.epf.richtext.extension</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.extra.epf.richtext.feature</module>
+		
+        <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipse.profile</module>
+        <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.assistant</module>
+        <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool.table</module>
+        <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.adl4eclipsetool</module>
+        <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.osgi.profile</module>
+        <!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
+        <module>../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module>-->
+        <!-- Compilation failure 
+        <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
+        <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
+        <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
+        -->
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation.export</module>
+        <!-- Compilation failure <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation.qvt</module> -->
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.notation2umldi</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.edit</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi.editor</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
+        <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
+        <!--  Compilation failure <module>../extraplugins/domainmodel/org.eclipse.papyrus.uml.diagram.domain</module> -->
+        <!--  Missing org.eclipse.emf.eef.codegen.launcher 0.0.0 <module>../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>-->
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade.utils</module>
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade</module>
+        <!-- Compilation failure: <module>../extraplugins/layout/org.eclipse.papyrus.layout</module> 
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.gridAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalSymmetryAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.horizontalTreeAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.radialAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.springAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.treeAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.algorithms.verticalSymmetryAlgorithm</module>
+        <module>../extraplugins/layout/org.eclipse.papyrus.layout.subeditor.gmf</module>-->
+        
+        <module>../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
+        <module>../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
+       <!-- Missing org.eclipse.emf.facet.infra.query.core 0.0.0  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.controlmode</module> -->
+        <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.core</module>
+       <!-- Compilation failure:  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.strategy</module>-->
+       <!-- Compilation failure:  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.svn</module>-->
+		
 		<module>extras</module>
 	</modules>
 	<properties>
