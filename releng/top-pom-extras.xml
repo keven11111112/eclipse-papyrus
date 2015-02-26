@@ -156,11 +156,11 @@
         <module>../extraplugins/adl4eclipse/org.eclipse.papyrus.osgi.profile</module>
         <!-- Missing org.eclipse.xtext.gmf.glue 0.8.0' <module>../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext.ui</module> 
         <module>../extraplugins/alf/org.eclipse.papyrus.operation.editor.xtext</module>-->
-        <!-- Compilation failure 
+ 
         <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture</module>
         <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.edit</module>
         <module>../extraplugins/design/org.eclipse.papyrus.design.profile.architecture.editor</module>
-        -->
+
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.edit</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.editor</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.dd.qvt</module>

@@ -20,5 +20,5 @@ Bundle-Activator: org.eclipse.papyrus.design.profile.architecture.pres
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.design.profile.architecture.e
  ditor;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
+Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 
