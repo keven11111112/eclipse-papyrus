@@ -76,6 +76,7 @@ import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLParserProvider;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
+import org.eclipse.papyrus.uml.diagram.common.editparts.ILabelRoleProvider;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
@@ -94,7 +95,7 @@ import org.eclipse.uml2.uml.ObjectFlow;
 /**
  * @generated
  */
-public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, IControlParserForDirectEdit {
+public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements ITextAwareEditPart, IControlParserForDirectEdit, ILabelRoleProvider {
 
 	/**
 	 * @generated
@@ -914,4 +915,18 @@ public class ObjectFlowSelectionEditPart extends PapyrusLabelEditPart implements
 	 * @generated
 	 */
 	static final Color THIS_BACK = new Color(null, 248, 249, 214);
+
+	/**
+	 * @generated
+	 */
+	public String getLabelRole() {
+		return "Selection";//$NON-NLS-1$
+	}
+
+	/**
+	 * @generated
+	 */
+	public String getIconPathRole() {
+		return "";//$NON-NLS-1$
+	}
 }

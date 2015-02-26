@@ -1196,7 +1196,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Parameter_3001"
-            displayName="Parameter">
+            displayName="Parameter"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.44/@elementType"/>
         </elementType>
@@ -1240,7 +1241,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
         </elementType>
@@ -1291,7 +1293,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
         </elementType>
@@ -1343,7 +1346,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InitialNode_3004"
-            displayName="InitialNode">
+            displayName="InitialNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.150/@elementType"/>
         </elementType>
@@ -1432,7 +1436,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityFinalNode_3005"
-            displayName="ActivityFinalNode">
+            displayName="ActivityFinalNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.92/@elementType"/>
         </elementType>
@@ -1526,7 +1531,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.FlowFinalNode_3006"
-            displayName="FlowFinalNode">
+            displayName="FlowFinalNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.144/@elementType"/>
         </elementType>
@@ -1621,7 +1627,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OpaqueAction_3007"
-            displayName="OpaqueAction">
+            displayName="OpaqueAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.161/@elementType"/>
         </elementType>
@@ -1634,10 +1641,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpaqueActionObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -1730,7 +1733,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -1830,7 +1834,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3016"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -1930,7 +1935,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3013"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -2016,7 +2022,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3014"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -2101,7 +2108,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallBehaviorAction_3008"
-            displayName="CallBehaviorAction">
+            displayName="CallBehaviorAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.100/@elementType"/>
         </elementType>
@@ -2118,10 +2126,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CallBehaviorActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -2206,7 +2210,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3017"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -2310,7 +2315,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3018"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -2414,7 +2420,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3019"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -2504,7 +2511,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3020"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -2593,7 +2601,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CallOperationAction_3010"
-            displayName="CallOperationAction">
+            displayName="CallOperationAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.102/@elementType"/>
         </elementType>
@@ -2610,10 +2619,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CallOperationActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -2698,7 +2703,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3021"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -2803,7 +2809,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3022"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -2908,7 +2915,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3023"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -2999,7 +3007,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3024"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -3089,7 +3098,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3025"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -3194,7 +3204,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3026"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -3299,7 +3310,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3027"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -3388,7 +3400,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034"
-            displayName="DurationConstraint">
+            displayName="DurationConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.134/@elementType"/>
         </elementType>
@@ -3488,7 +3501,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035"
-            displayName="DurationConstraint">
+            displayName="DurationConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.134/@elementType"/>
         </elementType>
@@ -3588,7 +3602,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036"
-            displayName="TimeConstraint">
+            displayName="TimeConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.185/@elementType"/>
         </elementType>
@@ -3688,7 +3703,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037"
-            displayName="TimeConstraint">
+            displayName="TimeConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.185/@elementType"/>
         </elementType>
@@ -3788,7 +3804,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032"
-            displayName="IntervalConstraint">
+            displayName="IntervalConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.135/@elementType"/>
         </elementType>
@@ -3888,7 +3905,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033"
-            displayName="IntervalConstraint">
+            displayName="IntervalConstraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.135/@elementType"/>
         </elementType>
@@ -3986,7 +4004,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
         </elementType>
@@ -4084,7 +4103,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
         </elementType>
@@ -4184,7 +4204,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DecisionNode_3038"
-            displayName="DecisionNode">
+            displayName="DecisionNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.124/@elementType"/>
         </elementType>
@@ -4292,7 +4313,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.MergeNode_3039"
-            displayName="MergeNode">
+            displayName="MergeNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.160/@elementType"/>
         </elementType>
@@ -4381,7 +4403,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ForkNode_3040"
-            displayName="ForkNode">
+            displayName="ForkNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.145/@elementType"/>
         </elementType>
@@ -4475,7 +4498,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041"
-            displayName="JoinNode">
+            displayName="JoinNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.152/@elementType"/>
         </elementType>
@@ -4583,7 +4607,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DataStoreNode_3078"
-            displayName="DataStoreNode">
+            displayName="DataStoreNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.123/@elementType"/>
         </elementType>
@@ -4686,7 +4711,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendObjectAction_3042"
-            displayName="SendObjectAction">
+            displayName="SendObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.177/@elementType"/>
         </elementType>
@@ -4701,16 +4727,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.SendObjectActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -4799,7 +4817,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3046"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -4900,7 +4919,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3047"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -5001,7 +5021,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3048"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -5088,7 +5109,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3049"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -5189,7 +5211,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3050"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -5290,7 +5313,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3051"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -5376,7 +5400,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SendSignalAction_3052"
-            displayName="SendSignalAction">
+            displayName="SendSignalAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.178/@elementType"/>
         </elementType>
@@ -5391,16 +5416,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.SendSignalActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -5485,7 +5502,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3053"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -5586,7 +5604,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3054"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -5687,7 +5706,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3055"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -5774,7 +5794,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3060"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -5875,7 +5896,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3061"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -5976,7 +5998,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3062"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -6063,7 +6086,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityParameterNode_3059"
-            displayName="ActivityParameterNode">
+            displayName="ActivityParameterNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.93/@elementType"/>
         </elementType>
@@ -6133,7 +6157,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AcceptEventAction_3063"
-            displayName="AcceptEventAction">
+            displayName="AcceptEventAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.71/@elementType"/>
         </elementType>
@@ -6148,16 +6173,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.AcceptEventActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -6272,7 +6289,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3064"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -6357,7 +6375,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"
-            displayName="ValueSpecificationAction">
+            displayName="ValueSpecificationAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.192/@elementType"/>
         </elementType>
@@ -6380,16 +6399,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ValueSpecificationActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
@@ -6470,7 +6481,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3077"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -6556,7 +6568,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ConditionalNode_3069"
-            displayName="ConditionalNode">
+            displayName="ConditionalNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.113/@elementType"/>
         </elementType>
@@ -6622,7 +6635,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionRegion_3070"
-            displayName="ExpansionRegion">
+            displayName="ExpansionRegion"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.142/@elementType"/>
         </elementType>
@@ -6688,7 +6702,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3074"
-            displayName="ExpansionNode">
+            displayName="ExpansionNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.141/@elementType"/>
         </elementType>
@@ -6742,7 +6757,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_3075"
-            displayName="ExpansionNode">
+            displayName="ExpansionNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.141/@elementType"/>
         </elementType>
@@ -6796,7 +6812,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.LoopNode_3071"
-            displayName="LoopNode">
+            displayName="LoopNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.159/@elementType"/>
         </elementType>
@@ -6861,7 +6878,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3105"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -6947,7 +6965,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3192"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -7045,7 +7064,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3193"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -7143,7 +7163,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3109"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -7229,7 +7250,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3110"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -7315,7 +7337,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3111"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -7402,7 +7425,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.SequenceNode_3073"
-            displayName="SequenceNode">
+            displayName="SequenceNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.179/@elementType"/>
         </elementType>
@@ -7468,7 +7492,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.StructuredActivityNode_3065"
-            displayName="StructuredActivityNode">
+            displayName="StructuredActivityNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.74/@elementType"/>
         </elementType>
@@ -7530,7 +7555,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -7613,7 +7639,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -7707,7 +7734,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -7804,7 +7832,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -7889,7 +7918,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActivityPartition_3067"
-            displayName="ActivityPartition">
+            displayName="ActivityPartition"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.73/@elementType"/>
         </elementType>
@@ -7981,7 +8011,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InterruptibleActivityRegion_3068"
-            displayName="InterruptibleActivityRegion">
+            displayName="InterruptibleActivityRegion"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.78/@elementType"/>
         </elementType>
@@ -8017,7 +8048,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Comment_3080"
-            displayName="Comment">
+            displayName="Comment"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.4/@elementType"/>
         </elementType>
@@ -8087,7 +8119,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadSelfAction_3081"
-            displayName="ReadSelfAction">
+            displayName="ReadSelfAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.169/@elementType"/>
         </elementType>
@@ -8108,14 +8141,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadSelfActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -8198,7 +8223,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -8277,7 +8303,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.72/@elementType"/>
         </elementType>
@@ -8309,10 +8336,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity"/>
@@ -8386,7 +8409,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086"
-            displayName="CreateObjectAction">
+            displayName="CreateObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.122/@elementType"/>
         </elementType>
@@ -8401,16 +8425,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateObjectActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -8499,7 +8515,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3087"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -8577,7 +8594,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.NamedElement_3085"
-            displayName="ShapeNamedElement"/>
+            displayName="ShapeNamedElement"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.ShapeNamedElementFigure"/>
@@ -8637,7 +8655,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadStructuralFeatureAction_3088"
-            displayName="ReadStructuralFeatureAction">
+            displayName="ReadStructuralFeatureAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.170/@elementType"/>
         </elementType>
@@ -8652,16 +8671,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadStructuralFeatureActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -8750,7 +8761,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3089"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -8832,7 +8844,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3090"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -8913,7 +8926,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddStructuralFeatureValueAction_3091"
-            displayName="AddStructuralFeatureValueAction">
+            displayName="AddStructuralFeatureValueAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.95/@elementType"/>
         </elementType>
@@ -8928,16 +8942,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddStructuralFeatureValueActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -9026,7 +9032,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3092"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -9113,7 +9120,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3093"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -9200,7 +9208,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3181"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -9287,7 +9296,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3182"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -9387,7 +9397,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3183"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -9487,7 +9498,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3184"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -9587,7 +9599,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3185"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -9687,7 +9700,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3186"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -9787,7 +9801,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3187"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -9887,7 +9902,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3094"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -9972,7 +9988,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.DestroyObjectAction_3095"
-            displayName="DestroyObjectAction">
+            displayName="DestroyObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.128/@elementType"/>
         </elementType>
@@ -9987,16 +10004,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DestroyObjectActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -10085,7 +10094,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3096"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -10170,7 +10180,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3173"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -10268,7 +10279,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3174"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -10365,7 +10377,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ReadVariableAction_3097"
-            displayName="ReadVariableAction">
+            displayName="ReadVariableAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.171/@elementType"/>
         </elementType>
@@ -10380,16 +10393,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ReadVariableActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -10477,7 +10482,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3098"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -10559,7 +10565,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.AddVariableValueAction_3099"
-            displayName="AddVariableValueAction">
+            displayName="AddVariableValueAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.1/@elementType"/>
         </elementType>
@@ -10574,16 +10581,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.AddVariableValueActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -10672,7 +10671,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3100"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -10759,7 +10759,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3101"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -10846,7 +10847,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3175"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -10946,7 +10948,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3176"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -11046,7 +11049,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActoinInputPin_3177"
-            displayName="ActoinInputPin">
+            displayName="ActoinInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -11146,7 +11150,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3178"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -11245,7 +11250,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.BroadcastSignalAction_3102"
-            displayName="BroadcastSignalAction">
+            displayName="BroadcastSignalAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.99/@elementType"/>
         </elementType>
@@ -11260,16 +11266,8 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.BroadcastSignalActionCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
@@ -11358,7 +11356,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3103"
-            displayName="InputPin">
+            displayName="InputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -11459,7 +11458,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3179"
-            displayName="ValuePin">
+            displayName="ValuePin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -11560,7 +11560,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3180"
-            displayName="ActionInputPin">
+            displayName="ActionInputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -11658,7 +11659,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.CentralBufferNode_3104"
-            displayName="CentralBufferNode">
+            displayName="CentralBufferNode"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.103/@elementType"/>
         </elementType>
@@ -11753,7 +11755,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112"
-            displayName="Constraint">
+            displayName="Constraint"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.0/@elementType"/>
         </elementType>
@@ -11843,7 +11846,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="StartObjectBehaviourAction">
+            displayName="StartObjectBehaviourAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.182/@elementType"/>
         </elementType>
@@ -11944,7 +11948,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -12026,7 +12031,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -12109,7 +12115,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -12206,7 +12213,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -12303,7 +12311,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -12386,7 +12395,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -12482,7 +12492,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -12579,7 +12590,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="TestIdentityAction">
+            displayName="TestIdentityAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.184/@elementType"/>
         </elementType>
@@ -12600,10 +12612,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -12682,7 +12690,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -12760,7 +12769,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -12839,7 +12849,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -12918,7 +12929,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -13010,7 +13022,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -13102,7 +13115,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -13194,7 +13208,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -13287,7 +13302,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ClearStructuralFeatureAction">
+            displayName="ClearStructuralFeatureAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.107/@elementType"/>
         </elementType>
@@ -13300,10 +13316,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -13393,7 +13405,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -13475,7 +13488,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -13558,7 +13572,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -13654,7 +13669,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -13751,7 +13767,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="CreateLinkAction">
+            displayName="CreateLinkAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.117/@elementType"/>
         </elementType>
@@ -13764,10 +13781,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -13853,7 +13866,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -13936,7 +13950,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -14032,7 +14047,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -14129,7 +14145,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ReadLinkAction">
+            displayName="ReadLinkAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.166/@elementType"/>
         </elementType>
@@ -14142,10 +14159,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -14233,7 +14246,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -14315,7 +14329,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -14398,7 +14413,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -14494,7 +14510,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -14591,7 +14608,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="DestroyLinkAction">
+            displayName="DestroyLinkAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.126/@elementType"/>
         </elementType>
@@ -14604,10 +14622,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -14693,7 +14707,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -14776,7 +14791,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -14872,7 +14888,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -14964,7 +14981,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ClearAssotiationAction">
+            displayName="ClearAssotiationAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.106/@elementType"/>
         </elementType>
@@ -14977,10 +14995,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -15066,7 +15080,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -15149,7 +15164,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -15245,7 +15261,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -15337,7 +15354,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ReadExtentAction">
+            displayName="ReadExtentAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.164/@elementType"/>
         </elementType>
@@ -15350,10 +15368,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -15441,7 +15455,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -15519,7 +15534,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ReclassifyObjectAction">
+            displayName="ReclassifyObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.172/@elementType"/>
         </elementType>
@@ -15532,10 +15548,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -15622,7 +15634,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -15705,7 +15718,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -15801,7 +15815,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -15893,7 +15908,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ReadIsClassifiedObjectAction">
+            displayName="ReadIsClassifiedObjectAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.165/@elementType"/>
         </elementType>
@@ -15906,10 +15922,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -15997,7 +16009,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -16079,7 +16092,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -16162,7 +16176,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -16258,7 +16273,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -16350,7 +16366,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="ReduceAction">
+            displayName="ReduceAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.173/@elementType"/>
         </elementType>
@@ -16363,10 +16380,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -16454,7 +16467,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="OutputPin">
+            displayName="OutputPin"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
         </elementType>
@@ -16536,7 +16550,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -16619,7 +16634,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -16715,7 +16731,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -16807,7 +16824,8 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:SpecializationType"
-            displayName="StartClassifierBehaviourAction">
+            displayName="StartClassifierBehaviourAction"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.181/@elementType"/>
         </elementType>
@@ -16820,10 +16838,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_CREATE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.RequestConstants.REQ_DELETE"
@@ -16909,7 +16923,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
         </elementType>
@@ -16992,7 +17007,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
         </elementType>
@@ -17088,7 +17104,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType">
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
         </elementType>
@@ -17187,7 +17204,8 @@
         <elementType
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.activity.Activity_2001"
-            displayName="Activity">
+            displayName="Activity"
+            definedExternally="true">
           <metamodelType
               href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.72/@elementType"/>
         </elementType>
@@ -17207,10 +17225,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY"
@@ -17800,10 +17814,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityParametersCompartmentCanonicalEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
@@ -17824,10 +17834,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPreconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -17854,10 +17860,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPostconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -17897,10 +17899,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CompartmentXYLayoutEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomActivityActivityContentCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <compartments
           visualID="7008"
@@ -17928,14 +17926,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomConditionalNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7009"
@@ -17963,14 +17953,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7010"
@@ -17998,14 +17980,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomLoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7012"
@@ -18033,14 +18007,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomSequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7005"
@@ -18068,14 +18034,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
       </compartments>
       <compartments
           visualID="7006"
@@ -18103,10 +18061,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomActivityPartitionActivityPartitionContentCompartmentItemSemanticEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
@@ -18139,14 +18093,6 @@
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomContainerEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CREATION_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.activitygroup.editpolicy.InterruptibleActivityRegionCompartmentCreationEditPolicy"/>
       </compartments>
@@ -18169,10 +18115,6 @@
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityParametersCompartmentCanonicalEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.RemoveOrphanViewPolicy"/>
       </compartments>
@@ -18193,10 +18135,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPreconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPreConditionsCompartmentCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
@@ -18223,10 +18161,6 @@
             xsi:type="gmfgen:ParentAssignedViewmap"
             getterName="getPostconditionFigure"
             figureQualifiedClassName="org.eclipse.draw2d.RectangleFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityActivityPostConditionsCompartmentCanonicalEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="&quot;RemoveOrphanView&quot;"
