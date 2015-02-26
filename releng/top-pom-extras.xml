@@ -173,7 +173,7 @@
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi</module>
         <module>../extraplugins/diagram-definition/org.eclipse.papyrus.umldi2dg</module>
         <!--  Compilation failure <module>../extraplugins/domainmodel/org.eclipse.papyrus.uml.diagram.domain</module> -->
-        <!--  Missing org.eclipse.emf.eef.codegen.launcher 0.0.0 <module>../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>-->
+        <module>../extraplugins/facade/org.eclipse.papyrus.facade.codegen</module>
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.definition.editor</module>
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.edit</module>
         <module>../extraplugins/facade/org.eclipse.papyrus.facade.editor</module>
@@ -374,6 +374,11 @@
 			<!-- updateFrom("XWT",0) -->
 			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
 		</repository>
+		<repository>
+			<id>EEF</id>
+			<layout>p2</layout>
+			<url>http://download.eclipse.org/modeling/emft/eef/updates/releases/1.2/</url>
+		</repository>		
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
