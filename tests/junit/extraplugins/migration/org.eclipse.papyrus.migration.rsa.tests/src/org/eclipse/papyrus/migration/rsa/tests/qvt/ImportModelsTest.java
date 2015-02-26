@@ -12,13 +12,17 @@
 package org.eclipse.papyrus.migration.rsa.tests.qvt;
 
 
+import java.util.List;
+
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Stereotype;
 import org.junit.Assert;
 import org.junit.Ignore;
 import org.junit.Test;
@@ -67,6 +71,50 @@ public class ImportModelsTest extends AbstractTransformationTest {
 	@Ignore("Not yet implemented")
 	public void testTransformationParameters() throws Exception {
 
+	}
+
+	// Bug 459488
+	// resources/anytypeReferences/*
+	@Test
+	public void testImportProfileReferences() throws Exception {
+		String path = "resources/anytypeReferences/";
+		String mainFile = path + "Blank Package.emx";
+		String[] additionalFiles = new String[] {
+				path + "ModelFragment_1.efx",
+				path + "ModelFragment_2.efx",
+				path + "ModelFragment_3.efx"
+		};
+
+		simpleImport(mainFile, additionalFiles, true);
+
+		openEditor();
+
+		Package fragments = rootPackage.getNestedPackage("Fragments");
+		Class refOne = (Class) fragments.getOwnedType("RefOne");
+		Class refMultiple = (Class) fragments.getOwnedType("RefMultiple");
+		Class refMixed = (Class) fragments.getOwnedType("RefMixed");
+
+		Stereotype st1 = refOne.getAppliedStereotype("Profile::Stereotype1");
+		Stereotype st2 = refMultiple.getAppliedStereotype("Profile::Stereotype2");
+		Stereotype st3 = refMixed.getAppliedStereotype("Profile::Stereotype2");
+
+		Class referencedClass1 = (Class) refOne.getValue(st1, "class");
+		Assert.assertNotNull("The reference to Class has disappeared", referencedClass1);
+		Assert.assertFalse("The reference to Class cannot be resolved", referencedClass1.eIsProxy());
+
+		List<?> referencedClasses = (List<?>) refMultiple.getValue(st2, "class");
+		Assert.assertEquals("There should be 4 references to classes", 4, referencedClasses.size());
+		for (Object value : referencedClasses) {
+			EObject referencedObject = (EObject) value;
+			Assert.assertFalse("The referenced element is not resolved", referencedObject.eIsProxy());
+		}
+
+		List<?> referencedClasses2 = (List<?>) refMixed.getValue(st3, "class");
+		Assert.assertEquals("There should be 7 references to classes", 7, referencedClasses2.size());
+		for (Object value : referencedClasses2) {
+			EObject referencedObject = (EObject) value;
+			Assert.assertFalse("The referenced element is not resolved", referencedObject.eIsProxy());
+		}
 	}
 
 
