@@ -16,27 +16,9 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityCNContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionRegionStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.LoopNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.SequenceNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.InteractionOverviewDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.ActivityContentCompartmentCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.ActivityContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomActivityCNContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomActivityPartitionActivityPartitionContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomConditionalNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomInteractionOverviewDiagramDragAndDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomLoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomSequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.policies.CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy;
 
 public class CustomEditPolicyProvider extends InteractionOverviewDiagramEditPolicyProvider {
 
@@ -132,45 +114,8 @@ public class CustomEditPolicyProvider extends InteractionOverviewDiagramEditPoli
 
 		editPart.installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new CustomInteractionOverviewDiagramDragAndDropEditPolicy());
 
-		if (editPart instanceof InteractionOverviewDiagramEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityItemSemanticEditPolicy());
-		}
-
 		if (editPart instanceof ActivityActivityContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ActivityContentCompartmentItemSemanticEditPolicy());
 			editPart.installEditPolicy(EditPolicyRoles.CREATION_ROLE, new ActivityContentCompartmentCreationEditPolicy());
-		}
-
-		if (editPart instanceof ActivityCNContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomActivityCNContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof ActivityPartitionActivityPartitionContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomActivityPartitionActivityPartitionContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof ConditionalNodeStructuredActivityNodeContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomConditionalNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof ExpansionRegionStructuredActivityNodeContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomInterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof LoopNodeStructuredActivityNodeContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomLoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof SequenceNodeStructuredActivityNodeContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomSequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy());
-		}
-
-		if (editPart instanceof StructuredActivityNodeStructuredActivityNodeContentCompartmentEditPart) {
-			editPart.installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomStructuredActivityNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy());
 		}
 	}
 
