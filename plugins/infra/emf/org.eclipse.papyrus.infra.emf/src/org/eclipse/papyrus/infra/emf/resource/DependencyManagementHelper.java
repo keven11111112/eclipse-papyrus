@@ -16,6 +16,7 @@ import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -29,6 +30,8 @@ import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.emf.ecore.util.FeatureMap;
+import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -129,6 +132,8 @@ public class DependencyManagementHelper {
 
 		Collection<Replacement> replacements = new LinkedList<Replacement>();
 
+		List<AnyType> anyTypesToRepair = new LinkedList<AnyType>();
+
 		while (allContentsIterator.hasNext()) {
 			EObject eObject = allContentsIterator.next();
 
@@ -192,6 +197,16 @@ public class DependencyManagementHelper {
 					}
 				}
 			}
+
+			if (eObject instanceof AnyType) {
+				AnyType anyType = (AnyType) eObject;
+				anyTypesToRepair.add(anyType);
+			}
+		}
+
+		for (AnyType anyType : anyTypesToRepair) {
+			Collection<Replacement> anyTypeReplacements = handleAnyType(anyType, uriToReplace, targetURI);
+			replacements.addAll(anyTypeReplacements);
 		}
 
 		return replacements;
@@ -383,6 +398,9 @@ public class DependencyManagementHelper {
 	public static void batchUpdateDependencies(Map<URI, URI> urisToReplace, Resource fromResource, EditingDomain editingDomain) {
 		Iterator<EObject> allContentsIterator = fromResource.getAllContents();
 
+		// Repairing anytypes may cause exceptions in the contents iterator. Stack them and repair later
+		List<AnyType> anyTypesToRepair = new LinkedList<AnyType>();
+
 		while (allContentsIterator.hasNext()) {
 			EObject eObject = allContentsIterator.next();
 
@@ -442,7 +460,67 @@ public class DependencyManagementHelper {
 					}
 				}
 			}
+
+			if (eObject instanceof AnyType) {
+				AnyType anyType = (AnyType) eObject;
+				anyTypesToRepair.add(anyType);
+			}
 		}
+
+		for (AnyType anyType : anyTypesToRepair) {
+			handleAnyType(anyType, urisToReplace);
+		}
+	}
+
+	private static Collection<Replacement> handleAnyType(AnyType anyType, URI uriToReplace, URI targetURI) {
+		Map<URI, URI> urisToReplace = new HashMap<URI, URI>();
+		urisToReplace.put(uriToReplace, targetURI);
+		return handleAnyType(anyType, urisToReplace);
+	}
+
+	private static Collection<Replacement> handleAnyType(AnyType anyType, Map<URI, URI> urisToReplace) {
+		Collection<Replacement> result = new LinkedList<Replacement>();
+
+		FeatureMap mixed = anyType.getMixed();
+
+		List<FeatureMap.Entry> mixedCopy = new LinkedList<FeatureMap.Entry>(mixed);
+
+		Map<EStructuralFeature, List<Object>> featureToValueMap = new HashMap<EStructuralFeature, List<Object>>();
+
+		for (FeatureMap.Entry mixedEntry : mixedCopy) {
+			EStructuralFeature feature = mixedEntry.getEStructuralFeature();
+			Object value = mixedEntry.getValue();
+
+			List<Object> newValues = getValues(feature, featureToValueMap);
+
+			if (value instanceof EObject) {
+				EObject eObjectToReplace = (EObject) value;
+
+				EObject newEObject = checkAndReplace(eObjectToReplace, urisToReplace);
+				if (newEObject == null) {
+					newValues.add(eObjectToReplace);
+				} else {
+					newValues.add(newEObject);
+					result.add(new ReplacementImpl(anyType, feature, eObjectToReplace, newEObject));
+				}
+			} else {
+				newValues.add(value);
+			}
+		}
+
+		for (Map.Entry<EStructuralFeature, List<Object>> valuesEntry : featureToValueMap.entrySet()) {
+			anyType.eSet(valuesEntry.getKey(), valuesEntry.getValue());
+		}
+
+		return result;
+	}
+
+	private static List<Object> getValues(EStructuralFeature feature, Map<EStructuralFeature, List<Object>> inMap) {
+		if (!inMap.containsKey(feature)) {
+			inMap.put(feature, new LinkedList<Object>());
+		}
+
+		return inMap.get(feature);
 	}
 
 	/**

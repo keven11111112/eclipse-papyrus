@@ -7,6 +7,10 @@
             name="Model Import Test Profile"
             path="platform:/plugin/org.eclipse.papyrus.migration.rsa.tests/deployedProfile/ProfileUpdates.profile.uml">
       </profile>
+      <profile
+            name="Model Import Test Profile - Profile References"
+            path="platform:/plugin/org.eclipse.papyrus.migration.rsa.tests/deployedProfile/ProfileReferences.profile.uml">
+      </profile>
    </extension>
    
    <extension
