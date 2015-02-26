@@ -522,15 +522,15 @@ public class StereotypeApplicationRepairParticipant extends PackageOperations im
 										} else {
 											eAdd(copyEObject, reference, referenced);
 										}
-									} else { // Bug 459488: Maybe we're in the process of repairing objects, and we can now simply resolve the element
-										EObject referenced = EcoreUtil.resolve(anyType, eObject);
-										if (referenced != null && referenced != anyType) {
-											if (!copyFeature.getEType().isInstance(referenced)) {
-												String propertyName = getQualifiedName(UMLUtil.getNamedElement(copyFeature, eObject));
-												handleException(new IllegalStateException(String.format("Attempt to reference object of type %s in stereotype property %s", UML2EcoreConverter.getOriginalName(referenced.eClass()), propertyName))); //$NON-NLS-1$
-											} else {
-												eAdd(copyEObject, reference, referenced);
-											}
+									}
+								} else { // Bug 459488: Maybe we're in the process of repairing objects, and we can now simply resolve the element
+									EObject referenced = EcoreUtil.resolve(anyType, eObject);
+									if (referenced != null && referenced != anyType) {
+										if (!copyFeature.getEType().isInstance(referenced)) {
+											String propertyName = getQualifiedName(UMLUtil.getNamedElement(copyFeature, eObject));
+											handleException(new IllegalStateException(String.format("Attempt to reference object of type %s in stereotype property %s", UML2EcoreConverter.getOriginalName(referenced.eClass()), propertyName))); //$NON-NLS-1$
+										} else {
+											eAdd(copyEObject, reference, referenced);
 										}
 									}
 								}
