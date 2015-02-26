@@ -88,7 +88,7 @@ public class ExpansionRegionHelperTest extends AbstractPapyrusTest {
 		ICommand command = myHelperInstance.getCreateCommand(expansionRegionContainmentCreateRequest);
 		commonExpansionRegionCreateChildTest(command);
 		CreateEditBasedElementCommand createCommand = (CreateEditBasedElementCommand) command;
-		assertEquals(expansionRegionContainmentCreateRequest, createCommand.getCreateRequest());
+		assertNotEquals(expansionRegionContainmentCreateRequest, createCommand.getCreateRequest());
 	}
 
 	@Test

@@ -203,7 +203,7 @@
     <iconEntry xmi:id="_Scbb61YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ComponentRealization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ComponentRealization"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScbcBFYCEeS0WsAAtVmToA" name="UML::ConditionalNode" identifier="org.eclipse.papyrus.uml.ConditionalNode" hint="UML::ConditionalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScbcBFYCEeS0WsAAtVmToA" name="UML::ConditionalNode" identifier="org.eclipse.papyrus.uml.ConditionalNode" hint="UML::ConditionalNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.StructuredActivityNodeHelper">
     <iconEntry xmi:id="_ScbcBVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ConditionalNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//ConditionalNode"/>
   </elementTypeConfigurations>
@@ -592,7 +592,7 @@
     <iconEntry xmi:id="_Sc4u7VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LiteralUnlimitedNatural.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LiteralUnlimitedNatural"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc58-VYCEeS0WsAAtVmToA" name="UML::LoopNode" identifier="org.eclipse.papyrus.uml.LoopNode" hint="UML::LoopNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc58-VYCEeS0WsAAtVmToA" name="UML::LoopNode" identifier="org.eclipse.papyrus.uml.LoopNode" hint="UML::LoopNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.StructuredActivityNodeHelper">
     <iconEntry xmi:id="_Sc58-lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LoopNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LoopNode"/>
   </elementTypeConfigurations>
@@ -911,7 +911,7 @@
     <iconEntry xmi:id="_SdGKS1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StructuralFeatureAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuralFeatureAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGxQFYCEeS0WsAAtVmToA" name="UML::StructuredActivityNode" identifier="org.eclipse.papyrus.uml.StructuredActivityNode" hint="UML::StructuredActivityNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ActivityNodeHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdGxQFYCEeS0WsAAtVmToA" name="UML::StructuredActivityNode" identifier="org.eclipse.papyrus.uml.StructuredActivityNode" hint="UML::StructuredActivityNode" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.StructuredActivityNodeHelper">
     <iconEntry xmi:id="_SdGxQVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/StructuredActivityNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredActivityNode"/>
   </elementTypeConfigurations>
