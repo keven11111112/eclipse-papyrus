@@ -13,6 +13,11 @@
  *****************************************************************************/
 package org.eclipse.papyrus.layout.algorithms.verticalsymmetryalgorithm;
 
+import org.eclipse.zest.layouts.LayoutStyles;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+import org.eclipse.zest.layouts.dataStructures.InternalNode;
+import org.eclipse.zest.layouts.dataStructures.InternalRelationship;
+
 /**
  * The Class VerticalSymmetryLayoutAlgorithm.
  */

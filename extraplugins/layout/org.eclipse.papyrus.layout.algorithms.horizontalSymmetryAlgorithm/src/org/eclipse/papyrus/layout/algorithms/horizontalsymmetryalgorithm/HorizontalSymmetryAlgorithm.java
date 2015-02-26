@@ -14,6 +14,8 @@
 package org.eclipse.papyrus.layout.algorithms.horizontalsymmetryalgorithm;
 
 import org.eclipse.papyrus.layout.managealgorithms.AlgorithmFactory;
+import org.eclipse.zest.layouts.LayoutStyles;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
 
 /**
  * The Class HorizontalSymmetryAlgorithm.
