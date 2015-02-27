@@ -98,11 +98,11 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0nWaNEeSyJIsxLao1Pw" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3011" hint="3011">
     <iconEntry xmi:id="_x8G0nmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPrecondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0n2aNEeSyJIsxLao1Pw" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3012" hint="3012">
     <iconEntry xmi:id="_x8G0oGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPostcondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbvGaNEeSyJIsxLao1Pw" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.Constraint_3112" hint="3112">
     <iconEntry xmi:id="_x8HbvWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
