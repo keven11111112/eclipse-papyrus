@@ -30,6 +30,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.impl.DynamicEObjectImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.ISelection;
@@ -37,6 +38,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
 import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.search.ui.ISearchPageContainer;
 import org.eclipse.ui.IWorkingSet;
 import org.eclipse.uml2.uml.Classifier;
@@ -45,6 +47,7 @@ import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.ProfileApplication;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class StereotypeCollector implements IStereotypeCollector {
 
@@ -183,10 +186,10 @@ public class StereotypeCollector implements IStereotypeCollector {
 		return result;
 
 	}
-	
+
 	public Collection<Stereotype> computeAppliedStereotypes(ISearchPageContainer container) {
 		Set<URI> umlResources = new HashSet<URI>();
-		
+
 		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
 
 		if (container == null) {
@@ -233,9 +236,34 @@ public class StereotypeCollector implements IStereotypeCollector {
 		for (URI uri : umlResources) {
 			ModelSet resourceSet = new ModelSet();
 			Resource resource = resourceSet.getResource(uri, true);
+			EList<EObject> contents = resource.getContents();
 
-			TreeIterator<EObject> UMLResourceContentIterator = resource.getAllContents();
-			while (UMLResourceContentIterator.hasNext()) {
+			for (EObject content : contents) {
+				if (!(content instanceof Model)) {
+					Element umlElement = UMLUtil.getBaseElement(content);
+
+					if (umlElement instanceof Element) {
+						for (Stereotype stereotype : umlElement.getAppliedStereotypes()) {
+							boolean exists = false;
+
+							for (Stereotype existingStereotype : stereotypes) {
+								if (EcoreUtil.equals(existingStereotype, stereotype)) {
+									exists = true;
+									break;
+								}
+							}
+							
+							if (!exists) {
+								stereotypes.add(stereotype);
+							}
+						}
+					}
+				}
+
+				/**
+				 * Keep old version for performance comparison
+				 */
+				/*while (UMLResourceContentIterator.hasNext()) {
 				EObject umlElement = UMLResourceContentIterator.next();
 
 				if (umlElement instanceof Model) {
@@ -246,19 +274,21 @@ public class StereotypeCollector implements IStereotypeCollector {
 						if (element.getAppliedStereotypes() != null && !element.getAppliedStereotypes().isEmpty()) {
 							for (Stereotype stereotype : element.getAppliedStereotypes()) {
 								boolean exists = false;
+
 								for (Stereotype existingStereotype : stereotypes) {
 									if (EcoreUtil.equals(existingStereotype, stereotype)) {
 										exists = true;
+										break;
 									}
 								}
-								
+
 								if (!exists) {
 									stereotypes.add(stereotype);									
 								}
 							}
 						}
 					}
-				}
+				}*/
 			}
 		}
 

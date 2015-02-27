@@ -221,12 +221,13 @@ public class PapyrusAdvancedQuery extends AbstractPapyrusQuery {
 					UmlModel umlModel = (UmlModel) scopeEntry.getModelSet().getModelChecked(UmlModel.MODEL_ID);
 
 					EObject root = umlModel.lookupRoot();
+					EList<EObject> contents = umlModel.getResource().getContents();
 
 					Collection<EObject> participants = ParticipantValidator.getInstance().getParticipants(root, participantsList.keySet().toArray());
 					
 					progressMonitor.worked(1);
 					
-					Collection<EObject> stereotypedParticipants = ParticipantValidator.getInstance().getParticipantsStereotype(root, stereotypeList.keySet().toArray());
+					Collection<EObject> stereotypedParticipants = ParticipantValidator.getInstance().getParticipantsStereotype(contents, stereotypeList.keySet().toArray());
 
 					progressMonitor.worked(1);
 					
