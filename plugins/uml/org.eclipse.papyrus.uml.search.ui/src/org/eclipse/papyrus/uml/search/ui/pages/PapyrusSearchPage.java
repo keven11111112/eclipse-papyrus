@@ -75,6 +75,7 @@ import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeContentProvide
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeElement;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeLabelProvider;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
+import org.eclipse.papyrus.uml.search.ui.query.CompositePapyrusQuery;
 import org.eclipse.papyrus.uml.search.ui.query.CompositePapyrusQueryProvider;
 import org.eclipse.papyrus.uml.search.ui.query.PapyrusOCLQuery;
 import org.eclipse.papyrus.uml.search.ui.query.QueryInfo;
@@ -1067,14 +1068,27 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		if (queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if (validateRegex()) {
 				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
-				ISearchQuery query;
+				AbstractPapyrusQuery compositeQuery;
 				if (searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
 					if (searchQueryText.getText().length() == 0) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_29, Messages.PapyrusSearchPage_30);
 						return false;
 					} else {
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), scope);
-						query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
+						// One query per di file to avoid one single slow query on many files
+						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
+						boolean delay = scope.size() > 1 ? false : true;
+						
+						for (URI uri : scope) {
+							Collection<URI> singleScope = new HashSet<URI>();
+							singleScope.add(uri);
+							
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), singleScope, delay);
+							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
+							
+							queries.add((AbstractPapyrusQuery) query);
+						}
+						
+						compositeQuery = CompositePapyrusQuery.compose(queries);
 					}
 				} else {
 
@@ -1113,13 +1127,26 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 						return false;
 					} else {
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection());
-						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
+						// One query per di file to avoid one single slow query on many files
+						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
+						boolean delay = scope.size() > 1 ? false : true;
+						
+						for (URI uri : scope) {
+							Collection<URI> singleScope = new HashSet<URI>();
+							singleScope.add(uri);
+							
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, singleScope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection(), delay);
+							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
+							
+							queries.add((AbstractPapyrusQuery) query);
+						}
+						
+						compositeQuery = CompositePapyrusQuery.compose(queries);
 					}
 
 				}
-				if (query.canRunInBackground()) {
-					NewSearchUI.runQueryInBackground(query);
+				if (compositeQuery.canRunInBackground()) {
+					NewSearchUI.runQueryInBackground(compositeQuery);
 				}
 
 				return true;

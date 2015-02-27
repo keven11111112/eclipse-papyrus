@@ -22,6 +22,8 @@ import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -88,15 +90,20 @@ public class ParticipantValidator implements IParticipantValidator {
 		while (it.hasNext()) {
 			EObject modelElement = it.next();
 			if (modelElement instanceof Element) {
-				for (Stereotype appliedStereotype : ((Element) modelElement).getAppliedStereotypes()) {
-					// Check that metaclass of this element is a supported metaclass
-					for (Object stereotypeToGet : participantsTypesList) {
-						if (EcoreUtil.equals(appliedStereotype, (EObject) stereotypeToGet)) {
+				for (Object participantStereotype : participantsTypes) {
+					if (participantStereotype instanceof Stereotype) {
+						if (StereotypeUtil.isApplied((Element) modelElement, ((Stereotype) participantStereotype).getQualifiedName())) {
 							results.add(modelElement);
 							break;
 						}
 					}
 				}
+
+				/**
+				 * EcoreUtil.equals is slow which has a big impact when searching in models of more than 100 elements.
+				 * The temporary solution may raise a bug in the future.
+				 */
+				//if (EcoreUtil.equals(appliedStereotype, (EObject) participantStereotype)) {
 			}
 		}
 

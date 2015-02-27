@@ -106,15 +106,16 @@ public class CompositePapyrusQuery extends AbstractPapyrusQuery {
 	public IStatus run(IProgressMonitor monitor) throws OperationCanceledException {
 		List<IStatus> result = new java.util.ArrayList<IStatus>(queries.size());
 
+		SubMonitor sub = SubMonitor.convert(monitor, queries.size());
+		sub.beginTask("Searching in Models", queries.size());
+		
 		searchResult.clear();
-
-		SubMonitor sub = SubMonitor.convert(monitor, result.size());
 		for (AbstractPapyrusQuery next : queries) {
 			IStatus status = next.run(sub.newChild(1));
 			if (!status.isOK()) {
 				result.add(status);
 			}
-
+			
 			searchResult.addSearchResult((AbstractTextSearchResult) next.getSearchResult());
 		}
 
@@ -149,7 +150,25 @@ public class CompositePapyrusQuery extends AbstractPapyrusQuery {
 			for (int i = 0; i < elements.length; i++) {
 				Match[] matches = searchResult.getMatches(elements[i]);
 				searchResults.putAll(searchResult, Arrays.asList(matches));
-				addMatches(matches); // I need them, too
+				
+				int adds = 0;
+				for (Match match : matches) {
+					addMatch(match);
+					
+					/** Every 100 events fired (prompting 100 results display operation),
+					* sleep 100ms so the UI doesn't get stuck
+					*/
+					adds++;
+					if (adds >= NUMBER_ADDS_BEFORE_SLEEP) {
+						adds = 0;
+						try {
+							Thread.sleep(SLEEP_MILLISECONDS);
+						} catch (InterruptedException e) {
+							e.printStackTrace();
+						}
+					}
+				}
+				//addMatches(matches); // I need them, too
 			}
 
 			if (!searchResults.containsKey(searchResult)) {
