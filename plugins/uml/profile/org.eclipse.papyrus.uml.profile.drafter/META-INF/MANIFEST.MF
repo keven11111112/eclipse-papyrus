@@ -34,6 +34,7 @@ Require-Bundle: org.eclipse.ui,
 Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
-Export-Package: org.eclipse.papyrus.uml.profile.drafter.exceptions,
+Export-Package: org.eclipse.papyrus.uml.profile.drafter,
+ org.eclipse.papyrus.uml.profile.drafter.exceptions,
  org.eclipse.papyrus.uml.profile.drafter.ui.handler
 Bundle-Localization: plugin

@@ -23,17 +23,21 @@ package org.eclipse.papyrus.uml.profile.drafter.tests.exception;
  */
 public class TestUtilsException extends Exception {
 
-	/**
-	 * 
-	 */
+	/** The Constant serialVersionUID. */
 	private static final long serialVersionUID = 1L;
+
+	/** The enable suppression. */
+	protected boolean enableSuppression;
+
+	/** The writable stack trace. */
+	protected boolean writableStackTrace;
 
 	/**
 	 * Constructor.
 	 *
 	 */
 	public TestUtilsException() {
-		// TODO Auto-generated constructor stub
+		super();
 	}
 
 	/**
@@ -43,7 +47,6 @@ public class TestUtilsException extends Exception {
 	 */
 	public TestUtilsException(String message) {
 		super(message);
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
@@ -52,8 +55,7 @@ public class TestUtilsException extends Exception {
 	 * @param cause
 	 */
 	public TestUtilsException(Throwable cause) {
-		super(cause);
-		// TODO Auto-generated constructor stub
+		this(null, cause);
 	}
 
 	/**
@@ -63,8 +65,7 @@ public class TestUtilsException extends Exception {
 	 * @param cause
 	 */
 	public TestUtilsException(String message, Throwable cause) {
-		super(message, cause);
-		// TODO Auto-generated constructor stub
+		this(message, cause, false, false);
 	}
 
 	/**
@@ -76,8 +77,10 @@ public class TestUtilsException extends Exception {
 	 * @param writableStackTrace
 	 */
 	public TestUtilsException(String message, Throwable cause, boolean enableSuppression, boolean writableStackTrace) {
-		super(message, cause, enableSuppression, writableStackTrace);
-		// TODO Auto-generated constructor stub
+		super(message, cause);
+
+		this.enableSuppression = enableSuppression;
+		this.writableStackTrace = writableStackTrace;
 	}
 
 }
