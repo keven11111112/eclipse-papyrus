@@ -43,4 +43,18 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_cBmEEL6hEeSWor5pKcy9Fw" name="DurationConstraint_As_Pre" identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPrecondition" hint="UML::DurationConstraint_As_UML::Action::localPrecondition">
+    <iconEntry xmi:id="_cBmEEb6hEeSWor5pKcy9Fw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_cBmEEr6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_cBmEE76hEeSWor5pKcy9Fw" name="DurationConstraint_As_Post" identifier="org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPostcondition" hint="UML::DurationConstraint_As_UML::Action::localPostcondition">
+    <iconEntry xmi:id="_51aSIL6hEeSWor5pKcy9Fw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_cBmEFb6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

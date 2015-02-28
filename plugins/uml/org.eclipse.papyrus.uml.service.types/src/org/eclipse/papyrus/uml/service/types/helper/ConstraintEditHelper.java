@@ -61,7 +61,7 @@ public class ConstraintEditHelper extends ElementEditHelper {
 				Constraint element = (Constraint) req.getElementToConfigure();
 
 				// Create constraint specification
-				ValueSpecification spec = UMLFactory.eINSTANCE.createLiteralString();
+				ValueSpecification spec = createSpecification();
 				spec.setName("constraintSpec"); //$NON-NLS-1$
 
 				element.setSpecification(spec);
@@ -73,6 +73,10 @@ public class ConstraintEditHelper extends ElementEditHelper {
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
+	protected ValueSpecification createSpecification() {
+		return UMLFactory.eINSTANCE.createLiteralString();
+	}
+	
 	/**
 	 * {@inheritDoc}
 	 */
