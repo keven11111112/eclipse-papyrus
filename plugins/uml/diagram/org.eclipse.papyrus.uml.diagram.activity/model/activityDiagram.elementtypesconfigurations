@@ -234,11 +234,11 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0mWaNEeSyJIsxLao1Pw" name="Interval Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3032" hint="3032">
     <iconEntry xmi:id="_x8G0mmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPrecondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0m2aNEeSyJIsxLao1Pw" name="Interval Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.IntervalConstraint_3033" hint="3033">
     <iconEntry xmi:id="_x8G0nGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPostcondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0p2aNEeSyJIsxLao1Pw" name="Join Node" identifier="org.eclipse.papyrus.uml.diagram.activity.JoinNode_3041" hint="3041">
     <iconEntry xmi:id="_x8G0qGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/JoinNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>

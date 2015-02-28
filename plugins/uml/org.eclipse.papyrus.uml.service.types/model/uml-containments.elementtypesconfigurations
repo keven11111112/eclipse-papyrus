@@ -71,4 +71,18 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_iJLVAL9fEeSNNsF8trqP9g" name="IntervalConstraint_As_Pre" identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPrecondition" hint="UML::IntervalConstraint_As_UML::Action::localPrecondition">
+    <iconEntry xmi:id="_iJLVAb9fEeSNNsF8trqP9g" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_iJLVAr9fEeSNNsF8trqP9g">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_iJLVA79fEeSNNsF8trqP9g" name="IntervalConstraint_As_Post" identifier="org.eclipse.papyrus.uml.IntervalConstraint_As_UML::Action::localPostcondition" hint="UML::IntervalConstraint_As_UML::Action::localPostcondition">
+    <iconEntry xmi:id="_iJLVBL9fEeSNNsF8trqP9g" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.IntervalConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_iJLVBb9fEeSNNsF8trqP9g">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

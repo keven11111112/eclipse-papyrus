@@ -532,7 +532,7 @@
     <iconEntry xmi:id="_ScwL_FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Interval.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Interval"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScxaEFYCEeS0WsAAtVmToA" name="UML::IntervalConstraint" identifier="org.eclipse.papyrus.uml.IntervalConstraint" hint="UML::IntervalConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScxaEFYCEeS0WsAAtVmToA" name="UML::IntervalConstraint" identifier="org.eclipse.papyrus.uml.IntervalConstraint" hint="UML::IntervalConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.IntervalConstraintEditHelper">
     <iconEntry xmi:id="_ScxaEVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/IntervalConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//IntervalConstraint"/>
   </elementTypeConfigurations>
