@@ -951,7 +951,7 @@
     <iconEntry xmi:id="_SdHYZlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TestIdentityAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TestIdentityAction"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdHYbVYCEeS0WsAAtVmToA" name="UML::TimeConstraint" identifier="org.eclipse.papyrus.uml.TimeConstraint" hint="UML::TimeConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SdHYbVYCEeS0WsAAtVmToA" name="UML::TimeConstraint" identifier="org.eclipse.papyrus.uml.TimeConstraint" hint="UML::TimeConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.TimeConstraintEditHelper">
     <iconEntry xmi:id="_SdHYblYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/TimeConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//TimeConstraint"/>
   </elementTypeConfigurations>

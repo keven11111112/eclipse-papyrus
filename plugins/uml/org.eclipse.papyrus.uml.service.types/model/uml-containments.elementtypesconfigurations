@@ -57,4 +57,18 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wT89ML9VEeSdDOiyPlc_Pg" name="TimeConstraint_As_Pre" identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPrecondition" hint="UML::TimeConstraint_As_UML::Action::localPrecondition">
+    <iconEntry xmi:id="_wT89Mb9VEeSdDOiyPlc_Pg" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_wT89Mr9VEeSdDOiyPlc_Pg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wT89M79VEeSdDOiyPlc_Pg" name="TimeConstraint_As_Post" identifier="org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPostcondition" hint="UML::TimeConstraint_As_UML::Action::localPostcondition">
+    <iconEntry xmi:id="_wT89NL9VEeSdDOiyPlc_Pg" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+    <containerConfiguration xmi:id="_wT89Nb9VEeSdDOiyPlc_Pg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
