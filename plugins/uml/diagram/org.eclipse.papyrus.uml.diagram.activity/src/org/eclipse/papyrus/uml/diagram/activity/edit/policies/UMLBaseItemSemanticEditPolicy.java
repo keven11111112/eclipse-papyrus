@@ -49,7 +49,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.helper.CustomObjectFlowEditHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
@@ -176,24 +175,6 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		// return command for reorient, as this has already been computed through the edit helpers
 		if (request instanceof ReorientRelationshipRequest) {
 			return editPolicyCommand;
-		}
-		// check the command for constraint/comment links
-		if (request instanceof CreateRelationshipRequest) {
-			CreateRelationshipRequest createRelationshipRequest = ((CreateRelationshipRequest) request);
-			IElementType type = createRelationshipRequest.getElementType();
-			EObject source = createRelationshipRequest.getSource();
-			EObject target = createRelationshipRequest.getTarget();
-			if (source != null && target != null) {
-				if (UMLElementTypes.ConstraintConstrainedElement_4007 == type) {
-					return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(createRelationshipRequest, source, target));
-				}
-			}
-			// disable default abstract edit helper system, where identity command is returned when source is not null and target is not
-			if (target == null && source != null) {
-				if (UMLElementTypes.ConstraintConstrainedElement_4007 != type) {
-					return editPolicyCommand;
-				}
-			}
 		}
 		// generated code
 		if (editPolicyCommand != null) {
