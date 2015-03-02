@@ -18,19 +18,19 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/cdo-main-toc.xml"
+            file="target/generated-eclipse-help/cdo-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/start/cdo-start-toc.xml"
+            file="target/generated-eclipse-help/start/cdo-start-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/team/cdo-team-toc.xml"
+            file="target/generated-eclipse-help/team/cdo-team-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/bugs/cdo-bugs-toc.xml"
+            file="target/generated-eclipse-help/bugs/cdo-bugs-toc.xml"
             primary="false">
       </toc>
    </extension>
