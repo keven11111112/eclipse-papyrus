@@ -329,6 +329,7 @@
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor</module>
 		<module>../plugins/views/org.eclipse.papyrus.views.search</module>
 		<module>../plugins/views/validation/org.eclipse.papyrus.views.validation</module>
+		<module>../plugins/team/org.eclipse.papyrus.team.svn</module>
 		<module>main</module>
 		<!-- Papyrus Sysml 1.4 -->
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14</module>
@@ -350,6 +351,8 @@
 		<module>../examples/emf/org.eclipse.papyrus.outline.emftree</module>
 		<module>../examples/uml/org.eclipse.papyrus.thousandcreation</module>
 		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>	
+		
+		
 	</modules>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
@@ -478,6 +481,12 @@
 			<!-- updateFrom("XWT",0) -->
 			<url>http://download.eclipse.org/xwt/release-1.1.0</url>
 		</repository>
+		<repository>
+			<id>subversive</id>
+			<layout>p2</layout>
+			<!-- updateFrom("Subversive",0) -->
+			<url>http://download.eclipse.org/technology/subversive/2.0/mars-site/</url>
+		</repository>		
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
