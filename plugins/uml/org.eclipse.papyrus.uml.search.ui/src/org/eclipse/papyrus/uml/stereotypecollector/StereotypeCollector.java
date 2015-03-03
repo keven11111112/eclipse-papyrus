@@ -247,7 +247,8 @@ public class StereotypeCollector implements IStereotypeCollector {
 							boolean exists = false;
 
 							for (Stereotype existingStereotype : stereotypes) {
-								if (EcoreUtil.equals(existingStereotype, stereotype)) {
+								//if (EcoreUtil.equals(existingStereotype, stereotype)) {
+								if (EcoreUtil.getURI(existingStereotype).equals(EcoreUtil.getURI(stereotype))) {
 									exists = true;
 									break;
 								}
