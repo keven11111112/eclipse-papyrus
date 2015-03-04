@@ -19,6 +19,7 @@
       <complexType>
          <sequence>
             <element ref="configuration" minOccurs="1" maxOccurs="unbounded"/>
+            <element ref="cellAxisConfiguration" minOccurs="1" maxOccurs="unbounded"/>
          </sequence>
          <attribute name="point" type="string" use="required">
             <annotation>
@@ -49,8 +50,12 @@
 
    <element name="configuration">
       <annotation>
+         <appinfo>
+            <meta.element deprecated="true"/>
+         </appinfo>
          <documentation>
             This extension point allows to register configuration used for celleditor in the table
+@Deprecated since Papyrus 1.1.0. use cellAxisConfiguration instead
          </documentation>
       </annotation>
       <complexType>
@@ -60,7 +65,30 @@
                   The class providing cell editor configuration for one or several type.
                </documentation>
                <appinfo>
-                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.nattable.celleditor.configs.IAxisCellEditorConfiguration"/>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration"/>
+               </appinfo>
+            </annotation>
+         </attribute>
+         <attribute name="order" type="string" use="required">
+            <annotation>
+               <documentation>
+                  Several configuration can be used for the same type, so we use this attribute to sort them.
+more the order is small, more the configuration is prioritary
+               </documentation>
+            </annotation>
+         </attribute>
+      </complexType>
+   </element>
+
+   <element name="cellAxisConfiguration">
+      <complexType>
+         <attribute name="class" type="string" use="required">
+            <annotation>
+               <documentation>
+                  The class providing cell editor configuration for one or several type.
+               </documentation>
+               <appinfo>
+                  <meta.attribute kind="java" basedOn=":org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.ICellAxisConfiguration"/>
                </appinfo>
             </annotation>
          </attribute>

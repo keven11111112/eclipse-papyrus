@@ -17,6 +17,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
+
+
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
@@ -31,8 +34,10 @@ import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
 import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.accumulator.CustomRowOverrideLabelAccumulator;
+import org.eclipse.papyrus.infra.nattable.celleditor.config.CellAxisConfigurationRegistry;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.CellEditorConfigurationFactory;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration;
+import org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.messages.Messages;
@@ -91,17 +96,13 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			// not yet supported
 			throw new UnsupportedOperationException(Messages.EditConfiguration_DeclarationNotYetSupported);
 		}
-
-
 	}
 
 	private void declaredCellEditors(final List<Object> elements, final IConfigRegistry configRegistry, final ColumnOverrideLabelAccumulator columnAccumulator, final CustomRowOverrideLabelAccumulator rowAccumulator) {
 		INattableModelManager modelManager = configRegistry.getConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 		boolean declareOnColumn = columnAccumulator != null;
 		boolean declareOnRow = rowAccumulator != null;
-		assert declareOnColumn != declareOnRow;
-		final CellEditorConfigurationFactory factory = CellEditorConfigurationFactory.INSTANCE;
-		List<String> existingEditorIds = new ArrayList<String>();
+		Assert.isTrue(declareOnColumn != declareOnRow);
 		for (int i = 0; i < elements.size(); i++) {
 			// TODO : for containement feature : see oep.views.properties.
 			// example : create Usecase in a class from the property view : EcorePropertyEditorFactory create a popup to display available type
@@ -111,51 +112,91 @@ public class EditConfiguration extends DefaultEditConfiguration {
 				current = ((IAxis) current).getElement();
 			}
 			final Table table = modelManager.getTable();
-			final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
-			if (config != null) {
-				final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
-				if (editor != null) {
-					final String editorId = config.getEditorConfigId() + Integer.toString(i);
-					if (existingEditorIds.contains(editorId)) {
-						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
-					} else {
-						existingEditorIds.add(editorId);
-					}
 
-					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
-
-					final ICellPainter painter = config.getCellPainter(table, current);
-					final String displayMode = config.getDisplayMode(table, current);
-					final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
-
-					final IDataValidator validator = config.getDataValidator(table, current);
-					assert !cellId.equals(editorId);
-					if (declareOnColumn) {
-						columnAccumulator.registerColumnOverrides(i, editorId, cellId);
-					} else {
-						rowAccumulator.registerRowOverrides(i, editorId, cellId);
-					}
-					if (painter != null) {
-						configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
-					}
-					configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
-
-					if (converter != null) {
-						configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
-					}
-
-					if (validator != null) {
-						configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
-					}
-				} else {
-					final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorConfigId(), current);
-					if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
-						Activator.log.warn(errorMessage);
-						this.messagesAlreadyDisplayed.add(errorMessage);
-					}
-
+			boolean configWithNewRegistry = configureWithNewFactory(table, configRegistry, current, i, declareOnColumn, columnAccumulator, rowAccumulator);
+			boolean configWithOldFactory = false;
+			if (!configWithNewRegistry) {
+				final String errorMessage = NLS.bind("You should use the new interface {0} to declare cell editor for {1}", ICellAxisConfiguration.class.getName(), current);
+				if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
+					Activator.log.warn(errorMessage);
+					this.messagesAlreadyDisplayed.add(errorMessage);
 				}
-			} else {
+				configWithOldFactory = configureWithOldFactory(table, configRegistry, modelManager, current, i, declareOnColumn, columnAccumulator, rowAccumulator);
+			}
+			// // 1. Try to find configuration in the new factory --ceFactory-- of type CellEdConfigurationFactory. If found, then configure and continue()!
+			// final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
+			// if (ceConfig != null) {
+			// if (existingEditorIds.contains(ceConfig.getConfigurationId())) {
+			//					org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// } else {
+			// existingEditorIds.add(ceConfig.getConfigurationId());
+			// }
+			// // final ICellEditor editor = ceConfig.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
+			// ceConfig.configureCellEditor(configRegistry, current, ceConfig.getConfigurationId());
+			// continue;// go to the next element
+			// } else {
+			// final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, ceFactory, current);
+			// if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
+			// Activator.log.warn(errorMessage);
+			// this.messagesAlreadyDisplayed.add(errorMessage);
+			// }
+			// }
+			//
+			// // 2. if the program does not find the configuration, it will continue using the old, (i.e., deprecated) factory --factory-- of type CellEditorConfigurationFactory
+			//
+			// final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
+			// if (config != null) {
+			// final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
+			// if (editor != null) {
+			// final String editorId = config.getEditorConfigId() + Integer.toString(i);
+			// if (existingEditorIds.contains(editorId)) {
+			//						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// } else {
+			// existingEditorIds.add(editorId);
+			// }
+			//
+			//					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+			//
+			// final ICellPainter painter = config.getCellPainter(table, current);
+			// final String displayMode = config.getDisplayMode(table, current);
+			// final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
+			//
+			// final IDataValidator validator = config.getDataValidator(table, current);
+			// assert !cellId.equals(editorId);
+			// if (declareOnColumn) {
+			// columnAccumulator.registerColumnOverrides(i, editorId, cellId);
+			// } else {
+			// rowAccumulator.registerRowOverrides(i, editorId, cellId);
+			// }
+			// if (painter != null) {
+			// configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
+			// }
+			// configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
+			//
+			// if (converter != null) {
+			// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
+			// }
+			//
+			// if (validator != null) {
+			// configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
+			// }
+			// } else {
+			// final String errorMessage = NLS.bind(Messages.EditConfiguration_FactoryHandlesElementButDoesntProvideEditor, config.getEditorConfigId(), current);
+			// if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
+			// Activator.log.warn(errorMessage);
+			// this.messagesAlreadyDisplayed.add(errorMessage);
+			// }
+			//
+			// }
+			// } else {
+			// final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
+			// if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
+			// Activator.log.warn(errorMessage);
+			// this.messagesAlreadyDisplayed.add(errorMessage);
+			// }
+			// }
+
+			if (!configWithNewRegistry && !configWithOldFactory) {
 				final String errorMessage = NLS.bind(Messages.EditConfiguration_ConfigurationNotFound, current);
 				if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
 					Activator.log.warn(errorMessage);
@@ -164,5 +205,71 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			}
 		}
 	}
+
+
+	/**
+	 * @param table
+	 * @param configRegistry
+	 * @param current
+	 * @return
+	 */
+	private boolean configureWithOldFactory(Table table, IConfigRegistry configRegistry, INattableModelManager modelManager, Object current, int indexOfTheAxis, boolean declareOnColumn, final ColumnOverrideLabelAccumulator columnAccumulator,
+			final CustomRowOverrideLabelAccumulator rowAccumulator) {
+		final CellEditorConfigurationFactory factory = CellEditorConfigurationFactory.INSTANCE; // this factory was used until Papyrus Luna. Better use CellEdConfigurationFactory
+
+		final IAxisCellEditorConfiguration config = factory.getFirstCellEditorConfiguration(table, current);
+
+		final ICellEditor editor = config.getICellEditor(table, current, modelManager.getTableAxisElementProvider());
+		if (editor != null) {
+			final String editorId = config.getEditorConfigId() + Integer.toString(indexOfTheAxis);
+			final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+
+			final ICellPainter painter = config.getCellPainter(table, current);
+			final String displayMode = config.getDisplayMode(table, current);
+			final IDisplayConverter converter = config.getDisplayConvert(table, current, new EMFLabelProvider());// TODO : label provider
+
+			final IDataValidator validator = config.getDataValidator(table, current);
+			if (declareOnColumn) {
+				columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId);
+			} else {
+				rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId);
+			}
+			if (painter != null) {
+				configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, painter, displayMode, cellId);
+			}
+			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, editor, displayMode, editorId);
+
+			if (converter != null) {
+				configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, converter, displayMode, cellId);
+			}
+
+			if (validator != null) {
+				configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, cellId);
+			}
+			return true;
+		}
+		return false;
+	}
+
+	protected final boolean configureWithNewFactory(Table table, IConfigRegistry configRegistry, Object current, int indexOfTheAxis, boolean declareOnColumn, final ColumnOverrideLabelAccumulator columnAccumulator,
+			final CustomRowOverrideLabelAccumulator rowAccumulator) {
+		final CellAxisConfigurationRegistry ceFactory = CellAxisConfigurationRegistry.INSTANCE;
+		final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
+		
+
+		if (ceConfig != null) {
+			final String editorId = ceConfig.getConfigurationId() + Integer.toString(indexOfTheAxis);
+			final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+			ceConfig.configureCellEditor(configRegistry, current, cellId);
+			if (declareOnColumn) {
+				columnAccumulator.registerColumnOverrides(indexOfTheAxis, editorId, cellId);
+			} else {
+				rowAccumulator.registerRowOverrides(indexOfTheAxis, editorId, cellId);
+			}
+			return true;
+		}
+		return false;
+	}
+
 
 }

@@ -45,8 +45,10 @@ import org.eclipse.papyrus.infra.nattable.painter.CustomCheckBoxPainter;
  * The configuration to edit EMF properties
  *
  * @author Vincent Lorenzo
- *
+ * @deprecated Used just until Papyrus Luna. Replaced by classes that are specific to each type of cell editor in the package org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration
+ * 
  */
+@Deprecated
 public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfiguration {
 
 	/**

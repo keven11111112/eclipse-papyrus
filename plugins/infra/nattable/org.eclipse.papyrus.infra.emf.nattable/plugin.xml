@@ -7,6 +7,22 @@
             class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.EStructuralFeatureEditorConfig"
             order="1000">
       </configuration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleBooleanCellEditorConfiguration"
+            order="1000">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleEEnumTypeCellEditorConfiguration"
+            order="1001">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleIntegerCellEditorConfiguration"
+            order="1002">
+      </cellAxisConfiguration>
+      <cellAxisConfiguration
+            class="org.eclipse.papyrus.infra.emf.nattable.celleditor.config.SingleStringCellEditorConfiguration"
+            order="1003">
+      </cellAxisConfiguration>
    </extension>
  <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
