@@ -1,9 +1,22 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 433206
+ *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.style.impl;
 
 import java.util.Arrays;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
+import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.DoubleValueStyle;
 import org.eclipse.gmf.runtime.notation.IntValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
@@ -11,6 +24,7 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.StringListValueStyle;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
@@ -130,5 +144,76 @@ public class CSSViewDelegate implements CSSView {
 			Activator.log.error(ex);
 			return null;
 		}
+	}
+
+	/**
+	 * For now, we support delegation of single-attribute styles:
+	 * <ul>
+	 * <li>{@link CanonicalStyle}</li>
+	 * </ul>
+	 */
+	@Override
+	public Style getCSSStyle(EClass eClass) {
+		if (NotationPackage.Literals.NAMED_STYLE.isSuperTypeOf(eClass)) {
+			// Should use getCSSNamedStyle for these
+			return null;
+		}
+
+		if (!NotationPackage.Literals.STYLE.isSuperTypeOf(eClass)) {
+			// Not even a style. Sheesh
+			return null;
+		}
+
+		// Gate on supported single-attribute styles
+		switch (eClass.getClassifierID()) {
+		case NotationPackage.CANONICAL_STYLE:
+			break;
+		default:
+			return null;
+		}
+
+		// There is exactly one feature in this style (that's why we're here)
+		final String attrName = eClass.getEStructuralFeatures().get(0).getName();
+
+		// /////////////////////////////////////////////
+		// This method may call getNamedStyle() to retrieve the applied CSS Styles. Prevent overflow
+		CSSValue cssValue;
+		synchronized (this) {
+			if (lookupStyle) {
+				return null;
+			}
+
+			try {
+				lookupStyle = true;
+				cssValue = engine.retrievePropertyValue(view, attrName);
+				if (cssValue == null) {
+					return null;
+				}
+			} finally {
+				lookupStyle = false;
+			}
+		}
+		// /////////////////////////////////////////////
+
+		Style result = null;
+
+		try {
+			switch (eClass.getClassifierID()) {
+			case NotationPackage.CANONICAL_STYLE:
+				Boolean booleanValue = (Boolean) engine.convert(cssValue, Boolean.class, null);
+				CanonicalStyle canonicalStyle = NotationFactory.eINSTANCE.createCanonicalStyle();
+
+				canonicalStyle.setCanonical(booleanValue);
+
+				result = canonicalStyle;
+				break;
+			default:
+				break;
+			}
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+
+		return result;
 	}
 }
