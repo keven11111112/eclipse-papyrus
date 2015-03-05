@@ -30,12 +30,10 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
-import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeLocationEnum;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -155,15 +153,8 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
 			final View view = ((View) element.getAdapter(View.class));
 
-			StereotypeLocationEnum location;
-			if (helper.isInStereotypeComment((Node) view)) {
-				location = StereotypeLocationEnum.IN_COMMENT_COMPARTMENT;
-			} else {
-				location = StereotypeLocationEnum.IN_COMPARTMENT;
-			}
-
 			if (view != null && property != null) {
-				return helper.getStereotypePropertyToDisplay(view, property, location);
+				return helper.getStereotypePropertyToDisplay(view, property);
 			}
 		}
 		return DEFAULT_VALUE;

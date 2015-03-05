@@ -38,11 +38,14 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 
 	protected Element element;
 
-	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property) {
+	protected String type;
+
+	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property, final String type) {
 
 		super(domain, "CreateStereotypePropertyView");
 		this.owner = owner;
 		this.property = property;
+		this.type = type;
 
 	}
 
@@ -53,7 +56,7 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 
 		// Create property Label
 		DecorationNode propertyLabel = NotationFactory.eINSTANCE.createDecorationNode();
-		propertyLabel.setType(StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE);
+		propertyLabel.setType(type);
 		propertyLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		propertyLabel.setElement(property);
 

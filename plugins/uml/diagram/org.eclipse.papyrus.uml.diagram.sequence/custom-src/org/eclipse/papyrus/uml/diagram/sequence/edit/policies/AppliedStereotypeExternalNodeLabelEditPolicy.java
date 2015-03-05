@@ -19,7 +19,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
-import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
@@ -93,38 +92,6 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 		}
 	}
 
-	@Override
-	public String stereotypesToDisplay() {
-		if (hostView == null) {
-			return "";
-		}
-		// list of stereotypes to display
-		String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(hostView);
-		// Kind of the representation
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(hostView);
-
-		// check the presentation kind. if only icon => do not display
-		// stereotypes
-		if (UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return ""; // empty string, so stereotype label should not be
-						// displayed
-		}
-
-		// stereotypes with qualified name to display
-		String stereotypesToDisplayWithQN = AppliedStereotypeHelper.getStereotypesQNToDisplay(hostView);
-
-		// the set is empty
-		if (stereotypesToDisplayWithQN.length() == 0 && stereotypesToDisplay.length() == 0) {
-			return "";
-		}
-		// vertical representation
-		if (UMLVisualInformationPapyrusConstant.STEREOTYPE_TEXT_VERTICAL_PRESENTATION.equals(stereotypespresentationKind)) {
-			return Activator.ST_LEFT + stereotypesToDisplay() + Activator.ST_RIGHT;
-		} else {// horizontal representation
-			return Activator.ST_LEFT + stereotypesToDisplay() + Activator.ST_RIGHT;
-
-		}
-	}
 
 	protected void refreshAppliedStereotypesProperties(IPapyrusNodeUMLElementFigure figure) {
 		if (hostView == null) {
@@ -199,7 +166,7 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 			if (figure instanceof IPapyrusUMLElementFigure) {// calculate text
 				// and icon to
 				// display
-				final String stereotypesToDisplay = stereotypesToDisplay();
+				final String stereotypesToDisplay = helper.getStereotypeTextToDisplay(hostView);
 				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 			}
 		}

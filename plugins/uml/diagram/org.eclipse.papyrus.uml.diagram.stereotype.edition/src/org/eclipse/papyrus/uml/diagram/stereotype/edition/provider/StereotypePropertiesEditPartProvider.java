@@ -25,9 +25,10 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.RestrictedAbstractEditPartProvider;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeEmptyEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentLinkEditPart;
 
 
@@ -46,7 +47,14 @@ public class StereotypePropertiesEditPartProvider extends RestrictedAbstractEdit
 		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE, AppliedStereotypeCompartmentEditPart.class);
 		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE, AppliedStereotypeMultilinePropertyEditPart.class);
 		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMMENT_TYPE, AppliedStereotypeCommentEditPart.class);
+		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE, AppliedStereotypeEmptyEditPart.class);
+		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE, AppliedStereotypeEmptyEditPart.class);
+		nodeMap.put(StereotypeDisplayUtils.STEREOTYPE_PROPERTY_BRACE_TYPE, AppliedStereotypeEmptyEditPart.class);
+
+
 		edgeMap.put(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE, AppliedStereotypesCommentLinkEditPart.class);
+
+
 
 	}
 

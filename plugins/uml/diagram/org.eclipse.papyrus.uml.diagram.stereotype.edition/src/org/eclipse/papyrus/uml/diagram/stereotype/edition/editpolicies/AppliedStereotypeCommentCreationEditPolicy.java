@@ -15,20 +15,15 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
-import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map;
-
-import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Bounds;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -38,17 +33,20 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeCommentContentCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeCommentViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeLocationEnum;
-import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypePropertyViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.swt.widgets.Display;
-import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Extension;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This editpolicy has in charge to :
  * - create or destroy the appliedStereotypesCommentEditpart
- * - adapt the information about stereotype display into appliedstereotypeCommentEditPart
+ * - create notation view associated to this CommentEditPart
+ * - refresh the Comment content based on the UML information
  * by using NamedStyle mechanism into Notation model
  * 
  *
@@ -59,75 +57,80 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	/** constant for this edit policy role */
 	public final static String APPLIED_STEREOTYPE_COMMENT = "AppliedStereotypeComment";// $NON-NLS-1$
 
-	protected GraphicalEditPart hostEditPart;
-	private Node node;
+	/** the comment node associated to the Host EditPart */
 	private Node comment;
 
 	/**
-	 * Map between Stereotype Name and StereotypeLabel displayed
-	 */
-	private Map<EObject, BasicCompartment> stereotypeCommentMap = new HashMap<EObject, BasicCompartment>();
-
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#activate()
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshNotationStructure()
 	 *
 	 */
 	@Override
-	public void activate() {
-		super.activate();
-		if (getHost() instanceof GraphicalEditPart) {
-			hostEditPart = (GraphicalEditPart) getHost();
-			node = getNotationNode();
+	public void refreshNotationStructure() {
 
-		}
+		if (hostView != null) {
 
-		// if stereotype has been applied, compartment has to be created
-		Element umlElement = getUMLElement();
-		// umlElement may be null if the semantic element has been deleted and the view hasn't been cleaned
-		if (umlElement != null) {
-			Iterator<EObject> iterator = umlElement.getStereotypeApplications().iterator();
-			while (iterator.hasNext()) {
-				final EObject appliedstereotype = iterator.next();
-				createAppliedStereotypeCompartmentComment(appliedstereotype);
+			removeUnappliedStereotypes(comment);
 
+			if (!stereotypeList.isEmpty()) {
+				refreshStereotypeCommentStructure();
 			}
 		}
 	}
 
+
 	/**
-	 *
-	 * {@inheritedDoc}
+	 * Refresh the structure for the Stereotype List
+	 * 
+	 * @param stereotypeList
+	 *            The list of Stereotype applied on the Element.
 	 */
-	@Override
-	public void notifyChanged(Notification notification) {
+	public void refreshStereotypeCommentStructure() {
 
-		final int eventType = notification.getEventType();
+		if (comment != null) {
+			removeUnappliedStereotypes(comment);
+		}
+		// rebuild the structure from the Stereotype List
+		if (!stereotypeList.isEmpty()) {
+			comment = createCommentNode();
+			for (Stereotype stereotype : stereotypeList) {
+				refreshStereotypeCompartmentStructure(stereotype);
+				refreshStereotypeBraceStructure(stereotype);
 
-		if (eventType == StereotypeExtensionNotification.STEREOTYPE_APPLIED_TO_ELEMENT) {
-			super.notifyChanged(notification);
-
-			getDiagramEventBroker().addNotificationListener((EObject) notification.getNewValue(), this);
-			createAppliedStereotypeCompartmentComment((EObject) notification.getNewValue());
-
-
-		} else if (eventType == StereotypeExtensionNotification.STEREOTYPE_UNAPPLIED_FROM_ELEMENT) {
-			// super.notifyChanged(notification);
-			getDiagramEventBroker().removeNotificationListener((EObject) notification.getOldValue(), this);
-			removeAppliedStereotypeCompartmentComment((EObject) notification.getOldValue());
-
-
-
+			}
 		}
 
 	}
 
 	/**
-	 * @return the stereotypeCommentMap
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeCompartmentStructure(org.eclipse.uml2.uml.Stereotype)
+	 *
+	 * @param stereotype
 	 */
-	public Map<EObject, BasicCompartment> getStereotypeCommentMap() {
-		return stereotypeCommentMap;
+	@Override
+	public void refreshStereotypeBraceStructure(Stereotype stereotype) {
+
+		BasicCompartment compartment = helper.getStereotypeCompartment(hostView, stereotype);
+		if (compartment == null) { // No Label Exist for this Stereotype
+			createAppliedStereotypeBraceCompartment(stereotype);
+			createAppliedStereotypeBraceProperties(stereotype);
+
+		}
+	}
+
+	/**
+	 * Refresh The StereotypeCompartment notation structure.
+	 * 
+	 * @param stereotype
+	 *            Stereotype related to the Compartment to created
+	 */
+	public void refreshStereotypeCompartmentStructure(Stereotype stereotype) {
+
+		BasicCompartment compartment = helper.getStereotypeCompartment(comment, stereotype);
+		if (compartment == null) { // No Compartment Exist for this Stereotype
+			createAppliedStereotypeCompartment(stereotype);
+			createAppliedStereotypeProperties(stereotype);
+
+		}
 	}
 
 
@@ -137,84 +140,191 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 	 * @param stereotypeApplication
 	 *            the stereotype application
 	 */
-	protected void createAppliedStereotypeCompartmentComment(final EObject stereotypeApplication) {
+	protected void createAppliedStereotypeCompartment(final Stereotype stereotype) {
+		final View node = hostEditPart.getNotationView();
+		// doesn't exist already
+		if (!helper.isCompartmentExist(node, stereotype)) {
+			// Create Compartment
+			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE);
+		}
+	}
 
-		Node compartment = helper.getStereotypeCompartment(node, stereotypeApplication);
-		if (compartment != null) {
-			// If the node should be displayed in a Compartment or Brace Comment then create the Comment and its content
-			if (!helper.isEmpty(compartment, StereotypeLocationEnum.IN_COMMENT_BRACE)
-					|| (!helper.isEmpty(compartment, StereotypeLocationEnum.IN_COMMENT_COMPARTMENT))) {
 
-				if (helper.getStereotypeComment(node) == null) {
-					// if Comment doesn't exist => Create it and copy the structure from the host
+	/**
+	 * In charge of properties view creation
+	 * 
+	 * @param eObject
+	 *            The Edit Part of which the Properties should be created
+	 */
 
-					if (getHost() instanceof ConnectionEditPart) {
-						executeAppliedStereotypeCommentCreation(((ConnectionEditPart) getHost()).resolveSemanticElement());
-					}
-					if (getHost() instanceof GraphicalEditPart) {
-						executeAppliedStereotypeCommentCreation(((GraphicalEditPart) getHost()).resolveSemanticElement());
-					}
+	protected void createAppliedStereotypeProperties(final Stereotype stereotype) {
 
-				}
+		Node compartment = helper.getStereotypeCompartment(comment, stereotype);
+		if (compartment != null && stereotype != null) {
 
-				executeAppliedStereotypeCommentContent(compartment, stereotypeApplication);
+			EList<Property> properties = stereotype.allAttributes();
+			for (Property property : properties) {
+				createAppliedStereotypeProperty(compartment, property);
 			}
 		}
 	}
 
 	/**
-	 * Remove the Compartment into the Comment associated to the stereotypeApplication
+	 * In Charge of PropertyView Creation
 	 * 
-	 * @param stereotypeApplication
-	 *            the stereotypeApplication associated to the compartment to be deleted
-	 */
-	protected void removeAppliedStereotypeCompartmentComment(EObject stereotypeApplication) {
-		// Remove the Label node
-		BasicCompartment compartment = getStereotypeCommentMap().get(stereotypeApplication);
-		if ((compartment != null) && (TransactionUtil.getEditingDomain(compartment) != null)) {
-			executeAppliedStereotypeCompartmentRemove(hostEditPart, compartment);
-			// Delete entry from the Map
-			deleteInCommentMap(stereotypeApplication);
-		}
-	}
-
-	/**
-	 * Add the compartment into the Comment Edit Part
-	 * 
-	 * @param stereotypeApplication
-	 *            The Stereotype Application associated to the new Compartment
-	 */
-	protected void executeAppliedStereotypeCommentContent(Node compartment, EObject stereotypeApplication) {
-		comment = helper.getStereotypeComment(node);
-		if (comment != null) {
-			executeAppliedStereotypeCommentContentCreationCommand(compartment);
-
-			// Store entry in the Map
-			storeInCommentMap(stereotypeApplication, comment);
-		}
-	}
-
-	/**
-	 * Create the Comment content based on the original model content
-	 * 
+	 * @param propertyType
+	 *            Type of Property {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_BRACE_TYPE}
 	 * @param compartment
-	 *            The original compartment on which is based the Comment compartment to be added into the Comment model
+	 *            The Compartment owner of the Property that will be created
+	 * @param property
+	 *            The UML Property of the View to create
 	 */
-	protected void executeAppliedStereotypeCommentContentCreationCommand(Node compartment) {
-		final RecordingCommand cmd = new CreateAppliedStereotypeCommentContentCommand("Applied Stereotype Delegation", comment, hostEditPart, compartment);
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getView());
-		Display.getCurrent().syncExec(new Runnable() {
 
-			public void run() {
-				// use to avoid to put it in the command stack
-				try {
-					GMFUnsafe.write(domain, cmd);
-				} catch (Exception e) {
-					Activator.log.error(e);
-				}
+	protected void createAppliedStereotypeProperty(Node compartment, Property property) {
+		// if stereotype is null all property of stereotype has to be removed!
+		if (property != null && !property.getName().startsWith(Extension.METACLASS_ROLE_PREFIX)) {
+			if (!helper.isPropertyExist(compartment, property)) {
+				// go through each stereotype property
+				executeAppliedStereotypePropertyViewCreation(hostEditPart, compartment, property);
+
 			}
-		});
+		}
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#createAppliedStereotypeBraceCompartment(org.eclipse.uml2.uml.Stereotype)
+	 *
+	 * @param stereotype
+	 *            Stereotype related to the Brace Compartment to created
+	 */
+	@Override
+	protected void createAppliedStereotypeBraceCompartment(Stereotype stereotype) {
+		final View node = hostEditPart.getNotationView();
+		// doesn't exist already
+		if (!helper.isCompartmentExist(node, stereotype)) {
+			// Create Compartment
+			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE);
+
+		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#createAppliedStereotypeBraceProperties(org.eclipse.uml2.uml.Stereotype)
+	 *
+	 * @param stereotype
+	 *            Stereotype related to the Brace Properties to created
+	 */
+	@Override
+	protected void createAppliedStereotypeBraceProperties(Stereotype stereotype) {
+		Node compartment = helper.getStereotypeBraceCompartment(comment, stereotype);
+		if (compartment != null && stereotype != null) {
+
+			EList<Property> properties = stereotype.allAttributes();
+			for (Property property : properties) {
+				createAppliedStereotypeBraceProperty(compartment, property);
+			}
+		}
+	}
+
+	/**
+	 * In charge of Comment Node creation.
+	 * 
+	 * @return The Comment Node newly created
+	 */
+	private Node createCommentNode() {
+		if (helper.getStereotypeComment(hostView) == null) {
+			// if Comment doesn't exist => Create it and copy the structure from the host
+
+			if (getHost() instanceof ConnectionEditPart) {
+				executeAppliedStereotypeCommentCreation(((ConnectionEditPart) getHost()).resolveSemanticElement());
+			}
+			if (getHost() instanceof GraphicalEditPart) {
+				executeAppliedStereotypeCommentCreation(((GraphicalEditPart) getHost()).resolveSemanticElement());
+			}
+
+		}
+		return helper.getStereotypeComment(hostView);
+
+	}
+
+
+	/**
+	 * The goal of this method is to execute the a command to create a notation node for a compartment of stereotype
+	 *
+	 * @param editPart
+	 *            the editPart owner of the new compartment
+	 * @param appliedstereotype
+	 *            the stereotype application
+	 */
+
+	protected void executeAppliedStereotypeCompartmentCreation(final IGraphicalEditPart editPart, final Stereotype stereotype, final String type) {
+		try {
+			editPart.getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					Display.getCurrent().syncExec(new Runnable() {
+
+
+						public void run() {
+							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), comment, stereotype, type);
+
+							// use to avoid to put it in the command stack
+							try {
+								GMFUnsafe.write(editPart.getEditingDomain(), command);
+							} catch (Exception e) {
+								Activator.log.error(e);
+							}
+						}
+					});
+
+				}
+			});
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
+
+	/**
+	 * This method is used to create a notation node for the property of the stereotype
+	 *
+	 * @param editPart
+	 *            the editPart container
+	 * @param compartment
+	 * @param stereotypeApplication
+	 * @param stereotype
+	 *            the stereotype associated to compartment node
+	 */
+
+	protected void executeAppliedStereotypePropertyViewCreation(final IGraphicalEditPart editPart, final Node compartment, final Property stereotypeProperty) {
+		try {
+			editPart.getEditingDomain().runExclusive(new Runnable() {
+
+				public void run() {
+					Display.getCurrent().syncExec(new Runnable() {
+
+						public void run() {
+
+							// use to avoid to put it in the command stack
+							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE);
+							try {
+								GMFUnsafe.write(editPart.getEditingDomain(), command);
+							} catch (Exception e) {
+								Activator.log.error(e);
+							}
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
+
+
+
 
 	/**
 	 * The goal of this method is to execute the a command to create a notation node for applied stereotype
@@ -293,108 +403,6 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		});
 	}
 
-
-
-	/**
-	 * This method has in charge to refresh the presence of the view that represent the comment
-	 */
-	protected void updateAppliedStereotypeCommentShape() {
-
-
-		// look for the AppliedStereotypesCommentEditPart
-		Node commentNode = helper.getStereotypeComment(node);
-
-		if (helper.hasStereotypeCompartment(node)) {
-
-			// if Comment doesn't exist => Create it and copy the structure from the host
-			if (commentNode == null) {
-
-				if (getHost() instanceof ConnectionEditPart) {
-					executeAppliedStereotypeCommentCreation(((ConnectionEditPart) getHost()).resolveSemanticElement());
-				}
-				if (getHost() instanceof GraphicalEditPart) {
-					executeAppliedStereotypeCommentCreation(((GraphicalEditPart) getHost()).resolveSemanticElement());
-				}
-			}
-
-		} else {
-			// If the host doesn't have compartment remove the Comment if any
-			if (commentNode != null) {
-				final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
-				executeAppliedStereotypeCommentDeletion(domain, commentNode);
-			}
-		}
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy#refreshStereotypeDisplay()
-	 *
-	 */
-	@Override
-	protected void refreshStereotypeDisplay() {
-		refreshComment();
-	}
-
-	/**
-	 * Refresh The Comment Figure. Delete if empty.
-	 */
-	protected void refreshComment() {
-
-		// Refresh to create Comment if CSS Change
-		if (node != null) {
-			if (node.getElement() instanceof Element) {
-				Element elt = (Element) node.getElement();
-				EList<EObject> appliedStereotypes = elt.getStereotypeApplications();
-				for (EObject obj : appliedStereotypes) {
-					getDiagramEventBroker().addNotificationListener(obj, this);
-					createAppliedStereotypeCompartmentComment(obj);
-
-				}
-			}
-		}
-
-		// Delete Comment if empty
-		comment = helper.getStereotypeComment(node);
-		if (comment != null) {
-			if (helper.isCommentEmpty(comment)) {
-				// Delete the Comment Node
-				executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
-			}
-		}
-
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#storeInMap(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View)
-	 *
-	 * @param stereotypeApplication
-	 *            The Application Of the stereotype to be stored
-	 * @param node
-	 *            the Comment Node which contains the Applied Stereotype Compartments
-	 */
-
-	protected void storeInCommentMap(EObject stereotypeApplication, View node) {
-
-		if (stereotypeApplication != null && node != null) {
-			BasicCompartment compartment = helper.getStereotypeCompartment(node, stereotypeApplication);
-			getStereotypeCommentMap().put(stereotypeApplication, compartment);
-
-
-		}
-
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#deleteInMap(org.eclipse.emf.ecore.EObject)
-	 *
-	 * @param stereotypeApplication
-	 */
-
-	protected void deleteInCommentMap(EObject stereotypeApplication) {
-		getStereotypeCommentMap().remove(stereotypeApplication);
-	}
-
 	/**
 	 * Get the Node (notation) corresponding to the Host editpart
 	 */
@@ -409,7 +417,6 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		}
 		return node;
 	}
-
 
 
 }

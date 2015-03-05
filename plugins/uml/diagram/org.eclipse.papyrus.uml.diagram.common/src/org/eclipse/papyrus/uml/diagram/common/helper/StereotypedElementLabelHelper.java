@@ -27,7 +27,6 @@ import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
@@ -35,7 +34,7 @@ import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -46,6 +45,8 @@ import org.eclipse.uml2.uml.Stereotype;
  * Helper class for labels for elements that can have stereotypes
  */
 public abstract class StereotypedElementLabelHelper {
+
+	private final static String EMPTY_STRING = "";
 
 	/**
 	 * {@inheritDoc}
@@ -111,87 +112,6 @@ public abstract class StereotypedElementLabelHelper {
 	}
 
 	/**
-	 * Returns a String that displays stereotypes (using their simple name or
-	 * their qualified name) and their properties
-	 *
-	 * @param editPart
-	 *            the edit part for which the label is edited
-	 * @param separator
-	 *            the separator used to split the string representing the
-	 *            stereotypes.
-	 * @param stereotypesToDisplay
-	 *            the list of stereotypes displayed
-	 * @param stereotypeWithQualifiedName
-	 *            the list of stereotypes displayed using their qualified names
-	 * @param stereotypesPropertiesToDisplay
-	 *            the list of properties to display
-	 * @return a string that displays stereotypes (using their simple name or
-	 *         their qualified name) and their properties
-	 */
-	public String stereotypesAndPropertiesToDisplay(GraphicalEditPart editPart, String separator, String stereotypesToDisplay, String stereotypesPropertiesToDisplay) {
-		// Get the preference from PreferenceStore. there should be an assert
-		final IPreferenceStore store = Activator.getDefault().getPreferenceStore();
-		if (store == null) {
-			Activator.log.warn("The preference store was not found");
-			return "";
-		}
-		// retrieve if the name of the stereotype has to put to lower case or
-		// not
-		String sNameAppearance = store.getString(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_APPEARANCE);
-		// changes the string of properties into a map, where the entries of the
-		// map are the
-		// stereotype qualified name, and the properties to display are the data
-		Map<String, List<String>> propertiesToDisplay = parseStereotypeProperties(editPart, stereotypesToDisplay, stereotypesPropertiesToDisplay);
-		StringTokenizer strQualifiedName = new StringTokenizer(stereotypesToDisplay, ",");
-		String out = "";
-		while (strQualifiedName.hasMoreElements()) {
-			String currentStereotype = strQualifiedName.nextToken();
-			// check if current stereotype is applied
-			final Element umlElement = getUMLElement(editPart);
-			Stereotype stereotype = umlElement.getAppliedStereotype(currentStereotype);
-			if (stereotype != null) {
-				String name = currentStereotype;
-
-				// AL Changes Feb. 07 - Beg
-				// Handling STEREOTYPE_NAME_APPEARANCE preference (from
-				// ProfileApplicationPreferencePage)
-				// Previously lowercase forced onto first letter (standard UML)
-				// stereotypesToDisplay = stereotypesToDisplay+name.substring(0,
-				// 1).toLowerCase()+name.substring(1,
-				// name.length())+","+separator;
-				// check that the name has not already been added to the
-				// displayed string
-				if (sNameAppearance.equals(UMLVisualInformationPapyrusConstant.P_STEREOTYPE_NAME_DISPLAY_USER_CONTROLLED)) {
-					if (out.indexOf(name) == -1) {
-						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
-					}
-				} else { // VisualInformationPapyrusConstants.P_STEREOTYPE_NAME_DISPLAY_UML_CONFORM))
-					// {
-
-					if (out.indexOf(name) == -1) {
-						out = out + Activator.ST_LEFT + name + Activator.ST_RIGHT + separator;
-					}
-				}
-				// now should add all properties associated to this stereotype
-				List<String> properties = propertiesToDisplay.get(stereotype.getQualifiedName());
-				if (properties != null) {
-					// retrieve property
-					for (String propertyName : properties) {
-						out = out + StereotypeUtil.displayPropertyValue(stereotype, StereotypeUtil.getPropertyByName(stereotype, propertyName), getUMLElement(editPart), " ");
-					}
-				}
-			}
-		}
-		if (out.endsWith(",")) {
-			return out.substring(0, out.length() - 1);
-		}
-		if (out.endsWith(separator)) {
-			return out.substring(0, out.length() - separator.length());
-		}
-		return out;
-	}
-
-	/**
 	 * get Stereotype String to display
 	 *
 	 * @return the list of stereotypes to display
@@ -204,19 +124,14 @@ public abstract class StereotypedElementLabelHelper {
 		String stereotypesPropertiesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypePropertiesInBrace(view);
 
 
-		String display = "";
-		display += stereotypesAndPropertiesToDisplay(editPart, "\n", stereotypesToDisplay, stereotypesPropertiesToDisplay);
+		String display = EMPTY_STRING;
 
-
-		if (stereotypesToDisplay != null && !stereotypesToDisplay.equals("")) {
-			display += Activator.ST_LEFT + stereotypesToDisplay + Activator.ST_RIGHT + " ";
+		if (stereotypesToDisplay != null && !stereotypesToDisplay.equals(EMPTY_STRING)) {
+			display += stereotypesToDisplay + StereotypeDisplayUtils.STEREOTYPE_PROPERTIES_SEPARATOR;
 		}
-		final String propSt = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement(editPart));
-		if (propSt != null && !propSt.equals("")) {
-			if (stereotypesToDisplay != null && !stereotypesToDisplay.equals("")) {
-				// display += "\n";
-			}
-			display += "{" + propSt + "} ";
+		if (stereotypesPropertiesToDisplay != null && !stereotypesPropertiesToDisplay.equals(EMPTY_STRING)) {
+
+			display += StereotypeDisplayUtils.BRACE_LEFT + stereotypesPropertiesToDisplay + StereotypeDisplayUtils.BRACE_RIGHT;
 		}
 
 		return display;

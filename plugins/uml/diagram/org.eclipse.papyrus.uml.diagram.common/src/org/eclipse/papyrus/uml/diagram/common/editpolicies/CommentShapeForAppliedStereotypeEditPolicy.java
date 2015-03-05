@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import java.util.Iterator;
 
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
@@ -27,17 +27,17 @@ import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -48,35 +48,15 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * and launch command of deletion if it detect that no property of applied stereotype are displayed.
  *
  */
-public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
+public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy implements NotificationListener, IPapyrusListener {
 
-	@Override
-	public void notifyChanged(Notification notification) {
-		View commentNode = getView();
-		if (commentNode != null) {
-			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
-
-			// if Base_Element is deleted, the Comment is deleted as well
-			if (getUMLElement() == null) {
-				executeAppliedStereotypeCommentDeletion(domain, commentNode);
-			}
-
-			// if notification Set the visibility and none of Compartment is Visible, delete the Comment
-			final int eventType = notification.getEventType();
-			if (eventType == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getView_Visible())) {
-				if (getVisibleAppliedStereotypeCompartmentNumber(commentNode) == 0) {
-					executeAppliedStereotypeCommentDeletion(domain, commentNode);
-				}
-
-			}
-		}
-	}
 
 	/**
 	 * Returns the uml element controlled by the host edit part
 	 *
 	 * @return the uml element controlled by the host edit part
 	 */
+	@Override
 	protected Element getUMLElement() {
 		Element element = null;
 		if ((Element) getView().getElement() != null) {
@@ -107,19 +87,23 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 		return super.getCommand(request);
 	}
 
-
 	/**
-	 * @see org.eclipse.gmf.runtime.gef.ui.internal.editpolicies.GraphicalEditPolicyEx#refresh()
-	 *
+	 * Refreshes the stereotypes properties displayed above name of the element
+	 * in this edit part.
+	 * 
+	 * @param stereotypesPropertiesToDisplay
 	 */
-	@Override
-	public void refresh() {
-		View commentNode = getView();
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
-		if (getVisibleAppliedStereotypeCompartmentNumber(commentNode) == 0) {
-			executeAppliedStereotypeCommentDeletion(domain, commentNode);
+	protected void refreshAppliedStereotypesPropertiesInBrace(IPapyrusNodeUMLElementFigure figure) {
+		String toDisplayInBrace = helper.getStereotypePropertiesInBrace(((GraphicalEditPart) getHost()).getNotationView());
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
+		if (!"".equals(toDisplayInBrace)) {
+			// it has to be displayed in braces, so compute the string to
+			// display
+			figure.setStereotypePropertiesInBrace(toDisplayInBrace);
+		} else {
+			figure.setStereotypePropertiesInBrace(null);
 		}
-		super.refresh();
 	}
 
 	/**
@@ -157,17 +141,19 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 * 
 	 * @return the number of Visible Stereotype Compartment
 	 */
-	protected int getVisibleAppliedStereotypeCompartmentNumber(View view) {
+	protected int getAppliedStereotypeCompartmentNumber(View view) {
 		int nbVisibleCompartment = 0;
 		Iterator<View> iteratorView = view.getChildren().iterator();
 		while (iteratorView.hasNext()) {
 			View subview = iteratorView.next();
-			if (subview.isVisible() && StereotypeDisplayHelper.getInstance().isStereotypeCompartment(subview)) {
+			if (helper.isStereotypeBrace(subview) || helper.isStereotypeCompartment(subview)) {
 				nbVisibleCompartment++;
 			}
 		}
 		return nbVisibleCompartment;
 	}
+
+
 
 
 	@Override
@@ -179,7 +165,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 		}
 
 		// adds a listener on the view and the element controlled by the
-		// editpart
+		// editpartrefr
 		getDiagramEventBroker().addNotificationListener(view, this);
 	}
 
@@ -203,6 +189,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 *
 	 * @return the diagram event broker
 	 */
+	@Override
 	protected DiagramEventBroker getDiagramEventBroker() {
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		if (theEditingDomain != null) {
@@ -216,7 +203,50 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 *
 	 * @return the view controlled by the host edit part
 	 */
+	@Override
 	protected View getView() {
 		return (View) getHost().getModel();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeDisplay()
+	 *
+	 */
+
+	protected void refreshStereotypeDisplay() {
+		IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+
+		// refresh Brace display
+		if (figure instanceof IPapyrusNodeUMLElementFigure) {
+			refreshAppliedStereotypesPropertiesInBrace((IPapyrusNodeUMLElementFigure) figure);
+		}
+
+		// Deletion of Comment
+		View commentNode = getView();
+		if (commentNode != null) {
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
+
+			// if Base_Element is deleted, the Comment is deleted as well
+			if (getUMLElement() == null) {
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
+
+			// If no more Compartment, delete the Comment
+			if (getAppliedStereotypeCompartmentNumber(commentNode) == 0) {
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
+
+		}
+
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshDisplay()
+	 *
+	 */
+	@Override
+	public void refreshDisplay() {
+		refreshStereotypeDisplay();
+
 	}
 }

@@ -67,6 +67,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
 
+	public CSSDOMSemanticElementHelper helper = CSSDOMSemanticElementHelper.getInstance();
+
 	/**
 	 * The Semantic Model Element associated to the current styled element
 	 * Might also be a GMF Diagram
@@ -232,7 +234,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 */
 	public EObject getSemanticElement() {
 		if (semanticElement == null) {
-			semanticElement = CSSDOMSemanticElementHelper.findSemanticElement(notationElement);
+			semanticElement = helper.findSemanticElement(notationElement);
 			computePseudoInstances();
 			listenSemanticElement();
 		}
@@ -240,7 +242,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	}
 
 	private void computePseudoInstances() {
-		if (CSSDOMSemanticElementHelper.isFloatingLabel(notationElement)) {
+		if (helper.isFloatingLabel(notationElement)) {
 			String humanType = NotationTypesMap.instance.getHumanReadableType(notationElement);
 			if (humanType == null) {
 				humanType = notationElement.getType();
@@ -287,7 +289,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		if (parentNode == null) {
 			View gmfElement = notationElement;
 			while (gmfElement != null) {
-				EObject semanticElement = CSSDOMSemanticElementHelper.findSemanticElement(gmfElement);
+				EObject semanticElement = helper.findSemanticElement(gmfElement);
 
 				if (semanticElement != this.getSemanticElement()) {
 					break;
@@ -376,7 +378,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 				}
 			} else if (getNotationElement() instanceof BasicCompartment) {
 				return "Compartment";
-			} else if (CSSDOMSemanticElementHelper.isFloatingLabel(getNotationElement())) {
+			} else if (helper.isFloatingLabel(getNotationElement())) {
 				return "Label";
 			} else {
 				localName = getSemanticElement().eClass().getName();
@@ -520,8 +522,8 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * If a notation child element represents the same semantic element
 	 * than self, returns its own children (Recursively).
 	 */
-	protected static Node[] computeChildren(View notationElement, CSSEngine engine) {
-		EObject semanticElement = CSSDOMSemanticElementHelper.findSemanticElement(notationElement);
+	protected Node[] computeChildren(View notationElement, CSSEngine engine) {
+		EObject semanticElement = helper.findSemanticElement(notationElement);
 		List<Node> childList = new LinkedList<Node>();
 		for (EObject child : notationElement.eContents()) {
 			if (child instanceof View) {

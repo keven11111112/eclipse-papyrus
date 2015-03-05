@@ -77,6 +77,7 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.EditingFlowPage;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IMultilineEditableFigure;
 import org.eclipse.papyrus.uml.diagram.common.parser.StereotypePropertyParser;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.accessibility.AccessibleEvent;
@@ -89,6 +90,7 @@ import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
@@ -879,7 +881,8 @@ public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditP
 		if (((View) getNotationView().eContainer() != null) && ((View) getNotationView().eContainer()).getElement() != null) {
 			super.activate();
 			addOwnerElementListeners();
-			stereotypeApplication = ((View) getNotationView().eContainer()).getElement();
+			Stereotype stereotype = (Stereotype) ((View) getNotationView().eContainer()).getElement();
+			stereotypeApplication = StereotypeDisplayHelper.getInstance().getStereotypeApplication(getNotationView(), stereotype);
 			final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
 			getDiagramEventBroker().addNotificationListener(stereotypeApplication, this);
 			getDiagramEventBroker().addNotificationListener(umlElement, this);

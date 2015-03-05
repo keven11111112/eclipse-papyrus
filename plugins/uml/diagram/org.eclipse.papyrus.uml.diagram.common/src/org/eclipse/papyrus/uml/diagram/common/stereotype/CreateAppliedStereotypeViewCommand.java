@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -23,7 +22,6 @@ import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * the goal of this command is to create a basic compartment in the notation that represent a compartment of stereotypes
@@ -35,9 +33,11 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 
 	protected View node;
 
-	protected EObject stereotypeApplication;
+	protected Stereotype stereotype;
 
 	protected Node parent;
+
+	protected String type;
 
 	/**
 	 *
@@ -49,11 +49,12 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	 * @param StereotypeApplication
 	 * @param displayit
 	 */
-	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View node, EObject stereotypeApplication) {
+	public CreateAppliedStereotypeViewCommand(TransactionalEditingDomain domain, View node, Stereotype stereotype, String type) {
 		super(domain, "CreateStereotypeCompartment");
 		this.node = node;
-		this.stereotypeApplication = stereotypeApplication;
-		parent = helper.getStereotypeLabel(node, stereotypeApplication);
+		this.stereotype = stereotype;
+		parent = helper.getStereotypeLabel(node, stereotype);
+		this.type = type;
 
 	}
 
@@ -62,11 +63,9 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 	public void doExecute() {
 
 
-		Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
 
 		// Create the Graphical Compartment
 		Node compartment = NotationFactory.eINSTANCE.createBasicCompartment();
-		compartment.setVisible(true);
 		compartment.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 
 		// Create Title Style
@@ -81,12 +80,13 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		compartment.getStyles().add(stereotypeNameStyle);
 
 		// Complete the creation
-		compartment.setElement(stereotypeApplication);
-		compartment.setType(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE);
-		ViewUtil.insertChildView(node, compartment, ViewUtil.APPEND, true);
+		compartment.setElement(stereotype);
+		compartment.setType(type);
+		ViewUtil.insertChildView(node, compartment, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
 		compartment.setMutable(true);
 
 	}
+
 
 
 }

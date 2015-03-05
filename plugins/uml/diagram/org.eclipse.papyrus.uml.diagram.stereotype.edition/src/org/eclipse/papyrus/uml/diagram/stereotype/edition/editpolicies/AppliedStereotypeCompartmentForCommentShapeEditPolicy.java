@@ -15,10 +15,8 @@
 
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Element;
 
@@ -49,24 +47,15 @@ public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends Appli
 		return null;
 	}
 
+
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy#refreshAppliedStereotypesPropertiesInBrace(org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure)
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshNotationStructure()
 	 *
-	 * @param figure
 	 */
 	@Override
-	protected void refreshAppliedStereotypesPropertiesInBrace(IPapyrusNodeUMLElementFigure figure) {
-
-		String toDisplayInBrace = helper.getStereotypePropertiesInBrace(((GraphicalEditPart) getHost()).getNotationView());
-		// if the string is not empty, then, the figure has to display it. Else,
-		// it displays nothing
-		if (!"".equals(toDisplayInBrace)) {
-			// it has to be displayed in braces, so compute the string to
-			// display
-			figure.setStereotypePropertiesInBrace(toDisplayInBrace);
-		} else {
-			figure.setStereotypePropertiesInBrace(null);
-		}
+	public void refreshNotationStructure() {
+		// NothingToDo
 
 	}
+
 }

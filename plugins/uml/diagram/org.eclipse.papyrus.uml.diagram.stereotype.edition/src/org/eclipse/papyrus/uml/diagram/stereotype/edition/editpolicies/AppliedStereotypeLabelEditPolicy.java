@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
@@ -34,25 +33,12 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 	/** constant for this edit policy role */
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeLabelEditPolicy"; //$NON-NLS-1$
 
-	private GraphicalEditPart hostEditPart = null;
-
 	/**
 	 * Creates a new AppliedStereotype display edit policy
 	 */
 	public AppliedStereotypeLabelEditPolicy() {
 		super();
-
 	}
-
-
-	@Override
-	public void activate() {
-		super.activate();
-		if (getHost() instanceof GraphicalEditPart) {
-			hostEditPart = (GraphicalEditPart) getHost();
-		}
-	}
-
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy#refreshStereotypeDisplay()
@@ -61,8 +47,6 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 	@Override
 	protected void refreshStereotypeDisplay() {
 		refreshStereotypeLabelDisplay();
-
-
 	}
 
 	protected void refreshStereotypeLabelDisplay() {
@@ -71,7 +55,6 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 
 			// calculate text and icon to display
 			final String stereotypesToDisplay = helper.getStereotypeTextToDisplay((View) getHost().getModel());
-			// computes the icon to be displayed
 			final Image imageToDisplay = stereotypeIconToDisplay();
 
 			// if the string is not empty, then, the figure has to display it.
@@ -79,13 +62,10 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 			if (figure instanceof IPapyrusNodeUMLElementFigure) {
 
 				// Refresh Stereotype Label
-				// Stereotype should be passed as "" if null, in order to avoid "null" string.
-				((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay == null ? "" : stereotypesToDisplay), imageToDisplay);
+				((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
 
-				// Refresh Stereotype Label
-				if (figure instanceof IPapyrusNodeNamedElementFigure) {
-					refreshAppliedStereotypesLabel((IPapyrusNodeUMLElementFigure) figure);
-				}
+				refreshAppliedStereotypesLabel((IPapyrusNodeUMLElementFigure) figure);
+
 			}
 		}
 
@@ -93,7 +73,7 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 
 
 	/**
-	 * Refreshes the displayed stereotypes properties for this edit part.
+	 * Refreshes the displayed stereotypes for this edit part.
 	 */
 	protected void refreshAppliedStereotypesLabel(IPapyrusNodeUMLElementFigure figure) {
 		// If node has a Label
@@ -108,5 +88,7 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 			}
 		}
 	}
+
+
 
 }

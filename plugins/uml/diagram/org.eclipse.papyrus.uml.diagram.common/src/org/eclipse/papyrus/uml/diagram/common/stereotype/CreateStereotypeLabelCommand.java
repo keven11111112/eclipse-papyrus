@@ -14,7 +14,6 @@
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
@@ -24,7 +23,6 @@ import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * @author Céline JANSSENS
@@ -37,7 +35,7 @@ public class CreateStereotypeLabelCommand extends RecordingCommand {
 
 	protected View owner;
 
-	protected EObject stereoApplication;
+	protected Stereotype stereotype;
 
 	protected boolean isVisible;
 
@@ -55,11 +53,11 @@ public class CreateStereotypeLabelCommand extends RecordingCommand {
 	 * @param isVisible
 	 *            if the Label is Visible when created
 	 */
-	public CreateStereotypeLabelCommand(TransactionalEditingDomain domain, View owner, EObject stereoApplication, boolean isVisible) {
+	public CreateStereotypeLabelCommand(TransactionalEditingDomain domain, View owner, Stereotype stereotype) {
 		super(domain, STEREOTYPE_LABEL_COMMAND_NAME);
 		this.owner = owner;
-		this.stereoApplication = stereoApplication;
-		this.isVisible = isVisible;
+		this.stereotype = stereotype;
+
 	}
 
 	/**
@@ -70,12 +68,12 @@ public class CreateStereotypeLabelCommand extends RecordingCommand {
 	@Override
 	protected void doExecute() {
 
-		Stereotype stereotype = UMLUtil.getStereotype(stereoApplication);
+
 		// Create Label
 		DecorationNode label = NotationFactory.eINSTANCE.createDecorationNode();
 		label.setType(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE);
 		label.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		label.setElement(stereoApplication);
+		label.setElement(stereotype);
 
 		// Create Stereotype Name Style
 		StringValueStyle stereotypeNameStyle = NotationFactory.eINSTANCE.createStringValueStyle();
@@ -84,7 +82,8 @@ public class CreateStereotypeLabelCommand extends RecordingCommand {
 		label.getStyles().add(stereotypeNameStyle);
 
 		// Add the new Label to it's owner Object
-		ViewUtil.insertChildView(owner, label, ViewUtil.APPEND, true);
+		ViewUtil.insertChildView(owner, label, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+
 		label.setMutable(true);
 
 

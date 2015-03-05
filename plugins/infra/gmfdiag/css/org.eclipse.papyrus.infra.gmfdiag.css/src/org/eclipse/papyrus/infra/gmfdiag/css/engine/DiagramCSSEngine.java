@@ -128,7 +128,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		}
 
 		EObject notationElement = getNativeWidget(node);
-		View canonicalNotationElement = CSSDOMSemanticElementHelper.findPrimaryView(notationElement);
+		View canonicalNotationElement = CSSDOMSemanticElementHelper.getInstance().findPrimaryView(notationElement);
 
 		// Orphaned view
 		if (canonicalNotationElement.getDiagram() == null) {

@@ -126,14 +126,16 @@ public class NodeNamedElementFigure extends PapyrusNodeFigure implements IPapyru
 
 	@Override
 	public void add(IFigure figure, Object constraint, int index) {
-		if (figure instanceof AppliedStereotypeCompartmentFigure) {
-			if (stereotypePropertiesContent == null) {
-				this.createStereotypePropertiesContent();
-			}
-			stereotypePropertiesContent.add(figure);
-		} else {
+		if (figure != null) {
+			if (figure instanceof AppliedStereotypeCompartmentFigure) {
+				if (stereotypePropertiesContent == null) {
+					this.createStereotypePropertiesContent();
+				}
+				stereotypePropertiesContent.add(figure);
+			} else {
 
-			super.add(figure, constraint, index);
+				super.add(figure, constraint, index);
+			}
 		}
 	}
 

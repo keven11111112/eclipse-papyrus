@@ -26,6 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
@@ -41,8 +42,12 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class GMFUMLElementAdapter extends GMFElementAdapter {
 
-	public final StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+
+
+	public final StereotypeDisplayHelper stereotypeHelper = StereotypeDisplayHelper.getInstance();
 	public static final String APPLIED_STEREOTYPES_PROPERTY = "appliedStereotypes"; //$NON-NLS-1$
+
+
 
 	/**
 	 * The CSS Separator for qualifiers, when we must use CSS ID
@@ -54,6 +59,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 	public GMFUMLElementAdapter(View view, ExtendedCSSEngine engine) {
 		super(view, engine);
+		helper = CSSDOMUMLSemanticElementHelper.getInstance();
 	}
 
 	/**
@@ -72,7 +78,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 
 		// get stereotype Label attribute
-		if (helper.isStereotypeLabel(semanticElement)) {
+		if (stereotypeHelper.isStereotypeLabel(semanticElement)) {
 			String value = getStereotypeLabelAttribute(attr);
 			if (value != null && !value.isEmpty()) {
 				return value;
@@ -80,7 +86,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		}
 
 		// get stereotype Compartment attribute
-		if (helper.isStereotypeCompartment(semanticElement)) {
+		if (stereotypeHelper.isStereotypeCompartment(semanticElement) || stereotypeHelper.isStereotypeBrace(semanticElement)) {
 			String value = getStereotypeCompartmentAttribute(attr);
 			if (value != null && !value.isEmpty()) {
 				return value;
@@ -89,7 +95,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 
 		// get stereotype Property attribute
-		if (helper.isStereotypeProperty(semanticElement)) {
+		if (stereotypeHelper.isStereotypeProperty(semanticElement) || stereotypeHelper.isStereotypeBraceProperty(semanticElement)) {
 
 			String value = getStereotypePropertyAttribute(attr);
 			if (value != null && !value.isEmpty()) {
@@ -162,7 +168,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
 
 			BasicCompartment propertyCompartment = (BasicCompartment) semanticElement;
-			return helper.getName(propertyCompartment);
+			return stereotypeHelper.getName(propertyCompartment);
 
 		}
 		return "";
@@ -189,9 +195,9 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		} else if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
 
 			EObject propertyCompartment = ((DecorationNode) semanticElement).eContainer();
-			if (helper.isStereotypeCompartment(propertyCompartment)) {
+			if (stereotypeHelper.isStereotypeCompartment(propertyCompartment)) {
 
-				return helper.getName((DecorationNode) propertyCompartment);
+				return stereotypeHelper.getName((DecorationNode) propertyCompartment);
 			}
 
 		}
@@ -211,7 +217,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME.equals(attr)) {
 			DecorationNode label = (DecorationNode) semanticElement;
 
-			String stereoName = helper.getName(label);
+			String stereoName = stereotypeHelper.getName(label);
 			return stereoName;
 
 		}

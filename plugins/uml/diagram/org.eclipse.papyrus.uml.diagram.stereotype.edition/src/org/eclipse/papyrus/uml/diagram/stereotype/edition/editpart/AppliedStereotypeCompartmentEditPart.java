@@ -18,6 +18,7 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.OrderedLayout;
 import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.DragDropEditPolicy;
@@ -34,7 +35,6 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * this compartment is the an editpart associated to an applied stereotype
@@ -67,9 +67,12 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 	@Override
 	public String getCompartmentName() {
 
-		Stereotype stereotype = UMLUtil.getStereotype(resolveSemanticElement());
-		if (stereotype != null) {
-			return (StereotypeDisplayUtils.BRACE_LEFT + stereotype.getName() + StereotypeDisplayUtils.BRACE_RIGHT);
+		EObject element = resolveSemanticElement();
+		if (element instanceof Stereotype) {
+			Stereotype stereotype = (Stereotype) resolveSemanticElement();
+			if (stereotype != null) {
+				return (StereotypeDisplayUtils.QUOTE_LEFT + stereotype.getName() + StereotypeDisplayUtils.QUOTE_RIGHT);
+			}
 		}
 		return NO_STEREOTYPE_COMPARTMENT;
 	}

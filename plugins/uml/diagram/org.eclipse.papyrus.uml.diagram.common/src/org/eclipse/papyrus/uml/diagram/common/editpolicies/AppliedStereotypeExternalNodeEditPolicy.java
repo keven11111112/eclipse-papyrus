@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) - Initial API and implementation
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
@@ -17,10 +18,8 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  * This edit policy is used to display only applied stereotypes and properties
@@ -88,24 +87,27 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 		}
 
 		// try to display stereotype properties
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(parentView);
 		String stereotypesToDisplay = helper.getStereotypeTextToDisplay(parentView);
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(parentView);
-
-
-		// check the presentation kind. if only icon => do not display
-		// stereotype, only values
-		if (UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION.equals(stereotypespresentationKind)) {
-			return StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
-		}
-
 		return stereotypesToDisplay;
 	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshStereotypeBraceStructure(org.eclipse.uml2.uml.Stereotype)
+	 *
+	 * @param stereotype
+	 *            Stereotype related to the Brace to refresh
+	 */
+	@Override
+	public void refreshStereotypeBraceStructure(Stereotype stereotype) {
+		// Nothing to Do
+	}
+
+
 
 	/**
 	 * Refresh the text of the stereotype
 	 */
-
 	@Override
 	protected void refreshStereotypeDisplay() {
 		if (getHost() instanceof IPapyrusEditPart) {
@@ -114,8 +116,10 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 			if (figure instanceof IPapyrusUMLElementFigure) {// calculate text
 				// and icon to display
 				final String stereotypesToDisplay = stereotypesToDisplay();
-				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay == null ? "" : stereotypesToDisplay), null);
+				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
+
 			}
+
 		}
 
 	}

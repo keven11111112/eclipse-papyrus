@@ -1,4 +1,4 @@
-/*
+/*****************************************************************************
  * Copyright (c) 2006 Borland Software Corporation
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,7 +8,9 @@
  *
  * Contributors:
  *    Michael Golubev (Borland) - initial API and implementation
- */
+ *    Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
+ *    
+ *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.stereotype;
 
 import java.text.MessageFormat;
@@ -26,6 +28,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.common.parser.assist.FixedSetCompletionProcessor;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Stereotype;
@@ -33,16 +36,6 @@ import org.eclipse.uml2.uml.Stereotype;
 public class AppliedStereotypeParser implements ISemanticParser {
 
 	private static final MessageFormat APPLIED_PROFILE = new MessageFormat("\u00AB{0}\u00BB"); //$NON-NLS-1$
-
-	private final String myDefaultPrintString;
-
-	public AppliedStereotypeParser() {
-		this(null);
-	}
-
-	public AppliedStereotypeParser(String defaultPrintString) {
-		myDefaultPrintString = defaultPrintString;
-	}
 
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
@@ -104,8 +97,10 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		String editString = getEditString(element, flags);
-		editString = editString == null || editString.isEmpty() ? myDefaultPrintString : editString;
-		return editString == null || editString.isEmpty() ? "" : APPLIED_PROFILE.format(new Object[] { editString });
+		if (editString != null && !editString.isEmpty()) {
+			return StereotypeDisplayUtils.QUOTE_LEFT + editString + StereotypeDisplayUtils.QUOTE_RIGHT;
+		}
+		return editString;
 	}
 
 	@Override

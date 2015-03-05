@@ -16,10 +16,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.Connector;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
-import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
 
 
 /**
@@ -37,6 +35,29 @@ import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper
 public class CSSDOMSemanticElementHelper {
 
 	/**
+	 * singleton instance
+	 */
+	private static CSSDOMSemanticElementHelper elementHelper;
+
+	/** Private Constructor. */
+	protected CSSDOMSemanticElementHelper() {
+
+	}
+
+	/**
+	 * Returns the singleton instance of this class
+	 *
+	 * @return the singleton instance.
+	 */
+	public static CSSDOMSemanticElementHelper getInstance() {
+		if (elementHelper == null) {
+			elementHelper = new CSSDOMSemanticElementHelper();
+		}
+		return elementHelper;
+	}
+
+
+	/**
 	 * Returns the semantic element attached to the given notation element
 	 *
 	 * The result element can also be a Diagram
@@ -44,23 +65,11 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static EObject findSemanticElement(EObject notationElement) {
+	public EObject findSemanticElement(EObject notationElement) {
 
 
 		if (notationElement == null) {
 			return null;
-		}
-
-		// Add diagrams to the DOM model
-		if (notationElement instanceof Diagram) {
-			return notationElement;
-		}
-
-		// Add Stereotype Comment
-		if (notationElement instanceof Shape) {
-			if (StereotypeDisplayHelper.getInstance().isStereotypeComment(notationElement)) {
-				return notationElement;
-			}
 		}
 
 		// Add compartments to the DOM model
@@ -68,13 +77,6 @@ public class CSSDOMSemanticElementHelper {
 			return notationElement;
 		}
 
-
-		// Add StereotypeProperty to the DOM model
-		if (notationElement instanceof DecorationNode) {
-			if (StereotypeDisplayHelper.getInstance().isStereotypeProperty(notationElement)) {
-				return notationElement;
-			}
-		}
 
 		// Add floating labels to the DOM model
 		if (isFloatingLabel(notationElement)) {
@@ -128,7 +130,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findPrimaryView(EObject notationElement) {
+	public View findPrimaryView(EObject notationElement) {
 		return findTopView(notationElement);
 	}
 
@@ -139,7 +141,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @param notationElement
 	 * @return
 	 */
-	public static View findTopView(EObject notationElement) {
+	public View findTopView(EObject notationElement) {
 		EObject semanticElement = findSemanticElement(notationElement);
 
 		if (semanticElement == notationElement) {
@@ -168,7 +170,7 @@ public class CSSDOMSemanticElementHelper {
 	 * @return
 	 *         True if this is a Floating Label
 	 */
-	public static boolean isFloatingLabel(EObject notationElement) {
+	public boolean isFloatingLabel(EObject notationElement) {
 		if (!(notationElement instanceof DecorationNode)) {
 			return false;
 		}

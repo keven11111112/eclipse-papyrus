@@ -19,7 +19,7 @@ import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
@@ -52,6 +52,10 @@ public class StereotypeDisplayHelper {
 	 */
 	private static StereotypeDisplayHelper labelHelper;
 
+	/** Singleton contructor */
+	private StereotypeDisplayHelper() {
+	}
+
 	/**
 	 * Returns the singleton instance of this class
 	 *
@@ -65,6 +69,96 @@ public class StereotypeDisplayHelper {
 	}
 
 
+
+	/**
+	 * Return Stereotype application according to the Stereotype applied on the main Owner of the view
+	 * 
+	 * @param view
+	 *            The view of which the Stereotype Application is Required (StereotypeCompartment, StereotypeProperty,...)
+	 * @return The Direct AppliedStereotype when possible or the Applied Stereotype of the Base Element when the view is in the Comment Shape.
+	 */
+	public EObject getStereotypeApplication(final View view, Stereotype stereo) {
+		EObject appliedStereotypes = null;
+
+		if (isInStereotypeComment((Node) view)) {
+			if (getCommentSemanticElement(getTopContainer(view)) != null) {
+				appliedStereotypes = getCommentSemanticElement(getTopContainer(view)).getStereotypeApplication(stereo);
+			}
+		}
+
+		if (getContainerSemanticElement(view) != null) {
+			appliedStereotypes = getContainerSemanticElement(view).getStereotypeApplication(stereo);
+		}
+
+		return appliedStereotypes;
+
+	}
+
+	/**
+	 * Get the Semantic Element of the Comment View.
+	 * The Comment View is not attached to its semantic element through the method {@link View#getElement()}.
+	 * To retrieve the semantic element, it has been added as a namedStyle with the name {@link StereotypeDisplayUtils#STEREOTYPE_COMMENT_RELATION_NAME}
+	 * 
+	 * @param view
+	 *            The Stereotype Comment View (of type "StereotypeComment")
+	 * @return The Base Element of the Comment
+	 */
+	protected Element getCommentSemanticElement(View view) {
+
+		Element elementSemantic = null;
+		if (isStereotypeComment(view)) {
+			// Retrieve the Base Element of the Comment as the Semantic element
+			EObject baseElement = NotationUtils.getEObjectValue(view, StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+
+			if (baseElement instanceof Element) {
+				elementSemantic = (Element) baseElement;
+
+			}
+		}
+		return elementSemantic;
+	}
+
+	/**
+	 * Retrieve the Container View of the Object on which the Stereotype is applied.
+	 * By default the container is the direct parent, but in case of Property, the top Container is the grand Parent.
+	 * 
+	 * @param view
+	 * @return the Container that support the Stereotype Application
+	 */
+	public View getTopContainer(final View view) {
+		View topView = null;
+		if (view != null) {
+			EObject container = view.eContainer();
+			if (isStereotypeCompartment(container) || isStereotypeBrace(container) || isStereotypeLabel(container)) {
+				container = container.eContainer();
+			}
+			if (container instanceof View) {
+				topView = (View) container;
+			}
+		}
+
+
+		return topView;
+	}
+
+	/**
+	 * Return the Semantic Element of the Container.
+	 * 
+	 * @param view
+	 *            (i.e: LabelStereotype, CompartmentStereotype)
+	 * @return The semantic Element of the container (Class , Operation, ...)
+	 */
+	public Element getContainerSemanticElement(final View view) {
+		Element elementUML = null;
+		EObject parentElement = getTopContainer(view).getElement();
+		if (parentElement instanceof Element) {
+			elementUML = (Element) parentElement;
+		}
+
+		return elementUML;
+	}
+
+
 	/**
 	 * Get the Full label to display into the header
 	 * 
@@ -73,6 +167,7 @@ public class StereotypeDisplayHelper {
 	 * @return The label with Stereotype Name to display (i.e: "Blocks::Block, Allocation, SysML::Requirements::Requirement" )
 	 */
 	public String getStereotypeTextToDisplay(View model) {
+
 		String textToDisplay = EMPTY_STRING;
 		String finalText = EMPTY_STRING;
 		Iterator<?> iter = model.getChildren().iterator();
@@ -93,7 +188,7 @@ public class StereotypeDisplayHelper {
 
 		// Then add the ornament around the text.
 		if ((textToDisplay != null) && (!EMPTY_STRING.equals(textToDisplay))) {
-			finalText = StereotypeDisplayUtils.BRACE_LEFT + textToDisplay + StereotypeDisplayUtils.BRACE_RIGHT;
+			finalText = StereotypeDisplayUtils.QUOTE_LEFT + textToDisplay + StereotypeDisplayUtils.QUOTE_RIGHT;
 		}
 
 		// Return the text or null if empty
@@ -118,7 +213,7 @@ public class StereotypeDisplayHelper {
 		// For each Stereotype Compartment, retrieve the property text to be added in Braces
 		while (iter.hasNext()) {
 			object = iter.next();
-			if (isStereotypeCompartment(object)) {
+			if (isStereotypeBrace(object)) {
 				BasicCompartment compartment = (BasicCompartment) object;
 
 				textToDisplay = addStereotypeCompartmentProperties(textToDisplay, compartment);
@@ -294,17 +389,17 @@ public class StereotypeDisplayHelper {
 	 *            Stereotype Application of the Label to be retrieved.
 	 * @return associated StereotypeLabel
 	 */
-	public DecorationNode getStereotypeLabel(View node, EObject stereotypeApplication) {
+	public DecorationNode getStereotypeLabel(View node, Stereotype stereotype) {
 
-		if ((stereotypeApplication != null) && (node != null)) {
+		if ((stereotype != null) && (node != null)) {
 			Object obj;
 			Iterator<?> iter = node.getChildren().iterator();
 			while (iter.hasNext()) {
 				obj = iter.next();
 				if (obj instanceof DecorationNode) {
 					DecorationNode label = (DecorationNode) obj;
-					if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
-						if (label.getElement().equals(stereotypeApplication)) {
+					if (isStereotypeLabel(label)) {
+						if (label.getElement().equals(stereotype)) {
 							return label;
 						}
 					}
@@ -324,9 +419,9 @@ public class StereotypeDisplayHelper {
 	 *            Stereotype Application of the Label to be retrieved.
 	 * @return associated StereotypeLabel or null if none
 	 */
-	public BasicCompartment getStereotypeCompartment(View node, EObject stereotypeApplication) {
+	public BasicCompartment getStereotypeCompartment(View node, Stereotype stereotype) {
 
-		if ((stereotypeApplication != null) && (node != null)) {
+		if ((stereotype != null) && (node != null)) {
 			Object obj;
 			Iterator<?> iter = node.getChildren().iterator();
 			while (iter.hasNext()) {
@@ -334,7 +429,7 @@ public class StereotypeDisplayHelper {
 				if (isStereotypeCompartment(obj)) {
 					BasicCompartment compartment = (BasicCompartment) obj;
 					if (compartment.getElement() != null) {
-						if (compartment.getElement().equals(stereotypeApplication)) {
+						if (compartment.getElement().equals(stereotype)) {
 							return compartment;
 						}
 					}
@@ -407,16 +502,51 @@ public class StereotypeDisplayHelper {
 	 * 
 	 * @param element
 	 *            The object on which the test is done
-	 * 
 	 * @return true if Object is a StereotypeProperty Label
 	 */
 	public boolean isStereotypeProperty(Object element) {
 		boolean stereotypeProperty = Boolean.FALSE;
 		if (element instanceof DecorationNode) {
 			stereotypeProperty = StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE.equals(((DecorationNode) element).getType());
+
 		}
 		return stereotypeProperty;
 	}
+
+
+	/**
+	 * Define if an object is a Stereotype Brace View
+	 * 
+	 * @param element
+	 *            The Object to test
+	 * @return true if it's a Stereotype Brace View
+	 */
+	public boolean isStereotypeBrace(Object element) {
+		boolean stereotypeBraceCmpt = Boolean.FALSE;
+		if (element instanceof BasicCompartment) {
+			stereotypeBraceCmpt = StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE.equals(((BasicCompartment) element).getType());
+
+		}
+		return stereotypeBraceCmpt;
+	}
+
+
+	/**
+	 * Define if an object is a Stereotype Brace Property Node. A Stereotype Property into Brace
+	 * 
+	 * @param element
+	 *            The Object to test
+	 * @return true if it's a Stereotype Brace Property Node
+	 */
+	public boolean isStereotypeBraceProperty(Object element) {
+		boolean stereotypeProperty = Boolean.FALSE;
+		if (element instanceof DecorationNode) {
+			stereotypeProperty = StereotypeDisplayUtils.STEREOTYPE_PROPERTY_BRACE_TYPE.equals(((DecorationNode) element).getType());
+		}
+		return stereotypeProperty;
+	}
+
+
 
 	/**
 	 * Defines if the Object is a StereotypeComment
@@ -433,7 +563,6 @@ public class StereotypeDisplayHelper {
 		}
 		return stereotypeComment;
 	}
-
 
 
 	/**
@@ -461,7 +590,7 @@ public class StereotypeDisplayHelper {
 	 */
 	public String getName(BasicCompartment compartment) {
 		String name = EMPTY_STRING;
-		if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE.equals(compartment.getType())) {
+		if (isStereotypeCompartment(compartment) || isStereotypeBrace(compartment)) {
 			// Retrieve Name from CSS or NamedStyle from the Notation model.
 			name = NotationUtils.getStringValue(compartment, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME, EMPTY_STRING);
 		}
@@ -496,7 +625,7 @@ public class StereotypeDisplayHelper {
 	 *            The stereotype Application of the Label on which the test is done.
 	 * @return True is the Node contains already a Label for the stereotype Application
 	 */
-	public boolean isLabelExist(View node, EObject stereotypeApplication) {
+	public boolean isLabelExist(View node, Stereotype stereotype) {
 
 		boolean exist = false;
 		Iterator<?> iter = node.getChildren().iterator();
@@ -507,7 +636,7 @@ public class StereotypeDisplayHelper {
 				DecorationNode stereo = (DecorationNode) obj;
 
 				if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(stereo.getType())) {
-					exist = stereo.getElement().equals(stereotypeApplication);
+					exist = stereo.getElement().equals(stereotype);
 				}
 			}
 		}
@@ -523,7 +652,7 @@ public class StereotypeDisplayHelper {
 	 *            The stereotype Application of the Label on which the test is done.
 	 * @return True is the Node contains already a Label for the stereotype Application
 	 */
-	public boolean isCompartmentExist(View node, EObject stereotypeApplication) {
+	public boolean isCompartmentExist(View node, Stereotype stereotype) {
 		boolean exist = false;
 		Iterator<?> iter = node.getChildren().iterator();
 		while (!exist && iter.hasNext()) {
@@ -532,8 +661,8 @@ public class StereotypeDisplayHelper {
 
 				BasicCompartment compartment = (BasicCompartment) obj;
 
-				if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE.equals(compartment.getType())) {
-					exist = compartment.getElement().equals(stereotypeApplication);
+				if (isStereotypeCompartment(compartment)) {
+					exist = compartment.getElement().equals(stereotype);
 				}
 			}
 		}
@@ -548,7 +677,7 @@ public class StereotypeDisplayHelper {
 	 * @param stereotypeApplication
 	 * @return
 	 */
-	public boolean isPropertyExist(BasicCompartment compartment, Property propertyUML) {
+	public boolean isPropertyExist(View compartment, Property propertyUML) {
 		boolean exist = false;
 		Iterator<?> iter = compartment.getChildren().iterator();
 		while (!exist && iter.hasNext()) {
@@ -557,7 +686,7 @@ public class StereotypeDisplayHelper {
 
 				DecorationNode property = (DecorationNode) obj;
 
-				if (StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE.equals(property.getType())) {
+				if (isStereotypeProperty(property)) {
 					exist = property.getElement().equals(propertyUML);
 				}
 			}
@@ -575,7 +704,7 @@ public class StereotypeDisplayHelper {
 	 * @param isVisible
 	 *            True to make the Compartment visible
 	 */
-	public void setVisibility(final GraphicalEditPart editPart, final View view, final boolean isVisible) {
+	public void setVisibility(final IGraphicalEditPart editPart, final View view, final boolean isVisible) {
 		try {
 
 			editPart.getEditingDomain().runExclusive(new Runnable() {
@@ -606,19 +735,20 @@ public class StereotypeDisplayHelper {
 	 *            The UML Property required to retrieve the value
 	 * @return The property text to be displayed with the property name and its value (i.e.: "allocatedFrom=[]")
 	 */
-	public String getStereotypePropertyToDisplay(View view, Property property, StereotypeLocationEnum location) {
+	public String getStereotypePropertyToDisplay(View view, Property property) {
 		String propertyAndValue = EMPTY_STRING;
 		if (view instanceof DecorationNode) {
 			DecorationNode node = ((DecorationNode) view);
-			if (isStereotypeProperty(node)) {
-				final EObject stereotypeApplication = ((View) node.eContainer()).getElement();
-				final Stereotype stereotype = UMLUtil.getStereotype(stereotypeApplication);
-				final Element umlElement = UMLUtil.getBaseElement(stereotypeApplication);
+			if (isStereotypeProperty(node) || isStereotypeBraceProperty(node)) {
 
-				if (isDisplayedAtLocation(node, location)) {
+				final Stereotype stereotype = (Stereotype) ((Property) node.getElement()).getClass_();
+				final Element umlElement = UMLUtil.getBaseElement(getStereotypeApplication(view, stereotype));
+
+				if (isDisplayed(node)) {
+					// if (node.isVisible()) {
 
 					if (stereotype != null && property != null && umlElement != null) {
-						propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, EMPTY_STRING);
+						propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, StereotypeDisplayUtils.STEREOTYPE_PROPERTIES_SEPARATOR);
 					}
 				}
 
@@ -626,7 +756,6 @@ public class StereotypeDisplayHelper {
 		}
 		return propertyAndValue;
 	}
-
 
 	/**
 	 * Defines if the Property should be displayed in the location
@@ -637,99 +766,13 @@ public class StereotypeDisplayHelper {
 	 *            The Location on which the test is done
 	 * @return True if the property node should be displayed at the location.
 	 */
-	public boolean isDisplayedAtLocation(Node node, StereotypeLocationEnum location) {
+	public boolean isDisplayed(Node node) {
 		boolean visibility = true;
-
-		switch (location) {
-		case IN_BRACE:
-			visibility = isDisplayInBrace(node) && node.isVisible() && ((Node) node.eContainer()).isVisible();
-			break;
-		case IN_COMPARTMENT:
-			visibility = isDisplayInCompartment(node) && node.isVisible() && ((Node) node.eContainer()).isVisible();
-			break;
-		case IN_COMMENT_BRACE:
-			visibility = isDisplayInCommentBrace(node) && node.isVisible() && ((Node) node.eContainer()).isVisible();
-			break;
-		case IN_COMMENT_COMPARTMENT:
-			visibility = isDisplayInCommentCompartment(node) && node.isVisible() && ((Node) node.eContainer()).isVisible();
-			break;
-		default:
-			break;
-		}
-
+		visibility = node.isVisible() && ((Node) node.eContainer()).isVisible();
 		return visibility;
 
 	}
 
-	/**
-	 * Tests if the Property node should be displayed in the compartment of the Comment .
-	 * 
-	 * @param node
-	 *            The property Node or the Compartment Node
-	 * @return true if it should be displayed in The Compartment Comment
-	 */
-	protected boolean isDisplayInCommentCompartment(Node node) {
-		boolean display = false;
-		if (isStereotypeProperty(node)) {
-			display = NotationUtils.getBooleanValue(node, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION_COMMENT, StereotypeDisplayUtils.DEFAULT_STEREOTYPE_PROPERTY_DISPLAY_COMMENT);
-		} else {
-			Activator.log.warn("The node " + node + " is not a StereotypeProperty node 1 ");
-		}
-		return display;
-	}
-
-	/**
-	 * Tests if the Property node should be displayed in Comment.
-	 * 
-	 * @param property
-	 *            The property Node
-	 * @return the NamedStyle Value of the property "inBrace" that define if the node should be displayed into braces
-	 */
-	protected boolean isDisplayInCommentBrace(Node node) {
-		boolean display = false;
-		if (isStereotypeProperty(node)) {
-			display = NotationUtils.getBooleanValue(node, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION_COMMENT_BRACE, StereotypeDisplayUtils.DEFAULT_STEREOTYPE_PROPERTY_DISPLAY_COMMENT_BRACE);
-		} else {
-			Activator.log.warn("The node " + node + " is not a StereotypeProperty node 2 ");
-		}
-
-		return display;
-
-	}
-
-	/**
-	 * Tests if the Property node should be displayed in Compartment.
-	 * 
-	 * @param property
-	 *            The property Node
-	 * @return the NamedStyle Value of the property "inBrace" that define if the node should be displayed into braces
-	 */
-	protected boolean isDisplayInCompartment(Node node) {
-		boolean display = false;
-		if (isStereotypeProperty(node)) {
-			display = NotationUtils.getBooleanValue(node, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION_COMPARTMENT, StereotypeDisplayUtils.DEFAULT_STEREOTYPE_PROPERTY_DISPLAY_COMPARTMENT);
-		} else {
-			Activator.log.warn("The node " + node + " is not a StereotypeProperty node 3");
-		}
-		return display;
-	}
-
-	/**
-	 * Tests if the Property node should be displayed in Braces.
-	 * 
-	 * @param property
-	 *            The property Node
-	 * @return the NamedStyle Value of the property "inBrace" that define if the node should be displayed into braces
-	 */
-	protected boolean isDisplayInBrace(Node node) {
-		boolean display = false;
-		if (isStereotypeProperty(node)) {
-			display = NotationUtils.getBooleanValue(node, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION_BRACE, StereotypeDisplayUtils.DEFAULT_STEREOTYPE_PROPERTY_DISPLAY_BRACE);
-		} else {
-			Activator.log.warn("The node " + node + " is not a StereotypeProperty node 4");
-		}
-		return display;
-	}
 
 	/**
 	 * Tests if the node is contained into a Stereotype Comment.
@@ -741,15 +784,9 @@ public class StereotypeDisplayHelper {
 	 */
 	public boolean isInStereotypeComment(Node node) {
 		boolean isComment = false;
-		Object container = node.eContainer();
-		if (container != null) {
-			if (isStereotypeCompartment(node) || isStereotypeLabel(node)) {
-				isComment = isStereotypeComment(node.eContainer());
+		View container = getTopContainer(node);
 
-			} else if (isStereotypeProperty(node)) {
-				isComment = isStereotypeComment(node.eContainer().eContainer());
-			}
-		}
+		isComment = isStereotypeComment(container);
 
 		return isComment;
 	}
@@ -775,21 +812,16 @@ public class StereotypeDisplayHelper {
 		EList<?> properties = compartment.getChildren();
 		// For the compartment, concatenate all the properties Text (property name and values) that should be displayed in Braces
 		for (Object property : properties) {
-			if (isStereotypeProperty(property)) {
+			if (isStereotypeBraceProperty(property)) {
 				DecorationNode propertyNode = (DecorationNode) property;
 				Property propertyElement = (Property) propertyNode.getElement();
 				// get the properties and values text (i.e: "allocatedFrom=[]")
-				StereotypeLocationEnum location;
-				if (isInStereotypeComment(compartment)) {
-					location = StereotypeLocationEnum.IN_COMMENT_BRACE;
-				} else {
-					location = StereotypeLocationEnum.IN_BRACE;
+				if (isDisplayed(propertyNode)) {
+					String propAndValueText = getStereotypePropertyToDisplay(propertyNode, propertyElement);
+
+					// add it to the String (i.e: "allocatedTo=[], allocatedFrom=[]")
+					propertiesText = addTextWithSeparator(propertiesText, propAndValueText, StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
 				}
-				String propAndValueText = getStereotypePropertyToDisplay(propertyNode, propertyElement, location);
-
-				// add it to the String (i.e: "allocatedTo=[], allocatedFrom=[]")
-				propertiesText = addTextWithSeparator(propertiesText, propAndValueText, StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
-
 			}
 		}
 
@@ -799,6 +831,7 @@ public class StereotypeDisplayHelper {
 		String finalText = newTextToDisplay.toString();
 		return finalText;
 	}
+
 
 	/**
 	 * Concatenates Text to another text with a separator.
@@ -847,13 +880,13 @@ public class StereotypeDisplayHelper {
 	/**
 	 * Defines if the Node has at least one Stereotype Compartment as Child
 	 * 
-	 * @param node
+	 * @param view
 	 *            The node on which we do the test
 	 * @return true if at least one Stereotype Compartment
 	 */
-	public boolean hasStereotypeCompartment(Node node) {
+	public boolean hasStereotypeCompartment(View view) {
 		Object obj;
-		Iterator<?> iter = node.getChildren().iterator();
+		Iterator<?> iter = view.getChildren().iterator();
 		boolean compartmentExist = false;
 		while (iter.hasNext() && !compartmentExist) {
 			obj = iter.next();
@@ -887,12 +920,12 @@ public class StereotypeDisplayHelper {
 	 *            Location for which the test is done.
 	 * @return true by default, false if at least one property node is displayed.
 	 */
-	public boolean isEmpty(Node compartment, StereotypeLocationEnum location) {
+	public boolean isEmpty(Node compartment) {
 		boolean empty = true;
 		if (compartment != null) {
 			for (Object property : compartment.getChildren()) {
-				if (isStereotypeProperty(property)) {
-					if (isDisplayedAtLocation((Node) property, location)) {
+				if (isStereotypeProperty(property) || isStereotypeBraceProperty(property)) {
+					if (isDisplayed((Node) property)) {
 						empty &= false;
 					}
 				}
@@ -901,6 +934,118 @@ public class StereotypeDisplayHelper {
 		return empty;
 	}
 
+	/**
+	 * @param stereotype
+	 * @param hostSemanticElement
+	 * @return
+	 */
+	public boolean isAppliedStereotype(Stereotype stereotype, Element hostSemanticElement) {
+		return hostSemanticElement.isStereotypeApplied(stereotype);
+
+	}
+
+	/**
+	 * Defines if an object is a Stereotype View
+	 * 
+	 * @param element
+	 * @return
+	 */
+	public boolean isStereotypeView(Object element) {
+
+		boolean stereotypeView = (
+				isStereotypeCompartment(element) ||
+						isStereotypeBrace(element) ||
+						isStereotypeLabel(element) ||
+						isStereotypeBraceProperty(element) ||
+				isStereotypeProperty(element));
+
+
+		return stereotypeView;
+	}
+
+
+	/**
+	 * Define if the Brace Compartment Exist already
+	 * 
+	 * @param node
+	 *            Node container of the Brace
+	 * @param stereotype
+	 *            Related Brace Stereotype
+	 * @return true is at least one Brace Compartment for the specified stereotype exist
+	 */
+	public boolean isBraceCompartmentExist(View node, Stereotype stereotype) {
+		boolean exist = false;
+		Iterator<?> iter = node.getChildren().iterator();
+		while (!exist && iter.hasNext()) {
+			Object obj = iter.next();
+			if (obj instanceof BasicCompartment) {
+
+				BasicCompartment compartment = (BasicCompartment) obj;
+
+				if (isStereotypeBrace(compartment)) {
+					exist = compartment.getElement().equals(stereotype);
+				}
+			}
+		}
+		return exist;
+	}
+
+	/**
+	 * Define if the Brace Property Exist already
+	 * 
+	 * @param compartment
+	 *            The Brace compartment
+	 * @param propertyUML
+	 *            Related Brace Property
+	 * @return true is at least one Brace Property for the specified stereotype exist
+	 */
+	public boolean isBracePropertyExist(Node compartment, Property propertyUML) {
+
+		boolean exist = false;
+		Iterator<?> iter = compartment.getChildren().iterator();
+		while (!exist && iter.hasNext()) {
+			Object obj = iter.next();
+			if (obj instanceof DecorationNode) {
+
+				DecorationNode property = (DecorationNode) obj;
+
+				if (isStereotypeBraceProperty(property)) {
+					exist = property.getElement().equals(propertyUML);
+				}
+			}
+		}
+		return exist;
+	}
+
+
+	/**
+	 * Get the Brace Compartment of a node
+	 * 
+	 * @param node
+	 *            View of the node of which the compartment is looking for.
+	 * @param stereotype
+	 *            Stereotype of the Brace Compartment we are searching for.
+	 * @return The Basic Compartment if any or null if not.
+	 */
+	public BasicCompartment getStereotypeBraceCompartment(View node, Stereotype stereotype) {
+		if ((stereotype != null) && (node != null)) {
+			Object obj;
+			Iterator<?> iter = node.getChildren().iterator();
+			while (iter.hasNext()) {
+				obj = iter.next();
+				if (isStereotypeBrace(obj)) {
+					BasicCompartment compartment = (BasicCompartment) obj;
+					if (compartment.getElement() != null) {
+						if (compartment.getElement().equals(stereotype)) {
+							return compartment;
+						}
+					}
+				}
+			}
+		}
+
+		return null;
+	}
 
 
 
