@@ -19,16 +19,19 @@ package org.eclipse.papyrus.uml.service.validation.oclpivot;
 
 import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.emf.validation.model.IModelConstraint;
 import org.eclipse.emf.validation.service.IConstraintDescriptor;
 import org.eclipse.ocl.pivot.ExpressionInOCL;
-import org.eclipse.ocl.pivot.uml.UMLOCL;
+import org.eclipse.ocl.pivot.utilities.OCL;
 import org.eclipse.ocl.pivot.utilities.ParserException;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -43,6 +46,28 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public abstract class AbstractOCLpivotModelConstraint implements IModelConstraint {
 
+	/**
+	 * WeakOCLReference maintains the reference to the OCL instances. Inspired by class of same name in UMLOCLEvalidator
+	 * (which cannot be reused directly, as it is protected).
+	 */
+	protected static final class WeakOCLReference extends WeakReference<OCL>
+	{
+		protected WeakOCLReference(OCL ocl) {
+			super(ocl);
+		}
+
+		@Override
+		public void finalize() {
+			new Thread("OCL-Finalizer") //$NON-NLS-1$
+			{
+				@Override
+				public void run() {
+					get().dispose();
+				}
+			}.start();
+		}
+	}
+	
 	private final IConstraintDescriptor descriptor;
 
 	/**
@@ -54,8 +79,8 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 
 	private QueryManager queryManager;
 
-	protected static UMLOCL oclInstance = null;
-
+	protected static Map<ResourceSet, WeakOCLReference> oclRefMap = null;
+	
 	/**
 	 * Initializes me with the <code>descriptor</code> which contains my OCL
 	 * body.
@@ -68,6 +93,24 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		this.descriptor = descriptor;
 	}
 
+	/**
+	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
+	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
+	 */
+	protected OCL getOCL(EObject element) {
+		ResourceSet rs = element.eResource().getResourceSet();
+		if (oclRefMap == null) {
+			oclRefMap = new HashMap<ResourceSet, WeakOCLReference>();
+		}
+		WeakOCLReference oclRef = oclRefMap.get(rs);
+		if ((oclRef == null) || (oclRef.get() == null)) {
+			oclRef = new WeakOCLReference(OCL.newInstance());
+			oclRefMap.put(rs, oclRef);
+		}
+		return oclRef.get();
+	}
+
+	
 	/**
 	 * Obtains the cached OCL query/constraint that implements me for the
 	 * specified element's metaclass.
@@ -92,12 +135,8 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		}
 
 		if (result == null) {
-			// lazily initialize the condition.
-			if (oclInstance == null) {
-				UMLOCL.initialize(null);
-				oclInstance = UMLOCL.newInstance();
-			}
-
+			// create query, if not existing yet
+			OCL oclInstance = getOCL(target);
 			try {
 				org.eclipse.ocl.pivot.Class context =
 						oclInstance.getMetamodelManager().getASOf(org.eclipse.ocl.pivot.Class.class, umlStereotype);
@@ -133,7 +172,7 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		} catch (Exception e) {
 			// do not raise an exception, but create a failure status. This is consistent with
 			// the behavior of the "in-profile" OCL pivot validation.
-			String message = String.format("The '%s' constraint is invalid - %s", getDescriptor().getName(), e.getMessage());
+			String message = String.format("The '%s' constraint is invalid - %s", getDescriptor().getName(), e.getMessage()); //$NON-NLS-1$
 			return new ConstraintStatus(this, target, IStatus.ERROR, -1,
 					message, null);
 		}
@@ -176,6 +215,7 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 		 */
 		boolean check(EObject target) {
 			ExpressionInOCL query = getConstraintCondition(target);
+			OCL oclInstance = getOCL(target);
 			return (Boolean) oclInstance.evaluate(target, query);
 		}
 	}
