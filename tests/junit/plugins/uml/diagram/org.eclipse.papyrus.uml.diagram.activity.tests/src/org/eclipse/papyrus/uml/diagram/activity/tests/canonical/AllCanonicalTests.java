@@ -26,7 +26,8 @@ TestActivityDiagramChildNode.class,
 // TestActivityDiagramChildWithOtherCreationNode.class, 
 TestActivityChildNodeInStructuredActivity.class,
 TestActivityGroup.class,
-TestDropObjects.class
+TestDropObjects.class,
+TestCommentLink.class
 })
 public class AllCanonicalTests {
 
