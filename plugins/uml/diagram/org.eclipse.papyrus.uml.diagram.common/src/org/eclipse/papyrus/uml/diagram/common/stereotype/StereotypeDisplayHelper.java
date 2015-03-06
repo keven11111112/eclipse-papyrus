@@ -40,11 +40,13 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * This Helper contains all the Methods required in the using of Stereotype Display thanks
  * to the Notation View structure
  * 
- * @author Céline JANSSENS
+ * @author Celine JANSSENS
  *
  */
 public class StereotypeDisplayHelper {
 
+
+	private static final String EMPTY_STRING = ""; // $NON-NLS-1$
 	/**
 	 * singleton instance
 	 */
@@ -62,7 +64,6 @@ public class StereotypeDisplayHelper {
 		return labelHelper;
 	}
 
-	private static final String EMPTY_STRING = ""; // $NON-NLS-1$
 
 	/**
 	 * Get the Full label to display into the header
@@ -72,16 +73,15 @@ public class StereotypeDisplayHelper {
 	 * @return The label with Stereotype Name to display (i.e: "Blocks::Block, Allocation, SysML::Requirements::Requirement" )
 	 */
 	public String getStereotypeTextToDisplay(View model) {
-		String textToDisplay = null;
-		String finalText = null;
+		String textToDisplay = EMPTY_STRING;
+		String finalText = EMPTY_STRING;
 		Iterator<?> iter = model.getChildren().iterator();
-		Object object;
-		DecorationNode label;
+
 		// For all children, check if it's a StereotypeLabel and add the Name
 		while (iter.hasNext()) {
-			object = iter.next();
+			Object object = iter.next();
 			if (object instanceof DecorationNode) {
-				label = (DecorationNode) object;
+				DecorationNode label = (DecorationNode) object;
 
 				if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
 					if (label.isVisible()) {
@@ -112,7 +112,7 @@ public class StereotypeDisplayHelper {
 	 * @return The entire string to be displayed in braces
 	 */
 	public String getStereotypePropertiesInBrace(View notationView) {
-		String textToDisplay = null;
+		String textToDisplay = EMPTY_STRING;
 		Iterator<?> iter = notationView.getChildren().iterator();
 		Object object;
 		// For each Stereotype Compartment, retrieve the property text to be added in Braces
@@ -769,7 +769,7 @@ public class StereotypeDisplayHelper {
 	protected String addStereotypeCompartmentProperties(String textToDisplay, BasicCompartment compartment) {
 
 
-		StringBuilder newTextToDisplay = new StringBuilder(textToDisplay == null ? "" : textToDisplay);
+		StringBuilder newTextToDisplay = new StringBuilder(textToDisplay);
 
 		StringBuilder propertiesText = new StringBuilder(EMPTY_STRING);
 		EList<?> properties = compartment.getChildren();
@@ -812,7 +812,7 @@ public class StereotypeDisplayHelper {
 	 */
 	protected StringBuilder addTextWithSeparator(final StringBuilder initialText, final String textToAdd, final String separator) {
 
-		StringBuilder result = new StringBuilder(initialText == null ? "" : initialText);
+		StringBuilder result = new StringBuilder(initialText);
 
 		// if result and text to add is not empty, then add a separator
 		if ((!EMPTY_STRING.equals(textToAdd) && (textToAdd != null))) {
