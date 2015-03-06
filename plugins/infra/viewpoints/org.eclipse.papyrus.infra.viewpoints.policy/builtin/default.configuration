@@ -52,6 +52,7 @@
       <paletteRules xmi:id="_7wLmrdxhEeOqHvRyiN87hA" element="clazz.tool.dependency"/>
       <paletteRules xmi:id="_7wLmrtxhEeOqHvRyiN87hA" element="clazz.tool.packageimport"/>
       <paletteRules xmi:id="_7wLmr9xhEeOqHvRyiN87hA" element="clazz.tool.link"/>
+      <paletteRules xmi:id="_YJxdsMQiEeS9X_-msInTMg" element="clazz.tool.containmentlink"/>
       <paletteRules xmi:id="_7wLmsNxhEeOqHvRyiN87hA" permit="false" element="clazz.tool.*"/>
       <paletteRules xmi:id="_7wLmsdxhEeOqHvRyiN87hA" element=""/>
     </modelKinds>
