@@ -195,10 +195,6 @@
         
         <module>../extraplugins/revision/org.eclipse.papyrus.revisiontool</module>
         <module>../extraplugins/spem2/org.eclipse.papyrus.spem2.profile</module>
-       <!-- Missing org.eclipse.emf.facet.infra.query.core 0.0.0  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.controlmode</module> -->
-        <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.core</module>
-       <!-- Compilation failure:  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.strategy</module>-->
-       <!-- Compilation failure:  <module>../extraplugins/team.collaborative/org.eclipse.papyrus.team.collaborative.svn</module>-->
 		
 		<module>extras</module>
 	</modules>
