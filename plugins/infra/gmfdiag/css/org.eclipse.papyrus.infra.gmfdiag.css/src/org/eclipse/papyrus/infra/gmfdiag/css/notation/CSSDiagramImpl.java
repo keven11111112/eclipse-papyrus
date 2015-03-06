@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2013 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,17 +9,14 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl for CSS (CDO)
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.notify.Adapter;
-import org.eclipse.emf.common.notify.Notification;
-import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
@@ -44,27 +41,37 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 
 	protected ExtendedCSSEngine engine;
 
-	private Adapter disposeListener;
-
 	@Override
 	public ExtendedCSSEngine getEngine() {
 		if (engine == null) {
 			engine = new DiagramCSSEngine(getModelEngine(), this);
-			eResource().eAdapters().add(disposeListener = new DiagramDisposeListener());
 		}
 		return engine;
 	}
 
-	private void disposeEngine(Object notifier) {
+	private void disposeEngine() {
 		if (engine != null) {
 			engine.dispose();
 			engine = null;
-			((Resource) notifier).eAdapters().remove(disposeListener);
+		}
+	}
+
+	@Override
+	protected void eSetDirectResource(Resource.Internal resource) {
+		Resource.Internal oldResource = eInternalResource();
+
+		super.eSetDirectResource(resource);
+
+		if (oldResource != resource) {
+			// My engine is now invalid because my resource is different than before,
+			// which makes its parent engine is obsolete
+			disposeEngine();
 		}
 	}
 
 	protected ExtendedCSSEngine getModelEngine() {
-		return CSSNotationResource.getEngine(eResource());
+		Resource resource = eResource();
+		return (resource == null) ? null : CSSNotationResource.getEngine(resource);
 	}
 
 	@Override
@@ -115,27 +122,6 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 		StyleSheetReference ref = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
 		ref.setPath(path);
 		return ref;
-	}
-
-	private class DiagramDisposeListener extends AdapterImpl {
-
-		@Override
-		public void notifyChanged(Notification notification) {
-			switch (notification.getEventType()) {
-			case Notification.REMOVE:
-				if (notification.getOldValue() == CSSDiagramImpl.this) {
-					disposeEngine(notification.getNotifier());
-				}
-				break;
-			case Notification.REMOVE_MANY:
-				for (Object object : (Collection<?>) notification.getOldValue()) {
-					if (object == CSSDiagramImpl.this) {
-						disposeEngine(notification.getNotifier());
-					}
-				}
-				break;
-			}
-		}
 	}
 
 }

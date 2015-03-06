@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css;
 
@@ -19,6 +20,7 @@ import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Routing;
 import org.eclipse.gmf.runtime.notation.Smoothness;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.ConnectorImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagramImpl;
@@ -389,6 +391,25 @@ public class CSSConnectorImpl extends ConnectorImpl implements CSSConnectorStyle
 		}
 
 		return getCSSView().getCSSNamedStyle(eClass, name);
+	}
+
+	// /////////////////////////////////
+	// Implements the getStyle method //
+	// /////////////////////////////////
+
+	@Override
+	public Style getStyle(EClass eClass) {
+		return getCSSStyle(eClass);
+	}
+
+	@Override
+	public Style getCSSStyle(EClass eClass) {
+		Style userStyle = super.getStyle(eClass);
+		if (userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSStyle(eClass);
 	}
 
 
