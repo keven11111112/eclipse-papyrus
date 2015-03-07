@@ -22,6 +22,7 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
+import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.util.LocalSelectionTransfer;
@@ -38,6 +39,7 @@ import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
 import org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.TransactionalDropStrategy;
 import org.eclipse.swt.graphics.Image;
 
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
 
 /**
@@ -87,24 +89,39 @@ public class StyleSheetDropStrategy extends TransactionalDropStrategy {
 				objects = Collections.emptyList();
 			}
 
-			List<IFile> cssFiles = Lists.newArrayListWithCapacity(objects.size());
+			EObjectListValueStyle existingReferences = (EObjectListValueStyle) targetView.getNamedStyle(NotationPackage.Literals.EOBJECT_LIST_VALUE_STYLE, CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY);
+			List<String> cssPaths = Lists.newArrayListWithCapacity(objects.size());
 			for (Object next : objects) {
 				IFile file = AdapterUtils.adapt(next, IFile.class, null);
 				if ((file != null) && "css".equals(file.getFileExtension())) {
-					cssFiles.add(file);
+					// Maybe we have this one already?
+					final String path = file.getFullPath().toString();
+					boolean found = false;
+					if (existingReferences != null) {
+						for (StyleSheetReference ref : Iterables.filter(existingReferences.getEObjectListValue(), StyleSheetReference.class)) {
+							if (path.equals(ref.getPath())) {
+								found = true;
+								break;
+							}
+						}
+					}
+
+					if (!found) {
+						cssPaths.add(path);
+					}
 				} else {
 					// All-or-nothing drop
-					cssFiles.clear();
+					cssPaths.clear();
 					break;
 				}
 			}
 
-			if (!cssFiles.isEmpty()) {
+			if (!cssPaths.isEmpty()) {
 				CompoundCommand compound = new CompoundCommand(getLabel());
 				TransactionalEditingDomain domain = getTransactionalEditingDomain(targetEditPart);
-				for (IFile next : cssFiles) {
+				for (String next : cssPaths) {
 					StyleSheetReference ref = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
-					ref.setPath(next.getFullPath().toString());
+					ref.setPath(next);
 					AddCSSStyleSheetCommand command = new AddCSSStyleSheetCommand(domain, targetView,
 							CSSStyles.CSS_DIAGRAM_STYLESHEETS_KEY,
 							NotationPackage.Literals.EOBJECT_LIST_VALUE_STYLE, NotationPackage.Literals.EOBJECT_LIST_VALUE_STYLE__EOBJECT_LIST_VALUE,
