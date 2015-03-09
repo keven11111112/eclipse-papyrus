@@ -58,14 +58,15 @@ import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
-import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.AbstractDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.helper.Element2IAdaptableRegistryHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.ILinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.common.listeners.DropTargetListener;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.common.util.ViewServiceUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ViewServiceUtil;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
@@ -75,12 +76,11 @@ import org.eclipse.uml2.uml.Element;
  * This class is used to execute the drag and drop from the outline. It can
  * manage the drop of nodes and binary links.
  */
-public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEditPolicy {
+public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDragDropEditPolicy {
 
 	private Element2IAdaptableRegistryHelper myElement2IAdaptableRegistryHelper;
 
-	/** The specific drop. */
-	private Set<Integer> specificDrop = null;
+
 
 	/** The specified link mapping helper depending on the diagram */
 	protected ILinkMappingHelper linkmappingHelper;
@@ -95,15 +95,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		linkmappingHelper = mappingHelper;
 	}
 
-	/**
-	 * Gets elements visual id that can be dropped in the diagram
-	 */
-	protected Set<Integer> getSpecificDrop() {
-		if (specificDrop == null) {
-			specificDrop = getDroppableElementVisualId();
-		}
-		return specificDrop;
-	}
 
 	/**
 	 * Gets the UML element type for the specified
@@ -119,10 +110,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 	public abstract int getLinkWithClassVisualID(EObject domainElement);
 
-	/**
-	 * The list of visualID that the policy manages.
-	 */
-	protected abstract Set<Integer> getDroppableElementVisualId();
+
 
 	/**
 	 * Gets composite command adapters

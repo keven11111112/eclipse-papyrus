@@ -48,7 +48,7 @@ import org.eclipse.papyrus.uml.diagram.component.custom.edit.command.CreateViewC
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ComponentLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.ConnectorHelper;
 import org.eclipse.papyrus.uml.diagram.component.custom.edit.helpers.MultiDependencyHelper;
-import org.eclipse.papyrus.uml.diagram.component.custom.locators.PortPositionLocator;
+import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.component.custom.log.Log;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.AbstractionEditPart;
 import org.eclipse.papyrus.uml.diagram.component.edit.parts.CommentEditPart;

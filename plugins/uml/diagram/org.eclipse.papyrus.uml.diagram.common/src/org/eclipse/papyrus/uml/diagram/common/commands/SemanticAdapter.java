@@ -13,86 +13,26 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
-import org.eclipse.gmf.runtime.emf.core.util.IProxyEObject;
-import org.eclipse.gmf.runtime.emf.core.util.PackageUtil;
-import org.eclipse.gmf.runtime.notation.View;
 
 /**
  * The Class SemanticAdapter used to package semantic or view element in a
  * deferred command
+ * 
+ * @deprecated since 1.1.0
+ * use org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter
  */
-public class SemanticAdapter implements IAdaptable, IProxyEObject {
-
-	/** The element. */
-	private Object element;
-
-	/** The view. */
-	private Object view;
+@Deprecated
+public class SemanticAdapter extends org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter {
 
 	/**
-	 * Instantiates a new semantic adapter.
+	 * Constructor.
 	 *
 	 * @param element
-	 *            the element
 	 * @param view
-	 *            the view
 	 */
 	public SemanticAdapter(EObject element, Object view) {
-		this.element = element;
-		this.view = view;
+		super(element, view);
 	}
 
-	/**
-	 *
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Object getAdapter(Class adapter) {
-		if (adapter.equals(EObject.class)) {
-			return element;
-		}
-		if (adapter.equals(View.class)) {
-			return view;
-		}
-		return null;
-	}
-
-	/**
-	 * Sets the element.
-	 *
-	 * @param element
-	 *            the new element
-	 */
-	public void setElement(Object element) {
-		this.element = element;
-	}
-
-	/**
-	 * Sets the view.
-	 *
-	 * @param view
-	 *            the new view
-	 */
-	public void setView(Object view) {
-		this.view = view;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public Object getProxyClassID() {
-		return (element != null) ? PackageUtil.getID(EMFCoreUtil.getProxyClass((EObject) element)) : null;
-	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public EObject resolve() {
-		return (element != null) ? (EObject) element : null;
-	}
 }

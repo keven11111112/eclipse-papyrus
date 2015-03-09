@@ -35,7 +35,7 @@ import org.eclipse.papyrus.uml.diagram.common.groups.core.PendingGroupNotificati
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.ChooseParentNotificationConfigurator;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.NotificationConfigurator;
 import org.eclipse.papyrus.uml.diagram.common.groups.utils.GroupRequestConstants;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * Command to display the notification for choosing parent.

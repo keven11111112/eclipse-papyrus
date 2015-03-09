@@ -47,7 +47,7 @@ import org.eclipse.papyrus.uml.diagram.common.groups.core.groupcontainment.Group
 import org.eclipse.papyrus.uml.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.groups.utils.GroupRequestConstants;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 
 /**
