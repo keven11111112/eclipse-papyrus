@@ -27,13 +27,15 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.UMLPackage
-import java.util.Set
+import java.util.regex.Pattern
 
 /**
  * Utility extensions for working with and generating objects for the base UML element types specialized by the profile.
  */
 @Singleton
 class UMLElementTypes {
+    private static final Pattern VISUAL_ID_PATTERN = Pattern.compile("\\d{4}");
+    
     static extension ElementtypesconfigurationsFactory elementtypesconfigurationsFactory = ElementtypesconfigurationsFactory.
         eINSTANCE
 
@@ -70,26 +72,38 @@ class UMLElementTypes {
         ]
     }
 
-    def getDiagramSpecificElementTypeSet() {
-        diagramElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(diagramElementTypesSet)
+    def getBaseElementTypeSet() {
+        baseElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(baseElementTypesSet)
     }
     
-    def getDiagramSpecificElementTypes() {
-        diagramSpecificElementTypeSet.elementTypeConfigurations.filter[validType]
+    def getBaseElementTypes() {
+        baseElementTypeSet.elementTypeConfigurations.filter[validType]
     }
 
     def validType(ElementTypeConfiguration elementType) {
         elementType.metaclass != null;
     }
     
+    def isDiagramSpecific() {
+       baseElementTypeSet != baseUMLElementTypeSet 
+    }
+    
+    def isDiagramSpecific(ElementTypeConfiguration type) {
+        type.hint.isVisualID
+    }
+    
+    private def isVisualID(String string) {
+        !string.nullOrEmpty && VISUAL_ID_PATTERN.matcher(string).matches
+    }
+    
     def getDiagramSpecificElementTypes(Class metaclass) {
         // If we're based on the UML element types, themselves, then we're not looking for specializations
-        if (diagramSpecificElementTypeSet == baseUMLElementTypeSet)
+        if (!diagramSpecific)
             baseUMLElementTypeSet.elementTypeConfigurations.filter [
                 validType && (identifier == metaclass.elementTypeID)
             ]
         else
-            diagramSpecificElementTypeSet.elementTypeConfigurations.filter(SpecializationTypeConfiguration).filter [
+            baseElementTypeSet.elementTypeConfigurations.filter(SpecializationTypeConfiguration).filter [
                 validType && specializedTypesID.contains(metaclass.elementTypeID)
             ]
     }

@@ -38,7 +38,7 @@ class ElementTypeToAssistantRule {
     }
 
     private def createPossibleOwnersFilter(ElementTypeConfiguration type) {
-        diagramSpecificElementTypes.fold(null) [ Filter filter, elementType |
+        baseElementTypes.fold(null) [ Filter filter, elementType |
             if (elementType.canContainType(type))
                 filter || elementType.toFilter()
             else
@@ -66,7 +66,7 @@ class ElementTypeToAssistantRule {
 
     private def createPossibleSourcesFilter(ElementTypeConfiguration type) {
         // Don't assist in creating connections from/to connections (relationships)
-        diagramSpecificElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
+        baseElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
             if (elementType.canSourceToType(type))
                 filter || elementType.toFilter
             else
@@ -76,7 +76,7 @@ class ElementTypeToAssistantRule {
 
     private def createPossibleTargetsFilter(ElementTypeConfiguration type) {
         // Don't assist in creating connections from/to connections (relationships)
-        diagramSpecificElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
+        baseElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
             if (elementType.canTargetFromType(type))
                 filter || elementType.toFilter
             else

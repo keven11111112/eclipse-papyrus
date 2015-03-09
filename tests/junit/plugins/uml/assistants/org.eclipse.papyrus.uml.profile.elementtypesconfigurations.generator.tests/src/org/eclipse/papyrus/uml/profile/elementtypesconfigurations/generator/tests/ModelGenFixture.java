@@ -269,7 +269,7 @@ public class ModelGenFixture extends ResourceSetFixture {
 	private void generateModel() {
 		Identifiers identifiers = new Identifiers();
 		identifiers.setPrefix(prefix);
-		identifiers.setDiagramElementTypesSet(getBaseElementTypesSet());
+		identifiers.setBaseElementTypesSet(getBaseElementTypesSet());
 
 		generateModel(identifiers);
 	}

@@ -112,7 +112,8 @@ public class GeneratorWizard extends Wizard {
 
 		Identifiers identifiers = new Identifiers();
 		identifiers.setPrefix(model.getIdentifier());
-		identifiers.setDiagramElementTypesSet(model.getSelectedElementTypeSet());
+		identifiers.setBaseElementTypesSet(model.getSelectedElementTypeSet());
+		identifiers.setSuppressSemanticSuperElementTypes(model.isSuppressSemanticSuperElementTypes());
 
 		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
 		identifiers.setAdapterFactory(adapterFactory);

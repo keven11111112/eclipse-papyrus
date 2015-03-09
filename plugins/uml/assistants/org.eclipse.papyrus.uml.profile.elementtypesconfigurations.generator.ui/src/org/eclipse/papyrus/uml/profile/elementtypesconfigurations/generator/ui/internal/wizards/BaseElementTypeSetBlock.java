@@ -35,9 +35,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfig
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.Activator;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.events.SelectionAdapter;
+import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.swt.layout.GridData;
+import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Label;
@@ -55,6 +58,8 @@ import com.google.common.collect.Ordering;
 class BaseElementTypeSetBlock {
 
 	private static final String DIAGRAM = "diagram"; //$NON-NLS-1$
+
+	private static final String SUPPRESS_SEMANTIC_SUPERTYPES = "suppressSemanticSupertypes"; //$NON-NLS-1$
 
 	private static final String UML_ELEMENT_TYPE_SET = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"; //$NON-NLS-1$
 
@@ -87,6 +92,11 @@ class BaseElementTypeSetBlock {
 		// TableCombo doesn't use a ViewerComparator even when one is set
 		combo.setInput(getOrdering().sortedCopy(elementTypeSets.values()));
 
+		final Button suppressSemanticSuperElementTypes = new Button(parent, SWT.CHECK);
+		suppressSemanticSuperElementTypes.setLayoutData(new GridData(SWT.FILL, SWT.DEFAULT, false, false, 2, 1));
+		suppressSemanticSuperElementTypes.setText("Suppress semantic parent in diagram-specific element types");
+		suppressSemanticSuperElementTypes.setSelection(model.getDialogSettings().getBoolean(SUPPRESS_SEMANTIC_SUPERTYPES));
+
 		ElementTypeSetConfiguration initialSelection = getInitialSelection();
 		if (initialSelection != null) {
 			combo.setSelection(new StructuredSelection(initialSelection));
@@ -97,7 +107,17 @@ class BaseElementTypeSetBlock {
 			@Override
 			public void selectionChanged(SelectionChangedEvent event) {
 				elementTypeSetSelectionChanged((IStructuredSelection) event.getSelection());
+				suppressSemanticSuperElementTypes.setEnabled(!UML_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
 				model.validatePage();
+			}
+		});
+
+		setSuppressSemanticSupertypes(suppressSemanticSuperElementTypes.getSelection());
+		suppressSemanticSuperElementTypes.setEnabled(!UML_ELEMENT_TYPE_SET.equals(model.getSelectedElementTypeSet()));
+		suppressSemanticSuperElementTypes.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				setSuppressSemanticSupertypes(suppressSemanticSuperElementTypes.getSelection());
 			}
 		});
 	}
@@ -114,8 +134,13 @@ class BaseElementTypeSetBlock {
 		model.setSelectedElementTypeSet((elementTypeSet == null) ? null : elementTypeSets.inverse().get(elementTypeSet));
 	}
 
+	void setSuppressSemanticSupertypes(boolean suppress) {
+		model.setSuppressSemanticSuperElementTypes(suppress);
+	}
+
 	void save() {
 		model.getDialogSettings().put(DIAGRAM, model.getSelectedElementTypeSet());
+		model.getDialogSettings().put(SUPPRESS_SEMANTIC_SUPERTYPES, model.isSuppressSemanticSuperElementTypes());
 	}
 
 	private ElementTypeSetConfiguration getInitialSelection() {

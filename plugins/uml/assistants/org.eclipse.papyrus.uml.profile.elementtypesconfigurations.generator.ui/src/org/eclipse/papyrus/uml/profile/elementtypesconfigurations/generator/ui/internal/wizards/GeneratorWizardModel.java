@@ -48,6 +48,8 @@ public class GeneratorWizardModel {
 
 	private String fileName;
 
+	private boolean suppressSemanticSuperElementTypes;
+
 	public GeneratorWizardModel(IWizard owner, Profile profile, IDialogSettings settings) {
 		super();
 
@@ -100,6 +102,14 @@ public class GeneratorWizardModel {
 
 	public void setFileName(String fileName) {
 		this.fileName = fileName;
+	}
+
+	public void setSuppressSemanticSuperElementTypes(boolean suppressSemanticSuperElementTypes) {
+		this.suppressSemanticSuperElementTypes = suppressSemanticSuperElementTypes;
+	}
+
+	public boolean isSuppressSemanticSuperElementTypes() {
+		return suppressSemanticSuperElementTypes;
 	}
 
 	public URI getOutputModelURI() {

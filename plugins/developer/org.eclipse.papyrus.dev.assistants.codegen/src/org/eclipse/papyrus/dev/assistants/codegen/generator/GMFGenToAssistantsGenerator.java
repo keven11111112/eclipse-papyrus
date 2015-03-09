@@ -45,7 +45,7 @@ public class GMFGenToAssistantsGenerator extends AbstractGenerator<GenEditorGene
 		Identifiers identifiers = new Identifiers();
 
 		// TODO: Prompt the user for this
-		identifiers.setDiagramElementTypesSet(editor.getPlugin().getID() + ".elementTypeSet");
+		identifiers.setBaseElementTypesSet(editor.getPlugin().getID() + ".elementTypeSet");
 		return new GeneratorModule(identifiers);
 	}
 }

@@ -35,15 +35,18 @@ class Identifiers {
     
     @Accessors
     String prefix
-    
-    @Accessors
-    String diagramElementTypesSet
-    
-    @Accessors
-    ElementTypeSetConfiguration diagramElementTypesSetConfiguration
 
     @Accessors
     final String umlElementTypesSet = "org.eclipse.papyrus.uml.service.types.UMLElementTypeSet"
+    
+    @Accessors
+    String baseElementTypesSet = umlElementTypesSet
+    
+    @Accessors
+    ElementTypeSetConfiguration baseElementTypesSetConfiguration
+    
+    @Accessors
+    boolean suppressSemanticSuperElementTypes
     
     @Accessors
     AdapterFactory adapterFactory
@@ -75,6 +78,10 @@ class Identifiers {
         	if (stereo.allExtendedMetaclasses.size <= 1) stereo.name 
         	else stereo.name + " " + umlExtension.metaclass.name 
         else stereo.name + discriminators.join(" (", ", ", ")")[toString]
+    }
+    
+    def dispatch hintSuffix(Void elementType) {
+        ""
     }
     
     def dispatch hintSuffix(ElementTypeConfiguration elementType) {

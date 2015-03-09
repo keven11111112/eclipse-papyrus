@@ -43,6 +43,10 @@ class ElementTypeRule {
 
         // Basics
         identifier = umlExtension.toElementTypeID(supertype)
+        if (supertype.diagramSpecific && !suppressSemanticSuperElementTypes) {
+            // Add the base semantic type in addition to the parent visual type
+            specializedTypesID.add(umlExtension.toElementTypeID(null))
+        }
         specializedTypesID.add(supertype.identifier)
         hint = supertype.hint
         name = umlExtension.toElementTypeName(supertype)

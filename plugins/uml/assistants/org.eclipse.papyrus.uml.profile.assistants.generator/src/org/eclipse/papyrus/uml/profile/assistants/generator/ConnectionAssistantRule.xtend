@@ -43,7 +43,7 @@ class ConnectionAssistantRule {
 
     private def createPossibleSourcesFilter(ElementTypeConfiguration basetype, ImpliedExtension umlExtension) {
         // Don't assist in creating connections from/to connections (relationships)
-        diagramSpecificElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
+        baseElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
             if (elementType.canSourceToType(basetype))
                 filter || elementType.toFilter(umlExtension.profile)
             else
@@ -53,7 +53,7 @@ class ConnectionAssistantRule {
 
     private def createPossibleTargetsFilter(ElementTypeConfiguration basetype, ImpliedExtension umlExtension) {
         // Don't assist in creating connections from/to connections (relationships)
-        diagramSpecificElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
+        baseElementTypes.filter[!relationship].fold(null) [ Filter filter, elementType |
             if (elementType.canTargetFromType(basetype))
                 filter || elementType.toFilter(umlExtension.profile)
             else

@@ -43,7 +43,7 @@ public class ElementTypesToAssistantsGenerator extends AbstractGenerator<Element
 
 	private static GeneratorModule createGeneratorModule(ElementTypeSetConfiguration elementTypeSet) {
 		Identifiers identifiers = new Identifiers();
-		identifiers.setDiagramElementTypesSetConfiguration(elementTypeSet);
+		identifiers.setBaseElementTypesSetConfiguration(elementTypeSet);
 		return new GeneratorModule(identifiers);
 	}
 }

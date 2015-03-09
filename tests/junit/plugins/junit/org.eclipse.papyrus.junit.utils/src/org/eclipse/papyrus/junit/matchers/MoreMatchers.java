@@ -13,10 +13,13 @@
 
 package org.eclipse.papyrus.junit.matchers;
 
+import java.util.regex.Pattern;
+
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
 import org.hamcrest.Matcher;
 
+import com.google.common.base.Strings;
 import com.google.common.collect.Iterables;
 
 /**
@@ -30,10 +33,12 @@ public class MoreMatchers {
 
 	public static <N extends Number & Comparable<N>> Matcher<N> greaterThan(final N minimum) {
 		return new BaseMatcher<N>() {
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("greater than ").appendValue(minimum);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((N) item).compareTo(minimum) > 0;
@@ -43,10 +48,12 @@ public class MoreMatchers {
 
 	public static <N extends Number & Comparable<N>> Matcher<N> lessThan(final N maximum) {
 		return new BaseMatcher<N>() {
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("less than ").appendValue(maximum);
 			}
 
+			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
 				return ((N) item).compareTo(maximum) < 0;
@@ -56,12 +63,46 @@ public class MoreMatchers {
 
 	public static Matcher<Iterable<?>> isEmpty() {
 		return new BaseMatcher<Iterable<?>>() {
+			@Override
 			public void describeTo(Description description) {
 				description.appendText("is empty");
 			}
 
+			@Override
 			public boolean matches(Object item) {
 				return Iterables.isEmpty((Iterable<?>) item);
+			}
+		};
+	}
+
+	public static Matcher<String> regexMatches(final String pattern) {
+		return new BaseMatcher<String>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("matches /").appendText(pattern).appendText("/");
+			}
+
+			@Override
+			public boolean matches(Object item) {
+				String string = (String) item;
+				return !Strings.isNullOrEmpty(string) && string.matches(pattern);
+			}
+		};
+	}
+
+	public static Matcher<String> regexContains(final String pattern) {
+		final Pattern regex = Pattern.compile(pattern);
+
+		return new BaseMatcher<String>() {
+			@Override
+			public void describeTo(Description description) {
+				description.appendText("contains /").appendText(pattern).appendText("/");
+			}
+
+			@Override
+			public boolean matches(Object item) {
+				String string = (String) item;
+				return !Strings.isNullOrEmpty(string) && regex.matcher(string).find();
 			}
 		};
 	}

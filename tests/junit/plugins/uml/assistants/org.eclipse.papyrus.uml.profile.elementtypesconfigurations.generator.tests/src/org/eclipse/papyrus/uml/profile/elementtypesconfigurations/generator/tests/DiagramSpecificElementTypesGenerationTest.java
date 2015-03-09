@@ -15,11 +15,13 @@ package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tes
 
 import static com.google.common.collect.Iterables.transform;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.regexContains;
 import static org.hamcrest.CoreMatchers.containsString;
 import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
+import static org.hamcrest.CoreMatchers.startsWith;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import java.util.List;
@@ -61,6 +63,30 @@ public class DiagramSpecificElementTypesGenerationTest {
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
 		fixture.assertAllSpecializationTypes(userActor);
 		assertThat(fixture.getElementTypeSet().getMetamodelNsURI(), is(UMLPackage.eNS_URI));
+	}
+
+	/**
+	 * Verifies that diagram-specific element types are generated with both a semantic parent and a visual parent.
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=461717
+	 */
+	@Test
+	public void elementTypeSpecializedTypes_bug461717() {
+		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
+		List<SpecializationTypeConfiguration> specializationTypes = fixture.assertAllSpecializationTypes(userActor);
+		assertThat("No specialization types generated", specializationTypes, not(isEmpty()));
+
+		String semanticParentID = fixture.prefix + ".User";
+		String idPrefix = semanticParentID + "_";
+
+		for (SpecializationTypeConfiguration next : specializationTypes) {
+			assertThat(next.getIdentifier(), startsWith(idPrefix));
+
+			List<String> specializedTypeIDs = next.getSpecializedTypesID();
+			assertThat(specializedTypeIDs.size(), is(2));
+			assertThat(specializedTypeIDs.get(0), is(semanticParentID));
+			assertThat(specializedTypeIDs.get(1), regexContains("Actor_\\d{4}$")); // a visual ID
+		}
 	}
 
 	@Test

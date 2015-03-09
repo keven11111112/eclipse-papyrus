@@ -70,10 +70,11 @@ Building a diagram assistant model by hand is a tedious undertaking.  To ease th
 
 Because the diagram assistants model specifies the element types that are created by the assistant tools, the wizard also generates the element types for your DSL as an <code>*.elementtypesconfigurations</code> model.  If you only need to generate this latter model, that option is also available in the menu.
 
-The diagram assistants wizard dialog requires four pieces of information as inputs (as identified in the image below):
+The diagram assistants wizard dialog requires several pieces of information as inputs (as identified in the image below):
 
 # An unique identifier for the assistants model. This is used as a prefix for element types that are generated for your DSL
 # The element types set model on which to base the element types generated for your DSL.  This has important consequences discussed below
+# Whether to suppress the reference to a semantic supertype distinct from the diagram-specific ("visual") element type in the list of specialized types for generated element types.  This option is only applicable when generating a diagram-specific diagram assistants model
 # The workspace folder or project in which to create the model
 # The name of the <code>*.assistants</code> model file to create.  The element types model will use the same name, except with the <code>*.elementtypesconfigurations</code> extension
 
@@ -82,6 +83,7 @@ The diagram assistants wizard dialog requires four pieces of information as inpu
 Upon completion of the wizard, element types and modeling assistants are generated as follows:
 
 * for each metaclass extension of a stereotype in the profile, '''SpecializationTypeConfiguration'''s are generated that specialize each of the element types in the base element types set that are based on the same UML metaclass.  So, in our trivial J2EE profile example, the «branchPoint» stereotype generates two element types: one for each of the 3007 and 3008 visualizations of the ExtensionPoint metaclass in the Use Case diagram
+** if your assistants model is based on a diagram-specific element types model, then the visualization-specific element types that are generated will specialize the visual UML element types of the diagram and also semantic element types representing the stereotyped element in the model (unless the option to suppress the semantic supertype was selected)
 ** if your stereotypes include Image specifications that reference an icon by a <code>profile:/plugin/...</code> URI, then that is used to generate an equivalent '''IconEntry''' in the element type configuration
 * for each profile-specific element type, a diagram assistant is generated, either
 ** a '''ConnectionAssistant''' if the element type is not a relationship or reference type, or
@@ -117,6 +119,13 @@ These problems can usually be remedied by careful crafting of filters to restric
 To generate modeling assistants that are applicable only to a particular diagram in which the elements of your DSL can be visualized, choose that diagram's element types set from the list (the example screen shot above shows the Use Case Diagram selected).  This option has the advantage of giving the most accurate/appropriate assistants out of the box but it does require a separate model for each diagram that your DSL covers.
 
 In this case, the element types generated for your assistants are specializations of the particular visual-ID hinted types supported by the diagram for the different visualizations, in that diagram context, of the base UML metaclass.  The most significant customization that you would do after generating the assistants model is to delete assistants that are not required.
+
+By default, the wizard will also reference a second supertype in each generated specialization element type:  an element type representing the
+stereotyped element in the model, irrespective of any visualization in the diagram.  This is effectively referencing the element type that would be
+generated in the "Generic UML-based Assistants" case, asdescribed above.  At run-time, these "semantic element types" will be expected to be
+available, so it is necessary to generate them using the '''Generate Tooling Model &rarr; Element Types...''' action in the context menu and
+selecting the generic UML element types as the base model.  However, the reference to the semantic super-types may be ommitted, if desired, by
+checking the '''Suppress semantic parent in diagram-specific element types''' box in the wizard.
 
 ==Considerations for Designing Assistants Models==
 

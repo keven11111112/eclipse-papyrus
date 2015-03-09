@@ -20,9 +20,12 @@ import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.List;
+
 import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
+import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
 import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.uml2.uml.Class;
@@ -51,6 +54,23 @@ public class BasicElementTypesGenerationTest {
 		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
 		fixture.assertSpecializationType(beanClass);
 		assertThat(fixture.getElementTypeSet().getMetamodelNsURI(), is(UMLPackage.eNS_URI));
+	}
+
+	/**
+	 * Verifies that non-diagram-specific element types are generated with only a semantic parent (no visual parent).
+	 * 
+	 * @see https://bugs.eclipse.org/bugs/show_bug.cgi?id=461717
+	 */
+	@Test
+	public void elementTypeSpecializedTypes_bug461717() {
+		Pair<Stereotype, Class> beanClass = fixture.getMetaclassExtension("Bean", "Class");
+		SpecializationTypeConfiguration specialization = fixture.assertSpecializationType(beanClass);
+
+		assertThat(specialization.getIdentifier(), is(fixture.prefix + ".Bean"));
+
+		List<String> specializedTypeIDs = specialization.getSpecializedTypesID();
+		assertThat(specializedTypeIDs.size(), is(1));
+		assertThat(specializedTypeIDs.get(0), is(UMLElementTypes.CLASS.getId()));
 	}
 
 	@Test
