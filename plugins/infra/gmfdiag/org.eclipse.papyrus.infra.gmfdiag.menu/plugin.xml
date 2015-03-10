@@ -475,6 +475,19 @@
                      operator="and">
                   <test
                         property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
+                        value="true">
+                  </test>
+                  <instanceof
+                        value="org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart">
+                  </instanceof>
+               </iterate>
+            </not>
+            <not>
+               <iterate
+                     ifEmpty="false"
+                     operator="and">
+                  <test
+                        property="org.eclipse.papyrus.uml.diagram.common.isSemanticDeletion"
                         value="false">
                   </test>
                   <instanceof
