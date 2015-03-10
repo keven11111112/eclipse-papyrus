@@ -14,14 +14,14 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 import java.util.Map;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.properties.provider.CSSStyleSheetLabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceDialog;
@@ -59,7 +59,7 @@ public class StyleCreationDialog extends AbstractStyleDialog {
 	 *            inout
 	 * @param selectorName
 	 */
-	public StyleCreationDialog(Shell shell, Map<Attribute, Boolean> conditions, Map<Declaration, Boolean> declarations, String selectorName, View context) {
+	public StyleCreationDialog(Shell shell, Map<AttributeSelector, Boolean> conditions, Map<css_declaration, Boolean> declarations, String selectorName, View context) {
 		super(shell, conditions, declarations, selectorName, context);
 	}
 
@@ -116,6 +116,7 @@ public class StyleCreationDialog extends AbstractStyleDialog {
 		externalStylesheetEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		externalStylesheetEditor.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				String path = (String) ((StringEditor) editor).getValue();
 
@@ -150,6 +151,7 @@ public class StyleCreationDialog extends AbstractStyleDialog {
 		embeddedStylesheetEditor.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false));
 		embeddedStylesheetEditor.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				// TODO: Check empty names & set the stylesheet to null when the name is null/empty
 				String name = (String) ((StringEditor) editor).getValue();
@@ -173,6 +175,7 @@ public class StyleCreationDialog extends AbstractStyleDialog {
 		appliedStylesheetEditor.setLabelProvider(new CSSStyleSheetLabelProvider());
 		appliedStylesheetEditor.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				StyleSheet value = (StyleSheet) ((ReferenceDialog) editor).getValue();
 				if (!(ignoreEvents && value == null)) {

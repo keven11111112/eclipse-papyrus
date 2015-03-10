@@ -22,17 +22,16 @@ import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.jface.viewers.TreeViewer;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.CompositeSelector;
-import org.eclipse.papyrus.infra.gmfdiag.css.CssPackage;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
-import org.eclipse.papyrus.infra.gmfdiag.css.Selector;
-import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
-import org.eclipse.papyrus.infra.gmfdiag.css.SimpleSelector;
-import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.providers.ExistingStyleContentProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.providers.StylesheetLabelProvider;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ClassSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.SashForm;
 import org.eclipse.swt.layout.GridData;
@@ -60,7 +59,7 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 
 	protected Composite styleEditionPanel;
 
-	protected Ruleset ruleset;
+	protected ruleset ruleset;
 
 	/**
 	 *
@@ -71,7 +70,7 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 	 *            inout
 	 * @param selectorName
 	 */
-	public StyleEditionDialog(Shell shell, Map<Attribute, Boolean> conditions, Map<Declaration, Boolean> declarations, String selectorName, View context) {
+	public StyleEditionDialog(Shell shell, Map<AttributeSelector, Boolean> conditions, Map<css_declaration, Boolean> declarations, String selectorName, View context) {
 		super(shell, conditions, declarations, selectorName, context);
 	}
 
@@ -126,17 +125,18 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 		styleSelectionPanel.getParent().layout();
 	}
 
-	protected Stylesheet getStylesheet() {
+	protected stylesheet getStylesheet() {
 		if (ruleset != null) {
-			return (Stylesheet) ruleset.eContainer();
+			return (stylesheet) ruleset.eContainer();
 		}
 		return null;
 	}
 
-	public Ruleset getSelectedRuleset() {
+	public ruleset getSelectedRuleset() {
 		return ruleset;
 	}
 
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 		if (selection.isEmpty()) {
@@ -146,8 +146,8 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection sSelection = (IStructuredSelection) selection;
 			Object selectedElement = sSelection.getFirstElement();
-			if (selectedElement instanceof Ruleset) {
-				handleSelectionChanged((Ruleset) selectedElement);
+			if (selectedElement instanceof ruleset) {
+				handleSelectionChanged((ruleset) selectedElement);
 			} else {
 				ruleset = null;
 			}
@@ -156,16 +156,16 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 		updateButtons();
 	}
 
-	protected void handleSelectionChanged(Ruleset selectedRuleset) {
+	protected void handleSelectionChanged(ruleset selectedRuleset) {
 		this.ruleset = selectedRuleset;
 
 		// Sets all conditions to false. They will be set to true if the selected style contains the same condition
-		for (Attribute attribute : conditions.keySet()) {
+		for (AttributeSelector attribute : conditions.keySet()) {
 			conditions.put(attribute, false);
 		}
 
 		// Sets all properties to false. They will be set to true if the selected style contains the same property
-		for (Declaration declaration : declarations.keySet()) {
+		for (css_declaration declaration : declarations.keySet()) {
 			declarations.put(declaration, false);
 		}
 
@@ -175,20 +175,20 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 
 		cssClass = null;
 
-		for (Selector selector : selectedRuleset.getSelectors()) {
+		for (selector selector : selectedRuleset.getSelectors()) {
 			handleSelector(selector);
 		}
 
-		handleDeclarations(selectedRuleset.getProperties());
+		handleDeclarations(selectedRuleset.getDeclarations());
 
 		updateContents();
 		updateSelectorLabel();
 	}
 
-	protected void handleDeclarations(List<Declaration> declarations) {
-		for (Declaration declaration : declarations) {
-			for (Declaration currentDeclaration : this.declarations.keySet()) {
-				if (currentDeclaration.getProperty().equals(declaration.getProperty())) {
+	protected void handleDeclarations(List<css_declaration> declarations) {
+		for (css_declaration declaration : declarations) {
+			for (css_declaration currentDeclaration : this.declarations.keySet()) {
+				if (equals(currentDeclaration.getProperty(), declaration.getProperty())) {
 					this.declarations.put(currentDeclaration, true);
 					break;
 				}
@@ -196,34 +196,26 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 		}
 	}
 
-	protected void handleSelector(Selector selector) {
-		if (selector instanceof SimpleSelector) {
-			handleSelector((SimpleSelector) selector);
-		} else if (selector instanceof CompositeSelector) {
-			handleSelector((CompositeSelector) selector);
-		}
-	}
-
-	protected void handleSelector(SimpleSelector selector) {
-		if (getDiagramType(contextView.getDiagram()).equals(selector.getElementName())) {
+	protected void handleSelector(simple_selector selector) {
+		if (getDiagramType(contextView.getDiagram()).equals(getElementName(selector))) {
 			diagramRestriction = true;
 		}
 
-		if (contextView.getElement().eClass().getName().equals(selector.getElementName())) {
+		if (contextView.getElement().eClass().getName().equals(getElementName(selector))) {
 			useSelectorName = true;
 		}
 
-		for (SelectorCondition condition : selector.getCondition()) {
-			if (condition instanceof Attribute) {
-				Attribute existingAttribute = (Attribute) condition;
-				for (Attribute selectedAttribute : conditions.keySet()) {
+		for (CssSelector condition : selector.getSubSelectors()) {
+			if (condition instanceof AttributeSelector) {
+				AttributeSelector existingAttribute = (AttributeSelector) condition;
+				for (AttributeSelector selectedAttribute : conditions.keySet()) {
 					if (existingAttribute.getName().equals(selectedAttribute.getName())) {
 						conditions.put(selectedAttribute, true);
 						break;
 					}
 				}
-			} else if (condition.eClass() == CssPackage.eINSTANCE.getClass_()) {
-				cssClass = ((org.eclipse.papyrus.infra.gmfdiag.css.Class) condition).getClass_();
+			} else if (condition instanceof ClassSelector) {
+				cssClass = ((ClassSelector) condition).getName();
 			}
 		}
 	}
@@ -247,9 +239,16 @@ public class StyleEditionDialog extends AbstractStyleDialog implements ISelectio
 		}
 	}
 
-	protected void handleSelector(CompositeSelector selector) {
-		handleSelector(selector.getLeft());
-		handleSelector(selector.getRight());
+	protected void handleSelector(selector selector) {
+		if (selector == null) {
+			return;
+		}
+
+		for (simple_selector simpleSelector : selector.getSimpleselectors()) {
+			handleSelector(simpleSelector);
+		}
+
+		handleSelector(selector.getSelector());
 	}
 
 	@Override

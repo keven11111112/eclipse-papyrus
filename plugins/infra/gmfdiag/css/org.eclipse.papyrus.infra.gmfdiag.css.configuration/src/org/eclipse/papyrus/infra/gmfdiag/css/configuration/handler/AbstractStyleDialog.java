@@ -15,6 +15,7 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
 import static org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.DiagramTypeHelper.getDiagramType;
 
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -25,19 +26,19 @@ import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.TrayDialog;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.AttributeValue;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
-import org.eclipse.papyrus.infra.gmfdiag.css.Expression;
-import org.eclipse.papyrus.infra.gmfdiag.css.HexColor;
-import org.eclipse.papyrus.infra.gmfdiag.css.Name;
-import org.eclipse.papyrus.infra.gmfdiag.css.Number;
-import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
-import org.eclipse.papyrus.infra.gmfdiag.css.StringValue;
-import org.eclipse.papyrus.infra.gmfdiag.css.Subterm;
-import org.eclipse.papyrus.infra.gmfdiag.css.Term;
 import org.eclipse.papyrus.infra.gmfdiag.css.converters.ColorToGMFConverter;
-import org.eclipse.papyrus.infra.gmfdiag.css.util.CssSwitch;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UrlTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_property;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.util.CSSSwitch;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.BooleanCheckbox;
 import org.eclipse.papyrus.infra.widgets.editors.EnumRadio;
@@ -63,9 +64,9 @@ import org.w3c.dom.css.RGBColor;
 
 public abstract class AbstractStyleDialog extends TrayDialog {
 
-	protected final Map<Attribute, Boolean> conditions;
+	protected final Map<AttributeSelector, Boolean> conditions;
 
-	protected final Map<Declaration, Boolean> declarations;
+	protected final Map<css_declaration, Boolean> declarations;
 
 	protected final String selectorName;
 
@@ -87,7 +88,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 
 	protected Composite declarationsContainer;
 
-	public AbstractStyleDialog(Shell shell, Map<Attribute, Boolean> conditions, Map<Declaration, Boolean> declarations, String selectorName, View context) {
+	public AbstractStyleDialog(Shell shell, Map<AttributeSelector, Boolean> conditions, Map<css_declaration, Boolean> declarations, String selectorName, View context) {
 		super(shell);
 		this.conditions = conditions;
 		this.declarations = declarations;
@@ -221,6 +222,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		diagramRestrictionWidget.setValue(this.diagramRestriction);
 		diagramRestrictionWidget.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				diagramRestriction = (Boolean) ((EnumRadio) editor).getValue();
 				updateSelectorLabel();
@@ -243,6 +245,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		selectorNameWidget.setValue(this.useSelectorName);
 		selectorNameWidget.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				useSelectorName = (Boolean) ((EnumRadio) editor).getValue();
 				updateSelectorLabel();
@@ -259,12 +262,10 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		detailLabel.setText("If the following properties are matched:");
 		detailLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
 
-		for (SelectorCondition condition : conditions.keySet()) {
-			final Attribute currentCondition = (Attribute) condition;
-
+		for (final AttributeSelector currentCondition : conditions.keySet()) {
 			String attributeLabel = currentCondition.getName();
 			if (currentCondition.getValue() != null) {
-				attributeLabel += " " + currentCondition.getValue().getOperator() + " " + currentCondition.getValue().getValue();
+				attributeLabel += " " + currentCondition.getOp() + " " + currentCondition.getValue();
 			}
 
 			BooleanCheckbox checkbox = new BooleanCheckbox(parent, SWT.NONE, attributeLabel);
@@ -272,6 +273,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 
 			checkbox.addCommitListener(new ICommitListener() {
 
+				@Override
 				public void commit(AbstractEditor editor) {
 					conditions.put(currentCondition, ((BooleanCheckbox) editor).getValue());
 					updateSelectorLabel();
@@ -293,6 +295,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		styleNameEditor.setValue(cssClass);
 		styleNameEditor.addCommitListener(new ICommitListener() {
 
+			@Override
 			public void commit(AbstractEditor editor) {
 				cssClass = (String) ((StringEditor) editor).getValue();
 				updateSelectorLabel();
@@ -308,7 +311,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		declarationsLabel.setText("Select the properties you want to set. Unchecked properties will keep their default value\n (Which might be inherited from another style).");
 		declarationsLabel.setLayoutData(new GridData(SWT.FILL, SWT.BEGINNING, true, false, 3, 1));
 
-		for (Declaration declaration : declarations.keySet()) {
+		for (css_declaration declaration : declarations.keySet()) {
 			// Separate checkbox and label (Checkbox - Label) - (Checkbox - Label) - (Checkbox - Label)
 			// This is required to paint a custom foreground color on non-classic windows Theme
 			// Checkboxes do not support foreground color on Windows, except for the Classic theme
@@ -319,7 +322,7 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 			propertyComposite.setLayout(compositeLayout);
 			propertyComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 
-			String label = declaration.getProperty() + ": " + getLabel(declaration.getExpression());
+			String label = declaration.getProperty().getName() + ": " + getLabel(declaration.getValueTokens());
 			final BooleanCheckbox checkbox = new BooleanCheckbox(propertyComposite, SWT.NONE);
 			checkbox.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false));
 
@@ -337,16 +340,17 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 			propertyComposite.addMouseListener(listener);
 			labelWidget.addMouseListener(listener);
 
-			Color[] colors = getColors(declaration.getExpression());
+			Color[] colors = getColors(declaration.getValueTokens());
 			propertyComposite.setBackground(colors[0]);
 			labelWidget.setForeground(colors[1]);
 
-			final Declaration currentDeclaration = declaration;
+			final css_declaration currentDeclaration = declaration;
 
 			checkbox.setValue(declarations.get(currentDeclaration));
 
 			checkbox.addCommitListener(new ICommitListener() {
 
+				@Override
 				public void commit(AbstractEditor editor) {
 					boolean value = ((BooleanCheckbox) editor).getValue();
 					declarations.put(currentDeclaration, value);
@@ -358,23 +362,17 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		}
 	}
 
-	protected Color[] getColors(Expression expression) {
-		Term term = expression.getTerms();
-		if (term instanceof HexColor) {
-			HexColor hexColor = (HexColor) term;
-			return getColors(hexColor);
-		}
-
-		for (Subterm subterm : expression.getSubterms()) {
-			if (subterm.getTerm() instanceof HexColor) {
-				return getColors((HexColor) subterm.getTerm());
+	protected Color[] getColors(List<CssTok> expression) {
+		for (CssTok subterm : expression) {
+			if (subterm instanceof ColorTok) {
+				return getColors((ColorTok) subterm);
 			}
 		}
 
 		return new Color[] { Display.getDefault().getSystemColor(SWT.COLOR_WHITE), Display.getDefault().getSystemColor(SWT.COLOR_BLACK), };
 	}
 
-	protected Color[] getColors(HexColor hexColor) {
+	protected Color[] getColors(ColorTok hexColor) {
 		Color[] colors = new Color[] { Display.getDefault().getSystemColor(SWT.COLOR_WHITE), Display.getDefault().getSystemColor(SWT.COLOR_BLACK), };
 
 		Color color = getColor(hexColor);
@@ -395,8 +393,8 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		return L;
 	}
 
-	protected Color getColor(HexColor color) {
-		RGBColor rgbColor = CSS2ColorHelper.getRGBColor("#" + color.getValue());
+	protected Color getColor(ColorTok color) {
+		RGBColor rgbColor = CSS2ColorHelper.getRGBColor(color.getValue());
 		int intColor = ColorToGMFConverter.getIntColor(rgbColor);
 		return ColorRegistry.getInstance().getColor(intColor);
 	}
@@ -408,47 +406,54 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		return null;
 	}
 
-	protected String getLabel(Expression expression) {
-		if (expression == null) {
+	protected String getLabel(List<CssTok> expression) {
+		if (expression == null || expression.isEmpty()) {
 			return "";
 		}
-		String label = getLabel(expression.getTerms());
-		for (Subterm subTerm : expression.getSubterms()) {
-			if (subTerm.getOperator() != null) {
-				label += subTerm.getOperator();
+
+		String label = "";
+		for (CssTok token : expression) {
+			if (token instanceof SymbolTok) {
+				label += ((SymbolTok) token).getSymbol();
+			} else {
+				label += " " + getLabel(token);
 			}
-			label += " " + getLabel(subTerm.getTerm());
 		}
-		return label;
+
+		return label.trim().replaceAll("[ ]+", " ");
 	}
 
-	protected String getLabel(Term term) {
-		return (new CssSwitch<String>() {
+	protected String getLabel(CssTok term) {
+		return (new CSSSwitch<String>() {
 
 			@Override
-			public String caseHexColor(HexColor term) {
-				return '#' + term.getValue();
+			public String caseColorTok(ColorTok token) {
+				return token.getValue();
 			}
 
 			@Override
-			public String caseName(Name term) {
-				return term.getValue();
+			public String caseIdentifierTok(IdentifierTok token) {
+				return token.getName();
 			}
 
 			@Override
-			public String caseStringValue(StringValue term) {
-				return "\"" + term.getValue() + "\"";
+			public String caseStringTok(StringTok token) {
+				return token.getValue();
 			}
 
 			@Override
-			public String caseNumber(Number term) {
-				String label = "";
-				if (term.getOp() != null) {
-					label += term.getOp().getOperator();
-				}
-				label += term.getValue();
+			public String caseNumberTok(NumberTok token) {
+				return Double.toString(token.getVal());
+			}
+
+			@Override
+			public String caseUrlTok(UrlTok token) {
+				String label = "url('";
+				label += token.getUrl().getUrl();
+				label += "')";
 				return label;
 			}
+
 		}).doSwitch(term);
 	}
 
@@ -461,12 +466,11 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 
 		selectorText += useSelectorName ? selectorName : "*";
 
-		for (Entry<Attribute, Boolean> selectorEntry : conditions.entrySet()) {
+		for (Entry<AttributeSelector, Boolean> selectorEntry : conditions.entrySet()) {
 			if (selectorEntry.getValue()) {
-				Attribute condition = selectorEntry.getKey();
-				Attribute attribute = condition;
-				AttributeValue value = attribute.getValue();
-				selectorText += "[" + attribute.getName() + value.getOperator() + value.getValue() + "]";
+				AttributeSelector condition = selectorEntry.getKey();
+
+				selectorText += "[" + condition.getName() + condition.getOp() + condition.getValue() + "]";
 			}
 		}
 
@@ -496,5 +500,16 @@ public abstract class AbstractStyleDialog extends TrayDialog {
 		return diagramRestriction;
 	}
 
+	protected final boolean equals(css_property p1, css_property p2) {
+		return p1.getName().equals(p2.getName());
+	}
+
+	protected final String getElementName(simple_selector simpleSelector) {
+		if (simpleSelector.getElement() != null) {
+			return simpleSelector.getElement().getName();
+		} else {
+			return "*";
+		}
+	}
 
 }
