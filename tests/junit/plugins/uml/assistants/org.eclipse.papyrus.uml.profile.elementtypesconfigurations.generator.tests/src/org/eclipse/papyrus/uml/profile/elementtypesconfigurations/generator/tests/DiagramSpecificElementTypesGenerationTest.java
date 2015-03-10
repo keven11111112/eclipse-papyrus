@@ -17,7 +17,6 @@ import static com.google.common.collect.Iterables.transform;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.regexContains;
 import static org.hamcrest.CoreMatchers.containsString;
-import static org.hamcrest.CoreMatchers.hasItem;
 import static org.hamcrest.CoreMatchers.hasItems;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.not;
@@ -32,8 +31,6 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.emf.utils.EMFFunctions;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration;
-import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.StereotypeApplicationMatcherConfiguration;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -109,25 +106,19 @@ public class DiagramSpecificElementTypesGenerationTest {
 	}
 
 	@Test
-	public void stereotypeMatcherGenerated() {
+	public void stereotypeMatcherNotGenerated() {
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
 		List<SpecializationTypeConfiguration> types = fixture.assertAllSpecializationTypes(userActor);
 		for (SpecializationTypeConfiguration type : types) {
-			StereotypeApplicationMatcherConfiguration matcher = fixture.assertStereotypeMatcher(type);
-			assertThat(matcher.getStereotypesQualifiedNames(), hasItem("j2ee::User"));
+			// Stereotype matchers are not required where they are inherited from semantic supertype
+			fixture.assertNoStereotypeMatcher(type);
 		}
 	}
 
 	@Test
-	public void stereotypeAdviceGenerated() {
+	public void stereotypeAdviceNotGenerated() {
 		Pair<Stereotype, Class> userActor = fixture.getMetaclassExtension("User", "Actor");
-		List<ApplyStereotypeAdviceConfiguration> advices = fixture.assertAllApplyStereotypeAdvices(userActor);
-		for (ApplyStereotypeAdviceConfiguration advice : advices) {
-			String visualID = advice.getIdentifier().substring(advice.getIdentifier().lastIndexOf('_') + 1);
-			assertThat(advice.getTarget(), is(fixture.getElementTypeConfiguration(userActor, visualID)));
-			assertThat(advice.getStereotypesToApply(), not(isEmpty()));
-			assertThat(advice.getStereotypesToApply().get(0).getRequiredProfiles(), hasItem("j2ee"));
-			assertThat(advice.getStereotypesToApply().get(0).getStereotypeQualifiedName(), is("j2ee::User"));
-		}
+		// Apply-stereotype advice is not required where it is inherited from semantic supertype
+		fixture.assertNoApplyStereotypeAdvice(userActor);
 	}
 }

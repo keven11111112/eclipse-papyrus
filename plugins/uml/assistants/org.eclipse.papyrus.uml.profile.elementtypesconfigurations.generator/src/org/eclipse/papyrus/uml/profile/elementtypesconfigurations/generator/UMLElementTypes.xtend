@@ -45,6 +45,10 @@ class UMLElementTypes {
     def getElementTypeID(Class metaclass) {
         "org.eclipse.papyrus.uml." + metaclass.name
     }
+    
+    def getElementTypeConfiguration(Class metaclass) {
+        baseUMLElementTypeSet.elementTypeConfigurations.findFirst[identifier == metaclass.elementTypeID]
+    }
 
     def getBaseUMLElementTypeSet() {
         ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(umlElementTypesSet)
@@ -61,8 +65,7 @@ class UMLElementTypes {
     }
 
     def getIconEntry(Class metaclass) {
-        val type = baseUMLElementTypeSet.elementTypeConfigurations.findFirst[identifier == metaclass.elementTypeID]
-        type?.iconEntry.copy()
+        metaclass.elementTypeConfiguration?.iconEntry.copy()
     }
 
     private def copy(IconEntry prototype) {
@@ -84,12 +87,16 @@ class UMLElementTypes {
         elementType.metaclass != null;
     }
     
-    def isDiagramSpecific() {
+    private def isDiagramSpecific() {
        baseElementTypeSet != baseUMLElementTypeSet 
     }
     
     def isDiagramSpecific(ElementTypeConfiguration type) {
         type.hint.isVisualID
+    }
+    
+    def hasSemanticSupertype(ElementTypeConfiguration type) {
+        type.isDiagramSpecific && !suppressSemanticSuperElementTypes
     }
     
     private def isVisualID(String string) {

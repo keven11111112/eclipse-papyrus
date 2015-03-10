@@ -13,18 +13,19 @@
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
 /**
- * The master test suite for the plug-in.
+ * Annotates a test case or suite class with model generation options.
  */
-@RunWith(Suite.class)
-@SuiteClasses({
-		BasicElementTypesGenerationTest.class, DiagramSpecificElementTypesGenerationTest.class,
-		ProfilesWithPackageNestingTest.class,
-		DiagramSpecificElementTypesGenerationBug461717Test.class })
-public class AllTests {
-	// Nothing required
+@Retention(RetentionPolicy.RUNTIME)
+@Target({ ElementType.METHOD, ElementType.TYPE })
+public @interface GenOptions {
+	/**
+	 * The model generation options.
+	 */
+	GenOption[] value();
 }

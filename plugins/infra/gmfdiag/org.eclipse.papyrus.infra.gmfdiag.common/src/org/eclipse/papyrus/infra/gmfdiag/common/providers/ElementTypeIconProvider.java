@@ -22,6 +22,7 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.ui.services.icon.GetIconOperation;
 import org.eclipse.gmf.runtime.common.ui.services.icon.IIconProvider;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
 import org.eclipse.swt.graphics.Image;
 
@@ -62,4 +63,19 @@ public class ElementTypeIconProvider extends AbstractProvider implements IIconPr
 		return ExtendedImageRegistry.INSTANCE.getImage(iconURL);
 	}
 
+	protected URL getIconURL(IElementType elementType) {
+		URL result = elementType.getIconURL();
+
+		if ((result == null) && (elementType instanceof ISpecializationType)) {
+			ISpecializationType subtype = (ISpecializationType) elementType;
+			IElementType[] supertypes = subtype.getSpecializedTypes();
+			if (supertypes != null) {
+				for (int i = 0; (result == null) && (i < supertypes.length); i++) {
+					result = getIconURL(supertypes[i]);
+				}
+			}
+		}
+
+		return result;
+	}
 }

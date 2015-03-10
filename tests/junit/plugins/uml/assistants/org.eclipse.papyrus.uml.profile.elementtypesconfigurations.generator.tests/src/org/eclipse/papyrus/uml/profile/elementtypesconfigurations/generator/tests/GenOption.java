@@ -13,18 +13,9 @@
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests;
 
-import org.junit.runner.RunWith;
-import org.junit.runners.Suite;
-import org.junit.runners.Suite.SuiteClasses;
-
 /**
- * The master test suite for the plug-in.
+ * Test fixture model generation options.
  */
-@RunWith(Suite.class)
-@SuiteClasses({
-		BasicElementTypesGenerationTest.class, DiagramSpecificElementTypesGenerationTest.class,
-		ProfilesWithPackageNestingTest.class,
-		DiagramSpecificElementTypesGenerationBug461717Test.class })
-public class AllTests {
-	// Nothing required
+public enum GenOption {
+	SUPPRESS_SEMANTIC_SUPERTYPE;
 }

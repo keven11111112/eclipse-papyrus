@@ -80,10 +80,6 @@ class Identifiers {
         else stereo.name + discriminators.join(" (", ", ", ")")[toString]
     }
     
-    def dispatch hintSuffix(Void elementType) {
-        ""
-    }
-    
     def dispatch hintSuffix(ElementTypeConfiguration elementType) {
         ""
     }
