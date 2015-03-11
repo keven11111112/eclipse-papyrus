@@ -130,11 +130,11 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0kWaNEeSyJIsxLao1Pw" name="Duration Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3034" hint="3034">
     <iconEntry xmi:id="_x8G0kmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPrecondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0k2aNEeSyJIsxLao1Pw" name="Duration Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.DurationConstraint_3035" hint="3035">
     <iconEntry xmi:id="_x8G0lGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.DurationConstraint_As_UML::Action::localPostcondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HbxGaNEeSyJIsxLao1Pw" name="Exception Handler" identifier="org.eclipse.papyrus.uml.diagram.activity.ExceptionHandler_4005" hint="4005">
     <iconEntry xmi:id="_x8HbxWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ExceptionHandler.gif" bundleId="org.eclipse.uml2.uml.edit"/>

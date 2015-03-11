@@ -327,7 +327,7 @@
     <iconEntry xmi:id="_Scd4FlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Duration.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Duration"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scd4F1YCEeS0WsAAtVmToA" name="UML::DurationConstraint" identifier="org.eclipse.papyrus.uml.DurationConstraint" hint="UML::DurationConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scd4F1YCEeS0WsAAtVmToA" name="UML::DurationConstraint" identifier="org.eclipse.papyrus.uml.DurationConstraint" hint="UML::DurationConstraint" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.DurationConstraintEditHelper">
     <iconEntry xmi:id="_Scd4GFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DurationConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DurationConstraint"/>
   </elementTypeConfigurations>
