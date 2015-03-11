@@ -29,4 +29,18 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/outputElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_9_NrAL6fEeSWor5pKcy9Fw" name="Constraint_As_Pre" identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPrecondition" hint="UML::Constraint_As_UML::Action::localPrecondition">
+    <iconEntry xmi:id="_4JcVAL6gEeSWor5pKcy9Fw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <containerConfiguration xmi:id="_9i00gL6gEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPrecondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_1fLHIL6gEeSWor5pKcy9Fw" name="Constraint_As_Post" identifier="org.eclipse.papyrus.uml.Constraint_As_UML::Action::localPostcondition" hint="UML::Constraint_As_UML::Action::localPostcondition">
+    <iconEntry xmi:id="_7d_O8L6gEeSWor5pKcy9Fw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <containerConfiguration xmi:id="_F9kzQL6hEeSWor5pKcy9Fw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
