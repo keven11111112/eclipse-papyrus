@@ -350,11 +350,11 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0lWaNEeSyJIsxLao1Pw" name="Time Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3036" hint="3036">
     <iconEntry xmi:id="_x8G0lmaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/TimeConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPrecondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0l2aNEeSyJIsxLao1Pw" name="Time Constraint" identifier="org.eclipse.papyrus.uml.diagram.activity.TimeConstraint_3037" hint="3037">
     <iconEntry xmi:id="_x8G0mGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/TimeConstraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.TimeConstraint_As_UML::Action::localPostcondition</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8G0b2aNEeSyJIsxLao1Pw" name="Value Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3015" hint="3015">
     <iconEntry xmi:id="_x8G0cGaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>

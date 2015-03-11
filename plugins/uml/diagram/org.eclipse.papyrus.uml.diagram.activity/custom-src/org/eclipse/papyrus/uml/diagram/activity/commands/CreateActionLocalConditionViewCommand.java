@@ -33,8 +33,6 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.IntervalConstraintAsLocalPostcondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.commands.IntervalConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
@@ -102,12 +100,6 @@ public class CreateActionLocalConditionViewCommand extends Command {
 			return new ICommandProxy(cmd);
 		} else if (UMLElementTypes.IntervalConstraint_3033.equals(conditionType)) {
 			IntervalConstraintAsLocalPostcondCreateCommand cmd = new IntervalConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.TimeConstraint_3036.equals(conditionType)) {
-			TimeConstraintAsLocalPrecondCreateCommand cmd = new TimeConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.TimeConstraint_3037.equals(conditionType)) {
-			TimeConstraintAsLocalPostcondCreateCommand cmd = new TimeConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
 			return new ICommandProxy(cmd);
 		}
 
