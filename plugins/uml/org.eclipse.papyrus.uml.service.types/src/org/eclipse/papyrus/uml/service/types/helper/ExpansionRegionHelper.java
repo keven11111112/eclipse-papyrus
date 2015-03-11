@@ -9,7 +9,7 @@ import org.eclipse.uml2.uml.ExpansionRegion;
 import org.eclipse.uml2.uml.StructuredActivityNode;
 import org.eclipse.uml2.uml.UMLPackage;
 
-public class ExpansionRegionHelper extends ActivityNodeHelper {
+public class ExpansionRegionHelper extends StructuredActivityNodeHelper {
 
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {

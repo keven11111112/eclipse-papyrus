@@ -14,8 +14,11 @@
 package org.eclipse.papyrus.uml.service.types.helper;
 
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.uml.service.types.command.NotContainmentMoveCommand;
+import org.eclipse.uml2.uml.UMLPackage;
 
 
 public class ActivityHelper extends ElementEditHelper {
@@ -23,6 +26,23 @@ public class ActivityHelper extends ElementEditHelper {
 	@Override
 	protected ICommand getMoveCommand(MoveRequest req) {
 		return new NotContainmentMoveCommand(req);
+	}
+	
+	@Override
+	protected ICommand getCreateCommand(CreateElementRequest req) {
+		CreateElementRequest createRequest = isStructuredNode(req.getElementType()) ? createStructuredNodeRequest(req) : req;
+		return super.getCreateCommand(createRequest);
+	}
+	
+	protected CreateElementRequest createStructuredNodeRequest(CreateElementRequest baseReq) {
+		CreateElementRequest req = new CreateElementRequest(baseReq.getEditingDomain(), baseReq.getContainer(), baseReq.getElementType());
+		req.addParameters(baseReq.getParameters());
+		req.setContainmentFeature(UMLPackage.eINSTANCE.getActivity_StructuredNode());
+		return req;
+	}
+	
+	protected boolean isStructuredNode(IElementType type) {
+		return type.getEClass() != null && UMLPackage.eINSTANCE.getStructuredActivityNode().isSuperTypeOf(type.getEClass());
 	}
 	
 //	{
