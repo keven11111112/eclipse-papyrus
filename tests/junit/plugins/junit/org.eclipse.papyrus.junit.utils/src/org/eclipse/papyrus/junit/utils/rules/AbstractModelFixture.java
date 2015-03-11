@@ -439,7 +439,7 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 				result.load(null);
 			} catch (Exception e) {
 				e.printStackTrace();
-				fail("Failed to load test resource: " + e.getLocalizedMessage());
+				fail("Failed to load test resource: " + resourceIPath.toString());
 			}
 		}
 
