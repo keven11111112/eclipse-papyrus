@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="ASCII"?>
+<elementtypesconfigurations:ElementTypeSetConfiguration
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:elementtypesconfigurations="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+    xmlns:invariantcontainerruleconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttypeconfiguration/containerruleconfiguration/1.0"
+    xmlns:invarianttypeconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0"
+    xmlns:setvaluesadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/setvaluesadviceconfiguration/1.0"
+    xmlns:stereotypeapplicationmatcherconfiguration="http://www.eclipse.org/payrus/elementtypesconfigurations/uml/stereotypematcherconfiguration"
+    xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
+    xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
+    name="Test element types"
+    metamodelNsURI="http://www.eclipse.org/uml2/5.0.0/UML">
+  <elementTypeConfigurations
+      xsi:type="invarianttypeconfiguration:InvariantTypeConfiguration"
+      xmi:id="_JIwuQLg9EeS0cu6lbJ9jDQ"
+      name="Component in specific package only"
+      description=""
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.specificcomponent"
+      hint="ElementTypes">
+    <iconEntry
+        xmi:id="_FW5wwLg-EeS0cu6lbJ9jDQ"
+        iconPath="icons/full/obj16/add_obj.gif"
+        bundleId="org.eclipse.ui"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <invariantRuleConfiguration
+        xsi:type="invariantcontainerruleconfiguration:InvariantContainerRuleConfiguration"
+        xmi:id="_N9YeYLg-EeS0cu6lbJ9jDQ">
+      <permissions
+          xmi:id="_Ow-egLg-EeS0cu6lbJ9jDQ"
+          childType="org.eclipse.papyrus.uml.Package"/>
+      <permissions
+          xmi:id="_QsZCULg-EeS0cu6lbJ9jDQ"
+          childType="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.packagewithcomponentsonly"
+          isPermitted="true"
+          isStrict="true"/>
+    </invariantRuleConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_XkWz4LtYEeSfJNL-2_VlLg"
+      name="PackageWithComponentsOnly"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.packagewithcomponentsonly"
+      hint="PackageWithComponentsOnly">
+    <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_spokgLtYEeSfJNL-2_VlLg">
+      <stereotypesQualifiedNames>ElementTypesTestsProfile::PackageWithComponents</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations
+      xsi:type="setvaluesadviceconfiguration:SetValuesAdviceConfiguration"
+      xmi:id="_6Zq8QLg_EeS0cu6lbJ9jDQ"
+      name=""
+      description="Aspect Semantic element type to create abstract classes"
+      identifier=""
+      editHelperAdviceClassName="">
+    <featuresToSet
+        xmi:id="_7FIUELg_EeS0cu6lbJ9jDQ"
+        featureName="isAbstract">
+      <value
+          xsi:type="setvaluesadviceconfiguration:ConstantValue"
+          xmi:id="_-d4_oLg_EeS0cu6lbJ9jDQ">
+        <valueInstance
+            xsi:type="uml:LiteralBoolean"
+            xmi:id="__mUnULg_EeS0cu6lbJ9jDQ"
+            value="true"/>
+      </value>
+    </featuresToSet>
+  </adviceBindingsConfigurations>
+</elementtypesconfigurations:ElementTypeSetConfiguration>

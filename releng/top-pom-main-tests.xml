@@ -29,6 +29,7 @@
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.extendedtypes.tests</module>
+		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.elementtypesconfigurations.tests</module>
 		<module>../tests/junit/plugins/customization/org.eclipse.papyrus.customization.properties.tests</module>
 		<module>../tests/junit/plugins/developer/org.eclipse.papyrus.bundles.tests</module>
         <module>../tests/junit/plugins/infra/org.eclipse.papyrus.infra.filters.tests</module>
