@@ -1,5 +1,5 @@
 /*******************************************************************************
- * Copyright (c) 2000, 2007 IBM Corporation and others.
+ * Copyright (c) 2000, 2015 IBM Corporation, Christian W. Damus, and others.
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -7,6 +7,7 @@
  *
  * Contributors:
  *     IBM Corporation - initial API and implementation
+ *     Christian W. Damus - bug 403755
  *******************************************************************************/
 package org.eclipse.papyrus.infra.core.sasheditor.internal.eclipsecopy;
 
@@ -32,7 +33,6 @@ import org.eclipse.ui.IKeyBindingService;
 import org.eclipse.ui.INestableKeyBindingService;
 import org.eclipse.ui.IWorkbenchPage;
 import org.eclipse.ui.IWorkbenchPart;
-import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.IWorkbenchWindow;
 import org.eclipse.ui.contexts.IContextService;
 import org.eclipse.ui.handlers.IHandlerService;
@@ -90,7 +90,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	/**
 	 * The main editor EditorSite.
 	 */
-	private IEditorSite mainEditorSite;
+	private final IEditorSite mainEditorSite;
 
 	/**
 	 * The post selection changed listener.
@@ -165,7 +165,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		// Updated for e4
 		// Copied from CT org.eclipse.ui.part.MultiPageEditorSite()
 		PartSite site = (PartSite) mainEditorSite;
-		IServiceLocatorCreator slc = (IServiceLocatorCreator) mainEditorSite.getService(IServiceLocatorCreator.class);
+		IServiceLocatorCreator slc = mainEditorSite.getService(IServiceLocatorCreator.class);
 		this.serviceLocator = (ServiceLocator) slc.createServiceLocator(getMainEditorSite(), null, new IDisposable() {
 
 			@Override
@@ -205,18 +205,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 *
 	 * @return
 	 */
-	private IWorkbenchPartSite getMainEditorSite() {
-		return mainEditorSite;
-	}
-
-	/**
-	 * Return the EditorSite of the main editor.
-	 * This is the same object as getMainEditorSite.
-	 * TODO: Remove this one.
-	 *
-	 * @return
-	 */
-	private IEditorSite getMainEditorEditorSite() {
+	private IEditorSite getMainEditorSite() {
 		return mainEditorSite;
 	}
 
@@ -343,14 +332,6 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 
 		contextFunction.dispose();
 		contextFunction = null;
-
-		// dispose properties to help GC
-		setSelectionProvider(null);
-		mainEditorSite = null;
-		editor = null;
-
-		actionBarContributor = null;
-
 	}
 
 	/**
@@ -377,7 +358,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		if (actionBarContributor != null) {
 			return actionBarContributor;
 		} else {
-			return getMainEditorEditorSite().getActionBarContributor();
+			return getMainEditorSite().getActionBarContributor();
 			// return null;
 		}
 	}
@@ -390,14 +371,9 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 */
 	@Override
 	public IActionBars getActionBars() {
-		return getMainEditorEditorSite().getActionBars();
+		return getMainEditorSite().getActionBars();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
-	 */
 	@Override
 	public Object getAdapter(Class adapter) {
 		return null;
@@ -435,13 +411,10 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 		return ""; //$NON-NLS-1$
 	}
 
-	/*
-	 * (non-Javadoc) Method declared on IEditorSite.
-	 */
 	@Override
 	public IKeyBindingService getKeyBindingService() {
 		if (service == null) {
-			service = getMainEditorEditorSite().getKeyBindingService();
+			service = getMainEditorSite().getKeyBindingService();
 			if (service instanceof INestableKeyBindingService) {
 				INestableKeyBindingService nestableService = (INestableKeyBindingService) service;
 				service = nestableService.getKeyBindingService(this);
@@ -466,17 +439,9 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 */
 	@Override
 	public IWorkbenchPage getPage() {
-		if (getMainEditorEditorSite() != null) {
-			return getMainEditorSite().getPage();
-		}
-		return null;
+		return getMainEditorSite().getPage();
 	}
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.ui.IWorkbenchPartSite#getPart()
-	 */
 	@Override
 	public IWorkbenchPart getPart() {
 		return editor;
@@ -571,10 +536,7 @@ public class MultiPageEditorSite implements IMultiPageEditorSite, INestable {
 	 */
 	@Override
 	public Shell getShell() {
-		if (getMainEditorEditorSite() != null) {
-			return getMainEditorSite().getShell();
-		}
-		return null;
+		return getMainEditorSite().getShell();
 	}
 
 	/**
