@@ -64,7 +64,6 @@ import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInter
 import org.eclipse.papyrus.uml.diagram.interactionoverview.tests.IInteractionoverviewDiagramTestsConstants;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase;
 import org.eclipse.papyrus.uml.diagram.tests.canonical.TestChildNode;
-import org.eclipse.papyrus.uml.diagram.timing.custom.utils.EditPartUtils;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
 import org.eclipse.swt.widgets.Display;
@@ -79,10 +78,6 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return null;
 	}
-	private CustomActivityEditPartTN activityEditPartTN;
-
-	private ActivityActivityContentCompartmentEditPart activityCompartmentEditPart;
-
 	protected boolean operationFailed = false;
 
 	@Override
@@ -218,10 +213,11 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 
 	protected CustomActivityEditPartTN createActivity(final Point location, final Dimension dimension) {
 		createView(UMLElementTypes.Activity_2001, location, dimension, getDiagramEditPart());
-		activityEditPartTN = (CustomActivityEditPartTN)EditPartUtils.findFirstChildEditPartWithId(getDiagramEditPart(), CustomActivityEditPartTN.VISUAL_ID);
-		activityCompartmentEditPart = (ActivityActivityContentCompartmentEditPart)EditPartUtils.findFirstChildEditPartWithId(activityEditPartTN, ActivityActivityContentCompartmentEditPart.VISUAL_ID);
+		List<?> diagramChildren = getDiagramEditPart().getChildren();
+		int diagramChildrenAmount = diagramChildren.size();
+		CustomActivityEditPartTN activityEditPartTN = (CustomActivityEditPartTN) diagramChildren.get(diagramChildrenAmount - 1);
 		assertNotNull("The interaction EditPart was not found under the diagram EditPart", activityEditPartTN);
-		final ActivityActivityContentCompartmentEditPart interactionCompartment = (ActivityActivityContentCompartmentEditPart)EditPartUtils.findFirstChildEditPartWithId(activityEditPartTN, ActivityActivityContentCompartmentEditPart.VISUAL_ID);
+		final ActivityActivityContentCompartmentEditPart interactionCompartment = findActivityContenCompartment(activityEditPartTN);
 		assertNotNull("The interaction compartment was not found", interactionCompartment);
 		return activityEditPartTN;
 	}
@@ -583,13 +579,17 @@ public class AbstractInteractionOverviewDiagramTestCase extends TestChildNode {
 	}
 
 	protected CustomActivityEditPartTN getDefaultActivityEditPart() {
-		return this.activityEditPartTN;
+		int activityIndex = 0;
+		return (CustomActivityEditPartTN) getDiagramEditPart().getChildren().get(activityIndex);
 	}
 
 	protected ActivityActivityContentCompartmentEditPart getDefaultActivityCompartment() {
-		return this.activityCompartmentEditPart;
+		return findActivityContenCompartment(getDefaultActivityEditPart());
 	}
 
+	private ActivityActivityContentCompartmentEditPart findActivityContenCompartment(CustomActivityEditPartTN activityEP) {
+		return (ActivityActivityContentCompartmentEditPart) activityEP.getChildBySemanticHint(Integer.toString(ActivityActivityContentCompartmentEditPart.VISUAL_ID));
+	}
 
 	protected static EditPart findChildEditPartAssociatedToView(final EditPart parentEditPart, final View view) {
 		EditPart result = null;

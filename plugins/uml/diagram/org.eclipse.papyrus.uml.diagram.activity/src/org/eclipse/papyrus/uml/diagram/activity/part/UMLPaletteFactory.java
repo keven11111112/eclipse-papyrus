@@ -15,6 +15,7 @@ package org.eclipse.papyrus.uml.diagram.activity.part;
 
 import java.util.ArrayList;
 import java.util.List;
+
 import org.eclipse.gef.Tool;
 import org.eclipse.gmf.runtime.diagram.ui.services.palette.PaletteFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -26,270 +27,335 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  * @generated
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
-	//RS: New Palette generation
 
-	//Generates the ID for the tool elements
-	//Generate the tool factory (if(ID) createtool...)
+	// RS: New Palette generation
+	// Generates the ID for the tool elements
+	// Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_ACCEPTEVENTACTION = "activity.nodes.accepteventaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_TESTIDENTITYACTION = "activity.nodes.testidentityaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_ACTIVITY = "activity.nodes.activity";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_ACTIVITYPARAMETERNODE = "activity.nodes.activityparameternode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CENTRALBUFFERNODE = "activity.nodes.centralbuffernode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_DATASTORENODE = "activity.nodes.datastorenode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_COMMENT = "activity.nodes.comment";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_EDGES_CONTROLFLOW = "activity.edges.controlflow";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_EDGES_EXCEPTIONHANDLER = "activity.edges.exceptionhandler";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_EDGES_OBJECTFLOW = "activity.edges.objectflow";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_EDGES_LINK = "activity.edges.link";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_ACTIVITYGROUP_ACTIVITYPARTITION = "activity.nodes.activitygroup.activitypartition";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_ACTIVITYGROUP_INTERRUPTIBLEACTIVITYREGION = "activity.nodes.activitygroup.interruptibleactivityregion";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_INITIALNODE = "activity.nodes.controlnodes.initialnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_ACTIVITYFINAL = "activity.nodes.controlnodes.activityfinal";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_FLOWFINAL = "activity.nodes.controlnodes.flowfinal";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_DECISIONNODE = "activity.nodes.controlnodes.decisionnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_MERGENODE = "activity.nodes.controlnodes.mergenode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_JOINNODE = "activity.nodes.controlnodes.joinnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONTROLNODES_FORKNODE = "activity.nodes.controlnodes.forknode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONCONSTRAINT = "activity.nodes.constraints.localpreconditionconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONINTERVALCONSTRAINT = "activity.nodes.constraints.localpreconditionintervalconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONDURATIONCONSTRAINT = "activity.nodes.constraints.localpreconditiondurationconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONTIMECONSTRAINT = "activity.nodes.constraints.localpreconditiontimeconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONCONSTRAINT = "activity.nodes.constraints.localpostconditionconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONINTERVALCONSTRAINT = "activity.nodes.constraints.localpostconditionintervalconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONDURATIONCONSTRAINT = "activity.nodes.constraints.localpostconditiondurationconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONTIMECONSTRAINT = "activity.nodes.constraints.localpostconditiontimeconstraint";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_PINS_OUTPUTPIN = "activity.nodes.pins.outputpin";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_PINS_INPUTPIN = "activity.nodes.pins.inputpin";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_PINS_ACTIONINPUTPIN = "activity.nodes.pins.actioninputpin";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_PINS_VALUEPIN = "activity.nodes.pins.valuepin";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_EXPANSIONREGION = "activity.nodes.expansionregions.expansionregion";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_INPUTEXPANSIONNODE = "activity.nodes.expansionregions.inputexpansionnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_OUTPUTEXPANSIONNODE = "activity.nodes.expansionregions.outputexpansionnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_BROADCASTSIGNALACTION = "activity.nodes.invocationactions.broadcastsignalaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_CALLBEHAVIORACTION = "activity.nodes.invocationactions.callbehavioraction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_CALLOPERATIONACTION = "activity.nodes.invocationactions.calloperationaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_SENDOBJECTACTION = "activity.nodes.invocationactions.sendobjectaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_SENDSIGNALACTION = "activity.nodes.invocationactions.sendsignalaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_STARTOBJECTBEHAVIOURACTION = "activity.nodes.invocationactions.startobjectbehaviouraction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_OBJECTACTIONS_CREATEOBJECTACTION = "activity.nodes.objectactions.createobjectaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_OBJECTACTIONS_DESTROYOBJECTACTION = "activity.nodes.objectactions.destroyobjectaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_OBJECTACTIONS_READSELFACTION = "activity.nodes.objectactions.readselfaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_OBJECTACTIONS_RECLASSIFYOBJECTACTION = "activity.nodes.objectactions.reclassifyobjectaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_OBJECTACTIONS_READISCLASSIFIEDOBJECTACTION = "activity.nodes.objectactions.readisclassifiedobjectaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_STRUCTUREDACTIVITYNODE = "activity.nodes.structuredactions.structuredactivitynode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_LOOPNODE = "activity.nodes.structuredactions.loopnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_SEQUENCENODE = "activity.nodes.structuredactions.sequencenode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_CONDITIONALNODE = "activity.nodes.structuredactions.conditionalnode";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION = "activity.nodes.structuralfeatureactions.readstructuralfeatureaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION = "activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION2 = "activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION2 = "activity.nodes.structuralfeatureactions.readstructuralfeatureaction2";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE = "activity.nodes.structuralfeatureactions.clearstructuralfeature";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION = "activity.nodes.variableactions.addvariablevalueaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_VARIABLEACTIONS_READVARIABLEACTION = "activity.nodes.variableactions.readvariableaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_OPAQUEACTION = "activity.nodes.miscellaneousactions.opaqueaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_VALUESPECIFICATIONACTION = "activity.nodes.miscellaneousactions.valuespecificationaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_CLEARASSOCIATIONACTION = "activity.nodes.miscellaneousactions.clearassociationaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_READEXTENTACTION = "activity.nodes.miscellaneousactions.readextentaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_REDUCEACTION = "activity.nodes.miscellaneousactions.reduceaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_STARTCLASSIFIERBEHAVIOR = "activity.nodes.miscellaneousactions.startclassifierbehavior";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_LINKACTIONS_CREATELINKACTION = "activity.nodes.linkactions.createlinkaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
 	private final static String ACTIVITY_NODES_LINKACTIONS_READLINKACTION = "activity.nodes.linkactions.readlinkaction";//$NON-NLS-1$
+
 	/**
 	 * @generated
 	 */
@@ -299,7 +365,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -512,7 +577,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 * @generated
 	 */
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}
@@ -1270,5 +1334,4 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
 		return tool;
 	}
-
 }

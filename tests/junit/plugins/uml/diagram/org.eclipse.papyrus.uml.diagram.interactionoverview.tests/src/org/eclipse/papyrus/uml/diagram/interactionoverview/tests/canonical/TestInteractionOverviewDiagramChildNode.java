@@ -31,7 +31,7 @@ public class TestInteractionOverviewDiagramChildNode extends AbstractInteraction
 	@Override
 	public void setUp() throws Exception {
 		projectCreation();
-		createActivity();
+//		createActivity();
 
 		assertTrue(AbstractPapyrusTestCase.CREATION + AbstractPapyrusTestCase.INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
