@@ -20,7 +20,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ExpansionNodeAsInEditPart;
@@ -75,7 +74,6 @@ public class TestDropObjects extends AbstractPapyrusTestCase {
 		return findChildBySemanticHint(activityEP, ActivityActivityContentCompartmentEditPart.VISUAL_ID);
 	}
 
-	@FailingTest
 	@Test
 	public void testExpansionNodeInExpansionRegionCompartment() throws Exception {
 		IGraphicalEditPart regionEP = createChild(ExpansionRegionEditPart.VISUAL_ID, getActivityCompartmentEditPart());

@@ -15,4 +15,18 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Package/packagedElement"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_EcQ3QLocEeSsV_IrhqhBPw" name="Expansion Node" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsInput" hint="ExpansionNode_As_UML::ExpansionRegion::inputElement">
+    <iconEntry xmi:id="_Si-6ULocEeSsV_IrhqhBPw" iconPath="/icons/full/obj16/ExpansionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
+    <containerConfiguration xmi:id="_xpxzMLocEeSsV_IrhqhBPw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/inputElement"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_4YwzsLocEeSsV_IrhqhBPw" name="Expansion Node" identifier="org.eclipse.papyrus.uml.diagram.activity.ExpansionNode_AsOutput" hint="ExpansionNode_As_UML::ExpansionRegion::outputElement">
+    <iconEntry xmi:id="_4YwzsbocEeSsV_IrhqhBPw" iconPath="/icons/full/obj16/ExpansionNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ExpansionNode</specializedTypesID>
+    <containerConfiguration xmi:id="_4YwzsrocEeSsV_IrhqhBPw">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//ExpansionRegion/outputElement"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
