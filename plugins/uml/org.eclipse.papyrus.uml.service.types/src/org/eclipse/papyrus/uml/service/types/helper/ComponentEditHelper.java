@@ -37,7 +37,8 @@ public class ComponentEditHelper extends ElementEditHelper {
 		// override the creation in order to prevent to create a component into a component by using the role "nestedClassifier"
 		EObject owner = req.getContainer();
 		EReference eref = req.getContainmentFeature();
-		if (owner instanceof Component && eref.equals(UMLPackage.eINSTANCE.getClass_NestedClassifier()) && req.getElementType().getEClass().equals(UMLPackage.eINSTANCE.getComponent())) {
+
+		if (owner instanceof Component && eref == UMLPackage.eINSTANCE.getClass_NestedClassifier() && req.getElementType().getEClass() == UMLPackage.eINSTANCE.getComponent()) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
