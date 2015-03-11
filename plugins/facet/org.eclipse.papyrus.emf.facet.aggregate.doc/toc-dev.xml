@@ -10,6 +10,6 @@
  Contributors:
     Nicolas Bros (Mia-Software) - Bug 375789 - Documentation
 -->
-<toc label="Customization" link_to="../org.eclipse.papyrus.emf.facet.doc/maintoc-dev.xml#dev.anchor.2">
-   <topic label="Customization" href="mediawiki/plugin_dev.html"/>
+<toc label="Aggregates" link_to="../org.eclipse.papyrus.emf.facet.doc/maintoc-dev.xml#dev.anchor.3">
+   <topic label="Aggregates" href="mediawiki/plugin_dev.html"/>
 </toc>
