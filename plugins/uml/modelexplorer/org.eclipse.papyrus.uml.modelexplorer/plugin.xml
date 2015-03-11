@@ -2358,5 +2358,49 @@
             model="resource/UMLEdges.creationmenumodel">
       </menuCreationModel>
    </extension>
-   
+   <extension
+      id="PapyrusQuickFormatHandler"
+      name="QuickFormatHandler"
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.uml.modelexplorer.handler.UmlQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.uml.modelexplorer.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler 
+         class="org.eclipse.papyrus.uml.modelexplorer.handler.UmlQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.uml.modelexplorer.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+      <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.eclipse.papyrus.uml.modelexplorer.handler.UmlNamePropertyTester"
+               id="org.eclipse.papyrus.uml.modelexplorer.menu.quickformatpropertytester"
+               namespace="org.eclipse.papyrus.uml.modelexplorer.menu.quickformatpropertytester"
+               properties="isNameChangeable"
+               type="org.eclipse.jface.viewers.IStructuredSelection">
+         </propertyTester>
+      </extension>
 </plugin>

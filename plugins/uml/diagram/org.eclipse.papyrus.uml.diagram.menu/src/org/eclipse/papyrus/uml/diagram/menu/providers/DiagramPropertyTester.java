@@ -14,10 +14,12 @@ package org.eclipse.papyrus.uml.diagram.menu.providers;
 import java.util.Iterator;
 
 import org.eclipse.core.expressions.PropertyTester;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 
@@ -81,7 +83,8 @@ public class DiagramPropertyTester extends PropertyTester {
 		if (!selection.isEmpty()) {
 			Iterator<?> iter = selection.iterator();
 			while (iter.hasNext()) {
-				if (!(iter.next() instanceof Diagram)) {
+				EObject object = EMFHelper.getEObject(iter.next());
+				if (!(object instanceof Diagram)) {
 					return false;
 				}
 			}

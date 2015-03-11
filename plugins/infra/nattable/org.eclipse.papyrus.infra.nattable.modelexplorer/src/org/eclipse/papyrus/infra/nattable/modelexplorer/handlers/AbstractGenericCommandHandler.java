@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2015 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -8,13 +8,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
- *  Christian W. Damus (CEA) - bug 430701
- *  Christian W. Damus (CEA) - bug 433320
- *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
+ *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;
+package org.eclipse.papyrus.infra.nattable.modelexplorer.handlers;
 
 import java.util.Collection;
 import java.util.Collections;
@@ -25,16 +22,15 @@ import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.expressions.IEvaluationContext;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
+import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
 import org.eclipse.ui.ISources;
 import org.eclipse.ui.handlers.HandlerUtil;
 
@@ -44,27 +40,23 @@ import org.eclipse.ui.handlers.HandlerUtil;
  * executes the command in Papyrus command stack
  *
  */
-public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
+public abstract class AbstractGenericCommandHandler extends AbstractHandler {
 
-	protected abstract Command getCommand();
-	
-	protected Command getCommand(ExecutionEvent event){
-	    return getCommand(); //Implement an overridable, default behavior. Extend it only when you actually need the ExecutionEvent (i.e. for your own contribution)
-	}
+	protected abstract Command getCommand(ExecutionEvent event);
 
 	/**
-	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in the selection.
+	 * Iterate over current selection and build a list of the {@link EObject} contained in the selection.
 	 *
-	 * @return the currently selected {@link IGraphicalEditPart}
+	 * @return the currently selected {@link EObject}
 	 */
-	protected List<IGraphicalEditPart> getSelectedElements() {
-		List<IGraphicalEditPart> result = new LinkedList<IGraphicalEditPart>();
+	protected List<EObject> getSelectedElements() {
+		List<EObject> result = new LinkedList<EObject>();
 		for (Object element : getSelection()) {
-			if (element instanceof IGraphicalEditPart) {
-				result.add((IGraphicalEditPart) element);
+			EObject elementi = EMFHelper.getEObject(element) ;
+			if(elementi instanceof TableNamedElement){
+				result.add( elementi);
 			}
 		}
-
 		return result;
 	}
 
@@ -80,8 +72,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 		try {
 			ISelection selection = HandlerUtil.getCurrentSelection(event);
 			this.selection = (selection instanceof IStructuredSelection) ? ((IStructuredSelection) selection).toList() : Collections.EMPTY_LIST;
-
-			getEditingDomain(event).getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(getCommand(event)));
+			getEditingDomain(event).getCommandStack().execute(getCommand(event));
 		} finally {
 			// clear the selection
 			this.selection = Collections.EMPTY_LIST;
@@ -96,24 +87,6 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 		} catch (ServiceException ex) {
 			return null;
 		}
-	}
-
-	protected TransactionalEditingDomain getEditingDomain() {
-		TransactionalEditingDomain editingDomain = null;
-		for (IGraphicalEditPart editPart : getSelectedElements()) {
-			try {
-				editingDomain = ServiceUtilsForEditPart.getInstance().getTransactionalEditingDomain(editPart);
-				if (editingDomain != null) {
-					break;
-				}
-			} catch (ServiceException ex) {
-				// Keep searching
-			}
-		}
-
-		// TODO: From active editor?
-
-		return editingDomain;
 	}
 
 	@Override
@@ -132,15 +105,10 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 	}
 
 	protected boolean computeEnabled() {
-		boolean result = false;
-
-		TransactionalEditingDomain domain = getEditingDomain();
-		if ((domain != null) && !TransactionHelper.isDisposed(domain)) {
-			Command command = getCommand(null);
-			if (command != null) {
-				result = command.canExecute();
-				command.dispose();
-			}
+		boolean result = true;
+		List<EObject> elts = getSelectedElements();
+		if(elts.size()==0){
+			result=false;
 		}
 
 		return result;
@@ -152,11 +120,4 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 
 	private List<?> selection = Collections.EMPTY_LIST;
 
-	/**
-	 *
-	 * @return true if the command can be executed
-	 */
-	public boolean isVisible() {
-		return isEnabled();
-	}
 }
