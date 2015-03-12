@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.decoratormodel.controlmode.tests;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
+import static org.junit.Assert.assertNotNull;
 import static org.junit.Assert.fail;
 
 import java.io.IOException;
@@ -100,7 +101,7 @@ public class AdditionalModelStructuresTest extends AbstractDecoratorModelControl
 			@Override
 			public void run() {
 				getPackage2_1().createNestedPackage("package2_1_1");
-				getPackage2_1().createNestedPackage("package2_1_2").createNestedPackage("2_1_2_1");
+				getPackage2_1().createNestedPackage("package2_1_2").createNestedPackage("package2_1_2_1");
 			}
 		});
 
@@ -110,7 +111,8 @@ public class AdditionalModelStructuresTest extends AbstractDecoratorModelControl
 
 		Package package2_1_1 = getPackage2_1().getNestedPackage("package2_1_1");
 		Package package2_1_2 = getPackage2_1().getNestedPackage("package2_1_2");
-		Package package2_1_2_1 = getPackage2_1().getNestedPackage("package2_1_2_1");
+		assertNotNull(package2_1_2);
+		Package package2_1_2_1 = package2_1_2.getNestedPackage("package2_1_2_1");
 
 		assertThat(getExternalProfiles(getPackage2_1(), "package2"), is(set(getTestProfileURI())));
 
