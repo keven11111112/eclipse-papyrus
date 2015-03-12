@@ -25,6 +25,8 @@ import java.util.regex.Pattern;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.ResourcesPlugin;
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
@@ -34,6 +36,7 @@ import org.eclipse.papyrus.infra.core.utils.EditorUtils;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.search.regex.PatternHelper;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.AttributeMatch;
@@ -50,8 +53,10 @@ import org.eclipse.search.ui.text.MatchFilter;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 import com.google.common.base.Objects;
 import com.swtdesigner.ResourceManager;
@@ -172,40 +177,36 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 						Object attribute = ((AttributeMatch) match).getMetaAttribute();
 						String value = null;
 						EObject target = (EObject) ((AbstractResultEntry) match).getSource();
+						
 						if (attribute instanceof EAttribute) {
-
 							value = String.valueOf(target.eGet((EStructuralFeature) attribute));
 						} else if (attribute instanceof Property) {
+							value = StereotypeUtil.displayPropertyValueOnly( ((AttributeMatch) match).getStereotype(), ((Property) attribute), (Element) ((AbstractResultEntry) match).getSource(), "");
+						}	
 
-							value = getStringValueOfProperty((Element) ((AbstractResultEntry) match).getSource(), ((AttributeMatch) match).getStereotype(), ((Property) attribute));
-
-
-						}
-						if (value != null && !this.getQuery().isRegularExpression()) {
+						if (!this.getQuery().isRegularExpression()) {
 							if (value.length() >= match.getLength() + match.getOffset()) {
 								int end = match.getLength() + match.getOffset();
 								value = value.substring(match.getOffset(), end);
-								
+
 								if (this.searchQuery.isCaseSensitive()) {
 									if (value.equals(this.searchQuery.getSearchQueryText())) {
-										((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
+										//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
 										matchToKeep.add(match);
 										sourceList.add(((AbstractResultEntry) match).getSource());
 									}
 								} else {
 									if (value.equalsIgnoreCase(this.searchQuery.getSearchQueryText())) {
 
-										((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
+										//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) ((AbstractResultEntry) match).getParent());
 
 										matchToKeep.add(match);
 										sourceList.add(((AbstractResultEntry) match).getSource());
 									}
 								}
 							}
-						} else if (this.getQuery().isRegularExpression()) {
+						} else {
 							if (this.getQuery().getSearchQueryText() != null) {
-
-
 								Pattern pattern = PatternHelper.getInstance().createPattern(this.getQuery().getSearchQueryText(), false, true);
 								Matcher m = pattern.matcher(value);
 								if (m.matches()) {
@@ -219,7 +220,7 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 							}
 						}
 					} else if (match instanceof ModelElementMatch) {
-						((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) match);
+						//((AbstractResultEntry) match).recursiveHierarchy((AbstractResultEntry) match);
 
 						matchToKeep.add(match);
 						sourceList.add(((AbstractResultEntry) match).getSource());
@@ -277,16 +278,37 @@ public class PapyrusSearchResult extends AbstractTextSearchResult implements IEd
 		return count;
 	}
 
-	private String getStringValueOfProperty(Element element, Stereotype stereotype, Property property) {
-		Object value = element.getValue(stereotype, property.getName());
-		if (value instanceof String) {
+	private String getStringValue(Object value) {
+		if (value == null) {
+			return "";
+		}
+		
+		if (value instanceof String) { // Primitive types will hit this case
 			return (String) value;
 		} else if (value instanceof EnumerationLiteral) {
 			return ((EnumerationLiteral) value).getName();
+		} else if (value instanceof NamedElement) {
+			return ((NamedElement) value).getName();
+		} else if (value instanceof EObject) { // Ref to an element in a model
+			Element baseElement = UMLUtil.getBaseElement((EObject) value);
+			return getStringValue(baseElement);
 		} else {
 			return String.valueOf(value);
 		}
 	}
-
-
+	
+	private EList<String> getStringValuesOfProperty(Element element, Stereotype stereotype, Property property) {
+		BasicEList<String> results = new BasicEList<String>();
+		
+		Object values = element.getValue(stereotype, property.getName());
+		if (values instanceof EList) {
+			for (Object val : (EList) values) {
+				results.add(getStringValue(val));
+			}
+		} else {
+			results.add(getStringValue(values));
+		}
+		
+		return results;
+	}
 }

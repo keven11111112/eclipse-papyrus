@@ -60,7 +60,7 @@ public class PapyrusSearchTextManager {
 
 	}
 
-	public ISearchQuery manageAdvancedSearch(HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList, Object[] checkedElements, boolean searchForAllSter) {
+	public ISearchQuery manageAdvancedSearch(HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList, Object[] checkedElements, boolean searchForAllSter, boolean searchForAnySter) {
 		List<ParticipantTypeElement> participantsToEvaluate = getParticipantsToEvaluate(participantsList);
 
 
@@ -78,7 +78,7 @@ public class PapyrusSearchTextManager {
 				}
 			}
 
-			PapyrusAdvancedQuery query = new PapyrusAdvancedQuery(fQueryText, fIsCaseSensitive, fIsRegularExpression, fScopeEntries, participantsToEvaluate.toArray(), searchForAllSter);
+			PapyrusAdvancedQuery query = new PapyrusAdvancedQuery(fQueryText, fIsCaseSensitive, fIsRegularExpression, fScopeEntries, participantsToEvaluate.toArray(), searchForAllSter, searchForAnySter);
 			return query;
 		}
 	}

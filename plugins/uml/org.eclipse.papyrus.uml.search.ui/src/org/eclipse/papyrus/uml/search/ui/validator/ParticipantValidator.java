@@ -18,12 +18,17 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.util.EcoreUtil;
+import org.eclipse.papyrus.infra.core.resource.ModelUtils;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  *
@@ -73,32 +78,54 @@ public class ParticipantValidator implements IParticipantValidator {
 	}
 
 
-	public Collection<EObject> getParticipantsStereotype(EObject root, Object[] participantsTypes) {
+	public Collection<EObject> getParticipantsStereotype(EList<EObject> contents, Object[] participantsTypes) {
 
 		List<Object> participantsTypesList = Arrays.asList(participantsTypes);
 		List<EObject> results = new ArrayList<EObject>();
 
-		// Evaluate root...
-		if (participantsTypesList.contains(root.eClass())) {
-			results.add(root);
-		}
-
 		// ... and all its content
-		TreeIterator<EObject> it = root.eAllContents();
-		while (it.hasNext()) {
-			EObject modelElement = it.next();
-			if (modelElement instanceof Element) {
-				for (Stereotype appliedStereotype : ((Element) modelElement).getAppliedStereotypes()) {
-					// Check that metaclass of this element is a supported metaclass
-					for (Object stereotypeToGet : participantsTypesList) {
-						if (EcoreUtil.equals(appliedStereotype, (EObject) stereotypeToGet)) {
-							results.add(modelElement);
+
+		for (EObject content : contents) {
+			if (!(content instanceof Model)) {
+				Element umlElement = UMLUtil.getBaseElement(content);
+
+				if (umlElement instanceof Element) {
+					for (Object participantStereotype : participantsTypes) {
+						if (participantStereotype instanceof Stereotype) {
+							if (StereotypeUtil.isApplied((Element) umlElement, ((Stereotype) participantStereotype).getQualifiedName())) {
+								results.add(umlElement);
+								break;
+							}
 						}
 					}
 				}
 			}
-		}
 
+			/**
+			 * Keep old version for performance comparison
+			 */
+			//			TreeIterator<EObject> it = root.eAllContents();
+			//			while (it.hasNext()) {
+			//				EObject modelElement = it.next();
+			//				if (modelElement instanceof Element) {
+			//					for (Object participantStereotype : participantsTypes) {
+			//						if (participantStereotype instanceof Stereotype) {
+			//							if (StereotypeUtil.isApplied((Element) modelElement, ((Stereotype) participantStereotype).getQualifiedName())) {
+			//								results.add(modelElement);
+			//								break;
+			//							}
+			//						}
+			//					}
+			//
+			//					/**
+			//					 * EcoreUtil.equals is slow which has a big impact when searching in models of more than 100 elements.
+			//					 * The temporary solution may raise a bug in the future.
+			//					 */
+			//					//if (EcoreUtil.equals(appliedStereotype, (EObject) participantStereotype)) {
+			//				}
+			//			}
+
+		}
 		return results;
 	}
 }

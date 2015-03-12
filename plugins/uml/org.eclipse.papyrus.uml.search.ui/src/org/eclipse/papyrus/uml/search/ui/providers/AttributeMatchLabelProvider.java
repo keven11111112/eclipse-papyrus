@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.providers;
 
+import org.eclipse.emf.common.util.BasicEList;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -22,13 +24,17 @@ import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderSer
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.papyrus.views.search.results.AttributeMatch;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.EnumerationLiteral;
+import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 
@@ -45,8 +51,8 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 		return null;
 	}
 
-	private String printResult(String sectionThatMatch, String value, int offset, int length, String attributeName) {
-		return "\"" + sectionThatMatch + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + (offset + 1) + "," + (offset + length) + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
+	private String printResult(String value, int offset, int length, String attributeName) {
+		return "\"" + value.substring(offset, offset + length) + "\"" + Messages.AttributeMatchLabelProvider_3 + "\"" + value + "\" [" + (offset + 1) + "," + (offset + length) + "] (" + attributeName + Messages.AttributeMatchLabelProvider_8 + ")"; //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$ //$NON-NLS-4$ //$NON-NLS-5$ //$NON-NLS-6$ //$NON-NLS-7$
 	}
 
 	public String getText(Object element) {
@@ -59,12 +65,10 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 					EAttribute source = (EAttribute) attributeMatch.getMetaAttribute();
 					if (target.eGet(source) instanceof String) {
 						String value = (String) target.eGet(source);
-						int end = attributeMatch.getOffset() + attributeMatch.getLength();
-						return printResult(value.substring(attributeMatch.getOffset(), end), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
+						return printResult(value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					} else {
 						String value = String.valueOf(target.eGet(source));
-						int end = attributeMatch.getOffset() + attributeMatch.getLength();
-						return printResult(value.substring(attributeMatch.getOffset(), end), value, attributeMatch.getOffset(), attributeMatch.getOffset(), source.getName());
+						return printResult(value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 					}
 				} else if (attributeMatch.getMetaAttribute() instanceof Property) {
 
@@ -72,9 +76,8 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 					Class containingClass = source.getClass_();
 					if (containingClass instanceof Stereotype) {
 						if (target instanceof Element) {
-							String value = getStringValueOfProperty(((Element) target), (Stereotype) containingClass, (Property) attributeMatch.getMetaAttribute());
-							return printResult(value.substring(attributeMatch.getOffset(), attributeMatch.getLength()), value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
-
+							String value = StereotypeUtil.displayPropertyValueOnly((Stereotype) containingClass, (Property) attributeMatch.getMetaAttribute(), (Element) target, "");
+							return printResult(value, attributeMatch.getOffset(), attributeMatch.getLength(), source.getName());
 						}
 					}
 				}
@@ -119,6 +122,40 @@ public class AttributeMatchLabelProvider implements IFilteredLabelProvider {
 		} else {
 			return String.valueOf(value);
 		}
+	}
+	
+	private String getStringValue(Object value) {
+		if (value == null) {
+			return "";
+		}
+		
+		if (value instanceof String) { // Primitive types will hit this case
+			return (String) value;
+		} else if (value instanceof EnumerationLiteral) {
+			return ((EnumerationLiteral) value).getName();
+		} else if (value instanceof NamedElement) {
+			return ((NamedElement) value).getName();
+		} else if (value instanceof EObject) { // Ref to an element in a model
+			Element baseElement = UMLUtil.getBaseElement((EObject) value);
+			return getStringValue(baseElement);
+		} else {
+			return String.valueOf(value);
+		}
+	}
+	
+	private EList<String> getStringValuesOfProperty(Element element, Stereotype stereotype, Property property) {
+		BasicEList<String> results = new BasicEList<String>();
+		
+		Object values = element.getValue(stereotype, property.getName());
+		if (values instanceof EList) {
+			for (Object val : (EList) values) {
+				results.add(getStringValue(val));
+			}
+		} else {
+			results.add(getStringValue(values));
+		}
+		
+		return results;
 	}
 
 }
