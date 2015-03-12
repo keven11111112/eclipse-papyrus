@@ -76,14 +76,6 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 	}
 
 	/**
-	 * Test to manage class substitution.
-	 */
-	@Test
-	public void testToManageClassSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
-	}
-
-	/**
 	 * Test to manage class dependency.
 	 */
 	@Test
@@ -116,13 +108,7 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
 	}
 
-	/**
-	 * Test to manage activity substitution.
-	 */
-	@Test
-	public void testToManageActivitySubstitution() {
-		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
-	}
+
 
 	/**
 	 * Test to manage activity dependency.
@@ -158,13 +144,6 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
 	}
 
-	/**
-	 * Test to manage state machine substitution.
-	 */
-	@Test
-	public void testToManageStateMachineSubstitution() {
-		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
-	}
 
 	/**
 	 * Test to manage state machine dependency.
@@ -200,13 +179,6 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
 	}
 
-	/**
-	 * Test to manage collaboration substitution.
-	 */
-	@Test
-	public void testToManageCollaborationSubstitution() {
-		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
-	}
 
 	/**
 	 * Test to manage collaboration dependency.
@@ -232,21 +204,6 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Realization_4006, UMLElementTypes.Package_1000, true);
 	}
 
-	/**
-	 * Test to manage component.
-	 */
-	@Test
-	public void testToInterfaceRealization() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Interface_2076, UMLElementTypes.InterfaceRealization_4005, UMLElementTypes.Package_1000, true);
-	}
-
-	/**
-	 * Test to manage component.
-	 */
-	@Test
-	public void testToSubstitution() {
-		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
-	}
 
 	/**
 	 * Test to manage component.
@@ -280,13 +237,6 @@ public class TestCompositeDiagramSimpleLink extends TestLink {
 		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Usage_4008, UMLElementTypes.Package_1000, true);
 	}
 
-	/**
-	 * Test to manage component.
-	 */
-	@Test
-	public void testToDeployment() {
-		testToManageLink(UMLElementTypes.Node_2072, UMLElementTypes.Class_2073, UMLElementTypes.Deployment_4009, UMLElementTypes.Package_1000, true);
-	}
 
 	/**
 	 * Test to manage component.

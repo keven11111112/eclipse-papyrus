@@ -15,13 +15,13 @@ public class ExpansionNodeHelper extends ActivityNodeHelper {
 	 * Parameter name for {@link ConfigureRequest}
 	 * Used to pass the parent EObject to actual new element to set it in referenced not containment list.
 	 */
-	public static final String IN_EXPANSION_REGION = "IN_EXPANSION_REGION";
+	public static final String IN_EXPANSION_REGION = "IN_EXPANSION_REGION"; //$NON-NLS-1$
 	
 	/** 
 	 * Parameter name for {@link ConfigureRequest}
 	 * Used to determine feature to add new element in referenced not containment parent list.
 	 */
-	public static final String EXPANSION_REGION_FEATURE = "EXPANSION_REGION_FEATURE";
+	public static final String EXPANSION_REGION_FEATURE = "EXPANSION_REGION_FEATURE"; //$NON-NLS-1$
 	
 	@Override
 	protected ICommand getConfigureCommand(ConfigureRequest req) {

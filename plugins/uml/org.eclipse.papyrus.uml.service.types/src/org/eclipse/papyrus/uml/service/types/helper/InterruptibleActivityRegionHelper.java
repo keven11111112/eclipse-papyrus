@@ -12,6 +12,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.command.NotContainmentMoveCommand;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.InterruptibleActivityRegion;
@@ -83,7 +84,7 @@ public class InterruptibleActivityRegionHelper extends ActivityGroupHelper {
 	 */
 	protected ICommand createMoveCommandWithSetReference(MoveRequest req, EReference featureToSetReference) {
 		EObject nonContainmentContainer = (EObject) req.getTargetContainer();
-		CompositeCommand result = new CompositeCommand("Move elements in non containment Activity container");
+		CompositeCommand result = new CompositeCommand(Messages.InterruptibleActivityRegionHelper_0);
 		MoveElementsCommand moveCommand = new NotContainmentMoveCommand(createMoveToActivityRequest(req));
 		result.add(moveCommand);
 		for (Object o : req.getElementsToMove().keySet()) {

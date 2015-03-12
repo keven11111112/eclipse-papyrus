@@ -26,10 +26,10 @@ import org.eclipse.papyrus.sysml.diagram.internalblock.provider.CustomGraphicalT
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.ElementTypes;
 import org.eclipse.papyrus.sysml.diagram.internalblock.provider.GraphicalTypeRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.CommentAnnotatedElementReorientCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.composite.edit.commands.ConstraintConstrainedElementReorientCommand;
+import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsCreateCommand;
+import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsReorientCommand;
+import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsCreateCommand;
+import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsReorientCommand;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 
 /**
@@ -59,11 +59,11 @@ public class CustomBlockPropertyCompositeSemanticEditPolicy extends BlockPropert
 	protected Command getCreateRelationshipCommand(CreateRelationshipRequest req) {
 
 		if (ElementTypes.COMMENT_ANNOTATED_ELEMENT == req.getElementType()) {
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new CommentAnnotatedElementsCreateCommand(req));
 		}
 
 		if (ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT == req.getElementType()) {
-			return getGEFWrapper(new ConstraintConstrainedElementCreateCommand(req, req.getSource(), req.getTarget()));
+			return getGEFWrapper(new ConstraintConstrainedElementsCreateCommand(req));
 		}
 
 		String newEdgeGraphicalType = registry.getEdgeGraphicalType(req.getElementType());
@@ -99,11 +99,11 @@ public class CustomBlockPropertyCompositeSemanticEditPolicy extends BlockPropert
 		String reconnectedViewType = (reconnectedView != null) ? reconnectedView.getType() : org.eclipse.papyrus.infra.gmfdiag.common.providers.IGraphicalTypeRegistry.UNDEFINED_TYPE;
 
 		if (ElementTypes.COMMENT_ANNOTATED_ELEMENT.getSemanticHint().equals(reconnectedViewType)) {
-			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
+			return getGEFWrapper(new CommentAnnotatedElementsReorientCommand(req));
 		}
 
 		if (ElementTypes.CONSTRAINT_CONSTRAINED_ELEMENT.getSemanticHint().equals(reconnectedViewType)) {
-			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
+			return getGEFWrapper(new ConstraintConstrainedElementsReorientCommand(req));
 		}
 
 		return super.getReorientReferenceRelationshipCommand(req);

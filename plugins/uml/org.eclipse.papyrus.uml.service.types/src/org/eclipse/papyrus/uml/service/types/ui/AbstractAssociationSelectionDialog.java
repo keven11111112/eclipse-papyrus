@@ -13,6 +13,7 @@
 package org.eclipse.papyrus.uml.service.types.ui;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.swt.layout.FillLayout;
@@ -47,7 +48,7 @@ public class AbstractAssociationSelectionDialog extends Dialog {
 	 */
 	public AbstractAssociationSelectionDialog(Shell parent, int style) {
 		super(parent, SWT.DIALOG_TRIM | SWT.PRIMARY_MODAL);
-		setText("SWT Dialog");
+		setText("SWT Dialog"); //$NON-NLS-1$
 	}
 
 	/**
@@ -74,7 +75,7 @@ public class AbstractAssociationSelectionDialog extends Dialog {
 	protected void createContents() {
 		shlAssociationselection = new Shell(getParent(), getStyle());
 		shlAssociationselection.setSize(501, 227);
-		shlAssociationselection.setText("AssociationSelection");
+		shlAssociationselection.setText(Messages.AbstractAssociationSelectionDialog_1);
 		shlAssociationselection.setLayout(new FillLayout(SWT.HORIZONTAL));
 		Composite composite = new Composite(shlAssociationselection, SWT.NONE);
 		composite.setLayout(null);
@@ -82,17 +83,17 @@ public class AbstractAssociationSelectionDialog extends Dialog {
 		Label lblSelectTheAssociation = new Label(composite, SWT.NONE);
 		lblSelectTheAssociation.setLocation(24, 10);
 		lblSelectTheAssociation.setSize(441, 30);
-		lblSelectTheAssociation.setText("Select the association for this instanceSpecification:");
+		lblSelectTheAssociation.setText(Messages.AbstractAssociationSelectionDialog_2);
 		lblSelectTheAssociation.setBackground(Display.getCurrent().getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
-		FontData[] fontdatas = { new FontData("Tahoma", 12, SWT.BOLD) };
+		FontData[] fontdatas = { new FontData("Tahoma", 12, SWT.BOLD) }; //$NON-NLS-1$
 		lblSelectTheAssociation.setFont(Activator.getFontManager().get(fontdatas));
 		table = new Table(composite, SWT.BORDER | SWT.FULL_SELECTION);
 		table.setBounds(25, 48, 440, 85);
 		btnOk = new Button(composite, SWT.NONE);
 		btnOk.setBounds(396, 159, 68, 23);
-		btnOk.setText("Ok");
+		btnOk.setText(Messages.AbstractAssociationSelectionDialog_4);
 		btnCancel = new Button(composite, SWT.NONE);
 		btnCancel.setBounds(291, 159, 68, 23);
-		btnCancel.setText("Cancel");
+		btnCancel.setText(Messages.AbstractAssociationSelectionDialog_5);
 	}
 }

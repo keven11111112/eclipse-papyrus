@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 
 /**
@@ -65,7 +66,7 @@ public class ContainmentSubsetRemovalAdvice extends AbstractEditHelperAdvice {
 			// Add a command that ensures removal from the supersets on redo, if necessary
 			final EObject container = destructee.eContainer();
 
-			ICommand advice = new AbstractCommand("Ensure supersets") {
+			ICommand advice = new AbstractCommand(Messages.ContainmentSubsetRemovalAdvice_0) {
 
 				@Override
 				protected CommandResult doRedoWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {

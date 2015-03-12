@@ -13,12 +13,18 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.utils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.emf.type.core.ClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IAdviceBindingDescriptor;
 import org.eclipse.gmf.runtime.emf.type.core.IClientContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 
 public class ElementTypeRegistryUtils {
 
@@ -46,5 +52,29 @@ public class ElementTypeRegistryUtils {
 		} else if (context != null) {
 			Activator.log.warn("Cannot unbind type ID from context of unknown class: " + context.getClass().getName());
 		}
+	}
+
+	static public List<IElementType> getElementTypesBySemanticHint(String semanticHint) {
+		List<IElementType> matchingElementTypes = new ArrayList<IElementType>();
+
+		IClientContext context;
+		try {
+			context = TypeContext.getContext();
+			IElementType[] elementTypes = ElementTypeRegistry.getInstance().getElementTypes(context);
+
+			for (IElementType iElementType : elementTypes) {
+				if (iElementType instanceof IHintedType) {
+					if (((IHintedType) iElementType).getSemanticHint().equals(semanticHint)) {
+						matchingElementTypes.add(iElementType);
+					}
+				}
+			}
+		} catch (ServiceException e1) {
+			Activator.log.error(e1);
+		}
+
+
+
+		return matchingElementTypes;
 	}
 }

@@ -30,7 +30,8 @@ Require-Bundle: org.eclipse.papyrus.uml.diagram.common;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.elementtypesconfigurations;bundle-version="1.1.0",
  org.eclipse.papyrus.infra.services.labelprovider;bundle-version="1.1.0",
  org.eclipse.emf.edit.ui,
- org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.0"
+ org.eclipse.papyrus.infra.gmfdiag.common;bundle-version="1.1.0",
+ org.eclipse.papyrus.extensionpoints.editors
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier

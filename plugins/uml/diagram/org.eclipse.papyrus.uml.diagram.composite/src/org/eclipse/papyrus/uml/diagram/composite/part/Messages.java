@@ -1,11 +1,11 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
@@ -454,6 +454,16 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
+	public static String StringExpressionCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String StringExpressionCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
 	public static String LinkCreationTool_title;
 
 	/**
@@ -560,6 +570,26 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String InformationFlowCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String ManifestationCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String ManifestationCreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String DeploymentCreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String DeploymentCreationTool_desc;
 
 	/**
 	 * @generated
@@ -735,5 +765,5 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String UMLModelingAssistantProviderMessage;
-	// TODO: put accessor fields manually
+	//TODO: put accessor fields manually	
 }

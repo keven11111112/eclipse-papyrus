@@ -178,14 +178,6 @@ public class TestCompositeDiagramElementWithDifferentParentLink extends TestLink
 		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Abstraction_4007, UMLElementTypes.Class_2073, true);
 	}
 
-	/**
-	 * Test to manage port substitution.
-	 */
-	@Test
-	public void testToManagePortSubstitution() {
-		initConfLinkOwnedByParent();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Substitution_4011, UMLElementTypes.Class_2073, true);
-	}
 
 	/**
 	 * Test to manage port generalization.

@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.ui.AssociationSelectionDialog;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.swt.SWT;
@@ -50,7 +51,7 @@ public class InstanceSpecificationLinkCreateCommand extends EditElementCommand {
 
 	protected HashSet<Association> commonAssociations;
 
-	protected static final String INSTANCE_END = "InstanceEnd";//
+	protected static final String INSTANCE_END = Messages.InstanceSpecificationLinkCreateCommand_0;//
 
 	public InstanceSpecificationLinkCreateCommand(CreateRelationshipRequest request) {
 		super(request.getLabel(), null, request);

@@ -9,19 +9,28 @@ import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.papyrus.uml.service.types.command.InstanceSpecificationLinkCreateCommand;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdvice {
+	@Override
+	protected ICommand getBeforeEditContextCommand(final GetEditContextRequest request) {
+
+		GetEditContextCommand command = new GetEditContextCommand(request);
+		command.setEditContext(request.getEditHelperContext());
+		return command;
+	}
 
 	protected boolean canCreate(EObject source, EObject target) {
-		if((source != null) && !(source instanceof InstanceSpecification)) {
+		if ((source != null) && !(source instanceof InstanceSpecification)) {
 			return false;
 		}
-		if((target != null) && !(target instanceof InstanceSpecification)) {
+		if ((target != null) && !(target instanceof InstanceSpecification)) {
 			return false;
 		}
 		return true;
@@ -30,17 +39,17 @@ public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdv
 	@Override
 	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
 		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.CONSTRAINT_CONTEXT.getId()));
-		if(!subs.contains(request.getElementType())) {
+		if (!subs.contains(request.getElementType())) {
 			return IdentityCommand.INSTANCE;
 		}
 		EObject source = request.getSource();
 		EObject target = request.getTarget();
 		boolean noSourceOrTarget = (source == null || target == null);
 		boolean noSourceAndTarget = (source == null && target == null);
-		if(!noSourceAndTarget && !canCreate(source, target)) {
+		if (!noSourceAndTarget && !canCreate(source, target)) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if(noSourceOrTarget && !noSourceAndTarget) {
+		if (noSourceOrTarget && !noSourceAndTarget) {
 			// The request isn't complete yet. Return the identity command so
 			// that the create relationship gesture is enabled.
 			return IdentityCommand.INSTANCE;

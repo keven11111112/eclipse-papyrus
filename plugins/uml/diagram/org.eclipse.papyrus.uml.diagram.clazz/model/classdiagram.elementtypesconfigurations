@@ -265,7 +265,7 @@
       name="org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"
       identifier="org.eclipse.papyrus.uml.diagram.clazz.ContainmentLink_4023"
       hint="4023">
-    <specializedTypesID>org.eclipse.papyrus.uml.Namespace.OwnedMember</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Element.OwnedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"

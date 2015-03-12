@@ -25,8 +25,6 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.utils.InteractionConstraintUtil;
 import org.eclipse.uml2.uml.Constraint;
@@ -73,29 +71,6 @@ public class ConstraintEditHelper extends ElementEditHelper {
 		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected ICommand getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
-		// Delegate to advices
-		return null;
-	}
-
-
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected ICommand getCreateRelationshipCommand(CreateRelationshipRequest req) {
-		if (req.getSource() instanceof Constraint)
-		{
-			// Delegate to advices
-			return null;
-		}
-		return UnexecutableCommand.INSTANCE;
-	}
 
 	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper#getSetCommand(org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)

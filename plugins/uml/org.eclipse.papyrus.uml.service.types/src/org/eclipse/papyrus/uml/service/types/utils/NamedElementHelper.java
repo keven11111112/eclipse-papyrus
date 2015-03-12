@@ -18,6 +18,7 @@ import java.util.Collection;
 
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Namespace;
@@ -36,7 +37,7 @@ public class NamedElementHelper {
 	public static NamedElementHelper EINSTANCE = new NamedElementHelper();
 
 	@Deprecated
-	private String baseString = "default";
+	private String baseString = Messages.NamedElementHelper_0;
 
 	/**
 	 * Get the base string to use for default name creation
@@ -94,7 +95,7 @@ public class NamedElementHelper {
 	}
 
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents) {
-		return getDefaultNameWithIncrementFromBase(base, contents, null, "");
+		return getDefaultNameWithIncrementFromBase(base, contents, null, ""); //$NON-NLS-1$
 	}
 
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, String separator) {
@@ -102,7 +103,7 @@ public class NamedElementHelper {
 	}
 	
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename) {
-		return getDefaultNameWithIncrementFromBase(base, contents, elementToRename, "");
+		return getDefaultNameWithIncrementFromBase(base, contents, elementToRename, ""); //$NON-NLS-1$
 	}
 
 	public static String getDefaultNameWithIncrementFromBase(String base, Collection<?> contents, EObject elementToRename, String separator) {

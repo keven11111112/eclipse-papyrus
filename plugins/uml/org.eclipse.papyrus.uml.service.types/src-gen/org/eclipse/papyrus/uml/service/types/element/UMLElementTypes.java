@@ -140,14 +140,23 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Collaboration */
 	public static final IHintedType COLLABORATION = (IHintedType) getElementType("org.eclipse.papyrus.uml.Collaboration"); //$NON-NLS-1$
 
+	/** IElementType for UML Collaboration.CollaborationRole */
+	public static final IHintedType COLLABORATION_COLLABORATIONROLE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Collaboration.CollaborationRole"); //$NON-NLS-1$
+
 	/** IElementType for UML CollaborationUse */
 	public static final IHintedType COLLABORATION_USE = (IHintedType) getElementType("org.eclipse.papyrus.uml.CollaborationUse"); //$NON-NLS-1$
+
+	/** IElementType for UML CollaborationUse.RoleBinding */
+	public static final IHintedType COLLABORATION_USE_ROLEBINDING = (IHintedType) getElementType("org.eclipse.papyrus.uml.CollaborationUse.RoleBinding"); //$NON-NLS-1$
 
 	/** IElementType for UML CombinedFragment */
 	public static final IHintedType COMBINED_FRAGMENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.CombinedFragment"); //$NON-NLS-1$
 
 	/** IElementType for UML Comment */
 	public static final IHintedType COMMENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.Comment"); //$NON-NLS-1$
+
+	/** IElementType for UML Comment.AnnotatedElements */
+	public static final IHintedType COMMENT_ANNOTATEDELEMENTS = (IHintedType) getElementType("org.eclipse.papyrus.uml.Comment.AnnotatedElements"); //$NON-NLS-1$
 
 	/** IElementType for UML CommunicationPath */
 	public static final IHintedType COMMUNICATION_PATH = (IHintedType) getElementType("org.eclipse.papyrus.uml.CommunicationPath"); //$NON-NLS-1$
@@ -470,8 +479,8 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 	/** IElementType for UML Namespace */
 	public static final IHintedType NAMESPACE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Namespace"); //$NON-NLS-1$
 
-	/** IElementType for UML Namespace.OwnedMember */
-	public static final IHintedType NAMESPACE_OWNEDMEMBER = (IHintedType) getElementType("org.eclipse.papyrus.uml.Namespace.OwnedMember"); //$NON-NLS-1$
+	/** IElementType for UML Element.OwnedElement */
+	public static final IHintedType ELEMENT_OWNEDELEMENT = (IHintedType) getElementType("org.eclipse.papyrus.uml.Element.OwnedElement"); //$NON-NLS-1$
 
 	/** IElementType for UML Node */
 	public static final IHintedType NODE = (IHintedType) getElementType("org.eclipse.papyrus.uml.Node"); //$NON-NLS-1$
@@ -547,6 +556,9 @@ public class UMLElementTypes extends AbstractElementTypeEnumerator {
 
 	/** IElementType for UML Property */
 	public static final IHintedType PROPERTY = (IHintedType) getElementType("org.eclipse.papyrus.uml.Property"); //$NON-NLS-1$
+
+	/** IElementType for UML PropertyPart */
+	public static final IHintedType PROPERTY_PART = (IHintedType) getElementType("org.eclipse.papyrus.uml.PropertyPart"); //$NON-NLS-1$
 
 	/** IElementType for UML ProtocolConformance */
 	public static final IHintedType PROTOCOL_CONFORMANCE = (IHintedType) getElementType("org.eclipse.papyrus.uml.ProtocolConformance"); //$NON-NLS-1$

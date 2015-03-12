@@ -124,8 +124,8 @@ public class TemplateParameterConfigurationDialog extends AbstractTemplateParame
 	protected void createContents() {
 		// TODO Auto-generated method stub
 		super.createContents();
-		getParameteredElementContent().setText("");
-		getDefaultElementContent().setText("");
+		getParameteredElementContent().setText(""); //$NON-NLS-1$
+		getDefaultElementContent().setText(""); //$NON-NLS-1$
 		ServicesRegistry registry;
 		try {
 			registry = ServiceUtilsForResource.getInstance().getServiceRegistry(templatesignature.eResource());

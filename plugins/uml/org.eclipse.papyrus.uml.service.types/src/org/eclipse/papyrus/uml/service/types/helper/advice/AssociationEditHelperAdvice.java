@@ -207,7 +207,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 				association.getMemberEnds().add(sourceEnd);
 				association.getMemberEnds().add(targetEnd);
 
-				association.setName("A_" + sourceEnd.getName() + "_" + targetEnd.getName());
+				association.setName("A_" + sourceEnd.getName() + "_" + targetEnd.getName()); //$NON-NLS-1$ //$NON-NLS-2$
 
 				// Add end properties in the model
 				try {

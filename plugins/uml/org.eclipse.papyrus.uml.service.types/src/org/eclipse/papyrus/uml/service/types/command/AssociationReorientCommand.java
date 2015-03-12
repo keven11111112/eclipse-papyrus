@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.utils.ClassifierUtils;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Association;
@@ -147,7 +148,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		if (!canExecute()) {
-			throw new ExecutionException("Invalid arguments in reorient link command"); //$NON-NLS-1$
+			throw new ExecutionException(Messages.AssociationReorientCommand_1); 
 		}
 		if (reorientDirection == ReorientRelationshipRequest.REORIENT_SOURCE) {
 			return reorientSource();
@@ -202,7 +203,7 @@ public class AssociationReorientCommand extends EditElementCommand {
 		boolean added = ClassifierUtils.addOwnedAttribute(newOwner, end);
 
 		if (!added) {
-			throw new UnsupportedOperationException("Cannot add a Property on Classifier " + newOwner.getQualifiedName());
+			throw new UnsupportedOperationException(Messages.AssociationReorientCommand_0 + newOwner.getQualifiedName());
 		}
 	}
 

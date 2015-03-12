@@ -1,24 +1,26 @@
 package org.eclipse.papyrus.uml.service.types.helper.advice;
 
-import java.util.Arrays;
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsCreateCommand;
-import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsReorientCommand;
-import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
 
 public class ConstraintConstrainedElementsEditHelperAdvice extends AbstractEditHelperAdvice {
+
+	@Override
+	protected ICommand getBeforeEditContextCommand(final GetEditContextRequest request) {
+
+		GetEditContextCommand command = new GetEditContextCommand(request);
+		command.setEditContext(request.getEditHelperContext());
+		return command;
+	}
 
 	protected boolean canCreate(EObject source, EObject target) {
 		if ((source != null) && !(source instanceof Constraint)) {
@@ -33,19 +35,7 @@ public class ConstraintConstrainedElementsEditHelperAdvice extends AbstractEditH
 	}
 
 	@Override
-	protected ICommand getBeforeReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest request) {
-		return new ConstraintConstrainedElementsReorientCommand(request);
-	}
-
-	@Override
 	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
-
-		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.CONSTRAINT_CONSTRAINEDELEMENTS.getId()));
-		if (!subs.contains(request.getElementType()))
-		{
-			return IdentityCommand.INSTANCE;
-		}
-
 
 		EObject source = request.getSource();
 		EObject target = request.getTarget();
