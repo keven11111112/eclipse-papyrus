@@ -47,8 +47,8 @@ main() {
 	
 	semantics.rootObjects()[sourcert::Capsule].map toCapsule();
 	semantics.rootObjects()[sourcert::CapsulePart].map toCapsulePart();
-	semantics.rootObjects()[sourcert::Protocol].map toProtocol();
 	semantics.rootObjects()[sourcert::ProtocolContainer].map toProtocolContainer();
+	semantics.rootObjects()[sourcert::Protocol].map toProtocol();
 	semantics.rootObjects()[sourcert::RTConnector].map toRTConnector();
 	semantics.rootObjects()[sourcert::RTHistorystate].map toHistorystate();
 	semantics.rootObjects()[sourcert::RTPort].map toRTPort();
@@ -139,6 +139,21 @@ mapping sourcert::Protocol::toProtocol() : umlrt::Protocol when {
 	self.oclIsTypeOf(sourcert::Protocol) /* Workaround for Bug 445083/445198 */
 }{
 	result.base_Collaboration := self.base_Collaboration;
+	self.map createProtocolDependencies();
+}
+
+mapping sourcert::Protocol::createProtocolDependencies() : usage: Usage, realization: InterfaceRealization
+	{
+	usage.client := self.base_Collaboration;
+	realization.client := self.base_Collaboration;
+	
+	var interfaceIO := semantics.objectsOfType(sourcert::ProtocolContainer)->any(base_Package = self.base_Collaboration.container()).map toMessageSets();
+	usage.supplier := interfaceIO;
+	realization.supplier := interfaceIO;
+	realization.contract := interfaceIO;
+	 
+	self.base_Collaboration.getNearestPackage().packagedElement += usage;
+	self.base_Collaboration.interfaceRealization += realization;
 }
 
 mapping sourcert::ProtocolContainer::toProtocolContainer() : umlrt::ProtocolContainer when {
