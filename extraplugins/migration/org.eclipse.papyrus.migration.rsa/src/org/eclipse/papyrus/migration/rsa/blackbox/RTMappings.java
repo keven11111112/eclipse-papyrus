@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2014 CEA LIST.
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -54,33 +54,33 @@ public class RTMappings {
 		return refactorType(null, expression, UMLPackage.eINSTANCE.getLiteralString(), LiteralString.class);
 	}
 
-	//Not public to avoid confusing QVTo (Public methods are part of the Blackbox unit API)
+	// Not public to avoid confusing QVTo (Public methods are part of the Blackbox unit API)
 	private static <T extends Element> T refactorType(IContext context, EObject sourceElement, EClass targetEClass, java.lang.Class<T> resultType) {
-		//Retrieve the resource at the beginning, because the source element will be removed from its container at some point
-		//		Resource resource = sourceElement.eResource();
+		// Retrieve the resource at the beginning, because the source element will be removed from its container at some point
+		// Resource resource = sourceElement.eResource();
 
-		//Create a Class and maintain the features (Attributes and References)
+		// Create a Class and maintain the features (Attributes and References)
 		T result = resultType.cast(UMLFactory.eINSTANCE.create(targetEClass));
-		for(EStructuralFeature sourceFeature : sourceElement.eClass().getEAllStructuralFeatures()) {
+		for (EStructuralFeature sourceFeature : sourceElement.eClass().getEAllStructuralFeatures()) {
 			EStructuralFeature targetFeature = result.eClass().getEStructuralFeature(sourceFeature.getName());
-			if(targetFeature != null && targetFeature.isChangeable()) {
+			if (targetFeature != null && targetFeature.isChangeable() && sourceElement.eIsSet(sourceFeature)) {
 				result.eSet(targetFeature, sourceElement.eGet(sourceFeature));
 			}
 		}
 
-		//Fix incoming references
+		// Fix incoming references
 		Collection<EStructuralFeature.Setting> incomingReferences = CacheAdapter.getInstance().getInverseReferences(sourceElement);
-		for(EStructuralFeature.Setting setting : incomingReferences) {
+		for (EStructuralFeature.Setting setting : incomingReferences) {
 			EStructuralFeature feature = setting.getEStructuralFeature();
-			if(feature.isChangeable() && feature.getEType().isInstance(result)) {
-				if(feature.isMany()) {
+			if (feature.isChangeable() && feature.getEType().isInstance(result)) {
+				if (feature.isMany()) {
 					Object value = setting.get(true);
-					if(value instanceof Collection<?>) {
-						List<Object> copy = new LinkedList<Object>((Collection<?>)value);
+					if (value instanceof Collection<?>) {
+						List<Object> copy = new LinkedList<Object>((Collection<?>) value);
 
-						while(true) {
+						while (true) {
 							int index = copy.indexOf(sourceElement);
-							if(index < 0) {
+							if (index < 0) {
 								break;
 							}
 
@@ -96,14 +96,14 @@ public class RTMappings {
 			}
 		}
 
-		//TODO: Keep the same XMI ID
-		//This algorithm doesn't work here, because the object has been added to a temporary resource (ModelExtent), which doesn't support IDs mapping
-		//We need to track the mapping somewhere else
+		// TODO: Keep the same XMI ID
+		// This algorithm doesn't work here, because the object has been added to a temporary resource (ModelExtent), which doesn't support IDs mapping
+		// We need to track the mapping somewhere else
 
-		//		if(resource instanceof XMLResource) {
-		//			XMLResource xmlResource = (XMLResource)resource;
-		//			xmlResource.setID(result, xmlResource.getID(sourceElement));
-		//		}
+		// if(resource instanceof XMLResource) {
+		// XMLResource xmlResource = (XMLResource)resource;
+		// xmlResource.setID(result, xmlResource.getID(sourceElement));
+		// }
 		return result;
 	}
 }
