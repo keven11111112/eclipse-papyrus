@@ -32,4 +32,4 @@ Bundle-Activator: org.eclipse.papyrus.uml.modelexplorer.tests.Activato
  r
 Bundle-SymbolicName: org.eclipse.papyrus.uml.modelexplorer.tests
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

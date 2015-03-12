@@ -73,7 +73,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 	/**
 	 * the id for this editor configuration
 	 */
-	public static final String EDITOR_CONFIG_ID = "UML_EDITOR_CONFIG";
+	public static final String EDITOR_CONFIG_ID = "UML_EDITOR_CONFIG"; //$NON-NLS-1$
 
 
 	/**
@@ -432,7 +432,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 		IDisplayConverter converter = null;
 		switch (editorKind) {
 		case SINGLE_REAL:
-			converter = new DefaultDoubleDisplayConverter(){
+			converter = new DefaultDoubleDisplayConverter() {
 
 				@Override
 				public Object canonicalToDisplayValue(Object canonicalValue) {
@@ -463,7 +463,7 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				@Override
 				public Object canonicalToDisplayValue(Object canonicalValue) {// TODO : we should use the table label provider to do the conversion!
 					if (canonicalValue instanceof DynamicEObjectImpl) {
-						EStructuralFeature feature = ((DynamicEObjectImpl) canonicalValue).eClass().getEStructuralFeature("base_Class");
+						EStructuralFeature feature = ((DynamicEObjectImpl) canonicalValue).eClass().getEStructuralFeature("base_Class"); //$NON-NLS-1$
 						return provider.getText(((DynamicEObjectImpl) canonicalValue).eGet(feature));
 					}
 					return provider.getText(canonicalValue);
@@ -485,14 +485,14 @@ public class UMLFeatureCellEditorConfig extends EStructuralFeatureEditorConfig {
 				@Override
 				public Object canonicalToDisplayValue(Object sourceValue) {// TODO : we should use the table label provider to do the conversion!
 					if (sourceValue.equals(new Integer(-1))) {
-						return "*";
+						return "*"; //$NON-NLS-1$
 					}
 					return sourceValue;
 				}
 
 				@Override
 				public Object displayToCanonicalValue(Object destinationValue) {
-					if (destinationValue.equals("*")) {
+					if (destinationValue.equals("*")) { //$NON-NLS-1$
 						return new Integer(-1);
 					}
 					return new Integer((String) destinationValue);

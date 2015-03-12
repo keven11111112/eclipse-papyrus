@@ -18,6 +18,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
@@ -34,8 +35,6 @@ public class CellEditorConfigurationFactory {
 	private Map<Integer, IAxisCellEditorConfiguration> registry;
 
 	public static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.celleditor.configuration"; //$NON-NLS-1$
-
-	//	public static final String FACTORY_ID_ATTRIBUTE = "id"; //$NON-NLS-1$
 
 	public static final String CELL_EDITOR_CONFIGURATION_CLASS_ATTRIBUTE = "class"; //$NON-NLS-1$
 
@@ -74,9 +73,25 @@ public class CellEditorConfigurationFactory {
 	 *            the id of the factory
 	 * @return
 	 *         the cellEditorFactory declared on this id or <code>null</code> if not found
+	 * 
+	 * @deprecated since Papyrus 1.1.0
 	 */
+	@Deprecated
 	public IAxisCellEditorConfiguration getCellEditorConfigruation(final String configurationId) {
-		assert configurationId != null;
+		return getCellEditorConfiguration(configurationId);
+	}
+
+	/**
+	 *
+	 * @param configurationId
+	 *            the id of the factory
+	 * @return
+	 *         the cellEditorFactory declared on this id or <code>null</code> if not found
+	 * 
+	 * 
+	 */
+	public IAxisCellEditorConfiguration getCellEditorConfiguration(final String configurationId) {
+		Assert.isNotNull(configurationId);
 		for (final Integer order : this.registry.keySet()) {
 			final IAxisCellEditorConfiguration current = this.registry.get(order);
 			if (configurationId.equals(current.getEditorConfigId())) {

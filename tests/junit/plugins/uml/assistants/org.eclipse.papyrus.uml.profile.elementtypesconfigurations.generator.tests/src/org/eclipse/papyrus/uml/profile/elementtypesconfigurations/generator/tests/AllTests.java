@@ -23,7 +23,8 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 		BasicElementTypesGenerationTest.class, DiagramSpecificElementTypesGenerationTest.class,
-		ProfilesWithPackageNestingTest.class })
+		ProfilesWithPackageNestingTest.class,
+		DiagramSpecificElementTypesGenerationBug461717Test.class })
 public class AllTests {
 	// Nothing required
 }

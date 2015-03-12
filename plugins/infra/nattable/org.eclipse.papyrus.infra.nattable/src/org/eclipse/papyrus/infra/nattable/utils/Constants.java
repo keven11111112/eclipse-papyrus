@@ -15,7 +15,7 @@ package org.eclipse.papyrus.infra.nattable.utils;
 
 
 /**
- *
+ * 
  * The constants used in the Papyrus NatTable Framework
  *
  */

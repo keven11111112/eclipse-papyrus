@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementItemProvider {
@@ -44,7 +44,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public AbstractHeaderAxisConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -55,7 +55,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -75,7 +75,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This adds a property descriptor for the Index Style feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addIndexStylePropertyDescriptor(Object object) {
@@ -98,7 +98,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This adds a property descriptor for the Display Label feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayLabelPropertyDescriptor(Object object) {
@@ -121,7 +121,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This adds a property descriptor for the Display Filter feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayFilterPropertyDescriptor(Object object) {
@@ -144,7 +144,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This adds a property descriptor for the Display Index feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDisplayIndexPropertyDescriptor(Object object) {
@@ -168,7 +168,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -184,7 +184,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -199,7 +199,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -217,7 +217,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -244,7 +244,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -291,7 +291,7 @@ public class AbstractHeaderAxisConfigurationItemProvider extends StyledElementIt
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

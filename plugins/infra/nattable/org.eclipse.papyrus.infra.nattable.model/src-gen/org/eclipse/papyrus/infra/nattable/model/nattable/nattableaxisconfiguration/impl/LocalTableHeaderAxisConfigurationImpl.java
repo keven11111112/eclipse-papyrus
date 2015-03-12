@@ -31,13 +31,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.LocalTableHeaderAxisConfigurationImpl#getAxisManagerConfigurations <em>Axis Manager Configurations</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.LocalTableHeaderAxisConfigurationImpl#getAxisManagerConfigurations
+ * <em>Axis Manager Configurations</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisConfigurationImpl implements LocalTableHeaderAxisConfiguration {
+
 	/**
 	 * The cached value of the '{@link #getAxisManagerConfigurations() <em>Axis Manager Configurations</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -78,7 +81,7 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	 */
 	@Override
 	public EList<AxisManagerConfiguration> getAxisManagerConfigurations() {
-		if (axisManagerConfigurations == null) {
+		if(axisManagerConfigurations == null) {
 			axisManagerConfigurations = new EObjectContainmentEList<AxisManagerConfiguration>(AxisManagerConfiguration.class, this, NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS);
 		}
 		return axisManagerConfigurations;
@@ -92,9 +95,9 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
-			return ((InternalEList<?>) getAxisManagerConfigurations()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getAxisManagerConfigurations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -107,7 +110,7 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
 			return getAxisManagerConfigurations();
 		}
@@ -123,10 +126,10 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
 			getAxisManagerConfigurations().clear();
-			getAxisManagerConfigurations().addAll((Collection<? extends AxisManagerConfiguration>) newValue);
+			getAxisManagerConfigurations().addAll((Collection<? extends AxisManagerConfiguration>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +143,7 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
 			getAxisManagerConfigurations().clear();
 			return;
@@ -156,11 +159,10 @@ public class LocalTableHeaderAxisConfigurationImpl extends AbstractHeaderAxisCon
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.LOCAL_TABLE_HEADER_AXIS_CONFIGURATION__AXIS_MANAGER_CONFIGURATIONS:
 			return axisManagerConfigurations != null && !axisManagerConfigurations.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // LocalTableHeaderAxisConfigurationImpl

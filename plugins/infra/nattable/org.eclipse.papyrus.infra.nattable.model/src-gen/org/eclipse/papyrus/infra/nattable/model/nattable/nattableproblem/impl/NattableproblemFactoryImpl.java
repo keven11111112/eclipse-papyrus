@@ -30,6 +30,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.StringR
  * @generated
  */
 public class NattableproblemFactoryImpl extends EFactoryImpl implements NattableproblemFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -39,8 +40,8 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	 */
 	public static NattableproblemFactory init() {
 		try {
-			NattableproblemFactory theNattableproblemFactory = (NattableproblemFactory) EPackage.Registry.INSTANCE.getEFactory(NattableproblemPackage.eNS_URI);
-			if (theNattableproblemFactory != null) {
+			NattableproblemFactory theNattableproblemFactory = (NattableproblemFactory)EPackage.Registry.INSTANCE.getEFactory(NattableproblemPackage.eNS_URI);
+			if(theNattableproblemFactory != null) {
 				return theNattableproblemFactory;
 			}
 		} catch (Exception exception) {
@@ -68,7 +69,7 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattableproblemPackage.PROBLEM:
 			return createProblem();
 		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM:
@@ -110,7 +111,7 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	 */
 	@Override
 	public NattableproblemPackage getNattableproblemPackage() {
-		return (NattableproblemPackage) getEPackage();
+		return (NattableproblemPackage)getEPackage();
 	}
 
 	/**
@@ -124,5 +125,4 @@ public class NattableproblemFactoryImpl extends EFactoryImpl implements Nattable
 	public static NattableproblemPackage getPackage() {
 		return NattableproblemPackage.eINSTANCE;
 	}
-
 } // NattableproblemFactoryImpl

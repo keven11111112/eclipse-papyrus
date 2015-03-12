@@ -24,7 +24,6 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.EcorePackage;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.widgets.providers.AbstractRestrictedContentProvider;
@@ -147,20 +146,20 @@ public class UMLFeatureRestrictedContentProvider extends AbstractRestrictedConte
 				}
 				for (Object object : elementsList) {
 					Object representedElement = AxisUtils.getRepresentedElement(object);
-					if(representedElement instanceof Element){
+					if (representedElement instanceof Element) {
 						EClass eClass = ((EObject) representedElement).eClass();
 						eClassifiers.add(eClass);
 						eClassifiers.addAll(eClass.getEAllSuperTypes());
 					}
-//					if (object instanceof EObject) {
-//						EObject eObject = (EObject) object;
-//						if (eObject instanceof EObjectAxis) {
-//							eObject = ((EObjectAxis) eObject).getElement();
-//						}
-//						EClass eClass = eObject.eClass();
-//						eClassifiers.add(eClass);
-//						eClassifiers.addAll(eClass.getEAllSuperTypes());
-//					}
+					// if (object instanceof EObject) {
+					// EObject eObject = (EObject) object;
+					// if (eObject instanceof EObjectAxis) {
+					// eObject = ((EObjectAxis) eObject).getElement();
+					// }
+					// EClass eClass = eObject.eClass();
+					// eClassifiers.add(eClass);
+					// eClassifiers.addAll(eClass.getEAllSuperTypes());
+					// }
 				}
 			} else {
 				eClassifiers = ePackage.getEClassifiers();

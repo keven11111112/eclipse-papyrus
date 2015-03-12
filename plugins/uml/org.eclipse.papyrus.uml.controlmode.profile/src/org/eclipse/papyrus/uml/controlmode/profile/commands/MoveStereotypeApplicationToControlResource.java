@@ -9,6 +9,7 @@
  * Contributors:
  *  Arthur Daussy (Atos) arthur.daussy@atos.net - Initial API and implementation
  *  Christian W. Damus - bug 399859
+ *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - bug 460435
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.controlmode.profile.commands;
@@ -40,32 +41,62 @@ import com.google.common.collect.Sets;
  */
 public final class MoveStereotypeApplicationToControlResource extends AbstractControlCommand {
 
+	/** The Constant UNKNOWN_TARGET_RESOURCE_ERROR. */
+	private static final String UNKNOWN_TARGET_RESOURCE_ERROR = "Target resource is unknown";
 
+	/** The Constant COMMAND_LABEL. */
+	private static final String COMMAND_LABEL = "Move stereotype application";
+
+	/**
+	 * Instantiates a new move stereotype application to control resource.
+	 *
+	 * @param affectedFiles
+	 *            the affected files
+	 * @param request
+	 *            the request
+	 */
 	@SuppressWarnings("rawtypes")
 	public MoveStereotypeApplicationToControlResource(List affectedFiles, ControlModeRequest request) {
-		super("Move stereotype application", affectedFiles, request);
+		super(COMMAND_LABEL, affectedFiles, request);
 	}
 
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand#doExecuteWithResult(org.eclipse.core.runtime.IProgressMonitor, org.eclipse.core.runtime.IAdaptable)
+	 *
+	 * @param monitor
+	 * @param info
+	 * @return
+	 * @throws ExecutionException
+	 */
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		Element elem = (Element) getRequest().getTargetObject();
-		Set<Element> elements = Sets.newHashSet(elem);
-		TreeIterator<Object> contents = EcoreUtil.getAllProperContents(elem, true);
+
+		// Build a set with target element and its related contents
+		Element targetElement = (Element) getRequest().getTargetObject();
+		Set<Element> targetElementsSet = Sets.newHashSet(targetElement);
+
+		// Retrieve related contents
+		TreeIterator<Object> contents = EcoreUtil.getAllProperContents(targetElement, true);
 		while (contents.hasNext()) {
-			EObject eObject = (EObject) contents.next();
-			if (eObject instanceof Element) {
-				elements.add((Element) eObject);
+			EObject currentElement = (EObject) contents.next();
+			if (currentElement instanceof Element) {
+				targetElementsSet.add((Element) currentElement);
 			}
 		}
 
-		Resource sourceResource = elem.eContainer().eResource();
+		// Retrieve related resources by control command
+		Resource sourceResource = getRequest().getModelSet().getAssociatedResource(targetElement, UmlModel.UML_FILE_EXTENSION, false);
 		Resource targetResource = getRequest().getTargetResource(UmlModel.UML_FILE_EXTENSION);
+
 		if (targetResource == null) {
-			return createNewControlCommandError("No uml resource created");//
+			return createNewControlCommandError(UNKNOWN_TARGET_RESOURCE_ERROR);
 		}
-		for (Element e : elements) {
-			ProfileApplicationHelper.relocateStereotypeApplications(e, sourceResource, targetResource);
+
+		// Relocate all target elements
+		for (Element currentElement : targetElementsSet) {
+			ProfileApplicationHelper.relocateStereotypeApplications(currentElement, sourceResource, targetResource);
 		}
+
 		return CommandResult.newOKCommandResult();
 
 	}

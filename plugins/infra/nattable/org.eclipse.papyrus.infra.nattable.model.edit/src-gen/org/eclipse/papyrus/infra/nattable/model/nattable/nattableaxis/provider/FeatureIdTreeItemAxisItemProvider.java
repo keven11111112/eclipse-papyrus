@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.Nattableax
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider {
@@ -37,7 +37,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public FeatureIdTreeItemAxisItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -67,7 +67,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This adds a property descriptor for the Parent feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addParentPropertyDescriptor(Object object) {
@@ -90,7 +90,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This adds a property descriptor for the Expanded feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addExpandedPropertyDescriptor(Object object) {
@@ -113,7 +113,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This adds a property descriptor for the Children feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addChildrenPropertyDescriptor(Object object) {
@@ -136,7 +136,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This returns FeatureIdTreeItemAxis.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -148,7 +148,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -165,7 +165,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -185,7 +185,7 @@ public class FeatureIdTreeItemAxisItemProvider extends FeatureIdAxisItemProvider
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

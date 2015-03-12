@@ -305,7 +305,7 @@ public abstract class AbstractPasteImportInNattableManager {
 				ILabelProvider p = serv.getLabelProvider(wrapper);
 				p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
 				String categoryName = p.getText(axis);
-				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR_NO_CONTAINMENT_FEATURE, NLS.bind("Paste feature has not been set for category {0} on depth {1}", categoryName, current.getDepth()), null);
+				IStatus status = new Status(IStatus.ERROR, Activator.PLUGIN_ID, PasteSeverityCode.PASTE_ERROR__NO_CONTAINMENT_FEATURE, NLS.bind("Paste feature has not been set for category {0} on depth {1}", categoryName, current.getDepth()), null);
 				return status;
 			}
 		}

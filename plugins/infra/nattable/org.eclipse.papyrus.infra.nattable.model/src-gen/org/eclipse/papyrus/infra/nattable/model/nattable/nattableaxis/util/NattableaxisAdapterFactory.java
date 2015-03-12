@@ -47,6 +47,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -64,7 +65,7 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public NattableaxisAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattableaxisPackage.eINSTANCE;
 		}
 	}
@@ -80,11 +81,11 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -96,108 +97,108 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected NattableaxisSwitch<Adapter> modelSwitch =
-			new NattableaxisSwitch<Adapter>() {
-				@Override
-				public Adapter caseIAxis(IAxis object) {
-					return createIAxisAdapter();
-				}
+	protected NattableaxisSwitch<Adapter> modelSwitch = new NattableaxisSwitch<Adapter>() {
 
-				@Override
-				public Adapter caseITreeItemAxis(ITreeItemAxis object) {
-					return createITreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseIAxis(IAxis object) {
+			return createIAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseIdAxis(IdAxis object) {
-					return createIdAxisAdapter();
-				}
+		@Override
+		public Adapter caseITreeItemAxis(ITreeItemAxis object) {
+			return createITreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseIdTreeItemAxis(IdTreeItemAxis object) {
-					return createIdTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseIdAxis(IdAxis object) {
+			return createIdAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseEObjectAxis(EObjectAxis object) {
-					return createEObjectAxisAdapter();
-				}
+		@Override
+		public Adapter caseIdTreeItemAxis(IdTreeItemAxis object) {
+			return createIdTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseEObjectTreeItemAxis(EObjectTreeItemAxis object) {
-					return createEObjectTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseEObjectAxis(EObjectAxis object) {
+			return createEObjectAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseFeatureAxis(FeatureAxis object) {
-					return createFeatureAxisAdapter();
-				}
+		@Override
+		public Adapter caseEObjectTreeItemAxis(EObjectTreeItemAxis object) {
+			return createEObjectTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseFeatureTreeItemAxis(FeatureTreeItemAxis object) {
-					return createFeatureTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseFeatureAxis(FeatureAxis object) {
+			return createFeatureAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseObjectAxis(ObjectAxis object) {
-					return createObjectAxisAdapter();
-				}
+		@Override
+		public Adapter caseFeatureTreeItemAxis(FeatureTreeItemAxis object) {
+			return createFeatureTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseObjectTreeItemAxis(ObjectTreeItemAxis object) {
-					return createObjectTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseObjectAxis(ObjectAxis object) {
+			return createObjectAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseFeatureIdAxis(FeatureIdAxis object) {
-					return createFeatureIdAxisAdapter();
-				}
+		@Override
+		public Adapter caseObjectTreeItemAxis(ObjectTreeItemAxis object) {
+			return createObjectTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseFeatureIdTreeItemAxis(FeatureIdTreeItemAxis object) {
-					return createFeatureIdTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseFeatureIdAxis(FeatureIdAxis object) {
+			return createFeatureIdAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseEStructuralFeatureAxis(EStructuralFeatureAxis object) {
-					return createEStructuralFeatureAxisAdapter();
-				}
+		@Override
+		public Adapter caseFeatureIdTreeItemAxis(FeatureIdTreeItemAxis object) {
+			return createFeatureIdTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseEStructuralFeatureTreeItemAxis(EStructuralFeatureTreeItemAxis object) {
-					return createEStructuralFeatureTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseEStructuralFeatureAxis(EStructuralFeatureAxis object) {
+			return createEStructuralFeatureAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseObjectIdAxis(ObjectIdAxis object) {
-					return createObjectIdAxisAdapter();
-				}
+		@Override
+		public Adapter caseEStructuralFeatureTreeItemAxis(EStructuralFeatureTreeItemAxis object) {
+			return createEStructuralFeatureTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseObjectIdTreeItemAxis(ObjectIdTreeItemAxis object) {
-					return createObjectIdTreeItemAxisAdapter();
-				}
+		@Override
+		public Adapter caseObjectIdAxis(ObjectIdAxis object) {
+			return createObjectIdAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseAxisGroup(AxisGroup object) {
-					return createAxisGroupAdapter();
-				}
+		@Override
+		public Adapter caseObjectIdTreeItemAxis(ObjectIdTreeItemAxis object) {
+			return createObjectIdTreeItemAxisAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseAxisGroup(AxisGroup object) {
+			return createAxisGroupAdapter();
+		}
 
-				@Override
-				public Adapter caseStyledElement(StyledElement object) {
-					return createStyledElementAdapter();
-				}
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter caseStyledElement(StyledElement object) {
+			return createStyledElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -205,15 +206,14 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}'.
@@ -231,7 +231,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
+	 * <em>ITree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -261,7 +262,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis <em>Id Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis
+	 * <em>Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -276,7 +278,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis <em>EObject Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis
+	 * <em>EObject Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -291,7 +294,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis <em>EObject Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis
+	 * <em>EObject Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -306,7 +310,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis <em>Feature Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis
+	 * <em>Feature Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -321,7 +326,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis <em>Feature Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis
+	 * <em>Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -336,7 +342,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis <em>Object Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis
+	 * <em>Object Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -351,7 +358,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis <em>Object Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis
+	 * <em>Object Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -366,7 +374,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis <em>Feature Id Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis
+	 * <em>Feature Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -381,7 +390,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis <em>Feature Id Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis
+	 * <em>Feature Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -396,7 +406,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis <em>EStructural Feature Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis
+	 * <em>EStructural Feature Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -411,7 +422,9 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis <em>EStructural Feature Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis
+	 * <em>EStructural Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -426,7 +439,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis <em>Object Id Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis
+	 * <em>Object Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -441,7 +455,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis <em>Object Id Tree Item Axis</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis
+	 * <em>Object Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -456,7 +471,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup <em>Axis Group</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup
+	 * <em>Axis Group</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -486,7 +502,8 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
+	 * <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -512,5 +529,4 @@ public class NattableaxisAdapterFactory extends AdapterFactoryImpl {
 	public Adapter createEObjectAdapter() {
 		return null;
 	}
-
 } // NattableaxisAdapterFactory

@@ -37,6 +37,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public interface NattableaxisPackage extends EPackage {
+
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -205,7 +206,8 @@ public interface NattableaxisPackage extends EPackage {
 	int IAXIS_OPERATION_COUNT = NattablestylePackage.STYLED_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -507,7 +509,8 @@ public interface NattableaxisPackage extends EPackage {
 	int ID_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl <em>Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
+	 * <em>Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -678,7 +681,8 @@ public interface NattableaxisPackage extends EPackage {
 	int ID_TREE_ITEM_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -819,7 +823,8 @@ public interface NattableaxisPackage extends EPackage {
 	int OBJECT_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -970,7 +975,8 @@ public interface NattableaxisPackage extends EPackage {
 	int EOBJECT_AXIS_OPERATION_COUNT = OBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl <em>EObject Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
+	 * <em>EObject Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1151,7 +1157,8 @@ public interface NattableaxisPackage extends EPackage {
 	int EOBJECT_TREE_ITEM_AXIS_OPERATION_COUNT = EOBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1292,7 +1299,8 @@ public interface NattableaxisPackage extends EPackage {
 	int FEATURE_AXIS_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl <em>Feature Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
+	 * <em>Feature Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1463,7 +1471,8 @@ public interface NattableaxisPackage extends EPackage {
 	int FEATURE_TREE_ITEM_AXIS_OPERATION_COUNT = FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl <em>Object Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
+	 * <em>Object Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1634,7 +1643,8 @@ public interface NattableaxisPackage extends EPackage {
 	int OBJECT_TREE_ITEM_AXIS_OPERATION_COUNT = OBJECT_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl <em>Feature Id Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
+	 * <em>Feature Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1785,7 +1795,8 @@ public interface NattableaxisPackage extends EPackage {
 	int FEATURE_ID_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl <em>Feature Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
+	 * <em>Feature Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -1966,7 +1977,8 @@ public interface NattableaxisPackage extends EPackage {
 	int FEATURE_ID_TREE_ITEM_AXIS_OPERATION_COUNT = FEATURE_ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl <em>EStructural Feature Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
+	 * <em>EStructural Feature Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2117,7 +2129,8 @@ public interface NattableaxisPackage extends EPackage {
 	int ESTRUCTURAL_FEATURE_AXIS_OPERATION_COUNT = FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl <em>EStructural Feature Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
+	 * <em>EStructural Feature Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2298,7 +2311,8 @@ public interface NattableaxisPackage extends EPackage {
 	int ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS_OPERATION_COUNT = ESTRUCTURAL_FEATURE_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl <em>Object Id Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
+	 * <em>Object Id Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2449,7 +2463,8 @@ public interface NattableaxisPackage extends EPackage {
 	int OBJECT_ID_AXIS_OPERATION_COUNT = ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl <em>Object Id Tree Item Axis</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
+	 * <em>Object Id Tree Item Axis</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2630,7 +2645,8 @@ public interface NattableaxisPackage extends EPackage {
 	int OBJECT_ID_TREE_ITEM_AXIS_OPERATION_COUNT = OBJECT_ID_AXIS_OPERATION_COUNT + 0;
 
 	/**
-	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}' class.
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}'
+	 * class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2770,7 +2786,6 @@ public interface NattableaxisPackage extends EPackage {
 	 */
 	int AXIS_GROUP_OPERATION_COUNT = IAXIS_OPERATION_COUNT + 0;
 
-
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}'.
 	 * <!-- begin-user-doc -->
@@ -2783,7 +2798,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getIAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getManager <em>Manager</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getManager
+	 * <em>Manager</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2795,7 +2811,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getIAxis_Manager();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getAlias <em>Alias</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getAlias <em>Alias</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2807,7 +2824,8 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getIAxis_Alias();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getElement() <em>Get Element</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getElement() <em>Get Element</em>}
+	 * ' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2818,7 +2836,8 @@ public interface NattableaxisPackage extends EPackage {
 	EOperation getIAxis__GetElement();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getLocalLabelConfiguration() <em>Get Local Label Configuration</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis#getLocalLabelConfiguration()
+	 * <em>Get Local Label Configuration</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2829,7 +2848,8 @@ public interface NattableaxisPackage extends EPackage {
 	EOperation getIAxis__GetLocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
+	 * <em>ITree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2840,7 +2860,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getITreeItemAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent <em>Parent</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getParent
+	 * <em>Parent</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2852,7 +2873,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getITreeItemAxis_Parent();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded <em>Expanded</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#isExpanded
+	 * <em>Expanded</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2864,7 +2886,8 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getITreeItemAxis_Expanded();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}'.
+	 * Returns the meta object for the reference list '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis#getChildren <em>Children</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2887,7 +2910,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getIdAxis();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement <em>Element</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdAxis#getElement
+	 * <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2899,7 +2923,8 @@ public interface NattableaxisPackage extends EPackage {
 	EAttribute getIdAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis <em>Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IdTreeItemAxis
+	 * <em>Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2921,7 +2946,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEObjectAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis#getElement
+	 * <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2933,7 +2959,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getEObjectAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis <em>EObject Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis
+	 * <em>EObject Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2955,7 +2982,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureAxis();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}'.
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureAxis#getLocalLabelConfiguration
+	 * <em>Local Label Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2967,7 +2996,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getFeatureAxis_LocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis <em>Feature Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureTreeItemAxis
+	 * <em>Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -2989,7 +3019,9 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectAxis();
 
 	/**
-	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}'.
+	 * Returns the meta object for the containment reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectAxis#getLocalLabelConfiguration <em>Local Label Configuration</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3001,7 +3033,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getObjectAxis_LocalLabelConfiguration();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis <em>Object Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTreeItemAxis
+	 * <em>Object Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3012,7 +3045,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis <em>Feature Id Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis
+	 * <em>Feature Id Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3023,7 +3057,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureIdAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis <em>Feature Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdTreeItemAxis
+	 * <em>Feature Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3034,7 +3069,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getFeatureIdTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis <em>EStructural Feature Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis
+	 * <em>EStructural Feature Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3045,7 +3081,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEStructuralFeatureAxis();
 
 	/**
-	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}'.
+	 * Returns the meta object for the reference '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis#getElement <em>Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3057,7 +3094,8 @@ public interface NattableaxisPackage extends EPackage {
 	EReference getEStructuralFeatureAxis_Element();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis <em>EStructural Feature Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureTreeItemAxis
+	 * <em>EStructural Feature Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3068,7 +3106,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getEStructuralFeatureTreeItemAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis <em>Object Id Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdAxis <em>Object Id Axis</em>}
+	 * '.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3079,7 +3118,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getObjectIdAxis();
 
 	/**
-	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis <em>Object Id Tree Item Axis</em>}'.
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectIdTreeItemAxis
+	 * <em>Object Id Tree Item Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3101,7 +3141,8 @@ public interface NattableaxisPackage extends EPackage {
 	EClass getAxisGroup();
 
 	/**
-	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis <em>Grouped Axis</em>}'.
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup#getGroupedAxis
+	 * <em>Grouped Axis</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
@@ -3137,6 +3178,7 @@ public interface NattableaxisPackage extends EPackage {
 	 * @generated
 	 */
 	interface Literals {
+
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis <em>IAxis</em>}' class.
 		 * <!-- begin-user-doc -->
@@ -3185,7 +3227,8 @@ public interface NattableaxisPackage extends EPackage {
 		EOperation IAXIS___GET_LOCAL_LABEL_CONFIGURATION = eINSTANCE.getIAxis__GetLocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis <em>ITree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis
+		 * <em>ITree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3223,7 +3266,8 @@ public interface NattableaxisPackage extends EPackage {
 		EReference ITREE_ITEM_AXIS__CHILDREN = eINSTANCE.getITreeItemAxis_Children();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl <em>Id Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdAxisImpl <em>Id Axis</em>}'
+		 * class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3243,7 +3287,8 @@ public interface NattableaxisPackage extends EPackage {
 		EAttribute ID_AXIS__ELEMENT = eINSTANCE.getIdAxis_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl <em>Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.IdTreeItemAxisImpl
+		 * <em>Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3254,7 +3299,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass ID_TREE_ITEM_AXIS = eINSTANCE.getIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl <em>EObject Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectAxisImpl
+		 * <em>EObject Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3274,7 +3320,8 @@ public interface NattableaxisPackage extends EPackage {
 		EReference EOBJECT_AXIS__ELEMENT = eINSTANCE.getEObjectAxis_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl <em>EObject Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EObjectTreeItemAxisImpl
+		 * <em>EObject Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3285,7 +3332,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass EOBJECT_TREE_ITEM_AXIS = eINSTANCE.getEObjectTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl <em>Feature Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureAxisImpl
+		 * <em>Feature Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3305,7 +3353,8 @@ public interface NattableaxisPackage extends EPackage {
 		EReference FEATURE_AXIS__LOCAL_LABEL_CONFIGURATION = eINSTANCE.getFeatureAxis_LocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl <em>Feature Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureTreeItemAxisImpl
+		 * <em>Feature Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3316,7 +3365,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_TREE_ITEM_AXIS = eINSTANCE.getFeatureTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl <em>Object Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl
+		 * <em>Object Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3336,7 +3386,8 @@ public interface NattableaxisPackage extends EPackage {
 		EReference OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION = eINSTANCE.getObjectAxis_LocalLabelConfiguration();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl <em>Object Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectTreeItemAxisImpl
+		 * <em>Object Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3347,7 +3398,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_TREE_ITEM_AXIS = eINSTANCE.getObjectTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl <em>Feature Id Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdAxisImpl
+		 * <em>Feature Id Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3358,7 +3410,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_ID_AXIS = eINSTANCE.getFeatureIdAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl <em>Feature Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.FeatureIdTreeItemAxisImpl
+		 * <em>Feature Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3369,7 +3422,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass FEATURE_ID_TREE_ITEM_AXIS = eINSTANCE.getFeatureIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl <em>EStructural Feature Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureAxisImpl
+		 * <em>EStructural Feature Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3389,7 +3443,9 @@ public interface NattableaxisPackage extends EPackage {
 		EReference ESTRUCTURAL_FEATURE_AXIS__ELEMENT = eINSTANCE.getEStructuralFeatureAxis_Element();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl <em>EStructural Feature Tree Item Axis</em>}' class.
+		 * The meta object literal for the '
+		 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.EStructuralFeatureTreeItemAxisImpl
+		 * <em>EStructural Feature Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3400,7 +3456,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass ESTRUCTURAL_FEATURE_TREE_ITEM_AXIS = eINSTANCE.getEStructuralFeatureTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl <em>Object Id Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdAxisImpl
+		 * <em>Object Id Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3411,7 +3468,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_ID_AXIS = eINSTANCE.getObjectIdAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl <em>Object Id Tree Item Axis</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectIdTreeItemAxisImpl
+		 * <em>Object Id Tree Item Axis</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3422,7 +3480,8 @@ public interface NattableaxisPackage extends EPackage {
 		EClass OBJECT_ID_TREE_ITEM_AXIS = eINSTANCE.getObjectIdTreeItemAxis();
 
 		/**
-		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl <em>Axis Group</em>}' class.
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.AxisGroupImpl
+		 * <em>Axis Group</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 *
@@ -3440,7 +3499,5 @@ public interface NattableaxisPackage extends EPackage {
 		 * @generated
 		 */
 		EReference AXIS_GROUP__GROUPED_AXIS = eINSTANCE.getAxisGroup_GroupedAxis();
-
 	}
-
 } // NattableaxisPackage

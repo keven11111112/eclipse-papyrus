@@ -17,4 +17,4 @@ Bundle-Description: This plugin contains adl4 eclipse profile used to
 Bundle-SymbolicName: org.eclipse.papyrus.adl4eclipse.profile;singleton
  :=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

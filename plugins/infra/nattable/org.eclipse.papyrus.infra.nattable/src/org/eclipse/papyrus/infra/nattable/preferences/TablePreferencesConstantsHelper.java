@@ -40,7 +40,6 @@ public class TablePreferencesConstantsHelper {
 	 */
 	public final static String TABLE_ELEMENT = "TABLE_ELEMENT_"; //$NON-NLS-1$
 
-
 	/**
 	 * Get the preference constant used to store the preference of an element.
 	 *

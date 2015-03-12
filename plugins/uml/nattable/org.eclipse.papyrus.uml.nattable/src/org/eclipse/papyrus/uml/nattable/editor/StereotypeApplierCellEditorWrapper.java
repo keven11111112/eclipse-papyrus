@@ -429,4 +429,18 @@ public class StereotypeApplierCellEditorWrapper implements ICellEditor {
 		return wrappedCellEditor == null ? cellBounds : wrappedCellEditor.calculateControlBounds(cellBounds);
 	}
 
+	/**
+	 * @see org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor#activateOnTraversal(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry, java.util.List)
+	 *
+	 * @param configRegistry
+	 * @param configLabels
+	 * @return
+	 */
+	@Override
+	public boolean activateOnTraversal(IConfigRegistry configRegistry, List<String> configLabels) {
+		// TODO Auto-generated method stub
+		//TODO : new method coming from nattable 1.2.0
+		return false;
+	}
+
 }

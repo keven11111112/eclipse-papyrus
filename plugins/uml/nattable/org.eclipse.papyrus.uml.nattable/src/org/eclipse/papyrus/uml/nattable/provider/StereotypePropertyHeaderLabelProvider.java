@@ -91,27 +91,29 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 			alias = ((FeatureAxis) value).getAlias();
 		}
 
-		ILabelProviderConfiguration conf =getLabelConfiguration(wrapper);
-		
+		ILabelProviderConfiguration conf = getLabelConfiguration(wrapper);
+
 		String returnedValue = null;
 		if (conf instanceof ObjectLabelProviderConfiguration && !((ObjectLabelProviderConfiguration) conf).isDisplayLabel()) {
 			returnedValue = ""; //$NON-NLS-1$
 		} else {
 			String id = AxisUtils.getPropertyId(value);
 			final Property prop = UMLTableUtils.getRealStereotypeProperty(tableContext, id);
+			if (prop == null) {
+				id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
+				returnedValue = id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$
+				return returnedValue;
+			}
 			if (alias != null && !alias.isEmpty()) {
 				returnedValue = alias;
 			} else {
-				returnedValue = prop.getName();//getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
+				returnedValue = prop.getName();// getLabelProviderService(configRegistry).getLabelProvider(prop).getText(prop);
 			}
-			if (conf != null && prop != null) {
+			if (conf != null) {
 				if (alias != null && !alias.equals("")) { //$NON-NLS-1$
 					returnedValue = alias;
 				}
 				returnedValue = getText((FeatureLabelProviderConfiguration) conf, configRegistry, returnedValue, prop.getType(), prop.isDerived(), prop.getLower(), prop.getUpper());
-			} else if (prop == null) {
-				id = id.replace(UMLTableUtils.PROPERTY_OF_STEREOTYPE_PREFIX, ""); //$NON-NLS-1$
-				returnedValue = id + " " + REQUIRED_PROFILE_NOT_AVALAIBLE; //$NON-NLS-1$
 			}
 		}
 		return returnedValue;
@@ -132,6 +134,7 @@ public class StereotypePropertyHeaderLabelProvider extends EMFFeatureHeaderLabel
 		}
 		return conf;
 	};
+
 	/**
 	 *
 	 * @see org.eclipse.papyrus.infra.emf.nattable.provider.EMFFeatureHeaderLabelProvider#getImage(java.lang.Object)

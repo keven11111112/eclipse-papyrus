@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
+
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,7 +98,7 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	public void setName(String newName) {
 		String oldName = name;
 		name = newName;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.NAMED_STYLE__NAME, oldName, name));
 		}
 	}
@@ -110,7 +111,7 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.NAMED_STYLE__NAME:
 			return getName();
 		}
@@ -125,9 +126,9 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.NAMED_STYLE__NAME:
-			setName((String) newValue);
+			setName((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,7 +142,7 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.NAMED_STYLE__NAME:
 			setName(NAME_EDEFAULT);
 			return;
@@ -157,7 +158,7 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.NAMED_STYLE__NAME:
 			return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
 		}
@@ -172,15 +173,13 @@ public class NamedStyleImpl extends EModelElementImpl implements NamedStyle {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (name: "); //$NON-NLS-1$
 		result.append(name);
 		result.append(')');
 		return result.toString();
 	}
-
 } // NamedStyleImpl

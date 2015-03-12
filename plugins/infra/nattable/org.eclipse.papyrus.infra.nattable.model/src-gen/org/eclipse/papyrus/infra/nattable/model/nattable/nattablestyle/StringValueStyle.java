@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>String Value Style</b></em>'.
@@ -34,6 +33,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface StringValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>String Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,15 +51,15 @@ public interface StringValueStyle extends NamedStyle {
 	String getStringValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue <em>String Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle#getStringValue
+	 * <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>String Value</em>' attribute.
+	 *        the new value of the '<em>String Value</em>' attribute.
 	 * @see #getStringValue()
 	 * @generated
 	 */
 	void setStringValue(String value);
-
 } // StringValueStyle

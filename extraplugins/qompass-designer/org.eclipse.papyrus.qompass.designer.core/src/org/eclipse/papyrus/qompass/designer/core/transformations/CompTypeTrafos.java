@@ -15,7 +15,6 @@
 package org.eclipse.papyrus.qompass.designer.core.transformations;
 
 import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
@@ -41,10 +40,12 @@ import org.eclipse.uml2.uml.Type;
  * 2. Remove ports (after ports have been replaced with standard properties)
  *
  * TODO: transformation is specific to C++
+ * TODO: currently unused
  *
  * @author ansgar
  *
  */
+@Deprecated
 public class CompTypeTrafos {
 
 	public static final String INDEX_TYPE_FOR_MULTI_RECEPTACLE = "corba::Long"; //$NON-NLS-1$
@@ -118,30 +119,6 @@ public class CompTypeTrafos {
 					refParam.setDirection(ParameterDirectionKind.IN_LITERAL);
 					StereotypeUtil.apply(refParam, Ptr.class);
 					// StereotypeUtil.apply(op, CppVirtual.class);
-				}
-			}
-		}
-	}
-
-	/**
-	 * Remove ports recursively from all classes within a package and its
-	 * sub-packages
-	 *
-	 * @param pkg
-	 *            the package (root) from which the port deletion starts.
-	 */
-	public static void removePorts(Package pkg) {
-		for (PackageableElement element : pkg.getPackagedElements()) {
-			if (element instanceof Package) {
-				removePorts((Package) element);
-			} else if (element instanceof Class) {
-				EList<Port> portListCopy = new BasicEList<Port>();
-				portListCopy.addAll(((Class) element).getOwnedPorts());
-				// avoid dangling references by calling destroy on the port list
-				// TODO: who still has a reference to these ports? (connectors? - indication of other errors?)
-				// maybe from port-list within ContainerRule stereotype?
-				for (Port port : portListCopy) {
-					port.destroy();
 				}
 			}
 		}

@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Slave Object Axis Provider</b></em>'.

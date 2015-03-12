@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Nattables
  * @generated
  */
 public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValueStyle {
+
 	/**
 	 * The default value of the '{@link #isBooleanValue() <em>Boolean Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,7 +97,7 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	public void setBooleanValue(boolean newBooleanValue) {
 		boolean oldBooleanValue = booleanValue;
 		booleanValue = newBooleanValue;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE, oldBooleanValue, booleanValue));
 		}
 	}
@@ -109,7 +110,7 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE:
 			return isBooleanValue();
 		}
@@ -124,9 +125,9 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE:
-			setBooleanValue((Boolean) newValue);
+			setBooleanValue((Boolean)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +141,7 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE:
 			setBooleanValue(BOOLEAN_VALUE_EDEFAULT);
 			return;
@@ -156,7 +157,7 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE:
 			return booleanValue != BOOLEAN_VALUE_EDEFAULT;
 		}
@@ -171,15 +172,13 @@ public class BooleanValueStyleImpl extends NamedStyleImpl implements BooleanValu
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (booleanValue: "); //$NON-NLS-1$
 		result.append(booleanValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // BooleanValueStyleImpl

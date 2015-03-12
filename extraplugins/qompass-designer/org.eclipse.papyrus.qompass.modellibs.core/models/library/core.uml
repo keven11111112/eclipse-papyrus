@@ -1327,6 +1327,11 @@ Be aware that the number of instantiated template packages will be considerably 
       <packagedElement xmi:type="uml:Class" xmi:id="_4H-ZoHkgEeOCpqruXGWNPw" name="BindOperation"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_g8oe8LsMEeO0n5elMxN1LQ" name="BindCppIncludeToFirstActual"/>
     </packagedElement>
+    <packagedElement xmi:type="uml:Package" xmi:id="_B_a2UKLvEeSBiP8ZTcBQrQ" name="OOtransformations">
+      <packagedElement xmi:type="uml:Class" xmi:id="_mgbVIKLvEeSBiP8ZTcBQrQ" name="StaticCpp"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_nRnhgKLvEeSBiP8ZTcBQrQ" name="DynamicCpp"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_pu1x4KLvEeSBiP8ZTcBQrQ" name="StaticJava"/>
+    </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_O6TiIjLUEd26WNosUASSSw">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_O6TiIzLUEd26WNosUASSSw" source="http://www.eclipse.org/uml2/2.0.0/UML">
         <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
@@ -1550,4 +1555,7 @@ Be aware that the number of instantiated template packages will be considerably 
   <FCM:BindingHelper xmi:id="_nLe_sHJDEeOMF7YEvnQt5g" base_Class="_z2tyoHI3EeOCrdvV8oxOKA"/>
   <FCM:BindingHelper xmi:id="_7qhTUHkgEeOCpqruXGWNPw" base_Class="_4H-ZoHkgEeOCpqruXGWNPw"/>
   <FCM:BindingHelper xmi:id="_mFUQALsMEeO0n5elMxN1LQ" base_Class="_g8oe8LsMEeO0n5elMxN1LQ"/>
+  <FCM:CompToOOmapping xmi:id="_45ldwKLvEeSBiP8ZTcBQrQ" base_Class="_pu1x4KLvEeSBiP8ZTcBQrQ"/>
+  <FCM:CompToOOmapping xmi:id="_5zQ3wKLvEeSBiP8ZTcBQrQ" base_Class="_mgbVIKLvEeSBiP8ZTcBQrQ"/>
+  <FCM:CompToOOmapping xmi:id="_66vdMKLvEeSBiP8ZTcBQrQ" base_Class="_nRnhgKLvEeSBiP8ZTcBQrQ"/>
 </xmi:XMI>

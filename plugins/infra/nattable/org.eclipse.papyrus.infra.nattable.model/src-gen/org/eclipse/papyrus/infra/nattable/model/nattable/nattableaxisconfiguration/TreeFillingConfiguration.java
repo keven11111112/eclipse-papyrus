@@ -23,11 +23,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getAxisUsedAsAxisProvider <em>Axis Used As Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getPasteConfiguration <em>Paste Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getAxisUsedAsAxisProvider <em>Axis
+ * Used As Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getPasteConfiguration <em>Paste
+ * Configuration</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getDepth <em>Depth</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProvider <em>Label Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProviderContext <em>Label Provider Context</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProvider <em>Label Provider
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProviderContext <em>Label
+ * Provider Context</em>}</li>
  * </ul>
  * </p>
  *
@@ -36,11 +40,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.I
  * @generated
  */
 public interface TreeFillingConfiguration extends IFillingConfiguration {
+
 	/**
 	 * Returns the value of the '<em><b>Axis Used As Axis Provider</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Axis Used As Axis Provider</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Axis Used As Axis Provider</em>' containment reference isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -53,12 +59,14 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	IAxis getAxisUsedAsAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getAxisUsedAsAxisProvider <em>Axis Used As Axis Provider</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getAxisUsedAsAxisProvider
+	 * <em>Axis Used As Axis Provider</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Axis Used As Axis Provider</em>' containment reference.
+	 *        the new value of the '<em>Axis Used As Axis Provider</em>' containment reference.
 	 * @see #getAxisUsedAsAxisProvider()
 	 * @generated
 	 */
@@ -81,12 +89,14 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	PasteEObjectConfiguration getPasteConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getPasteConfiguration <em>Paste Configuration</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getPasteConfiguration
+	 * <em>Paste Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Paste Configuration</em>' reference.
+	 *        the new value of the '<em>Paste Configuration</em>' reference.
 	 * @see #getPasteConfiguration()
 	 * @generated
 	 */
@@ -109,12 +119,13 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	int getDepth();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getDepth <em>Depth</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getDepth
+	 * <em>Depth</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Depth</em>' attribute.
+	 *        the new value of the '<em>Depth</em>' attribute.
 	 * @see #getDepth()
 	 * @generated
 	 */
@@ -137,12 +148,14 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	ILabelProviderConfiguration getLabelProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProvider <em>Label Provider</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProvider
+	 * <em>Label Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Label Provider</em>' reference.
+	 *        the new value of the '<em>Label Provider</em>' reference.
 	 * @see #getLabelProvider()
 	 * @generated
 	 */
@@ -165,15 +178,16 @@ public interface TreeFillingConfiguration extends IFillingConfiguration {
 	String getLabelProviderContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProviderContext <em>Label Provider Context</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TreeFillingConfiguration#getLabelProviderContext
+	 * <em>Label Provider Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Label Provider Context</em>' attribute.
+	 *        the new value of the '<em>Label Provider Context</em>' attribute.
 	 * @see #getLabelProviderContext()
 	 * @generated
 	 */
 	void setLabelProviderContext(String value);
-
 } // TreeFillingConfiguration

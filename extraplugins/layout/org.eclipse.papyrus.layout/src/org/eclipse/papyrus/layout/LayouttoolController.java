@@ -22,6 +22,11 @@ import java.util.Map;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.zest.layouts.InvalidLayoutConfiguration;
+import org.eclipse.zest.layouts.LayoutAlgorithm;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+import org.eclipse.zest.layouts.exampleStructures.SimpleNode;
+import org.eclipse.zest.layouts.exampleStructures.SimpleRelationship;
 
 /**
  * The class LayouttoolController.

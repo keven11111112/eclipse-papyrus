@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,19 +8,18 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.utils;
 
 /**
  * @author VL222926
- *
+ * 
  *         This class provides code which can be provided by Paste Action in the table
  */
 public class PasteSeverityCode {
 
-	public static int PASTE_ERROR_NO_CONTAINMENT_FEATURE;
 
 	/**
 	 * Constructor.
@@ -29,11 +28,16 @@ public class PasteSeverityCode {
 	private PasteSeverityCode() {
 		// to prevent instanciation
 	}
-
+	
+	/**
+	 * the severity code used when there is no containment feature declared in the configuration
+	 */
+	public static final int PASTE_ERROR__NO_CONTAINMENT_FEATURE = 0;
+	
 	/**
 	 * the severity code used when there is no paste configuration found
 	 */
-	public static final int PASTE_ERROR__NO_PASTE_CONFIGURATION = 0;
+	public static final int PASTE_ERROR__NO_PASTE_CONFIGURATION = PASTE_ERROR__NO_CONTAINMENT_FEATURE+1;
 
 	/**
 	 * no element type defined for the paste

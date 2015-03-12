@@ -34,6 +34,7 @@ import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -69,6 +70,7 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 		Shell activeShell = HandlerUtil.getActiveShell(event);
 		List<IFile> updated = Lists.newArrayListWithExpectedSize(4);
 		IFile aggregationBuildFile = null;
+		boolean cancelled = false;
 
 		try {
 			if (selection instanceof IStructuredSelection) {
@@ -77,7 +79,9 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 				if (!files.isEmpty()) {
 					List<IFile> aggregationBuildFiles = findAggregationBuildFiles();
 					aggregationBuildFile = chooseAggregationBuildFile(aggregationBuildFiles, activeShell);
-					if (aggregationBuildFile != null) {
+					if (aggregationBuildFile == null) {
+						cancelled = true;
+					} else {
 						Aggregation aggregation = loadAggregationModel(aggregationBuildFile);
 						if (aggregation != null) {
 							Map<Object, Object> context = Maps.newHashMap();
@@ -90,13 +94,18 @@ public class UpdateDependenciesHandler extends AbstractHandler {
 					}
 				}
 			}
+		} catch (OperationCanceledException e) {
+			cancelled = true;
 		} catch (Exception e) {
 			Activator.getDefault().getLog().log(new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Error", e)); //$NON-NLS-1$
 			MessageDialog.openError(activeShell, Messages.UpdateRMapAction_error, e.getLocalizedMessage());
 		}
 
 		if (updated.isEmpty()) {
-			MessageDialog.openInformation(activeShell, "No Files Updated", "No files were updated for new dependencies.");
+			// Don't waste the user's attention on this if he cancelled
+			if (!cancelled) {
+				MessageDialog.openInformation(activeShell, "No Files Updated", "No files were updated for new dependencies.");
+			}
 		} else {
 			String fileList = Joiner.on(", ").join(Iterables.transform(updated, new Function<IFile, IPath>() {
 				@Override

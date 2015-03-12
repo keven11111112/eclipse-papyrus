@@ -27,6 +27,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableproblem.Problem
  * @generated
  */
 public class ProblemImpl extends TableNamedElementImpl implements Problem {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47,5 +48,4 @@ public class ProblemImpl extends TableNamedElementImpl implements Problem {
 	protected EClass eStaticClass() {
 		return NattableproblemPackage.Literals.PROBLEM;
 	}
-
 } // ProblemImpl

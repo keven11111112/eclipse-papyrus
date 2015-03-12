@@ -14,6 +14,9 @@
 package org.eclipse.papyrus.layout.algorithms.gridalgorithm;
 
 import org.eclipse.papyrus.layout.managealgorithms.AlgorithmFactory;
+import org.eclipse.zest.layouts.LayoutStyles;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+import org.eclipse.zest.layouts.algorithms.GridLayoutAlgorithm;
 
 /**
  * The Class GridAlgorithm.

@@ -33,6 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablecell.Nattablece
  * @generated
  */
 public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrapper {
+
 	/**
 	 * The default value of the '{@link #getElement() <em>Element</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,7 +98,7 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	public void setElement(String newElement) {
 		String oldElement = element;
 		element = newElement;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT, oldElement, element));
 		}
 	}
@@ -110,7 +111,7 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
 			return getElement();
 		}
@@ -125,9 +126,9 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
-			setElement((String) newValue);
+			setElement((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,7 +142,7 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
 			setElement(ELEMENT_EDEFAULT);
 			return;
@@ -157,7 +158,7 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablecellPackage.ID_AXIS_WRAPPER__ELEMENT:
 			return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
 		}
@@ -172,15 +173,13 @@ public class IdAxisWrapperImpl extends EModelElementImpl implements IdAxisWrappe
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (element: "); //$NON-NLS-1$
 		result.append(element);
 		result.append(')');
 		return result.toString();
 	}
-
 } // IdAxisWrapperImpl

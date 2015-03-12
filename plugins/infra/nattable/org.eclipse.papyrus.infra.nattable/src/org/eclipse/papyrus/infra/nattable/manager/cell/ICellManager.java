@@ -37,7 +37,7 @@ public interface ICellManager {
 	/**
 	 * the empty sting
 	 */
-	public static final String EMPTY_STRING = "";
+	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 
 	/**
 	 *

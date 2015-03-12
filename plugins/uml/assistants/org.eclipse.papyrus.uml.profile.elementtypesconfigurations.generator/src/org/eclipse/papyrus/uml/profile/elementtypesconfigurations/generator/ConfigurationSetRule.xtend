@@ -44,7 +44,10 @@ class ConfigurationSetRule {
 
         umlProfile.allExtensions.forEach[ext | 
             elementTypeConfigurations.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toElementType(it)])
-            adviceBindingsConfigurations.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.stereotype.toAdviceConfiguration(ext, it)])
+            
+            // We only need to generate advice bindings for element types that won't inherit the from a parent semantic type
+            val typesNeedingAdvice = ext.metaclass.diagramSpecificElementTypes.filter[!hasSemanticSupertype]
+            adviceBindingsConfigurations.addAll(typesNeedingAdvice.map[ext.stereotype.toAdviceConfiguration(ext, it)])
         ]
         
     }

@@ -17,10 +17,9 @@ import javax.inject.Singleton
 import org.eclipse.papyrus.infra.gmfdiag.assistant.AssistantFactory
 import org.eclipse.papyrus.infra.gmfdiag.assistant.ModelingAssistantProvider
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers
+import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UML
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UMLElementTypes
 import org.eclipse.uml2.uml.Profile
-import org.eclipse.uml2.uml.UMLPackage
-import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.UML
 
 /**
  * Transformation rule for generating a {@link ModelingAssistantProvider} from a UML {@link Profile}.
@@ -47,13 +46,13 @@ class ModelingAssistantProviderRule {
         umlProfile.allExtensions.forEach [ ext |
             // Add the diagram-specific element types for our profile
             var profileElementTypes = ext.metaclass.diagramSpecificElementTypes.map[ext.toElementTypeID(it)]
-            elementTypeIDs.addAll(profileElementTypes)
             
             // And filters for the same, which the user may employ in edits of the model
             profileElementTypes.forEach[toElementTypeFilter(umlProfile)]
             
-            if (!UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(ext.metaclass.EClass)) {
+            if (!ext.metaclass.EClass.isRelationship) {
                 // Popup assistants to create non-relationships
+                elementTypeIDs.addAll(profileElementTypes)
                 popupAssistants.addAll(ext.metaclass.diagramSpecificElementTypes.map[ext.toPopupAssistant(it)])
             } else {
                 // Connection assistants to create relationships

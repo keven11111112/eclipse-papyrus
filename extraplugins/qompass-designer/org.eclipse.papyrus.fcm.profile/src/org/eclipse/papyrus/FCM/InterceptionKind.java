@@ -78,7 +78,9 @@ public enum InterceptionKind implements Enumerator {
 	 * @generated
 	 * @ordered
 	 */
-	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn"), /**
+	INTERCEPT_ALL_IN(3, "InterceptAllIn", "InterceptAllIn"), //$NON-NLS-1$ //$NON-NLS-2$
+	
+	/**
 	 * The '<em><b>Intercept Matching</b></em>' literal object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Nattable
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class TableConfigurationItemProvider extends TableNamedElementItemProvider {
@@ -41,7 +41,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public TableConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -52,7 +52,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -73,7 +73,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
@@ -96,7 +96,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Icon Path feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addIconPathPropertyDescriptor(Object object) {
@@ -119,7 +119,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Cell Editor Declaration feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addCellEditorDeclarationPropertyDescriptor(Object object) {
@@ -142,7 +142,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Default Row Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDefaultRowAxisProviderPropertyDescriptor(Object object) {
@@ -165,7 +165,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This adds a property descriptor for the Default Column Axis Provider feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addDefaultColumnAxisProviderPropertyDescriptor(Object object) {
@@ -189,7 +189,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -208,7 +208,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -223,7 +223,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns TableConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -235,7 +235,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -252,7 +252,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -281,7 +281,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -328,7 +328,7 @@ public class TableConfigurationItemProvider extends TableNamedElementItemProvide
 	 * This returns the label text for {@link org.eclipse.emf.edit.command.CreateChildCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

@@ -352,6 +352,9 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(elementTypeSetId, modelPath, contributorID);
 			if (set != null && !workspaceDefinitions.contains(elementTypeSetId)) { // do not add if it is locally redefined
+				if (platformElementTypeSets.containsKey(elementTypeSetId)){
+					Activator.log.warn("An element type set is already registered with the id : " + elementTypeSetId);
+				}
 				platformElementTypeSets.put(elementTypeSetId, set);
 			}
 		}

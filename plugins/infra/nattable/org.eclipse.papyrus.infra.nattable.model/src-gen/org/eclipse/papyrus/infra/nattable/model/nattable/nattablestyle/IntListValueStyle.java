@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface IntListValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>Int List Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.Integer}.
@@ -50,5 +51,4 @@ public interface IntListValueStyle extends NamedStyle {
 	 * @generated
 	 */
 	EList<Integer> getIntListValue();
-
 } // IntListValueStyle

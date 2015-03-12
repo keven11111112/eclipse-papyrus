@@ -28,13 +28,16 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.EStructuralFeatureValueFillingConfigurationImpl#getListenFeature <em>Listen Feature</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.EStructuralFeatureValueFillingConfigurationImpl#getListenFeature
+ * <em>Listen Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class EStructuralFeatureValueFillingConfigurationImpl extends StyledElementImpl implements EStructuralFeatureValueFillingConfiguration {
+
 	/**
 	 * The cached value of the '{@link #getListenFeature() <em>Listen Feature</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -75,11 +78,11 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	 */
 	@Override
 	public EStructuralFeature getListenFeature() {
-		if (listenFeature != null && listenFeature.eIsProxy()) {
-			InternalEObject oldListenFeature = (InternalEObject) listenFeature;
-			listenFeature = (EStructuralFeature) eResolveProxy(oldListenFeature);
-			if (listenFeature != oldListenFeature) {
-				if (eNotificationRequired()) {
+		if(listenFeature != null && listenFeature.eIsProxy()) {
+			InternalEObject oldListenFeature = (InternalEObject)listenFeature;
+			listenFeature = (EStructuralFeature)eResolveProxy(oldListenFeature);
+			if(listenFeature != oldListenFeature) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
 				}
 			}
@@ -107,7 +110,7 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	public void setListenFeature(EStructuralFeature newListenFeature) {
 		EStructuralFeature oldListenFeature = listenFeature;
 		listenFeature = newListenFeature;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE, oldListenFeature, listenFeature));
 		}
 	}
@@ -120,9 +123,9 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
-			if (resolve) {
+			if(resolve) {
 				return getListenFeature();
 			}
 			return basicGetListenFeature();
@@ -138,9 +141,9 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
-			setListenFeature((EStructuralFeature) newValue);
+			setListenFeature((EStructuralFeature)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -154,9 +157,9 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
-			setListenFeature((EStructuralFeature) null);
+			setListenFeature((EStructuralFeature)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -170,11 +173,10 @@ public class EStructuralFeatureValueFillingConfigurationImpl extends StyledEleme
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.ESTRUCTURAL_FEATURE_VALUE_FILLING_CONFIGURATION__LISTEN_FEATURE:
 			return listenFeature != null;
 		}
 		return super.eIsSet(featureID);
 	}
-
 } // EStructuralFeatureValueFillingConfigurationImpl

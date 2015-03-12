@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public interface AbstractTableTester extends StyledElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,5 +41,4 @@ public interface AbstractTableTester extends StyledElement {
 	 * @generated
 	 */
 	Object getTester();
-
 } // AbstractTableTester

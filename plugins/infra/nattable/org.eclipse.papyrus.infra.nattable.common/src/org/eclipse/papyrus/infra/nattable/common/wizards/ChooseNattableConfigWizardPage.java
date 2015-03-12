@@ -124,7 +124,7 @@ public class ChooseNattableConfigWizardPage extends WizardPage {
 
 			@Override
 			protected void setValue(Object element, Object value) {
-				if (checkboxCellEditor.getValue() == Boolean.TRUE) {
+				if (Boolean.TRUE.equals(checkboxCellEditor.getValue())) {
 					selectedConfigs.put((TableConfiguration) element, 1);
 				} else {
 					selectedConfigs.remove(element);

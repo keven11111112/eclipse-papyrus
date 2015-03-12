@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * @generated
  */
 public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implements NattableaxisconfigurationFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -48,8 +49,8 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	public static NattableaxisconfigurationFactory init() {
 		try {
-			NattableaxisconfigurationFactory theNattableaxisconfigurationFactory = (NattableaxisconfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(NattableaxisconfigurationPackage.eNS_URI);
-			if (theNattableaxisconfigurationFactory != null) {
+			NattableaxisconfigurationFactory theNattableaxisconfigurationFactory = (NattableaxisconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(NattableaxisconfigurationPackage.eNS_URI);
+			if(theNattableaxisconfigurationFactory != null) {
 				return theNattableaxisconfigurationFactory;
 			}
 		} catch (Exception exception) {
@@ -77,7 +78,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_REPRESENTATION:
 			return createAxisManagerRepresentation();
 		case NattableaxisconfigurationPackage.AXIS_MANAGER_CONFIGURATION:
@@ -109,7 +110,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
 			return createAxisIndexStyleFromString(eDataType, initialValue);
 		default:
@@ -125,7 +126,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case NattableaxisconfigurationPackage.AXIS_INDEX_STYLE:
 			return convertAxisIndexStyleToString(eDataType, instanceValue);
 		default:
@@ -249,8 +250,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	public AxisIndexStyle createAxisIndexStyleFromString(EDataType eDataType, String initialValue) {
 		AxisIndexStyle result = AxisIndexStyle.get(initialValue);
-		if (result == null)
-		{
+		if(result == null) {
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return result;
@@ -274,7 +274,7 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	 */
 	@Override
 	public NattableaxisconfigurationPackage getNattableaxisconfigurationPackage() {
-		return (NattableaxisconfigurationPackage) getEPackage();
+		return (NattableaxisconfigurationPackage)getEPackage();
 	}
 
 	/**
@@ -288,5 +288,4 @@ public class NattableaxisconfigurationFactoryImpl extends EFactoryImpl implement
 	public static NattableaxisconfigurationPackage getPackage() {
 		return NattableaxisconfigurationPackage.eINSTANCE;
 	}
-
 } // NattableaxisconfigurationFactoryImpl

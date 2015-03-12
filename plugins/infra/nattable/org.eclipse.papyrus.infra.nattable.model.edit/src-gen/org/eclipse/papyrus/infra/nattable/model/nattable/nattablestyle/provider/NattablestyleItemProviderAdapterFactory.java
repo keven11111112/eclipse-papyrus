@@ -38,7 +38,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.util.Natt
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -47,7 +47,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -56,7 +56,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -65,7 +65,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -74,7 +74,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public NattablestyleItemProviderAdapterFactory() {
@@ -89,7 +89,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected NamedStyleItemProvider namedStyleItemProvider;
@@ -98,7 +98,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -114,7 +114,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected FontStyleItemProvider fontStyleItemProvider;
@@ -123,7 +123,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,7 +139,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected CellTextStyleItemProvider cellTextStyleItemProvider;
@@ -148,7 +148,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -164,7 +164,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IntValueStyleItemProvider intValueStyleItemProvider;
@@ -173,7 +173,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -189,7 +189,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IntListValueStyleItemProvider intListValueStyleItemProvider;
@@ -198,7 +198,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -214,7 +214,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected BooleanValueStyleItemProvider booleanValueStyleItemProvider;
@@ -223,7 +223,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -239,7 +239,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected BooleanListValueStyleItemProvider booleanListValueStyleItemProvider;
@@ -248,7 +248,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -264,7 +264,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected DoubleValueStyleItemProvider doubleValueStyleItemProvider;
@@ -273,7 +273,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,7 +289,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected DoubleListValueStyleItemProvider doubleListValueStyleItemProvider;
@@ -298,7 +298,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -314,7 +314,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected StringValueStyleItemProvider stringValueStyleItemProvider;
@@ -323,7 +323,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -339,7 +339,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected StringListValueStyleItemProvider stringListValueStyleItemProvider;
@@ -348,7 +348,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -364,7 +364,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected TableDisplayStyleItemProvider tableDisplayStyleItemProvider;
@@ -373,7 +373,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -386,10 +386,60 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EObjectValueStyleItemProvider eObjectValueStyleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectValueStyleAdapter() {
+		if (eObjectValueStyleItemProvider == null) {
+			eObjectValueStyleItemProvider = new EObjectValueStyleItemProvider(this);
+		}
+
+		return eObjectValueStyleItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	protected EObjectListValueStyleItemProvider eObjectListValueStyleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * 
+	 * @generated
+	 */
+	@Override
+	public Adapter createEObjectListValueStyleAdapter() {
+		if (eObjectListValueStyleItemProvider == null) {
+			eObjectListValueStyleItemProvider = new EObjectListValueStyleItemProvider(this);
+		}
+
+		return eObjectListValueStyleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -401,7 +451,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -412,7 +462,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -424,7 +474,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -435,7 +485,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -454,7 +504,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -466,7 +516,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -478,7 +528,7 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -494,46 +544,38 @@ public class NattablestyleItemProviderAdapterFactory extends NattablestyleAdapte
 	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
 	public void dispose() {
-		if (namedStyleItemProvider != null) {
+		if (namedStyleItemProvider != null)
 			namedStyleItemProvider.dispose();
-		}
-		if (fontStyleItemProvider != null) {
+		if (fontStyleItemProvider != null)
 			fontStyleItemProvider.dispose();
-		}
-		if (cellTextStyleItemProvider != null) {
+		if (cellTextStyleItemProvider != null)
 			cellTextStyleItemProvider.dispose();
-		}
-		if (intValueStyleItemProvider != null) {
+		if (intValueStyleItemProvider != null)
 			intValueStyleItemProvider.dispose();
-		}
-		if (intListValueStyleItemProvider != null) {
+		if (intListValueStyleItemProvider != null)
 			intListValueStyleItemProvider.dispose();
-		}
-		if (booleanValueStyleItemProvider != null) {
+		if (booleanValueStyleItemProvider != null)
 			booleanValueStyleItemProvider.dispose();
-		}
-		if (booleanListValueStyleItemProvider != null) {
+		if (booleanListValueStyleItemProvider != null)
 			booleanListValueStyleItemProvider.dispose();
-		}
-		if (doubleValueStyleItemProvider != null) {
+		if (doubleValueStyleItemProvider != null)
 			doubleValueStyleItemProvider.dispose();
-		}
-		if (doubleListValueStyleItemProvider != null) {
+		if (doubleListValueStyleItemProvider != null)
 			doubleListValueStyleItemProvider.dispose();
-		}
-		if (stringValueStyleItemProvider != null) {
+		if (stringValueStyleItemProvider != null)
 			stringValueStyleItemProvider.dispose();
-		}
-		if (stringListValueStyleItemProvider != null) {
+		if (stringListValueStyleItemProvider != null)
 			stringListValueStyleItemProvider.dispose();
-		}
-		if (tableDisplayStyleItemProvider != null) {
+		if (tableDisplayStyleItemProvider != null)
 			tableDisplayStyleItemProvider.dispose();
-		}
+		if (eObjectValueStyleItemProvider != null)
+			eObjectValueStyleItemProvider.dispose();
+		if (eObjectListValueStyleItemProvider != null)
+			eObjectListValueStyleItemProvider.dispose();
 	}
 }

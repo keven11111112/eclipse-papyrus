@@ -15,6 +15,7 @@
 package org.eclipse.papyrus.layout;
 
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
 
 /**
  * The class LayoutToolAlgorithms contains all information needed for an algorithm.

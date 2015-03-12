@@ -17,7 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.jface.viewers.IBaseLabelProvider;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.IStructuredContentProvider;
@@ -27,7 +27,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResource;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.service.types.Activator;
 import org.eclipse.papyrus.uml.service.types.messages.Messages;
@@ -49,6 +48,8 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	/** The common associations. */
 	protected Set<Association> commonAssociations;
 
+	private ServicesRegistry serviceRegistry;
+
 	private boolean isCanceled = true;
 
 
@@ -62,10 +63,20 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	 * @param commonAssociations
 	 *            list of assocation in which we would like to llok for
 	 */
-	public AssociationSelectionDialog(Shell parent, int style, Set<Association> commonAssociations) {
+	public AssociationSelectionDialog(Shell parent, int style, Set<Association> commonAssociations, ServicesRegistry serviceRegistry) {
 		super(parent, style);
 		this.commonAssociations = commonAssociations == null ? new HashSet<Association>() : commonAssociations;
 		this.selectedAssociation = null;
+		this.serviceRegistry = serviceRegistry;
+	}
+
+	private IBaseLabelProvider getLabelProvider() {
+		try {
+			return serviceRegistry.getService(LabelProviderService.class).getLabelProvider();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return null;
+		}
 	}
 
 	/**
@@ -75,74 +86,62 @@ public class AssociationSelectionDialog extends AbstractAssociationSelectionDial
 	@Override
 	protected void createContents() {
 		super.createContents();
-		ServicesRegistry registry;
-		try {
-			if (selectedAssociation != null) {
-				registry = ServiceUtilsForResource.getInstance().getServiceRegistry(selectedAssociation.eResource());
-				LabelProviderService labelProviderService = registry.getService(LabelProviderService.class);
-				final ILabelProvider labelProvider = labelProviderService.getLabelProvider();
-				final IStructuredContentProvider associationContentProvider = new IStructuredContentProvider() {
+		final IStructuredContentProvider associationContentProvider = new IStructuredContentProvider() {
 
-					@Override
-					public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
-					}
-
-					@Override
-					public void dispose() {
-					}
-
-					@Override
-					public Object[] getElements(Object inputElement) {
-						List<Object> result = new ArrayList<Object>();
-						result.add(UNTYPED);
-						result.addAll(commonAssociations);
-						return result.toArray();
-					}
-				};
-				final TableViewer tableViewer = new TableViewer(table);
-				tableViewer.setLabelProvider(labelProvider);
-				tableViewer.setContentProvider(associationContentProvider);
-				tableViewer.setInput(commonAssociations);
-				tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
-
-					@Override
-					public void selectionChanged(SelectionChangedEvent event) {
-						btnOk.setEnabled(true);
-
-					}
-				});
-
-				btnOk.setEnabled(false);
-				btnOk.addSelectionListener(new SelectionAdapter() {
-
-					@Override
-					public void widgetSelected(SelectionEvent event) {
-						ISelection selection = tableViewer.getSelection();
-						if (selection instanceof IStructuredSelection) {
-							Object selectedItem = ((IStructuredSelection) selection).getFirstElement();
-							selectedAssociation = selectedItem instanceof Association ? (Association) selectedItem : null;
-							isCanceled = false;
-							shlAssociationselection.close();
-						}
-					}
-
-				});
-				btnCancel.addSelectionListener(new SelectionAdapter() {
-
-					@Override
-					public void widgetSelected(SelectionEvent event) {
-						selectedAssociation = null;
-						shlAssociationselection.close();
-
-					}
-
-				});
-			} else {
-				btnCancel.setVisible(true);
+			@Override
+			public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 			}
-		} catch (ServiceException e1) {
-			Activator.log.error(e1);
-		}
+
+			@Override
+			public void dispose() {
+			}
+
+			@Override
+			public Object[] getElements(Object inputElement) {
+				List<Object> result = new ArrayList<Object>();
+				result.add(UNTYPED);
+				result.addAll(commonAssociations);
+				return result.toArray();
+			}
+		};
+		final TableViewer tableViewer = new TableViewer(table);
+		tableViewer.setLabelProvider(getLabelProvider());
+		tableViewer.setContentProvider(associationContentProvider);
+		tableViewer.setInput(commonAssociations);
+		tableViewer.addSelectionChangedListener(new ISelectionChangedListener() {
+
+			@Override
+			public void selectionChanged(SelectionChangedEvent event) {
+				btnOk.setEnabled(true);
+
+			}
+		});
+		btnOk.setEnabled(false);
+		btnOk.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				ISelection selection = tableViewer.getSelection();
+				if (selection instanceof IStructuredSelection) {
+					Object selectedItem = ((IStructuredSelection) selection).getFirstElement();
+					selectedAssociation = selectedItem instanceof Association ? (Association) selectedItem : null;
+					isCanceled = false;
+					shlAssociationselection.close();
+				}
+			}
+
+		});
+		btnCancel.addSelectionListener(new SelectionAdapter() {
+
+			@Override
+			public void widgetSelected(SelectionEvent event) {
+				selectedAssociation = null;
+				shlAssociationselection.close();
+
+			}
+
+		});
+		btnCancel.setVisible(true);
 	}
 
 	/**

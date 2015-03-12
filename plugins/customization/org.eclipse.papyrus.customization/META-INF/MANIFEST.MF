@@ -34,4 +34,4 @@ Bundle-Activator: org.eclipse.papyrus.customization.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.customization;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

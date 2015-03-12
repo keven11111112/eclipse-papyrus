@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * @generated
  */
 public class NattableconfigurationFactoryImpl extends EFactoryImpl implements NattableconfigurationFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -40,8 +41,8 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	public static NattableconfigurationFactory init() {
 		try {
-			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(NattableconfigurationPackage.eNS_URI);
-			if (theNattableconfigurationFactory != null) {
+			NattableconfigurationFactory theNattableconfigurationFactory = (NattableconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(NattableconfigurationPackage.eNS_URI);
+			if(theNattableconfigurationFactory != null) {
 				return theNattableconfigurationFactory;
 			}
 		} catch (Exception exception) {
@@ -69,7 +70,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION:
 			return createTableConfiguration();
 		default:
@@ -85,7 +86,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public Object createFromString(EDataType eDataType, String initialValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
 			return createCellEditorDeclarationFromString(eDataType, initialValue);
 		default:
@@ -101,7 +102,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public String convertToString(EDataType eDataType, Object instanceValue) {
-		switch (eDataType.getClassifierID()) {
+		switch(eDataType.getClassifierID()) {
 		case NattableconfigurationPackage.CELL_EDITOR_DECLARATION:
 			return convertCellEditorDeclarationToString(eDataType, instanceValue);
 		default:
@@ -129,8 +130,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	public CellEditorDeclaration createCellEditorDeclarationFromString(EDataType eDataType, String initialValue) {
 		CellEditorDeclaration result = CellEditorDeclaration.get(initialValue);
-		if (result == null)
-		{
+		if(result == null) {
 			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 		}
 		return result;
@@ -154,7 +154,7 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	 */
 	@Override
 	public NattableconfigurationPackage getNattableconfigurationPackage() {
-		return (NattableconfigurationPackage) getEPackage();
+		return (NattableconfigurationPackage)getEPackage();
 	}
 
 	/**
@@ -168,5 +168,4 @@ public class NattableconfigurationFactoryImpl extends EFactoryImpl implements Na
 	public static NattableconfigurationPackage getPackage() {
 		return NattableconfigurationPackage.eINSTANCE;
 	}
-
 } // NattableconfigurationFactoryImpl

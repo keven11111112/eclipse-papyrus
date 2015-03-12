@@ -65,11 +65,11 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
@@ -478,7 +478,6 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 				if (parentEditPart instanceof GraphicalEditPart) {
 					// check if all lifelines coversby exist in diagram.
 					Rectangle bounds = null;
-					List<Lifeline> lifelines = combinedFragment.getCovereds();
 					for (Lifeline lifeline : combinedFragment.getCovereds()) {
 						EditPart lifelineEditPart = lookForEditPart(lifeline);
 						if (lifelineEditPart == null) {

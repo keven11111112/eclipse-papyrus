@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Id Axis</b></em>'.
@@ -30,6 +29,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis;
  * @generated
  */
 public interface IdAxis extends IAxis {
+
 	/**
 	 * Returns the value of the '<em><b>Element</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -53,10 +53,9 @@ public interface IdAxis extends IAxis {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Element</em>' attribute.
+	 *        the new value of the '<em>Element</em>' attribute.
 	 * @see #getElement()
 	 * @generated
 	 */
 	void setElement(String value);
-
 } // IdAxis

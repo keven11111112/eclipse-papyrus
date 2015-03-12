@@ -26,14 +26,17 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>Display Icon</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>Display Label</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayIcon <em>
+ * Display Icon</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablelabelprovider.impl.ObjectLabelProviderConfigurationImpl#isDisplayLabel <em>
+ * Display Label</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl implements ObjectLabelProviderConfiguration {
+
 	/**
 	 * The default value of the '{@link #isDisplayIcon() <em>Display Icon</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -120,7 +123,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	public void setDisplayIcon(boolean newDisplayIcon) {
 		boolean oldDisplayIcon = displayIcon;
 		displayIcon = newDisplayIcon;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON, oldDisplayIcon, displayIcon));
 		}
 	}
@@ -146,7 +149,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	public void setDisplayLabel(boolean newDisplayLabel) {
 		boolean oldDisplayLabel = displayLabel;
 		displayLabel = newDisplayLabel;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL, oldDisplayLabel, displayLabel));
 		}
 	}
@@ -159,7 +162,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 			return isDisplayIcon();
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
@@ -176,12 +179,12 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
-			setDisplayIcon((Boolean) newValue);
+			setDisplayIcon((Boolean)newValue);
 			return;
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
-			setDisplayLabel((Boolean) newValue);
+			setDisplayLabel((Boolean)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -195,7 +198,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 			setDisplayIcon(DISPLAY_ICON_EDEFAULT);
 			return;
@@ -214,7 +217,7 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_ICON:
 			return displayIcon != DISPLAY_ICON_EDEFAULT;
 		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION__DISPLAY_LABEL:
@@ -231,10 +234,9 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayIcon: "); //$NON-NLS-1$
 		result.append(displayIcon);
@@ -243,5 +245,4 @@ public class ObjectLabelProviderConfigurationImpl extends StyledElementImpl impl
 		result.append(')');
 		return result.toString();
 	}
-
 } // ObjectLabelProviderConfigurationImpl

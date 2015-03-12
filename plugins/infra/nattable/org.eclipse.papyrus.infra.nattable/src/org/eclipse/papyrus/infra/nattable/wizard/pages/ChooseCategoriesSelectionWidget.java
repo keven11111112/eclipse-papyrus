@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.wizard.pages;
@@ -51,7 +51,7 @@ import org.eclipse.swt.widgets.Control;
  *         <li>the feature to listen</li>
  *         <li></li>
  *         </ul>
- *
+ * 
  *         The create action allows to create new depth
  */
 public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelectionWidget {
@@ -119,7 +119,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the context object to use
 	 */
@@ -130,8 +130,8 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 				Object first = ((IStructuredSelection) selection).getFirstElement();
 				if (first instanceof ITreeItemAxis) {
 					ITreeItemAxis context = (ITreeItemAxis) first;
-					while (context.getParent() != null) {
-						context = context.getParent();
+					while (((ITreeItemAxis) context).getParent() != null) {
+						context = ((ITreeItemAxis) context).getParent();
 					}
 					return context;
 				}
@@ -234,7 +234,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the selected axis in the selectedElementsViewer
 	 */
@@ -253,15 +253,15 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the list with the current selection in the viewer.
 	 *         <ul>
 	 *         <li>if roots are in the selection, we returns only axis representing roots</li>
 	 *         <li>we returns only axis representing FillingCategories</li>
-	 *
+	 * 
 	 *         </ul>
-	 *
+	 * 
 	 */
 	protected List<ITreeItemAxis> getConsistentSelectionInSelectedElementsViewer() {
 		if (selectedElementsViewer == null) {
@@ -292,7 +292,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @param wantedClass
 	 *            the class represented the wanted type of the encapsulated element
 	 * @return
@@ -403,13 +403,13 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         <ul>
 	 *         <li>a list with the selected categories only when all selected elements are categories AND they have the same parent (a {@link IdTreeItemAxis} (which represents the depth))</li>
 	 *         <li>an empty list in all others case</li>
 	 *         </ul>
-	 *
+	 * 
 	 */
 	protected List<ITreeItemAxis> getSelectedCategoriesInSelectedElementsViewer() {
 		List<ITreeItemAxis> selection = getSelectedAxisInSelectedElementsViewer();
@@ -433,9 +433,9 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @author VL222926
-	 *
+	 * 
 	 *         This comparator allows to sort comparator
 	 *
 	 */
@@ -480,7 +480,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.widgets.widgets.MultipleValueSelectionWidget#canMove(boolean)
 	 *
 	 * @param up
@@ -504,7 +504,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @param up
 	 *            <code>true</code> if the elements must be move to up
 	 */
@@ -598,7 +598,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 
 	/**
 	 * Destroy recursively all categories axis
-	 *
+	 * 
 	 * @param axis
 	 *            an axis
 	 */
@@ -630,7 +630,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         the list of the selected element in the selection viewer
 	 */
@@ -651,14 +651,14 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 	}
 
 	/**
-	 *
+	 * 
 	 * @author VL222926
 	 *         This class is the factory used to create new ITreeItemAxis in the viewer of selected element
 	 *         It creates only {@link ITreeItemAxis} to represents depth to configure and its allows to edit only alias of categories
 	 */
 	public class CategoriesValueFactory implements ReferenceValueFactory {
 		/**
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory#validateObjects(java.util.Collection)
 		 *
 		 * @param objectsToValidate
@@ -670,7 +670,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 		}
 
 		/**
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory#edit(org.eclipse.swt.widgets.Control, java.lang.Object)
 		 *
 		 * @param widget
@@ -708,7 +708,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 		}
 
 		/**
-		 *
+		 * 
 		 * @return
 		 */
 		@Override
@@ -721,7 +721,7 @@ public class ChooseCategoriesSelectionWidget extends MultipleValueEditAndSelecti
 		}
 
 		/**
-		 *
+		 * 
 		 * @return
 		 */
 		@Override

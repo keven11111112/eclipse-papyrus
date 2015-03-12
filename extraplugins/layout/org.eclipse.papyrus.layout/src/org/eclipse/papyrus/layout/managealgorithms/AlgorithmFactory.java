@@ -14,6 +14,8 @@
 
 package org.eclipse.papyrus.layout.managealgorithms;
 
+import org.eclipse.zest.layouts.algorithms.AbstractLayoutAlgorithm;
+
 /**
  * The class AlgorithmFactory.
  */

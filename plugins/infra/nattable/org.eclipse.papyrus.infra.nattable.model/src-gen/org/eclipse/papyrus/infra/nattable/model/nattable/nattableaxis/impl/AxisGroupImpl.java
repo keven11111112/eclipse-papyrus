@@ -44,6 +44,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * @generated
  */
 public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
+
 	/**
 	 * The cached value of the '{@link #getManager() <em>Manager</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -117,11 +118,11 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public AxisManagerRepresentation getManager() {
-		if (manager != null && manager.eIsProxy()) {
-			InternalEObject oldManager = (InternalEObject) manager;
-			manager = (AxisManagerRepresentation) eResolveProxy(oldManager);
-			if (manager != oldManager) {
-				if (eNotificationRequired()) {
+		if(manager != null && manager.eIsProxy()) {
+			InternalEObject oldManager = (InternalEObject)manager;
+			manager = (AxisManagerRepresentation)eResolveProxy(oldManager);
+			if(manager != oldManager) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.AXIS_GROUP__MANAGER, oldManager, manager));
 				}
 			}
@@ -149,7 +150,7 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	public void setManager(AxisManagerRepresentation newManager) {
 		AxisManagerRepresentation oldManager = manager;
 		manager = newManager;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.AXIS_GROUP__MANAGER, oldManager, manager));
 		}
 	}
@@ -175,7 +176,7 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	public void setAlias(String newAlias) {
 		String oldAlias = alias;
 		alias = newAlias;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.AXIS_GROUP__ALIAS, oldAlias, alias));
 		}
 	}
@@ -188,7 +189,7 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public EList<IAxis> getGroupedAxis() {
-		if (groupedAxis == null) {
+		if(groupedAxis == null) {
 			groupedAxis = new EObjectResolvingEList<IAxis>(IAxis.class, this, NattableaxisPackage.AXIS_GROUP__GROUPED_AXIS);
 		}
 		return groupedAxis;
@@ -228,9 +229,9 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.AXIS_GROUP__MANAGER:
-			if (resolve) {
+			if(resolve) {
 				return getManager();
 			}
 			return basicGetManager();
@@ -251,16 +252,16 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.AXIS_GROUP__MANAGER:
-			setManager((AxisManagerRepresentation) newValue);
+			setManager((AxisManagerRepresentation)newValue);
 			return;
 		case NattableaxisPackage.AXIS_GROUP__ALIAS:
-			setAlias((String) newValue);
+			setAlias((String)newValue);
 			return;
 		case NattableaxisPackage.AXIS_GROUP__GROUPED_AXIS:
 			getGroupedAxis().clear();
-			getGroupedAxis().addAll((Collection<? extends IAxis>) newValue);
+			getGroupedAxis().addAll((Collection<? extends IAxis>)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -274,9 +275,9 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.AXIS_GROUP__MANAGER:
-			setManager((AxisManagerRepresentation) null);
+			setManager((AxisManagerRepresentation)null);
 			return;
 		case NattableaxisPackage.AXIS_GROUP__ALIAS:
 			setAlias(ALIAS_EDEFAULT);
@@ -296,7 +297,7 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.AXIS_GROUP__MANAGER:
 			return manager != null;
 		case NattableaxisPackage.AXIS_GROUP__ALIAS:
@@ -315,7 +316,7 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
+		switch(operationID) {
 		case NattableaxisPackage.AXIS_GROUP___GET_ELEMENT:
 			return getElement();
 		case NattableaxisPackage.AXIS_GROUP___GET_LOCAL_LABEL_CONFIGURATION:
@@ -332,15 +333,13 @@ public class AxisGroupImpl extends StyledElementImpl implements AxisGroup {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (alias: "); //$NON-NLS-1$
 		result.append(alias);
 		result.append(')');
 		return result.toString();
 	}
-
 } // AxisGroupImpl

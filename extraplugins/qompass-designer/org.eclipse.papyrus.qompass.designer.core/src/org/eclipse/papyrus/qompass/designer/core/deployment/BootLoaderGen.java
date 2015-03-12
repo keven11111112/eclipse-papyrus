@@ -29,7 +29,7 @@ import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
-import org.eclipse.papyrus.qompass.designer.core.transformations.CompImplTrafos;
+import org.eclipse.papyrus.qompass.designer.core.transformations.ExecuteOOTrafo;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -74,17 +74,19 @@ public class BootLoaderGen {
 	 * Create a new boot-loader in a specific package
 	 * (which represents a node of the system).
 	 *
-	 * @param The
-	 *            package in which the bootloader should be created
+	 * @param copier a lazy copier
+	 * @param nodeIndex the index of the node
+	 * @param numberOfNodes the number of nodes
+	 * @throws TransformationException
 	 */
-	public BootLoaderGen(LazyCopier copy, int nodeIndex, int numberOfNodes)
+	public BootLoaderGen(LazyCopier copier, int nodeIndex, int numberOfNodes)
 			throws TransformationException {
 		// Class composite = (Class) ut.getClassifier (mainInstance);
 		// place in root (getModel()) to avoid the problem that the declaration of the bootLoader
 		// instance is within a namespace (a static attribute on the model level would not solve the
 		// problem as it must be accessed by function main).
 
-		Class nodeInfo = copy.target.createOwnedClass(NODE_INFO, false);
+		Class nodeInfo = copier.target.createOwnedClass(NODE_INFO, false);
 		String headerStr =
 				"const int nodeIndex = " + nodeIndex + ";" + NL + //$NON-NLS-1$//$NON-NLS-2$
 						"const int numberOfNodes = " + numberOfNodes + ";" + NL; //$NON-NLS-1$ //$NON-NLS-2$
@@ -93,10 +95,10 @@ public class BootLoaderGen {
 
 		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);
 
-		m_bootLoader = copy.target.createOwnedClass(BOOTLOADER_NAME, false);
+		m_bootLoader = copier.target.createOwnedClass(BOOTLOADER_NAME, false);
 		outputSizeof = false;
-		m_copy = copy;
-		Class template = (Class) Utils.getQualifiedElement(copy.source, bootloaderQNAME);
+		m_copy = copier;
+		Class template = (Class) Utils.getQualifiedElement(copier.source, bootloaderQNAME);
 		if (template == null) {
 			throw new TransformationException(String.format(
 					Messages.BootLoaderGen_CannotRetrieveTemplate, bootloaderQNAME));
@@ -178,7 +180,7 @@ public class BootLoaderGen {
 						path = UMLTool.varName(path); // use variable name instead.
 					}
 					path += "." + pathElement.getDefiningFeature().getName(); //$NON-NLS-1$
-					previousInstantiatedByBL = CompImplTrafos.instantiateViaBootloader(pathElement.getDefiningFeature());
+					previousInstantiatedByBL = ExecuteOOTrafo.instantiateViaBootloader(pathElement.getDefiningFeature());
 				}
 			}
 			if (previousInstantiatedByBL && !accessName) {
@@ -221,7 +223,7 @@ public class BootLoaderGen {
 				// return now and skip code below
 				return implemPart;
 			}
-			else if (CompImplTrafos.instantiateViaBootloader(containerSlot.getDefiningFeature())) {
+			else if (ExecuteOOTrafo.instantiateViaBootloader(containerSlot.getDefiningFeature())) {
 				// let bootloader instantiate
 				implemPart = m_bootLoader.createOwnedAttribute(/* "i_" + */varName, implementation);
 				// add code for initialization
@@ -274,7 +276,7 @@ public class BootLoaderGen {
 			m_activation.put(implementation, varNameList);
 		}
 
-		// check, if implementation contains a composite if (implementation.getOwnedOperation ("createConnections", null, null) != null) {
+		// check, if implementation contains a composite if (implementation.getOwnedOperation (StaticOOTrafo.CREATE_CONNECTIONS, null, null) != null) {
 		boolean bCreateConn = false;
 		for (Connector connector : implementation.getOwnedConnectors()) {
 			if (ConnectorUtil.isAssembly(connector)) {
@@ -284,7 +286,7 @@ public class BootLoaderGen {
 		}
 
 		if (bCreateConn) {
-			m_initCodeCConnections += varName + ".createConnections();\n"; //$NON-NLS-1$
+			m_initCodeCConnections += varName + "." + ExecuteOOTrafo.CREATE_CONNECTIONS +"();\n"; //$NON-NLS-1$ //$NON-NLS-2$
 		}
 		return implemPart;
 	}
@@ -388,15 +390,14 @@ public class BootLoaderGen {
 		m_bootLoader.getOwnedConnectors().clear();
 	}
 
-	public void addInit() {
+	public void addInit(InstanceSpecification mainInstance) {
 		// TODO: use template
 		Operation init = m_bootLoader.createOwnedOperation(INIT_OP_NAME, null, null);
 		OpaqueBehavior initBehavior = (OpaqueBehavior)
 				m_bootLoader.createOwnedBehavior(INIT_OP_NAME, UMLPackage.eINSTANCE.getOpaqueBehavior());
 		init.getMethods().add(initBehavior);
 
-
-		initBehavior.getLanguages().add(CompImplTrafos.progLang);
+		initBehavior.getLanguages().add(DepUtils.getTargetLanguage(mainInstance));
 		String code = m_initCode + "\n"; //$NON-NLS-1$
 		if (m_initCodeCConfig.length() > 0) {
 			code += "\n// instance configuration\n" + //$NON-NLS-1$

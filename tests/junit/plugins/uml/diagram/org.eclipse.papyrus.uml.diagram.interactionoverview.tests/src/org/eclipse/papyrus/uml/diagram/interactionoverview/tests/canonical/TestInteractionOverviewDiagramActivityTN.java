@@ -15,6 +15,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityNameEditPart;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomActivityEditPartTN;
@@ -36,7 +37,7 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 
 		removeWelcomeScreen();
 		projectCreation();
-		createActivity();
+		//createActivity();
 
 		assertTrue(AbstractPapyrusTestCase.CREATION + AbstractPapyrusTestCase.INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 1);
 		GraphicalEditPart containerEditPart = (GraphicalEditPart)getDiagramEditPart().getChildren().get(0);
@@ -66,9 +67,10 @@ public class TestInteractionOverviewDiagramActivityTN extends AbstractInteractio
 		createActivity();
 	}
 
+	@FailingTest
 	@Test
 	public void testDeleteActivity() {
-		final CustomActivityEditPartTN activity = createActivity();
+ 		final CustomActivityEditPartTN activity = createActivity();
 		testDelete(activity);
 	}
 

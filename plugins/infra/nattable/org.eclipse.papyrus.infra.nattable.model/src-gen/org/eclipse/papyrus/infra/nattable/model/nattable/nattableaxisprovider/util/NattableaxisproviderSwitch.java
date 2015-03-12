@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableaxisproviderSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -57,7 +58,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattableaxisproviderSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattableaxisproviderPackage.eINSTANCE;
 		}
 	}
@@ -86,138 +87,144 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER: {
-			AbstractAxisProvider abstractAxisProvider = (AbstractAxisProvider) theEObject;
+		switch(classifierID) {
+		case NattableaxisproviderPackage.ABSTRACT_AXIS_PROVIDER:
+		{
+			AbstractAxisProvider abstractAxisProvider = (AbstractAxisProvider)theEObject;
 			T result = caseAbstractAxisProvider(abstractAxisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(abstractAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(abstractAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(abstractAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableaxisproviderPackage.IMASTER_AXIS_PROVIDER: {
-			IMasterAxisProvider iMasterAxisProvider = (IMasterAxisProvider) theEObject;
+		case NattableaxisproviderPackage.IMASTER_AXIS_PROVIDER:
+		{
+			IMasterAxisProvider iMasterAxisProvider = (IMasterAxisProvider)theEObject;
 			T result = caseIMasterAxisProvider(iMasterAxisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseAxisProvider(iMasterAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractAxisProvider(iMasterAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(iMasterAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(iMasterAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(iMasterAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableaxisproviderPackage.ISLAVE_AXIS_PROVIDER: {
-			ISlaveAxisProvider iSlaveAxisProvider = (ISlaveAxisProvider) theEObject;
+		case NattableaxisproviderPackage.ISLAVE_AXIS_PROVIDER:
+		{
+			ISlaveAxisProvider iSlaveAxisProvider = (ISlaveAxisProvider)theEObject;
 			T result = caseISlaveAxisProvider(iSlaveAxisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseAxisProvider(iSlaveAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractAxisProvider(iSlaveAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(iSlaveAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(iSlaveAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(iSlaveAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableaxisproviderPackage.AXIS_PROVIDER: {
-			AxisProvider axisProvider = (AxisProvider) theEObject;
+		case NattableaxisproviderPackage.AXIS_PROVIDER:
+		{
+			AxisProvider axisProvider = (AxisProvider)theEObject;
 			T result = caseAxisProvider(axisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractAxisProvider(axisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(axisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(axisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(axisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableaxisproviderPackage.SLAVE_OBJECT_AXIS_PROVIDER: {
-			SlaveObjectAxisProvider slaveObjectAxisProvider = (SlaveObjectAxisProvider) theEObject;
+		case NattableaxisproviderPackage.SLAVE_OBJECT_AXIS_PROVIDER:
+		{
+			SlaveObjectAxisProvider slaveObjectAxisProvider = (SlaveObjectAxisProvider)theEObject;
 			T result = caseSlaveObjectAxisProvider(slaveObjectAxisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseISlaveAxisProvider(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAxisProvider(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractAxisProvider(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(slaveObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER: {
-			MasterObjectAxisProvider masterObjectAxisProvider = (MasterObjectAxisProvider) theEObject;
+		case NattableaxisproviderPackage.MASTER_OBJECT_AXIS_PROVIDER:
+		{
+			MasterObjectAxisProvider masterObjectAxisProvider = (MasterObjectAxisProvider)theEObject;
 			T result = caseMasterObjectAxisProvider(masterObjectAxisProvider);
-			if (result == null) {
+			if(result == null) {
 				result = caseIMasterAxisProvider(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAxisProvider(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseAbstractAxisProvider(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(masterObjectAxisProvider);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -235,7 +242,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Abstract Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -252,7 +259,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>IMaster Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -269,7 +276,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ISlave Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -286,7 +293,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -303,7 +310,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Slave Object Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -320,7 +327,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Master Object Axis Provider</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -337,7 +344,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -354,7 +361,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -371,7 +378,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -388,7 +395,7 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -397,5 +404,4 @@ public class NattableaxisproviderSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattableaxisproviderSwitch

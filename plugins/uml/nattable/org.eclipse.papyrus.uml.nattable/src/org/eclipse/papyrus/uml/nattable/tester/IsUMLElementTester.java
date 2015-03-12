@@ -36,9 +36,9 @@ public class IsUMLElementTester implements ITableTester {
 	@Override
 	public IStatus isAllowed(Object context) {
 		if (context instanceof Element) {
-			return new Status(IStatus.OK, Activator.PLUGIN_ID, "The context is a UML Element");
+			return new Status(IStatus.OK, Activator.PLUGIN_ID, "The context is a UML Element"); //$NON-NLS-1$
 		}
-		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The context is not an UML Element");
+		return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "The context is not an UML Element"); //$NON-NLS-1$
 	}
 
 }

@@ -21,9 +21,14 @@ import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ServiceMultiException;
+import org.eclipse.papyrus.infra.core.services.ServiceNotFoundException;
 import org.eclipse.papyrus.views.search.scope.ScopeEntry;
 import org.eclipse.papyrus.views.search.utils.DefaultServiceRegistryTracker;
 import org.eclipse.papyrus.views.search.utils.IServiceRegistryTracker;
+import org.eclipse.papyrus.views.search.utils.ModelUtils;
 import org.eclipse.uml2.uml.UMLPackage;
 
 
@@ -46,12 +51,12 @@ public class WorkspaceQueryProvider implements IPapyrusQueryProvider {
 	public AbstractPapyrusQuery createSimpleSearchQuery(QueryInfo queryInfo) {
 		initMetaClasses();
 		Collection<ScopeEntry> scopeEntries = createScopeEntries(queryInfo.getScope());
-		return new PapyrusQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, umlMetaClasses.toArray(), queryInfo.isSearchAllStringAttributes());
+		return new PapyrusQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, umlMetaClasses.toArray(), queryInfo.isSearchAllStringAttributes(), queryInfo.isDelay());
 	}
 
 	public AbstractPapyrusQuery createAdvancedSearchQuery(QueryInfo queryInfo) {
 		Collection<ScopeEntry> scopeEntries = createScopeEntries(queryInfo.getScope());
-		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray(), queryInfo.isSearchForAllSter());
+		return new PapyrusAdvancedQuery(queryInfo.getQueryText(), queryInfo.isCaseSensitive(), queryInfo.isRegularExpression(), scopeEntries, queryInfo.getParticipantTypes().toArray(), queryInfo.isSearchForAllSter(), queryInfo.isSearchForAnySter(), queryInfo.isDelay());
 	}
 
 
@@ -74,7 +79,7 @@ public class WorkspaceQueryProvider implements IPapyrusQueryProvider {
 	public static Collection<ScopeEntry> createScopeEntries(Collection<URI> scope) {
 		IServiceRegistryTracker tracker = createServiceRegistryTracker();
 		Collection<ScopeEntry> results = new HashSet<ScopeEntry>();
-
+				
 		for (URI uri : scope) {
 
 			ScopeEntry scopeEntry = new ScopeEntry(uri, tracker);

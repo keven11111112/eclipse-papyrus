@@ -20,9 +20,13 @@ import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 public abstract class AbstractControlResourceCommand extends AbstractControlCommand {
 
+
+	/** The Constant NOT_LINK_OBJECT_ERROR. */
+	private static final String NOT_LINK_OBJECT_ERROR = Messages.getString("AbstractControlResourceCommand.object.error"); //$NON-NLS-1$
 
 	/**
 	 * File extension use to create the resource. If not specified then it should be already provided in the {@link URI}
@@ -52,7 +56,7 @@ public abstract class AbstractControlResourceCommand extends AbstractControlComm
 	public ResourceSet getResourceSet() {
 		Resource eResource = getRequest().getTargetObject().eResource();
 		if (eResource == null) {
-			throw new RuntimeException("EObject not link to resource set");
+			throw new RuntimeException(NOT_LINK_OBJECT_ERROR);
 		}
 		return eResource.getResourceSet();
 	}
@@ -102,8 +106,10 @@ public abstract class AbstractControlResourceCommand extends AbstractControlComm
 		if (resourceURI != null) {
 			ModelSet modelSet = getRequest().getModelSet();
 			if (modelSet != null) {
-				Resource resource = modelSet.getResource(resourceURI, true);
-				if (resource.isModified()) {
+
+				// The resource has already removed of the resource set by other participant
+				Resource resource = modelSet.getResource(resourceURI, false);
+				if (resource != null && resource.isModified()) {
 					isSemanticResourceEmpty = !resource.getContents().isEmpty();
 				} else {
 					resource = getRequest().getSourceResource(resourceURI.fileExtension());

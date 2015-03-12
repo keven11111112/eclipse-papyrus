@@ -41,8 +41,10 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#isInvertAxis <em>Invert Axis</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getColumnAxisProvidersHistory <em>Column Axis Providers History</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getRowAxisProvidersHistory <em>Row Axis Providers History</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}
+ * </li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration
+ * </em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCells <em>Cells</em>}</li>
@@ -50,12 +52,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.T
  * </p>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage#getTable()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes'"
+ * @model
+ *        annotation=
+ *        "http://www.eclipse.org/emf/2002/Ecore constraints='currentRowAxisInHistory currentColumnAxisInHistory currentAxisProvidersTypes'"
  *        annotation=
  *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot currentRowAxisInHistory='rowAxisProvidersHistory->includes(currentRowAxisProvider)' currentColumnAxisInHistory='columnAxisProvidersHistory->includes(currentColumnAxisProvider)' currentAxisProvidersTypes='not (currentRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and currentColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
  * @generated
  */
 public interface Table extends TableNamedElement {
+
 	/**
 	 * Returns the value of the '<em><b>Context</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -83,7 +88,7 @@ public interface Table extends TableNamedElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Context</em>' reference.
+	 *        the new value of the '<em>Context</em>' reference.
 	 * @see #getContext()
 	 * @generated
 	 */
@@ -111,7 +116,7 @@ public interface Table extends TableNamedElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Owner</em>' reference.
+	 *        the new value of the '<em>Owner</em>' reference.
 	 * @see #getOwner()
 	 * @generated
 	 */
@@ -139,7 +144,7 @@ public interface Table extends TableNamedElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Prototype</em>' reference.
+	 *        the new value of the '<em>Prototype</em>' reference.
 	 * @see #getPrototype()
 	 * @generated
 	 */
@@ -162,12 +167,13 @@ public interface Table extends TableNamedElement {
 	TableConfiguration getTableConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration <em>Table Configuration</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getTableConfiguration <em>Table Configuration</em>}'
+	 * reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Table Configuration</em>' reference.
+	 *        the new value of the '<em>Table Configuration</em>' reference.
 	 * @see #getTableConfiguration()
 	 * @generated
 	 */
@@ -197,7 +203,7 @@ public interface Table extends TableNamedElement {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Invert Axis</em>' attribute.
+	 *        the new value of the '<em>Invert Axis</em>' attribute.
 	 * @see #isInvertAxis()
 	 * @generated
 	 */
@@ -253,12 +259,13 @@ public interface Table extends TableNamedElement {
 	LocalTableHeaderAxisConfiguration getLocalRowHeaderAxisConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration <em>Local Row Header Axis Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalRowHeaderAxisConfiguration
+	 * <em>Local Row Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Local Row Header Axis Configuration</em>' containment reference.
+	 *        the new value of the '<em>Local Row Header Axis Configuration</em>' containment reference.
 	 * @see #getLocalRowHeaderAxisConfiguration()
 	 * @generated
 	 */
@@ -282,12 +289,13 @@ public interface Table extends TableNamedElement {
 	LocalTableHeaderAxisConfiguration getLocalColumnHeaderAxisConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration <em>Local Column Header Axis Configuration</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getLocalColumnHeaderAxisConfiguration
+	 * <em>Local Column Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Local Column Header Axis Configuration</em>' containment reference.
+	 *        the new value of the '<em>Local Column Header Axis Configuration</em>' containment reference.
 	 * @see #getLocalColumnHeaderAxisConfiguration()
 	 * @generated
 	 */
@@ -311,12 +319,13 @@ public interface Table extends TableNamedElement {
 	AbstractAxisProvider getCurrentRowAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider <em>Current Row Axis Provider</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentRowAxisProvider
+	 * <em>Current Row Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Current Row Axis Provider</em>' reference.
+	 *        the new value of the '<em>Current Row Axis Provider</em>' reference.
 	 * @see #getCurrentRowAxisProvider()
 	 * @generated
 	 */
@@ -340,12 +349,13 @@ public interface Table extends TableNamedElement {
 	AbstractAxisProvider getCurrentColumnAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider <em>Current Column Axis Provider</em>}' reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.Table#getCurrentColumnAxisProvider
+	 * <em>Current Column Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Current Column Axis Provider</em>' reference.
+	 *        the new value of the '<em>Current Column Axis Provider</em>' reference.
 	 * @see #getCurrentColumnAxisProvider()
 	 * @generated
 	 */
@@ -367,5 +377,4 @@ public interface Table extends TableNamedElement {
 	 * @generated
 	 */
 	EList<Cell> getCells();
-
 } // Table

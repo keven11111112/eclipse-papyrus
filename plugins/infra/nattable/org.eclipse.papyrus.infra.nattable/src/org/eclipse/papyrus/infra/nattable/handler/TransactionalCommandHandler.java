@@ -43,7 +43,7 @@ public abstract class TransactionalCommandHandler<T extends ILayerCommand> imple
 	}
 
 	public String getLabel() {
-		return (label != null) ? label : "Table Command";
+		return (label != null) ? label : "Table Command"; //$NON-NLS-1$
 	}
 
 	public void setLabel(String label) {

@@ -85,7 +85,7 @@ public class Deploy {
 		InstanceSpecification newRootIS = distributeToNode(false, slotPath, instance);
 
 		bootLoaderGen.addCreateConnections();
-		bootLoaderGen.addInit();
+		bootLoaderGen.addInit(instance);
 		return newRootIS;
 	}
 

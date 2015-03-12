@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattableSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattablePackage.eINSTANCE;
 		}
 	}
@@ -81,20 +82,21 @@ public class NattableSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattablePackage.TABLE: {
-			Table table = (Table) theEObject;
+		switch(classifierID) {
+		case NattablePackage.TABLE:
+		{
+			Table table = (Table)theEObject;
 			T result = caseTable(table);
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(table);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(table);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(table);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -112,7 +114,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -129,7 +131,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -146,7 +148,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -163,7 +165,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -180,7 +182,7 @@ public class NattableSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -189,5 +191,4 @@ public class NattableSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattableSwitch

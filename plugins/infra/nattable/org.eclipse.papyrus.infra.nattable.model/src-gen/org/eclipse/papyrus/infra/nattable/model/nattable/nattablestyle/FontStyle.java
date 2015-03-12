@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Font Style</b></em>'.
@@ -40,6 +39,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface FontStyle extends Style {
+
 	/**
 	 * Returns the value of the '<em><b>Font Color</b></em>' attribute.
 	 * The default value is <code>"0"</code>.
@@ -58,12 +58,13 @@ public interface FontStyle extends Style {
 	int getFontColor();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontColor <em>Font Color</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Font Color</em>' attribute.
+	 *        the new value of the '<em>Font Color</em>' attribute.
 	 * @see #getFontColor()
 	 * @generated
 	 */
@@ -87,12 +88,13 @@ public interface FontStyle extends Style {
 	String getFontName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontName <em>Font Name</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Font Name</em>' attribute.
+	 *        the new value of the '<em>Font Name</em>' attribute.
 	 * @see #getFontName()
 	 * @generated
 	 */
@@ -116,12 +118,13 @@ public interface FontStyle extends Style {
 	int getFontHeight();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#getFontHeight <em>Font Height</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Font Height</em>' attribute.
+	 *        the new value of the '<em>Font Height</em>' attribute.
 	 * @see #getFontHeight()
 	 * @generated
 	 */
@@ -150,7 +153,7 @@ public interface FontStyle extends Style {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Bold</em>' attribute.
+	 *        the new value of the '<em>Bold</em>' attribute.
 	 * @see #isBold()
 	 * @generated
 	 */
@@ -179,7 +182,7 @@ public interface FontStyle extends Style {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Italic</em>' attribute.
+	 *        the new value of the '<em>Italic</em>' attribute.
 	 * @see #isItalic()
 	 * @generated
 	 */
@@ -203,12 +206,13 @@ public interface FontStyle extends Style {
 	boolean isUnderline();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isUnderline <em>Underline</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Underline</em>' attribute.
+	 *        the new value of the '<em>Underline</em>' attribute.
 	 * @see #isUnderline()
 	 * @generated
 	 */
@@ -232,15 +236,15 @@ public interface FontStyle extends Style {
 	boolean isStrikeThrough();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough <em>Strike Through</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle#isStrikeThrough
+	 * <em>Strike Through</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Strike Through</em>' attribute.
+	 *        the new value of the '<em>Strike Through</em>' attribute.
 	 * @see #isStrikeThrough()
 	 * @generated
 	 */
 	void setStrikeThrough(boolean value);
-
 } // FontStyle

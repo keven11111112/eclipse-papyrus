@@ -287,6 +287,13 @@ StateMachineDiagram FinalState
 	fillColor:white;
 }
 
+StateMachineDiagram Pseudostate[kind="initial"],
+StateMachineDiagram Pseudostate[kind="junction"]
+{
+	gradient:none;
+	fillColor:black;
+}
+
 StateMachineDiagram Pseudostate[kind="initial"] > Label,
 StateMachineDiagram Pseudostate[kind="junction"] > Label,
 StateMachineDiagram Pseudostate[kind="shallowHistory"] > Label,

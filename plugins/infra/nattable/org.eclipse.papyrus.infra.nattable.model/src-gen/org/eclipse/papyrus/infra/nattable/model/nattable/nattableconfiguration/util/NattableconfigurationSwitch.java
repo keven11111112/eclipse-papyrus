@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableconfigurationSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -52,7 +53,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattableconfigurationSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattableconfigurationPackage.eINSTANCE;
 		}
 	}
@@ -81,34 +82,36 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT: {
-			TableNamedElement tableNamedElement = (TableNamedElement) theEObject;
+		switch(classifierID) {
+		case NattableconfigurationPackage.TABLE_NAMED_ELEMENT:
+		{
+			TableNamedElement tableNamedElement = (TableNamedElement)theEObject;
 			T result = caseTableNamedElement(tableNamedElement);
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(tableNamedElement);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(tableNamedElement);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableconfigurationPackage.TABLE_CONFIGURATION: {
-			TableConfiguration tableConfiguration = (TableConfiguration) theEObject;
+		case NattableconfigurationPackage.TABLE_CONFIGURATION:
+		{
+			TableConfiguration tableConfiguration = (TableConfiguration)theEObject;
 			T result = caseTableConfiguration(tableConfiguration);
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(tableConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(tableConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(tableConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -126,7 +129,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -143,7 +146,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -160,7 +163,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -177,7 +180,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -194,7 +197,7 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -203,5 +206,4 @@ public class NattableconfigurationSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattableconfigurationSwitch

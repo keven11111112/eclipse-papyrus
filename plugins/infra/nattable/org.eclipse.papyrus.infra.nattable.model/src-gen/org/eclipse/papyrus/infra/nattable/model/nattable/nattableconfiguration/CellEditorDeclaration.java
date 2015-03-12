@@ -44,7 +44,6 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * @ordered
 	 */
 	COLUMN(0, "COLUMN", "COLUMN"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>ROW</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -55,7 +54,6 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * @ordered
 	 */
 	ROW(1, "ROW", "ROW"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>CELL</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -119,12 +117,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 *
 	 * @generated
 	 */
-	private static final CellEditorDeclaration[] VALUES_ARRAY =
-			new CellEditorDeclaration[] {
-					COLUMN,
-					ROW,
-					CELL,
-			};
+	private static final CellEditorDeclaration[] VALUES_ARRAY = new CellEditorDeclaration[]{ COLUMN, ROW, CELL, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Cell Editor Declaration</b></em>' enumerators.
@@ -143,9 +136,9 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * @generated
 	 */
 	public static CellEditorDeclaration get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellEditorDeclaration result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -160,9 +153,9 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * @generated
 	 */
 	public static CellEditorDeclaration getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellEditorDeclaration result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -177,7 +170,7 @@ public enum CellEditorDeclaration implements Enumerator {
 	 * @generated
 	 */
 	public static CellEditorDeclaration get(int value) {
-		switch (value) {
+		switch(value) {
 		case COLUMN_VALUE:
 			return COLUMN;
 		case ROW_VALUE:
@@ -269,5 +262,4 @@ public enum CellEditorDeclaration implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // CellEditorDeclaration

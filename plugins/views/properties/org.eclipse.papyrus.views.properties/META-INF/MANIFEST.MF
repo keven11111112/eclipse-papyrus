@@ -52,4 +52,4 @@ Bundle-Activator: org.eclipse.papyrus.views.properties.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.views.properties;singleton:=t
  rue
-
+Bundle-Description: %pluginDescription

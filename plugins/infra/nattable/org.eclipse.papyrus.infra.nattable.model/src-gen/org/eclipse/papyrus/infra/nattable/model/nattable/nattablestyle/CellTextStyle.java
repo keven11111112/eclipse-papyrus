@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Cell Text Style</b></em>'.
@@ -34,6 +33,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface CellTextStyle extends Style {
+
 	/**
 	 * Returns the value of the '<em><b>Alignment</b></em>' attribute.
 	 * The default value is <code>"MIDDLE_LEFT"</code>.
@@ -54,16 +54,16 @@ public interface CellTextStyle extends Style {
 	CellTextAlignment getAlignment();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle#getAlignment <em>Alignment</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Alignment</em>' attribute.
+	 *        the new value of the '<em>Alignment</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextAlignment
 	 * @see #getAlignment()
 	 * @generated
 	 */
 	void setAlignment(CellTextAlignment value);
-
 } // CellTextStyle

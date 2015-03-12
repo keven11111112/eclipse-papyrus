@@ -13,8 +13,6 @@
 		<module>../plugins/developer/org.eclipse.papyrus.dev.view.services.edit.request</module>
 		<module>../plugins/developer/org.eclipse.papyrus.developer.profile</module>
 	<!--  	<module>../plugins/developer/org.eclipse.papyrus.diagramdev.modelexplorer</module> -->
-		<module>../plugins/developer/org.eclipse.papyrus.documentation.plugin</module>
-		<module>../plugins/developer/org.eclipse.papyrus.documentation.plugin.edit</module>
 		<module>../plugins/developer/org.eclipse.papyrus.domaincodegen.ui</module>
 		<module>../plugins/developer/org.eclipse.papyrus.domaincontextcodegen</module>
 		<module>../plugins/developer/org.eclipse.papyrus.domaincontextcodegen.edit</module>

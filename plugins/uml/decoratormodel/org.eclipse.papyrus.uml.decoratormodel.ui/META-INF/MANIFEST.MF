@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
 Bundle-Name: %pluginName
+Bundle-Description: %pluginDescription
 Bundle-SymbolicName: org.eclipse.papyrus.uml.decoratormodel.ui;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-ClassPath: .

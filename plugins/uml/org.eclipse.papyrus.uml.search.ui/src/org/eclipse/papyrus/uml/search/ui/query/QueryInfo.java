@@ -34,8 +34,12 @@ public class QueryInfo {
 	private Collection<? extends ParticipantTypeElement> participantTypes;
 
 	private boolean searchForAllSter;
+	
+	private boolean searchForAnySter;
 
 	private Collection<URI> scope;
+	
+	private boolean delay = false;
 
 	/**
 	 * Creates a query info for simple query.
@@ -63,6 +67,36 @@ public class QueryInfo {
 		this.participantTypes = Collections.emptyList();
 		this.scope = scope;
 	}
+	
+	/**
+	 * Creates a query info for simple query.
+	 *
+	 * @param queryText
+	 *            the user-supplied search query text
+	 * @param caseSensitive
+	 *            whether the {@code queryText} is to be applied in case-sensitive fashion
+	 * @param regularExpression
+	 *            whether the {@code queryText} is to be taken as a regular expression
+	 * @param searchAllStringAttributes
+	 *            whether to search all string attributes of UML metaclasses ({@code true}), or just named element {@linkplain NamedElement#getName()
+	 *            names} ({@code false})
+	 * @param scope
+	 *            the domain-specific search scope
+	 * @param delay
+	 *            delayed results display
+	 */
+	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, boolean searchAllStringAttributes, Collection<URI> scope, boolean delay) {
+		super();
+
+
+		this.queryText = queryText;
+		this.caseSensitive = caseSensitive;
+		this.regularExpression = regularExpression;
+		this.searchAllStringAttributes = searchAllStringAttributes;
+		this.participantTypes = Collections.emptyList();
+		this.scope = scope;
+		this.delay = delay;
+	}
 
 	/**
 	 * Creates a query info for advanced query.
@@ -76,11 +110,13 @@ public class QueryInfo {
 	 * @param participantTypes
 	 *            the participant types (identifying specific metaclasses and/or attributes) to include in the search
 	 * @param searchForAllSter
-	 *            stereotype application must all applied or not
+	 *            all and only selected stereotypes must be applied
+	 * @param searchForAnySter
+	 *            at least one selected stereotype is applied or not
 	 * @param scope
 	 *            the domain-specific search scope
 	 */
-	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter) {
+	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter, boolean searchForAnySter) {
 		super();
 
 		this.queryText = queryText;
@@ -90,6 +126,41 @@ public class QueryInfo {
 		this.participantTypes = participantTypes;
 		this.scope = scope;
 		this.searchForAllSter = searchForAllSter;
+		this.searchForAnySter = searchForAnySter;
+	}
+	
+	/**
+	 * Creates a query info for advanced query.
+	 *
+	 * @param queryText
+	 *            the user-supplied search query text
+	 * @param caseSensitive
+	 *            whether the {@code queryText} is to be applied in case-sensitive fashion
+	 * @param regularExpression
+	 *            whether the {@code queryText} is to be taken as a regular expression
+	 * @param participantTypes
+	 *            the participant types (identifying specific metaclasses and/or attributes) to include in the search
+	 * @param searchForAllSter
+	 *            all and only selected stereotypes must be applied
+	 * @param searchForAnySter
+	 *            at least one selected stereotype is applied or not
+	 * @param scope
+	 *            the domain-specific search scope
+	 * @param delay
+	 *            delayed results display
+	 */
+	public QueryInfo(String queryText, boolean caseSensitive, boolean regularExpression, Collection<? extends ParticipantTypeElement> participantTypes, Collection<URI> scope, boolean searchForAllSter, boolean searchForAnySter, boolean delay) {
+		super();
+
+		this.queryText = queryText;
+		this.caseSensitive = caseSensitive;
+		this.regularExpression = regularExpression;
+		this.searchAllStringAttributes = false;
+		this.participantTypes = participantTypes;
+		this.scope = scope;
+		this.searchForAllSter = searchForAllSter;
+		this.searchForAnySter = searchForAnySter;
+		this.delay = delay;
 	}
 
 	/**
@@ -104,7 +175,9 @@ public class QueryInfo {
 		this.searchAllStringAttributes = original.searchAllStringAttributes;
 		this.participantTypes = original.participantTypes;
 		this.searchForAllSter = original.searchForAllSter;
+		this.searchForAnySter = original.searchForAnySter;
 		this.scope = scope;
+		this.delay = original.delay;
 	}
 
 	public String getQueryText() {
@@ -133,6 +206,18 @@ public class QueryInfo {
 
 	public boolean isSearchForAllSter() {
 		return searchForAllSter;
+	}
+	
+	public boolean isSearchForAnySter() {
+		return searchForAnySter;
+	}
+	
+	public boolean isDelay() {
+		return delay;
+	}
+
+	public void setDelay(boolean delay) {
+		this.delay = delay;
 	}
 
 

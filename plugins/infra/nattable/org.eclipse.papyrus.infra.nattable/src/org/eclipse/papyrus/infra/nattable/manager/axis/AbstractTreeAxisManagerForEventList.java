@@ -450,9 +450,9 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 *         the the
 	 */
 	protected int getDepth(final ITreeItemAxis axis) {
-		final ITreeNattableModelManager manager = getTableManager();
+		final INattableModelManager manager = getTableManager();
 		if (manager instanceof ITreeNattableModelManager) {
-			return manager.getTreeItemDepth(axis);
+			return ((ITreeNattableModelManager) manager).getTreeItemDepth(axis);
 		}
 		return 0;
 	}
@@ -489,9 +489,9 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 *         we returns the depth of the {@link TreeFillingConfiguration} parent of the {@link ITreeItemAxis} represented it.
 	 */
 	public final int getSemanticDepth(final ITreeItemAxis axis) {
-		final ITreeNattableModelManager manager = getTableManager();
+		final INattableModelManager manager = getTableManager();
 		if (manager instanceof ITreeNattableModelManager) {
-			return manager.getSemanticDepth(axis);
+			return ((ITreeNattableModelManager) manager).getSemanticDepth(axis);
 		}
 		return 0;
 	}

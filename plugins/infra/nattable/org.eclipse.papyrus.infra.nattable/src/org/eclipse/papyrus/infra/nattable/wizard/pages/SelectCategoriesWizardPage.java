@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.nattable.wizard.pages;
@@ -47,7 +47,7 @@ public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWiz
 
 	/**
 	 * Constructor.
-	 *
+	 * 
 	 * @param selector
 	 */
 	public SelectCategoriesWizardPage(IElementSelector selector) {
@@ -55,7 +55,7 @@ public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWiz
 	}
 
 	/**
-	 *
+	 * 
 	 * Constructor.
 	 *
 	 * @param pageName
@@ -118,16 +118,16 @@ public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWiz
 	}
 
 	/**
-	 *
+	 * 
 	 * @author VL222926
-	 *
+	 * 
 	 *         this class allows to refresh properly the next button after a double click on the left part of the widget
 	 *
 	 */
 	private class SelectorListener implements IElementSelectionListener {
 
 		/**
-		 *
+		 * 
 		 * @see org.eclipse.papyrus.infra.widgets.editors.IElementSelectionListener#addElements(java.lang.Object[])
 		 *
 		 * @param elements
@@ -137,7 +137,7 @@ public class SelectCategoriesWizardPage extends MultipleValueEditAndSelectionWiz
 			Display.getDefault().asyncExec(new Runnable() {
 
 				/**
-				 *
+				 * 
 				 * @see java.lang.Runnable#run()
 				 *
 				 */

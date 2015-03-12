@@ -48,7 +48,7 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 
 	/**
 	 * NOT IN THE API, only here to do the dev about the display of the category (intermediate level displayed filling configuration
-	 *
+	 * 
 	 */
 	public static final boolean DISPLAY_CATEOGORY = HierarchicalRowLabelHeaderDataProvider.DISPLAY_CATEOGORY;
 
@@ -101,34 +101,31 @@ public class EObjectTreeAxisManagerForEventList extends AbstractTreeAxisManagerF
 	 * @return
 	 * @deprecated
 	 */
-	@Deprecated
 	@Override
 	public boolean isAllowedContents(Object object) {
 		return object instanceof EObject;
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractTreeAxisManagerForEventList#createITreeItemAxis(org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis, java.lang.Object)
 	 *
 	 * @param parentAxis
 	 * @param objectToAdd
 	 * @return
 	 */
-	@Override
 	protected ITreeItemAxis createITreeItemAxis(ITreeItemAxis parentAxis, Object objectToAdd) {
 		return ITreeItemAxisHelper.createITreeItemAxis(getTableEditingDomain(), parentAxis, objectToAdd, this.representedAxisManager);
 	}
 
 
 	/**
-	 *
+	 * 
 	 * @param notification
 	 *            a notification
 	 * @return
 	 *         <code>true</code> if the notification must be ignored
 	 */
-	@Override
 	protected boolean ignoreEvent(final Notification notification) {
 		boolean res = super.ignoreEvent(notification);
 		if (res) {

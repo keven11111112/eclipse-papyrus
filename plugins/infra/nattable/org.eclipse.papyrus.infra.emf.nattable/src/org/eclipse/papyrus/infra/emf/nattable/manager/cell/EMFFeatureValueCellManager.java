@@ -261,15 +261,15 @@ public class EMFFeatureValueCellManager extends AbstractCellManager {
 	protected final ICommand getOpenConfirmChangeContainmentDialogCommand(final TransactionalEditingDomain domain, final ICommand defaultCommand, final boolean isMany) {
 		final String messageDialog;
 		if (isMany) {
-			messageDialog = "Your are setting a value in a containment feature. This action will change the owner of the dropped element(s).\nContinue?";
+			messageDialog = "Your are setting a value in a containment feature. This action will change the owner of the dropped element(s).\nContinue?"; //$NON-NLS-1$
 		} else {
-			messageDialog = "Your are setting a value in a containment feature. The previous value will be erased and the owner of the dropped element(s) will be changed.\nContinue?";
+			messageDialog = "Your are setting a value in a containment feature. The previous value will be erased and the owner of the dropped element(s) will be changed.\nContinue?"; //$NON-NLS-1$
 		}
-		final ICommand cmd = new AbstractTransactionalCommand(domain, "Set Value Command Dialog", null) {
+		final ICommand cmd = new AbstractTransactionalCommand(domain, "Set Value Command Dialog", null) { //$NON-NLS-1$
 
 			@Override
 			protected CommandResult doExecuteWithResult(final IProgressMonitor monitor, final IAdaptable info) throws ExecutionException {
-				final boolean result = MessageDialog.openConfirm(Display.getDefault().getActiveShell(), "Set Containment Value", messageDialog);
+				final boolean result = MessageDialog.openConfirm(Display.getDefault().getActiveShell(), "Set Containment Value", messageDialog); //$NON-NLS-1$
 				if (result) {
 					defaultCommand.execute(monitor, info);
 					return CommandResult.newOKCommandResult();

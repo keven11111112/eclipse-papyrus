@@ -28,15 +28,8 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.papyrus.infra.core.utils.EditorUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.ConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.DurationConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.DurationConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.IntervalConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.IntervalConstraintAsLocalPrecondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.TimeConstraintAsLocalPostcondCreateCommand;
-import org.eclipse.papyrus.uml.diagram.activity.edit.commands.TimeConstraintAsLocalPrecondCreateCommand;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.commands.CommonDeferredCreateConnectionViewCommand;
@@ -99,33 +92,19 @@ public class CreateActionLocalConditionViewCommand extends Command {
 	 */
 	private static ICommandProxy getElementCreationCommand(EObject containerAction, IHintedType conditionType, EditPart part) {
 		CreateElementRequest createElementReq = new CreateElementRequest(containerAction, conditionType);
-		if (UMLElementTypes.Constraint_3011.equals(conditionType)) {
-			ConstraintAsLocalPrecondCreateCommand cmd = new ConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.Constraint_3012.equals(conditionType)) {
-			ConstraintAsLocalPostcondCreateCommand cmd = new ConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.IntervalConstraint_3032.equals(conditionType)) {
-			IntervalConstraintAsLocalPrecondCreateCommand cmd = new IntervalConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.IntervalConstraint_3033.equals(conditionType)) {
-			IntervalConstraintAsLocalPostcondCreateCommand cmd = new IntervalConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.DurationConstraint_3034.equals(conditionType)) {
-			DurationConstraintAsLocalPrecondCreateCommand cmd = new DurationConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.DurationConstraint_3035.equals(conditionType)) {
-			DurationConstraintAsLocalPostcondCreateCommand cmd = new DurationConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.TimeConstraint_3036.equals(conditionType)) {
-			TimeConstraintAsLocalPrecondCreateCommand cmd = new TimeConstraintAsLocalPrecondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else if (UMLElementTypes.TimeConstraint_3037.equals(conditionType)) {
-			TimeConstraintAsLocalPostcondCreateCommand cmd = new TimeConstraintAsLocalPostcondCreateCommand(createElementReq, DiagramUtils.getDiagramFrom(part));
-			return new ICommandProxy(cmd);
-		} else {
+
+		IElementEditService commandService = ElementEditServiceUtils.getCommandProvider(containerAction);
+
+		if (commandService == null) {
 			return null;
 		}
+
+		ICommand semanticCommand = commandService.getEditCommand(createElementReq);
+
+		if ((semanticCommand != null) && (semanticCommand.canExecute())) {
+			return new ICommandProxy(semanticCommand);
+		}
+		return null;
 	}
 
 	/**

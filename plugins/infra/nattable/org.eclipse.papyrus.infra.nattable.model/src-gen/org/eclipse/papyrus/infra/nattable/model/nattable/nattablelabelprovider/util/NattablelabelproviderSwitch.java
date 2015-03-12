@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattablelabelproviderSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -53,7 +54,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattablelabelproviderSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattablelabelproviderPackage.eINSTANCE;
 		}
 	}
@@ -82,54 +83,57 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattablelabelproviderPackage.ILABEL_PROVIDER_CONFIGURATION: {
-			ILabelProviderConfiguration iLabelProviderConfiguration = (ILabelProviderConfiguration) theEObject;
+		switch(classifierID) {
+		case NattablelabelproviderPackage.ILABEL_PROVIDER_CONFIGURATION:
+		{
+			ILabelProviderConfiguration iLabelProviderConfiguration = (ILabelProviderConfiguration)theEObject;
 			T result = caseILabelProviderConfiguration(iLabelProviderConfiguration);
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(iLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(iLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION: {
-			FeatureLabelProviderConfiguration featureLabelProviderConfiguration = (FeatureLabelProviderConfiguration) theEObject;
+		case NattablelabelproviderPackage.FEATURE_LABEL_PROVIDER_CONFIGURATION:
+		{
+			FeatureLabelProviderConfiguration featureLabelProviderConfiguration = (FeatureLabelProviderConfiguration)theEObject;
 			T result = caseFeatureLabelProviderConfiguration(featureLabelProviderConfiguration);
-			if (result == null) {
+			if(result == null) {
 				result = caseObjectLabelProviderConfiguration(featureLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseILabelProviderConfiguration(featureLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(featureLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(featureLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION: {
-			ObjectLabelProviderConfiguration objectLabelProviderConfiguration = (ObjectLabelProviderConfiguration) theEObject;
+		case NattablelabelproviderPackage.OBJECT_LABEL_PROVIDER_CONFIGURATION:
+		{
+			ObjectLabelProviderConfiguration objectLabelProviderConfiguration = (ObjectLabelProviderConfiguration)theEObject;
 			T result = caseObjectLabelProviderConfiguration(objectLabelProviderConfiguration);
-			if (result == null) {
+			if(result == null) {
 				result = caseILabelProviderConfiguration(objectLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(objectLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(objectLabelProviderConfiguration);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -147,7 +151,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>ILabel Provider Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -164,7 +168,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Feature Label Provider Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -181,7 +185,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Object Label Provider Configuration</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -198,7 +202,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -215,7 +219,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -232,7 +236,7 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -241,5 +245,4 @@ public class NattablelabelproviderSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattablelabelproviderSwitch

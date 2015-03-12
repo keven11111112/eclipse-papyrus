@@ -35,23 +35,32 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Abstract
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath <em>Icon Path</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration <em>Cell Editor Declaration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration <em>Row Header Axis Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration <em>Column Header Axis Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnAxisProviders <em>Column Axis Providers</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders <em>Row Axis Providers</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration <em>Cell Editor
+ * Declaration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration <em>Row Header
+ * Axis Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration <em>Column
+ * Header Axis Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnAxisProviders <em>Column Axis
+ * Providers</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowAxisProviders <em>Row Axis Providers
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider <em>Default Row
+ * Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider <em>Default
+ * Column Axis Provider</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.NattableconfigurationPackage#getTableConfiguration()
- * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath'"
+ * @model annotation=
+ *        "http://www.eclipse.org/emf/2002/Ecore constraints='defaultRowAxisProviderExistsInCollection defaultColumnAxisProviderExistsInCollection defaultAxisProvidersTypes typeNonNullNonEmpty iconPath'"
  *        annotation=
  *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot defaultRowAxisProviderExistsInCollection='rowAxisProviders->includes(defaultRowAxisProvider)' defaultColumnAxisProviderExistsInCollection='columnAxisProviders->includes(defaultColumnAxisProvider)' typeNonNullNonEmpty='not (type.oclIsUndefined() or type = \'\')' iconPath='not (iconPath.oclIsUndefined() or iconPath = \'\')' defaultAxisProvidersTypes='not (defaultRowAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider) and defaultColumnAxisProvider.oclIsKindOf(nattableaxisprovider::ISlaveAxisProvider))'"
  * @generated
  */
 public interface TableConfiguration extends TableNamedElement {
+
 	/**
 	 * Returns the value of the '<em><b>Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -70,12 +79,13 @@ public interface TableConfiguration extends TableNamedElement {
 	String getType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getType <em>Type</em>}
+	 * ' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Type</em>' attribute.
+	 *        the new value of the '<em>Type</em>' attribute.
 	 * @see #getType()
 	 * @generated
 	 */
@@ -98,12 +108,13 @@ public interface TableConfiguration extends TableNamedElement {
 	String getIconPath();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath <em>Icon Path</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getIconPath
+	 * <em>Icon Path</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Icon Path</em>' attribute.
+	 *        the new value of the '<em>Icon Path</em>' attribute.
 	 * @see #getIconPath()
 	 * @generated
 	 */
@@ -127,12 +138,13 @@ public interface TableConfiguration extends TableNamedElement {
 	AbstractTableTester getCreationTester();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester <em>Creation Tester</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCreationTester
+	 * <em>Creation Tester</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Creation Tester</em>' containment reference.
+	 *        the new value of the '<em>Creation Tester</em>' containment reference.
 	 * @see #getCreationTester()
 	 * @generated
 	 */
@@ -160,12 +172,14 @@ public interface TableConfiguration extends TableNamedElement {
 	CellEditorDeclaration getCellEditorDeclaration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration <em>Cell Editor Declaration</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getCellEditorDeclaration
+	 * <em>Cell Editor Declaration</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Cell Editor Declaration</em>' attribute.
+	 *        the new value of the '<em>Cell Editor Declaration</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.CellEditorDeclaration
 	 * @see #getCellEditorDeclaration()
 	 * @generated
@@ -189,12 +203,14 @@ public interface TableConfiguration extends TableNamedElement {
 	TableHeaderAxisConfiguration getRowHeaderAxisConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration <em>Row Header Axis Configuration</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getRowHeaderAxisConfiguration
+	 * <em>Row Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Row Header Axis Configuration</em>' containment reference.
+	 *        the new value of the '<em>Row Header Axis Configuration</em>' containment reference.
 	 * @see #getRowHeaderAxisConfiguration()
 	 * @generated
 	 */
@@ -217,12 +233,14 @@ public interface TableConfiguration extends TableNamedElement {
 	TableHeaderAxisConfiguration getColumnHeaderAxisConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration <em>Column Header Axis Configuration</em>}' containment reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getColumnHeaderAxisConfiguration
+	 * <em>Column Header Axis Configuration</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Column Header Axis Configuration</em>' containment reference.
+	 *        the new value of the '<em>Column Header Axis Configuration</em>' containment reference.
 	 * @see #getColumnHeaderAxisConfiguration()
 	 * @generated
 	 */
@@ -277,12 +295,14 @@ public interface TableConfiguration extends TableNamedElement {
 	AbstractAxisProvider getDefaultRowAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultRowAxisProvider
+	 * <em>Default Row Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Default Row Axis Provider</em>' reference.
+	 *        the new value of the '<em>Default Row Axis Provider</em>' reference.
 	 * @see #getDefaultRowAxisProvider()
 	 * @generated
 	 */
@@ -305,15 +325,16 @@ public interface TableConfiguration extends TableNamedElement {
 	AbstractAxisProvider getDefaultColumnAxisProvider();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration#getDefaultColumnAxisProvider
+	 * <em>Default Column Axis Provider</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Default Column Axis Provider</em>' reference.
+	 *        the new value of the '<em>Default Column Axis Provider</em>' reference.
 	 * @see #getDefaultColumnAxisProvider()
 	 * @generated
 	 */
 	void setDefaultColumnAxisProvider(AbstractAxisProvider value);
-
 } // TableConfiguration

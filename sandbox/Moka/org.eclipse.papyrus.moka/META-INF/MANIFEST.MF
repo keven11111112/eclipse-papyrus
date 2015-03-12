@@ -33,4 +33,3 @@ Export-Package: org.eclipse.papyrus.moka,
  org.eclipse.papyrus.moka.communication.request.iterminate,
  org.eclipse.papyrus.moka.debug,
  org.eclipse.papyrus.moka.engine,
- org.eclipse.papyrus.moka.launch

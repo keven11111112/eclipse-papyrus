@@ -140,7 +140,6 @@ public class ScopeEntry {
 			} catch (ServiceException e) {
 				// Create one
 				try {
-
 					modelSet = ModelUtils.openResource(getResourceURI());
 					getServicesRegistry().add(ModelSet.class, 10, modelSet);
 					getServicesRegistry().startServicesByClassKeys(ModelSet.class);
@@ -153,6 +152,7 @@ public class ScopeEntry {
 				}
 			}
 		}
+		
 		return modelSet;
 	}
 

@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 /**
  * This command do the basic operation of the control. That is to say move the semantic element to a new resource previously created.
@@ -35,12 +36,17 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
  */
 public class BasicControlCommand extends AbstractControlCommand {
 
+	/** The Constant RESOURCE_ERROR. */
+	private static final String RESOURCE_ERROR = Messages.getString("BasicControlCommand.resource.error"); //$NON-NLS-1$
+
+	/** The Constant CONTROL_COMMAND_TITLE. */
+	private static final String CONTROL_COMMAND_TITLE = Messages.getString("BasicControlCommand.command.title"); //$NON-NLS-1$
 
 	/**
 	 * @param request
 	 */
 	public BasicControlCommand(ControlModeRequest request) {
-		super("Control command", Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
+		super(CONTROL_COMMAND_TITLE, Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())), request);
 	}
 
 	@Override
@@ -53,7 +59,7 @@ public class BasicControlCommand extends AbstractControlCommand {
 		ResourceSet currentResourceSet = getRequest().getModelSet();
 		Resource resource = currentResourceSet.getResource(getNewURI(), false);
 		if (resource == null) {
-			throw new ExecutionException("The resource was not created");
+			throw new ExecutionException(RESOURCE_ERROR);
 		}
 		EObject objectToControl = getObjectToControl();
 		// as a safeguard, add this object's resource so it is tagged as modified and savable

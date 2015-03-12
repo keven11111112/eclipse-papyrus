@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface NattableproblemFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -62,5 +63,4 @@ public interface NattableproblemFactory extends EFactory {
 	 * @generated
 	 */
 	NattableproblemPackage getNattableproblemPackage();
-
 } // NattableproblemFactory

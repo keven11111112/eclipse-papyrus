@@ -35,13 +35,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl#getManager <em>Manager</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl#getAlias <em>Alias</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl#getLocalLabelConfiguration <em>Local Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.impl.ObjectAxisImpl#getLocalLabelConfiguration <em>Local Label
+ * Configuration</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public abstract class ObjectAxisImpl extends StyledElementImpl implements ObjectAxis {
+
 	/**
 	 * The cached value of the '{@link #getManager() <em>Manager</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -115,11 +117,11 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public AxisManagerRepresentation getManager() {
-		if (manager != null && manager.eIsProxy()) {
-			InternalEObject oldManager = (InternalEObject) manager;
-			manager = (AxisManagerRepresentation) eResolveProxy(oldManager);
-			if (manager != oldManager) {
-				if (eNotificationRequired()) {
+		if(manager != null && manager.eIsProxy()) {
+			InternalEObject oldManager = (InternalEObject)manager;
+			manager = (AxisManagerRepresentation)eResolveProxy(oldManager);
+			if(manager != oldManager) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisPackage.OBJECT_AXIS__MANAGER, oldManager, manager));
 				}
 			}
@@ -147,7 +149,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	public void setManager(AxisManagerRepresentation newManager) {
 		AxisManagerRepresentation oldManager = manager;
 		manager = newManager;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.OBJECT_AXIS__MANAGER, oldManager, manager));
 		}
 	}
@@ -173,7 +175,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	public void setAlias(String newAlias) {
 		String oldAlias = alias;
 		alias = newAlias;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.OBJECT_AXIS__ALIAS, oldAlias, alias));
 		}
 	}
@@ -198,9 +200,9 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	public NotificationChain basicSetLocalLabelConfiguration(ObjectLabelProviderConfiguration newLocalLabelConfiguration, NotificationChain msgs) {
 		ObjectLabelProviderConfiguration oldLocalLabelConfiguration = localLabelConfiguration;
 		localLabelConfiguration = newLocalLabelConfiguration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, oldLocalLabelConfiguration, newLocalLabelConfiguration);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -217,20 +219,19 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public void setLocalLabelConfiguration(ObjectLabelProviderConfiguration newLocalLabelConfiguration) {
-		if (newLocalLabelConfiguration != localLabelConfiguration) {
+		if(newLocalLabelConfiguration != localLabelConfiguration) {
 			NotificationChain msgs = null;
-			if (localLabelConfiguration != null) {
-				msgs = ((InternalEObject) localLabelConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, null, msgs);
+			if(localLabelConfiguration != null) {
+				msgs = ((InternalEObject)localLabelConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, null, msgs);
 			}
-			if (newLocalLabelConfiguration != null) {
-				msgs = ((InternalEObject) newLocalLabelConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, null, msgs);
+			if(newLocalLabelConfiguration != null) {
+				msgs = ((InternalEObject)newLocalLabelConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, null, msgs);
 			}
 			msgs = basicSetLocalLabelConfiguration(newLocalLabelConfiguration, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION, newLocalLabelConfiguration, newLocalLabelConfiguration));
 		}
 	}
@@ -256,7 +257,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION:
 			return basicSetLocalLabelConfiguration(null, msgs);
 		}
@@ -271,9 +272,9 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.OBJECT_AXIS__MANAGER:
-			if (resolve) {
+			if(resolve) {
 				return getManager();
 			}
 			return basicGetManager();
@@ -293,15 +294,15 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.OBJECT_AXIS__MANAGER:
-			setManager((AxisManagerRepresentation) newValue);
+			setManager((AxisManagerRepresentation)newValue);
 			return;
 		case NattableaxisPackage.OBJECT_AXIS__ALIAS:
-			setAlias((String) newValue);
+			setAlias((String)newValue);
 			return;
 		case NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION:
-			setLocalLabelConfiguration((ObjectLabelProviderConfiguration) newValue);
+			setLocalLabelConfiguration((ObjectLabelProviderConfiguration)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -315,15 +316,15 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.OBJECT_AXIS__MANAGER:
-			setManager((AxisManagerRepresentation) null);
+			setManager((AxisManagerRepresentation)null);
 			return;
 		case NattableaxisPackage.OBJECT_AXIS__ALIAS:
 			setAlias(ALIAS_EDEFAULT);
 			return;
 		case NattableaxisPackage.OBJECT_AXIS__LOCAL_LABEL_CONFIGURATION:
-			setLocalLabelConfiguration((ObjectLabelProviderConfiguration) null);
+			setLocalLabelConfiguration((ObjectLabelProviderConfiguration)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -337,7 +338,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisPackage.OBJECT_AXIS__MANAGER:
 			return manager != null;
 		case NattableaxisPackage.OBJECT_AXIS__ALIAS:
@@ -356,7 +357,7 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch (operationID) {
+		switch(operationID) {
 		case NattableaxisPackage.OBJECT_AXIS___GET_ELEMENT:
 			return getElement();
 		}
@@ -371,15 +372,13 @@ public abstract class ObjectAxisImpl extends StyledElementImpl implements Object
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (alias: "); //$NON-NLS-1$
 		result.append(alias);
 		result.append(')');
 		return result.toString();
 	}
-
 } // ObjectAxisImpl

@@ -28,335 +28,338 @@ import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreat
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
+	// RS: New Palette generation
+	// Generates the ID for the tool elements
+	// Generate the tool factory (if(ID) createtool...)
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACCEPTEVENTACTION14CREATIONTOOL = "createAcceptEventAction14CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_ACCEPTEVENTACTION = "activity.nodes.accepteventaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATETESTIDENTITYACTION15CREATIONTOOL = "createTestIdentityAction15CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_TESTIDENTITYACTION = "activity.nodes.testidentityaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITY16CREATIONTOOL = "createActivity16CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_ACTIVITY = "activity.nodes.activity";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITYPARAMETERNODE17CREATIONTOOL = "createActivityParameterNode17CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_ACTIVITYPARAMETERNODE = "activity.nodes.activityparameternode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECENTRALBUFFERNODE18CREATIONTOOL = "createCentralBufferNode18CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CENTRALBUFFERNODE = "activity.nodes.centralbuffernode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDATASTORENODE19CREATIONTOOL = "createDataStoreNode19CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_DATASTORENODE = "activity.nodes.datastorenode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECOMMENT20CREATIONTOOL = "createComment20CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_COMMENT = "activity.nodes.comment";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITYPARTITION1CREATIONTOOL = "createActivityPartition1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_EDGES_CONTROLFLOW = "activity.edges.controlflow";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINTERRUPTIBLEACTIVITYREGION2CREATIONTOOL = "createInterruptibleActivityRegion2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_EDGES_EXCEPTIONHANDLER = "activity.edges.exceptionhandler";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINITIALNODE1CREATIONTOOL = "createInitialnode1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_EDGES_OBJECTFLOW = "activity.edges.objectflow";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIVITYFINAL2CREATIONTOOL = "createActivityfinal2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_EDGES_LINK = "activity.edges.link";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEFLOWFINAL3CREATIONTOOL = "createFlowfinal3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_ACTIVITYGROUP_ACTIVITYPARTITION = "activity.nodes.activitygroup.activitypartition";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDECISIONNODE4CREATIONTOOL = "createDecisionnode4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_ACTIVITYGROUP_INTERRUPTIBLEACTIVITYREGION = "activity.nodes.activitygroup.interruptibleactivityregion";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEMERGENODE5CREATIONTOOL = "createMergenode5CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_INITIALNODE = "activity.nodes.controlnodes.initialnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEJOINNODE6CREATIONTOOL = "createJoinnode6CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_ACTIVITYFINAL = "activity.nodes.controlnodes.activityfinal";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEFORKNODE7CREATIONTOOL = "createForknode7CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_FLOWFINAL = "activity.nodes.controlnodes.flowfinal";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONTROLFLOW1CREATIONTOOL = "createControlFlow1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_DECISIONNODE = "activity.nodes.controlnodes.decisionnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEEXCEPTIONHANDLER2CREATIONTOOL = "createExceptionHandler2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_MERGENODE = "activity.nodes.controlnodes.mergenode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOBJECTFLOW3CREATIONTOOL = "createObjectFlow3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_JOINNODE = "activity.nodes.controlnodes.joinnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELINK4CREATIONTOOL = "createLink4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONTROLNODES_FORKNODE = "activity.nodes.controlnodes.forknode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPRECONDITIONCONSTRAINT1CREATIONTOOL = "createLocalPreconditionConstraint1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONCONSTRAINT = "activity.nodes.constraints.localpreconditionconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPRECONDITIONINTERVALCONSTRAINT3CREATIONTOOL = "createLocalPreconditionIntervalConstraint3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONINTERVALCONSTRAINT = "activity.nodes.constraints.localpreconditionintervalconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPRECONDITIONDURATIONCONSTRAINT4CREATIONTOOL = "createLocalPreconditionDurationConstraint4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONDURATIONCONSTRAINT = "activity.nodes.constraints.localpreconditiondurationconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPRECONDITIONTIMECONSTRAINT5CREATIONTOOL = "createLocalPreconditionTimeConstraint5CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONTIMECONSTRAINT = "activity.nodes.constraints.localpreconditiontimeconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPOSTCONDITIONCONSTRAINT6CREATIONTOOL = "createLocalPostconditionConstraint6CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONCONSTRAINT = "activity.nodes.constraints.localpostconditionconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT8CREATIONTOOL = "createLocalPostconditionIntervalConstraint8CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONINTERVALCONSTRAINT = "activity.nodes.constraints.localpostconditionintervalconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT9CREATIONTOOL = "createLocalPostconditionDurationConstraint9CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONDURATIONCONSTRAINT = "activity.nodes.constraints.localpostconditiondurationconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOCALPOSTCONDITIONTIMECONSTRAINT10CREATIONTOOL = "createLocalPostconditionTimeConstraint10CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONTIMECONSTRAINT = "activity.nodes.constraints.localpostconditiontimeconstraint";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOUTPUTPIN1CREATIONTOOL = "createOutputPin1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_PINS_OUTPUTPIN = "activity.nodes.pins.outputpin";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINPUTPIN2CREATIONTOOL = "createInputPin2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_PINS_INPUTPIN = "activity.nodes.pins.inputpin";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEACTIONINPUTPIN3CREATIONTOOL = "createActionInputPin3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_PINS_ACTIONINPUTPIN = "activity.nodes.pins.actioninputpin";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEVALUEPIN4CREATIONTOOL = "createValuePin4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_PINS_VALUEPIN = "activity.nodes.pins.valuepin";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEEXPANSIONREGION1CREATIONTOOL = "createExpansionRegion1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_EXPANSIONREGION = "activity.nodes.expansionregions.expansionregion";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEINPUTEXPANSIONNODE2CREATIONTOOL = "createInputExpansionNode2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_INPUTEXPANSIONNODE = "activity.nodes.expansionregions.inputexpansionnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOUTPUTEXPANSIONNODE3CREATIONTOOL = "createOutputExpansionNode3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_EXPANSIONREGIONS_OUTPUTEXPANSIONNODE = "activity.nodes.expansionregions.outputexpansionnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEBROADCASTSIGNALACTION1CREATIONTOOL = "createBroadcastSignalAction1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_BROADCASTSIGNALACTION = "activity.nodes.invocationactions.broadcastsignalaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECALLBEHAVIORACTION2CREATIONTOOL = "createCallBehaviorAction2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_CALLBEHAVIORACTION = "activity.nodes.invocationactions.callbehavioraction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECALLOPERATIONACTION3CREATIONTOOL = "createCallOperationAction3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_CALLOPERATIONACTION = "activity.nodes.invocationactions.calloperationaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESENDOBJECTACTION4CREATIONTOOL = "createSendObjectAction4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_SENDOBJECTACTION = "activity.nodes.invocationactions.sendobjectaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESENDSIGNALACTION5CREATIONTOOL = "createSendSignalAction5CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_SENDSIGNALACTION = "activity.nodes.invocationactions.sendsignalaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTARTOBJECTBEHAVIOURACTION6CREATIONTOOL = "createStartObjectBehaviourAction6CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_INVOCATIONACTIONS_STARTOBJECTBEHAVIOURACTION = "activity.nodes.invocationactions.startobjectbehaviouraction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECREATEOBJECTACTION1CREATIONTOOL = "createCreateObjectAction1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_OBJECTACTIONS_CREATEOBJECTACTION = "activity.nodes.objectactions.createobjectaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDESTROYOBJECTACTION2CREATIONTOOL = "createDestroyObjectAction2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_OBJECTACTIONS_DESTROYOBJECTACTION = "activity.nodes.objectactions.destroyobjectaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADSELFACTION3CREATIONTOOL = "createReadSelfAction3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_OBJECTACTIONS_READSELFACTION = "activity.nodes.objectactions.readselfaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATERECLASSIFYOBJECTACTION4CREATIONTOOL = "createReclassifyObjectAction4CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_OBJECTACTIONS_RECLASSIFYOBJECTACTION = "activity.nodes.objectactions.reclassifyobjectaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADISCLASSIFIEDOBJECTACTION5CREATIONTOOL = "createReadIsClassifiedObjectAction5CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_OBJECTACTIONS_READISCLASSIFIEDOBJECTACTION = "activity.nodes.objectactions.readisclassifiedobjectaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTRUCTUREDACTIVITYNODE1CREATIONTOOL = "createStructuredActivityNode1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_STRUCTUREDACTIVITYNODE = "activity.nodes.structuredactions.structuredactivitynode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATELOOPNODE2CREATIONTOOL = "createLoopNode2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_LOOPNODE = "activity.nodes.structuredactions.loopnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESEQUENCENODE3CREATIONTOOL = "createSequenceNode3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_SEQUENCENODE = "activity.nodes.structuredactions.sequencenode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECONDITIONALNODE4CREATIONTOOL = "createConditionalNode4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTUREDACTIONS_CONDITIONALNODE = "activity.nodes.structuredactions.conditionalnode";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADSTRUCTURALFEATUREACTION1CREATIONTOOL = "createReadStructuralFeatureAction1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION = "activity.nodes.structuralfeatureactions.readstructuralfeatureaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEADDSTRUCTURALFEATUREVALUEACTION2CREATIONTOOL = "createAddStructuralFeatureValueAction2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION = "activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEADDSTRUCTURALFEATUREVALUEACTION3CREATIONTOOL = "createAddStructuralFeatureValueAction3CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION2 = "activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADSTRUCTURALFEATUREACTION4CREATIONTOOL = "createReadStructuralFeatureAction4CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION2 = "activity.nodes.structuralfeatureactions.readstructuralfeatureaction2";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECLEARSTRUCTURALFEATURE5CREATIONTOOL = "createClearStructuralFeature5CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE = "activity.nodes.structuralfeatureactions.clearstructuralfeature";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEADDVARIABLEVALUEACTION1CREATIONTOOL = "createAddVariableValueAction1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION = "activity.nodes.variableactions.addvariablevalueaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADVARIABLEACTION2CREATIONTOOL = "createReadVariableAction2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_VARIABLEACTIONS_READVARIABLEACTION = "activity.nodes.variableactions.readvariableaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEOPAQUEACTION1CREATIONTOOL = "createOpaqueAction1CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_OPAQUEACTION = "activity.nodes.miscellaneousactions.opaqueaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEVALUESPECIFICATIONACTION2CREATIONTOOL = "createValueSpecificationAction2CreationTool"; //$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_VALUESPECIFICATIONACTION = "activity.nodes.miscellaneousactions.valuespecificationaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECLEARASSOCIATIONACTION3CREATIONTOOL = "createClearAssociationAction3CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_CLEARASSOCIATIONACTION = "activity.nodes.miscellaneousactions.clearassociationaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADEXTENTACTION4CREATIONTOOL = "createReadExtentAction4CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_READEXTENTACTION = "activity.nodes.miscellaneousactions.readextentaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREDUCEACTION5CREATIONTOOL = "createReduceAction5CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_REDUCEACTION = "activity.nodes.miscellaneousactions.reduceaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATESTARTCLASSIFIERBEHAVIOR6CREATIONTOOL = "createStartClassifierBehavior6CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_MISCELLANEOUSACTIONS_STARTCLASSIFIERBEHAVIOR = "activity.nodes.miscellaneousactions.startclassifierbehavior";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATECREATELINKACTION1CREATIONTOOL = "createCreateLinkAction1CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_LINKACTIONS_CREATELINKACTION = "activity.nodes.linkactions.createlinkaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEREADLINKACTION2CREATIONTOOL = "createReadLinkAction2CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_LINKACTIONS_READLINKACTION = "activity.nodes.linkactions.readlinkaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
-	private final static String CREATEDESTROYLINKACTION3CREATIONTOOL = "createDestroyLinkAction3CreationTool";//$NON-NLS-1$
+	private final static String ACTIVITY_NODES_LINKACTIONS_DESTROYLINKACTION = "activity.nodes.linkactions.destroylinkaction";//$NON-NLS-1$
 
 	/**
 	 * @generated
@@ -367,211 +370,212 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	@Override
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATEACCEPTEVENTACTION14CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_ACCEPTEVENTACTION)) {
 			return createAcceptEventAction14CreationTool();
 		}
-		if (toolId.equals(CREATETESTIDENTITYACTION15CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_TESTIDENTITYACTION)) {
 			return createTestIdentityAction15CreationTool();
 		}
-		if (toolId.equals(CREATEACTIVITY16CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_ACTIVITY)) {
 			return createActivity16CreationTool();
 		}
-		if (toolId.equals(CREATEACTIVITYPARAMETERNODE17CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_ACTIVITYPARAMETERNODE)) {
 			return createActivityParameterNode17CreationTool();
 		}
-		if (toolId.equals(CREATECENTRALBUFFERNODE18CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CENTRALBUFFERNODE)) {
 			return createCentralBufferNode18CreationTool();
 		}
-		if (toolId.equals(CREATEDATASTORENODE19CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_DATASTORENODE)) {
 			return createDataStoreNode19CreationTool();
 		}
-		if (toolId.equals(CREATECOMMENT20CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_COMMENT)) {
 			return createComment20CreationTool();
 		}
-		if (toolId.equals(CREATECONTROLFLOW1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_EDGES_CONTROLFLOW)) {
 			return createControlFlow1CreationTool();
 		}
-		if (toolId.equals(CREATEEXCEPTIONHANDLER2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_EDGES_EXCEPTIONHANDLER)) {
 			return createExceptionHandler2CreationTool();
 		}
-		if (toolId.equals(CREATEOBJECTFLOW3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_EDGES_OBJECTFLOW)) {
 			return createObjectFlow3CreationTool();
 		}
-		if (toolId.equals(CREATELINK4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_EDGES_LINK)) {
 			return createLink4CreationTool();
 		}
-		if (toolId.equals(CREATEACTIVITYPARTITION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_ACTIVITYPARTITION)) {
 			return createActivityPartition1CreationTool();
 		}
-		if (toolId.equals(CREATEINTERRUPTIBLEACTIVITYREGION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_ACTIVITYGROUP_INTERRUPTIBLEACTIVITYREGION)) {
 			return createInterruptibleActivityRegion2CreationTool();
 		}
-		if (toolId.equals(CREATEINITIALNODE1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_INITIALNODE)) {
 			return createInitialnode1CreationTool();
 		}
-		if (toolId.equals(CREATEACTIVITYFINAL2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_ACTIVITYFINAL)) {
 			return createActivityfinal2CreationTool();
 		}
-		if (toolId.equals(CREATEFLOWFINAL3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_FLOWFINAL)) {
 			return createFlowfinal3CreationTool();
 		}
-		if (toolId.equals(CREATEDECISIONNODE4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_DECISIONNODE)) {
 			return createDecisionnode4CreationTool();
 		}
-		if (toolId.equals(CREATEMERGENODE5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_MERGENODE)) {
 			return createMergenode5CreationTool();
 		}
-		if (toolId.equals(CREATEJOINNODE6CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_JOINNODE)) {
 			return createJoinnode6CreationTool();
 		}
-		if (toolId.equals(CREATEFORKNODE7CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONTROLNODES_FORKNODE)) {
 			return createForknode7CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPRECONDITIONCONSTRAINT1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONCONSTRAINT)) {
 			return createLocalPreconditionConstraint1CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPRECONDITIONINTERVALCONSTRAINT3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONINTERVALCONSTRAINT)) {
 			return createLocalPreconditionIntervalConstraint3CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPRECONDITIONDURATIONCONSTRAINT4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONDURATIONCONSTRAINT)) {
 			return createLocalPreconditionDurationConstraint4CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPRECONDITIONTIMECONSTRAINT5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPRECONDITIONTIMECONSTRAINT)) {
 			return createLocalPreconditionTimeConstraint5CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPOSTCONDITIONCONSTRAINT6CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONCONSTRAINT)) {
 			return createLocalPostconditionConstraint6CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPOSTCONDITIONINTERVALCONSTRAINT8CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONINTERVALCONSTRAINT)) {
 			return createLocalPostconditionIntervalConstraint8CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPOSTCONDITIONDURATIONCONSTRAINT9CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONDURATIONCONSTRAINT)) {
 			return createLocalPostconditionDurationConstraint9CreationTool();
 		}
-		if (toolId.equals(CREATELOCALPOSTCONDITIONTIMECONSTRAINT10CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINTS_LOCALPOSTCONDITIONTIMECONSTRAINT)) {
 			return createLocalPostconditionTimeConstraint10CreationTool();
 		}
-		if (toolId.equals(CREATEOUTPUTPIN1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_PINS_OUTPUTPIN)) {
 			return createOutputPin1CreationTool();
 		}
-		if (toolId.equals(CREATEINPUTPIN2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_PINS_INPUTPIN)) {
 			return createInputPin2CreationTool();
 		}
-		if (toolId.equals(CREATEACTIONINPUTPIN3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_PINS_ACTIONINPUTPIN)) {
 			return createActionInputPin3CreationTool();
 		}
-		if (toolId.equals(CREATEVALUEPIN4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_PINS_VALUEPIN)) {
 			return createValuePin4CreationTool();
 		}
-		if (toolId.equals(CREATEEXPANSIONREGION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_EXPANSIONREGION)) {
 			return createExpansionRegion1CreationTool();
 		}
-		if (toolId.equals(CREATEINPUTEXPANSIONNODE2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_INPUTEXPANSIONNODE)) {
 			return createInputExpansionNode2CreationTool();
 		}
-		if (toolId.equals(CREATEOUTPUTEXPANSIONNODE3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_EXPANSIONREGIONS_OUTPUTEXPANSIONNODE)) {
 			return createOutputExpansionNode3CreationTool();
 		}
-		if (toolId.equals(CREATEBROADCASTSIGNALACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_BROADCASTSIGNALACTION)) {
 			return createBroadcastSignalAction1CreationTool();
 		}
-		if (toolId.equals(CREATECALLBEHAVIORACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLBEHAVIORACTION)) {
 			return createCallBehaviorAction2CreationTool();
 		}
-		if (toolId.equals(CREATECALLOPERATIONACTION3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_CALLOPERATIONACTION)) {
 			return createCallOperationAction3CreationTool();
 		}
-		if (toolId.equals(CREATESENDOBJECTACTION4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDOBJECTACTION)) {
 			return createSendObjectAction4CreationTool();
 		}
-		if (toolId.equals(CREATESENDSIGNALACTION5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_SENDSIGNALACTION)) {
 			return createSendSignalAction5CreationTool();
 		}
-		if (toolId.equals(CREATESTARTOBJECTBEHAVIOURACTION6CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_INVOCATIONACTIONS_STARTOBJECTBEHAVIOURACTION)) {
 			return createStartObjectBehaviourAction6CreationTool();
 		}
-		if (toolId.equals(CREATECREATEOBJECTACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_CREATEOBJECTACTION)) {
 			return createCreateObjectAction1CreationTool();
 		}
-		if (toolId.equals(CREATEDESTROYOBJECTACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_DESTROYOBJECTACTION)) {
 			return createDestroyObjectAction2CreationTool();
 		}
-		if (toolId.equals(CREATEREADSELFACTION3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READSELFACTION)) {
 			return createReadSelfAction3CreationTool();
 		}
-		if (toolId.equals(CREATERECLASSIFYOBJECTACTION4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_RECLASSIFYOBJECTACTION)) {
 			return createReclassifyObjectAction4CreationTool();
 		}
-		if (toolId.equals(CREATEREADISCLASSIFIEDOBJECTACTION5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_OBJECTACTIONS_READISCLASSIFIEDOBJECTACTION)) {
 			return createReadIsClassifiedObjectAction5CreationTool();
 		}
-		if (toolId.equals(CREATESTRUCTUREDACTIVITYNODE1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_STRUCTUREDACTIVITYNODE)) {
 			return createStructuredActivityNode1CreationTool();
 		}
-		if (toolId.equals(CREATELOOPNODE2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_LOOPNODE)) {
 			return createLoopNode2CreationTool();
 		}
-		if (toolId.equals(CREATESEQUENCENODE3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_SEQUENCENODE)) {
 			return createSequenceNode3CreationTool();
 		}
-		if (toolId.equals(CREATECONDITIONALNODE4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTUREDACTIONS_CONDITIONALNODE)) {
 			return createConditionalNode4CreationTool();
 		}
-		if (toolId.equals(CREATEREADSTRUCTURALFEATUREACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION)) {
 			return createReadStructuralFeatureAction1CreationTool();
 		}
-		if (toolId.equals(CREATEADDSTRUCTURALFEATUREVALUEACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION)) {
 			return createAddStructuralFeatureValueAction2CreationTool();
 		}
-		if (toolId.equals(CREATEADDSTRUCTURALFEATUREVALUEACTION3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION2)) {
 			return createAddStructuralFeatureValueAction3CreationTool();
 		}
-		if (toolId.equals(CREATEREADSTRUCTURALFEATUREACTION4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION2)) {
 			return createReadStructuralFeatureAction4CreationTool();
 		}
-		if (toolId.equals(CREATECLEARSTRUCTURALFEATURE5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE)) {
 			return createClearStructuralFeature5CreationTool();
 		}
-		if (toolId.equals(CREATEADDVARIABLEVALUEACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION)) {
 			return createAddVariableValueAction1CreationTool();
 		}
-		if (toolId.equals(CREATEREADVARIABLEACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_READVARIABLEACTION)) {
 			return createReadVariableAction2CreationTool();
 		}
-		if (toolId.equals(CREATEOPAQUEACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_OPAQUEACTION)) {
 			return createOpaqueAction1CreationTool();
 		}
-		if (toolId.equals(CREATEVALUESPECIFICATIONACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_VALUESPECIFICATIONACTION)) {
 			return createValueSpecificationAction2CreationTool();
 		}
-		if (toolId.equals(CREATECLEARASSOCIATIONACTION3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_CLEARASSOCIATIONACTION)) {
 			return createClearAssociationAction3CreationTool();
 		}
-		if (toolId.equals(CREATEREADEXTENTACTION4CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_READEXTENTACTION)) {
 			return createReadExtentAction4CreationTool();
 		}
-		if (toolId.equals(CREATEREDUCEACTION5CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_REDUCEACTION)) {
 			return createReduceAction5CreationTool();
 		}
-		if (toolId.equals(CREATESTARTCLASSIFIERBEHAVIOR6CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_MISCELLANEOUSACTIONS_STARTCLASSIFIERBEHAVIOR)) {
 			return createStartClassifierBehavior6CreationTool();
 		}
-		if (toolId.equals(CREATECREATELINKACTION1CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_CREATELINKACTION)) {
 			return createCreateLinkAction1CreationTool();
 		}
-		if (toolId.equals(CREATEREADLINKACTION2CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_READLINKACTION)) {
 			return createReadLinkAction2CreationTool();
 		}
-		if (toolId.equals(CREATEDESTROYLINKACTION3CREATIONTOOL)) {
+		if (toolId.equals(ACTIVITY_NODES_LINKACTIONS_DESTROYLINKACTION)) {
 			return createDestroyLinkAction3CreationTool();
 		}
 		// default return: null
 		return null;
 	}
 
-	@Override
+	/**
+	 * @generated
+	 */
 	public Object getTemplate(String templateId) {
 		// default return: null
 		return null;
@@ -645,6 +649,47 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3080);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createControlFlow1CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ControlFlow_4004);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createExceptionHandler2CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ExceptionHandler_4005);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createObjectFlow3CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.ObjectFlow_4003);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createLink4CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(2);
+		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
+		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
+		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
 
@@ -735,47 +780,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ForkNode_3040);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createControlFlow1CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.ControlFlow_4004);
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createExceptionHandler2CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.ExceptionHandler_4005);
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createObjectFlow3CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.ObjectFlow_4003);
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createLink4CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(2);
-		types.add(UMLElementTypes.CommentAnnotatedElement_4006);
-		types.add(UMLElementTypes.ConstraintConstrainedElement_4007);
-		Tool tool = new AspectUnspecifiedTypeConnectionTool(types);
 		return tool;
 	}
 

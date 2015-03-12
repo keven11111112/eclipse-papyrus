@@ -24,6 +24,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @generated
  */
 public interface NattablestyleFactory extends EFactory {
+
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
@@ -154,6 +155,26 @@ public interface NattablestyleFactory extends EFactory {
 	TableDisplayStyle createTableDisplayStyle();
 
 	/**
+	 * Returns a new object of class '<em>EObject Value Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>EObject Value Style</em>'.
+	 * @generated
+	 */
+	EObjectValueStyle createEObjectValueStyle();
+
+	/**
+	 * Returns a new object of class '<em>EObject List Value Style</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>EObject List Value Style</em>'.
+	 * @generated
+	 */
+	EObjectListValueStyle createEObjectListValueStyle();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,5 +183,4 @@ public interface NattablestyleFactory extends EFactory {
 	 * @generated
 	 */
 	NattablestylePackage getNattablestylePackage();
-
 } // NattablestyleFactory

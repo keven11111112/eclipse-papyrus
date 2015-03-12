@@ -90,4 +90,16 @@
             uri="http://www.eclipse.org/papyrus/1.4/SysML/ModelElements">
       </factory>
    </extension>
+   
+   <extension
+        point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+     <profile
+           description="UML profile for SysML (from OMG SysML V1.4)"
+           iconpath="icons/SysMLProfile.gif"
+           name="SysML 1.4"
+           path="platform:/plugin/org.eclipse.papyrus.sysml14/model/SysML.profile.uml"
+           provider="CEA LIST">
+     </profile>
+  </extension>   
+   
 </plugin>

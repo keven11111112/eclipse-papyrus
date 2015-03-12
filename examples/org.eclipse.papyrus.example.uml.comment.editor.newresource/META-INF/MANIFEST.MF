@@ -26,4 +26,4 @@ Bundle-Activator: org.eclipse.papyrus.example.uml.comment.editor.newre
 Bundle-SymbolicName: org.eclipse.papyrus.example.uml.comment.editor.ne
  wresource;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

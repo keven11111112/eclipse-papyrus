@@ -161,7 +161,7 @@ public class TableClipboardUtils {
 			int nbColumn = rows[0].split(CELL_SEPARATOR).length;
 			String[] columns = new String[nbColumn];
 			for (int columnIndex = 0; columnIndex < nbColumn; columnIndex++) {
-				columns[columnIndex] = "";
+				columns[columnIndex] = ""; //$NON-NLS-1$
 			}
 
 			for (int rowIndex = 0; rowIndex < rows.length; rowIndex++) {
@@ -171,7 +171,7 @@ public class TableClipboardUtils {
 					if (currentColumns.length != 0) {
 						columns[columnIndex] += currentColumns[columnIndex];
 					} else {
-						columns[columnIndex] += "";
+						columns[columnIndex] += ""; //$NON-NLS-1$
 					}
 					if (rowIndex < rows.length + 1) {
 						columns[columnIndex] += CELL_SEPARATOR;

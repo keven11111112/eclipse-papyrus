@@ -29,7 +29,7 @@ import org.eclipse.nebula.widgets.nattable.tree.TreeLayer;
 import org.eclipse.papyrus.infra.nattable.dataprovider.HierarchicalRowLabelHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusTreeLayer;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.painter.PapyrusIndentedTreeImagePainter;
 
@@ -84,7 +84,7 @@ public class RowHeaderHierarchicalLayerStack extends RowHeaderLayerStack {
 	 */
 	@Override
 	protected AbstractLayer createLabelRowHeaderLayer(BodyLayerStack bodyLayerStack, INattableModelManager tableManager) {
-		List<?> managedAxis = ((NattableModelManager) tableManager).getRowElementsList();
+		List<?> managedAxis = ((ITreeNattableModelManager) tableManager).getTreeList();
 		if (managedAxis instanceof TreeList<?>) {
 			@SuppressWarnings("unchecked")
 			GlazedListTreeData<ITreeItemAxis> glazedListTreeData = new GlazedListTreeData<ITreeItemAxis>((TreeList<ITreeItemAxis>) managedAxis);

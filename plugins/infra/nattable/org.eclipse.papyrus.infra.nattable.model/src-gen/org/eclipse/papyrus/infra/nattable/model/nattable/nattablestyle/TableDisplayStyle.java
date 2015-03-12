@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Table Display Style</b></em>'.
@@ -30,6 +29,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface TableDisplayStyle extends Style {
+
 	/**
 	 * Returns the value of the '<em><b>Display Style</b></em>' attribute.
 	 * The default value is <code>"NORMAL"</code>.
@@ -50,16 +50,16 @@ public interface TableDisplayStyle extends Style {
 	DisplayStyle getDisplayStyle();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle <em>Display Style</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle#getDisplayStyle
+	 * <em>Display Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Display Style</em>' attribute.
+	 *        the new value of the '<em>Display Style</em>' attribute.
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle
 	 * @see #getDisplayStyle()
 	 * @generated
 	 */
 	void setDisplayStyle(DisplayStyle value);
-
 } // TableDisplayStyle

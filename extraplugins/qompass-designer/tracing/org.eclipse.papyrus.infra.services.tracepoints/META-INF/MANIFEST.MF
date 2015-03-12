@@ -29,5 +29,5 @@ Bundle-Activator: org.eclipse.papyrus.infra.services.tracepoints.Activ
  ator
 Bundle-SymbolicName: org.eclipse.papyrus.infra.services.tracepoints;si
  ngleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

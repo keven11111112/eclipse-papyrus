@@ -45,11 +45,8 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	@SuppressWarnings("unchecked")
 	public ControlDiagramsCommand(ControlModeRequest request) {
 		super("Move diagram to new resource", null, request);
-		try {
-			getAffectedFiles().addAll(getWorkspaceFiles(getDiagrams()));
-		} catch (ExecutionException e) {
-			e.printStackTrace();
-		}
+		getAffectedFiles().addAll(getWorkspaceFiles(getDiagrams()));
+
 	}
 
 
@@ -69,7 +66,7 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	}
 
 	@Override
-	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) {
 		EObject objectTOControl = getRequest().getTargetObject();
 		EMFHelper.getUsages(objectTOControl);
 		// Retrieve new notation resource created previously
@@ -86,21 +83,18 @@ public class ControlDiagramsCommand extends AbstractControlCommand {
 	}
 
 	/**
-	 * Get the list of all the diagrams to move
+	 * Get the list of all the diagrams to move.
 	 *
-	 * @return
-	 * @throws ExecutionException
+	 * @return the diagrams
 	 */
-	protected List<Diagram> getDiagrams() throws ExecutionException {
+	protected List<Diagram> getDiagrams() {
 		Resource notationResource = null;
 		try {
 			notationResource = getRequest().getModelSet().getResource(getOldNotationURI(), true);
 		} catch (Exception e) {
-			notationResource = null;
+			Activator.log.error("Unable to retrieve old notation resource", e);
 		}
-		if (notationResource == null) {
-			throw new ExecutionException("unable to retrieve old notation resource");
-		}
+
 		return NotationUtils.getDiagrams(notationResource, getRequest().getTargetObject());
 	}
 

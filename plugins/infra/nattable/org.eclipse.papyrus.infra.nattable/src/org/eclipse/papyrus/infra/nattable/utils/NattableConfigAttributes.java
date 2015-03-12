@@ -13,7 +13,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.utils;
 
+import org.eclipse.nebula.widgets.nattable.filterrow.TextMatchingMode;
 import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
+import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
+import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
+import org.eclipse.papyrus.infra.nattable.filter.IFilterValueToMatchManager;
+import org.eclipse.papyrus.infra.nattable.filter.IPapyrusMatcherEditorFactory;
+import org.eclipse.papyrus.infra.nattable.filter.PapyrusTextMatchingMode;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 
@@ -59,5 +65,40 @@ public class NattableConfigAttributes {
 	 * Id used to register the table model manager
 	 */
 	public static final String NATTABLE_MODEL_MANAGER_ID = "nattable_model_manager_id"; //$NON-NLS-1$
+
+	/**
+	 * Attribute used to register a comparator for object, comparing this kind of string : "name - path"
+	 */
+	public static final ConfigAttribute<ObjectNameAndPathComparator> OBJECT_NAME_AND_PATH_COMPARATOR = new ConfigAttribute<ObjectNameAndPathComparator>();
+
+	/**
+	 * the id used for the previous comparator
+	 */
+	public static final String OBJECT_NAME_AND_PATH_COMPARATOR_ID = "object_name_and_path_comparator_id"; //$NON-NLS-1$
+
+	/**
+	 * the attribute used to register a converter (object to string) the string as the format : "name - path" where name is the name of the object and path its path in the model
+	 */
+	public static final ConfigAttribute<ObjectNameAndPathDisplayConverter> OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER = new ConfigAttribute<ObjectNameAndPathDisplayConverter>();
+
+	/**
+	 * the id of the previous converter
+	 */
+	public static final String OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID = "object_name_and_path_display_converter_id"; //$NON-NLS-1$
+
+	/**
+	 * the attribute used to store matched editor used for filtering in the table
+	 */
+	public static final ConfigAttribute<IPapyrusMatcherEditorFactory<?>> MATCHER_EDITOR_FACTORY = new ConfigAttribute<IPapyrusMatcherEditorFactory<?>>();
+
+	/**
+	 * the attribute used to define the matching mode to use for filter. The papyrus implements allows to use this one, or {@link TextMatchingMode}
+	 */
+	public static final ConfigAttribute<PapyrusTextMatchingMode> STRING_FILTER_MATCHING_MODE = new ConfigAttribute<PapyrusTextMatchingMode>();
+
+	/**
+	 * the config attribute used to register the class loading and storing filter state
+	 */
+	public static final ConfigAttribute<IFilterValueToMatchManager> FILTER_VALUE_TO_MATCH_MANAGER = new ConfigAttribute<IFilterValueToMatchManager>();
 
 }

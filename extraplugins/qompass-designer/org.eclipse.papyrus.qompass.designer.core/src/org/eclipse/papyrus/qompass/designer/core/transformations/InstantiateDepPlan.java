@@ -53,7 +53,6 @@ import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterS
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
-import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
@@ -347,9 +346,7 @@ public class InstantiateDepPlan {
 
 		removeDerivedInterfacesInRoot(generatedModel);
 
-		CompImplTrafos.transform(
-				deployment.getBootloader(), targetCopy, generatedModel,
-				modelIsObjectOriented);
+		ExecuteOOTrafo.transform(targetCopy, deployment.getBootloader(), generatedModel, modelIsObjectOriented);
 
 		// --------------------------------------------------------------------
 		checkProgressStatus();
@@ -362,7 +359,7 @@ public class InstantiateDepPlan {
 					langSupport.getProject(), langSupport, genModelManagement,
 					monitor);
 			boolean option = (generationOptions & GenerationOptions.ONLY_CHANGED) != 0;
-			codeGenerator.generate(node, getTargetLanguage(mainInstance),
+			codeGenerator.generate(node, DepUtils.getTargetLanguage(mainInstance),
 					option);
 		}
 
@@ -380,8 +377,7 @@ public class InstantiateDepPlan {
 	private ILangSupport configureLanguageSupport(
 			InstanceSpecification mainInstance, Model existingModel,
 			InstanceSpecification node) throws TransformationException {
-		ILangSupport langSupport = LanguageSupport
-				.getLangSupport(getTargetLanguage(mainInstance));
+		ILangSupport langSupport = LanguageSupport.getLangSupport(DepUtils.getTargetLanguage(mainInstance));
 		langSupport.resetConfigurationData();
 
 		String modelName = getModelName(existingModel, node);
@@ -452,16 +448,6 @@ public class InstantiateDepPlan {
 			modelName += "_" + srcModelComponentDeploymentPlan.getName(); //$NON-NLS-1$
 		}
 		return modelName;
-	}
-
-	private String getTargetLanguage(InstanceSpecification mainInstance) {
-		Classifier cl = DepUtils.getClassifier(mainInstance);
-		String targetLanguage = DepUtils.getLanguageFromPackage(cl
-				.getNearestPackage());
-		if (targetLanguage == null) {
-			targetLanguage = "C++"; //$NON-NLS-1$
-		}
-		return targetLanguage;
 	}
 
 	private void initiateProgressMonitor(boolean generateCode,

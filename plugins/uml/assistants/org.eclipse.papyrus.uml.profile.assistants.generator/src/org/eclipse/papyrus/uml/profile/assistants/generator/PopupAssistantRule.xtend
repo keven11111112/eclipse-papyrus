@@ -41,7 +41,7 @@ class PopupAssistantRule {
     }
 
     private def createPossibleOwnersFilter(ElementTypeConfiguration basetype, ImpliedExtension umlExtension) {
-        diagramSpecificElementTypes.fold(null) [ Filter filter, elementType |
+        baseElementTypes.fold(null) [ Filter filter, elementType |
             if (elementType.canContainType(basetype))
                 filter || elementType.toFilter(umlExtension.profile)
             else

@@ -27,14 +27,18 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPastedElementId <em>Pasted Element Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPasteElementContainementFeature <em>Paste Element Containement Feature</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPastedElementId <em>
+ * Pasted Element Id</em>}</li>
+ * <li>
+ * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.PasteEObjectConfigurationImpl#getPasteElementContainementFeature
+ * <em>Paste Element Containement Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl implements PasteEObjectConfiguration {
+
 	/**
 	 * The default value of the '{@link #getPastedElementId() <em>Pasted Element Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -110,7 +114,7 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	public void setPastedElementId(String newPastedElementId) {
 		String oldPastedElementId = pastedElementId;
 		pastedElementId = newPastedElementId;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID, oldPastedElementId, pastedElementId));
 		}
 	}
@@ -123,11 +127,11 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public EStructuralFeature getPasteElementContainementFeature() {
-		if (pasteElementContainementFeature != null && pasteElementContainementFeature.eIsProxy()) {
-			InternalEObject oldPasteElementContainementFeature = (InternalEObject) pasteElementContainementFeature;
-			pasteElementContainementFeature = (EStructuralFeature) eResolveProxy(oldPasteElementContainementFeature);
-			if (pasteElementContainementFeature != oldPasteElementContainementFeature) {
-				if (eNotificationRequired()) {
+		if(pasteElementContainementFeature != null && pasteElementContainementFeature.eIsProxy()) {
+			InternalEObject oldPasteElementContainementFeature = (InternalEObject)pasteElementContainementFeature;
+			pasteElementContainementFeature = (EStructuralFeature)eResolveProxy(oldPasteElementContainementFeature);
+			if(pasteElementContainementFeature != oldPasteElementContainementFeature) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
 				}
 			}
@@ -155,7 +159,7 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	public void setPasteElementContainementFeature(EStructuralFeature newPasteElementContainementFeature) {
 		EStructuralFeature oldPasteElementContainementFeature = pasteElementContainementFeature;
 		pasteElementContainementFeature = newPasteElementContainementFeature;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE, oldPasteElementContainementFeature, pasteElementContainementFeature));
 		}
 	}
@@ -168,11 +172,11 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
 			return getPastedElementId();
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-			if (resolve) {
+			if(resolve) {
 				return getPasteElementContainementFeature();
 			}
 			return basicGetPasteElementContainementFeature();
@@ -188,12 +192,12 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
-			setPastedElementId((String) newValue);
+			setPastedElementId((String)newValue);
 			return;
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-			setPasteElementContainementFeature((EStructuralFeature) newValue);
+			setPasteElementContainementFeature((EStructuralFeature)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -207,12 +211,12 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
 			setPastedElementId(PASTED_ELEMENT_ID_EDEFAULT);
 			return;
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
-			setPasteElementContainementFeature((EStructuralFeature) null);
+			setPasteElementContainementFeature((EStructuralFeature)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -226,7 +230,7 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTED_ELEMENT_ID:
 			return PASTED_ELEMENT_ID_EDEFAULT == null ? pastedElementId != null : !PASTED_ELEMENT_ID_EDEFAULT.equals(pastedElementId);
 		case NattableaxisconfigurationPackage.PASTE_EOBJECT_CONFIGURATION__PASTE_ELEMENT_CONTAINEMENT_FEATURE:
@@ -243,15 +247,13 @@ public class PasteEObjectConfigurationImpl extends IPasteConfigurationImpl imple
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (pastedElementId: "); //$NON-NLS-1$
 		result.append(pastedElementId);
 		result.append(')');
 		return result.toString();
 	}
-
 } // PasteEObjectConfigurationImpl

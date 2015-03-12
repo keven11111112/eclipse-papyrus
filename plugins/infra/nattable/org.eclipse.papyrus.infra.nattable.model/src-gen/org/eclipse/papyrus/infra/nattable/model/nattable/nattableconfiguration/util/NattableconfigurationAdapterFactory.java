@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -49,7 +50,7 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public NattableconfigurationAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattableconfigurationPackage.eINSTANCE;
 		}
 	}
@@ -65,11 +66,11 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -81,33 +82,33 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected NattableconfigurationSwitch<Adapter> modelSwitch =
-			new NattableconfigurationSwitch<Adapter>() {
-				@Override
-				public Adapter caseTableNamedElement(TableNamedElement object) {
-					return createTableNamedElementAdapter();
-				}
+	protected NattableconfigurationSwitch<Adapter> modelSwitch = new NattableconfigurationSwitch<Adapter>() {
 
-				@Override
-				public Adapter caseTableConfiguration(TableConfiguration object) {
-					return createTableConfigurationAdapter();
-				}
+		@Override
+		public Adapter caseTableNamedElement(TableNamedElement object) {
+			return createTableNamedElementAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseTableConfiguration(TableConfiguration object) {
+			return createTableConfigurationAdapter();
+		}
 
-				@Override
-				public Adapter caseStyledElement(StyledElement object) {
-					return createStyledElementAdapter();
-				}
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter caseStyledElement(StyledElement object) {
+			return createStyledElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -115,18 +116,18 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
 
-
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement <em>Table Named Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement
+	 * <em>Table Named Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -141,7 +142,8 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration <em>Table Configuration</em>}'.
+	 * Creates a new adapter for an object of class '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableConfiguration <em>Table Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -171,7 +173,8 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
+	 * <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -197,5 +200,4 @@ public class NattableconfigurationAdapterFactory extends AdapterFactoryImpl {
 	public Adapter createEObjectAdapter() {
 		return null;
 	}
-
 } // NattableconfigurationAdapterFactory

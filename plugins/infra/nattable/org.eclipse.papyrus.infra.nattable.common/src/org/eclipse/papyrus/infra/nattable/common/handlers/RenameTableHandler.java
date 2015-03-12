@@ -24,6 +24,7 @@ import org.eclipse.jface.window.Window;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForIEvaluationContext;
+import org.eclipse.papyrus.infra.nattable.common.messages.Messages;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IEditorPart;
@@ -37,9 +38,9 @@ import org.eclipse.ui.IEditorPart;
  */
 public class RenameTableHandler extends AbstractHandler {
 
-	public static String RenameTableHandler_NewName = "New name:";
-
-	public static String RenameTableHandler_RenameAnExistingTable = "Rename an existing table";
+	public static final String NEW_TABLE_NAME = Messages.RenameTableHandler_NewName;
+	
+	public static final String RENAME_AN_EXISTING_TABLE = Messages.RenameTableHandler_RenameAnExistingTable;
 
 	/**
 	 * @see org.eclipse.core.commands.IHandler#execute(org.eclipse.core.commands.ExecutionEvent)
@@ -79,7 +80,7 @@ public class RenameTableHandler extends AbstractHandler {
 		// Open the dialog to ask the new name
 		String currentName = tableManager.getTableName();
 		String newName = null;
-		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RenameTableHandler_RenameAnExistingTable, RenameTableHandler_NewName, currentName, null);
+		InputDialog dialog = new InputDialog(Display.getCurrent().getActiveShell(), RENAME_AN_EXISTING_TABLE, NEW_TABLE_NAME, currentName, null);
 		if (dialog.open() == Window.OK) {
 			newName = dialog.getValue();
 			if (newName == null || newName.length() <= 0) {
@@ -100,7 +101,7 @@ public class RenameTableHandler extends AbstractHandler {
 	 * @return The command name to show.
 	 */
 	public String getCommandName() {
-		return "Rename Table";
+		return "Rename Table"; //$NON-NLS-1$
 	}
 
 	protected IEvaluationContext getIEvaluationContext(ExecutionEvent event) {

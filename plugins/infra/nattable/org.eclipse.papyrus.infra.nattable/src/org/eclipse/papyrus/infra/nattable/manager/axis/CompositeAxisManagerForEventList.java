@@ -750,7 +750,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 	@Override
 	protected void manageAddNotification(final Notification notification) {
 		final Object newValue = notification.getNewValue();
-		if (newValue instanceof IAxis && ((IAxis) newValue).eContainer() != null) {
+		if (newValue instanceof IAxis && ((IAxis) newValue).eContainer() == getRepresentedContentProvider()) {
 			EventListHelper.addToEventList(eventList, newValue);
 		}
 		propagateEvent(notification);
@@ -763,7 +763,7 @@ public class CompositeAxisManagerForEventList extends AbstractAxisManagerForEven
 		final Object newValue = notification.getNewValue();
 		if (newValue instanceof Collection<?>) {
 			for (Object current : (Collection<?>) newValue) {
-				if (current instanceof IAxis) {
+				if (current instanceof IAxis && ((IAxis) current).eContainer() == getRepresentedContentProvider()) {
 					EventListHelper.addToEventList(eventList, current);
 				}
 			}

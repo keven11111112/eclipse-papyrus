@@ -96,7 +96,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	/**
 	 * <pre>
 	 * {@inheritedDoc}.
-	 *
+	 * 
 	 * Overridden method to fix some exception occurring while moving affixed element (nodes or labels)
 	 * (https://bugs.eclipse.org/bugs/show_bug.cgi?id=350680).
 	 * </pre>
@@ -180,7 +180,6 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 		Point location = dropRequest.getLocation().getCopy();
 
 		View dropTargetView = ((IGraphicalEditPart) getHost()).getNotationView();
-		EObject dropTargetElement = dropTargetView.getElement();
 
 		String droppedNodeType = registry.getNodeGraphicalType(droppedObject, dropTargetView.getType());
 		String droppedEdgeType = registry.getEdgeGraphicalType(droppedObject);
@@ -197,19 +196,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 
 		// The dropped element is a node
 		if (!UNDEFINED_TYPE.equals(droppedNodeType)) {
-
-			// Drop restriction:
-			// - no restriction when dropped on diagram
-			// - require containment when dropped on any other EObject
-			if ((dropTargetView instanceof Diagram) || dropTargetElement.eContents().contains(droppedObject)) {
-				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
-			}
-
-			// Allow drop for inherited elements
-			if (dropTargetElement instanceof Classifier && ((Classifier) dropTargetElement).getAllAttributes().contains(droppedObject)) {
-				return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
-			}
-			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+			return getDefaultDropNodeCommand(droppedNodeType, droppedObject, location);
 		}
 
 		// The dropped element is a edge
@@ -228,6 +215,23 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 			return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 		}
 
+		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
+	}
+
+	protected ICommand getDefaultDropNodeCommand(String droppedNodeType, EObject droppedObject, Point location) {
+		View dropTargetView = ((IGraphicalEditPart) getHost()).getNotationView();
+		EObject dropTargetElement = dropTargetView.getElement();
+		// Drop restriction:
+		// - no restriction when dropped on diagram
+		// - require containment when dropped on any other EObject
+		if ((dropTargetView instanceof Diagram) || dropTargetElement.eContents().contains(droppedObject)) {
+			return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+		}
+
+		// Allow drop for inherited elements
+		if (dropTargetElement instanceof Classifier && ((Classifier) dropTargetElement).getAllAttributes().contains(droppedObject)) {
+			return getDefaultDropNodeCommand(droppedNodeType, location, droppedObject);
+		}
 		return org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand.INSTANCE;
 	}
 
@@ -318,7 +322,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * <pre>
 	 * Sub-classes have to implement this method in order to provides specific drop command for
 	 * element which require a specific treatment.
-	 *
+	 * 
 	 * @param dropRequest current drop request
 	 * @param droppedEObject the dropped object
 	 * @param nodeType the graphical type of the dropped element (node representation)
@@ -334,7 +338,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends DiagramDragDropEdi
 	 * <pre>
 	 * Sub-classes have to implement this method in order to provides drop command for
 	 * elements that are not natively known by the diagram.
-	 *
+	 * 
 	 * @param dropRequest current drop request
 	 * @param droppedEObject the dropped object
 	 * @return the drop command

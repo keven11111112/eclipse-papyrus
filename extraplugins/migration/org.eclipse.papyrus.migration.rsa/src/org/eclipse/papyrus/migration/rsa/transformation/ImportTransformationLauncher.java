@@ -428,13 +428,13 @@ public class ImportTransformationLauncher {
 				@Override
 				protected IStatus run(IProgressMonitor monitor) {
 					long startFix = System.nanoTime();
-					fixDependencies(transformation, monitor, urisToReplace, profileUrisToReplace);
+					IStatus fixStatus = fixDependencies(transformation, monitor, urisToReplace, profileUrisToReplace);
 					long endFix = System.nanoTime();
 					synchronized (ImportTransformationLauncher.this) {
 						totalTimeV2.put(transformation, endFix - startFix);
 					}
 
-					return Status.OK_STATUS;
+					return fixStatus;
 				}
 			};
 
@@ -491,7 +491,7 @@ public class ImportTransformationLauncher {
 		} catch (ModelMultiException e) {
 			Activator.log.error(e);
 			monitor.worked(1);
-			return Status.OK_STATUS;
+			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occurred when repairing library dependencies", e);
 		}
 
 		try {
@@ -663,6 +663,9 @@ public class ImportTransformationLauncher {
 	}
 
 	protected MappingParameters confirmURIMappings(final MappingParameters mappingParameters) {
+		List<URIMapping> flatMappings = analysisHelper.flattenURIMappings(mappingParameters);
+		analysisHelper.propagateURIMappings(flatMappings, mappingParameters);
+
 		if (config.isAlwaysAcceptSuggestedMappings()) {
 			return mappingParameters;
 		}
@@ -684,7 +687,7 @@ public class ImportTransformationLauncher {
 	protected MappingParameters openMappingsDialog(final MappingParameters mappingParameters) {
 		final Shell shell = baseControl.getShell();
 
-		SelectionDialog dialog = new URIMappingDialog(shell, mappingParameters);
+		SelectionDialog dialog = new URIMappingDialog(shell, mappingParameters, analysisHelper);
 
 		dialog.open();
 		return (MappingParameters) dialog.getResult()[0];

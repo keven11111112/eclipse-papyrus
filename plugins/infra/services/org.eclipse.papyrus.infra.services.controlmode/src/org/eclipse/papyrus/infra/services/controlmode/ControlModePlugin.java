@@ -23,7 +23,7 @@ import org.osgi.framework.BundleContext;
 public class ControlModePlugin extends AbstractUIPlugin {
 
 	// The plug-in ID
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.services.controlmode";
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.services.controlmode"; //$NON-NLS-1$
 
 	// The shared instance
 	private static ControlModePlugin plugin;

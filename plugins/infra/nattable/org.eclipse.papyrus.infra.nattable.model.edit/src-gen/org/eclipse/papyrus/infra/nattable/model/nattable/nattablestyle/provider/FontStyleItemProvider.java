@@ -31,7 +31,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class FontStyleItemProvider extends EModelElementItemProvider {
@@ -40,7 +40,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public FontStyleItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +51,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,7 +74,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Font Color feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addFontColorPropertyDescriptor(Object object) {
@@ -97,7 +97,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Font Name feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addFontNamePropertyDescriptor(Object object) {
@@ -120,7 +120,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Font Height feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addFontHeightPropertyDescriptor(Object object) {
@@ -143,7 +143,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Bold feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addBoldPropertyDescriptor(Object object) {
@@ -166,7 +166,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Italic feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addItalicPropertyDescriptor(Object object) {
@@ -189,7 +189,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Underline feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addUnderlinePropertyDescriptor(Object object) {
@@ -212,7 +212,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This adds a property descriptor for the Strike Through feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addStrikeThroughPropertyDescriptor(Object object) {
@@ -235,7 +235,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This returns FontStyle.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -247,7 +247,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -263,7 +263,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -289,7 +289,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -301,7 +301,7 @@ public class FontStyleItemProvider extends EModelElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

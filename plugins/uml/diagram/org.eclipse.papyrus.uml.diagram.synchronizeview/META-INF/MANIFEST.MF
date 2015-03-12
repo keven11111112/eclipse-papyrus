@@ -26,4 +26,4 @@ Bundle-Description: The goal of this plugin is add the fucntionality t
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.synchronizeview;s
  ingleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

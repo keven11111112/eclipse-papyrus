@@ -117,7 +117,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 				if (editor != null) {
 					final String editorId = config.getEditorConfigId() + Integer.toString(i);
 					if (existingEditorIds.contains(editorId)) {
-						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id");
+						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
 					} else {
 						existingEditorIds.add(editorId);
 					}

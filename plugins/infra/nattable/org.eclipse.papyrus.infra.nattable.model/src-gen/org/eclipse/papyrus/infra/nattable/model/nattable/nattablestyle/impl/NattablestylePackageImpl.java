@@ -43,6 +43,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextS
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
@@ -65,6 +67,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.impl.Nat
  * @generated
  */
 public class NattablestylePackageImpl extends EPackageImpl implements NattablestylePackage {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,6 +186,22 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 *
 	 * @generated
 	 */
+	private EClass eObjectValueStyleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass eObjectListValueStyleEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	private EEnum cellTextAlignmentEEnum = null;
 
 	/**
@@ -194,10 +213,12 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	private EEnum displayStyleEEnum = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the
+	 * package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the
+	 * package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage#eNS_URI
@@ -220,8 +241,8 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link NattablestylePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc
-	 * -->
+	 * This method is used to initialize {@link NattablestylePackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly.
+	 * Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -229,41 +250,24 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 * @generated
 	 */
 	public static NattablestylePackage init() {
-		if (isInited) {
-			return (NattablestylePackage) EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
+		if(isInited) {
+			return (NattablestylePackage)EPackage.Registry.INSTANCE.getEPackage(NattablestylePackage.eNS_URI);
 		}
-
 		// Obtain or create and register package
-		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl) (EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattablestylePackageImpl());
-
+		NattablestylePackageImpl theNattablestylePackage = (NattablestylePackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof NattablestylePackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new NattablestylePackageImpl());
 		isInited = true;
-
 		// Initialize simple dependencies
 		EcorePackage.eINSTANCE.eClass();
-
 		// Obtain or create and register interdependencies
-		NattablePackageImpl theNattablePackage = (NattablePackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI)
-				: NattablePackage.eINSTANCE);
-		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableconfigurationPackage.eNS_URI)
-				: NattableconfigurationPackage.eINSTANCE);
-		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
-		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattablelabelproviderPackage.eNS_URI)
-				: NattablelabelproviderPackage.eINSTANCE);
-		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableaxisconfigurationPackage.eNS_URI)
-				: NattableaxisconfigurationPackage.eINSTANCE);
-		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
-		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI)
-				: NattableaxisPackage.eINSTANCE);
-		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI)
-				: NattablecellPackage.eINSTANCE);
-		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl) (EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE
-				.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
-
+		NattablePackageImpl theNattablePackage = (NattablePackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) instanceof NattablePackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablePackage.eNS_URI) : NattablePackage.eINSTANCE);
+		NattableconfigurationPackageImpl theNattableconfigurationPackage = (NattableconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) instanceof NattableconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableconfigurationPackage.eNS_URI) : NattableconfigurationPackage.eINSTANCE);
+		NattableaxisproviderPackageImpl theNattableaxisproviderPackage = (NattableaxisproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) instanceof NattableaxisproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisproviderPackage.eNS_URI) : NattableaxisproviderPackage.eINSTANCE);
+		NattablelabelproviderPackageImpl theNattablelabelproviderPackage = (NattablelabelproviderPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) instanceof NattablelabelproviderPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablelabelproviderPackage.eNS_URI) : NattablelabelproviderPackage.eINSTANCE);
+		NattableaxisconfigurationPackageImpl theNattableaxisconfigurationPackage = (NattableaxisconfigurationPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) instanceof NattableaxisconfigurationPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisconfigurationPackage.eNS_URI) : NattableaxisconfigurationPackage.eINSTANCE);
+		NattabletesterPackageImpl theNattabletesterPackage = (NattabletesterPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) instanceof NattabletesterPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattabletesterPackage.eNS_URI) : NattabletesterPackage.eINSTANCE);
+		NattableaxisPackageImpl theNattableaxisPackage = (NattableaxisPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) instanceof NattableaxisPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableaxisPackage.eNS_URI) : NattableaxisPackage.eINSTANCE);
+		NattablecellPackageImpl theNattablecellPackage = (NattablecellPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) instanceof NattablecellPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattablecellPackage.eNS_URI) : NattablecellPackage.eINSTANCE);
+		NattableproblemPackageImpl theNattableproblemPackage = (NattableproblemPackageImpl)(EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) instanceof NattableproblemPackageImpl ? EPackage.Registry.INSTANCE.getEPackage(NattableproblemPackage.eNS_URI) : NattableproblemPackage.eINSTANCE);
 		// Create package meta-data objects
 		theNattablestylePackage.createPackageContents();
 		theNattablePackage.createPackageContents();
@@ -275,7 +279,6 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		theNattableaxisPackage.createPackageContents();
 		theNattablecellPackage.createPackageContents();
 		theNattableproblemPackage.createPackageContents();
-
 		// Initialize created meta-data
 		theNattablestylePackage.initializePackageContents();
 		theNattablePackage.initializePackageContents();
@@ -287,11 +290,8 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		theNattableaxisPackage.initializePackageContents();
 		theNattablecellPackage.initializePackageContents();
 		theNattableproblemPackage.initializePackageContents();
-
 		// Mark meta-data to indicate it can't be changed
 		theNattablestylePackage.freeze();
-
-
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(NattablestylePackage.eNS_URI, theNattablestylePackage);
 		return theNattablestylePackage;
@@ -327,7 +327,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getNamedStyle_Name() {
-		return (EAttribute) namedStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)namedStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -349,7 +349,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_FontColor() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -360,7 +360,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_FontName() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(1);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(1);
 	}
 
 	/**
@@ -371,7 +371,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_FontHeight() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(2);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(2);
 	}
 
 	/**
@@ -382,7 +382,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_Bold() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(3);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(3);
 	}
 
 	/**
@@ -393,7 +393,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_Italic() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(4);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(4);
 	}
 
 	/**
@@ -404,7 +404,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_Underline() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(5);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(5);
 	}
 
 	/**
@@ -415,7 +415,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getFontStyle_StrikeThrough() {
-		return (EAttribute) fontStyleEClass.getEStructuralFeatures().get(6);
+		return (EAttribute)fontStyleEClass.getEStructuralFeatures().get(6);
 	}
 
 	/**
@@ -437,7 +437,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getCellTextStyle_Alignment() {
-		return (EAttribute) cellTextStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)cellTextStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -459,7 +459,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getIntValueStyle_IntValue() {
-		return (EAttribute) intValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)intValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -481,7 +481,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getIntListValueStyle_IntListValue() {
-		return (EAttribute) intListValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)intListValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -503,7 +503,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getBooleanValueStyle_BooleanValue() {
-		return (EAttribute) booleanValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)booleanValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -525,7 +525,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getBooleanListValueStyle_BooleanListValue() {
-		return (EAttribute) booleanListValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)booleanListValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -547,7 +547,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getDoubleValueStyle_DoubleValue() {
-		return (EAttribute) doubleValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)doubleValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -569,7 +569,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getDoubleListValueStyle_DoubleListValue() {
-		return (EAttribute) doubleListValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)doubleListValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -591,7 +591,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getStringValueStyle_StringValue() {
-		return (EAttribute) stringValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)stringValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -613,7 +613,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getStringListValueStyle_StringListValue() {
-		return (EAttribute) stringListValueStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)stringListValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -635,7 +635,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EReference getStyledElement_Styles() {
-		return (EReference) styledElementEClass.getEStructuralFeatures().get(0);
+		return (EReference)styledElementEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -690,7 +690,51 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public EAttribute getTableDisplayStyle_DisplayStyle() {
-		return (EAttribute) tableDisplayStyleEClass.getEStructuralFeatures().get(0);
+		return (EAttribute)tableDisplayStyleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getEObjectValueStyle() {
+		return eObjectValueStyleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getEObjectValueStyle_EObjectValue() {
+		return (EReference)eObjectValueStyleEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getEObjectListValueStyle() {
+		return eObjectListValueStyleEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getEObjectListValueStyle_EObjectValue() {
+		return (EReference)eObjectListValueStyleEClass.getEStructuralFeatures().get(0);
 	}
 
 	/**
@@ -723,7 +767,7 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 */
 	@Override
 	public NattablestyleFactory getNattablestyleFactory() {
-		return (NattablestyleFactory) getEFactoryInstance();
+		return (NattablestyleFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -743,17 +787,14 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) {
+		if(isCreated) {
 			return;
 		}
 		isCreated = true;
-
 		// Create classes and their features
 		styleEClass = createEClass(STYLE);
-
 		namedStyleEClass = createEClass(NAMED_STYLE);
 		createEAttribute(namedStyleEClass, NAMED_STYLE__NAME);
-
 		fontStyleEClass = createEClass(FONT_STYLE);
 		createEAttribute(fontStyleEClass, FONT_STYLE__FONT_COLOR);
 		createEAttribute(fontStyleEClass, FONT_STYLE__FONT_NAME);
@@ -762,43 +803,35 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		createEAttribute(fontStyleEClass, FONT_STYLE__ITALIC);
 		createEAttribute(fontStyleEClass, FONT_STYLE__UNDERLINE);
 		createEAttribute(fontStyleEClass, FONT_STYLE__STRIKE_THROUGH);
-
 		cellTextStyleEClass = createEClass(CELL_TEXT_STYLE);
 		createEAttribute(cellTextStyleEClass, CELL_TEXT_STYLE__ALIGNMENT);
-
 		intValueStyleEClass = createEClass(INT_VALUE_STYLE);
 		createEAttribute(intValueStyleEClass, INT_VALUE_STYLE__INT_VALUE);
-
 		intListValueStyleEClass = createEClass(INT_LIST_VALUE_STYLE);
 		createEAttribute(intListValueStyleEClass, INT_LIST_VALUE_STYLE__INT_LIST_VALUE);
-
 		booleanValueStyleEClass = createEClass(BOOLEAN_VALUE_STYLE);
 		createEAttribute(booleanValueStyleEClass, BOOLEAN_VALUE_STYLE__BOOLEAN_VALUE);
-
 		booleanListValueStyleEClass = createEClass(BOOLEAN_LIST_VALUE_STYLE);
 		createEAttribute(booleanListValueStyleEClass, BOOLEAN_LIST_VALUE_STYLE__BOOLEAN_LIST_VALUE);
-
 		doubleValueStyleEClass = createEClass(DOUBLE_VALUE_STYLE);
 		createEAttribute(doubleValueStyleEClass, DOUBLE_VALUE_STYLE__DOUBLE_VALUE);
-
 		doubleListValueStyleEClass = createEClass(DOUBLE_LIST_VALUE_STYLE);
 		createEAttribute(doubleListValueStyleEClass, DOUBLE_LIST_VALUE_STYLE__DOUBLE_LIST_VALUE);
-
 		stringValueStyleEClass = createEClass(STRING_VALUE_STYLE);
 		createEAttribute(stringValueStyleEClass, STRING_VALUE_STYLE__STRING_VALUE);
-
 		stringListValueStyleEClass = createEClass(STRING_LIST_VALUE_STYLE);
 		createEAttribute(stringListValueStyleEClass, STRING_LIST_VALUE_STYLE__STRING_LIST_VALUE);
-
 		styledElementEClass = createEClass(STYLED_ELEMENT);
 		createEReference(styledElementEClass, STYLED_ELEMENT__STYLES);
 		createEOperation(styledElementEClass, STYLED_ELEMENT___GET_NAMED_STYLE__ECLASS_STRING);
 		createEOperation(styledElementEClass, STYLED_ELEMENT___GET_STYLE__ECLASS);
 		createEOperation(styledElementEClass, STYLED_ELEMENT___CREATE_STYLE__ECLASS);
-
 		tableDisplayStyleEClass = createEClass(TABLE_DISPLAY_STYLE);
 		createEAttribute(tableDisplayStyleEClass, TABLE_DISPLAY_STYLE__DISPLAY_STYLE);
-
+		eObjectValueStyleEClass = createEClass(EOBJECT_VALUE_STYLE);
+		createEReference(eObjectValueStyleEClass, EOBJECT_VALUE_STYLE__EOBJECT_VALUE);
+		eObjectListValueStyleEClass = createEClass(EOBJECT_LIST_VALUE_STYLE);
+		createEReference(eObjectListValueStyleEClass, EOBJECT_LIST_VALUE_STYLE__EOBJECT_VALUE);
 		// Create enums
 		cellTextAlignmentEEnum = createEEnum(CELL_TEXT_ALIGNMENT);
 		displayStyleEEnum = createEEnum(DISPLAY_STYLE);
@@ -821,23 +854,18 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) {
+		if(isInitialized) {
 			return;
 		}
 		isInitialized = true;
-
 		// Initialize package
 		setName(eNAME);
 		setNsPrefix(eNS_PREFIX);
 		setNsURI(eNS_URI);
-
 		// Obtain other dependent packages
-		EcorePackage theEcorePackage = (EcorePackage) EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
-
+		EcorePackage theEcorePackage = (EcorePackage)EPackage.Registry.INSTANCE.getEPackage(EcorePackage.eNS_URI);
 		// Create type parameters
-
 		// Set bounds for type parameters
-
 		// Add supertypes to classes
 		styleEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		namedStyleEClass.getESuperTypes().add(this.getStyle());
@@ -853,13 +881,12 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		stringListValueStyleEClass.getESuperTypes().add(this.getNamedStyle());
 		styledElementEClass.getESuperTypes().add(theEcorePackage.getEModelElement());
 		tableDisplayStyleEClass.getESuperTypes().add(this.getStyle());
-
+		eObjectValueStyleEClass.getESuperTypes().add(this.getNamedStyle());
+		eObjectListValueStyleEClass.getESuperTypes().add(this.getNamedStyle());
 		// Initialize classes, features, and operations; add parameters
 		initEClass(styleEClass, Style.class, "Style", IS_ABSTRACT, IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-
 		initEClass(namedStyleEClass, NamedStyle.class, "NamedStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getNamedStyle_Name(), ecorePackage.getEString(), "name", null, 0, 1, NamedStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(fontStyleEClass, FontStyle.class, "FontStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getFontStyle_FontColor(), ecorePackage.getEInt(), "fontColor", "0", 0, 1, FontStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getFontStyle_FontName(), ecorePackage.getEString(), "fontName", "Tahoma", 0, 1, FontStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
@@ -868,52 +895,39 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		initEAttribute(getFontStyle_Italic(), ecorePackage.getEBoolean(), "italic", "false", 0, 1, FontStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getFontStyle_Underline(), ecorePackage.getEBoolean(), "underline", "false", 0, 1, FontStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
 		initEAttribute(getFontStyle_StrikeThrough(), ecorePackage.getEBoolean(), "strikeThrough", "false", 0, 1, FontStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
 		initEClass(cellTextStyleEClass, CellTextStyle.class, "CellTextStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getCellTextStyle_Alignment(), this.getCellTextAlignment(), "alignment", "MIDDLE_LEFT", 0, 1, CellTextStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
 		initEClass(intValueStyleEClass, IntValueStyle.class, "IntValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIntValueStyle_IntValue(), ecorePackage.getEInt(), "intValue", null, 0, 1, IntValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(intListValueStyleEClass, IntListValueStyle.class, "IntListValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getIntListValueStyle_IntListValue(), ecorePackage.getEInt(), "intListValue", null, 0, -1, IntListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(booleanValueStyleEClass, BooleanValueStyle.class, "BooleanValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getBooleanValueStyle_BooleanValue(), ecorePackage.getEBoolean(), "booleanValue", null, 0, 1, BooleanValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(booleanListValueStyleEClass, BooleanListValueStyle.class, "BooleanListValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getBooleanListValueStyle_BooleanListValue(), ecorePackage.getEBooleanObject(),
-				"booleanListValue", null, 0, -1, BooleanListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEAttribute(getBooleanListValueStyle_BooleanListValue(), ecorePackage.getEBooleanObject(), "booleanListValue", null, 0, -1, BooleanListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(doubleValueStyleEClass, DoubleValueStyle.class, "DoubleValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getDoubleValueStyle_DoubleValue(), ecorePackage.getEDouble(), "doubleValue", null, 0, 1, DoubleValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(doubleListValueStyleEClass, DoubleListValueStyle.class, "DoubleListValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
-		initEAttribute(getDoubleListValueStyle_DoubleListValue(), ecorePackage.getEDoubleObject(),
-				"doubleListValue", null, 0, -1, DoubleListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
+		initEAttribute(getDoubleListValueStyle_DoubleListValue(), ecorePackage.getEDoubleObject(), "doubleListValue", null, 0, -1, DoubleListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		initEClass(stringValueStyleEClass, StringValueStyle.class, "StringValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringValueStyle_StringValue(), ecorePackage.getEString(), "stringValue", null, 0, 1, StringValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(stringListValueStyleEClass, StringListValueStyle.class, "StringListValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getStringListValueStyle_StringListValue(), ecorePackage.getEString(), "stringListValue", null, 0, -1, StringListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, !IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(styledElementEClass, StyledElement.class, "StyledElement", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEReference(getStyledElement_Styles(), this.getStyle(), null, "styles", null, 0, -1, StyledElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
-
 		EOperation op = initEOperation(getStyledElement__GetNamedStyle__EClass_String(), this.getNamedStyle(), "getNamedStyle", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEClass(), "eClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEString(), "name", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		op = initEOperation(getStyledElement__GetStyle__EClass(), this.getStyle(), "getStyle", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEClass(), "eClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		op = initEOperation(getStyledElement__CreateStyle__EClass(), this.getStyle(), "createStyle", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
 		addEParameter(op, theEcorePackage.getEClass(), "eClass", 0, 1, IS_UNIQUE, IS_ORDERED); //$NON-NLS-1$
-
 		initEClass(tableDisplayStyleEClass, TableDisplayStyle.class, "TableDisplayStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
 		initEAttribute(getTableDisplayStyle_DisplayStyle(), this.getDisplayStyle(), "displayStyle", "NORMAL", 1, 1, TableDisplayStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$ //$NON-NLS-2$
-
+		initEClass(eObjectValueStyleEClass, EObjectValueStyle.class, "EObjectValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEObjectValueStyle_EObjectValue(), ecorePackage.getEObject(), null, "eObjectValue", null, 0, 1, EObjectValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
+		initEClass(eObjectListValueStyleEClass, EObjectListValueStyle.class, "EObjectListValueStyle", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS); //$NON-NLS-1$
+		initEReference(getEObjectListValueStyle_EObjectValue(), theEcorePackage.getEObject(), null, "eObjectValue", null, 0, -1, EObjectListValueStyle.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED); //$NON-NLS-1$
 		// Initialize enums and add enum literals
 		initEEnum(cellTextAlignmentEEnum, CellTextAlignment.class, "CellTextAlignment"); //$NON-NLS-1$
 		addEEnumLiteral(cellTextAlignmentEEnum, CellTextAlignment.TOP_LEFT);
@@ -925,11 +939,9 @@ public class NattablestylePackageImpl extends EPackageImpl implements Nattablest
 		addEEnumLiteral(cellTextAlignmentEEnum, CellTextAlignment.BOTTOM_LEFT);
 		addEEnumLiteral(cellTextAlignmentEEnum, CellTextAlignment.BOTTOM_CENTER);
 		addEEnumLiteral(cellTextAlignmentEEnum, CellTextAlignment.BOTTOM_RIGHT);
-
 		initEEnum(displayStyleEEnum, DisplayStyle.class, "DisplayStyle"); //$NON-NLS-1$
 		addEEnumLiteral(displayStyleEEnum, DisplayStyle.NORMAL);
 		addEEnumLiteral(displayStyleEEnum, DisplayStyle.HIERARCHIC_SINGLE_TREE_COLUMN);
 		addEEnumLiteral(displayStyleEEnum, DisplayStyle.HIERARCHIC_MULTI_TREE_COLUMN);
 	}
-
 } // NattablestylePackageImpl

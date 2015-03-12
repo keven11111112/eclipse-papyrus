@@ -29,7 +29,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfigurati
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.PasteEObjectConfiguration} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationItemProvider {
@@ -37,7 +37,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public PasteEObjectConfigurationItemProvider(AdapterFactory adapterFactory) {
@@ -48,7 +48,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,7 +66,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This adds a property descriptor for the Pasted Element Id feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addPastedElementIdPropertyDescriptor(Object object) {
@@ -89,7 +89,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This adds a property descriptor for the Paste Element Containement Feature feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addPasteElementContainementFeaturePropertyDescriptor(Object object) {
@@ -112,7 +112,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This returns PasteEObjectConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,7 +124,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -139,7 +139,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -159,7 +159,7 @@ public class PasteEObjectConfigurationItemProvider extends IPasteConfigurationIt
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

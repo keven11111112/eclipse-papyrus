@@ -150,7 +150,7 @@ public class PapyrusPopupMenuAction extends PopupMenuAction {
 	 * execute the command
 	 */
 	private void executeCommand(String commandId) {
-		IHandlerService handlerService = PlatformUI.getWorkbench().getService(IHandlerService.class);
+		IHandlerService handlerService = (IHandlerService) PlatformUI.getWorkbench().getService(IHandlerService.class);
 		if (handlerService == null) {
 			Activator.log.warn("Handler service not found"); //$NON-NLS-1$
 			return;

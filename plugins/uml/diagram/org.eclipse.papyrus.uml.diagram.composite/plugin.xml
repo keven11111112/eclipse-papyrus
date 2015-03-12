@@ -1324,7 +1324,7 @@
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3070"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.prototype.CollaborationRole_3115"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationRole_3115"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"/>
          <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"/>

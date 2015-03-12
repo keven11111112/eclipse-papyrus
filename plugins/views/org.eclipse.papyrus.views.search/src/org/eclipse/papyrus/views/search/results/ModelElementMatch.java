@@ -31,10 +31,8 @@ public class ModelElementMatch extends ModelMatch {
 
 	public ModelElementMatch(Object source, ScopeEntry scopeEntry) {
 		super(UNSPECIFIED, UNSPECIFIED, source, scopeEntry);
-		recursiveHierarchy(this);
-
-
-		// this.parent = new ResultEntry(scopeEntry.getResource(), scopeEntry);
+		this.setParent(new ResultEntry(scopeEntry.getResourceURI(), scopeEntry));
+		// recursiveHierarchy(this);
 	}
 
 	@Override

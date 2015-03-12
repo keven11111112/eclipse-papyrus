@@ -68,7 +68,7 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 
 	@Override
 	public Match[] getDisplayedMatches(Object element) {
-
+		
 		Set<AbstractResultEntry> results = MatchUtils.getMatches(this.getInput(), true);
 
 		if (element instanceof AbstractResultEntry) {
@@ -110,7 +110,6 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 
 	@Override
 	protected void handleOpen(OpenEvent event) {
-
 		ISelection selection = event.getSelection();
 		if (!selection.isEmpty()) {
 			if (selection instanceof IStructuredSelection) {
@@ -153,7 +152,6 @@ public class PapyrusSearchResultPage extends AbstractTextSearchViewPage implemen
 		for (int i = 0; i < matches.length; i++) {
 			changedElements.add(matches[i]);
 		}
-
 	}
 
 	@Override

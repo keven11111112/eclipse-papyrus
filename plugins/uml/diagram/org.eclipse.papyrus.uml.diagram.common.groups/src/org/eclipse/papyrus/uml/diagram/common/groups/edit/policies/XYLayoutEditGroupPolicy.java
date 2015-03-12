@@ -49,7 +49,7 @@ import org.eclipse.papyrus.uml.diagram.common.groups.core.utils.DefaultModelPare
 import org.eclipse.papyrus.uml.diagram.common.groups.core.utils.Utils;
 import org.eclipse.papyrus.uml.diagram.common.groups.groupcontainment.AbstractContainerNodeDescriptor;
 import org.eclipse.papyrus.uml.diagram.common.groups.utils.GroupRequestConstants;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * This edit policy is used to handle node positioning inside a group after creation or after a {@link ChangeBoundsRequest} You can find example of

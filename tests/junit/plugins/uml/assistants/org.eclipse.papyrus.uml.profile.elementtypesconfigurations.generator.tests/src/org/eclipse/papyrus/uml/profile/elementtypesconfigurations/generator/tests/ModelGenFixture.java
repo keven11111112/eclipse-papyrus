@@ -13,13 +13,19 @@
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests;
 
+import static org.eclipse.papyrus.junit.matchers.MoreMatchers.isEmpty;
 import static org.eclipse.papyrus.junit.matchers.MoreMatchers.lessThan;
+import static org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.tests.GenOption.SUPPRESS_SEMANTIC_SUPERTYPE;
 import static org.eclipse.uml2.common.util.UML2Util.getValidJavaIdentifier;
 import static org.hamcrest.CoreMatchers.everyItem;
 import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.not;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.Arrays;
+import java.util.EnumSet;
 import java.util.List;
+import java.util.Set;
 import java.util.regex.Pattern;
 
 import org.eclipse.core.runtime.IStatus;
@@ -59,6 +65,8 @@ public class ModelGenFixture extends ResourceSetFixture {
 	protected final String prefix = "org.eclipse.papyrus.test";
 
 	private String baseElementTypesSet = UML_ELEMENT_TYPES;
+
+	private Set<GenOption> genOptions = EnumSet.noneOf(GenOption.class);
 
 	public ModelGenFixture() {
 		super();
@@ -187,6 +195,11 @@ public class ModelGenFixture extends ResourceSetFixture {
 		return (StereotypeApplicationMatcherConfiguration) result;
 	}
 
+	public void assertNoStereotypeMatcher(SpecializationTypeConfiguration specializationType) {
+		MatcherConfiguration matcher = specializationType.getMatcherConfiguration();
+		assertThat("has a stereotype matcher", matcher, not(instanceOf(StereotypeApplicationMatcherConfiguration.class)));
+	}
+
 	public <C extends AdviceBindingConfiguration> C getAdviceBindingConfiguration(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension, Class<C> type) {
 		AdviceBindingConfiguration result = getAdviceBindingConfiguration(metaclassExtension);
 		assertThat("not a " + type.getSimpleName(), result, instanceOf(type));
@@ -245,6 +258,11 @@ public class ModelGenFixture extends ResourceSetFixture {
 		return result;
 	}
 
+	public void assertNoApplyStereotypeAdvice(Pair<Stereotype, org.eclipse.uml2.uml.Class> metaclassExtension) {
+		List<ApplyStereotypeAdviceConfiguration> advice = getAllAdviceBindingConfigurations(metaclassExtension, ApplyStereotypeAdviceConfiguration.class);
+		assertThat("has apply-stereotype advice", advice, isEmpty());
+	}
+
 	/**
 	 * Extends the inherited method to run the profile-to-elementtypes transformation.
 	 * 
@@ -260,6 +278,11 @@ public class ModelGenFixture extends ResourceSetFixture {
 			baseElementTypesSet = basedOn.value();
 		}
 
+		GenOptions options = JUnitUtils.getAnnotation(description, GenOptions.class);
+		if (options != null) {
+			genOptions = EnumSet.copyOf(Arrays.asList(options.value()));
+		}
+
 		// Ensure the registration of the element types that we need
 		ElementTypeSetConfigurationRegistry.getInstance();
 
@@ -269,7 +292,8 @@ public class ModelGenFixture extends ResourceSetFixture {
 	private void generateModel() {
 		Identifiers identifiers = new Identifiers();
 		identifiers.setPrefix(prefix);
-		identifiers.setDiagramElementTypesSet(getBaseElementTypesSet());
+		identifiers.setBaseElementTypesSet(getBaseElementTypesSet());
+		identifiers.setSuppressSemanticSuperElementTypes(genOptions.contains(SUPPRESS_SEMANTIC_SUPERTYPE));
 
 		generateModel(identifiers);
 	}

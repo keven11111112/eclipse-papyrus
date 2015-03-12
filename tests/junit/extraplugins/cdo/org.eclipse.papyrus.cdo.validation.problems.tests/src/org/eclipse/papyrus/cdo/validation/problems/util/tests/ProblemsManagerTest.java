@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Christian W. Damus - bug 460716
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.validation.problems.util.tests;
 
@@ -32,6 +33,7 @@ import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EValidator;
 import org.eclipse.emf.ecore.impl.EValidatorRegistryImpl;
@@ -50,9 +52,14 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
+import org.eclipse.uml2.uml.resource.UMLResource;
 import org.eclipse.uml2.uml.util.UMLValidator;
 import org.junit.After;
 import org.junit.Test;
+
+import com.google.common.base.Function;
+import com.google.common.base.Predicate;
+import com.google.common.collect.Iterables;
 
 /**
  * Tests suite for the {@link ProblemsManager} API.
@@ -70,23 +77,24 @@ public class ProblemsManagerTest
 
 		// doesn't create a new instance
 		assertThat(mgr,
-			sameInstance(ProblemsManager.getProblemsManager(transaction
-				.getResourceSet())));
+				sameInstance(ProblemsManager.getProblemsManager(transaction
+						.getResourceSet())));
 	}
 
 	@Test
 	public void allProblems() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount();
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> allProblems = collect(mgr.getAllProblems());
-		assertThat(allProblems.size(), equalTo(3));
+		assertThat(allProblems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, allProblems);
 		assertGeneralCompatibilityProblem(resource, allProblems);
 		assertUnownedElementProblem(resource, allProblems);
@@ -96,16 +104,17 @@ public class ProblemsManagerTest
 	public void allProblems_EObject_noCrossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount(getClass2());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> problems = collect(mgr
-			.getAllProblems(getClass2(resource)));
-		assertThat(problems.size(), equalTo(2));
+				.getAllProblems(getClass2(resource)));
+		assertThat(problems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
@@ -114,20 +123,21 @@ public class ProblemsManagerTest
 	public void allProblems_EObject_crossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		// attach a cross-reference adapter
 		transaction.getResourceSet().eAdapters()
-			.add(new ECrossReferenceAdapter());
+				.add(new ECrossReferenceAdapter());
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount(getClass2());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> problems = collect(mgr
-			.getAllProblems(getClass2(resource)));
-		assertThat(problems.size(), equalTo(2));
+				.getAllProblems(getClass2(resource)));
+		assertThat(problems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
@@ -136,7 +146,7 @@ public class ProblemsManagerTest
 	public void purgeAll_noCrossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
 
@@ -152,11 +162,11 @@ public class ProblemsManagerTest
 	public void purgeAll_crossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		// attach a cross-reference adapter
 		transaction.getResourceSet().eAdapters()
-			.add(new ECrossReferenceAdapter());
+				.add(new ECrossReferenceAdapter());
 
 		createTestModel(resource);
 
@@ -172,9 +182,11 @@ public class ProblemsManagerTest
 	public void purge_noCrossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
+		final int expectedTotalProblems = computeExpectedProblemsCount();
+		final int expectedClass3Problems = computeExpectedProblemsCount(getClass3());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
@@ -182,7 +194,7 @@ public class ProblemsManagerTest
 		mgr.purgeProblems(getClass3(resource));
 
 		Collection<EProblem> problems = collect(mgr.getAllProblems());
-		assertThat(problems.size(), equalTo(2));
+		assertThat(problems.size(), equalTo(expectedTotalProblems - expectedClass3Problems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
@@ -191,13 +203,15 @@ public class ProblemsManagerTest
 	public void purge_crossReferencer() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		// attach a cross-reference adapter
 		transaction.getResourceSet().eAdapters()
-			.add(new ECrossReferenceAdapter());
+				.add(new ECrossReferenceAdapter());
 
 		createTestModel(resource);
+		final int expectedTotalProblems = computeExpectedProblemsCount();
+		final int expectedClass3Problems = computeExpectedProblemsCount(getClass3());
 
 		ProblemsManager mgr = getProblemsManager(transaction);
 		mgr.addDiagnostic(validate(resource));
@@ -205,7 +219,7 @@ public class ProblemsManagerTest
 		mgr.purgeProblems(getClass3(resource));
 
 		Collection<EProblem> problems = collect(mgr.getAllProblems());
-		assertThat(problems.size(), equalTo(2));
+		assertThat(problems.size(), equalTo(expectedTotalProblems - expectedClass3Problems));
 		assertIndistinguishableMembersProblem(resource, problems);
 		assertGeneralCompatibilityProblem(resource, problems);
 	}
@@ -216,7 +230,7 @@ public class ProblemsManagerTest
 
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		// attach a cross-reference adapter
 		ECrossReferenceAdapter xrefs = new ECrossReferenceAdapter();
@@ -230,7 +244,7 @@ public class ProblemsManagerTest
 		// gather weak references to the problems
 		ReferenceQueue<EProblem> queue = new ReferenceQueue<EProblem>();
 		List<Reference<EProblem>> references = new java.util.ArrayList<Reference<EProblem>>(
-			3);
+				3);
 		for (Iterator<EProblem> iter = mgr.getAllProblems(); iter.hasNext();) {
 			references.add(new WeakReference<EProblem>(iter.next(), queue));
 		}
@@ -255,7 +269,7 @@ public class ProblemsManagerTest
 
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
 
@@ -269,7 +283,7 @@ public class ProblemsManagerTest
 		// gather weak references to the problems
 		ReferenceQueue<EProblem> queue = new ReferenceQueue<EProblem>();
 		List<Reference<EProblem>> references = new java.util.ArrayList<Reference<EProblem>>(
-			3);
+				3);
 		for (Iterator<EProblem> iter = mgr.getAllProblems(); iter.hasNext();) {
 			references.add(new WeakReference<EProblem>(iter.next(), queue));
 		}
@@ -292,18 +306,19 @@ public class ProblemsManagerTest
 	public void customProblemClass() {
 		CDOTransaction transaction = createTransaction();
 		CDOResource resource = transaction
-			.createResource(getResourcePath("/resource1"));
+				.createResource(getResourcePath("/resource1"));
 
 		createTestModel(resource);
+		final int expectedProblems = computeExpectedProblemsCount();
 
 		// not actually a different class, but a different way of creating it
 		ProblemsManager mgr = ProblemsManager.createProblemsManager(
-			transaction.getResourceSet(), ProblemsPackage.Literals.EPROBLEM);
+				transaction.getResourceSet(), ProblemsPackage.Literals.EPROBLEM);
 		managers.add(mgr);
 		mgr.addDiagnostic(validate(resource));
 
 		Collection<EProblem> allProblems = collect(mgr.getAllProblems());
-		assertThat(allProblems.size(), equalTo(3));
+		assertThat(allProblems.size(), equalTo(expectedProblems));
 		assertIndistinguishableMembersProblem(resource, allProblems);
 		assertGeneralCompatibilityProblem(resource, allProblems);
 		assertUnownedElementProblem(resource, allProblems);
@@ -341,22 +356,102 @@ public class ProblemsManagerTest
 		res.getContents().add(class3); // not owned
 	}
 
+	int computeExpectedProblemsCount() {
+		int result;
+
+		Resource resource = createScratchResource();
+
+		try {
+			Diagnostic diagnostic = validate(resource);
+			result = diagnostic.getChildren().size();
+		} finally {
+			unload(resource);
+		}
+
+		return result;
+	}
+
+	int computeExpectedProblemsCount(Function<Resource, ? extends EObject> pertainingTo) {
+		int result;
+
+		Resource resource = createScratchResource();
+		final EObject target = pertainingTo.apply(resource);
+
+		try {
+			Diagnostic diagnostic = validate(resource);
+			result = Iterables.size(Iterables.filter(diagnostic.getChildren(), new Predicate<Diagnostic>() {
+				@Override
+				public boolean apply(Diagnostic input) {
+					List<?> data = input.getData();
+					return (data != null) && !data.isEmpty() && (data.get(0) == target);
+				}
+			}));
+		} finally {
+			unload(resource);
+		}
+
+		return result;
+	}
+
+	Resource createScratchResource() {
+		Resource result = UMLResource.Factory.INSTANCE.createResource(URI.createURI("bogus://scratch.uml"));
+		createTestModel(result);
+		return result;
+	}
+
+	void unload(Resource resource) {
+		resource.unload();
+		if (resource.getResourceSet() != null) {
+			resource.getResourceSet().getResources().remove(resource);
+		}
+		resource.eAdapters().clear();
+	}
+
 	Model getModel(Resource resource) {
 		return (Model) EcoreUtil.getObjectByType(resource.getContents(),
-			UMLPackage.Literals.MODEL);
+				UMLPackage.Literals.MODEL);
 	}
 
 	Class getClass1(Resource resource) {
-		return (Class) getModel(resource).getOwnedType("Class1");
+		return getClass1().apply(resource);
+	}
+
+	Function<Resource, Class> getClass1() {
+		return getNamedClass("Class1");
+	}
+
+	Function<Resource, Class> getNamedClass(final String name) {
+		return new Function<Resource, Class>() {
+			@Override
+			public Class apply(Resource input) {
+				return (Class) getModel(input).getOwnedType(name);
+			}
+		};
 	}
 
 	Class getClass2(Resource resource) {
-		return (Class) getModel(resource).getOwnedType("Class2");
+		return getClass2().apply(resource);
+	}
+
+	Function<Resource, Class> getClass2() {
+		return getNamedClass("Class2");
 	}
 
 	Class getClass3(Resource resource) {
-		return (Class) EcoreUtil.getObjectByType(resource.getContents(),
-			UMLPackage.Literals.CLASS);
+		return getClass3().apply(resource);
+	}
+
+	Function<Resource, Class> getClass3() {
+		return getRoot(Class.class);
+	}
+
+	<T extends EObject> Function<Resource, T> getRoot(final java.lang.Class<T> metaclass) {
+		return new Function<Resource, T>() {
+			@Override
+			public T apply(Resource input) {
+				return Iterables.getFirst(Iterables.filter(input.getContents(), metaclass), null);
+			}
+		};
 	}
 
 	Interface getInterface1(Resource resource) {
@@ -369,14 +464,14 @@ public class ProblemsManagerTest
 
 	ProblemsManager getProblemsManager(ResourceSet resourceSet) {
 		ProblemsManager result = ProblemsManager
-			.getProblemsManager(resourceSet);
+				.getProblemsManager(resourceSet);
 		managers.add(result);
 		return result;
 	}
 
 	Diagnostic validate(Resource resource) {
 		EValidator.Registry registry = new EValidatorRegistryImpl(
-			EValidator.Registry.INSTANCE);
+				EValidator.Registry.INSTANCE);
 		registry.put(UMLPackage.eINSTANCE, new UMLValidator());
 
 		BasicDiagnostic result = new BasicDiagnostic();
@@ -409,11 +504,11 @@ public class ProblemsManagerTest
 		EProblem found = null;
 		for (EProblem problem : problems) {
 			if (problem.getElement() == element //
-				&& problem.getRelated().equals(relatedList) //
-				&& problem.getSeverity() == severity //
-				&& pattern.matcher(problem.getMessage()).find() //
-				&& source.equals(problem.getSource()) //
-				&& problem.getCode() == code) {
+					&& problem.getRelated().equals(relatedList) //
+					&& problem.getSeverity() == severity //
+					&& pattern.matcher(problem.getMessage()).find() //
+					&& source.equals(problem.getSource()) //
+					&& problem.getCode() == code) {
 				found = problem;
 				break;
 			}
@@ -428,8 +523,8 @@ public class ProblemsManagerTest
 		Class class2 = getClass2(resource);
 
 		assertProblem(problems, ESeverity.WARNING,
-			UMLValidator.DIAGNOSTIC_SOURCE,
-			UMLValidator.NAMESPACE__MEMBERS_DISTINGUISHABLE, "disting", class2);
+				UMLValidator.DIAGNOSTIC_SOURCE,
+				UMLValidator.NAMESPACE__MEMBERS_DISTINGUISHABLE, "disting", class2);
 	}
 
 	void assertGeneralCompatibilityProblem(Resource resource,
@@ -439,9 +534,9 @@ public class ProblemsManagerTest
 		Interface interface1 = getInterface1(resource);
 
 		assertProblem(problems, ESeverity.WARNING,
-			UMLValidator.DIAGNOSTIC_SOURCE,
-			UMLValidator.CLASSIFIER__SPECIALIZE_TYPE, "special", class2,
-			interface1);
+				UMLValidator.DIAGNOSTIC_SOURCE,
+				UMLValidator.CLASSIFIER__SPECIALIZE_TYPE, "special", class2,
+				interface1);
 	}
 
 	void assertUnownedElementProblem(Resource resource,
@@ -450,7 +545,7 @@ public class ProblemsManagerTest
 		Class class3 = getClass3(resource);
 
 		assertProblem(problems, ESeverity.WARNING,
-			UMLValidator.DIAGNOSTIC_SOURCE, UMLValidator.ELEMENT__HAS_OWNER,
-			"owned", class3);
+				UMLValidator.DIAGNOSTIC_SOURCE, UMLValidator.ELEMENT__HAS_OWNER,
+				"owned", class3);
 	}
 }

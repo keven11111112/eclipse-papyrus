@@ -32,7 +32,7 @@ public class Constants {
 	/**
 	 * the prefix used to identify this post action
 	 */
-	public static final String POST_ACTION_APPLY_STEREOTYPE_PREFIX = "applyStereotype:/";
+	public static final String POST_ACTION_APPLY_STEREOTYPE_PREFIX = "applyStereotype:/"; //$NON-NLS-1$
 
 
 

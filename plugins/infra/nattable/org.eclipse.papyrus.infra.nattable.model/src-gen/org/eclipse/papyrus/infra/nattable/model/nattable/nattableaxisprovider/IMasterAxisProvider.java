@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>IMaster Axis Provider</b></em>'.
@@ -35,6 +34,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider;
  * @generated
  */
 public interface IMasterAxisProvider extends AxisProvider {
+
 	/**
 	 * Returns the value of the '<em><b>Disconnect Slave</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -52,15 +52,15 @@ public interface IMasterAxisProvider extends AxisProvider {
 	boolean isDisconnectSlave();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave <em>Disconnect Slave</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.IMasterAxisProvider#isDisconnectSlave
+	 * <em>Disconnect Slave</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Disconnect Slave</em>' attribute.
+	 *        the new value of the '<em>Disconnect Slave</em>' attribute.
 	 * @see #isDisconnectSlave()
 	 * @generated
 	 */
 	void setDisconnectSlave(boolean value);
-
 } // IMasterAxisProvider

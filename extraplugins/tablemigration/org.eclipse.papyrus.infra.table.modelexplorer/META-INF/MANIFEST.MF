@@ -35,4 +35,4 @@ Bundle-Activator: org.eclipse.papyrus.infra.table.modelexplorer.Activa
 Import-Package: org.eclipse.papyrus.infra.viewpoints.policy
 Bundle-SymbolicName: org.eclipse.papyrus.infra.table.modelexplorer;sin
  gleton:=true
-
+Bundle-Description: %pluginDescription

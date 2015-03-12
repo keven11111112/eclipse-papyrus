@@ -31,6 +31,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface AxisGroup extends IAxis {
+
 	/**
 	 * Returns the value of the '<em><b>Grouped Axis</b></em>' reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis}.
@@ -46,5 +47,4 @@ public interface AxisGroup extends IAxis {
 	 * @generated
 	 */
 	EList<IAxis> getGroupedAxis();
-
 } // AxisGroup

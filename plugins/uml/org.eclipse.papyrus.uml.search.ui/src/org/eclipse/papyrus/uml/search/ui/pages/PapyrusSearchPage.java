@@ -68,12 +68,14 @@ import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.CheckBoxFilteredTree;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.search.ui.actions.ReplaceAction;
+import org.eclipse.papyrus.uml.search.ui.listeners.ParticipantTypesTreeViewerCheckStateListener;
 import org.eclipse.papyrus.uml.search.ui.providers.OCLContextContentProvider;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeAttribute;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeContentProvider;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeElement;
 import org.eclipse.papyrus.uml.search.ui.providers.ParticipantTypeLabelProvider;
 import org.eclipse.papyrus.uml.search.ui.query.AbstractPapyrusQuery;
+import org.eclipse.papyrus.uml.search.ui.query.CompositePapyrusQuery;
 import org.eclipse.papyrus.uml.search.ui.query.CompositePapyrusQueryProvider;
 import org.eclipse.papyrus.uml.search.ui.query.PapyrusOCLQuery;
 import org.eclipse.papyrus.uml.search.ui.query.QueryInfo;
@@ -110,6 +112,7 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Group;
 import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.swt.widgets.TreeItem;
 import org.eclipse.ui.IWorkbench;
 import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.ElementTreeSelectionDialog;
@@ -139,6 +142,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> participantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
 
+	private HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>> stereotypeParticipantsList = new HashMap<ParticipantTypeElement, List<ParticipantTypeAttribute>>();
+
 	private Collection<Stereotype> availableStereotypes;
 
 	private static final String REGULAR_EXPRESSION_ILLFORMED = Messages.PapyrusSearchPage_0;
@@ -155,7 +160,11 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	private CheckBoxFilteredTree participantTypesTree;
 
+	private CheckBoxFilteredTree participantStereotypesTree;
+	
 	private CheckboxTreeViewer participantTypesTreeViewer;
+	
+	private CheckboxTreeViewer participantStereotypesTreeViewer;
 
 	private Label searchQueryExplanatoryLabel;
 
@@ -183,6 +192,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	private static final int SIMPLE_SEARCH = 0;
 
 	private static final int ADVANCED_SEARCH = 1;
+	
+	private int currentSearchKind = SIMPLE_SEARCH;
 
 	private ParserContext parserContext;
 
@@ -194,10 +205,21 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 	private Composite textQueryFieldsComposite;
 
-
 	private Button fBtnSearchForAllSelected;
+	
+	private Button fBtnSearchForAnySelected;
 
-
+	private Label elementsLabel;
+	
+	private Label stereotypesLabel;
+	
+	private Label emptyLabel;
+	
+	private Label emptyLabel2;
+	
+	private Label emptyLabel3;
+	
+	private Label emptyLabel4;
 
 
 	protected void createSimpleSearchQueryField() {
@@ -210,6 +232,10 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		textQueryFieldsComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false, 1, 1));
 		textQueryFieldsComposite.setLayout(new GridLayout(1, false));
 
+		searchQueryExplanatoryLabel = new Label(textQueryFieldsComposite, SWT.NONE);
+		searchQueryExplanatoryLabel.setText(Messages.PapyrusSearchPage_48);
+		searchQueryExplanatoryLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		
 		searchQueryText = new Text(textQueryFieldsComposite, SWT.BORDER);
 		searchQueryText.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, true, false, 1, 1));
 		searchQueryText.addModifyListener(new ModifyListener() {
@@ -220,15 +246,9 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		});
 		searchQueryText.setFocus();
 
-		searchQueryExplanatoryLabel = new Label(textQueryFieldsComposite, SWT.NONE);
-		searchQueryExplanatoryLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
-
-
 		Composite compositeParameters = new Composite(textQueryComposite, SWT.NONE);
 		compositeParameters.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
 		compositeParameters.setLayout(new GridLayout(1, false));
-
-
 
 		btnCaseSensitive = new Button(compositeParameters, SWT.CHECK);
 		btnCaseSensitive.setText(Messages.PapyrusSearchPage_5);
@@ -272,31 +292,30 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				for (Control childControl : advancedSearchComposite.getChildren()) {
-					childControl.dispose();
+				if (searchKind.getSelectionIndex() != currentSearchKind) {
+					for (Control childControl : advancedSearchComposite.getChildren()) {
+						childControl.dispose();
+					}
+				
+					if (searchKind.getSelectionIndex() == ADVANCED_SEARCH) {
+						participantsList.clear();
+						createResultList();
+						createAdvancedSearch();
+					} else if (searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
+						simpleSearch();
+					}
+					
+					advancedSearchComposite.layout();
 				}
-
-				if (searchKind.getSelectionIndex() == ADVANCED_SEARCH) {
-					participantsList.clear();
-					createResultList();
-
-					createAdvancedSearch();
-				} else {
-					simpleSearch();
-				}
-				advancedSearchComposite.layout();
 			}
 		});
 
 		advancedSearchComposite = new Composite(groupComposite, SWT.NONE);
 		// gd_advancedSearchComposite.widthHint = 479;
 		advancedSearchComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
-		advancedSearchComposite.setLayout(new GridLayout(2, false));
+		advancedSearchComposite.setLayout(new GridLayout(3, false));
 
 		simpleSearch();
-
-
-
 	}
 
 	protected void createResultList() {
@@ -321,33 +340,24 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 						}
 					}
 				}
-
-
+				
 				// Find available stereotypes
-				availableStereotypes = StereotypeCollector.getInstance().computeAvailableStereotypes(container);
+				availableStereotypes = StereotypeCollector.getInstance().computeAppliedStereotypes(container);
 				for (Stereotype stereotype : availableStereotypes) {
 					ParticipantTypeElement parentElement = new ParticipantTypeElement(stereotype);
 					List<ParticipantTypeAttribute> attributeList = new ArrayList<ParticipantTypeAttribute>();
 					for (Property property : ((Stereotype) parentElement.getElement()).getAllAttributes()) {
 						if (!property.getName().startsWith("base_")) { //$NON-NLS-1$
 							if (property.getType() instanceof Element) {
-								if (UMLUtil.isBoolean(property.getType()) || UMLUtil.isString(property.getType()) || UMLUtil.isInteger(property.getType()) || UMLUtil.isReal(property.getType()) || UMLUtil.isUnlimitedNatural(property.getType())
-										|| property.getType() instanceof Enumeration) {
-									ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, parentElement);
-									attributeList.add(attribute);
-								}
-
+								ParticipantTypeAttribute attribute = new ParticipantTypeAttribute(property, parentElement);
+								attributeList.add(attribute);
 							}
 						}
 
 					}
 
-					participantsList.put(parentElement, attributeList);
-
-
+					stereotypeParticipantsList.put(parentElement, attributeList);
 				}
-
-
 			}
 
 		};
@@ -365,13 +375,31 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	}
 
 	protected void createAdvancedSearch() {
-
+		elementsLabel = new Label(advancedSearchComposite, SWT.NONE);
+		elementsLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		elementsLabel.setText(Messages.PapyrusSearchPage_44);
+		
+		stereotypesLabel = new Label(advancedSearchComposite, SWT.NONE);
+		stereotypesLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		stereotypesLabel.setText(Messages.PapyrusSearchPage_45);
+		
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel.setText("");
+		
 		participantTypesTree = new CheckBoxFilteredTree(advancedSearchComposite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.SINGLE, new PatternFilter(), true);
 		participantTypesTree.setLayout(new GridLayout());
-		GridData chechboxTreeViewerGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
-		chechboxTreeViewerGridData.heightHint = 150;
-		participantTypesTree.setLayoutData(chechboxTreeViewerGridData);
-
+		GridData typesChechboxTreeViewerGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+		typesChechboxTreeViewerGridData.heightHint = 150;
+		participantTypesTree.setLayoutData(typesChechboxTreeViewerGridData);
+		
+		participantStereotypesTree = new CheckBoxFilteredTree(advancedSearchComposite, SWT.BORDER | SWT.V_SCROLL | SWT.H_SCROLL | SWT.SINGLE, new PatternFilter(), true);
+		participantStereotypesTree.setLayout(new GridLayout());
+		GridData stereotypesChechboxTreeViewerGridData = new GridData(SWT.FILL, SWT.FILL, true, true, 1, 1);
+		stereotypesChechboxTreeViewerGridData.heightHint = 150;
+		participantStereotypesTree.setLayoutData(stereotypesChechboxTreeViewerGridData);
+		
 		participantTypesTreeViewer = (CheckboxTreeViewer) participantTypesTree.getViewer();
 		participantTypesTreeViewer.setContentProvider(new ParticipantTypeContentProvider());
 		participantTypesTreeViewer.setLabelProvider(new ParticipantTypeLabelProvider());
@@ -391,6 +419,29 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 				return false;
 			}
 		});
+		
+		participantStereotypesTreeViewer = (CheckboxTreeViewer) participantStereotypesTree.getViewer();
+		// TODO ParticipantStereotypeContentProvider
+		participantStereotypesTreeViewer.setContentProvider(new ParticipantTypeContentProvider());
+		// TODO ParticipantStereotypeLabelProvider
+		participantStereotypesTreeViewer.setLabelProvider(new ParticipantTypeLabelProvider());
+		participantStereotypesTreeViewer.setSorter(new ViewerSorter());
+		participantStereotypesTreeViewer.setCheckStateProvider(new ICheckStateProvider() {
+
+			public boolean isGrayed(Object element) {
+				return false;
+			}
+
+			public boolean isChecked(Object element) {
+				if (element instanceof ParticipantTypeElement) {
+
+					return ((ParticipantTypeElement) element).isChecked();
+
+				}
+				return false;
+			}
+		});
+		
 		Composite participantManipualtionComposite = new Composite(advancedSearchComposite, SWT.NONE);
 		participantManipualtionComposite.setLayout(new GridLayout(1, false));
 		participantManipualtionComposite.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, true, 1, 1));
@@ -398,6 +449,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		Button btnSelectSub = new Button(participantManipualtionComposite, SWT.PUSH);
 		btnSelectSub.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnSelectSub.setText(Messages.PapyrusSearchPage_14);
+		btnSelectSub.setToolTipText(Messages.PapyrusSearchPageTooltip_1);
 		btnSelectSub.addMouseListener(new MouseAdapter() {
 
 			@Override
@@ -477,74 +529,98 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 				participantTypesTreeViewer.refresh();
 			}
 		});
+		
+		Button btnSelectAllSt = new Button(participantManipualtionComposite, SWT.PUSH);
+		btnSelectAllSt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnSelectAllSt.setText(Messages.PapyrusSearchPage_46);
 
+		btnSelectAllSt.addMouseListener(new MouseAdapter() {
 
+			@Override
+			public void mouseUp(MouseEvent e) {
+				for (ParticipantTypeElement element : stereotypeParticipantsList.keySet()) {
+					if (!element.isChecked()) {
+						element.setChecked(true);
+
+						for (ParticipantTypeAttribute attribute : stereotypeParticipantsList.get(element)) {
+							attribute.setChecked(true);
+						}
+					}
+				}
+				participantStereotypesTreeViewer.refresh();
+
+			}
+		});
+
+		Button btnDeselectAllSt = new Button(participantManipualtionComposite, SWT.PUSH);
+		btnDeselectAllSt.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		btnDeselectAllSt.setText(Messages.PapyrusSearchPage_47);
+		btnDeselectAllSt.addMouseListener(new MouseAdapter() {
+
+			@Override
+			public void mouseUp(MouseEvent e) {
+				for (ParticipantTypeElement element : stereotypeParticipantsList.keySet()) {
+					if (element.isChecked()) {
+						element.setChecked(false);
+
+						for (ParticipantTypeAttribute attribute : stereotypeParticipantsList.get(element)) {
+							attribute.setChecked(false);
+						}
+					}
+				}
+				participantStereotypesTreeViewer.refresh();
+			}
+		});
+		
 		Button btnRefreshTypes = new Button(participantManipualtionComposite, SWT.PUSH);
 		btnRefreshTypes.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		btnRefreshTypes.setText(Messages.PapyrusSearchPage_15);
+		btnRefreshTypes.setToolTipText(Messages.PapyrusSearchPageTooltip_2);
 		btnRefreshTypes.addMouseListener(new MouseAdapter() {
 
 			@Override
 			public void mouseUp(MouseEvent e) {
 				participantsList.clear();
+				stereotypeParticipantsList.clear();
 				createResultList();
 
-				createAdvancedSearch();
+				//createAdvancedSearch();
 
+				participantTypesTreeViewer.refresh();
+				participantStereotypesTreeViewer.refresh();
 			}
 		});
 
 		participantTypesTreeViewer.setInput(participantsList);
+		((ICheckable) participantTypesTreeViewer).addCheckStateListener(new ParticipantTypesTreeViewerCheckStateListener(participantTypesTreeViewer, participantsList));
+		
+		participantStereotypesTreeViewer.setInput(stereotypeParticipantsList);
+		((ICheckable) participantStereotypesTreeViewer).addCheckStateListener(new ParticipantTypesTreeViewerCheckStateListener(participantStereotypesTreeViewer, stereotypeParticipantsList));
 
-		// participantTypesTreeViewer.setAllChecked(true);
-		((ICheckable) participantTypesTreeViewer).addCheckStateListener(new ICheckStateListener() {
-
-
-			public void checkStateChanged(CheckStateChangedEvent event) {
-				if (event.getElement() instanceof ParticipantTypeElement) {
-
-
-					// If the item is checked . . .
-					if (event.getChecked()) {
-						Object selectedElement = event.getElement();
-
-						((ParticipantTypeElement) selectedElement).setChecked(true);
-						participantTypesTreeViewer.refresh(selectedElement);
-
-						if (selectedElement instanceof ParticipantTypeAttribute) {
-							ParticipantTypeElement parent = ((ParticipantTypeAttribute) selectedElement).getParent();
-							if (parent != null) {
-								// participantTypesTreeViewer.setChecked(parent, true);
-								parent.setChecked(true);
-								participantTypesTreeViewer.refresh(parent);
-							}
-						}
-					} else {
-						Object selectedElement = event.getElement();
-						((ParticipantTypeElement) selectedElement).setChecked(false);
-						participantTypesTreeViewer.refresh(selectedElement);
-
-						if (((ParticipantTypeElement) selectedElement).getElement() instanceof Stereotype || ((ParticipantTypeElement) selectedElement).getElement() instanceof EClassImpl) {
-							for (Object attribute : participantTypesTreeViewer.getCheckedElements()) {
-								if (attribute instanceof ParticipantTypeAttribute) {
-									if (((ParticipantTypeAttribute) attribute).getParent().equals(selectedElement)) {
-										// participantTypesTreeViewer.setChecked(attribute, false);
-										((ParticipantTypeElement) attribute).setChecked(false);
-										participantTypesTreeViewer.refresh(attribute);
-									}
-								}
-							}
-						}
-					}
-				}
-
-
-			}
-		});
-
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel2 = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel2.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel2.setText("");
+		
 		fBtnSearchForAllSelected = new Button(advancedSearchComposite, SWT.CHECK);
 		fBtnSearchForAllSelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
 		fBtnSearchForAllSelected.setText(Messages.PapyrusSearchPage_13);
+		
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel3 = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel3.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel3.setText("");
+		
+		//TODO Better solution than this empty label to fill last row 1, col 3 with empty space
+		emptyLabel4 = new Label(advancedSearchComposite, SWT.NONE);
+		emptyLabel4.setLayoutData(new GridData(SWT.FILL, SWT.FILL, false, false, 1, 1));
+		emptyLabel4.setText("");
+		
+		fBtnSearchForAnySelected = new Button(advancedSearchComposite, SWT.CHECK);
+		fBtnSearchForAnySelected.setLayoutData(new GridData(SWT.FILL, SWT.CENTER, false, false, 1, 1));
+		fBtnSearchForAnySelected.setText(Messages.PapyrusSearchPage_49);
+		
+		currentSearchKind = ADVANCED_SEARCH;
 	}
 
 	protected void selectAllSubSter(final ParticipantTypeElement elementParent, final List<ParticipantTypeAttribute> attributeParentList) {
@@ -674,6 +750,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		btnSearchAllStringAttributes = new Button(participantManipualtionComposite, SWT.RADIO);
 		btnSearchAllStringAttributes.setText(Messages.PapyrusSearchPage_17);
 		btnSearchAllStringAttributes.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
+		
+		currentSearchKind = SIMPLE_SEARCH;
 	}
 
 
@@ -990,51 +1068,85 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		if (queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
 			if (validateRegex()) {
 				Collection<URI> scope = ScopeCollector.getInstance().computeSearchScope(container);
-				ISearchQuery query;
+				AbstractPapyrusQuery compositeQuery;
 				if (searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
 					if (searchQueryText.getText().length() == 0) {
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_29, Messages.PapyrusSearchPage_30);
 						return false;
 					} else {
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), scope);
-						query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
+						// One query per di file to avoid one single slow query on many files
+						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
+						boolean delay = scope.size() > 1 ? false : true;
+						
+						for (URI uri : scope) {
+							Collection<URI> singleScope = new HashSet<URI>();
+							singleScope.add(uri);
+							
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), btnSearchAllStringAttributes.getSelection(), singleScope, delay);
+							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createSimpleSearchQuery(info);
+							
+							queries.add((AbstractPapyrusQuery) query);
+						}
+						
+						compositeQuery = CompositePapyrusQuery.compose(queries);
 					}
 				} else {
 
 
 					List<ParticipantTypeElement> participantsToEvaluate = new ArrayList<ParticipantTypeElement>();
+					
 					for (ParticipantTypeElement element : this.participantsList.keySet()) {
 						if (element.isChecked()) {
 							participantsToEvaluate.add(element);
-							for (ParticipantTypeAttribute attributesToEvaluate : participantsList.get(element)) {
-								if (attributesToEvaluate.isChecked()) {
-									participantsToEvaluate.add(attributesToEvaluate);
+							
+							if (searchQueryText.getText().length() > 0) {
+								for (ParticipantTypeAttribute attributesToEvaluate : participantsList.get(element)) {
+									if (attributesToEvaluate.isChecked()) {
+										participantsToEvaluate.add(attributesToEvaluate);
+									}
 								}
 							}
 						}
 					}
+					
+					for (ParticipantTypeElement element : this.stereotypeParticipantsList.keySet()) {
+						if (element.isChecked()) {
+							participantsToEvaluate.add(element);
+							
+							if (searchQueryText.getText().length() > 0) {
+								for (ParticipantTypeAttribute attributesToEvaluate : stereotypeParticipantsList.get(element)) {
+									if (attributesToEvaluate.isChecked()) {
+										participantsToEvaluate.add(attributesToEvaluate);
+									}
+								}
+							}
+						}
+					}
+					
 					if (participantsToEvaluate.size() == 0) {
-
 						MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_31, Messages.PapyrusSearchPage_32);
 						return false;
 					} else {
-						if (searchQueryText.getText().length() == 0) {
-							for (Object participantChecked : participantTypesTreeViewer.getCheckedElements()) {
-								if (participantChecked instanceof ParticipantTypeAttribute) {
-									MessageDialog.openError(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_33, Messages.PapyrusSearchPage_34);
-									return false;
-								}
-							}
+						// One query per di file to avoid one single slow query on many files
+						ArrayList<AbstractPapyrusQuery> queries = new ArrayList<AbstractPapyrusQuery>(scope.size());
+						boolean delay = scope.size() > 1 ? false : true;
+						
+						for (URI uri : scope) {
+							Collection<URI> singleScope = new HashSet<URI>();
+							singleScope.add(uri);
+							
+							QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, singleScope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection(), delay);
+							ISearchQuery query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
+							
+							queries.add((AbstractPapyrusQuery) query);
 						}
-
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection());
-						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
-
+						
+						compositeQuery = CompositePapyrusQuery.compose(queries);
 					}
 
 				}
-				if (query.canRunInBackground()) {
-					NewSearchUI.runQueryInBackground(query);
+				if (compositeQuery.canRunInBackground()) {
+					NewSearchUI.runQueryInBackground(compositeQuery);
 				}
 
 				return true;
@@ -1125,7 +1237,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 								}
 							}
 						}
-						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection());
+						QueryInfo info = new QueryInfo(searchQueryText.getText(), btnCaseSensitive.getSelection(), btnRegularExpression.getSelection(), participantsToEvaluate, scope, fBtnSearchForAllSelected.getSelection(), fBtnSearchForAnySelected.getSelection());
 						query = CompositePapyrusQueryProvider.getInstance().createAdvancedSearchQuery(info);
 
 					}

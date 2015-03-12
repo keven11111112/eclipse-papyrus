@@ -24,17 +24,27 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
+import org.eclipse.core.internal.resources.Project;
+import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
+import org.eclipse.core.resources.IWorkspaceRoot;
 import org.eclipse.core.resources.ResourcesPlugin;
 import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.plugin.RegistryReader;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.emf.utils.BusinessModelResolver;
+import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
+//import org.eclipse.papyrus.uml.stereotypecollector.Messages;
+//import org.eclipse.papyrus.uml.stereotypecollector.UMLResourceVisitor;
 import org.eclipse.papyrus.views.search.Activator;
 import org.eclipse.search.ui.ISearchPageContainer;
 import org.eclipse.ui.IWorkingSet;
@@ -127,6 +137,7 @@ public class ScopeCollector implements IScopeCollector {
 	 * @return
 	 *         the scope
 	 */
+	// Old version, to keep?
 	protected List<URI> createSelectionScope(IStructuredSelection selection) {
 		List<URI> results = new ArrayList<URI>();
 
@@ -134,13 +145,50 @@ public class ScopeCollector implements IScopeCollector {
 		while (it.hasNext()) {
 			Object next = it.next();
 
-			for (IScopeProvider provider : getScopeProviders()) {
-				Collection<URI> scope = provider.getScope(next);
-				if (!scope.isEmpty()) {
-					results.addAll(scope);
+			if (!(next instanceof IPapyrusFile) && !(next instanceof IPapyrusFile)) {
+				if (next instanceof Project) {
+					Project project = (Project) next;
+					ArrayList<URI> diFiles = new ArrayList<URI>();
+					IPath path = project.getLocation();
+					IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
+					
+					recursiveFindDiFiles(diFiles, path, workspaceRoot);
+					results.addAll(diFiles);
+				} else {
+					Object element = BusinessModelResolver.getInstance().getBusinessModel(next);
+					if (element instanceof EObject) {
+						// CDO resource *are* EObjects
+						Resource eResource = (element instanceof Resource) ? (Resource) element : ((EObject) element).eResource();
+						if (eResource != null) {
+							// TODO This is a quick fix. Find a more robust solution.
+							URI theURI = null;
+							if (eResource.getURI().fileExtension().equalsIgnoreCase("uml")) {
+								theURI = eResource.getURI().trimFileExtension();
+								theURI = theURI.appendFileExtension("di");
+							} else {
+								theURI = eResource.getURI();
+							}
+							
+							results.add(theURI);
+						} else {
+							// Do a workspace search instead
+							results.addAll(createWorkspaceScope());
+						}
 
-					// don't consult the next provider
-					break;
+					} else {
+						// Do a workspace search instead
+						results.addAll(createWorkspaceScope());
+					}
+				}
+			} else {
+				for (IScopeProvider provider : getScopeProviders()) {
+					Collection<URI> scope = provider.getScope(next);
+					if (!scope.isEmpty()) {
+						results.addAll(scope);
+
+						// don't consult the next provider
+						break;
+					}
 				}
 			}
 		}
@@ -151,6 +199,28 @@ public class ScopeCollector implements IScopeCollector {
 		}
 
 		return results;
+	}
+	
+	protected void recursiveFindDiFiles(ArrayList<URI> diFiles, IPath path, IWorkspaceRoot workspaceRoot) {
+		IContainer  container =  workspaceRoot.getContainerForLocation(path);
+
+		try {
+			IResource[] iResources;
+			iResources = container.members();
+			for (IResource iResource : iResources){
+				// for c files
+				if ("di".equalsIgnoreCase(iResource.getFileExtension())) {
+					//diFiles.add(iResource.getLocationURI());
+					URI theURI = URI.createPlatformResourceURI(iResource.getFullPath().toString(), true);
+					diFiles.add(theURI);
+				} else if (iResource.getType() == IResource.FOLDER) {
+					IPath tmpPath = iResource.getLocation();
+					recursiveFindDiFiles(diFiles, tmpPath, workspaceRoot);
+				}
+			}
+		} catch (CoreException e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**

@@ -12,7 +12,6 @@
  */
 package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
 
-
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Int Value Style</b></em>'.
@@ -34,6 +33,7 @@ package org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle;
  * @generated
  */
 public interface IntValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>Int Value</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -51,15 +51,15 @@ public interface IntValueStyle extends NamedStyle {
 	int getIntValue();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle#getIntValue <em>Int Value</em>}'
+	 * attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Int Value</em>' attribute.
+	 *        the new value of the '<em>Int Value</em>' attribute.
 	 * @see #getIntValue()
 	 * @generated
 	 */
 	void setIntValue(int value);
-
 } // IntValueStyle

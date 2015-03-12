@@ -40,6 +40,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ObjectTree
  * @generated
  */
 public class NattableaxisFactoryImpl extends EFactoryImpl implements NattableaxisFactory {
+
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
@@ -49,8 +50,8 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	 */
 	public static NattableaxisFactory init() {
 		try {
-			NattableaxisFactory theNattableaxisFactory = (NattableaxisFactory) EPackage.Registry.INSTANCE.getEFactory(NattableaxisPackage.eNS_URI);
-			if (theNattableaxisFactory != null) {
+			NattableaxisFactory theNattableaxisFactory = (NattableaxisFactory)EPackage.Registry.INSTANCE.getEFactory(NattableaxisPackage.eNS_URI);
+			if(theNattableaxisFactory != null) {
 				return theNattableaxisFactory;
 			}
 		} catch (Exception exception) {
@@ -78,7 +79,7 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	 */
 	@Override
 	public EObject create(EClass eClass) {
-		switch (eClass.getClassifierID()) {
+		switch(eClass.getClassifierID()) {
 		case NattableaxisPackage.ID_TREE_ITEM_AXIS:
 			return createIdTreeItemAxis();
 		case NattableaxisPackage.EOBJECT_AXIS:
@@ -260,7 +261,7 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	 */
 	@Override
 	public NattableaxisPackage getNattableaxisPackage() {
-		return (NattableaxisPackage) getEPackage();
+		return (NattableaxisPackage)getEPackage();
 	}
 
 	/**
@@ -274,5 +275,4 @@ public class NattableaxisFactoryImpl extends EFactoryImpl implements Nattableaxi
 	public static NattableaxisPackage getPackage() {
 		return NattableaxisPackage.eINSTANCE;
 	}
-
 } // NattableaxisFactoryImpl

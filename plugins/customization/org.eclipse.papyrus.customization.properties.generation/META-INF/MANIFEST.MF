@@ -43,4 +43,4 @@ Bundle-Activator: org.eclipse.papyrus.customization.properties.generat
 Bundle-SymbolicName: org.eclipse.papyrus.customization.properties.gene
  ration;singleton:=true
 Bundle-RequiredExecutionEnvironment: J2SE-1.5
-
+Bundle-Description: %pluginDescription

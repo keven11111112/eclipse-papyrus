@@ -28,9 +28,12 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>Local Specific Configurations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration
+ * <em>Local Header Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager
+ * </em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalSpecificConfigurations <em>
+ * Local Specific Configurations</em>}</li>
  * </ul>
  * </p>
  *
@@ -39,6 +42,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public interface AxisManagerConfiguration extends StyledElement {
+
 	/**
 	 * Returns the value of the '<em><b>Local Header Label Configuration</b></em>' reference.
 	 * <!-- begin-user-doc -->
@@ -56,12 +60,14 @@ public interface AxisManagerConfiguration extends StyledElement {
 	ILabelProviderConfiguration getLocalHeaderLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration <em>Local Header Label Configuration</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getLocalHeaderLabelConfiguration
+	 * <em>Local Header Label Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Local Header Label Configuration</em>' reference.
+	 *        the new value of the '<em>Local Header Label Configuration</em>' reference.
 	 * @see #getLocalHeaderLabelConfiguration()
 	 * @generated
 	 */
@@ -84,12 +90,14 @@ public interface AxisManagerConfiguration extends StyledElement {
 	AxisManagerRepresentation getAxisManager();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager <em>Axis Manager</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerConfiguration#getAxisManager
+	 * <em>Axis Manager</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Axis Manager</em>' reference.
+	 *        the new value of the '<em>Axis Manager</em>' reference.
 	 * @see #getAxisManager()
 	 * @generated
 	 */
@@ -110,5 +118,4 @@ public interface AxisManagerConfiguration extends StyledElement {
 	 * @generated
 	 */
 	EList<IAxisConfiguration> getLocalSpecificConfigurations();
-
 } // AxisManagerConfiguration

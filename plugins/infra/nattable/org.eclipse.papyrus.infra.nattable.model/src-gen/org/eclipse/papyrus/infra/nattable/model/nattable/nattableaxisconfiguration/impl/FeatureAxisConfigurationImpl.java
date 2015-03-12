@@ -26,13 +26,15 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.impl.Styl
  * <p>
  * The following features are implemented:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.FeatureAxisConfigurationImpl#isShowOnlyCommonFeature <em>Show Only Common Feature</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.impl.FeatureAxisConfigurationImpl#isShowOnlyCommonFeature
+ * <em>Show Only Common Feature</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class FeatureAxisConfigurationImpl extends StyledElementImpl implements FeatureAxisConfiguration {
+
 	/**
 	 * The default value of the '{@link #isShowOnlyCommonFeature() <em>Show Only Common Feature</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -97,7 +99,7 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	public void setShowOnlyCommonFeature(boolean newShowOnlyCommonFeature) {
 		boolean oldShowOnlyCommonFeature = showOnlyCommonFeature;
 		showOnlyCommonFeature = newShowOnlyCommonFeature;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE, oldShowOnlyCommonFeature, showOnlyCommonFeature));
 		}
 	}
@@ -110,7 +112,7 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
 			return isShowOnlyCommonFeature();
 		}
@@ -125,9 +127,9 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
-			setShowOnlyCommonFeature((Boolean) newValue);
+			setShowOnlyCommonFeature((Boolean)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -141,7 +143,7 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
 			setShowOnlyCommonFeature(SHOW_ONLY_COMMON_FEATURE_EDEFAULT);
 			return;
@@ -157,7 +159,7 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableaxisconfigurationPackage.FEATURE_AXIS_CONFIGURATION__SHOW_ONLY_COMMON_FEATURE:
 			return showOnlyCommonFeature != SHOW_ONLY_COMMON_FEATURE_EDEFAULT;
 		}
@@ -172,15 +174,13 @@ public class FeatureAxisConfigurationImpl extends StyledElementImpl implements F
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (showOnlyCommonFeature: "); //$NON-NLS-1$
 		result.append(showOnlyCommonFeature);
 		result.append(')');
 		return result.toString();
 	}
-
 } // FeatureAxisConfigurationImpl

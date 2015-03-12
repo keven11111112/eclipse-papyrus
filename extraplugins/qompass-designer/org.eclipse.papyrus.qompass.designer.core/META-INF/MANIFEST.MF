@@ -10,6 +10,8 @@ Export-Package: org.eclipse.papyrus.qompass.designer.core,
  org.eclipse.papyrus.qompass.designer.core.sync,
  org.eclipse.papyrus.qompass.designer.core.templates,
  org.eclipse.papyrus.qompass.designer.core.transformations,
+ org.eclipse.papyrus.qompass.designer.core.transformations.connector,
+ org.eclipse.papyrus.qompass.designer.core.transformations.container,
  org.eclipse.papyrus.qompass.designer.core.transformations.filters
 Require-Bundle: org.eclipse.core.runtime,
  org.eclipse.emf.ecore,
@@ -46,5 +48,5 @@ Bundle-Activator: org.eclipse.papyrus.qompass.designer.core.Activator
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.qompass.designer.core;singlet
  on:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

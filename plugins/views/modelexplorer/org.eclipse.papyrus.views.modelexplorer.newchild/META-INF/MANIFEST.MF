@@ -29,4 +29,4 @@ Bundle-Description: The purpose of this plugin  is to do the connectio
 Bundle-SymbolicName: org.eclipse.papyrus.views.modelexplorer.newchild;
  singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

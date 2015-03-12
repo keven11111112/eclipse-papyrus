@@ -27,12 +27,15 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry
 import org.eclipse.uml2.uml.Class
 import org.eclipse.uml2.uml.UMLPackage
+import java.util.regex.Pattern
 
 /**
  * Utility extensions for working with and generating objects for the base UML element types specialized by the profile.
  */
 @Singleton
 class UMLElementTypes {
+    private static final Pattern VISUAL_ID_PATTERN = Pattern.compile("\\d{4}");
+    
     static extension ElementtypesconfigurationsFactory elementtypesconfigurationsFactory = ElementtypesconfigurationsFactory.
         eINSTANCE
 
@@ -41,6 +44,10 @@ class UMLElementTypes {
 
     def getElementTypeID(Class metaclass) {
         "org.eclipse.papyrus.uml." + metaclass.name
+    }
+    
+    def getElementTypeConfiguration(Class metaclass) {
+        baseUMLElementTypeSet.elementTypeConfigurations.findFirst[identifier == metaclass.elementTypeID]
     }
 
     def getBaseUMLElementTypeSet() {
@@ -58,8 +65,7 @@ class UMLElementTypes {
     }
 
     def getIconEntry(Class metaclass) {
-        val type = baseUMLElementTypeSet.elementTypeConfigurations.findFirst[identifier == metaclass.elementTypeID]
-        type?.iconEntry.copy()
+        metaclass.elementTypeConfiguration?.iconEntry.copy()
     }
 
     private def copy(IconEntry prototype) {
@@ -69,26 +75,42 @@ class UMLElementTypes {
         ]
     }
 
-    def getDiagramSpecificElementTypeSet() {
-        diagramElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(diagramElementTypesSet)
+    def getBaseElementTypeSet() {
+        baseElementTypesSetConfiguration ?: ElementTypeSetConfigurationRegistry.getInstance.getElementTypeSetConfigurations().get(baseElementTypesSet)
     }
     
-    def getDiagramSpecificElementTypes() {
-        diagramSpecificElementTypeSet.elementTypeConfigurations.filter[validType]
+    def getBaseElementTypes() {
+        baseElementTypeSet.elementTypeConfigurations.filter[validType]
     }
 
     def validType(ElementTypeConfiguration elementType) {
         elementType.metaclass != null;
     }
     
+    private def isDiagramSpecific() {
+       baseElementTypeSet != baseUMLElementTypeSet 
+    }
+    
+    def isDiagramSpecific(ElementTypeConfiguration type) {
+        type.hint.isVisualID
+    }
+    
+    def hasSemanticSupertype(ElementTypeConfiguration type) {
+        type.isDiagramSpecific && !suppressSemanticSuperElementTypes
+    }
+    
+    private def isVisualID(String string) {
+        !string.nullOrEmpty && VISUAL_ID_PATTERN.matcher(string).matches
+    }
+    
     def getDiagramSpecificElementTypes(Class metaclass) {
         // If we're based on the UML element types, themselves, then we're not looking for specializations
-        if (diagramSpecificElementTypeSet == baseUMLElementTypeSet)
+        if (!diagramSpecific)
             baseUMLElementTypeSet.elementTypeConfigurations.filter [
                 validType && (identifier == metaclass.elementTypeID)
             ]
         else
-            diagramSpecificElementTypeSet.elementTypeConfigurations.filter(SpecializationTypeConfiguration).filter [
+            baseElementTypeSet.elementTypeConfigurations.filter(SpecializationTypeConfiguration).filter [
                 validType && specializedTypesID.contains(metaclass.elementTypeID)
             ]
     }
@@ -115,10 +137,6 @@ class UMLElementTypes {
         ]
     }
 
-    def isRelationship(EClass eClass) {
-        UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(eClass)
-    }
-    
     def isRelationship(IElementType elementType) {
         // If the EClass is null, then assume it's something like the Constraint::annotatedElement reference type
         // which is like a relationship
@@ -179,7 +197,7 @@ class UMLElementTypes {
     def dispatch canSourceToType(ElementTypeConfiguration sourceType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
         relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
             val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
-            (supertype != null) && UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(supertype.EClass) && sourceType.canSourceTo(supertype.EClass)
+            (supertype != null) && supertype.EClass.isRelationship && sourceType.canSourceTo(supertype.EClass)
         ]
     }
 
@@ -202,7 +220,7 @@ class UMLElementTypes {
     def dispatch canTargetFromType(ElementTypeConfiguration targetType, SpecializationTypeConfiguration relationshipTypeConfiguration) {
         relationshipTypeConfiguration.specializedTypesID.exists [ supertypeID |
             val supertype = ElementTypeRegistry.getInstance.getType(supertypeID)
-            (supertype != null) && UMLPackage.Literals.RELATIONSHIP.isSuperTypeOf(supertype.EClass) && targetType.canTargetFrom(supertype.EClass)
+            (supertype != null) && supertype.EClass.isRelationship && targetType.canTargetFrom(supertype.EClass)
         ]
     }
 }

@@ -9,4 +9,4 @@ Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.moka.doc.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.moka.doc;singleton:=true
 Bundle-RequiredExecutionEnvironment: JavaSE-1.6
-
+Bundle-Description: %pluginDescription

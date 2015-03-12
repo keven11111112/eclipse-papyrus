@@ -28,19 +28,25 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * <p>
  * The following features are supported:
  * <ul>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getAxisManagerId <em>Axis Manager Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getLabelProviderContext <em>Label Provider Context</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getHeaderLabelConfiguration <em>Header Label Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfigurations <em>Specific Axis Configurations</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getAxisManagerId <em>Axis Manager
+ * Id</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getLabelProviderContext <em>Label
+ * Provider Context</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getHeaderLabelConfiguration <em>
+ * Header Label Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getSpecificAxisConfigurations <em>
+ * Specific Axis Configurations</em>}</li>
  * </ul>
  * </p>
  *
  * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage#getAxisManagerRepresentation()
  * @model annotation="http://www.eclipse.org/emf/2002/Ecore constraints='nonEmptyAxisManager'"
- *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot nonEmptyAxisManager='not (axisManagerId.oclIsUndefined() or axisManagerId = \'\')'"
+ *        annotation=
+ *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot nonEmptyAxisManager='not (axisManagerId.oclIsUndefined() or axisManagerId = \'\')'"
  * @generated
  */
 public interface AxisManagerRepresentation extends StyledElement {
+
 	/**
 	 * Returns the value of the '<em><b>Axis Manager Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,12 +66,14 @@ public interface AxisManagerRepresentation extends StyledElement {
 	String getAxisManagerId();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getAxisManagerId <em>Axis Manager Id</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getAxisManagerId
+	 * <em>Axis Manager Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Axis Manager Id</em>' attribute.
+	 *        the new value of the '<em>Axis Manager Id</em>' attribute.
 	 * @see #getAxisManagerId()
 	 * @generated
 	 */
@@ -89,12 +97,14 @@ public interface AxisManagerRepresentation extends StyledElement {
 	String getLabelProviderContext();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getLabelProviderContext <em>Label Provider Context</em>}' attribute.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getLabelProviderContext
+	 * <em>Label Provider Context</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Label Provider Context</em>' attribute.
+	 *        the new value of the '<em>Label Provider Context</em>' attribute.
 	 * @see #getLabelProviderContext()
 	 * @generated
 	 */
@@ -117,12 +127,14 @@ public interface AxisManagerRepresentation extends StyledElement {
 	ILabelProviderConfiguration getHeaderLabelConfiguration();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getHeaderLabelConfiguration <em>Header Label Configuration</em>}' reference.
+	 * Sets the value of the '
+	 * {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation#getHeaderLabelConfiguration
+	 * <em>Header Label Configuration</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
 	 * @param value
-	 *            the new value of the '<em>Header Label Configuration</em>' reference.
+	 *        the new value of the '<em>Header Label Configuration</em>' reference.
 	 * @see #getHeaderLabelConfiguration()
 	 * @generated
 	 */
@@ -143,5 +155,4 @@ public interface AxisManagerRepresentation extends StyledElement {
 	 * @generated
 	 */
 	EList<IAxisConfiguration> getSpecificAxisConfigurations();
-
 } // AxisManagerRepresentation

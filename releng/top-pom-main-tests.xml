@@ -198,7 +198,7 @@
 			<id>mdt-uml2</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT UML2",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones</url>
+			<url>http://download.eclipse.org/modeling/mdt/uml2/updates/5.1-I-builds/</url>
 		</repository>
 		<repository>
 			<id>mmt-qvto</id>
@@ -209,7 +209,7 @@
 		<repository>
 			<id>nattable</id>
 			<layout>p2</layout>
-			<url>http://download.eclipse.org/nattable/releases/1.1.0/repository/</url>
+			<url>http://download.eclipse.org/nattable/releases/1.2.0/repository/</url>
 		</repository>
 		<repository>
 			<id>orbit</id>

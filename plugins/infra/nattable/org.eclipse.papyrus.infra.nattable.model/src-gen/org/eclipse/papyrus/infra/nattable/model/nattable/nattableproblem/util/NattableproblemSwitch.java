@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledEle
  * @generated
  */
 public class NattableproblemSwitch<T> extends Switch<T> {
+
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -53,7 +54,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public NattableproblemSwitch() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattableproblemPackage.eINSTANCE;
 		}
 	}
@@ -82,40 +83,42 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 */
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
-		switch (classifierID) {
-		case NattableproblemPackage.PROBLEM: {
-			Problem problem = (Problem) theEObject;
+		switch(classifierID) {
+		case NattableproblemPackage.PROBLEM:
+		{
+			Problem problem = (Problem)theEObject;
 			T result = caseProblem(problem);
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(problem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(problem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(problem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
 		}
-		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM: {
-			StringResolutionProblem stringResolutionProblem = (StringResolutionProblem) theEObject;
+		case NattableproblemPackage.STRING_RESOLUTION_PROBLEM:
+		{
+			StringResolutionProblem stringResolutionProblem = (StringResolutionProblem)theEObject;
 			T result = caseStringResolutionProblem(stringResolutionProblem);
-			if (result == null) {
+			if(result == null) {
 				result = caseProblem(stringResolutionProblem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseTableNamedElement(stringResolutionProblem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseStyledElement(stringResolutionProblem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = caseEModelElement(stringResolutionProblem);
 			}
-			if (result == null) {
+			if(result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;
@@ -133,7 +136,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Problem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -150,7 +153,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>String Resolution Problem</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -167,7 +170,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EModel Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -184,7 +187,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Styled Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -201,7 +204,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>Table Named Element</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
@@ -218,7 +221,7 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param object
-	 *            the target of the switch.
+	 *        the target of the switch.
 	 * @return the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject)
 	 * @generated
@@ -227,5 +230,4 @@ public class NattableproblemSwitch<T> extends Switch<T> {
 	public T defaultCase(EObject object) {
 		return null;
 	}
-
 } // NattableproblemSwitch

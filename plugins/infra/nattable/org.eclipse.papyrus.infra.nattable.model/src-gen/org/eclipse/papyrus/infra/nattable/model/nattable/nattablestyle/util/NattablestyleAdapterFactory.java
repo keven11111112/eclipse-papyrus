@@ -22,6 +22,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
@@ -43,6 +45,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
  * @generated
  */
 public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
+
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
@@ -60,7 +63,7 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public NattablestyleAdapterFactory() {
-		if (modelPackage == null) {
+		if(modelPackage == null) {
 			modelPackage = NattablestylePackage.eINSTANCE;
 		}
 	}
@@ -76,11 +79,11 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	 */
 	@Override
 	public boolean isFactoryForType(Object object) {
-		if (object == modelPackage) {
+		if(object == modelPackage) {
 			return true;
 		}
-		if (object instanceof EObject) {
-			return ((EObject) object).eClass().getEPackage() == modelPackage;
+		if(object instanceof EObject) {
+			return ((EObject)object).eClass().getEPackage() == modelPackage;
 		}
 		return false;
 	}
@@ -92,88 +95,98 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected NattablestyleSwitch<Adapter> modelSwitch =
-			new NattablestyleSwitch<Adapter>() {
-				@Override
-				public Adapter caseStyle(Style object) {
-					return createStyleAdapter();
-				}
+	protected NattablestyleSwitch<Adapter> modelSwitch = new NattablestyleSwitch<Adapter>() {
 
-				@Override
-				public Adapter caseNamedStyle(NamedStyle object) {
-					return createNamedStyleAdapter();
-				}
+		@Override
+		public Adapter caseStyle(Style object) {
+			return createStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseFontStyle(FontStyle object) {
-					return createFontStyleAdapter();
-				}
+		@Override
+		public Adapter caseNamedStyle(NamedStyle object) {
+			return createNamedStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseCellTextStyle(CellTextStyle object) {
-					return createCellTextStyleAdapter();
-				}
+		@Override
+		public Adapter caseFontStyle(FontStyle object) {
+			return createFontStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseIntValueStyle(IntValueStyle object) {
-					return createIntValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseCellTextStyle(CellTextStyle object) {
+			return createCellTextStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseIntListValueStyle(IntListValueStyle object) {
-					return createIntListValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseIntValueStyle(IntValueStyle object) {
+			return createIntValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseBooleanValueStyle(BooleanValueStyle object) {
-					return createBooleanValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseIntListValueStyle(IntListValueStyle object) {
+			return createIntListValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseBooleanListValueStyle(BooleanListValueStyle object) {
-					return createBooleanListValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseBooleanValueStyle(BooleanValueStyle object) {
+			return createBooleanValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseDoubleValueStyle(DoubleValueStyle object) {
-					return createDoubleValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseBooleanListValueStyle(BooleanListValueStyle object) {
+			return createBooleanListValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseDoubleListValueStyle(DoubleListValueStyle object) {
-					return createDoubleListValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseDoubleValueStyle(DoubleValueStyle object) {
+			return createDoubleValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseStringValueStyle(StringValueStyle object) {
-					return createStringValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseDoubleListValueStyle(DoubleListValueStyle object) {
+			return createDoubleListValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseStringListValueStyle(StringListValueStyle object) {
-					return createStringListValueStyleAdapter();
-				}
+		@Override
+		public Adapter caseStringValueStyle(StringValueStyle object) {
+			return createStringValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseStyledElement(StyledElement object) {
-					return createStyledElementAdapter();
-				}
+		@Override
+		public Adapter caseStringListValueStyle(StringListValueStyle object) {
+			return createStringListValueStyleAdapter();
+		}
 
-				@Override
-				public Adapter caseTableDisplayStyle(TableDisplayStyle object) {
-					return createTableDisplayStyleAdapter();
-				}
+		@Override
+		public Adapter caseStyledElement(StyledElement object) {
+			return createStyledElementAdapter();
+		}
 
-				@Override
-				public Adapter caseEModelElement(EModelElement object) {
-					return createEModelElementAdapter();
-				}
+		@Override
+		public Adapter caseTableDisplayStyle(TableDisplayStyle object) {
+			return createTableDisplayStyleAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter caseEObjectValueStyle(EObjectValueStyle object) {
+			return createEObjectValueStyleAdapter();
+		}
+
+		@Override
+		public Adapter caseEObjectListValueStyle(EObjectListValueStyle object) {
+			return createEObjectListValueStyleAdapter();
+		}
+
+		@Override
+		public Adapter caseEModelElement(EModelElement object) {
+			return createEModelElementAdapter();
+		}
+
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.
@@ -181,15 +194,14 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	 * <!-- end-user-doc -->
 	 *
 	 * @param target
-	 *            the object to adapt.
+	 *        the object to adapt.
 	 * @return the adapter for the <code>target</code>.
 	 * @generated
 	 */
 	@Override
 	public Adapter createAdapter(Notifier target) {
-		return modelSwitch.doSwitch((EObject) target);
+		return modelSwitch.doSwitch((EObject)target);
 	}
-
 
 	/**
 	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style <em>Style</em>}'.
@@ -207,7 +219,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle <em>Named Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle
+	 * <em>Named Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -222,7 +235,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle <em>Font Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.FontStyle
+	 * <em>Font Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -237,7 +251,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle <em>Cell Text Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.CellTextStyle
+	 * <em>Cell Text Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -252,7 +267,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle <em>Int Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle
+	 * <em>Int Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -267,7 +283,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle <em>Int List Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntListValueStyle
+	 * <em>Int List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -282,7 +299,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle <em>Boolean Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle
+	 * <em>Boolean Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -297,7 +315,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle <em>Boolean List Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanListValueStyle
+	 * <em>Boolean List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -312,7 +331,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle <em>Double Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleValueStyle
+	 * <em>Double Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -327,7 +347,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle <em>Double List Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DoubleListValueStyle
+	 * <em>Double List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -342,7 +363,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle <em>String Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle
+	 * <em>String Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -357,7 +379,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle <em>String List Value Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle
+	 * <em>String List Value Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -372,7 +395,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement <em>Styled Element</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StyledElement
+	 * <em>Styled Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -387,7 +411,8 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	}
 
 	/**
-	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle <em>Table Display Style</em>}'.
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisplayStyle
+	 * <em>Table Display Style</em>}'.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null so that we can easily ignore cases;
 	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
@@ -398,6 +423,38 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createTableDisplayStyleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle
+	 * <em>EObject Value Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectValueStyle
+	 * @generated
+	 */
+	public Adapter createEObjectValueStyleAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle
+	 * <em>EObject List Value Style</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.EObjectListValueStyle
+	 * @generated
+	 */
+	public Adapter createEObjectListValueStyleAdapter() {
 		return null;
 	}
 
@@ -428,5 +485,4 @@ public class NattablestyleAdapterFactory extends AdapterFactoryImpl {
 	public Adapter createEObjectAdapter() {
 		return null;
 	}
-
 } // NattablestyleAdapterFactory

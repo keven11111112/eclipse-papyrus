@@ -38,20 +38,29 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattabletester.Abstract
  * <ul>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getIconPath <em>Icon Path</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getCreationTester <em>Creation Tester</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getCellEditorDeclaration <em>Cell Editor Declaration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getRowHeaderAxisConfiguration <em>Row Header Axis Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getColumnHeaderAxisConfiguration <em>Column Header Axis Configuration</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getColumnAxisProviders <em>Column Axis Providers</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getRowAxisProviders <em>Row Axis Providers</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultRowAxisProvider <em>Default Row Axis Provider</em>}</li>
- * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultColumnAxisProvider <em>Default Column Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getCreationTester <em>Creation
+ * Tester</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getCellEditorDeclaration <em>Cell
+ * Editor Declaration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getRowHeaderAxisConfiguration <em>
+ * Row Header Axis Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getColumnHeaderAxisConfiguration
+ * <em>Column Header Axis Configuration</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getColumnAxisProviders <em>Column
+ * Axis Providers</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getRowAxisProviders <em>Row Axis
+ * Providers</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultRowAxisProvider <em>
+ * Default Row Axis Provider</em>}</li>
+ * <li>{@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.impl.TableConfigurationImpl#getDefaultColumnAxisProvider <em>
+ * Default Column Axis Provider</em>}</li>
  * </ul>
  * </p>
  *
  * @generated
  */
 public class TableConfigurationImpl extends TableNamedElementImpl implements TableConfiguration {
+
 	/**
 	 * The default value of the '{@link #getType() <em>Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -237,7 +246,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public void setType(String newType) {
 		String oldType = type;
 		type = newType;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE, oldType, type));
 		}
 	}
@@ -263,7 +272,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public void setIconPath(String newIconPath) {
 		String oldIconPath = iconPath;
 		iconPath = newIconPath;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH, oldIconPath, iconPath));
 		}
 	}
@@ -288,9 +297,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public NotificationChain basicSetCreationTester(AbstractTableTester newCreationTester, NotificationChain msgs) {
 		AbstractTableTester oldCreationTester = creationTester;
 		creationTester = newCreationTester;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, oldCreationTester, newCreationTester);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -307,20 +316,19 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public void setCreationTester(AbstractTableTester newCreationTester) {
-		if (newCreationTester != creationTester) {
+		if(newCreationTester != creationTester) {
 			NotificationChain msgs = null;
-			if (creationTester != null) {
-				msgs = ((InternalEObject) creationTester).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, null, msgs);
+			if(creationTester != null) {
+				msgs = ((InternalEObject)creationTester).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, null, msgs);
 			}
-			if (newCreationTester != null) {
-				msgs = ((InternalEObject) newCreationTester).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, null, msgs);
+			if(newCreationTester != null) {
+				msgs = ((InternalEObject)newCreationTester).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, null, msgs);
 			}
 			msgs = basicSetCreationTester(newCreationTester, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER, newCreationTester, newCreationTester));
 		}
 	}
@@ -346,7 +354,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public void setCellEditorDeclaration(CellEditorDeclaration newCellEditorDeclaration) {
 		CellEditorDeclaration oldCellEditorDeclaration = cellEditorDeclaration;
 		cellEditorDeclaration = newCellEditorDeclaration == null ? CELL_EDITOR_DECLARATION_EDEFAULT : newCellEditorDeclaration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION, oldCellEditorDeclaration, cellEditorDeclaration));
 		}
 	}
@@ -371,9 +379,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public NotificationChain basicSetRowHeaderAxisConfiguration(TableHeaderAxisConfiguration newRowHeaderAxisConfiguration, NotificationChain msgs) {
 		TableHeaderAxisConfiguration oldRowHeaderAxisConfiguration = rowHeaderAxisConfiguration;
 		rowHeaderAxisConfiguration = newRowHeaderAxisConfiguration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, oldRowHeaderAxisConfiguration, newRowHeaderAxisConfiguration);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -390,20 +398,19 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public void setRowHeaderAxisConfiguration(TableHeaderAxisConfiguration newRowHeaderAxisConfiguration) {
-		if (newRowHeaderAxisConfiguration != rowHeaderAxisConfiguration) {
+		if(newRowHeaderAxisConfiguration != rowHeaderAxisConfiguration) {
 			NotificationChain msgs = null;
-			if (rowHeaderAxisConfiguration != null) {
-				msgs = ((InternalEObject) rowHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
+			if(rowHeaderAxisConfiguration != null) {
+				msgs = ((InternalEObject)rowHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
 			}
-			if (newRowHeaderAxisConfiguration != null) {
-				msgs = ((InternalEObject) newRowHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
+			if(newRowHeaderAxisConfiguration != null) {
+				msgs = ((InternalEObject)newRowHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, null, msgs);
 			}
 			msgs = basicSetRowHeaderAxisConfiguration(newRowHeaderAxisConfiguration, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION, newRowHeaderAxisConfiguration, newRowHeaderAxisConfiguration));
 		}
 	}
@@ -428,9 +435,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public NotificationChain basicSetColumnHeaderAxisConfiguration(TableHeaderAxisConfiguration newColumnHeaderAxisConfiguration, NotificationChain msgs) {
 		TableHeaderAxisConfiguration oldColumnHeaderAxisConfiguration = columnHeaderAxisConfiguration;
 		columnHeaderAxisConfiguration = newColumnHeaderAxisConfiguration;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, oldColumnHeaderAxisConfiguration, newColumnHeaderAxisConfiguration);
-			if (msgs == null) {
+			if(msgs == null) {
 				msgs = notification;
 			} else {
 				msgs.add(notification);
@@ -447,20 +454,19 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public void setColumnHeaderAxisConfiguration(TableHeaderAxisConfiguration newColumnHeaderAxisConfiguration) {
-		if (newColumnHeaderAxisConfiguration != columnHeaderAxisConfiguration) {
+		if(newColumnHeaderAxisConfiguration != columnHeaderAxisConfiguration) {
 			NotificationChain msgs = null;
-			if (columnHeaderAxisConfiguration != null) {
-				msgs = ((InternalEObject) columnHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
+			if(columnHeaderAxisConfiguration != null) {
+				msgs = ((InternalEObject)columnHeaderAxisConfiguration).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
 			}
-			if (newColumnHeaderAxisConfiguration != null) {
-				msgs = ((InternalEObject) newColumnHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
+			if(newColumnHeaderAxisConfiguration != null) {
+				msgs = ((InternalEObject)newColumnHeaderAxisConfiguration).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, null, msgs);
 			}
 			msgs = basicSetColumnHeaderAxisConfiguration(newColumnHeaderAxisConfiguration, msgs);
-			if (msgs != null) {
+			if(msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION, newColumnHeaderAxisConfiguration, newColumnHeaderAxisConfiguration));
 		}
 	}
@@ -473,7 +479,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public EList<AbstractAxisProvider> getColumnAxisProviders() {
-		if (columnAxisProviders == null) {
+		if(columnAxisProviders == null) {
 			columnAxisProviders = new EObjectContainmentEList<AbstractAxisProvider>(AbstractAxisProvider.class, this, NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS);
 		}
 		return columnAxisProviders;
@@ -487,7 +493,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public EList<AbstractAxisProvider> getRowAxisProviders() {
-		if (rowAxisProviders == null) {
+		if(rowAxisProviders == null) {
 			rowAxisProviders = new EObjectContainmentEList<AbstractAxisProvider>(AbstractAxisProvider.class, this, NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS);
 		}
 		return rowAxisProviders;
@@ -501,11 +507,11 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public AbstractAxisProvider getDefaultRowAxisProvider() {
-		if (defaultRowAxisProvider != null && defaultRowAxisProvider.eIsProxy()) {
-			InternalEObject oldDefaultRowAxisProvider = (InternalEObject) defaultRowAxisProvider;
-			defaultRowAxisProvider = (AbstractAxisProvider) eResolveProxy(oldDefaultRowAxisProvider);
-			if (defaultRowAxisProvider != oldDefaultRowAxisProvider) {
-				if (eNotificationRequired()) {
+		if(defaultRowAxisProvider != null && defaultRowAxisProvider.eIsProxy()) {
+			InternalEObject oldDefaultRowAxisProvider = (InternalEObject)defaultRowAxisProvider;
+			defaultRowAxisProvider = (AbstractAxisProvider)eResolveProxy(oldDefaultRowAxisProvider);
+			if(defaultRowAxisProvider != oldDefaultRowAxisProvider) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER, oldDefaultRowAxisProvider, defaultRowAxisProvider));
 				}
 			}
@@ -533,7 +539,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public void setDefaultRowAxisProvider(AbstractAxisProvider newDefaultRowAxisProvider) {
 		AbstractAxisProvider oldDefaultRowAxisProvider = defaultRowAxisProvider;
 		defaultRowAxisProvider = newDefaultRowAxisProvider;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER, oldDefaultRowAxisProvider, defaultRowAxisProvider));
 		}
 	}
@@ -546,11 +552,11 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public AbstractAxisProvider getDefaultColumnAxisProvider() {
-		if (defaultColumnAxisProvider != null && defaultColumnAxisProvider.eIsProxy()) {
-			InternalEObject oldDefaultColumnAxisProvider = (InternalEObject) defaultColumnAxisProvider;
-			defaultColumnAxisProvider = (AbstractAxisProvider) eResolveProxy(oldDefaultColumnAxisProvider);
-			if (defaultColumnAxisProvider != oldDefaultColumnAxisProvider) {
-				if (eNotificationRequired()) {
+		if(defaultColumnAxisProvider != null && defaultColumnAxisProvider.eIsProxy()) {
+			InternalEObject oldDefaultColumnAxisProvider = (InternalEObject)defaultColumnAxisProvider;
+			defaultColumnAxisProvider = (AbstractAxisProvider)eResolveProxy(oldDefaultColumnAxisProvider);
+			if(defaultColumnAxisProvider != oldDefaultColumnAxisProvider) {
+				if(eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER, oldDefaultColumnAxisProvider, defaultColumnAxisProvider));
 				}
 			}
@@ -578,7 +584,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	public void setDefaultColumnAxisProvider(AbstractAxisProvider newDefaultColumnAxisProvider) {
 		AbstractAxisProvider oldDefaultColumnAxisProvider = defaultColumnAxisProvider;
 		defaultColumnAxisProvider = newDefaultColumnAxisProvider;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER, oldDefaultColumnAxisProvider, defaultColumnAxisProvider));
 		}
 	}
@@ -591,7 +597,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
 			return basicSetCreationTester(null, msgs);
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION:
@@ -599,9 +605,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
 			return basicSetColumnHeaderAxisConfiguration(null, msgs);
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
-			return ((InternalEList<?>) getColumnAxisProviders()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getColumnAxisProviders()).basicRemove(otherEnd, msgs);
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
-			return ((InternalEList<?>) getRowAxisProviders()).basicRemove(otherEnd, msgs);
+			return ((InternalEList<?>)getRowAxisProviders()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -614,7 +620,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
 			return getType();
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
@@ -632,12 +638,12 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
 			return getRowAxisProviders();
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER:
-			if (resolve) {
+			if(resolve) {
 				return getDefaultRowAxisProvider();
 			}
 			return basicGetDefaultRowAxisProvider();
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
-			if (resolve) {
+			if(resolve) {
 				return getDefaultColumnAxisProvider();
 			}
 			return basicGetDefaultColumnAxisProvider();
@@ -654,38 +660,38 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
-			setType((String) newValue);
+			setType((String)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
-			setIconPath((String) newValue);
+			setIconPath((String)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
-			setCreationTester((AbstractTableTester) newValue);
+			setCreationTester((AbstractTableTester)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION:
-			setCellEditorDeclaration((CellEditorDeclaration) newValue);
+			setCellEditorDeclaration((CellEditorDeclaration)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION:
-			setRowHeaderAxisConfiguration((TableHeaderAxisConfiguration) newValue);
+			setRowHeaderAxisConfiguration((TableHeaderAxisConfiguration)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
-			setColumnHeaderAxisConfiguration((TableHeaderAxisConfiguration) newValue);
+			setColumnHeaderAxisConfiguration((TableHeaderAxisConfiguration)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
 			getColumnAxisProviders().clear();
-			getColumnAxisProviders().addAll((Collection<? extends AbstractAxisProvider>) newValue);
+			getColumnAxisProviders().addAll((Collection<? extends AbstractAxisProvider>)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_AXIS_PROVIDERS:
 			getRowAxisProviders().clear();
-			getRowAxisProviders().addAll((Collection<? extends AbstractAxisProvider>) newValue);
+			getRowAxisProviders().addAll((Collection<? extends AbstractAxisProvider>)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER:
-			setDefaultRowAxisProvider((AbstractAxisProvider) newValue);
+			setDefaultRowAxisProvider((AbstractAxisProvider)newValue);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
-			setDefaultColumnAxisProvider((AbstractAxisProvider) newValue);
+			setDefaultColumnAxisProvider((AbstractAxisProvider)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -699,7 +705,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
 			setType(TYPE_EDEFAULT);
 			return;
@@ -707,16 +713,16 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 			setIconPath(ICON_PATH_EDEFAULT);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__CREATION_TESTER:
-			setCreationTester((AbstractTableTester) null);
+			setCreationTester((AbstractTableTester)null);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__CELL_EDITOR_DECLARATION:
 			setCellEditorDeclaration(CELL_EDITOR_DECLARATION_EDEFAULT);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ROW_HEADER_AXIS_CONFIGURATION:
-			setRowHeaderAxisConfiguration((TableHeaderAxisConfiguration) null);
+			setRowHeaderAxisConfiguration((TableHeaderAxisConfiguration)null);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_HEADER_AXIS_CONFIGURATION:
-			setColumnHeaderAxisConfiguration((TableHeaderAxisConfiguration) null);
+			setColumnHeaderAxisConfiguration((TableHeaderAxisConfiguration)null);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__COLUMN_AXIS_PROVIDERS:
 			getColumnAxisProviders().clear();
@@ -725,10 +731,10 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 			getRowAxisProviders().clear();
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_ROW_AXIS_PROVIDER:
-			setDefaultRowAxisProvider((AbstractAxisProvider) null);
+			setDefaultRowAxisProvider((AbstractAxisProvider)null);
 			return;
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__DEFAULT_COLUMN_AXIS_PROVIDER:
-			setDefaultColumnAxisProvider((AbstractAxisProvider) null);
+			setDefaultColumnAxisProvider((AbstractAxisProvider)null);
 			return;
 		}
 		super.eUnset(featureID);
@@ -742,7 +748,7 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__TYPE:
 			return TYPE_EDEFAULT == null ? type != null : !TYPE_EDEFAULT.equals(type);
 		case NattableconfigurationPackage.TABLE_CONFIGURATION__ICON_PATH:
@@ -775,10 +781,9 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (type: "); //$NON-NLS-1$
 		result.append(type);
@@ -789,5 +794,4 @@ public class TableConfigurationImpl extends TableNamedElementImpl implements Tab
 		result.append(')');
 		return result.toString();
 	}
-
 } // TableConfigurationImpl

@@ -325,7 +325,7 @@
           </annotation>
         </repository>
         <repository
-            url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1milestones">
+            url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1-I-builds/">
           <annotation
               source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail
@@ -375,7 +375,7 @@
           </annotation>
         </repository>
         <repository
-            url="${base.downloads.url}/nattable/releases/1.1.0/repository/"/>
+            url="${base.downloads.url}/nattable/releases/1.2.0/repository/"/>
         <repository
             url="http://download.eclipse.org/xwt/release-1.1.0">
           <annotation
@@ -564,7 +564,7 @@
           </annotation>
         </repository>
         <repository
-            url="${base.downloads.url}/nattable/releases/1.1.0/repository/"/>
+            url="${base.downloads.url}/nattable/releases/1.2.0/repository/"/>
       </repositoryList>
     </targlet>
     <targlet
@@ -2432,8 +2432,7 @@
         <description>Projects related to Papyrus Layers.</description>
       </setupTask>
       <setupTask
-          xsi:type="projects:ProjectsImportTask"
-          id="">
+          xsi:type="projects:ProjectsImportTask">
         <sourceLocator
             rootFolder="${papyrus.git.clone.location/tests/integration/plugins}/org.eclipse.papyrus.integrationtests.editor"/>
         <description>Import plugin requested by Layers</description>
@@ -2768,7 +2767,6 @@
         label="Oomph Setup">
       <setupTask
           xsi:type="setup:EclipseIniTask"
-          id=""
           option="-Doomph.redirection.papyrussetups"
           value="=http://git.eclipse.org/c/papyrus/org.eclipse.papyrus.git/plain/releng/org.eclipse.papyrus.oomph/setups/->${papyrus.git.clone.location|uri}/releng/org.eclipse.papyrus.oomph/setups/"
           vm="true"/>
@@ -2888,6 +2886,13 @@
         xsi:type="jdt:JRETask"
         version="JavaSE-1.7"
         location="${jre.location-1.7}"/>
+    <setupTask
+        xsi:type="setup.p2:P2Task">
+      <requirement
+          name="org.eclipse.uml2.sdk.feature.group"/>
+      <repository
+          url="http://download.eclipse.org/modeling/mdt/uml2/updates/5.1-I-builds/"/>
+    </setupTask>
   </stream>
   <stream name="streams/1.0-maintenance"
       label="streams/1.0-maintenance (Luna/1.0.x)">

@@ -75,7 +75,7 @@ import org.eclipse.ui.part.ISetSelectionTarget;
  * This is a simple wizard for creating a new model file.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class NattableaxisconfigurationModelWizard extends Wizard implements INewWizard {
@@ -83,7 +83,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * The supported extensions for created files.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public static final List<String> FILE_EXTENSIONS =
@@ -93,7 +93,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * A formatted list of supported file extensions, suitable for display.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public static final String FORMATTED_FILE_EXTENSIONS =
@@ -103,7 +103,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This caches an instance of the model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationPackage nattableaxisconfigurationPackage = NattableaxisconfigurationPackage.eINSTANCE;
@@ -112,7 +112,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This caches an instance of the model factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationFactory nattableaxisconfigurationFactory = nattableaxisconfigurationPackage.getNattableaxisconfigurationFactory();
@@ -121,7 +121,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the file creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationModelWizardNewFileCreationPage newFileCreationPage;
@@ -130,7 +130,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the initial object creation page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected NattableaxisconfigurationModelWizardInitialObjectCreationPage initialObjectCreationPage;
@@ -139,7 +139,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Remember the selection during initialization for populating the default container.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IStructuredSelection selection;
@@ -148,7 +148,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Remember the workbench during initialization.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected IWorkbench workbench;
@@ -157,7 +157,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Caches the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected List<String> initialObjectNames;
@@ -166,7 +166,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This just records the information.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -181,7 +181,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Returns the names of the types that can be created as the root object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected Collection<String> getInitialObjectNames() {
@@ -204,7 +204,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Create a new model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected EObject createInitialModel() {
@@ -217,7 +217,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Do the work after everything is specified.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -279,7 +279,6 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 				final ISelection targetSelection = new StructuredSelection(modelFile);
 				getShell().getDisplay().asyncExec
 						(new Runnable() {
-							@Override
 							public void run() {
 								((ISetSelectionTarget) activePart).selectReveal(targetSelection);
 							}
@@ -308,7 +307,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the one page of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public class NattableaxisconfigurationModelWizardNewFileCreationPage extends WizardNewFileCreationPage {
@@ -316,7 +315,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		public NattableaxisconfigurationModelWizardNewFileCreationPage(String pageId, IStructuredSelection selection) {
@@ -327,7 +326,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * The framework calls this to see if the file is correct.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		@Override
@@ -347,7 +346,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		public IFile getModelFile() {
@@ -359,14 +358,14 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * This is the page where the type of object to create is selected.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public class NattableaxisconfigurationModelWizardInitialObjectCreationPage extends WizardPage {
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected Combo initialObjectField;
@@ -381,7 +380,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected Combo encodingField;
@@ -390,7 +389,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Pass in the selection.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		public NattableaxisconfigurationModelWizardInitialObjectCreationPage(String pageId) {
@@ -400,7 +399,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		@Override
@@ -475,12 +474,11 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected ModifyListener validator =
 				new ModifyListener() {
-					@Override
 					public void modifyText(ModifyEvent e) {
 						setPageComplete(validatePage());
 					}
@@ -489,7 +487,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected boolean validatePage() {
@@ -499,7 +497,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		@Override
@@ -520,7 +518,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		public String getInitialObjectName() {
@@ -537,7 +535,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		public String getEncoding() {
@@ -548,7 +546,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		 * Returns the label for the specified type name.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected String getLabel(String typeName) {
@@ -563,7 +561,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 		/**
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
+		 * 
 		 * @generated
 		 */
 		protected Collection<String> getEncodings() {
@@ -582,7 +580,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * The framework calls this to create the contents of the wizard.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -638,7 +636,7 @@ public class NattableaxisconfigurationModelWizard extends Wizard implements INew
 	 * Get the file from the page.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public IFile getModelFile() {

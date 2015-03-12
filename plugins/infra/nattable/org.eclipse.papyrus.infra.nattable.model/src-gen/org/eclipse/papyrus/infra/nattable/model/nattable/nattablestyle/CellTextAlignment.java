@@ -42,7 +42,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	TOP_LEFT(1, "TOP_LEFT", "TOP_LEFT"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>TOP CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -53,7 +52,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	TOP_CENTER(2, "TOP_CENTER", "TOP_CENTER"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>TOP RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -64,7 +62,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	TOP_RIGHT(3, "TOP_RIGHT", "TOP_RIGHT"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>MIDDLE LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -75,7 +72,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	MIDDLE_LEFT(4, "MIDDLE_LEFT", "MIDDLE_LEFT"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>MIDDLE CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -86,7 +82,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	MIDDLE_CENTER(5, "MIDDLE_CENTER", "MIDDLE_CENTER"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>MIDDLE RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -97,7 +92,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	MIDDLE_RIGHT(6, "MIDDLE_RIGHT", "MIDDLE_RIGHT"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>BOTTOM LEFT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -108,7 +102,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	BOTTOM_LEFT(7, "BOTTOM_LEFT", "BOTTOM_LEFT"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>BOTTOM CENTER</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -119,7 +112,6 @@ public enum CellTextAlignment implements Enumerator {
 	 * @ordered
 	 */
 	BOTTOM_CENTER(8, "BOTTOM_CENTER", "BOTTOM_CENTER"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>BOTTOM RIGHT</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -273,18 +265,7 @@ public enum CellTextAlignment implements Enumerator {
 	 *
 	 * @generated
 	 */
-	private static final CellTextAlignment[] VALUES_ARRAY =
-			new CellTextAlignment[] {
-					TOP_LEFT,
-					TOP_CENTER,
-					TOP_RIGHT,
-					MIDDLE_LEFT,
-					MIDDLE_CENTER,
-					MIDDLE_RIGHT,
-					BOTTOM_LEFT,
-					BOTTOM_CENTER,
-					BOTTOM_RIGHT,
-			};
+	private static final CellTextAlignment[] VALUES_ARRAY = new CellTextAlignment[]{ TOP_LEFT, TOP_CENTER, TOP_RIGHT, MIDDLE_LEFT, MIDDLE_CENTER, MIDDLE_RIGHT, BOTTOM_LEFT, BOTTOM_CENTER, BOTTOM_RIGHT, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Cell Text Alignment</b></em>' enumerators.
@@ -303,9 +284,9 @@ public enum CellTextAlignment implements Enumerator {
 	 * @generated
 	 */
 	public static CellTextAlignment get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellTextAlignment result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -320,9 +301,9 @@ public enum CellTextAlignment implements Enumerator {
 	 * @generated
 	 */
 	public static CellTextAlignment getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			CellTextAlignment result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -337,7 +318,7 @@ public enum CellTextAlignment implements Enumerator {
 	 * @generated
 	 */
 	public static CellTextAlignment get(int value) {
-		switch (value) {
+		switch(value) {
 		case TOP_LEFT_VALUE:
 			return TOP_LEFT;
 		case TOP_CENTER_VALUE:
@@ -441,5 +422,4 @@ public enum CellTextAlignment implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // CellTextAlignment

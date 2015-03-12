@@ -39,7 +39,6 @@ public enum DisplayStyle implements Enumerator {
 	 * @ordered
 	 */
 	NORMAL(0, "NORMAL", "NORMAL"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>HIERARCHIC SINGLE TREE COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -50,7 +49,6 @@ public enum DisplayStyle implements Enumerator {
 	 * @ordered
 	 */
 	HIERARCHIC_SINGLE_TREE_COLUMN(1, "HIERARCHIC_SINGLE_TREE_COLUMN", "HIERARCHIC_SINGLE_TREE_COLUMN"), //$NON-NLS-1$ //$NON-NLS-2$
-
 	/**
 	 * The '<em><b>HIERARCHIC MULTI TREE COLUMN</b></em>' literal object.
 	 * <!-- begin-user-doc -->
@@ -81,7 +79,8 @@ public enum DisplayStyle implements Enumerator {
 	 * The '<em><b>HIERARCHIC SINGLE TREE COLUMN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>HIERARCHIC SINGLE TREE COLUMN</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>HIERARCHIC SINGLE TREE COLUMN</b></em>' literal object isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -96,7 +95,8 @@ public enum DisplayStyle implements Enumerator {
 	 * The '<em><b>HIERARCHIC MULTI TREE COLUMN</b></em>' literal value.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of '<em><b>HIERARCHIC MULTI TREE COLUMN</b></em>' literal object isn't clear, there really should be more of a description here...
+	 * If the meaning of '<em><b>HIERARCHIC MULTI TREE COLUMN</b></em>' literal object isn't clear, there really should be more of a description
+	 * here...
 	 * </p>
 	 * <!-- end-user-doc -->
 	 *
@@ -114,12 +114,7 @@ public enum DisplayStyle implements Enumerator {
 	 *
 	 * @generated
 	 */
-	private static final DisplayStyle[] VALUES_ARRAY =
-			new DisplayStyle[] {
-					NORMAL,
-					HIERARCHIC_SINGLE_TREE_COLUMN,
-					HIERARCHIC_MULTI_TREE_COLUMN,
-			};
+	private static final DisplayStyle[] VALUES_ARRAY = new DisplayStyle[]{ NORMAL, HIERARCHIC_SINGLE_TREE_COLUMN, HIERARCHIC_MULTI_TREE_COLUMN, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Display Style</b></em>' enumerators.
@@ -138,9 +133,9 @@ public enum DisplayStyle implements Enumerator {
 	 * @generated
 	 */
 	public static DisplayStyle get(String literal) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			DisplayStyle result = VALUES_ARRAY[i];
-			if (result.toString().equals(literal)) {
+			if(result.toString().equals(literal)) {
 				return result;
 			}
 		}
@@ -155,9 +150,9 @@ public enum DisplayStyle implements Enumerator {
 	 * @generated
 	 */
 	public static DisplayStyle getByName(String name) {
-		for (int i = 0; i < VALUES_ARRAY.length; ++i) {
+		for(int i = 0; i < VALUES_ARRAY.length; ++i) {
 			DisplayStyle result = VALUES_ARRAY[i];
-			if (result.getName().equals(name)) {
+			if(result.getName().equals(name)) {
 				return result;
 			}
 		}
@@ -172,7 +167,7 @@ public enum DisplayStyle implements Enumerator {
 	 * @generated
 	 */
 	public static DisplayStyle get(int value) {
-		switch (value) {
+		switch(value) {
 		case NORMAL_VALUE:
 			return NORMAL;
 		case HIERARCHIC_SINGLE_TREE_COLUMN_VALUE:
@@ -264,5 +259,4 @@ public enum DisplayStyle implements Enumerator {
 	public String toString() {
 		return literal;
 	}
-
 } // DisplayStyle

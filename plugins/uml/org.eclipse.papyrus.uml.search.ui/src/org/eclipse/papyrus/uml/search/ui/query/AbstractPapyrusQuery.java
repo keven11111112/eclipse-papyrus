@@ -18,6 +18,7 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.core.runtime.Status;
+import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.papyrus.uml.search.ui.results.PapyrusSearchResult;
 import org.eclipse.search.ui.ISearchQuery;
 
@@ -28,6 +29,22 @@ import org.eclipse.search.ui.ISearchQuery;
  */
 public abstract class AbstractPapyrusQuery implements ISearchQuery {
 
+	/**
+	 * Sleep SLEEP_MILLISECONDS every NUMBER_ADDS_BEFORE_SLEEP of adds (events fired to update UI)
+	 * so UI does not get stuck
+	 */
+	public static final int NUMBER_ADDS_BEFORE_SLEEP = 100;
+	public static final int SLEEP_MILLISECONDS = 500;
+	
+	/**
+	 * Display results every BUFFER_SIZE
+	 */
+	public static final int BUFFER_SIZE = 100;
+	
+	protected boolean delay = false;
+	
+	protected SubMonitor progressMonitor;
+	
 	/**
 	 * Getter for the text query
 	 *
@@ -80,6 +97,5 @@ public abstract class AbstractPapyrusQuery implements ISearchQuery {
 		public String getSearchQueryText() {
 			return "";
 		}
-
 	}
 }

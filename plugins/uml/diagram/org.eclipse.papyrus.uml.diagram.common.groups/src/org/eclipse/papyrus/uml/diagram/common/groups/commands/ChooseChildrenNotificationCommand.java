@@ -32,7 +32,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.PendingGroupNotificationsManager;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.ChooseChildrenNotificationConfigurator;
 import org.eclipse.papyrus.uml.diagram.common.groups.core.ui.NotificationConfigurator;
-import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 
 /**
  * This command will create a notification to ask the user to choose the graphical children of an element

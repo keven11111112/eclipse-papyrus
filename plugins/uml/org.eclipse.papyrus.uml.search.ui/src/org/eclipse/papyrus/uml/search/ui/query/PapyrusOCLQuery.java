@@ -420,5 +420,4 @@ public class PapyrusOCLQuery extends AbstractPapyrusQuery {
 			return queryEditorDocument.get();
 		}
 	}
-
 }

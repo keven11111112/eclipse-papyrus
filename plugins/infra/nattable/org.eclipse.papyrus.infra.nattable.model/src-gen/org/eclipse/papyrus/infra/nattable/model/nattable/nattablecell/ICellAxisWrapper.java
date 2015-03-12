@@ -29,6 +29,7 @@ import org.eclipse.emf.ecore.EModelElement;
  * @generated
  */
 public interface ICellAxisWrapper extends EModelElement {
+
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40,5 +41,4 @@ public interface ICellAxisWrapper extends EModelElement {
 	 * @generated
 	 */
 	Object getElement();
-
 } // ICellAxisWrapper

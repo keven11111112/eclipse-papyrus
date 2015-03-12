@@ -52,7 +52,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 	/**
 	 * the id of the editor config
 	 */
-	public static final String EDITOR_CONFIG_ID = "EMF_EDITOR";
+	public static final String EDITOR_CONFIG_ID = "EMF_EDITOR"; //$NON-NLS-1$
 
 	/**
 	 * the int used to identify the kind of editor
@@ -107,6 +107,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			editor = new ComboBoxCellEditor(new EEnumComboBoxDataProvider((EEnum) ((EStructuralFeature) axisElement).getEType()));
 			break;
 		default:
+			break;
 		}
 		return editor;
 	}
@@ -176,6 +177,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			};
 			break;
 		default:
+			break;
 		}
 		return displayConverter;
 	}
@@ -223,6 +225,7 @@ public class EStructuralFeatureEditorConfig extends AbstractCellEditorConfigurat
 			displayMode = DisplayMode.NORMAL;
 			break;
 		default:
+			break;
 		}
 		return displayMode;
 	}

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2014 CEA LIST and others.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *
+ *   
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.provider;
@@ -69,7 +69,7 @@ public class TreeFillingFeatureLabelProvider extends EMFFeatureHeaderLabelProvid
 
 
 	/**
-	 *
+	 * 
 	 * @param wrapper
 	 * @return
 	 *         the wrapped value to use to calculate the label

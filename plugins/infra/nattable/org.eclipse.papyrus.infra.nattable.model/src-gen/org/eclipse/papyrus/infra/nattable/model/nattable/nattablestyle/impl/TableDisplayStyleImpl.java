@@ -34,6 +34,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.TableDisp
  * @generated
  */
 public class TableDisplayStyleImpl extends EModelElementImpl implements TableDisplayStyle {
+
 	/**
 	 * The default value of the '{@link #getDisplayStyle() <em>Display Style</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,7 +99,7 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	public void setDisplayStyle(DisplayStyle newDisplayStyle) {
 		DisplayStyle oldDisplayStyle = displayStyle;
 		displayStyle = newDisplayStyle == null ? DISPLAY_STYLE_EDEFAULT : newDisplayStyle;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE, oldDisplayStyle, displayStyle));
 		}
 	}
@@ -111,7 +112,7 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
 			return getDisplayStyle();
 		}
@@ -126,9 +127,9 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
-			setDisplayStyle((DisplayStyle) newValue);
+			setDisplayStyle((DisplayStyle)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -142,7 +143,7 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
 			setDisplayStyle(DISPLAY_STYLE_EDEFAULT);
 			return;
@@ -158,7 +159,7 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.TABLE_DISPLAY_STYLE__DISPLAY_STYLE:
 			return displayStyle != DISPLAY_STYLE_EDEFAULT;
 		}
@@ -173,15 +174,13 @@ public class TableDisplayStyleImpl extends EModelElementImpl implements TableDis
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (displayStyle: "); //$NON-NLS-1$
 		result.append(displayStyle);
 		result.append(')');
 		return result.toString();
 	}
-
 } // TableDisplayStyleImpl

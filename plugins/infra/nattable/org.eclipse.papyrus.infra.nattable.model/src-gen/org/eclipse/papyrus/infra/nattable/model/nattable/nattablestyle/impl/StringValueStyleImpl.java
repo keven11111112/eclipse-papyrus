@@ -32,6 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringVal
  * @generated
  */
 public class StringValueStyleImpl extends NamedStyleImpl implements StringValueStyle {
+
 	/**
 	 * The default value of the '{@link #getStringValue() <em>String Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -96,7 +97,7 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	public void setStringValue(String newStringValue) {
 		String oldStringValue = stringValue;
 		stringValue = newStringValue;
-		if (eNotificationRequired()) {
+		if(eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE, oldStringValue, stringValue));
 		}
 	}
@@ -109,7 +110,7 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
 			return getStringValue();
 		}
@@ -124,9 +125,9 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
-			setStringValue((String) newValue);
+			setStringValue((String)newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -140,7 +141,7 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
 			setStringValue(STRING_VALUE_EDEFAULT);
 			return;
@@ -156,7 +157,7 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch (featureID) {
+		switch(featureID) {
 		case NattablestylePackage.STRING_VALUE_STYLE__STRING_VALUE:
 			return STRING_VALUE_EDEFAULT == null ? stringValue != null : !STRING_VALUE_EDEFAULT.equals(stringValue);
 		}
@@ -171,15 +172,13 @@ public class StringValueStyleImpl extends NamedStyleImpl implements StringValueS
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
+		if(eIsProxy()) {
 			return super.toString();
 		}
-
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (stringValue: "); //$NON-NLS-1$
 		result.append(stringValue);
 		result.append(')');
 		return result.toString();
 	}
-
 } // StringValueStyleImpl

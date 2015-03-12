@@ -23,10 +23,10 @@ public class ChangeObject {
 	/**
 	 * The eventType. @link org.eclipse.emf.common.notify.Notification
 	 */
-	int eventType;
+	public int eventType;
 	
 	/**
 	 * The associated EObject
 	 */
-	EObject eObject;
+	public EObject eObject;
 }

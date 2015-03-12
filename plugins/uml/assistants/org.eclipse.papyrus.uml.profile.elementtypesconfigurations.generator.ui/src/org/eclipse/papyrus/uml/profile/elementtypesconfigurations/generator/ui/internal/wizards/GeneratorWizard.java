@@ -13,14 +13,21 @@
 
 package org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ui.internal.wizards;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.Arrays;
 import java.util.List;
+import java.util.concurrent.Callable;
 
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.jface.dialogs.DialogSettings;
+import org.eclipse.jface.operation.IRunnableWithProgress;
 import org.eclipse.jface.wizard.Wizard;
+import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.tools.util.UIUtil;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.AbstractGenerator;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.ElementTypesGenerator;
 import org.eclipse.papyrus.uml.profile.elementtypesconfigurations.generator.Identifiers;
@@ -33,6 +40,7 @@ import org.eclipse.uml2.uml.Profile;
 
 import com.google.common.collect.Iterables;
 import com.google.common.collect.Lists;
+import com.google.common.util.concurrent.Futures;
 
 /**
  * A wizard for generation of a new tooling model model for a UML Profile.
@@ -52,6 +60,7 @@ public class GeneratorWizard extends Wizard {
 
 		setWindowTitle("Generate Element Types Model");
 		setHelpAvailable(false);
+		setNeedsProgressMonitor(true);
 	}
 
 	@Override
@@ -73,39 +82,77 @@ public class GeneratorWizard extends Wizard {
 
 	@Override
 	public boolean performFinish() {
-		boolean result = false;
-
 		save();
+
+		final IStatus[] status = { Status.CANCEL_STATUS };
+
+		try {
+			getContainer().run(true, false, new IRunnableWithProgress() {
+
+				@Override
+				public void run(IProgressMonitor monitor) {
+					status[0] = doPerformFinish(monitor);
+				}
+			});
+		} catch (InterruptedException e) {
+			status[0] = Status.CANCEL_STATUS;
+		} catch (InvocationTargetException e) {
+			status[0] = new Status(IStatus.ERROR, Activator.PLUGIN_ID, "Model generation failed with an exception.", e.getTargetException());
+		}
+
+		if (status[0].matches(IStatus.WARNING | IStatus.ERROR)) {
+			StatusManager.getManager().handle(status[0], StatusManager.BLOCK | StatusManager.LOG);
+		}
+
+		return status[0].getSeverity() < IStatus.ERROR;
+	}
+
+	protected IStatus doPerformFinish(IProgressMonitor monitor) {
+		IStatus result = Status.OK_STATUS;
 
 		Identifiers identifiers = new Identifiers();
 		identifiers.setPrefix(model.getIdentifier());
-		identifiers.setDiagramElementTypesSet(model.getSelectedElementTypeSet());
+		identifiers.setBaseElementTypesSet(model.getSelectedElementTypeSet());
+		identifiers.setSuppressSemanticSuperElementTypes(model.isSuppressSemanticSuperElementTypes());
 
-		List<AbstractGenerator<Profile, ?>> generators = Lists.newArrayListWithExpectedSize(1);
-		addGenerators(generators, identifiers, model);
+		ComposedAdapterFactory adapterFactory = new ComposedAdapterFactory(ComposedAdapterFactory.Descriptor.Registry.INSTANCE);
+		identifiers.setAdapterFactory(adapterFactory);
 
-		IStatus status = Status.OK_STATUS;
+		try {
+			List<AbstractGenerator<Profile, ?>> generators = Lists.newArrayListWithExpectedSize(1);
+			addGenerators(generators, identifiers, model);
 
-		for (AbstractGenerator<Profile, ?> next : generators) {
-			status = next.generate(model.getProfile(), getOutputURI(next, identifiers, model));
+			monitor.beginTask(NLS.bind("Generating {0}", generators.size() > 1 ? "models" : "model"), generators.size() + 1);
 
-			if (status.getSeverity() >= IStatus.ERROR) {
-				break;
+			for (AbstractGenerator<Profile, ?> next : generators) {
+				monitor.subTask(next.getLabel());
+
+				result = next.generate(model.getProfile(), getOutputURI(next, identifiers, model));
+
+				if (result.getSeverity() >= IStatus.ERROR) {
+					break;
+				}
+
+				monitor.worked(1);
 			}
-		}
 
-		if (status.getSeverity() < IStatus.ERROR) {
-			result = true;
-
-			try {
-				IDE.openEditor(page, model.getOutputModelFile());
-			} catch (PartInitException e) {
-				status = e.getStatus();
+			if (result.getSeverity() < IStatus.ERROR) {
+				monitor.subTask("Opening editor");
+				try {
+					Futures.get(UIUtil.syncCall(getShell().getDisplay(), new Callable<Void>() {
+						@Override
+						public Void call() throws Exception {
+							IDE.openEditor(page, model.getOutputModelFile());
+							return null;
+						}
+					}), PartInitException.class);
+				} catch (PartInitException e) {
+					result = e.getStatus();
+				}
 			}
-		}
-
-		if (status.getSeverity() >= IStatus.WARNING) {
-			StatusManager.getManager().handle(status, StatusManager.BLOCK | StatusManager.LOG);
+		} finally {
+			adapterFactory.dispose();
+			monitor.done();
 		}
 
 		return result;

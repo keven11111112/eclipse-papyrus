@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 public class TreeRowHideAllCategoriesCommandHandler extends AbstractTreeRowHideShowCategoryHandler {
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event

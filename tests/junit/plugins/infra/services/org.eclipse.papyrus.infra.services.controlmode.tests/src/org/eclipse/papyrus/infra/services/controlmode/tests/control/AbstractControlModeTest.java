@@ -12,147 +12,309 @@
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests.control;
 
+import static org.junit.Assert.assertTrue;
 import static org.junit.Assert.fail;
 
-import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import org.eclipse.core.commands.Command;
+import org.eclipse.core.commands.IParameter;
+import org.eclipse.core.commands.ParameterValuesException;
+import org.eclipse.core.commands.common.NotDefinedException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.NullProgressMonitor;
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.lifecycleevents.ISaveAndDirtyService;
-import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.controlmode.commands.ControlModeCommandParameterValues;
+import org.eclipse.papyrus.infra.services.controlmode.commands.ResourceLocationParameterValues;
+import org.eclipse.papyrus.infra.services.controlmode.handler.ControlCommandHandler;
 import org.eclipse.papyrus.infra.services.controlmode.tests.Messages;
 import org.eclipse.papyrus.infra.services.controlmode.tests.StrategyChooserFixture;
+import org.eclipse.papyrus.infra.services.controlmode.util.ControlHelper;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.junit.utils.GenericUtils;
 import org.eclipse.papyrus.junit.utils.HandlerUtils;
 import org.eclipse.papyrus.junit.utils.ModelExplorerUtils;
-import org.eclipse.papyrus.junit.utils.ProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.junit.utils.rules.PapyrusEditorFixture;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerView;
-import org.eclipse.swtbot.eclipse.finder.SWTWorkbenchBot;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.junit.After;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Rule;
-import org.osgi.framework.Bundle;
 
 public abstract class AbstractControlModeTest extends AbstractPapyrusTest {
 
 	protected static final String COMMAND_ID = "org.eclipse.papyrus.infra.services.controlmode.createsubmodel"; //$NON-NLS-1$
 
+	/** The house keeper. */
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
+
+	/** The editor fixture. */
+	@Rule
+	public final PapyrusEditorFixture editorFixture = new PapyrusEditorFixture();
 
 	protected IMultiDiagramEditor editor = null;
 
 	protected Model model;
 
-	@Before
-	public void setUp() {
-		// Set the current resource loading strategy to the default
-		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
-
-		try {
-			initTests(Activator.getDefault().getBundle());
-		} catch (CoreException e) {
-			Activator.log.error(e);
-		} catch (IOException e) {
-			Activator.log.error(e);
-		}
-	}
+	protected List<Element> selectedElements;
 
 	protected static ModelExplorerView view;
 
 	protected static IFile modelFile;
 
-	protected static Bundle bundle;
-
-	protected static SWTWorkbenchBot bot;
-
 	public AbstractControlModeTest() {
 		super();
 	}
 
-	@After
-	public void after() throws CoreException {
-		GenericUtils.closeAllEditors();
-		GenericUtils.cleanWorkspace();
-		ProjectUtils.removeAllProjectFromTheWorkspace();
-	}
 
-	protected abstract void initTests(final Bundle bundle) throws CoreException, IOException;
+	@Before
+	public void setUp() throws Exception {
 
-	protected void controlAndSave(IMultiDiagramEditor editor, Model model, List<PackageableElement> elements, Command cmd) {
-		try {
-			HandlerUtils.executeCommand(cmd);
+		// Set the current resource loading strategy to the default
+		houseKeeper.cleanUpLater(new StrategyChooserFixture(0));
 
-		} catch (Throwable e) {
-			String s = "*********************************************\n";
-			do {
-				StackTraceElement[] stackTrace = e.getStackTrace();
-				s += e.getLocalizedMessage() + "\n";
-				for (StackTraceElement stackTraceElement : stackTrace) {
-					s += stackTraceElement.toString() + "\n";
-				}
-				s += "-------------------------------------------------\n";
-			} while ((e = e.getCause()) != null);
-			fail(s);
+		openEditor();
 
-		}
-		ISaveAndDirtyService saveService;
-		try {
-			saveService = editor.getServicesRegistry().getService(ISaveAndDirtyService.class);
-			saveService.doSave(new NullProgressMonitor());
-		} catch (ServiceException e) {
-			fail(e.getMessage());
-
-		}
-
-		// Execute save
-		// Assert that the parent package is controlled
-		PackageableElement submodel = elements.get(0);
-		Assert.assertNotEquals("The controlled submodel's resource equals its parent's", model.eResource(), submodel.eResource());
-
-		// Assert that the model and submodel belong to different
-		// resources
-		Assert.assertNotEquals(Messages.AbstractControlModeTest_1, model, submodel);
 	}
 
 	/**
-	 * Select the first subpackage of the root package in the model explorer
-	 * 
-	 * @return
+	 * Open editor.
 	 */
-	protected List<PackageableElement> selectElementToControl() {
-		try {
-			editor = houseKeeper.openPapyrusEditor(modelFile);
-		} catch (Exception e) {
-			Activator.log.error(e);
-			fail(e.getMessage());
-		}
-
-		try {
-			AbstractControlModeTest.view = ModelExplorerUtils.openModelExplorerView();
-		} catch (Exception e) {
-			Activator.log.error(e);
-			fail(e.getMessage());
-		}
+	protected void openEditor() {
+		editor = editorFixture.open();
+		view = editorFixture.getModelExplorerView();
 		model = (Model) ModelExplorerUtils.getRootInModelExplorer(view);
-		List<PackageableElement> elements = new ArrayList<PackageableElement>();
+
+	}
+
+
+	@After
+	public void cleanUp() throws Exception {
+		activateDialog();
+		selectedElements = null;
+	}
+
+	/**
+	 * Undo.
+	 */
+	protected void undo() {
+		editorFixture.getEditingDomain().getCommandStack().undo();
+	}
+
+	/**
+	 * Redo.
+	 */
+	protected void redo() {
+		editorFixture.getEditingDomain().getCommandStack().redo();
+	}
+
+	/**
+	 * Gets the controlled elements.
+	 *
+	 * @return the controlled elements
+	 */
+	protected List<Element> getControlledElements() {
+		List<Element> controlledElements = new ArrayList<Element>();
 		for (PackageableElement packageableElement : model.getPackagedElements()) {
-			if (packageableElement instanceof org.eclipse.uml2.uml.Package) {
-				elements.add(packageableElement);
+			if (packageableElement instanceof org.eclipse.uml2.uml.Package && ControlHelper.isRootControlledObject(packageableElement)) {
+				controlledElements.add(packageableElement);
 			}
 		}
-		ModelExplorerUtils.setSelectionInTheModelexplorer(view, elements);
-		return elements;
+
+		return controlledElements;
 	}
+
+
+	/**
+	 * Save.
+	 * 
+	 * @throws Exception
+	 */
+	protected void save() throws Exception {
+		ISaveAndDirtyService saveService = editorFixture.getServiceRegistry().getService(ISaveAndDirtyService.class);
+		assertTrue("Nothing to save", saveService.isDirty());
+		saveService.doSave(new NullProgressMonitor());
+	}
+
+	/**
+	 * @throws NotDefinedException
+	 * @throws ParameterValuesException
+	 */
+	protected void desactivateDialog() throws NotDefinedException, ParameterValuesException {
+		IParameter dialogParameter = HandlerUtils.getCommand(COMMAND_ID).getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
+		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter.getValues();
+		controlModePlatformValues.put("showDialog", false);
+	}
+
+	/**
+	 * @throws NotDefinedException
+	 * @throws ParameterValuesException
+	 */
+	protected void activateDialog() throws NotDefinedException, ParameterValuesException {
+		IParameter dialogParameter = HandlerUtils.getCommand(COMMAND_ID).getParameter(ControlCommandHandler.CONTROLMODE_USE_DIALOG_PARAMETER);
+		ControlModeCommandParameterValues controlModePlatformValues = (ControlModeCommandParameterValues) dialogParameter.getValues();
+		controlModePlatformValues.put("showDialog", true);
+	}
+
+	/**
+	 * Gets the URI file in project.
+	 *
+	 * @param file
+	 *            the file
+	 * @return the URI file in project
+	 */
+	protected URI getURIFileInProject(String file) {
+		return URI.createPlatformResourceURI(editorFixture.getProject().getProject().getFile(file).getFullPath().toString(), true);
+
+	}
+
+	/**
+	 * Sets the submoddel location.
+	 *
+	 * @param file
+	 *            the new submoddel location
+	 * @throws Exception
+	 * @throws Exception
+	 */
+	protected void setSubmodelLocation(String file) throws Exception {
+		URI resourceURi = getURIFileInProject(file);
+		IParameter handlerParameter = HandlerUtils.getCommand(COMMAND_ID).getParameter(ResourceLocationParameterValues.ID);
+		ResourceLocationParameterValues parameter = (ResourceLocationParameterValues) handlerParameter.getValues();
+		parameter.setResourceLocation(resourceURi);
+
+	}
+
+
+	/**
+	 * The Class ControlModeRunnableAssertion.
+	 */
+	public class ControlModeAssertion {
+		private String message;
+
+		/**
+		 * Constructor.
+		 *
+		 * @param assertioMessage
+		 *            the assertio message
+		 */
+		public ControlModeAssertion(String assertioMessage) {
+			message = assertioMessage;
+		}
+
+		/**
+		 * @see java.lang.Runnable#run()
+		 *
+		 */
+		public void testControl() {
+			selectElementToControl();
+			assertBeforeControl();
+			control(HandlerUtils.getCommand(COMMAND_ID));
+			assertBeforeSave();
+			save();
+			assertAfterSave();
+		}
+
+		/**
+		 * Assert after save.
+		 */
+		protected void assertAfterSave() {
+
+		}
+
+		/**
+		 * Select the first subpackage of the root package in the model explorer
+		 * 
+		 */
+		private void selectElementToControl() {
+
+			selectedElements = new ArrayList<Element>();
+			for (PackageableElement packageableElement : model.getPackagedElements()) {
+				if (packageableElement instanceof org.eclipse.uml2.uml.Package) {
+					selectedElements.add(packageableElement);
+				}
+			}
+			ModelExplorerUtils.setSelectionInTheModelexplorer(view, Arrays.asList(getElementToControl()));
+		}
+
+		/**
+		 * Gets the selected elements.
+		 *
+		 * @return the selected elements
+		 */
+		protected List<Element> getSelectedElements() {
+			return selectedElements;
+		}
+
+		/**
+		 * Gets the elements to control.
+		 *
+		 * @return the elements to control
+		 */
+		protected Element getElementToControl() {
+			return selectedElements.get(0);
+		}
+
+		/**
+		 * Assert before control.
+		 */
+		protected void assertBeforeControl() {
+			Assert.assertTrue(message, HandlerUtils.getActiveHandlerFor(COMMAND_ID).isEnabled());
+		}
+
+		/**
+		 * Run control mode command on selected elements.
+		 * 
+		 * @param cmd
+		 */
+		private void control(Command cmd) {
+			try {
+				HandlerUtils.executeCommand(cmd);
+
+			} catch (Throwable e) {
+				String s = "*********************************************\n";
+				do {
+					StackTraceElement[] stackTrace = e.getStackTrace();
+					s += e.getLocalizedMessage() + "\n";
+					for (StackTraceElement stackTraceElement : stackTrace) {
+						s += stackTraceElement.toString() + "\n";
+					}
+					s += "-------------------------------------------------\n";
+				} while ((e = e.getCause()) != null);
+				fail(s);
+
+			}
+
+
+		}
+
+		protected void assertBeforeSave() {
+			// Execute save
+			// Assert that the parent package is controlled
+			Element submodel = getElementToControl();
+			Assert.assertNotEquals("The controlled submodel's resource equals its parent's", model.eResource(), submodel.eResource());
+
+			// Assert that the model and submodel belong to different
+			// resources
+			Assert.assertNotEquals(Messages.AbstractControlModeTest_1, model, submodel);
+		}
+
+		protected void save() {
+			editorFixture.saveAll();
+
+		}
+
+
+	}
+
+
+
 
 }

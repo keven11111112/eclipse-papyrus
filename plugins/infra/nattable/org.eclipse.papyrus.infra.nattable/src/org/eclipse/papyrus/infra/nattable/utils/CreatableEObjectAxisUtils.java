@@ -19,13 +19,13 @@ import java.util.TreeSet;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.nattable.manager.axis.IAxisManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
 import org.eclipse.papyrus.infra.services.edit.utils.ElementTypeUtils;
 
 /**
  *
- * @author VL222926
+ * This class provides useful methods to know which kind of elements can be created for a given table
  *
  */
 public class CreatableEObjectAxisUtils {
@@ -44,7 +44,7 @@ public class CreatableEObjectAxisUtils {
 	 *         the list of the creatable element on the axis
 	 */
 	public static final Collection<String> getCreatableElementIds(final Table table, final boolean onColumn) {
-		final INattableModelManager nattableModelManager = new NattableModelManager(table);
+		final INattableModelManager nattableModelManager = NattableModelManagerFactory.INSTANCE.createNatTableModelManager(table, new ObjectsSelectionExtractor());
 		return getCreatableElementIds(nattableModelManager, onColumn);
 	}
 

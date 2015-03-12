@@ -22,14 +22,14 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 
 
 /**
- *
+ * 
  * @author VL222926
  *
  */
 public class TreeRowShowAllCategoriesCommandHandler extends AbstractTreeRowHideShowCategoryHandler {
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.core.commands.AbstractHandler#execute(org.eclipse.core.commands.ExecutionEvent)
 	 *
 	 * @param event

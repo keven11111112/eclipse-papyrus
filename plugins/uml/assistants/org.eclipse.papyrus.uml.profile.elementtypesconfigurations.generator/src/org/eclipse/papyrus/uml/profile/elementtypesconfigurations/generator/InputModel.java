@@ -21,7 +21,7 @@ import java.lang.annotation.Target;
 import com.google.inject.BindingAnnotation;
 
 /**
- * Injector annotation for the input model type.
+ * Injector annotation for the model-to-model transformation's input model type.
  */
 @BindingAnnotation
 @Retention(RetentionPolicy.RUNTIME)

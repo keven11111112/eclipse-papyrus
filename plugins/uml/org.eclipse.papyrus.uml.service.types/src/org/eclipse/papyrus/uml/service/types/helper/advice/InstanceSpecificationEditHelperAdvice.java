@@ -9,36 +9,40 @@ import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
-import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.papyrus.uml.service.types.command.InstanceSpecificationLinkCreateCommand;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
 import org.eclipse.uml2.uml.InstanceSpecification;
 
 public class InstanceSpecificationEditHelperAdvice extends AbstractEditHelperAdvice {
-	@Override
-	protected ICommand getBeforeEditContextCommand(final GetEditContextRequest request) {
 
-		GetEditContextCommand command = new GetEditContextCommand(request);
-		command.setEditContext(request.getEditHelperContext());
-		return command;
-	}
-
-	protected boolean canCreate(EObject source, EObject target) {
-		if ((source != null) && !(source instanceof InstanceSpecification)) {
+	public static boolean canCreate(EObject source, EObject target) {
+		/*
+		 * Case 0: Only the target is null
+		 */
+		if (source != null && target == null) {
+			return source instanceof InstanceSpecification && ((InstanceSpecification) source).getClassifiers().size() > 0;
+		}
+		/*
+		 * Case 1 : source and target != null
+		 * look for if it exist at least a common association between classifiers referenced between these instances
+		 */
+		if (source == null || target == null) {
 			return false;
 		}
-		if ((target != null) && !(target instanceof InstanceSpecification)) {
+		if (false == source instanceof InstanceSpecification) {
 			return false;
 		}
-		return true;
+		if (false == target instanceof InstanceSpecification) {
+			return false;
+		}
+		return ((InstanceSpecification) source).getClassifiers().size() > 0 && ((InstanceSpecification) target).getClassifiers().size() > 0;
 	}
 
 	@Override
 	protected ICommand getBeforeCreateRelationshipCommand(CreateRelationshipRequest request) {
-		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.CONSTRAINT_CONTEXT.getId()));
+		List<ISpecializationType> subs = Arrays.asList(ElementTypeRegistry.getInstance().getSpecializationsOf(UMLElementTypes.INSTANCE_SPECIFICATION.getId()));
 		if (!subs.contains(request.getElementType())) {
 			return IdentityCommand.INSTANCE;
 		}

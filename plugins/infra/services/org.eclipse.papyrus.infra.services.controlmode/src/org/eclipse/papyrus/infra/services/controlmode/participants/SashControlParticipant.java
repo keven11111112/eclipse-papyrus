@@ -31,6 +31,7 @@ import org.eclipse.papyrus.infra.services.controlmode.commands.AbstractControlCo
 import org.eclipse.papyrus.infra.services.controlmode.commands.CreateControlResource;
 import org.eclipse.papyrus.infra.services.controlmode.commands.InitializeSashCommand;
 import org.eclipse.papyrus.infra.services.controlmode.commands.RemoveControlResourceCommand;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 
 /**
@@ -42,8 +43,17 @@ import org.eclipse.papyrus.infra.services.controlmode.commands.RemoveControlReso
  */
 public class SashControlParticipant implements IControlCommandParticipant, IUncontrolCommandParticipant {
 
+	/** The Constant CLEAR_COMMAND. */
+	private static final String CLEAR_COMMAND = Messages.getString("SashControlParticipant.command.clear.label"); //$NON-NLS-1$
+
+	/** The Constant DI_RESOURCE_ERROR. */
+	private static final String DI_RESOURCE_ERROR = Messages.getString("SashControlParticipant.resource.di.error"); //$NON-NLS-1$
+
+	/** The Constant RESOURCE_ERROR. */
+	private static final String RESOURCE_ERROR = Messages.getString("SashControlParticipant.resource.error"); //$NON-NLS-1$
+
 	public String getID() {
-		return "org.eclipse.papyrus.infra.services.controlmode.participants.SashControlParticipant";//
+		return "org.eclipse.papyrus.infra.services.controlmode.participants.SashControlParticipant"; //$NON-NLS-1$
 	}
 
 	public int getPriority() {
@@ -85,18 +95,18 @@ public class SashControlParticipant implements IControlCommandParticipant, IUnco
 	public class ClearDiCommand extends AbstractControlCommand {
 
 		public ClearDiCommand(@SuppressWarnings("rawtypes") List affectedFiles, ControlModeRequest request) {
-			super("Clear di command", affectedFiles, request);
+			super(CLEAR_COMMAND, affectedFiles, request);
 		}
 
 		@Override
 		protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 			ModelSet modelSet = getRequest().getModelSet();
 			if (modelSet == null) {
-				return CommandResult.newErrorCommandResult("Unable to retrieve resource set");
+				return CommandResult.newErrorCommandResult(RESOURCE_ERROR);
 			}
 			Resource oldDiresource = modelSet.getAssociatedResource(getRequest().getTargetObject(), DiModel.MODEL_FILE_EXTENSION, true);
 			if (oldDiresource == null) {
-				return CommandResult.newErrorCommandResult("Unable to retrieve old di resource");
+				return CommandResult.newErrorCommandResult(DI_RESOURCE_ERROR);
 			}
 			oldDiresource.getContents().clear();
 			return CommandResult.newOKCommandResult();

@@ -13,12 +13,16 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.search.ui.providers;
 
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
+import org.eclipse.papyrus.infra.services.labelprovider.service.ExtensibleLabelProvider;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
+import org.eclipse.papyrus.views.search.results.ViewerMatch;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.uml2.uml.NamedElement;
 
 public class ResultLabelProvider extends LabelProvider {
 
@@ -40,8 +44,24 @@ public class ResultLabelProvider extends LabelProvider {
 	@Override
 	public String getText(Object element) {
 		if (element instanceof AbstractResultEntry) {
-			return labelProviderService.getLabelProvider().getText(((AbstractResultEntry) element).elementToDisplay());
+			ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+			
+			if (element instanceof ViewerMatch) {
+				return labelProvider.getText(((AbstractResultEntry) element).elementToDisplay());
+			}
+			
+			if (labelProvider instanceof ExtensibleLabelProvider) {
+				String qualifierText = ((ExtensibleLabelProvider) labelProvider).getQualifierText(((AbstractResultEntry) element).elementToDisplay());
+				if (qualifierText == null) {
+					return labelProvider.getText(((AbstractResultEntry) element).elementToDisplay());
+				} else {
+					return qualifierText + NamedElement.SEPARATOR + labelProvider.getText(((AbstractResultEntry) element).elementToDisplay());
+				}
+			} else {
+				return labelProvider.getText(((AbstractResultEntry) element).elementToDisplay());
+			}
 		}
+		
 		return ""; //$NON-NLS-1$
 	}
 

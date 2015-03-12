@@ -48,7 +48,7 @@
 <stringAttribute key="org.eclipse.jdt.launching.PROGRAM_ARGUMENTS" value="-os ${target.os} -ws ${target.ws} -arch ${target.arch} -nl ${target.nl} -consoleLog"/>
 <stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="org.eclipse.papyrus.tests.diagramassistants"/>
 <stringAttribute key="org.eclipse.jdt.launching.SOURCE_PATH_PROVIDER" value="org.eclipse.pde.ui.workbenchClasspathProvider"/>
-<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.6 -Xms512m -Xmx1024m -DsuppressRawWhenUnchecked=true -XX:MaxPermSize=512M&#10;-XX:SoftRefLRUPolicyMSPerMB=100"/>
+<stringAttribute key="org.eclipse.jdt.launching.VM_ARGUMENTS" value="-Dosgi.requiredJavaVersion=1.6 -Xms512m -Xmx1024m -DsuppressRawWhenUnchecked=true -XX:MaxPermSize=512M&#10;-XX:SoftRefLRUPolicyMSPerMB=100&#10;-Doomph.setup.skip=true&#10;-Doomph.setup.questionnaire.skip=true"/>
 <stringAttribute key="org.eclipsorg.eclipse.papyrus.tests.diagramassistants.AllDiagramAssistantsTestss.tests.diagramassistants.AllDiagramAssistantsTests" value=""/>
 <stringAttribute key="pde.version" value="3.3"/>
 <stringAttribute key="product" value="org.eclipse.platform.ide"/>

@@ -26,7 +26,6 @@ import org.eclipse.papyrus.texteditor.model.texteditormodel.TextEditorModel;
 import org.eclipse.papyrus.views.modelexplorer.queries.AbstractEditorContainerQuery;
 
 /** Returns true if the element contains a Table */
-// FIXME this query is declared using Element in the querySet -> change into EObject when the EMF-Facet bug will be corrected 365744
 public class IsTextEditorContainer extends AbstractEditorContainerQuery implements IJavaQuery2<EObject, Boolean> {
 
 	/**

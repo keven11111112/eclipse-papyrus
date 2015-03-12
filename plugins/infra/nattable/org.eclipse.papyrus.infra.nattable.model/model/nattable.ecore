@@ -915,5 +915,12 @@
       <eLiterals name="HIERARCHIC_SINGLE_TREE_COLUMN" value="1" literal="HIERARCHIC_SINGLE_TREE_COLUMN"/>
       <eLiterals name="HIERARCHIC_MULTI_TREE_COLUMN" value="2" literal="HIERARCHIC_MULTI_TREE_COLUMN"/>
     </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObjectValueStyle" eSuperTypes="#//nattablestyle/NamedStyle">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eObjectValue" eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="EObjectListValueStyle" eSuperTypes="#//nattablestyle/NamedStyle">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="eObjectValue" upperBound="-1"
+          eType="ecore:EClass ../../org.eclipse.emf.ecore/model/Ecore.ecore#//EObject"/>
+    </eClassifiers>
   </eSubpackages>
 </ecore:EPackage>

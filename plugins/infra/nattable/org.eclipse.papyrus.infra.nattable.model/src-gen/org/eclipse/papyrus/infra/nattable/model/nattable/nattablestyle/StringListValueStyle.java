@@ -35,6 +35,7 @@ import org.eclipse.emf.common.util.EList;
  * @generated
  */
 public interface StringListValueStyle extends NamedStyle {
+
 	/**
 	 * Returns the value of the '<em><b>String List Value</b></em>' attribute list.
 	 * The list contents are of type {@link java.lang.String}.
@@ -50,5 +51,4 @@ public interface StringListValueStyle extends NamedStyle {
 	 * @generated
 	 */
 	EList<String> getStringListValue();
-
 } // StringListValueStyle

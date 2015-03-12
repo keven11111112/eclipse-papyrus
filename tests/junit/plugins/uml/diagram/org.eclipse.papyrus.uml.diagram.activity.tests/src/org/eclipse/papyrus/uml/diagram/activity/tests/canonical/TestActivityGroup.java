@@ -1,22 +1,15 @@
 package org.eclipse.papyrus.uml.diagram.activity.tests.canonical;
 
 import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertNotNull;
 
-import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityActivityContentCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionActivityPartitionContentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityPartitionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ConditionalNodeEditPart;
@@ -38,7 +31,6 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.StructuredActivityNod
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationActionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
-import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityGroup;
@@ -74,30 +66,6 @@ public class TestActivityGroup extends AbstractPapyrusTestCase {
 
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
-	}
-
-	/**
-	 * create childNodeEditPart in parentEditPart
-	 */
-	protected IGraphicalEditPart createChild(int childVID, IGraphicalEditPart container) {
-		final IElementType childType = UMLElementTypes.getElementType(childVID);
-		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
-		requestcreation.setSize(new Dimension(1, 1));
-		requestcreation.setLocation(new Point(10, 10));
-		Command cmd = container.getCommand(requestcreation);
-		executeOnUIThread(cmd);
-		return findChildBySemanticHint(container, childVID);
-	}
-
-	private IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
-		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
-		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);
-		return childEP;
-	}
-
-	protected IGraphicalEditPart getActivityCompartmentEditPart() {
-		IGraphicalEditPart activityEP = findChildBySemanticHint(getDiagramEditPart(), ActivityEditPart.VISUAL_ID);
-		return findChildBySemanticHint(activityEP, ActivityActivityContentCompartmentEditPart.VISUAL_ID);
 	}
 
 	@Test

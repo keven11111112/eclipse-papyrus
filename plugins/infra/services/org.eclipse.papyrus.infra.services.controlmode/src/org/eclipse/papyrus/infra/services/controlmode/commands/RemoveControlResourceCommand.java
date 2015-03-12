@@ -25,6 +25,7 @@ import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
+import org.eclipse.papyrus.infra.services.controlmode.messages.Messages;
 
 
 /**
@@ -37,11 +38,29 @@ import org.eclipse.papyrus.infra.services.controlmode.ControlModeRequest;
  */
 public class RemoveControlResourceCommand extends AbstractControlResourceCommand {
 
+	/** The Constant PREVIOUS_RESOURCE_ERROR. */
+	private static final String PREVIOUS_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.previous.resource.error"); //$NON-NLS-1$
+
+	/** The Constant TARGET_RESOURCE_ERROR. */
+	private static final String TARGET_RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.target.resource.error"); //$NON-NLS-1$
+
+	/** The Constant RESOURCE_ERROR. */
+	private static final String RESOURCE_ERROR = Messages.getString("RemoveControlResourceCommand.resource.error"); //$NON-NLS-1$
+
+	/** The Constant RESOURCESET_ERROR. */
+	private static final String RESOURCESET_ERROR = Messages.getString("RemoveControlResourceCommand.resourceset.error"); //$NON-NLS-1$
+
+	/** The Constant CONTROL_OBJECT_ERROR. */
+	private static final String CONTROL_OBJECT_ERROR = Messages.getString("RemoveControlResourceCommand.object.error"); //$NON-NLS-1$
+
+	/** The Constant UNCONTROL_COMMAND_TITLE. */
+	private static final String UNCONTROL_COMMAND_TITLE = Messages.getString("RemoveControlResourceCommand.command.title"); //$NON-NLS-1$
+
 	/**
 	 * @param request
 	 */
 	public RemoveControlResourceCommand(ControlModeRequest request) {
-		super(request, "Uncontrol command", Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())));
+		super(request, UNCONTROL_COMMAND_TITLE, Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())));
 	}
 
 	/**
@@ -50,22 +69,22 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 	 *            file extension of the resource you want to handle
 	 */
 	public RemoveControlResourceCommand(ControlModeRequest request, String fileExtension) {
-		super(request, fileExtension, "Uncontrol command", Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())));
+		super(request, fileExtension, UNCONTROL_COMMAND_TITLE, Collections.singletonList(WorkspaceSynchronizer.getFile(request.getTargetObject().eResource())));
 	}
 
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		EObject objectToControl = getRequest().getTargetObject();
 		if (objectToControl == null) {
-			return CommandResult.newErrorCommandResult("The object to uncontrol is null");
+			return CommandResult.newErrorCommandResult(CONTROL_OBJECT_ERROR);
 		}
 		ModelSet modelSet = getRequest().getModelSet();
 		if (modelSet == null) {
-			return CommandResult.newErrorCommandResult("The resource is not contained in any resource set");
+			return CommandResult.newErrorCommandResult(RESOURCESET_ERROR);
 		}
 		Resource resource = modelSet.getResource(getSourceUri(), false);
 		if (resource == null) {
-			return CommandResult.newErrorCommandResult("The resource is null");
+			return CommandResult.newErrorCommandResult(RESOURCE_ERROR);
 		}
 
 		// Delete resource back-end on save
@@ -76,7 +95,7 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 		// Save source and target resource
 		Resource targetResource = getTargetResource(objectToControl);
 		if (targetResource == null) {
-			return CommandResult.newErrorCommandResult("unable to retrieve the target resource for the extension " + getFileExtension());
+			return CommandResult.newErrorCommandResult(Messages.getString(TARGET_RESOURCE_ERROR, getFileExtension()));
 		}
 
 		// The target resource needs to be saved else the resolution will not operate
@@ -107,17 +126,18 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 		IStatus superStatus = super.doUndo(monitor, info);
 		ModelSet modelSet = getRequest().getModelSet();
 		if (modelSet == null) {
-			return CommandResult.newErrorCommandResult("The resource is not contained in any resource set").getStatus();
+			return CommandResult.newErrorCommandResult(RESOURCESET_ERROR).getStatus();
 		}
 		Resource resource = getRequest().getSourceResource(getFileExtension());
 		if (resource == null) {
-			return CommandResult.newErrorCommandResult("The resource is null").getStatus();
+			return CommandResult.newErrorCommandResult(RESOURCE_ERROR).getStatus();
 		}
 
 		modelSet.getResources().add(resource);
 
 		// Notify the model set that the back end of this resource should not be deleted on save
 		modelSet.getResourcesToDeleteOnSave().remove(resource.getURI());
+		getRequest().getTargetResource(getFileExtension()).setModified(true);
 
 		return superStatus;
 	}
@@ -127,11 +147,11 @@ public class RemoveControlResourceCommand extends AbstractControlResourceCommand
 		IStatus superStatus = super.doRedo(monitor, info);
 		Resource resource = getRequest().getSourceResource(getFileExtension());
 		if (resource == null) {
-			return CommandResult.newErrorCommandResult("Unable to find previous resource").getStatus();
+			return CommandResult.newErrorCommandResult(PREVIOUS_RESOURCE_ERROR).getStatus();
 		}
 		ModelSet modelSet = getRequest().getModelSet();
 		if (modelSet == null) {
-			return CommandResult.newErrorCommandResult("The resource is not contained in any resource set").getStatus();
+			return CommandResult.newErrorCommandResult(RESOURCESET_ERROR).getStatus();
 		}
 
 		if (!isControlledResourceLocked(getRequest().getSourceURI())) {

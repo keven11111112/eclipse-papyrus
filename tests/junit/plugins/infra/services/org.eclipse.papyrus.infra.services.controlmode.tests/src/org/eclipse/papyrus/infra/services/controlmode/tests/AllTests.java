@@ -10,6 +10,7 @@
  ******************************************************************************/
 package org.eclipse.papyrus.infra.services.controlmode.tests;
 
+import org.eclipse.papyrus.infra.services.controlmode.tests.control.ControlLegacyModelTest;
 import org.eclipse.papyrus.infra.services.controlmode.tests.control.ControlModelTest;
 import org.eclipse.papyrus.infra.services.controlmode.tests.control.ControlModelWithProfileTest;
 import org.eclipse.papyrus.infra.services.controlmode.tests.uncontrol.UncontrolModelTest;
@@ -19,10 +20,11 @@ import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
-@SuiteClasses({ ControlModelWithProfileTest.class, 
-	UncontrolModelTest.class, 
-	ControlModelTest.class, 
-	UncontrolModelWithProfileTest.class })
+@SuiteClasses({ ControlModelWithProfileTest.class,
+		UncontrolModelTest.class,
+		ControlModelTest.class,
+		UncontrolModelWithProfileTest.class,
+		ControlLegacyModelTest.class })
 public class AllTests {
 
 }

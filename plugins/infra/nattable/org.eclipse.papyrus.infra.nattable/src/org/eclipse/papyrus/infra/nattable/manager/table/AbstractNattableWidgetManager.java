@@ -22,9 +22,15 @@ import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.ui.dnd.LocalTransfer;
+import org.eclipse.emf.transaction.NotificationFilter;
+import org.eclipse.emf.transaction.ResourceSetChangeEvent;
+import org.eclipse.emf.transaction.ResourceSetListener;
+import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
@@ -47,6 +53,8 @@ import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardComma
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
+//import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
+import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
 import org.eclipse.nebula.widgets.nattable.grid.GridRegion;
 import org.eclipse.nebula.widgets.nattable.grid.data.DefaultCornerDataProvider;
 import org.eclipse.nebula.widgets.nattable.grid.layer.CornerLayer;
@@ -75,7 +83,11 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.nattable.Activator;
+import org.eclipse.papyrus.infra.nattable.command.CommandIds;
+import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
+import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
 import org.eclipse.papyrus.infra.nattable.dataprovider.AbstractCompositeDataProvider;
@@ -84,24 +96,33 @@ import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnIndexHeaderDataProv
 import org.eclipse.papyrus.infra.nattable.dataprovider.ColumnLabelHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeColumnHeaderDataProvider;
 import org.eclipse.papyrus.infra.nattable.dataprovider.CompositeRowHeaderDataProvider;
+import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
+import org.eclipse.papyrus.infra.nattable.filter.configuration.IFilterConfiguration;
+import org.eclipse.papyrus.infra.nattable.layer.FilterRowHeaderComposite;
 import org.eclipse.papyrus.infra.nattable.layer.PapyrusGridLayer;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
-import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
 import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EStructuralFeatureAxis;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.FeatureIdAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.IAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AbstractHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.LocalTableHeaderAxisConfiguration;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.NattableaxisconfigurationPackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.TableHeaderAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanValueStyle;
-import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.DisplayStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NamedStyle;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestyleFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.NattablestylePackage;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringListValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.StringValueStyle;
+import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.Style;
 import org.eclipse.papyrus.infra.nattable.provider.PapyrusNatTableToolTipProvider;
 import org.eclipse.papyrus.infra.nattable.provider.TableSelectionProvider;
 import org.eclipse.papyrus.infra.nattable.provider.TableStructuredSelection;
@@ -116,20 +137,23 @@ import org.eclipse.papyrus.infra.nattable.utils.NamedStyleConstants;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.nattable.utils.TableEditingDomainUtils;
 import org.eclipse.papyrus.infra.nattable.utils.TableGridRegion;
-import org.eclipse.papyrus.infra.nattable.utils.TableHelper;
 import org.eclipse.papyrus.infra.nattable.utils.TableSelectionWrapper;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
 import org.eclipse.swt.dnd.DND;
 import org.eclipse.swt.dnd.DropTarget;
 import org.eclipse.swt.dnd.Transfer;
 import org.eclipse.swt.graphics.Point;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.IWorkbenchActionConstants;
 import org.eclipse.ui.IWorkbenchPartSite;
+import org.eclipse.ui.commands.ICommandService;
+import org.eclipse.ui.services.IDisposable;
 
 /**
  *
@@ -137,6 +161,20 @@ import org.eclipse.ui.IWorkbenchPartSite;
  *
  */
 public abstract class AbstractNattableWidgetManager implements INattableModelManager, NavigationTarget, IAdaptable {
+
+	/**
+	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
+	 * 
+	 * The editing domain to use to edit context element
+	 */
+	protected TransactionalEditingDomain contextEditingDomain;
+
+	/**
+	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
+	 * 
+	 * The editing domain to use to edit table elements
+	 */
+	protected TransactionalEditingDomain tableEditingDomain;
 
 	/**
 	 * the managed table
@@ -180,6 +218,8 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 */
 	private TableSelectionProvider selectionProvider;
 
+	private IFilterStrategy<Object> filterStrategy;
+
 	/**
 	 * the body layer stack
 	 */
@@ -198,11 +238,21 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private BodyDataProvider bodyDataProvider;
 
 	/**
+	 * the composite layer providing the filter row in the column header
+	 */
+	private FilterRowHeaderComposite<?> filterColumnHeaderComposite;
+
+	/**
 	 * the sort model used for rows
 	 */
 	private IPapyrusSortModel rowSortModel;
 
 	private ISelectionExtractor selectionExtractor;
+
+	/**
+	 * this listener is used to update value in nattable layer
+	 */
+	private ResourceSetListener resourceSetListener;
 
 	/**
 	 *
@@ -215,6 +265,26 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.table = table;
 		this.tableContext = table.getContext();
 		this.selectionExtractor = selectionExtractor;
+		this.tableEditingDomain = TableEditingDomainUtils.getTableEditingDomain(table);
+		this.contextEditingDomain = TableEditingDomainUtils.getTableContextEditingDomain(table);
+	}
+
+	/**
+	 * Returns the EditingDomain associated to the table
+	 *
+	 * @return
+	 */
+	protected final TransactionalEditingDomain getTableEditingDomain() {
+		return this.tableEditingDomain;
+	}
+
+	/**
+	 * Returns the EditingDomain associated to the context
+	 *
+	 * @return
+	 */
+	protected final TransactionalEditingDomain getContextEditingDomain() {
+		return this.contextEditingDomain;
 	}
 
 	/**
@@ -244,13 +314,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		// this.columnHeaderLayerStack = new ColumnHeaderLayerStack(this.columnHeaderDataProvider, this.bodyLayerStack, this.bodyDataProvider, getRowSortModel());
 		this.columnHeaderLayerStack = new ColumnHeaderLayerStack(indexColumnProvider, labelColumnProvider, this.bodyLayerStack, getRowSortModel());
 
-		final DisplayStyle displayStyle = TableHelper.getTableDisplayStyle(this);
-		if (DisplayStyle.HIERARCHIC_MULTI_TREE_COLUMN.equals(displayStyle) || DisplayStyle.HIERARCHIC_SINGLE_TREE_COLUMN.equals(displayStyle)) {
-			this.rowHeaderLayerStack = new RowHeaderHierarchicalLayerStack(bodyLayerStack, this);
-		} else {
-			this.rowHeaderLayerStack = new RowHeaderLayerStack(bodyLayerStack, this);
-		}
-
+		this.rowHeaderLayerStack = createRowHeaderLayerStack(this.bodyLayerStack);
 		rowHeaderDataProvider = new CompositeRowHeaderDataProvider(this);
 		rowHeaderDataProvider.addDataProvider(this.rowHeaderLayerStack.getIndexDataProvider());
 		rowHeaderDataProvider.addDataProvider(this.rowHeaderLayerStack.getLabelDataProvider());
@@ -259,21 +323,28 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 		// final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(this.columnHeaderDataProvider, this.rowHeaderDataProvider);
 		final IDataProvider cornerDataProvider = new DefaultCornerDataProvider(columnHeaderDataProvider, rowHeaderDataProvider);
-		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, this.columnHeaderLayerStack);
+
+
+		// create the filter layer, configRegistry can be null for our usecase
+		this.filterStrategy = createFilterStrategy();
+		this.filterColumnHeaderComposite = new FilterRowHeaderComposite<Object>(this.filterStrategy, columnHeaderLayerStack, columnHeaderDataProvider, this);
+
+		// init the filter visibility
+		this.filterColumnHeaderComposite.setFilterRowVisible(HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(this.table).isDisplayFilter());
+
+		final CornerLayer cornerLayer = new CornerLayer(new DataLayer(cornerDataProvider), this.rowHeaderLayerStack, filterColumnHeaderComposite);
 		cornerLayer.addConfiguration(new CornerConfiguration(this));
 
-		this.gridLayer = new PapyrusGridLayer(TransactionUtil.getEditingDomain(tableContext), this.bodyLayerStack, this.columnHeaderLayerStack, this.rowHeaderLayerStack, cornerLayer);
+		this.gridLayer = new PapyrusGridLayer(TransactionUtil.getEditingDomain(tableContext), this.bodyLayerStack, filterColumnHeaderComposite, this.rowHeaderLayerStack, cornerLayer);
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		this.natTable = new NatTable(parent, this.gridLayer, false);
-
-
 
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
 
 		this.natTable.addConfiguration(new CellEditionConfiguration());
 		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
 
-
+		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
 		configureNatTable();
 
 		// initialize the table by checking all its applied styles
@@ -299,19 +370,191 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		}
 
 
-
-
 		new PapyrusNatTableToolTipProvider(this.natTable, GridRegion.BODY, GridRegion.COLUMN_HEADER, GridRegion.ROW_HEADER);
+		initResourceSetListener();
 		return this.natTable;
 	}
 
+
+	/**
+	 * @return
+	 *         the filter strategy to use
+	 */
+	protected abstract IFilterStrategy<Object> createFilterStrategy();
+
+
+	/**
+	 * TODO : should be refactored with resourceset used in NattableModelManager
+	 */
+	private void initResourceSetListener() {
+		// resourceSetListener used to capture table style modification
+		// these events can be used to undo/redo previous actions
+		resourceSetListener = new ResourceSetListener() {
+
+			@Override
+			public Command transactionAboutToCommit(ResourceSetChangeEvent event) throws RollbackException {
+				return null;
+			}
+
+			@Override
+			public void resourceSetChanged(ResourceSetChangeEvent event) {
+
+				for (final Notification notification : event.getNotifications()) {
+					// filter the events to only let through the changes on the current table resource
+					Table notifiedTable = findTable(notification);
+					if (getTable().equals(notifiedTable)) {
+
+						Display.getDefault().asyncExec(new Runnable() {
+
+							@Override
+							public void run() {
+
+								Object notifier = notification.getNotifier();
+								Object feature = notification.getFeature();
+								Object newValue = notification.getNewValue();
+								Object oldValue = notification.getOldValue();
+								if (notifier instanceof LocalTableHeaderAxisConfiguration) {
+									boolean onColumnOnModel = getTable().getLocalColumnHeaderAxisConfiguration() == notifier;
+									boolean isInverted = table.isInvertAxis();
+
+									if (feature == NattableaxisconfigurationPackage.eINSTANCE.getAbstractHeaderAxisConfiguration_DisplayFilter() && newValue instanceof Boolean) {
+										if ((onColumnOnModel && !isInverted) || (!onColumnOnModel && isInverted)) {
+											AbstractNattableWidgetManager.this.filterColumnHeaderComposite.setFilterRowVisible(((Boolean) newValue).booleanValue());
+											natTable.refresh();
+										}
+									}
+								} else if (notifier instanceof Table && feature == NattablePackage.eINSTANCE.getTable_InvertAxis()) {
+									// TODO : replace the listener and its action done in NattableModelManger by this one
+									AbstractNattableWidgetManager.this.filterColumnHeaderComposite.setFilterRowVisible(HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(getTable()).isDisplayFilter());
+									natTable.refresh();
+								} else if (notifier instanceof IAxis || notifier instanceof StringValueStyle || notifier instanceof StringListValueStyle) {
+									boolean refreshFilter = false;
+									IAxis axisToRefresh = null;
+									if (notifier instanceof IAxis) {
+										axisToRefresh = (IAxis) notifier;
+										if (oldValue instanceof NamedStyle && IFilterConfiguration.FILTER_VALUE_TO_MATCH.equals(((NamedStyle) oldValue).getName())) {
+											// we need to replay the filter
+											refreshFilter = true;
+										} else if (newValue instanceof NamedStyle && IFilterConfiguration.FILTER_VALUE_TO_MATCH.equals(((NamedStyle) newValue).getName())) {
+											refreshFilter = true;
+										}
+									}
+									if ((notifier instanceof StringValueStyle || notifier instanceof StringListValueStyle) && IFilterConfiguration.FILTER_VALUE_TO_MATCH.equals(((NamedStyle) notifier).getName())) {
+										EObject container = ((NamedStyle) notifier).eContainer();
+										if (container instanceof IAxis) {
+											axisToRefresh = (IAxis) container;
+											refreshFilter = true;
+										}
+									}
+									if(refreshFilter && axisToRefresh!=null){
+										//we need to update the filter map value (manage Undo/Redo for example)
+										int index = -1;
+										if(table.isInvertAxis() && getRowElementsList().contains(axisToRefresh)){
+											index = getRowElementsList().indexOf(axisToRefresh);
+										}else if(!table.isInvertAxis() && getColumnElementsList().contains(axisToRefresh)){
+											index = getColumnElementsList().indexOf(axisToRefresh);
+										}
+										if(index!=-1){
+											filterColumnHeaderComposite.doCommand(new UpdateFilterMapCommand(index));
+										}
+										
+									}
+								}
+							}
+						});
+					}
+				}
+			}
+
+			@Override
+			public boolean isPrecommitOnly() {
+				return false;
+			}
+
+			@Override
+			public boolean isPostcommitOnly() {
+				return false;
+			}
+
+			@Override
+			public boolean isAggregatePrecommitListener() {
+				return false;
+			}
+
+			@Override
+			public NotificationFilter getFilter() {
+				// this filter only lets through the notifications pertaining to the table
+				// the first three conditions handle the modification, the add and the remove of styles
+				// the last seven handle the modified or created objects containing those styles
+				return ((NotificationFilter.createEventTypeFilter(Notification.SET))
+						.or(NotificationFilter.createEventTypeFilter(Notification.ADD))
+						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
+						.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
+								.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
+								.or(NotificationFilter.createNotifierTypeFilter(Style.class))
+								.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
+								.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
+								.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+								.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
+								.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
+				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
+			}
+		};
+
+		this.tableEditingDomain.addResourceSetListener(resourceSetListener);
+	}
+
+	/**
+	 *
+	 * @param notification
+	 * @return
+	 *         The nearest table containing the style in order to verify the table's styled event's source
+	 */
+	protected static Table findTable(Notification notification) {
+		if (notification.getNotifier() instanceof Table) {
+			return (Table) notification.getNotifier();
+		}
+		else {
+			Object notifier = notification.getNotifier();
+			if (notifier instanceof EObject) {
+				EObject container = ((EObject) notifier).eContainer();
+				while (!(container instanceof Table) && container != null) {
+					container = container.eContainer();
+				}
+				return (Table) container;
+			}
+			return null;
+		}
+	}
+
+	/**
+	 * 
+	 * @param bodyLayerStack
+	 *            the body layer stack to use
+	 * 
+	 * @return
+	 *         the row header layer stack to use
+	 */
+	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
+		return new RowHeaderLayerStack(bodyLayerStack, this);
+	}
+
 	protected void configureNatTable() {
+
 		if (this.natTable != null && !this.natTable.isDisposed()) {
 			ConfigRegistry configRegistry = new ConfigRegistry();
+
+			// could be done by config file!
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
 			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 			// commented because seems generate several bugs with edition
 			// newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, GridRegion.BODY);
+
+			// configuration used by filter
+			ObjectNameAndPathDisplayConverter converter = new ObjectNameAndPathDisplayConverter(getLabelProviderService());
+			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
+			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
+
 			this.natTable.setConfigRegistry(configRegistry);
 			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
 			this.natTable.configure();
@@ -320,12 +563,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 
 	private LabelProviderService getLabelProviderService() {
-		//FIXME: avoid spam-log of ServiceExceptions when configuring a Table without a Context (Especially during tests), 
-		//but there is probably something wrong if we're in this case 
-		if (this.table == null || this.table.getContext() == null){
-			return null;
-		}
-		
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
@@ -866,6 +1103,15 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			this.columnHeaderDataProvider.dispose();
 		}
 
+
+		if (this.tableEditingDomain != null && this.resourceSetListener != null) {
+			this.tableEditingDomain.removeResourceSetListener(this.resourceSetListener);
+		}
+		if (this.filterStrategy instanceof IDisposable) {
+			((IDisposable) this.filterStrategy).dispose();
+		}
+		this.tableEditingDomain = null;
+		this.contextEditingDomain = null;
 		this.tableContext = null;
 	}
 
@@ -1323,6 +1569,20 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
+	 * this method is used to update the state of the toggle actions for table
+	 */
+	protected void updateToggleActionState() {
+		final ICommandService commandService = EclipseCommandUtils.getCommandService();
+		if (commandService != null) {
+			final AbstractHeaderAxisConfiguration columnAxisConfiguration = HeaderAxisConfigurationManagementUtils.getColumnAbstractHeaderAxisConfigurationUsedInTable(getTable());
+
+			// update the header configuration
+			org.eclipse.core.commands.Command command = commandService.getCommand(CommandIds.COMMAND_COLUMN_DISPLAY_FILTER_ID);
+			EclipseCommandUtils.updateToggleCommandState(command, columnAxisConfiguration.isDisplayFilter());
+		}
+	}
+
+	/**
 	 *
 	 * @return
 	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
@@ -1339,7 +1599,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 *
+	 * 
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 *
 	 * @param adapter
@@ -1368,7 +1628,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 */
@@ -1381,10 +1641,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         a map representing index of fully selected rows linked to the associated element
-	 *
+	 * 
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedRows() {
@@ -1399,10 +1659,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
 	 *         a map representing index of fully selected columns linked to the associated element
-	 *
+	 * 
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedColumns() {

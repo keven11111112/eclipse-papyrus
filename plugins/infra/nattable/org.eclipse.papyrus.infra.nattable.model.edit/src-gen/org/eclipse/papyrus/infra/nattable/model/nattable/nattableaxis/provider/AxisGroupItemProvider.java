@@ -32,7 +32,7 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.provider.NattableEditPl
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.AxisGroup} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- *
+ * 
  * @generated
  */
 public class AxisGroupItemProvider extends StyledElementItemProvider {
@@ -40,7 +40,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	public AxisGroupItemProvider(AdapterFactory adapterFactory) {
@@ -51,7 +51,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This returns the property descriptors for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -70,7 +70,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This adds a property descriptor for the Manager feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addManagerPropertyDescriptor(Object object) {
@@ -93,7 +93,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This adds a property descriptor for the Alias feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addAliasPropertyDescriptor(Object object) {
@@ -116,7 +116,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This adds a property descriptor for the Grouped Axis feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	protected void addGroupedAxisPropertyDescriptor(Object object) {
@@ -139,7 +139,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This returns AxisGroup.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -151,7 +151,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -168,7 +168,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -188,7 +188,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * that can be created under this object.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override
@@ -200,7 +200,7 @@ public class AxisGroupItemProvider extends StyledElementItemProvider {
 	 * Return the resource locator for this item provider's resources.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
+	 * 
 	 * @generated
 	 */
 	@Override

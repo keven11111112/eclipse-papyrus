@@ -43,6 +43,10 @@ class ElementTypeRule {
 
         // Basics
         identifier = umlExtension.toElementTypeID(supertype)
+        if (supertype.hasSemanticSupertype) {
+            // Add the base semantic type in addition to the parent visual type
+            specializedTypesID.add(umlExtension.toElementTypeID(umlExtension.metaclass.elementTypeConfiguration))
+        }
         specializedTypesID.add(supertype.identifier)
         hint = supertype.hint
         name = umlExtension.toElementTypeName(supertype)
@@ -51,8 +55,10 @@ class ElementTypeRule {
         var icon = umlExtension.stereotype.iconEntry
         iconEntry = if(icon != null) icon else umlExtension.metaclass.iconEntry
 
-        // Add stereotype matcher
-        matcherConfiguration = umlExtension.toMatcherConfiguration(supertype)
+        // Add stereotype matcher, if it isn't inherited from a semantic supertype
+        if (!supertype.hasSemanticSupertype) {
+            matcherConfiguration = umlExtension.toMatcherConfiguration(supertype)
+        }
     }
 
     private def create createStereotypeApplicationMatcherConfiguration toMatcherConfiguration(ImpliedExtension umlExtension,
