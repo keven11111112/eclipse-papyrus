@@ -17,12 +17,14 @@
 
 package org.eclipse.papyrus.uml.service.validation.oclpivot;
 
-import java.lang.ref.Reference;
 import java.lang.ref.WeakReference;
+import java.util.HashMap;
+import java.util.Map;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.validation.IValidationContext;
 import org.eclipse.emf.validation.model.ConstraintStatus;
 import org.eclipse.emf.validation.model.IModelConstraint;
@@ -33,8 +35,6 @@ import org.eclipse.ocl.examples.pivot.OCL;
 import org.eclipse.ocl.examples.pivot.ParserException;
 import org.eclipse.ocl.examples.pivot.Type;
 import org.eclipse.ocl.examples.pivot.helper.OCLHelper;
-import org.eclipse.ocl.examples.pivot.manager.MetaModelManager;
-import org.eclipse.ocl.examples.pivot.utilities.PivotEnvironmentFactory;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -43,23 +43,54 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * the validation with the pivot OCL variant, see bug 436296 - [Validation] DSML plugin generation is broken
  *
  * @link org.eclipse.emf.validation.ocl.AbstractOCLModelConstraint
- *
- * @author Ansgar Radermacher
  */
 public abstract class AbstractOCLpivotModelConstraint implements IModelConstraint {
 
-	private final IConstraintDescriptor descriptor;
+	protected static final class OCLAndQueries {
+		/**
+		 * Constructor that initializes OCL
+		 */
+		public OCLAndQueries() {
+			ocl = OCL.newInstance();
+			queries = new HashMap<IModelConstraint, ExpressionInOCL>();
+		}
+
+		OCL ocl;
+		Map<IModelConstraint, ExpressionInOCL> queries;
+	}
 
 	/**
-	 * A separate query is maintained for each EClass of model object that this
-	 * constraint handles. Maintain the values in weak references also, because
-	 * the queries reference the EClasses that are the keys!
+	 * WeakOCLReference maintains the reference to the OCL instances. Inspired by class of same name in UMLOCLEvalidator
+	 * (which cannot be reused directly, as it is protected).
 	 */
-	private final java.util.Map<Stereotype, Reference<?>> queries = new java.util.WeakHashMap<Stereotype, Reference<?>>();
+	protected static final class WeakOCLReference extends WeakReference<OCLAndQueries>
+	{
+		protected WeakOCLReference(OCLAndQueries ocl) {
+			super(ocl);
+			// create copy, since get() already returns null, when finalizer gets called 
+			oclCopy = ocl;
+		}
 
-	private QueryManager queryManager;
+		OCLAndQueries oclCopy;
+		
+		@Override
+		public void finalize() {
+			new Thread("OCLandQueries-Finalizer") //$NON-NLS-1$
+			{
+				@Override
+				public void run() {
+					if (oclCopy.queries != null) {
+						oclCopy.queries.clear();
+					}
+					oclCopy.ocl.dispose();
+				}
+			}.start();
+		}
+	}
 
-	protected static OCL oclInstance = null;
+	private final IConstraintDescriptor descriptor;
+
+	protected static Map<ResourceSet, WeakOCLReference> oclRefMap = null;
 
 	/**
 	 * Initializes me with the <code>descriptor</code> which contains my OCL
@@ -74,15 +105,35 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 	}
 
 	/**
-	 * Obtains the cached OCL query/constraint that implements me for the
-	 * specified element's metaclass.
+	 * Return the OCL context for the validation, caching the created value in the validation context for re-use by
+	 * further validations. The cached reference is weak to ensure that the OCL context is disposed once no longer in use.
+	 */
+	protected synchronized OCLAndQueries getOCL(EObject element) {
+		ResourceSet rs = element.eResource().getResourceSet();
+		if (oclRefMap == null) {
+			oclRefMap = new HashMap<ResourceSet, WeakOCLReference>();
+		}
+		WeakOCLReference oclRef = oclRefMap.get(rs);
+		if ((oclRef == null) || (oclRef.get() == null)) {
+			oclRef = new WeakOCLReference(new OCLAndQueries());
+			oclRefMap.put(rs, oclRef);
+		}
+		return oclRef.get();
+	}
+
+
+	/**
+	 * Obtain the cached OCL query/constraint
 	 * 
 	 * @param target
-	 *            a model element
+	 *            a model element (typically stereotype application)
+	 * @param ocl
+	 *            an OCL instance
+	 * @param queries
+	 *            map a map between constraint and query. Used to cache queries.
 	 * @return the corresponding OCL query
 	 */
-	public ExpressionInOCL getConstraintCondition(EObject target) {
-		ExpressionInOCL result = null;
+	public ExpressionInOCL getConstraintCondition(EObject target, OCL ocl, Map<IModelConstraint, ExpressionInOCL> queries) {
 
 		Stereotype umlStereotype = UMLUtil.getStereotype(target);
 
@@ -90,26 +141,15 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 			return null;
 		}
 
-		@SuppressWarnings("unchecked")
-		Reference<ExpressionInOCL> reference = (Reference<ExpressionInOCL>) queries.get(umlStereotype);
-		if (reference != null) {
-			result = reference.get();
-		}
+		ExpressionInOCL result = queries.get(this);
 
 		if (result == null) {
-			// lazily initialize the condition.
-			if (oclInstance == null) {
-				OCL.initialize(null);
-				PivotEnvironmentFactory pef = new PivotEnvironmentFactory(null,
-						new MetaModelManager());
-				oclInstance = OCL.newInstance(pef);
-			}
-
-			OCLHelper oclHelper = oclInstance.createOCLHelper();
+			// create query, if not existing yet
+			OCLHelper oclHelper = ocl.createOCLHelper();
 
 			try {
 				NamedElement context =
-						oclInstance.getMetaModelManager().getPivotOf(NamedElement.class, umlStereotype);
+						ocl.getMetaModelManager().getPivotOf(NamedElement.class, umlStereotype);
 
 				oclHelper.setContext((Type) context);
 
@@ -118,76 +158,59 @@ public abstract class AbstractOCLpivotModelConstraint implements IModelConstrain
 			} catch (ParserException parserException) {
 				throw new WrappedException(parserException);
 			}
-
-			queries.put(umlStereotype, new WeakReference<ExpressionInOCL>(
-					result));
+			queries.put(this, result);
 		}
 
 		return result;
 	}
 
-	// implements the inherited method
+	/**
+	 * Implement inherited validation method
+	 *
+	 * @see org.eclipse.emf.validation.model.IModelConstraint#validate(org.eclipse.emf.validation.IValidationContext)
+	 *
+	 * @param ctx
+	 *            the validation context
+	 * @return the result of the query evaluation in form of a status entry
+	 */
 	public IStatus validate(IValidationContext ctx) {
 		EObject target = ctx.getTarget();
 
 		try {
-			if (getQueryManager().check(target)) {
+			OCLAndQueries oclAndQueries = getOCL(target);
+			ExpressionInOCL query = getConstraintCondition(target, oclAndQueries.ocl, oclAndQueries.queries);
+			Object evaluationResult = oclAndQueries.ocl.evaluate(target, query);
+			if (evaluationResult instanceof Boolean) {
+				Boolean boolResult = ((Boolean) evaluationResult);
+				if (boolResult) {
+					return ctx.createSuccessStatus();
+				}
+				else {
+					// OCL constraints only support the target object as an extraction
+					// variable and result locus, as OCL has no way to provide
+					// additional extractions. Also, there is no way for the OCL
+					// to access the context object
+					return ctx.createFailureStatus(target);
+				}
+			}
+			else {
+				// don't handle non boolean results, treat as non-failure (evaluation visitor framework used in Mars revision)
 				return ctx.createSuccessStatus();
-			} else {
-				// OCL constraints only support the target object as an extraction
-				// variable and result locus, as OCL has no way to provide
-				// additional extractions. Also, there is no way for the OCL
-				// to access the context object
-				return ctx.createFailureStatus(target);
 			}
 
 		} catch (Exception e) {
 			// do not raise an exception, but create a failure status. This is consistent with
 			// the behavior of the "in-profile" OCL pivot validation.
-			String message = String.format("The '%s' constraint is invalid - %s", getDescriptor().getName(), e.getMessage());
+			String message = String.format("The '%s' constraint is invalid - %s", getDescriptor().getName(), e.getMessage()); //$NON-NLS-1$
 			return new ConstraintStatus(this, target, IStatus.ERROR, -1,
 					message, null);
 		}
 	}
 
-	private QueryManager getQueryManager() {
-		if (queryManager == null) {
-			queryManager = new QueryManager();
-		}
-
-		return queryManager;
-	}
-
-	/*
-	 * (non-Javadoc) Implements the interface method.
+	/**
+	 * return the constraint descriptor
 	 */
 	public IConstraintDescriptor getDescriptor() {
 		return descriptor;
-	}
-
-	/**
-	 * An object that knows how to obtain and evaluate the query implementation
-	 * appropriate to the constraint's environment factory, accounting for
-	 * whether it is using the OCL 1.0 or later API.
-	 *
-	 * @author Christian W. Damus (cdamus)
-	 */
-	private final class QueryManager {
-
-		QueryManager() {
-		}
-
-		/**
-		 * Obtains and checks the appropriate parsed constraint for the
-		 * specified target element.
-		 * 
-		 * @param target
-		 *            an element to be validated
-		 * @return whether it passed the constraint
-		 */
-		boolean check(EObject target) {
-			ExpressionInOCL query = getConstraintCondition(target);
-			return (Boolean) oclInstance.evaluate(target, query);
-		}
 	}
 }
