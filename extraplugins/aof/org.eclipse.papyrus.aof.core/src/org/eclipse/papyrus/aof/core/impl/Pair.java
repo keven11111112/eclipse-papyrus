@@ -34,7 +34,17 @@ public class Pair<A, B> implements IPair<A, B> {
 
 	// Object
 
+	@Override
 	public String toString() {
 		return "(" + first.toString() + ", " + second.toString() + ")";
+	}
+	@Override
+	public boolean equals(Object other) {
+		if (other instanceof Pair<?, ?>) {
+			Pair<A, B> that = (Pair<A, B>) other;
+			return this.first.equals(that.first) && this.second.equals(that.second);
+		}
+		else
+			return false;
 	}
 }

@@ -7,4 +7,5 @@ Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Export-Package: org.eclipse.papyrus.aof.core,
  org.eclipse.papyrus.aof.core.impl,
  org.eclipse.papyrus.aof.core.impl.delegate,
+ org.eclipse.papyrus.aof.core.impl.operation,
  org.eclipse.papyrus.aof.core.impl.utils

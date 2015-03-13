@@ -14,11 +14,16 @@ import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IUnaryFunction;
 import org.eclipse.papyrus.aof.core.impl.utils.JavaPropertyAccessor;
 
+/**
+ * Java-related version of IFactory (additional implementation of BaseFactory)
+ * 
+ */
 public class BaseAOFFactory extends BaseFactory {
 
-	public <A> IBox<A> createBox(Object object, Object property) {
+	public <A> IBox<A> createPropertyBox(Object object, Object property) {
 		// TODO JavaBean introspection on getter returning the corresponding Box
-		return null;
+		throw new UnsupportedOperationException("Method not implemented yet.");
+		//return null;
 	}
 
 	public <A, B> IUnaryFunction<A, IBox<B>> createPropertyAccessor(Object property) {

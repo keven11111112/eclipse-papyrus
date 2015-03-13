@@ -45,7 +45,7 @@ public class Times<A> extends Operation<A> {
 
 	protected class ObserverA extends DefaultObserver<A> {
 
-		public void created(Iterable<A> eleements) {
+		public void created(Iterable<A> elements) {
 			if ((n.size() > 0) && (a.size() > 0)) {
 				for (int i = 0; i < n.get(0); i++)
 					getResult().append(a.get(0));

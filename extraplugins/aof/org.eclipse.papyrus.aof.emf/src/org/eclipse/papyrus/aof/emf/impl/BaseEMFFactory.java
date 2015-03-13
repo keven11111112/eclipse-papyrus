@@ -26,7 +26,7 @@ import org.eclipse.papyrus.aof.emf.impl.utils.EMFFeatureAccessor;
 
 public class BaseEMFFactory extends BaseFactory {
 
-	public <A> IBox<A> createBox(Object object, Object property) {
+	public <A> IBox<A> createPropertyBox(Object object, Object property) {
 		if ((object instanceof EObject) && (property instanceof EStructuralFeature)) {
 			EObject eobject = (EObject) object;
 			EStructuralFeature feature = (EStructuralFeature) property;
@@ -42,7 +42,7 @@ public class BaseEMFFactory extends BaseFactory {
 		else if (!(object instanceof EObject)) {
 			throw new IllegalArgumentException("Object " + object + " is not an EObject");
 		}
-		else /* if (!(property instanceof EStructuralFeature)) */{
+		else /* if (!(property instanceof EStructuralFeature)) */ {
 			throw new IllegalArgumentException("Property " + property + " is not an EStructuralFeature");
 		}
 	}

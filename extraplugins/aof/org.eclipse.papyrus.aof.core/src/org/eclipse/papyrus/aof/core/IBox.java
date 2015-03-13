@@ -25,5 +25,10 @@ public interface IBox<A> extends IConstrained, IReadable<A>, IWritable<A>, IObse
 	<B> IBox<B> map(IUnaryFunction<A, B> f);
 
 	<B> IBox<B> path(IFactory factory, Object aMetaClass, Object property) throws ClassNotFoundException;
+	IBox<A> select(IBox<Boolean> b);
+
+	IBox<A> select(IUnaryFunction<A, Boolean> f);
+
+	<B> IBox<IPair<A, B>> zip(IBox<B> b);
 
 }

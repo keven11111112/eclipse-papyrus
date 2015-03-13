@@ -31,7 +31,7 @@ public class EMFFeatureAccessor<A, B> implements IUnaryFunction<A, IBox<B>> {
 	public IBox<B> apply(A object) {
 		Object result = cache.getTarget(object, feature);
 		if (result == null) {
-			result = EMFFactory.INSTANCE.createBox(object, feature);
+			result = EMFFactory.INSTANCE.createPropertyBox(object, feature);
 			cache.addLink(object, feature, result);
 		}
 		return (IBox<B>) result;

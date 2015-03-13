@@ -11,5 +11,6 @@
 package org.eclipse.papyrus.aof.core;
 
 public interface IOne<A> extends ISingleton<A> {
-	// TODO default value for One boxes
+	
+	public A getDefaultElement();
 }

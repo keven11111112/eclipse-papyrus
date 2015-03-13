@@ -41,6 +41,10 @@ public class Apply<A, B> extends Operation<B> {
 	public boolean isUnique() {
 		return false;
 	}
+	
+	public IBox<A> getInternalBox(){
+		return a;
+	}
 
 	protected class ObserverA extends DefaultObserver<A> {
 
