@@ -104,9 +104,9 @@ public class PropertyLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (object == null || property == null) {
 			return;
 		}
-		if (notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralInteger_Value())) {
+		if (UMLPackage.eINSTANCE.getLiteralInteger_Value().equals(notification.getFeature())) {
 			refreshDisplay();
-		} else if (notification.getFeature().equals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value())) {
+		} else if (UMLPackage.eINSTANCE.getLiteralUnlimitedNatural_Value().equals(notification.getFeature())) {
 			refreshDisplay();
 		}
 		if (object.equals(property)) {
