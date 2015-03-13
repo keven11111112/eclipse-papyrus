@@ -193,8 +193,7 @@
 		identifier="org.eclipse.papyrus.uml.Association" hint="UML::Association">
 		<iconEntry xmi:id="_vYYlEFYTEeSx49G4xBUj9Q" iconPath="/icons/full/obj16/Association.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.papyrus.uml.AssociationBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.AssociationBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_4Jz-cFYTEeSx49G4xBUj9Q"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice" />
 		<matcherConfiguration xmi:id="_-lvgEFYTEeSx49G4xBUj9Q"
@@ -215,8 +214,7 @@
 		identifier="org.eclipse.papyrus.uml.AssociationClass" hint="UML::AssociationClass">
 		<iconEntry xmi:id="_2Jg4EHV3EeScr8rbRObDkA" iconPath="/icons/full/obj16/AssociationClass.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.papyrus.uml.AssociationClassBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.AssociationClassBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_2Jg4EXV3EeScr8rbRObDkA"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.AssociationEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -354,8 +352,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_kyfxEH67EeSVzvxdAiQ3xA" name="UML::ClassifierTemplateParameter"
 		identifier="org.eclipse.papyrus.uml.ClassifierTemplateParameter" hint="UML::ClassifierTemplateParameter">
-		<specializedTypesID>org.eclipse.papyrus.uml.ClassifierTemplateParameterBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.ClassifierTemplateParameterBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_uuHFoH67EeSVzvxdAiQ3xA"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierTemplateParameterEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -413,8 +410,7 @@
 		hint="UML::Collaboration::CollaborationRole">
 		<iconEntry xmi:id="_XvNAUMc9EeS1POoqrCEMrQ" iconPath="/icons/full/obj16/ConnectableElement.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_8m8kIMc9EeS1POoqrCEMrQ"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationCollaborationRoleEditHelperAdvice"
 			inheritance="all" />
@@ -450,8 +446,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_poCSAGqWEeSE-IVtP6jQeA" name="UML::Comment::AnnotatedElements"
 		identifier="org.eclipse.papyrus.uml.Comment.AnnotatedElements" hint="UML::Comment::AnnotatedElements">
-		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_6-K50HY7EeSaAZaF2vKiqg"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CommentAnnotatedElementsEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -517,8 +512,7 @@
 		xmi:id="_yjhpkJXIEeSmV5hdT3HeBw" name="UML::ConnectableElementTemplateParameter"
 		identifier="org.eclipse.papyrus.uml.ConnectableElementTemplateParameter"
 		hint="UML::ConnectableElementTemplateParameter">
-		<specializedTypesID>org.eclipse.papyrus.uml.ConnectableElementTemplateParameterBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.ConnectableElementTemplateParameterBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_yjhpkZXIEeSmV5hdT3HeBw"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConnectableElementTemplateParameterEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -574,8 +568,7 @@
 		xmi:id="_XHjzcGslEeSELtwF_9-6fg" name="UML::Constraint::ConstrainedElements"
 		identifier="org.eclipse.papyrus.uml.Constraint.ConstrainedElements"
 		hint="UML::Constraint::ConstrainedElements">
-		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_njRJoHbmEeSsxehP964iKQ"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintConstrainedElementsEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -583,8 +576,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_ax9dwHZLEeSQEpHemLeWnw" name="UML::Constraint::Context"
 		identifier="org.eclipse.papyrus.uml.Constraint.Context" hint="UML::Constraint::Context">
-		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_rZSY8HbmEeSsxehP964iKQ"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -686,8 +678,7 @@
 		hint="UML::CollaborationUse::RoleBinding">
 		<iconEntry xmi:id="_m8FswLhAEeSANYuUIb1qQA" iconPath="/icons/CollaborationRoleBinding.gif"
 			bundleId="org.eclipse.papyrus.uml.service.types" />
-		<specializedTypesID>org.eclipse.papyrus.uml.Dependency
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_Ao6QQLhBEeSANYuUIb1qQA"
 			identifier=""
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.RoleBindingHelperAdvice"
@@ -834,8 +825,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_Dx12sJzPEeSEObywEoz_Cw" name="UML::ElementImport"
 		identifier="org.eclipse.papyrus.uml.ElementImport" hint="UML::ElementImport">
-		<specializedTypesID>org.eclipse.papyrus.uml.ElementImportBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.ElementImportBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_TB2dEJzPEeSEObywEoz_Cw"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ElementImportEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -965,8 +955,7 @@
 		hint="UML::Extend">
 		<iconEntry xmi:id="_t3ycMFrNEeSNSq3G9Z6fKQ" iconPath="/icons/full/obj16/Extend.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.papyrus.uml.ExtendBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.ExtendBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_8QiDYFrNEeSNSq3G9Z6fKQ"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ExtendEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -1118,8 +1107,7 @@
 		identifier="org.eclipse.papyrus.uml.InformationFlow" hint="UML::InformationFlow">
 		<iconEntry xmi:id="_jt-DYLgeEeSANYuUIb1qQA" iconPath="/icons/full/obj16/InformationFlow.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.papyrus.uml.InformationFlowBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.InformationFlowBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_lfPMsLgeEeSANYuUIb1qQA"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.InformationFlowEditHelperAdvice"
 			inheritance="all" />
@@ -1165,8 +1153,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_bvHrYJXNEeSmV5hdT3HeBw" name="UML::InstanceSpecification::Link"
 		identifier="org.eclipse.papyrus.uml.InstanceSpecification.Link" hint="UML::InstanceSpecification::Link">
-		<specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_bvHrYZXNEeSmV5hdT3HeBw"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.InstanceSpecificationEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -1595,8 +1582,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_vg_QMJXJEeSmV5hdT3HeBw" name="UML::OperationTemplateParameter"
 		identifier="org.eclipse.papyrus.uml.OperationTemplateParameter" hint="UML::OperationTemplateParameter">
-		<specializedTypesID>org.eclipse.papyrus.uml.OperationTemplateParameterBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.OperationTemplateParameterBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_vg_QMZXJEeSmV5hdT3HeBw"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.OperationTemplateParameterEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -1631,8 +1617,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_8kkk8GN5EeSrwvaW5Is9PQ" name="UML::PackageImport"
 		identifier="org.eclipse.papyrus.uml.PackageImport" hint="UML::PackageImport">
-		<specializedTypesID>org.eclipse.papyrus.uml.PackageImportBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.PackageImportBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_LSLo4GN6EeSrwvaW5Is9PQ"
 			identifier=""
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.PackageImportEditHelperAdvice" />
@@ -1650,8 +1635,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_5VbKkGOIEeSw8rz5ZQEURQ" name="UML::PackageMerge"
 		identifier="org.eclipse.papyrus.uml.PackageMerge" hint="UML::PackageMerge">
-		<specializedTypesID>org.eclipse.papyrus.uml.PackageMergeBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.PackageMergeBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_EJxd8GOJEeSw8rz5ZQEURQ"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.PackageMergeEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -1758,8 +1742,7 @@
 		identifier="org.eclipse.papyrus.uml.PropertyPart" hint="UML::PropertyPart">
 		<iconEntry xmi:id="_5SIO8LhLEeSANYuUIb1qQA" iconPath="/icons/full/obj16/Property.gif"
 			bundleId="org.eclipse.uml2.uml.edit" />
-		<specializedTypesID>org.eclipse.papyrus.uml.Property
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_509PMLhLEeSANYuUIb1qQA"
 			identifier=""
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyPartHelperAdvice"
@@ -2188,8 +2171,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_JCgQsJXMEeSmV5hdT3HeBw" name="UML::TemplateParameter"
 		identifier="org.eclipse.papyrus.uml.TemplateParameter" hint="UML::TemplateParameter">
-		<specializedTypesID>org.eclipse.papyrus.uml.TemplateParameterBase
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.TemplateParameterBase</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_JCgQsZXMEeSmV5hdT3HeBw"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.TemplateParameterEditHelperAdvice" />
 	</elementTypeConfigurations>
@@ -2425,8 +2407,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_JPmakGskEeSELtwF_9-6fg" name="UML::Trace" identifier="org.eclipse.papyrus.uml.Trace"
 		hint="UML::Trace">
-		<specializedTypesID>org.eclipse.papyrus.uml.Abstraction
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_JPmakWskEeSELtwF_9-6fg"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.TraceEditHelperAdvice" />
 		<matcherConfiguration xmi:id="_LDOUUGskEeSELtwF_9-6fg"
@@ -2436,8 +2417,7 @@
 		xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
 		xmi:id="_UGdZ8GslEeSELtwF_9-6fg" name="UML::Refine" identifier="org.eclipse.papyrus.uml.Refine"
 		hint="UML::Refine">
-		<specializedTypesID>org.eclipse.papyrus.uml.Abstraction
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.papyrus.uml.Abstraction</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_UGdZ8WslEeSELtwF_9-6fg"
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.RefineEditHelperAdvice" />
 		<matcherConfiguration xmi:id="_UGdZ8mslEeSELtwF_9-6fg"
@@ -2448,8 +2428,7 @@
 		xmi:id="_xVU0MHlEEeSDaJF_npeEXw" name="UML::Element::OwnedElement"
 		description="Created to support the ContainmentLink" identifier="org.eclipse.papyrus.uml.Element.OwnedElement"
 		hint="UML::Element::OwnedElement">
-		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null
-		</specializedTypesID>
+		<specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
 		<editHelperAdviceConfiguration xmi:id="_JdUX4MHTEeSpuJnfbRdiWQ"
 			identifier=""
 			editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ElementOwnedElementEditHelperAdvice"
