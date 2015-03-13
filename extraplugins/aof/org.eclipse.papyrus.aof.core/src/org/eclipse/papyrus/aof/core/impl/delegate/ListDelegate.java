@@ -61,8 +61,11 @@ public class ListDelegate<A> extends BaseDelegate<A> {
 
 	public void replace(int index, A element) {
 		A previousElement = list.set(index, element);
-		for (IObserver<A> observer : getObservers()) {
-			observer.replaced(index, previousElement, element);
+		// Do not propagate notifications if the element already exists
+		if(!previousElement.equals(element)){
+			for (IObserver<A> observer : getObservers()) {
+				observer.replaced(index, previousElement, element);
+			}
 		}
 	}
 

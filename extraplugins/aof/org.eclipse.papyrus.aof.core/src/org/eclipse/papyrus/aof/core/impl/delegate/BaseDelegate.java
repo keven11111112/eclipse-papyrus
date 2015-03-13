@@ -47,8 +47,11 @@ public abstract class BaseDelegate<A> implements IReadable<A>, IWritable<A>, IOb
 	}
 
 	public void assign(Iterable<A> iterable) {
-		for (A element : iterable) {
-			append(element);
+		if(iterable != null){
+			clear();
+			for (A element : iterable) {
+				append(element);
+			}
 		}
 	}
 

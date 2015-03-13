@@ -31,6 +31,9 @@ public abstract class Box<A> implements IBox<A> {
 
 	private BaseDelegate<A> delegate;
 
+	public BaseDelegate<A> getDelegate() {
+		return delegate;
+	}
 	protected void setDelegate(BaseDelegate<A> delegate) {
 		this.delegate = delegate;
 	}
@@ -82,13 +85,13 @@ public abstract class Box<A> implements IBox<A> {
 		if ((index < 0) || (index > size())) {
 			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + size() + "]");
 		}
-		if (!isUnique() || (indexOf(element) != -1)) {
+		if (!isUnique() || (indexOf(element) == -1)) {
 			delegate.add(index, element);
 		}
 	}
 
 	public void append(A element) {
-		if (!isUnique() || (indexOf(element) != -1)) {
+		if (!isUnique() || (indexOf(element) == -1)) {
 			delegate.append(element);
 		}
 	}
@@ -110,7 +113,7 @@ public abstract class Box<A> implements IBox<A> {
 		if ((index < 0) || (index >= size())) {
 			throw new IndexOutOfBoundsException("Index " + index + " should be in interval [0, " + size() + "[");
 		}
-		if (!isUnique() || (indexOf(element) != -1)) {
+		if (!isUnique() || (indexOf(element) == -1)) {
 			delegate.replace(index, element);
 		}
 	}

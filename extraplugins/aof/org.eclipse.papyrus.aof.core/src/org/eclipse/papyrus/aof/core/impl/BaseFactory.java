@@ -19,18 +19,16 @@ import static org.eclipse.papyrus.aof.core.IBoxType.SET;
 
 import java.util.Arrays;
 
-import javax.naming.InvalidNameException;
-
-import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IBag;
 import org.eclipse.papyrus.aof.core.IBox;
 import org.eclipse.papyrus.aof.core.IConstrained;
+import org.eclipse.papyrus.aof.core.IFactory;
 import org.eclipse.papyrus.aof.core.IOne;
 import org.eclipse.papyrus.aof.core.IOption;
 import org.eclipse.papyrus.aof.core.IOrderedSet;
+import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.ISequence;
 import org.eclipse.papyrus.aof.core.ISet;
-import org.eclipse.papyrus.aof.core.IPair;
 import org.eclipse.papyrus.aof.core.impl.delegate.BaseDelegate;
 import org.eclipse.papyrus.aof.core.impl.delegate.ListDelegate;
 
@@ -79,11 +77,6 @@ public abstract class BaseFactory implements IFactory {
 		return box;
 	}
 
-	public <A> IBox<A> createBox(Object object, String propertyName) throws InvalidNameException {
-		// TODO JavaBean introspection on getter returning the corresponding Box
-		return null;
-	}
-
 	@SuppressWarnings("unchecked")
 	public <A> IOption<A> createOption() {
 		return (IOption<A>) createBox(OPTION);
@@ -94,8 +87,17 @@ public abstract class BaseFactory implements IFactory {
 		return (IOption<A>) createBox(OPTION, element);
 	}
 
-	public <A extends Object> IOne<A> createOne(A element) {
-		return (IOne<A>) createBox(ONE, (A[]) new Object[] { element });
+	@SuppressWarnings("unchecked")
+	public <A> IOne<A> createOne(A defaultElement) {
+		One<A> box = (One<A>) createBox(ONE, defaultElement);
+		box.setDefaultElement(defaultElement);
+		return box;
+	}
+	
+	public <A> IOne<A> createOne(A defaultElement,A initialElement){
+		IOne<A> box = createOne(defaultElement);
+		box.append(initialElement);
+		return box;
 	}
 
 	public <A> ISet<A> createSet(A... elements) {

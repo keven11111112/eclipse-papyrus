@@ -24,7 +24,14 @@ public interface IFactory {
 
 	<A> IOption<A> createOption(A element);
 
-	<A> IOne<A> createOne(A element);
+	/**
+	 * 
+	 * @param defaultElement should never been null - use an Option instead
+	 * @return
+	 */
+	<A> IOne<A> createOne(A defaultElement);
+	
+	<A> IOne<A> createOne(A defaultElement,A initialElement);
 
 	<A> ISet<A> createSet(A... elements);
 
@@ -38,7 +45,7 @@ public interface IFactory {
 	// Platform-dependent model constructors
 
 	// TODO remove first arg
-	<A> IBox<A> createBox(Object object, Object property);
+	<A> IBox<A> createPropertyBox(Object object, Object property);
 
 	<A, B> IUnaryFunction<A, IBox<B>> createPropertyAccessor(Object property); // TODO throws PropertyNotFoundException ?
 
