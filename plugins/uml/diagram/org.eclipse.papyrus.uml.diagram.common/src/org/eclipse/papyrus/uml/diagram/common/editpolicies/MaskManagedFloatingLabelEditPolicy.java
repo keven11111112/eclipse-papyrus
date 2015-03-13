@@ -12,7 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Map;
@@ -24,17 +23,11 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.helper.FloatingLabelHelper;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.TypedElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
-// TODO: Auto-generated Javadoc
 /**
  * Specific edit policy for label displaying stereotypes and their properties for edges representing
  * UML elements.
@@ -77,45 +70,6 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 	 */
 	@Override
 	public Collection<String> getDefaultDisplayValue() {
-		NamedElement umlElement = getUMLElement();
-		if (umlElement != null) {
-
-			/**
-			 * default uml operation display.
-			 */
-			if (umlElement instanceof Operation) {
-				return ICustomAppearance.DEFAULT_UML_OPERATION;
-			}
-
-			/**
-			 * default uml Port ins composite diagrams.
-			 */
-			if (umlElement instanceof Port) {
-				return ICustomAppearance.DEFAULT_UML_PORT;
-			}
-
-			/**
-			 * default uml Parameter in composite diagrams.
-			 */
-			if (umlElement instanceof Parameter) {
-				return ICustomAppearance.DEFAULT_UML_PARAMETER;
-			}
-
-			/**
-			 * default uml instancespecification .
-			 */
-			if (umlElement instanceof InstanceSpecification) {
-				return ICustomAppearance.DEFAULT_UML_INSTANCESPECIFICATION;
-			}
-
-			/**
-			 * default uml Signal .
-			 */
-			if (umlElement instanceof Signal) {
-				return Arrays.asList(ICustomAppearance.DISP_NAME, ICustomAppearance.DISP_TYPE);
-			}
-
-		}
 		return ICustomAppearance.DEFAULT_UML_FLOATING_LABEL;
 	}
 
@@ -248,7 +202,7 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 			getDiagramEventBroker().removeNotificationListener(((MultiplicityElement) umlElement).getLowerValue(), this);
 		}
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractMaskManagedEditPolicy#getCurrentDisplayValue()
 	 *
@@ -256,7 +210,7 @@ public class MaskManagedFloatingLabelEditPolicy extends AbstractMaskManagedEditP
 	 */
 	@Override
 	public Collection<String> getCurrentDisplayValue() {
-		if (getView() == null){
+		if (getView() == null) {
 			return Collections.emptySet();
 		}
 		return super.getCurrentDisplayValue();
