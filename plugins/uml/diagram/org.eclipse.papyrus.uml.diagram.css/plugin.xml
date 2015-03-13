@@ -9,6 +9,12 @@
       </factory>
    </extension>
    <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
+      <stylesheet
+            stylesheetPath="theme/umlBase.css">
+      </stylesheet>
+   </extension>
+   <extension
          point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
       <themeContribution
             id="org.eclipse.papyrus.css.blacknwhite_theme">

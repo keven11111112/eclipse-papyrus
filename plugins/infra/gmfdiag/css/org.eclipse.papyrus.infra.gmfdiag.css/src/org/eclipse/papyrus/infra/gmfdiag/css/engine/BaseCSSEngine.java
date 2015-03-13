@@ -8,12 +8,16 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Mickael adam (ALL4TEC) mickael.adam@all4tec.net - Add of userAgentStyleSheet extension point
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
+import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 
+import org.eclipse.core.runtime.IConfigurationElement;
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.e4.ui.css.core.engine.CSSElementContext;
 import org.eclipse.papyrus.infra.gmfdiag.common.handler.IRefreshHandlerPart;
@@ -35,10 +39,15 @@ import org.w3c.dom.Element;
 @SuppressWarnings("restriction")
 public class BaseCSSEngine extends ExtendedCSSEngineImpl implements IRefreshHandlerPart {
 
+	/** Extension point ID. */
+	public static String EXTENSION_ID = Activator.PLUGIN_ID + ".userAgentStyleSheet"; //$NON-NLS-1$
+
 	private BaseCSSEngine() {
 		RefreshHandler.register(this);
 		try {
 			styleSheetURLs.add(new URL("platform:/plugin/" + Activator.PLUGIN_ID + "/resources/base.css")); //$NON-NLS-1$ //$NON-NLS-2$
+			//Loads contribution from extension point
+			loadCSSContributions();
 		} catch (MalformedURLException ex) {
 			Activator.log.error(ex);
 		}
@@ -88,5 +97,27 @@ public class BaseCSSEngine extends ExtendedCSSEngineImpl implements IRefreshHand
 	@Override
 	public CascadeScope getCascadeScope() {
 		return CascadeScope.USER_AGENT;
+	}
+
+	/**
+	 * Load CSS contributions from extension point userAgentStyleSheet.
+	 */
+	private void loadCSSContributions() {
+
+		IConfigurationElement[] config = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+
+		for (IConfigurationElement cssConfig : config) {
+			// Get the path attribute
+			String path = cssConfig.getAttribute("stylesheetPath"); //$NON-NLS-1$
+			try {
+				// construct the URL
+				URL url = new URL("platform:/plugin/" + cssConfig.getContributor().getName() + "/" + path);//$NON-NLS-1$ //$NON-NLS-2$
+				// add it the the styleSheet
+				styleSheetURLs.add(url);
+
+			} catch (IOException ex) {
+				Activator.log.error(ex);
+			}
+		}
 	}
 }
