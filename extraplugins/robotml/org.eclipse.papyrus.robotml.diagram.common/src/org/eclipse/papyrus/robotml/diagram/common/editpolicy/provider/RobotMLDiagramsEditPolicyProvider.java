@@ -11,6 +11,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.robotml.diagram.common.editpolicy.provider;
 
+import java.util.Iterator;
+
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.InternalEObject;
@@ -32,6 +34,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabe
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.CompositeStructureDiagramEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.PortEditPart;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Profile;
 
 public class RobotMLDiagramsEditPolicyProvider extends AbstractProvider
 		implements IEditPolicyProvider {
@@ -61,29 +64,36 @@ public class RobotMLDiagramsEditPolicyProvider extends AbstractProvider
 		if (editPart.getModel() instanceof View) {
 			EObject element = ((View) editPart.getModel()).getElement();
 			if (element instanceof Element) {
-				if (((Element) element).getNearestPackage().getAppliedProfile(
-						ROBOTML_ID) != null) {
-					// System.err.println(list.get(i).getProfile().getName());
-					if (editPart instanceof PortEditPart) {
-						NotificationListener editPolicy = new PortNodeLabelDisplayEditPolicy();
-						editPart.installEditPolicy(
-								AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
-								(EditPolicy) editPolicy);
-						Object model = editPart.getModel();
-						LayoutConstraint notifier = ((Shape) model)
-								.getLayoutConstraint();
-						if (model instanceof Shape) {
-							// to force refreshing the port icon when the
-							// diagram is opening
-							Notification notification = new ENotificationImpl(
-									(InternalEObject) notifier,
-									Notification.SET,
-									NotationPackage.eINSTANCE.getLocation_X(),
-									0, 0);
-							editPolicy.notifyChanged(notification);
-						}
-					}
-				}
+				
+				Iterator<Profile> itr = ((Element) element).getNearestPackage().getAllAppliedProfiles().iterator();
+			      while(itr.hasNext()) {
+			         Profile profile = itr.next();
+			        
+			         if(profile.getName().equals(ROBOTML_ID))
+			         {
+			        
+			        		if (editPart instanceof PortEditPart) {
+								NotificationListener editPolicy = new PortNodeLabelDisplayEditPolicy();
+								editPart.installEditPolicy(
+										AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY,
+										(EditPolicy) editPolicy);
+								Object model = editPart.getModel();
+								LayoutConstraint notifier = ((Shape) model)
+										.getLayoutConstraint();
+								if (model instanceof Shape) {
+									// to force refreshing the port icon when the
+									// diagram is opening
+									Notification notification = new ENotificationImpl(
+											(InternalEObject) notifier,
+											Notification.SET,
+											NotationPackage.eINSTANCE.getLocation_X(),
+											0, 0);
+									editPolicy.notifyChanged(notification);
+								}
+							}
+			         }
+			      }
+
 			}
 		}
 	}

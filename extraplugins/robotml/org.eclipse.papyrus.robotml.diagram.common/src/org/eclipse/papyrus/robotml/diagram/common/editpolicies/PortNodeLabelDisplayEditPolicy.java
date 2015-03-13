@@ -51,7 +51,7 @@ public class PortNodeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDi
 
 		// retrieve the first stereotype in the list of displayed stereotype
 
-		// String firstStereotypeName = tokenizer.nextToken();
+		
 		EList<Stereotype> stereotype_list = getUMLElement().getAppliedStereotypes();
 		if (stereotype_list.size() != 0) {
 			Stereotype stereotype = stereotype_list.get(0);
