@@ -50,6 +50,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirect
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusCompartmentEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
+import org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterMaskEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
@@ -127,6 +128,7 @@ public class ParameterNodeNameEditPart extends PapyrusCompartmentEditPart implem
 		installEditPolicy(EditPolicy.SELECTION_FEEDBACK_ROLE, new UMLTextSelectionEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new DefaultNodeLabelDragPolicy());
+		installEditPolicy(IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY, new ActivityParameterMaskEditPolicy());
 	}
 
 	/**
