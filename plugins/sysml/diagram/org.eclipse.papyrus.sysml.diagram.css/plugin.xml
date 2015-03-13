@@ -2,6 +2,12 @@
 <?eclipse version="3.4"?>
 <plugin>
    <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.css.userAgentStyleSheet">
+      <stylesheet
+            stylesheetPath="theme/sysml.css">
+      </stylesheet>
+   </extension>
+   <extension
          point="org.eclipse.papyrus.infra.gmfdiag.css.theme">
       <themeContribution
             id="org.eclipse.papyrus.css.papyrus_theme">
@@ -16,5 +22,4 @@
          </stylesheet>
       </themeContribution>
    </extension>
-
 </plugin>
