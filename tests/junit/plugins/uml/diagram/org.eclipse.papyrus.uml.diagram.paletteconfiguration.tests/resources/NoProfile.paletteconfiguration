@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="ASCII"?>
+<paletteconfiguration:PaletteConfiguration
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7"
+    id="NoProfilePaletteConfiguration"
+    label="Test No Profile  palette Configuration">
+  <drawerConfigurations
+      id="TestNoProfilePaletteNodesDrawer"
+      label="TestNoProfilePaletteConfigurationNodes"
+      description="Test No Profile Paletteconfiguration Nodes">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="testnoprofile.tool"
+        label="NoProfileCreationTool"
+        description="Create a Class With no rofile">
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.paletteconfiguration.fake.tests"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>
