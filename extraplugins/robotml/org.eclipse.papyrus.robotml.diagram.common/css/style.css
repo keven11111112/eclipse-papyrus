@@ -1,5 +1,7 @@
 Property {maskLabel:name; elementIcon:false;}
 Property[type] {maskLabel:name type; }
 Port {maskLabel:name;}
-Port>Label:stereotype{visible: false;}
+CompositeStructureDiagram Label[type="6029"]{
+                visible: false;
+}
 Class {elementIcon:false;}
