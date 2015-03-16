@@ -529,6 +529,16 @@ public class ExtendedPluginPaletteProvider extends AbstractProvider implements I
 		if (resource == null) {
 			throw new FileNotFoundException("Loading palette configuration... Impossible to find a resource for path; " + path + " for bundle: " + bundle);
 		}
+		return loadConfigurationModel(resource);
+	}
+
+	/**
+	 * Loads and returns the model, given the resource
+	 * @param resource
+	 * @return
+	 * @throws IOException
+	 */
+	protected List<PaletteConfiguration> loadConfigurationModel(Resource resource) throws IOException {
 		resource.load(Collections.emptyMap());
 		if (resource.getContents().size() > 0) {
 

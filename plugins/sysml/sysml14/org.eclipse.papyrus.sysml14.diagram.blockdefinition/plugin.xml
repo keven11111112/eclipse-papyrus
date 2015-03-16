@@ -16,22 +16,4 @@
             path="resources/SysML14UMLClassDiagram.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
-   
-     <extension
-         point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
-      <paletteDefinition
-            ID="BddDiagram.paletteconfiguration"
-            class="org.eclipse.papyrus.uml.diagram.common.service.ExtendedPluginPaletteProvider"
-            name="Bdd Diagram Palette"
-            path="resources/palette/BddDiagram.paletteconfiguration"
-            provider="Papyrus SysML Modeling Project">
-         <Priority
-               name="Lowest">
-         </Priority>
-         <editor
-               id="org.eclipse.papyrus.uml.diagram.clazz">
-         </editor>
-      </paletteDefinition>
-   </extension>
-   
 </plugin>
