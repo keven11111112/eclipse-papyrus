@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.uml.nattable.clazz.config.tests.paste.tests;
 
 import java.awt.Toolkit;
-import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.StringSelection;
 import java.io.StringReader;
 import java.util.HashMap;
@@ -44,7 +43,6 @@ import org.eclipse.papyrus.infra.nattable.handler.PasteInTableHandler;
 import org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITreeNattableModelManager;
-import org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectTreeItemAxis;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.ITreeItemAxis;
@@ -123,9 +121,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	public static final String PARAMETER_ELEMENT_ID = "org.eclipse.papyrus.uml.Parameter"; //$NON-NLS-1$
 	public static final String PROPERTY_ELEMENT_ID = "org.eclipse.papyrus.uml.Property"; //$NON-NLS-1$
 
-	//TODO : create fields and constructors to get hidden, visibility, and number of categories by depth easily, instead of calculate them each time	
-	
-	
+	// TODO : create fields and constructors to get hidden, visibility, and number of categories by depth easily, instead of calculate them each time
+
+
 	@Before
 	public void initModel() throws Exception {
 		initModel("classTreeTable", getClass().getSimpleName(), getBundle()); //$NON-NLS-1$
@@ -273,9 +271,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 			verifyModelContents();
 			checkTableDataStructure();
 
-			//TODO : activate me checkCopyToClipboard(str);
+			// TODO : activate me checkCopyToClipboard(str);
 
-			//TODO : activate me checkUndo_Redo();
+			// TODO : activate me checkUndo_Redo();
 
 			// we close the table, we re-open it and we check that is contains is correct!
 			testClose_Open();
@@ -316,9 +314,9 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 	}
 
 	protected void checkUndo_Redo() throws Exception {
-		
-		//TODO : use eclipse command will be better
-		
+
+		// TODO : use eclipse command will be better
+
 		// IUndoableOperation[] undoContext = CheckedOperationHistory.getInstance().getUndoHistory(CheckedOperationHistory.GLOBAL_UNDO_CONTEXT);
 		EditingDomainUndoContext undoContext = new EditingDomainUndoContext(getTransactionalEditingDomain());
 		getTransactionalEditingDomain().getCommandStack().undo();
@@ -466,10 +464,10 @@ public abstract class AbstractPasteWithCategoriesTests extends AbstractOpenTable
 		// its seems that the clipboard must be filled with the same way than we read it!
 		java.awt.datatransfer.Clipboard clipboard = Toolkit.getDefaultToolkit().getSystemClipboard();
 
-		if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
-			StringSelection s = new StringSelection(newClipBoardContents);
-			clipboard.setContents(s, s);
-		}
+		// if (clipboard.isDataFlavorAvailable(DataFlavor.stringFlavor)) {
+		StringSelection s = new StringSelection(newClipBoardContents);
+		clipboard.setContents(s, s);
+		// }
 	}
 
 	protected void checkRootClasses(ITreeItemAxis root, EObject parent) throws Exception {
