@@ -9,7 +9,7 @@
  * Contributors:
  *
  *		CEA LIST - Initial API and implementation
- *      Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - implementation of layout BorderedLayoutManager to provide maintain ratio and color set
+ *      Mickael ADAM (ALL4TEC) - mickael.adam@all4tec.net - implementation of layout BorderedLayoutManager to provide maintain ratio and color set
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.figure.node;
@@ -73,9 +73,8 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 	 */
 	private IRoundedRectangleFigure getMainFigure() {
 		// If it's called by SVGNodePlate, the parent have not always the foreground color, need to locate
-		SVGNodePlateFigure SVGNodePlate = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
-		IRoundedRectangleFigure roundedCompartmentFigure = FigureUtils.findChildFigureInstance(SVGNodePlate, IRoundedRectangleFigure.class);
-		return roundedCompartmentFigure;
+		SVGNodePlateFigure svgNodePlate = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
+		return svgNodePlate == null ? null : FigureUtils.findChildFigureInstance(svgNodePlate, IRoundedRectangleFigure.class); 
 	}
 
 	class BorderedLayoutManager extends AbstractLayout {

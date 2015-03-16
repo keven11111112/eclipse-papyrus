@@ -34,20 +34,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class CallOperationActionParser extends MessageFormatParser implements ISemanticParser {
 
-	/**
-	 * The String format for displaying an action with its name, class name and
-	 * operation name
-	 */
-	private static final String NAME_CLASS_OPERATION_FORMAT = "%s\n(%s::%s)";
-
-	/**
-	 * The String format for displaying an action with its name (same as
-	 * operation name) and class name
-	 */
-	private static final String NAME_CLASS_FORMAT = "%s\n(%s::)";
-
-	/** The String format for displaying an action name alone */
-	private static final String NAME_FORMAT = "%s";
+	private static final UMLPackage eUML = UMLPackage.eINSTANCE;
 
 	public CallOperationActionParser(EAttribute[] features, EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
@@ -74,7 +61,7 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see
 	 * org.eclipse.papyrus.uml.diagram.sequence.parsers.AbstractParser#isAffectingEvent
 	 * (java.lang.Object , int)
@@ -82,12 +69,12 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	@Override
 	public boolean isAffectingEvent(Object event, int flags) {
 		EStructuralFeature feature = getEStructuralFeature(event);
-		return isValidFeature(feature);
+		return isAffectingFeature(feature);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.papyrus.uml.diagram.sequence.parsers.MessageFormatParser#
 	 * getPrintString(org.eclipse .core.runtime.IAdaptable, int)
 	 */
@@ -98,7 +85,6 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 			CallOperationAction action = (CallOperationAction) obj;
 			String name = action.getName();
 			String operation = "";
-			String className = "";
 			if (name == null) {
 				name = "";
 			}
@@ -107,16 +93,10 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 				if (operation == null) {
 					operation = "";
 				}
-				if (action.getOperation().getClass_() != null) {
-					className = action.getOperation().getClass_().getName();
-					if (className == null) {
-						className = "";
-					}
-				}
 			}
 			// name, operation and className are initialized with non null
 			// values
-			return getPrintString(name, operation, className);
+			return getPrintString(name, operation);
 		}
 		return " ";
 	}
@@ -132,27 +112,13 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	 *            the name of the operation class or ""
 	 * @return the string to print
 	 */
-	private String getPrintString(String name, String operation, String className) {
-		if ("".equals(name) || operation.equals(name)) {
-			// operation is displayed instead of node name
-			if ("".equals(className)) {
-				return String.format(NAME_FORMAT, operation);
-			} else {
-				return String.format(NAME_CLASS_FORMAT, operation, className);
-			}
-		} else if ("".equals(operation) && "".equals(className)) {
-			// name only is displayed
-			return String.format(NAME_FORMAT, name);
-		} else {
-			// all information is displayed (even case when operation or class
-			// name is "")
-			return String.format(NAME_CLASS_OPERATION_FORMAT, name, className, operation);
-		}
+	private String getPrintString(String name, String operation) {
+		return isEmpty(name) ? operation : name;
 	}
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
 	 * areSemanticElementsAffected (org.eclipse.emf.ecore.EObject,
 	 * java.lang.Object)
@@ -160,12 +126,12 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		EStructuralFeature feature = getEStructuralFeature(notification);
-		return isValidFeature(feature);
+		return isAffectingFeature(feature);
 	}
 
 	/*
 	 * (non-Javadoc)
-	 *
+	 * 
 	 * @see org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser#
 	 * getSemanticElementsBeingParsed (org.eclipse.emf.ecore.EObject)
 	 */
@@ -178,9 +144,6 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 			Operation operation = action.getOperation();
 			if (operation != null) {
 				semanticElementsBeingParsed.add(operation);
-				if (operation.getClass_() != null) {
-					semanticElementsBeingParsed.add(operation.getClass_());
-				}
 			}
 		}
 		return semanticElementsBeingParsed;
@@ -194,9 +157,12 @@ public class CallOperationActionParser extends MessageFormatParser implements IS
 	 *            the feature to test
 	 * @return true if is valid, false otherwise
 	 */
-	private boolean isValidFeature(EStructuralFeature feature) {
-		boolean isName = UMLPackage.eINSTANCE.getNamedElement_Name().equals(feature);
-		boolean isPrintedElement = UMLPackage.eINSTANCE.getCallOperationAction_Operation().equals(feature) || UMLPackage.eINSTANCE.getOperation_Class().equals(feature);
-		return isName || isPrintedElement;
+	private boolean isAffectingFeature(EStructuralFeature feature) {
+		return eUML.getNamedElement_Name().equals(feature) || //
+				eUML.getCallOperationAction_Operation().equals(feature);
+	}
+
+	private static boolean isEmpty(String text) {
+		return text == null || text.length() == 0;
 	}
 }

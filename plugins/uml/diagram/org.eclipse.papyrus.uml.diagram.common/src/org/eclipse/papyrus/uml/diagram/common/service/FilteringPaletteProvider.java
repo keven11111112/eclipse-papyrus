@@ -18,12 +18,15 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.URIConverter;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.gef.palette.PaletteRoot;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.service.IProviderChangeListener;
@@ -35,6 +38,7 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram;
 import org.eclipse.papyrus.infra.viewpoints.policy.PolicyChecker;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 import org.eclipse.ui.IEditorPart;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
@@ -252,18 +256,32 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 		// retrieves the custom palette
 		String paletteURI = getCustomPalette(diagram);
 		if (paletteURI != null && !paletteURI.isEmpty()) {
-			CustomPaletteProvider provider = new CustomPaletteProvider();
-			provider.setContributions(paletteURI);
-			contributions = provider.getContributions();
-			List<String> nodesID = (new WalkerPaletteContributionHelper(IPapyrusPaletteConstant.ID)).getAllPaletteNodesID(contributions);
-			// verify if the elements (nodes) from the custom palette already contributed
-			if (!isCustomPaletteContributed(predefinedEntries, nodesID)) {
-				// verify if the extended elements (refids) from the custom palette are already contributed
-				List<String> refToolsID = (new WalkerPaletteContributionHelper(IPapyrusPaletteConstant.REF_TOOL_ID)).getAllPaletteNodesID(contributions);
-				if (isCustomPaletteContributed(predefinedEntries, refToolsID)){
-					provider.contributeToPalette(editor, content, root, predefinedEntries);
-				}	
+			if (!paletteURI.endsWith(PaletteconfigurationPackage.eNAME)) {
+				Activator.log.warn("Old palette configuration, please consider using the new paletteconfiguration framework");
+				CustomPaletteProvider provider = new CustomPaletteProvider();
+				provider.setContributions(paletteURI);
+				contributions = provider.getContributions();
+				List<String> nodesID = (new WalkerPaletteContributionHelper(IPapyrusPaletteConstant.ID)).getAllPaletteNodesID(contributions);
+				// verify if the elements (nodes) from the custom palette already contributed
+				if (!isCustomPaletteContributed(predefinedEntries, nodesID)) {
+					// verify if the extended elements (refids) from the custom palette are already contributed
+					List<String> refToolsID = (new WalkerPaletteContributionHelper(IPapyrusPaletteConstant.REF_TOOL_ID)).getAllPaletteNodesID(contributions);
+					if (isCustomPaletteContributed(predefinedEntries, refToolsID)){
+						provider.contributeToPalette(editor, content, root, predefinedEntries);
+					}	
+				}
+			} else {
+				ExtendedPluginPaletteProvider extendedPluginPaletteProvider = new ExtendedPluginPaletteProvider();
+				Resource resource = new ResourceSetImpl().createResource(URI.createURI(paletteURI, true));
+				try {
+					extendedPluginPaletteProvider.contributions = extendedPluginPaletteProvider.loadConfigurationModel(resource);
+				} catch (IOException e) {
+					Activator.log.error(e);
+					extendedPluginPaletteProvider.contributions = Collections.emptyList();
+				}
+				extendedPluginPaletteProvider.contributeToPalette(editor, content, root, predefinedEntries);
 			}
+			
 		}
 	}
 
