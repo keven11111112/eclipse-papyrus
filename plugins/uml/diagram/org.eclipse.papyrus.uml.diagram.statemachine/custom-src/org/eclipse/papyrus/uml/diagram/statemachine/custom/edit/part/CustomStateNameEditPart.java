@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
 import org.eclipse.uml2.uml.State;
@@ -82,9 +83,17 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		if (stateView == null) {
 			return;
 		}
-		View stateCompartView = (View) stateView.getChildren().get(1);
+		View stateCompartmentView = null;
+		for (Object viewObj : stateView.getChildren()) {
+			if (viewObj instanceof View) {
+				View view = (View) viewObj;
+				if (view.getType().equals("" + StateCompartmentEditPart.VISUAL_ID)) { //$NON-NLS-1$
+					stateCompartmentView = view;
+				}
+			}
+		}
 
-		if (stateCompartView.getChildren().isEmpty()) {
+		if (stateCompartmentView.getChildren().isEmpty()) {
 			stateFigure.getStateCompartmentFigure().setVisible(false);
 		} else {
 			stateFigure.getStateCompartmentFigure().setVisible(true);
@@ -103,7 +112,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		// AutomaticCompartmentLayoutManager add extra space on top of the first label which would not be accounted for
 		// when adding the space for the labels.
 		int height = 0;
-		if (stateCompartView.isVisible() && (stateFigure.getStateCompartmentFigure() != null)) {
+		if (stateCompartmentView.isVisible() && (stateFigure.getStateCompartmentFigure() != null)) {
 			stateFigure.validate(); // validate the figure, assure that layout manager is called.
 			height = stateFigure.getStateCompartmentFigure().getBounds().y - stateFigure.getBounds().y + 1;
 			// Sanity check
@@ -118,7 +127,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		int stateHeight = Zone.getHeight(stateView);
 		int stateWidth = Zone.getWidth(stateView);
 
-		int stateCompartHeight = Zone.getHeight(stateCompartView);
+		int stateCompartHeight = Zone.getHeight(stateCompartmentView);
 		if (stateCompartHeight == 0) {
 			// stateCompartHeight is 0 after creation, get height from figure
 			// stateCompartHeight = stateFigure.getStateCompartmentFigure().getBounds().height;
