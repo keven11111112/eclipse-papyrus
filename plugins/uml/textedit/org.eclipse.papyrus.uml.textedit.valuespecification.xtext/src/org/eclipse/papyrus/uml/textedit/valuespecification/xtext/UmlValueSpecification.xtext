@@ -42,12 +42,11 @@ LiteralRealRule:
 	value=DOUBLE
 ;
 
-terminal DOUBLE returns ecore::EDouble: ('0'..'9')+"."('0'..'9')+;
+terminal DOUBLE returns ecore::EDouble: (('0'..'9')+("."|",")('0'..'9')*|('0'..'9')*("."|",")('0'..'9')+);
 
 LiteralNullRule:
 	value='null'
 ;
-
 
 LiteralStringRule:
 	value=STRING

@@ -562,7 +562,7 @@ ruleVisibilityKind returns [EObject current=null]
 
 
 
-RULE_DOUBLE : ('0'..'9')+ '.' ('0'..'9')+;
+RULE_DOUBLE : (('0'..'9')+ ('.'|',') ('0'..'9')*|('0'..'9')* ('.'|',') ('0'..'9')+);
 
 RULE_ID : '^'? ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 

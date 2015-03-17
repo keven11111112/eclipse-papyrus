@@ -366,7 +366,7 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 	}
 
 	//terminal DOUBLE returns ecore::EDouble:
-	//	"0".."9"+ "." "0".."9"+;
+	//	"0".."9"+ ("." | ",") "0".."9"* | "0".."9"* ("." | ",") "0".."9"+;
 	public TerminalRule getDOUBLERule() {
 		return tDOUBLE;
 	} 

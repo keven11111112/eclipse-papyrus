@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.textedit.valuespecification.tests.suites;
 
 
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.textedit.valuespecification.tests.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.ValueSpecificationXtextDirectEditorConfiguration;
@@ -143,6 +144,10 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals(VisibilityKind.PUBLIC_LITERAL, testedProperty.getDefaultValue().getVisibility());
 		Assert.assertEquals("integer", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralNull(), testedProperty.getDefaultValue().eClass());
+		
+		// Check return to null
+		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "");
+		Assert.assertEquals(null, testedProperty.getDefaultValue());
 
 		// Check literal string
 		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "-name=\"abcdef\"");
@@ -156,6 +161,22 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		Assert.assertEquals(VisibilityKind.PRIVATE_LITERAL, testedProperty.getDefaultValue().getVisibility());
 		Assert.assertEquals("+#id=\"test\"", testedProperty.getDefaultValue().getName());
 		Assert.assertEquals(UMLPackage.eINSTANCE.getOpaqueExpression(), testedProperty.getDefaultValue().eClass());
+		
+		// *********************************************//
+		// Check the update of same value specification //
+		// *********************************************//
+		
+		// Check literal unlimited natural
+		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "+unlimitedNatural=12");
+		Assert.assertEquals(VisibilityKind.PUBLIC_LITERAL, testedProperty.getDefaultValue().getVisibility());
+		Assert.assertEquals("unlimitedNatural", testedProperty.getDefaultValue().getName());
+		Assert.assertEquals(UMLPackage.eINSTANCE.getLiteralUnlimitedNatural(), testedProperty.getDefaultValue().eClass());
+		Assert.assertEquals(12, ((LiteralUnlimitedNatural) testedProperty.getDefaultValue()).getValue());
+		
+		// Get the id of the default value to check that the default value is not created an other time
+		final String currentIdentifier = ((XMIResource)testedProperty.getDefaultValue().eResource()).getID(testedProperty.getDefaultValue());
+		tester.parseText(testedProperty, UMLPackage.Literals.PROPERTY__DEFAULT_VALUE, "34");
+		Assert.assertEquals(currentIdentifier, ((XMIResource) testedProperty.getDefaultValue().eResource()).getID(testedProperty.getDefaultValue()));
 
 		// ************************************************************************************//
 		// Check when the type of parent is not compatible with the value specification needed //

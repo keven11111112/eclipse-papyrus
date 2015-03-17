@@ -41,6 +41,7 @@ import org.eclipse.swt.events.FocusListener;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Event;
 
 /**
  * This class provides a ReferenceValueEditor, with a text field with the xtext
@@ -62,8 +63,13 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	/**
 	 * The context element adapter.
 	 */
-	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(
+	private final ContextElementAdapter contextElementAdapter = new ContextElementAdapter(
 			this);
+
+	/**
+	 * This allow to manage the focus lsot manually (for the 'ENTER' key).
+	 */
+	private boolean isFocus = false;
 
 	/**
 	 * Constructor.
@@ -78,23 +84,31 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 		styledTextStringEditor.getText().addFocusListener(new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
-				IParser parser = getParser();
-				if (null == xtextAdapter) {
-					return;
-				}
+				if (isFocus) {
+					IParser parser = getParser();
+					if (null == xtextAdapter) {
+						return;
+					}
 
-				if (null != xtextAdapter
-						&& null != xtextAdapter.getCompletionProposalAdapter()
-						&& xtextAdapter.getCompletionProposalAdapter()
-								.delayedIsPopupOpen()) {
-					// ignore focus lost
-					return;
+					if (null != xtextAdapter
+							&& null != xtextAdapter.getCompletionProposalAdapter()
+							&& xtextAdapter.getCompletionProposalAdapter()
+									.delayedIsPopupOpen()) {
+						// ignore focus lost
+						return;
+					}
+					manageParserCommand(parser);
+
+					// Manage the color field and the control decoration
+					styledTextStringEditor.notifyListeners(SWT.FocusOut, new Event());
+					styledTextStringEditor.changeColorField();
+					controlDecoration.hide();
+					isFocus = false;
 				}
-				manageParserCommand(parser);
 			}
 
 			public void focusGained(FocusEvent e) {
-				// Nothing
+				isFocus = true;
 			}
 		});
 	}
@@ -139,8 +153,7 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	/**
 	 * {@inheritDoc}
 	 * 
-	 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog#createStyledTextStringEditor(org.eclipse.swt.widgets.Composite,
-	 *      java.lang.String, int)
+	 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog#createStyledTextStringEditor(org.eclipse.swt.widgets.Composite, java.lang.String, int)
 	 */
 	@Override
 	protected StyledTextStringEditor createStyledTextStringEditor(

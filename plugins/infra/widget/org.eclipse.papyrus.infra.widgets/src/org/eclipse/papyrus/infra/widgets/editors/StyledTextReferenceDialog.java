@@ -135,7 +135,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	/**
 	 * The control decoration of the styled text.
 	 */
-	private ControlDecoration controlDecoration;
+	protected ControlDecoration controlDecoration;
 
 	/**
 	 * Determinate if an error occurred.
@@ -177,8 +177,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 			@Override
 			public void mouseDoubleClick(MouseEvent e) {
 				editAction(); // TODO : Try to determine whether the double
-				// click should call the edit, create or browse
-				// action
+				// click should call the edit, create or browse action
 				// e.g. if the value is null, try to browse. If we cannot
 				// browse, try to create an instance.
 			}
@@ -668,11 +667,14 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	 */
 	@Override
 	public void dispose() {
-		if (changeColorTask != null) {
+		if (null != changeColorTask) {
 			changeColorTask.cancel();
 		}
-		if (timer != null) {
+		if (null != timer) {
 			timer.cancel();
+		}
+		if (null != styledTextStringEditor) {
+			styledTextStringEditor.dispose();
 		}
 		super.dispose();
 	}
@@ -695,7 +697,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	public void changeColorField() {
 		if (!error & !edit) {
 
-			if (timer == null) {
+			if (null == timer) {
 				timer = new Timer(true);
 			}
 
@@ -744,6 +746,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 			}
 		} else {
 			styledTextStringEditor.setBackground(DEFAULT);
+			styledTextStringEditor.update();
 		}
 	}
 
