@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_k0VVHjiAEeKDAMEjnOLmPA" type="PapyrusUMLClassDiagram" name="DataTypesDiagram" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="_k0VVHziAEeKDAMEjnOLmPA" type="2006" fontHeight="8" fillColor="8905185" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k0VVIDiAEeKDAMEjnOLmPA" source="ShadowFigure">
@@ -2012,16 +2012,16 @@
               <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k0VbnziAEeKDAMEjnOLmPA" source="CustomAppearance_Annotation">
                 <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_SV9zQKBWEeKY66-xYT6OCw" key="CustomAppearance_MaskValue" value="20"/>
               </eAnnotations>
-              <layoutConstraint xmi:type="notation:Location" xmi:id="_k0VboTiAEeKDAMEjnOLmPA" x="-96" y="1"/>
+              <layoutConstraint xmi:type="notation:Location" xmi:id="_k0VboTiAEeKDAMEjnOLmPA" x="-176" y="-8"/>
             </children>
             <children xmi:type="notation:DecorationNode" xmi:id="_k0VbojiAEeKDAMEjnOLmPA" visible="false" type="6029">
               <layoutConstraint xmi:type="notation:Location" xmi:id="_k0VboziAEeKDAMEjnOLmPA" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="YouthChallenge.uml#_k0Lo-ziAEeKDAMEjnOLmPA"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k0VbpDiAEeKDAMEjnOLmPA" x="151" y="60"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k0VbpDiAEeKDAMEjnOLmPA" x="151" y="28"/>
           </children>
           <element xmi:type="uml:Property" href="YouthChallenge.uml#_k0LlGTiAEeKDAMEjnOLmPA"/>
-          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k0VbpTiAEeKDAMEjnOLmPA" x="80" y="375" width="161"/>
+          <layoutConstraint xmi:type="notation:Bounds" xmi:id="_k0VbpTiAEeKDAMEjnOLmPA" x="80" y="410" width="161"/>
         </children>
         <children xmi:type="notation:Shape" xmi:id="_k0VbpjiAEeKDAMEjnOLmPA" type="3070" fontHeight="8" fillColor="8047085" gradient="16777215, 16777215, 0" lineColor="0">
           <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_k0VbpziAEeKDAMEjnOLmPA" source="ShadowFigure">
@@ -8764,4 +8764,5 @@
     </styles>
     <element xmi:type="uml:Model" href="YouthChallenge.uml#_k0Lj4DiAEeKDAMEjnOLmPA"/>
   </notation:Diagram>
+  <css:ModelStyleSheets xmi:id="_EmqHEMysEeSbw_7Zqs0KhQ"/>
 </xmi:XMI>
