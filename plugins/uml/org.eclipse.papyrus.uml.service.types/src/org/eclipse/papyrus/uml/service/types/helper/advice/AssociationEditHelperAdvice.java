@@ -322,8 +322,8 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		if (association.getMemberEnds().size() == 2) {
 
 
-			Property semanticSource = association.getMemberEnds().get(0);
-			Property semanticTarget = association.getMemberEnds().get(1);
+			Property semanticTarget = association.getMemberEnds().get(0);
+			Property semanticSource = association.getMemberEnds().get(1);
 
 
 			if (request.getDirection() == ReorientRelationshipRequest.REORIENT_SOURCE) {
@@ -402,6 +402,7 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 
 		return gmfCommand;
 	}
+
 
 	/**
 	 * Find the first memberEnd of an association that is typed by the specified classifier
