@@ -1780,6 +1780,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1881,6 +1885,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -1982,6 +1990,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2069,6 +2081,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2261,6 +2277,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2366,6 +2386,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2471,6 +2495,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2562,6 +2590,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2752,6 +2784,10 @@
             notationViewFactoryClassName="ActionInputPinLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -2861,6 +2897,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -2967,6 +3007,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -3058,6 +3102,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -3150,6 +3198,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -3253,6 +3305,10 @@
             notationViewFactoryClassName="ActionInputPinLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -3362,6 +3418,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -4865,6 +4925,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -4967,6 +5031,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5069,6 +5137,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5157,6 +5229,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5259,6 +5335,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5361,6 +5441,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5550,6 +5634,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5652,6 +5740,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5754,6 +5846,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5842,6 +5938,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -5944,6 +6044,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -6046,6 +6150,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -6104,6 +6212,10 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterMaskEditPolicy"/>
         <modelFacet>
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActivityParameterNode"/>
@@ -6138,6 +6250,10 @@
               xsi:type="gmfgen:ParentAssignedViewmap"
               getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
+          <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterMaskEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.15"/>
         </labels>
@@ -6336,6 +6452,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -6528,6 +6648,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7012,6 +7136,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7111,6 +7239,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7211,6 +7343,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7298,6 +7434,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7385,6 +7525,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7606,6 +7750,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7688,6 +7836,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7785,6 +7937,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -7882,6 +8038,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -8265,6 +8425,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -8562,6 +8726,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -8808,6 +8976,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -8891,6 +9063,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9084,6 +9260,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9172,6 +9352,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9260,6 +9444,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9348,6 +9536,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9449,6 +9641,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9550,6 +9746,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9651,6 +9851,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9752,6 +9956,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9853,6 +10061,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -9953,6 +10165,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10144,6 +10360,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10230,6 +10450,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10329,6 +10553,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10530,6 +10758,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10723,6 +10955,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10811,6 +11047,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -10899,6 +11139,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11000,6 +11244,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11101,6 +11349,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11202,6 +11454,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11408,6 +11664,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11510,6 +11770,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11612,6 +11876,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -11998,6 +12266,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12082,6 +12354,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12166,6 +12442,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12264,6 +12544,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12362,6 +12646,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12446,6 +12734,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12543,6 +12835,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12736,6 +13032,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12816,6 +13116,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12896,6 +13200,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -12976,6 +13284,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13069,6 +13381,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13162,6 +13478,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13255,6 +13575,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13455,6 +13779,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13539,6 +13867,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13623,6 +13955,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -13717,6 +14053,10 @@
             itemSemanticEditPolicyClassName="ActionInputPinInClearStructuralFeatureActionAsObjectLabelItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
@@ -13917,6 +14257,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14001,6 +14345,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14098,6 +14446,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14296,6 +14648,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14380,6 +14736,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14464,6 +14824,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14561,6 +14925,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14758,6 +15126,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14842,6 +15214,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14939,6 +15315,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15131,6 +15511,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15215,6 +15599,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15312,6 +15700,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15505,6 +15897,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15685,6 +16081,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15769,6 +16169,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -15866,6 +16270,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16059,6 +16467,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16143,6 +16555,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16227,6 +16643,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16324,6 +16744,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16517,6 +16941,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16601,6 +17029,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16685,6 +17117,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16782,6 +17218,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -16974,6 +17414,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -17058,6 +17502,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -17155,6 +17603,10 @@
           <viewmap
               xsi:type="gmfgen:FigureViewmap"
               figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
