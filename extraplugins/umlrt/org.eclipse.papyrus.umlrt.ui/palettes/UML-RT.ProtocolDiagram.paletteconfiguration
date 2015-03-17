@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="ASCII"?>
+<paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7" id="palettemodel" label="UMLRealTime">
+  <drawerConfigurations id="UML-RT" label="UML-RT" description="UML-RT">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.Protocol" label="Protocol" description="Create a Protocol">
+      <icon pluginID="" iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_2008"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3004"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3008"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3010"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Protocol_3014"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.ProtocolContainer" label="ProtocolContainer" description="Create a ProtocolContainer">
+      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Package.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_2007"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_3009"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.ProtocolContainer_PapyrusUMLClassDiagram"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.RTMessageSet" label="RTMessageSet" description="Create a RTMessageSet">
+      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interface.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_2004"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3023"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3036"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Reception" label="RT OutMessage" description="Create a RT OutMessage">
+      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Reception_3011"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Reception_3039"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Signal" label="RT InMessage" description="Create a RT InMessage">
+      <icon iconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Reception.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_2003"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3022"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3049"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3050"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3051"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+</paletteconfiguration:PaletteConfiguration>
