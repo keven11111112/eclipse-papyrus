@@ -315,6 +315,8 @@
 		<module>main</module>
 		<!-- Papyrus Sysml 1.4 -->
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.ui</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.common</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.blockdefinition</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.internalblock</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.parametric</module>
