@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
+<xmi:XMI xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:RobotML="http://Papyrus/RobotML/1" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmlns:css="http://www.eclipse.org/papyrus/infra/gmfdiag/css" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:style="http://www.eclipse.org/papyrus/infra/viewpoints/policy/style" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML">
   <notation:Diagram xmi:id="_mthk8DidEeK2K5cKvwDFDw" type="PapyrusUMLClassDiagram" name="DataType" measurementUnit="Pixel">
     <children xmi:type="notation:Shape" xmi:id="__FWZgDifEeK2K5cKvwDFDw" type="2009" fontName="Ubuntu" fontHeight="11" lineColor="0">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="__FXAkDifEeK2K5cKvwDFDw" source="ShadowFigure">
@@ -121,7 +121,7 @@
           <layoutConstraint xmi:type="notation:Location" xmi:id="_PFfHMTieEeK2K5cKvwDFDw" x="25" y="-10"/>
         </children>
         <element xmi:type="uml:Port" href="SearchLanding.uml#_PFXLYDieEeK2K5cKvwDFDw"/>
-        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PFegITieEeK2K5cKvwDFDw" x="-10" y="75" width="20" height="20"/>
+        <layoutConstraint xmi:type="notation:Bounds" xmi:id="_PFegITieEeK2K5cKvwDFDw" x="-10" y="56" width="20" height="20"/>
       </children>
       <children xmi:type="notation:Shape" xmi:id="_QBbLADieEeK2K5cKvwDFDw" type="3069" fontName="Ubuntu" fontHeight="11" lineColor="0">
         <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_QBbLAjieEeK2K5cKvwDFDw" source="ShadowFigure">
@@ -932,7 +932,7 @@
               <layoutConstraint xmi:type="notation:Location" xmi:id="_-I9QQ3CmEeKfLd758TNm-w" x="25" y="-10"/>
             </children>
             <element xmi:type="uml:Port" href="SearchLanding.uml#_zYby0EOJEeKE2858SxsX1g"/>
-            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-I8pNnCmEeKfLd758TNm-w" x="-10" y="24"/>
+            <layoutConstraint xmi:type="notation:Bounds" xmi:id="_-I8pNnCmEeKfLd758TNm-w" x="-10" y="2"/>
           </children>
           <element xmi:type="uml:Property" href="SearchLanding.uml#_8Pcw8HCmEeKfLd758TNm-w"/>
           <layoutConstraint xmi:type="notation:Bounds" xmi:id="_8Pi3kXCmEeKfLd758TNm-w" x="491" y="77"/>
@@ -1232,4 +1232,5 @@
     </styles>
     <element xmi:type="uml:Model" href="SearchLanding.uml#_mtbeUDidEeK2K5cKvwDFDw"/>
   </notation:Diagram>
+  <css:ModelStyleSheets xmi:id="_a_gVMMyoEeSbw_7Zqs0KhQ"/>
 </xmi:XMI>
