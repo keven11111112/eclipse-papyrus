@@ -469,7 +469,17 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(Link_4018);
 			KNOWN_ELEMENT_TYPES.add(Connector_4019);
 		}
-		return KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
+
+		if (!result) {
+			IElementType[] supertypes = elementType.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
+			}
+		}
+
+		return result;
 	}
 
 	/**
@@ -584,4 +594,20 @@ public class UMLElementTypes {
 			return org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes.getElement(elementTypeAdapter);
 		}
 	};
+
+	/**
+	 * @generated
+	 */
+	public static boolean isKindOf(IElementType subtype, IElementType supertype) {
+		boolean result = subtype == supertype;
+
+		if (!result) {
+			IElementType[] supertypes = subtype.getAllSuperTypes();
+			for (int i = 0; !result && (i < supertypes.length); i++) {
+				result = supertype == supertypes[i];
+			}
+		}
+
+		return result;
+	}
 }
