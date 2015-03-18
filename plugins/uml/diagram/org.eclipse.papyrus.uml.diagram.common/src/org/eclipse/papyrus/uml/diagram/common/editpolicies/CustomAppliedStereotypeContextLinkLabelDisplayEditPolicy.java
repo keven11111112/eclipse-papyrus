@@ -11,12 +11,11 @@
  *  Boutheina Bannour (CEA LIST) boutheina.bannour@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.clazz.custom.policies;
+package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 
 /**
@@ -24,11 +23,13 @@ import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigu
  */
 public class CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
+	public static final String APPLIED_STEREOTYPE_LABEL = "context"; //$NON-NLS-1$
+
 	/**
 	 * Creates the EditPolicy, with the correct tag.
 	 */
 	public CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy() {
-		super("context"); //$NON-NLS-1$
+		super(APPLIED_STEREOTYPE_LABEL); //$NON-NLS-1$
 	}
 
 	@Override
