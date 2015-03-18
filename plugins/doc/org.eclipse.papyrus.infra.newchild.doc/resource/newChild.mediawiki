@@ -7,12 +7,12 @@ __TOC__
 ; newChildMenuDisplay (id=newChild004): : Papyrus shall be able to associate icons to folder or creation menu
 ; RoleAndElementCreation (id=newChild005): : When an element can be created from several roles for a container, Papyrus shall let the possibility to choose the role or to let to the possibility to be created from all roles.
 =Use Cases=
-[[Image:UseCaseDiagram.png|UseCaseDiagram]]<br>
+[[Image:images/UseCaseDiagram.png|UseCaseDiagram]]<br>
 ==UseCreateMenu==
 The Papyrus User shall use this functionality from the model explorer in order to create elements in the model. He can decide to display or not this element creation.
 ===How to===
 In order to not display a menu,  a user can edit the model that represents the creation menu and set the attribute visibility to false. 
-[[Image:EnableCreationMenu.png|EnableCreationMenu]]<br>
+[[Image:images/EnableCreationMenu.png|EnableCreationMenu]]<br>
 ==Create or modify ElementCreationModel==
 An advanced User is able to create or modify creation menu. This menu is a model that can be edited 
 ===How to===
@@ -38,16 +38,16 @@ An advanced user can contribute to the menu by adding a new plugin that contains
 </source>
 
 In the following example, a menu creation for a package is presented. This menu is contained in the folder SimpleUMLTest. We have associated an image for this menu.
-<br>[[Image:PackageWithIconO.png|Creation menu for a package with a specific icon]]<br>
-<br>[[Image:PackageWithIconOIllustration.png|Result for this menu]]<br>
+<br>[[Image:images/PackageWithIconO.png|Creation menu for a package with a specific icon]]<br>
+<br>[[Image:images/PackageWithIconOIllustration.png|Result for this menu]]<br>
 
 In this following example, a creation menu will be specified to allow creation of nested classifier. That 's why the role "nestedClassifier" is precised. The label for this creation is "nestedClass"
-<br>[[Image:NestedClassifierIllustration.png|Result for the menu nestedClass]]<br>
-<br>[[Image:NestedClassifier.png|Creation menu model for nested class]]<br>
+<br>[[Image:images/NestedClassifierIllustration.png|Result for the menu nestedClass]]<br>
+<br>[[Image:images/NestedClassifier.png|Creation menu model for nested class]]<br>
 
 In the following example a creation menu is created for activities. In this case, all roles are displayed. Thanks to this, when we want to associate an activity to a state, 3 roles are proposed. 
-<br>[[Image:AllPossibleActivities.png|Creation menu model for activity]]<br>
-<br>[[Image:AllPossibleActivitiesIllustration.png|Result for this menu activity]]<br>
+<br>[[Image:images/AllPossibleActivities.png|Creation menu model for activity]]<br>
+<br>[[Image:images/AllPossibleActivitiesIllustration.png|Result for this menu activity]]<br>
 ==Generate "ElementCreationModel" from a profile==
 From a stereotyped profile, a model of new child menu can be generated.
 For example a user after designing a profile, want to have a dedicated menu  from this profile/

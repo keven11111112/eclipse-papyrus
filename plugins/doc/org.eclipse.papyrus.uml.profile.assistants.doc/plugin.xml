@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/profile-assistants-main-toc.xml"
+            file="target/generated-eclipse-help/profile-assistants-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/profile-assistants-toc.xml"
+            file="target/generated-eclipse-help/profile-assistants-toc.xml"
             primary="false">
       </toc>
    </extension>

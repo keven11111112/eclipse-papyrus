@@ -5,10 +5,10 @@ Papyrus allows text alignment on external label, that means that when you're edi
 Example of text alignment to the right:
 
 *Before a rename of the label
-[[File:images/textAlignment/TextAlignmentBefore.png]]  
+[[Image:images/textAlignment/textAlignmentBefore.png]]  
 
 *After a rename of the label
-[[File:images/textAlignment/TextAlignmentAfter.png]]
+[[File:images/textAlignment/textAlignmentAfter.png]]
 
 There is two ways to align text: with the existing button or thanks CSS:
 
@@ -16,15 +16,15 @@ There is two ways to align text: with the existing button or thanks CSS:
 To apply text alignment you can use button. There are available in tree places:
 
 *In the papyrus menu
-[[File:images/textAlignment/TextAlignmentButton01.png]]
+[[File:images/textAlignment/textAlignmentButton01.png]]
 
 
 *In the toolbar
-[[File:images/textAlignment/TextAlignmentButton02.png]]
+[[File:images/textAlignment/textAlignmentButton02.png]]
 
 
 *In the contextual menu
-[[File:images/textAlignment/TextAlignmentButton03.png]]
+[[File:images/textAlignment/textAlignmentButton03.png]]
 
 ==Apply text alignment with CSS==
 Text alignment can be defined through the CSS attributes "textAlignment" :

@@ -3,8 +3,8 @@
 <plugin>
    <extension
          point="org.eclipse.help.toc">
-         <toc file="resource/controlMode-main-toc.xml" primary="false"/>
-         <toc file="resource/controlMode-toc.xml" primary="false"/>
+         <toc file="target/generated-eclipse-help/controlMode-main-toc.xml" primary="false"/>
+         <toc file="target/generated-eclipse-help/controlMode-toc.xml" primary="false"/>
    </extension>
 
 </plugin>

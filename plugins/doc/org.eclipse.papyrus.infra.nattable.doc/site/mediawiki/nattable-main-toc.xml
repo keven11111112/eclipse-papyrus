@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8' ?>
+<toc label="Nattable" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
+   <topic href="target/generated-eclipse-help/tablemetamodeldocumentation.html" label="Nattable">
+      <link toc="target/generated-eclipse-help/tablemetamodeldocumentation-toc.xml"/>
+      <anchor id="nattable"/>
+   </topic>	
+</toc>
