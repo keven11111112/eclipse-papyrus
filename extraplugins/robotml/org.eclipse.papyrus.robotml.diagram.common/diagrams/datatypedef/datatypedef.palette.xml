@@ -50,8 +50,10 @@
 			</aspectTool>
 			<aspectTool description="Create a new Dependency" id="datatypedef.tool.dependency"
 				name="Dependency" refToolId="clazz.tool.dependency">
-			</aspectTool>			
-			
+			</aspectTool>		
+			<aspectTool description="Create a new Association" id="datatypedef.tool.association"
+				name="Association" refToolId="clazz.tool.association">
+			</aspectTool>				
 			<aspectTool description="Create a new PackageMerge" id="datatypedef.tool.packagemerge"
 				name="PackageMerge" refToolId="clazz.tool.packagemerge">
 			</aspectTool>
