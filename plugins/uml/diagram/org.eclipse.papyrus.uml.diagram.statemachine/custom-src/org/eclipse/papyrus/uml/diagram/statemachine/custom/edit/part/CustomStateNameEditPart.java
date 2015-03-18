@@ -28,7 +28,6 @@ import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomStateResizeCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateNameEditPart;
 import org.eclipse.uml2.uml.State;
@@ -83,15 +82,7 @@ public class CustomStateNameEditPart extends StateNameEditPart {
 		if (stateView == null) {
 			return;
 		}
-		View stateCompartmentView = null;
-		for (Object viewObj : stateView.getChildren()) {
-			if (viewObj instanceof View) {
-				View view = (View) viewObj;
-				if (view.getType().equals("" + StateCompartmentEditPart.VISUAL_ID)) { //$NON-NLS-1$
-					stateCompartmentView = view;
-				}
-			}
-		}
+		View stateCompartmentView = CustomStateEditPart.getStateCompartmentView(stateView);
 
 		if (stateCompartmentView.getChildren().isEmpty()) {
 			stateFigure.getStateCompartmentFigure().setVisible(false);
