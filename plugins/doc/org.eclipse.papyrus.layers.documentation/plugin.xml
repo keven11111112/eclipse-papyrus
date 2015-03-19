@@ -4,31 +4,31 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="guides/users/index-toc.xml"
+            file="target/generated-eclipse-help/guides/users/index-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/tutorials/layers-toc.xml"
+            file="target/generated-eclipse-help/guides/tutorials/layers-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/tutorials/simpleTutorial-toc.xml"
+            file="target/generated-eclipse-help/guides/tutorials/simpleTutorial-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/tutorials/derivedLayerTutorial-toc.xml"
+            file="target/generated-eclipse-help/guides/tutorials/derivedLayerTutorial-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/developpers/layers-toc.xml"
+            file="target/generated-eclipse-help/guides/developpers/layers-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/developpers/layersDevs-toc.xml"
+            file="target/generated-eclipse-help/guides/developpers/layersDevs-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="guides/index-toc.xml"
+            file="target/generated-eclipse-help/guides/index-toc.xml"
             primary="false">
       </toc>
    </extension>

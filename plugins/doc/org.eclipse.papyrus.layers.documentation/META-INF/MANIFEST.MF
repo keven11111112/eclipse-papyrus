@@ -8,4 +8,5 @@ Bundle-Localization: plugin
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.layers.documentation;singleto
  n:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

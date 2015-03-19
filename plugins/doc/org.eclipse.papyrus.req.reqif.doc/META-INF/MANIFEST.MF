@@ -8,8 +8,8 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.help;bundle-version="3.6.0",
  org.eclipse.papyrus.infra.doc;bundle-version="1.1.0"
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-ActivationPolicy: lazy
 Bundle-Vendor: %providerName
 Bundle-Localization: plugin
 Bundle-Description: This is the plugin that present the user documentation of the ReqIF import
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

@@ -1,7 +1,7 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc label="ReqID Import Export" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/reqif.html" label="ReqIF Import Export">
+   <topic href="target/generated-eclipse-help/DeveloperDoc.html" label="ReqIF Import Export">
       <anchor id="ReqIF Import Export"/>
-      <link toc="target/generated-eclipse-help/reqif-toc.xml"/>
+      <link toc="target/generated-eclipse-help/DeveloperDoc-toc.xml"/>
    </topic>	
 </toc>

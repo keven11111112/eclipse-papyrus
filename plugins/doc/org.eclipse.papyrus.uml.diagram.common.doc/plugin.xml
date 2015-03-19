@@ -11,10 +11,6 @@
             file="target/generated-eclipse-help/symbols-toc.xml"
             primary="false">
       </toc>
-	  <toc
-      		file="target/generated-eclipse-help/constraints-toc.xml"
-      		primary="false">
-      </toc>
       <toc
       		file="target/generated-eclipse-help/constraint-creation-toc.xml"
       		primary="false">

@@ -9,7 +9,7 @@
   Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial Documentation
 -->
 
-=Copying/Cutting/Pasting in Papyrus=
+=Copying Cutting Pasting in Papyrus=
 ==Introduction==
 
 Papyrus's policy is to ensure consistency between models and diagrams, so by default the cut/copy/paste functionalities act both on diagram and model elements.
@@ -80,8 +80,8 @@ The strategy reapply profiles and stereotypes on the newly copied elements.
 
 * Only the duplications of the '''roots elements''' will be renamed
 * An element is renamed only if there is already an element with the '''same name''' on the paste selection
-* The element will be renamed in CopyOf_%NameOfTheElement%_%id%. The id will be incremented for each ''same'' copy/paste. Example: a Class1 will become CopyOf_Class1_1 then CopyOf_Class1_2…
-<!-- Featured : It will have two preferences, one for the prefix “copy_of” and one checkbox to disable the increment. -->
+* The element will be renamed in CopyOf_NameOfTheElement_id. The id will be incremented for each '''same''' copy/paste. Example: a Class1 will become CopyOf_Class1_1 then CopyOf_Class1_2
+<!-- Featured : It will have two preferences, one for the prefix copy_of and one checkbox to disable the increment. -->
 
 [[Image:images/RenameExample.png]]
 

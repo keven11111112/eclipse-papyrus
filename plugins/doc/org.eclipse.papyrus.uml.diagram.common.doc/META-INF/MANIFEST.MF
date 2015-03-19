@@ -7,4 +7,5 @@ Bundle-Name: %Bundle-Name
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.common.doc;single
  ton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

@@ -25,7 +25,7 @@
 					<formatOutput>true</formatOutput>
 					<htmlFilenameFormat>$1.html</htmlFilenameFormat>
 					<xmlFilenameFormat>$1-toc.xml</xmlFilenameFormat>
-					<helpPrefix>target/generated-eclipse-help</helpPrefix>
+					<helpPrefix>generated-eclipse-help</helpPrefix>
 					<!-- stylesheetUrls> <param>styles/main.css</param> </stylesheetUrls -->
 				</configuration>
 				<executions>
