@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.req.reqif;
 
 /**
- * list of constant for SysML
+ * list of constants for SysML
  *
  */
 public interface I_SysMLStereotype {
