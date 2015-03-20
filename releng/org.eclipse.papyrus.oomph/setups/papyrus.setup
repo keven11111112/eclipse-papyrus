@@ -1247,6 +1247,11 @@
               optional="true"/>
         </targlet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1323,6 +1328,11 @@
           </predicate>
         </workingSet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1398,6 +1408,11 @@
                 pattern="org\.eclipse\.papyrus\.uml\.(textedit|xtext)($|\..+)"/>
           </predicate>
         </workingSet>
+      </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream
           name="master"
@@ -2224,6 +2239,11 @@
           xsi:type="setup:VariableTask"
           name="papyrus.extratestsfeature"
           value="tests.extra.codegen.cpp"/>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -2476,6 +2496,11 @@
           xsi:type="setup:VariableTask"
           name="papyrus.extraplugins.folder"
           value="marte"/>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
