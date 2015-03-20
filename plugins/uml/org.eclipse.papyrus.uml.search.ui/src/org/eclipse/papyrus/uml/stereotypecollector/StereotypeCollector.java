@@ -396,7 +396,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 	 *         the found Papyrus models
 	 */
 	protected Collection<URI> findUMLModels(IResource res) {
-		UMLResourceVisitor visitor = new UMLResourceVisitor();
+		PapyrusUMLResourceVisitor visitor = new PapyrusUMLResourceVisitor();
 		try {
 			res.accept(visitor, IResource.DEPTH_INFINITE);
 		} catch (CoreException e) {
