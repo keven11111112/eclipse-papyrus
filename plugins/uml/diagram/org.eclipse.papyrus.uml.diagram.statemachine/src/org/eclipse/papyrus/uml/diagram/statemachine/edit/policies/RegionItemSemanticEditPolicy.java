@@ -34,8 +34,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.CommentAnnotatedElementCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.CommentAnnotatedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkCreateCommand;
@@ -546,13 +544,6 @@ public class RegionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.CommentAnnotatedElement_667 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new CommentAnnotatedElementCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.ConstraintConstrainedElement_670 == baseElementType) {
 			if (isExtendedType) {
 				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
@@ -579,8 +570,6 @@ public class RegionItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy 
 	@Override
 	protected Command getReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case CommentAnnotatedElementEditPart.VISUAL_ID:
-			return getGEFWrapper(new CommentAnnotatedElementReorientCommand(req));
 		case ConstraintConstrainedElementEditPart.VISUAL_ID:
 			return getGEFWrapper(new ConstraintConstrainedElementReorientCommand(req));
 		case ContextLinkEditPart.VISUAL_ID:

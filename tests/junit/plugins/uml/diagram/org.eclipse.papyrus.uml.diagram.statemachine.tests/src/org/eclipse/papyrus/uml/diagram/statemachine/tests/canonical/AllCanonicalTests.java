@@ -25,6 +25,7 @@ import org.junit.runners.Suite.SuiteClasses;
 TestStateMachineDiagramChildNode.class,
 //test links
 //TestStateMachineDiagramLink.class,
+TestLinks.class
  })
 public class AllCanonicalTests {
 }
