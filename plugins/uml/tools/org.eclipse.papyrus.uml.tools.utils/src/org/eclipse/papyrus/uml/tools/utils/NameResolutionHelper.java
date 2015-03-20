@@ -16,42 +16,124 @@
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Assert;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
+/**
+ * 
+ * This class allows to find named element from this name or its (partially) qualified name
+ *
+ */
+public class NameResolutionHelper implements INameResolutionHelper {
 
-public class NameResolutionHelper {
-
+	/**
+	 * the scope used to look for the elements
+	 */
 	protected Namespace scope;
 
+	/**
+	 * the filter
+	 */
 	protected EClass filter;
 
+	/**
+	 * This map links the name and the named element
+	 */
 	protected Map<String, List<NamedElement>> allNames;
 
+	/**
+	 * the empty string
+	 */
+	private static final String EMPTY_STRING = ""; //$NON-NLS-N1
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param element
+	 *            an element of the model
+	 * @param filter
+	 *            the filter
+	 */
+	public NameResolutionHelper(Element element, EClass filter) {
+		Namespace space = null;
+		if (element instanceof Namespace) {
+			space = (Namespace) element;
+
+		} else if (element instanceof NamedElement) {
+			space = ((NamedElement) element).getNamespace();
+		} else {
+			space = element.getNearestPackage();
+		}
+		init(space, filter);
+	}
+
+
+	/**
+	 * 
+	 * Constructor.
+	 *
+	 * @param element
+	 *            an element of the model
+	 * @param filter
+	 *            the filter
+	 */
 	public NameResolutionHelper(Namespace scope, EClass filter) {
+		init(scope, filter);
+	}
+
+	/**
+	 * 
+	 * @param scope
+	 * @param filter
+	 */
+	protected void init(Namespace scope, EClass filter) {
+		Assert.isNotNull(scope);
+		if (filter == null) {
+			filter = UMLPackage.eINSTANCE.getNamedElement();
+		}
 		this.scope = scope;
 		this.filter = filter;
 	}
 
+	/**
+	 * 
+	 * @param name
+	 *            a name
+	 * @return
+	 *         all named element matching this name
+	 * 
+	 * @deprecated you should use {@link #getElementsByName(String)}
+	 */
+	@Deprecated
 	public List<NamedElement> getNamedElements(String name) {
-		if (this.allNames == null) {
-			this.allNames = new HashMap<String, List<NamedElement>>();
-			this.computeAllNames();
+		List<NamedElement> returnedValues = new ArrayList<NamedElement>();
+		List<Object> obj = getElementsByName(name);
+		for (Object current : obj) {
+			if (current instanceof NamedElement) {
+				returnedValues.add((NamedElement) current);
+			}
 		}
-		List<NamedElement> namedElements = this.allNames.get(name);
-		return namedElements != null ? namedElements : new ArrayList<NamedElement>();
+		return returnedValues;
 	}
 
 	/**
@@ -60,14 +142,14 @@ public class NameResolutionHelper {
 	protected void computeAllNames() {
 
 		// compute names directly available in the scope
-		computeNames("", scope, true);
+		computeNames(EMPTY_STRING, scope, true);
 
 		// compute names related to enclosing namepaces of scope
 		Namespace enclosingNamespace = scope.getNamespace();
-		String prefix = "";
+		String prefix = EMPTY_STRING;
 		while (enclosingNamespace != null) {
 			// prefix += enclosingNamespace.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR;
-			prefix = "";
+			prefix = EMPTY_STRING;
 			computeNames(prefix, enclosingNamespace, false);
 			enclosingNamespace = enclosingNamespace.getNamespace();
 		}
@@ -77,16 +159,8 @@ public class NameResolutionHelper {
 		if (model == null) {
 			model = scope;
 		}
-		if (filter != null) {
-			if (filter.isSuperTypeOf(model.eClass())) {
-				List<NamedElement> l = this.allNames.get(model.getName());
-				if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
-					l = new ArrayList<NamedElement>();
-					l.add(model);
-					this.allNames.put(model.getName(), l);
-				}
-			}
-		} else {
+
+		if (filter.isSuperTypeOf(model.eClass())) {
 			List<NamedElement> l = this.allNames.get(model.getName());
 			if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
 				l = new ArrayList<NamedElement>();
@@ -94,7 +168,9 @@ public class NameResolutionHelper {
 				this.allNames.put(model.getName(), l);
 			}
 		}
-		computeNames(model.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR, model, false);
+		StringBuilder builder = new StringBuilder(model.getName());
+		builder.append(NamedElementUtil.QUALIFIED_NAME_SEPARATOR);
+		computeNames(builder.toString(), model, false);
 
 		// Build names corresponding to other available UML resources in the workspace
 		List<Resource> resources = new ArrayList<Resource>(scope.eResource().getResourceSet().getResources());// we duplicate the resource to avoid concurrent modification
@@ -109,16 +185,8 @@ public class NameResolutionHelper {
 					}
 				}
 				if (root != null) {
-					if (filter != null) {
-						if (filter.isSuperTypeOf(root.eClass())) {
-							List<NamedElement> l = this.allNames.get(root.getName());
-							if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
-								l = new ArrayList<NamedElement>();
-								l.add(root);
-								this.allNames.put(root.getName(), l);
-							}
-						}
-					} else {
+
+					if (filter.isSuperTypeOf(root.eClass())) {
 						List<NamedElement> l = this.allNames.get(root.getName());
 						if (l == null) { // i.e. no names have already been resolved in enclosed namespaces
 							l = new ArrayList<NamedElement>();
@@ -126,7 +194,9 @@ public class NameResolutionHelper {
 							this.allNames.put(root.getName(), l);
 						}
 					}
-					computeNames(root.getName() + NamedElementUtil.QUALIFIED_NAME_SEPARATOR, root, false);
+					StringBuilder builder2 = new StringBuilder(root.getName());
+					builder2.append(NamedElementUtil.QUALIFIED_NAME_SEPARATOR);
+					computeNames(builder2.toString(), root, false);
 				}
 			}
 		}
@@ -161,16 +231,96 @@ public class NameResolutionHelper {
 			// iterates other names given to the current member in the context of this scope
 			for (String memberName : memberNames) {
 				// Checks if the name must be considered or not
-				if (!preExistingKeys.contains(prefix + memberName)) {
-					List<NamedElement> l = this.getNamedElements(prefix + memberName);
-					l.add(member);
-					this.allNames.put(prefix + memberName, l);
+				if (!preExistingKeys.contains(prefix + memberName) || !this.allNames.get(prefix + memberName).contains(member)) {
+					// the second part of the previous if is to be able to found model::Class1 in this kind of model with scope==Property and filter : UML::Class
+					// model
+					// Class1
+					// Property1
+					// Class1
+					// Class2
+
+
+					if (filter.isSuperTypeOf(member.eClass())) {
+						List<NamedElement> l = this.getNamedElements(prefix + memberName);
+						l.add(member);
+						this.allNames.put(prefix + memberName, l);
+					}
 				}
 				if (member instanceof Namespace && !alreadyComputedNamespace.contains(member)) { // avoid loop on imported packages
 					// Recursive call on the current member
-					computeNames(prefix + memberName + NamedElementUtil.QUALIFIED_NAME_SEPARATOR, (Namespace) member, false, alreadyComputedNamespace);
+					StringBuilder newPrefix = new StringBuilder(prefix);
+					newPrefix.append(memberName);
+					newPrefix.append(NamedElementUtil.QUALIFIED_NAME_SEPARATOR);
+					computeNames(newPrefix.toString(), (Namespace) member, false, alreadyComputedNamespace);
 				}
 			}
 		}
+	}
+
+	/**
+	 * @param namedElement
+	 * @return
+	 *         the shortest qualified to use for the element
+	 */
+	public List<String> getShortestQualifiedNames(NamedElement namedElement) {
+		return NameResolutionUtils.getShortestQualifiedNames(namedElement, this.scope);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getMatchingElements(java.lang.String)
+	 *
+	 * @param aString
+	 * @return
+	 */
+	public List<Object> getMatchingElements(String aString) {
+		if (this.allNames == null) {
+			this.allNames = new HashMap<String, List<NamedElement>>();
+			this.computeAllNames();
+		}
+
+		Collection<Object> elements = new HashSet<Object>();
+
+		for (Entry<String, List<NamedElement>> current : this.allNames.entrySet()) {
+			if (aString == null || aString.isEmpty() || current.getKey().startsWith(aString)) {
+				elements.addAll(current.getValue());
+			}
+		}
+		// to avoid to found the same element several time
+		return new ArrayList<Object>(elements);
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getElementsByName(java.lang.String)
+	 *
+	 * @param aString
+	 * @return
+	 */
+	public List<Object> getElementsByName(String aString) {
+		if (this.allNames == null) {
+			this.allNames = new HashMap<String, List<NamedElement>>();
+			this.computeAllNames();
+		}
+		List<NamedElement> namedElements = this.allNames.get(aString);
+		List<Object> returnedValues = null;
+		if (namedElements != null && namedElements.size() > 0) {
+
+			returnedValues = new ArrayList<Object>(namedElements);
+		}
+		return returnedValues != null ? returnedValues : Collections.emptyList();
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper#getShortestQualifiedNames(java.lang.Object)
+	 *
+	 * @param element
+	 * @return
+	 */
+	public List<String> getShortestQualifiedNames(Object element) {
+		if (element instanceof NamedElement) {
+			return getShortestQualifiedNames((NamedElement) element);
+		}
+		return null;
 	}
 }

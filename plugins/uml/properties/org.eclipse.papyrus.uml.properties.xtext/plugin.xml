@@ -8,4 +8,10 @@
             language="OCL">
       </editor>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.views.properties.environment">
+      <environment
+            environmentModel="model/environment.xmi">
+      </environment>
+   </extension>
 </plugin>

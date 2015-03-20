@@ -13,6 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.celleditor;
 
+
+
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.config.RenderErrorHandling;
@@ -30,8 +32,8 @@ import org.eclipse.nebula.widgets.nattable.widget.EditModeEnum;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.custom.VerifyKeyListener;
-import org.eclipse.swt.events.KeyAdapter;
 import org.eclipse.swt.events.KeyEvent;
+import org.eclipse.swt.events.KeyListener;
 import org.eclipse.swt.events.VerifyEvent;
 import org.eclipse.swt.graphics.Cursor;
 import org.eclipse.swt.widgets.Composite;
@@ -46,7 +48,7 @@ import org.eclipse.swt.widgets.Text;
  * @author vl222926
  *
  */
-public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor {
+public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor implements KeyListener {
 
 	/**
 	 * The StyledText control which is the editor wrapped by this TextCellEditor.
@@ -200,7 +202,7 @@ public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor {
 	}
 
 	@Override
-	public StyledText getEditorControl() {
+	public Control getEditorControl() {
 		return this.text;
 	}
 
@@ -261,57 +263,116 @@ public abstract class AbstractStyledTextCellEditor extends AbstractCellEditor {
 
 		// add a key listener that will commit or close the editor for special key strokes
 		// and executes conversion/validation on input to the editor
-		textControl.addKeyListener(new KeyAdapter() {
-
-			@Override
-			public void keyPressed(KeyEvent event) {
-				if (commitOnEnter && (event.keyCode == SWT.CR || event.keyCode == SWT.KEYPAD_CR)) {
-
-					MoveDirectionEnum move = MoveDirectionEnum.NONE;
-					if (moveSelectionOnEnter && editMode == EditModeEnum.INLINE) {
-						if (event.stateMask == 0) {
-							move = MoveDirectionEnum.DOWN;
-						} else if (event.stateMask == SWT.SHIFT) {
-							move = MoveDirectionEnum.UP;
-						}
-					}
-
-					commit(move);
-
-					if (editMode == EditModeEnum.DIALOG) {
-						parent.forceFocus();
-					}
-				} else if (event.keyCode == SWT.ESC && event.stateMask == 0) {
-					close();
-				} else if (commitOnUpDown && editMode == EditModeEnum.INLINE) {
-					if (event.keyCode == SWT.ARROW_UP) {
-						commit(MoveDirectionEnum.UP);
-					} else if (event.keyCode == SWT.ARROW_DOWN) {
-						commit(MoveDirectionEnum.DOWN);
-					}
-				}
-			}
-
-			@Override
-			public void keyReleased(KeyEvent e) {
-				try {
-					// always do the conversion
-					Object canonicalValue = getCanonicalValue(inputConversionErrorHandler);
-					// and always do the validation
-					// even if for commiting the validation should be skipped, on editing
-					// a validation failure should be made visible
-					// otherwise there would be no need for validation!
-					validateCanonicalValue(canonicalValue, inputValidationErrorHandler);
-				} catch (Exception ex) {
-					// do nothing as exceptions caused by conversion or validation are handled already
-					// we just need this catch block for stopping the process if conversion failed with
-					// an exception
-				}
-			}
-		});
+		textControl.addKeyListener(this);
+		// textControl.addKeyListener(new KeyAdapter() {
+		//
+		// @Override
+		// public void keyPressed(KeyEvent event) {
+		// if (commitOnEnter && (event.keyCode == SWT.CR || event.keyCode == SWT.KEYPAD_CR)) {
+		//
+		// MoveDirectionEnum move = MoveDirectionEnum.NONE;
+		// if (moveSelectionOnEnter && editMode == EditModeEnum.INLINE) {
+		// if (event.stateMask == 0) {
+		// move = MoveDirectionEnum.DOWN;
+		// } else if (event.stateMask == SWT.SHIFT) {
+		// move = MoveDirectionEnum.UP;
+		// }
+		// }
+		//
+		// commit(move);
+		//
+		// if (editMode == EditModeEnum.DIALOG) {
+		// parent.forceFocus();
+		// }
+		// } else if (event.keyCode == SWT.ESC && event.stateMask == 0) {
+		// close();
+		// } else if (commitOnUpDown && editMode == EditModeEnum.INLINE) {
+		// if (event.keyCode == SWT.ARROW_UP) {
+		// commit(MoveDirectionEnum.UP);
+		// } else if (event.keyCode == SWT.ARROW_DOWN) {
+		// commit(MoveDirectionEnum.DOWN);
+		// }
+		// }
+		// }
+		//
+		// @Override
+		// public void keyReleased(KeyEvent e) {
+		// try {
+		// // always do the conversion
+		// Object canonicalValue = getCanonicalValue(inputConversionErrorHandler);
+		// // and always do the validation
+		// // even if for commiting the validation should be skipped, on editing
+		// // a validation failure should be made visible
+		// // otherwise there would be no need for validation!
+		// validateCanonicalValue(canonicalValue, inputValidationErrorHandler);
+		// } catch (Exception ex) {
+		// // do nothing as exceptions caused by conversion or validation are handled already
+		// // we just need this catch block for stopping the process if conversion failed with
+		// // an exception
+		// }
+		// }
+		// });
 
 		return textControl;
 	}
+
+
+	/**
+	 * 
+	 * @see org.eclipse.swt.events.KeyListener#keyPressed(org.eclipse.swt.events.KeyEvent)
+	 *
+	 * @param event
+	 */
+	public void keyPressed(KeyEvent event) {
+		if (commitOnEnter && (event.keyCode == SWT.CR || event.keyCode == SWT.KEYPAD_CR)) {
+
+			MoveDirectionEnum move = MoveDirectionEnum.NONE;
+			if (moveSelectionOnEnter && editMode == EditModeEnum.INLINE) {
+				if (event.stateMask == 0) {
+					move = MoveDirectionEnum.DOWN;
+				} else if (event.stateMask == SWT.SHIFT) {
+					move = MoveDirectionEnum.UP;
+				}
+			}
+
+			commit(move);
+
+			if (editMode == EditModeEnum.DIALOG) {
+				parent.forceFocus();
+			}
+		} else if (event.keyCode == SWT.ESC && event.stateMask == 0) {
+			close();
+		} else if (commitOnUpDown && editMode == EditModeEnum.INLINE) {
+			if (event.keyCode == SWT.ARROW_UP) {
+				commit(MoveDirectionEnum.UP);
+			} else if (event.keyCode == SWT.ARROW_DOWN) {
+				commit(MoveDirectionEnum.DOWN);
+			}
+		}
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.swt.events.KeyListener#keyReleased(org.eclipse.swt.events.KeyEvent)
+	 *
+	 * @param e
+	 */
+	public void keyReleased(KeyEvent e) {
+		try {
+			// always do the conversion
+			Object canonicalValue = getCanonicalValue(inputConversionErrorHandler);
+			// and always do the validation
+			// even if for commiting the validation should be skipped, on editing
+			// a validation failure should be made visible
+			// otherwise there would be no need for validation!
+			validateCanonicalValue(canonicalValue, inputValidationErrorHandler);
+		} catch (Exception ex) {
+			// do nothing as exceptions caused by conversion or validation are handled already
+			// we just need this catch block for stopping the process if conversion failed with
+			// an exception
+		}
+	}
+
 
 	@Override
 	public void close() {
