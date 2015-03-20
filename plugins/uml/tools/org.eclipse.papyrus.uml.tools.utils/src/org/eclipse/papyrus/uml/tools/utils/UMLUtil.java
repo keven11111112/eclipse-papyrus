@@ -36,6 +36,7 @@ import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageEvent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Stereotype;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -301,7 +302,8 @@ public class UMLUtil {
 			}
 		} else {
 			for (Profile profile : umlPackage.getAllAppliedProfiles()) {
-				for (Stereotype ownedStereotype : profile.getOwnedStereotypes()) {
+				Set<Stereotype> ownedStereotypes = getAllStereotypes(profile);
+				for (Stereotype ownedStereotype : ownedStereotypes) {
 					for (Stereotype superStereotype : getAllSuperStereotypes(ownedStereotype)) {
 						if (stereotypeName.equals(superStereotype.getQualifiedName())) {
 							stereotypes.add(ownedStereotype);
@@ -314,6 +316,25 @@ public class UMLUtil {
 		return new LinkedList<Stereotype>(stereotypes);
 	}
 
+	
+	
+	/**
+	 * Get all stereotyped contained in a profile and its nested package
+	 * @param pck
+	 * @return
+	 */
+	public static Set<Stereotype> getAllStereotypes(Package pck){
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+		stereotypes.addAll(pck.getOwnedStereotypes());
+		for (Package nestedPackage : pck.getNestedPackages()) {
+			stereotypes.addAll(getAllStereotypes(nestedPackage));
+		}
+		return stereotypes;
+	}
+	
+	
+	
+	
 	private static Stereotype getSuperstereotype(Stereotype substereotype, String qualifiedName) {
 		Stereotype result = null;
 

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="ASCII"?>
+<environment:ConstraintEnvironment
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:environment="http://www.eclipse.org/papyrus/constraints/environment/0.9">
+  <constraintTypes
+      label="Has Stereotype Sysml 1.4"
+      constraintClass="org.eclipse.papyrus.sysml14.ui.constraints.HasStereotypeSysml14Constraint"/>
+</environment:ConstraintEnvironment>
