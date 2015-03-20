@@ -15,21 +15,27 @@
 <plugin> 
    
    
-      <extension
-         point="org.eclipse.papyrus.infra.core.papyrusDiagram">
-      <diagramCategory
-            class="org.eclipse.papyrus.sysml14.ui.CreateSysML14ModelCommand"
-            description="SysML 1.4 diagrams"
-            icon="platform:/plugin/org.eclipse.papyrus.sysml.diagram.common/icons/category_sysml.gif"
-            id="SysML14"
-            label="SysML 1.4">
-      </diagramCategory>
+    <extension point="org.eclipse.papyrus.infra.core.papyrusDiagram">
+	     <diagramCategory
+	            class="org.eclipse.papyrus.sysml14.ui.CreateSysML14ModelCommand"
+	            description="SysML 1.4 diagrams"
+	            icon="platform:/plugin/org.eclipse.papyrus.sysml.diagram.common/icons/category_sysml.gif"
+	            id="SysML14"
+	            label="SysML 1.4">
+	     </diagramCategory>
+    </extension>
+
+   
+   <extension point="org.eclipse.papyrus.infra.newchild">
+      <menuCreationModel model="resources/SysML14.creationmenumodel"></menuCreationModel>
+   </extension>    
+   
+   <extension point="org.eclipse.papyrus.views.properties.context">
+      <context contextModel="resources/properties/SysML1.4.ctx"></context>
+   </extension>
       
-   </extension>
-            <extension
-         point="org.eclipse.papyrus.infra.newchild">
-      <menuCreationModel
-            model="resources/SysML14.creationmenumodel">
-      </menuCreationModel>
-   </extension>
+   <extension point="org.eclipse.papyrus.infra.constraints.ConstraintEnvironment">
+      <environment environmentModel="resources/SysML1.4ConstraintEnvironment.xmi"></environment>
+   </extension>      
+      
 </plugin>

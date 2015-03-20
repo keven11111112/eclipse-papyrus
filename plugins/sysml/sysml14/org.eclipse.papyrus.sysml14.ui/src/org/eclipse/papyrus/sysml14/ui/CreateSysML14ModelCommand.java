@@ -25,8 +25,6 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class CreateSysML14ModelCommand extends ModelCreationCommandBase {
 
-	public static final String COMMAND_ID = "sysml14"; //$NON-NLS-1$
-
 	/**
 	 * @see org.eclipse.papyrus.infra.core.extension.commands.ModelCreationCommandBase#createRootElement()
 	 *
@@ -50,7 +48,7 @@ public class CreateSysML14ModelCommand extends ModelCreationCommandBase {
 		((org.eclipse.uml2.uml.Package) owner).setName(getModelName());
 
 		// Retrieve SysML profile and apply with Sub-profile
-		Profile sysml = (Profile) PackageUtil.loadPackage(URI.createURI(SysmlResource.SYSML_PROFILE_URI), owner.eResource().getResourceSet());
+		Profile sysml = (Profile) PackageUtil.loadPackage(URI.createURI(SysmlResource.PROFILE_PATH), owner.eResource().getResourceSet());
 		if (sysml != null) {
 			PackageUtil.applyProfile(((org.eclipse.uml2.uml.Package) owner), sysml, true);
 		}
