@@ -1,16 +1,16 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
- *
- *
+ * Copyright (c) 2015 CEA LIST and others.
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *
+ *   CEA LIST - Initial API and implementation
+ *   
  *****************************************************************************/
+
 package org.eclipse.papyrus.infra.nattable.celleditor.config;
 
 import java.util.ArrayList;
@@ -25,14 +25,14 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
+
 /**
- *
- * This class allows to load and get all registered CellEditorConfigurationFactory
+ * @author MA244259
  *
  */
-public class CellEditorConfigurationFactory {
+public class CellAxisConfigurationRegistry {
 
-	private Map<Integer, IAxisCellEditorConfiguration> registry;
+	private Map<Integer, ICellAxisConfiguration> registry;
 
 	public static final String EXTENSION_ID = "org.eclipse.papyrus.infra.nattable.celleditor.configuration"; //$NON-NLS-1$
 
@@ -40,28 +40,28 @@ public class CellEditorConfigurationFactory {
 
 	public static final String ORDER_ATTRIBUTE = "order"; //$NON-NLS-1$
 
-	public static final CellEditorConfigurationFactory INSTANCE = new CellEditorConfigurationFactory();
+	public static final CellAxisConfigurationRegistry INSTANCE = new CellAxisConfigurationRegistry();
 
-	public static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.infra.nattable.celleditor";
+//	public static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.infra.nattable.celleditor";
 
-	public static final String EXTENSION_POINT_NAME = "configuration";
+	public static final String CONFIGURATION_EXT_NEW = "cellAxisConfiguration";
 
 	/**
 	 *
 	 * Constructor.
 	 * Initial the registry of the configuration factories
 	 */
-	private CellEditorConfigurationFactory() {
-		// to prevent instanciation
-		// final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
-		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_NAMESPACE, EXTENSION_POINT_NAME);
-		this.registry = new TreeMap<Integer, IAxisCellEditorConfiguration>();
+	private CellAxisConfigurationRegistry() {
+		// to prevent instantiation
+		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		// final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_NAMESPACE, EXTENSION_POINT_NAME, EXTENSION_ID);
+		this.registry = new TreeMap<Integer, ICellAxisConfiguration>();
 		for (final IConfigurationElement iConfigurationElement : configElements) {
-			if (EXTENSION_POINT_NAME.equals(iConfigurationElement.getName())) {
+			if (CONFIGURATION_EXT_NEW.equals(iConfigurationElement.getName())) {
 				// final String id = iConfigurationElement.getAttribute(FACTORY_ID_ATTRIBUTE);
 				final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER_ATTRIBUTE));
 				try {
-					final IAxisCellEditorConfiguration factory = (IAxisCellEditorConfiguration) iConfigurationElement.createExecutableExtension(CELL_EDITOR_CONFIGURATION_CLASS_ATTRIBUTE);
+					final ICellAxisConfiguration factory = (ICellAxisConfiguration) iConfigurationElement.createExecutableExtension(CELL_EDITOR_CONFIGURATION_CLASS_ATTRIBUTE);
 					// factory.initFactory(id);
 
 					if (factory != null) {
@@ -81,27 +81,13 @@ public class CellEditorConfigurationFactory {
 	 * @return
 	 *         the cellEditorFactory declared on this id or <code>null</code> if not found
 	 * 
-	 * @deprecated since Papyrus 1.1.0
-	 */
-	@Deprecated
-	public IAxisCellEditorConfiguration getCellEditorConfigruation(final String configurationId) {
-		return getCellEditorConfiguration(configurationId);
-	}
-
-	/**
-	 *
-	 * @param configurationId
-	 *            the id of the factory
-	 * @return
-	 *         the cellEditorFactory declared on this id or <code>null</code> if not found
-	 * 
 	 * 
 	 */
-	public IAxisCellEditorConfiguration getCellEditorConfiguration(final String configurationId) {
+	public ICellAxisConfiguration getCellEditorConfiguration(final String configurationId) {
 		Assert.isNotNull(configurationId);
 		for (final Integer order : this.registry.keySet()) {
-			final IAxisCellEditorConfiguration current = this.registry.get(order);
-			if (configurationId.equals(current.getEditorConfigId())) {
+			final ICellAxisConfiguration current = this.registry.get(order);
+			if (configurationId.equals(current.getConfigurationId())) {
 				return current;
 			}
 		}
@@ -117,10 +103,10 @@ public class CellEditorConfigurationFactory {
 	 * @return
 	 *         the first cell editor configuration factory which is able to manage this object
 	 */
-	public IAxisCellEditorConfiguration getFirstCellEditorConfiguration(final Table table, final Object obj) {
-		final List<IAxisCellEditorConfiguration> factories = getCellEditorConfigurationFactories(table, obj);
-		if (!factories.isEmpty()) {
-			return factories.get(0);
+	public ICellAxisConfiguration getFirstCellEditorConfiguration(final Table table, final Object obj) {
+		final List<ICellAxisConfiguration> configurations = getCellEditorConfigurationFactories(table, obj);
+		if (!configurations.isEmpty()) {
+			return configurations.get(0);
 		}
 		return null;
 	}
@@ -134,9 +120,9 @@ public class CellEditorConfigurationFactory {
 	 * @return
 	 *         the list of the cell editor configuration which are able to manage this object
 	 */
-	public List<IAxisCellEditorConfiguration> getCellEditorConfigurationFactories(final Table table, final Object obj) {
-		final List<IAxisCellEditorConfiguration> factories = new ArrayList<IAxisCellEditorConfiguration>();
-		for (final IAxisCellEditorConfiguration current : this.registry.values()) {
+	public List<ICellAxisConfiguration> getCellEditorConfigurationFactories(final Table table, final Object obj) {
+		final List<ICellAxisConfiguration> factories = new ArrayList<ICellAxisConfiguration>();
+		for (final ICellAxisConfiguration current : this.registry.values()) {
 			if (current.handles(table, obj)) {
 				factories.add(current);
 			}
