@@ -329,6 +329,16 @@ public class TestSemantic extends BaseTestCase {
 		checkContainsChildren(state, region, UMLPackage.eINSTANCE.getState_Region());
 	}
 
+	@Test
+	public void testStateInRegion() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		
+		State state = (State)stateEP.resolveSemanticElement();
+		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
+		
+		checkContainsChildren(region, state, UMLPackage.eINSTANCE.getRegion_Subvertex());
+	}
+
 	protected Request createUnspecifiedToolRequest(int VID) {
 		List<IElementType> types = new LinkedList<IElementType>();
 		
