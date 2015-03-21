@@ -31,6 +31,14 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBe
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateForkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
@@ -38,6 +46,7 @@ import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Pseudostate;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
@@ -157,6 +166,55 @@ public class TestSemantic extends BaseTestCase {
 		EReference expectedFeature = UMLPackage.eINSTANCE.getRegion_Subvertex();
 
 		checkContainsChildren(region, state, expectedFeature);
+	}
+
+	@Test
+	public void testPseudostateChoiseInRegion() {
+		checkPseudostate(PseudostateChoiceEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateDeepHistoryInRegion() {
+		checkPseudostate(PseudostateDeepHistoryEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateForkInRegion() {
+		checkPseudostate(PseudostateForkEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateInitialInRegion() {
+		checkPseudostate(PseudostateInitialEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateJoinInRegion() {
+		checkPseudostate(PseudostateJoinEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateJunctionInRegion() {
+		checkPseudostate(PseudostateJunctionEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateShallowHistoryInRegion() {
+		checkPseudostate(PseudostateShallowHistoryEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudostateTerminateInRegion() {
+		checkPseudostate(PseudostateTerminateEditPart.VISUAL_ID);
+	}
+
+	public void checkPseudostate(int VID) {
+		IGraphicalEditPart stateEP = createChild(VID, getRegionCompartmentEditPart());
+
+		Pseudostate pseudostate = (Pseudostate) stateEP.resolveSemanticElement();
+		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
+
+		checkContainsChildren(region, pseudostate, UMLPackage.eINSTANCE.getRegion_Subvertex());
 	}
 
 	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {
