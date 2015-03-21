@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentAnnotatedE
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.junit.Assert;
@@ -85,5 +86,20 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart constraintConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(constraintConnection instanceof ConstraintConstrainedElementEditPart);
+	}
+
+	@Test
+	public void testContextElementLink() {
+		IGraphicalEditPart constraint = createChild(ConstraintEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart state = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+
+		Command endCommand = createLinkCommand(constraint, state, UMLElementTypes.ConstraintContext_8500);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart contextConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(contextConnection instanceof ContextLinkEditPart);
 	}
 }
