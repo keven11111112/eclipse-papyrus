@@ -42,8 +42,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintCons
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.InternalTransitionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
@@ -86,16 +84,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		if (UMLElementTypes.Transition_680 == requestElementType) {
 
 			return getGEFWrapper(new InternalTransitionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.Pseudostate_16000 == requestElementType) {
-
-			return getGEFWrapper(new PseudostateEntryPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.Pseudostate_17000 == requestElementType) {
-
-			return getGEFWrapper(new PseudostateExitPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		return super.getCreateCommand(req);

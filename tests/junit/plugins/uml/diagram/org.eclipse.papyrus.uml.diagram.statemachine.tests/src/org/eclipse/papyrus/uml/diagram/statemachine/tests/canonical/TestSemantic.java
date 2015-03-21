@@ -37,6 +37,8 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehavior
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateDeepHistoryEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateEntryPointEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateExitPointEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateForkEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateInitialEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJoinEditPart;
@@ -46,6 +48,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateMachineEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
@@ -224,6 +227,51 @@ public class TestSemantic extends BaseTestCase {
 		checkContainsChildren(region, pseudostate, UMLPackage.eINSTANCE.getRegion_Subvertex());
 	}
 
+	@Test
+	public void testPseudoEntryPointInStateMachine() {
+		checkPseudoPointInStateMachine(PseudostateEntryPointEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testPseudoExitPointInStateMachine() {
+		checkPseudoPointInStateMachine(PseudostateExitPointEditPart.VISUAL_ID);
+	}
+
+	public void checkPseudoPointInStateMachine(int VID) {
+		IGraphicalEditPart stateMachineEP = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
+		IGraphicalEditPart pseudostateEP = createChild(VID, stateMachineEP);
+
+		Pseudostate pseudostate = (Pseudostate) pseudostateEP.resolveSemanticElement();
+		StateMachine stateMachine = (StateMachine) stateMachineEP.resolveSemanticElement();
+
+		checkContainsChildren(stateMachine, pseudostate, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+	}
+	
+	@Test
+	public void testPseudoEntryPointInRegion() {
+		checkPseudoPointInRegion(PseudostateEntryPointEditPart.VISUAL_ID);
+	}
+	
+	@Test
+	public void testPseudoExitPointInRegion() {
+		checkPseudoPointInRegion(PseudostateExitPointEditPart.VISUAL_ID);
+	}
+
+	public void checkPseudoPointInRegion(int VID) {
+		Request req = createUnspecifiedToolRequest(VID);
+		
+		Command cmd = getRegionCompartmentEditPart().getCommand(req);
+		executeOnUIThread(cmd);
+		
+		IGraphicalEditPart stateMachineEP = findChildBySemanticHint(getDiagramEditPart(), StateMachineEditPart.VISUAL_ID);
+		IGraphicalEditPart pseudostateEP = findChildBySemanticHint(stateMachineEP, VID);
+		
+		StateMachine stateMachine = (StateMachine) stateMachineEP.resolveSemanticElement();
+		Pseudostate pseudostate = (Pseudostate) pseudostateEP.resolveSemanticElement();
+
+		checkContainsChildren(stateMachine, pseudostate, UMLPackage.eINSTANCE.getStateMachine_ConnectionPoint());
+	}
+	
 	@Test
 	public void testRegionInRegion() {
 		Request createRegionInRegionRequest = createUnspecifiedToolRequest(RegionEditPart.VISUAL_ID);
