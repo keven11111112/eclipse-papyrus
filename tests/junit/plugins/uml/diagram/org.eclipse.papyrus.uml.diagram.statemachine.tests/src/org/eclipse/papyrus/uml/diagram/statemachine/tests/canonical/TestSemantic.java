@@ -13,17 +13,21 @@
 
 package org.eclipse.papyrus.uml.diagram.statemachine.tests.canonical;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
+import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
@@ -39,7 +43,10 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJoinEd
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateJunctionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateShallowHistoryEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTerminateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectionPointReference;
@@ -215,6 +222,73 @@ public class TestSemantic extends BaseTestCase {
 		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
 
 		checkContainsChildren(region, pseudostate, UMLPackage.eINSTANCE.getRegion_Subvertex());
+	}
+
+	@Test
+	public void testRegionInRegion() {
+		Request createRegionInRegionRequest = createUnspecifiedToolRequest(RegionEditPart.VISUAL_ID);
+		Command cmd = getRegionCompartmentEditPart().getCommand(createRegionInRegionRequest);
+		executeOnUIThread(cmd);
+		
+		IGraphicalEditPart stateMachineComp = (IGraphicalEditPart)getRegionCompartmentEditPart().getParent().getParent();
+		Assert.assertEquals(stateMachineComp.getChildren().size(), 2);
+		
+		IGraphicalEditPart firstRegionEP = (IGraphicalEditPart) stateMachineComp.getChildren().get(0);
+		IGraphicalEditPart secondRegionEP = (IGraphicalEditPart) stateMachineComp.getChildren().get(1);
+		
+		Assert.assertNotEquals(firstRegionEP, secondRegionEP);
+		
+		StateMachine stateMachine = (StateMachine)getRegionCompartmentEditPart().resolveSemanticElement().eContainer();
+		
+		Region region_1 = (Region) firstRegionEP.resolveSemanticElement();
+		Region region_2 = (Region) secondRegionEP.resolveSemanticElement();
+		
+		checkContainsChildren(stateMachine, region_1, UMLPackage.eINSTANCE.getStateMachine_Region());
+		checkContainsChildren(stateMachine, region_2, UMLPackage.eINSTANCE.getStateMachine_Region());
+	}
+
+	@Test
+	public void testRegionInStateMachine() {
+		IGraphicalEditPart stateMachineComp = (IGraphicalEditPart)getRegionCompartmentEditPart().getParent().getParent();
+		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateMachineComp);
+		
+		StateMachine stateMachine = (StateMachine)stateMachineComp.resolveSemanticElement();
+		Region region = (Region) regionEP.resolveSemanticElement();
+		
+		checkContainsChildren(stateMachine, region, UMLPackage.eINSTANCE.getStateMachine_Region());
+	}
+
+	@Test
+	public void testRegionInState() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateEP);
+		
+		State stateMachine = (State)stateEP.resolveSemanticElement();
+		Region region = (Region) regionEP.resolveSemanticElement();
+		
+		checkContainsChildren(stateMachine, region, UMLPackage.eINSTANCE.getState_Region());
+	}
+
+	@Test
+	public void testRegionInStateCompartment() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart stateComp = findChildBySemanticHint(stateEP, StateCompartmentEditPart.VISUAL_ID);
+		IGraphicalEditPart regionEP = createChild(RegionEditPart.VISUAL_ID, stateComp);
+		
+		State state = (State)stateEP.resolveSemanticElement();
+		Region region = (Region) regionEP.resolveSemanticElement();
+		
+		checkContainsChildren(state, region, UMLPackage.eINSTANCE.getState_Region());
+	}
+
+	protected Request createUnspecifiedToolRequest(int VID) {
+		List<IElementType> types = new LinkedList<IElementType>();
+		
+		types.add(UMLElementTypes.getElementType(VID));
+		
+		AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest req =
+				new AspectUnspecifiedTypeCreationTool(types).new CreateAspectUnspecifiedTypeRequest(types, getRegionCompartmentEditPart().getDiagramPreferencesHint());
+		return req;
 	}
 
 	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {

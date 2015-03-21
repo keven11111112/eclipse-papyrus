@@ -44,7 +44,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkReo
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.InternalTransitionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.RegionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
@@ -87,11 +86,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		if (UMLElementTypes.Transition_680 == requestElementType) {
 
 			return getGEFWrapper(new InternalTransitionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.Region_3000 == requestElementType) {
-
-			return getGEFWrapper(new RegionCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		if (UMLElementTypes.Pseudostate_16000 == requestElementType) {

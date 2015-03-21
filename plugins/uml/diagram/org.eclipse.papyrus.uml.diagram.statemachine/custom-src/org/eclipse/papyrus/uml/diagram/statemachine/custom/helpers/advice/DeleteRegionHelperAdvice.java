@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.util.CrossReferencerUtil;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomRegionPreDeleteCommand;
@@ -30,11 +30,10 @@ import org.eclipse.uml2.uml.Region;
  * This HelperAdvice resizes other regions of a state-machine or composite state, if a region gets deleted
  * </pre>
  */
-public class RegionHelperAdvice extends AbstractEditHelperAdvice {
+public class DeleteRegionHelperAdvice extends AbstractEditHelperAdvice {
 
 	@Override
-	protected ICommand getBeforeDestroyDependentsCommand(DestroyDependentsRequest request) {
-
+	protected ICommand getBeforeDestroyElementCommand(DestroyElementRequest request) {
 		EObject destructee = request.getElementToDestroy();
 
 		Set<View> viewsToDestroy = new HashSet<View>();
