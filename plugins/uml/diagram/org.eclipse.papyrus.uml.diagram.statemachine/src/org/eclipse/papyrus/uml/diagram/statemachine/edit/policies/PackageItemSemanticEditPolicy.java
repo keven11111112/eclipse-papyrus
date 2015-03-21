@@ -15,11 +15,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.commands.DuplicateEObjectsCommand;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
-import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DuplicateElementsRequest;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.StateMachineCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 
 /**
@@ -32,25 +28,6 @@ public class PackageItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy
 	 */
 	public PackageItemSemanticEditPolicy() {
 		super(UMLElementTypes.Package_1000);
-	}
-
-	/**
-	 * @generated
-	 */
-	@Override
-	protected Command getCreateCommand(CreateElementRequest req) {
-		IElementType requestElementType = req.getElementType();
-		if (requestElementType == null) {
-			return super.getCreateCommand(req);
-		}
-
-
-		if (UMLElementTypes.StateMachine_2000 == requestElementType) {
-
-			return getGEFWrapper(new StateMachineCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		return super.getCreateCommand(req);
 	}
 
 	/**
