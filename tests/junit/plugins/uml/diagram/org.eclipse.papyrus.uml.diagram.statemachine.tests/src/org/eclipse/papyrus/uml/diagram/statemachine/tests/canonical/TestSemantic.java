@@ -30,11 +30,13 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPar
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.FinalStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
@@ -144,7 +146,19 @@ public class TestSemantic extends BaseTestCase {
 
 		checkContainChild(state, exit, expectedFeature);
 	}
-	
+
+	@Test
+	public void testFinalStateInRegino() {
+		IGraphicalEditPart finalStateEP = createChild(FinalStateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+
+		FinalState state = (FinalState) finalStateEP.resolveSemanticElement();
+		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
+		
+		EReference expectedFeature = UMLPackage.eINSTANCE.getRegion_Subvertex();
+
+		checkContainsChildren(region, state, expectedFeature);
+	}
+
 	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {
 		List<?> containmentList = (List<?>)parent.eGet(feature);
 		String message = "Element [" + parent + "] don't contain [" + child +"] whith feature:" + feature.getName();
