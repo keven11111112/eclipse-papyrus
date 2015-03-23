@@ -37,33 +37,39 @@ import org.w3c.dom.svg.SVGSVGElement;
  */
 public class BorderedScalableImageFigure extends ScalableImageFigure {
 
+	private RenderedImage lastRenderedImage;
+
 	public BorderedScalableImageFigure(RenderedImage renderedImage, boolean useDefaultImageSize, boolean useOriginalColors, boolean antiAlias) {
 		super(renderedImage, useDefaultImageSize, useOriginalColors, antiAlias);
 		// set a layout manager to override maintain ratio behavior
 		setLayoutManager(new BorderedLayoutManager());
+		lastRenderedImage = renderedImage;
 	}
 
 	@Override
 	protected void paintFigure(Graphics graphics) {
-		// Get the parent bounds
-		Rectangle parentBounds = getParent().getBounds().getCopy();
+		if (!lastRenderedImage.getSWTImage().isDisposed()) { // Fix bug 462850
 
-		// Get the main figure where are color informations.
-		IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
+			// Get the parent bounds
+			Rectangle parentBounds = getParent().getBounds().getCopy();
 
-		// Set the color from the color of the parent
-		if (roundedCompartmentFigure != null) {
-			setBackgroundColor(roundedCompartmentFigure.getBackgroundColor());
-			setForegroundColor(roundedCompartmentFigure.getForegroundColor());
-		} else {
+			// Get the main figure where are color informations.
+			IRoundedRectangleFigure roundedCompartmentFigure = getMainFigure();
+
 			// Set the color from the color of the parent
-			setBackgroundColor(getParent().getBackgroundColor());
-			setForegroundColor(getParent().getForegroundColor());
-		}
+			if (roundedCompartmentFigure != null) {
+				setBackgroundColor(roundedCompartmentFigure.getBackgroundColor());
+				setForegroundColor(roundedCompartmentFigure.getForegroundColor());
+			} else {
+				// Set the color from the color of the parent
+				setBackgroundColor(getParent().getBackgroundColor());
+				setForegroundColor(getParent().getForegroundColor());
+			}
 
-		// set the clip of the graphics to the parent clip
-		graphics.setClip(parentBounds);
-		super.paintFigure(graphics);
+			// set the clip of the graphics to the parent clip
+			graphics.setClip(parentBounds);
+			super.paintFigure(graphics);
+		}
 	}
 
 	/**
@@ -74,7 +80,7 @@ public class BorderedScalableImageFigure extends ScalableImageFigure {
 	private IRoundedRectangleFigure getMainFigure() {
 		// If it's called by SVGNodePlate, the parent have not always the foreground color, need to locate
 		SVGNodePlateFigure svgNodePlate = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
-		return svgNodePlate == null ? null : FigureUtils.findChildFigureInstance(svgNodePlate, IRoundedRectangleFigure.class); 
+		return svgNodePlate == null ? null : FigureUtils.findChildFigureInstance(svgNodePlate, IRoundedRectangleFigure.class);
 	}
 
 	class BorderedLayoutManager extends AbstractLayout {
