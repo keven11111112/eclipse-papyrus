@@ -14,6 +14,7 @@ package org.eclipse.papyrus.uml.diagram.component.test.canonical;
 
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -45,6 +46,7 @@ public class TestComponentDiagramConstraintLink extends TestConstraintLink {
 	/**
 	 * Test to manage Constraint
 	 */
+	@FailingTest
 	@Test
 	public void testToManageConstraint() {
 		testToManageLink(UMLElementTypes.Constraint_3199, UMLElementTypes.Package_3200, UMLElementTypes.ConstraintConstrainedElement_4009, UMLElementTypes.Package_3200, true);

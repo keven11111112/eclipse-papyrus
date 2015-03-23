@@ -47,7 +47,6 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipReques
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
-import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.uml.diagram.component.expressions.UMLOCLFactory;
@@ -243,8 +242,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 */
 	protected Command getCreateCommand(CreateElementRequest req) {
 		IElementType requestElementType = req.getElementType();
-		if (requestElementType instanceof IExtendedHintedElementType) {
-			// try to get a semantic create command from the extended type
+		if (requestElementType instanceof IElementType) {
 			IElementEditService commandProvider = ElementEditServiceUtils.getCommandProvider(req.getContainer());
 			if (commandProvider != null) {
 				ICommand command = commandProvider.getEditCommand(req);
@@ -256,12 +254,10 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		return null;
 	}
 
-	// RS: add code for extended types
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedTypeCreationCommand(CreateElementRequest request,
-			IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedTypeCreationCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(request.getContainer());
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -274,8 +270,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request,
-			IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedStartCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -288,8 +283,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	/**
 	 * @generated
 	 */
-	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request,
-			IExtendedHintedElementType requestElementType) {
+	protected Command getExtendedCompleteCreateRelationshipCommand(CreateElementRequest request, IElementType requestElementType) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(requestElementType);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
@@ -373,7 +367,7 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 	 * @generated
 	 */
 	protected final Command getGEFWrapper(ICommand cmd) {
-		return new ICommandProxy(cmd);
+		return (cmd == null) ? UnexecutableCommand.INSTANCE : new ICommandProxy(cmd);
 	}
 
 	/**
