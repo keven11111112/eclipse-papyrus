@@ -14,15 +14,7 @@
 
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.swt.graphics.Image;
 
 /**
  * @author Céline JANSSENS
@@ -46,48 +38,9 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 	 */
 	@Override
 	protected void refreshStereotypeDisplay() {
-		refreshStereotypeLabelDisplay();
+		// nothing
 	}
 
-	protected void refreshStereotypeLabelDisplay() {
-		if (getHost() instanceof IPapyrusEditPart) {
-			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
-
-			// calculate text and icon to display
-			final String stereotypesToDisplay = helper.getStereotypeTextToDisplay((View) getHost().getModel());
-			final Image imageToDisplay = stereotypeIconToDisplay();
-
-			// if the string is not empty, then, the figure has to display it.
-			// Else, it displays nothing
-			if (figure instanceof IPapyrusNodeUMLElementFigure) {
-
-				// Refresh Stereotype Label
-				((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
-
-				refreshAppliedStereotypesLabel((IPapyrusNodeUMLElementFigure) figure);
-
-			}
-		}
-
-	}
-
-
-	/**
-	 * Refreshes the displayed stereotypes for this edit part.
-	 */
-	protected void refreshAppliedStereotypesLabel(IPapyrusNodeUMLElementFigure figure) {
-		// If node has a Label
-		if (figure instanceof IPapyrusNodeNamedElementFigure) {
-
-			// Refresh Label
-			boolean displayStereotypes = NotationUtils.getBooleanValue(getView(), NamedElementEditPart.DISPLAY_STEREOTYPES, true);
-			if (!displayStereotypes) {
-				((IPapyrusNodeNamedElementFigure) figure).removeStereotypeLabel();
-			} else {
-				((IPapyrusNodeNamedElementFigure) figure).restoreStereotypeLabel();
-			}
-		}
-	}
 
 
 

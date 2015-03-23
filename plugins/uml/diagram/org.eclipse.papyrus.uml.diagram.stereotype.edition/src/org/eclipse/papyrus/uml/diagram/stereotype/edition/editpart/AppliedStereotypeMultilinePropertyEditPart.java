@@ -99,7 +99,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  */
 public class AppliedStereotypeMultilinePropertyEditPart extends CompartmentEditPart implements ITextAwareEditPart, NotificationListener, IPapyrusListener, IControlParserForDirectEdit {
 
-	public static final String ID = "Applied_Stereotype_Property"; //$NON-NLS-1$
+	public static final String ID = "AppliedStereotypeProperty"; //$NON-NLS-1$
 
 	private DirectEditManager manager;
 

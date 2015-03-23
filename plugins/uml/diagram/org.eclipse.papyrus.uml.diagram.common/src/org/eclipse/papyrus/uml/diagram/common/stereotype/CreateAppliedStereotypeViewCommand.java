@@ -53,7 +53,6 @@ public class CreateAppliedStereotypeViewCommand extends RecordingCommand {
 		super(domain, "CreateStereotypeCompartment");
 		this.node = node;
 		this.stereotype = stereotype;
-		parent = helper.getStereotypeLabel(node, stereotype);
 		this.type = type;
 
 	}

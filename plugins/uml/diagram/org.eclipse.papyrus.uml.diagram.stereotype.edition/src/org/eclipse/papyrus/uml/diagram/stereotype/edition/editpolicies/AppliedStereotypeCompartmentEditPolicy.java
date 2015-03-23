@@ -52,6 +52,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 		super();
 	}
 
+
 	/**
 	 * Refresh the NotationStructure of the Node for this Stereotype
 	 * 

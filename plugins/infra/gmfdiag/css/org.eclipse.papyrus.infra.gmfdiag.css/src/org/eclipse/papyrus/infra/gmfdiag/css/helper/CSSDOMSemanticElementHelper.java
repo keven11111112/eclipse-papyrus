@@ -67,7 +67,6 @@ public class CSSDOMSemanticElementHelper {
 	 */
 	public EObject findSemanticElement(EObject notationElement) {
 
-
 		if (notationElement == null) {
 			return null;
 		}

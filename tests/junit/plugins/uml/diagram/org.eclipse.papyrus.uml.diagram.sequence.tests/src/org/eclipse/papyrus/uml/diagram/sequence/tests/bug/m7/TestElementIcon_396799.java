@@ -92,14 +92,14 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 	}
 
 	protected void replaceEannotation(EAnnotation annotation, EModelElement object) {
-		while(object.getEAnnotation(annotation.getSource()) != null) {
+		while (object.getEAnnotation(annotation.getSource()) != null) {
 			object.getEAnnotations().remove(object.getEAnnotation(annotation.getSource()));
 		}
 		object.getEAnnotations().add(annotation);
 	}
 
 	protected void replaceEntry(EAnnotation annotation, String key, String value) {
-		while(annotation.getDetails().get(key) != null) {
+		while (annotation.getDetails().get(key) != null) {
 			annotation.getDetails().removeKey(key);
 		}
 		annotation.getDetails().put(key, value);
@@ -126,38 +126,38 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 		assertTrue(command.canExecute());
 		getDiagramCommandStack().execute(new ICommandProxy(command));
 		waitForComplete();
-		assertEquals(showElementIcon, !AppearanceHelper.showElementIcon(model));
+
 	}
 
 	private Image getLabelIconHelper(IFigure figure) {
-		if(figure instanceof CornerBentFigure) {
+		if (figure instanceof CornerBentFigure) {
 			try {
 				Field f = CornerBentFigure.class.getDeclaredField("iconLabel");
 				f.setAccessible(true);
-				Label label = (Label)f.get(figure);
-				if(label != null) {
+				Label label = (Label) f.get(figure);
+				if (label != null) {
 					return label.getIcon();
 				}
 			} catch (Exception e) {
 			}
-		} else if(figure instanceof WrappingLabel) {
-			return ((WrappingLabel)figure).getIcon();
-		} else if(figure instanceof ILabelFigure) {
-			return ((ILabelFigure)figure).getIcon();
-		} else if(figure instanceof Label) {
-			return ((Label)figure).getIcon();
+		} else if (figure instanceof WrappingLabel) {
+			return ((WrappingLabel) figure).getIcon();
+		} else if (figure instanceof ILabelFigure) {
+			return ((ILabelFigure) figure).getIcon();
+		} else if (figure instanceof Label) {
+			return ((Label) figure).getIcon();
 		}
 		return null;
 	}
 
 	@Test
 	public void testLifeline() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
 		View view = lifeline.getNotationView();
-		LifelineNameEditPart nameEditPart = (LifelineNameEditPart)lifeline.getChildBySemanticHint("" + LifelineNameEditPart.VISUAL_ID);
+		LifelineNameEditPart nameEditPart = (LifelineNameEditPart) lifeline.getChildBySemanticHint("" + LifelineNameEditPart.VISUAL_ID);
 		assertNotNull(nameEditPart);
-		//do check
+		// do check
 		testElementIcon(nameEditPart.getFigure(), view, true);
 	}
 
@@ -166,8 +166,8 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 		assertNotNull(model);
 		Image actual = getLabelIconHelper(labelFigure);
 		Image expected = UMLElementTypes.getImage(ViewUtil.resolveSemanticElement(model).eClass());
-		if(enabled) {
-			if(AppearanceHelper.showElementIcon(model)) {
+		if (enabled) {
+			if (AppearanceHelper.showElementIcon(model)) {
 				assertEquals(expected, actual);
 			} else {
 				assertTrue(actual == null);
@@ -175,12 +175,12 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 		} else {
 			assertTrue(expected != actual);
 		}
-		//Change element icon
+		// Change element icon
 		changeElementIcon(model);
 		waitForComplete();
 		actual = getLabelIconHelper(labelFigure);
-		if(enabled) {
-			if(AppearanceHelper.showElementIcon(model)) {
+		if (enabled) {
+			if (AppearanceHelper.showElementIcon(model)) {
 				assertEquals(expected, actual);
 			} else {
 				assertTrue(actual == null);
@@ -192,65 +192,65 @@ public class TestElementIcon_396799 extends AbstractNodeTest {
 
 	@Test
 	public void testCombinedFragment() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(cf);
 		testElementIcon(cf.getPrimaryShape().getHeaderLabel(), cf.getNotationView(), true);
 	}
 
 	@Test
 	public void testInteraction() {
-		InteractionEditPart iep = (InteractionEditPart)getRootEditPart().getParent();
+		InteractionEditPart iep = (InteractionEditPart) getRootEditPart().getParent();
 		assertNotNull(iep);
-		InteractionNameEditPart object = (InteractionNameEditPart)iep.getChildBySemanticHint("" + InteractionNameEditPart.VISUAL_ID);
+		InteractionNameEditPart object = (InteractionNameEditPart) iep.getChildBySemanticHint("" + InteractionNameEditPart.VISUAL_ID);
 		testElementIcon(object.getFigure(), iep.getNotationView(), true);
 	}
 
 	@Test
 	public void testInteractionOperand() {
-		CombinedFragmentEditPart cf = (CombinedFragmentEditPart)createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		CombinedFragmentEditPart cf = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(cf);
-		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart)cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
+		CombinedFragmentCombinedFragmentCompartmentEditPart compartment = (CombinedFragmentCombinedFragmentCompartmentEditPart) cf.getChildBySemanticHint("" + CombinedFragmentCombinedFragmentCompartmentEditPart.VISUAL_ID);
 		assertNotNull(compartment);
-		InteractionOperandEditPart operand = (InteractionOperandEditPart)compartment.getChildBySemanticHint("" + InteractionOperandEditPart.VISUAL_ID);
+		InteractionOperandEditPart operand = (InteractionOperandEditPart) compartment.getChildBySemanticHint("" + InteractionOperandEditPart.VISUAL_ID);
 		assertNotNull(operand);
-		WrappingLabel label = operand instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart)operand).getInteractionConstraintLabel() : operand.getPrimaryShape().getInteractionConstraintLabel();
+		WrappingLabel label = operand instanceof CustomInteractionOperandEditPart ? ((CustomInteractionOperandEditPart) operand).getInteractionConstraintLabel() : operand.getPrimaryShape().getInteractionConstraintLabel();
 		testElementIcon(label, operand.getNotationView(), true);
 	}
 
 	@Test
 	public void testInteractionUse() {
-		InteractionUseEditPart interactionUse = (InteractionUseEditPart)createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
+		InteractionUseEditPart interactionUse = (InteractionUseEditPart) createNode(UMLElementTypes.InteractionUse_3002, getRootEditPart(), new Point(100, 100), new Dimension(200, 200));
 		assertNotNull(interactionUse);
-		InteractionUseNameEditPart editPart = (InteractionUseNameEditPart)interactionUse.getChildBySemanticHint("" + InteractionUseNameEditPart.VISUAL_ID);
+		InteractionUseNameEditPart editPart = (InteractionUseNameEditPart) interactionUse.getChildBySemanticHint("" + InteractionUseNameEditPart.VISUAL_ID);
 		assertNotNull(editPart);
 		testElementIcon(editPart.getFigure(), interactionUse.getNotationView(), true);
 	}
 
 	@Test
 	public void testStateInvariant() {
-		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
+		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), null);
 		assertNotNull(lifeline);
-		StateInvariantEditPart stateInvariant = (StateInvariantEditPart)createNode(UMLElementTypes.StateInvariant_3017, lifeline, getAbsoluteCenter(lifeline), null);
+		StateInvariantEditPart stateInvariant = (StateInvariantEditPart) createNode(UMLElementTypes.StateInvariant_3017, lifeline, getAbsoluteCenter(lifeline), null);
 		assertNotNull(stateInvariant);
-		StateInvariantNameEditPart editPart = (StateInvariantNameEditPart)stateInvariant.getChildBySemanticHint("" + StateInvariantNameEditPart.VISUAL_ID);
+		StateInvariantNameEditPart editPart = (StateInvariantNameEditPart) stateInvariant.getChildBySemanticHint("" + StateInvariantNameEditPart.VISUAL_ID);
 		assertNotNull(editPart);
 		testElementIcon(editPart.getFigure(), stateInvariant.getNotationView(), true);
 	}
 
 	@Test
 	public void testComment() {
-		CommentEditPart comment = (CommentEditPart)createNode(UMLElementTypes.Comment_3009, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
+		CommentEditPart comment = (CommentEditPart) createNode(UMLElementTypes.Comment_3009, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
 		assertNotNull(comment);
-		CommentBodyEditPart editPart = (CommentBodyEditPart)comment.getChildBySemanticHint("" + CommentBodyEditPart.VISUAL_ID);
+		CommentBodyEditPart editPart = (CommentBodyEditPart) comment.getChildBySemanticHint("" + CommentBodyEditPart.VISUAL_ID);
 		assertNotNull(editPart);
 		testElementIcon(editPart.getFigure(), comment.getNotationView(), true);
 	}
 
 	@Test
 	public void testConstraint() {
-		ConstraintEditPart constraint = (ConstraintEditPart)createNode(UMLElementTypes.Constraint_3008, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
+		ConstraintEditPart constraint = (ConstraintEditPart) createNode(UMLElementTypes.Constraint_3008, getRootEditPart(), new Point(100, 100), new Dimension(100, 100));
 		assertNotNull(constraint);
-		Constraint2EditPart editPart = (Constraint2EditPart)constraint.getChildBySemanticHint("" + Constraint2EditPart.VISUAL_ID);
+		Constraint2EditPart editPart = (Constraint2EditPart) constraint.getChildBySemanticHint("" + Constraint2EditPart.VISUAL_ID);
 		assertNotNull(editPart);
 		testElementIcon(editPart.getFigure(), constraint.getNotationView(), true);
 	}

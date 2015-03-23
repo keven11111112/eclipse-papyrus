@@ -16,19 +16,19 @@ package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionOperandEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandGuardEditPart.GuardFigure;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentEditPolicy;
 import org.eclipse.swt.graphics.Image;
 
 
 /**
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeCompartmentEditPolicy {
+public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 	@Override
 	protected void refreshStereotypeDisplay() {
@@ -51,7 +51,7 @@ public class InteractionOperandAppliedStereotypeLabelDisplayEditPolicy extends A
 		// nothing
 		// if (stereotypesToDisplay != "" || imageToDisplay != null) {
 		if (figure instanceof IPapyrusNodeUMLElementFigure) {
-			((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay == null ? "" : stereotypesToDisplay), imageToDisplay);
+			((IPapyrusNodeUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), imageToDisplay);
 			if (figure instanceof IPapyrusNodeNamedElementFigure) {
 				refreshAppliedStereotypesPropertiesInBrace(figure);
 			}

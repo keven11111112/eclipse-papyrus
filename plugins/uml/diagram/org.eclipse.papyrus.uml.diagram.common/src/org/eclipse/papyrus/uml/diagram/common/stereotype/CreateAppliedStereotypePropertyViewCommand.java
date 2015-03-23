@@ -61,7 +61,7 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 		propertyLabel.setElement(property);
 
 		// Add the new Label to it's owner Object
-		ViewUtil.insertChildView(owner, propertyLabel, ViewUtil.APPEND, true);
+		ViewUtil.insertChildView(owner, propertyLabel, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
 		propertyLabel.setMutable(true);
 
 	}

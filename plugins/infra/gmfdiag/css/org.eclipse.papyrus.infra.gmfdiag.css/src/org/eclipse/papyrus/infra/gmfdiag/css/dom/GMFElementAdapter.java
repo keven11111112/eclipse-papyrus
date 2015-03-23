@@ -67,7 +67,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 
 	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
 
-	public CSSDOMSemanticElementHelper helper = CSSDOMSemanticElementHelper.getInstance();
+	public CSSDOMSemanticElementHelper helper;
 
 	/**
 	 * The Semantic Model Element associated to the current styled element
@@ -207,7 +207,9 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		}
 
 		notationElement = view;
+		helper = CSSDOMSemanticElementHelper.getInstance();
 		listenNotationElement();
+
 	}
 
 	/**

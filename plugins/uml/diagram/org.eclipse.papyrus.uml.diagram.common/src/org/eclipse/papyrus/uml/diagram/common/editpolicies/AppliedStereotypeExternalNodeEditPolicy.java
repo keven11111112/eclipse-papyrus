@@ -110,17 +110,21 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 	 */
 	@Override
 	protected void refreshStereotypeDisplay() {
+		IFigure figure;
 		if (getHost() instanceof IPapyrusEditPart) {
-			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+			figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+		} else {
+			figure = hostEditPart.getFigure();
+		}
 
-			if (figure instanceof IPapyrusUMLElementFigure) {// calculate text
-				// and icon to display
-				final String stereotypesToDisplay = stereotypesToDisplay();
-				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
-
-			}
+		if (figure instanceof IPapyrusUMLElementFigure) {// calculate text
+			// and icon to display
+			final String stereotypesToDisplay = stereotypesToDisplay();
+			((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 
 		}
+
+
 
 	}
 }

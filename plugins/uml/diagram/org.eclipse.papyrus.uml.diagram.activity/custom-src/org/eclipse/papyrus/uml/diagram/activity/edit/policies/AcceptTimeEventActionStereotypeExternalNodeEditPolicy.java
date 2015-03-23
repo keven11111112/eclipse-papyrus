@@ -16,7 +16,6 @@ package org.eclipse.papyrus.uml.diagram.activity.edit.policies;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
@@ -77,10 +76,7 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 		}
 
 		// try to display stereotype properties
-		String stereotypespresentationLocation = AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(parentView);
-		String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(parentView);
 		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay(parentView);
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(parentView);
 		return stereotypesToDisplay;
 
 	}
@@ -94,7 +90,7 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
-		// TODO Auto-generated method stub
+
 		super.notifyChanged(notification);
 		if (UMLPackage.eINSTANCE.getAcceptEventAction_Trigger().equals(notification.getFeature())) {
 			refreshStereotypeDisplay();

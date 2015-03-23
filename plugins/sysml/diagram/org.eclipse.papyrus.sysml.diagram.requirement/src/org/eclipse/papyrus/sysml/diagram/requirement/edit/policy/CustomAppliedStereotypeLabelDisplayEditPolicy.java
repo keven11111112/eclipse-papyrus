@@ -27,8 +27,4 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNode
 public class CustomAppliedStereotypeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 
-	@Override
-	public void activate() {
-		super.activate();
-	}
 }

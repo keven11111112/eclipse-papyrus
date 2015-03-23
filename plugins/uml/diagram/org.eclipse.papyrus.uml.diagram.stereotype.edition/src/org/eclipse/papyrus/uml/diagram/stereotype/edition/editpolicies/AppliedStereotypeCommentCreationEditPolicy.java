@@ -92,10 +92,12 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		// rebuild the structure from the Stereotype List
 		if (!stereotypeList.isEmpty()) {
 			comment = createCommentNode();
-			for (Stereotype stereotype : stereotypeList) {
-				refreshStereotypeCompartmentStructure(stereotype);
-				refreshStereotypeBraceStructure(stereotype);
+			if (comment != null) {
+				for (Stereotype stereotype : stereotypeList) {
+					refreshStereotypeCompartmentStructure(stereotype);
+					refreshStereotypeBraceStructure(stereotype);
 
+				}
 			}
 		}
 

@@ -16,8 +16,13 @@
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.draw2d.IFigure;
+import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.swt.graphics.Image;
 
 /**
  * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
@@ -41,10 +46,45 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 	 */
 	@Override
 	protected void refreshStereotypeDisplay() {
-		IFigure figure = ((IPapyrusEditPart) hostEditPart).getPrimaryShape();
-		if (figure instanceof IPapyrusNodeUMLElementFigure) {
 
-			refreshAppliedStereotypesPropertiesInBrace((IPapyrusNodeUMLElementFigure) figure);
+		if (hostEditPart instanceof IPapyrusEditPart) {
+			IFigure figure = ((IPapyrusEditPart) hostEditPart).getPrimaryShape();
+			if (figure instanceof IPapyrusNodeUMLElementFigure) {
+
+				refreshStereotypeLabelDisplay((IPapyrusNodeUMLElementFigure) figure);
+				refreshAppliedStereotypesPropertiesInBrace((IPapyrusNodeUMLElementFigure) figure);
+			}
+		}
+	}
+
+	protected void refreshStereotypeLabelDisplay(IPapyrusNodeUMLElementFigure figure) {
+
+		// calculate text and icon to display
+		final String stereotypesToDisplay = helper.getStereotypeTextToDisplay((View) getHost().getModel());
+		final Image imageToDisplay = stereotypeIconToDisplay();
+
+		// Refresh Stereotype Label
+		figure.setStereotypeDisplay(tag + stereotypesToDisplay, imageToDisplay);
+
+		refreshAppliedStereotypesLabel(figure);
+
+	}
+
+
+	/**
+	 * Refreshes the displayed stereotypes for this edit part.
+	 */
+	protected void refreshAppliedStereotypesLabel(IPapyrusNodeUMLElementFigure figure) {
+		// If node has a Label
+		if (figure instanceof IPapyrusNodeNamedElementFigure) {
+
+			// Refresh Label
+			boolean displayStereotypes = NotationUtils.getBooleanValue(getView(), NamedElementEditPart.DISPLAY_STEREOTYPES, true);
+			if (!displayStereotypes) {
+				((IPapyrusNodeNamedElementFigure) figure).removeStereotypeLabel();
+			} else {
+				((IPapyrusNodeNamedElementFigure) figure).restoreStereotypeLabel();
+			}
 		}
 	}
 

@@ -62,6 +62,7 @@ public class CSSDOMUMLSemanticElementHelper extends CSSDOMSemanticElementHelper 
 	@Override
 	public EObject findSemanticElement(EObject notationElement) {
 
+
 		StereotypeDisplayHelper stereotypeHelper = StereotypeDisplayHelper.getInstance();
 
 		// Add Stereotype Comment
@@ -70,6 +71,14 @@ public class CSSDOMUMLSemanticElementHelper extends CSSDOMSemanticElementHelper 
 				return notationElement;
 			}
 		}
+
+		// Add Stereotype Label
+		if (notationElement instanceof DecorationNode) {
+			if (stereotypeHelper.isStereotypeLabel(notationElement)) {
+				return notationElement;
+			}
+		}
+
 
 
 		// Add StereotypeProperty to the DOM model

@@ -30,7 +30,6 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.figures.BorderedNodeFigure;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.gmf.runtime.draw2d.ui.text.TextFlowEx;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
@@ -44,10 +43,9 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
-import org.eclipse.papyrus.uml.diagram.common.figure.node.EditingFlowPage;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCompartmentEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeMultilinePropertyEditPart;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeEmptyEditPart;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
 import org.eclipse.papyrus.uml.tools.commands.ApplyStereotypeCommand;
@@ -98,12 +96,17 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		GraphicalEditPart classEditPart = null;
 		// compartment of stereotype
 		View appliedStereotypeCompartmentNotation = null;
+		// compartment of stereotype
+		View appliedStereotypeBraceNotation = null;
+		// compartment of stereotype
+		View appliedStereotypeLabelNotation = null;
+
 		// compartment Shape
 		View shapeCompartmentView = null;
 		// the view of the applied stereotype property
 		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeCompartmentEdipart = null;
-		GraphicalEditPart stereotypePropertyEdipart = null;
+		GraphicalEditPart stereotypeClassLabelEditPart = null;
+
 
 		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
@@ -144,8 +147,14 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 		for (int i = 0; i < NotationClass1.getTransientChildren().size(); i++) {
 			View view = (View) NotationClass1.getTransientChildren().get(i);
-			if (view.getType().equals(AppliedStereotypeCompartmentEditPart.ID)) {
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
+			}
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE)) {
+				appliedStereotypeBraceNotation = view;
+			}
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE)) {
+				appliedStereotypeLabelNotation = view;
 			}
 			if (view.getType().equals(IShapeCompartmentEditPart.VIEW_TYPE)) {
 				shapeCompartmentView = view;
@@ -154,6 +163,8 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		// the mechanism of stereotype display is running.
 		// the thread is synchronous
 		assertTrue("No stereotype Compartment found in the notation", appliedStereotypeCompartmentNotation != null);
+		assertTrue("No stereotype Brace Compartment found in the notation", appliedStereotypeBraceNotation != null);
+		assertTrue("No stereotype Label found in the notation", appliedStereotypeLabelNotation != null);
 		assertTrue("No stereotype  shape Compartment found in the notation", shapeCompartmentView != null);
 
 		// now display stereotypes
@@ -169,7 +180,7 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			// get the label
 			PapyrusWrappingLabel stereotypeLabel = ((ClassifierFigure) nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue("stereotype label must be not null", stereotypeLabel != null);
-			assertTrue("text of stereotype label be equals to" + ST_LEFT + "stereotype1" + ST_RIGHT, stereotypeLabel.getText().equals(ST_LEFT + "stereotype1" + ST_RIGHT));
+			assertTrue("text of stereotype label be equals to" + ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypeLabel.getText().equals(ST_LEFT + "Stereotype1" + ST_RIGHT));
 		}
 
 		{// test display of property of stereotype in compartment
@@ -177,17 +188,17 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			diagramEditor.getEditingDomain().getCommandStack().execute(displayPropertyStereotypeCommand);
 
 			// the compartment must be visible
-			assertTrue("the compartment must be visible", appliedStereotypeCompartmentNotation.isVisible() == true);
+			assertTrue("the compartment must not be visible", appliedStereotypeCompartmentNotation.isVisible() == false);
+			assertTrue("the Brace compartment must not be visible", appliedStereotypeBraceNotation.isVisible() == false);
+			assertTrue("the Label must be visible", appliedStereotypeLabelNotation.isVisible() == true);
+			stereotypeClassLabelEditPart = (GraphicalEditPart) classEditPart.getChildBySemanticHint("StereotypeLabel");
+			assertTrue("The StereotypeLabel must not be an Empty EditPart", stereotypeClassLabelEditPart instanceof AppliedStereotypeEmptyEditPart);
+
+
+
 			// look for view that represents the property of the applied stereotype
 			stereotypePropertyView = (View) appliedStereotypeCompartmentNotation.getChildren().get(0);
 			assertNotNull("the view of the applied stereotype property must be created", stereotypePropertyView);
-			// look for the editpart that represents the property of applied stereotype
-			stereotypeCompartmentEdipart = (GraphicalEditPart) classEditPart.getChildBySemanticHint(AppliedStereotypeCompartmentEditPart.ID);
-			stereotypePropertyEdipart = (GraphicalEditPart) stereotypeCompartmentEdipart.getChildBySemanticHint(AppliedStereotypeMultilinePropertyEditPart.ID);
-			assertNotNull("the editpart of the applied stereotype compartment must be created", stereotypeCompartmentEdipart);
-			assertNotNull("the editpart of the applied stereotype property must be created", stereotypePropertyEdipart);
-			EditingFlowPage textarea = (EditingFlowPage) stereotypePropertyEdipart.getFigure();
-			assertTrue("text of stereotype label be equals to «stereotype1» ", ((TextFlowEx) textarea.getChildren().get(0)).getText().equals("testInt=0"));
 		}
 	}
 
@@ -226,12 +237,15 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		GraphicalEditPart package1EditPart = null;
 		// compartment of stereotype
 		View appliedStereotypeCompartmentNotation = null;
+		// compartment of stereotype
+		View appliedStereotypeBraceNotation = null;
+		// compartment of stereotype
+		View appliedStereotypeLabelNotation = null;
 		// compartment Shape
 		View shapeCompartmentView = null;
 		// the view of the applied stereotype property
 		View stereotypePropertyView = null;
-		GraphicalEditPart stereotypeCompartmentEdipart = null;
-		GraphicalEditPart stereotypePropertyEdipart = null;
+		GraphicalEditPart stereotypePackageLabelEditPart = null;
 
 		// CREATION
 		assertTrue(CREATION + INITIALIZATION_TEST, getDiagramEditPart().getChildren().size() == 0);
@@ -272,8 +286,14 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 		for (int i = 0; i < Notationpackage1.getTransientChildren().size(); i++) {
 			View view = (View) Notationpackage1.getTransientChildren().get(i);
-			if (view.getType().equals(AppliedStereotypeCompartmentEditPart.ID)) {
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
+			}
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE)) {
+				appliedStereotypeBraceNotation = view;
+			}
+			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE)) {
+				appliedStereotypeLabelNotation = view;
 			}
 			if (view.getType().equals(IShapeCompartmentEditPart.VIEW_TYPE)) {
 				shapeCompartmentView = view;
@@ -282,7 +302,9 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 		// the mechanism of stereotype display is running.
 		// the thread is synchronous
 		assertTrue("No stereotype Compartment found in the notation", appliedStereotypeCompartmentNotation != null);
-		assertTrue("No stereotype  shape Compartment found in the notation", shapeCompartmentView != null);
+		assertTrue("No stereotype Brace Compartment found in the notation", appliedStereotypeBraceNotation != null);
+		assertTrue("No stereotype Label found in the notation", appliedStereotypeLabelNotation != null);
+		assertTrue("No stereotype shape Compartment found in the notation", shapeCompartmentView != null);
 
 		// now display stereotypes
 		stereotypeTest = package1.getAppliedStereotypes().get(0);
@@ -297,26 +319,22 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 			// get the label
 			PapyrusWrappingLabel stereotypeLabel = ((PackageFigure) nodePlate.getChildren().get(0)).getStereotypesLabel();
 			assertTrue("stereotype label must be not null", stereotypeLabel != null);
-			assertTrue("text of stereotype label be equals to " + ST_LEFT + "stereotype1" + ST_RIGHT, stereotypeLabel.getText().equals(ST_LEFT + "stereotype1" + ST_RIGHT));
+			assertTrue("text of stereotype label be equals to " + ST_LEFT + "Stereotype1" + ST_RIGHT, stereotypeLabel.getText().equals(ST_LEFT + "Stereotype1" + ST_RIGHT));
 		}
 
-		{// test display of property of stereotype in compartment
-			RecordingCommand displayPropertyStereotypeCommand = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(diagramEditor.getEditingDomain(), Notationpackage1, stereotypeTest.getQualifiedName() + ".testInt");
-			diagramEditor.getEditingDomain().getCommandStack().execute(displayPropertyStereotypeCommand);
 
-			// the compartment must be visible
-			assertTrue("the compartment must be visible", appliedStereotypeCompartmentNotation.isVisible() == true);
-			// look for view that represents the property of the applied stereotype
-			stereotypePropertyView = (View) appliedStereotypeCompartmentNotation.getChildren().get(0);
-			assertNotNull("the view of the applied stereotype property must be created", stereotypePropertyView);
-			// look for the editpart that represents the property of applied stereotype
-			stereotypeCompartmentEdipart = (GraphicalEditPart) package1EditPart.getChildBySemanticHint(AppliedStereotypeCompartmentEditPart.ID);
-			stereotypePropertyEdipart = (GraphicalEditPart) stereotypeCompartmentEdipart.getChildBySemanticHint(AppliedStereotypeMultilinePropertyEditPart.ID);
-			assertNotNull("the editpart of the applied stereotype compartment must be created", stereotypeCompartmentEdipart);
-			assertNotNull("the editpart of the applied stereotype property must be created", stereotypePropertyEdipart);
-			EditingFlowPage textarea = (EditingFlowPage) stereotypePropertyEdipart.getFigure();
-			assertTrue("text of stereotype label be equals to " + ST_LEFT + "stereotype1" + ST_RIGHT, ((TextFlowEx) textarea.getChildren().get(0)).getText().equals("testInt=0"));
-		}
+		// the compartment must be visible
+		assertTrue("the compartment must not be visible", appliedStereotypeCompartmentNotation.isVisible() == false);
+		assertTrue("the Brace compartment must not be visible", appliedStereotypeBraceNotation.isVisible() == false);
+		assertTrue("the Label must be visible", appliedStereotypeLabelNotation.isVisible() == true);
+		stereotypePackageLabelEditPart = (GraphicalEditPart) package1EditPart.getChildBySemanticHint("StereotypeLabel");
+		assertTrue("The StereotypeLabel must not be an Empty EditPart", stereotypePackageLabelEditPart instanceof AppliedStereotypeEmptyEditPart);
+
+		// look for view that represents the property of the applied stereotype
+		stereotypePropertyView = (View) appliedStereotypeCompartmentNotation.getChildren().get(0);
+		assertNotNull("the view of the applied stereotype property must be created", stereotypePropertyView);
+
+
+
 	}
-
 }

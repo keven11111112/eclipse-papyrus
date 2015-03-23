@@ -17,14 +17,15 @@ import java.net.URL;
 
 import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
+import org.eclipse.e4.ui.css.core.dom.IElementProvider;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
+import org.eclipse.papyrus.infra.gmfdiag.css.provider.IPapyrusElementProvider;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.w3c.dom.Element;
@@ -121,6 +122,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		}
 	}
 
+
 	@Override
 	public Element getElement(Object node) {
 		if (node == null) {
@@ -128,11 +130,18 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 		}
 
 		EObject notationElement = getNativeWidget(node);
-		View canonicalNotationElement = CSSDOMSemanticElementHelper.getInstance().findPrimaryView(notationElement);
+		IElementProvider elementProvider = getElementProvider();
 
-		// Orphaned view
-		if (canonicalNotationElement.getDiagram() == null) {
-			return null;
+
+		View canonicalNotationElement = null;
+		if (elementProvider instanceof IPapyrusElementProvider) {
+			canonicalNotationElement = ((IPapyrusElementProvider) elementProvider).getPrimaryView(notationElement);
+
+
+			// Orphaned view
+			if (canonicalNotationElement.getDiagram() == null) {
+				return null;
+			}
 		}
 
 		// A View and a Compartment associated to the same Semantic Element
@@ -151,5 +160,7 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 	public CascadeScope getCascadeScope() {
 		return CascadeScope.AUTHOR;
 	}
+
+
 
 }

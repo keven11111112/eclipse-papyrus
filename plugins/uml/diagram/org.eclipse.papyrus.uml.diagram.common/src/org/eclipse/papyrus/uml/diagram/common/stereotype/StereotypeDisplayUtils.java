@@ -14,6 +14,9 @@
 
 package org.eclipse.papyrus.uml.diagram.common.stereotype;
 
+import org.eclipse.papyrus.uml.diagram.common.Activator;
+
+
 
 /**
  * This Class regroups the Constants required for the Stereotype Display
@@ -63,8 +66,8 @@ public class StereotypeDisplayUtils {
 	public static final String STEREOTYPE_PROPERTIES_SEPARATOR = " ";//$NON-NLS-1$
 
 	// Ornament Constants
-	public final static String QUOTE_LEFT = "<==";// Activator.ST_LEFT;
-	public final static String QUOTE_RIGHT = "==>";// Activator.ST_RIGHT;
+	public final static String QUOTE_LEFT = Activator.ST_LEFT;
+	public final static String QUOTE_RIGHT = Activator.ST_RIGHT;
 	public final static String BRACE_LEFT = "{";
 	public final static String BRACE_RIGHT = "}";
 

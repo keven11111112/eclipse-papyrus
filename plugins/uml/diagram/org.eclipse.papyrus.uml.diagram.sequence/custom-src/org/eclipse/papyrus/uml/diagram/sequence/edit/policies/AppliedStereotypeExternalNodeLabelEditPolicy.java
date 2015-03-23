@@ -17,12 +17,9 @@ import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 
 
 /**
@@ -32,7 +29,7 @@ import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
  */
 public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereotypeLabelDisplayEditPolicy {
 
-	protected View hostView = null;
+
 
 	/**
 	 * Constructor.
@@ -80,86 +77,40 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 		super.deactivate();
 	}
 
-	@Override
-	public void refreshDisplay() {
-		super.refreshDisplay();
-		if (getHost() instanceof IPapyrusEditPart) {
-			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
-
-			if (figure instanceof IPapyrusNodeUMLElementFigure) {
-				refreshAppliedStereotypesProperties((IPapyrusNodeUMLElementFigure) figure);
-			}
-		}
-	}
-
-
-	protected void refreshAppliedStereotypesProperties(IPapyrusNodeUMLElementFigure figure) {
-		if (hostView == null) {
-			return;
-		}
-		final String stereotypesPropertiesToDisplay = AppliedStereotypeHelper.getAppliedStereotypesPropertiesToDisplay(hostView);
-
-		refreshAppliedStereotypesPropertiesInCompartment(stereotypesPropertiesToDisplay, figure);
-		refreshAppliedStereotypesPropertiesInBrace(stereotypesPropertiesToDisplay, figure);
-	}
-
-	/**
-	 * Refreshes the stereotypes properties displayed in a compartment of this
-	 * edit part.
-	 *
-	 * @param stereotypesPropertiesToDisplay
-	 *            list of properties to display
-	 * @param figure
-	 *            the figure in which stereotype will be displayed
-	 */
-	protected void refreshAppliedStereotypesPropertiesInCompartment(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
-		if (hostView == null) {
-			return;
-		}
-		// retrieve the stereotype properties to be displayed
-
-		final boolean displayInCompartment = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay(hostView, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION);
-
-		// if the string is not empty, then, the figure has to display it. Else,
-		// it displays nothing
-		if (displayInCompartment) {
-			String todisplay = StereotypeUtil.getPropertiesValues(stereotypesPropertiesToDisplay, getUMLElement());
-			figure.setStereotypePropertiesInCompartment(todisplay);
-		} else {
-			figure.setStereotypePropertiesInCompartment(null);
-		}
-	}
 
 	/**
 	 * Refreshes the stereotypes properties displayed above name of the element
 	 * in this edit part.
 	 */
-	protected void refreshAppliedStereotypesPropertiesInBrace(String stereotypesPropertiesToDisplay, IPapyrusNodeUMLElementFigure figure) {
-		if (hostView == null) {
-			return;
-		}
-		// check if properties have to be displayed in braces.
-		final boolean displayInBrace = AppliedStereotypeHelper.hasAppliedStereotypesPropertiesToDisplay(hostView, UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION);
+	protected void refreshAppliedStereotypesPropertiesInBrace() {
+		if (hostView != null) {
 
-		// if the string is not empty, then, the figure has to display it. Else,
-		// it displays nothing
-		if (displayInBrace) {
-			// it has to be displayed in braces, so compute the string to
-			// display
-			String todisplay = StereotypeUtil.getPropertiesValuesInBrace(stereotypesPropertiesToDisplay, getUMLElement());
-			figure.setStereotypePropertiesInBrace(todisplay);
-		} else {
-			figure.setStereotypePropertiesInBrace(null);
+			if (getHost() instanceof IPapyrusEditPart) {
+				IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+
+				if (figure instanceof IPapyrusNodeUMLElementFigure) {
+					IPapyrusNodeUMLElementFigure UMLfigure = ((IPapyrusNodeUMLElementFigure) figure);
+
+
+
+					// check if properties have to be displayed in braces.
+					String todisplay = helper.getStereotypePropertiesInBrace(hostView);
+
+					if (todisplay != null || !"".equals(todisplay)) {
+						UMLfigure.setStereotypePropertiesInBrace(todisplay);
+					} else {
+						UMLfigure.setStereotypePropertiesInBrace(null);
+					}
+
+				}
+			}
 		}
 	}
 
 	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeDisplay()
-	 *
+	 * 
 	 */
-
-	@Override
-	protected void refreshStereotypeDisplay() {
+	private void refreshStereotypeLabel() {
 		if (getHost() instanceof IPapyrusEditPart) {
 			IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
 
@@ -170,5 +121,16 @@ public class AppliedStereotypeExternalNodeLabelEditPolicy extends AppliedStereot
 				((IPapyrusUMLElementFigure) figure).setStereotypeDisplay(tag + (stereotypesToDisplay), null);
 			}
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeDisplay()
+	 *
+	 */
+
+	@Override
+	protected void refreshStereotypeDisplay() {
+		refreshStereotypeLabel();
+		refreshAppliedStereotypesPropertiesInBrace();
 	}
 }
