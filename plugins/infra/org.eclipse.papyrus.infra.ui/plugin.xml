@@ -57,9 +57,6 @@
         <visibleWhen
               checkEnabled="true">
         </visibleWhen>
-        <visibleWhen
-              checkEnabled="true">
-        </visibleWhen>
       </menu>
         </menuContribution>
   </extension>   
