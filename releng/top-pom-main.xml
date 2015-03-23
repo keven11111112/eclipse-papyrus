@@ -342,7 +342,8 @@
 		<module>../examples/infra/org.eclipse.papyrus.infra.gmfdiag.connectionpoint.preferences</module>
 		<module>../examples/emf/org.eclipse.papyrus.outline.emftree</module>
 		<module>../examples/uml/org.eclipse.papyrus.thousandcreation</module>
-		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>	
+		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>
+		<module>../examples/uml/org.eclipse.papyrus.uml.textual.editors.example</module>	
 		
 		
 	</modules>
