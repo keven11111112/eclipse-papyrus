@@ -87,6 +87,7 @@
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.widgets.celleditors</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.extensionpoints.editors</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.ui</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints.edit</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints.editor</module>

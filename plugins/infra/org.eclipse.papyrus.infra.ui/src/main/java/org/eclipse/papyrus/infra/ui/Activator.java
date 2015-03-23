@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2011 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,21 +7,23 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Juan Cadavid (CEA LIST) juan.cadavid@cea.fr - Initial API and implementation
+ *  Francois Le Fevre (CEA LIST) francois.le-fevre@cea.fr - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.infra.nattable.modelexplorer;
+package org.eclipse.papyrus.infra.ui;
 
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
-/** The activator class controls the plug-in life cycle */
+/**
+ * The activator class controls the plug-in life cycle
+ */
 public class Activator extends AbstractUIPlugin {
 
 	/**
 	 * The plug-in ID
 	 */
-	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.nattable.modelexplorer"; //$NON-NLS-1$
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.ui"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
@@ -31,16 +33,32 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static LogHelper log;
 
-	@Override
-	public void start(final BundleContext context) throws Exception {
-		super.start(context);
-		Activator.plugin = this;
+	/**
+	 * The constructor
+	 */
+	public Activator() {
 	}
 
-
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
+	 */
 	@Override
-	public void stop(final BundleContext context) throws Exception {
-		Activator.plugin = null;
+	public void start(BundleContext context) throws Exception {
+		super.start(context);
+		plugin = this;
+		log = new LogHelper(this);
+	}
+
+	/*
+	 * (non-Javadoc)
+	 *
+	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
+	 */
+	@Override
+	public void stop(BundleContext context) throws Exception {
+		plugin = null;
 		super.stop(context);
 	}
 
@@ -50,6 +68,7 @@ public class Activator extends AbstractUIPlugin {
 	 * @return the shared instance
 	 */
 	public static Activator getDefault() {
-		return Activator.plugin;
+		return plugin;
 	}
+
 }

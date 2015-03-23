@@ -26,4 +26,50 @@
                type="org.eclipse.jface.viewers.IStructuredSelection">
          </propertyTester>
       </extension>
+      
+         <extension
+      id="PapyrusQuickFormatHandler"
+      name="QuickFormatHandler"
+      point="org.eclipse.ui.handlers">
+   <handler
+         class="org.eclipse.papyrus.infra.nattable.modelexplorer.handlers.NattableQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.infra.nattable.modelexplorer.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler 
+         class="org.eclipse.papyrus.infra.nattable.modelexplorer.handlers.NattableQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.infra.nattable.modelexplorer.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+</extension>
+      <extension
+            point="org.eclipse.core.expressions.propertyTesters">
+         <propertyTester
+               class="org.eclipse.papyrus.infra.nattable.modelexplorer.handlers.NattableNamePropertyTester"
+               id="org.eclipse.papyrus.infra.nattable.modelexplorer.menu.quickformatpropertytester"
+               namespace="org.eclipse.papyrus.infra.nattable.modelexplorer.menu.quickformatpropertytester"
+               properties="isNameChangeable"
+               type="org.eclipse.jface.viewers.IStructuredSelection">
+         </propertyTester>
+      </extension>
 </plugin>
