@@ -8,13 +8,31 @@
  $Id$
 -->
 <plugin>
- 	
+ <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
+         <menu
+               id="org.eclipse.papyrus.ui.menu"
+               label="Papyrus"
+               tooltip="Papyrus Editor Menu">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+  </extension>
   <extension
         point="org.eclipse.ui.menus">
       
         <menuContribution
               allPopups="false"
-              locationURI="menu:org.eclipse.ui.main.menu?after=additions">
+              locationURI="menu:org.eclipse.papyrus.ui.menu">
                 <menu
             label="&amp;Quick Formatting..."
             tooltip="Quick formatting for labels">
