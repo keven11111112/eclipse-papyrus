@@ -7,9 +7,10 @@ import java.io.InputStream;
 import org.eclipse.xtext.parser.antlr.IAntlrTokenFileProvider;
 
 public class AlfAntlrTokenFileProvider implements IAntlrTokenFileProvider {
-
+	
+	@Override
 	public InputStream getAntlrTokenFile() {
 		ClassLoader classLoader = getClass().getClassLoader();
-		return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.tokens");
+    	return classLoader.getResourceAsStream("org/eclipse/papyrus/uml/alf/parser/antlr/internal/InternalAlf.tokens");
 	}
 }

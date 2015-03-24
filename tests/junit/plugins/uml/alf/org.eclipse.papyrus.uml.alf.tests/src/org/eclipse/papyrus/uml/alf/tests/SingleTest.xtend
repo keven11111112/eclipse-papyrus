@@ -16,10 +16,6 @@ package org.eclipse.papyrus.uml.alf.tests
 
 import java.io.File
 import org.eclipse.emf.ecore.resource.ResourceSet
-import org.eclipse.ocl.examples.pivot.OCL
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib
-import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup
 import org.eclipse.papyrus.uml.alf.AlfInjectorProvider
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
@@ -32,6 +28,9 @@ import org.junit.runner.RunWith
 import static org.junit.Assert.*
 import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
 import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
+import org.eclipse.ocl.uml.OCL
+import org.eclipse.ocl.pivot.model.OCLstdlib
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
 
 @InjectWith(AlfInjectorProvider)
 @RunWith(XtextRunner)
@@ -51,7 +50,6 @@ class SingleTest extends ParserTest {
     //UML2Pivot.initialize(resourceSet)
     OCLstdlib.install();
     OCLDelegateDomain.initialize(resourceSet)
-    OCLstdlibStandaloneSetup.doSetup()
     
     var modelArea = new ContextModelArea("Model")
     ModelNamespaceImpl.setContext(modelArea.getModel);

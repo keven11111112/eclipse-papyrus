@@ -12,7 +12,7 @@ import org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator;
 
 /**
  * This class was generated. Customizations should only happen in a newly
- * introduced subclass.
+ * introduced subclass. 
  */
 public class AlfExecutableExtensionFactory extends AbstractGuiceAwareExecutableExtensionFactory {
 
@@ -20,10 +20,10 @@ public class AlfExecutableExtensionFactory extends AbstractGuiceAwareExecutableE
 	protected Bundle getBundle() {
 		return AlfActivator.getInstance().getBundle();
 	}
-
+	
 	@Override
 	protected Injector getInjector() {
 		return AlfActivator.getInstance().getInjector(AlfActivator.ORG_ECLIPSE_PAPYRUS_UML_ALF_ALF);
 	}
-
+	
 }

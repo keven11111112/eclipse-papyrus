@@ -11,8 +11,8 @@ public class AbstractAlfValidator extends org.eclipse.xtext.validation.AbstractD
 
 	@Override
 	protected List<EPackage> getEPackages() {
-		List<EPackage> result = new ArrayList<EPackage>();
-		result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/ALF/20120827"));
+	    List<EPackage> result = new ArrayList<EPackage>();
+	    result.add(EPackage.Registry.INSTANCE.getEPackage("http://www.omg.org/spec/ALF/20120827"));
 		return result;
 	}
 }

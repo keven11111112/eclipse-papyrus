@@ -22,14 +22,12 @@ import org.junit.Test
 import org.eclipse.emf.ecore.resource.ResourceSet
 import org.junit.BeforeClass
 import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.ocl.examples.pivot.OCL
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain
-import org.eclipse.ocl.examples.xtext.oclinecore.OCLinEcoreStandaloneSetup
-import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.papyrus.uml.alf.AlfInjectorProvider
 import org.junit.AfterClass
+import org.eclipse.ocl.uml.OCL
+import org.eclipse.ocl.pivot.model.OCLstdlib
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
 
 @InjectWith(AlfInjectorProvider)
 @RunWith(XtextRunner)
@@ -46,11 +44,10 @@ class SyntacticTest extends ParserTest {
     resourceSet = new XtextResourceSet()
     
     OCL.initialize(resourceSet);
-    // UML2Pivot.initialize(resourceSet)
+    //UML2Pivot.initialize(resourceSet)
     OCLstdlib.install();
-    OCLDelegateDomain.initialize(null)
-    OCLinEcoreStandaloneSetup.doSetup()
-    OCLstdlibStandaloneSetup.doSetup()
+    OCLDelegateDomain.initialize(resourceSet)
+    //OCLstdlibStandaloneSetup.doSetup()
 
     testDirectory = System.getProperty("test.directory", TEST_DIRECTORY)
   }

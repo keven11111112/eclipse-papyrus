@@ -28,10 +28,9 @@ import org.eclipse.emf.ecore.resource.URIConverter;
 import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
-import org.eclipse.ocl.examples.pivot.OCL;
-import org.eclipse.ocl.examples.pivot.delegate.OCLDelegateDomain;
-import org.eclipse.ocl.examples.pivot.model.OCLstdlib;
-import org.eclipse.ocl.examples.xtext.oclstdlib.OCLstdlibStandaloneSetup;
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain;
+import org.eclipse.ocl.pivot.model.OCLstdlib;
+import org.eclipse.ocl.uml.OCL;
 import org.eclipse.papyrus.uml.alf.AlfStandaloneSetup;
 import org.eclipse.papyrus.uml.alf.MappingError;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfMapper;
@@ -60,7 +59,7 @@ public class AlfMapper extends org.eclipse.papyrus.uml.alf.AlfMapper {
 		OCL.initialize(this.resourceSet);
 		OCLstdlib.install();
 		OCLDelegateDomain.initialize(this.resourceSet);
-		OCLstdlibStandaloneSetup.doSetup();
+		//OCLstdlibStandaloneSetup.doSetup();
 
 		this.setStandardProfile(
 				RegisteredItemLoader.getInstance().loadProfile(this.resourceSet, RequiredElementsNames.STANDARD_PROFILE));

@@ -6,7 +6,6 @@ package org.eclipse.papyrus.uml.alf;
 import java.util.Properties;
 
 import org.eclipse.xtext.Constants;
-import org.eclipse.xtext.service.DefaultRuntimeModule;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -15,7 +14,7 @@ import com.google.inject.name.Names;
  * Manual modifications go to {org.eclipse.papyrus.uml.alf.AlfRuntimeModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
+public abstract class AbstractAlfRuntimeModule extends org.eclipse.xtext.common.types.DefaultCommonTypesRuntimeModule {
 
 	protected Properties properties = null;
 
@@ -24,14 +23,19 @@ public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
 		properties = tryBindProperties(binder, "org/eclipse/papyrus/uml/alf/Alf.properties");
 		super.configure(binder);
 	}
-
+	
 	public void configureLanguageName(Binder binder) {
 		binder.bind(String.class).annotatedWith(Names.named(Constants.LANGUAGE_NAME)).toInstance("org.eclipse.papyrus.uml.alf.Alf");
 	}
-
+	
 	public void configureFileExtensions(Binder binder) {
 		if (properties == null || properties.getProperty(Constants.FILE_EXTENSIONS) == null)
 			binder.bind(String.class).annotatedWith(Names.named(Constants.FILE_EXTENSIONS)).toInstance("alf");
+	}
+	
+	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
+	public java.lang.ClassLoader bindClassLoaderToInstance() {
+		return getClass().getClassLoader();
 	}
 
 	// contributed by org.eclipse.xtext.generator.grammarAccess.GrammarAccessFragment
@@ -90,8 +94,7 @@ public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
 	}
 
 	// contributed by org.eclipse.xtext.generator.validation.ValidatorFragment
-	@org.eclipse.xtext.service.SingletonBinding(eager = true)
-	public Class<? extends org.eclipse.papyrus.uml.alf.validation.AlfValidator> bindAlfValidator() {
+	@org.eclipse.xtext.service.SingletonBinding(eager=true)	public Class<? extends org.eclipse.papyrus.uml.alf.validation.AlfValidator> bindAlfValidator() {
 		return org.eclipse.papyrus.uml.alf.validation.AlfValidator.class;
 	}
 
@@ -102,8 +105,7 @@ public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
 	public void configureIScopeProviderDelegate(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE))
-				.to(org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider.class);
+		binder.bind(org.eclipse.xtext.scoping.IScopeProvider.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.scoping.impl.AbstractDeclarativeScopeProvider.NAMED_DELEGATE)).to(org.eclipse.xtext.scoping.impl.ImportedNamespaceAwareLocalScopeProvider.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.scoping.AbstractScopingFragment
@@ -133,8 +135,7 @@ public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
 
 	// contributed by org.eclipse.xtext.generator.builder.BuilderIntegrationFragment
 	public void configureIResourceDescriptionsPersisted(com.google.inject.Binder binder) {
-		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS))
-				.to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
+		binder.bind(org.eclipse.xtext.resource.IResourceDescriptions.class).annotatedWith(com.google.inject.name.Names.named(org.eclipse.xtext.resource.impl.ResourceDescriptionsProvider.PERSISTED_DESCRIPTIONS)).to(org.eclipse.xtext.resource.impl.ResourceSetBasedResourceDescriptions.class);
 	}
 
 	// contributed by org.eclipse.xtext.generator.generator.GeneratorFragment
@@ -145,26 +146,6 @@ public abstract class AbstractAlfRuntimeModule extends DefaultRuntimeModule {
 	// contributed by org.eclipse.xtext.generator.formatting.FormatterFragment
 	public Class<? extends org.eclipse.xtext.formatting.IFormatter> bindIFormatter() {
 		return org.eclipse.papyrus.uml.alf.formatting.AlfFormatter.class;
-	}
-
-	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
-	public java.lang.ClassLoader bindClassLoaderToInstance() {
-		return getClass().getClassLoader();
-	}
-
-	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
-	public org.eclipse.xtext.common.types.TypesFactory bindTypesFactoryToInstance() {
-		return org.eclipse.xtext.common.types.TypesFactory.eINSTANCE;
-	}
-
-	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
-	public Class<? extends org.eclipse.xtext.common.types.access.IJvmTypeProvider.Factory> bindIJvmTypeProvider$Factory() {
-		return org.eclipse.xtext.common.types.access.ClasspathTypeProviderFactory.class;
-	}
-
-	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment
-	public Class<? extends org.eclipse.xtext.common.types.xtext.AbstractTypeScopeProvider> bindAbstractTypeScopeProvider() {
-		return org.eclipse.xtext.common.types.xtext.ClasspathBasedTypeScopeProvider.class;
 	}
 
 	// contributed by org.eclipse.xtext.generator.types.TypesGeneratorFragment

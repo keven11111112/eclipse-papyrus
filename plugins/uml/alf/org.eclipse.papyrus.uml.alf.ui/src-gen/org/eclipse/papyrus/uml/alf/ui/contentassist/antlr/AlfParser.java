@@ -9,28 +9,28 @@ import java.util.HashMap;
 
 import org.antlr.runtime.RecognitionException;
 import org.eclipse.xtext.AbstractElement;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.AbstractContentAssistParser;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.FollowElement;
-import org.eclipse.xtext.ide.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.AbstractContentAssistParser;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.FollowElement;
+import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternalContentAssistParser;
 
 import com.google.inject.Inject;
 
 import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
 
 public class AlfParser extends AbstractContentAssistParser {
-
+	
 	@Inject
 	private AlfGrammarAccess grammarAccess;
-
+	
 	private Map<AbstractElement, String> nameMappings;
-
+	
 	@Override
 	protected org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal.InternalAlfParser createParser() {
 		org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal.InternalAlfParser result = new org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal.InternalAlfParser(null);
 		result.setGrammarAccess(grammarAccess);
 		return result;
 	}
-
+	
 	@Override
 	protected String getRuleName(AbstractElement element) {
 		if (nameMappings == null) {
@@ -685,27 +685,27 @@ public class AlfParser extends AbstractContentAssistParser {
 		}
 		return nameMappings.get(element);
 	}
-
+	
 	@Override
 	protected Collection<FollowElement> getFollowElements(AbstractInternalContentAssistParser parser) {
 		try {
 			org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal.InternalAlfParser typedParser = (org.eclipse.papyrus.uml.alf.ui.contentassist.antlr.internal.InternalAlfParser) parser;
 			typedParser.entryRuleUnitDefinition();
 			return typedParser.getFollowElements();
-		} catch (RecognitionException ex) {
+		} catch(RecognitionException ex) {
 			throw new RuntimeException(ex);
-		}
+		}		
 	}
-
+	
 	@Override
 	protected String[] getInitialHiddenTokens() {
 		return new String[] { "RULE_WS", "RULE_ML_COMMENT", "RULE_SL_COMMENT" };
 	}
-
+	
 	public AlfGrammarAccess getGrammarAccess() {
 		return this.grammarAccess;
 	}
-
+	
 	public void setGrammarAccess(AlfGrammarAccess grammarAccess) {
 		this.grammarAccess = grammarAccess;
 	}
