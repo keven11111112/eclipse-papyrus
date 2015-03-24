@@ -17,7 +17,7 @@ import org.eclipse.xtext.ui.editor.syntaxcoloring.IHighlightingConfigurationAcce
 import org.eclipse.xtext.ui.editor.utils.TextStyle;
 
 public class CSSHighlightingConfiguration extends DefaultHighlightingConfiguration {
-	public final static String DECLARATIONNAME = "DeclarationName"; 
+	public final static String DECLARATIONNAME = "DeclarationName";
 	public final static String SELECTOR = "Selector";
 	public final static String ELEMENT = "ELEMENT";
 	public final static String URL = "Url";
@@ -42,28 +42,28 @@ public class CSSHighlightingConfiguration extends DefaultHighlightingConfigurati
 
 	public TextStyle crossDeclarationTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
-		textStyle.setColor(new RGB(0,153,0));
+		textStyle.setColor(new RGB(0, 153, 0));
 		return textStyle;
 	}
-	
+
 	public TextStyle elementTextStyle() {
 		TextStyle textStyle = crossSelectorTextStyle().copy();
 		textStyle.setStyle(SWT.BOLD);
 		return textStyle;
 	}
-	
+
 
 	public TextStyle crossSelectorTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
-		textStyle.setColor(new RGB(206,123,0));
+		textStyle.setColor(new RGB(206, 123, 0));
 		return textStyle;
 	}
-	
+
 	public TextStyle urlTextStyle() {
 		TextStyle textStyle = stringTextStyle().copy();
 		return textStyle;
 	}
-	
+
 	public TextStyle functionTextStyle() {
 		TextStyle textStyle = defaultTextStyle().copy();
 		textStyle.setStyle(SWT.BOLD);

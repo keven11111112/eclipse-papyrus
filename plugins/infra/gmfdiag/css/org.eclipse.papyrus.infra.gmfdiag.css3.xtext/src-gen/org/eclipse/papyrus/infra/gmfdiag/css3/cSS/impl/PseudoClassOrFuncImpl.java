@@ -16,25 +16,27 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.PseudoClassOrFunc;
  */
 public class PseudoClassOrFuncImpl extends CssSelectorImpl implements PseudoClassOrFunc
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected PseudoClassOrFuncImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected PseudoClassOrFuncImpl()
+	{
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return CSSPackage.Literals.PSEUDO_CLASS_OR_FUNC;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return CSSPackage.Literals.PSEUDO_CLASS_OR_FUNC;
+	}
 
-} //PseudoClassOrFuncImpl
+} // PseudoClassOrFuncImpl

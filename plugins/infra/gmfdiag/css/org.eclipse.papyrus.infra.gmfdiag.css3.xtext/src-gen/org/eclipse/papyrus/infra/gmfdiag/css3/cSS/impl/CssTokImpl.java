@@ -18,25 +18,27 @@ import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
  */
 public class CssTokImpl extends MinimalEObjectImpl.Container implements CssTok
 {
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  protected CssTokImpl()
-  {
-    super();
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected CssTokImpl()
+	{
+		super();
+	}
 
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  @Override
-  protected EClass eStaticClass()
-  {
-    return CSSPackage.Literals.CSS_TOK;
-  }
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	protected EClass eStaticClass()
+	{
+		return CSSPackage.Literals.CSS_TOK;
+	}
 
-} //CssTokImpl
+} // CssTokImpl

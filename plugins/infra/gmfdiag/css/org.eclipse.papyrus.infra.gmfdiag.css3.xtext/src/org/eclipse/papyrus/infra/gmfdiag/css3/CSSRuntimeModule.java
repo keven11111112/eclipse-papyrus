@@ -11,7 +11,7 @@ import org.eclipse.xtext.formatting.impl.NullFormatter;
  */
 public class CSSRuntimeModule extends org.eclipse.papyrus.infra.gmfdiag.css3.AbstractCSSRuntimeModule {
 
-	//Formatter is not properly implemented yet. Disable all formatting to avoid errors
+	// Formatter is not properly implemented yet. Disable all formatting to avoid errors
 	@Override
 	public Class<? extends IFormatter> bindIFormatter() {
 		return NullFormatter.class;
