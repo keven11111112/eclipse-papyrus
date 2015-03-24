@@ -1,8 +1,8 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui
-Bundle-Vendor: My Company
-Bundle-Version: 1.0.0.qualifier
+Bundle-Name: CSS3 Xtext Editor (UI)
+Bundle-Vendor: Eclipse Modeling Project
+Bundle-Version: 1.1.0.qualifier
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui; singleton:=true
 Bundle-ActivationPolicy: lazy
 Require-Bundle: org.eclipse.papyrus.infra.gmfdiag.css3.xtext;visibility:=reexport,

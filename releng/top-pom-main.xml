@@ -129,8 +129,8 @@
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.palette</module>
 		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.properties</module>
 		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.theme</module>
-		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.xtext</module>
-		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.xtext.ui</module>
+		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css3.xtext</module>
+		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css3.xtext.ui</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.dnd</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.gmfmenu.filter</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.hyperlink</module>
