@@ -268,6 +268,7 @@
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.clazz.config</module>
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.menu</module>
 		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.integration</module>
+		<module>../plugins/uml/nattable/org.eclipse.papyrus.uml.nattable.xtext.valuespecification</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.navigation</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.oclconstraintevaluation</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.perspective</module>
@@ -301,6 +302,9 @@
 		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.state.xtext.ui</module>
 		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext</module>
 		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.ui</module>
+    	<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.xtext</module>
+		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui</module>
+		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.xtext.utils</module>
 		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.transition.xtext</module>
 		<module>../plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.transition.xtext.ui</module>
 		<module>../plugins/uml/tools/org.eclipse.papyrus.uml.tools</module>
