@@ -37,23 +37,9 @@ public class DiagramNameNormalizationCommand extends NameNormalizationCommand{
 	protected void doExecute() {
 		if(source instanceof Diagram){
 			String name = ((Diagram)source).getName();
-
-			switch (parameter) {
-			case UPPERCASE_ACTION:
-				((Diagram)source).setName(name.toUpperCase());
-				break;
-			case LOWERCASE_ACTION:
-				((Diagram)source).setName(name.toLowerCase());
-				break;
-
-			default:
-				((Diagram)source).setName(name.toUpperCase());
-				break;
-			}
+			String newName = normalizeName(name,parameter);
+			((Diagram)source).setName(newName);
 		}
-
-
-
 	}
 
 }

@@ -3740,6 +3740,51 @@
          </and>
       </activeWhen>
    </handler>
+      <handler 
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DiagramQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.uml.diagram.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler 
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DiagramQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingCapitalizeFirstLetterCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.uml.diagram.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
+   <handler 
+         class="org.eclipse.papyrus.uml.diagram.menu.actions.handlers.DiagramQuickFormatHandler"
+         commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingRemoveSpaceCommand">
+       <activeWhen>
+         <and>
+            <with
+                  variable="selection">
+               <test
+                     property="org.eclipse.papyrus.uml.diagram.menu.quickformatpropertytester.isNameChangeable"
+                     value="true">
+               </test>
+            </with>
+         </and>
+      </activeWhen>
+   </handler>
 </extension>
 <extension
       id="PapyrusFillColorCommand"

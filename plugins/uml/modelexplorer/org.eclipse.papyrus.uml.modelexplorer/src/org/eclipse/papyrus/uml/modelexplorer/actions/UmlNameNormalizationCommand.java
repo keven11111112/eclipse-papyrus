@@ -32,19 +32,8 @@ public class UmlNameNormalizationCommand extends NameNormalizationCommand{
 	protected void doExecute() {
 		if(source instanceof NamedElement){
 			String name  = ((NamedElement)source).getName();
-			switch (parameter) {
-			case UPPERCASE_ACTION:
-				((NamedElement)source).setName(name.toUpperCase());
-				break;
-			case LOWERCASE_ACTION:
-				((NamedElement)source).setName(name.toLowerCase());
-				break;
-
-			default:
-				((NamedElement)source).setName(name.toUpperCase());
-				break;
-			}
-
+			String newName = normalizeName(name,parameter);
+			((NamedElement)source).setName(newName);
 		}
 	}
 

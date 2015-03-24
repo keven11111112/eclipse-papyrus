@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.nattable.modelexplorer.actions;
 
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableconfiguration.TableNamedElement;
 import org.eclipse.papyrus.infra.ui.menu.NameNormalizationCommand;
@@ -39,20 +38,8 @@ public class NattableNameNormalizationCommand extends NameNormalizationCommand{
 	protected void doExecute() {
 		if(source instanceof TableNamedElement){
 			String name = ((TableNamedElement)source).getName();
-			
-			switch (parameter) {
-			case UPPERCASE_ACTION:
-				((TableNamedElement)source).setName(name.toUpperCase());
-				break;
-			case LOWERCASE_ACTION:
-				((TableNamedElement)source).setName(name.toLowerCase());
-				break;
-
-			default:
-				((TableNamedElement)source).setName(name.toUpperCase());
-				break;
-			}
-			
+			String newName = normalizeName(name,parameter);
+			((TableNamedElement)source).setName(newName);
 		}
 	}
 

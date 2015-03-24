@@ -34,11 +34,11 @@
               allPopups="false"
               locationURI="menu:org.eclipse.papyrus.ui.menu">
                 <menu
-            label="&amp;Quick Formatting..."
+            label="&amp;Name Edition..."
             tooltip="Quick formatting for labels">
          <command
                commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand"
-               label="&amp;Uppercase Quick Formatting"
+               label="&amp;To apply uppercase"
                style="push">
             <parameter
                   name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
@@ -47,12 +47,39 @@
       	 </command>
       	 <command
               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
-              label="&amp;Lowercase Quick Formatting"
+              label="&amp;To apply lowercase"
               style="push">
            <parameter
                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
                  value="lowercase">
            </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand"
+               label="&amp;To switch space and underscore"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="switchSpace2Underscore">
+            </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingCapitalizeFirstLetterCommand"
+               label="&amp;To apply camelcase"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="capitalizeFirstLetter">
+            </parameter>
+      	 </command>
+      	 <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingRemoveSpaceCommand"
+               label="&amp;To remove or add space"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="removeSpace">
+            </parameter>
       	 </command>
         <visibleWhen
               checkEnabled="true">
@@ -80,6 +107,40 @@
          description="The command to quickly format in lowercase the selected labels"
          id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
          name="Lower Case Quick Format Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+            name="name"
+            optional="false">
+      </commandParameter>
+   </command>
+   
+   <command
+         categoryId="org.eclipse.papyrus.infra.ui.quickformat"
+         description="The command to quickly format by switching space and underscore in the selected labels"
+         id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingSwitchSpace2UnderscoreCommand"
+         name="Switch Space to Underscore Quick Format Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+            name="name"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.ui.quickformat"
+         description="The command to quickly format by capitalizing the first letter in the selected labels"
+         id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingCapitalizeFirstLetterCommand"
+         name="Capitalize First Letter Quick Format Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+            name="name"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.ui.quickformat"
+         description="The command to quickly format by removing space in the selected labels"
+         id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingRemoveSpaceCommand"
+         name="Remove Space Quick Format Command">
       <commandParameter
             id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
             name="name"
