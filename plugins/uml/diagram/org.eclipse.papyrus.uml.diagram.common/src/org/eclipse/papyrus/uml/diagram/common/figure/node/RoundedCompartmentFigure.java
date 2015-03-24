@@ -31,13 +31,12 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.RoundedRectangleBorder;
 import org.eclipse.gmf.runtime.draw2d.ui.graphics.ColorRegistry;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
-import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IRoundedRectangleFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SlidableRoundedRectangleAnchor;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.FigureUtils;
 import org.eclipse.swt.graphics.Color;
-import org.eclipse.swt.graphics.Pattern;
+import org.eclipse.swt.graphics.Path;
 import org.eclipse.swt.graphics.RGB;
 import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.css.RGBColor;
@@ -231,6 +230,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(this, SVGNodePlateFigure.class);
 			// Get the connection anchor
 			ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
+
 			if (connectionAnchor instanceof SlidableRoundedRectangleAnchor) {
 
 				// get the polygon points with the Anchor.
@@ -255,7 +255,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 					graphics.setClip(clipRectangle);
 
 					// set the background color
-					setShadowBackgroudColor(graphics);
+					setShadowBackgroundColor(graphics);
 
 					// Draw the shadow
 					graphics.fillPolygon(polygonPoints);
@@ -272,11 +272,9 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 				// Fill figure
 				if (isUsingGradient()) {
-					Pattern pattern = getGradientPattern();
-					graphics.setBackgroundPattern(pattern);
-					graphics.fillPolygon(polygonPoints);
-					graphics.setBackgroundPattern(null);
-					pattern.dispose();
+
+					fillPolygonWithGradient(graphics, polygonPoints);
+
 				} else {
 					graphics.fillPolygon(polygonPoints);
 				}
@@ -322,7 +320,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 				graphics.setClip(clipRectangle);
 
 				// set the background color
-				setShadowBackgroudColor(graphics);
+				setShadowBackgroundColor(graphics);
 
 				// draw the shadow
 				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
@@ -339,11 +337,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			}
 
 			if (isUsingGradient()) {
-				Pattern pattern = getGradientPattern();
-				graphics.setBackgroundPattern(pattern);
-				graphics.fillRoundRectangle(rectangle, cornerDimension.width, cornerDimension.height);
-				graphics.setBackgroundPattern(null);
-				pattern.dispose();
+				fillRoundedRectangleWithGradient(graphics, rectangle, cornerDimension.width, cornerDimension.height);
 			} else {
 				graphics.pushState();
 				graphics.setBackgroundColor(getBackgroundColor());
@@ -361,9 +355,95 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	}
 
 	/**
+	 * Fill polygon with gradient.
+	 *
 	 * @param graphics
+	 *            the graphics
+	 * @param polygonPoints
+	 *            the polygon points
 	 */
-	private void setShadowBackgroudColor(Graphics graphics) {
+	protected void fillPolygonWithGradient(final Graphics graphics, final PointList polygonPoints) {
+		graphics.pushState();
+
+		Path path = new Path(null);
+		path.moveTo(polygonPoints.getPoint(0).x, polygonPoints.getPoint(0).y);
+		for (int i = 1; i < polygonPoints.size(); i++) {
+			path.lineTo(polygonPoints.getPoint(i).x, polygonPoints.getPoint(i).y);
+		}
+		path.close();
+		graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+		graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+		graphics.clipPath(path);
+		graphics.fillGradient(getBounds(), getGradientStyle() == 0);
+		path.dispose();
+
+		graphics.popState();
+	}
+
+
+	/**
+	 * Fill rounded rectangle with gradient.
+	 *
+	 * @param graphics
+	 *            the graphics
+	 * @param rect
+	 *            the rectangle
+	 * @param arcWidth
+	 *            the arc width
+	 * @param arcHeight
+	 *            the arc height
+	 */
+	protected void fillRoundedRectangleWithGradient(final Graphics graphics, final Rectangle rectangle, final int arcWidths, final int arcHeights) {
+		graphics.pushState();
+		Rectangle rect = rectangle.getCopy();
+		Dimension arc = new Dimension(arcWidths, arcHeights);
+
+		rect.setWidth(rect.width - 1);
+		rect.setHeight(rect.height - 1);
+		Path path = new Path(null);
+
+		if (isOval) {
+			arc.width = rect.width;
+			arc.height = rect.height;
+		} else {
+			if (rect.width < arc.width) {
+				arc.width = rect.width;
+			}
+			if (rect.height < arc.height) {
+				arc.height = rect.height;
+			}
+		}
+
+		path.moveTo(rect.x + arc.width / 2, rect.y);
+		path.lineTo(rect.x + rect.width - arc.width / 2, rect.y);
+		path.addArc(rect.x + rect.width - arc.width, rect.y, arc.width, arc.height, 90, -90);
+		path.lineTo(rect.x + rect.width, rect.y + rect.height - arc.height / 2);
+		path.addArc(rect.x + rect.width - arc.width, rect.y + rect.height - arc.height, arc.width, arc.height, 0, -90);
+		path.lineTo(rect.x + arc.width / 2, rect.y + rect.height);
+		path.addArc(rect.x, rect.y + rect.height - arc.height, arc.width, arc.height, -90, -90);
+		path.lineTo(rect.x, rect.y + arc.height / 2);
+		path.addArc(rect.x, rect.y, arc.width, arc.height, 180, -90);
+
+		graphics.setForegroundColor(ColorRegistry.getInstance().getColor(getGradientColor2()));
+		graphics.setBackgroundColor(ColorRegistry.getInstance().getColor(getGradientColor1()));
+
+		graphics.clipPath(path);
+
+		graphics.fillGradient(getBounds(), getGradientStyle() == 0);
+
+		path.dispose();
+
+		graphics.popState();
+	}
+
+
+	/**
+	 * Sets the shadow backgroud color.
+	 *
+	 * @param graphics
+	 *            the new shadow backgroud color
+	 */
+	private void setShadowBackgroundColor(Graphics graphics) {
 
 		if (shadowColor != null) {
 			// get the the RGBColor from string
@@ -390,7 +470,7 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 	 * @param toApplied
 	 *            the to applied
 	 */
-	private void setShadowTransparency(Graphics graphics, boolean toApplied) {
+	private void setShadowTransparency(final Graphics graphics, final boolean toApplied) {
 		// Set transparency to be used for the shadow
 		if (toApplied) {
 			cachedTransparency = getTransparency();
@@ -408,44 +488,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		}
 	}
 
-
-	/**
-	 * Gets the gradient pattern.
-	 *
-	 * @return the gradient pattern
-	 */
-	private Pattern getGradientPattern() {
-		Rectangle rectangle = getBounds().getCopy();
-
-		boolean isVertical = (getGradientStyle() == GradientStyle.VERTICAL) ? true : false;
-
-		Point startGradientPoint = rectangle.getTopLeft();
-		Point endGradientPoint = rectangle.getBottomRight();
-
-		// Place start and end point according to isVertical.
-		if (isVertical) {
-			startGradientPoint.x = rectangle.getTopLeft().x + rectangle.width() / 2;
-			endGradientPoint.x = startGradientPoint.x;
-		} else {
-			startGradientPoint.y = rectangle.getTopLeft().y + rectangle.height() / 2;
-			endGradientPoint.y = startGradientPoint.y;
-		}
-
-		// Take zoom into account
-		double scale = FigureUtils.getScale(this);
-		startGradientPoint.scale(scale);
-		endGradientPoint.scale(scale);
-
-		// get alpha with convert transparency from 0 -> 100 to 255 -> 0
-		int alpha = (int) ((255.0 / 100.0) * (100.0 - getTransparency()));
-
-		// create pattern to display
-		Pattern pattern = new Pattern(Display.getCurrent(), startGradientPoint.x,
-				startGradientPoint.y, endGradientPoint.x, endGradientPoint.y,
-				ColorRegistry.getInstance().getColor(getGradientColor2()), alpha,
-				ColorRegistry.getInstance().getColor(getGradientColor1()), alpha);
-		return pattern;
-	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#setShadow(boolean)
