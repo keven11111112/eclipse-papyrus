@@ -12,10 +12,10 @@
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.providers;
 
 import org.eclipse.papyrus.infra.emf.providers.EMFLabelProvider;
-import org.eclipse.papyrus.infra.gmfdiag.CSSRuntimeModule;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css3.CSSRuntimeModule;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
@@ -40,8 +40,8 @@ public class StylesheetLabelProvider extends EMFLabelProvider {
 
 	@Override
 	public String getText(Object element) {
-		if (element instanceof Ruleset) {
-			return getText((Ruleset) element);
+		if (element instanceof ruleset) {
+			return getText((ruleset) element);
 		}
 
 		if (element instanceof StyleSheetReference) {
@@ -55,7 +55,7 @@ public class StylesheetLabelProvider extends EMFLabelProvider {
 		return super.getText(element);
 	}
 
-	public String getText(Ruleset ruleset) {
+	public String getText(ruleset ruleset) {
 		// Delegate the label to XText serialization
 		String label = "";
 
@@ -80,7 +80,7 @@ public class StylesheetLabelProvider extends EMFLabelProvider {
 
 	@Override
 	public Color getForeground(Object element) {
-		if (!(element instanceof Ruleset)) {
+		if (!(element instanceof ruleset)) {
 			return Display.getCurrent().getSystemColor(SWT.COLOR_DARK_GRAY);
 		}
 		return super.getForeground(element);

@@ -17,6 +17,7 @@ import java.io.IOException;
 import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedHashMap;
+import java.util.List;
 import java.util.Map;
 
 import org.eclipse.core.commands.AbstractHandler;
@@ -44,20 +45,22 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForHandlers;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.ATTRIBUTE_OP;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.AttributeValue;
-import org.eclipse.papyrus.infra.gmfdiag.css.CompositeSelector;
-import org.eclipse.papyrus.infra.gmfdiag.css.CssFactory;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
-import org.eclipse.papyrus.infra.gmfdiag.css.Expression;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
-import org.eclipse.papyrus.infra.gmfdiag.css.SelectorCondition;
-import org.eclipse.papyrus.infra.gmfdiag.css.SimpleSelector;
-import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.BaseCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.provider.CustomStyle;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ClassSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ElementSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.charset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_property;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.selector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.simple_selector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Event;
@@ -66,6 +69,7 @@ import org.eclipse.swt.widgets.Shell;
 
 public abstract class AbstractStyleHandler extends AbstractHandler {
 
+	@Override
 	public Object execute(ExecutionEvent event) {
 		ISelection selection;
 		try {
@@ -98,8 +102,8 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 			return null;
 		}
 
-		Map<Declaration, Boolean> declarations = handleStyles(view);
-		Map<Attribute, Boolean> conditions = handleSemantic(view);
+		Map<css_declaration, Boolean> declarations = handleStyles(view);
+		Map<AttributeSelector, Boolean> conditions = handleSemantic(view);
 
 		String selectorName = view.getElement().eClass().getName();
 
@@ -109,49 +113,47 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 			return null;
 		}
 
-		Ruleset ruleset = getRuleset(dialog);
-		SimpleSelector selector = CssFactory.eINSTANCE.createSimpleSelector();
+		ruleset ruleset = getRuleset(dialog);
+		selector baseSelector = CSSFactory.eINSTANCE.createselector();
+		simple_selector simple_selector = createSimpleElementSelector(selectorName, dialog.useSelectorName());
 
-		if (dialog.useSelectorName()) {
-			selector.setElementName(selectorName);
-		} else {
-			selector.setElementName("*"); //$NON-NLS-1$
-		}
+		baseSelector.getSimpleselectors().add(simple_selector);
 
 		if (dialog.getDiagramRestriction()) {
 			String diagramType = getDiagramType(view.getDiagram());
-			CompositeSelector compositeSelector = CssFactory.eINSTANCE.createCompositeSelector();
-			compositeSelector.setRight(selector);
+			selector compositeSelector = CSSFactory.eINSTANCE.createselector();
+			compositeSelector.setSelector(baseSelector);
 
-			SimpleSelector diagramSelector = CssFactory.eINSTANCE.createSimpleSelector();
-			diagramSelector.setElementName(diagramType);
-			compositeSelector.setLeft(diagramSelector);
+
+			simple_selector diagramSelector = createSimpleElementSelector(diagramType, false);
+
+			compositeSelector.getSimpleselectors().add(diagramSelector);
 
 			ruleset.getSelectors().add(compositeSelector);
 		} else {
-			ruleset.getSelectors().add(selector);
+			ruleset.getSelectors().add(baseSelector);
 		}
 
 		if (dialog.getCSSClass() != null) {
 			String cssClass = dialog.getCSSClass();
-			org.eclipse.papyrus.infra.gmfdiag.css.Class classCondition = CssFactory.eINSTANCE.createClass();
-			classCondition.setClass(cssClass);
-			selector.getCondition().add(classCondition);
+			ClassSelector classCondition = CSSFactory.eINSTANCE.createClassSelector();
+			classCondition.setName(cssClass);
+			simple_selector.getSubSelectors().add(classCondition);
 		}
 
-		for (SelectorCondition condition : conditions.keySet()) {
+		for (CssSelector condition : conditions.keySet()) {
 			if (conditions.get(condition)) {
-				selector.getCondition().add(condition);
+				simple_selector.getSubSelectors().add(condition);
 			}
 		}
 
-		for (Declaration declaration : declarations.keySet()) {
+		for (css_declaration declaration : declarations.keySet()) {
 			if (declarations.get(declaration)) {
-				ruleset.getProperties().add(declaration);
+				ruleset.getDeclarations().add(declaration);
 			}
 		}
 
-		Stylesheet xtextStylesheet = getStyleSheet(dialog, view);
+		stylesheet xtextStylesheet = getStyleSheet(dialog, view);
 
 		if (xtextStylesheet == null) {
 			return null;
@@ -159,8 +161,8 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 		Resource resource = xtextStylesheet.eResource();
 
-		if (!xtextStylesheet.getContents().contains(ruleset)) {
-			xtextStylesheet.getContents().add(ruleset);
+		if (!xtextStylesheet.getRuleset().contains(ruleset)) {
+			xtextStylesheet.getRuleset().add(ruleset);
 		}
 
 		try {
@@ -179,14 +181,28 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		return null;
 	}
 
-	protected abstract AbstractStyleDialog createStyleDialog(Shell shell, Map<Declaration, Boolean> declarations, Map<Attribute, Boolean> conditions, String selectorName, View context);
+	protected simple_selector createSimpleElementSelector(String elementName, boolean universal) {
+		simple_selector simple_selector = CSSFactory.eINSTANCE.createsimple_selector();
 
-	protected abstract Ruleset getRuleset(AbstractStyleDialog dialog);
+		if (universal) {
+			simple_selector.setUniversal(CSSFactory.eINSTANCE.createUniversalSelector());
+		} else {
+			ElementSelector elementSelector = CSSFactory.eINSTANCE.createElementSelector();
+			elementSelector.setName(elementName);
+			simple_selector.setElement(elementSelector);
+		}
 
-	protected abstract Stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView);
+		return simple_selector;
+	}
 
-	protected Map<Declaration, Boolean> handleStyles(View view) {
-		Map<Declaration, Boolean> declarations = new LinkedHashMap<Declaration, Boolean>();
+	protected abstract AbstractStyleDialog createStyleDialog(Shell shell, Map<css_declaration, Boolean> declarations, Map<AttributeSelector, Boolean> conditions, String selectorName, View context);
+
+	protected abstract ruleset getRuleset(AbstractStyleDialog dialog);
+
+	protected abstract stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView);
+
+	protected Map<css_declaration, Boolean> handleStyles(View view) {
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
 
 		for (Object styleObject : view.getStyles()) {
 			Style style = (Style) styleObject;
@@ -204,20 +220,18 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		return declarations;
 	}
 
-	protected Map<Attribute, Boolean> handleSemantic(View view) {
-		Map<Attribute, Boolean> result = new LinkedHashMap<Attribute, Boolean>();
+	protected Map<AttributeSelector, Boolean> handleSemantic(View view) {
+		Map<AttributeSelector, Boolean> result = new LinkedHashMap<AttributeSelector, Boolean>();
 
 		EObject semanticElement = view.getElement();
 
 		for (EStructuralFeature feature : semanticElement.eClass().getEAllStructuralFeatures()) {
 			if (isBoolean(feature) || isInteger(feature) || feature.getEType() instanceof EEnum) {
-				Attribute attributeCondition = CssFactory.eINSTANCE.createAttribute();
-				attributeCondition.setName(feature.getName());
+				AttributeSelector attributeCondition = CSSFactory.eINSTANCE.createAttributeSelector();
 
-				AttributeValue attributeValue = CssFactory.eINSTANCE.createAttributeValue();
-				attributeValue.setOperator(ATTRIBUTE_OP.EQUALS);
-				attributeValue.setValue(semanticElement.eGet(feature).toString());
-				attributeCondition.setValue(attributeValue);
+				attributeCondition.setName(feature.getName());
+				attributeCondition.setOp("=");
+				attributeCondition.setValue(semanticElement.eGet(feature).toString());
 
 				boolean check = semanticElement.eGet(feature) != feature.getDefaultValue();
 
@@ -258,12 +272,12 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		return false;
 	}
 
-	protected Map<Declaration, Boolean> handleStyle(Style style) {
+	protected Map<css_declaration, Boolean> handleStyle(Style style) {
 		if (style instanceof NamedStyle) {
 			return Collections.emptyMap();
 		}
 
-		Map<Declaration, Boolean> declarations = new LinkedHashMap<Declaration, Boolean>();
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
 
 		for (EStructuralFeature feature : style.eClass().getEAllStructuralFeatures()) {
 			if (NotationPackage.eINSTANCE.getStyle().isSuperTypeOf(feature.getEContainingClass())) {
@@ -271,8 +285,8 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 				Object defaultValue = feature.getDefaultValue();
 				boolean check = currentValue == null ? currentValue != defaultValue : !currentValue.equals(defaultValue);
 
-				Declaration declaration = handleStyleFeature(style, feature);
-				if (declaration.getExpression() != null) { // If expression is null, the type of this property is not supported
+				css_declaration declaration = handleStyleFeature(style, feature);
+				if (!declaration.getValueTokens().isEmpty()) { // If expression is null, the type of this property is not supported
 					declarations.put(declaration, check);
 				}
 			}
@@ -283,8 +297,8 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 
 	// FIXME: Use constants for the CSS Properties names
 	// FIXME: Use a helper to determine whether the custom styles are computed or forced
-	protected Map<Declaration, Boolean> handleCustomStyle(CustomStyle customStyle, View view) {
-		Map<Declaration, Boolean> declarations = new LinkedHashMap<Declaration, Boolean>();
+	protected Map<css_declaration, Boolean> handleCustomStyle(CustomStyle customStyle, View view) {
+		Map<css_declaration, Boolean> declarations = new LinkedHashMap<css_declaration, Boolean>();
 
 		GMFToCSSConverter converter = GMFToCSSConverter.instance;
 
@@ -295,48 +309,67 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		return declarations;
 	}
 
-	protected void handleCustomStyle(View view, String cssProperty, String eAnnotationName, Map<Declaration, Boolean> result, Expression value) {
-		Declaration cssDeclaration = CssFactory.eINSTANCE.createDeclaration();
-		cssDeclaration.setProperty(cssProperty);
-		cssDeclaration.setExpression(value);
+	protected void handleCustomStyle(View view, String cssProperty, String eAnnotationName, Map<css_declaration, Boolean> result, List<CssTok> expression) {
+		css_declaration cssDeclaration = CSSFactory.eINSTANCE.createcss_declaration();
+
+		setProperty(cssDeclaration, cssProperty);
+
+		setValueTokens(cssDeclaration, expression);
 
 		boolean check = view.getEAnnotation(eAnnotationName) != null;
 		result.put(cssDeclaration, check);
 	}
 
-	protected Declaration handleStyleFeature(Style style, EStructuralFeature feature) {
-		Declaration declaration = CssFactory.eINSTANCE.createDeclaration();
-		declaration.setProperty(feature.getName());
+	protected css_declaration handleStyleFeature(Style style, EStructuralFeature feature) {
+		css_declaration declaration = CSSFactory.eINSTANCE.createcss_declaration();
+
+		setProperty(declaration, feature.getName());
 
 		GMFToCSSConverter converter = GMFToCSSConverter.instance;
 
 		if (isString(feature)) {
-			declaration.setExpression(converter.convert((String) style.eGet(feature)));
+			setValueTokens(declaration, converter.convert((String) style.eGet(feature)));
 		}
 
 		if (isInteger(feature)) {
 			if (feature.getName().endsWith("Color")) {
 				Color color = FigureUtilities.integerToColor((Integer) style.eGet(feature));
-				declaration.setExpression(converter.convert(color));
+				setValueTokens(declaration, converter.convert(color));
 				color.dispose();
 			} else {
-				declaration.setExpression(converter.convert((Integer) style.eGet(feature)));
+				setValueTokens(declaration, converter.convert((Integer) style.eGet(feature)));
 			}
 		}
 
 		if (feature.getEType() == NotationPackage.eINSTANCE.getGradientData()) {
-			declaration.setExpression(converter.convert((GradientData) style.eGet(feature)));
+			setValueTokens(declaration, converter.convert((GradientData) style.eGet(feature)));
 		}
 
 		if (feature.getEType() instanceof EEnum) {
-			declaration.setExpression(converter.convert((Enumerator) style.eGet(feature)));
+			setValueTokens(declaration, converter.convert((Enumerator) style.eGet(feature)));
 		}
 
 		if (isBoolean(feature)) {
-			declaration.setExpression(converter.convert((Boolean) style.eGet(feature)));
+			setValueTokens(declaration, converter.convert((Boolean) style.eGet(feature)));
 		}
 
 		return declaration;
+	}
+
+	protected final void setProperty(css_declaration declaration, String property) {
+		css_property cssProperty = CSSFactory.eINSTANCE.createcss_property();
+		cssProperty.setName(property);
+		declaration.setProperty(cssProperty);
+	}
+
+	protected final void setValueTokens(css_declaration declaration, List<CssTok> tokens) {
+		declaration.getValueTokens().clear();
+		declaration.getValueTokens().addAll(tokens);
+	}
+
+	protected final void setCharset(stylesheet stylesheet, String charset) {
+		charset cssCharset = CSSFactory.eINSTANCE.createcharset();
+		cssCharset.setCharset(charset);
 	}
 
 }

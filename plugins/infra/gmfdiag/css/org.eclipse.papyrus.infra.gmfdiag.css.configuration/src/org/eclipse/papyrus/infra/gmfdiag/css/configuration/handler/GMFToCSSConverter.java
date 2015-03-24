@@ -11,20 +11,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
+import java.util.LinkedList;
+import java.util.List;
+
 import org.eclipse.emf.common.util.Enumerator;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.FigureUtilities;
 import org.eclipse.gmf.runtime.notation.GradientStyle;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
-import org.eclipse.papyrus.infra.gmfdiag.css.CssFactory;
-import org.eclipse.papyrus.infra.gmfdiag.css.Expression;
-import org.eclipse.papyrus.infra.gmfdiag.css.HexColor;
-import org.eclipse.papyrus.infra.gmfdiag.css.Name;
-import org.eclipse.papyrus.infra.gmfdiag.css.Number;
-import org.eclipse.papyrus.infra.gmfdiag.css.StringValue;
-import org.eclipse.papyrus.infra.gmfdiag.css.Subterm;
-import org.eclipse.papyrus.infra.gmfdiag.css.Term;
-import org.eclipse.papyrus.infra.gmfdiag.css.UNARY;
-import org.eclipse.papyrus.infra.gmfdiag.css.UnaryOperator;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
 import org.eclipse.swt.graphics.Color;
 
 
@@ -36,22 +35,22 @@ public class GMFToCSSConverter {
 
 	}
 
-	public Expression convert(Color color) {
-		HexColor hexColor = getColor(color);
+	public List<CssTok> convert(Color color) {
+		ColorTok hexColor = getColor(color);
 		return getExpression(hexColor);
 	}
 
-	private HexColor getColor(Color color) {
-		HexColor hexColor = CssFactory.eINSTANCE.createHexColor();
+	private ColorTok getColor(Color color) {
+		ColorTok hexColor = CSSFactory.eINSTANCE.createColorTok();
 
 		String hexString = twoDigitsHexString(color.getRed()) + twoDigitsHexString(color.getGreen()) + twoDigitsHexString(color.getBlue());
-		hexColor.setValue(hexString.toUpperCase());
+		hexColor.setValue("#" + hexString.toUpperCase());
 		return hexColor;
 	}
 
-	private HexColor getColor(int color) {
+	private ColorTok getColor(int color) {
 		Color swtColor = FigureUtilities.integerToColor(color);
-		HexColor result = getColor(swtColor);
+		ColorTok result = getColor(swtColor);
 		swtColor.dispose();
 		return result;
 	}
@@ -64,73 +63,67 @@ public class GMFToCSSConverter {
 		return hexString;
 	}
 
-	public Expression convert(GradientData gradient) {
+	public List<CssTok> convert(GradientData gradient) {
 		if (gradient == null) {
-			Name noGradient = CssFactory.eINSTANCE.createName();
-			noGradient.setValue("none");
+			IdentifierTok noGradient = CSSFactory.eINSTANCE.createIdentifierTok();
+			noGradient.setName("none");
 			return getExpression(noGradient);
 		}
 
-		HexColor gradientColor = getColor(gradient.getGradientColor1());
+		ColorTok gradientColor = getColor(gradient.getGradientColor1());
 
-		Name gradientStyle = CssFactory.eINSTANCE.createName();
+		IdentifierTok gradientStyle = CSSFactory.eINSTANCE.createIdentifierTok();
 		int style = gradient.getGradientStyle();
 
 		if (style == GradientStyle.HORIZONTAL) {
-			gradientStyle.setValue("horizontal");
+			gradientStyle.setName("horizontal");
 		} else {
-			gradientStyle.setValue("vertical");
+			gradientStyle.setName("vertical");
 		}
 
 		return getExpression(gradientColor, gradientStyle);
 	}
 
-	public Expression convert(String string) {
-		StringValue stringValue = CssFactory.eINSTANCE.createStringValue();
-		stringValue.setValue(string);
+	public List<CssTok> convert(String string) {
+		StringTok stringValue = CSSFactory.eINSTANCE.createStringTok();
+		stringValue.setValue("\"" + string + "\"");
 		return getExpression(stringValue);
 	}
 
-	public Expression convert(Integer intValue) {
-		Number numberValue = CssFactory.eINSTANCE.createNumber();
-		numberValue.setValue(Integer.toString(Math.abs(intValue)));
-		if (intValue < 0) {
-			UnaryOperator operator = CssFactory.eINSTANCE.createUnaryOperator();
-			operator.setOperator(UNARY.NEG);
-			numberValue.setOp(operator);
-		}
+	public List<CssTok> convert(Integer intValue) {
+		NumberTok numberValue = CSSFactory.eINSTANCE.createNumberTok();
+		numberValue.setVal(intValue);
+		// if (intValue < 0) {
+		// UnaryOperator operator = CssFactory.eINSTANCE.createUnaryOperator();
+		// operator.setOperator(UNARY.NEG);
+		// numberValue.setOp(operator);
+		// }
 
 		return getExpression(numberValue);
 	}
 
-	public Expression convert(Enumerator enumerated) {
-		Name literalValue = CssFactory.eINSTANCE.createName();
+	public List<CssTok> convert(Enumerator enumerated) {
+		IdentifierTok literalValue = CSSFactory.eINSTANCE.createIdentifierTok();
 
-		literalValue.setValue(enumerated.getName());
+		literalValue.setName(enumerated.getName());
 
 		return getExpression(literalValue);
 	}
 
-	private Expression getExpression(Term... values) {
-		if (values.length == 0) {
-			throw new IllegalArgumentException("An expression must contain at least one value");
+	private List<CssTok> getExpression(CssTok... values) {
+		List<CssTok> result = new LinkedList<CssTok>();
+		for (CssTok value : values) {
+			if (!result.isEmpty()) {
+				result.add(CSSFactory.eINSTANCE.createWSTok());
+			}
+			result.add(value);
 		}
-
-		Expression result = CssFactory.eINSTANCE.createExpression();
-		result.setTerms(values[0]);
-
-		for (int i = 1; i < values.length; i++) {
-			Subterm subterm = CssFactory.eINSTANCE.createSubterm();
-			subterm.setTerm(values[i]);
-			result.getSubterms().add(subterm);
-		}
-
 		return result;
 	}
 
-	public Expression convert(boolean booleanValue) {
-		Name nameValue = CssFactory.eINSTANCE.createName();
-		nameValue.setValue(booleanValue ? "true" : "false");
+	public List<CssTok> convert(boolean booleanValue) {
+		IdentifierTok nameValue = CSSFactory.eINSTANCE.createIdentifierTok();
+		nameValue.setName(booleanValue ? "true" : "false");
 		return getExpression(nameValue);
 	}
 }
