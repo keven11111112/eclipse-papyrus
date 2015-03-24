@@ -20,13 +20,13 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfig
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.NotInvariantRuleConfiguration#getComposedRule <em>Composed Rule</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfigurationPackage#getNotInvariantRuleConfiguration()
- * @model abstract="true"
+ * @model
  * @generated
  */
 public interface NotInvariantRuleConfiguration extends InvariantRuleConfiguration {

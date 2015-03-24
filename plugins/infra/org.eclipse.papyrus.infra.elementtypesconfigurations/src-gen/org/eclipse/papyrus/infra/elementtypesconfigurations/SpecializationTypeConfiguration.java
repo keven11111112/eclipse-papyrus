@@ -21,13 +21,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getSpecializedTypesID <em>Specialized Types ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getSpecializationTypeConfiguration()
  * @model

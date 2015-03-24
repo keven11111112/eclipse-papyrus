@@ -28,11 +28,11 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MetamodelTypeConfigu
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.MetamodelTypeConfigurationImpl#getEClass <em>EClass</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.MetamodelTypeConfigurationImpl#getEditHelperClassName <em>Edit Helper Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

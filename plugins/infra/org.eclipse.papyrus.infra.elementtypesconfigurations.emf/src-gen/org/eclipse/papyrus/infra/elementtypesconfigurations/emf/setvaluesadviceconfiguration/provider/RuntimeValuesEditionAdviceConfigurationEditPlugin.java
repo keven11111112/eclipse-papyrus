@@ -10,7 +10,7 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-package org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.provider;
+package org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.provider;
 
 import org.eclipse.emf.common.EMFPlugin;
 

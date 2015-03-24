@@ -34,13 +34,13 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.InheritanceKind;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigurationImpl#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigurationImpl#getBefore <em>Before</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigurationImpl#getAfter <em>After</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigurationImpl#getInheritance <em>Inheritance</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

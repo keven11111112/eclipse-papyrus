@@ -167,15 +167,25 @@ public class ElementTypeSetConfigurationRegistry {
 		return result;
 	}
 
+	protected boolean isAlreadyRegistred(String elementTypeID, IClientContext context) {
+		if (ElementTypeRegistry.getInstance().getType(elementTypeID) != null) {
+			if (!elementTypeID.equals(NullElementType.ID)) {
+				if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
+					// The elementType is already existing but not binded yet
+					context.bindId(elementTypeID);
+					Activator.log.info(elementTypeID + " is already registred elementtype but it is not binded yet. It has beeen binded to Papyrus context. ");
+				}
+			}
+			return true;
+		}
+
+		return false;
+	}
+
 	protected boolean registerElementTypeConfiguration(ElementTypeConfiguration elementTypeConfiguration, Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions, IClientContext context)
 	{
 		String elementTypeID = elementTypeConfiguration.getIdentifier();
-		if (ElementTypeRegistry.getInstance().getType(elementTypeID) != null) {
-			if (ElementTypeRegistryUtils.getType(context, elementTypeID) == null) {
-				// The elementType is already existing but not binded yet
-				context.bindId(elementTypeID);
-				Activator.log.info(elementTypeID + " is already registred elementtype but it is not binded yet. It has beeen binded to Papyrus context. ");
-			}
+		if (isAlreadyRegistred(elementTypeID, context)) {
 			return true;
 		}
 
@@ -183,18 +193,20 @@ public class ElementTypeSetConfigurationRegistry {
 			// First, check if dependencies are registered
 			for (String specializedTypeId : ((SpecializationTypeConfiguration) elementTypeConfiguration).getSpecializedTypesID()) {
 
-				// try to register the dependency
-				ElementTypeConfiguration specializedTypeConfiguration = elementTypeConfigurationsDefinitions.get(specializedTypeId);
-				if (specializedTypeConfiguration != null) {
-					boolean registred = registerElementTypeConfiguration(specializedTypeConfiguration, elementTypeConfigurationsDefinitions, context);
-					if (!registred) {
-						Activator.log.info("Failed to register " + specializedTypeId);
-						return false;
-					}
-				} else {
-					if (!specializedTypeId.equals(NullElementType.ID)) {
-						Activator.log.info("Cannot find ElementTypeConfiguration for " + specializedTypeId);
-						return false;
+				if (!isAlreadyRegistred(specializedTypeId, context)) {
+					// try to register the dependency
+					ElementTypeConfiguration specializedTypeConfiguration = elementTypeConfigurationsDefinitions.get(specializedTypeId);
+					if (specializedTypeConfiguration != null) {
+						boolean registred = registerElementTypeConfiguration(specializedTypeConfiguration, elementTypeConfigurationsDefinitions, context);
+						if (!registred) {
+							Activator.log.info("Failed to register " + specializedTypeId);
+							return false;
+						}
+					} else {
+						if (!specializedTypeId.equals(NullElementType.ID)) {
+							Activator.log.info("Cannot find ElementTypeConfiguration for " + specializedTypeId);
+							return false;
+						}
 					}
 				}
 			}
@@ -225,7 +237,6 @@ public class ElementTypeSetConfigurationRegistry {
 		return false;
 
 	}
-
 
 	public void loadElementTypeSetConfigurations(Collection<ElementTypeSetConfiguration> elementTypeSetConfigurations) {
 		Map<String, ElementTypeConfiguration> elementTypeConfigurationsDefinitions = new HashMap<String, ElementTypeConfiguration>();
@@ -352,7 +363,7 @@ public class ElementTypeSetConfigurationRegistry {
 			}
 			ElementTypeSetConfiguration set = getElementTypeSetConfiguration(elementTypeSetId, modelPath, contributorID);
 			if (set != null && !workspaceDefinitions.contains(elementTypeSetId)) { // do not add if it is locally redefined
-				if (platformElementTypeSets.containsKey(elementTypeSetId)){
+				if (platformElementTypeSets.containsKey(elementTypeSetId)) {
 					Activator.log.warn("An element type set is already registered with the id : " + elementTypeSetId);
 				}
 				platformElementTypeSets.put(elementTypeSetId, set);
@@ -412,7 +423,7 @@ public class ElementTypeSetConfigurationRegistry {
 					// not found in fragments. Look in the plugin itself
 					elementTypeSetConfiguration = getElementTypeSetConfigurationInBundle(modelPath, bundleId);
 				}
-				
+
 				if (elementTypeSetConfiguration == null) {
 					Activator.log.warn("Cannot find resource " + modelPath + " in bundle " + bundleId);
 				}
@@ -463,7 +474,7 @@ public class ElementTypeSetConfigurationRegistry {
 		try {
 			resource.load(null);
 		} catch (IOException e) {
-			return null; //Don't log the error yet; we're trying several options
+			return null; // Don't log the error yet; we're trying several options
 		}
 		EObject content = resource.getContents().get(0);
 		if (content instanceof ElementTypeSetConfiguration) {

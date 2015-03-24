@@ -20,12 +20,12 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration#getHint <em>Hint</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeConfiguration#getIconEntry <em>Icon Entry</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getElementTypeConfiguration()
  * @model abstract="true"

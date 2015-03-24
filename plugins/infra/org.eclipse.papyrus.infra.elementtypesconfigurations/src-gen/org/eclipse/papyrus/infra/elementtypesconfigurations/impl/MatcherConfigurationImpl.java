@@ -28,10 +28,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.MatcherConfigurationImpl#getMatcherClassName <em>Matcher Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -9,33 +9,6 @@
 
 
    <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
-      <package
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
-            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage"
-            genModel="model/RuntimeValuesEditionAdviceConfiguration.genmodel"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
-      <parser
-            type="runtimevalueseditionadviceconfiguration"
-            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimeValuesEditionAdviceConfigurationResourceFactoryImpl"/>
-   </extension>
-
-   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
-      <factory
-            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
-            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.provider.RuntimeValuesEditionAdviceConfigurationItemProviderAdapterFactory"
-            supportedTypes=
-              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
-               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
-               org.eclipse.emf.edit.provider.ITreeItemContentProvider
-               org.eclipse.emf.edit.provider.IItemLabelProvider
-               org.eclipse.emf.edit.provider.IItemPropertySource"/>
-   </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated SetValuesAdviceConfiguration -->
       <package
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/setvaluesadviceconfiguration/1.0"
@@ -103,7 +76,41 @@
             uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0"
             class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.provider.InvariantContainerRuleConfigurationItemProviderAdapterFactory$InvariantTypeConfigurationChildCreationExtender"/>
    </extension>
-   <extension
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <package
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage"
+            genModel="model/RuntimeValuesEditionAdviceConfiguration.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.ecore.extension_parser">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <parser
+            type="runtimevalueseditionadviceconfiguration"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimevalueseditionadviceconfigurationResourceFactoryImpl"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <factory
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.provider.RuntimevalueseditionadviceconfigurationItemProviderAdapterFactory"
+            supportedTypes=
+              "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
+               org.eclipse.emf.edit.provider.IStructuredItemContentProvider
+               org.eclipse.emf.edit.provider.ITreeItemContentProvider
+               org.eclipse.emf.edit.provider.IItemLabelProvider
+               org.eclipse.emf.edit.provider.IItemPropertySource"/>
+   </extension>
+
+   <extension point="org.eclipse.emf.edit.childCreationExtenders">
+      <!-- @generated RuntimeValuesEditionAdviceConfiguration -->
+      <extender
+            uri="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/1.0"
+            class="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.provider.RuntimevalueseditionadviceconfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
+   </extension>
+      <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
       <adviceConfigurationType
             configurationClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration"

@@ -19,17 +19,17 @@ import org.eclipse.emf.ecore.EFactory;
  * The <b>Factory</b> for the model.
  * It provides a create method for each non-abstract class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage
  * @generated
  */
-public interface RuntimeValuesEditionAdviceConfigurationFactory extends EFactory {
+public interface RuntimevalueseditionadviceconfigurationFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RuntimeValuesEditionAdviceConfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationFactoryImpl.init();
+	RuntimevalueseditionadviceconfigurationFactory eINSTANCE = org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationFactoryImpl.init();
 
 	/**
 	 * Returns a new object of class '<em>Runtime Values Edition Advice Configuration</em>'.
@@ -56,6 +56,6 @@ public interface RuntimeValuesEditionAdviceConfigurationFactory extends EFactory
 	 * @return the package supported by this factory.
 	 * @generated
 	 */
-	RuntimeValuesEditionAdviceConfigurationPackage getRuntimeValuesEditionAdviceConfigurationPackage();
+	RuntimevalueseditionadviceconfigurationPackage getRuntimevalueseditionadviceconfigurationPackage();
 
-} //RuntimeValuesEditionAdviceConfigurationFactory
+} //RuntimevalueseditionadviceconfigurationFactory

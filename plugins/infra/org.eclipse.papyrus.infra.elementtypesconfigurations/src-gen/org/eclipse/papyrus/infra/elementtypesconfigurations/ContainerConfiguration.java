@@ -24,11 +24,11 @@ import org.eclipse.emf.ecore.EReference;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration#getContainerMatcherConfiguration <em>Container Matcher Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ContainerConfiguration#getEContainmentFeatures <em>EContainment Features</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getContainerConfiguration()
  * @model

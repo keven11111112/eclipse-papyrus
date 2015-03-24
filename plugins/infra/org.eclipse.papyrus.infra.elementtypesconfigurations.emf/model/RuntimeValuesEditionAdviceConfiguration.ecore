@@ -3,7 +3,7 @@
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="runtimevalueseditionadviceconfiguration" nsURI="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
     nsPrefix="runtimevalueseditionadviceconfiguration">
   <eClassifiers xsi:type="ecore:EClass" name="RuntimeValuesEditionAdviceConfiguration"
-      eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.ecore#//AdviceConfiguration">
+      eSuperTypes="platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.ecore#//AdviceBindingConfiguration">
     <eStructuralFeatures xsi:type="ecore:EReference" name="viewsToDisplay" upperBound="-1"
         eType="#//ViewToDisplay" containment="true"/>
   </eClassifiers>

@@ -28,12 +28,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfigurationElementImpl#getIdentifier <em>Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

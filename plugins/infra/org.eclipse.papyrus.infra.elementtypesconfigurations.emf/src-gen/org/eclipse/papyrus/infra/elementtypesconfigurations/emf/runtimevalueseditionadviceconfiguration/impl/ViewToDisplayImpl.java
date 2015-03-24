@@ -18,9 +18,9 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
+import org.eclipse.emf.ecore.impl.EObjectImpl;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay;
 
 import org.eclipse.papyrus.views.properties.contexts.View;
@@ -31,14 +31,14 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.ViewToDisplayImpl#getView <em>View</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements ViewToDisplay {
+public class ViewToDisplayImpl extends EObjectImpl implements ViewToDisplay {
 	/**
 	 * The cached value of the '{@link #getView() <em>View</em>}' reference.
 	 * <!-- begin-user-doc -->
@@ -65,7 +65,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RuntimeValuesEditionAdviceConfigurationPackage.Literals.VIEW_TO_DISPLAY;
+		return RuntimevalueseditionadviceconfigurationPackage.Literals.VIEW_TO_DISPLAY;
 	}
 
 	/**
@@ -79,7 +79,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 			view = (View)eResolveProxy(oldView);
 			if (view != oldView) {
 				if (eNotificationRequired())
-					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW, oldView, view));
+					eNotify(new ENotificationImpl(this, Notification.RESOLVE, RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW, oldView, view));
 			}
 		}
 		return view;
@@ -103,7 +103,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 		View oldView = view;
 		view = newView;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW, oldView, view));
+			eNotify(new ENotificationImpl(this, Notification.SET, RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW, oldView, view));
 	}
 
 	/**
@@ -114,7 +114,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW:
+			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW:
 				if (resolve) return getView();
 				return basicGetView();
 		}
@@ -129,7 +129,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW:
+			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW:
 				setView((View)newValue);
 				return;
 		}
@@ -144,7 +144,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW:
+			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW:
 				setView((View)null);
 				return;
 		}
@@ -159,7 +159,7 @@ public class ViewToDisplayImpl extends MinimalEObjectImpl.Container implements V
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY__VIEW:
+			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY__VIEW:
 				return view != null;
 		}
 		return super.eIsSet(featureID);

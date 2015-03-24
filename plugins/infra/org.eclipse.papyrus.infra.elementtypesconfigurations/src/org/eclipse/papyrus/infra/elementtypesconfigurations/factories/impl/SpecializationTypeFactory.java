@@ -42,7 +42,7 @@ public class SpecializationTypeFactory extends AbstractElementTypeConfigurationF
 	@Override
 	public IHintedType createElementType(SpecializationTypeConfiguration elementTypeConfiguration) {
 		return new ConfiguredHintedSpecializationElementType(getID(elementTypeConfiguration), getIconURL(elementTypeConfiguration), getDisplayName(elementTypeConfiguration), getSpecializedID(elementTypeConfiguration),
-				createElementMatcher(elementTypeConfiguration), createContainerDescriptor(elementTypeConfiguration), getEditHelperAdvice(elementTypeConfiguration), getSemanticHint(elementTypeConfiguration));
+				createElementMatcher(elementTypeConfiguration), createContainerDescriptor(elementTypeConfiguration), getEditHelperAdvice(elementTypeConfiguration), getSemanticHint(elementTypeConfiguration), elementTypeConfiguration);
 	}
 
 	protected IEditHelperAdvice getEditHelperAdvice(SpecializationTypeConfiguration elementTypeConfiguration) {

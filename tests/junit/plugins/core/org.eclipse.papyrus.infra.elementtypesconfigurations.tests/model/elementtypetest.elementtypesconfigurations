@@ -8,6 +8,7 @@
     xmlns:invariantcontainerruleconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttypeconfiguration/containerruleconfiguration/1.0"
     xmlns:invariantstereotyperuleconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invariantstereotyperule/1.0"
     xmlns:invarianttypeconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/invarianttype/1.0"
+    xmlns:runtimevalueseditionadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/runtimevalueseditionadviceconfiguration/1.0"
     xmlns:setvaluesadviceconfiguration="http://www.eclipse.org/papyrus/infra/elementtypesconfigurations/emf/setvaluesadviceconfiguration/1.0"
     xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML"
     xmi:id="_ScP1oFYCEeS0WsAAtVmToA"
@@ -30,12 +31,12 @@
         xmi:id="_N9YeYLg-EeS0cu6lbJ9jDQ">
       <permissions
           xmi:id="_Ow-egLg-EeS0cu6lbJ9jDQ"
-          childType="org.eclipse.papyrus.uml.Package"/>
+          containerType="org.eclipse.papyrus.uml.Package"/>
       <permissions
           xmi:id="_QsZCULg-EeS0cu6lbJ9jDQ"
-          childType="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.packagewithcomponentsonly"
-          isPermitted="true"
-          isStrict="true"/>
+          containerType="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.packagewithcomponentsonly"
+          permitted="true"
+          strict="true"/>
     </invariantRuleConfiguration>
   </elementTypeConfigurations>
   <elementTypeConfigurations
@@ -52,10 +53,66 @@
         stereotypeQualifiedName="ElementTypesTestsProfile::PackageWithComponents"
         requiredProfile=""/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_mhW74My1EeS2aYvfnAB4ZA"
+      name="Abstract Class Creation Action"
+      description="Semantic element type to create abstract classes"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.aspectabstractclass"
+      hint="Abstract Class Creation Action">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_CSBmcMy2EeS2aYvfnAB4ZA"
+      name="Class With Stereotype"
+      description="Test elementTypeConfigurations"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotype"
+      hint="ElementElementTypeConfigurations">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_5vXW8My3EeS2aYvfnAB4ZA"
+      name="Package With Stereotype And Renamed"
+      description="Test elementTypeConfigurations"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeRename"
+      hint="ElementElementTypeConfigurations">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_HT1okMy4EeS2aYvfnAB4ZA"
+      name="Package With Stereotype And Renamed"
+      description="Test elementTypeConfigurations"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeSetValues"
+      hint="ElementElementTypeConfigurations">
+    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_mrg2EMy4EeS2aYvfnAB4ZA"
+      name="Package With Stereotype And Renamed"
+      description="Test elementTypeConfigurations"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.abstractclassSimpleStereotype"
+      hint="ElementElementTypeConfigurations">
+    <specializedTypesID>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.aspectabstractclass</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_SKcvUMzEEeSJ0sn3znt87w"
+      name="Package With Stereotype And Renamed - View"
+      description="Test elementTypeConfigurations"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeRenameWithView"
+      hint="ElementElementTypeConfigurations">
+    <specializedTypesID>org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeRename</specializedTypesID>
+  </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="setvaluesadviceconfiguration:SetValuesAdviceConfiguration"
       xmi:id="_6Zq8QLg_EeS0cu6lbJ9jDQ"
-      description="Aspect Semantic element type to create abstract classes">
+      description="Aspect Semantic element type to create abstract classes"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.aspectabstractclass.advice"
+      target="_mhW74My1EeS2aYvfnAB4ZA">
     <featuresToSet
         xmi:id="_7FIUELg_EeS0cu6lbJ9jDQ"
         featureName="isAbstract">
@@ -71,7 +128,9 @@
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_NEmxYLhAEeS0cu6lbJ9jDQ">
+      xmi:id="_NEmxYLhAEeS0cu6lbJ9jDQ"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotype.advice"
+      target="_CSBmcMy2EeS2aYvfnAB4ZA">
     <stereotypesToApply
         xmi:id="_PuEG8LhAEeS0cu6lbJ9jDQ"
         stereotypeQualifiedName="ElementTypesTestsProfile::StereotypeWithFeaturesToSet">
@@ -80,7 +139,21 @@
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_havkELhAEeS0cu6lbJ9jDQ">
+      xmi:id="_Z3bfkMy4EeS2aYvfnAB4ZA"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeRename.advice"
+      target="_5vXW8My3EeS2aYvfnAB4ZA">
+    <stereotypesToApply
+        xmi:id="_Z3bfkcy4EeS2aYvfnAB4ZA"
+        stereotypeQualifiedName="ElementTypesTestsProfile::StereotypeWithFeaturesToSet"
+        updateName="true">
+      <requiredProfiles>ElementTypesTestProfile</requiredProfiles>
+    </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
+      xmi:id="_havkELhAEeS0cu6lbJ9jDQ"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeSetValues.advice"
+      target="_HT1okMy4EeS2aYvfnAB4ZA">
     <stereotypesToApply
         xmi:id="_vA53wLhAEeS0cu6lbJ9jDQ"
         stereotypeQualifiedName="ElementTypesTestsProfile::StereotypeWithFeaturesToSet"
@@ -144,7 +217,9 @@
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_ls9AILhAEeS0cu6lbJ9jDQ">
+      xmi:id="_ls9AILhAEeS0cu6lbJ9jDQ"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.abstractclassSimpleStereotype.advice"
+      target="_mrg2EMy4EeS2aYvfnAB4ZA">
     <stereotypesToApply
         xmi:id="_u0-NMLhDEeS0cu6lbJ9jDQ"
         stereotypeQualifiedName="ElementTypesTestsProfile::StereotypeWithFeatureToSet">
@@ -158,11 +233,13 @@
           <valueInstance
               xsi:type="uml:LiteralString"
               xmi:id="_-BmvcLhDEeS0cu6lbJ9jDQ"
+              name=""
               value="MyOtherValue"/>
         </value>
       </featuresToSet>
       <featuresToSet
-          xmi:id="_Bj7msLhEEeS0cu6lbJ9jDQ">
+          xmi:id="_Bj7msLhEEeS0cu6lbJ9jDQ"
+          featureName="value">
         <value
             xsi:type="applystereotypeadviceconfiguration:ConstantValue"
             xmi:id="_Dd4x8LhEEeS0cu6lbJ9jDQ">
@@ -173,7 +250,8 @@
         </value>
       </featuresToSet>
       <featuresToSet
-          xmi:id="_CKkv8LhEEeS0cu6lbJ9jDQ">
+          xmi:id="_CKkv8LhEEeS0cu6lbJ9jDQ"
+          featureName="boolean">
         <value
             xsi:type="applystereotypeadviceconfiguration:ConstantValue"
             xmi:id="_It5TALhEEeS0cu6lbJ9jDQ">
@@ -184,16 +262,31 @@
         </value>
       </featuresToSet>
       <featuresToSet
-          xmi:id="_CqCTILhEEeS0cu6lbJ9jDQ">
+          xmi:id="_CqCTILhEEeS0cu6lbJ9jDQ"
+          featureName="enumeration">
         <value
             xsi:type="applystereotypeadviceconfiguration:ConstantValue"
             xmi:id="_LYi7YLhEEeS0cu6lbJ9jDQ">
           <valueInstance
               xsi:type="uml:InstanceValue"
               xmi:id="_NPf18LhEEeS0cu6lbJ9jDQ"
-              name=""/>
+              name="">
+            <instance
+                href="ElementTypesTestsProfile.profile.uml#_T4hRALhHEeS0cu6lbJ9jDQ"/>
+          </valueInstance>
         </value>
       </featuresToSet>
     </stereotypesToApply>
+  </adviceBindingsConfigurations>
+  <adviceBindingsConfigurations
+      xsi:type="runtimevalueseditionadviceconfiguration:RuntimeValuesEditionAdviceConfiguration"
+      xmi:id="_bmwRsMzEEeSJ0sn3znt87w"
+      identifier="org.eclipse.papyrus.infra.elementtypesconfigurations.tests.classSimpleStereotypeRenameWithView.advice"
+      target="_SKcvUMzEEeSJ0sn3znt87w">
+    <viewsToDisplay
+        xmi:id="_d7FEwMzEEeSJ0sn3znt87w">
+      <view
+          href="ElementTypesTestsProfile.ctx#//@views.0"/>
+    </viewsToDisplay>
   </adviceBindingsConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

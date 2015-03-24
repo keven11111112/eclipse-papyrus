@@ -25,10 +25,10 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigurationImpl;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl;
 
 /**
  * <!-- begin-user-doc -->
@@ -36,14 +36,14 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceConfigura
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationImpl#getViewsToDisplay <em>Views To Display</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigurationImpl implements RuntimeValuesEditionAdviceConfiguration {
+public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceBindingConfigurationImpl implements RuntimeValuesEditionAdviceConfiguration {
 	/**
 	 * The cached value of the '{@link #getViewsToDisplay() <em>Views To Display</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
@@ -70,7 +70,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return RuntimeValuesEditionAdviceConfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION;
+		return RuntimevalueseditionadviceconfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION;
 	}
 
 	/**
@@ -80,7 +80,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	 */
 	public EList<ViewToDisplay> getViewsToDisplay() {
 		if (viewsToDisplay == null) {
-			viewsToDisplay = new EObjectContainmentEList<ViewToDisplay>(ViewToDisplay.class, this, RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY);
+			viewsToDisplay = new EObjectContainmentEList<ViewToDisplay>(ViewToDisplay.class, this, RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY);
 		}
 		return viewsToDisplay;
 	}
@@ -93,7 +93,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				return ((InternalEList<?>)getViewsToDisplay()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -107,7 +107,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				return getViewsToDisplay();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -122,7 +122,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				getViewsToDisplay().clear();
 				getViewsToDisplay().addAll((Collection<? extends ViewToDisplay>)newValue);
 				return;
@@ -138,7 +138,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				getViewsToDisplay().clear();
 				return;
 		}
@@ -153,7 +153,7 @@ public class RuntimeValuesEditionAdviceConfigurationImpl extends AdviceConfigura
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				return viewsToDisplay != null && !viewsToDisplay.isEmpty();
 		}
 		return super.eIsSet(featureID);

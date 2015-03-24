@@ -32,12 +32,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.AdviceBindingConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

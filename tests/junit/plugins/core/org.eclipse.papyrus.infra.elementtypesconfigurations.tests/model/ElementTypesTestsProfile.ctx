@@ -18,7 +18,7 @@
   <views name="Single StereotypeWithFeaturesToSet" sections="//@tabs.0/@sections.2" automaticContext="true" datacontexts="//@dataContexts.0/@elements.1">
     <constraints xsi:type="constraints:SimpleConstraint" name="isSingleStereotypeWithFeaturesToSet">
       <constraintType href="ppe:/environment/org.eclipse.papyrus.uml.properties/Model/Environment.xmi#//@constraintTypes.1"/>
-      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="ExtendedTypesTestsProfile::StereotypeWithFeaturesToSet"/>
+      <properties xsi:type="constraints:ValueProperty" name="stereotypeName" value="ElementTypesTestsProfile::StereotypeWithFeaturesToSet"/>
     </constraints>
   </views>
   <dataContexts name="ElementTypesTestsProfile">

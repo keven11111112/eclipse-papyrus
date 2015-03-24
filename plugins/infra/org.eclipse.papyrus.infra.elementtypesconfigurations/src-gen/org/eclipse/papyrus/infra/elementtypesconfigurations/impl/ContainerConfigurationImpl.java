@@ -38,11 +38,11 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.MatcherConfiguration
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ContainerConfigurationImpl#getContainerMatcherConfiguration <em>Container Matcher Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ContainerConfigurationImpl#getEContainmentFeatures <em>EContainment Features</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

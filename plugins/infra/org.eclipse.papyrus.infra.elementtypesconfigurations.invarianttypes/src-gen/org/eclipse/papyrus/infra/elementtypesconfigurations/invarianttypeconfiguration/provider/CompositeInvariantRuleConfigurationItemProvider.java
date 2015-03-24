@@ -135,6 +135,11 @@ public class CompositeInvariantRuleConfigurationItemProvider extends InvariantRu
 		newChildDescriptors.add
 			(createChildParameter
 				(InvariantTypeConfigurationPackage.Literals.COMPOSITE_INVARIANT_RULE_CONFIGURATION__COMPOSED_RULES,
+				 InvariantTypeConfigurationFactory.eINSTANCE.createNotInvariantRuleConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(InvariantTypeConfigurationPackage.Literals.COMPOSITE_INVARIANT_RULE_CONFIGURATION__COMPOSED_RULES,
 				 InvariantTypeConfigurationFactory.eINSTANCE.createAndInvariantRuleConfiguration()));
 
 		newChildDescriptors.add

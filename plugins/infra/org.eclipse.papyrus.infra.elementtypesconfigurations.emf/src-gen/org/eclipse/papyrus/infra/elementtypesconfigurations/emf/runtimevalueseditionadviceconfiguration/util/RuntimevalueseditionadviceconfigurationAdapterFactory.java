@@ -19,6 +19,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 
 import org.eclipse.emf.ecore.EObject;
 
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement;
 
@@ -29,17 +30,17 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevaluesedi
  * The <b>Adapter Factory</b> for the model.
  * It provides an adapter <code>createXXX</code> method for each class of the model.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage
  * @generated
  */
-public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends AdapterFactoryImpl {
+public class RuntimevalueseditionadviceconfigurationAdapterFactory extends AdapterFactoryImpl {
 	/**
 	 * The cached model package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static RuntimeValuesEditionAdviceConfigurationPackage modelPackage;
+	protected static RuntimevalueseditionadviceconfigurationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the adapter factory.
@@ -47,9 +48,9 @@ public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends Adapt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimeValuesEditionAdviceConfigurationAdapterFactory() {
+	public RuntimevalueseditionadviceconfigurationAdapterFactory() {
 		if (modelPackage == null) {
-			modelPackage = RuntimeValuesEditionAdviceConfigurationPackage.eINSTANCE;
+			modelPackage = RuntimevalueseditionadviceconfigurationPackage.eINSTANCE;
 		}
 	}
 
@@ -78,8 +79,8 @@ public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends Adapt
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected RuntimeValuesEditionAdviceConfigurationSwitch<Adapter> modelSwitch =
-		new RuntimeValuesEditionAdviceConfigurationSwitch<Adapter>() {
+	protected RuntimevalueseditionadviceconfigurationSwitch<Adapter> modelSwitch =
+		new RuntimevalueseditionadviceconfigurationSwitch<Adapter>() {
 			@Override
 			public Adapter caseRuntimeValuesEditionAdviceConfiguration(RuntimeValuesEditionAdviceConfiguration object) {
 				return createRuntimeValuesEditionAdviceConfigurationAdapter();
@@ -95,6 +96,10 @@ public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends Adapt
 			@Override
 			public Adapter caseAdviceConfiguration(AdviceConfiguration object) {
 				return createAdviceConfigurationAdapter();
+			}
+			@Override
+			public Adapter caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+				return createAdviceBindingConfigurationAdapter();
 			}
 			@Override
 			public Adapter defaultCase(EObject object) {
@@ -173,6 +178,20 @@ public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends Adapt
 	}
 
 	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration <em>Advice Binding Configuration</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration
+	 * @generated
+	 */
+	public Adapter createAdviceBindingConfigurationAdapter() {
+		return null;
+	}
+
+	/**
 	 * Creates a new adapter for the default case.
 	 * <!-- begin-user-doc -->
 	 * This default implementation returns null.
@@ -184,4 +203,4 @@ public class RuntimeValuesEditionAdviceConfigurationAdapterFactory extends Adapt
 		return null;
 	}
 
-} //RuntimeValuesEditionAdviceConfigurationAdapterFactory
+} //RuntimevalueseditionadviceconfigurationAdapterFactory

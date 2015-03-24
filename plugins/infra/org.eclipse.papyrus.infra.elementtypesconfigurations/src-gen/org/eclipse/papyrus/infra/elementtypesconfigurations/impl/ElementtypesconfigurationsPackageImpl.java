@@ -667,7 +667,7 @@ public class ElementtypesconfigurationsPackageImpl extends EPackageImpl implemen
 
 		// Initialize classes, features, and operations; add parameters
 		initEClass(elementTypeSetConfigurationEClass, ElementTypeSetConfiguration.class, "ElementTypeSetConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEReference(getElementTypeSetConfiguration_ElementTypeConfigurations(), this.getElementTypeConfiguration(), null, "elementTypeConfigurations", null, 1, -1, ElementTypeSetConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getElementTypeSetConfiguration_ElementTypeConfigurations(), this.getElementTypeConfiguration(), null, "elementTypeConfigurations", null, 0, -1, ElementTypeSetConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getElementTypeSetConfiguration_AdviceBindingsConfigurations(), this.getAdviceBindingConfiguration(), null, "adviceBindingsConfigurations", null, 0, -1, ElementTypeSetConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getElementTypeSetConfiguration_MetamodelNsURI(), ecorePackage.getEString(), "metamodelNsURI", null, 1, 1, ElementTypeSetConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 

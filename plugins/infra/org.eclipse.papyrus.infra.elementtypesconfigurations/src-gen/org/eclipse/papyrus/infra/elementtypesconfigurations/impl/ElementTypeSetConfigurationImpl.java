@@ -38,12 +38,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeSetConfigurationImpl#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
