@@ -76,7 +76,7 @@ class CppOperations {
 	
 	static def CppConstInit(Operation operation) {
 		if (GenUtils.hasStereotype(operation, ConstInit) && GenUtils.hasStereotype(operation, Create)) {
-			(UMLUtil.getStereotypeApplication(operation, ConstInit) as ConstInit).initialisation
+			": " + UMLUtil.getStereotypeApplication(operation, ConstInit).initialisation
 		}
 	}
 

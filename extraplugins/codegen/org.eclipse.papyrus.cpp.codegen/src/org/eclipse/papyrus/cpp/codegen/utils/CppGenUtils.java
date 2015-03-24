@@ -138,6 +138,10 @@ public class CppGenUtils {
 			// always use the short name for types within the ANSI C library
 			return ne.getName();
 		}
+		else if (owner instanceof ClassifierTemplateParameter) {
+			// return short name for template in Type
+			return ne.getName();
+		}
 
 		String qName = ne.getName();
 		if (currentNS == ne.getNamespace()) {

@@ -178,11 +178,10 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 				final String bindHeaderFileName = locStrategy.getFileName(classifier) + Constants.DOT + hppExt;
 				generateFile(bindHeaderFileName, commentHeader + CppClassifierGenerator.generateBindHeaderCode(classifier));
 
-				final String bindBodyFileName = classifier.getName() + Constants.DOT + cppExt;
+				final String bindBodyFileName = locStrategy.getFileName(classifier) + Constants.DOT + cppExt;
 				generateFile(bindBodyFileName, commentHeader + CppClassifierGenerator.generateBindBodyCode(classifier));
 			}
 			else {
-
 				// Class Header file generation
 				final String classHeaderFileName = locStrategy.getFileName(classifier) + Constants.DOT + hppExt;
 				generateFile(classHeaderFileName, commentHeader + CppClassifierGenerator.generateClassHeaderCode(classifier));
@@ -241,6 +240,4 @@ public class CppModelElementsCreator extends ModelElementsCreator {
 				GenUtils.hasStereotype(element, External.class) ||
 				GenUtils.hasStereotypeTree(element, ExternLibrary.class);
 	}
-
-
 }
