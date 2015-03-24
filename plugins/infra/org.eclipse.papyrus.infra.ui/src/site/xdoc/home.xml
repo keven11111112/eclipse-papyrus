@@ -3,7 +3,7 @@
 	xsi:schemaLocation="http://maven.apache.org/XDOC/2.0 http://maven.apache.org/xsd/xdoc-2.0.xsd">
 
 	<properties>
-		<title>org.eclipse.papyrus.uinfra.ui</title>
+		<title>org.eclipse.papyrus.infra.ui</title>
 	</properties>
 
 	<body>
@@ -15,8 +15,10 @@
 			</subsection>
 		</section>
 		<section name="Documentation generation">
-
-			<subsection name="Web site generation">
+			<subsection name="Javadoc generation defined in plugin section">
+				<source>mvn javadoc:javadoc</source>
+			</subsection>
+			<subsection name="Web site generation with javadoc defined in report section">
 				<source>mvn site:site</source>
 			</subsection>
 			<subsection name="Pdf generation">
