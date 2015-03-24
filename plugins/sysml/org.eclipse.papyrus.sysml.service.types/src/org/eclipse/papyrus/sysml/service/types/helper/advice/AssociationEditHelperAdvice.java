@@ -49,6 +49,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.sysml.service.types.element.SysMLElementTypes;
 import org.eclipse.papyrus.uml.service.types.utils.ElementUtil;
 import org.eclipse.papyrus.uml.service.types.utils.RequestParameterUtils;
+import org.eclipse.papyrus.uml.tools.databinding.OwnedAttributeHelper;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -290,5 +291,34 @@ public class AssociationEditHelperAdvice extends AbstractEditHelperAdvice {
 		viewsToDestroy.remove(currentlyReorientedView);
 
 		return viewsToDestroy;
+	}
+
+	/**
+	 * Change owners for navigable OwnedEnd in association. For SysML diagrams only.
+	 * Bug 364066
+	 */
+	@Override
+	protected ICommand getAfterSetCommand(SetRequest request) {
+		if (request.getElementToEdit() instanceof Association) {
+			Association association = (Association) request.getElementToEdit();
+			if (request.getFeature() == UMLPackage.eINSTANCE.getAssociation_NavigableOwnedEnd()) {
+				return changeAllNavigableElementsOwners((List<?>) request.getValue(), association);
+			}
+		}
+		return super.getAfterSetCommand(request);
+	}
+
+	private ICommand changeAllNavigableElementsOwners(List<?> members, Association association) {
+		if (members.isEmpty()) {
+			return null;
+		}
+
+		CompositeCommand cc = new CompositeCommand("Change association's properties owners"); //$NON-NLS-1$
+		for (Object member : members) {
+			if (member instanceof Property) {
+				cc.add(OwnedAttributeHelper.getSetTypeOwnerForAssociationAttributeCommand(association, (Property)member));
+			}
+		}
+		return cc.isEmpty() ? null : cc.reduce();
 	}
 }
