@@ -59,6 +59,7 @@ import org.eclipse.xtext.util.concurrent.IUnitOfWork;
 import org.eclipse.xtext.validation.CheckMode;
 import org.eclipse.xtext.validation.IResourceValidator;
 import org.eclipse.xtext.validation.Issue;
+import org.eclipse.papyrus.uml.xtext.integration.job.XtextValidationJob;
 
 import com.google.inject.Inject;
 import com.google.inject.Injector;
@@ -206,7 +207,7 @@ public class StyledTextXtextAdapter {
 	}
 
 	protected ValidationJob createValidationJob() {
-		return new ValidationJob(validator, document, new AnnotationIssueProcessor(document,
+		return new XtextValidationJob(validator, document, new AnnotationIssueProcessor(document,
 				sourceviewer.getAnnotationModel(), resolutionProvider), CheckMode.ALL);
 	}
 

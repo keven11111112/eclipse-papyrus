@@ -1,0 +1,205 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_-nMoUMOSEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="__H3scMOSEeSiR-ar9ioVjA" name="Expressions_Assignment" classifierBehavior="__H3sscOSEeSiR-ar9ioVjA" isActive="true">
+      <ownedComment xmi:id="__H3sssOSEeSiR-ar9ioVjA" annotatedElement="__H3scMOSEeSiR-ar9ioVjA">
+        <body>&#xD;
+ * Test non-indexed assignment expressions.&#xD;
+ *</body>
+      </ownedComment>
+      <ownedAttribute xmi:id="__H3sosOSEeSiR-ar9ioVjA" name="Expressions_Assignment$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3so8OSEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3spMOSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="__H3sgcOSEeSiR-ar9ioVjA" name="test$method$1" visibility="protected" specification="__H3sccOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="__H3ss8OSEeSiR-ar9ioVjA" annotatedElement="__H3sgcOSEeSiR-ar9ioVjA">
+          <body>activity 'test$method$1'(out i: Integer, out f: Boolean, out h: BitString, out filename: String, out a: Integer) {
+	i = 1;
+	i += 4;
+	i += 1;
+	i -= 1;
+	i *= 1;
+	i %= 6;
+	i /= 1;
+	f = true;
+	f &amp;= true;
+	f |= true;
+	f ^= true;
+	h = (BitString) 0;
+	h = 0xab;
+	h &amp;= 0xff;
+	h |= 1;
+	h ^= 1;
+	h &lt;&lt;= 1;
+	h >>= 1;
+	h >>>= 1;
+	filename = &quot;xyz&quot;;
+	filename += &quot;.doc&quot;;
+	a = 1;
+	a += 1;
+	test::a = 1;
+	test::a += i;
+	test.a = 1;
+	test.a += 1;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__H3sgsOSEeSiR-ar9ioVjA" name="i" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sg8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3shMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3shcOSEeSiR-ar9ioVjA" name="f" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3shsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sh8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3siMOSEeSiR-ar9ioVjA" name="h" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://PAPYRUS_ALF_LIBRARY/Alf.library.uml#Alf-Library-PrimitiveTypes-BitString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sicOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sisOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3si8OSEeSiR-ar9ioVjA" name="filename" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sjMOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sjcOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3sjsOSEeSiR-ar9ioVjA" name="a" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sj8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3skMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="__H3spcOSEeSiR-ar9ioVjA" name="Expressions_Assignment$initialization$1" visibility="protected" specification="__H3spsOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="__H3stMOSEeSiR-ar9ioVjA" annotatedElement="__H3spcOSEeSiR-ar9ioVjA">
+          <body>activity 'Expressions_Assignment$initialization$1'(){
+  if (this.'Expressions_Assignment$initializationFlag$1' == null) {
+    this.'Expressions_Assignment$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="__H3sp8OSEeSiR-ar9ioVjA" name="Expressions_Assignment$method$1" specification="__H3sq8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="__H3stcOSEeSiR-ar9ioVjA" annotatedElement="__H3sp8OSEeSiR-ar9ioVjA">
+          <body>activity 'Expressions_Assignment$method$1'(): Expressions_Assignment {
+	this.'Expressions_Assignment$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__H3sqMOSEeSiR-ar9ioVjA" type="__H3scMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sqcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sqsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="__H3sr8OSEeSiR-ar9ioVjA" name="destroy$method$1" specification="__H3ssMOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="__H3stsOSEeSiR-ar9ioVjA" annotatedElement="__H3sr8OSEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="__H3sscOSEeSiR-ar9ioVjA" name="Expressions_Assignment$behavior$1" visibility="private">
+        <ownedComment xmi:id="__H3sucOSEeSiR-ar9ioVjA" annotatedElement="__H3sscOSEeSiR-ar9ioVjA">
+          <body>activity 'Expressions_Assignment$behavior$1'() {
+	this.test(i, f, h, filename, a);
+	AssertEqual(&quot;i&quot;, i, 5);
+	AssertFalse(&quot;f&quot;, f);
+	AssertEqual(&quot;h&quot;, h, 0x55);
+	AssertEqual(&quot;filename&quot;, filename, &quot;xyz.doc&quot;);
+	AssertEqual(&quot;a&quot;, a, 2);
+	WriteLine(&quot;Done&quot;);
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="__H3sccOSEeSiR-ar9ioVjA" name="test" visibility="public" method="__H3sgcOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="__H3scsOSEeSiR-ar9ioVjA" name="i" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sc8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sdMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3sdcOSEeSiR-ar9ioVjA" name="f" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sdsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sd8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3seMOSEeSiR-ar9ioVjA" name="h" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://PAPYRUS_ALF_LIBRARY/Alf.library.uml#Alf-Library-PrimitiveTypes-BitString"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3secOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sesOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3se8OSEeSiR-ar9ioVjA" name="filename" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sfMOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sfcOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3sfsOSEeSiR-ar9ioVjA" name="a" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sf8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sgMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="__H3spsOSEeSiR-ar9ioVjA" name="Expressions_Assignment$initialization$1" visibility="protected" method="__H3spcOSEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="__H3sq8OSEeSiR-ar9ioVjA" name="Expressions_Assignment" method="__H3sp8OSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="__H3srMOSEeSiR-ar9ioVjA" type="__H3scMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3srcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3srsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="__H3ssMOSEeSiR-ar9ioVjA" name="destroy" method="__H3sr8OSEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Activity" xmi:id="__H3skcOSEeSiR-ar9ioVjA" name="AssertEqual" visibility="public">
+        <ownedComment xmi:id="__H3st8OSEeSiR-ar9ioVjA" annotatedElement="__H3skcOSEeSiR-ar9ioVjA">
+          <body>activity AssertEqual(in label: String, in value1: any, in value2: any) {
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__H3sksOSEeSiR-ar9ioVjA" name="label">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sk8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3slMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3slcOSEeSiR-ar9ioVjA" name="value1">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3slsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3sl8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3smMOSEeSiR-ar9ioVjA" name="value2">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3smcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3smsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Activity" xmi:id="__H3sm8OSEeSiR-ar9ioVjA" name="AssertFalse" visibility="public">
+        <ownedComment xmi:id="__H3suMOSEeSiR-ar9ioVjA" annotatedElement="__H3sm8OSEeSiR-ar9ioVjA">
+          <body>activity AssertFalse(in label: String, in value: Boolean) {
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="__H3snMOSEeSiR-ar9ioVjA" name="label">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3sncOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3snsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="__H3sn8OSEeSiR-ar9ioVjA" name="value">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Boolean"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="__H3soMOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="__H3socOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </nestedClassifier>
+    </packagedElement>
+    <profileApplication xmi:id="_-nMoUcOSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-nMoUsOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_-nMoU8OSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-nMoVMOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Destroy xmi:id="__H3susOSEeSiR-ar9ioVjA" base_BehavioralFeature="__H3ssMOSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="__H3su8OSEeSiR-ar9ioVjA" base_BehavioralFeature="__H3sq8OSEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3svMOSEeSiR-ar9ioVjA" base_Comment="__H3ss8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3svcOSEeSiR-ar9ioVjA" base_Comment="__H3stMOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3svsOSEeSiR-ar9ioVjA" base_Comment="__H3stcOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3sv8OSEeSiR-ar9ioVjA" base_Comment="__H3stsOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3swMOSEeSiR-ar9ioVjA" base_Comment="__H3st8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3swcOSEeSiR-ar9ioVjA" base_Comment="__H3suMOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="__H3swsOSEeSiR-ar9ioVjA" base_Comment="__H3sucOSEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_Jl3VUMOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_J78TAMOTEeSiR-ar9ioVjA" name="ReferentTest">
+      <ownedAttribute xmi:id="_J78TGsOTEeSiR-ar9ioVjA" name="ReferentTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TG8OTEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78THMOTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78THcOTEeSiR-ar9ioVjA" name="ReferentTest$initialization$1" visibility="protected" specification="_J78THsOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_J78TLMOTEeSiR-ar9ioVjA" annotatedElement="_J78THcOTEeSiR-ar9ioVjA">
+          <body>activity 'ReferentTest$initialization$1'(){
+  if (this.'ReferentTest$initializationFlag$1' == null) {
+    this.'ReferentTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TH8OTEeSiR-ar9ioVjA" name="ReferentTest$method$1" specification="_J78TI8OTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_J78TLsOTEeSiR-ar9ioVjA" annotatedElement="_J78TH8OTEeSiR-ar9ioVjA">
+          <body>activity 'ReferentTest$method$1'(): ReferentTest {
+	this.'ReferentTest$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_J78TIMOTEeSiR-ar9ioVjA" type="_J78TAMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TIcOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TIsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TJ8OTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_J78TKMOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_J78TK8OTEeSiR-ar9ioVjA" annotatedElement="_J78TJ8OTEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_J78THsOTEeSiR-ar9ioVjA" name="ReferentTest$initialization$1" visibility="protected" method="_J78THcOTEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_J78TI8OTEeSiR-ar9ioVjA" name="ReferentTest" method="_J78TH8OTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_J78TJMOTEeSiR-ar9ioVjA" type="_J78TAMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TJcOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TJsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_J78TKMOTEeSiR-ar9ioVjA" name="destroy" method="_J78TJ8OTEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_J78TAcOTEeSiR-ar9ioVjA" name="Test" visibility="public" classifierBehavior="_J78TGcOTEeSiR-ar9ioVjA" isActive="true">
+        <ownedAttribute xmi:id="_J78TCsOTEeSiR-ar9ioVjA" name="Test$initializationFlag$1" visibility="protected">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TC8OTEeSiR-ar9ioVjA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TDMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TBsOTEeSiR-ar9ioVjA" name="test$method$1" visibility="protected" specification="_J78TAsOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_J78TKsOTEeSiR-ar9ioVjA" annotatedElement="_J78TBsOTEeSiR-ar9ioVjA">
+            <body>activity 'test$method$1'(out test: Test) {
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_J78TB8OTEeSiR-ar9ioVjA" name="test" type="_J78TAcOTEeSiR-ar9ioVjA" direction="out">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TCMOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TCcOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TDcOTEeSiR-ar9ioVjA" name="Test$initialization$1" visibility="protected" specification="_J78TDsOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_J78TLcOTEeSiR-ar9ioVjA" annotatedElement="_J78TDcOTEeSiR-ar9ioVjA">
+            <body>activity 'Test$initialization$1'(){
+  if (this.'Test$initializationFlag$1' == null) {
+    this.'Test$initializationFlag$1' = true;
+  }
+}
+</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TD8OTEeSiR-ar9ioVjA" name="Test$method$1" specification="_J78TE8OTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_J78TL8OTEeSiR-ar9ioVjA" annotatedElement="_J78TD8OTEeSiR-ar9ioVjA">
+            <body>activity 'Test$method$1'(): Test {
+	this.'Test$initialization$1'();
+	return this;
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_J78TEMOTEeSiR-ar9ioVjA" type="_J78TAcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TEcOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TEsOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TF8OTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_J78TGMOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_J78TKcOTEeSiR-ar9ioVjA" annotatedElement="_J78TF8OTEeSiR-ar9ioVjA">
+            <body>activity 'destroy$method$1'() { }</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_J78TGcOTEeSiR-ar9ioVjA" name="Test$behavior$1" visibility="private">
+          <ownedComment xmi:id="_J78TMMOTEeSiR-ar9ioVjA" annotatedElement="_J78TGcOTEeSiR-ar9ioVjA">
+            <body>activity 'Test$behavior$1'() {
+	this.test();
+}</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_J78TAsOTEeSiR-ar9ioVjA" name="test" visibility="private" method="_J78TBsOTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_J78TA8OTEeSiR-ar9ioVjA" name="test" type="_J78TAcOTEeSiR-ar9ioVjA" direction="out">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TBMOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TBcOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_J78TDsOTEeSiR-ar9ioVjA" name="Test$initialization$1" visibility="protected" method="_J78TDcOTEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_J78TE8OTEeSiR-ar9ioVjA" name="Test" method="_J78TD8OTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_J78TFMOTEeSiR-ar9ioVjA" type="_J78TAcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_J78TFcOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_J78TFsOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_J78TGMOTEeSiR-ar9ioVjA" name="destroy" method="_J78TF8OTEeSiR-ar9ioVjA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <profileApplication xmi:id="_Jl3VUcOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_Jl3VUsOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_Jl3VU8OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_Jl3VVMOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Create xmi:id="_J78TMcOTEeSiR-ar9ioVjA" base_BehavioralFeature="_J78TI8OTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_J78TMsOTEeSiR-ar9ioVjA" base_BehavioralFeature="_J78TE8OTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_J78TM8OTEeSiR-ar9ioVjA" base_BehavioralFeature="_J78TKMOTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_J786EMOTEeSiR-ar9ioVjA" base_BehavioralFeature="_J78TGMOTEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786EcOTEeSiR-ar9ioVjA" base_Comment="_J78TKcOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786EsOTEeSiR-ar9ioVjA" base_Comment="_J78TKsOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786E8OTEeSiR-ar9ioVjA" base_Comment="_J78TK8OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786FMOTEeSiR-ar9ioVjA" base_Comment="_J78TLMOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786FcOTEeSiR-ar9ioVjA" base_Comment="_J78TLcOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786FsOTEeSiR-ar9ioVjA" base_Comment="_J78TLsOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786F8OTEeSiR-ar9ioVjA" base_Comment="_J78TL8OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_J786GMOTEeSiR-ar9ioVjA" base_Comment="_J78TMMOTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

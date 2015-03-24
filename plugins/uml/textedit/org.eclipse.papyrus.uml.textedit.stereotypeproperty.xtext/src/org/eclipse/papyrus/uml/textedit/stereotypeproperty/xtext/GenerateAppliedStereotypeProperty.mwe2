@@ -70,8 +70,8 @@ Workflow {
 	
 		//LOAD ALF XTEXT
 		 
-		 registerGeneratedEPackage = "org.eclipse.papyrus.uml.alf.alf.AlfPackage"
-		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.alf/src-gen/org/eclipse/papyrus/uml/alf/Alf.genmodel"
+		 registerGeneratedEPackage = "org.eclipse.papyrus.uml.alf.AlfPackage"
+		 registerGenModelFile="platform:/resource/org.eclipse.papyrus.uml.alf/src/org/eclipse/papyrus/uml/alf/alf.genmodel"
 	
 	}
    component = DirectoryCleaner {
@@ -95,7 +95,7 @@ Workflow {
 			fragment = grammarAccess.GrammarAccessFragment {}
 
 			// generates Java API for the generated EPackages 
-			fragment = ecore.EcoreGeneratorFragment {}
+			fragment = ecore.EMFGeneratorFragment {}
 
 			// Serializer 2.0
            	fragment = serializer.SerializerFragment {
@@ -110,17 +110,13 @@ Workflow {
 
 			// The antlr parser generator fragment.
 			fragment = parser.antlr.XtextAntlrGeneratorFragment {
-			//  options = {
-			//		backtrack = true
-			//	}
+				options = {
+    		      backtrack = true
+    		 	}
 			}
 
 			// java-based API for validation 
-			fragment = validation.JavaValidatorFragment {
-				composedCheck = "org.eclipse.xtext.validation.ImportUriValidator"
-				composedCheck = "org.eclipse.xtext.validation.NamesAreUniqueValidator"
-				// registerForImportedPackages = true
-			}
+			fragment = org.eclipse.xtext.generator.validation.JavaValidatorFragment {}
 
 			// scoping and exporting API
 			 //fragment = scoping.ImportURIScopingFragment {}
@@ -154,7 +150,11 @@ Workflow {
 			fragment = contentAssist.JavaBasedContentAssistFragment {}
 
 			// generates a more lightweight Antlr parser and lexer tailored for content assist  
-			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {}
+			fragment = parser.antlr.XtextAntlrUiGeneratorFragment {
+				options = {
+	              backtrack = true
+	          }
+			}
 
 			// project wizard (optional) 
 			// fragment = projectWizard.SimpleProjectWizardFragment {

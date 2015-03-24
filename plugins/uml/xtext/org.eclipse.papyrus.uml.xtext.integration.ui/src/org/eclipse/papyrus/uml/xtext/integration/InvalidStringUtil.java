@@ -93,7 +93,7 @@ public class InvalidStringUtil {
 					textualRepresentationStereotype);
 		} else {
 			// There is a chance to find it if the root model has ActionLanguage
-			// profile applied. In this case, the stereotype is included in 
+			// profile applied. In this case, the stereotype is included in
 			// comment.getApplicableStereotypes()
 			List<Stereotype> applicableStereotypes = comment.getApplicableStereotypes();
 			for (int i = 0; i < applicableStereotypes.size()

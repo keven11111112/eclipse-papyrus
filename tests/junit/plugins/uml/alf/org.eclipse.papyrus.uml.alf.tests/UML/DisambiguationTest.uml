@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_-Oz9gMOSEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_-dUTkMOSEeSiR-ar9ioVjA" name="DisambiguationTest" classifierBehavior="_-dUTtsOSEeSiR-ar9ioVjA" isActive="true">
+      <ownedAttribute xmi:id="_-dUTpMOSEeSiR-ar9ioVjA" name="customer" visibility="package" type="_-dUTkcOSEeSiR-ar9ioVjA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTpcOSEeSiR-ar9ioVjA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTpsOSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_-dUTp8OSEeSiR-ar9ioVjA" name="DisambiguationTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTqMOSEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTqcOSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTqsOSEeSiR-ar9ioVjA" name="DisambiguationTest$initialization$1" visibility="protected" specification="_-dUTq8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-dUTuMOSEeSiR-ar9ioVjA" annotatedElement="_-dUTqsOSEeSiR-ar9ioVjA">
+          <body>activity 'DisambiguationTest$initialization$1'(){
+  if (this.'DisambiguationTest$initializationFlag$1' == null) {
+    this.'DisambiguationTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTrMOSEeSiR-ar9ioVjA" name="DisambiguationTest$method$1" specification="_-dUTsMOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-dUTvcOSEeSiR-ar9ioVjA" annotatedElement="_-dUTrMOSEeSiR-ar9ioVjA">
+          <body>activity 'DisambiguationTest$method$1'(): DisambiguationTest {
+	this.'DisambiguationTest$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-dUTrcOSEeSiR-ar9ioVjA" type="_-dUTkMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTrsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTr8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTtMOSEeSiR-ar9ioVjA" name="destroy$method$1" specification="_-dUTtcOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-dUTvMOSEeSiR-ar9ioVjA" annotatedElement="_-dUTtMOSEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTtsOSEeSiR-ar9ioVjA" name="DisambiguationTest$behavior$1" visibility="private">
+        <ownedComment xmi:id="_-dUTt8OSEeSiR-ar9ioVjA" annotatedElement="_-dUTtsOSEeSiR-ar9ioVjA">
+          <body>activity 'DisambiguationTest$behavior$1'() {
+	customer.name;
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_-dUTq8OSEeSiR-ar9ioVjA" name="DisambiguationTest$initialization$1" visibility="protected" method="_-dUTqsOSEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_-dUTsMOSEeSiR-ar9ioVjA" name="DisambiguationTest" method="_-dUTrMOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_-dUTscOSEeSiR-ar9ioVjA" type="_-dUTkMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTssOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTs8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-dUTtcOSEeSiR-ar9ioVjA" name="destroy" method="_-dUTtMOSEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_-dUTkcOSEeSiR-ar9ioVjA" name="Customer" visibility="package">
+        <ownedAttribute xmi:id="_-dUTksOSEeSiR-ar9ioVjA" name="name" visibility="public">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTk8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTlMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedAttribute xmi:id="_-dUTlcOSEeSiR-ar9ioVjA" name="Customer$initializationFlag$1" visibility="protected">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTlsOSEeSiR-ar9ioVjA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTl8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTmMOSEeSiR-ar9ioVjA" name="Customer$initialization$1" visibility="protected" specification="_-dUTmcOSEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_-dUTu8OSEeSiR-ar9ioVjA" annotatedElement="_-dUTmMOSEeSiR-ar9ioVjA">
+            <body>activity 'Customer$initialization$1'(){
+  if (this.'Customer$initializationFlag$1' == null) {
+    this.'Customer$initializationFlag$1' = true;
+  }
+}
+</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTmsOSEeSiR-ar9ioVjA" name="Customer$method$1" specification="_-dUTnsOSEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_-dUTucOSEeSiR-ar9ioVjA" annotatedElement="_-dUTmsOSEeSiR-ar9ioVjA">
+            <body>activity 'Customer$method$1'(): Customer {
+	this.'Customer$initialization$1'();
+	return this;
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_-dUTm8OSEeSiR-ar9ioVjA" type="_-dUTkcOSEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUTnMOSEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTncOSEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_-dUTosOSEeSiR-ar9ioVjA" name="destroy$method$1" specification="_-dUTo8OSEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_-dUTusOSEeSiR-ar9ioVjA" annotatedElement="_-dUTosOSEeSiR-ar9ioVjA">
+            <body>activity 'destroy$method$1'() { }</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_-dUTmcOSEeSiR-ar9ioVjA" name="Customer$initialization$1" visibility="protected" method="_-dUTmMOSEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_-dUTnsOSEeSiR-ar9ioVjA" name="Customer" method="_-dUTmsOSEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_-dUTn8OSEeSiR-ar9ioVjA" type="_-dUTkcOSEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-dUToMOSEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-dUTocOSEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_-dUTo8OSEeSiR-ar9ioVjA" name="destroy" method="_-dUTosOSEeSiR-ar9ioVjA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <profileApplication xmi:id="_-Oz9gcOSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-Oz9gsOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_-Oz9g8OSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-Oz9hMOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Destroy xmi:id="_-dU6oMOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-dUTtcOSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_-dU6ocOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-dUTnsOSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_-dU6osOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-dUTsMOSEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_-dU6o8OSEeSiR-ar9ioVjA" base_BehavioralFeature="_-dUTo8OSEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6pMOSEeSiR-ar9ioVjA" base_Comment="_-dUTt8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6pcOSEeSiR-ar9ioVjA" base_Comment="_-dUTuMOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6psOSEeSiR-ar9ioVjA" base_Comment="_-dUTucOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6p8OSEeSiR-ar9ioVjA" base_Comment="_-dUTusOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6qMOSEeSiR-ar9ioVjA" base_Comment="_-dUTu8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6qcOSEeSiR-ar9ioVjA" base_Comment="_-dUTvMOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-dU6qsOSEeSiR-ar9ioVjA" base_Comment="_-dUTvcOSEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

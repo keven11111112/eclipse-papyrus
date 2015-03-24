@@ -3,101 +3,78 @@
  */
 package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.services;
 
+import com.google.inject.Singleton;
+import com.google.inject.Inject;
+
 import java.util.List;
 
-import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
-import org.eclipse.xtext.Assignment;
-import org.eclipse.xtext.EnumRule;
-import org.eclipse.xtext.Grammar;
-import org.eclipse.xtext.GrammarUtil;
-import org.eclipse.xtext.Group;
-import org.eclipse.xtext.Keyword;
-import org.eclipse.xtext.ParserRule;
-import org.eclipse.xtext.RuleCall;
-import org.eclipse.xtext.TerminalRule;
-import org.eclipse.xtext.service.AbstractElementFinder.AbstractGrammarElementFinder;
+import org.eclipse.xtext.*;
 import org.eclipse.xtext.service.GrammarProvider;
+import org.eclipse.xtext.service.AbstractElementFinder.*;
 
-import com.google.inject.Inject;
-import com.google.inject.Singleton;
+import org.eclipse.papyrus.uml.alf.services.AlfGrammarAccess;
 
 @Singleton
 public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarElementFinder {
-
-
+	
+	
 	public class AppliedStereotypePropertyRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "AppliedStereotypePropertyRule");
-		private final Assignment cValueAssignment = (Assignment) rule.eContents().get(1);
-		private final RuleCall cValueExpressionValueRuleParserRuleCall_0 = (RuleCall) cValueAssignment.eContents().get(0);
+		private final Assignment cValueAssignment = (Assignment)rule.eContents().get(1);
+		private final RuleCall cValueExpressionValueRuleParserRuleCall_0 = (RuleCall)cValueAssignment.eContents().get(0);
+		
+		//AppliedStereotypePropertyRule:
+		//	value=ExpressionValueRule;
+		@Override public ParserRule getRule() { return rule; }
 
-		// AppliedStereotypePropertyRule:
-		// value=ExpressionValueRule;
-		@Override
-		public ParserRule getRule() {
-			return rule;
-		}
+		//value=ExpressionValueRule
+		public Assignment getValueAssignment() { return cValueAssignment; }
 
-		// value=ExpressionValueRule
-		public Assignment getValueAssignment() {
-			return cValueAssignment;
-		}
-
-		// ExpressionValueRule
-		public RuleCall getValueExpressionValueRuleParserRuleCall_0() {
-			return cValueExpressionValueRuleParserRuleCall_0;
-		}
+		//ExpressionValueRule
+		public RuleCall getValueExpressionValueRuleParserRuleCall_0() { return cValueExpressionValueRuleParserRuleCall_0; }
 	}
 
 	public class ExpressionValueRuleElements extends AbstractParserRuleElementFinder {
 		private final ParserRule rule = (ParserRule) GrammarUtil.findRuleForName(getGrammar(), "ExpressionValueRule");
-		private final Group cGroup = (Group) rule.eContents().get(1);
-		private final Keyword cEqualsSignKeyword_0 = (Keyword) cGroup.eContents().get(0);
-		private final Assignment cExpressionAssignment_1 = (Assignment) cGroup.eContents().get(1);
-		private final RuleCall cExpressionSequenceElementParserRuleCall_1_0 = (RuleCall) cExpressionAssignment_1.eContents().get(0);
+		private final Group cGroup = (Group)rule.eContents().get(1);
+		private final Keyword cEqualsSignKeyword_0 = (Keyword)cGroup.eContents().get(0);
+		private final Assignment cExpressionAssignment_1 = (Assignment)cGroup.eContents().get(1);
+		private final RuleCall cExpressionSequenceElementParserRuleCall_1_0 = (RuleCall)cExpressionAssignment_1.eContents().get(0);
+		
+		//ExpressionValueRule:
+		//	"=" expression=SequenceElement;
+		@Override public ParserRule getRule() { return rule; }
 
-		// ExpressionValueRule:
-		// "=" expression=SequenceElement;
-		@Override
-		public ParserRule getRule() {
-			return rule;
-		}
+		//"=" expression=SequenceElement
+		public Group getGroup() { return cGroup; }
 
-		// "=" expression=SequenceElement
-		public Group getGroup() {
-			return cGroup;
-		}
+		//"="
+		public Keyword getEqualsSignKeyword_0() { return cEqualsSignKeyword_0; }
 
-		// "="
-		public Keyword getEqualsSignKeyword_0() {
-			return cEqualsSignKeyword_0;
-		}
+		//expression=SequenceElement
+		public Assignment getExpressionAssignment_1() { return cExpressionAssignment_1; }
 
-		// expression=SequenceElement
-		public Assignment getExpressionAssignment_1() {
-			return cExpressionAssignment_1;
-		}
-
-		// SequenceElement
-		public RuleCall getExpressionSequenceElementParserRuleCall_1_0() {
-			return cExpressionSequenceElementParserRuleCall_1_0;
-		}
+		//SequenceElement
+		public RuleCall getExpressionSequenceElementParserRuleCall_1_0() { return cExpressionSequenceElementParserRuleCall_1_0; }
 	}
-
-
-	private AppliedStereotypePropertyRuleElements pAppliedStereotypePropertyRule;
-	private ExpressionValueRuleElements pExpressionValueRule;
-
+	
+	
+	private final AppliedStereotypePropertyRuleElements pAppliedStereotypePropertyRule;
+	private final ExpressionValueRuleElements pExpressionValueRule;
+	
 	private final Grammar grammar;
 
-	private AlfGrammarAccess gaAlf;
+	private final AlfGrammarAccess gaAlf;
 
 	@Inject
 	public AppliedStereotypePropertyGrammarAccess(GrammarProvider grammarProvider,
-			AlfGrammarAccess gaAlf) {
+		AlfGrammarAccess gaAlf) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaAlf = gaAlf;
+		this.pAppliedStereotypePropertyRule = new AppliedStereotypePropertyRuleElements();
+		this.pExpressionValueRule = new ExpressionValueRuleElements();
 	}
-
+	
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
 		Grammar grammar = grammarProvider.getGrammar(this);
 		while (grammar != null) {
@@ -113,1279 +90,2091 @@ public class AppliedStereotypePropertyGrammarAccess extends AbstractGrammarEleme
 		}
 		return grammar;
 	}
-
-
+	
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
 	}
-
+	
 
 	public AlfGrammarAccess getAlfGrammarAccess() {
 		return gaAlf;
 	}
 
-
-	// AppliedStereotypePropertyRule:
-	// value=ExpressionValueRule;
+	
+	//AppliedStereotypePropertyRule:
+	//	value=ExpressionValueRule;
 	public AppliedStereotypePropertyRuleElements getAppliedStereotypePropertyRuleAccess() {
-		return (pAppliedStereotypePropertyRule != null) ? pAppliedStereotypePropertyRule : (pAppliedStereotypePropertyRule = new AppliedStereotypePropertyRuleElements());
+		return pAppliedStereotypePropertyRule;
 	}
-
+	
 	public ParserRule getAppliedStereotypePropertyRuleRule() {
 		return getAppliedStereotypePropertyRuleAccess().getRule();
 	}
 
-	// ExpressionValueRule:
-	// "=" expression=SequenceElement;
+	//ExpressionValueRule:
+	//	"=" expression=SequenceElement;
 	public ExpressionValueRuleElements getExpressionValueRuleAccess() {
-		return (pExpressionValueRule != null) ? pExpressionValueRule : (pExpressionValueRule = new ExpressionValueRuleElements());
+		return pExpressionValueRule;
 	}
-
+	
 	public ParserRule getExpressionValueRuleRule() {
 		return getExpressionValueRuleAccess().getRule();
 	}
 
-	// / *
-	// Test rule
-	// * / Test:
-	// ("testExpression" expression+=Expression)* ("testAssignmentExpression" assignExpression+=AssignmentCompletion)*
-	// ("testStatement" statements+=Statement)* ("testBlock" block=Block);
-	public AlfGrammarAccess.TestElements getTestAccess() {
-		return gaAlf.getTestAccess();
+	/// *********
+	// * UNITS *
+	// ********* / UnitDefinition:
+	//	namespaceName=NamespaceDeclaration? ^import+=ImportDeclaration* documentation+=DOCUMENTATION_COMMENT?
+	//	annotation+=StereotypeAnnotation* definition=NamespaceDefinition;
+	public AlfGrammarAccess.UnitDefinitionElements getUnitDefinitionAccess() {
+		return gaAlf.getUnitDefinitionAccess();
+	}
+	
+	public ParserRule getUnitDefinitionRule() {
+		return getUnitDefinitionAccess().getRule();
 	}
 
-	public ParserRule getTestRule() {
-		return getTestAccess().getRule();
+	//StereotypeAnnotation:
+	//	"@" stereotypeName=QualifiedName ("(" (names=QualifiedNameList | taggedValues=TaggedValueList) ")")?;
+	public AlfGrammarAccess.StereotypeAnnotationElements getStereotypeAnnotationAccess() {
+		return gaAlf.getStereotypeAnnotationAccess();
+	}
+	
+	public ParserRule getStereotypeAnnotationRule() {
+		return getStereotypeAnnotationAccess().getRule();
 	}
 
-	// //('testStatementSequence' statement += StatementSequence)* ;
-	// / *********************************
-	// * PrimitiveLiterals
-	// ********************************** / LITERAL:
-	// BOOLEAN_LITERAL | NUMBER_LITERAL | STRING_LITERAL;
-	public AlfGrammarAccess.LITERALElements getLITERALAccess() {
-		return gaAlf.getLITERALAccess();
+	//TaggedValueList: // CHANGE: Made taggedValue composite in the metamodel.
+	//	taggedValue+=TaggedValue ("," taggedValue+=TaggedValue)*;
+	public AlfGrammarAccess.TaggedValueListElements getTaggedValueListAccess() {
+		return gaAlf.getTaggedValueListAccess();
+	}
+	
+	public ParserRule getTaggedValueListRule() {
+		return getTaggedValueListAccess().getRule();
 	}
 
-	public ParserRule getLITERALRule() {
-		return getLITERALAccess().getRule();
+	//TaggedValue:
+	//	name=Name "=>" (value=BOOLEAN_VALUE | operator=NumericUnaryOperator? value=NATURAL_VALUE | value="*" | value=STRING);
+	public AlfGrammarAccess.TaggedValueElements getTaggedValueAccess() {
+		return gaAlf.getTaggedValueAccess();
+	}
+	
+	public ParserRule getTaggedValueRule() {
+		return getTaggedValueAccess().getRule();
 	}
 
-	// // (suffix = SuffixExpression) ? ;
-	// BOOLEAN_LITERAL:
-	// value=BooleanValue;
-	public AlfGrammarAccess.BOOLEAN_LITERALElements getBOOLEAN_LITERALAccess() {
-		return gaAlf.getBOOLEAN_LITERALAccess();
+	//NamespaceDeclaration returns QualifiedName:
+	//	"namespace" QualifiedName ";";
+	public AlfGrammarAccess.NamespaceDeclarationElements getNamespaceDeclarationAccess() {
+		return gaAlf.getNamespaceDeclarationAccess();
+	}
+	
+	public ParserRule getNamespaceDeclarationRule() {
+		return getNamespaceDeclarationAccess().getRule();
 	}
 
-	public ParserRule getBOOLEAN_LITERALRule() {
-		return getBOOLEAN_LITERALAccess().getRule();
+	//ImportDeclaration returns ImportReference:
+	//	(PackageImportReference | ElementImportReference) ";";
+	public AlfGrammarAccess.ImportDeclarationElements getImportDeclarationAccess() {
+		return gaAlf.getImportDeclarationAccess();
+	}
+	
+	public ParserRule getImportDeclarationRule() {
+		return getImportDeclarationAccess().getRule();
 	}
 
-	// enum BooleanValue:
-	// TRUE="true" | FALSE="false";
-	public AlfGrammarAccess.BooleanValueElements getBooleanValueAccess() {
-		return gaAlf.getBooleanValueAccess();
+	//ElementImportReference:
+	//	visibility=ImportVisibilityIndicator "import" referentName=QualifiedName ("as" alias=Name)?;
+	public AlfGrammarAccess.ElementImportReferenceElements getElementImportReferenceAccess() {
+		return gaAlf.getElementImportReferenceAccess();
+	}
+	
+	public ParserRule getElementImportReferenceRule() {
+		return getElementImportReferenceAccess().getRule();
 	}
 
-	public EnumRule getBooleanValueRule() {
-		return getBooleanValueAccess().getRule();
+	////  ( 
+	////    referentName = UnqualifiedName ('::' | '.') '*' |
+	////    referentName = ColonQualifiedName '::' '*' | 
+	////    referentName = DotQualifiedName '.' '*'
+	////  )
+	//PackageImportReference:
+	//	visibility=ImportVisibilityIndicator "import" referentName=PackageImportQualifiedName;
+	public AlfGrammarAccess.PackageImportReferenceElements getPackageImportReferenceAccess() {
+		return gaAlf.getPackageImportReferenceAccess();
+	}
+	
+	public ParserRule getPackageImportReferenceRule() {
+		return getPackageImportReferenceAccess().getRule();
 	}
 
-	// NUMBER_LITERAL:
-	// INTEGER_LITERAL | UNLIMITED_LITERAL;
-	public AlfGrammarAccess.NUMBER_LITERALElements getNUMBER_LITERALAccess() {
-		return gaAlf.getNUMBER_LITERALAccess();
+	//PackageImportQualifiedName returns QualifiedName:
+	//	nameBinding+=NameBinding (("::" nameBinding+=NameBinding)* "::" "*" | ("." nameBinding+=NameBinding)* "." "*");
+	public AlfGrammarAccess.PackageImportQualifiedNameElements getPackageImportQualifiedNameAccess() {
+		return gaAlf.getPackageImportQualifiedNameAccess();
+	}
+	
+	public ParserRule getPackageImportQualifiedNameRule() {
+		return getPackageImportQualifiedNameAccess().getRule();
 	}
 
-	public ParserRule getNUMBER_LITERALRule() {
-		return getNUMBER_LITERALAccess().getRule();
+	//ImportVisibilityIndicator:
+	//	"public" | "private";
+	public AlfGrammarAccess.ImportVisibilityIndicatorElements getImportVisibilityIndicatorAccess() {
+		return gaAlf.getImportVisibilityIndicatorAccess();
+	}
+	
+	public ParserRule getImportVisibilityIndicatorRule() {
+		return getImportVisibilityIndicatorAccess().getRule();
 	}
 
-	// // (suffix = SuffixExpression) ? ;
-	// INTEGER_LITERAL:
-	// value=INTEGER_VALUE;
-	public AlfGrammarAccess.INTEGER_LITERALElements getINTEGER_LITERALAccess() {
-		return gaAlf.getINTEGER_LITERALAccess();
+	/// * NAMESPACES * / NamespaceDefinition:
+	//	PackageDefinition | ClassifierDefinition;
+	public AlfGrammarAccess.NamespaceDefinitionElements getNamespaceDefinitionAccess() {
+		return gaAlf.getNamespaceDefinitionAccess();
+	}
+	
+	public ParserRule getNamespaceDefinitionRule() {
+		return getNamespaceDefinitionAccess().getRule();
 	}
 
-	public ParserRule getINTEGER_LITERALRule() {
-		return getINTEGER_LITERALAccess().getRule();
+	//VisibilityIndicator:
+	//	ImportVisibilityIndicator | "protected";
+	public AlfGrammarAccess.VisibilityIndicatorElements getVisibilityIndicatorAccess() {
+		return gaAlf.getVisibilityIndicatorAccess();
+	}
+	
+	public ParserRule getVisibilityIndicatorRule() {
+		return getVisibilityIndicatorAccess().getRule();
 	}
 
-	// // (suffix = SuffixExpression) ? ;
-	// UNLIMITED_LITERAL:
-	// value="*";
-	public AlfGrammarAccess.UNLIMITED_LITERALElements getUNLIMITED_LITERALAccess() {
-		return gaAlf.getUNLIMITED_LITERALAccess();
+	//// CHANGE: Separated Member into Member with a composite reference to MemberDefinition.
+	/// * PACKAGES * / PackageDefinition:
+	//	"package" name=Name "{" ownedMember+=PackagedElement* "}";
+	public AlfGrammarAccess.PackageDefinitionElements getPackageDefinitionAccess() {
+		return gaAlf.getPackageDefinitionAccess();
+	}
+	
+	public ParserRule getPackageDefinitionRule() {
+		return getPackageDefinitionAccess().getRule();
 	}
 
-	public ParserRule getUNLIMITED_LITERALRule() {
-		return getUNLIMITED_LITERALAccess().getRule();
+	//PackageDefinitionOrStub returns PackageDefinition:
+	//	"package" name=Name (isStub?=";" | "{" ownedMember+=PackagedElement* "}");
+	public AlfGrammarAccess.PackageDefinitionOrStubElements getPackageDefinitionOrStubAccess() {
+		return gaAlf.getPackageDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getPackageDefinitionOrStubRule() {
+		return getPackageDefinitionOrStubAccess().getRule();
 	}
 
-	// // (suffix = SuffixExpression) ?;
-	// STRING_LITERAL:
-	// value=STRING;
-	public AlfGrammarAccess.STRING_LITERALElements getSTRING_LITERALAccess() {
-		return gaAlf.getSTRING_LITERALAccess();
+	//// PackageBody : 
+	//// 	{PackageBody}'{' ( packagedElement += PackagedElement )* '}'
+	//// ;
+	//PackagedElement returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=ImportVisibilityIndicator
+	//	definition=PackagedElementDefinition;
+	public AlfGrammarAccess.PackagedElementElements getPackagedElementAccess() {
+		return gaAlf.getPackagedElementAccess();
+	}
+	
+	public ParserRule getPackagedElementRule() {
+		return getPackagedElementAccess().getRule();
 	}
 
-	public ParserRule getSTRING_LITERALRule() {
-		return getSTRING_LITERALAccess().getRule();
+	//PackagedElementDefinition returns MemberDefinition:
+	//	PackageDefinitionOrStub | ClassifierDefinitionOrStub;
+	public AlfGrammarAccess.PackagedElementDefinitionElements getPackagedElementDefinitionAccess() {
+		return gaAlf.getPackagedElementDefinitionAccess();
+	}
+	
+	public ParserRule getPackagedElementDefinitionRule() {
+		return getPackagedElementDefinitionAccess().getRule();
 	}
 
-	// NameExpression:
-	// (prefixOp=("++" | "--") path=QualifiedNamePath? id=ID | path=QualifiedNamePath? id=ID (invocationCompletion=Tuple |
-	// sequenceConstructionCompletion=SequenceConstructionOrAccessCompletion | postfixOp=("++" | "--"))?)
-	// suffix=SuffixExpression?;
-	public AlfGrammarAccess.NameExpressionElements getNameExpressionAccess() {
-		return gaAlf.getNameExpressionAccess();
+	/// ***************
+	// * CLASSIFIERS *
+	// *************** / ClassifierDefinition:
+	//	ClassDefinition | ActiveClassDefinition | DataTypeDefinition | EnumerationDefinition | AssociationDefinition |
+	//	SignalDefinition | ActivityDefinition;
+	public AlfGrammarAccess.ClassifierDefinitionElements getClassifierDefinitionAccess() {
+		return gaAlf.getClassifierDefinitionAccess();
+	}
+	
+	public ParserRule getClassifierDefinitionRule() {
+		return getClassifierDefinitionAccess().getRule();
 	}
 
-	public ParserRule getNameExpressionRule() {
-		return getNameExpressionAccess().getRule();
+	//ClassifierDefinitionOrStub returns ClassifierDefinition:
+	//	ClassDefinitionOrStub | ActiveClassDefinitionOrStub | DataTypeDefinitionOrStub | EnumerationDefinitionOrStub |
+	//	AssociationDefinitionOrStub | SignalDefinitionOrStub | ActivityDefinitionOrStub;
+	public AlfGrammarAccess.ClassifierDefinitionOrStubElements getClassifierDefinitionOrStubAccess() {
+		return gaAlf.getClassifierDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getClassifierDefinitionOrStubRule() {
+		return getClassifierDefinitionOrStubAccess().getRule();
 	}
 
-	// QualifiedNamePath:
-	// (namespace+=UnqualifiedName "::")+;
-	public AlfGrammarAccess.QualifiedNamePathElements getQualifiedNamePathAccess() {
-		return gaAlf.getQualifiedNamePathAccess();
+	//ClassifierSignature returns ClassifierDefinition:
+	//	name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)* ">")?
+	//	specialization=SpecializationClause?;
+	public AlfGrammarAccess.ClassifierSignatureElements getClassifierSignatureAccess() {
+		return gaAlf.getClassifierSignatureAccess();
+	}
+	
+	public ParserRule getClassifierSignatureRule() {
+		return getClassifierSignatureAccess().getRule();
 	}
 
-	public ParserRule getQualifiedNamePathRule() {
-		return getQualifiedNamePathAccess().getRule();
+	//// TODO: isAbstract = true visibility = 'private'
+	//ClassifierTemplateParameter returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition;
+	public AlfGrammarAccess.ClassifierTemplateParameterElements getClassifierTemplateParameterAccess() {
+		return gaAlf.getClassifierTemplateParameterAccess();
+	}
+	
+	public ParserRule getClassifierTemplateParameterRule() {
+		return getClassifierTemplateParameterAccess().getRule();
 	}
 
-	// UnqualifiedName:
-	// name=ID templateBinding=TemplateBinding?;
+	//ClassifierTemplateParameterDefinition returns ClassifierTemplateParameter:
+	//	name=Name ("specializes" specialization=TemplateParameterConstraint)?;
+	public AlfGrammarAccess.ClassifierTemplateParameterDefinitionElements getClassifierTemplateParameterDefinitionAccess() {
+		return gaAlf.getClassifierTemplateParameterDefinitionAccess();
+	}
+	
+	public ParserRule getClassifierTemplateParameterDefinitionRule() {
+		return getClassifierTemplateParameterDefinitionAccess().getRule();
+	}
+
+	//TemplateParameterConstraint returns QualifiedNameList:
+	//	name+=QualifiedName;
+	public AlfGrammarAccess.TemplateParameterConstraintElements getTemplateParameterConstraintAccess() {
+		return gaAlf.getTemplateParameterConstraintAccess();
+	}
+	
+	public ParserRule getTemplateParameterConstraintRule() {
+		return getTemplateParameterConstraintAccess().getRule();
+	}
+
+	//SpecializationClause returns QualifiedNameList:
+	//	"specializes" QualifiedNameList;
+	public AlfGrammarAccess.SpecializationClauseElements getSpecializationClauseAccess() {
+		return gaAlf.getSpecializationClauseAccess();
+	}
+	
+	public ParserRule getSpecializationClauseRule() {
+		return getSpecializationClauseAccess().getRule();
+	}
+
+	/// * CLASSES * / ClassDeclaration returns ClassDefinition:
+	//	isAbstract?="abstract"? "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
+	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	public AlfGrammarAccess.ClassDeclarationElements getClassDeclarationAccess() {
+		return gaAlf.getClassDeclarationAccess();
+	}
+	
+	public ParserRule getClassDeclarationRule() {
+		return getClassDeclarationAccess().getRule();
+	}
+
+	//ClassDefinition:
+	//	ClassDeclaration "{" ownedMember+=ClassMember* "}";
+	public AlfGrammarAccess.ClassDefinitionElements getClassDefinitionAccess() {
+		return gaAlf.getClassDefinitionAccess();
+	}
+	
+	public ParserRule getClassDefinitionRule() {
+		return getClassDefinitionAccess().getRule();
+	}
+
+	//ClassDefinitionOrStub returns ClassDefinition:
+	//	ClassDeclaration (isStub?=";" | "{" ownedMember+=ClassMember* "}");
+	public AlfGrammarAccess.ClassDefinitionOrStubElements getClassDefinitionOrStubAccess() {
+		return gaAlf.getClassDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getClassDefinitionOrStubRule() {
+		return getClassDefinitionOrStubAccess().getRule();
+	}
+
+	//ClassMember returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
+	//	definition=ClassMemberDefinition;
+	public AlfGrammarAccess.ClassMemberElements getClassMemberAccess() {
+		return gaAlf.getClassMemberAccess();
+	}
+	
+	public ParserRule getClassMemberRule() {
+		return getClassMemberAccess().getRule();
+	}
+
+	//ClassMemberDefinition returns MemberDefinition:
+	//	ClassifierDefinitionOrStub | FeatureDefinitionOrStub;
+	public AlfGrammarAccess.ClassMemberDefinitionElements getClassMemberDefinitionAccess() {
+		return gaAlf.getClassMemberDefinitionAccess();
+	}
+	
+	public ParserRule getClassMemberDefinitionRule() {
+		return getClassMemberDefinitionAccess().getRule();
+	}
+
+	/// * ACTIVE CLASSES * / ActiveClassDeclaration returns ActiveClassDefinition:
+	//	isAbstract?="abstract"? "active" "class" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
+	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	public AlfGrammarAccess.ActiveClassDeclarationElements getActiveClassDeclarationAccess() {
+		return gaAlf.getActiveClassDeclarationAccess();
+	}
+	
+	public ParserRule getActiveClassDeclarationRule() {
+		return getActiveClassDeclarationAccess().getRule();
+	}
+
+	//ActiveClassDefinition:
+	//	ActiveClassDeclaration "{" ownedMember+=ActiveClassMember* "}" // CHANGE: Made classifierBehavior composite (and classifierBehavior isn't added to ownedMembers)
+	//	("do" classifierBehavior=BehaviorClause)?;
+	public AlfGrammarAccess.ActiveClassDefinitionElements getActiveClassDefinitionAccess() {
+		return gaAlf.getActiveClassDefinitionAccess();
+	}
+	
+	public ParserRule getActiveClassDefinitionRule() {
+		return getActiveClassDefinitionAccess().getRule();
+	}
+
+	//ActiveClassDefinitionOrStub returns ActiveClassDefinition:
+	//	ActiveClassDeclaration (isStub?=";" | "{" ownedMember+=ActiveClassMember* "}" ("do"
+	//	classifierBehavior=BehaviorClause)?);
+	public AlfGrammarAccess.ActiveClassDefinitionOrStubElements getActiveClassDefinitionOrStubAccess() {
+		return gaAlf.getActiveClassDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getActiveClassDefinitionOrStubRule() {
+		return getActiveClassDefinitionOrStubAccess().getRule();
+	}
+
+	//BehaviorClause returns ActivityDefinition:
+	//	body=Block | name= // TODO: isStub = true
+	//	Name;
+	public AlfGrammarAccess.BehaviorClauseElements getBehaviorClauseAccess() {
+		return gaAlf.getBehaviorClauseAccess();
+	}
+	
+	public ParserRule getBehaviorClauseRule() {
+		return getBehaviorClauseAccess().getRule();
+	}
+
+	//ActiveClassMember returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator?
+	//	definition=ActiveClassMemberDefinition;
+	public AlfGrammarAccess.ActiveClassMemberElements getActiveClassMemberAccess() {
+		return gaAlf.getActiveClassMemberAccess();
+	}
+	
+	public ParserRule getActiveClassMemberRule() {
+		return getActiveClassMemberAccess().getRule();
+	}
+
+	//ActiveClassMemberDefinition returns MemberDefinition:
+	//	ClassMemberDefinition | ActiveFeatureDefinitionOrStub;
+	public AlfGrammarAccess.ActiveClassMemberDefinitionElements getActiveClassMemberDefinitionAccess() {
+		return gaAlf.getActiveClassMemberDefinitionAccess();
+	}
+	
+	public ParserRule getActiveClassMemberDefinitionRule() {
+		return getActiveClassMemberDefinitionAccess().getRule();
+	}
+
+	/// * DATA TYPES * / DataTypeDeclaration returns DataTypeDefinition:
+	//	isAbstract?="abstract"? "datatype" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
+	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	public AlfGrammarAccess.DataTypeDeclarationElements getDataTypeDeclarationAccess() {
+		return gaAlf.getDataTypeDeclarationAccess();
+	}
+	
+	public ParserRule getDataTypeDeclarationRule() {
+		return getDataTypeDeclarationAccess().getRule();
+	}
+
+	//DataTypeDefinition:
+	//	DataTypeDeclaration "{" ownedMember+=StructuredMember* "}";
+	public AlfGrammarAccess.DataTypeDefinitionElements getDataTypeDefinitionAccess() {
+		return gaAlf.getDataTypeDefinitionAccess();
+	}
+	
+	public ParserRule getDataTypeDefinitionRule() {
+		return getDataTypeDefinitionAccess().getRule();
+	}
+
+	//DataTypeDefinitionOrStub returns DataTypeDefinition:
+	//	DataTypeDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	public AlfGrammarAccess.DataTypeDefinitionOrStubElements getDataTypeDefinitionOrStubAccess() {
+		return gaAlf.getDataTypeDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getDataTypeDefinitionOrStubRule() {
+		return getDataTypeDefinitionOrStubAccess().getRule();
+	}
+
+	//StructuredMember returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility="public"?
+	//	definition=PropertyDefinition;
+	public AlfGrammarAccess.StructuredMemberElements getStructuredMemberAccess() {
+		return gaAlf.getStructuredMemberAccess();
+	}
+	
+	public ParserRule getStructuredMemberRule() {
+		return getStructuredMemberAccess().getRule();
+	}
+
+	/// * ASSOCIATIONS * / AssociationDeclaration returns AssociationDefinition:
+	//	isAbstract?="abstract"? "assoc" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
+	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	public AlfGrammarAccess.AssociationDeclarationElements getAssociationDeclarationAccess() {
+		return gaAlf.getAssociationDeclarationAccess();
+	}
+	
+	public ParserRule getAssociationDeclarationRule() {
+		return getAssociationDeclarationAccess().getRule();
+	}
+
+	//AssociationDefinition:
+	//	AssociationDeclaration "{" ownedMember+=StructuredMember* "}";
+	public AlfGrammarAccess.AssociationDefinitionElements getAssociationDefinitionAccess() {
+		return gaAlf.getAssociationDefinitionAccess();
+	}
+	
+	public ParserRule getAssociationDefinitionRule() {
+		return getAssociationDefinitionAccess().getRule();
+	}
+
+	//AssociationDefinitionOrStub returns AssociationDefinition:
+	//	AssociationDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	public AlfGrammarAccess.AssociationDefinitionOrStubElements getAssociationDefinitionOrStubAccess() {
+		return gaAlf.getAssociationDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getAssociationDefinitionOrStubRule() {
+		return getAssociationDefinitionOrStubAccess().getRule();
+	}
+
+	/// * ENUMERATIONS * / EnumerationDeclaration returns EnumerationDefinition:
+	//	"enum" name=Name specialization=SpecializationClause?;
+	public AlfGrammarAccess.EnumerationDeclarationElements getEnumerationDeclarationAccess() {
+		return gaAlf.getEnumerationDeclarationAccess();
+	}
+	
+	public ParserRule getEnumerationDeclarationRule() {
+		return getEnumerationDeclarationAccess().getRule();
+	}
+
+	//EnumerationDefinition:
+	//	EnumerationDeclaration "{" (ownedMember+=EnumerationLiteralName ("," ownedMember+=EnumerationLiteralName)*)? "}";
+	public AlfGrammarAccess.EnumerationDefinitionElements getEnumerationDefinitionAccess() {
+		return gaAlf.getEnumerationDefinitionAccess();
+	}
+	
+	public ParserRule getEnumerationDefinitionRule() {
+		return getEnumerationDefinitionAccess().getRule();
+	}
+
+	//EnumerationDefinitionOrStub returns EnumerationDefinition:
+	//	EnumerationDeclaration (isStub?=";" | "{" (ownedMember+=EnumerationLiteralName (","
+	//	ownedMember+=EnumerationLiteralName)*)? "}");
+	public AlfGrammarAccess.EnumerationDefinitionOrStubElements getEnumerationDefinitionOrStubAccess() {
+		return gaAlf.getEnumerationDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getEnumerationDefinitionOrStubRule() {
+		return getEnumerationDefinitionOrStubAccess().getRule();
+	}
+
+	//EnumerationLiteralName returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? // TODO: visibility = 'public'
+	//	definition=EnumerationLiteralNameDefinition;
+	public AlfGrammarAccess.EnumerationLiteralNameElements getEnumerationLiteralNameAccess() {
+		return gaAlf.getEnumerationLiteralNameAccess();
+	}
+	
+	public ParserRule getEnumerationLiteralNameRule() {
+		return getEnumerationLiteralNameAccess().getRule();
+	}
+
+	//EnumerationLiteralNameDefinition returns EnumerationLiteralName:
+	//	name=Name;
+	public AlfGrammarAccess.EnumerationLiteralNameDefinitionElements getEnumerationLiteralNameDefinitionAccess() {
+		return gaAlf.getEnumerationLiteralNameDefinitionAccess();
+	}
+	
+	public ParserRule getEnumerationLiteralNameDefinitionRule() {
+		return getEnumerationLiteralNameDefinitionAccess().getRule();
+	}
+
+	/// * SIGNALS * / SignalDeclaration returns SignalDefinition:
+	//	isAbstract?="abstract"? "signal" name=Name ("<" ownedMember+=ClassifierTemplateParameter (","
+	//	ownedMember+=ClassifierTemplateParameter)* ">")? specialization=SpecializationClause?;
+	public AlfGrammarAccess.SignalDeclarationElements getSignalDeclarationAccess() {
+		return gaAlf.getSignalDeclarationAccess();
+	}
+	
+	public ParserRule getSignalDeclarationRule() {
+		return getSignalDeclarationAccess().getRule();
+	}
+
+	//SignalDefinition:
+	//	SignalDeclaration "{" ownedMember+=StructuredMember* "}";
+	public AlfGrammarAccess.SignalDefinitionElements getSignalDefinitionAccess() {
+		return gaAlf.getSignalDefinitionAccess();
+	}
+	
+	public ParserRule getSignalDefinitionRule() {
+		return getSignalDefinitionAccess().getRule();
+	}
+
+	//SignalDefinitionOrStub returns SignalDefinition:
+	//	SignalDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	public AlfGrammarAccess.SignalDefinitionOrStubElements getSignalDefinitionOrStubAccess() {
+		return gaAlf.getSignalDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getSignalDefinitionOrStubRule() {
+		return getSignalDefinitionOrStubAccess().getRule();
+	}
+
+	/// * ACTIVITIES * / ActivityDeclaration returns ActivityDefinition:
+	//	"activity" name=Name ("<" ownedMember+=ClassifierTemplateParameter ("," ownedMember+=ClassifierTemplateParameter)*
+	//	">")? "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")" ownedMember+=ReturnParameter?;
+	public AlfGrammarAccess.ActivityDeclarationElements getActivityDeclarationAccess() {
+		return gaAlf.getActivityDeclarationAccess();
+	}
+	
+	public ParserRule getActivityDeclarationRule() {
+		return getActivityDeclarationAccess().getRule();
+	}
+
+	//ActivityDefinition:
+	//	ActivityDeclaration body=Block;
+	public AlfGrammarAccess.ActivityDefinitionElements getActivityDefinitionAccess() {
+		return gaAlf.getActivityDefinitionAccess();
+	}
+	
+	public ParserRule getActivityDefinitionRule() {
+		return getActivityDefinitionAccess().getRule();
+	}
+
+	//ActivityDefinitionOrStub returns ActivityDefinition:
+	//	ActivityDeclaration (isStub?=";" | body=Block);
+	public AlfGrammarAccess.ActivityDefinitionOrStubElements getActivityDefinitionOrStubAccess() {
+		return gaAlf.getActivityDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getActivityDefinitionOrStubRule() {
+		return getActivityDefinitionOrStubAccess().getRule();
+	}
+
+	//FormalParameter returns Member:
+	//	documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition;
+	public AlfGrammarAccess.FormalParameterElements getFormalParameterAccess() {
+		return gaAlf.getFormalParameterAccess();
+	}
+	
+	public ParserRule getFormalParameterRule() {
+		return getFormalParameterAccess().getRule();
+	}
+
+	//FormalParameterDefinition returns NonReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
+	//	direction=ParameterDirection name=Name ":" // CHANGE: Made TypedElementDefinition a composite part of FormalParameter, rather than the supertype
+	//	typePart=TypePart;
+	public AlfGrammarAccess.FormalParameterDefinitionElements getFormalParameterDefinitionAccess() {
+		return gaAlf.getFormalParameterDefinitionAccess();
+	}
+	
+	public ParserRule getFormalParameterDefinitionRule() {
+		return getFormalParameterDefinitionAccess().getRule();
+	}
+
+	//ReturnParameter returns Member:
+	//	definition=ReturnParameterDefinition;
+	public AlfGrammarAccess.ReturnParameterElements getReturnParameterAccess() {
+		return gaAlf.getReturnParameterAccess();
+	}
+	
+	public ParserRule getReturnParameterRule() {
+		return getReturnParameterAccess().getRule();
+	}
+
+	//// CHANGE: Made return the default for direction
+	//ReturnParameterDefinition returns ReturnParameter: // CHANGE: Added the NonReturnParameter subtype of FormalParameter to accomodate Xtext serialization.
+	//	":" typePart=TypePart;
+	public AlfGrammarAccess.ReturnParameterDefinitionElements getReturnParameterDefinitionAccess() {
+		return gaAlf.getReturnParameterDefinitionAccess();
+	}
+	
+	public ParserRule getReturnParameterDefinitionRule() {
+		return getReturnParameterDefinitionAccess().getRule();
+	}
+
+	//ParameterDirection:
+	//	"in" | "out" | "inout";
+	public AlfGrammarAccess.ParameterDirectionElements getParameterDirectionAccess() {
+		return gaAlf.getParameterDirectionAccess();
+	}
+	
+	public ParserRule getParameterDirectionRule() {
+		return getParameterDirectionAccess().getRule();
+	}
+
+	/// * FEATURES * / FeatureDefinitionOrStub returns MemberDefinition:
+	//	AttributeDefinition | OperationDefinitionOrStub;
+	public AlfGrammarAccess.FeatureDefinitionOrStubElements getFeatureDefinitionOrStubAccess() {
+		return gaAlf.getFeatureDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getFeatureDefinitionOrStubRule() {
+		return getFeatureDefinitionOrStubAccess().getRule();
+	}
+
+	//ActiveFeatureDefinitionOrStub returns MemberDefinition:
+	//	ReceptionDefinition | SignalReceptionDefinitionOrStub;
+	public AlfGrammarAccess.ActiveFeatureDefinitionOrStubElements getActiveFeatureDefinitionOrStubAccess() {
+		return gaAlf.getActiveFeatureDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getActiveFeatureDefinitionOrStubRule() {
+		return getActiveFeatureDefinitionOrStubAccess().getRule();
+	}
+
+	/// * PROPERTIES * / PropertyDefinition:
+	//	PropertyDeclaration ";";
+	public AlfGrammarAccess.PropertyDefinitionElements getPropertyDefinitionAccess() {
+		return gaAlf.getPropertyDefinitionAccess();
+	}
+	
+	public ParserRule getPropertyDefinitionRule() {
+		return getPropertyDefinitionAccess().getRule();
+	}
+
+	//AttributeDefinition returns PropertyDefinition:
+	//	PropertyDeclaration initializer=AttributeInitializer? ";";
+	public AlfGrammarAccess.AttributeDefinitionElements getAttributeDefinitionAccess() {
+		return gaAlf.getAttributeDefinitionAccess();
+	}
+	
+	public ParserRule getAttributeDefinitionRule() {
+		return getAttributeDefinitionAccess().getRule();
+	}
+
+	//AttributeInitializer returns Expression:
+	//	"=" InitializationExpression;
+	public AlfGrammarAccess.AttributeInitializerElements getAttributeInitializerAccess() {
+		return gaAlf.getAttributeInitializerAccess();
+	}
+	
+	public ParserRule getAttributeInitializerRule() {
+		return getAttributeInitializerAccess().getRule();
+	}
+
+	//PropertyDeclaration returns PropertyDefinition:
+	//	name=Name ":" isComposite?="compose"? // CHANGE: Made TypedElementDefinition a composite part of PropertyDefinition instead of the supertype
+	//	typePart=TypePart;
+	public AlfGrammarAccess.PropertyDeclarationElements getPropertyDeclarationAccess() {
+		return gaAlf.getPropertyDeclarationAccess();
+	}
+	
+	public ParserRule getPropertyDeclarationRule() {
+		return getPropertyDeclarationAccess().getRule();
+	}
+
+	//TypePart returns TypedElementDefinition:
+	//	(isAny?="any" // CHANGE: Added isAny attribute to TypedElementDefinition to allow Xtext serialization.
+	//	// CHANGE: Added isMultiplicity attribute to TypedElementDefinition.
+	//	// CHANGE: Added isSequence attribute to TypedElementDefinition.
+	//	| typeName=QualifiedName) (("[" (isMultiplicity?="]" | (lowerBound=NATURAL_VALUE "..")?
+	//	upperBound=UnlimitedNaturalLiteral "]"))? (isOrdered?="ordered" isNonunique?="nonunique"? | isNonunique?="nonunique"
+	//	isOrdered?="ordered"? | isSequence?="sequence")?)?;
+	public AlfGrammarAccess.TypePartElements getTypePartAccess() {
+		return gaAlf.getTypePartAccess();
+	}
+	
+	public ParserRule getTypePartRule() {
+		return getTypePartAccess().getRule();
+	}
+
+	/// *
+	//TypeName returns QualifiedName :
+	//	'any' | QualifiedName
+	//;
+	// * / UnlimitedNaturalLiteral:
+	//	NATURAL_VALUE | "*";
+	public AlfGrammarAccess.UnlimitedNaturalLiteralElements getUnlimitedNaturalLiteralAccess() {
+		return gaAlf.getUnlimitedNaturalLiteralAccess();
+	}
+	
+	public ParserRule getUnlimitedNaturalLiteralRule() {
+		return getUnlimitedNaturalLiteralAccess().getRule();
+	}
+
+	/// * OPERATIONS * / OperationDeclaration returns OperationDefinition:
+	//	isAbstract?="abstract"? name=Name "(" (ownedMember+=FormalParameter ("," ownedMember+=FormalParameter)*)? ")"
+	//	ownedMember+=ReturnParameter? redefinition=RedefinitionClause?;
+	public AlfGrammarAccess.OperationDeclarationElements getOperationDeclarationAccess() {
+		return gaAlf.getOperationDeclarationAccess();
+	}
+	
+	public ParserRule getOperationDeclarationRule() {
+		return getOperationDeclarationAccess().getRule();
+	}
+
+	//OperationDefinitionOrStub returns OperationDefinition:
+	//	OperationDeclaration (isStub?=";" | body=Block);
+	public AlfGrammarAccess.OperationDefinitionOrStubElements getOperationDefinitionOrStubAccess() {
+		return gaAlf.getOperationDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getOperationDefinitionOrStubRule() {
+		return getOperationDefinitionOrStubAccess().getRule();
+	}
+
+	//RedefinitionClause returns QualifiedNameList:
+	//	"redefines" QualifiedNameList;
+	public AlfGrammarAccess.RedefinitionClauseElements getRedefinitionClauseAccess() {
+		return gaAlf.getRedefinitionClauseAccess();
+	}
+	
+	public ParserRule getRedefinitionClauseRule() {
+		return getRedefinitionClauseAccess().getRule();
+	}
+
+	/// * RECEPTIONS * / // TODO: name = signal.nameBinding->last().name
+	//ReceptionDefinition:
+	//	"receive" signalName=QualifiedName ";";
+	public AlfGrammarAccess.ReceptionDefinitionElements getReceptionDefinitionAccess() {
+		return gaAlf.getReceptionDefinitionAccess();
+	}
+	
+	public ParserRule getReceptionDefinitionRule() {
+		return getReceptionDefinitionAccess().getRule();
+	}
+
+	//SignalReceptionDeclaration returns SignalReceptionDefinition:
+	//	"receive" "signal" name=Name specialization=SpecializationClause?;
+	public AlfGrammarAccess.SignalReceptionDeclarationElements getSignalReceptionDeclarationAccess() {
+		return gaAlf.getSignalReceptionDeclarationAccess();
+	}
+	
+	public ParserRule getSignalReceptionDeclarationRule() {
+		return getSignalReceptionDeclarationAccess().getRule();
+	}
+
+	//SignalReceptionDefinitionOrStub returns SignalReceptionDefinition:
+	//	SignalReceptionDeclaration (isStub?=";" | "{" ownedMember+=StructuredMember* "}");
+	public AlfGrammarAccess.SignalReceptionDefinitionOrStubElements getSignalReceptionDefinitionOrStubAccess() {
+		return gaAlf.getSignalReceptionDefinitionOrStubAccess();
+	}
+	
+	public ParserRule getSignalReceptionDefinitionOrStubRule() {
+		return getSignalReceptionDefinitionOrStubAccess().getRule();
+	}
+
+	/// ***************
+	// * NAMES        *
+	// *************** / Name:
+	//	ID | UNRESTRICTED_NAME;
+	public AlfGrammarAccess.NameElements getNameAccess() {
+		return gaAlf.getNameAccess();
+	}
+	
+	public ParserRule getNameRule() {
+		return getNameAccess().getRule();
+	}
+
+	//QualifiedName:
+	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | ("." nameBinding+=NameBinding)+)?;
+	public AlfGrammarAccess.QualifiedNameElements getQualifiedNameAccess() {
+		return gaAlf.getQualifiedNameAccess();
+	}
+	
+	public ParserRule getQualifiedNameRule() {
+		return getQualifiedNameAccess().getRule();
+	}
+
+	//PotentiallyAmbiguousQualifiedName returns QualifiedName:
+	//	UnqualifiedName (("::" nameBinding+=NameBinding)+ | isAmbiguous?="." nameBinding+=NameBinding ("."
+	//	nameBinding+=NameBinding)*)?;
+	public AlfGrammarAccess.PotentiallyAmbiguousQualifiedNameElements getPotentiallyAmbiguousQualifiedNameAccess() {
+		return gaAlf.getPotentiallyAmbiguousQualifiedNameAccess();
+	}
+	
+	public ParserRule getPotentiallyAmbiguousQualifiedNameRule() {
+		return getPotentiallyAmbiguousQualifiedNameAccess().getRule();
+	}
+
+	//ColonQualifiedName returns QualifiedName:
+	//	UnqualifiedName ("::" nameBinding+=NameBinding)+;
+	public AlfGrammarAccess.ColonQualifiedNameElements getColonQualifiedNameAccess() {
+		return gaAlf.getColonQualifiedNameAccess();
+	}
+	
+	public ParserRule getColonQualifiedNameRule() {
+		return getColonQualifiedNameAccess().getRule();
+	}
+
+	//DotQualifiedName returns QualifiedName:
+	//	UnqualifiedName ("." nameBinding+=NameBinding)+;
+	public AlfGrammarAccess.DotQualifiedNameElements getDotQualifiedNameAccess() {
+		return gaAlf.getDotQualifiedNameAccess();
+	}
+	
+	public ParserRule getDotQualifiedNameRule() {
+		return getDotQualifiedNameAccess().getRule();
+	}
+
+	//UnqualifiedName returns QualifiedName:
+	//	nameBinding+=NameBinding;
 	public AlfGrammarAccess.UnqualifiedNameElements getUnqualifiedNameAccess() {
 		return gaAlf.getUnqualifiedNameAccess();
 	}
-
+	
 	public ParserRule getUnqualifiedNameRule() {
 		return getUnqualifiedNameAccess().getRule();
 	}
 
-	// TemplateBinding:
-	// "<" bindings+=NamedTemplateBinding ("," bindings+=NamedTemplateBinding)* ">";
+	//NameBinding:
+	//	name=Name binding=TemplateBinding?;
+	public AlfGrammarAccess.NameBindingElements getNameBindingAccess() {
+		return gaAlf.getNameBindingAccess();
+	}
+	
+	public ParserRule getNameBindingRule() {
+		return getNameBindingAccess().getRule();
+	}
+
+	/// *
+	//QualifiedNameWithoutBinding :
+	//	// unqualified = UnqualifiedName (nameCompletion = (ColonQualifiedNameCompletion | DotQualifiedNameCompletion))?
+	//	unqualified = Name (nameCompletion = (ColonQualifiedNameCompletionWithoutBinding))?
+	//;
+	// * / / *
+	//ColonQualifiedNameCompletionWithoutBinding : 
+	//	( '::' names+=Name)+
+	//;
+	// * / / * Unbounded lookahead required here * / TemplateBinding:
+	//	"<" (NamedTemplateBinding | PositionalTemplateBinding) ">";
 	public AlfGrammarAccess.TemplateBindingElements getTemplateBindingAccess() {
 		return gaAlf.getTemplateBindingAccess();
 	}
-
+	
 	public ParserRule getTemplateBindingRule() {
 		return getTemplateBindingAccess().getRule();
 	}
 
-	// NamedTemplateBinding:
-	// formal=ID "=>" actual=QualifiedNameWithBinding;
+	//PositionalTemplateBinding:
+	//	argumentName+=QualifiedName ("," argumentName+=QualifiedName)*;
+	public AlfGrammarAccess.PositionalTemplateBindingElements getPositionalTemplateBindingAccess() {
+		return gaAlf.getPositionalTemplateBindingAccess();
+	}
+	
+	public ParserRule getPositionalTemplateBindingRule() {
+		return getPositionalTemplateBindingAccess().getRule();
+	}
+
+	//NamedTemplateBinding:
+	//	substitution+=TemplateParameterSubstitution ("," substitution+=TemplateParameterSubstitution)*;
 	public AlfGrammarAccess.NamedTemplateBindingElements getNamedTemplateBindingAccess() {
 		return gaAlf.getNamedTemplateBindingAccess();
 	}
-
+	
 	public ParserRule getNamedTemplateBindingRule() {
 		return getNamedTemplateBindingAccess().getRule();
 	}
 
-	// QualifiedNameWithBinding:
-	// id=ID binding=TemplateBinding? ("::" remaining=QualifiedNameWithBinding)?;
-	public AlfGrammarAccess.QualifiedNameWithBindingElements getQualifiedNameWithBindingAccess() {
-		return gaAlf.getQualifiedNameWithBindingAccess();
+	//TemplateParameterSubstitution:
+	//	parameterName=Name "=>" argumentName=QualifiedName;
+	public AlfGrammarAccess.TemplateParameterSubstitutionElements getTemplateParameterSubstitutionAccess() {
+		return gaAlf.getTemplateParameterSubstitutionAccess();
+	}
+	
+	public ParserRule getTemplateParameterSubstitutionRule() {
+		return getTemplateParameterSubstitutionAccess().getRule();
 	}
 
-	public ParserRule getQualifiedNameWithBindingRule() {
-		return getQualifiedNameWithBindingAccess().getRule();
-	}
-
-	// Tuple:
-	// {Tuple} "(" (tupleElements+=TupleElement ("," tupleElements+=TupleElement)*)? ")";
-	public AlfGrammarAccess.TupleElements getTupleAccess() {
-		return gaAlf.getTupleAccess();
-	}
-
-	public ParserRule getTupleRule() {
-		return getTupleAccess().getRule();
-	}
-
-	// TupleElement:
-	// argument=Expression;
-	public AlfGrammarAccess.TupleElementElements getTupleElementAccess() {
-		return gaAlf.getTupleElementAccess();
-	}
-
-	public ParserRule getTupleElementRule() {
-		return getTupleElementAccess().getRule();
-	}
-
-	// / **************
-	// * Expressions
-	// ************** / Expression:
-	// ConditionalTestExpression;
+	/// ***************
+	// * EXPRESSIONS *
+	// *************** / Expression:
+	//	AssignmentExpression | ConditionalExpression;
 	public AlfGrammarAccess.ExpressionElements getExpressionAccess() {
 		return gaAlf.getExpressionAccess();
 	}
-
+	
 	public ParserRule getExpressionRule() {
 		return getExpressionAccess().getRule();
 	}
 
-	// ConditionalTestExpression:
-	// exp=ConditionalOrExpression ("?" whenTrue=ConditionalTestExpression ":" whenFalse=ConditionalTestExpression)?;
-	public AlfGrammarAccess.ConditionalTestExpressionElements getConditionalTestExpressionAccess() {
-		return gaAlf.getConditionalTestExpressionAccess();
-	}
-
-	public ParserRule getConditionalTestExpressionRule() {
-		return getConditionalTestExpressionAccess().getRule();
-	}
-
-	// ConditionalOrExpression:
-	// exp+=ConditionalAndExpression ("||" exp+=ConditionalAndExpression)*;
-	public AlfGrammarAccess.ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
-		return gaAlf.getConditionalOrExpressionAccess();
-	}
-
-	public ParserRule getConditionalOrExpressionRule() {
-		return getConditionalOrExpressionAccess().getRule();
-	}
-
-	// ConditionalAndExpression:
-	// exp+=InclusiveOrExpression ("&&" exp+=InclusiveOrExpression)*;
-	public AlfGrammarAccess.ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
-		return gaAlf.getConditionalAndExpressionAccess();
-	}
-
-	public ParserRule getConditionalAndExpressionRule() {
-		return getConditionalAndExpressionAccess().getRule();
-	}
-
-	// InclusiveOrExpression:
-	// exp+=ExclusiveOrExpression ("|" exp+=ExclusiveOrExpression)*;
-	public AlfGrammarAccess.InclusiveOrExpressionElements getInclusiveOrExpressionAccess() {
-		return gaAlf.getInclusiveOrExpressionAccess();
-	}
-
-	public ParserRule getInclusiveOrExpressionRule() {
-		return getInclusiveOrExpressionAccess().getRule();
-	}
-
-	// ExclusiveOrExpression:
-	// exp+=AndExpression ("^" exp+=AndExpression)*;
-	public AlfGrammarAccess.ExclusiveOrExpressionElements getExclusiveOrExpressionAccess() {
-		return gaAlf.getExclusiveOrExpressionAccess();
-	}
-
-	public ParserRule getExclusiveOrExpressionRule() {
-		return getExclusiveOrExpressionAccess().getRule();
-	}
-
-	// AndExpression:
-	// exp+=EqualityExpression ("&" exp+=EqualityExpression)*;
-	public AlfGrammarAccess.AndExpressionElements getAndExpressionAccess() {
-		return gaAlf.getAndExpressionAccess();
-	}
-
-	public ParserRule getAndExpressionRule() {
-		return getAndExpressionAccess().getRule();
-	}
-
-	// EqualityExpression:
-	// exp+=ClassificationExpression (op+=("==" | "!=") exp+=ClassificationExpression)*;
-	public AlfGrammarAccess.EqualityExpressionElements getEqualityExpressionAccess() {
-		return gaAlf.getEqualityExpressionAccess();
-	}
-
-	public ParserRule getEqualityExpressionRule() {
-		return getEqualityExpressionAccess().getRule();
-	}
-
-	// //enum EqualityOperator :
-	// // EQUALS = '==' |
-	// // NOT_EQUALS = '!='
-	// //;
-	// ClassificationExpression:
-	// exp=RelationalExpression (op=("instanceof" | "hastype") typeName=NameExpression)?;
-	public AlfGrammarAccess.ClassificationExpressionElements getClassificationExpressionAccess() {
-		return gaAlf.getClassificationExpressionAccess();
-	}
-
-	public ParserRule getClassificationExpressionRule() {
-		return getClassificationExpressionAccess().getRule();
-	}
-
-	// //enum ClassificationOperator :
-	// // INSTANCEOF = 'instanceof' |
-	// // HASTYPE = 'hastype'
-	// //;
-	// RelationalExpression:
-	// left=ShiftExpression (op=("<" | ">" | "<=" | ">=") right=ShiftExpression)?;
-	public AlfGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
-		return gaAlf.getRelationalExpressionAccess();
-	}
-
-	public ParserRule getRelationalExpressionRule() {
-		return getRelationalExpressionAccess().getRule();
-	}
-
-	// //RelationalOperator :
-	// // LOWER = '<' |
-	// // UPPER = '>' |
-	// // LOWER_EQUALS = '<=' |
-	// // UPPER_EQUALS = '>='
-	// //;
-	// ShiftExpression:
-	// exp+=AdditiveExpression (op=("<<" | ">>" | ">>>") exp+=AdditiveExpression)?;
-	public AlfGrammarAccess.ShiftExpressionElements getShiftExpressionAccess() {
-		return gaAlf.getShiftExpressionAccess();
-	}
-
-	public ParserRule getShiftExpressionRule() {
-		return getShiftExpressionAccess().getRule();
-	}
-
-	// //enum ShiftOperator :
-	// // LSHIFT = '<<' |
-	// // RSHIFT = '>>' |
-	// // URSHIFT = '>>>'
-	// //;
-	// AdditiveExpression:
-	// exp+=MultiplicativeExpression (op+=("+" | "-") exp+=MultiplicativeExpression)*;
-	public AlfGrammarAccess.AdditiveExpressionElements getAdditiveExpressionAccess() {
-		return gaAlf.getAdditiveExpressionAccess();
-	}
-
-	public ParserRule getAdditiveExpressionRule() {
-		return getAdditiveExpressionAccess().getRule();
-	}
-
-	// //enum AdditiveOp :
-	// // PLUS = '+' |
-	// // MINUS = '-'
-	// //;
-	// MultiplicativeExpression:
-	// exp+=UnaryExpression (op+=("*" | "/" | "%") exp+=UnaryExpression)*;
-	public AlfGrammarAccess.MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
-		return gaAlf.getMultiplicativeExpressionAccess();
-	}
-
-	public ParserRule getMultiplicativeExpressionRule() {
-		return getMultiplicativeExpressionAccess().getRule();
-	}
-
-	// //enum MultiplicativeOp :
-	// // MULT = '*' |
-	// // DIV = '/' |
-	// // MOD = '%'
-	// //;
-	// UnaryExpression:
-	// op=("!" | "-" | "+" | "$" | "~")? exp=PrimaryExpression;
-	public AlfGrammarAccess.UnaryExpressionElements getUnaryExpressionAccess() {
-		return gaAlf.getUnaryExpressionAccess();
-	}
-
-	public ParserRule getUnaryExpressionRule() {
-		return getUnaryExpressionAccess().getRule();
-	}
-
-	// //PrimaryExpression :
-	// // prefix = ValueSpecification (suffix = SuffixExpression)?
-	// //;
-	// PrimaryExpression:
-	// prefix=ValueSpecification;
+	/// * PRIMARY EXPRESSIONS * / PrimaryExpression returns Expression:
+	//	BaseExpression ({FeatureReference.expression=current} "." nameBinding=NameBinding
+	//	{FeatureInvocationExpression.target=current} tuple=Tuple // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
+	//	| {FeatureReference.expression=current} "." nameBinding=NameBinding {PropertyAccessExpression.featureReference=current}
+	//	| {ExtentOrExpression.nonNameExpression=current} "->" ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
+	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")") |
+	//	{SequenceAccessExpression.primary=current} index=Index)*;
 	public AlfGrammarAccess.PrimaryExpressionElements getPrimaryExpressionAccess() {
 		return gaAlf.getPrimaryExpressionAccess();
 	}
-
+	
 	public ParserRule getPrimaryExpressionRule() {
 		return getPrimaryExpressionAccess().getRule();
 	}
 
-	// SuffixExpression:
-	// OperationCallExpression | PropertyCallExpression | LinkOperationExpression | SequenceOperationExpression |
-	// SequenceReductionExpression | SequenceExpansionExpression | ClassExtentExpression;
-	public AlfGrammarAccess.SuffixExpressionElements getSuffixExpressionAccess() {
-		return gaAlf.getSuffixExpressionAccess();
+	////NonNamePrimaryExpression returns Expression :
+	////  NonNameBaseExpression |
+	////  BaseExpression
+	////  // CHANGE: Made FeatureReference and ExtentOrExpression subtypes of Expression.
+	////  ( {FeatureReference.expression = current} '.' nameBinding = NameBinding {FeatureInvocationExpression.target = current} tuple = Tuple |
+	////    {FeatureReference.expression = current} '.' nameBinding = NameBinding {PropertyAccessExpression.featureReference = current} | 
+	////    {ExtentOrExpression.nonNameExpression = current} '->' 
+	////      ( {SequenceOperationExpression.primary = current} operation = QualifiedName tuple = Tuple
+	////      | {SequenceReductionExpression.primary = current} 'reduce' ( isOrdered ?= 'ordered' )? behaviorName = QualifiedName 
+	////      // CHANGE: Made SequenceExpansionExpression concrete.
+	////      | {SequenceExpansionExpression.primary = current} operation = ID variable = Name '(' argument = Expression ')'
+	////      ) | 
+	////    {SequenceAccessExpression.primary = current} index = Index
+	////  )+
+	////;
+	//BaseExpression returns Expression:
+	//	LiteralExpression | ThisExpression | SuperInvocationExpression | InstanceCreationOrSequenceConstructionExpression |
+	//	ClassExtentExpression | LinkOperationExpression | SequenceConstructionExpression |
+	//	SequenceOperationOrReductionOrExpansionExpression | BehaviorInvocationExpression | NameExpression |
+	//	ParenthesizedExpression;
+	public AlfGrammarAccess.BaseExpressionElements getBaseExpressionAccess() {
+		return gaAlf.getBaseExpressionAccess();
+	}
+	
+	public ParserRule getBaseExpressionRule() {
+		return getBaseExpressionAccess().getRule();
 	}
 
-	public ParserRule getSuffixExpressionRule() {
-		return getSuffixExpressionAccess().getRule();
+	/// * LITERAL EXPRESSIONS * / LiteralExpression:
+	//	BooleanLiteralExpression | NaturalLiteralExpression | UnboundedLiteralExpression | StringLiteralExpression;
+	public AlfGrammarAccess.LiteralExpressionElements getLiteralExpressionAccess() {
+		return gaAlf.getLiteralExpressionAccess();
+	}
+	
+	public ParserRule getLiteralExpressionRule() {
+		return getLiteralExpressionAccess().getRule();
 	}
 
-	// OperationCallExpression:
-	// "." operationName=ID tuple=Tuple suffix=SuffixExpression?;
-	public AlfGrammarAccess.OperationCallExpressionElements getOperationCallExpressionAccess() {
-		return gaAlf.getOperationCallExpressionAccess();
+	//BooleanLiteralExpression:
+	//	image=BOOLEAN_VALUE;
+	public AlfGrammarAccess.BooleanLiteralExpressionElements getBooleanLiteralExpressionAccess() {
+		return gaAlf.getBooleanLiteralExpressionAccess();
+	}
+	
+	public ParserRule getBooleanLiteralExpressionRule() {
+		return getBooleanLiteralExpressionAccess().getRule();
 	}
 
-	public ParserRule getOperationCallExpressionRule() {
-		return getOperationCallExpressionAccess().getRule();
+	//NaturalLiteralExpression:
+	//	image=NATURAL_VALUE;
+	public AlfGrammarAccess.NaturalLiteralExpressionElements getNaturalLiteralExpressionAccess() {
+		return gaAlf.getNaturalLiteralExpressionAccess();
+	}
+	
+	public ParserRule getNaturalLiteralExpressionRule() {
+		return getNaturalLiteralExpressionAccess().getRule();
 	}
 
-	// // OperationCallExpressionWithoutDot :
-	// // operationName = ID tuple = Tuple (suffix = SuffixExpression)?
-	// // ;
-	// PropertyCallExpression:
-	// "." propertyName=ID ("[" index=Expression "]")? suffix=SuffixExpression?;
-	public AlfGrammarAccess.PropertyCallExpressionElements getPropertyCallExpressionAccess() {
-		return gaAlf.getPropertyCallExpressionAccess();
+	//UnboundedLiteralExpression:
+	//	{UnboundedLiteralExpression} "*";
+	public AlfGrammarAccess.UnboundedLiteralExpressionElements getUnboundedLiteralExpressionAccess() {
+		return gaAlf.getUnboundedLiteralExpressionAccess();
+	}
+	
+	public ParserRule getUnboundedLiteralExpressionRule() {
+		return getUnboundedLiteralExpressionAccess().getRule();
 	}
 
-	public ParserRule getPropertyCallExpressionRule() {
-		return getPropertyCallExpressionAccess().getRule();
+	//StringLiteralExpression:
+	//	image=STRING;
+	public AlfGrammarAccess.StringLiteralExpressionElements getStringLiteralExpressionAccess() {
+		return gaAlf.getStringLiteralExpressionAccess();
+	}
+	
+	public ParserRule getStringLiteralExpressionRule() {
+		return getStringLiteralExpressionAccess().getRule();
 	}
 
-	// LinkOperationExpression:
-	// "." kind=LinkOperationKind tuple=LinkOperationTuple;
-	public AlfGrammarAccess.LinkOperationExpressionElements getLinkOperationExpressionAccess() {
-		return gaAlf.getLinkOperationExpressionAccess();
+	/// * Name EXPRESSIONS * / NameExpression:
+	//	name=PotentiallyAmbiguousQualifiedName;
+	public AlfGrammarAccess.NameExpressionElements getNameExpressionAccess() {
+		return gaAlf.getNameExpressionAccess();
+	}
+	
+	public ParserRule getNameExpressionRule() {
+		return getNameExpressionAccess().getRule();
 	}
 
-	public ParserRule getLinkOperationExpressionRule() {
-		return getLinkOperationExpressionAccess().getRule();
-	}
-
-	// LinkOperationTuple:
-	// "(" linkOperationTupleElement+=LinkOperationTupleElement ("," linkOperationTupleElement+=LinkOperationTupleElement)*
-	// ")";
-	public AlfGrammarAccess.LinkOperationTupleElements getLinkOperationTupleAccess() {
-		return gaAlf.getLinkOperationTupleAccess();
-	}
-
-	public ParserRule getLinkOperationTupleRule() {
-		return getLinkOperationTupleAccess().getRule();
-	}
-
-	// //LinkOperationTupleElement :
-	// // objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-	// //;
-	// LinkOperationTupleElement:
-	// role=ID ("[" roleIndex=Expression "]")? "=>" object=Expression;
-	public AlfGrammarAccess.LinkOperationTupleElementElements getLinkOperationTupleElementAccess() {
-		return gaAlf.getLinkOperationTupleElementAccess();
-	}
-
-	public ParserRule getLinkOperationTupleElementRule() {
-		return getLinkOperationTupleElementAccess().getRule();
-	}
-
-	// enum LinkOperationKind:
-	// CREATE="createLink" | DESTROY="destroyLink" | CLEAR="clearAssoc";
-	public AlfGrammarAccess.LinkOperationKindElements getLinkOperationKindAccess() {
-		return gaAlf.getLinkOperationKindAccess();
-	}
-
-	public EnumRule getLinkOperationKindRule() {
-		return getLinkOperationKindAccess().getRule();
-	}
-
-	// SequenceOperationExpression: //'->' operationName = ID tuple = Tuple (suffix = SuffixExpression) ?
-	// "->" operationName=QualifiedNameWithBinding tuple=Tuple suffix=SuffixExpression?;
-	public AlfGrammarAccess.SequenceOperationExpressionElements getSequenceOperationExpressionAccess() {
-		return gaAlf.getSequenceOperationExpressionAccess();
-	}
-
-	public ParserRule getSequenceOperationExpressionRule() {
-		return getSequenceOperationExpressionAccess().getRule();
-	}
-
-	// SequenceReductionExpression:
-	// "->" "reduce" isOrdered?="ordered"? behavior=QualifiedNameWithBinding suffix=SuffixExpression?;
-	public AlfGrammarAccess.SequenceReductionExpressionElements getSequenceReductionExpressionAccess() {
-		return gaAlf.getSequenceReductionExpressionAccess();
-	}
-
-	public ParserRule getSequenceReductionExpressionRule() {
-		return getSequenceReductionExpressionAccess().getRule();
-	}
-
-	// SequenceExpansionExpression:
-	// SelectOrRejectOperation | CollectOrIterateOperation | ForAllOrExistsOrOneOperation | IsUniqueOperation;
-	public AlfGrammarAccess.SequenceExpansionExpressionElements getSequenceExpansionExpressionAccess() {
-		return gaAlf.getSequenceExpansionExpressionAccess();
-	}
-
-	public ParserRule getSequenceExpansionExpressionRule() {
-		return getSequenceExpansionExpressionAccess().getRule();
-	}
-
-	// SelectOrRejectOperation:
-	// "->" op=SelectOrRejectOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
-	public AlfGrammarAccess.SelectOrRejectOperationElements getSelectOrRejectOperationAccess() {
-		return gaAlf.getSelectOrRejectOperationAccess();
-	}
-
-	public ParserRule getSelectOrRejectOperationRule() {
-		return getSelectOrRejectOperationAccess().getRule();
-	}
-
-	// enum SelectOrRejectOperator:
-	// SELECT="select" | REJECT="reject";
-	public AlfGrammarAccess.SelectOrRejectOperatorElements getSelectOrRejectOperatorAccess() {
-		return gaAlf.getSelectOrRejectOperatorAccess();
-	}
-
-	public EnumRule getSelectOrRejectOperatorRule() {
-		return getSelectOrRejectOperatorAccess().getRule();
-	}
-
-	// CollectOrIterateOperation:
-	// "->" op=CollectOrIterateOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
-	public AlfGrammarAccess.CollectOrIterateOperationElements getCollectOrIterateOperationAccess() {
-		return gaAlf.getCollectOrIterateOperationAccess();
-	}
-
-	public ParserRule getCollectOrIterateOperationRule() {
-		return getCollectOrIterateOperationAccess().getRule();
-	}
-
-	// enum CollectOrIterateOperator:
-	// COLLECT="collect" | ITERATE="iterate";
-	public AlfGrammarAccess.CollectOrIterateOperatorElements getCollectOrIterateOperatorAccess() {
-		return gaAlf.getCollectOrIterateOperatorAccess();
-	}
-
-	public EnumRule getCollectOrIterateOperatorRule() {
-		return getCollectOrIterateOperatorAccess().getRule();
-	}
-
-	// ForAllOrExistsOrOneOperation:
-	// "->" op=ForAllOrExistsOrOneOperator name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
-	public AlfGrammarAccess.ForAllOrExistsOrOneOperationElements getForAllOrExistsOrOneOperationAccess() {
-		return gaAlf.getForAllOrExistsOrOneOperationAccess();
-	}
-
-	public ParserRule getForAllOrExistsOrOneOperationRule() {
-		return getForAllOrExistsOrOneOperationAccess().getRule();
-	}
-
-	// enum ForAllOrExistsOrOneOperator:
-	// FORALL="forAll" | EXISTS="exists" | ONE="one";
-	public AlfGrammarAccess.ForAllOrExistsOrOneOperatorElements getForAllOrExistsOrOneOperatorAccess() {
-		return gaAlf.getForAllOrExistsOrOneOperatorAccess();
-	}
-
-	public EnumRule getForAllOrExistsOrOneOperatorRule() {
-		return getForAllOrExistsOrOneOperatorAccess().getRule();
-	}
-
-	// IsUniqueOperation:
-	// "->" "isUnique" name=ID "(" expr=Expression ")" suffix=SuffixExpression?;
-	public AlfGrammarAccess.IsUniqueOperationElements getIsUniqueOperationAccess() {
-		return gaAlf.getIsUniqueOperationAccess();
-	}
-
-	public ParserRule getIsUniqueOperationRule() {
-		return getIsUniqueOperationAccess().getRule();
-	}
-
-	// ValueSpecification:
-	// NameExpression | LITERAL | ThisExpression | SuperInvocationExpression | InstanceCreationExpression |
-	// ParenthesizedExpression | NullExpression;
-	public AlfGrammarAccess.ValueSpecificationElements getValueSpecificationAccess() {
-		return gaAlf.getValueSpecificationAccess();
-	}
-
-	public ParserRule getValueSpecificationRule() {
-		return getValueSpecificationAccess().getRule();
-	}
-
-	// NonLiteralValueSpecification:
-	// NameExpression | ParenthesizedExpression | InstanceCreationExpression | ThisExpression | SuperInvocationExpression;
-	public AlfGrammarAccess.NonLiteralValueSpecificationElements getNonLiteralValueSpecificationAccess() {
-		return gaAlf.getNonLiteralValueSpecificationAccess();
-	}
-
-	public ParserRule getNonLiteralValueSpecificationRule() {
-		return getNonLiteralValueSpecificationAccess().getRule();
-	}
-
-	// ParenthesizedExpression:
-	// "(" expOrTypeCast=Expression ")" (casted=NonLiteralValueSpecification | suffix=SuffixExpression)?;
-	public AlfGrammarAccess.ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
-		return gaAlf.getParenthesizedExpressionAccess();
-	}
-
-	public ParserRule getParenthesizedExpressionRule() {
-		return getParenthesizedExpressionAccess().getRule();
-	}
-
-	// NullExpression:
-	// {NullExpression} "null";
-	public AlfGrammarAccess.NullExpressionElements getNullExpressionAccess() {
-		return gaAlf.getNullExpressionAccess();
-	}
-
-	public ParserRule getNullExpressionRule() {
-		return getNullExpressionAccess().getRule();
-	}
-
-	// ThisExpression:
-	// {ThisExpression} "this" suffix=SuffixExpression?;
+	/// * THIS EXPRESSIONS * / ThisExpression returns Expression:
+	//	{FeatureInvocationExpression} "this" tuple=Tuple | {ThisExpression} "this";
 	public AlfGrammarAccess.ThisExpressionElements getThisExpressionAccess() {
 		return gaAlf.getThisExpressionAccess();
 	}
-
+	
 	public ParserRule getThisExpressionRule() {
 		return getThisExpressionAccess().getRule();
 	}
 
-	// // SuperInvocationExpression :
-	// // //{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
-	// // 'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
-	// //;
-	// SuperInvocationExpression: //{SuperInvocationExpression} 'super' ('.' qualifiedNameRoot = ID '::' qualifiedNameRemaining = NameExpression)? //(suffix = SuffixExpression) ?
-	// //'super' ('.' className = ID '::' operationCallWithoutDot = OperationCallExpressionWithoutDot | operationCall = OperationCallExpression)
-	// //'super' ((tuple = Tuple) |
-	// // ('.' (path = QualifiedNamePath) operation = ID tuple = Tuple))
-	// "super" (tuple=Tuple | "." operationName=QualifiedNameWithBinding tuple=Tuple);
+	/// * PARENTHESIZED EXPRESSIONS * / ParenthesizedExpression returns Expression:
+	//	"(" Expression ")";
+	public AlfGrammarAccess.ParenthesizedExpressionElements getParenthesizedExpressionAccess() {
+		return gaAlf.getParenthesizedExpressionAccess();
+	}
+	
+	public ParserRule getParenthesizedExpressionRule() {
+		return getParenthesizedExpressionAccess().getRule();
+	}
+
+	/// * PROPERTY ACCESS EXPRESSIONS * / //FeatureReference :
+	////  expression = PrimaryExpression // '.' nameBinding = NameBinding
+	////;
+	////FeatureTargetExpression returns Expression :
+	////  NonNamePrimaryExpression | NameTargetExpression
+	////;
+	////
+	////NameTargetExpression returns NameExpression :
+	////  name = ColonQualifiedName
+	////;
+	/// * INVOCATION EXPRESSIONS * / BehaviorInvocationExpression:
+	//	target=PotentiallyAmbiguousQualifiedName tuple=Tuple;
+	public AlfGrammarAccess.BehaviorInvocationExpressionElements getBehaviorInvocationExpressionAccess() {
+		return gaAlf.getBehaviorInvocationExpressionAccess();
+	}
+	
+	public ParserRule getBehaviorInvocationExpressionRule() {
+		return getBehaviorInvocationExpressionAccess().getRule();
+	}
+
+	//Tuple:
+	/// * {Tuple}'(' ( namedTupleExpressionList = NamedTupleExpressionList | ( positionalTupleExpressionList = PositionalTupleExpressionList )? ) ')' * /
+	//	"(" (NamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	public AlfGrammarAccess.TupleElements getTupleAccess() {
+		return gaAlf.getTupleAccess();
+	}
+	
+	public ParserRule getTupleRule() {
+		return getTupleAccess().getRule();
+	}
+
+	//PositionalTupleExpressionList returns PositionalTuple:
+	//	{PositionalTuple} (expression+=Expression ("," expression+=Expression)*)?;
+	public AlfGrammarAccess.PositionalTupleExpressionListElements getPositionalTupleExpressionListAccess() {
+		return gaAlf.getPositionalTupleExpressionListAccess();
+	}
+	
+	public ParserRule getPositionalTupleExpressionListRule() {
+		return getPositionalTupleExpressionListAccess().getRule();
+	}
+
+	//NamedTupleExpressionList returns NamedTuple:
+	//	namedExpression+=NamedExpression ("," namedExpression+=NamedExpression)*;
+	public AlfGrammarAccess.NamedTupleExpressionListElements getNamedTupleExpressionListAccess() {
+		return gaAlf.getNamedTupleExpressionListAccess();
+	}
+	
+	public ParserRule getNamedTupleExpressionListRule() {
+		return getNamedTupleExpressionListAccess().getRule();
+	}
+
+	//NamedExpression:
+	//	name=Name "=>" expression=Expression;
+	public AlfGrammarAccess.NamedExpressionElements getNamedExpressionAccess() {
+		return gaAlf.getNamedExpressionAccess();
+	}
+	
+	public ParserRule getNamedExpressionRule() {
+		return getNamedExpressionAccess().getRule();
+	}
+
+	//SuperInvocationExpression:
+	//	"super" ("." target=QualifiedName)? tuple=Tuple;
 	public AlfGrammarAccess.SuperInvocationExpressionElements getSuperInvocationExpressionAccess() {
 		return gaAlf.getSuperInvocationExpressionAccess();
 	}
-
+	
 	public ParserRule getSuperInvocationExpressionRule() {
 		return getSuperInvocationExpressionAccess().getRule();
 	}
 
-	// //InstanceCreationExpression :
-	// //'new' constructor=QualifiedNameWithBinding
-	// // (tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
-	// //'new' constructor=QualifiedNameWithBinding
-	// // tuple = Tuple (suffix = SuffixExpression) ?
-	// //;
-	// InstanceCreationExpression: //'new' constructor=QualifiedNameWithBinding
-	// // (tuple = Tuple | sequenceConstuctionCompletion = SequenceConstructionCompletion) (suffix = SuffixExpression) ?
-	// "new" constructor=QualifiedNameWithBinding tuple=InstanceCreationTuple suffix=SuffixExpression?;
-	public AlfGrammarAccess.InstanceCreationExpressionElements getInstanceCreationExpressionAccess() {
-		return gaAlf.getInstanceCreationExpressionAccess();
+	/// * INSTANCE CREATION EXPRESSIONS * / InstanceCreationOrSequenceConstructionExpression returns Expression:
+	//	"new" ({SequenceConstructionExpression} typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? "{"
+	//	elements=SequenceElements? "}" | {InstanceCreationExpression} constructor=QualifiedName tuple=Tuple);
+	public AlfGrammarAccess.InstanceCreationOrSequenceConstructionExpressionElements getInstanceCreationOrSequenceConstructionExpressionAccess() {
+		return gaAlf.getInstanceCreationOrSequenceConstructionExpressionAccess();
+	}
+	
+	public ParserRule getInstanceCreationOrSequenceConstructionExpressionRule() {
+		return getInstanceCreationOrSequenceConstructionExpressionAccess().getRule();
 	}
 
-	public ParserRule getInstanceCreationExpressionRule() {
-		return getInstanceCreationExpressionAccess().getRule();
+	/// * LINK OPERATION EXPRESSIONS * / LinkOperationExpression:
+	//	associationName=PotentiallyAmbiguousQualifiedName "." operation=LinkOperation tuple=LinkOperationTuple;
+	public AlfGrammarAccess.LinkOperationExpressionElements getLinkOperationExpressionAccess() {
+		return gaAlf.getLinkOperationExpressionAccess();
+	}
+	
+	public ParserRule getLinkOperationExpressionRule() {
+		return getLinkOperationExpressionAccess().getRule();
 	}
 
-	// InstanceCreationTuple:
-	// {InstanceCreationTuple} "(" (instanceCreationTupleElement+=InstanceCreationTupleElement (","
-	// instanceCreationTupleElement+=InstanceCreationTupleElement)*)? ")";
-	public AlfGrammarAccess.InstanceCreationTupleElements getInstanceCreationTupleAccess() {
-		return gaAlf.getInstanceCreationTupleAccess();
+	//LinkOperation:
+	//	"createLink" | "destroyLink" | "clearAssoc";
+	public AlfGrammarAccess.LinkOperationElements getLinkOperationAccess() {
+		return gaAlf.getLinkOperationAccess();
+	}
+	
+	public ParserRule getLinkOperationRule() {
+		return getLinkOperationAccess().getRule();
 	}
 
-	public ParserRule getInstanceCreationTupleRule() {
-		return getInstanceCreationTupleAccess().getRule();
+	//LinkOperationTuple returns Tuple:
+	//	"(" (IndexedNamedTupleExpressionList | PositionalTupleExpressionList) ")";
+	public AlfGrammarAccess.LinkOperationTupleElements getLinkOperationTupleAccess() {
+		return gaAlf.getLinkOperationTupleAccess();
+	}
+	
+	public ParserRule getLinkOperationTupleRule() {
+		return getLinkOperationTupleAccess().getRule();
 	}
 
-	// //LinkOperationTupleElement :
-	// // objectOrRole = ID (('['roleIndex = Expression ']')? '=>' object = ID)?
-	// //;
-	// InstanceCreationTupleElement:
-	// role=ID "=>" object=Expression;
-	public AlfGrammarAccess.InstanceCreationTupleElementElements getInstanceCreationTupleElementAccess() {
-		return gaAlf.getInstanceCreationTupleElementAccess();
+	//IndexedNamedTupleExpressionList returns NamedTuple:
+	//	namedExpression+=IndexedNamedExpression ("," namedExpression+=IndexedNamedExpression)*;
+	public AlfGrammarAccess.IndexedNamedTupleExpressionListElements getIndexedNamedTupleExpressionListAccess() {
+		return gaAlf.getIndexedNamedTupleExpressionListAccess();
+	}
+	
+	public ParserRule getIndexedNamedTupleExpressionListRule() {
+		return getIndexedNamedTupleExpressionListAccess().getRule();
 	}
 
-	public ParserRule getInstanceCreationTupleElementRule() {
-		return getInstanceCreationTupleElementAccess().getRule();
+	//IndexedNamedExpression returns NamedExpression:
+	//	name=Name index=Index? "=>" expression=Expression;
+	public AlfGrammarAccess.IndexedNamedExpressionElements getIndexedNamedExpressionAccess() {
+		return gaAlf.getIndexedNamedExpressionAccess();
+	}
+	
+	public ParserRule getIndexedNamedExpressionRule() {
+		return getIndexedNamedExpressionAccess().getRule();
 	}
 
-	// SequenceConstructionOrAccessCompletion:
-	// multiplicityIndicator?="[" (accessCompletion=AccessCompletion |
-	// sequenceCompletion=PartialSequenceConstructionCompletion) | expression=SequenceConstructionExpression;
-	public AlfGrammarAccess.SequenceConstructionOrAccessCompletionElements getSequenceConstructionOrAccessCompletionAccess() {
-		return gaAlf.getSequenceConstructionOrAccessCompletionAccess();
-	}
-
-	public ParserRule getSequenceConstructionOrAccessCompletionRule() {
-		return getSequenceConstructionOrAccessCompletionAccess().getRule();
-	}
-
-	// AccessCompletion:
-	// accessIndex=Expression "]";
-	public AlfGrammarAccess.AccessCompletionElements getAccessCompletionAccess() {
-		return gaAlf.getAccessCompletionAccess();
-	}
-
-	public ParserRule getAccessCompletionRule() {
-		return getAccessCompletionAccess().getRule();
-	}
-
-	// PartialSequenceConstructionCompletion:
-	// "]" expression=SequenceConstructionExpression;
-	public AlfGrammarAccess.PartialSequenceConstructionCompletionElements getPartialSequenceConstructionCompletionAccess() {
-		return gaAlf.getPartialSequenceConstructionCompletionAccess();
-	}
-
-	public ParserRule getPartialSequenceConstructionCompletionRule() {
-		return getPartialSequenceConstructionCompletionAccess().getRule();
-	}
-
-	// //SequenceConstructionCompletion :
-	// // (multiplicityIndicator ?= '['']')? expression = SequenceConstructionExpression
-	// //;
-	// SequenceConstructionExpression:
-	// "{" sequenceElement+=SequenceElement (("," sequenceElement+=SequenceElement)* | ".." rangeUpper=Expression) "}";
-	public AlfGrammarAccess.SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
-		return gaAlf.getSequenceConstructionExpressionAccess();
-	}
-
-	public ParserRule getSequenceConstructionExpressionRule() {
-		return getSequenceConstructionExpressionAccess().getRule();
-	}
-
-	// SequenceElement:
-	// Expression | SequenceConstructionExpression;
-	public AlfGrammarAccess.SequenceElementElements getSequenceElementAccess() {
-		return gaAlf.getSequenceElementAccess();
-	}
-
-	public ParserRule getSequenceElementRule() {
-		return getSequenceElementAccess().getRule();
-	}
-
-	// ClassExtentExpression:
-	// {ClassExtentExpression} "." "allInstances" "(" ")";
+	/// * CLASS EXTENT EXPRESSIONS * / ClassExtentExpression:
+	//	className=PotentiallyAmbiguousQualifiedName "." "allInstances" "(" ")";
 	public AlfGrammarAccess.ClassExtentExpressionElements getClassExtentExpressionAccess() {
 		return gaAlf.getClassExtentExpressionAccess();
 	}
-
+	
 	public ParserRule getClassExtentExpressionRule() {
 		return getClassExtentExpressionAccess().getRule();
 	}
 
-	// / *****************
-	// * Statements
-	// **************** / Block:
-	// "{" {Block} sequence=StatementSequence? "}";
-	public AlfGrammarAccess.BlockElements getBlockAccess() {
-		return gaAlf.getBlockAccess();
+	/// * SEQUENCE CONSTRUCTION EXPRESSIONS * / SequenceConstructionExpression:
+	//	(isAny?="any" // CHANGE: Added isAny attribute to SequenceConstructionExpression in order to allow Xtext serialization.
+	//	| typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? "{" elements=SequenceElements? "}" |
+	//	hasMultiplicity?="null";
+	public AlfGrammarAccess.SequenceConstructionExpressionElements getSequenceConstructionExpressionAccess() {
+		return gaAlf.getSequenceConstructionExpressionAccess();
+	}
+	
+	public ParserRule getSequenceConstructionExpressionRule() {
+		return getSequenceConstructionExpressionAccess().getRule();
 	}
 
-	public ParserRule getBlockRule() {
-		return getBlockAccess().getRule();
+	//MultiplicityIndicator:
+	//	"[" "]";
+	public AlfGrammarAccess.MultiplicityIndicatorElements getMultiplicityIndicatorAccess() {
+		return gaAlf.getMultiplicityIndicatorAccess();
+	}
+	
+	public ParserRule getMultiplicityIndicatorRule() {
+		return getMultiplicityIndicatorAccess().getRule();
 	}
 
-	// StatementSequence:
-	// statements+=DocumentedStatement+;
+	//SequenceElements:
+	//	SequenceRange | SequenceExpressionList;
+	public AlfGrammarAccess.SequenceElementsElements getSequenceElementsAccess() {
+		return gaAlf.getSequenceElementsAccess();
+	}
+	
+	public ParserRule getSequenceElementsRule() {
+		return getSequenceElementsAccess().getRule();
+	}
+
+	//SequenceRange:
+	//	rangeLower=Expression ".." rangeUpper=Expression;
+	public AlfGrammarAccess.SequenceRangeElements getSequenceRangeAccess() {
+		return gaAlf.getSequenceRangeAccess();
+	}
+	
+	public ParserRule getSequenceRangeRule() {
+		return getSequenceRangeAccess().getRule();
+	}
+
+	//SequenceExpressionList:
+	//	element+=SequenceElement ("," element+=SequenceElement)* ","?;
+	public AlfGrammarAccess.SequenceExpressionListElements getSequenceExpressionListAccess() {
+		return gaAlf.getSequenceExpressionListAccess();
+	}
+	
+	public ParserRule getSequenceExpressionListRule() {
+		return getSequenceExpressionListAccess().getRule();
+	}
+
+	//SequenceElement returns Expression:
+	//	Expression | SequenceInitializationExpression;
+	public AlfGrammarAccess.SequenceElementElements getSequenceElementAccess() {
+		return gaAlf.getSequenceElementAccess();
+	}
+	
+	public ParserRule getSequenceElementRule() {
+		return getSequenceElementAccess().getRule();
+	}
+
+	//SequenceInitializationExpression returns SequenceConstructionExpression:
+	//	"new"? "{" elements=SequenceElements "}";
+	public AlfGrammarAccess.SequenceInitializationExpressionElements getSequenceInitializationExpressionAccess() {
+		return gaAlf.getSequenceInitializationExpressionAccess();
+	}
+	
+	public ParserRule getSequenceInitializationExpressionRule() {
+		return getSequenceInitializationExpressionAccess().getRule();
+	}
+
+	/// * SEQUENCE ACCESS EXPRESSIONS * / Index returns Expression:
+	//	"[" Expression "]";
+	public AlfGrammarAccess.IndexElements getIndexAccess() {
+		return gaAlf.getIndexAccess();
+	}
+	
+	public ParserRule getIndexRule() {
+		return getIndexAccess().getRule();
+	}
+
+	/// * SEQUENCE OPERATION, REDUCTION AND EXPANSION EXPRESSIONS * / // NOTE: This only covers the case when the primary is a class extent shorthand.
+	//SequenceOperationOrReductionOrExpansionExpression returns Expression:
+	//	{ExtentOrExpression} name=PotentiallyAmbiguousQualifiedName "->" ({SequenceOperationExpression.primary=current}
+	//	operation=QualifiedName tuple=Tuple // CHANGE: Made SequenceExpansionExpression concrete.
+	//	| {SequenceReductionExpression.primary=current} "reduce" isOrdered?="ordered"? behaviorName=QualifiedName |
+	//	{SequenceExpansionExpression.primary=current} operation=ID variable=Name "(" argument=Expression ")");
+	public AlfGrammarAccess.SequenceOperationOrReductionOrExpansionExpressionElements getSequenceOperationOrReductionOrExpansionExpressionAccess() {
+		return gaAlf.getSequenceOperationOrReductionOrExpansionExpressionAccess();
+	}
+	
+	public ParserRule getSequenceOperationOrReductionOrExpansionExpressionRule() {
+		return getSequenceOperationOrReductionOrExpansionExpressionAccess().getRule();
+	}
+
+	/// * INCREMENT OR DECREMENT EXPRESSIONS * / PrefixExpression returns IncrementOrDecrementExpression: // CHANGE: Added operator to IncrementOrDecrementExpression in the metamodel.
+	//	operator=AffixOperator operand= // isPrefix ?= ''
+	//	LeftHandSide;
+	public AlfGrammarAccess.PrefixExpressionElements getPrefixExpressionAccess() {
+		return gaAlf.getPrefixExpressionAccess();
+	}
+	
+	public ParserRule getPrefixExpressionRule() {
+		return getPrefixExpressionAccess().getRule();
+	}
+
+	//AffixOperator:
+	//	"++" | "--";
+	public AlfGrammarAccess.AffixOperatorElements getAffixOperatorAccess() {
+		return gaAlf.getAffixOperatorAccess();
+	}
+	
+	public ParserRule getAffixOperatorRule() {
+		return getAffixOperatorAccess().getRule();
+	}
+
+	/// * UNARY EXPRESSIONS * / UnaryExpression returns Expression:
+	//	PostfixOrCastExpression | NonPostfixNonCastUnaryExpression;
+	public AlfGrammarAccess.UnaryExpressionElements getUnaryExpressionAccess() {
+		return gaAlf.getUnaryExpressionAccess();
+	}
+	
+	public ParserRule getUnaryExpressionRule() {
+		return getUnaryExpressionAccess().getRule();
+	}
+
+	//PostfixOrCastExpression returns Expression:
+	//	PostfixExpression | CastExpression | PrimaryExpression;
+	public AlfGrammarAccess.PostfixOrCastExpressionElements getPostfixOrCastExpressionAccess() {
+		return gaAlf.getPostfixOrCastExpressionAccess();
+	}
+	
+	public ParserRule getPostfixOrCastExpressionRule() {
+		return getPostfixOrCastExpressionAccess().getRule();
+	}
+
+	//PostfixExpression returns IncrementOrDecrementExpression:
+	//	operand=LeftHandSide operator=AffixOperator;
+	public AlfGrammarAccess.PostfixExpressionElements getPostfixExpressionAccess() {
+		return gaAlf.getPostfixExpressionAccess();
+	}
+	
+	public ParserRule getPostfixExpressionRule() {
+		return getPostfixExpressionAccess().getRule();
+	}
+
+	//NonPostfixNonCastUnaryExpression returns Expression:
+	//	PrefixExpression | NumericUnaryExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	public AlfGrammarAccess.NonPostfixNonCastUnaryExpressionElements getNonPostfixNonCastUnaryExpressionAccess() {
+		return gaAlf.getNonPostfixNonCastUnaryExpressionAccess();
+	}
+	
+	public ParserRule getNonPostfixNonCastUnaryExpressionRule() {
+		return getNonPostfixNonCastUnaryExpressionAccess().getRule();
+	}
+
+	//BooleanUnaryExpression:
+	//	operator="!" operand=UnaryExpression;
+	public AlfGrammarAccess.BooleanUnaryExpressionElements getBooleanUnaryExpressionAccess() {
+		return gaAlf.getBooleanUnaryExpressionAccess();
+	}
+	
+	public ParserRule getBooleanUnaryExpressionRule() {
+		return getBooleanUnaryExpressionAccess().getRule();
+	}
+
+	//BitStringUnaryExpression:
+	//	operator="~" operand=UnaryExpression;
+	public AlfGrammarAccess.BitStringUnaryExpressionElements getBitStringUnaryExpressionAccess() {
+		return gaAlf.getBitStringUnaryExpressionAccess();
+	}
+	
+	public ParserRule getBitStringUnaryExpressionRule() {
+		return getBitStringUnaryExpressionAccess().getRule();
+	}
+
+	//NumericUnaryExpression:
+	//	operator=NumericUnaryOperator operand=UnaryExpression;
+	public AlfGrammarAccess.NumericUnaryExpressionElements getNumericUnaryExpressionAccess() {
+		return gaAlf.getNumericUnaryExpressionAccess();
+	}
+	
+	public ParserRule getNumericUnaryExpressionRule() {
+		return getNumericUnaryExpressionAccess().getRule();
+	}
+
+	//NumericUnaryOperator:
+	//	"+" | "-";
+	public AlfGrammarAccess.NumericUnaryOperatorElements getNumericUnaryOperatorAccess() {
+		return gaAlf.getNumericUnaryOperatorAccess();
+	}
+	
+	public ParserRule getNumericUnaryOperatorRule() {
+		return getNumericUnaryOperatorAccess().getRule();
+	}
+
+	//IsolationExpression:
+	//	operator="$" operand=UnaryExpression;
+	public AlfGrammarAccess.IsolationExpressionElements getIsolationExpressionAccess() {
+		return gaAlf.getIsolationExpressionAccess();
+	}
+	
+	public ParserRule getIsolationExpressionRule() {
+		return getIsolationExpressionAccess().getRule();
+	}
+
+	//CastExpression: // CHANGE: Added isAny attribute to CastExpression in order to allow Xtext serialization.
+	//	"(" (isAny?="any" | typeName=QualifiedName) ")" operand=CastCompletion;
+	public AlfGrammarAccess.CastExpressionElements getCastExpressionAccess() {
+		return gaAlf.getCastExpressionAccess();
+	}
+	
+	public ParserRule getCastExpressionRule() {
+		return getCastExpressionAccess().getRule();
+	}
+
+	//CastCompletion returns Expression:
+	//	PostfixOrCastExpression | BooleanUnaryExpression | BitStringUnaryExpression | IsolationExpression;
+	public AlfGrammarAccess.CastCompletionElements getCastCompletionAccess() {
+		return gaAlf.getCastCompletionAccess();
+	}
+	
+	public ParserRule getCastCompletionRule() {
+		return getCastCompletionAccess().getRule();
+	}
+
+	/// * ARITHMETIC EXPRESSIONS * / MultiplicativeExpression returns Expression:
+	//	UnaryExpression ({ArithmeticExpression.operand1=current} operator=MultiplicativeOperator operand2=UnaryExpression)*;
+	public AlfGrammarAccess.MultiplicativeExpressionElements getMultiplicativeExpressionAccess() {
+		return gaAlf.getMultiplicativeExpressionAccess();
+	}
+	
+	public ParserRule getMultiplicativeExpressionRule() {
+		return getMultiplicativeExpressionAccess().getRule();
+	}
+
+	//MultiplicativeOperator:
+	//	"*" | "/" | "%";
+	public AlfGrammarAccess.MultiplicativeOperatorElements getMultiplicativeOperatorAccess() {
+		return gaAlf.getMultiplicativeOperatorAccess();
+	}
+	
+	public ParserRule getMultiplicativeOperatorRule() {
+		return getMultiplicativeOperatorAccess().getRule();
+	}
+
+	//AdditiveExpression returns Expression:
+	//	MultiplicativeExpression ({ArithmeticExpression.operand1=current} operator=AdditiveOperator
+	//	operand2=MultiplicativeExpression)*;
+	public AlfGrammarAccess.AdditiveExpressionElements getAdditiveExpressionAccess() {
+		return gaAlf.getAdditiveExpressionAccess();
+	}
+	
+	public ParserRule getAdditiveExpressionRule() {
+		return getAdditiveExpressionAccess().getRule();
+	}
+
+	//AdditiveOperator:
+	//	"+" | "-";
+	public AlfGrammarAccess.AdditiveOperatorElements getAdditiveOperatorAccess() {
+		return gaAlf.getAdditiveOperatorAccess();
+	}
+	
+	public ParserRule getAdditiveOperatorRule() {
+		return getAdditiveOperatorAccess().getRule();
+	}
+
+	/// * SHIFT EXPRESSIONS * / ShiftExpression returns Expression:
+	//	AdditiveExpression ({ShiftExpression.operand1=current} operator=ShiftOperator operand2=AdditiveExpression)*;
+	public AlfGrammarAccess.ShiftExpressionElements getShiftExpressionAccess() {
+		return gaAlf.getShiftExpressionAccess();
+	}
+	
+	public ParserRule getShiftExpressionRule() {
+		return getShiftExpressionAccess().getRule();
+	}
+
+	//ShiftOperator:
+	//	"<<" | ">>" | ">>>";
+	public AlfGrammarAccess.ShiftOperatorElements getShiftOperatorAccess() {
+		return gaAlf.getShiftOperatorAccess();
+	}
+	
+	public ParserRule getShiftOperatorRule() {
+		return getShiftOperatorAccess().getRule();
+	}
+
+	/// * RELATIONAL EXPRESSIONS * / RelationalExpression returns Expression:
+	//	ShiftExpression ({RelationalExpression.operand1=current} operator=RelationalOperator operand2=ShiftExpression)?;
+	public AlfGrammarAccess.RelationalExpressionElements getRelationalExpressionAccess() {
+		return gaAlf.getRelationalExpressionAccess();
+	}
+	
+	public ParserRule getRelationalExpressionRule() {
+		return getRelationalExpressionAccess().getRule();
+	}
+
+	//RelationalOperator:
+	//	"<" | ">" | "<=" | ">=";
+	public AlfGrammarAccess.RelationalOperatorElements getRelationalOperatorAccess() {
+		return gaAlf.getRelationalOperatorAccess();
+	}
+	
+	public ParserRule getRelationalOperatorRule() {
+		return getRelationalOperatorAccess().getRule();
+	}
+
+	/// * CLASSIFICATION EXPRESSIONS * / ClassificationExpression returns Expression:
+	//	RelationalExpression ({ClassificationExpression.operand=current} operator=ClassificationOperator
+	//	typeName=QualifiedName)?;
+	public AlfGrammarAccess.ClassificationExpressionElements getClassificationExpressionAccess() {
+		return gaAlf.getClassificationExpressionAccess();
+	}
+	
+	public ParserRule getClassificationExpressionRule() {
+		return getClassificationExpressionAccess().getRule();
+	}
+
+	//ClassificationOperator:
+	//	"instanceof" | "hastype";
+	public AlfGrammarAccess.ClassificationOperatorElements getClassificationOperatorAccess() {
+		return gaAlf.getClassificationOperatorAccess();
+	}
+	
+	public ParserRule getClassificationOperatorRule() {
+		return getClassificationOperatorAccess().getRule();
+	}
+
+	/// * EQUALITY EXPRESSIONS * / EqualityExpression returns Expression:
+	//	ClassificationExpression ({EqualityExpression.operand1=current} operator=EqualityOperator
+	//	operand2=ClassificationExpression)*;
+	public AlfGrammarAccess.EqualityExpressionElements getEqualityExpressionAccess() {
+		return gaAlf.getEqualityExpressionAccess();
+	}
+	
+	public ParserRule getEqualityExpressionRule() {
+		return getEqualityExpressionAccess().getRule();
+	}
+
+	//EqualityOperator:
+	//	"==" | "!=";
+	public AlfGrammarAccess.EqualityOperatorElements getEqualityOperatorAccess() {
+		return gaAlf.getEqualityOperatorAccess();
+	}
+	
+	public ParserRule getEqualityOperatorRule() {
+		return getEqualityOperatorAccess().getRule();
+	}
+
+	/// * LOGICAL EXPRESSIONS * / AndExpression returns Expression:
+	//	EqualityExpression ({LogicalExpression.operand1=current} operator="&" operand2=EqualityExpression)*;
+	public AlfGrammarAccess.AndExpressionElements getAndExpressionAccess() {
+		return gaAlf.getAndExpressionAccess();
+	}
+	
+	public ParserRule getAndExpressionRule() {
+		return getAndExpressionAccess().getRule();
+	}
+
+	//ExclusiveOrExpression returns Expression:
+	//	AndExpression ({LogicalExpression.operand1=current} operator="^" operand2=AndExpression)*;
+	public AlfGrammarAccess.ExclusiveOrExpressionElements getExclusiveOrExpressionAccess() {
+		return gaAlf.getExclusiveOrExpressionAccess();
+	}
+	
+	public ParserRule getExclusiveOrExpressionRule() {
+		return getExclusiveOrExpressionAccess().getRule();
+	}
+
+	//InclusiveOrExpression returns Expression:
+	//	ExclusiveOrExpression ({LogicalExpression.operand1=current} operator="|" operand2=ExclusiveOrExpression)*;
+	public AlfGrammarAccess.InclusiveOrExpressionElements getInclusiveOrExpressionAccess() {
+		return gaAlf.getInclusiveOrExpressionAccess();
+	}
+	
+	public ParserRule getInclusiveOrExpressionRule() {
+		return getInclusiveOrExpressionAccess().getRule();
+	}
+
+	/// * CONDITIONAL LOGICAL EXPRESSIONS * / ConditionalAndExpression returns Expression:
+	//	InclusiveOrExpression ({ConditionalLogicalExpression.operand1=current} operator="&&"
+	//	operand2=InclusiveOrExpression)*;
+	public AlfGrammarAccess.ConditionalAndExpressionElements getConditionalAndExpressionAccess() {
+		return gaAlf.getConditionalAndExpressionAccess();
+	}
+	
+	public ParserRule getConditionalAndExpressionRule() {
+		return getConditionalAndExpressionAccess().getRule();
+	}
+
+	//ConditionalOrExpression returns Expression:
+	//	ConditionalAndExpression ({ConditionalLogicalExpression.operand1=current} operator="||"
+	//	operand2=ConditionalAndExpression)*;
+	public AlfGrammarAccess.ConditionalOrExpressionElements getConditionalOrExpressionAccess() {
+		return gaAlf.getConditionalOrExpressionAccess();
+	}
+	
+	public ParserRule getConditionalOrExpressionRule() {
+		return getConditionalOrExpressionAccess().getRule();
+	}
+
+	/// * CONDITIONAL-TEST EXPRESSIONS * / ConditionalExpression returns Expression:
+	//	ConditionalOrExpression ({ConditionalTestExpression.operand1=current} "?" operand2=Expression ":"
+	//	operand3=ConditionalExpression)?;
+	public AlfGrammarAccess.ConditionalExpressionElements getConditionalExpressionAccess() {
+		return gaAlf.getConditionalExpressionAccess();
+	}
+	
+	public ParserRule getConditionalExpressionRule() {
+		return getConditionalExpressionAccess().getRule();
+	}
+
+	/// * ASSIGNMENT EXPRESSIONS * / AssignmentExpression:
+	//	leftHandSide=LeftHandSide operator=AssignmentOperator rightHandSide=Expression;
+	public AlfGrammarAccess.AssignmentExpressionElements getAssignmentExpressionAccess() {
+		return gaAlf.getAssignmentExpressionAccess();
+	}
+	
+	public ParserRule getAssignmentExpressionRule() {
+		return getAssignmentExpressionAccess().getRule();
+	}
+
+	////  "(" LeftHandSide ")"
+	//LeftHandSide:
+	//	NameLeftHandSide | // ( index = Index )? |
+	//	FeatureLeftHandSide;
+	public AlfGrammarAccess.LeftHandSideElements getLeftHandSideAccess() {
+		return gaAlf.getLeftHandSideAccess();
+	}
+	
+	public ParserRule getLeftHandSideRule() {
+		return getLeftHandSideAccess().getRule();
+	}
+
+	//NameLeftHandSide: // CHANGE: Moved the index property from LeftHandSide down to just NameLeftHandSide.
+	//	target=PotentiallyAmbiguousQualifiedName index=Index?;
+	public AlfGrammarAccess.NameLeftHandSideElements getNameLeftHandSideAccess() {
+		return gaAlf.getNameLeftHandSideAccess();
+	}
+	
+	public ParserRule getNameLeftHandSideRule() {
+		return getNameLeftHandSideAccess().getRule();
+	}
+
+	//FeatureLeftHandSide: // CHANGE: Replaced the feature property of a FeatureLeftHandSide with expression.
+	//	expression=PrimaryExpression;
+	public AlfGrammarAccess.FeatureLeftHandSideElements getFeatureLeftHandSideAccess() {
+		return gaAlf.getFeatureLeftHandSideAccess();
+	}
+	
+	public ParserRule getFeatureLeftHandSideRule() {
+		return getFeatureLeftHandSideAccess().getRule();
+	}
+
+	//AssignmentOperator:
+	//	"=" | "+=" | "-=" | "*=" | "/=" | "%=" | "&=" | "|=" | "^=" | "<<=" | ">>=" | ">>>=";
+	public AlfGrammarAccess.AssignmentOperatorElements getAssignmentOperatorAccess() {
+		return gaAlf.getAssignmentOperatorAccess();
+	}
+	
+	public ParserRule getAssignmentOperatorRule() {
+		return getAssignmentOperatorAccess().getRule();
+	}
+
+	/// **************
+	// * STATEMENTS *
+	// ************** / StatementSequence returns Block:
+	//	{Block} statement+=DocumentedStatement*;
 	public AlfGrammarAccess.StatementSequenceElements getStatementSequenceAccess() {
 		return gaAlf.getStatementSequenceAccess();
 	}
-
+	
 	public ParserRule getStatementSequenceRule() {
 		return getStatementSequenceAccess().getRule();
 	}
 
-	// DocumentedStatement:
-	// comment=(ML_COMMENT | SL_COMMENT)? statement=Statement;
+	//DocumentedStatement returns AnnotatedStatement: // CHANGE: Made AnnotatedStatement a subtype of DocumentedStatement with annotations and a statement reference. 
+	//	AnnotatedStatement;
 	public AlfGrammarAccess.DocumentedStatementElements getDocumentedStatementAccess() {
 		return gaAlf.getDocumentedStatementAccess();
 	}
-
+	
 	public ParserRule getDocumentedStatementRule() {
 		return getDocumentedStatementAccess().getRule();
 	}
 
-	// InlineStatement:
-	// "/ *@" "inline" "(" langageName=ID ")" body=STRING "* /";
-	public AlfGrammarAccess.InlineStatementElements getInlineStatementAccess() {
-		return gaAlf.getInlineStatementAccess();
-	}
-
-	public ParserRule getInlineStatementRule() {
-		return getInlineStatementAccess().getRule();
-	}
-
-	// AnnotatedStatement:
-	// "//@" annotation= //block = Block
-	// Annotation statement=Statement;
-	public AlfGrammarAccess.AnnotatedStatementElements getAnnotatedStatementAccess() {
-		return gaAlf.getAnnotatedStatementAccess();
-	}
-
-	public ParserRule getAnnotatedStatementRule() {
-		return getAnnotatedStatementAccess().getRule();
-	}
-
-	// Statement:
-	// AnnotatedStatement | InlineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | IfStatement |
-	// SwitchStatement | WhileStatement | DoStatement | ForStatement | BreakStatement | ReturnStatement | AcceptStatement |
-	// ClassifyStatement | InvocationOrAssignementOrDeclarationStatement | SuperInvocationStatement | ThisInvocationStatement
-	// | InstanceCreationInvocationStatement;
+	//Statement: // AnnotatedStatement | 
+	//	InLineStatement | BlockStatement | EmptyStatement | LocalNameDeclarationStatement | ExpressionStatement | IfStatement |
+	//	SwitchStatement | WhileStatement | ForStatement | DoStatement | BreakStatement | ReturnStatement | AcceptStatement |
+	//	ClassifyStatement;
 	public AlfGrammarAccess.StatementElements getStatementAccess() {
 		return gaAlf.getStatementAccess();
 	}
-
+	
 	public ParserRule getStatementRule() {
 		return getStatementAccess().getRule();
 	}
 
-	// Annotation:
-	// kind=AnnotationKind ("(" args+=ID ("," args+=ID)* ")")?;
-	public AlfGrammarAccess.AnnotationElements getAnnotationAccess() {
-		return gaAlf.getAnnotationAccess();
+	/// * BLOCK * / Block:
+	//	{Block} "{" statement+=DocumentedStatement* "}";
+	public AlfGrammarAccess.BlockElements getBlockAccess() {
+		return gaAlf.getBlockAccess();
+	}
+	
+	public ParserRule getBlockRule() {
+		return getBlockAccess().getRule();
 	}
 
-	public ParserRule getAnnotationRule() {
-		return getAnnotationAccess().getRule();
+	/// * ANNOTATED STATEMENTS * / AnnotatedStatement:
+	//	documentation+=DOCUMENTATION_COMMENT? // CHANGE: Include text line in annotation statement.
+	//	annotation+=STATEMENT_ANNOTATION* // ( '//@' annotation += Annotation ( '@' annotation += Annotation )+ '\r'? '\n' )*
+	//	statement=Statement;
+	public AlfGrammarAccess.AnnotatedStatementElements getAnnotatedStatementAccess() {
+		return gaAlf.getAnnotatedStatementAccess();
+	}
+	
+	public ParserRule getAnnotatedStatementRule() {
+		return getAnnotatedStatementAccess().getRule();
 	}
 
-	// enum AnnotationKind:
-	// ISOLATED="isolated" | DETERMINED="determined" | ASSURED="assured" | PARALLEL="parallel";
-	public AlfGrammarAccess.AnnotationKindElements getAnnotationKindAccess() {
-		return gaAlf.getAnnotationKindAccess();
+	/// *
+	//Annotation : 
+	//	identifier = ID ( '(' argument += Name ( ',' argument += Name )* ')' )?
+	//;
+	// * / / * IN-LINE STATEMENTS * / //'/ *@' 'inline' '(' language = Name ')' '* /'
+	//InLineStatement: // CHANGE: Include all text lexically in one attribute of InLineStatement.
+	//	code=INLINE_STATEMENT;
+	public AlfGrammarAccess.InLineStatementElements getInLineStatementAccess() {
+		return gaAlf.getInLineStatementAccess();
+	}
+	
+	public ParserRule getInLineStatementRule() {
+		return getInLineStatementAccess().getRule();
 	}
 
-	public EnumRule getAnnotationKindRule() {
-		return getAnnotationKindAccess().getRule();
-	}
-
-	// BlockStatement:
-	// block=Block;
+	/// * BLOCK STATEMENTS * / BlockStatement:
+	//	block=Block;
 	public AlfGrammarAccess.BlockStatementElements getBlockStatementAccess() {
 		return gaAlf.getBlockStatementAccess();
 	}
-
+	
 	public ParserRule getBlockStatementRule() {
 		return getBlockStatementAccess().getRule();
 	}
 
-	// EmptyStatement:
-	// {EmptyStatement} ";";
+	/// * EMPTY STATEMENTS * / EmptyStatement:
+	//	{EmptyStatement} ";";
 	public AlfGrammarAccess.EmptyStatementElements getEmptyStatementAccess() {
 		return gaAlf.getEmptyStatementAccess();
 	}
-
+	
 	public ParserRule getEmptyStatementRule() {
 		return getEmptyStatementAccess().getRule();
 	}
 
-	// LocalNameDeclarationStatement:
-	// "let" varName=ID ":" type=QualifiedNameWithBinding (multiplicityIndicator?="[" "]")? //'=' init = Expression ';'
-	// "=" init=SequenceElement ";";
+	/// * LOCAL NAME DECLARATION STATEMENTS * / LocalNameDeclarationStatement:
+	//	("let" name=Name ":" (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? // CHANGE: Added isAny attribute to localNameDeclarationStatement in order to allow Xtext serialization.
+	//	| (isAny?="any" | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? name=Name) "="
+	//	expression=InitializationExpression ";";
 	public AlfGrammarAccess.LocalNameDeclarationStatementElements getLocalNameDeclarationStatementAccess() {
 		return gaAlf.getLocalNameDeclarationStatementAccess();
 	}
-
+	
 	public ParserRule getLocalNameDeclarationStatementRule() {
 		return getLocalNameDeclarationStatementAccess().getRule();
 	}
 
-	// IfStatement:
-	// "if" sequentialClausses=SequentialClauses finalClause=FinalClause?;
+	//InitializationExpression returns Expression:
+	//	Expression | SequenceInitializationExpression | InstanceInitializationExpression;
+	public AlfGrammarAccess.InitializationExpressionElements getInitializationExpressionAccess() {
+		return gaAlf.getInitializationExpressionAccess();
+	}
+	
+	public ParserRule getInitializationExpressionRule() {
+		return getInitializationExpressionAccess().getRule();
+	}
+
+	//InstanceInitializationExpression returns InstanceCreationExpression:
+	//	"new" tuple=Tuple;
+	public AlfGrammarAccess.InstanceInitializationExpressionElements getInstanceInitializationExpressionAccess() {
+		return gaAlf.getInstanceInitializationExpressionAccess();
+	}
+	
+	public ParserRule getInstanceInitializationExpressionRule() {
+		return getInstanceInitializationExpressionAccess().getRule();
+	}
+
+	/// * EXPRESSION STATEMENTS * / ExpressionStatement:
+	//	expression=Expression ";";
+	public AlfGrammarAccess.ExpressionStatementElements getExpressionStatementAccess() {
+		return gaAlf.getExpressionStatementAccess();
+	}
+	
+	public ParserRule getExpressionStatementRule() {
+		return getExpressionStatementAccess().getRule();
+	}
+
+	/// * IF STATEMENTS * / IfStatement:
+	//	"if" nonFinalClauses+=ConcurrentClauses ("else" "if" nonFinalClauses+=ConcurrentClauses)* ("else"
+	//	finalClause=Block)?;
 	public AlfGrammarAccess.IfStatementElements getIfStatementAccess() {
 		return gaAlf.getIfStatementAccess();
 	}
-
+	
 	public ParserRule getIfStatementRule() {
 		return getIfStatementAccess().getRule();
 	}
 
-	// SequentialClauses:
-	// conccurentClauses+=ConcurrentClauses ("else" "if" conccurentClauses+=ConcurrentClauses)*;
-	public AlfGrammarAccess.SequentialClausesElements getSequentialClausesAccess() {
-		return gaAlf.getSequentialClausesAccess();
-	}
-
-	public ParserRule getSequentialClausesRule() {
-		return getSequentialClausesAccess().getRule();
-	}
-
-	// ConcurrentClauses:
-	// nonFinalClause+=NonFinalClause ("or" "if" nonFinalClause+=NonFinalClause)*;
+	//ConcurrentClauses:
+	//	clause+=NonFinalClause ("or" "if" clause+=NonFinalClause)*;
 	public AlfGrammarAccess.ConcurrentClausesElements getConcurrentClausesAccess() {
 		return gaAlf.getConcurrentClausesAccess();
 	}
-
+	
 	public ParserRule getConcurrentClausesRule() {
 		return getConcurrentClausesAccess().getRule();
 	}
 
-	// NonFinalClause:
-	// "(" condition=Expression ")" block=Block;
+	//NonFinalClause:
+	//	"(" condition=Expression ")" body=Block;
 	public AlfGrammarAccess.NonFinalClauseElements getNonFinalClauseAccess() {
 		return gaAlf.getNonFinalClauseAccess();
 	}
-
+	
 	public ParserRule getNonFinalClauseRule() {
 		return getNonFinalClauseAccess().getRule();
 	}
 
-	// FinalClause:
-	// "else" block=Block;
-	public AlfGrammarAccess.FinalClauseElements getFinalClauseAccess() {
-		return gaAlf.getFinalClauseAccess();
-	}
-
-	public ParserRule getFinalClauseRule() {
-		return getFinalClauseAccess().getRule();
-	}
-
-	// SwitchStatement:
-	// "switch" "(" expression=Expression ")" "{" switchClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
+	/// * SWITCH STATEMENTS * / SwitchStatement:
+	//	"switch" "(" expression=Expression ")" "{" nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause? "}";
 	public AlfGrammarAccess.SwitchStatementElements getSwitchStatementAccess() {
 		return gaAlf.getSwitchStatementAccess();
 	}
-
+	
 	public ParserRule getSwitchStatementRule() {
 		return getSwitchStatementAccess().getRule();
 	}
 
-	// SwitchClause:
-	// switchCase+=SwitchCase switchCase+=SwitchCase* statementSequence=NonEmptyStatementSequence;
+	//SwitchClause:
+	//	case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence;
 	public AlfGrammarAccess.SwitchClauseElements getSwitchClauseAccess() {
 		return gaAlf.getSwitchClauseAccess();
 	}
-
+	
 	public ParserRule getSwitchClauseRule() {
 		return getSwitchClauseAccess().getRule();
 	}
 
-	// SwitchCase:
-	// "case" expression=Expression ":";
+	//SwitchCase returns Expression:
+	//	"case" Expression ":";
 	public AlfGrammarAccess.SwitchCaseElements getSwitchCaseAccess() {
 		return gaAlf.getSwitchCaseAccess();
 	}
-
+	
 	public ParserRule getSwitchCaseRule() {
 		return getSwitchCaseAccess().getRule();
 	}
 
-	// SwitchDefaultClause:
-	// "default" ":" statementSequence=NonEmptyStatementSequence;
+	//SwitchDefaultClause returns Block:
+	//	"default" ":" NonEmptyStatementSequence;
 	public AlfGrammarAccess.SwitchDefaultClauseElements getSwitchDefaultClauseAccess() {
 		return gaAlf.getSwitchDefaultClauseAccess();
 	}
-
+	
 	public ParserRule getSwitchDefaultClauseRule() {
 		return getSwitchDefaultClauseAccess().getRule();
 	}
 
-	// NonEmptyStatementSequence:
-	// statement+=DocumentedStatement+;
+	//NonEmptyStatementSequence returns Block:
+	//	statement+=DocumentedStatement+;
 	public AlfGrammarAccess.NonEmptyStatementSequenceElements getNonEmptyStatementSequenceAccess() {
 		return gaAlf.getNonEmptyStatementSequenceAccess();
 	}
-
+	
 	public ParserRule getNonEmptyStatementSequenceRule() {
 		return getNonEmptyStatementSequenceAccess().getRule();
 	}
 
-	// / * WHILE STATEMENTS * / WhileStatement:
-	// "while" "(" condition=Expression ")" block=Block;
+	/// * WHILE STATEMENTS * / WhileStatement:
+	//	"while" "(" condition=Expression ")" body=Block;
 	public AlfGrammarAccess.WhileStatementElements getWhileStatementAccess() {
 		return gaAlf.getWhileStatementAccess();
 	}
-
+	
 	public ParserRule getWhileStatementRule() {
 		return getWhileStatementAccess().getRule();
 	}
 
-	// / * DO STATEMENTS * / DoStatement:
-	// "do" block=Block "while" "(" condition=Expression ")" ";";
+	/// * DO STATEMENTS * / DoStatement:
+	//	"do" body=Block "while" "(" condition=Expression ")" ";";
 	public AlfGrammarAccess.DoStatementElements getDoStatementAccess() {
 		return gaAlf.getDoStatementAccess();
 	}
-
+	
 	public ParserRule getDoStatementRule() {
 		return getDoStatementAccess().getRule();
 	}
 
-	// / * FOR STATEMENTS * / ForStatement:
-	// "for" "(" control=ForControl ")" block=Block;
+	/// * FOR STATEMENTS * / ForStatement:
+	//	"for" "(" variableDefinition+=LoopVariableDefinition ("," variableDefinition+=LoopVariableDefinition)* ")"
+	//	body=Block;
 	public AlfGrammarAccess.ForStatementElements getForStatementAccess() {
 		return gaAlf.getForStatementAccess();
 	}
-
+	
 	public ParserRule getForStatementRule() {
 		return getForStatementAccess().getRule();
 	}
 
-	// ForControl:
-	// loopVariableDefinition+=LoopVariableDefinition ("," loopVariableDefinition+=LoopVariableDefinition)*;
-	public AlfGrammarAccess.ForControlElements getForControlAccess() {
-		return gaAlf.getForControlAccess();
-	}
-
-	public ParserRule getForControlRule() {
-		return getForControlAccess().getRule();
-	}
-
-	// LoopVariableDefinition:
-	// name=ID "in" expression1=Expression (".." expression2=Expression)? | type=QualifiedNameWithBinding name=ID ":"
-	// expression=Expression;
+	//LoopVariableDefinition: // CHANGE: Added isAny attribute to LoopVariableDefinition in order to allow Xtext serialization.
+	//// NOTE: Default for typeIsInferred must be false.
+	//	variable=Name typeIsInferred?="in" expression1=Expression (".." expression2=Expression)? | (isAny?="any" |
+	//	typeName=QualifiedName) variable=Name ":" expression1=Expression;
 	public AlfGrammarAccess.LoopVariableDefinitionElements getLoopVariableDefinitionAccess() {
 		return gaAlf.getLoopVariableDefinitionAccess();
 	}
-
+	
 	public ParserRule getLoopVariableDefinitionRule() {
 		return getLoopVariableDefinitionAccess().getRule();
 	}
 
-	// / * BREAK STATEMENTS * / BreakStatement:
-	// {BreakStatement} "break" ";";
+	/// * BREAK STATEMENTS * / BreakStatement:
+	//	{BreakStatement} "break" ";";
 	public AlfGrammarAccess.BreakStatementElements getBreakStatementAccess() {
 		return gaAlf.getBreakStatementAccess();
 	}
-
+	
 	public ParserRule getBreakStatementRule() {
 		return getBreakStatementAccess().getRule();
 	}
 
-	// / * RETURN STATEMENTS * / ReturnStatement:
-	// "return" expression=Expression ";";
+	/// * RETURN STATEMENTS * / ReturnStatement:
+	//	{ReturnStatement} "return" expression=Expression? ";";
 	public AlfGrammarAccess.ReturnStatementElements getReturnStatementAccess() {
 		return gaAlf.getReturnStatementAccess();
 	}
-
+	
 	public ParserRule getReturnStatementRule() {
 		return getReturnStatementAccess().getRule();
 	}
 
-	// / * ACCEPT STATEMENTS * / AcceptStatement:
-	// clause=AcceptClause (simpleAccept=SimpleAcceptStatementCompletion | compoundAccept=CompoundAcceptStatementCompletion);
+	/// * ACCEPT STATEMENTS * / AcceptStatement:
+	//	acceptBlock+=AcceptClause ";" | acceptBlock+=AcceptBlock ("or" acceptBlock+=AcceptBlock)*;
 	public AlfGrammarAccess.AcceptStatementElements getAcceptStatementAccess() {
 		return gaAlf.getAcceptStatementAccess();
 	}
-
+	
 	public ParserRule getAcceptStatementRule() {
 		return getAcceptStatementAccess().getRule();
 	}
 
-	// SimpleAcceptStatementCompletion:
-	// {SimpleAcceptStatementCompletion} ";";
-	public AlfGrammarAccess.SimpleAcceptStatementCompletionElements getSimpleAcceptStatementCompletionAccess() {
-		return gaAlf.getSimpleAcceptStatementCompletionAccess();
-	}
-
-	public ParserRule getSimpleAcceptStatementCompletionRule() {
-		return getSimpleAcceptStatementCompletionAccess().getRule();
-	}
-
-	// CompoundAcceptStatementCompletion:
-	// block=Block ("or" acceptBlock+=AcceptBlock)*;
-	public AlfGrammarAccess.CompoundAcceptStatementCompletionElements getCompoundAcceptStatementCompletionAccess() {
-		return gaAlf.getCompoundAcceptStatementCompletionAccess();
-	}
-
-	public ParserRule getCompoundAcceptStatementCompletionRule() {
-		return getCompoundAcceptStatementCompletionAccess().getRule();
-	}
-
-	// AcceptBlock:
-	// clause=AcceptClause block=Block;
+	//AcceptBlock:
+	//	AcceptClause block=Block;
 	public AlfGrammarAccess.AcceptBlockElements getAcceptBlockAccess() {
 		return gaAlf.getAcceptBlockAccess();
 	}
-
+	
 	public ParserRule getAcceptBlockRule() {
 		return getAcceptBlockAccess().getRule();
 	}
 
-	// AcceptClause:
-	// "accept" "(" (name=ID ":")? qualifiedNameList=QualifiedNameList ")";
+	//AcceptClause returns AcceptBlock:
+	//	"accept" "(" (name=Name ":")? signalNames=QualifiedNameList ")";
 	public AlfGrammarAccess.AcceptClauseElements getAcceptClauseAccess() {
 		return gaAlf.getAcceptClauseAccess();
 	}
-
+	
 	public ParserRule getAcceptClauseRule() {
 		return getAcceptClauseAccess().getRule();
 	}
 
-	// / * CLASSIFY STATEMENTS * / ClassifyStatement:
-	// "classify" expression=Expression clause=ClassificationClause ";";
+	/// * CLASSIFY STATEMENTS * / ClassifyStatement:
+	//	"classify" expression=Expression (fromList=ClassificationFromClause toList=ClassificationToClause? |
+	//	isReclassifyAll?=ReclassifyAllClause? toList=ClassificationToClause) ";";
 	public AlfGrammarAccess.ClassifyStatementElements getClassifyStatementAccess() {
 		return gaAlf.getClassifyStatementAccess();
 	}
-
+	
 	public ParserRule getClassifyStatementRule() {
 		return getClassifyStatementAccess().getRule();
 	}
 
-	// ClassificationClause:
-	// classifyFromClause=ClassificationFromClause classifyToClause=ClassificationToClause? |
-	// reclassyAllClause=ReclassifyAllClause? classifyToClause=ClassificationToClause;
-	public AlfGrammarAccess.ClassificationClauseElements getClassificationClauseAccess() {
-		return gaAlf.getClassificationClauseAccess();
-	}
-
-	public ParserRule getClassificationClauseRule() {
-		return getClassificationClauseAccess().getRule();
-	}
-
-	// ClassificationFromClause:
-	// "from" qualifiedNameList=QualifiedNameList;
+	//ClassificationFromClause returns QualifiedNameList:
+	//	"from" QualifiedNameList;
 	public AlfGrammarAccess.ClassificationFromClauseElements getClassificationFromClauseAccess() {
 		return gaAlf.getClassificationFromClauseAccess();
 	}
-
+	
 	public ParserRule getClassificationFromClauseRule() {
 		return getClassificationFromClauseAccess().getRule();
 	}
 
-	// ClassificationToClause:
-	// "to" qualifiedNameList=QualifiedNameList;
+	//ClassificationToClause returns QualifiedNameList:
+	//	"to" QualifiedNameList;
 	public AlfGrammarAccess.ClassificationToClauseElements getClassificationToClauseAccess() {
 		return gaAlf.getClassificationToClauseAccess();
 	}
-
+	
 	public ParserRule getClassificationToClauseRule() {
 		return getClassificationToClauseAccess().getRule();
 	}
 
-	// ReclassifyAllClause:
-	// {ReclassifyAllClause} "from" "*";
+	//ReclassifyAllClause:
+	//	"from" "*";
 	public AlfGrammarAccess.ReclassifyAllClauseElements getReclassifyAllClauseAccess() {
 		return gaAlf.getReclassifyAllClauseAccess();
 	}
-
+	
 	public ParserRule getReclassifyAllClauseRule() {
 		return getReclassifyAllClauseAccess().getRule();
 	}
 
-	// QualifiedNameList:
-	// qualifiedName+=QualifiedNameWithBinding ("," qualifiedName+=QualifiedNameWithBinding)*;
+	//QualifiedNameList:
+	//	name+=QualifiedName ("," name+=QualifiedName)*;
 	public AlfGrammarAccess.QualifiedNameListElements getQualifiedNameListAccess() {
 		return gaAlf.getQualifiedNameListAccess();
 	}
-
+	
 	public ParserRule getQualifiedNameListRule() {
 		return getQualifiedNameListAccess().getRule();
 	}
 
-	// InvocationOrAssignementOrDeclarationStatement:
-	// typePart_OR_assignedPart_OR_invocationPart=NameExpression (variableDeclarationCompletion=VariableDeclarationCompletion //(suffixCompletion = SuffixCompletion)?
-	// | assignmentCompletion=AssignmentCompletion)? ";";
-	public AlfGrammarAccess.InvocationOrAssignementOrDeclarationStatementElements getInvocationOrAssignementOrDeclarationStatementAccess() {
-		return gaAlf.getInvocationOrAssignementOrDeclarationStatementAccess();
-	}
+	/// ****************
+	// * Terminals
+	// ***************** / terminal BOOLEAN_VALUE:
+	//	"true" | "false";
+	public TerminalRule getBOOLEAN_VALUERule() {
+		return gaAlf.getBOOLEAN_VALUERule();
+	} 
 
-	public ParserRule getInvocationOrAssignementOrDeclarationStatementRule() {
-		return getInvocationOrAssignementOrDeclarationStatementAccess().getRule();
-	}
+	//terminal NATURAL_VALUE:
+	//	("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL 
+	//	// BINARY
+	//	// HEX
+	//	// OCT
+	//	| ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
+	//	"A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	public TerminalRule getNATURAL_VALUERule() {
+		return gaAlf.getNATURAL_VALUERule();
+	} 
 
-	// SuperInvocationStatement:
-	// _super=SuperInvocationExpression //(suffix = SuffixCompletion)? ';'
-	// ";";
-	public AlfGrammarAccess.SuperInvocationStatementElements getSuperInvocationStatementAccess() {
-		return gaAlf.getSuperInvocationStatementAccess();
-	}
-
-	public ParserRule getSuperInvocationStatementRule() {
-		return getSuperInvocationStatementAccess().getRule();
-	}
-
-	// ThisInvocationStatement: //_this = ThisExpression suffix = SuffixCompletion (assignmentCompletion = AssignmentCompletion)? ';'
-	// _this=ThisExpression assignmentCompletion=AssignmentCompletion? ";";
-	public AlfGrammarAccess.ThisInvocationStatementElements getThisInvocationStatementAccess() {
-		return gaAlf.getThisInvocationStatementAccess();
-	}
-
-	public ParserRule getThisInvocationStatementRule() {
-		return getThisInvocationStatementAccess().getRule();
-	}
-
-	// InstanceCreationInvocationStatement:
-	// _new=InstanceCreationExpression //(suffix = SuffixCompletion)? ';'
-	// ";";
-	public AlfGrammarAccess.InstanceCreationInvocationStatementElements getInstanceCreationInvocationStatementAccess() {
-		return gaAlf.getInstanceCreationInvocationStatementAccess();
-	}
-
-	public ParserRule getInstanceCreationInvocationStatementRule() {
-		return getInstanceCreationInvocationStatementAccess().getRule();
-	}
-
-	// //SuffixCompletion :
-	// // suffix = SuffixExpression
-	// //;
-	// VariableDeclarationCompletion:
-	// (multiplicityIndicator?="[" "]")? variableName=ID initValue=AssignmentCompletion;
-	public AlfGrammarAccess.VariableDeclarationCompletionElements getVariableDeclarationCompletionAccess() {
-		return gaAlf.getVariableDeclarationCompletionAccess();
-	}
-
-	public ParserRule getVariableDeclarationCompletionRule() {
-		return getVariableDeclarationCompletionAccess().getRule();
-	}
-
-	// //op=('=' | '+=' | '-=' | '*=' | '%=' | '/=' | '&=' |
-	// // '|=' | '^=' | '<<=' | '>>=' | '>>>=') rightHandSide = Expression
-	// AssignmentCompletion:
-	// op=AssignmentOperator rightHandSide=SequenceElement;
-	public AlfGrammarAccess.AssignmentCompletionElements getAssignmentCompletionAccess() {
-		return gaAlf.getAssignmentCompletionAccess();
-	}
-
-	public ParserRule getAssignmentCompletionRule() {
-		return getAssignmentCompletionAccess().getRule();
-	}
-
-	// enum AssignmentOperator:
-	// ASSIGN="=" | PLUSASSIGN="+=" | MINUSASSIGN="-=" | MULTASSIGN="*=" | MODASSIGN="%=" | DIVASSIGN="/=" | ANDASSIGN="&=" |
-	// ORASSIGN="|=" | XORASSIGN="^=" | LSHIFTASSIGN="<<=" | RSHIFTASSIGN=">>=" | URSHIFTASSIGN=">>>=";
-	public AlfGrammarAccess.AssignmentOperatorElements getAssignmentOperatorAccess() {
-		return gaAlf.getAssignmentOperatorAccess();
-	}
-
-	public EnumRule getAssignmentOperatorRule() {
-		return getAssignmentOperatorAccess().getRule();
-	}
-
-	// terminal ID:
-	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
+	//terminal ID:
+	//	("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")*;
 	public TerminalRule getIDRule() {
 		return gaAlf.getIDRule();
-	}
+	} 
 
-	// terminal STRING:
-	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
+	//terminal UNRESTRICTED_NAME:
+	//	"\'" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\'"))* "\'";
+	public TerminalRule getUNRESTRICTED_NAMERule() {
+		return gaAlf.getUNRESTRICTED_NAMERule();
+	} 
+
+	//terminal STRING:
+	//	"\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return gaAlf.getSTRINGRule();
-	}
+	} 
 
-	// terminal ML_COMMENT:
-	// "/ *" !"@"->"* /";
+	//terminal DOCUMENTATION_COMMENT:
+	//	"/ **"->"* /";
+	public TerminalRule getDOCUMENTATION_COMMENTRule() {
+		return gaAlf.getDOCUMENTATION_COMMENTRule();
+	} 
+
+	////  '//@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')? 
+	////  (WS? '@' WS? ID (WS? '(' WS? (ID | UNRESTRICTED_NAME) (WS? ',' WS? (ID | UNRESTRICTED_NAME))* WS? ')')?)* (' '|'\t')* ('\r'? '\n')
+	//terminal STATEMENT_ANNOTATION:
+	//	"//@"->"\n";
+	public TerminalRule getSTATEMENT_ANNOTATIONRule() {
+		return gaAlf.getSTATEMENT_ANNOTATIONRule();
+	} 
+
+	//terminal INLINE_STATEMENT:
+	//	"/ *@inline(" (ID | UNRESTRICTED_NAME) ")"->"* /";
+	public TerminalRule getINLINE_STATEMENTRule() {
+		return gaAlf.getINLINE_STATEMENTRule();
+	} 
+
+	//terminal ML_COMMENT:
+	//	"/ *" !("*" | "@")->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaAlf.getML_COMMENTRule();
-	}
+	} 
 
-	// terminal SL_COMMENT:
-	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
+	//terminal SL_COMMENT:
+	//	"//" (!("@" | "\n" | "\r") !("\n" | "\r")*)? ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaAlf.getSL_COMMENTRule();
-	}
+	} 
 
-	// terminal INT returns ecore::EInt:
-	// "0".."9"+;
-	public TerminalRule getINTRule() {
-		return gaAlf.getINTRule();
-	}
-
-	// //terminal DOUBLE_COLON : '::' ;
-	// //terminal IDENTIFIER : ID ;
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	// //terminal ML_COMMENT : '/�' -> '�/';
-	// //terminal SL_COMMENT : '��' !('\n'|'\r')* ('\r'? '\n')?;
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal INTEGER_VALUE:
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	// // BINARY
-	// // HEX
-	// // OCT
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaAlf.getINTEGER_VALUERule();
-	}
-
-	// terminal WS:
-	// (" " | "\t" | "\r" | "\n")+;
+	//terminal WS:
+	//	(" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaAlf.getWSRule();
-	}
-
-	// terminal ANY_OTHER:
-	// .;
-	public TerminalRule getANY_OTHERRule() {
-		return gaAlf.getANY_OTHERRule();
-	}
+	} 
 }

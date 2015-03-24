@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_M9R9EMOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Activity" xmi:id="_NIFe4MOTEeSiR-ar9ioVjA" name="A" visibility="protected">
+      <ownedComment xmi:id="_NIFe58OTEeSiR-ar9ioVjA" annotatedElement="_NIFe4MOTEeSiR-ar9ioVjA">
+        <body>activity A&lt;T>(in x: T) {
+	return;
+}</body>
+      </ownedComment>
+      <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_NIFe5MOTEeSiR-ar9ioVjA" parameter="_NIFe5cOTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_NIFe5cOTEeSiR-ar9ioVjA" parameteredElement="_NIFe5sOTEeSiR-ar9ioVjA" allowSubstitutable="false">
+          <ownedParameteredElement xmi:type="uml:DataType" xmi:id="_NIFe5sOTEeSiR-ar9ioVjA" name="T" templateParameter="_NIFe5cOTEeSiR-ar9ioVjA" isAbstract="true"/>
+        </ownedParameter>
+      </ownedTemplateSignature>
+      <ownedParameter xmi:id="_NIFe4cOTEeSiR-ar9ioVjA" name="x" type="_NIFe5sOTEeSiR-ar9ioVjA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NIFe4sOTEeSiR-ar9ioVjA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NIFe48OTEeSiR-ar9ioVjA" value="1"/>
+      </ownedParameter>
+    </packagedElement>
+    <profileApplication xmi:id="_M9R9EcOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_M9R9EsOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_M9R9E8OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_M9R9FMOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <ActionLanguage:TextualRepresentation xmi:id="_NIFe6MOTEeSiR-ar9ioVjA" base_Comment="_NIFe58OTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

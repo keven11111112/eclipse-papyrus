@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.scoping;
 import java.util.ArrayList;
 
 import org.eclipse.emf.ecore.EReference;
-import org.eclipse.papyrus.uml.alf.alf.PrimaryExpression;
+import org.eclipse.papyrus.uml.alf.Expression;
 import org.eclipse.papyrus.uml.alf.scoping.AlfScopeProvider;
 import org.eclipse.papyrus.uml.profile.structure.AppliedStereotypeProperty;
 import org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.appliedStereotypeProperty.AppliedStereotypePropertyRule;
@@ -49,7 +49,7 @@ public class AppliedStereotypePropertyScopeProvider extends AlfScopeProvider {
 		return result;
 	}
 
-	public IScope scope_PrimaryExpression_prefix(PrimaryExpression ctx, EReference ref) {
+	public IScope scope_PrimaryExpression_prefix(Expression ctx, EReference ref) {
 		return null;
 	}
 }

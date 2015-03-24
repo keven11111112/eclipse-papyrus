@@ -224,33 +224,35 @@
     </extension>
 
 
-    <!-- marker definitions for org.eclipse.papyrus.uml.alf.Alf -->
-    <extension
-            id="alf.check.fast"
-            name="Alf Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.fast"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="alf.check.normal"
-            name="Alf Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.normal"/>
-        <persistent value="true"/>
-    </extension>
-    <extension
-            id="alf.check.expensive"
-            name="Alf Problem"
-            point="org.eclipse.core.resources.markers">
-        <super type="org.eclipse.xtext.ui.check.expensive"/>
-        <persistent value="true"/>
-    </extension>
+	<!-- marker definitions for org.eclipse.papyrus.uml.alf.Alf -->
+	<extension
+	        id="alf.check.fast"
+	        name="Alf Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.fast"/>
+	    <persistent value="true"/>
+	</extension>
+	<extension
+	        id="alf.check.normal"
+	        name="Alf Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.normal"/>
+	    <persistent value="true"/>
+	</extension>
+	<extension
+	        id="alf.check.expensive"
+	        name="Alf Problem"
+	        point="org.eclipse.core.resources.markers">
+	    <super type="org.eclipse.xtext.ui.check.expensive"/>
+	    <persistent value="true"/>
+	</extension>
 
    <extension
          point="org.eclipse.xtext.builder.participant">
       <participant
-            class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant">
+            class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.builder.IXtextBuilderParticipant"
+            fileExtensions="alf"
+            >
       </participant>
    </extension>
    <extension
@@ -277,6 +279,27 @@
 	        <filter name="projectNature" value="org.eclipse.xtext.ui.shared.xtextNature"/>
         </page>
     </extension>
+    <extension point="org.eclipse.ui.menus">
+		<menuContribution locationURI="popup:#TextEditorContext?after=xtext.ui.openDeclaration">
+			<command
+				commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand"
+				id="org.eclipse.papyrus.uml.alf.Alf.OpenGeneratedCode"
+				style="push">
+					<visibleWhen checkEnabled="false">
+						<reference definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened" />
+					</visibleWhen>
+			</command>
+		</menuContribution>
+	</extension>
+	<extension point="org.eclipse.ui.handlers">
+		<handler
+			class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.generator.trace.OpenGeneratedFileHandler"
+			commandId="org.eclipse.xtext.ui.OpenGeneratedFileCommand">
+				<activeWhen>
+					<reference definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened" />
+				</activeWhen>
+		</handler>
+	</extension>
 
 	<!-- Quick Outline -->
 	<extension
@@ -339,5 +362,64 @@
             </attribute>
         </markerResolutionGenerator>
     </extension>
+   	<!-- Rename Refactoring -->
+	<extension point="org.eclipse.ui.handlers">
+		<handler 
+			class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.DefaultRenameElementHandler"
+			commandId="org.eclipse.xtext.ui.refactoring.RenameElement">
+			<activeWhen>
+				<reference
+					definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
+				</reference>
+			</activeWhen>
+		</handler>
+	</extension>
+    <extension point="org.eclipse.ui.menus">
+         <menuContribution
+            locationURI="popup:#TextEditorContext?after=group.edit">
+         <command commandId="org.eclipse.xtext.ui.refactoring.RenameElement"
+               style="push">
+            <visibleWhen checkEnabled="false">
+               <reference
+                     definitionId="org.eclipse.papyrus.uml.alf.Alf.Editor.opened">
+               </reference>
+            </visibleWhen>
+         </command>
+      </menuContribution>
+   </extension>
+   <extension point="org.eclipse.ui.preferencePages">
+	    <page
+	        category="org.eclipse.papyrus.uml.alf.Alf"
+	        class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.refactoring.ui.RefactoringPreferencePage"
+	        id="org.eclipse.papyrus.uml.alf.Alf.refactoring"
+	        name="Refactoring">
+	        <keywordReference id="org.eclipse.papyrus.uml.alf.ui.keyword_Alf"/>
+	    </page>
+	</extension>
+
+  <extension point="org.eclipse.compare.contentViewers">
+    <viewer id="org.eclipse.papyrus.uml.alf.Alf.compare.contentViewers"
+            class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="alf">
+    </viewer>
+  </extension>
+  <extension point="org.eclipse.compare.contentMergeViewers">
+    <viewer id="org.eclipse.papyrus.uml.alf.Alf.compare.contentMergeViewers"
+            class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.compare.InjectableViewerCreator"
+            extensions="alf" label="Alf Compare">
+     </viewer>
+  </extension>
+  <extension point="org.eclipse.ui.editors.documentProviders">
+    <provider id="org.eclipse.papyrus.uml.alf.Alf.editors.documentProviders"
+            class="org.eclipse.papyrus.uml.alf.ui.AlfExecutableExtensionFactory:org.eclipse.xtext.ui.editor.model.XtextDocumentProvider"
+            extensions="alf">
+    </provider>
+  </extension>
+  <extension point="org.eclipse.team.core.fileTypes">
+    <fileTypes
+            extension="alf"
+            type="text">
+    </fileTypes>
+  </extension>
 
 </plugin>

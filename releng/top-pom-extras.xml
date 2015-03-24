@@ -29,6 +29,7 @@
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.robotml.generators.intempora.rtmaps.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.ui</module>
@@ -130,6 +131,11 @@
 		<module>../extraplugins/codegen/org.eclipse.papyrus.texteditor.modelexplorer</module>
 		<module>../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
+		
+		<!-- ALF -->
+		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
+		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.transaction</module>
+		<module>../extraplugins/alf/ui/org.eclipse.papyrus.uml.alf.properties.xtext</module>
 		
 		<!-- Papyrus Uml Rt  -->
 		<module>../extraplugins/umlrt/org.eclipse.papyrus.umlrt</module>

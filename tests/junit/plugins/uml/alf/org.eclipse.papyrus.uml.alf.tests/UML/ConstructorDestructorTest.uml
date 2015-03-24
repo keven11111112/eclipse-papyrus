@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_96GRwMOSEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_-OWDcMOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest">
+      <ownedAttribute xmi:id="_-OWDicOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDisOSEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDi8OSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-OWDeMOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest$method$1" visibility="protected" specification="_-OWDccOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-OWDkMOSEeSiR-ar9ioVjA" annotatedElement="_-OWDeMOSEeSiR-ar9ioVjA">
+          <body>activity 'ConstructorDestructorTest$method$1'(in n: Integer): ConstructorDestructorTest {
+if (this.'ConstructorDestructorTest$initializationFlag$1' == null) {
+this.'ConstructorDestructorTest$initialization$1'();
+}
+return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-OWDecOSEeSiR-ar9ioVjA" name="n">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDesOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDe8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-OWDfMOSEeSiR-ar9ioVjA" name="" type="_-OWDcMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDfcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDfsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-OWDg8OSEeSiR-ar9ioVjA" name="create$method$1" visibility="protected" specification="_-OWDf8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-OWDj8OSEeSiR-ar9ioVjA" annotatedElement="_-OWDg8OSEeSiR-ar9ioVjA">
+          <body>activity 'create$method$1'(): ConstructorDestructorTest {
+if (this.'ConstructorDestructorTest$initializationFlag$1' == null) {
+this.'ConstructorDestructorTest$initialization$1'();
+this(0); 
+}
+return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-OWDhMOSEeSiR-ar9ioVjA" name="" type="_-OWDcMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDhcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDhsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-OWDiMOSEeSiR-ar9ioVjA" name="destroy$method$1" visibility="protected" specification="_-OWDh8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-OWDjsOSEeSiR-ar9ioVjA" annotatedElement="_-OWDiMOSEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() {
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-OWDjMOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest$initialization$1" visibility="protected" specification="_-OWDjcOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-OWDkcOSEeSiR-ar9ioVjA" annotatedElement="_-OWDjMOSEeSiR-ar9ioVjA">
+          <body>activity 'ConstructorDestructorTest$initialization$1'(){
+  if (this.'ConstructorDestructorTest$initializationFlag$1' == null) {
+    this.'ConstructorDestructorTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_-OWDccOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest" visibility="public" method="_-OWDeMOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_-OWDcsOSEeSiR-ar9ioVjA" name="n">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDc8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDdMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-OWDdcOSEeSiR-ar9ioVjA" name="" type="_-OWDcMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDdsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDd8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-OWDf8OSEeSiR-ar9ioVjA" name="create" visibility="public" method="_-OWDg8OSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_-OWDgMOSEeSiR-ar9ioVjA" name="" type="_-OWDcMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-OWDgcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-OWDgsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-OWDh8OSEeSiR-ar9ioVjA" name="destroy" visibility="public" method="_-OWDiMOSEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_-OWDjcOSEeSiR-ar9ioVjA" name="ConstructorDestructorTest$initialization$1" visibility="protected" method="_-OWDjMOSEeSiR-ar9ioVjA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_96GRwcOSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_96GRwsOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_96GRw8OSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_96GRxMOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Destroy xmi:id="_-OWqgMOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-OWDh8OSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_-OWqgcOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-OWDf8OSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_-OWqgsOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-OWDccOSEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-OWqg8OSEeSiR-ar9ioVjA" base_Comment="_-OWDjsOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-OWqhMOSEeSiR-ar9ioVjA" base_Comment="_-OWDj8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-OWqhcOSEeSiR-ar9ioVjA" base_Comment="_-OWDkMOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-OWqhsOSEeSiR-ar9ioVjA" base_Comment="_-OWDkcOSEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

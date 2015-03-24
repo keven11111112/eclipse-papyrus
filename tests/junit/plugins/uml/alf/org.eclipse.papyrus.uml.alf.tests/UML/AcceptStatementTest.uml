@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_83VNMMOSEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_9EWVgMOSEeSiR-ar9ioVjA" name="AcceptStatementTest" classifierBehavior="_9EWVlMOSEeSiR-ar9ioVjA" isActive="true">
+      <ownedAttribute xmi:id="_9EWVg8OSEeSiR-ar9ioVjA" name="AcceptStatementTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9EWVhMOSEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9EWVhcOSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_9EWVhsOSEeSiR-ar9ioVjA" name="AcceptStatementTest$initialization$1" visibility="protected" specification="_9EWVh8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_9EWVlsOSEeSiR-ar9ioVjA" annotatedElement="_9EWVhsOSEeSiR-ar9ioVjA">
+          <body>activity 'AcceptStatementTest$initialization$1'(){
+  if (this.'AcceptStatementTest$initializationFlag$1' == null) {
+    this.'AcceptStatementTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_9EWViMOSEeSiR-ar9ioVjA" name="AcceptStatementTest$method$1" specification="_9EWVjMOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_9EWVlcOSEeSiR-ar9ioVjA" annotatedElement="_9EWViMOSEeSiR-ar9ioVjA">
+          <body>activity 'AcceptStatementTest$method$1'(): AcceptStatementTest {
+	this.'AcceptStatementTest$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_9EWVicOSEeSiR-ar9ioVjA" type="_9EWVgMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9EWVisOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9EWVi8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_9EWVkMOSEeSiR-ar9ioVjA" name="destroy$method$1" specification="_9EWVkcOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_9EWVl8OSEeSiR-ar9ioVjA" annotatedElement="_9EWVkMOSEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_9EWVlMOSEeSiR-ar9ioVjA" name="AcceptStatementTest$behavior$1" visibility="private">
+        <ownedComment xmi:id="_9EWVmMOSEeSiR-ar9ioVjA" annotatedElement="_9EWVlMOSEeSiR-ar9ioVjA">
+          <body>activity 'AcceptStatementTest$behavior$1'() {
+	accept (S1, S2);
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_9EWVh8OSEeSiR-ar9ioVjA" name="AcceptStatementTest$initialization$1" visibility="protected" method="_9EWVhsOSEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_9EWVjMOSEeSiR-ar9ioVjA" name="AcceptStatementTest" method="_9EWViMOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_9EWVjcOSEeSiR-ar9ioVjA" type="_9EWVgMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9EWVjsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9EWVj8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_9EWVkcOSEeSiR-ar9ioVjA" name="destroy" method="_9EWVkMOSEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Signal" xmi:id="_9EWVgcOSEeSiR-ar9ioVjA" name="S1" visibility="public"/>
+      <nestedClassifier xmi:type="uml:Signal" xmi:id="_9EWVgsOSEeSiR-ar9ioVjA" name="S2" visibility="public"/>
+      <ownedReception xmi:id="_9EWVksOSEeSiR-ar9ioVjA" name="S1" visibility="public" signal="_9EWVgcOSEeSiR-ar9ioVjA"/>
+      <ownedReception xmi:id="_9EWVk8OSEeSiR-ar9ioVjA" name="S2" visibility="public" signal="_9EWVgsOSEeSiR-ar9ioVjA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_83VNMcOSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_83VNMsOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_83VNM8OSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_83VNNMOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Create xmi:id="_9EWVmcOSEeSiR-ar9ioVjA" base_BehavioralFeature="_9EWVjMOSEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_9EWVmsOSEeSiR-ar9ioVjA" base_BehavioralFeature="_9EWVkcOSEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_9EWVm8OSEeSiR-ar9ioVjA" base_Comment="_9EWVlcOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_9EWVnMOSEeSiR-ar9ioVjA" base_Comment="_9EWVlsOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_9EWVncOSEeSiR-ar9ioVjA" base_Comment="_9EWVl8OSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_9EWVnsOSEeSiR-ar9ioVjA" base_Comment="_9EWVmMOSEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

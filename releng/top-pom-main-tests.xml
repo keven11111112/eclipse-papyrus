@@ -24,6 +24,7 @@
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.uml.tools.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.tests.views.feature</module>
 	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.uml.textedit.tests.feature</module>
+	    <module>../features/papyrus-tests-features/org.eclipse.papyrus.uml.alf.tests.feature</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.editor.integration.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.di.tests</module>
 		<module>../tests/junit/plugins/core/org.eclipse.papyrus.infra.core.sasheditor.tests</module>
@@ -98,6 +99,7 @@
 		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.property.tests</module>
 		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.parameter.tests</module>
 		<module>../tests/junit/plugins/uml/profile/org.eclipse.papyrus.uml.profile.drafter.tests</module>
+		<module>../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.tests</module>
 	</modules>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
@@ -111,6 +113,12 @@
 			<id>papyrus-main</id>
 			<layout>p2</layout>
 			<url>${papyrus.repo.main}</url>
+		</repository>
+		<repository>
+			<id>emf-cdo</id>
+			<layout>p2</layout>
+			<!-- updateFrom("EMF CDO",0) -->
+			<url>http://download.eclipse.org/modeling/emf/cdo/drops/R20140610-0212</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>

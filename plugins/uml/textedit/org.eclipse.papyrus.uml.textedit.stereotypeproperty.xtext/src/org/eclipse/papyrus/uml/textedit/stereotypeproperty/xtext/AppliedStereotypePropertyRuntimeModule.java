@@ -18,4 +18,5 @@ package org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext;
  */
 public class AppliedStereotypePropertyRuntimeModule extends org.eclipse.papyrus.uml.textedit.stereotypeproperty.xtext.AbstractAppliedStereotypePropertyRuntimeModule {
 
+
 }

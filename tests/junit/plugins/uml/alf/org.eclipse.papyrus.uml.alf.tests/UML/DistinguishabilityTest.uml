@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_-daaMMOSEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_-mgEwMOSEeSiR-ar9ioVjA" name="DistinguishibilityTest">
+      <ownedAttribute xmi:id="_-mgE3cOSEeSiR-ar9ioVjA" name="DistinguishibilityTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgE3sOSEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgE38OSEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-mgEyMOSEeSiR-ar9ioVjA" name="create$method$1" visibility="protected" specification="_-mgEwcOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-mgE5sOSEeSiR-ar9ioVjA" annotatedElement="_-mgEyMOSEeSiR-ar9ioVjA">
+          <body>activity 'create$method$1'(in x: Integer): DistinguishibilityTest {
+if (this.'DistinguishibilityTest$initializationFlag$1' == null) {
+this.'DistinguishibilityTest$initialization$1'();
+}
+return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-mgEycOSEeSiR-ar9ioVjA" name="x">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgEysOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgEy8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-mgEzMOSEeSiR-ar9ioVjA" name="" type="_-mgEwMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgEzcOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgEzsOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-mgE1sOSEeSiR-ar9ioVjA" name="create$method$2" visibility="protected" specification="_-mgEz8OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-mgE5cOSEeSiR-ar9ioVjA" annotatedElement="_-mgE1sOSEeSiR-ar9ioVjA">
+          <body>activity 'create$method$2'(in x: String): DistinguishibilityTest {
+if (this.'DistinguishibilityTest$initializationFlag$1' == null) {
+this.'DistinguishibilityTest$initialization$1'();
+}
+return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_-mgE18OSEeSiR-ar9ioVjA" name="x">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgE2MOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgE2cOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-mgE2sOSEeSiR-ar9ioVjA" name="" type="_-mgEwMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgE28OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgE3MOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-mgE4MOSEeSiR-ar9ioVjA" name="DistinguishibilityTest$initialization$1" visibility="protected" specification="_-mgE4cOSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-mgE58OSEeSiR-ar9ioVjA" annotatedElement="_-mgE4MOSEeSiR-ar9ioVjA">
+          <body>activity 'DistinguishibilityTest$initialization$1'(){
+  if (this.'DistinguishibilityTest$initializationFlag$1' == null) {
+    this.'DistinguishibilityTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_-mgE4sOSEeSiR-ar9ioVjA" name="destroy$method$1" specification="_-mgE48OSEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_-mgE5MOSEeSiR-ar9ioVjA" annotatedElement="_-mgE4sOSEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_-mgEwcOSEeSiR-ar9ioVjA" name="create" visibility="public" method="_-mgEyMOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_-mgEwsOSEeSiR-ar9ioVjA" name="x">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgEw8OSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgExMOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-mgExcOSEeSiR-ar9ioVjA" name="" type="_-mgEwMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgExsOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgEx8OSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-mgEz8OSEeSiR-ar9ioVjA" name="create" visibility="public" method="_-mgE1sOSEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_-mgE0MOSEeSiR-ar9ioVjA" name="x">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#String"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgE0cOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgE0sOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_-mgE08OSEeSiR-ar9ioVjA" name="" type="_-mgEwMOSEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_-mgE1MOSEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_-mgE1cOSEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_-mgE4cOSEeSiR-ar9ioVjA" name="DistinguishibilityTest$initialization$1" visibility="protected" method="_-mgE4MOSEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_-mgE48OSEeSiR-ar9ioVjA" name="destroy" method="_-mgE4sOSEeSiR-ar9ioVjA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_-daaMcOSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-daaMsOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_-daaM8OSEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_-daaNMOSEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Create xmi:id="_-mgE6MOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-mgEz8OSEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_-mgE6cOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-mgE48OSEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_-mgE6sOSEeSiR-ar9ioVjA" base_BehavioralFeature="_-mgEwcOSEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-mgE68OSEeSiR-ar9ioVjA" base_Comment="_-mgE5MOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-mgE7MOSEeSiR-ar9ioVjA" base_Comment="_-mgE5cOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-mgE7cOSEeSiR-ar9ioVjA" base_Comment="_-mgE5sOSEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_-mgE7sOSEeSiR-ar9ioVjA" base_Comment="_-mgE58OSEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

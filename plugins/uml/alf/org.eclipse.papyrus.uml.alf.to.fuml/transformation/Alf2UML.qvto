@@ -1,0 +1,917 @@
+/*****************************************************************************
+ * Copyright (c) 2013, 2014 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  IJI - Initial implementation
+ *  MDS - Updated for Luna
+ * 
+ *****************************************************************************/
+import org.eclipse.papyrus.uml.alf.to.fuml.qvt.QVTLibrary;
+modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation Alf2UML(in alf : Alf, inout uml : UML);
+
+// blackbox query SyntaxElement::serialize() : String;
+
+main() {
+  var model := uml.rootObjects()[Model]->any(true);
+  if (model = null) then {
+    model := object Model {
+      name := "Model";
+    };
+  } endif;
+  alf.rootObjects()[UnitDefinition]->any(true).map toNamespace();
+  model.packagedElement := uml.rootObjects()[PackageableElement]->excluding(model);
+  applyStereotypes();
+  applyDefinitions();
+}
+
+// STEREOTYPES
+
+intermediate class StereotypedElement {
+  target : Element;
+  stereotypeNames : Set(String);
+}
+
+property stereotypedElements : Set(StereotypedElement) = Set{}; 
+
+helper addAsStereotyped(inout element : Element, names : Set(String)) {
+  stereotypedElements += object StereotypedElement {
+    target := element;
+    stereotypeNames := names;
+  };
+  var text := "target=" + element.toString() + "\nstereotypeNames=";
+  names->forEach(name) {
+  	text := text + name + " ";
+  };
+  return;
+}
+
+helper applyStereotypes() {
+  if stereotypedElements->notEmpty() then {
+    stereotypedElements.applyStereotypes();
+  } endif;
+}
+
+helper StereotypedElement::applyStereotypes() {
+//  log("[applyStereotypes] target=" + self.target.toString());
+  self.stereotypeNames->forEach(stereotypeName) {
+    self.target.applyStereotype(stereotypeName)
+  }
+}
+
+// Note: The application of stereotypes presumes that a root UML model is passed
+// in with the appropriate profile(s) already applied.
+helper Element::applyStereotype(name : String) {
+  var stereotypeName := name;
+  var stereotype : Stereotype := null;
+  if stereotypeName.indexOf("::") = 0 then {
+    var applicableStereotypes := self.getApplicableStereotypes()[name = stereotypeName];
+    if applicableStereotypes->size() = 1 then
+      stereotype := applicableStereotypes->any(true)
+    else
+      stereotypeName := "StandardProfile::" + stereotypeName
+    endif
+  } endif;
+  if (stereotype = null) then
+    stereotype := self.getApplicableStereotype(stereotypeName)
+  endif;
+//  log("  stereotypeName=" + stereotypeName);
+//  log("  stereotype=" + stereotype.toString());
+  if stereotype <> null then
+    self.applyStereotype(stereotype)
+  endif
+}
+
+// ALF DEFINITIONS OF ACTIVITIES
+
+intermediate class AlfDefinition {
+	target : Activity;
+	source : String;
+}
+
+property alfDefinitions : Set(AlfDefinition) = Set{};
+
+helper addDefinition(activity : Activity, definition : String) {
+	alfDefinitions += object AlfDefinition {
+		target := activity;
+		source := definition;
+	};
+	return;
+}
+
+helper applyDefinitions() {
+  if alfDefinitions->notEmpty() then {
+  	alfDefinitions->forEach(alfDefinition) {
+  		var definition :=
+  		  if alfDefinition.source.at(1) = "{" then
+  		    activityDeclarationFor(alfDefinition.target) + " " + alfDefinition.source
+  		  else
+  		    alfDefinition.source
+  		  endif;
+  		  var comment := object Comment {
+  		  	body := definition;
+  		  	annotatedElement := alfDefinition.target;
+  		  };
+  		  alfDefinition.target.ownedComment += comment;
+        var stereotype := 
+          comment.getApplicableStereotype("ActionLanguage::TextualRepresentation");
+        if stereotype <> null then {
+          comment.applyStereotype(stereotype);
+          comment.setValue(stereotype, "language", "Alf");
+        } endif;
+  	};
+  } endif;
+	return;
+}
+
+query activityDeclarationFor(activity : Activity) : String {
+	var text := "activity " + activity.alfName();
+	
+	if activity.ownedTemplateSignature <> null then {
+		text := text + "<";
+		var notFirstParameter := false;
+		activity.ownedTemplateSignature.ownedParameter.oclAsType(uml::ClassifierTemplateParameter)->
+  		forEach(parameter) {
+  			if notFirstParameter then
+  			 text := text + ", "
+  			endif;
+  			text := text + parameter.parameteredElement.oclAsType(Classifier).alfName();
+  			if parameter.constrainingClassifier->notEmpty() then {
+  				text := text + " specializes " + parameter.constrainingClassifier->any(true).alfName();
+  			} endif;
+  			notFirstParameter := true;
+  		};
+    text := text + ">";
+	} endif;
+	
+	text := text + "(";
+	
+	var returnParameter : Parameter := null;
+	var notFirstParameter := false;
+  activity.ownedParameter->forEach(parameter) {
+  	if parameter.direction = ParameterDirectionKind::_return then
+  	  returnParameter := parameter
+  	else {
+  		if notFirstParameter then
+  		  text := text + ", "
+  		endif;
+  		text := text + parameter.direction.toString() + " " + parameter.alfName() + parameter.typePart();
+  		notFirstParameter := true;
+  	} endif;
+  };
+  
+  text := text + ")";
+  
+  if returnParameter <> null then
+    text := text + returnParameter.typePart()
+  endif;
+  
+  return text;
+}
+
+query Parameter::typePart() : String {
+	return ": " +
+	  ( let type = self.type.oclAsType(Classifier) in
+	    if type = null then "any" else type.alfName() endif
+	  ) + self.multiplicity();    
+}
+
+query MultiplicityElement::multiplicity() : String {
+  return
+  	if self.lower = 1 and self.upper = 1 then ""
+  	else
+    	"[" + self.lower.toString() + ".." +
+      ( let upper = self.upper in
+          if upper < 0 then "*" else upper.toString() endif
+      ) + "]"
+    endif +
+    if self.isOrdered and not self.isUnique then " sequence"
+    else if self.isOrdered then " ordered"
+    else if not self.isUnique then " nonunique" 
+    else "" endif endif endif
+}
+
+query NamedElement::alfName() : String {
+  return
+  	if self.name = null then null
+  	else self.name.toName()
+  	endif;
+}
+
+query String::toName() : String {
+  return
+   if self.isIdentifier() then self
+   else self.toRestrictedName()
+   endif;     
+}
+
+query String::isIdentifier() : Boolean {
+  return self.matches("[a-zA-z_][a-zA-z_0-9]*");
+}
+
+query String::toRestrictedName() : String {
+  return "'" + self.
+   replace("\\", "\\\\").
+   replace("\b", "\\b").
+   replace("\t", "\\t").
+   replace("\n", "\\n").
+   replace("\f", "\\f").
+   replace("\r", "\\r").
+   replace("'", "\\'") +
+   "'";
+}
+
+// COMMON
+
+// Syntax Elements
+
+mapping SyntaxElement::toUml() : Element
+  disjuncts MemberDefinition::memberToNamedElement, Expression::toActivity;
+  
+// Documented Elements
+
+abstract mapping DocumentedElement::toElement() : Element {
+  self.documentation->forEach(d) {
+    var comment = object Comment {
+      annotatedElement := result;
+      body := d.substring(4,d.length()-2)
+    };
+    ownedComment += comment;
+  }
+}
+
+// Element References
+
+helper ElementReference::toUml() : Element;
+
+helper InternalElementReference::toUml() : Element {
+  return self.asAlf().map toUml();
+}
+
+helper ExternalElementReference::toUml() : Element {
+ return self.asUml().oclAsType(Element);
+}
+
+helper BoundElementReference::toUml() : Element {
+  // TODO: Handle expansion of template bindings.
+  return 
+    if self.isTemplateBinding() then
+      self.templateBinding.toUml()
+    else
+      self.referent.toUml()
+    endif;
+}
+
+// EXPRESSIONS
+
+// General
+
+mapping Expression::toActivity() : Activity {
+  /*
+  ownedParameter := object Parameter {
+    direction := ParameterDirectionKind::_return;
+    type := if self.type = null then null else self.type.toUml().oclAsType(Classifier) endif;
+    lower := self.lower;
+    upper := if self.upper = -1 then -1 else self.upper endif;
+  };
+  */
+  var serialization = self.serialize();
+  if serialization.at(1) = '=' then
+    serialization := serialization.substring(2, serialization.length())
+  endif;
+  addDefinition(result, "{\n\treturn " + serialization + ";\n}");
+}
+
+// UNITS
+
+// Unit Definitions
+
+mapping UnitDefinition::toNamespace() : Namespace 
+  inherits DocumentedElement::toElement {
+init {
+	result := self.definition.map toNamespace();
+}
+  // TODO: Handle namespace declarations.
+  /*
+  if self.namespace <> null then
+    let namespace =
+      if self.namespace.isUml() then
+        self.namespace.asUml().oclAsType(Namespace)
+      else
+        self.namespace.asAlf().oclAsType(NamespaceDefinition).map toNamespace()
+      endif 
+    in
+      if namespace.oclIsKindOf(Package) and result.oclIsKindOf(PackageableElement) then
+        namespace.oclAsType(Package).packagedElement += result.oclAsType(PackageableElement)
+      else if namespace.oclIsKindOf(Class) and result.oclIsKindOf(Classifier) then
+        namespace.oclAsType(Class).nestedClassifier += result.oclAsType(Classifier)
+      endif endif
+  endif;
+  */
+  elementImport := self._import[ElementImportReference]->map toElementImport();
+  packageImport := self._import[PackageImportReference]->map toPackageImport();
+  if self.annotation->notEmpty() then
+    addAsStereotyped(result, self.annotation.stereotypeName.pathName->asSet())
+  endif;
+}
+
+mapping ElementImportReference::toElementImport() : ElementImport
+  when { self.referent <> null and self.referent.isPackageableElement() } {
+  visibility := toVisibilityKind(self.visibility);
+	alias := self.alias;
+	importedElement := self.referent.toUml().oclAsType(PackageableElement)
+}
+
+mapping PackageImportReference::toPackageImport() : PackageImport
+  when { self.referent <> null and self.referent.isPackage() } {
+	visibility := toVisibilityKind(self.visibility);
+	importedPackage := self.referent.toUml().oclAsType(Package)
+}
+
+query toVisibilityKind(visibility : String) : VisibilityKind {
+  return 
+    if visibility = null then VisibilityKind::package
+    else if visibility = "private" then VisibilityKind::private
+    else if visibility = "protected" then VisibilityKind::protected
+    else if visibility = "public" then VisibilityKind::public
+    endif endif endif endif
+}
+
+// Members
+
+mapping Member::toNamedElement() : NamedElement
+  inherits DocumentedElement::toElement
+  when { not self.definition.oclIsKindOf(ClassifierTemplateParameter) } {
+init {
+  result := self.definition.map memberToNamedElement();
+}
+  visibility := toVisibilityKind(self.visibility);
+  if self.annotation->notEmpty() then
+    addAsStereotyped(result, self.annotation.stereotypeName.pathName->asSet())
+  endif;
+}
+
+abstract mapping MemberDefinition::toNamedElement() : NamedElement {
+  name := self.actualName();
+}
+
+mapping MemberDefinition::memberToNamedElement() : NamedElement
+  disjuncts 
+    PropertyDefinition::toProperty, 
+    OperationDefinition::toOperation, 
+    ReceptionDefinition::toReception, 
+    EnumerationLiteralName::toEnumerationLiteral,
+    NamespaceDefinition::toNamespace;
+
+mapping MemberDefinition::toFeature() : Feature
+  disjuncts PropertyDefinition::toProperty, OperationDefinition::toOperation, ReceptionDefinition::toReception;
+  
+// Namespace Definitions
+
+mapping NamespaceDefinition::toNamespace() : Namespace
+  disjuncts ClassifierDefinition::toNamespace, PackageDefinition::toPackage;
+  
+// Package Definitions
+
+mapping PackageDefinition::toPackage() : Package
+  inherits MemberDefinition::toNamedElement
+  when { not self.isStub } {
+  packagedElement := self.ownedMember->map toNamedElement()[PackageableElement];
+}
+
+// Classifier Definitions
+
+abstract mapping ClassifierDefinition::toClassifier() : Classifier
+  inherits MemberDefinition::toNamedElement
+  when { not self.isPrimitive and not self.isExternal } {
+//  log("[toClassifier] classifier=" + self.name.toString());
+  isAbstract := self.isAbstract;
+	generalization := self.specializationReferent->map toGeneralization();
+	var templateParameters := self.ownedMember.definition[ClassifierTemplateParameter];
+	if templateParameters->notEmpty() then
+	  ownedTemplateSignature := object RedefinableTemplateSignature {
+	  	ownedParameter := templateParameters->map toTemplateParameter();
+	  }
+	endif;
+//	end {
+//		log("result=" + result.toString());
+//	}
+}
+
+mapping ElementReference::toGeneralization() : Generalization
+  when { self.isClassifier() } {
+  general := self.toUml().oclAsType(Classifier);
+}
+
+mapping ClassifierDefinition::toNamespace() : Namespace 
+  disjuncts 
+    ClassifierTemplateParameter::toClassifier,
+    BoundClassifier::toClassifier,
+    ActiveClassDefinition::toClass,
+    ClassDefinition::toClass, 
+    DataTypeDefinition::toDataType,
+    AssociationDefinition::toAssociation,
+    EnumerationDefinition::toEnumeration,
+    SignalDefinition::toSignal,
+    ActivityDefinition::toActivity;
+    
+// Classifier Template Parameters
+
+mapping ClassifierTemplateParameter::toTemplateParameter() : uml::ClassifierTemplateParameter {
+  var constraint : Classifier := null;
+  if self.specializationReferent->notEmpty() then {
+    var referent := self.specializationReferent->any(true);
+    if referent <> null and referent.isClassifier() then
+      constraint := referent.toUml().oclAsType(Classifier)
+    endif
+  } endif;
+  ownedParameteredElement := 
+    if constraint = null then
+      object DataType{ }
+    else 
+      constraint.newInstance()
+    endif;
+  ownedParameteredElement.oclAsType(Classifier).name := self.actualName();
+  ownedParameteredElement.oclAsType(Classifier).isAbstract := true;
+  if constraint <> null then
+    constrainingClassifier += constraint
+  endif;
+  allowSubstitutable := false;
+}
+
+mapping ClassifierTemplateParameter::toClassifier() : uml::Classifier {
+init {
+	result := self.map toTemplateParameter().ownedParameteredElement.oclAsType(uml::Classifier);
+}
+}
+  
+// Bound Classifiers
+
+mapping BoundClassifier::toClassifier() : Classifier
+  inherits MemberDefinition::toNamedElement {
+init {
+  var template := self.template.toUml().oclAsType(Classifier);
+  // log("[toClassifier] bound classifier=" + self.name);
+  // log("template=" + template.toString());
+  result := template.newInstance();
+}
+  isAbstract := self.isAbstract;
+  var templateSignature := template.ownedTemplateSignature;
+  log("signature=" + templateSignature.toString());
+  if templateSignature <> null then
+    templateBinding := object uml::TemplateBinding {
+      signature := templateSignature;
+      parameterSubstitution := 
+        Sequence{1..self.actual->size().min(signature.parameter->size())}->collect(i |
+          object uml::TemplateParameterSubstitution {
+            formal := signature.parameter->at(i);
+            actual := self.actual->at(i).toUml().oclAsType(ParameterableElement);
+          }
+      );
+    }
+  endif
+}
+
+abstract helper Classifier::newInstance() : Classifier;
+helper Class::newInstance() : Classifier { return object Class { isActive := self.isActive } }
+helper DataType::newInstance() : Classifier { return object DataType {} }
+helper Enumeration::newInstance() : Classifier { return object Enumeration {} }
+helper Association::newInstance() : Classifier { return object Association {} }
+helper Signal::newInstance() : Classifier { return object Signal {} }
+helper Activity::newInstance() : Classifier { return object Activity {} }
+
+// Class Definitions
+
+mapping ClassDefinition::toClass() : Class
+  inherits ClassifierDefinition::toClassifier 
+  when { not self.isStub } {
+  var members = self.ownedMember->map toNamedElement();
+  
+  ownedAttribute := members[Property];
+  ownedOperation := members[Operation];
+  ownedBehavior := result.ownedOperation.method;
+  nestedClassifier := members[Classifier];
+  
+  ownedAttribute[defaultValue <> null]->forEach(p) {
+    var behavior := p.defaultValue.oclAsType(OpaqueExpression).behavior;
+    behavior.name := uniqueName(p.name + "$defaultValue", result);
+    ownedBehavior += behavior;
+  };
+  ownedOperation.method->forEach(m) {
+		m.name := uniqueName(m.specification.name + "$method", result);
+  };
+  
+  // Create initialization flag.
+  var initializationFlagName := uniqueName(self.actualName() + "$initializationFlag", result);
+  ownedAttribute += object Property {
+  	name := initializationFlagName;
+  	lower := 0;
+  	upper := 1;
+  	visibility := VisibilityKind::protected;
+  };
+  
+  // Create initialization operation.
+  var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
+  var initializationMethod := createInitializationMethod(result, initializationFlagName, initializationOperationName);
+  ownedOperation += object Operation {
+  	name := initializationOperationName;
+  	visibility := VisibilityKind::protected;
+  	method := initializationMethod;
+  };
+  ownedBehavior += initializationMethod;
+  
+  self.ownedMember.definition[OperationDefinition]->select(not isAbstract and isConstructor)->
+    mapConstructor(initializationFlagName, initializationOperationName);
+    
+  if not self.ownedMember.definition[OperationDefinition]->exists(isConstructor) then {
+  
+    // Add default constructor.
+  	var activity = object Activity {
+  		name := uniqueName(self.actualName() + "$method", result);
+      ownedParameter := object Parameter {
+        type := result;
+        lower := 1;
+        upper := 1;
+        direction := ParameterDirectionKind::_return;
+      };
+  	};
+    ownedBehavior += activity;
+  	addDefinition(activity, "{\n\tthis." + initializationOperationName.toName() + "();\n\treturn this;\n}");
+    var operation := object Operation {
+      name := self.actualName();
+      method := activity;
+      ownedParameter := object Parameter {
+      	type := result;
+      	lower := 1;
+      	upper := 1;
+      	direction := ParameterDirectionKind::_return;
+      };
+    };
+  	ownedOperation += operation;
+  	addAsStereotyped(operation, Set{"Create"});
+  	
+	} endif;
+	
+  if not self.ownedMember.definition[OperationDefinition]->exists(isDestructor) then {
+  
+    // Add default destructor.
+    var activity = object Activity {
+      name := uniqueName("destroy$method", result);
+    };
+    ownedBehavior += activity;
+    addDefinition(activity, "{ }");
+    var operation := object Operation {
+      name := "destroy";
+      method := activity;
+    };
+    ownedOperation += operation;
+    addAsStereotyped(operation, Set{"Destroy"});
+    
+  } endif;    
+  
+}
+
+query uniqueName(name : String, namespace : Namespace) : String {
+  var i := 1;
+  return while (uniqueName := name + "$1"; namespace.ownedMember.name->exists(n | n = uniqueName)) {
+    i := i + 1;
+    uniqueName := name + "$" + i.toString();
+  };
+}
+
+query createInitializationMethod(class_ : Class, flagName : String, operationName: String) : Activity {
+  var body := "activity " + operationName.toName() + "(){\n  if (this." + flagName.toName() + " == null) {\n";
+  
+  // Add initialization of superclass properties.
+  class_.general.oclAsType(Class)->forEach(superclass) {
+  	var initializationOperation := initializationOperationFor(superclass);
+  	if initializationOperation <> null then {
+  	  body := body + "    super." + adjustName(superclass.qualifiedName) +
+  	    "::" + initializationOperation.alfName() + "();\n";
+  	} endif;
+  };
+  
+  // Add initialization of each property that has an initializer.
+  class_.ownedAttribute->forEach(attribute) {
+  	if attribute.defaultValue <> null then {
+  	  var behavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
+  	  body := body + "    this." + attribute.alfName() + " = " + behavior.alfName() + "();\n";
+  	} endif;
+  };
+  
+  body := body + "    this." + flagName.toName() + " = true;\n  }\n}\n";
+	var activity = object Activity {
+	  name := operationName;
+	  visibility := VisibilityKind::protected;
+	};
+	addDefinition(activity, body);
+	return activity;
+}
+
+helper adjustName(qualifiedName : String) : String {
+  return qualifiedName.tokenize("::")->iterate(name; adjustedName : String = "" |
+    if adjustedName = "" then name.toName()
+    else adjustedName + "::" + name.toName()
+    endif
+  )
+}
+
+query initializationOperationFor(class_ : Class) : Operation {
+	var operation : Operation := null;
+  var initializerName := class_.name + "$initialization$";
+  var n = initializerName.size();
+	class_.ownedOperation->forEach(ownedOperation) {
+		var operationName := ownedOperation.name;
+		var m := operationName.size();
+		if operationName <> null and m > n and
+		   operationName.substring(1, n) = initializerName and
+		   operationName.substring(n+1, m).matches("[0-9]+") then {
+		   operation := ownedOperation;
+		} endif;
+	};
+	return operation;
+}
+
+// Active Class Definitions
+
+mapping ActiveClassDefinition::toClass() : Class
+  inherits ClassDefinition::toClass
+  when { not self.isStub } {
+  isActive := true;
+  ownedReception := self.ownedMember->map toNamedElement()[Reception];
+  ownedReception += self.ownedMember[definition.oclIsKindOf(SignalReceptionDefinition)]->map toReception();
+  classifierBehavior := self.classifierBehavior.map toActivity();
+  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
+  classifierBehavior.visibility := VisibilityKind::private;
+  ownedBehavior += classifierBehavior // Eclipse implmentation only
+}
+
+// Data Type Definitions
+
+mapping DataTypeDefinition::toDataType() : DataType
+  inherits ClassifierDefinition::toClassifier
+  when { not self.isStub and not self.isPrimitive } {
+  ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+}
+
+mapping DataTypeDefinition::toPrimitive() : PrimitiveType
+  inherits ClassifierDefinition::toNamespace
+  when { self.isPrimitive } {
+	// TODO: Handle primitive types.
+}
+  
+// Association Definitions
+
+mapping AssociationDefinition::toAssociation() : Association
+  inherits ClassifierDefinition::toClassifier
+  when { not self.isStub } {
+  ownedEnd := self.ownedMember->map toNamedElement()[Property];
+}
+
+// Enumeration Definitions
+
+mapping EnumerationDefinition::toEnumeration() : Enumeration
+  inherits ClassifierDefinition::toClassifier 
+  when { not self.isStub } {
+  ownedLiteral := self.ownedMember->map toNamedElement()[EnumerationLiteral];
+}
+
+mapping EnumerationLiteralName::toEnumerationLiteral() : EnumerationLiteral
+  inherits MemberDefinition::toNamedElement;
+
+// Signal Definitions and Signal Reception Definitions
+
+mapping SignalDefinition::toSignal() : Signal
+  inherits ClassifierDefinition::toClassifier 
+  when { not self.isStub } {
+  ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+}
+
+mapping Member::toReception() : Reception
+  when { self.definition.oclIsKindOf(SignalReceptionDefinition) and 
+         not self.definition.isStub } {
+  visibility := toVisibilityKind(self.visibility);
+  signal := self.definition.resolveone(Signal);
+  name := result.signal.name;
+}
+
+// Activity Definitions
+
+mapping ActivityDefinition::toActivity() : Activity
+  inherits ClassifierDefinition::toClassifier {
+init {
+  var parameters := self.parameters();
+  var returnParameter := self.returnParameter();
+  if returnParameter <> null then
+    parameters += returnParameter
+  endif;
+  result :=
+    if self.isStub then
+      object Activity {
+      	ownedParameter := parameters->map toParameter();
+      }
+    else
+  	  self.body.map toActivity(parameters->map toParameter())
+  	endif;	
+}
+}
+
+// Typed Element Definitions
+
+abstract mapping TypedElementDefinition::toTypedElement() : TypedElement {
+  type := 
+   if self.type = null or not self.type.isClassifier() then null
+   else self.type.toUml().oclAsType(Classifier)
+   endif;
+}
+
+abstract mapping TypedElementDefinition::toMultiplicityElement() : MultiplicityElement {
+	lower := self.lower;
+	upper := self.upper;
+	
+	if self.isSequence then {
+		isOrdered := true;
+		isUnique := false;
+	} else {
+		isOrdered := self.isOrdered;
+		isUnique := not self.isNonunique;
+	} endif;
+}
+
+mapping TypedElementDefinition::toParameter() : Parameter
+  merges TypedElementDefinition::toTypedElement, TypedElementDefinition::toMultiplicityElement;
+  
+// Formal Parameters
+
+mapping FormalParameter::toParameter() : Parameter
+  inherits MemberDefinition::toNamedElement {
+init {
+	result := self.typePart.map toParameter();
+}
+	direction := toParameterDirectionKind(self.direction);
+}
+
+query toParameterDirectionKind(direction : String) : ParameterDirectionKind {
+  return
+   if direction = "in" then ParameterDirectionKind::_in
+   else if direction = "out" then ParameterDirectionKind::_out
+   else if direction = "inout" then ParameterDirectionKind::_inout
+   else if direction = "return" then ParameterDirectionKind::_return
+   endif endif endif endif;
+}
+
+mapping TypedElementDefinition::toProperty() : Property
+  merges TypedElementDefinition::toTypedElement, TypedElementDefinition::toMultiplicityElement;
+
+// Property Definitions
+
+mapping PropertyDefinition::toProperty() : Property
+  inherits MemberDefinition::toNamedElement {
+	init {
+		result := self.typePart.map toProperty();
+	}
+	aggregation := 
+		if self.isComposite then AggregationKind::composite
+		else AggregationKind::none endif;
+  if self.initializer <> null then {
+  	 var expression := self.initializer.map toOpaqueExpression().oclAsType(OpaqueExpression);
+  	 expression.behavior.ownedParameter := object Parameter {
+  	   direction := ParameterDirectionKind::_return;
+       type := result.type;
+       lowerValue := result.lowerValue.deepclone().oclAsType(ValueSpecification);
+       upperValue := result.upperValue.deepclone().oclAsType(ValueSpecification);
+       isOrdered := result.isOrdered;
+       isUnique := result.isUnique;  	 	
+  	 };
+  	 defaultValue := expression;
+  } endif;
+}
+
+mapping Expression::toOpaqueExpression() : OpaqueExpression {
+  behavior := self.map toActivity();
+}
+
+// Operation Definitions
+
+mapping OperationDefinition::toOperation() : Operation
+  inherits MemberDefinition::toNamedElement {
+  isAbstract := self.isAbstract;
+  ownedParameter := self.parameters()->map toParameter();
+  var returnParameter := self.returnParameter();
+  if returnParameter <> null then
+    ownedParameter += returnParameter.map toParameter()
+  endif;
+  if not self.isAbstract then
+    if self.isStub or self.isConstructor then
+      method := object Activity {
+      	ownedParameter := result.ownedParameter->deepclone()->oclAsType(Parameter);
+      	visibility := VisibilityKind::protected;
+      }
+    else
+      method := self.body.map toActivity(result.ownedParameter->deepclone()->oclAsType(Parameter))
+    endif
+  endif;
+}
+
+helper OperationDefinition::mapConstructor(initializationFlagName : String, initializationOperationName : String) {
+  var i := self.indexOfBodyStatement();
+  var superInvocationSegment := 
+    if i = 1 then ""
+    else 
+      concat(self.body.statement->subOrderedSet(1, i-1).serializeMethodCall()) + "\n"
+    endif;
+  var bodySegment := 
+    if i > self.body.statement->size() then ""
+    else
+      concat(self.body.statement->
+          subOrderedSet(i, self.body.statement->size()).serialize()
+      ) + "\n"
+    endif;
+  var operation := self.resolveone(Operation);
+  addDefinition(
+    operation.method->any(true).oclAsType(Activity), 
+    "{\nif (this." + initializationFlagName.toName() + " == null) {\n" +
+    superInvocationSegment + 
+    "this." + initializationOperationName.toName() + "();\n" +
+    bodySegment + "}\nreturn this;\n}");
+}
+
+
+helper AnnotatedStatement::serializeMethodCall() : String {
+  var expression := self.statement.oclAsType(ExpressionStatement).
+    expression.oclAsType(SuperInvocationExpression);
+  // log("[serializeMethodCall] expression=" + expression.serialize());
+  // log(" expression.referent=" + expression.referent.name());
+  return
+    concat(self.statement.annotation().serialize()->asSequence()) +
+    adjustName(expression.referent.toUml().oclAsType(Operation).method->any(true).qualifiedName) + 
+        expression.tuple.serialize() + "; "
+}
+
+
+helper concat(strings : Sequence(String)) : String {
+	return strings->iterate(string; s : String = "" | s + string + " ");
+}
+
+mapping Block::toActivity(ownedParameters : Sequence(Parameter)) : Activity {
+  ownedParameter := ownedParameters;
+  visibility := VisibilityKind::protected;
+  addDefinition(result, self.serialize());
+}
+
+helper OperationDefinition::hasAlternativeConstructorCall() : Boolean {
+	return self.body <> null and self.body.statement->notEmpty() and
+	let statement = self.body.statement->at(1) in
+	  statement.oclIsKindOf(ExpressionStatement) and
+	  let expression = statement.oclAsType(ExpressionStatement).expression in
+	    expression.oclIsKindOf(FeatureInvocationExpression) and
+	    expression.oclAsType(FeatureInvocationExpression).referent.isConstructor();
+}
+
+helper OperationDefinition::indexOfBodyStatement() : Integer {
+  // log("[indexOfBodyStatement] operation=" + self.name);
+	return 
+    while (i := 1; i <= self.body.statement->size() and 
+	        self.body.statement->at(i).statement.isSuperConstructorInvocation()) {
+	    // log("  i=" + i.toString() + ",  statement=" + self.body.statement->at(i).statement.serialize());
+		  i := i + 1;
+	  }
+}
+
+helper Statement::isSuperConstructorInvocation() : Boolean {
+  // log("[isSuperConstructorInvocation] statement=" + self.serialize());
+	return false;
+}
+
+helper ExpressionStatement::isSuperConstructorInvocation() : Boolean {
+  // log("[isSuperConstructorInvocation] expressionStatement=" + self.serialize());
+  // log(" isSuperInvocationExpresion=" + self.expression.oclIsKindOf(SuperInvocationExpression).toString());
+	var is := let expression = self.expression in
+	  expression.oclIsKindOf(SuperInvocationExpression) and
+	  let referent = expression.oclAsType(SuperInvocationExpression).referent() in
+	   referent<>null and referent.isConstructor();
+	// log("  isSuperConstructorInvocation=" + is.toString());
+	return is;
+}
+
+// Reception Definitions
+
+mapping ReceptionDefinition::toReception() : Reception
+  inherits MemberDefinition::toNamedElement {
+  name := self.signalName.unqualifiedName.toName();
+  if self.signal <> null then
+  	let sig = self.signal.toUml() in
+    	if sig.oclIsKindOf(Signal) then 
+    	  signal := sig.oclAsType(Signal) 
+    	endif
+	endif
+}
+

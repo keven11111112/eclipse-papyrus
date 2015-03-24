@@ -47,8 +47,7 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 	}
 
 
-	@Override
-	public void completeNameExpression_Path(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void completeNameExpression_Name(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 
 		AppliedStereotypeProperty appliedStereotypeProperty = StereotypePropertyEditorConfigurationContribution.getAppliedStereoProperty();
 
@@ -93,12 +92,14 @@ public class AppliedStereotypePropertyProposalProvider extends AbstractAppliedSt
 		}
 	}
 
-	@Override
-	public void completeNameExpression_Id(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
-		// acceptor.accept(CompletionProposalUtils.createCompletionProposal("NameExpression_Id", "NameExpression_Id", context)) ;
-		super.completeNameExpression_Id(model, assignment, context, acceptor);
-		// completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
-	}
+	/*
+	 * @Override
+	 * public void completeNameExpression_Id(EObject model, Assignment assignment, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	 * // acceptor.accept(CompletionProposalUtils.createCompletionProposal("NameExpression_Id", "NameExpression_Id", context)) ;
+	 * super.completeNameExpression_Id(model, assignment, context, acceptor);
+	 * // completeRuleCall(((RuleCall)assignment.getTerminal()), context, acceptor);
+	 * }
+	 */
 
 	public void completeBooleanKeyWord(Keyword keyword, ContentAssistContext contentAssistContext, ICompletionProposalAcceptor acceptor, AppliedStereotypeProperty appliedStereotypeProperty) {
 

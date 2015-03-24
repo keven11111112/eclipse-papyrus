@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_JlpS4MOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Package" xmi:id="_JlzD4MOTEeSiR-ar9ioVjA" name="ModelLibraryTest">
+      <packagedElement xmi:type="uml:Class" xmi:id="_JlzD4cOTEeSiR-ar9ioVjA" name="C" visibility="public">
+        <ownedAttribute xmi:id="_JlzD6sOTEeSiR-ar9ioVjA" name="C$initializationFlag$1" visibility="protected">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JlzD68OTEeSiR-ar9ioVjA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JlzD7MOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_JlzD5sOTEeSiR-ar9ioVjA" name="C$method$1" visibility="protected" specification="_JlzD4sOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_JlzD8cOTEeSiR-ar9ioVjA" annotatedElement="_JlzD5sOTEeSiR-ar9ioVjA">
+            <body>activity 'C$method$1'(): C {
+if (this.'C$initializationFlag$1' == null) {
+this.'C$initialization$1'();
+}
+return this;
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_JlzD58OTEeSiR-ar9ioVjA" name="" type="_JlzD4cOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JlzD6MOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JlzD6cOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_JlzD7cOTEeSiR-ar9ioVjA" name="C$initialization$1" visibility="protected" specification="_JlzD7sOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_JlzD8sOTEeSiR-ar9ioVjA" annotatedElement="_JlzD7cOTEeSiR-ar9ioVjA">
+            <body>activity 'C$initialization$1'(){
+  if (this.'C$initializationFlag$1' == null) {
+    this.'C$initializationFlag$1' = true;
+  }
+}
+</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_JlzD78OTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_JlzD8MOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_JlzD88OTEeSiR-ar9ioVjA" annotatedElement="_JlzD78OTEeSiR-ar9ioVjA">
+            <body>activity 'destroy$method$1'() { }</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_JlzD4sOTEeSiR-ar9ioVjA" name="C" visibility="public" method="_JlzD5sOTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_JlzD48OTEeSiR-ar9ioVjA" name="" type="_JlzD4cOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_JlzD5MOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_JlzD5cOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_JlzD7sOTEeSiR-ar9ioVjA" name="C$initialization$1" visibility="protected" method="_JlzD7cOTEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_JlzD8MOTEeSiR-ar9ioVjA" name="destroy" method="_JlzD78OTEeSiR-ar9ioVjA"/>
+      </packagedElement>
+    </packagedElement>
+    <profileApplication xmi:id="_JlpS4cOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_JlpS4sOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_JlpS48OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_JlpS5MOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:ModelLibrary xmi:id="_JlzD9MOTEeSiR-ar9ioVjA" base_Package="_JlzD4MOTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_JlzD9cOTEeSiR-ar9ioVjA" base_BehavioralFeature="_JlzD8MOTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_JlzD9sOTEeSiR-ar9ioVjA" base_BehavioralFeature="_JlzD4sOTEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_JlzD98OTEeSiR-ar9ioVjA" base_Comment="_JlzD8cOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_JlzD-MOTEeSiR-ar9ioVjA" base_Comment="_JlzD8sOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_JlzD-cOTEeSiR-ar9ioVjA" base_Comment="_JlzD88OTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

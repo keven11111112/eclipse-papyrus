@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_NIMMkMOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_NYX9oMOTEeSiR-ar9ioVjA" name="TemplateBindingTest" classifierBehavior="_NYYk0cOTEeSiR-ar9ioVjA" isActive="true">
+      <ownedAttribute xmi:id="_NYYkvMOTEeSiR-ar9ioVjA" name="c" visibility="public" type="_NYYkv8OTEeSiR-ar9ioVjA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYkvcOTEeSiR-ar9ioVjA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYkvsOTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_NYYkwsOTEeSiR-ar9ioVjA" name="TemplateBindingTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYkw8OTEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYkxMOTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkxcOTEeSiR-ar9ioVjA" name="TemplateBindingTest$initialization$1" visibility="protected" specification="_NYYkxsOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_NYYk2MOTEeSiR-ar9ioVjA" annotatedElement="_NYYkxcOTEeSiR-ar9ioVjA">
+          <body>activity 'TemplateBindingTest$initialization$1'(){
+  if (this.'TemplateBindingTest$initializationFlag$1' == null) {
+    this.'TemplateBindingTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkx8OTEeSiR-ar9ioVjA" name="TemplateBindingTest$method$1" specification="_NYYky8OTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_NYYk0sOTEeSiR-ar9ioVjA" annotatedElement="_NYYkx8OTEeSiR-ar9ioVjA">
+          <body>activity 'TemplateBindingTest$method$1'(): TemplateBindingTest {
+	this.'TemplateBindingTest$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_NYYkyMOTEeSiR-ar9ioVjA" type="_NYX9oMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYkycOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYkysOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkz8OTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_NYYk0MOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_NYYk1cOTEeSiR-ar9ioVjA" annotatedElement="_NYYkz8OTEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYk0cOTEeSiR-ar9ioVjA" name="TemplateBindingTest$behavior$1" visibility="private">
+        <ownedComment xmi:id="_NYYk1MOTEeSiR-ar9ioVjA" annotatedElement="_NYYk0cOTEeSiR-ar9ioVjA">
+          <body>activity 'TemplateBindingTest$behavior$1'() {
+	this.c = new C&lt; Integer >();
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_NYYkxsOTEeSiR-ar9ioVjA" name="TemplateBindingTest$initialization$1" visibility="protected" method="_NYYkxcOTEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_NYYky8OTEeSiR-ar9ioVjA" name="TemplateBindingTest" method="_NYYkx8OTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_NYYkzMOTEeSiR-ar9ioVjA" type="_NYX9oMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYkzcOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYkzsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_NYYk0MOTEeSiR-ar9ioVjA" name="destroy" method="_NYYkz8OTEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_NYX9ocOTEeSiR-ar9ioVjA" name="C" visibility="package">
+        <ownedTemplateSignature xmi:type="uml:RedefinableTemplateSignature" xmi:id="_NYX9osOTEeSiR-ar9ioVjA" parameter="_NYX9o8OTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:type="uml:ClassifierTemplateParameter" xmi:id="_NYX9o8OTEeSiR-ar9ioVjA" parameteredElement="_NYX9pMOTEeSiR-ar9ioVjA" allowSubstitutable="false">
+            <ownedParameteredElement xmi:type="uml:DataType" xmi:id="_NYX9pMOTEeSiR-ar9ioVjA" name="T" templateParameter="_NYX9o8OTEeSiR-ar9ioVjA" isAbstract="true"/>
+          </ownedParameter>
+        </ownedTemplateSignature>
+        <ownedAttribute xmi:id="_NYYktcOTEeSiR-ar9ioVjA" name="C$initializationFlag$1" visibility="protected">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYktsOTEeSiR-ar9ioVjA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYkt8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkscOTEeSiR-ar9ioVjA" name="C$method$1" visibility="protected" specification="_NYX9pcOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_NYYk1sOTEeSiR-ar9ioVjA" annotatedElement="_NYYkscOTEeSiR-ar9ioVjA">
+            <body>activity 'C$method$1'(): '$$TemplateBindingTest$C__TemplateBindingTest$C$T__' {
+if (this.'C$initializationFlag$1' == null) {
+this.'C$initialization$1'();
+}
+return this;
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_NYYkssOTEeSiR-ar9ioVjA" name="" type="_NYX9qcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYYks8OTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYYktMOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkuMOTEeSiR-ar9ioVjA" name="C$initialization$1" visibility="protected" specification="_NYYkucOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_NYYk08OTEeSiR-ar9ioVjA" annotatedElement="_NYYkuMOTEeSiR-ar9ioVjA">
+            <body>activity 'C$initialization$1'(){
+  if (this.'C$initializationFlag$1' == null) {
+    this.'C$initializationFlag$1' = true;
+  }
+}
+</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_NYYkusOTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_NYYku8OTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_NYYk18OTEeSiR-ar9ioVjA" annotatedElement="_NYYkusOTEeSiR-ar9ioVjA">
+            <body>activity 'destroy$method$1'() { }</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_NYX9pcOTEeSiR-ar9ioVjA" name="C" visibility="public" method="_NYYkscOTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_NYX9psOTEeSiR-ar9ioVjA" name="" type="_NYX9qcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_NYX9p8OTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_NYX9qMOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_NYYkucOTEeSiR-ar9ioVjA" name="C$initialization$1" visibility="protected" method="_NYYkuMOTEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_NYYku8OTEeSiR-ar9ioVjA" name="destroy" method="_NYYkusOTEeSiR-ar9ioVjA"/>
+      </nestedClassifier>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NYX9qcOTEeSiR-ar9ioVjA" name="$$TemplateBindingTest$C__TemplateBindingTest$C$T__">
+      <templateBinding xmi:id="_NYX9qsOTEeSiR-ar9ioVjA" signature="_NYX9osOTEeSiR-ar9ioVjA">
+        <parameterSubstitution xmi:id="_NYYksMOTEeSiR-ar9ioVjA" actual="_NYX9pMOTEeSiR-ar9ioVjA" formal="_NYX9o8OTEeSiR-ar9ioVjA"/>
+      </templateBinding>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_NYYkv8OTEeSiR-ar9ioVjA" name="$$TemplateBindingTest$C__PrimitiveTypes$Integer__">
+      <templateBinding xmi:id="_NYYkwMOTEeSiR-ar9ioVjA" signature="_NYX9osOTEeSiR-ar9ioVjA">
+        <parameterSubstitution xmi:id="_NYYkwcOTEeSiR-ar9ioVjA" formal="_NYX9o8OTEeSiR-ar9ioVjA">
+          <actual xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+        </parameterSubstitution>
+      </templateBinding>
+    </packagedElement>
+    <profileApplication xmi:id="_NIMMkcOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_NIMMksOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_NIMMk8OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_NIMMlMOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Create xmi:id="_NYYk2cOTEeSiR-ar9ioVjA" base_BehavioralFeature="_NYX9pcOTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_NYYk2sOTEeSiR-ar9ioVjA" base_BehavioralFeature="_NYYky8OTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_NYYk28OTEeSiR-ar9ioVjA" base_BehavioralFeature="_NYYk0MOTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_NYYk3MOTEeSiR-ar9ioVjA" base_BehavioralFeature="_NYYku8OTEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk3cOTEeSiR-ar9ioVjA" base_Comment="_NYYk0sOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk3sOTEeSiR-ar9ioVjA" base_Comment="_NYYk08OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk38OTEeSiR-ar9ioVjA" base_Comment="_NYYk1MOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk4MOTEeSiR-ar9ioVjA" base_Comment="_NYYk1cOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk4cOTEeSiR-ar9ioVjA" base_Comment="_NYYk1sOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk4sOTEeSiR-ar9ioVjA" base_Comment="_NYYk18OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_NYYk48OTEeSiR-ar9ioVjA" base_Comment="_NYYk2MOTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

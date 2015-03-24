@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_J8dQYMOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_KGPegMOTEeSiR-ar9ioVjA" name="SelfReferenceTest">
+      <ownedAttribute xmi:id="_KGPegcOTEeSiR-ar9ioVjA" name="self" visibility="public" type="_KGPegMOTEeSiR-ar9ioVjA">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KGPegsOTEeSiR-ar9ioVjA" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KGPeg8OTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:id="_KGPehMOTEeSiR-ar9ioVjA" name="SelfReferenceTest$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KGPehcOTEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KGPehsOTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_KGPeh8OTEeSiR-ar9ioVjA" name="SelfReferenceTest$initialization$1" visibility="protected" specification="_KGPeiMOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_KGPek8OTEeSiR-ar9ioVjA" annotatedElement="_KGPeh8OTEeSiR-ar9ioVjA">
+          <body>activity 'SelfReferenceTest$initialization$1'(){
+  if (this.'SelfReferenceTest$initializationFlag$1' == null) {
+    this.'SelfReferenceTest$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_KGPeicOTEeSiR-ar9ioVjA" name="SelfReferenceTest$method$1" specification="_KGPejcOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_KGPelcOTEeSiR-ar9ioVjA" annotatedElement="_KGPeicOTEeSiR-ar9ioVjA">
+          <body>activity 'SelfReferenceTest$method$1'(): SelfReferenceTest {
+	this.'SelfReferenceTest$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_KGPeisOTEeSiR-ar9ioVjA" type="_KGPegMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KGPei8OTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KGPejMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_KGPekcOTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_KGPeksOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_KGPelMOTEeSiR-ar9ioVjA" annotatedElement="_KGPekcOTEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_KGPeiMOTEeSiR-ar9ioVjA" name="SelfReferenceTest$initialization$1" visibility="protected" method="_KGPeh8OTEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_KGPejcOTEeSiR-ar9ioVjA" name="SelfReferenceTest" method="_KGPeicOTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_KGPejsOTEeSiR-ar9ioVjA" type="_KGPegMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_KGPej8OTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_KGPekMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_KGPeksOTEeSiR-ar9ioVjA" name="destroy" method="_KGPekcOTEeSiR-ar9ioVjA"/>
+    </packagedElement>
+    <profileApplication xmi:id="_J8dQYcOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_J8dQYsOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_J8dQY8OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_J8dQZMOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Destroy xmi:id="_KGPelsOTEeSiR-ar9ioVjA" base_BehavioralFeature="_KGPeksOTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_KGPel8OTEeSiR-ar9ioVjA" base_BehavioralFeature="_KGPejcOTEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_KGPemMOTEeSiR-ar9ioVjA" base_Comment="_KGPek8OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_KGPemcOTEeSiR-ar9ioVjA" base_Comment="_KGPelMOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_KGPemsOTEeSiR-ar9ioVjA" base_Comment="_KGPelcOTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>

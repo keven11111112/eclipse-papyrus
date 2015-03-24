@@ -1,0 +1,273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ActionLanguage="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:standard="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.omg.org/spec/ALF/20120827/ActionLanguage-Profile pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ">
+  <uml:Model xmi:id="_LmdUEMOTEeSiR-ar9ioVjA" name="Model">
+    <packagedElement xmi:type="uml:Class" xmi:id="_MKpmQMOTEeSiR-ar9ioVjA" name="Statements_Conditional" classifierBehavior="_MKqNisOTEeSiR-ar9ioVjA" isActive="true">
+      <ownedComment xmi:id="_MKqNi8OTEeSiR-ar9ioVjA" annotatedElement="_MKpmQMOTEeSiR-ar9ioVjA">
+        <body>&#xD;
+ * Test if and switch statements.&#xD;
+ *</body>
+      </ownedComment>
+      <ownedAttribute xmi:id="_MKqNe8OTEeSiR-ar9ioVjA" name="Statements_Conditional$initializationFlag$1" visibility="protected">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNfMOTEeSiR-ar9ioVjA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNfcOTEeSiR-ar9ioVjA" value="1"/>
+      </ownedAttribute>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKqNaMOTEeSiR-ar9ioVjA" name="test$method$1" visibility="protected" specification="_MKqNVcOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_MKqNlMOTEeSiR-ar9ioVjA" annotatedElement="_MKqNaMOTEeSiR-ar9ioVjA">
+          <body>activity 'test$method$1'(out condition1: Condition, out condition2: Condition, out condition3: Condition, out year: Integer, out month: Integer, out numDays: Integer) {
+	reading = 150;
+	threshold = 10;
+	safeLimit = 100;
+	criticalLimit = 200;
+	errorLimit = 1000;
+	sensorId = 1;
+	monitor = new Monitor();
+	year = 2012;
+	if (reading > threshold) {
+		monitor.raiseAlarm(sensorId);
+	}
+	//@determinate @assured&#xD;
+	if (reading &lt;= safeLimit) {
+		condition1 = Condition::normal;
+	}
+	or if (reading > safeLimit &amp;&amp; reading &lt;= criticalLimit) {
+		condition1 = Condition::alert;
+	}
+	or if (reading > criticalLimit) {
+		condition1 = Condition::critical;
+	}
+	reading = 500;
+	if (reading &lt;= safeLimit) {
+		condition2 = Condition::normal;
+	}
+	else if (reading &lt;= criticalLimit) {
+		condition2 = Condition::alert;
+	}
+	else {
+		condition2 = Condition::critical;
+	}
+	if (reading &lt;= safeLimit) {
+		condition3 = Condition::normal;
+	}
+	else if (reading > safeLimit &amp;&amp; reading &lt;= criticalLimit) {
+		condition3 = Condition::alert;
+	}
+	or if (reading > criticalLimit &amp;&amp; reading &lt; errorLimit) {
+		condition3 = Condition::critical;
+	}
+	else {
+		condition3 = Condition::error;
+	}
+	switch (year) { case 2012: month = 2;
+	default: month = 3;
+	} switch (month) { case 1: case 3: case 5: case 7: case 8: case 10: case
+	12: numDays = 31;
+	case 4: case 6: case 9: case 11: numDays = 30;
+	case 2: if (year % 4 == 0 &amp;&amp; ! (year % 100 == 0) || year % 400 == 0) {
+		numDays = 29;
+	}
+	else {
+		numDays = 28;
+	}
+	default: WriteLine(&quot;Invalid month.&quot;);
+	numDays = 0;
+	} }</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_MKqNacOTEeSiR-ar9ioVjA" name="condition1" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNasOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNa8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNbMOTEeSiR-ar9ioVjA" name="condition2" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNbcOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNbsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNb8OTEeSiR-ar9ioVjA" name="condition3" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNcMOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNccOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNcsOTEeSiR-ar9ioVjA" name="year" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNc8OTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNdMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNdcOTEeSiR-ar9ioVjA" name="month" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNdsOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNd8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNeMOTEeSiR-ar9ioVjA" name="numDays" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNecOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNesOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKqNfsOTEeSiR-ar9ioVjA" name="Statements_Conditional$initialization$1" visibility="protected" specification="_MKqNf8OTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_MKqNjMOTEeSiR-ar9ioVjA" annotatedElement="_MKqNfsOTEeSiR-ar9ioVjA">
+          <body>activity 'Statements_Conditional$initialization$1'(){
+  if (this.'Statements_Conditional$initializationFlag$1' == null) {
+    this.'Statements_Conditional$initializationFlag$1' = true;
+  }
+}
+</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKqNgMOTEeSiR-ar9ioVjA" name="Statements_Conditional$method$1" specification="_MKqNhMOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_MKqNjsOTEeSiR-ar9ioVjA" annotatedElement="_MKqNgMOTEeSiR-ar9ioVjA">
+          <body>activity 'Statements_Conditional$method$1'(): Statements_Conditional {
+	this.'Statements_Conditional$initialization$1'();
+	return this;
+}</body>
+        </ownedComment>
+        <ownedParameter xmi:id="_MKqNgcOTEeSiR-ar9ioVjA" type="_MKpmQMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNgsOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNg8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKqNiMOTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_MKqNicOTEeSiR-ar9ioVjA">
+        <ownedComment xmi:id="_MKqNkcOTEeSiR-ar9ioVjA" annotatedElement="_MKqNiMOTEeSiR-ar9ioVjA">
+          <body>activity 'destroy$method$1'() { }</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKqNisOTEeSiR-ar9ioVjA" name="Statements_Conditional$behavior$1" visibility="private">
+        <ownedComment xmi:id="_MKqNjcOTEeSiR-ar9ioVjA" annotatedElement="_MKqNisOTEeSiR-ar9ioVjA">
+          <body>activity 'Statements_Conditional$behavior$1'() {
+}</body>
+        </ownedComment>
+      </ownedBehavior>
+      <ownedOperation xmi:id="_MKqNVcOTEeSiR-ar9ioVjA" name="test" visibility="package" method="_MKqNaMOTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_MKqNVsOTEeSiR-ar9ioVjA" name="condition1" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNV8OTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNWMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNWcOTEeSiR-ar9ioVjA" name="condition2" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNWsOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNW8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNXMOTEeSiR-ar9ioVjA" name="condition3" type="_MKqNUMOTEeSiR-ar9ioVjA" direction="out">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNXcOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNXsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNX8OTEeSiR-ar9ioVjA" name="year" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNYMOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNYcOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNYsOTEeSiR-ar9ioVjA" name="month" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNY8OTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNZMOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+        <ownedParameter xmi:id="_MKqNZcOTEeSiR-ar9ioVjA" name="numDays" direction="out">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNZsOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNZ8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_MKqNf8OTEeSiR-ar9ioVjA" name="Statements_Conditional$initialization$1" visibility="protected" method="_MKqNfsOTEeSiR-ar9ioVjA"/>
+      <ownedOperation xmi:id="_MKqNhMOTEeSiR-ar9ioVjA" name="Statements_Conditional" method="_MKqNgMOTEeSiR-ar9ioVjA">
+        <ownedParameter xmi:id="_MKqNhcOTEeSiR-ar9ioVjA" type="_MKpmQMOTEeSiR-ar9ioVjA" direction="return">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKqNhsOTEeSiR-ar9ioVjA" value="1"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKqNh8OTEeSiR-ar9ioVjA" value="1"/>
+        </ownedParameter>
+      </ownedOperation>
+      <ownedOperation xmi:id="_MKqNicOTEeSiR-ar9ioVjA" name="destroy" method="_MKqNiMOTEeSiR-ar9ioVjA"/>
+      <nestedClassifier xmi:type="uml:Class" xmi:id="_MKpmQcOTEeSiR-ar9ioVjA" name="Monitor" visibility="package">
+        <ownedAttribute xmi:id="_MKpmTMOTEeSiR-ar9ioVjA" name="Monitor$initializationFlag$1" visibility="protected">
+          <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKpmTcOTEeSiR-ar9ioVjA"/>
+          <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKpmTsOTEeSiR-ar9ioVjA" value="1"/>
+        </ownedAttribute>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKpmRsOTEeSiR-ar9ioVjA" name="raiseAlarm$method$1" visibility="protected" specification="_MKpmQsOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_MKqNk8OTEeSiR-ar9ioVjA" annotatedElement="_MKpmRsOTEeSiR-ar9ioVjA">
+            <body>activity 'raiseAlarm$method$1'(in sensorId: Integer) {
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_MKpmR8OTEeSiR-ar9ioVjA" name="sensorId">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKpmSMOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKpmScOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKpmS8OTEeSiR-ar9ioVjA" name="cleanUp$method$1" visibility="protected" specification="_MKpmSsOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_MKqNksOTEeSiR-ar9ioVjA" annotatedElement="_MKpmS8OTEeSiR-ar9ioVjA">
+            <body>activity 'cleanUp$method$1'() {
+}</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKpmT8OTEeSiR-ar9ioVjA" name="Monitor$initialization$1" visibility="protected" specification="_MKpmUMOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_MKqNj8OTEeSiR-ar9ioVjA" annotatedElement="_MKpmT8OTEeSiR-ar9ioVjA">
+            <body>activity 'Monitor$initialization$1'(){
+  if (this.'Monitor$initializationFlag$1' == null) {
+    this.'Monitor$initializationFlag$1' = true;
+  }
+}
+</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKpmUcOTEeSiR-ar9ioVjA" name="Monitor$method$1" specification="_MKpmVcOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_MKqNkMOTEeSiR-ar9ioVjA" annotatedElement="_MKpmUcOTEeSiR-ar9ioVjA">
+            <body>activity 'Monitor$method$1'(): Monitor {
+	this.'Monitor$initialization$1'();
+	return this;
+}</body>
+          </ownedComment>
+          <ownedParameter xmi:id="_MKpmUsOTEeSiR-ar9ioVjA" type="_MKpmQcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKpmU8OTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKpmVMOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedBehavior>
+        <ownedBehavior xmi:type="uml:Activity" xmi:id="_MKpmWcOTEeSiR-ar9ioVjA" name="destroy$method$1" specification="_MKpmWsOTEeSiR-ar9ioVjA">
+          <ownedComment xmi:id="_MKqNlcOTEeSiR-ar9ioVjA" annotatedElement="_MKpmWcOTEeSiR-ar9ioVjA">
+            <body>activity 'destroy$method$1'() { }</body>
+          </ownedComment>
+        </ownedBehavior>
+        <ownedOperation xmi:id="_MKpmQsOTEeSiR-ar9ioVjA" name="raiseAlarm" visibility="public" method="_MKpmRsOTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_MKpmQ8OTEeSiR-ar9ioVjA" name="sensorId">
+            <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#Integer"/>
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKpmRMOTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKpmRcOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_MKpmSsOTEeSiR-ar9ioVjA" name="cleanUp" visibility="public" method="_MKpmS8OTEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_MKpmUMOTEeSiR-ar9ioVjA" name="Monitor$initialization$1" visibility="protected" method="_MKpmT8OTEeSiR-ar9ioVjA"/>
+        <ownedOperation xmi:id="_MKpmVcOTEeSiR-ar9ioVjA" name="Monitor" method="_MKpmUcOTEeSiR-ar9ioVjA">
+          <ownedParameter xmi:id="_MKpmVsOTEeSiR-ar9ioVjA" type="_MKpmQcOTEeSiR-ar9ioVjA" direction="return">
+            <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_MKpmV8OTEeSiR-ar9ioVjA" value="1"/>
+            <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_MKpmWMOTEeSiR-ar9ioVjA" value="1"/>
+          </ownedParameter>
+        </ownedOperation>
+        <ownedOperation xmi:id="_MKpmWsOTEeSiR-ar9ioVjA" name="destroy" method="_MKpmWcOTEeSiR-ar9ioVjA"/>
+      </nestedClassifier>
+      <nestedClassifier xmi:type="uml:Enumeration" xmi:id="_MKqNUMOTEeSiR-ar9ioVjA" name="Condition" visibility="package">
+        <ownedLiteral xmi:id="_MKqNUcOTEeSiR-ar9ioVjA" name="normal" visibility="package"/>
+        <ownedLiteral xmi:id="_MKqNUsOTEeSiR-ar9ioVjA" name="alert" visibility="package"/>
+        <ownedLiteral xmi:id="_MKqNU8OTEeSiR-ar9ioVjA" name="critical" visibility="package"/>
+        <ownedLiteral xmi:id="_MKqNVMOTEeSiR-ar9ioVjA" name="error" visibility="package"/>
+      </nestedClassifier>
+    </packagedElement>
+    <profileApplication xmi:id="_LmdUEcOTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_LmdUEsOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/uml2/5.0.0/UML/Profile/Standard#/"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://UML_PROFILES/Standard.profile.uml#_0"/>
+    </profileApplication>
+    <profileApplication xmi:id="_LmdUE8OTEeSiR-ar9ioVjA">
+      <eAnnotations xmi:id="_LmdUFMOTEeSiR-ar9ioVjA" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#_Kv8EIKFXEeS_KNX0nfvIVQ"/>
+      </eAnnotations>
+      <appliedProfile href="pathmap://PAPYRUS_ACTIONLANGUAGE_PROFILE/ActionLanguage-Profile.profile.uml#ActionLanguage"/>
+    </profileApplication>
+  </uml:Model>
+  <standard:Destroy xmi:id="_MKqNlsOTEeSiR-ar9ioVjA" base_BehavioralFeature="_MKqNicOTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_MKqNl8OTEeSiR-ar9ioVjA" base_BehavioralFeature="_MKpmVcOTEeSiR-ar9ioVjA"/>
+  <standard:Create xmi:id="_MKqNmMOTEeSiR-ar9ioVjA" base_BehavioralFeature="_MKqNhMOTEeSiR-ar9ioVjA"/>
+  <standard:Destroy xmi:id="_MKqNmcOTEeSiR-ar9ioVjA" base_BehavioralFeature="_MKpmWsOTEeSiR-ar9ioVjA"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNmsOTEeSiR-ar9ioVjA" base_Comment="_MKqNjMOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNm8OTEeSiR-ar9ioVjA" base_Comment="_MKqNjcOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNnMOTEeSiR-ar9ioVjA" base_Comment="_MKqNjsOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNncOTEeSiR-ar9ioVjA" base_Comment="_MKqNj8OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNnsOTEeSiR-ar9ioVjA" base_Comment="_MKqNkMOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNn8OTEeSiR-ar9ioVjA" base_Comment="_MKqNkcOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNoMOTEeSiR-ar9ioVjA" base_Comment="_MKqNksOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNocOTEeSiR-ar9ioVjA" base_Comment="_MKqNk8OTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNosOTEeSiR-ar9ioVjA" base_Comment="_MKqNlMOTEeSiR-ar9ioVjA" language="Alf"/>
+  <ActionLanguage:TextualRepresentation xmi:id="_MKqNo8OTEeSiR-ar9ioVjA" base_Comment="_MKqNlcOTEeSiR-ar9ioVjA" language="Alf"/>
+</xmi:XMI>
