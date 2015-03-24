@@ -349,8 +349,7 @@
 		<module>../examples/uml/org.eclipse.papyrus.uml.diagram.example.programmaticcreation</module>
 		<module>../examples/uml/org.eclipse.papyrus.uml.textual.editors.example</module>	
 		
-	
-	
+		
 	</modules>
 	<properties>
 		<tycho-version>0.22.0</tycho-version>
