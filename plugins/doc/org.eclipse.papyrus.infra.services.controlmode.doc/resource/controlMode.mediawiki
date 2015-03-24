@@ -9,11 +9,11 @@ This is specially helpful working in collaborative environments, since the Team 
 
 ==Create a submodel==
 To create a submodel, right click on the element which you wish to move to a different resource (a Package in the common case) and select ''Create submodel unit''
-[[Image:img/ControlAction.png]] 
+[[Image:images/ControlAction.png]] 
 
 The following dialog appears. Select the desired location for the new resource and click ''OK''.
 
-[[Image:img/ControlDialog.png]] 
+[[Image:images/ControlDialog.png]] 
 
 '''Important:''' The selected element has not been moved just yet. The model editor will be dirty i.e. there will be an asterisk next to its name in the tab. In order to complete the submodel creation, you need to '''save''' your model.
 
@@ -22,6 +22,6 @@ The new resource is created in the chosen location with the chosen file name, wh
 ==Reintegrate a submodel into the main model==
 
 To reintegrate a submodel into the main model, open the parent model and right click on the submodel element in the model explorer (recognizable with the green decorator).
-[[Image:img/UncontrolAction.png]] 
+[[Image:images/UncontrolAction.png]] 
 
 The submodel is reintegrated into the main model resource, and the submodel resource is deleted. 

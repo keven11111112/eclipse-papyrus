@@ -22,11 +22,11 @@ The CSS Stylesheet support is now shipped in the base installation of Papyrus. I
 
 Without the CSS component, or with the "Black & White" CSS Theme, your diagrams look like: 
 
-[[Image:Papyrus CSS no theme.png|Papyrus diagram without CSS Theme]]<br>
+[[Image:images/Papyrus_CSS_no_theme.png|Papyrus diagram without CSS Theme]]<br>
 
 With the default "Papyrus" CSS Theme, your diagrams look like:
 
-[[Image:Papyrus CSS theme.png|Papyrus Diagram with CSS Theme]]<br>
+[[Image:images/Papyrus_CSS_theme.png|Papyrus Diagram with CSS Theme]]<br>
 
 Note: If you opened a diagram which has been created without the CSS Support, it may still have a user-defined appearance, e.g. without Element icons. This might or might not be a problem, as this may conflict with the CSS Theme. You can reset all custom appearances by pressing the "Default style" button in the Style tab of the Diagram's properties view.
 
@@ -36,7 +36,7 @@ To define a custom style, the first step is to create a Stylesheet. The creation
 You can define a particular style for a diagram.
 # Select a diagram
 # Go to the Style tab of the properties view
-# Add a new "Diagram style sheet". There isn't currently any style sheet available from the diagram, so you need to create a new "Stylesheet reference".<br/>[[Image:Papyrus CSS Import stylesheet.png|Import stylesheet in Papyrus]] 
+# Add a new "Diagram style sheet". There isn't currently any style sheet available from the diagram, so you need to create a new "Stylesheet reference".<br/>[[Image:images/Papyrus_CSS_Import_stylesheet.png|Import stylesheet in Papyrus]] 
 # Browse your workspace to find your css file, and press OK. Your stylesheet is now associated to your diagram.
 == Model StyleSheet ==
 Similarily to "Diagram Stylesheet" you can define a particular style for a Model.
@@ -49,7 +49,7 @@ You can associate to a project specific stylesheets.
 # Select a project in "Project Explorer" view
 # Open project preference properties: "Right click > properties"
 # Go to CSS stylesheets page: "Papyrus > Style sheets"
-# Add a new "Project style sheet". There isn't currently any style sheet available from project, so you need to create a new "Stylesheet reference".<br/>[[Image:Papyrus_CSS_project.png|Style sheets project properties in Papyrus]]
+# Add a new "Project style sheet". There isn't currently any style sheet available from project, so you need to create a new "Stylesheet reference".<br/>[[Image:images/Papyrus_CSS_project.png|Style sheets project properties in Papyrus]]
 # Browse your workspace to find your css file, and press OK. Now, your stylesheet is associated with the project.
 = Deploying a CSS Theme  =
 
@@ -64,7 +64,7 @@ The Theme can be modified from the Papyrus preferences page "CSS Theme". Only on
 == In workspace preference ==
 You can define theme in workspace preferences. A theme is defined by style sheets.
 # Go to the Papyrus preference: "Window > Preferences > Papyrus > CSS Theme"
-# Add a new theme. There are currently two existing themes: "Papyrus Theme" and "Black & White".<br/>[[Image:Papyrus_CSS_theme_creation.png|Creation of theme in Papyrus]]
+# Add a new theme. There are currently two existing themes: "Papyrus Theme" and "Black & White".<br/>[[Image:images/Papyrus_CSS_theme_creation.png|Creation of theme in Papyrus]]
 # Write a name for this new theme
 # (optional) Choose an icon
 # Associate one or more style sheets with this theme
@@ -168,7 +168,7 @@ To use it, create an element and change its appearance via the "Appearance" tab 
 *Properties: The graphical properties to export to the style sheet 
 *Stylesheet: The style sheet to edit<br>
 
-[[Image:Papyrus CSS Export style.png|Create style dialog]]<br> 
+[[Image:images/Papyrus_CSS_Export_style.png|Create style dialog]]<br> 
 
 In the Stylesheet tab, select your stylesheet:<br> 
 
@@ -229,7 +229,7 @@ The CSS Supports all GMF Notation properties, as well as a few Papyrus-specific 
 
 The simplest way to discover new style properties is to use the Appearance tab of the Properties view in Papyrus. When hovering one of the appearance properties, the tooltip indicates the name of the corresponding CSS property
 
-[[Image:Papyrus CSS tooltip.png|CSS Property in tooltip]]<br>
+[[Image:images/Papyrus_CSS_tooltip.png|CSS Property in tooltip]]<br>
 
 This table lists the most common properties:
 
@@ -401,12 +401,12 @@ Association > Label:name {
 
 These rules result in:
 
-[[Image:Papyrus_CSS_maskLabel_association.png|Association labels result]]<br>
+[[Image:images/Papyrus_CSS_maskLabel_association.png|Association labels result]]<br>
 
 
 The list of accepted values depends on the element. To find the list of values, select an element in a Diagram (e.g. a Property), go to the Appearance tab of the properties view, and find the list of checkboxes named "Label customization". Hover the checkboxes, and look at the tooltip to find the value:
 
-[[Image:Papyrus_CSS_maskLabel.png|Mask label]]<br>
+[[Image:images/Papyrus_CSS_maskLabel.png|Mask label]]<br>
 
 To obtain the result shown in this screenshot, write:
 
@@ -416,7 +416,7 @@ To obtain the result shown in this screenshot, write:
 
 Which results in:
 
-[[Image:Papyrus_CSS_maskLabel_result.png|Mask label result]]<br>
+[[Image:images/Papyrus_CSS_maskLabel_result.png|Mask label result]]<br>
 
 = Manipulating styles  =
 
@@ -429,7 +429,7 @@ In some other cases, however, you may want to specify manually the style that sh
     gradient:white horizontal;
 }</source> 
 
-[[Image:Papyrus CSS CustomStyle.png|Result]]<br> 
+[[Image:images/Papyrus_CSS_CustomStyle.png|Result]]<br> 
 
 Once a style is applied on an object, the object will be refreshed each time the style definition changes. For example, changing the style "myOwnStyle" to the following declaration:<br> 
 

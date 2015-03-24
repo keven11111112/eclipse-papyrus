@@ -4,19 +4,15 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/symbols-main-toc.xml"
+            file="target/generated-eclipse-help/symbols-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/symbols-toc.xml"
+            file="target/generated-eclipse-help/symbols-toc.xml"
             primary="false">
       </toc>
-	  <toc
-      		file="resource/constraints-toc.xml"
-      		primary="false">
-      </toc>
       <toc
-      		file="resource/constraint-creation-toc.xml"
+      		file="target/generated-eclipse-help/constraint-creation-toc.xml"
       		primary="false">
       </toc>
    </extension>

@@ -1247,6 +1247,11 @@
               optional="true"/>
         </targlet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1323,6 +1328,11 @@
           </predicate>
         </workingSet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1398,6 +1408,11 @@
                 pattern="org\.eclipse\.papyrus\.uml\.(textedit|xtext)($|\..+)"/>
           </predicate>
         </workingSet>
+      </setupTask>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
       <stream
           name="master"
@@ -2224,6 +2239,11 @@
           xsi:type="setup:VariableTask"
           name="papyrus.extratestsfeature"
           value="tests.extra.codegen.cpp"/>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -2476,6 +2496,11 @@
           xsi:type="setup:VariableTask"
           name="papyrus.extraplugins.folder"
           value="marte"/>
+      <setupTask
+          xsi:type="setup.p2:P2Task">
+        <requirement
+            name="org.eclipse.xtend.sdk.feature.group"/>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -2839,6 +2864,10 @@
               name="org.eclipse.papyrus.dev.feature.feature.group"/>
           <repository
               url="https://hudson.eclipse.org/papyrus/job/Papyrus-Master-Developer/lastSuccessfulBuild/artifact/releng/dev/target/repository/"/>
+          <repository
+              url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/mars/main"/>
+          <repository
+              url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
         </setupTask>
       </stream>
       <stream
@@ -2852,8 +2881,14 @@
             xsi:type="setup.p2:P2Task">
           <requirement
               name="org.eclipse.papyrus.dev.feature.feature.group"/>
+          <requirement
+              name="org.eclipse.b3.aggregator.engine.feature.feature.group"/>
           <repository
               url="https://hudson.eclipse.org/papyrus/job/Papyrus-Luna-Developer/lastSuccessfulBuild/artifact/releng/dev/target/repository/"/>
+          <repository
+              url="${base.downloads.url}/modeling/mdt/papyrus/updates/nightly/luna"/>
+          <repository
+              url="http://download.eclipse.org/modeling/emft/b3/updates-4.3/"/>
         </setupTask>
       </stream>
       <description>Installs developer tools, including the code generator for Papyrus diagram plug-ins and various debugging aids such as &quot;spy&quot; views.  Source code is not included.</description>

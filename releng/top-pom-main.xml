@@ -43,19 +43,12 @@
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.views.properties.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.views.search.feature</module>
 		<module>../features/papyrus-main-features/org.eclipse.papyrus.views.validation.feature</module>
-		<module>../plugins/doc/org.eclipse.papyrus.cdo.ui.doc</module>
-		<module>../plugins/doc/org.eclipse.papyrus.copypaste.ui.doc</module>
-		<module>../plugins/doc/org.eclipse.papyrus.infra.services.controlmode.doc</module>
-		<module>../plugins/doc/org.eclipse.papyrus.layers.documentation</module>
-        <module>../plugins/doc/org.eclipse.papyrus.uml.decoratormodel.doc</module>
-        <module>../plugins/doc/org.eclipse.papyrus.uml.modelrepair.doc</module>
-        <module>../plugins/doc/org.eclipse.papyrus.uml.profile.assistants.doc</module>
+		<module>../plugins/doc</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.palette</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.paletteconfiguration</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties.generation</module>
 		<module>../plugins/customization/org.eclipse.papyrus.customization.properties.model.xwt</module>
-		<module>../plugins/doc/org.eclipse.papyrus.dsml.validation.doc</module>
 		<module>../plugins/editor/org.eclipse.papyrus.editor</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.common.core</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.common.sdk.core</module>
@@ -94,6 +87,7 @@
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.widgets.celleditors</module>
 		<module>../plugins/facet/org.eclipse.papyrus.emf.facet.widgets.celleditors.ecore</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.extensionpoints.editors</module>
+		<module>../plugins/infra/org.eclipse.papyrus.infra.ui</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints.edit</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.constraints.editor</module>
@@ -105,7 +99,6 @@
 		<module>../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery</module>
 		<module>../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery.ui</module>
 		<module>../plugins/infra/discovery/org.eclipse.papyrus.infra.discovery.ui.menu</module>
-		<module>../plugins/infra/org.eclipse.papyrus.infra.doc</module>
 		<module>../plugins/infra/emf/org.eclipse.papyrus.infra.emf</module>
 		<module>../plugins/infra/emf/org.eclipse.papyrus.infra.emf.appearance</module>
 		<module>../plugins/infra/emf/org.eclipse.papyrus.infra.emf.diagram.common</module>
@@ -129,11 +122,9 @@
         <module>../plugins/infra/gmfdiag/assistant/org.eclipse.papyrus.infra.gmfdiag.assistant.ui</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.commands</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.common</module>
-		<module>../plugins/doc/org.eclipse.papyrus.infra.gmfdiag.common.doc</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.controlmode</module>
 		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css</module>
 		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.configuration</module>
-		<module>../plugins/doc/org.eclipse.papyrus.infra.gmfdiag.css.doc</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.model</module>
 		<module>../plugins/infra/gmfdiag/org.eclipse.papyrus.infra.gmfdiag.css.palette</module>
 		<module>../plugins/infra/gmfdiag/css/org.eclipse.papyrus.infra.gmfdiag.css.properties</module>
@@ -163,7 +154,6 @@
 		<module>../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.views.config</module>
 		<module>../plugins/infra/nattable/org.eclipse.papyrus.infra.nattable.views.editor</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.newchild</module>
-		<module>../plugins/doc/org.eclipse.papyrus.infra.newchild.doc</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.newchild.edit</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.onefile</module>
 		<module>../plugins/infra/org.eclipse.papyrus.infra.psf</module>
@@ -187,14 +177,12 @@
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.edit</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.configuration.editor</module>
-		<module>../plugins/doc/org.eclipse.papyrus.infra.viewpoints.doc</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.iso42010</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.iso42010.edit</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.policy</module>
 		<module>../plugins/infra/viewpoints/org.eclipse.papyrus.infra.viewpoints.preferences</module>
 		<module>../plugins/infra/widget/org.eclipse.papyrus.infra.widgets</module>
 		<module>../plugins/infra/widget/org.eclipse.papyrus.infra.widgets.toolbox</module>
-		<module>../plugins/doc/org.eclipse.papyrus.moka.doc</module>
 		<module>../plugins/sysml/org.eclipse.papyrus.sysml</module>
 		<module>../plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.blockdefinition</module>
 		<module>../plugins/sysml/diagram/org.eclipse.papyrus.sysml.diagram.common</module>
@@ -233,7 +221,6 @@
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.activity</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.clazz</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.common</module>
-		<module>../plugins/doc/org.eclipse.papyrus.uml.diagram.common.doc</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.common.groups</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.common.palette.customaction</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.communication</module>
@@ -250,7 +237,6 @@
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.paletteconfiguration</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.paletteconfiguration.edit</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.profile</module>
-		<module>../plugins/doc/org.eclipse.papyrus.uml.diagram.profile.doc</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.sequence</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.statemachine</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.stereotype.edition</module>
@@ -260,7 +246,6 @@
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.timing</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.usecase</module>
 		<module>../plugins/uml/diagram/org.eclipse.papyrus.uml.diagram.wizards</module>
-		<module>../plugins/doc/org.eclipse.papyrus.uml.doc</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.documentation.profile</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.extensionpoints</module>
         <module>../plugins/uml/org.eclipse.papyrus.uml.filters</module>
@@ -285,7 +270,6 @@
 		<module>../plugins/uml/properties/org.eclipse.papyrus.uml.properties.xtext</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.resourceloading.profile</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.search.ui</module>
-		<module>../plugins/doc/org.eclipse.papyrus.uml.search.ui.doc</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.service.types</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.service.validation</module>
 		<module>../plugins/uml/org.eclipse.papyrus.uml.services.decoration</module>
@@ -323,7 +307,6 @@
 		<module>../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.resourceloading</module>
 		<module>../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.widgets</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties</module>
-		<module>../plugins/doc/org.eclipse.papyrus.views.properties.doc</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model.edit</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor</module>
@@ -333,6 +316,8 @@
 		<module>main</module>
 		<!-- Papyrus Sysml 1.4 -->
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.ui</module>
+		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.common</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.blockdefinition</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.internalblock</module>
 		<module>../plugins/sysml/sysml14/org.eclipse.papyrus.sysml14.diagram.parametric</module>
@@ -362,6 +347,7 @@
 		<java.source.version>1.6</java.source.version>
 		<java.target.version>1.6</java.target.version>
 		<papyrus.eclipse.target>mars</papyrus.eclipse.target>
+		<mylyn.wikitext.version>2.4.0-SNAPSHOT</mylyn.wikitext.version>
 	</properties>
 	<repositories>
 		<repository>
@@ -500,6 +486,11 @@
 		     	<enabled>false</enabled>
 		     </snapshots>
 		</pluginRepository>
+		<pluginRepository>
+			<id>eclipse.org-mylyn</id>
+			<!-- url>https://repo.eclipse.org/content/repositories/mylyn-releases/</url -->
+			<url>https://repo.eclipse.org/content/repositories/mylyn/</url>
+		</pluginRepository>
 	</pluginRepositories>
 	<build>
 		<pluginManagement>
@@ -572,6 +563,42 @@
 	                    </environments>
 	                </configuration>
 	            </plugin>
+	            <plugin>
+					<groupId>org.eclipse.mylyn.docs</groupId>
+					<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
+					<version>${mylyn.wikitext.version}</version>
+				</plugin>
+				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+				<plugin>
+					<groupId>org.eclipse.m2e</groupId>
+					<artifactId>lifecycle-mapping</artifactId>
+					<version>1.0.0</version>
+					<configuration>
+						<lifecycleMappingMetadata>
+							<pluginExecutions>
+								<pluginExecution>
+									<pluginExecutionFilter>
+										<groupId>
+											org.eclipse.mylyn.docs
+										</groupId>
+										<artifactId>
+											org.eclipse.mylyn.wikitext.core.maven
+										</artifactId>
+										<versionRange>
+											[2.4.0-SNAPSHOT,)
+										</versionRange>
+										<goals>
+											<goal>eclipse-help</goal>
+										</goals>
+									</pluginExecutionFilter>
+									<action>
+										<execute></execute>
+									</action>
+								</pluginExecution>
+							</pluginExecutions>
+						</lifecycleMappingMetadata>
+					</configuration>
+				</plugin>
 			</plugins>
 		</pluginManagement>
 		<plugins>

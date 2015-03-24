@@ -4,19 +4,19 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/marqueeSelectionTool-toc.xml"
+            file="target/generated-eclipse-help/marqueeSelectionTool-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/tools-toc.xml"
+            file="target/generated-eclipse-help/tools-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/alignmentTool-toc.xml"
+            file="target/generated-eclipse-help/alignmentTool-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/textAlignment-toc.xml"
+            file="target/generated-eclipse-help/textAlignment-toc.xml"
             primary="false">
       </toc>      
    </extension>

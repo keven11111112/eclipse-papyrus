@@ -6,7 +6,7 @@ This short documentation will present the support for custom representations ava
 
 The goal of the symbol support in Papyrus is to give users access to some custom representations. They can use their own representation, i.e. their own svg files, in their diagrams, so the model can be easily read and understood. SVG file format was used, as this vectorial format scales easily. 
 
-[[Image:Symbol Example.png]] 
+[[Image:images/Symbol_Example.png]] 
 
 = Symbol display place in diagrams  =
 
@@ -16,7 +16,7 @@ There are 2 manners to display symbols on the diagrams, in compartments and as d
 
 For all nodes, like Package or Class in a Class diagram, it is possible to display the symbols in a "shape" compartment. This compartment can be displayed/hidden using the context menu on the diagram 
 
-[[Image:Symbol Compartment.png]] 
+[[Image:images/Symbol_Compartment.png]] 
 
 To display/hide shape compartment:&nbsp; 
 
@@ -33,11 +33,11 @@ To display/hide shape compartment:&nbsp;
 
 For all Nodes in diagrams, it is possible to display the available symbols as decorators. The decorators are small representations depicted above the figures. for example, validation errors and warnings are displayed as decorators on Papyrus diagrams. 
 
-[[Image:Symbol Decorator.png]] 
+[[Image:images/Symbol_Decorator.png]] 
 
 The Appearance tab of the properties view allows user to toggle the visibility of decorators, and the location of the display on the figure. There are 9 positions on the figure (north/east/south/west and all valid combinations) 
 
-[[Image:Symbol DecoratorPropertyView.png]] 
+[[Image:images/Symbol_DecoratorPropertyView.png]] 
 <pre>Hint: if the properties view is not displayed in your Eclipse environnement, you can display it using context menu on a diagram => show Properties view.
 </pre> 
 = Defining symbols in models  =
@@ -50,7 +50,7 @@ UML offers the possiblity to associate new icons to stereotyped elements, via th
 
 On the property view of a Stereotype, you can associate an image to the stereotype 
 
-[[Image:Symbol AddImageToStereotype.png]] 
+[[Image:images/Symbol_AddImageToStereotype.png]] 
 
 This shape wil now be available on all elements that are stereotyped by this given Stereotype. 
 <pre>Hint: You can have more documentation about profiles in Papyrus on the website, users corner
@@ -59,7 +59,7 @@ This shape wil now be available on all elements that are stereotyped by this giv
 
 By default, Actors and TypedElement that are typed by an Actor have a stickman symbol associated. 
 
-[[Image:Symbol ActorAndTypedElementWithTypeActor.png]] 
+[[Image:images/Symbol_ActorAndTypedElementWithTypeActor.png]] 
 
 == Symbol associated to Type element  ==
 
@@ -72,15 +72,15 @@ Steps:
 *Go to the profile Tab 
 *Select the icon for the registered profiles in the Applied Profile section
 
-[[Image:Symbol ApplyRegisteredProfile.png]] 
+[[Image:images/Symbol_ApplyRegisteredProfile.png]] 
 
 *In the dialog, select the PapyrusInternal Profile
 
-[[Image:Symbol ProfileSelectionDialog.png]] 
+[[Image:images/Symbol_ProfileSelectionDialog.png]] 
 
 *In the next dialog, select all profiles and subprofiles
 
-[[Image:Symbol ProfileSelectionDialogAllSubProfile.png]] 
+[[Image:images/Symbol_ProfileSelectionDialogAllSubProfile.png]] 
 
 *OK
 
@@ -95,15 +95,15 @@ Steps:
 *Go to the profile Tab 
 *Apply the TypeSymbolDefinition stereotype (available on Type elements, as soon as the internal profile is applied on the model)
 
-[[Image:Symbol ApplyTypeSymbolDefinitionStereotype.png]] 
+[[Image:images/Symbol_ApplyTypeSymbolDefinitionStereotype.png]] 
 
-[[Image:Symbol ApplyTypeSymbolDefinitionStereotypeDialog.png]] 
+[[Image:images/Symbol_ApplyTypeSymbolDefinitionStereotypeDialog.png]] 
 
 *Select the property symbolPath of the TypeSymbolDefinition stereotype.
 
 *Set the path to the symbol file
 
-[[Image:Symbol TypeSymbolDefinition SymbolPath.png]] 
+[[Image:images/Symbol_TypeSymbolDefinition_SymbolPath.png]] 
 
 = FAQ  =
 
@@ -126,7 +126,7 @@ Paths can be expressed as Eclipse URIs (Either absolute or relative to the curre
 =&gt; This is a svg image contained in an images/ folder next to my current model 
 <pre>platform:/resource/my-project/images/logo.svg
 </pre> 
-=&gt; This is a svg image contained in the project “my-project”, in the current workspace 
+=&gt; This is a svg image contained in the project ï¿½my-projectï¿½, in the current workspace 
 <pre>file:/home/images/logo.svg
 </pre> 
 =&gt; This is an absolute filesystem URI 

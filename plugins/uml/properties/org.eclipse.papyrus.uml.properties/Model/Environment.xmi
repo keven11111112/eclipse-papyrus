@@ -15,6 +15,9 @@
   <constraintTypes
       label="Is UML Datatype Instance"
       constraintClass="org.eclipse.papyrus.uml.properties.constraints.IsUMLDatatypeInstance"/>
+  <constraintTypes
+      label="Is Profile Applied"
+      constraintClass="org.eclipse.papyrus.uml.properties.constraints.IsProfileAppliedConstraint"/>
   <modelElementFactories
       name="UML Specific Factory"
       factoryClass="org.eclipse.papyrus.uml.properties.modelelement.UMLEditorFactory"/>

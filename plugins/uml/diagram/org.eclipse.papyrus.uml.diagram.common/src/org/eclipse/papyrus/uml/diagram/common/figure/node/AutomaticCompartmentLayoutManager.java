@@ -100,16 +100,12 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 					minimumWith = wl.getPreferredSize().width + 2;
 				}
 			}
-
 		}
 		if (!visibleCompartments.isEmpty()) {
 			for (Object o : container.getChildren()) {
-				// only for child which are compartment
-				if (o instanceof ResizableCompartmentFigure) {
-					IFigure child = (IFigure) o;
-					minimumHeight += child.getPreferredSize().height;
-					minimumWith = Math.max(minimumWith, child.getPreferredSize().width);
-				}
+				IFigure child = (IFigure) o;
+				minimumHeight += child.getPreferredSize().height;
+				minimumWith = Math.max(minimumWith, child.getPreferredSize().width);
 			}
 		} else {
 			for (IFigure child : visibleOthers) {

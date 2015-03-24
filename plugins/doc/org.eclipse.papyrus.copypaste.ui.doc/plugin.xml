@@ -4,12 +4,12 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/copypaste-toc.xml"
+            file="target/generated-eclipse-help/copypaste-main-toc.xml"
             primary="false">
-      </toc>
+      </toc> 
       <toc
-            file="resource/copypaste-main-toc.xml"
+            file="target/generated-eclipse-help/copypaste-toc.xml"
             primary="false">
-      </toc>      
+      </toc>     
    </extension>
 </plugin>

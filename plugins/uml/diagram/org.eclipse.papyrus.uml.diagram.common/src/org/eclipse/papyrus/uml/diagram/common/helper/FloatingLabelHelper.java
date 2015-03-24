@@ -21,38 +21,38 @@ import org.eclipse.gef.GraphicalEditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
-import org.eclipse.papyrus.uml.tools.utils.CollaborationUseUtil;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
-import org.eclipse.papyrus.uml.tools.utils.InstanceSpecificationUtil;
 import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
-import org.eclipse.papyrus.uml.tools.utils.OperationUtil;
-import org.eclipse.papyrus.uml.tools.utils.ParameterUtil;
-import org.eclipse.papyrus.uml.tools.utils.PortUtil;
-import org.eclipse.papyrus.uml.tools.utils.PropertyUtil;
 import org.eclipse.papyrus.uml.tools.utils.SignalUtil;
-import org.eclipse.papyrus.uml.tools.utils.TypeUtil;
+import org.eclipse.papyrus.uml.tools.utils.TypedElementUtil;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.CollaborationUse;
-import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Parameter;
-import org.eclipse.uml2.uml.Port;
-import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.TemplateParameter;
 import org.eclipse.uml2.uml.TypedElement;
-
-//TODO Check for usefull property to display
 
 /**
  * Helper for labels displaying {@link NamedElement}.
  */
 public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 
-	// Einstance
+
+	/** The Constant SLASH. */
+	private static final String SLASH = "/";//$NON-NLS-1$
+
+	/** The Constant DOUBLE_DOT. */
+	private static final String DOUBLE_DOT = ": ";//$NON-NLS-1$
+
+	/** The Constant ONE_SPACE. */
+	private static final String ONE_SPACE = " ";//$NON-NLS-1$
+
+	/** The Constant EMPTY. */
+	private static final String EMPTY = ""; //$NON-NLS-1$
+
+	/** The Constant STEREOTYPE. */
+	private static final String STEREOTYPE = "stereotype"; //$NON-NLS-1$
+
 	/** The label helper. */
 	private static FloatingLabelHelper labelHelper;
 
@@ -105,36 +105,10 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 		/**
 		 * Style constant for default value display in labels.
 		 */
-		masks.put(ICustomAppearance.DISP_DEFAULT_VALUE, "Default  Value");
-
-		/**
-		 * Style constant for modifiers display in labels.
-		 */
-		masks.put(ICustomAppearance.DISP_MODIFIERS, "Modifiers");
-
-		/** Style constant for carriage return in labels */
-		masks.put(ICustomAppearance.DISP_MULTI_LINE, "Multiline");
-
-		/** Style constant for operation#parameter direction display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_DIRECTION, "Parameters Direction");
+		masks.put(ICustomAppearance.DISP_DEFAULT_VALUE, "Default Value");
 
 		/** Style constant for direction display in labels */
 		masks.put(ICustomAppearance.DISP_DIRECTION, "Direction");
-
-		/** Style constant for operation#parameter name display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_NAME, "Parameters Name");
-
-		/** Style constant for operation#parameter type display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_TYPE, "Parameters Type");
-
-		/** Style constant for operation#parameter multiplicity display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY, "Parameters Multiplicity");
-
-		/** Style constant for operation#parameter default value display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_DEFAULT, "Parameters Default");
-
-		/** Style constant for operation#parameter modifiers display in labels */
-		masks.put(ICustomAppearance.DISP_PARAMETER_MODIFIERS, "Parameters Modifiers");
 
 		/** Style constant for return type display in labels */
 		masks.put(ICustomAppearance.DISP_RT_TYPE, "returnType");
@@ -142,8 +116,6 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 		/** Style constant for return multiplicity display in labels */
 		masks.put(ICustomAppearance.DISP_RT_MULTIPLICITY, "Return Multiplicity");
 
-		/** Style constant for conjugated labels */
-		masks.put(ICustomAppearance.DISP_CONJUGATED, "Conjugated");
 	}
 
 	/**
@@ -184,12 +156,18 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 	 */
 	protected String parseString(GraphicalEditPart editPart, Collection<String> displayValue) {
 		NamedElement namedElement = getUMLElement(editPart);
+		StringBuilder buffer = new StringBuilder();
 
-		if (namedElement != null) {
-			return getCustomLabel(namedElement, displayValue);
+		if (displayValue.contains(STEREOTYPE)) {
+			// computes the label for the stereotype (horizontal presentation)
+			buffer.append(stereotypesToDisplay((GraphicalEditPart) editPart.getParent()));
 		}
 
-		return "";
+		if (namedElement != null) {
+			buffer.append(getCustomLabel(namedElement, displayValue));
+		}
+
+		return buffer.toString();
 	}
 
 
@@ -217,6 +195,15 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 	}
 
 	/**
+	 * Computes the label to be displayed for the floating label
+	 */
+	@Override
+	protected String labelToDisplay(GraphicalEditPart editPart) {
+		// computes the string label to be displayed
+		return elementLabel(editPart);
+	}
+
+	/**
 	 * return the custom label of the property, given UML2 specification and a custom style.
 	 *
 	 * @param namedElement
@@ -225,52 +212,21 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 	 *            the mask values
 	 * @return the string corresponding to the label of the property
 	 */
-	public static String getCustomLabel(NamedElement namedElement, Collection<String> maskValues) {
+	public String getCustomLabel(NamedElement namedElement, Collection<String> maskValues) {
 
 		// Use of specific existing custom label
-
-		// use CollaborationUse custom label
-		if (namedElement instanceof CollaborationUse) {
-			return CollaborationUseUtil.getCustomLabel((CollaborationUse) namedElement, maskValues);
-		}
-
-		// use InstanceSpecification custom label
-		if (namedElement instanceof InstanceSpecification) {
-			return InstanceSpecificationUtil.getCustomLabel((InstanceSpecification) namedElement, maskValues);
-		}
-
-		// use Operation custom label
-		if (namedElement instanceof Operation) {
-			return OperationUtil.getCustomLabel((Operation) namedElement, maskValues);
-		}
-
-		// use Parameter custom label
-		if (namedElement instanceof Parameter) {
-			return ParameterUtil.getCustomLabel((Parameter) namedElement, maskValues);
-		}
 
 		// use Signal custom label
 		if (namedElement instanceof Signal) {
 			return SignalUtil.getCustomLabel((Signal) namedElement, maskValues);
 		}
 
-		// use Port custom label
-		if (namedElement instanceof Port) {
-			return PortUtil.getCustomLabel((Port) namedElement, maskValues);
-		}
-
-		// use Property custom label
-		if (namedElement instanceof Property) {
-			return PropertyUtil.getCustomLabel((Property) namedElement, maskValues);
-		}
-		// TODO add others usefull properties
-
 		// default custom label
-		StringBuffer buffer = new StringBuffer();
+		StringBuilder buffer = new StringBuilder();
 
 		// visibility
 		if (maskValues.contains(ICustomAppearance.DISP_VISIBILITY)) {
-			buffer.append(" ");
+			buffer.append(ONE_SPACE);
 			buffer.append(NamedElementUtil.getVisibilityAsSign(namedElement));
 		}
 
@@ -278,25 +234,22 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 		if (namedElement instanceof Association) {
 			if (maskValues.contains(ICustomAppearance.DISP_DERIVE)) {
 				if (((Association) namedElement).isDerived()) {
-					buffer.append("/");
+					buffer.append(SLASH);
 				}
 			}
 		}
 		// name
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
-			buffer.append(" ");
-			buffer.append(namedElement.getName());
+			buffer.append(ONE_SPACE);
+			final String name = namedElement.getName();
+			buffer.append(name != null ? name : EMPTY);
 		}
 
 		// Type of TypedElement
 		if (namedElement instanceof TypedElement) {
-			if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
-				// type
-				if (((TypedElement) namedElement).getType() != null) {
-					buffer.append(": " + ((TypedElement) namedElement).getType().getName());
-				} else {
-					buffer.append(": " + TypeUtil.UNDEFINED_TYPE_NAME);
-				}
+			if (maskValues.contains(ICustomAppearance.DISP_RT_TYPE) || maskValues.contains(ICustomAppearance.DISP_TYPE)) {
+				buffer.append(DOUBLE_DOT);
+				buffer.append(TypedElementUtil.getTypeAsString((TypedElement) namedElement));
 			}
 		}
 
@@ -306,17 +259,6 @@ public class FloatingLabelHelper extends StereotypedElementLabelHelper {
 				// multiplicity -> do not display [1]
 				String multiplicity = MultiplicityElementUtil.getMultiplicityAsString((MultiplicityElement) namedElement);
 				buffer.append(multiplicity);
-			}
-		}
-
-		// Template Parameter(not sure of the uml element
-		if (namedElement instanceof TemplateParameter) {
-			if (maskValues.contains(ICustomAppearance.DISP_DEFAULT_VALUE)) {
-				// default value
-				if (((TemplateParameter) namedElement).getDefault() != null) {
-					buffer.append(" = ");
-					buffer.append(((TemplateParameter) namedElement).getDefault());
-				}
 			}
 		}
 

@@ -188,12 +188,16 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 	private EObject contextObject;
 
 	private static final int TEXT_QUERY_KIND = 0;
+	
+	private static final int OCL_QUERY_KIND = 1;
 
 	private static final int SIMPLE_SEARCH = 0;
 
 	private static final int ADVANCED_SEARCH = 1;
 	
 	private int currentSearchKind = SIMPLE_SEARCH;
+	
+	private int currentQueryKind = TEXT_QUERY_KIND;
 
 	private ParserContext parserContext;
 
@@ -287,7 +291,6 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		searchKind.setLayoutData(new GridData(SWT.LEFT, SWT.FILL, false, false, 1, 1));
 		searchKind.add(Messages.PapyrusSearchPage_11);
 		searchKind.add(Messages.PapyrusSearchPage_12);
-		searchKind.select(SIMPLE_SEARCH);
 		searchKind.addSelectionListener(new SelectionAdapter() {
 
 			@Override
@@ -299,11 +302,14 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 				
 					if (searchKind.getSelectionIndex() == ADVANCED_SEARCH) {
 						participantsList.clear();
+						stereotypeParticipantsList.clear();
 						createResultList();
 						createAdvancedSearch();
 					} else if (searchKind.getSelectionIndex() == SIMPLE_SEARCH) {
 						simpleSearch();
-					}
+					}/* else {
+						Other search kinds in the future
+					}*/
 					
 					advancedSearchComposite.layout();
 				}
@@ -315,7 +321,18 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		advancedSearchComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, 2, 1));
 		advancedSearchComposite.setLayout(new GridLayout(3, false));
 
-		simpleSearch();
+		if (currentSearchKind == ADVANCED_SEARCH) {
+			searchKind.select(ADVANCED_SEARCH);
+			participantsList.clear();
+			stereotypeParticipantsList.clear();
+			createResultList();
+			createAdvancedSearch();
+		} else if (currentSearchKind == SIMPLE_SEARCH) {
+			searchKind.select(SIMPLE_SEARCH);
+			simpleSearch();
+		}/* else {
+			Other search kinds in the future
+		}*/
 	}
 
 	protected void createResultList() {
@@ -621,6 +638,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		fBtnSearchForAnySelected.setText(Messages.PapyrusSearchPage_49);
 		
 		currentSearchKind = ADVANCED_SEARCH;
+		currentQueryKind = TEXT_QUERY_KIND;
 	}
 
 	protected void selectAllSubSter(final ParticipantTypeElement elementParent, final List<ParticipantTypeAttribute> attributeParentList) {
@@ -752,6 +770,7 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		btnSearchAllStringAttributes.setLayoutData(new GridData(SWT.LEFT, SWT.TOP, false, false, 1, 1));
 		
 		currentSearchKind = SIMPLE_SEARCH;
+		currentQueryKind = TEXT_QUERY_KIND;
 	}
 
 
@@ -848,6 +867,8 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		editorComposite.setLayoutData(data);
 
 		refreshSelection(root);
+		
+		currentQueryKind = OCL_QUERY_KIND;
 	}
 
 	protected ScopeEntry getCurrentScopeEntry() {
@@ -884,63 +905,59 @@ public class PapyrusSearchPage extends DialogPage implements ISearchPage, IRepla
 		queryKind.add(Messages.PapyrusSearchPage_21);
 		queryKind.add(Messages.PapyrusSearchPage_22);
 
-
-
 		queryKind.select(TEXT_QUERY_KIND);
 
 		queryKind.addSelectionListener(new SelectionAdapter() {
-
+			
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				for (Control childControl : queryComposite.getChildren()) {
-					childControl.dispose();
-				}
+				if (queryKind.getSelectionIndex() != currentQueryKind) {
+					for (Control childControl : queryComposite.getChildren()) {
+						childControl.dispose();
+					}
 
-				if (queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
-					createSimpleSearchQueryField();
+					if (queryKind.getSelectionIndex() == TEXT_QUERY_KIND) {
+						createSimpleSearchQueryField();
+					} else {
+						if (container.getSelectedScope() == ISearchPageContainer.SELECTION_SCOPE) {
 
+							ScopeEntry currentScope = getCurrentScopeEntry();
+							if (currentScope != null) {
+								if (currentScope.getModelSet() != null) {
 
+									try {
+										EObject root = ((UmlModel) currentScope.getModelSet().getModel(UmlModel.MODEL_ID)).lookupRoot();
+										createOCLSearchQueryField(root);
 
+										if (contextObject instanceof NamedElement) {
+											oclContext.setText(((NamedElement) contextObject).getQualifiedName());
+										} else {
+											LabelProviderService labelProviderService = new LabelProviderServiceImpl();
+											ILabelProvider labelProvider = labelProviderService.getLabelProvider();
+											oclContext.setText(labelProvider.getText(contextObject));
+										}
+									} catch (NotFoundException notFoundException) {
 
-				} else {
-					if (container.getSelectedScope() == ISearchPageContainer.SELECTION_SCOPE) {
-
-						ScopeEntry currentScope = getCurrentScopeEntry();
-						if (currentScope != null) {
-							if (currentScope.getModelSet() != null) {
-
-								try {
-									EObject root = ((UmlModel) currentScope.getModelSet().getModel(UmlModel.MODEL_ID)).lookupRoot();
-									createOCLSearchQueryField(root);
-
-									if (contextObject instanceof NamedElement) {
-										oclContext.setText(((NamedElement) contextObject).getQualifiedName());
-									} else {
-										LabelProviderService labelProviderService = new LabelProviderServiceImpl();
-										ILabelProvider labelProvider = labelProviderService.getLabelProvider();
-										oclContext.setText(labelProvider.getText(contextObject));
+										Activator.log.error(Messages.PapyrusQuery_0 + currentScope.getModelSet(), notFoundException);
 									}
-								} catch (NotFoundException notFoundException) {
-
-									Activator.log.error(Messages.PapyrusQuery_0 + currentScope.getModelSet(), notFoundException);
+								} else {
+									MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_23, Messages.PapyrusSearchPage_24);
+									createSimpleSearchQueryField();
+									queryKind.select(TEXT_QUERY_KIND);
 								}
 							} else {
-								MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_23, Messages.PapyrusSearchPage_24);
+								MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_25, Messages.PapyrusSearchPage_26);
 								createSimpleSearchQueryField();
 								queryKind.select(TEXT_QUERY_KIND);
 							}
 						} else {
-							MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_25, Messages.PapyrusSearchPage_26);
+							MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_27, Messages.PapyrusSearchPage_28);
 							createSimpleSearchQueryField();
 							queryKind.select(TEXT_QUERY_KIND);
 						}
-					} else {
-						MessageDialog.openWarning(Display.getCurrent().getActiveShell(), Messages.PapyrusSearchPage_27, Messages.PapyrusSearchPage_28);
-						createSimpleSearchQueryField();
-						queryKind.select(TEXT_QUERY_KIND);
 					}
+					queryComposite.layout();
 				}
-				queryComposite.layout();
 			}
 		});
 

@@ -38,6 +38,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomFirstRegionInCompositeStateCreateElementCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomVertexCreateElementCommand;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.RegionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
@@ -68,7 +69,8 @@ public class CustomStateCreationEditPolicy extends CreationEditPolicy {
 						// starting point is the state node on
 						// which mouse was moving
 						View stateView = (View) getHost().getModel();
-						View stateCompartmentView = (View) stateView.getChildren().get(1);
+						View stateCompartmentView = CustomStateEditPart.getStateCompartmentView(stateView);
+
 						// get and adaptable for it, to pass on to commands
 						IAdaptable adaptableForStateCompartmentView = new SemanticAdapter(null, stateCompartmentView);
 						if (!stateCompartmentView.getChildren().isEmpty()) {

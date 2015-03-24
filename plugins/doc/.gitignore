@@ -1,0 +1,3 @@
+#ignoring neested eclipse project, keeping it as a pure maven project
+.project
+.classpath

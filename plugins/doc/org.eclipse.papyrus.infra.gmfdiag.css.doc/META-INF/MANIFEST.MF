@@ -7,4 +7,5 @@ Bundle-Name: CSS Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.infra.gmfdiag.css.doc;singlet
  on:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

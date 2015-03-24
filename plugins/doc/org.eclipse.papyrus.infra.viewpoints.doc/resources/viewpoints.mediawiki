@@ -24,7 +24,7 @@ At any given time, there can only be one viewpoint that is currently applied to 
 
 All the viewpoints-related configuration options available to the users are provided in the ''Papyrus > Viewpoints Configuration'' preference page of Eclipse:
 
-[[image:captures/preferences.png]]
+[[Image:images/preferences.png]]
 
 The first available option is the ''Configuration selection''. It determines how the current viewpoint is selected. The possible options are:
 
@@ -44,7 +44,7 @@ In addition, the checkbox '''Multiplicity''' can be activated so that at most on
 
 It is possible at any time to see the details of the diagrams and tables offered by the currently used viewpoint in the ''Viewpoint Explorer'' view in Eclipse. This view is available in ''Window > Show View > Other'', and then selecting ''Papyrus > Viewpoint Explorer''.
 
-[[image:captures/explorer.png]]
+[[Image:images/explorer.png]]
 
 This view summarizes the currently available diagrams and tables, as well as the conditions for their availability.
 
@@ -57,16 +57,16 @@ The application of a viewpoint has some impacts on the following UI elements in 
 * The same holds for the toolbar elements for the creation of diagrams and tables.
 * The diagrams properties show the following information:
 
-[[image:captures/properties.png]]
+[[Image:images/properties.png]]
 
-* '''View Type''' is the qualified name of the diagram’s type. It gives an indication of which viewpoint is providing it.
+* '''View Type''' is the qualified name of the diagramï¿½s type. It gives an indication of which viewpoint is providing it.
 * The '''Owner''' attribute is the model element that syntactically contains the diagram in the model explorer. It can be different from the root element.
-* The '''Root''' element attribute is the model element that is the diagram’s root semantic element.
+* The '''Root''' element attribute is the model element that is the diagramï¿½s root semantic element.
 
 
 ==Definition of New Viewpoints==
 
-Papyrus supports the definition of new viewpoints that can subsequently be used by selecting them in the Papyrus Viewpoints preference panel, as presented above. Papyrus viewpoints are defined in configuration files with the ‘.configuration’ extension. They are really just an ECore model that can be edited with the specialized viewpoint configuration editor provided by Papyrus.
+Papyrus supports the definition of new viewpoints that can subsequently be used by selecting them in the Papyrus Viewpoints preference panel, as presented above. Papyrus viewpoints are defined in configuration files with the ï¿½.configurationï¿½ extension. They are really just an ECore model that can be edited with the specialized viewpoint configuration editor provided by Papyrus.
 
 ===Basic Concepts===
 
@@ -106,7 +106,7 @@ A diagram has the following attributes:
 * A ''name'' (required) that is the user-visible name of the diagram. It will appear in the creation menus and property panel.
 * An ''icon'' (required), as an URI of the form <code>platform:/plugin/...</code>.
 * An ''implementation ID'' (required) which selects the physical (hard-coded) diagram in Papyrus that will be used as a base. The possible values for this property are summarized in the following table.
-* An optional ''parent'' that specifies a parent viewpoint-defined diagram to inherit from. Essentially, the inheriting diagram will defer to its parent’s rules (see below) when its own are not sufficient to take a decision.
+* An optional ''parent'' that specifies a parent viewpoint-defined diagram to inherit from. Essentially, the inheriting diagram will defer to its parentï¿½s rules (see below) when its own are not sufficient to take a decision.
 * An optional list of ''profiles'' that must be applied on the model for this diagram to be available. The possible values are automatically populated from the loaded EPackages.
 * An optional ''custom style'' as an URI of the form <code>platform:/plugin/...</code>. It must point to a CSS file that will then be automatically applied to the diagram.
 * An optional ''custom palette'' as an URI of the form <code>platform:/plugin/...</code>. It must point a palette definition in XML that will be automatically applied to the diagram.
@@ -171,7 +171,7 @@ Once a diagram has been created it is possible to constraint it using rules. The
 * Child rules constrain the type of the model elements that can be dropped within this diagram.
 * Palette rules constrain the display of the diagram's palette elements.
 
-[[image:captures/properties.png]]
+[[Image:images/properties.png]]
 
 Each rule has a ''permit'' property that specify whether the rule authorizes or forbids the action it represents. Otherwise, the properties of the rules are as follow:
 * ''Model rules''

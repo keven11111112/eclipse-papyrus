@@ -13,6 +13,7 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part;
 
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 
 public class CustomStateEditPart extends StateEditPart {
@@ -23,7 +24,6 @@ public class CustomStateEditPart extends StateEditPart {
 
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
 		super.createDefaultEditPolicies();
 		removeEditPolicy(EditPolicyRoles.CONNECTION_HANDLES_ROLE);
 		removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
@@ -48,5 +48,24 @@ public class CustomStateEditPart extends StateEditPart {
 	@Override
 	protected int getDefaultCornerWidth() {
 		return 20;
+	}
+
+	/**
+	 * obtain the state compartment view when the view of the state is given.
+	 * 
+	 * @param stateView
+	 *            the view of the state
+	 * @return the view representing the state compartment
+	 */
+	public static View getStateCompartmentView(View stateView) {
+		for (Object viewObj : stateView.getChildren()) {
+			if (viewObj instanceof View) {
+				View view = (View) viewObj;
+				if (view.getType().equals("" + StateCompartmentEditPart.VISUAL_ID)) { //$NON-NLS-1$
+					return view;
+				}
+			}
+		}
+		return null;
 	}
 }

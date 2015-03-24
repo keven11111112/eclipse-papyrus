@@ -11,14 +11,25 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.modelexplorer;
 
-import org.eclipse.core.runtime.Plugin;
+import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
 
 /** The activator class controls the plug-in life cycle */
-public class Activator extends Plugin {
+public class Activator extends AbstractUIPlugin {
+
+	/**
+	 * The plug-in ID
+	 */
+	public static final String PLUGIN_ID = "org.eclipse.papyrus.infra.nattable.modelexplorer"; //$NON-NLS-1$
 
 	// The shared instance
 	private static Activator plugin;
+
+	/**
+	 * The plug-in's logger
+	 */
+	public static LogHelper log;
 
 	@Override
 	public void start(final BundleContext context) throws Exception {

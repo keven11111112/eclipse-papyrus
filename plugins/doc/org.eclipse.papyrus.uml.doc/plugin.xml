@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/PapyrusStarterGuide-main-toc.xml"
+            file="target/generated-eclipse-help/PapyrusStarterGuide-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/PapyrusStarterGuide-toc.xml"
+            file="target/generated-eclipse-help/PapyrusStarterGuide-toc.xml"
             primary="false">
       </toc>
    </extension>
