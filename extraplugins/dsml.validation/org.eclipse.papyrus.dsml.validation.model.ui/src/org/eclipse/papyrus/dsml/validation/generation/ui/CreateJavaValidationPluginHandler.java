@@ -130,10 +130,22 @@ public class CreateJavaValidationPluginHandler extends AbstractHandler {
 				existingProject = root.getProject(uri.segment(1));
 			}
 			IProject hostingProject = existingProject;
+			Shell shell = Display.getDefault().getActiveShell();
+
+			boolean isPlugin = false;
+			try {
+				isPlugin = hostingProject.getNature("org.eclipse.pde.PluginNature") != null; //$NON-NLS-1$
+				if (!isPlugin) {
+					// hosting project is not a plugin
+					MessageDialog.openWarning(shell, Messages.CreateJavaValidationPluginHandler_ProfileIsNotAPlugin, String.format(Messages.CreateJavaValidationPluginHandler_ProfileIsNotAPluginExplication, hostingProject.getName()));
+				}
+			}
+			catch (CoreException e) {
+				Activator.log.error(e);
+			}
 		
 			int question = 0;
-			Shell shell = Display.getDefault().getActiveShell();
-			if ((existingProject != null) && existingProject.exists()) {
+			if ((existingProject != null) && existingProject.exists() && isPlugin) {
 				MessageDialog dialog = new MessageDialog(shell,
 						Messages.CreateJavaValidationPluginHandler_ChoosePluginGeneration, null,
 						Messages.CreateJavaValidationPluginHandler_HowtoGeneratePlugin, MessageDialog.QUESTION,
