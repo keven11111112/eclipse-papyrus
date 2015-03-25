@@ -37,13 +37,13 @@
 			<id>emf-transaction</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF TRANSACTION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201502040445</url>
+			<url>http://download.eclipse.org/modeling/emf/transaction/updates/milestones/S201503250534</url>
 		</repository>
 		<repository>
 			<id>emf-validation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF VALIDATION",0) -->
-			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201502040400</url>
+			<url>http://download.eclipse.org/modeling/emf/validation/updates/milestones/S201503250348</url>
 		</repository>
 		<repository>
 			<id>ep</id>
@@ -61,7 +61,7 @@
 			<id>gmp-gmf-notation</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Notation",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201502040339</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-notation/updates/milestones/S201503250354</url>
 		</repository>
 		<repository>
 			<id>gmp-gmf-runtime</id>
@@ -97,7 +97,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201502021150</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201503241740</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -119,7 +119,7 @@
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0M5-20150204000235/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0M6-20150324000117/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
