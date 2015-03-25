@@ -1,0 +1,160 @@
+/*****************************************************************************
+ * Copyright (c) 2009, 2014 CEA LIST and others.
+ *
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus (CEA) - bug 422257
+ *
+ *****************************************************************************/
+package org.eclipse.papyrus.sysml14.tests.portandflows;
+
+import static org.junit.Assert.fail;
+
+import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
+import org.eclipse.papyrus.sysml14.portandflows.FlowDirection;
+import org.eclipse.papyrus.sysml14.portandflows.FlowProperty;
+import org.eclipse.papyrus.sysml14.portandflows.PortandflowsFactory;
+import org.eclipse.papyrus.sysml14.portandflows.PortandflowsPackage;
+import org.eclipse.papyrus.sysml14.tests.SysMLTestResources;
+import org.eclipse.uml2.uml.Image;
+import org.eclipse.uml2.uml.Interface;
+import org.eclipse.uml2.uml.Model;
+import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.util.UMLUtil.StereotypeApplicationHelper;
+import org.junit.After;
+import org.junit.Before;
+import org.junit.Rule;
+import org.junit.Test;
+
+/**
+ * A test case for the model object '<em><b>Flow Property</b></em>'. 
+ * <p>
+ * The following operations are tested:
+ * <ul>
+ * <li>{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getIcon() <em>Get Icon</em>}</li>
+ * </ul>
+ * </p>
+ */
+public class FlowPropertyTest extends AbstractPapyrusTest {
+
+	@Rule
+	public final HouseKeeper houseKeeper = new HouseKeeper();
+	
+	/**
+	 * The fixture for this Flow Property test case. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 *
+	 *  NOT
+	 */
+	protected FlowProperty fixture = null;
+
+	protected Interface i = null;
+
+	protected FlowProperty fp0 = null;
+
+	protected FlowProperty fp1 = null;
+
+	protected FlowProperty fp2 = null;
+
+	protected Model model = null;
+
+	/**
+	 * Returns the fixture for this Flow Property test case.
+	 */
+	protected FlowProperty getFixture() {
+		return fixture;
+	}
+
+	/**
+	 * Sets the fixture for this Flow Property test case. 
+	 */
+	protected void setFixture(FlowProperty fixture) {
+		this.fixture = fixture;
+	}
+
+	/**
+	 * @see junit.framework.TestCase#setUp()
+	 */
+	@Before
+	public void setUp() throws Exception {
+		setFixture(PortandflowsFactory.eINSTANCE.createFlowProperty());
+
+		// Prepare test
+		model = SysMLTestResources.createSysMLModel(houseKeeper.createResourceSet());
+		if(model == null) {
+			fail();
+		}
+
+		if(model.getAppliedProfiles().isEmpty()) {
+			fail();
+		}
+
+		// Create interface
+		i = model.createOwnedInterface("i");
+
+		// Create properties
+		Property p0 = i.createOwnedAttribute("p0", null);
+		Property p1 = i.createOwnedAttribute("p1", null);
+		Property p2 = i.createOwnedAttribute("p2", null);
+
+		// Add FlowPort stereotypes
+		fp0 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p0, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp0.setDirection(FlowDirection.IN);
+
+		fp1 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p1, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp1.setDirection(FlowDirection.OUT);
+
+		fp2 = (FlowProperty)StereotypeApplicationHelper.INSTANCE.applyStereotype(p2, PortandflowsPackage.eINSTANCE.getFlowProperty());
+		fp2.setDirection(FlowDirection.INOUT);
+
+	}
+
+	/**
+	 * @see junit.framework.TestCase#tearDown()
+	 */
+	@After
+	public void tearDown() throws Exception {
+		setFixture(null);
+	}
+
+	
+	// FIXME RUN in Sysml 1.1
+//	/**
+//	 * Tests the '{@link org.eclipse.papyrus.sysml.portandflows.FlowProperty#getIcon()
+//	 * <em>Get Icon</em>}' operation. <!-- begin-user-doc --> <!-- end-user-doc -->
+//	 *
+//	 * @see org.eclipse.papyrus.sysml.portandflows.FlowProperty#getIcon()
+//	 * 
+//	 */
+//	@Test
+//	public void testGetIcon() {
+//
+//		// Retrieve Stereotype
+//		Stereotype s = UMLUtil.getStereotype(fp0);
+//
+//		Image i0 = s.getIcons().get(1); // IN
+//		Image i1 = s.getIcons().get(2); // OUT
+//		Image i2 = s.getIcons().get(3); // INOUT
+//
+//		if(!fp0.getIcon().equals(i0)) {
+//			fail();
+//		}
+//
+//		if(!fp1.getIcon().equals(i1)) {
+//			fail();
+//		}
+//
+//		if(!fp2.getIcon().equals(i2)) {
+//			fail();
+//		}
+//	}
+
+} 

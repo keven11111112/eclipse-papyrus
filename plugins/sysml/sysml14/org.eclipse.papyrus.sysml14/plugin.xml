@@ -91,7 +91,6 @@
       </factory>
    </extension>
    
-   
    <extension point="org.eclipse.emf.ecore.generated_package">
       <package
             uri="http://www.eclipse.org/papyrus/1.4/SysML"
@@ -114,5 +113,8 @@
            provider="CEA LIST">
      </profile>
   </extension>   
+   
+   
+   
    
 </plugin>
