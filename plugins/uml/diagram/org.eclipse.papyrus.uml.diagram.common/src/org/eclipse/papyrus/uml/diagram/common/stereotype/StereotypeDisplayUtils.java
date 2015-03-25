@@ -73,6 +73,6 @@ public class StereotypeDisplayUtils {
 
 
 
-	public static final boolean PERSISTENT = true;//$NON-NLS-1$
+	public static final boolean PERSISTENT = false;//$NON-NLS-1$
 
 }
