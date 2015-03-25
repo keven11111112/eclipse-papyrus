@@ -16,14 +16,14 @@ import java.util.Map;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.CssFactory;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
-import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.XtextStylesheetHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CSSFactory;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Shell;
 
@@ -31,17 +31,17 @@ import org.eclipse.swt.widgets.Shell;
 public class CreateStyleHandler extends AbstractStyleHandler {
 
 	@Override
-	protected AbstractStyleDialog createStyleDialog(Shell shell, Map<Declaration, Boolean> declarations, Map<Attribute, Boolean> conditions, String selectorName, View context) {
+	protected AbstractStyleDialog createStyleDialog(Shell shell, Map<css_declaration, Boolean> declarations, Map<AttributeSelector, Boolean> conditions, String selectorName, View context) {
 		return new StyleCreationDialog(shell, conditions, declarations, selectorName, context);
 	}
 
 	@Override
-	protected Ruleset getRuleset(AbstractStyleDialog dialog) {
-		return CssFactory.eINSTANCE.createRuleset();
+	protected ruleset getRuleset(AbstractStyleDialog dialog) {
+		return CSSFactory.eINSTANCE.createruleset();
 	}
 
 	@Override
-	protected Stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView) {
+	protected stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView) {
 		StyleSheet styleSheet = ((StyleCreationDialog) dialog).getStyleSheet();
 
 		if (styleSheet == null) {
@@ -61,14 +61,14 @@ public class CreateStyleHandler extends AbstractStyleHandler {
 			return null;
 		}
 
-		Stylesheet xtextStylesheet;
+		stylesheet xtextStylesheet;
 
 		if (resource.getContents().isEmpty()) {
-			xtextStylesheet = CssFactory.eINSTANCE.createStylesheet();
-			xtextStylesheet.setCharset("UTF-8");
+			xtextStylesheet = CSSFactory.eINSTANCE.createstylesheet();
+			setCharset(xtextStylesheet, "UTF-8");
 			resource.getContents().add(xtextStylesheet);
 		} else {
-			xtextStylesheet = (Stylesheet) resource.getContents().get(0);
+			xtextStylesheet = (stylesheet) resource.getContents().get(0);
 		}
 
 		return xtextStylesheet;

@@ -18,6 +18,8 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.filesystem.EFS;
@@ -129,33 +131,37 @@ public class CopyFilesAndFoldersOperation {
 	 * @return the new full path for the copy
 	 */
 	static IPath getAutoNewNameFor(IPath originalName, IWorkspace workspace) {
-		int counter = 1;
 		String resourceName = originalName.lastSegment();
 		IPath leadupSegment = originalName.removeLastSegments(1);
+		boolean isFile = !originalName.hasTrailingSeparator();
 
+		String newName = computeNewName(resourceName, isFile);
 		while (true) {
-			String nameSegment;
-
-			if (counter > 1) {
-				nameSegment = NLS
-						.bind(
-								IDEWorkbenchMessages.CopyFilesAndFoldersOperation_copyNameTwoArgs,
-								new Integer(counter), resourceName);
-			} else {
-				nameSegment = NLS
-						.bind(
-								IDEWorkbenchMessages.CopyFilesAndFoldersOperation_copyNameOneArg,
-								resourceName);
-			}
-
-			IPath pathToTry = leadupSegment.append(nameSegment);
-
+			IPath pathToTry = leadupSegment.append(newName);
 			if (!workspace.getRoot().exists(pathToTry)) {
 				return pathToTry;
 			}
-
-			counter++;
+			newName = computeNewName(newName, isFile);
 		}
+	}
+
+	private static String computeNewName(String str, boolean isFile) {
+		int lastIndexOfDot = str.lastIndexOf('.');
+		String fileExtension = ""; //$NON-NLS-1$
+		String fileNameNoExtension = str;
+		if (isFile && lastIndexOfDot > 0) {
+			fileExtension = str.substring(lastIndexOfDot);
+			fileNameNoExtension = str.substring(0, lastIndexOfDot);
+		}
+		Pattern p = Pattern.compile("[0-9]+$"); //$NON-NLS-1$
+		Matcher m = p.matcher(fileNameNoExtension);
+		if (m.find()) {
+			// String ends with a number: increment it by 1
+			int newNumber = Integer.parseInt(m.group()) + 1;
+			String numberStr = m.replaceFirst(Integer.toString(newNumber));
+			return numberStr + fileExtension;
+		}
+		return fileNameNoExtension + "2" + fileExtension; //$NON-NLS-1$
 	}
 
 	/**

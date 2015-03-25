@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration#getElementTypeConfigurations <em>Element Type Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration#getAdviceBindingsConfigurations <em>Advice Bindings Configurations</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ElementTypeSetConfiguration#getMetamodelNsURI <em>Metamodel Ns URI</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getElementTypeSetConfiguration()
  * @model
@@ -44,7 +44,7 @@ public interface ElementTypeSetConfiguration extends ConfigurationElement {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Element Type Configurations</em>' containment reference list.
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getElementTypeSetConfiguration_ElementTypeConfigurations()
-	 * @model containment="true" required="true"
+	 * @model containment="true"
 	 * @generated
 	 */
 	EList<ElementTypeConfiguration> getElementTypeConfigurations();

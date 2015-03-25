@@ -20,10 +20,10 @@ import org.eclipse.papyrus.codegen.base.GenUtils
  * @author Önder GÜRCAN (onder.gurcan@cea.fr)
  */
 class CppEnumerations {
-	static def CppEnumerationDefinition(Enumeration enume) '''
-		«CppDocumentation.CppElementDoc(enume)»
-		enum «enume.name» {
-			«FOR ownedLiteral : enume.ownedLiterals»
+	static def CppEnumerationDefinition(Enumeration enumeration) '''
+		«CppDocumentation.CppElementDoc(enumeration)»
+		enum «enumeration.name» {
+			«FOR ownedLiteral : enumeration.ownedLiterals»
 				«CppDocumentation.CppElementDoc(ownedLiteral)»
 				«ownedLiteral.name»«IF GenUtils.hasStereotype(ownedLiteral, CppInit)»«UMLUtil.
 				getStereotypeApplication(ownedLiteral, CppInit).value»«ENDIF»,

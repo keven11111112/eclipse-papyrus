@@ -32,10 +32,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.EditHelperAdviceConfigurationImpl#getTarget <em>Target</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

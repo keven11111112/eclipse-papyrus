@@ -38,7 +38,7 @@
         </name>
         <href>https://www.eclipse.org/papyrus/</href>
       </brand>
-      <slogan>an ntegrated and user-consumable environment for editing any kind of EMF model and particularly supporting UML and related modeling languages such as SysML and MARTE</slogan>
+      <slogan>an integrated and user-consumable environment for editing any kind of EMF model (UML, SysML, MARTE...)</slogan>
       <titleTemplate>%2$s | %1$s</titleTemplate>
       <!-- Use Table of Contents at the top of the page (max 6 elements) -->
       <toc>top</toc>
@@ -104,8 +104,9 @@
   <body>
   
     <links>
-      <item name="Download" href="http://www.eclipse.org/papyrus" />
+      <item name="Online" href="http://www.eclipse.org/papyrus" />
       <item name="Nexus repository" href="https://repo.eclipse.org/index.html#welcome" />
+      <item name="Pdf" href="org.eclipse.papyrus.infra.ui.doc.pdf" />
     </links>
 
     <breadcrumbs>

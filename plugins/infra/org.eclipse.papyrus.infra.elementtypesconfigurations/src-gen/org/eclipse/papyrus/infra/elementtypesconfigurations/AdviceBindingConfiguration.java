@@ -20,12 +20,12 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getTarget <em>Target</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceBindingConfiguration()
  * @model
