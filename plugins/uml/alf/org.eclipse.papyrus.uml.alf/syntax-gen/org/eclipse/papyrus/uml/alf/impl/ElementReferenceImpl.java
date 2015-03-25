@@ -10,7 +10,7 @@ import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignableElement;
 import org.eclipse.papyrus.uml.alf.ElementReference;
@@ -27,7 +27,7 @@ import org.eclipse.papyrus.uml.alf.UnitDefinition;
  *
  * @generated
  */
-public abstract class ElementReferenceImpl extends CDOObjectImpl implements ElementReference {
+public abstract class ElementReferenceImpl extends MinimalEObjectImpl.Container implements ElementReference {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

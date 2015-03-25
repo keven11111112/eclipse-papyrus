@@ -2,7 +2,7 @@
  */
 package org.eclipse.papyrus.uml.alf;
 
-import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.EList;
 
 /**
@@ -28,10 +28,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource()
  * @model
- * @extends CDOObject
+ * @extends EObject
  * @generated
  */
-public interface AssignedSource extends CDOObject {
+public interface AssignedSource extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->

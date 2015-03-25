@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.uml.alf.RunTimeCaching;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignedSource;
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.uml.alf.SyntaxElement;
  *
  * @generated
  */
-public abstract class SyntaxElementImpl extends CDOObjectImpl implements SyntaxElement {
+public abstract class SyntaxElementImpl extends MinimalEObjectImpl.Container implements SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

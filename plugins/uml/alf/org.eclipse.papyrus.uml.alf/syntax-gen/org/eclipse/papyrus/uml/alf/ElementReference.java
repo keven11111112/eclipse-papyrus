@@ -3,7 +3,7 @@
 package org.eclipse.papyrus.uml.alf;
 
 import java.math.BigInteger;
-import org.eclipse.emf.cdo.CDOObject;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -21,10 +21,10 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getElementReference()
  * @model abstract="true"
- * @extends CDOObject
+ * @extends EObject
  * @generated
  */
-public interface ElementReference extends CDOObject {
+public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

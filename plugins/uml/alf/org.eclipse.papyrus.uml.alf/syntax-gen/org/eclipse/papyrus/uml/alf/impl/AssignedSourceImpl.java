@@ -8,7 +8,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.emf.internal.cdo.CDOObjectImpl;
+import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignedSource;
 import org.eclipse.papyrus.uml.alf.ElementReference;
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.alf.SyntaxElement;
  *
  * @generated
  */
-public class AssignedSourceImpl extends CDOObjectImpl implements AssignedSource {
+public class AssignedSourceImpl extends MinimalEObjectImpl.Container implements AssignedSource {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
