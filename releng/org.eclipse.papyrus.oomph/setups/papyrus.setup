@@ -1877,93 +1877,6 @@
     <project
         name="misc"
         label="Others">
-      <setupTask
-          xsi:type="projects:ProjectsImportTask">
-        <sourceLocator
-            rootFolder="${papyrus.git.clone.location/plugins/team}"/>
-        <sourceLocator
-            rootFolder="${papyrus.git.clone.location/features}">
-          <predicate
-              xsi:type="predicates:AndPredicate">
-            <operand
-                xsi:type="predicates:NamePredicate"
-                pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
-          </predicate>
-        </sourceLocator>
-      </setupTask>
-      <setupTask
-          xsi:type="setup.workingsets:WorkingSetTask">
-        <workingSet
-            name="Papyrus Others"
-            id="papyrus-others">
-          <predicate
-              xsi:type="predicates:AndPredicate">
-            <operand
-                xsi:type="predicates:RepositoryPredicate"
-                project="org.eclipse.papyrus.team.svn"/>
-            <operand
-                xsi:type="predicates:NaturePredicate"
-                nature="org.eclipse.pde.PluginNature"/>
-            <operand
-                xsi:type="predicates:NamePredicate"
-                pattern="org\.eclipse\.papyrus\.team\.svn"/>
-          </predicate>
-        </workingSet>
-        <workingSet
-            name="Papyrus Other Features"
-            id="papyrus-others-features">
-          <predicate
-              xsi:type="predicates:AndPredicate">
-            <operand
-                xsi:type="predicates:RepositoryPredicate"
-                project="org.eclipse.papyrus.team.feature"/>
-            <operand
-                xsi:type="predicates:NaturePredicate"
-                nature="org.eclipse.pde.FeatureNature"/>
-            <operand
-                xsi:type="predicates:NamePredicate"
-                pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
-          </predicate>
-        </workingSet>
-      </setupTask>
-      <setupTask
-          xsi:type="setup.targlets:TargletTask">
-        <targlet
-            name="Papyrus Other Dependencies"
-            activeRepositoryList="${eclipse.target.platform}">
-          <requirement
-              name="org.eclipse.team.svn.feature.group"/>
-          <requirement
-              name="org.polarion.eclipse.team.svn.connector.svnkit18.feature.group"/>
-          <repositoryList
-              name="Luna">
-            <repository
-                url="${base.downloads.url}/technology/subversive/2.0/luna-site/"/>
-            <repository
-                url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
-          </repositoryList>
-          <repositoryList
-              name="Mars">
-            <repository
-                url="http://download.eclipse.org/technology/subversive/3.0/mars-site/">
-              <annotation
-                  source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
-                <detail
-                    key="updateFrom">
-                  <value>Subversive</value>
-                </detail>
-              </annotation>
-            </repository>
-            <repository
-                url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
-          </repositoryList>
-        </targlet>
-        <description>
-          Additional dependencies, e.g. for Subversive (SVN team integration), including
-          an SVN connector from Polarion to prevent the connector dialog appearing at
-          run-time, especially as it interferes with JUnit test execution.
-        </description>
-      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1979,6 +1892,93 @@
             xsi:type="setup:VariableTask"
             name="papyrus.bugzilla.version"
             value="1.0.0&amp;version=1.0.1&amp;version=1.0.2"/>
+        <setupTask
+            xsi:type="projects:ProjectsImportTask">
+          <sourceLocator
+              rootFolder="${papyrus.git.clone.location/plugins/team}"/>
+          <sourceLocator
+              rootFolder="${papyrus.git.clone.location/features}">
+            <predicate
+                xsi:type="predicates:AndPredicate">
+              <operand
+                  xsi:type="predicates:NamePredicate"
+                  pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
+            </predicate>
+          </sourceLocator>
+        </setupTask>
+        <setupTask
+            xsi:type="setup.workingsets:WorkingSetTask">
+          <workingSet
+              name="Papyrus Others"
+              id="papyrus-others">
+            <predicate
+                xsi:type="predicates:AndPredicate">
+              <operand
+                  xsi:type="predicates:RepositoryPredicate"
+                  project="org.eclipse.papyrus.team.svn"/>
+              <operand
+                  xsi:type="predicates:NaturePredicate"
+                  nature="org.eclipse.pde.PluginNature"/>
+              <operand
+                  xsi:type="predicates:NamePredicate"
+                  pattern="org\.eclipse\.papyrus\.team\.svn"/>
+            </predicate>
+          </workingSet>
+          <workingSet
+              name="Papyrus Other Features"
+              id="papyrus-others-features">
+            <predicate
+                xsi:type="predicates:AndPredicate">
+              <operand
+                  xsi:type="predicates:RepositoryPredicate"
+                  project="org.eclipse.papyrus.team.feature"/>
+              <operand
+                  xsi:type="predicates:NaturePredicate"
+                  nature="org.eclipse.pde.FeatureNature"/>
+              <operand
+                  xsi:type="predicates:NamePredicate"
+                  pattern="org\.eclipse\.papyrus\.team($|\..+)"/>
+            </predicate>
+          </workingSet>
+        </setupTask>
+        <setupTask
+            xsi:type="setup.targlets:TargletTask">
+          <targlet
+              name="Papyrus Other Dependencies"
+              activeRepositoryList="${eclipse.target.platform}">
+            <requirement
+                name="org.eclipse.team.svn.feature.group"/>
+            <requirement
+                name="org.polarion.eclipse.team.svn.connector.svnkit18.feature.group"/>
+            <repositoryList
+                name="Luna">
+              <repository
+                  url="${base.downloads.url}/technology/subversive/2.0/luna-site/"/>
+              <repository
+                  url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
+            </repositoryList>
+            <repositoryList
+                name="Mars">
+              <repository
+                  url="http://download.eclipse.org/technology/subversive/3.0/mars-site/">
+                <annotation
+                    source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
+                  <detail
+                      key="updateFrom">
+                    <value>Subversive</value>
+                  </detail>
+                </annotation>
+              </repository>
+              <repository
+                  url="http://community.polarion.com/projects/subversive/download/eclipse/4.0/update-site/"/>
+            </repositoryList>
+          </targlet>
+          <description>
+            Additional dependencies, e.g. for Subversive (SVN team integration), including
+            an SVN connector from Polarion to prevent the connector dialog appearing at
+            run-time, especially as it interferes with JUnit test execution.
+          </description>
+        </setupTask>
       </stream>
     </project>
     <project
