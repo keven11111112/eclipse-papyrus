@@ -186,6 +186,13 @@
          properties="isTextZone"
          type="org.eclipse.swt.widgets.Shell">
    </propertyTester>   
+   <propertyTester
+         class="org.eclipse.papyrus.infra.gmfdiag.common.utils.EditPartPropertyTester"
+         id="org.eclipse.papyrus.infra.gmfdiag.common.editPartProperties"
+         namespace="org.eclipse.papyrus.infra.gmfdiag"
+         properties="hasEditPolicy"
+         type="org.eclipse.gef.EditPart">
+   </propertyTester>   
 </extension>
 <extension
       point="org.eclipse.ui.menus">

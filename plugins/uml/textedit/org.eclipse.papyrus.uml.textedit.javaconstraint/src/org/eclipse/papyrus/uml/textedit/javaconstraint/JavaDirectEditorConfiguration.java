@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.textedit.javaconstraint;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
@@ -24,6 +25,7 @@ import org.eclipse.papyrus.extensionpoints.editors.configuration.DefaultDirectEd
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.LiteralString;
 import org.eclipse.uml2.uml.UMLFactory;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 
 /**
@@ -32,6 +34,9 @@ import org.eclipse.uml2.uml.UMLFactory;
  */
 public class JavaDirectEditorConfiguration extends DefaultDirectEditorConfiguration {
 
+
+	/** Name used for Java language. */
+	private static final String JAVA_LANGUAGE = "JAVA";
 
 	/**
 	 *
@@ -44,26 +49,29 @@ public class JavaDirectEditorConfiguration extends DefaultDirectEditorConfigurat
 	@Override
 	public String getTextToEdit(Object editedObject) {
 		Constraint umlConstraint = (Constraint) editedObject;
-		String value = "";
-		if (umlConstraint.getSpecification() != null) {
-			if (umlConstraint.getSpecification() instanceof LiteralString) {
-				if (((LiteralString) umlConstraint.getSpecification()).getValue() != null) {
-					value += ((LiteralString) umlConstraint.getSpecification()).getValue();
+		StringBuffer value = new StringBuffer();
+
+		ValueSpecification opaqueSpecification = umlConstraint.getSpecification();
+		if (opaqueSpecification != null) {
+			if (opaqueSpecification instanceof LiteralString) {
+				if (((LiteralString) opaqueSpecification).getValue() != null) {
+					value.append(((LiteralString) opaqueSpecification).getValue());
 				}
-			} else if (umlConstraint.getSpecification() instanceof org.eclipse.uml2.uml.OpaqueExpression) {
-				int indexOfOCLBody = -1;
-				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) umlConstraint.getSpecification();
-				for (int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
-					if (opaqueExpression.getLanguages().get(i).equals("JAVA")) {
-						value += opaqueExpression.getBodies().get(i);
-						indexOfOCLBody = i;
+			} else if (opaqueSpecification instanceof org.eclipse.uml2.uml.OpaqueExpression) {
+
+				org.eclipse.uml2.uml.OpaqueExpression opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) opaqueSpecification;
+				EList<String> opaqueLanguages = opaqueExpression.getLanguages();
+				if (opaqueLanguages.contains(JAVA_LANGUAGE)) {
+					int indexBodyLanguage = opaqueLanguages.indexOf(JAVA_LANGUAGE);
+					EList<String> bodiesLanguage = opaqueExpression.getBodies();
+					if (indexBodyLanguage < bodiesLanguage.size()) {
+						value.append(bodiesLanguage.get(indexBodyLanguage));
 					}
 				}
 			}
 		}
-		return value;
+		return value.toString();
 	}
-
 
 	@Override
 	public Object postEditAction(Object objectToEdit, String newText) {
@@ -99,13 +107,13 @@ public class JavaDirectEditorConfiguration extends DefaultDirectEditorConfigurat
 			} else {
 				opaqueExpression = (org.eclipse.uml2.uml.OpaqueExpression) constraint.getSpecification();
 				for (int i = 0; i < opaqueExpression.getLanguages().size() && indexOfOCLBody == -1; i++) {
-					if (opaqueExpression.getLanguages().get(i).equals("JAVA")) {
+					if (opaqueExpression.getLanguages().get(i).equals(JAVA_LANGUAGE)) {
 						indexOfOCLBody = i;
 					}
 				}
 			}
 			if (indexOfOCLBody == -1) {
-				opaqueExpression.getLanguages().add("JAVA");
+				opaqueExpression.getLanguages().add(JAVA_LANGUAGE);
 				opaqueExpression.getBodies().add(newTextualRepresentation);
 			} else {
 				opaqueExpression.getBodies().remove(indexOfOCLBody);

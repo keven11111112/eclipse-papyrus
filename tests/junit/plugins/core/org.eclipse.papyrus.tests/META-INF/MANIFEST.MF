@@ -71,6 +71,7 @@ Require-Bundle: org.eclipse.ui,
  org.eclipse.papyrus.infra.nattable.model.tests;bundle-version="1.1.0",
  org.eclipse.papyrus.tests.diagramassistants;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.profile.drafter;bundle-version="1.1.0",
+ org.eclipse.papyrus.infra.gmfdiag.canonical.tests;bundle-version="1.1.0",
  org.eclipse.papyrus.uml.alf.tests;bundle-version="1.1.0"
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy

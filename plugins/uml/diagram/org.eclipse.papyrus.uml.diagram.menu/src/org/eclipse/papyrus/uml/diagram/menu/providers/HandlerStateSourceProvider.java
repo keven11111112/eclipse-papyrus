@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,13 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.providers;
 
 import org.eclipse.core.commands.AbstractHandler;
+import org.eclipse.papyrus.infra.gmfdiag.menu.handlers.ToggleCanonicalHandler;
 import org.eclipse.papyrus.uml.diagram.common.providers.AbstractActionStateSourceProvider;
 import org.eclipse.papyrus.uml.diagram.menu.actions.ArrangeAction;
 import org.eclipse.papyrus.uml.diagram.menu.actions.LineStyleAction;
@@ -53,6 +55,8 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	public static final String SHOW_HIDE_CONTENTS = "showHideContents"; //$NON-NLS-1$
 
 	public static final String SHOW_HIDE_COMPARTMENTS = "showHideCompartments"; //$NON-NLS-1$
+
+	public static final String TOGGLE_CANONICAL = "toggleCanonical"; //$NON-NLS-1$
 
 	public static final String COPY_APPEARANCE_PROPERTIES = "copyAppearanceProperties";//$NON-NLS-1$
 
@@ -99,6 +103,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 		super();
 		currentState.put(SHOW_HIDE_CONTENTS, DISABLED);
 		currentState.put(SHOW_HIDE_COMPARTMENTS, DISABLED);
+		currentState.put(TOGGLE_CANONICAL, DISABLED);
 		currentState.put(COPY_APPEARANCE_PROPERTIES, DISABLED);
 		currentState.put(SORT_FILTER_COMPARTMENT_ITEMS, DISABLED);
 		currentState.put(ZOOM, DISABLED);
@@ -135,8 +140,9 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	 */
 	@Override
 	public String[] getProvidedSourceNames() {
-		return new String[] { SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, COPY_APPEARANCE_PROPERTIES, ZOOM
+		return new String[] { SHOW_HIDE_CONTENTS, SHOW_HIDE_COMPARTMENTS, TOGGLE_CANONICAL
 
+				, COPY_APPEARANCE_PROPERTIES, ZOOM
 
 				, BRING_TO_FRONT, SEND_TO_BACK, BRING_FORWARD, SEND_BACKWARD
 
@@ -160,6 +166,7 @@ public class HandlerStateSourceProvider extends AbstractActionStateSourceProvide
 	protected void refreshActions() {
 		refresh(SHOW_HIDE_CONTENTS, new ShowHideContentsHandler());
 		refresh(SHOW_HIDE_COMPARTMENTS, new ShowHideCompartmentHandler());
+		refresh(TOGGLE_CANONICAL, new ToggleCanonicalHandler());
 		refresh(COPY_APPEARANCE_PROPERTIES, new CopyAppearancePropertiesHandler());
 
 		refresh(SORT_FILTER_COMPARTMENT_ITEMS, new SortFilterCompartmentItemsHandler());

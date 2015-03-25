@@ -9,11 +9,13 @@
  * Contributors:
  *  Christian W. Damus (CEA) - initial API and implementation
  *  Christian W. Damus - bug 459746
+ *  Christian W. Damus - bug 433206
  */
 package org.eclipse.papyrus.infra.gmfdiag.commands.tests;
 
 import org.eclipse.papyrus.commands.NestingNotifyingWorkspaceCommandStackTest;
 import org.eclipse.papyrus.commands.NotifyingWorkspaceCommandStackTest;
+import org.eclipse.papyrus.commands.util.CommandTreeIteratorTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
@@ -25,7 +27,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 		// {oep.commands}
-		NotifyingWorkspaceCommandStackTest.class, NestingNotifyingWorkspaceCommandStackTest.class })
+		NotifyingWorkspaceCommandStackTest.class, NestingNotifyingWorkspaceCommandStackTest.class,
+		// {oep.commands.util}
+		CommandTreeIteratorTest.class })
 public class AllTests {
 
 }

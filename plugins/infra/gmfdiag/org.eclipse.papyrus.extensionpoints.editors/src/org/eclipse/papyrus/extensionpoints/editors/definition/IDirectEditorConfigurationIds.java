@@ -33,6 +33,9 @@ public interface IDirectEditorConfigurationIds {
 	/** id of the direct editor configuration attribute */
 	public static final String ATT_EDITOR_CONFIGURATION = "editorConfiguration";
 
+	/** id of the direct editor "additional constraint" attribute */
+	public static final String ATT_ADDITIONAL_CONSTRAINT = "additionalConstraint"; //$NON-NLS-1$
+
 	/** id of the direct editor simple configuration tag */
 	public static final String TAG_SIMPLE_EDITOR = "simpleeditor";
 

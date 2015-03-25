@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
- * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getChildType <em>Child Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsPermitted <em>Is Permitted</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsStrict <em>Is Strict</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getContainerType <em>Container Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isPermitted <em>Permitted</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isStrict <em>Strict</em>}</li>
+ * </ul>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission()
  * @model
@@ -34,81 +34,81 @@ import org.eclipse.emf.ecore.EObject;
  */
 public interface HierarchyPermission extends EObject {
 	/**
-	 * Returns the value of the '<em><b>Child Type</b></em>' attribute.
+	 * Returns the value of the '<em><b>Container Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Child Type</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Container Type</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Child Type</em>' attribute.
-	 * @see #setChildType(String)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_ChildType()
-	 * @model
+	 * @return the value of the '<em>Container Type</em>' attribute.
+	 * @see #setContainerType(String)
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_ContainerType()
+	 * @model required="true"
 	 * @generated
 	 */
-	String getChildType();
+	String getContainerType();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getChildType <em>Child Type</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getContainerType <em>Container Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Child Type</em>' attribute.
-	 * @see #getChildType()
+	 * @param value the new value of the '<em>Container Type</em>' attribute.
+	 * @see #getContainerType()
 	 * @generated
 	 */
-	void setChildType(String value);
+	void setContainerType(String value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Permitted</b></em>' attribute.
+	 * Returns the value of the '<em><b>Permitted</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Permitted</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Permitted</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Permitted</em>' attribute.
-	 * @see #setIsPermitted(boolean)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_IsPermitted()
-	 * @model
+	 * @return the value of the '<em>Permitted</em>' attribute.
+	 * @see #setPermitted(boolean)
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_Permitted()
+	 * @model required="true"
 	 * @generated
 	 */
-	boolean isIsPermitted();
+	boolean isPermitted();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsPermitted <em>Is Permitted</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isPermitted <em>Permitted</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Permitted</em>' attribute.
-	 * @see #isIsPermitted()
+	 * @param value the new value of the '<em>Permitted</em>' attribute.
+	 * @see #isPermitted()
 	 * @generated
 	 */
-	void setIsPermitted(boolean value);
+	void setPermitted(boolean value);
 
 	/**
-	 * Returns the value of the '<em><b>Is Strict</b></em>' attribute.
+	 * Returns the value of the '<em><b>Strict</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Is Strict</em>' attribute isn't clear,
+	 * If the meaning of the '<em>Strict</em>' attribute isn't clear,
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * @return the value of the '<em>Is Strict</em>' attribute.
-	 * @see #setIsStrict(boolean)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_IsStrict()
-	 * @model
+	 * @return the value of the '<em>Strict</em>' attribute.
+	 * @see #setStrict(boolean)
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getHierarchyPermission_Strict()
+	 * @model required="true"
 	 * @generated
 	 */
-	boolean isIsStrict();
+	boolean isStrict();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsStrict <em>Is Strict</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isStrict <em>Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @param value the new value of the '<em>Is Strict</em>' attribute.
-	 * @see #isIsStrict()
+	 * @param value the new value of the '<em>Strict</em>' attribute.
+	 * @see #isStrict()
 	 * @generated
 	 */
-	void setIsStrict(boolean value);
+	void setStrict(boolean value);
 
 } // HierarchyPermission

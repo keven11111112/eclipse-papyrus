@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos.
+ * Copyright (c) 2011, 2015 Atos, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.commands;
@@ -115,7 +116,7 @@ public class DeferredCreateCommand extends AbstractTransactionalCommand {
 				}
 			}
 		}
-		return CommandResult.newOKCommandResult();
+		return CommandResult.newOKCommandResult(adapter);
 	}
 
 	/**

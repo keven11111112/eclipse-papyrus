@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 430701
  *  Christian W. Damus (CEA) - bug 433320
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 454891
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.menu.handlers;

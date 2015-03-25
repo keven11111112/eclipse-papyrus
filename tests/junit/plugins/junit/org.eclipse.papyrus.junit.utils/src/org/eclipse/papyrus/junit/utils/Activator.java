@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.junit.utils;
@@ -16,6 +17,8 @@ package org.eclipse.papyrus.junit.utils;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 import org.osgi.framework.BundleContext;
+import org.osgi.framework.ServiceReference;
+import org.osgi.service.application.ApplicationHandle;
 
 /**
  * The activator class controls the plug-in life cycle
@@ -30,29 +33,34 @@ public class Activator extends AbstractUIPlugin {
 
 	public static LogHelper log;
 
+	private String runningApplicationID;
+
 	/**
 	 * The constructor
 	 */
 	public Activator() {
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#start(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
 		plugin = this;
 		log = new LogHelper(this);
+
+		// Get the running application ID
+		ServiceReference<ApplicationHandle> appRef = context.getServiceReference(ApplicationHandle.class);
+		if (appRef != null) {
+			ApplicationHandle appHandle = context.getService(appRef);
+			if (appHandle != null) {
+				try {
+					runningApplicationID = appHandle.getApplicationDescriptor().getApplicationId();
+				} finally {
+					context.ungetService(appRef);
+				}
+			}
+		}
 	}
 
-	/*
-	 * (non-Javadoc)
-	 * 
-	 * @see org.eclipse.ui.plugin.AbstractUIPlugin#stop(org.osgi.framework.BundleContext)
-	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
 		plugin = null;
@@ -66,6 +74,10 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	public String getRunningApplicationID() {
+		return (runningApplicationID == null) ? "" : runningApplicationID; //$NON-NLS-1$
 	}
 
 }

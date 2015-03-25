@@ -13,6 +13,7 @@
  *  Christian W. Damus (CEA) - bug 433320
  *  Christian W. Damus - bug 451557
  *  Christian W. Damus - bug 457560
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -21,6 +22,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.Collections;
 import java.util.Map;
 import java.util.Set;
+import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.OperationCanceledException;
@@ -49,6 +51,8 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	public static final String TRANSACTION_OPTION_NO_READ_ONLY_CACHE = "papyrus.no_read_only_cache"; //$NON-NLS-1$
 
 	public static final String TRANSACTION_OPTION_INTERACTIVE = "papyrus.interactive"; //$NON-NLS-1$
+
+	public static final String TRANSACTION_OPTION_MERGE_NESTED_READ = "papyrus.merge_nested_read"; //$NON-NLS-1$
 
 	/**
 	 * Queries whether an editing {@code domain} has been disposed.
@@ -208,10 +212,65 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 *
 	 * @param transaction
 	 *            a transaction
-	 * @return {@code true} if the {@code transaction} has the {@linkplain #TRANSACTION_OPTION_INTERACTIVE interactive option} set {@code true}; {@code false}, otherwise (including the default case of no option set)
+	 * @return {@code true} if the {@code transaction} has the {@linkplain #TRANSACTION_OPTION_NO_READ_ONLY_CACHE interactive option} set {@code true}; {@code false}, otherwise (including the default case of no option set)
 	 */
 	public static boolean isReadOnlyCacheDisabled(Transaction transaction) {
-		Object value = transaction.getOptions().get(TRANSACTION_OPTION_INTERACTIVE);
+		Object value = transaction.getOptions().get(TRANSACTION_OPTION_NO_READ_ONLY_CACHE);
+		return (value instanceof Boolean) ? (Boolean) value : false;
+	}
+
+	/**
+	 * Merges the option to merge nested read-only transactions with parent write transactions into an existing map of {@code options}.
+	 * This option on a write transaction affects this behaviour of subsequent child read-only transactions.
+	 *
+	 * @param options
+	 *            an existing (non-{@code null}) options map
+	 * @param mergeReadOnly
+	 *            whether to merge read-only transactions into parent write transactions
+	 * @return the augmented {@code options}
+	 */
+	public static Map<String, Object> mergeMergeReadOnlyOption(Map<String, Object> options, boolean mergeReadOnly) {
+		options.put(TRANSACTION_OPTION_MERGE_NESTED_READ, mergeReadOnly);
+		return options;
+	}
+
+	/**
+	 * Adds the option to merge nested read-only transactions with parent write transactions to a transaction's {@code options}.
+	 * This option on a write transaction affects this behaviour of subsequent child read-only transactions.
+	 *
+	 * @param options
+	 *            an options map, which may be {@code null} or immutable
+	 * @param mergeReadOnly
+	 *            whether to merge read-only transactions into parent write transactions
+	 * @return a new map based on the {@code options} and including the {@code mergeReadOnly} option
+	 */
+	public static Map<String, Object> addMergeReadOnlyOption(Map<String, ?> options, boolean mergeReadOnly) {
+		Map<String, Object> result = (options == null) ? Maps.<String, Object> newHashMap() : Maps.newHashMap(options);
+		result.put(TRANSACTION_OPTION_MERGE_NESTED_READ, mergeReadOnly);
+		return result;
+	}
+
+	/**
+	 * Creates a new mutable transaction options map with the option to merge nested read-only transactions with parent write transactions.
+	 * This option on a write transaction affects this behaviour of subsequent child read-only transactions.
+	 *
+	 * @param mergeReadOnly
+	 *            whether to merge read-only transactions into parent write transactions
+	 * @return a new mutable map including the {@code mergeReadOnly} option
+	 */
+	public static Map<String, Object> mergeReadOnlyOption(boolean mergeReadOnly) {
+		return addMergeReadOnlyOption(null, mergeReadOnly);
+	}
+
+	/**
+	 * Queries whether a {@code transaction} is running with merging of nested read-only transactions with parent write transactions enabled.
+	 *
+	 * @param transaction
+	 *            a transaction
+	 * @return {@code true} if the {@code transaction} has the {@linkplain #TRANSACTION_OPTION_MERGE_NESTED_READ interactive option} set {@code true}; {@code false}, otherwise (including the default case of no option set)
+	 */
+	public static boolean isMergeReadOnly(Transaction transaction) {
+		Object value = transaction.getOptions().get(TRANSACTION_OPTION_MERGE_NESTED_READ);
 		return (value instanceof Boolean) ? (Boolean) value : false;
 	}
 
@@ -318,5 +377,39 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 				}
 			}
 		};
+	}
+
+	/**
+	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
+	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
+	 * 
+	 * @param domain
+	 *            a transactional editing domain. May not be {@code null}
+	 * @param fallback
+	 *            an executor to use for scheduling tasks when the {@code domain} does not have a
+	 *            write transaction open. May not be {@code null}
+	 */
+	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback) {
+		return createTransactionExecutor(domain, fallback, null);
+	}
+
+	/**
+	 * Creates an {@link Executor} that executes {@link Runnable}s at the pre-commit phase of the active write
+	 * transaction of the specified editing {@code domain} or at some other time if no write transaction is active.
+	 * 
+	 * @param domain
+	 *            a transactional editing domain. May not be {@code null}
+	 * @param fallback
+	 *            an executor to use for scheduling tasks when the {@code domain} does not have a
+	 *            write transaction open. May not be {@code null}
+	 * @param options
+	 *            a map of options to apply to the nested transaction in which tasks are executed. May be {@code null} if not needed
+	 */
+	public static Executor createTransactionExecutor(TransactionalEditingDomain domain, Executor fallback, Map<?, ?> options) {
+		if ((domain == null) || (fallback == null)) {
+			throw new NullPointerException();
+		}
+
+		return new TransactionPrecommitExecutor(domain, fallback, options);
 	}
 }

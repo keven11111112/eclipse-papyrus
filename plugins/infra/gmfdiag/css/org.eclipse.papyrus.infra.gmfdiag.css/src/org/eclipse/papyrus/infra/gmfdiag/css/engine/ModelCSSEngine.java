@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2014 CEA LIST and others.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 429422
  *  Mickael ADAM (ALL4TEC) mickael.adam@ALL4TEC.net - bug 429642
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
@@ -30,7 +31,6 @@ import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.ModelStyleSheets;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
-import org.eclipse.swt.widgets.Display;
 import org.w3c.dom.Element;
 
 /**
@@ -55,14 +55,7 @@ public class ModelCSSEngine extends ExtendedCSSEngineImpl {
 		public void notifyChanged(Notification notification) {
 			ModelCSSEngine.this.reset();
 
-			DiagramHelper.setNeedsRefresh();
-			Display.getDefault().asyncExec(new Runnable() {
-
-				@Override
-				public void run() {
-					DiagramHelper.refreshDiagrams();
-				}
-			});
+			DiagramHelper.scheduleRefresh();
 		}
 	};
 

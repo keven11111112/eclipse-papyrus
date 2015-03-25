@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
@@ -41,11 +42,15 @@ import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalEditPart;
+import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.ui.palette.PaletteViewer;
+import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IDiagramPreferenceSupport;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditorWithFlyOutPalette;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
@@ -59,7 +64,10 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.core.utils.AdapterUtils;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationModel;
 import org.eclipse.papyrus.junit.utils.EditorUtils;
+import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.papyrus.junit.utils.tests.AbstractEditorTest;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPage;
@@ -146,6 +154,16 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		openAll(description);
 
+		ActiveDiagram activeDiagram = JUnitUtils.getAnnotation(description, ActiveDiagram.class);
+		if (activeDiagram != null) {
+			String name = activeDiagram.value();
+			activateDiagram(name);
+			if ((activeDiagramEditor == null) || !name.equals(getActiveDiagramEditor().getDiagram().getName())) {
+				// OK, we need to open it, then
+				openDiagram(name);
+			}
+		}
+
 		super.starting(description);
 	}
 
@@ -218,6 +236,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				try {
 					editor = EditorUtils.openPapyrusEditor(modelFile);
@@ -233,6 +252,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			final IWorkbenchPage page = editor.getSite().getPage();
 			page.addPartListener(new IPartListener() {
 
+				@Override
 				public void partClosed(IWorkbenchPart part) {
 					editorsToClose.remove(part);
 
@@ -245,18 +265,22 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 					}
 				}
 
+				@Override
 				public void partOpened(IWorkbenchPart part) {
 					// Pass
 				}
 
+				@Override
 				public void partDeactivated(IWorkbenchPart part) {
 					// Pass
 				}
 
+				@Override
 				public void partBroughtToTop(IWorkbenchPart part) {
 					// Pass
 				}
 
+				@Override
 				public void partActivated(IWorkbenchPart part) {
 					// Pass
 				}
@@ -332,6 +356,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		Display.getDefault().syncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				ModelExplorerPageBookView view;
 				try {
@@ -426,6 +451,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 
 		sashContainer.visit(new IPageVisitor() {
 
+			@Override
 			public void accept(IEditorPage page) {
 				if (name.equals(page.getPageTitle()) && (page.getIEditorPart() instanceof DiagramEditorWithFlyOutPalette)) {
 					select[0] = page;
@@ -433,6 +459,7 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 				}
 			}
 
+			@Override
 			public void accept(IComponentPage page) {
 				// Pass
 			}
@@ -441,6 +468,54 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		if (select[0] != null) {
 			sashContainer.selectPage(select[0]);
 			flushDisplayEvents();
+		}
+
+		return this;
+	}
+
+	public PapyrusEditorFixture openDiagram(String name) {
+		return openDiagram(editor, name);
+	}
+
+	public PapyrusEditorFixture openDiagram(IMultiDiagramEditor editor, final String name) {
+		activate(editor);
+
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
+			NotationModel notation = (NotationModel) modelSet.getModel(NotationModel.MODEL_ID);
+			Diagram diagram = notation.getDiagram(name);
+			ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).openPage(diagram);
+			flushDisplayEvents();
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot initialize test", e);
+		}
+
+		return this;
+	}
+
+	public String closeDiagram() {
+		String result = getActiveDiagramEditor().getDiagram().getName();
+		closeDiagram(editor, result);
+		return result;
+	}
+
+	public PapyrusEditorFixture closeDiagram(String name) {
+		return closeDiagram(editor, name);
+	}
+
+	public PapyrusEditorFixture closeDiagram(IMultiDiagramEditor editor, final String name) {
+		try {
+			ModelSet modelSet = ServiceUtils.getInstance().getModelSet(editor.getServicesRegistry());
+			NotationModel notation = (NotationModel) modelSet.getModel(NotationModel.MODEL_ID);
+			Diagram diagram = notation.getDiagram(name);
+
+			// If the diagram was deleted, then so too was its page
+			if (diagram != null) {
+				ServiceUtils.getInstance().getIPageManager(editor.getServicesRegistry()).closePage(diagram);
+				flushDisplayEvents();
+			}
+		} catch (Exception e) {
+			throw new IllegalStateException("Cannot close diagram", e);
 		}
 
 		return this;
@@ -821,4 +896,18 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 			return ((location != null) ? location : (relativeTo == null) ? DEFAULT_LOCATION_EDITORS : DEFAULT_LOCATION_VIEW).toModelServiceLocation();
 		}
 	}
+
+	public PreferencesHint getPreferencesHint() {
+		PreferencesHint result = PreferencesHint.USE_DEFAULTS;
+
+		if (activeDiagramEditor != null) {
+			RootEditPart rootEditPart = activeDiagramEditor.getDiagramGraphicalViewer().getRootEditPart();
+			if (rootEditPart instanceof IDiagramPreferenceSupport) {
+				result = ((IDiagramPreferenceSupport) rootEditPart).getPreferencesHint();
+			}
+		}
+
+		return result;
+	}
+
 }

@@ -151,6 +151,11 @@ public class InvariantTypeConfigurationItemProvider extends SpecializationTypeCo
 		newChildDescriptors.add
 			(createChildParameter
 				(InvariantTypeConfigurationPackage.Literals.INVARIANT_TYPE_CONFIGURATION__INVARIANT_RULE_CONFIGURATION,
+				 InvariantTypeConfigurationFactory.eINSTANCE.createNotInvariantRuleConfiguration()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(InvariantTypeConfigurationPackage.Literals.INVARIANT_TYPE_CONFIGURATION__INVARIANT_RULE_CONFIGURATION,
 				 InvariantTypeConfigurationFactory.eINSTANCE.createAndInvariantRuleConfiguration()));
 
 		newChildDescriptors.add

@@ -1236,11 +1236,15 @@
 		</diagramMappings>
 	</extension>
 <extension
-      point="org.eclipse.papyrus.uml.diagram.synchronizeview.semanticchild">
-   <semanticChild
+      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+   <semanticChildrenStrategy
          editPart="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartCompartmentEditPartCN"
-         getSemanticChildren="org.eclipse.papyrus.uml.diagram.composite.SynchroSemanticForPopertyPartCompartment">
-   </semanticChild>
+         class="org.eclipse.papyrus.uml.diagram.composite.PropertyPartCompartmentSemanticChildrenStrategy">
+   </semanticChildrenStrategy>
+   <semanticChildrenStrategy
+         editPart="org.eclipse.papyrus.uml.diagram.composite.edit.parts.PropertyPartEditPartCN"
+         class="org.eclipse.papyrus.uml.diagram.composite.PropertyPartCompartmentSemanticChildrenStrategy">
+   </semanticChildrenStrategy>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">

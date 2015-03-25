@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012, 2013 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl for CSS (CDO)
+ *  Christian W. Damus - bug 461629
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
@@ -67,8 +68,10 @@ public class ForceValueHelper {
 			EAnnotation eAnnotation = view.getEAnnotation(CSSAnnotations.CSS_FORCE_VALUE);
 			if (eAnnotation == null) {
 				eAnnotation = EcorePackage.eINSTANCE.getEcoreFactory().createEAnnotation();
-				eAnnotation.setEModelElement(view);
+
+				// Set the source first so that when we get the add notification we can see the source
 				eAnnotation.setSource(CSSAnnotations.CSS_FORCE_VALUE);
+				eAnnotation.setEModelElement(view);
 			}
 
 			EMap<String, String> details = eAnnotation.getDetails();

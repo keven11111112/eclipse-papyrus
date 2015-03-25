@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <?eclipse version="3.0"?>
 <!--
- Copyright (c) 2009, 2014 CEA and others.
+ Copyright (c) 2009, 2015 CEA, Christian W. Damus, and others.
  
  All rights reserved. This program and the accompanying materials
  are made available under the terms of the Eclipse Public License v1.0
@@ -11,6 +11,7 @@
  Contributors:
    CEA - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
+   Christian W. Damus - bug 433206
    
 -->
 <plugin>
@@ -3031,5 +3032,24 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
          id="org.eclipse.papyrus.uml.diagram.activity.elementTypeSet"
          path="model/activityDiagram.elementtypesconfigurations">
    </elementTypeSet>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+   <creationTargetStrategy
+         class="org.eclipse.papyrus.uml.diagram.activity.canonical.ActivityCanonicalCreationTargetStrategy">
+      <enablement>
+         <with
+               variable="element">
+            <or>
+               <instanceof
+                     value="org.eclipse.uml2.uml.Pin">
+               </instanceof>
+               <instanceof
+                     value="org.eclipse.uml2.uml.ActivityGroup">
+               </instanceof>
+            </or>
+         </with>
+      </enablement>
+   </creationTargetStrategy>
 </extension>
 </plugin>

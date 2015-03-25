@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,12 +9,14 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 444092
+ *  Christian W. Damus - bug 433206
  *  
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
 import java.util.Collection;
 import java.util.HashSet;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Set;
@@ -30,6 +32,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.ConnectableElement;
+import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Lifeline;
 import org.eclipse.uml2.uml.Message;
@@ -37,9 +40,14 @@ import org.eclipse.uml2.uml.MessageEvent;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Relationship;
 import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.Transition;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
+
+import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableSet;
 
 /**
  * A Helper class for UML
@@ -49,6 +57,14 @@ import org.eclipse.uml2.uml.UMLPackage;
 // TODO/FIXME : Check implementations. Most of them are old and don't always match the
 // specification for some cases.
 public class UMLUtil {
+
+	private static final Set<EClass> relationshipLikeUMLMetaclasses = ImmutableSet.of(
+			UMLPackage.Literals.RELATIONSHIP,
+			UMLPackage.Literals.GENERALIZATION_SET,
+			UMLPackage.Literals.CONNECTOR,
+			UMLPackage.Literals.ACTIVITY_EDGE,
+			UMLPackage.Literals.TRANSITION,
+			UMLPackage.Literals.MESSAGE);
 
 	/**
 	 * Retrieve the UML semantic element from the given Object.
@@ -479,5 +495,41 @@ public class UMLUtil {
 		for (Element element : listCopy) {
 			element.destroy();
 		}
+	}
+
+	/**
+	 * Queries whether an {@code element} is a UML {@link Relationship} or something like a relationship
+	 * (e.g., a {@link Connector} or a {@link Transition}).
+	 * 
+	 * @param element
+	 *            an element
+	 * @return whether it is a relationship-like element, that usually would be visualized as a connection on a diagram
+	 */
+	public static boolean isRelationship(Element element) {
+		EClass eClass = element.eClass();
+		boolean result = relationshipLikeUMLMetaclasses.contains(eClass);
+
+		if (!result) {
+			for (Iterator<EClass> super_ = eClass.getEAllSuperTypes().iterator(); !result && super_.hasNext();) {
+				result = relationshipLikeUMLMetaclasses.contains(super_.next());
+			}
+		}
+
+		return result;
+	}
+
+	/**
+	 * Obtains an {@linkplain #isRelationship(Element) is-relationship} predicate.
+	 * 
+	 * @return the predicate
+	 * 
+	 * @see #isRelationship(Element)
+	 */
+	public static Predicate<Element> isRelationship() {
+		return new Predicate<Element>() {
+			public boolean apply(Element input) {
+				return isRelationship(input);
+			}
+		};
 	}
 }

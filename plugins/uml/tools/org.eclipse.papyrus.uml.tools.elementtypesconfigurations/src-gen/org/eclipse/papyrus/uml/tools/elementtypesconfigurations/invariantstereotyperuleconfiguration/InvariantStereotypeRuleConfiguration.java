@@ -21,11 +21,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#getRequiredProfile <em>Required Profile</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#isStrict <em>Strict</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage#getInvariantStereotypeRuleConfiguration()
  * @model
@@ -84,5 +85,31 @@ public interface InvariantStereotypeRuleConfiguration extends InvariantRuleConfi
 	 * @generated
 	 */
 	void setRequiredProfile(String value);
+
+	/**
+	 * Returns the value of the '<em><b>Strict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Strict</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Strict</em>' attribute.
+	 * @see #setStrict(boolean)
+	 * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfigurationPackage#getInvariantStereotypeRuleConfiguration_Strict()
+	 * @model required="true"
+	 * @generated
+	 */
+	boolean isStrict();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#isStrict <em>Strict</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Strict</em>' attribute.
+	 * @see #isStrict()
+	 * @generated
+	 */
+	void setStrict(boolean value);
 
 } // InvariantStereotypeRuleConfiguration

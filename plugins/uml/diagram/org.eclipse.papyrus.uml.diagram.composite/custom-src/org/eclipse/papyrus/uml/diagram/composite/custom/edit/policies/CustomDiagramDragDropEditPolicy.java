@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009-2011 CEA LIST.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Yann Tanguy (CEA LIST) yann.tanguy@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.composite.custom.edit.policies;
@@ -123,6 +124,7 @@ import org.eclipse.papyrus.uml.diagram.composite.edit.parts.TimeObservationEditP
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.UseCaseEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -380,8 +382,8 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		return UnexecutableCommand.INSTANCE;
 	}
 
-	
-	
+
+
 	/**
 	 * Returns the command to drop the Constraint + the link to attach it to its contrainted elements
 	 *
@@ -818,7 +820,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 					CollaborationHelper helper = new CollaborationHelper(getEditingDomain());
 					cc.add(helper.dropCollaborationAsCollaborationUse((GraphicalEditPart) getHost(), (Collaboration) droppedObject, location));
 
-				} else if (droppedObject instanceof Classifier) {
+				} else if (droppedObject instanceof Classifier && !(droppedObject instanceof Association)) { // Properties of association type are nonsense
 					TypeHelper helper = new TypeHelper(getEditingDomain());
 					// clarify action name in order to facilitate selection of command
 					// (context: alternative actions proposed by DND service, see bug 402717)

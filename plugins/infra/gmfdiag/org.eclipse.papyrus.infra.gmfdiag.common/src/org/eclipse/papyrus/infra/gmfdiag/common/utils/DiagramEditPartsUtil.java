@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.utils;
@@ -22,6 +23,8 @@ import java.util.List;
 import java.util.NoSuchElementException;
 
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.AbstractTreeIterator;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -44,12 +47,14 @@ import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramGraphicalViewer;
 import org.eclipse.gmf.runtime.diagram.ui.parts.IDiagramWorkbenchPart;
 import org.eclipse.gmf.runtime.emf.core.util.EMFCoreUtil;
+import org.eclipse.gmf.runtime.notation.CanonicalStyle;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.StructuredSelection;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorPart;
@@ -58,16 +63,18 @@ import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 import com.google.common.base.Function;
 import com.google.common.base.Predicate;
+import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Lists;
 
 /**
  * Different utility methods to manage and manipulate edit parts in diagrams.
  */
 public class DiagramEditPartsUtil {
 
-	protected DiagramEditPartsUtil() { // FIXME : protected instate of private for non regression purposes 
-									   // should be removed as soon as org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil
-		 							   // is removed 
+	protected DiagramEditPartsUtil() { // FIXME : protected instate of private for non regression purposes
+										// should be removed as soon as org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil
+										// is removed
 		// to prevent instanciation
 	}
 
@@ -297,7 +304,7 @@ public class DiagramEditPartsUtil {
 		}
 		return 1.0;
 	}
-	
+
 	/** The Constant BelongToDiagramSource. */
 	// @unused
 	public static final String BelongToDiagramSource = "es.cv.gvcase.mdt.uml2.diagram.common.Belongs_To_This_Diagram";
@@ -596,6 +603,32 @@ public class DiagramEditPartsUtil {
 	}
 
 	/**
+	 * Finds all of the {@link EditPart}s in currently open editors that present a given notation {@code view}.
+	 * 
+	 * @param view
+	 *            a view that may be presented by zero or more open diagram editors
+	 * @return all edit parts in all diagrams that currently present the {@code view} (so could be empty)
+	 */
+	public static Iterable<EditPart> findEditParts(View view) {
+		List<EditPart> result;
+
+		Diagram diagram = view.getDiagram();
+		if (diagram == null) {
+			result = Collections.emptyList();
+		} else {
+			result = Lists.newArrayListWithExpectedSize(1);
+			for (Iterator<EditPart> iter = getAllContents(PapyrusDiagramEditPart.getDiagramEditPartsFor(diagram)); iter.hasNext();) {
+				EditPart next = iter.next();
+				if (next.getModel() == view) {
+					result.add(next);
+				}
+			}
+		}
+
+		return result;
+	}
+
+	/**
 	 * Finds the <EditPart>s for the <EObject>s in the selection.
 	 *
 	 * @param selection
@@ -801,5 +834,72 @@ public class DiagramEditPartsUtil {
 		}
 		return Collections.EMPTY_LIST;
 	}
-	
+
+	public static TreeIterator<EditPart> getAllContents(EditPart editPart, boolean includeRoot) {
+		return internalGetAllContents(editPart, includeRoot);
+	}
+
+	public static TreeIterator<EditPart> getAllContents(Iterable<? extends EditPart> editParts) {
+		return internalGetAllContents(editParts, false);
+	}
+
+	private static final TreeIterator<EditPart> internalGetAllContents(final Object root, boolean includeRoot) {
+		return new AbstractTreeIterator<EditPart>(root, includeRoot) {
+			private static final long serialVersionUID = 1L;
+
+			// Let's do this instanceof check only once. And take a defensive copy, of course
+			@SuppressWarnings("unchecked")
+			private final Iterable<EditPart> rootCollection = root instanceof Iterable<?> ? (Iterable<EditPart>) root : null;
+
+			@Override
+			@SuppressWarnings("unchecked")
+			protected Iterator<? extends EditPart> getChildren(Object object) {
+				Iterator<? extends EditPart> result;
+
+				if (object == rootCollection) {
+					// Defensive copy
+					result = ImmutableList.copyOf(rootCollection).iterator();
+				} else {
+					// Defensive copy
+					ImmutableList.Builder<EditPart> copy = ImmutableList.builder();
+					EditPart editPart = (EditPart) object;
+					copy.addAll(editPart.getChildren());
+					if (editPart instanceof DiagramEditPart) {
+						// The view's edit-part registry is required to get connections
+						if (editPart.getViewer() != null) {
+							copy.addAll(((DiagramEditPart) editPart).getConnections());
+						}
+					}
+					result = copy.build().iterator();
+				}
+
+				return result;
+			}
+		};
+	}
+
+
+	/**
+	 * Queries whether an {@code editPart} has canonical synchronization enabled.
+	 * 
+	 * @param editPart
+	 *            an edit part
+	 * @return whether it has canonical synchronization enabled
+	 */
+	public static boolean isCanonical(EditPart editPart) {
+		boolean result = false;
+
+		if (editPart instanceof IGraphicalEditPart) {
+			View view = ((IGraphicalEditPart) editPart).getNotationView();
+			if (view != null) {
+				CanonicalStyle style = (CanonicalStyle) view.getStyle(NotationPackage.Literals.CANONICAL_STYLE);
+				if (style != null) {
+					result = style.isCanonical();
+				}
+			}
+		}
+
+		return result;
+	}
+
 }

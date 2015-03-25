@@ -315,7 +315,7 @@ public class InvariantTypeConfigurationPackageImpl extends EPackageImpl implemen
 		initEClass(compositeInvariantRuleConfigurationEClass, CompositeInvariantRuleConfiguration.class, "CompositeInvariantRuleConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getCompositeInvariantRuleConfiguration_ComposedRules(), this.getInvariantRuleConfiguration(), null, "composedRules", null, 2, -1, CompositeInvariantRuleConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
-		initEClass(notInvariantRuleConfigurationEClass, NotInvariantRuleConfiguration.class, "NotInvariantRuleConfiguration", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEClass(notInvariantRuleConfigurationEClass, NotInvariantRuleConfiguration.class, "NotInvariantRuleConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getNotInvariantRuleConfiguration_ComposedRule(), this.getInvariantRuleConfiguration(), null, "composedRule", null, 1, 1, NotInvariantRuleConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(andInvariantRuleConfigurationEClass, AndInvariantRuleConfiguration.class, "AndInvariantRuleConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

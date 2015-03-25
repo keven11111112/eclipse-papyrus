@@ -33,6 +33,9 @@
   <modelElementFactories
       name="Rulers And Grid Element Factory"
       factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.RulersAndGridModelElementFactory"/>
+  <modelElementFactories
+      name="GMF Synchronization Factory"
+      factoryClass="org.eclipse.papyrus.infra.gmfdiag.properties.modelelement.SynchronizationModelElementFactory"/>
   <widgetTypes
       label="DiagramPreferencesDefaultButton"
       widgetClass="DiagramPreferencesDefaultButton"

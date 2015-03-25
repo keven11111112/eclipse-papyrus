@@ -10,6 +10,7 @@
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) Vincent.Lorenzo@cea.fr - Initial API and implementation
  *  Christian W. Damus - Skip the feature-version test when running in development mode
+ *  Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.bundles.tests;
@@ -28,6 +29,7 @@ import org.eclipse.papyrus.junit.framework.classification.NotImplemented;
 import org.eclipse.papyrus.junit.framework.classification.rules.Condition;
 import org.eclipse.papyrus.junit.framework.classification.rules.Conditional;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
+import org.eclipse.papyrus.junit.utils.JUnitUtils;
 import org.eclipse.pde.internal.core.feature.Feature;
 import org.hamcrest.BaseMatcher;
 import org.hamcrest.Description;
@@ -62,10 +64,10 @@ public class BundlesTests extends AbstractPapyrusTest {
 	private static final String PAPYRUS_VERSION = BundleTestsUtils.PAPYRUS_VERSION;
 
 	@Condition
-	public final boolean isTychoExecution = Activator.getDefault().getRunningApplicationID().startsWith("org.eclipse.tycho."); //$NON-NLS-1$
+	public final boolean isAutomatedBuild = JUnitUtils.isAutomatedBuildExecution();
 
 	@Test
-	@Conditional(key = "isTychoExecution")
+	@Conditional(key = "isAutomatedBuild")
 	public void featureVersionNumberTest() {
 		StringBuffer message = new StringBuffer("Wrong version number for the features:"); //$NON-NLS-1$
 		int nbProblem = 0;

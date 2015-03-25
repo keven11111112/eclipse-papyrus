@@ -97,13 +97,22 @@ public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
 	int INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE = InvariantTypeConfigurationPackage.INVARIANT_RULE_CONFIGURATION_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Strict</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT = InvariantTypeConfigurationPackage.INVARIANT_RULE_CONFIGURATION_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Invariant Stereotype Rule Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int INVARIANT_STEREOTYPE_RULE_CONFIGURATION_FEATURE_COUNT = InvariantTypeConfigurationPackage.INVARIANT_RULE_CONFIGURATION_FEATURE_COUNT + 2;
+	int INVARIANT_STEREOTYPE_RULE_CONFIGURATION_FEATURE_COUNT = InvariantTypeConfigurationPackage.INVARIANT_RULE_CONFIGURATION_FEATURE_COUNT + 3;
 
 	/**
 	 * The number of operations of the '<em>Invariant Stereotype Rule Configuration</em>' class.
@@ -146,6 +155,17 @@ public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
 	 * @generated
 	 */
 	EAttribute getInvariantStereotypeRuleConfiguration_RequiredProfile();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#isStrict <em>Strict</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Strict</em>'.
+	 * @see org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration#isStrict()
+	 * @see #getInvariantStereotypeRuleConfiguration()
+	 * @generated
+	 */
+	EAttribute getInvariantStereotypeRuleConfiguration_Strict();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -196,6 +216,14 @@ public interface InvariantStereotypeRuleConfigurationPackage extends EPackage
 		 * @generated
 		 */
 		EAttribute INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE = eINSTANCE.getInvariantStereotypeRuleConfiguration_RequiredProfile();
+
+		/**
+		 * The meta object literal for the '<em><b>Strict</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT = eINSTANCE.getInvariantStereotypeRuleConfiguration_Strict();
 
 	}
 

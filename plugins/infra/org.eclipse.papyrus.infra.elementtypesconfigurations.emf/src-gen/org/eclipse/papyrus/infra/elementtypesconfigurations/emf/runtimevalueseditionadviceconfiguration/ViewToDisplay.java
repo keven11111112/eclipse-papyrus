@@ -23,12 +23,12 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay#getView <em>View</em>}</li>
  * </ul>
- * </p>
  *
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage#getViewToDisplay()
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage#getViewToDisplay()
  * @model
  * @generated
  */
@@ -43,7 +43,7 @@ public interface ViewToDisplay extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>View</em>' reference.
 	 * @see #setView(View)
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage#getViewToDisplay_View()
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage#getViewToDisplay_View()
 	 * @model required="true"
 	 * @generated
 	 */

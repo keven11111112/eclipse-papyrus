@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 461629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 
@@ -168,8 +169,7 @@ public abstract class AbstractStyleHandler extends AbstractHandler {
 		try {
 			resource.save(new HashMap<Object, Object>());
 			BaseCSSEngine.INSTANCE.reset();
-			DiagramHelper.setNeedsRefresh();
-			DiagramHelper.refreshDiagrams();
+			DiagramHelper.forceRefresh();
 		} catch (IOException ex) {
 			Activator.log.error(ex);
 			MessageDialog.open(MessageDialog.ERROR, parentShell, "Style error", "An unexpected error occured while trying to save the Stylesheet", SWT.NONE);

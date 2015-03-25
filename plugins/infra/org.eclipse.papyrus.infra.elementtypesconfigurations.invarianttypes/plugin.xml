@@ -10,14 +10,6 @@
 
 
 
-
-
-
-
-
-
-
-
    <extension point="org.eclipse.emf.ecore.generated_package">
       <!-- @generated InvariantTypeConfiguration -->
       <package
@@ -58,5 +50,12 @@
             configurationClass="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfiguration"
             factoryClass="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.InvariantElementTypeFactory">
       </elementTypeConfigurationType>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.elementTypeSet"
+            path="model/invarianttype.elementtypesconfigurations">
+      </elementTypeSet>
    </extension>
 </plugin>

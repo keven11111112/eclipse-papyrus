@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2012 CEA LIST.
+ * Copyright (c) 2012, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 461629
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.engine;
 
@@ -18,7 +19,9 @@ import org.eclipse.core.databinding.observable.ChangeEvent;
 import org.eclipse.core.databinding.observable.IChangeListener;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.PapyrusDiagramEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
@@ -110,8 +113,12 @@ public class DiagramCSSEngine extends ExtendedCSSEngineImpl implements IChangeLi
 	@Override
 	public void handleChange(ChangeEvent event) {
 		resetCache();
-		DiagramHelper.setNeedsRefresh();
-		DiagramHelper.refreshDiagrams(); // FIXME: Should be contextual. We should only refresh the editor(s) containing this Diagram
+
+		if (diagram != null) {
+			for (DiagramEditPart next : PapyrusDiagramEditPart.getDiagramEditPartsFor(diagram)) {
+				DiagramHelper.forceRefresh(next);
+			}
+		}
 	}
 
 	@Override
