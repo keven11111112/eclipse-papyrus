@@ -51,35 +51,35 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whPTwMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000" hint="8000">
     <iconEntry xmi:id="_whPTwceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whRI8MeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000" hint="9000">
     <iconEntry xmi:id="_whRI8ceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whS-IMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000" hint="10000">
     <iconEntry xmi:id="_whS-IceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whUMQMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000" hint="11000">
     <iconEntry xmi:id="_whUMQceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whWBcMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000" hint="12000">
     <iconEntry xmi:id="_whWBcceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whXPkMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000" hint="13000">
     <iconEntry xmi:id="_whXPkceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whZEwMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000" hint="14000">
     <iconEntry xmi:id="_whZEwceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wha58MeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000" hint="15000">
     <iconEntry xmi:id="_wha58ceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.BasePseudostateType</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whcvIMeDEeSwP_9Vn5UnWg" name="Pseudostate" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000" hint="16000">
     <iconEntry xmi:id="_whcvIceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Pseudostate.gif" bundleId="org.eclipse.uml2.uml.edit"/>
@@ -104,6 +104,10 @@
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_whrYoMeDEeSwP_9Vn5UnWg" name="Transition" identifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000" hint="7000">
     <iconEntry xmi:id="_whrYoceDEeSwP_9Vn5UnWg" iconPath="/icons/full/obj16/Transition.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Transition</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_QoNH8NI_EeSQKMzCpfBfWg" name="org.eclipse.papyrus.uml.BasePseudostateType" identifier="org.eclipse.papyrus.uml.BasePseudostateType" hint="org.eclipse.papyrus.uml.BasePseudostateType">
+    <specializedTypesID>org.eclipse.papyrus.uml.Pseudostate</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_EIBgsNJGEeSGnIOah6qfxQ" name="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.PseudostateKindInitializerAdvice" inheritance="all"/>
   </elementTypeConfigurations>
   <adviceBindingsConfigurations xmi:id="_Gdt5EMf7EeSG9OkAifWKOg" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.DeleteRegionHelperAdvice" inheritance="all" target="_whqKgMeDEeSwP_9Vn5UnWg"/>
   <adviceBindingsConfigurations xmi:id="_3RjqQMwTEeSyj5ums1L-vQ" identifier="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice" editHelperAdviceClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.advice.ConnectionPointReferenceInStateHelperAdvice" inheritance="all" target="_whOFoMeDEeSwP_9Vn5UnWg"/>

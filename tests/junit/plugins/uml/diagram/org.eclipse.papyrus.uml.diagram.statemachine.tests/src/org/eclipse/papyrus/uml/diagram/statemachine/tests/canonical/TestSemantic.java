@@ -57,6 +57,7 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.PseudostateKind;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.State;
 import org.eclipse.uml2.uml.StateMachine;
@@ -66,7 +67,7 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestSemantic extends BaseTestCase {
-	
+
 	@Test
 	public void testCommentInRegion() {
 		IGraphicalEditPart commentEP = createChild(CommentEditPart.VISUAL_ID, getRegionCompartmentEditPart());
@@ -225,6 +226,53 @@ public class TestSemantic extends BaseTestCase {
 		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
 
 		checkContainsChildren(region, pseudostate, UMLPackage.eINSTANCE.getRegion_Subvertex());
+	}
+
+	@Test
+	public void testPseudostateChoiseKind() {
+		checkPseudostateKind(PseudostateChoiceEditPart.VISUAL_ID, PseudostateKind.CHOICE_LITERAL, "Choice");
+	}
+
+	@Test
+	public void testPseudostateDeepHistoryKind() {
+		checkPseudostateKind(PseudostateDeepHistoryEditPart.VISUAL_ID, PseudostateKind.DEEP_HISTORY_LITERAL, "DeepHistory");
+	}
+
+	@Test
+	public void testPseudostateForkKind() {
+		checkPseudostateKind(PseudostateForkEditPart.VISUAL_ID, PseudostateKind.FORK_LITERAL, "Fork");
+	}
+
+	@Test
+	public void testPseudostateInitialKind() {
+		checkPseudostateKind(PseudostateInitialEditPart.VISUAL_ID, PseudostateKind.INITIAL_LITERAL, "Initial");
+	}
+
+	@Test
+	public void testPseudostateJoinKind() {
+		checkPseudostateKind(PseudostateJoinEditPart.VISUAL_ID, PseudostateKind.JOIN_LITERAL, "Join");
+	}
+
+	@Test
+	public void testPseudostateJunctionKind() {
+		checkPseudostateKind(PseudostateJunctionEditPart.VISUAL_ID, PseudostateKind.JUNCTION_LITERAL, "Junction");
+	}
+
+	@Test
+	public void testPseudostateShallowHistoryKind() {
+		checkPseudostateKind(PseudostateShallowHistoryEditPart.VISUAL_ID, PseudostateKind.SHALLOW_HISTORY_LITERAL, "ShallowHistory");
+	}
+
+	@Test
+	public void testPseudostateTerminateKind() {
+		checkPseudostateKind(PseudostateTerminateEditPart.VISUAL_ID, PseudostateKind.TERMINATE_LITERAL, "Terminate");
+	}
+
+	public void checkPseudostateKind(int VID, PseudostateKind kind, String startName) {
+		IGraphicalEditPart stateEP = createChild(VID, getRegionCompartmentEditPart());
+		Pseudostate pseudostate = (Pseudostate) stateEP.resolveSemanticElement();
+		Assert.assertEquals(kind, pseudostate.getKind());
+		Assert.assertTrue(pseudostate.getName().startsWith(startName));
 	}
 
 	@Test
