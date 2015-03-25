@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -14,8 +14,6 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations.tests;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import jdk.nashorn.internal.ir.annotations.Ignore;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -34,6 +32,7 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Package;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
