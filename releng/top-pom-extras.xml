@@ -96,7 +96,6 @@
 		<module>../extraplugins/marte/org.eclipse.papyrus.marte.vsl.ui</module>
 		<module>../extraplugins/migration/org.eclipse.papyrus.migration.properties.model</module>
 		<module>../extraplugins/moka/org.eclipse.papyrus.moka</module>
-		<module>../extraplugins/moka/org.eclipse.papyrus.moka.alf.resources</module>
 		<module>../extraplugins/moka/org.eclipse.papyrus.moka.async.fuml</module>
 		<module>../extraplugins/moka/org.eclipse.papyrus.moka.composites</module>
 		<module>../extraplugins/moka/org.eclipse.papyrus.moka.composites.utils</module>
