@@ -179,7 +179,7 @@ public class ReferenceContentAssistProcessor implements IContentAssistProcessor 
 		} else {
 			suggestions.add(0, MORE_ELEMENTS);
 		}
-		suggestions.add(0, IPapyrusConverter.NULL_VALUE);
+		suggestions.add(0, IPapyrusConverter.UNDEFINED_VALUE);
 		return suggestions;
 	}
 
@@ -202,7 +202,7 @@ public class ReferenceContentAssistProcessor implements IContentAssistProcessor 
 			if (MORE_ELEMENTS.equals(currSuggestion)) {
 				// we do nothing
 				proposals[index] = new DoNothingCompletionProposal(IPapyrusConverter.EMPTY_STRING, 0, replacedWord.length() + offset, currSuggestion.length(), null, currSuggestion, null, null);
-			} else if (IPapyrusConverter.NULL_VALUE.equals(currSuggestion)) {
+			} else if (IPapyrusConverter.UNDEFINED_VALUE.equals(currSuggestion)) {
 				// we will replace the full string
 				proposals[index] = new CompletionProposal(currSuggestion, 0, replacedWord.length() + offset, currSuggestion.length());
 			} else if (IPapyrusConverter.STRING_SEPARATOR.equals(currSuggestion)) {

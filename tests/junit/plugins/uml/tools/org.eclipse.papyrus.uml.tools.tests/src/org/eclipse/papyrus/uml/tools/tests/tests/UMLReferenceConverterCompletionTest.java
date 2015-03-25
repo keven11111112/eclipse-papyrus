@@ -103,7 +103,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest(IPapyrusConverter.EMPTY_STRING);
 		Assert.assertEquals(2, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 	public void testCompletionToFindClass_2() {
@@ -113,7 +113,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest("Cl"); //$NON-NLS-1$
 		Assert.assertEquals(8, values.size());
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 
@@ -124,7 +124,7 @@ public class UMLReferenceConverterCompletionTest {
 		ReferenceContentAssistProcessor completionproposal = (ReferenceContentAssistProcessor) multiValueParser.getCompletionProcessor(null);
 		List<String> values = completionproposal.suggest("C"); //$NON-NLS-1$
 		Assert.assertEquals(8, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
 		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
@@ -142,7 +142,7 @@ public class UMLReferenceConverterCompletionTest {
 		ReferenceContentAssistProcessor completionproposal = (ReferenceContentAssistProcessor) multiValueParser.getCompletionProcessor(null);
 		List<String> values = completionproposal.suggest(NESTED_CLASS1_NAME_TO_DISPLAY);
 		Assert.assertEquals(3, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
 		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
@@ -156,7 +156,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest("Clas,"); //$NON-NLS-1$
 		// the comma is ignored
 		Assert.assertEquals(7, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
 		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
@@ -173,7 +173,7 @@ public class UMLReferenceConverterCompletionTest {
 		ReferenceContentAssistProcessor completionproposal = (ReferenceContentAssistProcessor) multiValueParser.getCompletionProcessor(null);
 		List<String> values = completionproposal.suggest("'Clas,"); //$NON-NLS-1$
 		Assert.assertEquals(2, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(values.contains(CLASS2_NAME_TO_DISPLAY));
 	}
 
@@ -184,7 +184,7 @@ public class UMLReferenceConverterCompletionTest {
 		ReferenceContentAssistProcessor completionproposal = (ReferenceContentAssistProcessor) multiValueParser.getCompletionProcessor(null);
 		List<String> values = completionproposal.suggest("'Clas"); //$NON-NLS-1$
 		Assert.assertEquals(2, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(values.contains(CLASS2_NAME_TO_DISPLAY));
 	}
 
@@ -202,7 +202,7 @@ public class UMLReferenceConverterCompletionTest {
 		multiValueString.append("Cl"); //$NON-NLS-1$
 		List<String> values = completionproposal.suggest(multiValueString.toString());
 		Assert.assertEquals(8, values.size());
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
 		Assert.assertTrue(values.contains(CLASS1_SHORTEST_QN_TO_DISPLAY));
 		Assert.assertTrue(values.contains(NESTED_CLASS1_NAME_TO_DISPLAY));
@@ -222,7 +222,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest(IPapyrusConverter.EMPTY_STRING);
 		Assert.assertEquals(2, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 	@Test
@@ -233,7 +233,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest("Cons"); //$NON-NLS-1$
 		Assert.assertEquals(7, values.size());
 		Assert.assertTrue(!values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		Assert.assertTrue(values.contains(CONSTRAINT1_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CONSTRAINT2_NAME_TO_DISPLAY));
 		Assert.assertTrue(values.contains(CONSTRAINT3_NAME_TO_DISPLAY));
@@ -251,7 +251,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest(IPapyrusConverter.EMPTY_STRING);
 		Assert.assertEquals(2, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 	@Test
@@ -262,9 +262,9 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest("Pack"); //$NON-NLS-1$
 		Assert.assertEquals(17, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 		values.remove(IPapyrusConverter.MORE_ELEMENTS);
-		values.remove(IPapyrusConverter.NULL_VALUE);
+		values.remove(IPapyrusConverter.UNDEFINED_VALUE);
 		Assert.assertEquals(15, new HashSet<String>(values).size());
 	}
 
@@ -277,7 +277,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = proposal.suggest(IPapyrusConverter.EMPTY_STRING);
 		Assert.assertEquals(2, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 	@Test
@@ -288,7 +288,7 @@ public class UMLReferenceConverterCompletionTest {
 		List<String> values = completionproposal.suggest(IPapyrusConverter.EMPTY_STRING);
 		Assert.assertEquals(2, values.size());
 		Assert.assertTrue(values.contains(IPapyrusConverter.MORE_ELEMENTS));
-		Assert.assertTrue(values.contains(IPapyrusConverter.NULL_VALUE));
+		Assert.assertTrue(values.contains(IPapyrusConverter.UNDEFINED_VALUE));
 	}
 
 	@Test

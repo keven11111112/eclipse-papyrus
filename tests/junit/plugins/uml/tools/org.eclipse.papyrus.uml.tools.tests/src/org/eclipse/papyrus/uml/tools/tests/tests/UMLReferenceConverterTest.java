@@ -147,12 +147,12 @@ public class UMLReferenceConverterTest {
 
 	@Test
 	public void testEmptyString() {
-		testConverter(IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.EMPTY_STRING, null, null, false);
+		testConverter(IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.UNDEFINED_VALUE, null, null, false);
 	}
 
 	@Test
 	public void testNull() {
-		testConverter(IPapyrusConverter.NULL_VALUE, IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.EMPTY_STRING, null, null, false);
+		testConverter(IPapyrusConverter.UNDEFINED_VALUE, IPapyrusConverter.EMPTY_STRING, IPapyrusConverter.UNDEFINED_VALUE, null, null, false);
 	}
 
 

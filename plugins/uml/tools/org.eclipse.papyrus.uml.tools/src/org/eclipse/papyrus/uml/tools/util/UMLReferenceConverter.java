@@ -253,7 +253,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 */
 	public String canonicalToDisplayValue(Object object, int flag) {
 		if (object == null || EMPTY_STRING.equals(object)) {
-			return EMPTY_STRING;
+			return IPapyrusConverter.UNDEFINED_VALUE;
 		}
 
 		if (object instanceof Collection<?>) {
@@ -296,7 +296,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 * @return
 	 */
 	public Object displayToCanonicalValue(String string, int flag) {
-		if (EMPTY_STRING.equals(string) || NULL_VALUE.equals(string)) {
+		if (EMPTY_STRING.equals(string) || UNDEFINED_VALUE.equals(string)) {
 			return null;
 		}
 		Assert.isTrue(string instanceof String);
@@ -318,6 +318,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 */
 	public String canonicalToEditValue(Object object, int flag) {
 		if (object == null || EMPTY_STRING.equals(object)) {
+//			return NULL_VALUE;
 			return EMPTY_STRING;
 		}
 
@@ -354,7 +355,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 * @return
 	 */
 	public Object editToCanonicalValue(String editValue, int flag) {
-		if (EMPTY_STRING.equals(editValue) || NULL_VALUE.equals(editValue)) {
+		if (EMPTY_STRING.equals(editValue) || UNDEFINED_VALUE.equals(editValue)) {
 			return null;
 		}
 		Assert.isTrue(editValue instanceof String);
@@ -405,7 +406,7 @@ public class UMLReferenceConverter implements IPapyrusConverter {
 	 * @return
 	 */
 	public IStatus isValidEditString(String aString) {
-		if (aString == null || EMPTY_STRING.equals(aString) || NULL_VALUE.equals(aString)) {
+		if (aString == null || EMPTY_STRING.equals(aString) || UNDEFINED_VALUE.equals(aString)) {
 			return org.eclipse.core.runtime.Status.OK_STATUS;
 		}
 		Object result = editToCanonicalValue(aString, 0);

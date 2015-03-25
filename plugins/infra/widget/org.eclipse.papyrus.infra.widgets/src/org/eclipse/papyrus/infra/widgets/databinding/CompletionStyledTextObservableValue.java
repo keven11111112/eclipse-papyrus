@@ -68,7 +68,7 @@ public class CompletionStyledTextObservableValue extends StyledTextObservableVal
 	protected Object doGetValue() {
 		Object newValue = super.doGetValue();
 		if (newValue instanceof String) {
-			if (IPapyrusConverter.NULL_VALUE.equals(newValue)) {
+			if (IPapyrusConverter.UNDEFINED_VALUE.equals(newValue)) {
 				return null;
 			}
 			Object result = this.parser.editToCanonicalValue((String) newValue, 0);

@@ -50,7 +50,12 @@ public interface IPapyrusConverter extends INameResolutionHelper {
 	/**
 	 * the string used for <code>null</code> value
 	 */
-	public static final String NULL_VALUE = "null";//$NON-NLS-1$
+//	public static final String NULL_VALUE = "null";//$NON-NLS-1$
+	
+	/**
+	 * the string used for <code>null</code> value
+	 */
+	public static final String UNDEFINED_VALUE = "<Undefined>";//$NON-NLS-1$
 
 	/**
 	 * add this string to the suggestions when there are more than {@link #MAX_ELEMENTS_TO_DISPLAY}
