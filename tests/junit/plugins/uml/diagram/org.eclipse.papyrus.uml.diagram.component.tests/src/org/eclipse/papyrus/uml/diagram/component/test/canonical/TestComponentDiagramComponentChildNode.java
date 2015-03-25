@@ -17,7 +17,6 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.uml.diagram.component.CreateComponentDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.component.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.component.providers.UMLElementTypes;
@@ -76,7 +75,6 @@ public class TestComponentDiagramComponentChildNode extends TestChildNode {
 		setTestAffixedNode(false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageComponent() {
 		testToCreateANode(UMLElementTypes.Component_3070, 0, 0, 1, 1, false, "Component", 0);

@@ -17,15 +17,15 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_W_qREM2QEeSF96aioTD1kQ" name="Component" identifier="org.eclipse.papyrus.uml.diagram.component.Component_3070" hint="3070">
     <iconEntry xmi:id="_W_q4IM2QEeSF96aioTD1kQ" iconPath="/icons/full/obj16/Component.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_W_t7cM2QEeSF96aioTD1kQ" name="Component" identifier="org.eclipse.papyrus.uml.diagram.component.Component_3071" hint="3071">
     <iconEntry xmi:id="_W_t7cc2QEeSF96aioTD1kQ" iconPath="/icons/full/obj16/Component.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_XAafAM2QEeSF96aioTD1kQ" name="Component" identifier="org.eclipse.papyrus.uml.diagram.component.Component_2002" hint="2002">
     <iconEntry xmi:id="_XAafAc2QEeSF96aioTD1kQ" iconPath="/icons/full/obj16/Component.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_XBhSQM2QEeSF96aioTD1kQ" name="Component Realization" identifier="org.eclipse.papyrus.uml.diagram.component.ComponentRealization_4007" hint="4007">
     <iconEntry xmi:id="_XBhSQc2QEeSF96aioTD1kQ" iconPath="/icons/full/obj16/ComponentRealization.gif" bundleId="org.eclipse.uml2.uml.edit"/>
