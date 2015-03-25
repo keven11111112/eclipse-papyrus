@@ -135,7 +135,10 @@ public class AllTests {
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.textedit.port.tests.suites.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.textedit.property.tests.suites.AllTests.class));
 		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.textedit.parameter.tests.suites.AllTests.class));
-
+		
+		// Alf
+		suiteClasses.add(new PluginTestSuiteClass(org.eclipse.papyrus.uml.alf.tests.AllTests.class));
+		
 		// end
 	}
 
