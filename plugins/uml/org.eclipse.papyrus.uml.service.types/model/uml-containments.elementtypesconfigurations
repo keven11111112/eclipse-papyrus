@@ -128,4 +128,10 @@
       <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Action/localPostcondition"/>
     </containerConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_haR0kNCrEeSPA6G9EAuxLg" identifier="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement" name="org.eclipse.papyrus.uml.Component_As_UML" hint="org.eclipse.papyrus.uml.Component_As_UML::Component::packagedElement">
+    <specializedTypesID>org.eclipse.papyrus.uml.Component</specializedTypesID>
+    <containerConfiguration xmi:id="_yePr4NCrEeSPA6G9EAuxLg">
+      <eContainmentFeatures href="http://www.eclipse.org/uml2/5.0.0/UML#//Component/packagedElement"/>
+    </containerConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

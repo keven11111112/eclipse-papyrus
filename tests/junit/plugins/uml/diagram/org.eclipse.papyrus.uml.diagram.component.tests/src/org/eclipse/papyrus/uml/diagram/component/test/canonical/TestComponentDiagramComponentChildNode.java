@@ -74,4 +74,9 @@ public class TestComponentDiagramComponentChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Port_3069, UMLPackage.eINSTANCE.getPort(), UMLElementTypes.Component_2002, false, 4, 0, 1, 1, true, null, 0);
 		setTestAffixedNode(false);
 	}
+
+	@Test
+	public void testToManageComponent() {
+		testToCreateANode(UMLElementTypes.Component_3070, 0, 0, 1, 1, false, "Component", 0);
+	}
 }
