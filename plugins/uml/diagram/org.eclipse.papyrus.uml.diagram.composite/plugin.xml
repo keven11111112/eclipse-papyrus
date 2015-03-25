@@ -167,1139 +167,7 @@
       </ParserProvider>
    </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
-      <?gmfgen generated="true"?>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Package_1000"
-               name="%metatype.name.Package_1000"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Package"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.PackageEditHelper">
-            <param name="semanticHint" value="1000"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"
-               name="%metatype.name.Activity_2060"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Activity"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ActivityEditHelper">
-            <param name="semanticHint" value="2060"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"
-               name="%metatype.name.Interaction_2061"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Interaction"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InteractionEditHelper">
-            <param name="semanticHint" value="2061"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"
-               name="%metatype.name.ProtocolStateMachine_2062"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ProtocolStateMachine"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ProtocolStateMachineEditHelper">
-            <param name="semanticHint" value="2062"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"
-               name="%metatype.name.StateMachine_2063"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="StateMachine"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.StateMachineEditHelper">
-            <param name="semanticHint" value="2063"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"
-               name="%metatype.name.FunctionBehavior_2064"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="FunctionBehavior"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.FunctionBehaviorEditHelper">
-            <param name="semanticHint" value="2064"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"
-               name="%metatype.name.OpaqueBehavior_2065"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="OpaqueBehavior"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.OpaqueBehaviorEditHelper">
-            <param name="semanticHint" value="2065"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Component_2069"
-               name="%metatype.name.Component_2069"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Component"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ComponentEditHelper">
-            <param name="semanticHint" value="2069"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Device_2070"
-               name="%metatype.name.Device_2070"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Device"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DeviceEditHelper">
-            <param name="semanticHint" value="2070"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"
-               name="%metatype.name.ExecutionEnvironment_2071"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ExecutionEnvironment"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ExecutionEnvironmentEditHelper">
-            <param name="semanticHint" value="2071"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Node_2072"
-               name="%metatype.name.Node_2072"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Node"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.NodeEditHelper">
-            <param name="semanticHint" value="2072"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Class_2073"
-               name="%metatype.name.Class_2073"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Class"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ClassEditHelper">
-            <param name="semanticHint" value="2073"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"
-               name="%metatype.name.Collaboration_2075"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"/>
-            <param name="semanticHint" value="2075"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"
-               name="%metatype.name.Interface_2076"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
-            <param name="semanticHint" value="2076"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"
-               name="%metatype.name.PrimitiveType_2066"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="PrimitiveType"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.PrimitiveTypeEditHelper">
-            <param name="semanticHint" value="2066"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"
-               name="%metatype.name.Enumeration_2067"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Enumeration"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.EnumerationEditHelper">
-            <param name="semanticHint" value="2067"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"
-               name="%metatype.name.DataType_2068"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DataType"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DataTypeEditHelper">
-            <param name="semanticHint" value="2068"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Actor_2077"
-               name="%metatype.name.Actor_2077"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"/>
-            <param name="semanticHint" value="2077"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"
-               name="%metatype.name.DeploymentSpecification_2078"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"/>
-            <param name="semanticHint" value="2078"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"
-               name="%metatype.name.Artifact_2079"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"/>
-            <param name="semanticHint" value="2079"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"
-               name="%metatype.name.InformationItem_2080"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"/>
-            <param name="semanticHint" value="2080"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Signal_2081"
-               name="%metatype.name.Signal_2081"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"/>
-            <param name="semanticHint" value="2081"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"
-               name="%metatype.name.UseCase_2082"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"/>
-            <param name="semanticHint" value="2082"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"
-               name="%metatype.name.SignalEvent_2083"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="SignalEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.SignalEventEditHelper">
-            <param name="semanticHint" value="2083"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"
-               name="%metatype.name.CallEvent_2084"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CallEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CallEventEditHelper">
-            <param name="semanticHint" value="2084"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"
-               name="%metatype.name.AnyReceiveEvent_2085"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="AnyReceiveEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.AnyReceiveEventEditHelper">
-            <param name="semanticHint" value="2085"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"
-               name="%metatype.name.ChangeEvent_2088"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ChangeEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ChangeEventEditHelper">
-            <param name="semanticHint" value="2088"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"
-               name="%metatype.name.TimeEvent_2089"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeEvent"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.TimeEventEditHelper">
-            <param name="semanticHint" value="2089"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"
-               name="%metatype.name.DurationObservation_2093"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DurationObservation"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DurationObservationEditHelper">
-            <param name="semanticHint" value="2093"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"
-               name="%metatype.name.TimeObservation_2094"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeObservation"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.TimeObservationEditHelper">
-            <param name="semanticHint" value="2094"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"
-               name="%metatype.name.LiteralBoolean_2095"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LiteralBoolean"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.LiteralBooleanEditHelper">
-            <param name="semanticHint" value="2095"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"
-               name="%metatype.name.LiteralInteger_2096"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LiteralInteger"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.LiteralIntegerEditHelper">
-            <param name="semanticHint" value="2096"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"
-               name="%metatype.name.LiteralNull_2097"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LiteralNull"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.LiteralNullEditHelper">
-            <param name="semanticHint" value="2097"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"
-               name="%metatype.name.LiteralString_2098"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LiteralString"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.LiteralStringEditHelper">
-            <param name="semanticHint" value="2098"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"
-               name="%metatype.name.LiteralUnlimitedNatural_2099"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="LiteralUnlimitedNatural"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.LiteralUnlimitedNaturalEditHelper">
-            <param name="semanticHint" value="2099"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"
-               name="%metatype.name.StringExpression_2100"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="StringExpression"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.StringExpressionEditHelper">
-            <param name="semanticHint" value="2100"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"
-               name="%metatype.name.OpaqueExpression_2101"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="OpaqueExpression"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.OpaqueExpressionEditHelper">
-            <param name="semanticHint" value="2101"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"
-               name="%metatype.name.TimeExpression_2102"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeExpression"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.TimeExpressionEditHelper">
-            <param name="semanticHint" value="2102"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Expression_2103"
-               name="%metatype.name.Expression_2103"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Expression"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ExpressionEditHelper">
-            <param name="semanticHint" value="2103"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Duration_2104"
-               name="%metatype.name.Duration_2104"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Duration"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DurationEditHelper">
-            <param name="semanticHint" value="2104"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"
-               name="%metatype.name.TimeInterval_2105"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeInterval"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.TimeIntervalEditHelper">
-            <param name="semanticHint" value="2105"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"
-               name="%metatype.name.DurationInterval_2106"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DurationInterval"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DurationIntervalEditHelper">
-            <param name="semanticHint" value="2106"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interval_2107"
-               name="%metatype.name.Interval_2107"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Interval"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.IntervalEditHelper">
-            <param name="semanticHint" value="2107"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"
-               name="%metatype.name.InstanceValue_2108"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InstanceValue"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InstanceValueEditHelper">
-            <param name="semanticHint" value="2108"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"
-               name="%metatype.name.Comment_2109"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"/>
-            <param name="semanticHint" value="2109"/>
-         </specializationType>
-      </metamodel>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_2110"
-               name="%metatype.name.DurationConstraint_2110"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="2110"/>
-         </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"
-               name="%metatype.name.TimeConstraint_2111"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="TimeConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.TimeConstraintEditHelper">
-            <param name="semanticHint" value="2111"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"
-               name="%metatype.name.IntervalConstraint_2112"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="IntervalConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.IntervalConstraintEditHelper">
-            <param name="semanticHint" value="2112"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"
-               name="%metatype.name.InteractionConstraint_2113"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InteractionConstraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InteractionConstraintEditHelper">
-            <param name="semanticHint" value="2113"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"
-               name="%metatype.name.Constraint_2114"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Constraint"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ConstraintEditHelper">
-            <param name="semanticHint" value="2114"/>
-         </metamodelType>
-      </metamodel>
-      <specializationType
-            id="org.eclipse.papyrus.uml.diagram.composite.Node_3121"
-            name="%metatype.name.Node_3121"
-            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
-         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="3121"/>
-      </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Port_3069"
-               name="%metatype.name.Port_3069"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Port"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.PortEditHelper">
-            <param name="semanticHint" value="3069"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"
-               name="%metatype.name.Parameter_3088"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Parameter"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ParameterEditHelper">
-            <param name="semanticHint" value="3088"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Property_3070"
-               name="%metatype.name.Property_3070"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Property"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.PropertyEditHelper">
-            <param name="semanticHint" value="3070"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.prototype.CollaborationRole_3115"
-               name="%metatype.name.ConnectableElement_3115"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ConnectableElement"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CollaborationRoleEditHelper">
-            <param name="semanticHint" value="3115"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"
-               name="%metatype.name.CollaborationUse_3071"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="CollaborationUse"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CollaborationUseEditHelper">
-            <param name="semanticHint" value="3071"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"
-               name="%metatype.name.Activity_3072"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
-            <param name="semanticHint" value="3072"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"
-               name="%metatype.name.Interaction_3073"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
-            <param name="semanticHint" value="3073"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"
-               name="%metatype.name.ProtocolStateMachine_3074"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"/>
-            <param name="semanticHint" value="3074"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"
-               name="%metatype.name.StateMachine_3075"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"/>
-            <param name="semanticHint" value="3075"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"
-               name="%metatype.name.FunctionBehavior_3076"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"/>
-            <param name="semanticHint" value="3076"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"
-               name="%metatype.name.OpaqueBehavior_3077"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"/>
-            <param name="semanticHint" value="3077"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Component_3081"
-               name="%metatype.name.Component_3081"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Component_2069"/>
-            <param name="semanticHint" value="3081"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Device_3082"
-               name="%metatype.name.Device_3082"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Device_2070"/>
-            <param name="semanticHint" value="3082"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"
-               name="%metatype.name.ExecutionEnvironment_3083"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"/>
-            <param name="semanticHint" value="3083"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Node_3084"
-               name="%metatype.name.Node_3084"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Node_2072"/>
-            <param name="semanticHint" value="3084"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Class_3085"
-               name="%metatype.name.Class_3085"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Class_2073"/>
-            <param name="semanticHint" value="3085"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"
-               name="%metatype.name.Collaboration_3086"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Collaboration"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CollaborationEditHelper">
-            <param name="semanticHint" value="3086"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"
-               name="%metatype.name.Interface_3087"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Interface"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InterfaceEditHelper">
-            <param name="semanticHint" value="3087"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"
-               name="%metatype.name.PrimitiveType_3078"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"/>
-            <param name="semanticHint" value="3078"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"
-               name="%metatype.name.Enumeration_3079"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"/>
-            <param name="semanticHint" value="3079"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DataType_3080"
-               name="%metatype.name.DataType_3080"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"/>
-            <param name="semanticHint" value="3080"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"
-               name="%metatype.name.Actor_3091"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Actor"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ActorEditHelper">
-            <param name="semanticHint" value="3091"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"
-               name="%metatype.name.DeploymentSpecification_3092"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="DeploymentSpecification"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DeploymentSpecificationEditHelper">
-            <param name="semanticHint" value="3092"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"
-               name="%metatype.name.Artifact_3093"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Artifact"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ArtifactEditHelper">
-            <param name="semanticHint" value="3093"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"
-               name="%metatype.name.InformationItem_3094"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InformationItem"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InformationItemEditHelper">
-            <param name="semanticHint" value="3094"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"
-               name="%metatype.name.Signal_3095"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Signal"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.SignalEditHelper">
-            <param name="semanticHint" value="3095"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"
-               name="%metatype.name.UseCase_3096"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="UseCase"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.UseCaseEditHelper">
-            <param name="semanticHint" value="3096"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"
-               name="%metatype.name.Comment_3097"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Comment"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.CommentEditHelper">
-            <param name="semanticHint" value="3097"/>
-         </metamodelType>
-      </metamodel>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_3116"
-               name="%metatype.name.DurationConstraint_3116"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3116"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_3117"
-               name="%metatype.name.TimeConstraint_3117"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3117"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_3118"
-               name="%metatype.name.IntervalConstraint_3118"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3118"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_3119"
-               name="%metatype.name.InteractionConstraint_3119"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3119"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"
-               name="%metatype.name.Constraint_3120"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3120"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Property_3101"
-               name="%metatype.name.Property_3101"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3101"/>
-         </specializationType>
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Operation_3102"
-               name="%metatype.name.Operation_3102"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="3102"/>
-         </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"
-               name="%metatype.name.EnumerationLiteral_3066"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="EnumerationLiteral"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.EnumerationLiteralEditHelper">
-            <param name="semanticHint" value="3066"/>
-         </metamodelType>
-      </metamodel>
-      <specializationType
-            id="org.eclipse.papyrus.uml.diagram.composite.Link_4022"
-            name="%metatype.name.Link_4022"
-            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
-         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="4022"/>
-      </specializationType>
-      <specializationType
-            id="org.eclipse.papyrus.uml.diagram.composite.Link_4001"
-            name="%metatype.name.Link_4001"
-            kind="org.eclipse.gmf.runtime.diagram.ui.util.INotationType">
-         <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-         <param name="semanticHint" value="4001"/>
-      </specializationType>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"
-               name="%metatype.name.CommentAnnotatedElement_4002"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4002"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"
-               name="%metatype.name.ConstraintConstrainedElement_4003"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4003"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"
-               name="%metatype.name.ComponentRealization_4004"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="ComponentRealization"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ComponentRealizationEditHelper">
-            <param name="semanticHint" value="4004"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"
-               name="%metatype.name.InterfaceRealization_4005"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InterfaceRealization"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InterfaceRealizationEditHelper">
-            <param name="semanticHint" value="4005"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"
-               name="%metatype.name.Substitution_4011"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Substitution"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.SubstitutionEditHelper">
-            <param name="semanticHint" value="4011"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Realization_4006"
-               name="%metatype.name.Realization_4006"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Realization"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.RealizationEditHelper">
-            <param name="semanticHint" value="4006"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"
-               name="%metatype.name.Manifestation_4012"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Manifestation"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ManifestationEditHelper">
-            <param name="semanticHint" value="4012"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"
-               name="%metatype.name.Abstraction_4007"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Abstraction"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.AbstractionEditHelper">
-            <param name="semanticHint" value="4007"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Usage_4008"
-               name="%metatype.name.Usage_4008"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Usage"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.UsageEditHelper">
-            <param name="semanticHint" value="4008"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"
-               name="%metatype.name.Deployment_4009"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Deployment"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DeploymentEditHelper">
-            <param name="semanticHint" value="4009"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"
-               name="%metatype.name.Dependency_4017"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.RoleBindingEditHelper">
-            <param name="semanticHint" value="4017"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"
-               name="%metatype.name.Dependency_4010"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Dependency"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.DependencyEditHelper">
-            <param name="semanticHint" value="4010"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Connector_4013"
-               name="%metatype.name.Connector_4013"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Connector"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.ConnectorEditHelper">
-            <param name="semanticHint" value="4013"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"
-               name="%metatype.name.Generalization_4015"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="Generalization"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.GeneralizationEditHelper">
-            <param name="semanticHint" value="4015"/>
-         </metamodelType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"
-               name="%metatype.name.TimeObservationEvent_4018"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4018"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"
-               name="%metatype.name.DurationObservationEvent_4019"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4019"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <specializationType
-               id="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"
-               name="%metatype.name.InformationItemRepresented_4020"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType">
-            <specializes id="org.eclipse.gmf.runtime.emf.type.core.null"/>
-            <param name="semanticHint" value="4020"/>
-         </specializationType>
-      </metamodel>
-      <metamodel nsURI="http://www.eclipse.org/uml2/5.0.0/UML">
-         <metamodelType
-               id="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"
-               name="%metatype.name.InformationFlow_4021"
-               kind="org.eclipse.gmf.runtime.emf.type.core.IHintedType"
-               eclass="InformationFlow"
-               edithelper="org.eclipse.papyrus.uml.diagram.composite.edit.helpers.InformationFlowEditHelper">
-            <param name="semanticHint" value="4021"/>
-         </metamodelType>
-      </metamodel>
-   </extension>
 
-   <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
-      <?gmfgen generated="true"?>
-      <clientContext id="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-         <enablement>
-            <test
-               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
-               value="org.eclipse.papyrus.uml.diagram.composite.EditingDomain"/>
-         </enablement>
-      </clientContext> 
-      <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Package_1000"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_2069"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_2070"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_2072"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_2073"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_2077"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_2081"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Expression_2103"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Duration_2104"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interval_2107"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_2110"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3121"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3070"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.prototype.CollaborationRole_3115"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_3081"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_3082"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3084"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_3085"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_3080"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_3116"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_3117"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_3118"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_3119"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3101"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Operation_3102"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4022"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4001"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Realization_4006"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Usage_4008"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Connector_4013"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"/>
-         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"/>
-         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
-      </binding>
-   </extension>
 	   
 	   
 	   
@@ -1399,42 +267,8 @@
 				   </extension>
    
 <!-- Diagram specific advices -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes">
-
-	<metamodel nsURI="http://www.eclipse.org/uml2/3.0.0/UML">
-
-	<!-- Generalizarion specific advices (remove inconsistent views when a Generalization is deleted -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.GeneralizationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Generalization">
-	</adviceBinding>
-
-	<!-- Property specific advices (remove inconsistent views when a Property type is set -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.PropertyHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Property">
-	</adviceBinding>
-		
-	<!-- Collaboration specific advices (remove inconsistent views when a CollaborationRole is removed -->		
-	<adviceBinding id="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"
-		class="org.eclipse.papyrus.uml.diagram.composite.custom.helper.advice.CollaborationHelperAdvice"
-		inheritance="all" typeId="org.eclipse.papyrus.uml.Collaboration">
-	</adviceBinding>
-			
-	</metamodel>
-</extension>
 	
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
-<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings">
-
-	<!-- Bindings declaration to shared IClientContext -->
-	<binding context="org.eclipse.papyrus.infra.services.edit.TypeContext">	
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.GeneralizationHelperAdvice"/>
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.PropertyHelperAdvice"/>		
-		<elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationHelperAdvice"/>			
-	</binding>
-		
-</extension>
 
 <extension
       point="org.eclipse.ui.services">
@@ -1743,6 +577,16 @@
 					</entry>
 				<entry
 				      defineOnly="true"
+				      description="Create new StringExpression"
+				      id="composite.tool.stringExpression"
+				      kind="tool"
+				      label="StringExpression"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
 				      description="Create new Link (Comment / Constraint)"
 				      id="composite.tool.link"
 				      kind="tool"
@@ -1851,6 +695,26 @@
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
 					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Manifestation"
+				      id="composite.tool.manifestation"
+				      kind="tool"
+				      label="Manifestation"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create new Deployment"
+				      id="composite.tool.deployment"
+				      kind="tool"
+				      label="Deployment"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
+					</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -1955,6 +819,10 @@
 		        id="composite.tool.opaquebehavior"
 				path="/composite.group.nodes">
 		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.stringExpression"
+				path="/composite.group.nodes">
+		  </predefinedEntry>
 		<entry
 		      description="Edges"
 		      id="composite.group.edges"
@@ -2009,6 +877,14 @@
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="composite.tool.informationflow"
+				path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.manifestation"
+				path="/composite.group.edges">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="composite.tool.deployment"
 				path="/composite.group.edges">
 		  </predefinedEntry>
 		</contribution>
@@ -2366,5 +1242,146 @@
          getSemanticChildren="org.eclipse.papyrus.uml.diagram.composite.SynchroSemanticForPopertyPartCompartment">
    </semanticChild>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+   <elementTypeSet
+         id="org.eclipse.papyrus.uml.diagram.composite.elementTypeSet"
+         path="model/compositediagram.elementtypesconfigurations">
+   </elementTypeSet>
+</extension>
+<extension
+      point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+   <elementTypeSet
+         id="org.eclipse.papyrus.uml.diagram.composite.elementTypeSetNotation"
+         path="model/compositediagram-notation.elementtypesconfigurations">
+   </elementTypeSet>
+</extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="true"?>
+   </extension>
+
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="true"?>
+      <clientContext id="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
+         <enablement>
+            <test
+               property="org.eclipse.gmf.runtime.emf.core.editingDomain"
+               value="org.eclipse.papyrus.uml.diagram.composite.EditingDomain"/>
+         </enablement>
+      </clientContext> 
+      <binding context="org.eclipse.papyrus.uml.diagram.composite.TypeContext">
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Package_1000"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_2060"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_2061"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_2062"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_2063"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_2064"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_2065"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_2069"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_2070"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_2071"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_2072"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_2073"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_2075"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_2076"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_2066"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_2067"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_2068"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_2077"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_2078"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_2079"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_2080"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_2081"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_2082"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.SignalEvent_2083"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CallEvent_2084"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.AnyReceiveEvent_2085"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ChangeEvent_2088"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeEvent_2089"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservation_2093"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservation_2094"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralBoolean_2095"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralInteger_2096"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralNull_2097"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralString_2098"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.LiteralUnlimitedNatural_2099"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StringExpression_2100"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueExpression_2101"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeExpression_2102"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Expression_2103"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Duration_2104"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeInterval_2105"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationInterval_2106"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interval_2107"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InstanceValue_2108"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_2110"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_2111"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_2112"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_2113"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3121"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Port_3069"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Parameter_3088"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3070"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationRole_3115"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CollaborationUse_3071"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Activity_3072"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interaction_3073"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ProtocolStateMachine_3074"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.StateMachine_3075"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.FunctionBehavior_3076"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.OpaqueBehavior_3077"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Component_3081"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Device_3082"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ExecutionEnvironment_3083"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Node_3084"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Class_3085"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Collaboration_3086"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Interface_3087"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.PrimitiveType_3078"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Enumeration_3079"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DataType_3080"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Actor_3091"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DeploymentSpecification_3092"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Artifact_3093"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationItem_3094"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Signal_3095"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.UseCase_3096"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationConstraint_3116"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeConstraint_3117"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.IntervalConstraint_3118"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InteractionConstraint_3119"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Property_3101"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Operation_3102"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.EnumerationLiteral_3066"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4022"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Link_4001"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.CommentAnnotatedElement_4002"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ConstraintConstrainedElement_4003"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.ComponentRealization_4004"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InterfaceRealization_4005"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Substitution_4011"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Realization_4006"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Manifestation_4012"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Abstraction_4007"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Usage_4008"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Deployment_4009"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.RoleBinding_4017"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Dependency_4010"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Connector_4013"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Generalization_4015"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.TimeObservationEvent_4018"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.DurationObservationEvent_4019"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.Representation_4020"/>
+         <elementType ref="org.eclipse.papyrus.uml.diagram.composite.InformationFlow_4021"/>
+         <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
+      </binding>
+   </extension>
+
+
+
 
 </plugin>

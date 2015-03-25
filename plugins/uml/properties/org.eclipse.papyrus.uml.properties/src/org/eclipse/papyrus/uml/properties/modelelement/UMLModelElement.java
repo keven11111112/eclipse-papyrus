@@ -165,7 +165,7 @@ public class UMLModelElement extends EMFModelElement {
 			return new ConstrainedElementContentProvider(source, feature);
 		}
 
-		return new UMLContentProvider(source, feature);
+		return new UMLContentProvider(source, feature, null, domain.getResourceSet());
 	}
 
 	@Override

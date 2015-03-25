@@ -42,6 +42,10 @@ public class CellEditorConfigurationFactory {
 
 	public static final CellEditorConfigurationFactory INSTANCE = new CellEditorConfigurationFactory();
 
+	public static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.infra.nattable.celleditor";
+
+	public static final String EXTENSION_POINT_NAME = "configuration";
+
 	/**
 	 *
 	 * Constructor.
@@ -49,20 +53,23 @@ public class CellEditorConfigurationFactory {
 	 */
 	private CellEditorConfigurationFactory() {
 		// to prevent instanciation
-		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		// final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_ID);
+		final IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXTENSION_POINT_NAMESPACE, EXTENSION_POINT_NAME);
 		this.registry = new TreeMap<Integer, IAxisCellEditorConfiguration>();
 		for (final IConfigurationElement iConfigurationElement : configElements) {
-			// final String id = iConfigurationElement.getAttribute(FACTORY_ID_ATTRIBUTE);
-			final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER_ATTRIBUTE));
-			try {
-				final IAxisCellEditorConfiguration factory = (IAxisCellEditorConfiguration) iConfigurationElement.createExecutableExtension(CELL_EDITOR_CONFIGURATION_CLASS_ATTRIBUTE);
-				// factory.initFactory(id);
+			if (EXTENSION_POINT_NAME.equals(iConfigurationElement.getName())) {
+				// final String id = iConfigurationElement.getAttribute(FACTORY_ID_ATTRIBUTE);
+				final Integer order = new Integer(iConfigurationElement.getAttribute(ORDER_ATTRIBUTE));
+				try {
+					final IAxisCellEditorConfiguration factory = (IAxisCellEditorConfiguration) iConfigurationElement.createExecutableExtension(CELL_EDITOR_CONFIGURATION_CLASS_ATTRIBUTE);
+					// factory.initFactory(id);
 
-				if (factory != null) {
-					this.registry.put(order, factory);
+					if (factory != null) {
+						this.registry.put(order, factory);
+					}
+				} catch (final CoreException e) {
+					Activator.log.error(e);
 				}
-			} catch (final CoreException e) {
-				Activator.log.error(e);
 			}
 		}
 	}

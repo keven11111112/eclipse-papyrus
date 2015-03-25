@@ -4,20 +4,22 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsCreateCommand;
-import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsReorientCommand;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
 
 public class CommentAnnotatedElementsEditHelperAdvice extends AbstractEditHelperAdvice {
 
-
 	@Override
-	protected ICommand getBeforeReorientReferenceRelationshipCommand(ReorientReferenceRelationshipRequest request) {
-		return new CommentAnnotatedElementsReorientCommand(request);
+	protected ICommand getBeforeEditContextCommand(final GetEditContextRequest request) {
+
+		GetEditContextCommand command = new GetEditContextCommand(request);
+		command.setEditContext(request.getEditHelperContext());
+		return command;
 	}
 
 	protected boolean canCreate(EObject source, EObject target) {

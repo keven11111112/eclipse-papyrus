@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
 import org.eclipse.papyrus.uml.service.types.Activator;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Shell;
@@ -39,7 +40,7 @@ import org.eclipse.uml2.uml.Association;
  */
 public class AssociationSelectionDialog extends AbstractAssociationSelectionDialog {
 
-	private static final String UNTYPED = "<untyped>";
+	private static final String UNTYPED = Messages.AssociationSelectionDialog_0;
 
 	/** The selected association. */
 	protected Association selectedAssociation;

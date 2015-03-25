@@ -38,13 +38,13 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.SpecializationTypeConfigurationImpl#getSpecializedTypesID <em>Specialized Types ID</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.SpecializationTypeConfigurationImpl#getEditHelperAdviceConfiguration <em>Edit Helper Advice Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.SpecializationTypeConfigurationImpl#getContainerConfiguration <em>Container Configuration</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.SpecializationTypeConfigurationImpl#getMatcherConfiguration <em>Matcher Configuration</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

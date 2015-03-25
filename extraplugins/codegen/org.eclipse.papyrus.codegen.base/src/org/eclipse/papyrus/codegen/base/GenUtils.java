@@ -23,7 +23,6 @@ import org.eclipse.emf.common.util.UniqueEList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Dependency;
@@ -56,14 +55,14 @@ public class GenUtils {
 	public static final String NL = System.getProperties().getProperty("line.separator"); //$NON-NLS-1$
 
 	/**
-	 * Retrieve template bindings for the class passed as a Parameter
-	 * only one template binding can exist for an element
+	 * Retrieve first template binding from list of template bindings, if
+	 * exactly one exists. Return null otherwise.
 	 *
 	 * @param current
 	 *            Class on which the template binding is searched
 	 * @return the template binding of current Class
 	 */
-	public static TemplateBinding getTemplateBindings(Class current) {
+	public static TemplateBinding getTemplateBinding(Classifier current) {
 		TemplateBinding binding = null;
 		if (current.getTemplateBindings().size() == 1) {
 			binding = current.getTemplateBindings().get(0);
@@ -382,8 +381,9 @@ public class GenUtils {
 	 * Is a certain stereotype applied?
 	 *
 	 * @param element
+	 *            a UML element
 	 * @param stereotype
-	 *            fully qualified stereotype name
+	 *            The class of an element of a static profile
 	 * @return
 	 */
 	public static boolean hasStereotype(Element element, java.lang.Class<? extends EObject> clazz) {

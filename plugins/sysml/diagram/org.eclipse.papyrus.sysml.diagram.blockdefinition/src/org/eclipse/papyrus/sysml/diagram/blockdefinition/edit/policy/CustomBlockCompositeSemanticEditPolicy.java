@@ -29,7 +29,6 @@ import org.eclipse.papyrus.sysml.diagram.blockdefinition.provider.GraphicalTypeR
 import org.eclipse.papyrus.sysml.diagram.common.edit.policy.BlockCompositeSemanticEditPolicy;
 import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLCreateOrShowExistingElementHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.CreateOrShowExistingElementHelper;
-import org.eclipse.papyrus.uml.service.types.command.AssociationReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsCreateCommand;
 import org.eclipse.papyrus.uml.service.types.command.CommentAnnotatedElementsReorientCommand;
 import org.eclipse.papyrus.uml.service.types.command.ConstraintConstrainedElementsCreateCommand;
@@ -112,18 +111,4 @@ public class CustomBlockCompositeSemanticEditPolicy extends BlockCompositeSemant
 
 		return super.getReorientReferenceRelationshipCommand(req);
 	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy#getReorientRelationshipCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest)
-	 *
-	 * @param req
-	 * @return
-	 */
-	@Override
-	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
-		return getGEFWrapper(new AssociationReorientCommand(req));
-	}
-
-
-
 }

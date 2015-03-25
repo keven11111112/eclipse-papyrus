@@ -13,7 +13,6 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.providers;
 
 import java.util.Collection;
 import java.util.LinkedHashMap;
-import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -21,20 +20,19 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.Viewer;
-import org.eclipse.papyrus.infra.gmfdiag.css.Content;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
-import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.helper.XtextStylesheetHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.EmbeddedStyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.papyrus.infra.widgets.providers.IHierarchicContentProvider;
 
 
 public class ExistingStyleContentProvider implements IHierarchicContentProvider {
 
-	protected Map<StyleSheet, Stylesheet> stylesheets;
+	protected Map<StyleSheet, stylesheet> stylesheets;
 
 	protected final View context;
 
@@ -42,6 +40,7 @@ public class ExistingStyleContentProvider implements IHierarchicContentProvider 
 		this.context = context;
 	}
 
+	@Override
 	public Object[] getElements(Object inputElement) {
 		Collection<StyleSheet> stylesheets = getStyleSheets();
 		if (stylesheets.isEmpty()) {
@@ -51,55 +50,53 @@ public class ExistingStyleContentProvider implements IHierarchicContentProvider 
 		return stylesheets.toArray();
 	}
 
+	@Override
 	public Object[] getChildren(Object parentElement) {
 		if (parentElement instanceof StyleSheet) {
-			Stylesheet xtextStylesheet = stylesheets.get(parentElement);
+			stylesheet xtextStylesheet = stylesheets.get(parentElement);
 
-			List<Ruleset> result = new LinkedList<Ruleset>();
-
-			for (Content stylesheetElement : xtextStylesheet.getContents()) {
-				if (stylesheetElement instanceof Ruleset) {
-					result.add((Ruleset) stylesheetElement);
-				}
-			}
-
-			return result.toArray();
+			return xtextStylesheet.getRuleset().toArray();
 		} else {
 			return new Object[0];
 		}
 	}
 
+	@Override
 	public Object getParent(Object element) {
-		if (element instanceof Stylesheet) {
+		if (element instanceof stylesheet) {
 			return null;
 		}
 
-		if (element instanceof Ruleset) {
-			return ((Ruleset) element).eContainer();
+		if (element instanceof ruleset) {
+			return ((ruleset) element).eContainer();
 		}
 
 		return null;
 	}
 
+	@Override
 	public boolean hasChildren(Object element) {
 		return getChildren(element).length > 0;
 	}
 
+	@Override
 	public void dispose() {
 
 	}
 
+	@Override
 	public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
 
 	}
 
+	@Override
 	public boolean isValidValue(Object element) {
-		return element instanceof Ruleset;
+		return element instanceof ruleset;
 	}
 
 	protected Collection<StyleSheet> getStyleSheets() {
 		if (stylesheets == null) {
-			stylesheets = new LinkedHashMap<StyleSheet, Stylesheet>();
+			stylesheets = new LinkedHashMap<StyleSheet, stylesheet>();
 			if (context.getDiagram() instanceof CSSDiagram) {
 				CSSDiagram diagram = (CSSDiagram) context.getDiagram();
 				parseStyleSheets(diagram.getStyleSheets());
@@ -125,8 +122,8 @@ public class ExistingStyleContentProvider implements IHierarchicContentProvider 
 		}
 
 		for (EObject rootElement : resource.getContents()) {
-			if (rootElement instanceof Stylesheet) {
-				stylesheets.put(stylesheet, (Stylesheet) rootElement);
+			if (rootElement instanceof stylesheet) {
+				stylesheets.put(stylesheet, (stylesheet) rootElement);
 			}
 		}
 	}

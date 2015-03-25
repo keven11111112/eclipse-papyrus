@@ -42,19 +42,19 @@ import org.eclipse.jface.viewers.TreeViewer;
 import org.eclipse.jface.viewers.ViewerCell;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.Expression;
-import org.eclipse.papyrus.infra.gmfdiag.css.HexColor;
-import org.eclipse.papyrus.infra.gmfdiag.css.Name;
-import org.eclipse.papyrus.infra.gmfdiag.css.Number;
-import org.eclipse.papyrus.infra.gmfdiag.css.StringValue;
-import org.eclipse.papyrus.infra.gmfdiag.css.Subterm;
-import org.eclipse.papyrus.infra.gmfdiag.css.Term;
 import org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler.GMFToCSSConverter;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSDiagram;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.ForceValueHelper;
-import org.eclipse.papyrus.infra.gmfdiag.css.util.CssSwitch;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ColorTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.CssTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.IdentifierTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.NumberTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.StringTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.SymbolTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.UrlTok;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.util.CSSSwitch;
 import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.providers.CollectionContentProvider;
 import org.eclipse.swt.SWT;
@@ -178,6 +178,7 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 		// Nothing
 	}
 
+	@Override
 	public void selectionChanged(IWorkbenchPart part, ISelection selection) {
 		if (selection instanceof IStructuredSelection) {
 			IStructuredSelection structuredSelection = (IStructuredSelection) selection;
@@ -246,6 +247,7 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 		return view;
 	}
 
+	@Override
 	public void selectionChanged(SelectionChangedEvent event) {
 		ISelection selection = event.getSelection();
 		if (selection.isEmpty()) {
@@ -382,6 +384,7 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 
 		public static FeatureComparator instance = new FeatureComparator();
 
+		@Override
 		public int compare(EStructuralFeature o1, EStructuralFeature o2) {
 			return Collator.getInstance().compare(o1.getName(), o2.getName());
 		}
@@ -500,47 +503,55 @@ public class CSSDebugView extends ViewPart implements ISelectionListener, ISelec
 		}
 	}
 
-	protected String getLabel(Expression expression) {
-		if (expression == null) {
+	protected String getLabel(List<CssTok> expression) {
+		if (expression == null || expression.isEmpty()) {
 			return "";
 		}
-		String label = getLabel(expression.getTerms());
-		for (Subterm subTerm : expression.getSubterms()) {
-			if (subTerm.getOperator() != null) {
-				label += subTerm.getOperator();
+
+
+		String label = "";
+		for (CssTok token : expression) {
+			if (token instanceof SymbolTok) {
+				label += token;
+			} else {
+				label += " " + getLabel(token);
 			}
-			label += " " + getLabel(subTerm.getTerm());
 		}
-		return label;
+
+		return label.trim().replaceAll("[ ]+", " ");
 	}
 
-	protected String getLabel(Term term) {
-		return (new CssSwitch<String>() {
+	protected String getLabel(CssTok term) {
+		return (new CSSSwitch<String>() {
 
 			@Override
-			public String caseHexColor(HexColor term) {
-				return '#' + term.getValue();
+			public String caseColorTok(ColorTok token) {
+				return token.getValue();
 			}
 
 			@Override
-			public String caseName(Name term) {
-				return term.getValue();
+			public String caseIdentifierTok(IdentifierTok token) {
+				return token.getName();
 			}
 
 			@Override
-			public String caseStringValue(StringValue term) {
-				return "\"" + term.getValue() + "\"";
+			public String caseStringTok(StringTok token) {
+				return token.getValue();
 			}
 
 			@Override
-			public String caseNumber(Number term) {
-				String label = "";
-				if (term.getOp() != null) {
-					label += term.getOp().getOperator();
-				}
-				label += term.getValue();
+			public String caseNumberTok(NumberTok token) {
+				return Double.toString(token.getVal());
+			}
+
+			@Override
+			public String caseUrlTok(UrlTok token) {
+				String label = "url('";
+				label += token.getUrl().getUrl();
+				label += "')";
 				return label;
 			}
+
 		}).doSwitch(term);
 	}
 

@@ -8,10 +8,5 @@
             path="model/SysML14.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.newchild">
-      <menuCreationModel
-            model="model/SysML14.creationmenumodel">
-      </menuCreationModel>
-   </extension>
+
 </plugin>

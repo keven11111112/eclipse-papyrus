@@ -25,7 +25,7 @@ public class MetamodelTypeFactory extends AbstractElementTypeConfigurationFactor
 	 * {@inheritDoc}
 	 */
 	public IHintedType createElementType(MetamodelTypeConfiguration configuration) {
-		return new ConfiguredHintedMetamodelElementType(getID(configuration), getIconURL(configuration), getDisplayName(configuration), getEClass(configuration), createEditHelper(configuration), getSemanticHint(configuration));
+		return new ConfiguredHintedMetamodelElementType(getID(configuration), getIconURL(configuration), getDisplayName(configuration), getEClass(configuration), createEditHelper(configuration), getSemanticHint(configuration), configuration);
 	}
 
 	protected EClass getEClass(MetamodelTypeConfiguration configuration) {
@@ -34,7 +34,7 @@ public class MetamodelTypeFactory extends AbstractElementTypeConfigurationFactor
 
 	protected IEditHelper createEditHelper(MetamodelTypeConfiguration configuration) {
 		String editHelperClassName = configuration.getEditHelperClassName();
-		if(editHelperClassName == null) {
+		if (editHelperClassName == null) {
 			return null;
 		}
 		IEditHelper editHelper = ClassLoaderHelper.newInstance(editHelperClassName, IEditHelper.class);

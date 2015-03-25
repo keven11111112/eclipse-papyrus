@@ -25,6 +25,7 @@ import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart;
@@ -32,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.policies.OpenDiagramEditPol
 import org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.MaskManagedFloatingLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator;
 import org.eclipse.swt.graphics.Color;
 

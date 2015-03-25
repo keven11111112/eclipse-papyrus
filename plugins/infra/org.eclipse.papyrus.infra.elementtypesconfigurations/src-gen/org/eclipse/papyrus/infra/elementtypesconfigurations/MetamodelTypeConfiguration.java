@@ -21,11 +21,11 @@ import org.eclipse.emf.ecore.EClass;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.MetamodelTypeConfiguration#getEClass <em>EClass</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.MetamodelTypeConfiguration#getEditHelperClassName <em>Edit Helper Class Name</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getMetamodelTypeConfiguration()
  * @model

@@ -51,6 +51,6 @@ public class AssociationMatcher implements IElementMatcher {
 	
 	private boolean hasNoNature(Element element) {
 		String nature = ElementUtil.getNature(element);
-		return nature == null || "".equals(nature);
+		return nature == null || "".equals(nature); //$NON-NLS-1$
 	}
 }

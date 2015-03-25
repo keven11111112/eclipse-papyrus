@@ -28,6 +28,7 @@ import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCo
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.statemachine.custom.edit.part.CustomStateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.helpers.Zone;
 
 public class CustomStateResizeCommand extends AbstractTransactionalCommand {
@@ -61,7 +62,8 @@ public class CustomStateResizeCommand extends AbstractTransactionalCommand {
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		View state = (View) adaptable.getAdapter(View.class);
 		View stateLabel = (View) state.getChildren().get(0);
-		View stateCompartment = (View) state.getChildren().get(1);
+		View stateCompartment = CustomStateEditPart.getStateCompartmentView(state);
+
 		// a bunch of initializations
 		int direction = request.getResizeDirection();
 		int dx = request.getSizeDelta().width;

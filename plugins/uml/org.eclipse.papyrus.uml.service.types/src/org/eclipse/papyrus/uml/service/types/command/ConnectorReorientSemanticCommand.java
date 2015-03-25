@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientReferenceRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.papyrus.uml.service.types.utils.ConnectorUtils;
 import org.eclipse.papyrus.uml.service.types.utils.NamedElementHelper;
 import org.eclipse.uml2.uml.ConnectableElement;
@@ -244,7 +245,7 @@ public class ConnectorReorientSemanticCommand extends EditElementCommand {
 		// Change owner and Connector name (possibly already exists in new container)
 		if(newOwner != connector.getOwner()) {
 			if(newOwner.getOwnedConnector(connector.getName()) != null) {
-				String replacementName = NamedElementHelper.getDefaultNameWithIncrementFromBase("connector", newOwner.eContents()); // //$NON-NLS-0$
+				String replacementName = NamedElementHelper.getDefaultNameWithIncrementFromBase(Messages.ConnectorReorientSemanticCommand_0, newOwner.eContents()); // //$NON-NLS-0$ //$NON-NLS-1$
 				connector.setName(replacementName);
 			}
 			// Replace connector owner

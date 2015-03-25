@@ -41,9 +41,9 @@ public class ActivityNodeHelper extends ElementEditHelper {
 	/**
 	 * Parameter name for {@link ConfigureRequest} Used to pass the actual partition instance to set {@link ActivityNode#getInPartition()}
 	 */
-	public static final String IN_PARTITION = "IN_PARTITION";
+	public static final String IN_PARTITION = "IN_PARTITION"; //$NON-NLS-1$
 
-	public static final String IN_INTERRUPTIBLE_ACTIVITY_REGION = "IN_INTERRUPTIBLE_ACTIVITY_REGION";
+	public static final String IN_INTERRUPTIBLE_ACTIVITY_REGION = "IN_INTERRUPTIBLE_ACTIVITY_REGION"; //$NON-NLS-1$
 
 	@Override
 	protected ICommand getBasicDestroyElementCommand(DestroyElementRequest req) {

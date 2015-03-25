@@ -32,12 +32,12 @@ public class ElementUtil {
 	/**
 	 * The ID for Papyrus EAnnotations.
 	 */
-	private static final String PAPYRUS_URI = "org.eclipse.papyrus";
+	private static final String PAPYRUS_URI = "org.eclipse.papyrus"; //$NON-NLS-1$
 
 	/**
 	 * The ID for element nature in Papyrus EAnnotations. 
 	 */
-	private static final String PAPYRUS_ELEMENT_NATURE = "nature";
+	private static final String PAPYRUS_ELEMENT_NATURE = "nature"; //$NON-NLS-1$
 
 	/**
 	 * Convenient method to retrieve the StereotypeApplication by passing an
@@ -83,7 +83,7 @@ public class ElementUtil {
 			return eAnnotation.getDetails().get(PAPYRUS_ELEMENT_NATURE);
 		}
 
-		return "";
+		return ""; //$NON-NLS-1$
 	}
 
 	/**

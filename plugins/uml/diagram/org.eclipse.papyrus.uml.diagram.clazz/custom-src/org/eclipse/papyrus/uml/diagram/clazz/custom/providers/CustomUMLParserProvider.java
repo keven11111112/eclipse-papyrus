@@ -24,6 +24,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeDepende
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeElementImportEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeInterfaceRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypePackageImportEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypePackageMergeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeRealizationEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeSubstitutionEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AppliedStereotypeUsageEditPart;
@@ -33,6 +34,8 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationBranchRoleEdi
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationSourceNameEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.AssociationTargetNameEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ContextLinkAppliedStereotypeEditPart;
+import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.InformationFlowAppliedStereotypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForClassEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForComponentEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.OperationForDataTypeEditPart;
@@ -44,6 +47,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForSignalEditPar
 import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyforDataTypeEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.parsers.MessageFormatParser;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLParserProvider;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.parser.custom.AssociationEndParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.custom.AssociationMultiplicityParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
@@ -65,8 +69,11 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 	}
 
 	protected IParser getAppliedStereotypeParser() {
-		IParser parser = new AppliedStereotypeParser();
-		return parser;
+		return new AppliedStereotypeParser();
+	}
+
+	protected IParser getAppliedStereotypeParser(String defaultPrintString) {
+		return new AppliedStereotypeParser(defaultPrintString);
 	}
 
 	protected IParser getAssociationBranchRole() {
@@ -170,15 +177,21 @@ public class CustomUMLParserProvider extends UMLParserProvider {
 		case AppliedStereotypeRealizationEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeAbstractionEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser();
+			return getAppliedStereotypeParser("abstraction"); //$NON-NLS-1$
 		case AppliedStereotypeUsageEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser();
+			return getAppliedStereotypeParser("use"); //$NON-NLS-1$
 		case AppliedStereotypeDependencyEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
 		case AppliedStereotypeElementImportEditPart.VISUAL_ID:
-			return getAppliedStereotypeParser();
+			return getAppliedStereotypeParser("Import"); //$NON-NLS-1$
 		case AppliedStereotypePackageImportEditPart.VISUAL_ID:
 			return getAppliedStereotypeParser();
+		case InformationFlowAppliedStereotypeEditPart.VISUAL_ID:
+			return getAppliedStereotypeParser("flow"); //$NON-NLS-1$
+		case ContextLinkAppliedStereotypeEditPart.VISUAL_ID:
+			return getAppliedStereotypeParser(CustomAppliedStereotypeContextLinkLabelDisplayEditPolicy.APPLIED_STEREOTYPE_LABEL);
+		case AppliedStereotypePackageMergeEditPart.VISUAL_ID:
+			return getAppliedStereotypeParser("merge"); //$NON-NLS-1$
 		}
 		return super.getParser(visualID);
 	}

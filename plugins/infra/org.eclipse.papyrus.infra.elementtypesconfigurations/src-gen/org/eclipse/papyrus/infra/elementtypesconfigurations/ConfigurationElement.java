@@ -21,12 +21,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement#getName <em>Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement#getDescription <em>Description</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement#getIdentifier <em>Identifier</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getConfigurationElement()
  * @model abstract="true"

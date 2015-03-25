@@ -30,12 +30,12 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.IconEntry;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getHint <em>Hint</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getKind <em>Kind</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ElementTypeConfigurationImpl#getIconEntry <em>Icon Entry</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -8,5 +8,5 @@ Bundle-Localization: plugin
 Bundle-Name: %pluginName
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.decoratormodel.doc;singleton:=true
-Bundle-RequiredExecutionEnvironment: J2SE-1.5
 Bundle-Description: %pluginDescription
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

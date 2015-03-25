@@ -30,7 +30,7 @@ import org.eclipse.emf.common.util.URI;
  */
 public class UMLResourceVisitor implements IResourceProxyVisitor {
 
-	private Collection<URI> participantURIs;
+	protected Collection<URI> participantURIs;
 
 	public UMLResourceVisitor() {
 		super();

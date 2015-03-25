@@ -175,6 +175,11 @@
     <iconEntry xmi:id="_Sca07lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Collaboration.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_IsX6UMc9EeS1POoqrCEMrQ" name="UML::Collaboration::CollaborationRole" identifier="org.eclipse.papyrus.uml.Collaboration.CollaborationRole" hint="UML::Collaboration::CollaborationRole">
+    <iconEntry xmi:id="_XvNAUMc9EeS1POoqrCEMrQ" iconPath="/icons/full/obj16/ConnectableElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_8m8kIMc9EeS1POoqrCEMrQ" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationCollaborationRoleEditHelperAdvice" inheritance="all"/>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sca071YCEeS0WsAAtVmToA" name="UML::CollaborationUse" identifier="org.eclipse.papyrus.uml.CollaborationUse" hint="UML::CollaborationUse" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Sca08FYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CollaborationUse.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CollaborationUse"/>
@@ -183,12 +188,12 @@
     <iconEntry xmi:id="_Scbb11YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/CombinedFragment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//CombinedFragment"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scbb2FYCEeS0WsAAtVmToA" name="UML::Comment" identifier="org.eclipse.papyrus.uml.Comment" hint="UML::Comment" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.CommentEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scbb2FYCEeS0WsAAtVmToA" name="UML::Comment" identifier="org.eclipse.papyrus.uml.Comment" hint="UML::Comment" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Scbb2VYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Comment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Comment"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_poCSAGqWEeSE-IVtP6jQeA" name="UML::Comment::AnnotatedElements" identifier="org.eclipse.papyrus.uml.Comment.AnnotatedElements" hint="UML::Comment::AnnotatedElements">
-    <specializedTypesID>org.eclipse.papyrus.uml.Comment</specializedTypesID>
+    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_6-K50HY7EeSaAZaF2vKiqg" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CommentAnnotatedElementsEditHelperAdvice"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scbb2lYCEeS0WsAAtVmToA" name="UML::CommunicationPath" identifier="org.eclipse.papyrus.uml.CommunicationPath" hint="UML::CommunicationPath" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
@@ -240,11 +245,11 @@
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Constraint"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_XHjzcGslEeSELtwF_9-6fg" name="UML::Constraint::ConstrainedElements" identifier="org.eclipse.papyrus.uml.Constraint.ConstrainedElements" hint="UML::Constraint::ConstrainedElements">
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_njRJoHbmEeSsxehP964iKQ" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintConstrainedElementsEditHelperAdvice"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_ax9dwHZLEeSQEpHemLeWnw" name="UML::Constraint::Context" identifier="org.eclipse.papyrus.uml.Constraint.Context" hint="UML::Constraint::Context">
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
     <editHelperAdviceConfiguration xmi:id="_rZSY8HbmEeSsxehP964iKQ" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextEditHelperAdvice"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccDFVYCEeS0WsAAtVmToA" name="UML::Continuation" identifier="org.eclipse.papyrus.uml.Continuation" hint="UML::Continuation" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
@@ -287,11 +292,16 @@
     <iconEntry xmi:id="_SccqHFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Dependency.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Dependency"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_TFofsLhAEeSANYuUIb1qQA" name="UML::CollaborationUse::RoleBinding" identifier="org.eclipse.papyrus.uml.CollaborationUse.RoleBinding" hint="UML::CollaborationUse::RoleBinding">
+    <iconEntry xmi:id="_m8FswLhAEeSANYuUIb1qQA" iconPath="/icons/CollaborationRoleBinding.gif" bundleId="org.eclipse.papyrus.uml.service.types"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Dependency</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_Ao6QQLhBEeSANYuUIb1qQA" identifier="" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.RoleBindingHelperAdvice" inheritance="all"/>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqI1YCEeS0WsAAtVmToA" name="UML::DeployedArtifact" identifier="org.eclipse.papyrus.uml.DeployedArtifact" hint="UML::DeployedArtifact" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_SccqJFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/DeployedArtifact.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//DeployedArtifact"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqJVYCEeS0WsAAtVmToA" name="UML::Deployment" identifier="org.eclipse.papyrus.uml.Deployment" hint="UML::Deployment" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_SccqJVYCEeS0WsAAtVmToA" name="UML::Deployment" identifier="org.eclipse.papyrus.uml.Deployment" hint="UML::Deployment" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.DeploymentEditHelper">
     <iconEntry xmi:id="_SccqJlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Deployment.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Deployment"/>
   </elementTypeConfigurations>
@@ -468,9 +478,14 @@
     <iconEntry xmi:id="_ScnCC1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Include.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Include"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScnCDFYCEeS0WsAAtVmToA" name="UML::InformationFlow" identifier="org.eclipse.papyrus.uml.InformationFlow" hint="UML::InformationFlow" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InformationFlowEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScnCDFYCEeS0WsAAtVmToA" name="UML::InformationFlowBase" identifier="org.eclipse.papyrus.uml.InformationFlowBase" hint="UML::InformationFlowBase" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InformationFlowEditHelper">
     <iconEntry xmi:id="_ScnCDVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InformationFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InformationFlow"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_ZLpUILgeEeSANYuUIb1qQA" name="UML::InformationFlow" identifier="org.eclipse.papyrus.uml.InformationFlow" hint="UML::InformationFlow">
+    <iconEntry xmi:id="_jt-DYLgeEeSANYuUIb1qQA" iconPath="/icons/full/obj16/InformationFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InformationFlowBase</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_lfPMsLgeEeSANYuUIb1qQA" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.InformationFlowEditHelperAdvice" inheritance="all"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_ScnCFFYCEeS0WsAAtVmToA" name="UML::InformationItem" identifier="org.eclipse.papyrus.uml.InformationItem" hint="UML::InformationItem" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_ScnCFVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InformationItem.gif" bundleId="org.eclipse.uml2.uml.edit"/>
@@ -484,7 +499,7 @@
     <iconEntry xmi:id="_Sco3PFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InputPin"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scr6iVYCEeS0WsAAtVmToA" name="UML::InstanceSpecification" identifier="org.eclipse.papyrus.uml.InstanceSpecification" hint="UML::InstanceSpecification" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.InstanceSpecificationEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Scr6iVYCEeS0WsAAtVmToA" name="UML::InstanceSpecification" identifier="org.eclipse.papyrus.uml.InstanceSpecification" hint="UML::InstanceSpecification" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Scr6ilYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/InstanceSpecification.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//InstanceSpecification"/>
   </elementTypeConfigurations>
@@ -596,7 +611,7 @@
     <iconEntry xmi:id="_Sc58-lYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/LoopNode.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//LoopNode"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc59ClYCEeS0WsAAtVmToA" name="UML::Manifestation" identifier="org.eclipse.papyrus.uml.Manifestation" hint="UML::Manifestation" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc59ClYCEeS0WsAAtVmToA" name="UML::Manifestation" identifier="org.eclipse.papyrus.uml.Manifestation" hint="UML::Manifestation" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ManifestationEditHelper">
     <iconEntry xmi:id="_Sc59C1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Manifestation.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Manifestation"/>
   </elementTypeConfigurations>
@@ -632,12 +647,9 @@
     <iconEntry xmi:id="_Sc6kDVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/NamedElement.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc6kDlYCEeS0WsAAtVmToA" name="UML::Namespace" identifier="org.eclipse.papyrus.uml.Namespace" hint="UML::Namespace" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.NamespaceEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc6kDlYCEeS0WsAAtVmToA" name="UML::Namespace" identifier="org.eclipse.papyrus.uml.Namespace" hint="UML::Namespace" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Sc6kD1YCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Namespace.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Namespace"/>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_xVU0MHlEEeSDaJF_npeEXw" name="UML::Namescape::OwnedMember" description="Created to support the ContainmentLink" identifier="org.eclipse.papyrus.uml.Namespace.OwnedMember" hint="UML::Namescape::OwnedMember">
-    <specializedTypesID>org.eclipse.papyrus.uml.Namespace</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc6kEFYCEeS0WsAAtVmToA" name="UML::Node" identifier="org.eclipse.papyrus.uml.Node" hint="UML::Node" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Sc6kEVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Node.gif" bundleId="org.eclipse.uml2.uml.edit"/>
@@ -687,7 +699,7 @@
     <iconEntry xmi:id="_Sc9ARFYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//OutputPin"/>
   </elementTypeConfigurations>
-  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc9nZVYCEeS0WsAAtVmToA" name="UML::Package" identifier="org.eclipse.papyrus.uml.Package" hint="UML::Package" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.PackageEditHelper">
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc9nZVYCEeS0WsAAtVmToA" name="UML::Package" identifier="org.eclipse.papyrus.uml.Package" hint="UML::Package" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Sc9nZlYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Package.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
   </elementTypeConfigurations>
@@ -750,6 +762,11 @@
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc-1cFYCEeS0WsAAtVmToA" name="UML::Property" identifier="org.eclipse.papyrus.uml.Property" hint="UML::Property" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
     <iconEntry xmi:id="_Sc-1cVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <eClass href="http://www.eclipse.org/uml2/5.0.0/UML#//Property"/>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_wdkpELhLEeSANYuUIb1qQA" name="UML::PropertyPart" identifier="org.eclipse.papyrus.uml.PropertyPart" hint="UML::PropertyPart">
+    <iconEntry xmi:id="_5SIO8LhLEeSANYuUIb1qQA" iconPath="/icons/full/obj16/Property.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_509PMLhLEeSANYuUIb1qQA" identifier="" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.PropertyPartHelperAdvice" inheritance="all"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:MetamodelTypeConfiguration" xmi:id="_Sc-1eFYCEeS0WsAAtVmToA" name="UML::ProtocolConformance" identifier="org.eclipse.papyrus.uml.ProtocolConformance" hint="UML::ProtocolConformance" editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ProtocolConformanceEditHelper">
     <iconEntry xmi:id="_Sc-1eVYCEeS0WsAAtVmToA" iconPath="/icons/full/obj16/ProtocolConformance.gif" bundleId="org.eclipse.uml2.uml.edit"/>
@@ -1045,8 +1062,15 @@
     <editHelperAdviceConfiguration xmi:id="_UGdZ8WslEeSELtwF_9-6fg" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.RefineEditHelperAdvice"/>
     <matcherConfiguration xmi:id="_UGdZ8mslEeSELtwF_9-6fg" matcherClassName="org.eclipse.papyrus.uml.service.types.matcher.RefineMatcher"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_xVU0MHlEEeSDaJF_npeEXw" name="UML::Element::OwnedElement" description="Created to support the ContainmentLink" identifier="org.eclipse.papyrus.uml.Element.OwnedElement" hint="UML::Element::OwnedElement">
+    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
+    <editHelperAdviceConfiguration xmi:id="_JdUX4MHTEeSpuJnfbRdiWQ" identifier="" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ElementOwnedElementEditHelperAdvice" inheritance="all"/>
+  </elementTypeConfigurations>
+  <adviceBindingsConfigurations xmi:id="_mqX8YMHdEeSpuJnfbRdiWQ" identifier="org.eclipse.papyrus.uml.advice.Containment" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ElementOwnedElementReorientEditHelperAdvice" inheritance="all" target="_ScgUUFYCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations xmi:id="_6AWx0MJaEeSl6M4_Zhyt7Q" identifier="org.eclipse.papyrus.uml.advice.ConstraintConstrainedElementsReorient" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintConstrainedElementsReorientEditHelperAdvice" inheritance="all" target="_SccC-1YCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations xmi:id="_Biw5sMdFEeS1POoqrCEMrQ" identifier="org.eclipse.papyrus.uml.advice.CommentAnnotatedElementsReorient" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CommentAnnotatedElementsReorientEditHelperAdvice" inheritance="all" target="_Scbb2FYCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations xmi:id="_UdTKsMJbEeSl6M4_Zhyt7Q" identifier="org.eclipse.papyrus.uml.advice.ConstraintContextReorient" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ConstraintContextReorientEditHelperAdvice" inheritance="all" target="_SccC-1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations xmi:id="_R_pDcGT7EeSzFvTXGJPhUg" name="org.eclipse.papyrus.uml.advice.ContainmentSubsetRemoval" identifier="org.eclipse.papyrus.uml.advice.ContainmentSubsetRemoval" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ContainmentSubsetRemovalAdvice" inheritance="all" target="_ScgUUFYCEeS0WsAAtVmToA"/>
-  <adviceBindingsConfigurations xmi:id="_lIgXkHl8EeSqauow2xCkqg" name="org.eclipse.papyrus.uml.advice.Containment" identifier="org.eclipse.papyrus.uml.advice.Containment" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.NamespaceOwnedMemberEditHelperAdvice" inheritance="all" target="_Sc6kDlYCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations xmi:id="_R_pDcWT7EeSzFvTXGJPhUg" name="org.eclipse.papyrus.uml.advice.Classifier" identifier="org.eclipse.papyrus.uml.advice.Classifier" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ClassifierHelperAdvice" inheritance="all" target="_Sca0z1YCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations xmi:id="_R_pDcmT7EeSzFvTXGJPhUg" name="org.eclipse.papyrus.uml.advice.Collaboration" identifier="org.eclipse.papyrus.uml.advice.Collaboration" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationHelperAdvice" target="_Sca07VYCEeS0WsAAtVmToA"/>
   <adviceBindingsConfigurations xmi:id="_R_pDc2T7EeSzFvTXGJPhUg" name="org.eclipse.papyrus.uml.advice.CollaborationUse" identifier="org.eclipse.papyrus.uml.advice.CollaborationUse" editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.CollaborationUseHelperAdvice" target="_Sca071YCEeS0WsAAtVmToA"/>

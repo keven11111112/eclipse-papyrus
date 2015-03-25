@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.tooling.runtime.update.DiagramUpdater;
 import org.eclipse.papyrus.commands.ICreationCommand;
+import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.composite.CreateCompositeDiagramCommand;
 import org.eclipse.papyrus.uml.diagram.composite.part.UMLDiagramUpdater;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
@@ -82,7 +83,7 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	 * Sets the up.
 	 *
 	 * @throws Exception
-	 *         the exception
+	 *             the exception
 	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase#setUp()
 	 */
 	@Before
@@ -97,17 +98,16 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	 * Install environment.
 	 *
 	 * @param sourceType
-	 *        the source type
+	 *            the source type
 	 * @param targetType
-	 *        the target type
-	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.TestLinkWithParent#installEnvironment(org.eclipse.gmf.runtime.emf.type.core.IElementType,
-	 *      org.eclipse.gmf.runtime.emf.type.core.IElementType)
+	 *            the target type
+	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.TestLinkWithParent#installEnvironment(org.eclipse.gmf.runtime.emf.type.core.IElementType, org.eclipse.gmf.runtime.emf.type.core.IElementType)
 	 */
 	@Override
 	public void installEnvironment(IElementType sourceType, IElementType targetType) {
 		super.installEnvironment(sourceType, targetType);
 
-		//create the target
+		// create the target
 		CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(targetType, getDiagramEditPart().getDiagramPreferencesHint());
 		requestcreation.setLocation(DEFAULT_SOURCE_LOCATION);
 		Command command = parent.getCommand(requestcreation);
@@ -183,14 +183,6 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Abstraction_4007, UMLElementTypes.Class_2073, true);
 	}
 
-	/**
-	 * Test to manage port substitution.
-	 */
-	@Test
-	public void testToManagePortSubstitution() {
-		initConfLinkOwnedByDiagram();
-		testToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Substitution_4011, UMLElementTypes.Class_2073, true);
-	}
 
 	/**
 	 * Test to manage port generalization.
@@ -198,6 +190,15 @@ public class TestCompositeDiagramElementWithSameParentLink extends TestLinkWithP
 	@Test
 	public void testToManagePortGeneralization() {
 		testImpossibleToManageLink(UMLElementTypes.Port_3069, UMLElementTypes.Port_3069, UMLElementTypes.Generalization_4015);
+	}
+
+	/**
+	 * Test to manage component.
+	 */
+	@Test
+	@InteractiveTest
+	public void testToDeployment() {
+		testToManageLink(UMLElementTypes.Node_3084, UMLElementTypes.DeploymentSpecification_3092, UMLElementTypes.Deployment_4009, UMLElementTypes.Class_2073, true);
 	}
 
 }

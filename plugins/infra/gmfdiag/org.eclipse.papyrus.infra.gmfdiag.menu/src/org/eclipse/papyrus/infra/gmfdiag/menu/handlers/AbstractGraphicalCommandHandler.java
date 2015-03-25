@@ -47,6 +47,10 @@ import org.eclipse.ui.handlers.HandlerUtil;
 public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 
 	protected abstract Command getCommand();
+	
+	protected Command getCommand(ExecutionEvent event){
+	    return getCommand(); //Implement an overridable, default behavior. Extend it only when you actually need the ExecutionEvent (i.e. for your own contribution)
+	}
 
 	/**
 	 * Iterate over current selection and build a list of the {@link IGraphicalEditPart} contained in the selection.
@@ -77,7 +81,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 			ISelection selection = HandlerUtil.getCurrentSelection(event);
 			this.selection = (selection instanceof IStructuredSelection) ? ((IStructuredSelection) selection).toList() : Collections.EMPTY_LIST;
 
-			getEditingDomain(event).getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(getCommand()));
+			getEditingDomain(event).getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(getCommand(event)));
 		} finally {
 			// clear the selection
 			this.selection = Collections.EMPTY_LIST;
@@ -132,7 +136,7 @@ public abstract class AbstractGraphicalCommandHandler extends AbstractHandler {
 
 		TransactionalEditingDomain domain = getEditingDomain();
 		if ((domain != null) && !TransactionHelper.isDisposed(domain)) {
-			Command command = getCommand();
+			Command command = getCommand(null);
 			if (command != null) {
 				result = command.canExecute();
 				command.dispose();

@@ -1,8 +1,14 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration;
 
@@ -17,13 +23,12 @@ import org.eclipse.emf.ecore.EReference;
  * The <b>Package</b> for the model.
  * It contains accessors for the meta objects to represent
  * <ul>
- * <li>each class,</li>
- * <li>each feature of each class,</li>
- * <li>each enum,</li>
- * <li>and each data type</li>
+ *   <li>each class,</li>
+ *   <li>each feature of each class,</li>
+ *   <li>each enum,</li>
+ *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- *
  * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationFactory
  * @model kind="package"
  * @generated
@@ -33,7 +38,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The package name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNAME = "paletteconfiguration";
@@ -42,7 +46,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The package namespace URI.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_URI = "http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7";
@@ -51,7 +54,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The package namespace name.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	String eNS_PREFIX = "paletteconfiguration";
@@ -60,7 +62,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The singleton instance of the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	PaletteconfigurationPackage eINSTANCE = org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl.init();
@@ -69,7 +70,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ConfigurationImpl <em>Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getConfiguration()
 	 * @generated
@@ -80,7 +80,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -90,7 +89,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -100,7 +98,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -110,7 +107,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -120,7 +116,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -130,7 +125,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl <em>Palette Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getPaletteConfiguration()
 	 * @generated
@@ -141,7 +135,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -151,7 +144,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -161,7 +153,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -171,7 +162,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -181,7 +171,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Drawer Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -191,7 +180,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Required Profiles</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -201,7 +189,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Palette Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -211,7 +198,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ChildConfigurationImpl <em>Child Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ChildConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getChildConfiguration()
 	 * @generated
@@ -222,7 +208,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -232,7 +217,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -242,7 +226,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -252,7 +235,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -262,7 +244,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Child Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -272,7 +253,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.LeafConfigurationImpl <em>Leaf Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.LeafConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getLeafConfiguration()
 	 * @generated
@@ -283,7 +263,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -293,7 +272,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -303,7 +281,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -313,7 +290,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -323,7 +299,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Leaf Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -333,7 +308,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl <em>Tool Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getToolConfiguration()
 	 * @generated
@@ -344,7 +318,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -354,7 +327,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -364,7 +336,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -374,7 +345,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -384,7 +354,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Kind</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -394,7 +363,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Descriptors</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -404,7 +372,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Tool Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -414,7 +381,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.StackConfigurationImpl <em>Stack Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.StackConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getStackConfiguration()
 	 * @generated
@@ -425,7 +391,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -435,7 +400,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -445,7 +409,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -455,7 +418,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -465,7 +427,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -475,7 +436,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Stack Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -485,7 +445,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.DrawerConfigurationImpl <em>Drawer Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.DrawerConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getDrawerConfiguration()
 	 * @generated
@@ -496,7 +455,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -506,7 +464,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -516,7 +473,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -526,7 +482,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -536,7 +491,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Owned Configurations</b></em>' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -546,7 +500,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Drawer Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -556,7 +509,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.IconDescriptorImpl <em>Icon Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.IconDescriptorImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getIconDescriptor()
 	 * @generated
@@ -567,7 +519,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Plugin ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -577,7 +528,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon Path</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -587,7 +537,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Icon Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -597,7 +546,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl <em>Element Descriptor</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getElementDescriptor()
 	 * @generated
@@ -608,7 +556,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Element Type Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -618,7 +565,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Graphical Hints</b></em>' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -628,7 +574,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Element Descriptor</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -638,7 +583,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.SeparatorConfigurationImpl <em>Separator Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.SeparatorConfigurationImpl
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getSeparatorConfiguration()
 	 * @generated
@@ -649,7 +593,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Id</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -659,7 +602,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Label</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -669,7 +611,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -679,7 +620,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The feature id for the '<em><b>Icon</b></em>' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -689,7 +629,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The number of structural features of the '<em>Separator Configuration</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 * @ordered
 	 */
@@ -699,7 +638,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind <em>Tool Kind</em>}' enum.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getToolKind()
 	 * @generated
@@ -711,7 +649,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration <em>Palette Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Palette Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration
 	 * @generated
@@ -722,7 +659,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getDrawerConfigurations <em>Drawer Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Drawer Configurations</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getDrawerConfigurations()
 	 * @see #getPaletteConfiguration()
@@ -734,7 +670,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getRequiredProfiles <em>Required Profiles</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute list '<em>Required Profiles</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteConfiguration#getRequiredProfiles()
 	 * @see #getPaletteConfiguration()
@@ -746,7 +681,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration <em>Tool Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Tool Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration
 	 * @generated
@@ -757,7 +691,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getKind <em>Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Kind</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getKind()
 	 * @see #getToolConfiguration()
@@ -769,7 +702,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getElementDescriptors <em>Element Descriptors</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Element Descriptors</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolConfiguration#getElementDescriptors()
 	 * @see #getToolConfiguration()
@@ -781,7 +713,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration <em>Stack Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Stack Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration
 	 * @generated
@@ -792,7 +723,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Owned Configurations</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.StackConfiguration#getOwnedConfigurations()
 	 * @see #getStackConfiguration()
@@ -804,7 +734,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration <em>Child Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Child Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ChildConfiguration
 	 * @generated
@@ -815,7 +744,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration <em>Drawer Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Drawer Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration
 	 * @generated
@@ -826,7 +754,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration#getOwnedConfigurations <em>Owned Configurations</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference list '<em>Owned Configurations</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.DrawerConfiguration#getOwnedConfigurations()
 	 * @see #getDrawerConfiguration()
@@ -838,7 +765,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration <em>Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration
 	 * @generated
@@ -849,7 +775,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getId <em>Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Id</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getId()
 	 * @see #getConfiguration()
@@ -861,7 +786,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getLabel <em>Label</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Label</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getLabel()
 	 * @see #getConfiguration()
@@ -873,7 +797,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getDescription <em>Description</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Description</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getDescription()
 	 * @see #getConfiguration()
@@ -885,7 +808,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getIcon <em>Icon</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the containment reference '<em>Icon</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.Configuration#getIcon()
 	 * @see #getConfiguration()
@@ -897,7 +819,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor <em>Icon Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Icon Descriptor</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor
 	 * @generated
@@ -908,7 +829,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor#getPluginID <em>Plugin ID</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Plugin ID</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor#getPluginID()
 	 * @see #getIconDescriptor()
@@ -920,7 +840,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor#getIconPath <em>Icon Path</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Icon Path</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.IconDescriptor#getIconPath()
 	 * @see #getIconDescriptor()
@@ -932,7 +851,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor <em>Element Descriptor</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Element Descriptor</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor
 	 * @generated
@@ -943,7 +861,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor#getElementTypeId <em>Element Type Id</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute '<em>Element Type Id</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor#getElementTypeId()
 	 * @see #getElementDescriptor()
@@ -955,7 +872,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for the attribute list '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor#getGraphicalHints <em>Graphical Hints</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for the attribute list '<em>Graphical Hints</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor#getGraphicalHints()
 	 * @see #getElementDescriptor()
@@ -967,7 +883,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration <em>Separator Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Separator Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.SeparatorConfiguration
 	 * @generated
@@ -978,7 +893,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration <em>Leaf Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for class '<em>Leaf Configuration</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.LeafConfiguration
 	 * @generated
@@ -989,7 +903,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the meta object for enum '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind <em>Tool Kind</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the meta object for enum '<em>Tool Kind</em>'.
 	 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind
 	 * @generated
@@ -1000,7 +913,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
@@ -1010,13 +922,12 @@ public interface PaletteconfigurationPackage extends EPackage {
 	 * <!-- begin-user-doc -->
 	 * Defines literals for the meta objects that represent
 	 * <ul>
-	 * <li>each class,</li>
-	 * <li>each feature of each class,</li>
-	 * <li>each enum,</li>
-	 * <li>and each data type</li>
+	 *   <li>each class,</li>
+	 *   <li>each feature of each class,</li>
+	 *   <li>each enum,</li>
+	 *   <li>and each data type</li>
 	 * </ul>
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	interface Literals {
@@ -1024,7 +935,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl <em>Palette Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getPaletteConfiguration()
 		 * @generated
@@ -1035,7 +945,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Drawer Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference PALETTE_CONFIGURATION__DRAWER_CONFIGURATIONS = eINSTANCE.getPaletteConfiguration_DrawerConfigurations();
@@ -1044,7 +953,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Required Profiles</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute PALETTE_CONFIGURATION__REQUIRED_PROFILES = eINSTANCE.getPaletteConfiguration_RequiredProfiles();
@@ -1053,7 +961,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl <em>Tool Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ToolConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getToolConfiguration()
 		 * @generated
@@ -1064,7 +971,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Kind</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute TOOL_CONFIGURATION__KIND = eINSTANCE.getToolConfiguration_Kind();
@@ -1073,7 +979,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element Descriptors</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference TOOL_CONFIGURATION__ELEMENT_DESCRIPTORS = eINSTANCE.getToolConfiguration_ElementDescriptors();
@@ -1082,7 +987,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.StackConfigurationImpl <em>Stack Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.StackConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getStackConfiguration()
 		 * @generated
@@ -1093,7 +997,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owned Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference STACK_CONFIGURATION__OWNED_CONFIGURATIONS = eINSTANCE.getStackConfiguration_OwnedConfigurations();
@@ -1102,7 +1005,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ChildConfigurationImpl <em>Child Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ChildConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getChildConfiguration()
 		 * @generated
@@ -1113,7 +1015,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.DrawerConfigurationImpl <em>Drawer Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.DrawerConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getDrawerConfiguration()
 		 * @generated
@@ -1124,7 +1025,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Owned Configurations</b></em>' containment reference list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference DRAWER_CONFIGURATION__OWNED_CONFIGURATIONS = eINSTANCE.getDrawerConfiguration_OwnedConfigurations();
@@ -1133,7 +1033,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ConfigurationImpl <em>Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getConfiguration()
 		 * @generated
@@ -1144,7 +1043,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute CONFIGURATION__ID = eINSTANCE.getConfiguration_Id();
@@ -1153,7 +1051,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Label</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute CONFIGURATION__LABEL = eINSTANCE.getConfiguration_Label();
@@ -1162,7 +1059,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Description</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute CONFIGURATION__DESCRIPTION = eINSTANCE.getConfiguration_Description();
@@ -1171,7 +1067,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Icon</b></em>' containment reference feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EReference CONFIGURATION__ICON = eINSTANCE.getConfiguration_Icon();
@@ -1180,7 +1075,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.IconDescriptorImpl <em>Icon Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.IconDescriptorImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getIconDescriptor()
 		 * @generated
@@ -1191,7 +1085,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Plugin ID</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ICON_DESCRIPTOR__PLUGIN_ID = eINSTANCE.getIconDescriptor_PluginID();
@@ -1200,7 +1093,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Icon Path</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ICON_DESCRIPTOR__ICON_PATH = eINSTANCE.getIconDescriptor_IconPath();
@@ -1209,7 +1101,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl <em>Element Descriptor</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getElementDescriptor()
 		 * @generated
@@ -1220,7 +1111,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Element Type Id</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID = eINSTANCE.getElementDescriptor_ElementTypeId();
@@ -1229,7 +1119,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '<em><b>Graphical Hints</b></em>' attribute list feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @generated
 		 */
 		EAttribute ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS = eINSTANCE.getElementDescriptor_GraphicalHints();
@@ -1238,7 +1127,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.SeparatorConfigurationImpl <em>Separator Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.SeparatorConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getSeparatorConfiguration()
 		 * @generated
@@ -1249,7 +1137,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.LeafConfigurationImpl <em>Leaf Configuration</em>}' class.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.LeafConfigurationImpl
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getLeafConfiguration()
 		 * @generated
@@ -1260,7 +1147,6 @@ public interface PaletteconfigurationPackage extends EPackage {
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind <em>Tool Kind</em>}' enum.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 *
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.ToolKind
 		 * @see org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.PaletteconfigurationPackageImpl#getToolKind()
 		 * @generated
@@ -1269,4 +1155,4 @@ public interface PaletteconfigurationPackage extends EPackage {
 
 	}
 
-} // PaletteconfigurationPackage
+} //PaletteconfigurationPackage

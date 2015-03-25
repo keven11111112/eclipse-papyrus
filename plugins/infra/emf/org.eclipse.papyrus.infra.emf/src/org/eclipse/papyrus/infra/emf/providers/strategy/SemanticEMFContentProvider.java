@@ -27,6 +27,7 @@ import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
 import org.eclipse.emf.edit.provider.IDisposable;
 import org.eclipse.papyrus.emf.facet.custom.core.ICustomizationManager;
+import org.eclipse.papyrus.emf.facet.custom.metamodel.v0_2_0.internal.treeproxy.TreeElement;
 import org.eclipse.papyrus.emf.facet.custom.ui.internal.CustomizedTreeContentProvider;
 import org.eclipse.papyrus.infra.emf.Activator;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -140,6 +141,21 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 		return roots;
 	}
 
+	@Override
+	public Object[] getChildren(Object parentElement) {
+		// Sometimes, the ContentProvider is wrapped in a provider which adds new children (Not EMF-Facet compliant)
+		if (parentElement instanceof TreeElement) {
+			return super.getChildren(parentElement);
+		}
+
+		if (parentElement instanceof EObject) {
+			return super.getChildren(createEObjectProxy(parentElement, null));
+		}
+
+		return new Object[0];
+	}
+
+	@Override
 	public Object getAdaptedValue(Object containerElement) {
 		return EMFHelper.getEObject(containerElement);
 	}
@@ -151,6 +167,7 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 		return children != null && children.length > 0;
 	}
 
+	@Override
 	public boolean isValidValue(Object containerElement) {
 		// get the semantic object form the element
 		Object semanticObject = getAdaptedValue(containerElement);
@@ -203,6 +220,7 @@ public class SemanticEMFContentProvider extends CustomizedTreeContentProvider im
 		this.notWantedMetaclasses = notWantedMetaclasses;
 	}
 
+	@Override
 	public Object[] getElements() {
 		return super.getElements(null);
 	}

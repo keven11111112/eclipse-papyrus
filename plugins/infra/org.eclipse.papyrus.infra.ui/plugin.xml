@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?>
+
+<!--
+ <copyright>
+ </copyright>
+
+ $Id$
+-->
+<plugin>
+ <extension
+         point="org.eclipse.ui.menus">
+      <menuContribution
+            locationURI="menu:org.eclipse.ui.main.menu?after=navigate">
+         <menu
+               id="org.eclipse.papyrus.ui.menu"
+               label="Papyrus"
+               tooltip="Papyrus Editor Menu">
+            <visibleWhen>
+               <with
+                     variable="activeEditorId">
+                  <equals
+                        value="org.eclipse.papyrus.infra.core.papyrusEditor">
+                  </equals>
+               </with>
+            </visibleWhen>
+         </menu>
+      </menuContribution>
+  </extension>
+  <extension
+        point="org.eclipse.ui.menus">
+      
+        <menuContribution
+              allPopups="false"
+              locationURI="menu:org.eclipse.papyrus.ui.menu">
+                <menu
+            label="&amp;Quick Formatting..."
+            tooltip="Quick formatting for labels">
+         <command
+               commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand"
+               label="&amp;Uppercase Quick Formatting"
+               style="push">
+            <parameter
+                  name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                  value="uppercase">
+            </parameter>
+      	 </command>
+      	 <command
+              commandId="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
+              label="&amp;Lowercase Quick Formatting"
+              style="push">
+           <parameter
+                 name="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+                 value="lowercase">
+           </parameter>
+      	 </command>
+        <visibleWhen
+              checkEnabled="true">
+        </visibleWhen>
+      </menu>
+        </menuContribution>
+  </extension>   
+<extension
+      id="PapyrusQuickFormattingCommand" 
+      name="QuickFormattingCommand"
+      point="org.eclipse.ui.commands">
+   <command
+         categoryId="org.eclipse.papyrus.infra.ui.quickformat"
+         description="The command to quickly format in uppercase the selected labels"
+         id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingUpperCaseCommand"
+         name="Upper Case Quick Format Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+            name="name"
+            optional="false">
+      </commandParameter>
+   </command>
+   <command
+         categoryId="org.eclipse.papyrus.infra.ui.quickformat"
+         description="The command to quickly format in lowercase the selected labels"
+         id="org.eclipse.papyrus.infra.ui.menu.commands.QuickFormattingLowerCaseCommand"
+         name="Lower Case Quick Format Command">
+      <commandParameter
+            id="org.eclipse.papyrus.infra.ui.menu.quickformatcommandParameter"
+            name="name"
+            optional="false">
+      </commandParameter>
+   </command>
+   <category
+         description="quickformat routines"
+         id="org.eclipse.papyrus.infra.ui.quickformat"
+         name="quickformat routines">
+   </category>
+</extension>
+
+
+</plugin>

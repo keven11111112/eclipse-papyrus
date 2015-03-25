@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia Dhouib saadia.dhouib@cea.fr
+ *  Saadia Dhouib saadia.dhouib@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 462958
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.helper;
@@ -110,7 +110,7 @@ public class MessageHelper extends ElementHelper {
 		// 3. Aggregates the create node command
 		// parentView = (View)((View)sourceEditPart.getModel()).eContainer();
 		CustomMessageViewCreateCommand nodeCreation = new CustomMessageViewCreateCommand(getEditingDomain(), sourceEditPart.getViewer(), ((IGraphicalEditPart) sourceEditPart).getDiagramPreferencesHint(), nodeLocation,
-				(IAdaptable) ((ICommand) customMessageCreateComand).getCommandResult().getReturnValue(), link);
+				(IAdaptable) ((ICommand) customMessageCreateComand).getCommandResult().getReturnValue(), (View) link.getModel());
 		((CompoundCommand) command).add(new ICommandProxy(nodeCreation));
 		// return the command that contains the semantic creation and the view creation
 		return command;

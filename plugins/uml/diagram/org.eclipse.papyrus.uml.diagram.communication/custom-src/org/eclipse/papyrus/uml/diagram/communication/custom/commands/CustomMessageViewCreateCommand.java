@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,7 +7,8 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Saadia Dhouib saadia.dhouib@cea.fr
+ *  Saadia Dhouib saadia.dhouib@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 462958
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.communication.custom.commands;
@@ -24,7 +24,6 @@ import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.workspace.util.WorkspaceSynchronizer;
-import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
@@ -38,7 +37,7 @@ import org.eclipse.gmf.runtime.notation.Location;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.common.commands.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.communication.edit.parts.MessageNameEditPart;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLVisualIDRegistry;
 
@@ -74,7 +73,7 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 	private EditPartViewer viewer;
 
 	/** The existing link. */
-	private ConnectionEditPart existingLink;
+	private View existingLink;
 
 	/**
 	 * Instantiates a new custom message view create command.
@@ -94,7 +93,7 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 	 * @param link
 	 *            the link
 	 */
-	public CustomMessageViewCreateCommand(TransactionalEditingDomain domain, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, IAdaptable semanticAdapter, ConnectionEditPart link) {
+	public CustomMessageViewCreateCommand(TransactionalEditingDomain domain, EditPartViewer viewer, PreferencesHint preferencesHint, Point point, IAdaptable semanticAdapter, View link) {
 		super(domain, "MessageClassViewCreateCommand", null); //$NON-NLS-1$
 		// this.containerView = container;
 		this.viewer = viewer;
@@ -114,13 +113,10 @@ public class CustomMessageViewCreateCommand extends AbstractTransactionalCommand
 	 * @return
 	 * @throws ExecutionException
 	 */
-	@SuppressWarnings("static-access")
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-		// IFigure linkEditPart = (IFigure)existingLink.getFigure();
-		View linkView = ((IGraphicalEditPart) existingLink).getNotationView();
 		// Connector linkConnector = linkView.get
-		CustomMessageViewCreateCommand.node = customCreateLabel(((EObject) semanticApdater.getAdapter(EObject.class)), linkView, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
+		CustomMessageViewCreateCommand.node = customCreateLabel(((EObject) semanticApdater.getAdapter(EObject.class)), existingLink, UMLVisualIDRegistry.getType(MessageNameEditPart.VISUAL_ID));
 		// put to the good position
 		Location notationLocation = NotationFactory.eINSTANCE.createLocation();
 		// notationLocation.setX(location.x);

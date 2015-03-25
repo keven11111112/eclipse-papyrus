@@ -23,7 +23,7 @@ public class InteractionConstraintUtil {
 		if(value == null) {
 			return null;
 		}
-		if("*".equals(value) || "*".equals(value.toString())) {
+		if("*".equals(value) || "*".equals(value.toString())) { //$NON-NLS-1$ //$NON-NLS-2$
 			return Integer.MAX_VALUE;
 		} else if(value instanceof Integer) {
 			return (Integer)value;
@@ -36,7 +36,7 @@ public class InteractionConstraintUtil {
 				}
 			} catch (Exception e) {
 				String stringValue = valueSpec.stringValue();
-				if("*".equals(stringValue)) {
+				if("*".equals(stringValue)) { //$NON-NLS-1$
 					return Integer.MAX_VALUE;
 				}
 			}
@@ -88,7 +88,7 @@ public class InteractionConstraintUtil {
 			}
 		} catch (Exception e) {
 			//must be a number or *.
-			if("*".equals(maxint.stringValue())) {
+			if("*".equals(maxint.stringValue())) { //$NON-NLS-1$
 				return Integer.MAX_VALUE;
 			}
 		}

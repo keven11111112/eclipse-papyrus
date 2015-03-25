@@ -67,5 +67,11 @@
             path="elementtypes/uml-rt.elementtypesconfigurations">
       </elementTypeSet>
    </extension>
-
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.umlrt.elementTypeSet2"
+            path="elementtypes/uml-rt.umlclassdiagram.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
 </plugin>

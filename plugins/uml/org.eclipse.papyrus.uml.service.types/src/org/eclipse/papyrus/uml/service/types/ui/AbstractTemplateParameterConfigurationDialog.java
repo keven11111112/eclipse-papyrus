@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.uml.service.types.ui;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.CLabel;
 import org.eclipse.swt.events.SelectionAdapter;
@@ -64,7 +65,7 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 	 */
 	public AbstractTemplateParameterConfigurationDialog(Shell parent, int style) {
 		super(parent, SWT.DIALOG_TRIM | SWT.PRIMARY_MODAL);
-		setText("SWT Dialog");
+		setText("SWT Dialog"); //$NON-NLS-1$
 	}
 
 	public Button getBtnCancel() {
@@ -102,13 +103,13 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 		shlTemplateparameterconfiguration = new Shell(getParent(), getStyle());
 		shlTemplateparameterconfiguration.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		shlTemplateparameterconfiguration.setSize(426, 281);
-		shlTemplateparameterconfiguration.setText("TemplateParameterConfiguration");
+		shlTemplateparameterconfiguration.setText(Messages.AbstractTemplateParameterConfigurationDialog_1);
 		shlTemplateparameterconfiguration.setLocation(new Point(rect.x + (rect.width / 2), rect.y + (rect.height / 2) - shlTemplateparameterconfiguration.getSize().y));
 		Label lblCreationOfA = new Label(shlTemplateparameterconfiguration, SWT.NONE);
 		lblCreationOfA.setBackground(display.getSystemColor(SWT.COLOR_WIDGET_LIGHT_SHADOW));
-		FontData[] fontdatas = { new FontData("Tahoma", 12, SWT.BOLD) };
+		FontData[] fontdatas = { new FontData("Tahoma", 12, SWT.BOLD) }; //$NON-NLS-1$
 		lblCreationOfA.setFont(Activator.getFontManager().get(fontdatas));
-		lblCreationOfA.setText("Creation of a new template parameter:");
+		lblCreationOfA.setText(Messages.AbstractTemplateParameterConfigurationDialog_3);
 		lblCreationOfA.setBounds(10, 10, 408, 28);
 		ExpandBar expandBarRef = new ExpandBar(shlTemplateparameterconfiguration, SWT.NONE);
 		expandBarRef.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
@@ -116,7 +117,7 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 		expandBarRef.setSize(408, 70);
 		ExpandItem xpndtmChooseYourParamter = new ExpandItem(expandBarRef, SWT.NONE);
 		xpndtmChooseYourParamter.setExpanded(true);
-		xpndtmChooseYourParamter.setText("Set the  paramatered element in the model");
+		xpndtmChooseYourParamter.setText(Messages.AbstractTemplateParameterConfigurationDialog_4);
 		Composite composite_1 = new Composite(expandBarRef, SWT.NONE);
 		composite_1.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		xpndtmChooseYourParamter.setControl(composite_1);
@@ -127,50 +128,50 @@ public class AbstractTemplateParameterConfigurationDialog extends Dialog {
 			public void widgetSelected(SelectionEvent e) {
 			}
 		});
-		choosePararameteredElementButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif"));
+		choosePararameteredElementButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif")); //$NON-NLS-1$ //$NON-NLS-2$
 		choosePararameteredElementButton.setBounds(322, 10, 68, 23);
-		choosePararameteredElementButton.setText("...");
+		choosePararameteredElementButton.setText("..."); //$NON-NLS-1$
 		parameteredElementLabel = new CLabel(composite_1, SWT.NONE);
 		parameteredElementLabel.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		parameteredElementLabel.setForeground(display.getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
 		parameteredElementLabel.setBounds(10, 10, 110, 19);
-		parameteredElementLabel.setText("ParameteredElement:");
+		parameteredElementLabel.setText(Messages.AbstractTemplateParameterConfigurationDialog_0);
 		parameteredElementContent = new CLabel(composite_1, SWT.NONE);
 		parameteredElementContent.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		parameteredElementContent.setForeground(display.getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
 		parameteredElementContent.setBounds(126, 10, 178, 19);
-		parameteredElementContent.setText("New Label");
+		parameteredElementContent.setText(Messages.AbstractTemplateParameterConfigurationDialog_9);
 		xpndtmChooseYourParamter.setHeight(40);
 		ExpandBar expandBarDefault = new ExpandBar(shlTemplateparameterconfiguration, SWT.NONE);
 		expandBarDefault.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		expandBarDefault.setBounds(10, 120, 408, 70);
 		ExpandItem xpndtmSetTheDefault = new ExpandItem(expandBarDefault, SWT.NONE);
 		xpndtmSetTheDefault.setExpanded(true);
-		xpndtmSetTheDefault.setText("Set the default element for this parameter");
+		xpndtmSetTheDefault.setText(Messages.AbstractTemplateParameterConfigurationDialog_10);
 		Composite composite = new Composite(expandBarDefault, SWT.NONE);
 		composite.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		xpndtmSetTheDefault.setControl(composite);
 		chooseDefaultParameterButton = new Button(composite, SWT.NONE);
-		chooseDefaultParameterButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif"));
+		chooseDefaultParameterButton.setImage(Activator.getPluginIconImage("org.eclipse.papyrus.uml.icons", "resource/gif/Package.gif")); //$NON-NLS-1$ //$NON-NLS-2$
 		chooseDefaultParameterButton.setBounds(322, 10, 68, 23);
-		chooseDefaultParameterButton.setText("...");
+		chooseDefaultParameterButton.setText("..."); //$NON-NLS-1$
 		defaultElementLabel = new CLabel(composite, SWT.NONE);
 		defaultElementLabel.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		defaultElementLabel.setForeground(display.getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
 		defaultElementLabel.setBounds(10, 10, 88, 19);
-		defaultElementLabel.setText("DefaultElement:");
+		defaultElementLabel.setText(Messages.AbstractTemplateParameterConfigurationDialog_14);
 		defaultElementContent = new CLabel(composite, SWT.NONE);
 		defaultElementContent.setBackground(display.getSystemColor(SWT.COLOR_WHITE));
 		defaultElementContent.setForeground(display.getSystemColor(SWT.COLOR_WIDGET_FOREGROUND));
 		defaultElementContent.setBounds(104, 10, 205, 19);
-		defaultElementContent.setText("New Label");
+		defaultElementContent.setText(Messages.AbstractTemplateParameterConfigurationDialog_15);
 		xpndtmSetTheDefault.setHeight(40);
 		btnExecute = new Button(shlTemplateparameterconfiguration, SWT.NONE);
 		btnExecute.setBounds(342, 216, 68, 23);
-		btnExecute.setText("Execute");
+		btnExecute.setText(Messages.AbstractTemplateParameterConfigurationDialog_16);
 		btnCancel = new Button(shlTemplateparameterconfiguration, SWT.NONE);
 		btnCancel.setBounds(252, 216, 68, 23);
-		btnCancel.setText("Cancel");
+		btnCancel.setText(Messages.AbstractTemplateParameterConfigurationDialog_17);
 	}
 
 	/**

@@ -20,9 +20,9 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyReferenceRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
-import org.eclipse.papyrus.uml.diagram.composite.edit.policies.CollaborationRoleItemSemanticEditPolicyCN;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -32,7 +32,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  * generated for the CollaborationUse element (when used in CompositeStructure Diagram)
  * </pre>
  */
-public class CollaborationRoleItemSemanticEditPolicy extends CollaborationRoleItemSemanticEditPolicyCN {
+public class CollaborationRoleItemSemanticEditPolicy extends DefaultSemanticEditPolicy {
 
 	/**
 	 * <pre>

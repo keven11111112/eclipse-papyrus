@@ -25,7 +25,6 @@ import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
@@ -38,14 +37,8 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.infra.tools.databinding.AggregatedObservable;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.uml.tools.Activator;
-import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.DataType;
-import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.StructuredClassifier;
-import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.UMLPackage;
 
 /**
@@ -141,7 +134,7 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 			// Classifier classifier = memberEnd.getClass_();
 			// EStructuralFeature ownedEndFeature = association.eClass().getEStructuralFeature(UMLPackage.ASSOCIATION__OWNED_END);
 
-			Command command = null;
+			ICommand command = null;
 
 			if (isOwnedByAssociation) { // Owned by Association
 				IElementEditService provider = ElementEditServiceUtils.getCommandProvider(association);
@@ -154,74 +147,23 @@ public class OwnerObservableValue extends ReferenceCountedObservable.Value imple
 
 					SetRequest request = new SetRequest(association, feature, attributeList);
 
-					ICommand createGMFCommand = provider.getEditCommand(request);
+					command = provider.getEditCommand(request);
 
-					command = new GMFtoEMFCommandWrapper(createGMFCommand);
 				}
 			} else { // Owned by Classifier
 
-				Type ownerType;
-				List<Type> ownerList = association.getEndTypes();
-
-				if (ownerList.get(0).equals(memberEnd.getType()) && ownerList.size() > 1) {
-					ownerType = ownerList.get(1);
-				} else {
-					ownerType = ownerList.get(0);
-				}
-
-				EStructuralFeature ownedAttributeFeature = getFeatureForType(ownerType);
-				if (ownedAttributeFeature != null) {
-
-					List<Property> attributeList = new ArrayList<Property>();
-					attributeList.addAll((EList<Property>) ownerType.eGet(ownedAttributeFeature));
-					attributeList.add(memberEnd);
-
-					IElementEditService provider = ElementEditServiceUtils.getCommandProvider(ownerType);
-					if (provider != null) {
-						SetRequest request = new SetRequest(ownerType, ownedAttributeFeature, memberEnd);
-
-						ICommand createGMFCommand = provider.getEditCommand(request);
-
-						command = new GMFtoEMFCommandWrapper(createGMFCommand);
-					}
-				}
+				command = OwnedAttributeHelper.getSetTypeOwnerForAssociationAttributeCommand(association, memberEnd);
 			}
 
 			if (command != null) {
 				this.currentValue = owner;
+				return new GMFtoEMFCommandWrapper(command);
 			} else {
 				Activator.log.warn("Cannot modify the memberEnd owner");
 			}
-			return command;
 		}
 
 		return UnexecutableCommand.INSTANCE;
-	}
-
-	private EStructuralFeature getFeatureForType(Type type) {
-		if (type instanceof StructuredClassifier) {
-			return UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute();
-		}
-		if (type instanceof Interface) {
-			return UMLPackage.eINSTANCE.getInterface_OwnedAttribute();
-		}
-		if (type instanceof DataType) {
-			return UMLPackage.eINSTANCE.getDataType_OwnedAttribute();
-		}
-		if (type instanceof Artifact) {
-			return UMLPackage.eINSTANCE.getArtifact_OwnedAttribute();
-		}
-		if (type instanceof Signal) {
-			return UMLPackage.eINSTANCE.getSignal_OwnedAttribute();
-		}
-
-		// Unknown type : we try to find the feature reflexively
-		Activator.log.warn("Unknown type : " + type.eClass().getName());
-		EStructuralFeature feature = type.eClass().getEStructuralFeature("ownedAttribute"); //$NON-NLS-1$
-		if (feature == null) {
-			Activator.log.warn("Cannot find a valid feature for type " + type.eClass().getName());
-		}
-		return feature;
 	}
 
 	public AggregatedObservable aggregate(IObservable observable) {

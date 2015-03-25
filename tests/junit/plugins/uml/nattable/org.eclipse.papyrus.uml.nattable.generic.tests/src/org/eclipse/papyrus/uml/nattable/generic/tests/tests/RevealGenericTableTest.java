@@ -311,7 +311,6 @@ public class RevealGenericTableTest extends AbstractEditorTest {
 		Assert.assertTrue("index of row does not match", rowSelectedPositions[1] == 4); //$NON-NLS-1$
 		Assert.assertTrue("index of row does not match", rowSelectedPositions[2] == 5); //$NON-NLS-1$
 		Assert.assertTrue("number of selected columns does not match: " + columnSelectedPositions.length, columnSelectedPositions.length == 0); //$NON-NLS-1$
-
 	}
 
 

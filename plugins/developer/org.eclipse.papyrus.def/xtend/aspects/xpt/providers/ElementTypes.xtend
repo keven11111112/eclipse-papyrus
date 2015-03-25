@@ -55,7 +55,7 @@ import xpt.Common
 		    boolean result = KNOWN_ELEMENT_TYPES.contains(elementType);
 
 		    if (!result) {
-		        IElementType[] supertypes = elementType.getAllSuperTypes();
+		        org.eclipse.gmf.runtime.emf.type.core.IElementType[] supertypes = elementType.getAllSuperTypes();
 		        for (int i = 0; !result && (i < supertypes.length); i++) {
 		            result = KNOWN_ELEMENT_TYPES.contains(supertypes[i]);
 		        }

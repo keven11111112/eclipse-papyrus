@@ -4,11 +4,11 @@
    <extension
          point="org.eclipse.help.toc">
       <toc
-            file="resource/moka-main-toc.xml"
+            file="target/generated-eclipse-help/moka-main-toc.xml"
             primary="false">
       </toc>
       <toc
-            file="resource/moka-toc.xml"
+            file="target/generated-eclipse-help/moka-toc.xml"
             primary="false">
       </toc>
    </extension>

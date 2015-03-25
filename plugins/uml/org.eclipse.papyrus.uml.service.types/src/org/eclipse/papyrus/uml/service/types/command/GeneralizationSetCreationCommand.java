@@ -24,6 +24,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateRelationshipCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.events.SelectionListener;
@@ -142,10 +143,10 @@ public class GeneralizationSetCreationCommand extends CreateRelationshipCommand 
 				GridLayout gridLayout = new GridLayout(2, false);
 				gridLayout.verticalSpacing = 8;
 				dialog.setLayout(gridLayout);
-				dialog.setText("GeneralizationSet Selection");
+				dialog.setText(Messages.GeneralizationSetCreationCommand_0);
 				// Line1: Proposition of a new GeneralizationSet
 				Label text = new Label(dialog, SWT.CENTER);
-				text.setText("Would you like to create a new Generalization?");
+				text.setText(Messages.GeneralizationSetCreationCommand_1);
 				text.setBackground(ColorConstants.white);
 				GridData gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
@@ -158,7 +159,7 @@ public class GeneralizationSetCreationCommand extends CreateRelationshipCommand 
 				// Line2:
 				text = new Label(dialog, SWT.CENTER);
 				text.setBackground(ColorConstants.white);
-				text.setText("Choose a following generalizationSet to connect:");
+				text.setText(Messages.GeneralizationSetCreationCommand_2);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 				gridData.horizontalSpan = 1;
 				text.setLayoutData(gridData);
@@ -176,7 +177,7 @@ public class GeneralizationSetCreationCommand extends CreateRelationshipCommand 
 					if (generalizationSetList.get(i).getLabel() != null) {
 						list.add(generalizationSetList.get(i).getLabel());
 					} else {
-						list.add("GeneralizationSet" + i);
+						list.add("GeneralizationSet" + i); //$NON-NLS-1$
 					}
 				}
 				radios[0].addSelectionListener(new SelectionListener() {
@@ -197,14 +198,14 @@ public class GeneralizationSetCreationCommand extends CreateRelationshipCommand 
 				gridData.horizontalSpan = 1;
 				gridData.horizontalAlignment = GridData.END;
 				buttonok.setLayoutData(gridData);
-				buttonok.setText("  OK  ");
+				buttonok.setText(Messages.GeneralizationSetCreationCommand_4);
 				// button Cancel
 				Button cancel = new Button(dialog, SWT.PUSH);
 				gridData = new GridData(GridData.HORIZONTAL_ALIGN_FILL);
 				gridData.horizontalSpan = 1;
 				gridData.horizontalAlignment = GridData.END;
 				cancel.setLayoutData(gridData);
-				cancel.setText("Cancel");
+				cancel.setText(Messages.GeneralizationSetCreationCommand_5);
 				// listener of button
 				DialogListener listener = new DialogListener(generalizationSetList, list, buttonok);
 				buttonok.addListener(SWT.Selection, listener);
@@ -240,7 +241,7 @@ public class GeneralizationSetCreationCommand extends CreateRelationshipCommand 
 		}
 		if (generalizationSettoCreate == null) {
 			generalizationSettoCreate = UMLFactory.eINSTANCE.createGeneralizationSet();
-			generalizationSettoCreate.setName("GeneralizationSet_" + source.getSpecific().getName() + "_" + target.getSpecific().getName());
+			generalizationSettoCreate.setName("GeneralizationSet_" + source.getSpecific().getName() + "_" + target.getSpecific().getName()); //$NON-NLS-1$ //$NON-NLS-2$
 			container.getPackagedElements().add(generalizationSettoCreate);
 		}
 		if (!generalizationSettoCreate.getGeneralizations().contains(source)) {

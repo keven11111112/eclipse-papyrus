@@ -51,6 +51,9 @@ public interface ICustomAppearance {
 	 */
 	public final static String DISP_TYPE = "type";
 
+	/** Style constant for display state in labels*/
+	public final String DISP_STATE = "state";
+
 	/**
 	 * Style constant for multiplicity display in labels.
 	 */
@@ -159,4 +162,8 @@ public interface ICustomAppearance {
 	 */
 	public final static Collection<String> DEFAULT_UML_INSTANCESPECIFICATION = Arrays.asList(DISP_NAME, DISP_TYPE);
 
+	/**
+	 * default uml ActivityParameterNode .
+	 */
+	public final static Collection<String> DEFAULT_UML_ACTIVITYPARAMETERNODE = Arrays.asList(DISP_NAME);
 }

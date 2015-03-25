@@ -1,6 +1,7 @@
 Manifest-Version: 1.0
 Require-Bundle: org.eclipse.core.runtime,
- org.eclipse.help;bundle-version="3.6.0"
+ org.eclipse.help;bundle-version="3.6.0",
+ org.eclipse.papyrus.infra.doc;bundle-version="1.1.0"
 Bundle-Vendor: Eclipse Modeling Project
 Bundle-ActivationPolicy: lazy
 Bundle-Version: 1.1.0.qualifier
@@ -8,5 +9,5 @@ Bundle-Name: Moka Documentation
 Bundle-ManifestVersion: 2
 Bundle-Activator: org.eclipse.papyrus.moka.doc.Activator
 Bundle-SymbolicName: org.eclipse.papyrus.moka.doc;singleton:=true
-Bundle-RequiredExecutionEnvironment: JavaSE-1.6
 Bundle-Description: %pluginDescription
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7

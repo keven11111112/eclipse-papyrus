@@ -1,10 +1,10 @@
 Manifest-Version: 1.0
 Bundle-ManifestVersion: 2
-Bundle-Name: BDD1.4 Configuration for Papyrus
+Bundle-Name: %pluginName
 Bundle-SymbolicName: org.eclipse.papyrus.sysml14.diagram.blockdefinition;singleton:=true
 Bundle-Version: 1.1.0.qualifier
 Bundle-Activator: org.eclipse.papyrus.sysml14.diagram.blockdefinition.Activator
-Bundle-Vendor: Eclipse Modeling Project
+Bundle-Vendor: %providerName
 Require-Bundle: org.eclipse.ui,
  org.eclipse.core.runtime,
  org.eclipse.papyrus.infra.viewpoints.policy;bundle-version="1.1.0",

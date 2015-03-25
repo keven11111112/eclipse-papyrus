@@ -10,6 +10,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.uml.service.types.command.NotContainmentMoveCommand;
+import org.eclipse.papyrus.uml.service.types.messages.Messages;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityNode;
 import org.eclipse.uml2.uml.ActivityPartition;
@@ -44,7 +45,7 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 	protected ICommand getMoveCommand(MoveRequest req) {
 		if (req != null) {
 			if (req.getTargetContainer() instanceof ActivityPartition) {
-				CompositeCommand result = new CompositeCommand("Move elements in Partition");
+				CompositeCommand result = new CompositeCommand(Messages.ActivityPartitionEditHelper_0);
 				/**
 				 * separate moving elements containment and not
 				 */
@@ -68,7 +69,7 @@ public class ActivityPartitionEditHelper extends ActivityGroupHelper {
 	 * Contain {@link NotContainmentMoveCommand} to {@link Activity} and {@link SetValueCommand} to set not containment reference for {@link ActivityPartition}
 	 */
 	private ICommand createMoveActivityNodeCommand(MoveRequest baseRequest, ActivityNode node) {
-		CompositeCommand cc = new CompositeCommand("Move ActivityNode command");
+		CompositeCommand cc = new CompositeCommand(Messages.ActivityPartitionEditHelper_1);
 
 		ActivityPartition partition = (ActivityPartition) baseRequest.getTargetContainer();
 		EReference containmentFeature = findActivityFeature(node.eClass());

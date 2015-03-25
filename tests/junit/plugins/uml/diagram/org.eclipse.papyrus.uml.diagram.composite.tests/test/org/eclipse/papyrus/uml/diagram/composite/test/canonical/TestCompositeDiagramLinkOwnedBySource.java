@@ -31,12 +31,13 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.tests.canonical.AbstractPapyrusTestCase#getDiagramCommandCreation()
 	 *
 	 * @return
 	 */
-	
+
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
 		return new CreateCompositeDiagramCommand();
@@ -47,7 +48,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 *
 	 * @return
 	 */
-	
+
 	@Override
 	protected String getProjectName() {
 		return ICompositeDiagramTestsConstants.PROJECT_NAME;
@@ -58,7 +59,7 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	 *
 	 * @return
 	 */
-	
+
 	@Override
 	protected String getFileName() {
 		return ICompositeDiagramTestsConstants.FILE_NAME;
@@ -70,16 +71,16 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	@Test
 	public void testToManageGeneralization() {
 		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
-	}	
+	}
 
-	
+
 	/**
 	 * Test class to collaboration generalization.
 	 */
 	@Test
 	public void testClassToCollaborationGeneralization() {
 		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Collaboration_2075, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
-	}		
+	}
 
 	/**
 	 * Test collaboration to class generalization.
@@ -87,14 +88,65 @@ public class TestCompositeDiagramLinkOwnedBySource extends TestLinkOwnedBySource
 	@Test
 	public void testCollaborationToClassGeneralization() {
 		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Class_2073, UMLElementTypes.Generalization_4015, UMLElementTypes.Package_1000, true);
-	}	
+	}
+
 	/**
-	* Test to manage component.
-	*/
+	 * Test to manage component.
+	 */
 	@Test
 	@InvalidTest
 	public void testToComponentRealization() {
-	testToManageLink(UMLElementTypes.Component_2069, UMLElementTypes.Interface_2076, UMLElementTypes.ComponentRealization_4004, UMLElementTypes.Package_1000, true);
+		testToManageLink(UMLElementTypes.Component_2069, UMLElementTypes.Interface_2076, UMLElementTypes.ComponentRealization_4004, UMLElementTypes.Package_1000, true);
 	}
-	
+
+	/**
+	 * Test to manage activity substitution.
+	 */
+	@Test
+	public void testToManageActivitySubstitution() {
+		testToManageLink(UMLElementTypes.Activity_2060, UMLElementTypes.Activity_2060, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+	}
+
+	/**
+	 * Test to manage state machine substitution.
+	 */
+	@Test
+	public void testToManageStateMachineSubstitution() {
+		testToManageLink(UMLElementTypes.StateMachine_2063, UMLElementTypes.StateMachine_2063, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+	}
+
+	/**
+	 * Test to manage collaboration substitution.
+	 */
+	@Test
+	public void testToManageCollaborationSubstitution() {
+		testToManageLink(UMLElementTypes.Collaboration_2075, UMLElementTypes.Collaboration_2075, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+	}
+
+	/**
+	 * Test to manage component.
+	 */
+	@Test
+	public void testToSubstitution() {
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+	}
+
+	/**
+	 * Test to manage class substitution.
+	 */
+	@Test
+	public void testToManageClassSubstitution() {
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Class_2073, UMLElementTypes.Substitution_4011, UMLElementTypes.Package_1000, true);
+	}
+
+
+
+	/**
+	 * Test to manage component.
+	 */
+	@Test
+	public void testToInterfaceRealization() {
+		testToManageLink(UMLElementTypes.Class_2073, UMLElementTypes.Interface_2076, UMLElementTypes.InterfaceRealization_4005, UMLElementTypes.Package_1000, true);
+	}
+
 }

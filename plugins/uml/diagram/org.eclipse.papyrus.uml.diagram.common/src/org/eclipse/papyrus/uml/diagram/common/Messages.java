@@ -88,6 +88,8 @@ public class Messages extends NLS {
 
 	public static String RotateAction_rotate_command;
 
+	public static String ICustomAppearance_PIN_DISP_TYPE;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

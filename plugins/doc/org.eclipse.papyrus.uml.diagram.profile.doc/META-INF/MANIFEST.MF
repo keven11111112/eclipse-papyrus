@@ -7,4 +7,5 @@ Bundle-Name: Profile Documentation
 Bundle-ManifestVersion: 2
 Bundle-SymbolicName: org.eclipse.papyrus.uml.diagram.profile.doc;singl
  eton:=true
+Bundle-RequiredExecutionEnvironment: JavaSE-1.7
 

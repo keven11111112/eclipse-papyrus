@@ -21,13 +21,13 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration#getEditHelperAdviceClassName <em>Edit Helper Advice Class Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration#getBefore <em>Before</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration#getAfter <em>After</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration#getInheritance <em>Inheritance</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage#getAdviceConfiguration()
  * @model abstract="true"

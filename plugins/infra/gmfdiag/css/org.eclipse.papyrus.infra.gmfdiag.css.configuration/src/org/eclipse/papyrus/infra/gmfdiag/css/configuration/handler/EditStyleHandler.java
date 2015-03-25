@@ -14,30 +14,30 @@ package org.eclipse.papyrus.infra.gmfdiag.css.configuration.handler;
 import java.util.Map;
 
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.css.Attribute;
-import org.eclipse.papyrus.infra.gmfdiag.css.Declaration;
-import org.eclipse.papyrus.infra.gmfdiag.css.Ruleset;
-import org.eclipse.papyrus.infra.gmfdiag.css.Stylesheet;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.AttributeSelector;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.css_declaration;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.ruleset;
+import org.eclipse.papyrus.infra.gmfdiag.css3.cSS.stylesheet;
 import org.eclipse.swt.widgets.Shell;
 
 
 public class EditStyleHandler extends AbstractStyleHandler {
 
 	@Override
-	protected AbstractStyleDialog createStyleDialog(Shell shell, Map<Declaration, Boolean> declarations, Map<Attribute, Boolean> conditions, String selectorName, View context) {
+	protected AbstractStyleDialog createStyleDialog(Shell shell, Map<css_declaration, Boolean> declarations, Map<AttributeSelector, Boolean> conditions, String selectorName, View context) {
 		return new StyleEditionDialog(shell, conditions, declarations, selectorName, context);
 	}
 
 	@Override
-	protected Ruleset getRuleset(AbstractStyleDialog dialog) {
-		Ruleset ruleset = ((StyleEditionDialog) dialog).getSelectedRuleset();
+	protected ruleset getRuleset(AbstractStyleDialog dialog) {
+		ruleset ruleset = ((StyleEditionDialog) dialog).getSelectedRuleset();
 		ruleset.getSelectors().clear();
-		ruleset.getProperties().clear();
+		ruleset.getDeclarations().clear();
 		return ruleset;
 	}
 
 	@Override
-	protected Stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView) {
+	protected stylesheet getStyleSheet(AbstractStyleDialog dialog, View contextView) {
 		return ((StyleEditionDialog) dialog).getStylesheet();
 	}
 

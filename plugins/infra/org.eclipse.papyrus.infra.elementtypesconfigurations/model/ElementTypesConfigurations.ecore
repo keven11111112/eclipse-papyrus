@@ -4,7 +4,7 @@
     nsPrefix="elementtypesconfigurations">
   <eClassifiers xsi:type="ecore:EClass" name="ElementTypeSetConfiguration" eSuperTypes="#//ConfigurationElement">
     <eStructuralFeatures xsi:type="ecore:EReference" name="elementTypeConfigurations"
-        lowerBound="1" upperBound="-1" eType="#//ElementTypeConfiguration" containment="true"/>
+        upperBound="-1" eType="#//ElementTypeConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="adviceBindingsConfigurations"
         upperBound="-1" eType="#//AdviceBindingConfiguration" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="metamodelNsURI" lowerBound="1"

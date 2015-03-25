@@ -1,19 +1,30 @@
 /**
- * <copyright>
- * </copyright>
- *
- * $Id$
+ * Copyright (c) 2015 CEA LIST.
+ * 
+ * 
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ * 
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
  */
 package org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl;
 
 import java.util.Collection;
 
 import org.eclipse.emf.common.notify.Notification;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.EObjectImpl;
+
 import org.eclipse.emf.ecore.util.EDataTypeUniqueEList;
+
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.ElementDescriptor;
 import org.eclipse.papyrus.uml.diagram.paletteconfiguration.PaletteconfigurationPackage;
 
@@ -23,11 +34,11 @@ import org.eclipse.papyrus.uml.diagram.paletteconfiguration.Paletteconfiguration
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl#getElementTypeId <em>Element Type Id</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl#getGraphicalHints <em>Graphical Hints</em>}</li>
- * </ul>
  * </p>
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl#getElementTypeId <em>Element Type Id</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.diagram.paletteconfiguration.impl.ElementDescriptorImpl#getGraphicalHints <em>Graphical Hints</em>}</li>
+ * </ul>
  *
  * @generated
  */
@@ -36,7 +47,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	 * The default value of the '{@link #getElementTypeId() <em>Element Type Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElementTypeId()
 	 * @generated
 	 * @ordered
@@ -47,7 +57,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	 * The cached value of the '{@link #getElementTypeId() <em>Element Type Id</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getElementTypeId()
 	 * @generated
 	 * @ordered
@@ -58,7 +67,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	 * The cached value of the '{@link #getGraphicalHints() <em>Graphical Hints</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @see #getGraphicalHints()
 	 * @generated
 	 * @ordered
@@ -68,7 +76,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	protected ElementDescriptorImpl() {
@@ -78,7 +85,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
@@ -89,7 +95,6 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public String getElementTypeId() {
@@ -99,21 +104,18 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public void setElementTypeId(String newElementTypeId) {
 		String oldElementTypeId = elementTypeId;
 		elementTypeId = newElementTypeId;
-		if (eNotificationRequired()) {
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID, oldElementTypeId, elementTypeId));
-		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	public EList<String> getGraphicalHints() {
@@ -126,16 +128,15 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
-			return getElementTypeId();
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
-			return getGraphicalHints();
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
+				return getElementTypeId();
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
+				return getGraphicalHints();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -143,20 +144,19 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
-			setElementTypeId((String) newValue);
-			return;
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
-			getGraphicalHints().clear();
-			getGraphicalHints().addAll((Collection<? extends String>) newValue);
-			return;
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
+				setElementTypeId((String)newValue);
+				return;
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
+				getGraphicalHints().clear();
+				getGraphicalHints().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -164,18 +164,17 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
-			setElementTypeId(ELEMENT_TYPE_ID_EDEFAULT);
-			return;
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
-			getGraphicalHints().clear();
-			return;
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
+				setElementTypeId(ELEMENT_TYPE_ID_EDEFAULT);
+				return;
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
+				getGraphicalHints().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -183,16 +182,15 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
-			return ELEMENT_TYPE_ID_EDEFAULT == null ? elementTypeId != null : !ELEMENT_TYPE_ID_EDEFAULT.equals(elementTypeId);
-		case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
-			return graphicalHints != null && !graphicalHints.isEmpty();
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__ELEMENT_TYPE_ID:
+				return ELEMENT_TYPE_ID_EDEFAULT == null ? elementTypeId != null : !ELEMENT_TYPE_ID_EDEFAULT.equals(elementTypeId);
+			case PaletteconfigurationPackage.ELEMENT_DESCRIPTOR__GRAPHICAL_HINTS:
+				return graphicalHints != null && !graphicalHints.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -200,14 +198,11 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 *
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) {
-			return super.toString();
-		}
+		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (elementTypeId: ");
@@ -218,4 +213,4 @@ public class ElementDescriptorImpl extends EObjectImpl implements ElementDescrip
 		return result.toString();
 	}
 
-} // ElementDescriptorImpl
+} //ElementDescriptorImpl

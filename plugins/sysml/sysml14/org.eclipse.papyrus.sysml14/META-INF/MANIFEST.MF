@@ -35,7 +35,8 @@ Export-Package: org.eclipse.papyrus.sysml14.activities,
  org.eclipse.papyrus.sysml14.portandflows.util,
  org.eclipse.papyrus.sysml14.requirements,
  org.eclipse.papyrus.sysml14.requirements.internal.impl,
- org.eclipse.papyrus.sysml14.requirements.util
+ org.eclipse.papyrus.sysml14.requirements.util,
+ org.eclipse.papyrus.sysml14.util
 Bundle-ActivationPolicy: lazy
 Bundle-Localization: plugin
 Bundle-Description: %pluginDescription

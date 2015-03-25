@@ -48,16 +48,16 @@ class CppClassifierGenerator {
 		
 		«CppIncludeUtil.CppIncludeHeader(classifier)»
 		
-		«var tb = classifier.templateBindings»
-		«var templateElement = tb.get(0)»
+		«var tb = GenUtils.getTemplateBinding(classifier)»
+		«var templateElement = tb.targets.get(0)»
 		«CppIncludeUtil.includeDirective(
 			GenUtils.getFullPath(classifier.package) + '/' + (templateElement.owner as NamedElement).name + '.' +
 				CppCodeGenUtils.getHeaderSuffix())»
 		
 		«CppGenUtils.openNS(classifier)»
 		/************************************************************/
-		typedef «(templateElement.owner as NamedElement).name»«FOR ps : templateElement.parameterSubstitutions»«CppTemplates.
-			CppTemplateBindingParameter(ps)»«ENDFOR» «classifier.name»;
+		typedef «(templateElement.owner as NamedElement).name»<«FOR ps : tb.parameterSubstitutions SEPARATOR ', '»«
+			CppTemplates.CppTemplateBindingParameter(ps)»«ENDFOR»> «classifier.name»;
 		
 		«CppGenUtils.closeNS(classifier)»
 		
@@ -96,10 +96,10 @@ class CppClassifierGenerator {
 		«ENDFOR»
 		
 		/************************************************************/
-		«var tb = GenUtils.getTemplateBindings(classifier as Class)»
+		«var tb = GenUtils.getTemplateBinding(classifier)»
 		«var templateElement = tb.targets.get(0)»
-		template class «(templateElement.owner as NamedElement).name»<«FOR ps : tb.parameterSubstitutions»«CppTemplates.
-			CppTemplateBindingParameter(ps)»«ENDFOR»;
+		template class «(templateElement.owner as NamedElement).name»<«FOR ps : tb.parameterSubstitutions SEPARATOR ', '»«
+			CppTemplates.CppTemplateBindingParameter(ps)»«ENDFOR»>;
 		
 		«CppGenUtils.closeNS(classifier)»
 		

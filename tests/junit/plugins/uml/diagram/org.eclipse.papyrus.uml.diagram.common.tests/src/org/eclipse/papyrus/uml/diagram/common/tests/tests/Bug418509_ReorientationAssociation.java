@@ -77,6 +77,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		// Get data test
 		Association association = (Association) modelSetFixture.getModel().getMember("Association");
 		NamedElement target = modelSetFixture.getModel().getMember("C");
+		NamedElement source = modelSetFixture.getModel().getMember("A");
 		StructuredClassifier sourceAssiociation = (StructuredClassifier) modelSetFixture.getModel().getMember("B");
 
 		Diagram diagram = DiagramUtils.getNotationDiagram((ModelSet) modelSetFixture.getResourceSet(), "418509");
@@ -89,8 +90,8 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		Command command = targetEP.getCommand(reconnectReq);
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), (Type) target));
-		assertNotNull(sourceAssiociation.getOwnedAttribute(target.getName().toLowerCase(), (Type) target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), (Type) target));
+		assertNotNull(sourceAssiociation.getOwnedAttribute(source.getName().toLowerCase(), (Type) target));
 		assertNotNull(association.getOwnedEnd(sourceAssiociation.getName().toLowerCase(), sourceAssiociation));
 
 
@@ -106,6 +107,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		// Get data test
 		Association association = (Association) modelSetFixture.getModel().getMember("Association");
 		StructuredClassifier target = (StructuredClassifier) modelSetFixture.getModel().getMember("D");
+		StructuredClassifier source = (StructuredClassifier) modelSetFixture.getModel().getMember("B");
 		StructuredClassifier targetAssiociation = (StructuredClassifier) modelSetFixture.getModel().getMember("A");
 
 		Diagram diagram = DiagramUtils.getNotationDiagram((ModelSet) modelSetFixture.getResourceSet(), "418509");
@@ -118,9 +120,9 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		Command command = targetEP.getCommand(reconnectReq);
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), target));
 		assertNotNull(target.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
-		assertNotNull(association.getOwnedEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getOwnedEnd(source.getName().toLowerCase(), target));
 
 
 	}
@@ -155,7 +157,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
 		assertTrue(association.getOwnedEnds().isEmpty());
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), target));
 		assertNotNull(target.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 		assertNull(source.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 
@@ -172,6 +174,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		// Get data test
 		Association association = (Association) modelSetFixture.getModel().getMember("Association");
 		StructuredClassifier target = (StructuredClassifier) modelSetFixture.getModel().getMember("D");
+		StructuredClassifier source = (StructuredClassifier) modelSetFixture.getModel().getMember("B");
 		StructuredClassifier targetAssiociation = (StructuredClassifier) modelSetFixture.getModel().getMember("A");
 
 		// Set End a to association
@@ -191,7 +194,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
 		assertEquals(2, association.getOwnedEnds().size());
-		assertNotNull(association.getOwnedEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getOwnedEnd(source.getName().toLowerCase(), target));
 		assertNotNull(association.getOwnedEnd(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 		assertFalse(target.eIsSet(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()));
 		assertFalse(targetAssiociation.eIsSet(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()));
@@ -220,8 +223,8 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		Command command = targetEP.getCommand(new EditCommandRequestWrapper(request));
 		modelSetFixture.getEditingDomain().getCommandStack().execute(new GEFtoEMFCommandWrapper(command));
 
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), (Type) target));
-		assertNotNull(sourceAssiociation.getOwnedAttribute(target.getName().toLowerCase(), (Type) target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), (Type) target));
+		assertNotNull(sourceAssiociation.getOwnedAttribute(source.getName().toLowerCase(), (Type) target));
 		assertNotNull(association.getOwnedEnd(sourceAssiociation.getName().toLowerCase(), sourceAssiociation));
 
 
@@ -248,9 +251,9 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		Command command = targetEP.getCommand(new EditCommandRequestWrapper(request));
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), target));
 		assertNotNull(target.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
-		assertNotNull(association.getOwnedEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getOwnedEnd(source.getName().toLowerCase(), target));
 
 
 	}
@@ -283,7 +286,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
 		assertTrue(association.getOwnedEnds().isEmpty());
-		assertNotNull(association.getMemberEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getMemberEnd(source.getName().toLowerCase(), target));
 		assertNotNull(target.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 		assertNull(source.getOwnedAttribute(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 
@@ -318,7 +321,7 @@ public class Bug418509_ReorientationAssociation extends AbstractPapyrusTest {
 		modelSetFixture.getEditingDomain().getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(command));
 
 		assertEquals(2, association.getOwnedEnds().size());
-		assertNotNull(association.getOwnedEnd(target.getName().toLowerCase(), target));
+		assertNotNull(association.getOwnedEnd(source.getName().toLowerCase(), target));
 		assertNotNull(association.getOwnedEnd(targetAssiociation.getName().toLowerCase(), targetAssiociation));
 		assertFalse(target.eIsSet(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()));
 		assertFalse(targetAssiociation.eIsSet(UMLPackage.eINSTANCE.getStructuredClassifier_OwnedAttribute()));

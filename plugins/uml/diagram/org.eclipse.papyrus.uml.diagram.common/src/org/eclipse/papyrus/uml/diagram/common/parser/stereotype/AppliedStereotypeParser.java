@@ -34,6 +34,16 @@ public class AppliedStereotypeParser implements ISemanticParser {
 
 	private static final MessageFormat APPLIED_PROFILE = new MessageFormat("\u00AB{0}\u00BB"); //$NON-NLS-1$
 
+	private final String myDefaultPrintString;
+
+	public AppliedStereotypeParser() {
+		this(null);
+	}
+
+	public AppliedStereotypeParser(String defaultPrintString) {
+		myDefaultPrintString = defaultPrintString;
+	}
+
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
 		if (notification instanceof Notification) {
@@ -94,7 +104,8 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 		String editString = getEditString(element, flags);
-		return editString == null || editString.length() == 0 ? editString : APPLIED_PROFILE.format(new Object[] { editString });
+		editString = editString == null || editString.isEmpty() ? myDefaultPrintString : editString;
+		return editString == null || editString.isEmpty() ? "" : APPLIED_PROFILE.format(new Object[] { editString });
 	}
 
 	@Override

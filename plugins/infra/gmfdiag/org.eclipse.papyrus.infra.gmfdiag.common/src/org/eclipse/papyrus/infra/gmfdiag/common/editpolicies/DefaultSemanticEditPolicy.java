@@ -122,7 +122,11 @@ public class DefaultSemanticEditPolicy extends SemanticEditPolicy {
 
 
 	protected Command getCreateCommand(CreateElementRequest req) {
-		return getDefaultSemanticCommand(req);
+		if (req.getElementType().getEClass() == null) {
+			return getDefaultSemanticCommand(req, req.getElementType());
+		} else {
+			return getDefaultSemanticCommand(req);
+		}
 	}
 
 

@@ -22,9 +22,9 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
 import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ShapeCompartmentEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateUnspecifiedTypeRequest;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.composite.edit.parts.BehaviorPortEditPart;
 import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
 
@@ -33,7 +33,7 @@ import org.eclipse.papyrus.uml.diagram.composite.providers.UMLElementTypes;
  * a Port or Parameter is created in a Compartment. In such a case the Port (Parameter) should be added to the compartment owner.
  *
  */
-public class PortInCompartmentCreationEditPolicy extends CreationEditPolicy {
+public class PortInCompartmentCreationEditPolicy extends DefaultCreationEditPolicy {
 	@Override
 	public EditPart getTargetEditPart(Request request) {
 		if (request instanceof CreateUnspecifiedTypeRequest) {
