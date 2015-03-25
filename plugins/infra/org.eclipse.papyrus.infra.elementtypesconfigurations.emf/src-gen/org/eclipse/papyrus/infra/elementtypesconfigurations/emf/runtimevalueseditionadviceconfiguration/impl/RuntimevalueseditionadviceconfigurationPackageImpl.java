@@ -21,8 +21,8 @@ import org.eclipse.emf.ecore.impl.EPackageImpl;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ElementtypesconfigurationsPackage;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationFactory;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay;
 
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
@@ -37,7 +37,7 @@ import org.eclipse.papyrus.views.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackageImpl implements RuntimeValuesEditionAdviceConfigurationPackage {
+public class RuntimevalueseditionadviceconfigurationPackageImpl extends EPackageImpl implements RuntimevalueseditionadviceconfigurationPackage {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -63,12 +63,12 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage#eNS_URI
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage#eNS_URI
 	 * @see #init()
 	 * @generated
 	 */
-	private RuntimeValuesEditionAdviceConfigurationPackageImpl() {
-		super(eNS_URI, RuntimeValuesEditionAdviceConfigurationFactory.eINSTANCE);
+	private RuntimevalueseditionadviceconfigurationPackageImpl() {
+		super(eNS_URI, RuntimevalueseditionadviceconfigurationFactory.eINSTANCE);
 	}
 
 	/**
@@ -81,7 +81,7 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 * 
-	 * <p>This method is used to initialize {@link RuntimeValuesEditionAdviceConfigurationPackage#eINSTANCE} when that field is accessed.
+	 * <p>This method is used to initialize {@link RuntimevalueseditionadviceconfigurationPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90,11 +90,11 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 	 * @see #initializePackageContents()
 	 * @generated
 	 */
-	public static RuntimeValuesEditionAdviceConfigurationPackage init() {
-		if (isInited) return (RuntimeValuesEditionAdviceConfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(RuntimeValuesEditionAdviceConfigurationPackage.eNS_URI);
+	public static RuntimevalueseditionadviceconfigurationPackage init() {
+		if (isInited) return (RuntimevalueseditionadviceconfigurationPackage)EPackage.Registry.INSTANCE.getEPackage(RuntimevalueseditionadviceconfigurationPackage.eNS_URI);
 
 		// Obtain or create and register package
-		RuntimeValuesEditionAdviceConfigurationPackageImpl theRuntimeValuesEditionAdviceConfigurationPackage = (RuntimeValuesEditionAdviceConfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RuntimeValuesEditionAdviceConfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RuntimeValuesEditionAdviceConfigurationPackageImpl());
+		RuntimevalueseditionadviceconfigurationPackageImpl theRuntimevalueseditionadviceconfigurationPackage = (RuntimevalueseditionadviceconfigurationPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof RuntimevalueseditionadviceconfigurationPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new RuntimevalueseditionadviceconfigurationPackageImpl());
 
 		isInited = true;
 
@@ -105,18 +105,18 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 		UiPackage.eINSTANCE.eClass();
 
 		// Create package meta-data objects
-		theRuntimeValuesEditionAdviceConfigurationPackage.createPackageContents();
+		theRuntimevalueseditionadviceconfigurationPackage.createPackageContents();
 
 		// Initialize created meta-data
-		theRuntimeValuesEditionAdviceConfigurationPackage.initializePackageContents();
+		theRuntimevalueseditionadviceconfigurationPackage.initializePackageContents();
 
 		// Mark meta-data to indicate it can't be changed
-		theRuntimeValuesEditionAdviceConfigurationPackage.freeze();
+		theRuntimevalueseditionadviceconfigurationPackage.freeze();
 
   
 		// Update the registry and return the package
-		EPackage.Registry.INSTANCE.put(RuntimeValuesEditionAdviceConfigurationPackage.eNS_URI, theRuntimeValuesEditionAdviceConfigurationPackage);
-		return theRuntimeValuesEditionAdviceConfigurationPackage;
+		EPackage.Registry.INSTANCE.put(RuntimevalueseditionadviceconfigurationPackage.eNS_URI, theRuntimevalueseditionadviceconfigurationPackage);
+		return theRuntimevalueseditionadviceconfigurationPackage;
 	}
 
 	/**
@@ -160,8 +160,8 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimeValuesEditionAdviceConfigurationFactory getRuntimeValuesEditionAdviceConfigurationFactory() {
-		return (RuntimeValuesEditionAdviceConfigurationFactory)getEFactoryInstance();
+	public RuntimevalueseditionadviceconfigurationFactory getRuntimevalueseditionadviceconfigurationFactory() {
+		return (RuntimevalueseditionadviceconfigurationFactory)getEFactoryInstance();
 	}
 
 	/**
@@ -222,9 +222,9 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 		// Set bounds for type parameters
 
 		// Add supertypes to classes
-		runtimeValuesEditionAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAdviceConfiguration());
+		runtimeValuesEditionAdviceConfigurationEClass.getESuperTypes().add(theElementtypesconfigurationsPackage.getAdviceBindingConfiguration());
 
-		// Initialize classes, features, and operations; add parameters
+		// Initialize classes and features; add operations and parameters
 		initEClass(runtimeValuesEditionAdviceConfigurationEClass, RuntimeValuesEditionAdviceConfiguration.class, "RuntimeValuesEditionAdviceConfiguration", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEReference(getRuntimeValuesEditionAdviceConfiguration_ViewsToDisplay(), this.getViewToDisplay(), null, "viewsToDisplay", null, 0, -1, RuntimeValuesEditionAdviceConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
@@ -235,4 +235,4 @@ public class RuntimeValuesEditionAdviceConfigurationPackageImpl extends EPackage
 		createResource(eNS_URI);
 	}
 
-} //RuntimeValuesEditionAdviceConfigurationPackageImpl
+} //RuntimevalueseditionadviceconfigurationPackageImpl

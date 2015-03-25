@@ -12,22 +12,19 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration;
 
-import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.factories.impl.SpecializationTypeFactory;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfiguration;
 
 public class InvariantElementTypeFactory extends SpecializationTypeFactory {
 
-
 	@Override
-	protected IEditHelperAdvice getEditHelperAdvice(SpecializationTypeConfiguration configuration) {
+	protected IElementMatcher createElementMatcher(SpecializationTypeConfiguration configuration) {
 		if (configuration instanceof InvariantTypeConfiguration) {
-			return new DefaultInvariantEditHelperAdvice((InvariantTypeConfiguration) configuration);
+			return new DefaultInvariantElementMatcher((InvariantTypeConfiguration) configuration);
 		}
 		return null;
 	}
-
-
 
 }

@@ -34,10 +34,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.impl.CompositeInvariantRuleConfigurationImpl#getComposedRules <em>Composed Rules</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

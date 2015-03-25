@@ -5,11 +5,13 @@
     editDirectory="/org.eclipse.papyrus.infra.elementtypesconfigurations.emf/src-gen"
     editorDirectory="/org.eclipse.papyrus.infra.elementtypesconfigurations.emf.editor/src-gen"
     modelPluginID="org.eclipse.papyrus.infra.elementtypesconfigurations.emf" modelName="RuntimeValuesEditionAdviceConfiguration"
-    rootExtendsClass="org.eclipse.emf.ecore.impl.MinimalEObjectImpl$Container" importerID="org.eclipse.emf.importer.ecore"
-    complianceLevel="7.0" copyrightFields="false" language="" usedGenPackages="platform:/plugin/org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints platform:/plugin/org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore platform:/plugin/org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.genmodel#//elementtypesconfigurations platform:/plugin/org.eclipse.papyrus.views.properties.model/Model/Properties.genmodel#//properties"
-    operationReflection="true" importOrganizing="true">
+    editPluginClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.provider.RuntimeValuesEditionAdviceConfigurationEditPlugin"
+    editorPluginClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.presentation.RuntimeValuesEditionAdviceConfigurationEditorPlugin"
+    testSuiteClass="org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.tests.RuntimeValuesEditionAdviceConfigurationAllTests"
+    importerID="org.eclipse.emf.importer.ecore" complianceLevel="7.0" copyrightFields="false"
+    editPluginID="org.eclipse.papyrus.infra.elementtypesconfigurations.emf" usedGenPackages="../../org.eclipse.papyrus.infra.constraints/Model/Constraints.genmodel#//constraints ../../org.eclipse.emf.ecore/model/Ecore.genmodel#//ecore ../../org.eclipse.papyrus.infra.elementtypesconfigurations/model/ElementTypesConfigurations.genmodel#//elementtypesconfigurations ../../org.eclipse.papyrus.views.properties.model/Model/Properties.genmodel#//properties">
   <foreignModel>RuntimeValuesEditionAdviceConfiguration.ecore</foreignModel>
-  <genPackages prefix="RuntimeValuesEditionAdviceConfiguration" basePackage="org.eclipse.papyrus.infra.elementtypesconfigurations.emf"
+  <genPackages prefix="Runtimevalueseditionadviceconfiguration" basePackage="org.eclipse.papyrus.infra.elementtypesconfigurations.emf"
       resource="XMI" disposableProviderFactory="true" childCreationExtenders="true"
       ecorePackage="RuntimeValuesEditionAdviceConfiguration.ecore#/">
     <genClasses ecoreClass="RuntimeValuesEditionAdviceConfiguration.ecore#//RuntimeValuesEditionAdviceConfiguration">

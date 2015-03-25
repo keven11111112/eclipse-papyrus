@@ -140,18 +140,18 @@
             class="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.stereotypeapplicationmatcherconfiguration.provider.StereotypeApplicationMatcherConfigurationItemProviderAdapterFactory$ElementtypesconfigurationsChildCreationExtender"/>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
-      <adviceConfigurationType
-            configurationClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration"
-            factoryClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceFactory">
-      </adviceConfigurationType>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invariantRule">
       <invariantRule
             configurationClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRuleConfiguration"
             invariantRuleClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.InvariantStereotypeRule">
       </invariantRule>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">
+      <adviceConfigurationType
+            configurationClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceConfiguration"
+            factoryClass="org.eclipse.papyrus.uml.tools.elementtypesconfigurations.applystereotypeadviceconfiguration.ApplyStereotypeAdviceFactory">
+      </adviceConfigurationType>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.adviceConfigurationType">

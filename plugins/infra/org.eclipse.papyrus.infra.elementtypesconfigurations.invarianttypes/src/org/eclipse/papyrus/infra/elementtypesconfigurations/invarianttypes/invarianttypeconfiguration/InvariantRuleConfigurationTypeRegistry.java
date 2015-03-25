@@ -21,15 +21,12 @@ import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.Activator;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantRuleConfiguration;
 
-/**
- * Registry for all matcher factories.
- */
 public class InvariantRuleConfigurationTypeRegistry {
 
 	/** private singleton instance */
 	private static InvariantRuleConfigurationTypeRegistry registry;
 
-	/** map configuration type to matcher descriptor */
+	/** map configuration type to invariantRule */
 	protected Map<String, IInvariantRule<? extends InvariantRuleConfiguration>> invariantRuleConfigurationTypeToInvariantRule = null;
 
 	/**

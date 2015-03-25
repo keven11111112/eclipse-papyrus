@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EPackage;
 
 import org.eclipse.emf.ecore.util.Switch;
 
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.ConfigurationElement;
 
@@ -32,17 +33,17 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevaluesedi
  * until a non-null result is returned,
  * which is the result of the switch.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage
  * @generated
  */
-public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> {
+public class RuntimevalueseditionadviceconfigurationSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected static RuntimeValuesEditionAdviceConfigurationPackage modelPackage;
+	protected static RuntimevalueseditionadviceconfigurationPackage modelPackage;
 
 	/**
 	 * Creates an instance of the switch.
@@ -50,9 +51,9 @@ public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> 
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimeValuesEditionAdviceConfigurationSwitch() {
+	public RuntimevalueseditionadviceconfigurationSwitch() {
 		if (modelPackage == null) {
-			modelPackage = RuntimeValuesEditionAdviceConfigurationPackage.eINSTANCE;
+			modelPackage = RuntimevalueseditionadviceconfigurationPackage.eINSTANCE;
 		}
 	}
 
@@ -60,7 +61,7 @@ public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> 
 	 * Checks whether this is a switch for the given package.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @parameter ePackage the package in question.
+	 * @param ePackage the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
@@ -79,15 +80,16 @@ public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> 
 	@Override
 	protected T doSwitch(int classifierID, EObject theEObject) {
 		switch (classifierID) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION: {
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION: {
 				RuntimeValuesEditionAdviceConfiguration runtimeValuesEditionAdviceConfiguration = (RuntimeValuesEditionAdviceConfiguration)theEObject;
 				T result = caseRuntimeValuesEditionAdviceConfiguration(runtimeValuesEditionAdviceConfiguration);
+				if (result == null) result = caseAdviceBindingConfiguration(runtimeValuesEditionAdviceConfiguration);
 				if (result == null) result = caseAdviceConfiguration(runtimeValuesEditionAdviceConfiguration);
 				if (result == null) result = caseConfigurationElement(runtimeValuesEditionAdviceConfiguration);
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
-			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY: {
+			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY: {
 				ViewToDisplay viewToDisplay = (ViewToDisplay)theEObject;
 				T result = caseViewToDisplay(viewToDisplay);
 				if (result == null) result = defaultCase(theEObject);
@@ -158,6 +160,21 @@ public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> 
 	}
 
 	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Advice Binding Configuration</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseAdviceBindingConfiguration(AdviceBindingConfiguration object) {
+		return null;
+	}
+
+	/**
 	 * Returns the result of interpreting the object as an instance of '<em>EObject</em>'.
 	 * <!-- begin-user-doc -->
 	 * This implementation returns null;
@@ -173,4 +190,4 @@ public class RuntimeValuesEditionAdviceConfigurationSwitch<T> extends Switch<T> 
 		return null;
 	}
 
-} //RuntimeValuesEditionAdviceConfigurationSwitch
+} //RuntimevalueseditionadviceconfigurationSwitch

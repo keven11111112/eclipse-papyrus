@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantRuleConfiguration;
 
@@ -20,4 +21,5 @@ public interface IInvariantRule<T extends InvariantRuleConfiguration> {
 
 	public boolean approveRequest(IEditCommandRequest request);
 
+	public boolean matches(EObject eObject);
 }

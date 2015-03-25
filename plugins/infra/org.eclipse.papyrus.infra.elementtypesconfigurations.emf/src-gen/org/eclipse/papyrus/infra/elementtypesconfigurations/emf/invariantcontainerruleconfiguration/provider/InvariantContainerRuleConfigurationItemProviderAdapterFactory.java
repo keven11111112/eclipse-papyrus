@@ -48,6 +48,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontain
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.CompositeInvariantRuleConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfiguration;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfigurationPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.NotInvariantRuleConfiguration;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.util.InvariantTypeConfigurationSwitch;
 
@@ -313,6 +314,21 @@ public class InvariantContainerRuleConfigurationItemProviderAdapterFactory exten
 				newChildDescriptors.add
 					(createChildParameter
 						(InvariantTypeConfigurationPackage.Literals.COMPOSITE_INVARIANT_RULE_CONFIGURATION__COMPOSED_RULES,
+						 InvariantContainerRuleConfigurationFactory.eINSTANCE.createInvariantContainerRuleConfiguration()));
+
+				return null;
+			}
+ 
+			/**
+			 * <!-- begin-user-doc -->
+			 * <!-- end-user-doc -->
+			 * @generated
+			 */
+			@Override
+			public Object caseNotInvariantRuleConfiguration(NotInvariantRuleConfiguration object) {
+				newChildDescriptors.add
+					(createChildParameter
+						(InvariantTypeConfigurationPackage.Literals.NOT_INVARIANT_RULE_CONFIGURATION__COMPOSED_RULE,
 						 InvariantContainerRuleConfigurationFactory.eINSTANCE.createInvariantContainerRuleConfiguration()));
 
 				return null;

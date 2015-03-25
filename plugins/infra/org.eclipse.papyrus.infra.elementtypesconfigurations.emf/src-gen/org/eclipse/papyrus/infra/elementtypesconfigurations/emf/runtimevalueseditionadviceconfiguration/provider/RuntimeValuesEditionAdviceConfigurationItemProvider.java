@@ -27,10 +27,12 @@ import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationFactory;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationFactory;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceConfigurationItemProvider;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.provider.RuntimeValuesEditionAdviceConfigurationEditPlugin;
+
+import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceBindingConfigurationItemProvider;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration} object.
@@ -38,7 +40,7 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.provider.AdviceConfi
  * <!-- end-user-doc -->
  * @generated
  */
-public class RuntimeValuesEditionAdviceConfigurationItemProvider extends AdviceConfigurationItemProvider {
+public class RuntimeValuesEditionAdviceConfigurationItemProvider extends AdviceBindingConfigurationItemProvider {
 	/**
 	 * This constructs an instance from a factory and a notifier.
 	 * <!-- begin-user-doc -->
@@ -76,7 +78,7 @@ public class RuntimeValuesEditionAdviceConfigurationItemProvider extends AdviceC
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(RuntimeValuesEditionAdviceConfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY);
+			childrenFeatures.add(RuntimevalueseditionadviceconfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY);
 		}
 		return childrenFeatures;
 	}
@@ -132,7 +134,7 @@ public class RuntimeValuesEditionAdviceConfigurationItemProvider extends AdviceC
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(RuntimeValuesEditionAdviceConfiguration.class)) {
-			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
+			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -152,8 +154,8 @@ public class RuntimeValuesEditionAdviceConfigurationItemProvider extends AdviceC
 
 		newChildDescriptors.add
 			(createChildParameter
-				(RuntimeValuesEditionAdviceConfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY,
-				 RuntimeValuesEditionAdviceConfigurationFactory.eINSTANCE.createViewToDisplay()));
+				(RuntimevalueseditionadviceconfigurationPackage.Literals.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY,
+				 RuntimevalueseditionadviceconfigurationFactory.eINSTANCE.createViewToDisplay()));
 	}
 
 	/**

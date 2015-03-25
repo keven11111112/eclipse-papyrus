@@ -143,6 +143,16 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EAttribute getInvariantStereotypeRuleConfiguration_Strict()
+	{
+		return (EAttribute) invariantStereotypeRuleConfigurationEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public InvariantStereotypeRuleConfigurationFactory getInvariantStereotypeRuleConfigurationFactory()
 	{
 		return (InvariantStereotypeRuleConfigurationFactory) getEFactoryInstance();
@@ -172,6 +182,7 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 		invariantStereotypeRuleConfigurationEClass = createEClass(INVARIANT_STEREOTYPE_RULE_CONFIGURATION);
 		createEAttribute(invariantStereotypeRuleConfigurationEClass, INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME);
 		createEAttribute(invariantStereotypeRuleConfigurationEClass, INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE);
+		createEAttribute(invariantStereotypeRuleConfigurationEClass, INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT);
 	}
 
 	/**
@@ -216,6 +227,8 @@ public class InvariantStereotypeRuleConfigurationPackageImpl extends EPackageImp
 				!IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getInvariantStereotypeRuleConfiguration_RequiredProfile(), theEcorePackage.getEString(), "requiredProfile", null, 0, 1, InvariantStereotypeRuleConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID,
 				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getInvariantStereotypeRuleConfiguration_Strict(), theEcorePackage.getEBoolean(), "strict", null, 1, 1, InvariantStereotypeRuleConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

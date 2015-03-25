@@ -41,6 +41,15 @@ public interface InvariantTypeConfigurationFactory extends EFactory {
 	InvariantTypeConfiguration createInvariantTypeConfiguration();
 
 	/**
+	 * Returns a new object of class '<em>Not Invariant Rule Configuration</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Not Invariant Rule Configuration</em>'.
+	 * @generated
+	 */
+	NotInvariantRuleConfiguration createNotInvariantRuleConfiguration();
+
+	/**
 	 * Returns a new object of class '<em>And Invariant Rule Configuration</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

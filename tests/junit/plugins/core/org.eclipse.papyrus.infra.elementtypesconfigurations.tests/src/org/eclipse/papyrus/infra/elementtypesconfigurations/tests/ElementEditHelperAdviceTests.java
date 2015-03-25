@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2010 CEA LIST.
- *
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,7 +32,6 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.uml2.uml.Component;
 import org.eclipse.uml2.uml.Package;
 import org.junit.Assert;
-import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -51,7 +50,6 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		Assert.assertTrue(PACKAGE_WITH_COMPONENTS + " should be a Package With components only type", elementTypes.contains(ElementTypeRegistry.getInstance().getType(PACKAGE_WITH_COMPONENTS_TYPE_ID)));
 	}
 
-	@Ignore
 	@Test
 	public void testPACKAGE_WITH_ALL_ELEMENTSType() {
 		List<IElementType> elementTypes = Arrays.asList(ElementTypeRegistry.getInstance().getAllTypesMatching(packageWithAllElements, papyrusContext));
@@ -60,14 +58,12 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		Assert.assertTrue(PACKAGE_WITH_ALL_ELEMENTS + " should not be a Package With components only type", !elementTypes.contains(ElementTypeRegistry.getInstance().getType(PACKAGE_WITH_COMPONENTS_TYPE_ID)));
 	}
 
-	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public void testSemanticCreateComponentInGoodPackage() throws ExecutionException {
 		testCreateComponent(packageWithComponents, true);
 	}
 
-	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public void testSemanticCreateComponentInWrongPackage() throws ExecutionException {
@@ -123,7 +119,6 @@ public class ElementEditHelperAdviceTests extends AbstractElementTypeTests imple
 		testMoveComponent(otherPackageWithComponents, component1_packageWithComponents, true);
 	}
 
-	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public void testSemanticMoveComponentFromGoodPackageToWrongPackage() throws ExecutionException {
