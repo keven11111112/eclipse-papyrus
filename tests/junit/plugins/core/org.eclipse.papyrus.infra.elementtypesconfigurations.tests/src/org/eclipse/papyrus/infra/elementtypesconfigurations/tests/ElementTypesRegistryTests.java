@@ -14,11 +14,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.elementtypesconfigurations.tests;
 
+
+
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.preferences.ElementTypesPreferences;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
 /**
@@ -29,6 +32,7 @@ public class ElementTypesRegistryTests extends AbstractElementTypeTests implemen
 	/**
 	 * Test registration based on plugin declaration
 	 */
+	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public final void testGetTypeRegisteredInplugin() {
@@ -42,6 +46,7 @@ public class ElementTypesRegistryTests extends AbstractElementTypeTests implemen
 	/**
 	 * Test workspace registration. Element type in the workspace, but element type set is not loaded
 	 */
+	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public final void testGetTypeRegisteredInWorkspaceNotLoaded() {
@@ -56,6 +61,7 @@ public class ElementTypesRegistryTests extends AbstractElementTypeTests implemen
 	/**
 	 * Test workspace registration. Element type in the workspace, but element type set is not loaded
 	 */
+	@Ignore
 	@Test
 	// transcoded from extended types framework
 	public final void testLoadUnloadWorkspaceSet() {

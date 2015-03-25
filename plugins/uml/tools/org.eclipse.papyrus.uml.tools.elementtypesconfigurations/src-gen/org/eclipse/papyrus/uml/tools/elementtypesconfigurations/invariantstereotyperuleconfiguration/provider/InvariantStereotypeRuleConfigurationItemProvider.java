@@ -65,7 +65,6 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 
 			addStereotypeQualifiedNamePropertyDescriptor(object);
 			addRequiredProfilePropertyDescriptor(object);
-			addStrictPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -117,29 +116,6 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 	}
 
 	/**
-	 * This adds a property descriptor for the Strict feature.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected void addStrictPropertyDescriptor(Object object)
-	{
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_InvariantStereotypeRuleConfiguration_strict_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_InvariantStereotypeRuleConfiguration_strict_feature", "_UI_InvariantStereotypeRuleConfiguration_type"),
-						InvariantStereotypeRuleConfigurationPackage.Literals.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
-	}
-
-	/**
 	 * This returns InvariantStereotypeRuleConfiguration.gif.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -183,7 +159,6 @@ public class InvariantStereotypeRuleConfigurationItemProvider extends InvariantR
 		{
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STEREOTYPE_QUALIFIED_NAME:
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
-		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

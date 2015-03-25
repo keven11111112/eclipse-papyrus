@@ -29,14 +29,14 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.impl.NotInvariantRuleConfigurationImpl#getComposedRule <em>Composed Rule</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
-public class NotInvariantRuleConfigurationImpl extends InvariantRuleConfigurationImpl implements NotInvariantRuleConfiguration {
+public abstract class NotInvariantRuleConfigurationImpl extends InvariantRuleConfigurationImpl implements NotInvariantRuleConfiguration {
 	/**
 	 * The cached value of the '{@link #getComposedRule() <em>Composed Rule</em>}' reference.
 	 * <!-- begin-user-doc -->

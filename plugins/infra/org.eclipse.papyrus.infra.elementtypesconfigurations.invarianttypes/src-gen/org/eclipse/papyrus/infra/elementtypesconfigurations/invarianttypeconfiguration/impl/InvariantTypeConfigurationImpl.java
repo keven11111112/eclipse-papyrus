@@ -32,10 +32,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.impl.InvariantTypeConfigurationImpl#getInvariantRuleConfiguration <em>Invariant Rule Configuration</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */

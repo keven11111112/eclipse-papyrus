@@ -23,10 +23,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfiguration#getPermissions <em>Permissions</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.InvariantContainerRuleConfigurationPackage#getInvariantContainerRuleConfiguration()
  * @model

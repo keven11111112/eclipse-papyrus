@@ -70,27 +70,27 @@ public class HierarchyPermissionItemProvider
 		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
 
-			addContainerTypePropertyDescriptor(object);
-			addPermittedPropertyDescriptor(object);
-			addStrictPropertyDescriptor(object);
+			addChildTypePropertyDescriptor(object);
+			addIsPermittedPropertyDescriptor(object);
+			addIsStrictPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
 
 	/**
-	 * This adds a property descriptor for the Container Type feature.
+	 * This adds a property descriptor for the Child Type feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addContainerTypePropertyDescriptor(Object object) {
+	protected void addChildTypePropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_HierarchyPermission_containerType_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_containerType_feature", "_UI_HierarchyPermission_type"),
-				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__CONTAINER_TYPE,
+				 getString("_UI_HierarchyPermission_childType_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_childType_feature", "_UI_HierarchyPermission_type"),
+				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__CHILD_TYPE,
 				 true,
 				 false,
 				 false,
@@ -100,19 +100,19 @@ public class HierarchyPermissionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Permitted feature.
+	 * This adds a property descriptor for the Is Permitted feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addPermittedPropertyDescriptor(Object object) {
+	protected void addIsPermittedPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_HierarchyPermission_permitted_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_permitted_feature", "_UI_HierarchyPermission_type"),
-				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__PERMITTED,
+				 getString("_UI_HierarchyPermission_isPermitted_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_isPermitted_feature", "_UI_HierarchyPermission_type"),
+				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__IS_PERMITTED,
 				 true,
 				 false,
 				 false,
@@ -122,19 +122,19 @@ public class HierarchyPermissionItemProvider
 	}
 
 	/**
-	 * This adds a property descriptor for the Strict feature.
+	 * This adds a property descriptor for the Is Strict feature.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected void addStrictPropertyDescriptor(Object object) {
+	protected void addIsStrictPropertyDescriptor(Object object) {
 		itemPropertyDescriptors.add
 			(createItemPropertyDescriptor
 				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
 				 getResourceLocator(),
-				 getString("_UI_HierarchyPermission_strict_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_strict_feature", "_UI_HierarchyPermission_type"),
-				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__STRICT,
+				 getString("_UI_HierarchyPermission_isStrict_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_HierarchyPermission_isStrict_feature", "_UI_HierarchyPermission_type"),
+				 InvariantContainerRuleConfigurationPackage.Literals.HIERARCHY_PERMISSION__IS_STRICT,
 				 true,
 				 false,
 				 false,
@@ -162,7 +162,7 @@ public class HierarchyPermissionItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((HierarchyPermission)object).getContainerType();
+		String label = ((HierarchyPermission)object).getChildType();
 		return label == null || label.length() == 0 ?
 			getString("_UI_HierarchyPermission_type") :
 			getString("_UI_HierarchyPermission_type") + " " + label;
@@ -181,9 +181,9 @@ public class HierarchyPermissionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(HierarchyPermission.class)) {
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE:
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED:
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT:
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE:
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED:
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 				return;
 		}

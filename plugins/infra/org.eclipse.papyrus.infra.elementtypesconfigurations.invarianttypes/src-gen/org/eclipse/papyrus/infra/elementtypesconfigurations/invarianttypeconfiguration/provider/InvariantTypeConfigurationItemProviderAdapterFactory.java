@@ -132,29 +132,6 @@ public class InvariantTypeConfigurationItemProviderAdapterFactory extends Invari
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.NotInvariantRuleConfiguration} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	protected NotInvariantRuleConfigurationItemProvider notInvariantRuleConfigurationItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.NotInvariantRuleConfiguration}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	@Override
-	public Adapter createNotInvariantRuleConfigurationAdapter() {
-		if (notInvariantRuleConfigurationItemProvider == null) {
-			notInvariantRuleConfigurationItemProvider = new NotInvariantRuleConfigurationItemProvider(this);
-		}
-
-		return notInvariantRuleConfigurationItemProvider;
-	}
-
-	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.AndInvariantRuleConfiguration} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -327,7 +304,6 @@ public class InvariantTypeConfigurationItemProviderAdapterFactory extends Invari
 	 */
 	public void dispose() {
 		if (invariantTypeConfigurationItemProvider != null) invariantTypeConfigurationItemProvider.dispose();
-		if (notInvariantRuleConfigurationItemProvider != null) notInvariantRuleConfigurationItemProvider.dispose();
 		if (andInvariantRuleConfigurationItemProvider != null) andInvariantRuleConfigurationItemProvider.dispose();
 		if (orInvariantRuleConfigurationItemProvider != null) orInvariantRuleConfigurationItemProvider.dispose();
 	}

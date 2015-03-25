@@ -144,7 +144,7 @@ public class InvariantContainerRuleConfigurationPackageImpl extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getHierarchyPermission_ContainerType() {
+	public EAttribute getHierarchyPermission_ChildType() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(0);
 	}
 
@@ -153,7 +153,7 @@ public class InvariantContainerRuleConfigurationPackageImpl extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getHierarchyPermission_Permitted() {
+	public EAttribute getHierarchyPermission_IsPermitted() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(1);
 	}
 
@@ -162,7 +162,7 @@ public class InvariantContainerRuleConfigurationPackageImpl extends EPackageImpl
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EAttribute getHierarchyPermission_Strict() {
+	public EAttribute getHierarchyPermission_IsStrict() {
 		return (EAttribute)hierarchyPermissionEClass.getEStructuralFeatures().get(2);
 	}
 
@@ -198,9 +198,9 @@ public class InvariantContainerRuleConfigurationPackageImpl extends EPackageImpl
 		createEReference(invariantContainerRuleConfigurationEClass, INVARIANT_CONTAINER_RULE_CONFIGURATION__PERMISSIONS);
 
 		hierarchyPermissionEClass = createEClass(HIERARCHY_PERMISSION);
-		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__CONTAINER_TYPE);
-		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__PERMITTED);
-		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__STRICT);
+		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__CHILD_TYPE);
+		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__IS_PERMITTED);
+		createEAttribute(hierarchyPermissionEClass, HIERARCHY_PERMISSION__IS_STRICT);
 	}
 
 	/**
@@ -242,9 +242,9 @@ public class InvariantContainerRuleConfigurationPackageImpl extends EPackageImpl
 		initEReference(getInvariantContainerRuleConfiguration_Permissions(), this.getHierarchyPermission(), null, "permissions", null, 0, -1, InvariantContainerRuleConfiguration.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(hierarchyPermissionEClass, HierarchyPermission.class, "HierarchyPermission", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-		initEAttribute(getHierarchyPermission_ContainerType(), theEcorePackage.getEString(), "containerType", null, 1, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getHierarchyPermission_Permitted(), theEcorePackage.getEBoolean(), "permitted", null, 1, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
-		initEAttribute(getHierarchyPermission_Strict(), theEcorePackage.getEBoolean(), "strict", null, 1, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHierarchyPermission_ChildType(), theEcorePackage.getEString(), "childType", null, 0, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHierarchyPermission_IsPermitted(), theEcorePackage.getEBoolean(), "isPermitted", null, 0, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getHierarchyPermission_IsStrict(), theEcorePackage.getEBoolean(), "isStrict", null, 0, 1, HierarchyPermission.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

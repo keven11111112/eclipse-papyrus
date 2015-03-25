@@ -22,17 +22,17 @@ import org.eclipse.emf.ecore.resource.impl.ResourceFactoryImpl;
  * <!-- begin-user-doc -->
  * The <b>Resource Factory</b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimevalueseditionadviceconfigurationResourceImpl
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimeValuesEditionAdviceConfigurationResourceImpl
  * @generated
  */
-public class RuntimevalueseditionadviceconfigurationResourceFactoryImpl extends ResourceFactoryImpl {
+public class RuntimeValuesEditionAdviceConfigurationResourceFactoryImpl extends ResourceFactoryImpl {
 	/**
 	 * Creates an instance of the resource factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimevalueseditionadviceconfigurationResourceFactoryImpl() {
+	public RuntimeValuesEditionAdviceConfigurationResourceFactoryImpl() {
 		super();
 	}
 
@@ -44,8 +44,8 @@ public class RuntimevalueseditionadviceconfigurationResourceFactoryImpl extends 
 	 */
 	@Override
 	public Resource createResource(URI uri) {
-		Resource result = new RuntimevalueseditionadviceconfigurationResourceImpl(uri);
+		Resource result = new RuntimeValuesEditionAdviceConfigurationResourceImpl(uri);
 		return result;
 	}
 
-} //RuntimevalueseditionadviceconfigurationResourceFactoryImpl
+} //RuntimeValuesEditionAdviceConfigurationResourceFactoryImpl

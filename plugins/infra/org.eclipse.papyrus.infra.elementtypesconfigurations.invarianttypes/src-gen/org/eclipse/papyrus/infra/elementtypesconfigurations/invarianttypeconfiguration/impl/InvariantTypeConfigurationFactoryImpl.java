@@ -67,7 +67,6 @@ public class InvariantTypeConfigurationFactoryImpl extends EFactoryImpl implemen
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
 			case InvariantTypeConfigurationPackage.INVARIANT_TYPE_CONFIGURATION: return createInvariantTypeConfiguration();
-			case InvariantTypeConfigurationPackage.NOT_INVARIANT_RULE_CONFIGURATION: return createNotInvariantRuleConfiguration();
 			case InvariantTypeConfigurationPackage.AND_INVARIANT_RULE_CONFIGURATION: return createAndInvariantRuleConfiguration();
 			case InvariantTypeConfigurationPackage.OR_INVARIANT_RULE_CONFIGURATION: return createOrInvariantRuleConfiguration();
 			default:
@@ -83,16 +82,6 @@ public class InvariantTypeConfigurationFactoryImpl extends EFactoryImpl implemen
 	public InvariantTypeConfiguration createInvariantTypeConfiguration() {
 		InvariantTypeConfigurationImpl invariantTypeConfiguration = new InvariantTypeConfigurationImpl();
 		return invariantTypeConfiguration;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public NotInvariantRuleConfiguration createNotInvariantRuleConfiguration() {
-		NotInvariantRuleConfigurationImpl notInvariantRuleConfiguration = new NotInvariantRuleConfigurationImpl();
-		return notInvariantRuleConfiguration;
 	}
 
 	/**

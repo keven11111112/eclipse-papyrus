@@ -22,8 +22,8 @@
     <genClasses image="false" ecoreClass="InvariantTypeConfiguration.ecore#//CompositeInvariantRuleConfiguration">
       <genFeatures property="None" children="true" createChild="true" ecoreFeature="ecore:EReference InvariantTypeConfiguration.ecore#//CompositeInvariantRuleConfiguration/composedRules"/>
     </genClasses>
-    <genClasses ecoreClass="InvariantTypeConfiguration.ecore#//NotInvariantRuleConfiguration">
-      <genFeatures children="true" createChild="true" ecoreFeature="ecore:EReference InvariantTypeConfiguration.ecore#//NotInvariantRuleConfiguration/composedRule"/>
+    <genClasses image="false" ecoreClass="InvariantTypeConfiguration.ecore#//NotInvariantRuleConfiguration">
+      <genFeatures notify="false" createChild="false" propertySortChoices="true" ecoreFeature="ecore:EReference InvariantTypeConfiguration.ecore#//NotInvariantRuleConfiguration/composedRule"/>
     </genClasses>
     <genClasses ecoreClass="InvariantTypeConfiguration.ecore#//AndInvariantRuleConfiguration"/>
     <genClasses ecoreClass="InvariantTypeConfiguration.ecore#//OrInvariantRuleConfiguration"/>

@@ -21,10 +21,10 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.SpecializationTypeCo
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfiguration#getInvariantRuleConfiguration <em>Invariant Rule Configuration</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfigurationPackage#getInvariantTypeConfiguration()
  * @model

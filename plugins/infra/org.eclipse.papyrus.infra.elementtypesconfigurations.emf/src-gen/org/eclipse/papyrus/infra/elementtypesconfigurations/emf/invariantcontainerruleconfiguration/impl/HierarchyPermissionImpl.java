@@ -28,75 +28,75 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontain
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#getContainerType <em>Container Type</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#isPermitted <em>Permitted</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#isStrict <em>Strict</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#getChildType <em>Child Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#isIsPermitted <em>Is Permitted</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.impl.HierarchyPermissionImpl#isIsStrict <em>Is Strict</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
 public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implements HierarchyPermission {
 	/**
-	 * The default value of the '{@link #getContainerType() <em>Container Type</em>}' attribute.
+	 * The default value of the '{@link #getChildType() <em>Child Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContainerType()
+	 * @see #getChildType()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final String CONTAINER_TYPE_EDEFAULT = null;
+	protected static final String CHILD_TYPE_EDEFAULT = null;
 
 	/**
-	 * The cached value of the '{@link #getContainerType() <em>Container Type</em>}' attribute.
+	 * The cached value of the '{@link #getChildType() <em>Child Type</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #getContainerType()
+	 * @see #getChildType()
 	 * @generated
 	 * @ordered
 	 */
-	protected String containerType = CONTAINER_TYPE_EDEFAULT;
+	protected String childType = CHILD_TYPE_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isPermitted() <em>Permitted</em>}' attribute.
+	 * The default value of the '{@link #isIsPermitted() <em>Is Permitted</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPermitted()
+	 * @see #isIsPermitted()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean PERMITTED_EDEFAULT = false;
+	protected static final boolean IS_PERMITTED_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isPermitted() <em>Permitted</em>}' attribute.
+	 * The cached value of the '{@link #isIsPermitted() <em>Is Permitted</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isPermitted()
+	 * @see #isIsPermitted()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean permitted = PERMITTED_EDEFAULT;
+	protected boolean isPermitted = IS_PERMITTED_EDEFAULT;
 
 	/**
-	 * The default value of the '{@link #isStrict() <em>Strict</em>}' attribute.
+	 * The default value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean STRICT_EDEFAULT = false;
+	protected static final boolean IS_STRICT_EDEFAULT = false;
 
 	/**
-	 * The cached value of the '{@link #isStrict() <em>Strict</em>}' attribute.
+	 * The cached value of the '{@link #isIsStrict() <em>Is Strict</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #isStrict()
+	 * @see #isIsStrict()
 	 * @generated
 	 * @ordered
 	 */
-	protected boolean strict = STRICT_EDEFAULT;
+	protected boolean isStrict = IS_STRICT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -122,8 +122,8 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public String getContainerType() {
-		return containerType;
+	public String getChildType() {
+		return childType;
 	}
 
 	/**
@@ -131,11 +131,11 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setContainerType(String newContainerType) {
-		String oldContainerType = containerType;
-		containerType = newContainerType;
+	public void setChildType(String newChildType) {
+		String oldChildType = childType;
+		childType = newChildType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE, oldContainerType, containerType));
+			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE, oldChildType, childType));
 	}
 
 	/**
@@ -143,8 +143,8 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isPermitted() {
-		return permitted;
+	public boolean isIsPermitted() {
+		return isPermitted;
 	}
 
 	/**
@@ -152,11 +152,11 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setPermitted(boolean newPermitted) {
-		boolean oldPermitted = permitted;
-		permitted = newPermitted;
+	public void setIsPermitted(boolean newIsPermitted) {
+		boolean oldIsPermitted = isPermitted;
+		isPermitted = newIsPermitted;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED, oldPermitted, permitted));
+			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED, oldIsPermitted, isPermitted));
 	}
 
 	/**
@@ -164,8 +164,8 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStrict() {
-		return strict;
+	public boolean isIsStrict() {
+		return isStrict;
 	}
 
 	/**
@@ -173,11 +173,11 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public void setStrict(boolean newStrict) {
-		boolean oldStrict = strict;
-		strict = newStrict;
+	public void setIsStrict(boolean newIsStrict) {
+		boolean oldIsStrict = isStrict;
+		isStrict = newIsStrict;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT, oldStrict, strict));
+			eNotify(new ENotificationImpl(this, Notification.SET, InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT, oldIsStrict, isStrict));
 	}
 
 	/**
@@ -188,12 +188,12 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE:
-				return getContainerType();
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED:
-				return isPermitted();
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT:
-				return isStrict();
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE:
+				return getChildType();
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED:
+				return isIsPermitted();
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT:
+				return isIsStrict();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -206,14 +206,14 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE:
-				setContainerType((String)newValue);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE:
+				setChildType((String)newValue);
 				return;
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED:
-				setPermitted((Boolean)newValue);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED:
+				setIsPermitted((Boolean)newValue);
 				return;
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT:
-				setStrict((Boolean)newValue);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT:
+				setIsStrict((Boolean)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -227,14 +227,14 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE:
-				setContainerType(CONTAINER_TYPE_EDEFAULT);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE:
+				setChildType(CHILD_TYPE_EDEFAULT);
 				return;
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED:
-				setPermitted(PERMITTED_EDEFAULT);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED:
+				setIsPermitted(IS_PERMITTED_EDEFAULT);
 				return;
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT:
-				setStrict(STRICT_EDEFAULT);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT:
+				setIsStrict(IS_STRICT_EDEFAULT);
 				return;
 		}
 		super.eUnset(featureID);
@@ -248,12 +248,12 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CONTAINER_TYPE:
-				return CONTAINER_TYPE_EDEFAULT == null ? containerType != null : !CONTAINER_TYPE_EDEFAULT.equals(containerType);
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__PERMITTED:
-				return permitted != PERMITTED_EDEFAULT;
-			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__STRICT:
-				return strict != STRICT_EDEFAULT;
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__CHILD_TYPE:
+				return CHILD_TYPE_EDEFAULT == null ? childType != null : !CHILD_TYPE_EDEFAULT.equals(childType);
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_PERMITTED:
+				return isPermitted != IS_PERMITTED_EDEFAULT;
+			case InvariantContainerRuleConfigurationPackage.HIERARCHY_PERMISSION__IS_STRICT:
+				return isStrict != IS_STRICT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -268,12 +268,12 @@ public class HierarchyPermissionImpl extends MinimalEObjectImpl.Container implem
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (containerType: ");
-		result.append(containerType);
-		result.append(", permitted: ");
-		result.append(permitted);
-		result.append(", strict: ");
-		result.append(strict);
+		result.append(" (childType: ");
+		result.append(childType);
+		result.append(", isPermitted: ");
+		result.append(isPermitted);
+		result.append(", isStrict: ");
+		result.append(isStrict);
 		result.append(')');
 		return result.toString();
 	}

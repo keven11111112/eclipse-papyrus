@@ -13,17 +13,16 @@
 package org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util;
 
 import org.eclipse.emf.common.util.URI;
-
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceImpl;
 
 /**
  * <!-- begin-user-doc -->
  * The <b>Resource </b> associated with the package.
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimevalueseditionadviceconfigurationResourceFactoryImpl
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.util.RuntimeValuesEditionAdviceConfigurationResourceFactoryImpl
  * @generated
  */
-public class RuntimevalueseditionadviceconfigurationResourceImpl extends XMIResourceImpl {
+public class RuntimeValuesEditionAdviceConfigurationResourceImpl extends XMIResourceImpl {
 	/**
 	 * Creates an instance of the resource.
 	 * <!-- begin-user-doc -->
@@ -31,8 +30,8 @@ public class RuntimevalueseditionadviceconfigurationResourceImpl extends XMIReso
 	 * @param uri the URI of the new resource.
 	 * @generated
 	 */
-	public RuntimevalueseditionadviceconfigurationResourceImpl(URI uri) {
+	public RuntimeValuesEditionAdviceConfigurationResourceImpl(URI uri) {
 		super(uri);
 	}
 
-} //RuntimevalueseditionadviceconfigurationResourceImpl
+} //RuntimeValuesEditionAdviceConfigurationResourceImpl

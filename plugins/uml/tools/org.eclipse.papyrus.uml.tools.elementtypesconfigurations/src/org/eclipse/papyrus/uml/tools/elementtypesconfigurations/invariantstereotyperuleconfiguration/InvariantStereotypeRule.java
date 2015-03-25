@@ -14,82 +14,46 @@ package org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereo
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
-import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHintedSpecializationElementType;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.AbstractInvariantRule;
-import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Package;
+import org.eclipse.uml2.uml.Profile;
 
 public class InvariantStereotypeRule extends AbstractInvariantRule<InvariantStereotypeRuleConfiguration> {
 
-	/**
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.IInvariantRule#matches(org.eclipse.emf.ecore.EObject)
-	 *
-	 * @param eObject
-	 * @return
-	 */
-	public boolean matches(EObject eObject) {
-		if (!(eObject instanceof Element)) {
-			return false;
-		}
+	public boolean approveRequest(IEditCommandRequest request) {
+		if (request instanceof CreateElementRequest)
+		{
+			String stereotypeQualifiedName = invariantRuleConfiguration.getStereotypeQualifiedName();
+			String requiredProfile = invariantRuleConfiguration.getRequiredProfile();
 
-		String stereotypeQualifiedName = invariantRuleConfiguration.getStereotypeQualifiedName();
-		if (stereotypeQualifiedName == null) { // to avoid null pointers
-			return false;
-		}
-		Stereotype appliedStereotype = ((Element) eObject).getAppliedStereotype(stereotypeQualifiedName);
-		if (appliedStereotype != null) { // one has been found, no need to get further
-			return true;
-		} else if (!invariantRuleConfiguration.isStrict()) { // the stereotype does not match perfectly, but one of the applied stereotypes on the element could match if not strict
-			for (Stereotype stereotype : ((Element) eObject).getAppliedStereotypes()) {
-				for (Stereotype superStereotype : StereotypeUtil.getAllSuperStereotypes(stereotype)) {
-					if (stereotypeQualifiedName.equals(superStereotype.getQualifiedName())) {
-						return true; // there is a match in the super stereotypes. Finish here, element matches
-					}
-				}
+			if (requiredProfile == null) {
+				// try to find the profile qualified name from the qualified stereotype name
+				requiredProfile = stereotypeQualifiedName.substring(stereotypeQualifiedName.lastIndexOf(NamedElement.SEPARATOR));
 			}
+			// check container is a UML element
+			EObject container = ((CreateElementRequest) request).getContainer();
+			if (!(container instanceof Element)) {
+				return false;
+			}
+
+			Package nearestPackage = ((Element) container).getNearestPackage();
+			if (nearestPackage == null) {
+				// impossible to check the applied profiles for the container
+				return false;
+			}
+
+			Profile appliedProfile = nearestPackage.getAppliedProfile(requiredProfile, true);
+			if (appliedProfile == null) {
+				return false;
+			}
+
+			// check for stereotype application.
+			// FIXME : Possible in the request system ?
 		}
-		return false;
-	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.AbstractInvariantRule#approveMoveRequest(org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHintedSpecializationElementType,
-	 *      org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest)
-	 *
-	 * @param type
-	 * @param request
-	 * @return
-	 */
-	@Override
-	protected boolean approveMoveRequest(ConfiguredHintedSpecializationElementType type, MoveRequest request) {
-		return true;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.AbstractInvariantRule#approveSetRequest(org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHintedSpecializationElementType,
-	 *      org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest)
-	 *
-	 * @param type
-	 * @param request
-	 * @return
-	 */
-	@Override
-	protected boolean approveSetRequest(ConfiguredHintedSpecializationElementType type, SetRequest request) {
-		return true;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypes.invarianttypeconfiguration.AbstractInvariantRule#approveCreationRequest(org.eclipse.papyrus.infra.elementtypesconfigurations.impl.ConfiguredHintedSpecializationElementType,
-	 *      org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest)
-	 *
-	 * @param type
-	 * @param request
-	 * @return
-	 */
-	@Override
-	protected boolean approveCreationRequest(ConfiguredHintedSpecializationElementType type, CreateElementRequest request) {
 		return true;
 	}
 

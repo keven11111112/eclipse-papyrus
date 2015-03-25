@@ -116,31 +116,31 @@ public interface InvariantContainerRuleConfigurationPackage extends EPackage {
 	int HIERARCHY_PERMISSION = 1;
 
 	/**
-	 * The feature id for the '<em><b>Container Type</b></em>' attribute.
+	 * The feature id for the '<em><b>Child Type</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HIERARCHY_PERMISSION__CONTAINER_TYPE = 0;
+	int HIERARCHY_PERMISSION__CHILD_TYPE = 0;
 
 	/**
-	 * The feature id for the '<em><b>Permitted</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Permitted</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HIERARCHY_PERMISSION__PERMITTED = 1;
+	int HIERARCHY_PERMISSION__IS_PERMITTED = 1;
 
 	/**
-	 * The feature id for the '<em><b>Strict</b></em>' attribute.
+	 * The feature id for the '<em><b>Is Strict</b></em>' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int HIERARCHY_PERMISSION__STRICT = 2;
+	int HIERARCHY_PERMISSION__IS_STRICT = 2;
 
 	/**
 	 * The number of structural features of the '<em>Hierarchy Permission</em>' class.
@@ -193,37 +193,37 @@ public interface InvariantContainerRuleConfigurationPackage extends EPackage {
 	EClass getHierarchyPermission();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getContainerType <em>Container Type</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getChildType <em>Child Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Container Type</em>'.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getContainerType()
+	 * @return the meta object for the attribute '<em>Child Type</em>'.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#getChildType()
 	 * @see #getHierarchyPermission()
 	 * @generated
 	 */
-	EAttribute getHierarchyPermission_ContainerType();
+	EAttribute getHierarchyPermission_ChildType();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isPermitted <em>Permitted</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsPermitted <em>Is Permitted</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Permitted</em>'.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isPermitted()
+	 * @return the meta object for the attribute '<em>Is Permitted</em>'.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsPermitted()
 	 * @see #getHierarchyPermission()
 	 * @generated
 	 */
-	EAttribute getHierarchyPermission_Permitted();
+	EAttribute getHierarchyPermission_IsPermitted();
 
 	/**
-	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isStrict <em>Strict</em>}'.
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsStrict <em>Is Strict</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the attribute '<em>Strict</em>'.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isStrict()
+	 * @return the meta object for the attribute '<em>Is Strict</em>'.
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.invariantcontainerruleconfiguration.HierarchyPermission#isIsStrict()
 	 * @see #getHierarchyPermission()
 	 * @generated
 	 */
-	EAttribute getHierarchyPermission_Strict();
+	EAttribute getHierarchyPermission_IsStrict();
 
 	/**
 	 * Returns the factory that creates the instances of the model.
@@ -277,28 +277,28 @@ public interface InvariantContainerRuleConfigurationPackage extends EPackage {
 		EClass HIERARCHY_PERMISSION = eINSTANCE.getHierarchyPermission();
 
 		/**
-		 * The meta object literal for the '<em><b>Container Type</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Child Type</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute HIERARCHY_PERMISSION__CONTAINER_TYPE = eINSTANCE.getHierarchyPermission_ContainerType();
+		EAttribute HIERARCHY_PERMISSION__CHILD_TYPE = eINSTANCE.getHierarchyPermission_ChildType();
 
 		/**
-		 * The meta object literal for the '<em><b>Permitted</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Permitted</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute HIERARCHY_PERMISSION__PERMITTED = eINSTANCE.getHierarchyPermission_Permitted();
+		EAttribute HIERARCHY_PERMISSION__IS_PERMITTED = eINSTANCE.getHierarchyPermission_IsPermitted();
 
 		/**
-		 * The meta object literal for the '<em><b>Strict</b></em>' attribute feature.
+		 * The meta object literal for the '<em><b>Is Strict</b></em>' attribute feature.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @generated
 		 */
-		EAttribute HIERARCHY_PERMISSION__STRICT = eINSTANCE.getHierarchyPermission_Strict();
+		EAttribute HIERARCHY_PERMISSION__IS_STRICT = eINSTANCE.getHierarchyPermission_IsStrict();
 
 	}
 

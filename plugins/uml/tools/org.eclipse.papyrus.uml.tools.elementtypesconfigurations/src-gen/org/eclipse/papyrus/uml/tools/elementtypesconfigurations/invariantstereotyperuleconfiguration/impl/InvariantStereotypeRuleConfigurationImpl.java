@@ -29,12 +29,11 @@ import org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereot
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.impl.InvariantStereotypeRuleConfigurationImpl#getStereotypeQualifiedName <em>Stereotype Qualified Name</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.impl.InvariantStereotypeRuleConfigurationImpl#getRequiredProfile <em>Required Profile</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.tools.elementtypesconfigurations.invariantstereotyperuleconfiguration.impl.InvariantStereotypeRuleConfigurationImpl#isStrict <em>Strict</em>}</li>
  * </ul>
+ * </p>
  *
  * @generated
  */
@@ -79,26 +78,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * @ordered
 	 */
 	protected String requiredProfile = REQUIRED_PROFILE_EDEFAULT;
-
-	/**
-	 * The default value of the '{@link #isStrict() <em>Strict</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isStrict()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final boolean STRICT_EDEFAULT = false;
-
-	/**
-	 * The cached value of the '{@link #isStrict() <em>Strict</em>}' attribute.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isStrict()
-	 * @generated
-	 * @ordered
-	 */
-	protected boolean strict = STRICT_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -172,29 +151,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean isStrict()
-	{
-		return strict;
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public void setStrict(boolean newStrict)
-	{
-		boolean oldStrict = strict;
-		strict = newStrict;
-		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT, oldStrict, strict));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType)
 	{
@@ -204,8 +160,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 			return getStereotypeQualifiedName();
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
 			return getRequiredProfile();
-		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
-			return isStrict();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -225,9 +179,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 			return;
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
 			setRequiredProfile((String) newValue);
-			return;
-		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
-			setStrict((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -249,9 +200,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
 			setRequiredProfile(REQUIRED_PROFILE_EDEFAULT);
 			return;
-		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
-			setStrict(STRICT_EDEFAULT);
-			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -270,8 +218,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 			return STEREOTYPE_QUALIFIED_NAME_EDEFAULT == null ? stereotypeQualifiedName != null : !STEREOTYPE_QUALIFIED_NAME_EDEFAULT.equals(stereotypeQualifiedName);
 		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__REQUIRED_PROFILE:
 			return REQUIRED_PROFILE_EDEFAULT == null ? requiredProfile != null : !REQUIRED_PROFILE_EDEFAULT.equals(requiredProfile);
-		case InvariantStereotypeRuleConfigurationPackage.INVARIANT_STEREOTYPE_RULE_CONFIGURATION__STRICT:
-			return strict != STRICT_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -292,8 +238,6 @@ public class InvariantStereotypeRuleConfigurationImpl extends InvariantRuleConfi
 		result.append(stereotypeQualifiedName);
 		result.append(", requiredProfile: ");
 		result.append(requiredProfile);
-		result.append(", strict: ");
-		result.append(strict);
 		result.append(')');
 		return result.toString();
 	}

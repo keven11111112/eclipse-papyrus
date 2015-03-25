@@ -25,15 +25,16 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.Elementtypesconfigur
  * <ul>
  *   <li>each class,</li>
  *   <li>each feature of each class,</li>
+ *   <li>each operation of each class,</li>
  *   <li>each enum,</li>
  *   <li>and each data type</li>
  * </ul>
  * <!-- end-user-doc -->
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationFactory
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationFactory
  * @model kind="package"
  * @generated
  */
-public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage {
+public interface RuntimeValuesEditionAdviceConfigurationPackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -64,14 +65,14 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	RuntimevalueseditionadviceconfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationPackageImpl.init();
+	RuntimeValuesEditionAdviceConfigurationPackage eINSTANCE = org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationPackageImpl.init();
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationImpl <em>Runtime Values Edition Advice Configuration</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationImpl
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationPackageImpl#getRuntimeValuesEditionAdviceConfiguration()
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationPackageImpl#getRuntimeValuesEditionAdviceConfiguration()
 	 * @generated
 	 */
 	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION = 0;
@@ -83,7 +84,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__NAME = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__NAME;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__NAME = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__NAME;
 
 	/**
 	 * The feature id for the '<em><b>Description</b></em>' attribute.
@@ -92,7 +93,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__DESCRIPTION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__DESCRIPTION;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__DESCRIPTION = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__DESCRIPTION;
 
 	/**
 	 * The feature id for the '<em><b>Identifier</b></em>' attribute.
@@ -101,7 +102,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__IDENTIFIER = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__IDENTIFIER;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__IDENTIFIER = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__IDENTIFIER;
 
 	/**
 	 * The feature id for the '<em><b>Edit Helper Advice Class Name</b></em>' attribute.
@@ -110,7 +111,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__EDIT_HELPER_ADVICE_CLASS_NAME;
 
 	/**
 	 * The feature id for the '<em><b>Before</b></em>' attribute list.
@@ -119,7 +120,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__BEFORE = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__BEFORE;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__BEFORE = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__BEFORE;
 
 	/**
 	 * The feature id for the '<em><b>After</b></em>' attribute list.
@@ -128,7 +129,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__AFTER = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__AFTER;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__AFTER = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__AFTER;
 
 	/**
 	 * The feature id for the '<em><b>Inheritance</b></em>' attribute.
@@ -137,34 +138,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__INHERITANCE = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__INHERITANCE;
-
-	/**
-	 * The feature id for the '<em><b>Target</b></em>' reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__TARGET = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__TARGET;
-
-	/**
-	 * The feature id for the '<em><b>Container Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__CONTAINER_CONFIGURATION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__CONTAINER_CONFIGURATION;
-
-	/**
-	 * The feature id for the '<em><b>Matcher Configuration</b></em>' containment reference.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__MATCHER_CONFIGURATION = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION__MATCHER_CONFIGURATION;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__INHERITANCE = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION__INHERITANCE;
 
 	/**
 	 * The feature id for the '<em><b>Views To Display</b></em>' containment reference list.
@@ -173,7 +147,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 0;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION__VIEWS_TO_DISPLAY = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION_FEATURE_COUNT + 0;
 
 	/**
 	 * The number of structural features of the '<em>Runtime Values Edition Advice Configuration</em>' class.
@@ -182,14 +156,23 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @generated
 	 * @ordered
 	 */
-	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.ADVICE_BINDING_CONFIGURATION_FEATURE_COUNT + 1;
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION_FEATURE_COUNT = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION_FEATURE_COUNT + 1;
+
+	/**
+	 * The number of operations of the '<em>Runtime Values Edition Advice Configuration</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION_OPERATION_COUNT = ElementtypesconfigurationsPackage.ADVICE_CONFIGURATION_OPERATION_COUNT + 0;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.ViewToDisplayImpl <em>View To Display</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.ViewToDisplayImpl
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationPackageImpl#getViewToDisplay()
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationPackageImpl#getViewToDisplay()
 	 * @generated
 	 */
 	int VIEW_TO_DISPLAY = 1;
@@ -211,6 +194,15 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @ordered
 	 */
 	int VIEW_TO_DISPLAY_FEATURE_COUNT = 1;
+
+	/**
+	 * The number of operations of the '<em>View To Display</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int VIEW_TO_DISPLAY_OPERATION_COUNT = 0;
 
 
 	/**
@@ -262,7 +254,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * @return the factory that creates the instances of the model.
 	 * @generated
 	 */
-	RuntimevalueseditionadviceconfigurationFactory getRuntimevalueseditionadviceconfigurationFactory();
+	RuntimeValuesEditionAdviceConfigurationFactory getRuntimeValuesEditionAdviceConfigurationFactory();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -270,6 +262,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 	 * <ul>
 	 *   <li>each class,</li>
 	 *   <li>each feature of each class,</li>
+	 *   <li>each operation of each class,</li>
 	 *   <li>each enum,</li>
 	 *   <li>and each data type</li>
 	 * </ul>
@@ -282,7 +275,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationImpl
-		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationPackageImpl#getRuntimeValuesEditionAdviceConfiguration()
+		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationPackageImpl#getRuntimeValuesEditionAdviceConfiguration()
 		 * @generated
 		 */
 		EClass RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION = eINSTANCE.getRuntimeValuesEditionAdviceConfiguration();
@@ -300,7 +293,7 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
 		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.ViewToDisplayImpl
-		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimevalueseditionadviceconfigurationPackageImpl#getViewToDisplay()
+		 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.impl.RuntimeValuesEditionAdviceConfigurationPackageImpl#getViewToDisplay()
 		 * @generated
 		 */
 		EClass VIEW_TO_DISPLAY = eINSTANCE.getViewToDisplay();
@@ -315,4 +308,4 @@ public interface RuntimevalueseditionadviceconfigurationPackage extends EPackage
 
 	}
 
-} //RuntimevalueseditionadviceconfigurationPackage
+} //RuntimeValuesEditionAdviceConfigurationPackage

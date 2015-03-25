@@ -30,9 +30,7 @@ import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
 import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage;
-
-import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.setvaluesadviceconfiguration.provider.RuntimeValuesEditionAdviceConfigurationEditPlugin;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay} object.
@@ -87,7 +85,7 @@ public class ViewToDisplayItemProvider
 				 getResourceLocator(),
 				 getString("_UI_ViewToDisplay_view_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_ViewToDisplay_view_feature", "_UI_ViewToDisplay_type"),
-				 RuntimevalueseditionadviceconfigurationPackage.Literals.VIEW_TO_DISPLAY__VIEW,
+				 RuntimeValuesEditionAdviceConfigurationPackage.Literals.VIEW_TO_DISPLAY__VIEW,
 				 true,
 				 false,
 				 true,

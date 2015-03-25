@@ -23,6 +23,8 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfigu
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Invariant Rule Configuration</b></em>'.
  * <!-- end-user-doc -->
+ * <p>
+ * </p>
  *
  * @generated
  */

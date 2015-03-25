@@ -28,24 +28,24 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevaluesedi
  * <!-- end-user-doc -->
  * @generated
  */
-public class RuntimevalueseditionadviceconfigurationFactoryImpl extends EFactoryImpl implements RuntimevalueseditionadviceconfigurationFactory {
+public class RuntimeValuesEditionAdviceConfigurationFactoryImpl extends EFactoryImpl implements RuntimeValuesEditionAdviceConfigurationFactory {
 	/**
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public static RuntimevalueseditionadviceconfigurationFactory init() {
+	public static RuntimeValuesEditionAdviceConfigurationFactory init() {
 		try {
-			RuntimevalueseditionadviceconfigurationFactory theRuntimevalueseditionadviceconfigurationFactory = (RuntimevalueseditionadviceconfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(RuntimevalueseditionadviceconfigurationPackage.eNS_URI);
-			if (theRuntimevalueseditionadviceconfigurationFactory != null) {
-				return theRuntimevalueseditionadviceconfigurationFactory;
+			RuntimeValuesEditionAdviceConfigurationFactory theRuntimeValuesEditionAdviceConfigurationFactory = (RuntimeValuesEditionAdviceConfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(RuntimeValuesEditionAdviceConfigurationPackage.eNS_URI);
+			if (theRuntimeValuesEditionAdviceConfigurationFactory != null) {
+				return theRuntimeValuesEditionAdviceConfigurationFactory;
 			}
 		}
 		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
-		return new RuntimevalueseditionadviceconfigurationFactoryImpl();
+		return new RuntimeValuesEditionAdviceConfigurationFactoryImpl();
 	}
 
 	/**
@@ -54,7 +54,7 @@ public class RuntimevalueseditionadviceconfigurationFactoryImpl extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimevalueseditionadviceconfigurationFactoryImpl() {
+	public RuntimeValuesEditionAdviceConfigurationFactoryImpl() {
 		super();
 	}
 
@@ -66,8 +66,8 @@ public class RuntimevalueseditionadviceconfigurationFactoryImpl extends EFactory
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case RuntimevalueseditionadviceconfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION: return createRuntimeValuesEditionAdviceConfiguration();
-			case RuntimevalueseditionadviceconfigurationPackage.VIEW_TO_DISPLAY: return createViewToDisplay();
+			case RuntimeValuesEditionAdviceConfigurationPackage.RUNTIME_VALUES_EDITION_ADVICE_CONFIGURATION: return createRuntimeValuesEditionAdviceConfiguration();
+			case RuntimeValuesEditionAdviceConfigurationPackage.VIEW_TO_DISPLAY: return createViewToDisplay();
 			default:
 				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -98,8 +98,8 @@ public class RuntimevalueseditionadviceconfigurationFactoryImpl extends EFactory
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public RuntimevalueseditionadviceconfigurationPackage getRuntimevalueseditionadviceconfigurationPackage() {
-		return (RuntimevalueseditionadviceconfigurationPackage)getEPackage();
+	public RuntimeValuesEditionAdviceConfigurationPackage getRuntimeValuesEditionAdviceConfigurationPackage() {
+		return (RuntimeValuesEditionAdviceConfigurationPackage)getEPackage();
 	}
 
 	/**
@@ -109,8 +109,8 @@ public class RuntimevalueseditionadviceconfigurationFactoryImpl extends EFactory
 	 * @generated
 	 */
 	@Deprecated
-	public static RuntimevalueseditionadviceconfigurationPackage getPackage() {
-		return RuntimevalueseditionadviceconfigurationPackage.eINSTANCE;
+	public static RuntimeValuesEditionAdviceConfigurationPackage getPackage() {
+		return RuntimeValuesEditionAdviceConfigurationPackage.eINSTANCE;
 	}
 
-} //RuntimevalueseditionadviceconfigurationFactoryImpl
+} //RuntimeValuesEditionAdviceConfigurationFactoryImpl

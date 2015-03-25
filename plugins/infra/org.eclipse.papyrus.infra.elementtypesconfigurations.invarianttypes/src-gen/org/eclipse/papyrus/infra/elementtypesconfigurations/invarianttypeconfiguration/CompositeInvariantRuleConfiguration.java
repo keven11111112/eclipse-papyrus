@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.CompositeInvariantRuleConfiguration#getComposedRules <em>Composed Rules</em>}</li>
  * </ul>
+ * </p>
  *
  * @see org.eclipse.papyrus.infra.elementtypesconfigurations.invarianttypeconfiguration.InvariantTypeConfigurationPackage#getCompositeInvariantRuleConfiguration()
  * @model abstract="true"

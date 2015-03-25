@@ -14,7 +14,7 @@ package org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevaluesed
 
 import org.eclipse.emf.common.util.EList;
 
-import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfiguration;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceConfiguration;
 
 /**
  * <!-- begin-user-doc -->
@@ -23,16 +23,16 @@ import org.eclipse.papyrus.infra.elementtypesconfigurations.AdviceBindingConfigu
  *
  * <p>
  * The following features are supported:
- * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfiguration#getViewsToDisplay <em>Views To Display</em>}</li>
  * </ul>
+ * </p>
  *
- * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage#getRuntimeValuesEditionAdviceConfiguration()
+ * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage#getRuntimeValuesEditionAdviceConfiguration()
  * @model
  * @generated
  */
-public interface RuntimeValuesEditionAdviceConfiguration extends AdviceBindingConfiguration {
+public interface RuntimeValuesEditionAdviceConfiguration extends AdviceConfiguration {
 	/**
 	 * Returns the value of the '<em><b>Views To Display</b></em>' containment reference list.
 	 * The list contents are of type {@link org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.ViewToDisplay}.
@@ -43,7 +43,7 @@ public interface RuntimeValuesEditionAdviceConfiguration extends AdviceBindingCo
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Views To Display</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimevalueseditionadviceconfigurationPackage#getRuntimeValuesEditionAdviceConfiguration_ViewsToDisplay()
+	 * @see org.eclipse.papyrus.infra.elementtypesconfigurations.emf.runtimevalueseditionadviceconfiguration.RuntimeValuesEditionAdviceConfigurationPackage#getRuntimeValuesEditionAdviceConfiguration_ViewsToDisplay()
 	 * @model containment="true"
 	 * @generated
 	 */
