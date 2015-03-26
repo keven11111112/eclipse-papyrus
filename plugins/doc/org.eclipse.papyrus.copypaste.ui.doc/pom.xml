@@ -2,10 +2,10 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus</artifactId>
+		<artifactId>org.eclipse.papyrus.plugins.doc</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
 		<version>1.1.0-SNAPSHOT</version>
-		<relativePath>../../../releng/top-pom-main.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.copypaste.ui.doc</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
@@ -43,6 +43,27 @@
 					</dependency>
 				</dependencies>
 			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-scm-publish-plugin</artifactId>
+				<version>1.1</version>
+				<configuration>
+					<!-- checkoutDirectory>${scmPubCheckoutDirectory}</checkoutDirectory -->
+					<content>${siteMainDirectory}</content> <!-- tryUpdate>true</tryUpdate -->
+					<scmBranch>gh-pages</scmBranch>
+					<pubScmUrl>scm:git:git@github.com:flefevre/testpapy.git</pubScmUrl>
+				</configuration>
+				<executions>
+					<execution>
+						<id>scm-publish</id>
+						<phase>site-deploy</phase>
+						<goals>
+							<goal>publish-scm</goal>
+						</goals>
+					</execution>
+				</executions>
+			</plugin>
 		</plugins>
 	</build>
+	<name>Papyrus Copypaste UI doc</name>
 </project>

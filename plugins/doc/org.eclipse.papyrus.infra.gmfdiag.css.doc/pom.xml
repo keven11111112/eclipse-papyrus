@@ -2,10 +2,10 @@
 <project>
 	<modelVersion>4.0.0</modelVersion>
 	<parent>
-		<artifactId>org.eclipse.papyrus</artifactId>
+		<artifactId>org.eclipse.papyrus.plugins.doc</artifactId>
 		<groupId>org.eclipse.papyrus</groupId>
 		<version>1.1.0-SNAPSHOT</version>
-		<relativePath>../../../releng/top-pom-main.xml</relativePath>
+		<relativePath>../pom.xml</relativePath>
 	</parent>
 	<artifactId>org.eclipse.papyrus.infra.gmfdiag.css.doc</artifactId>
 	<groupId>org.eclipse.papyrus</groupId>
@@ -46,4 +46,5 @@
 			</plugin>
 		</plugins>
 	</build>
+	<name>Papyrus Infra GmfDiag Css doc</name>
 </project>

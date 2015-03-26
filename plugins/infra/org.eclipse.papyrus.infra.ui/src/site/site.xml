@@ -14,6 +14,7 @@
   
   <publishDate position="bottom" format="yyyy-MM-dd" />
   <version position="bottom" />
+  <googleAnalyticsAccountId>UA-XXXXXX</googleAnalyticsAccountId>
 
   <skin>
     <groupId>lt.velykis.maven.skins</groupId>
