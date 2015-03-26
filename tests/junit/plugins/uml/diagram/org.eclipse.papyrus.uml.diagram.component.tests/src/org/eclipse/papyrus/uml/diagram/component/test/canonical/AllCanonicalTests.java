@@ -41,7 +41,9 @@ TestComponentDiagramConstraintLink.class,
 TestListCompartmentNodeChildDuplicates.class,
 // List Compartment Illegal Elements
 TestListCompartmentIllegalElements.class,
-TestListCompartmentPropertiesOperationsDrop.class
+TestListCompartmentPropertiesOperationsDrop.class,
+TestComponentDiagramConnector.class,
+TestComponentDiagramPortLink.class
 // End
 })
 public class AllCanonicalTests {
