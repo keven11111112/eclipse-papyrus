@@ -91,6 +91,19 @@
       </factory>
    </extension>
    
+   
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <package
+            uri="http://www.eclipse.org/papyrus/1.4/SysML"
+            class="org.eclipse.papyrus.sysml14.definition.SysmlPackage"
+            genModel="model/SysML.profile.genmodel"/>
+   </extension>   
+   
+  <extension point="org.eclipse.uml2.uml.generated_package">
+     <profile uri="http://www.eclipse.org/papyrus/1.4/SysML"
+           location="platform:/plugin/org.eclipse.papyrus.sysml14/model/SysML.profile.uml#SysML"/>
+  </extension> 
+   
    <extension
         point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
      <profile
