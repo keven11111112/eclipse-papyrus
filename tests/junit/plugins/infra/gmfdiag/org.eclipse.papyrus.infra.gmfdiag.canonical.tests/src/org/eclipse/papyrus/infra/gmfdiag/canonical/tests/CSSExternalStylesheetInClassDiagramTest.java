@@ -13,6 +13,7 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
+import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
@@ -21,6 +22,8 @@ import java.io.ByteArrayInputStream;
 
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.tests.AbstractCSSCanonicalTest.CSSResource;
+import org.eclipse.papyrus.junit.framework.runner.Scenario;
+import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Enumeration;
@@ -30,7 +33,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLFactory;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
 
 import com.google.common.base.Charsets;
 
@@ -41,6 +44,7 @@ import com.google.common.base.Charsets;
 @PluginResource("models/classdiagram_cssext.di")
 @CSSResource("models/classdiagram.css")
 @ActiveDiagram("default")
+@RunWith(ScenarioRunner.class)
 public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonicalTest {
 
 	private org.eclipse.uml2.uml.Class foo;
@@ -55,14 +59,10 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		super();
 	}
 
-	@Test
+	@Scenario({ "initial", "non-canonical", "canonical", "undo", "redo" })
 	public void editStylesheetRefresh() {
-		editStylesheetRefresh(true);
-	}
-
-	private EnumerationLiteral editStylesheetRefresh(boolean assertions) {
 		// The classes are canonical
-		if (assertions) {
+		if (verificationPoint()) {
 			requireViews(foo_ok, foo_doit, foo_nested);
 		}
 
@@ -72,7 +72,7 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		add(yesno, yesno_maybe, UMLPackage.Literals.ENUMERATION__OWNED_LITERAL);
 
 		// The enumeration is not yet canonically synchronized
-		if (assertions) {
+		if (verificationPoint()) {
 			assertNoViews(yesno_no, yesno_yes, yesno_maybe);
 		}
 
@@ -80,17 +80,9 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		refreshDiagram();
 
 		// The enumeration is now canonical after the non-transactional refresh
-		if (assertions) {
+		if (verificationPoint()) {
 			requireViews(yesno_no, yesno_yes, yesno_maybe);
 		}
-
-		return yesno_maybe;
-	}
-
-	@Test
-	public void editStylesheetRefresh_undo() {
-		EnumerationLiteral yesno_maybe = editStylesheetRefresh(false);
-		assertThat(yesno_maybe, notNullValue());
 
 		// Revert the stylesheet resource and refresh
 		revertStylesheet();
@@ -99,32 +91,27 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		// Undo creation of the new literal
 		undo();
 
-		assertDetached(yesno_maybe);
+		if (verificationPoint()) {
+			assertDetached(yesno_maybe);
 
-		// No view any longer
-		assertNoView(yesno_maybe);
+			// No view any longer
+			assertNoView(yesno_maybe);
 
-		// And only two enumeration literal views in the compartment
-		assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)).getChildren().size(), is(2));
-	}
+			// And only two enumeration literal views in the compartment
+			assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)).getChildren().size(), is(2));
+		}
 
-	@Test
-	public void editStylesheetRefresh_redo() {
-		EnumerationLiteral yesno_maybe = editStylesheetRefresh(false);
-		assertThat(yesno_maybe, notNullValue());
-
-		// Revert the stylesheet resource and refresh
-		revertStylesheet();
-		refreshDiagram();
-
-		// Undo and redo creation of the new literal
-		undo();
 		redo();
 
-		assertAttached(yesno_maybe);
+		if (verificationPoint()) {
+			assertAttached(yesno_maybe);
 
-		// No view any longer
-		assertNoView(yesno_maybe);
+			// The view does not come back because the enumeration is not canonical
+			assertNoView(yesno_maybe);
+
+			// And only two enumeration literal views in the compartment
+			assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)).getChildren().size(), is(2));
+		}
 	}
 
 	/**
@@ -132,10 +119,19 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 	 * after the canonical edit policy is deactivated doesn't depend on the same edit part managing the
 	 * view as before.
 	 */
-	@Test
+	@Scenario({ "initial", "close-reopen", "undo" })
 	public void editStylesheetRefresh_closeReopenDiagram_undo() {
-		EnumerationLiteral yesno_maybe = editStylesheetRefresh(false);
-		assertThat(yesno_maybe, notNullValue());
+		// Add an enumeration literal
+		EnumerationLiteral yesno_maybe = UMLFactory.eINSTANCE.createEnumerationLiteral();
+		yesno_maybe.setName("maybe");
+		add(yesno, yesno_maybe, UMLPackage.Literals.ENUMERATION__OWNED_LITERAL);
+
+		addEnumerationRule();
+		refreshDiagram();
+
+		if (verificationPoint()) {
+			assertThat(yesno_maybe, notNullValue());
+		}
 
 		// Revert the stylesheet resource and refresh
 		revertStylesheet();
@@ -145,19 +141,23 @@ public class CSSExternalStylesheetInClassDiagramTest extends AbstractCSSCanonica
 		String diagramName = editor.closeDiagram();
 		editor.openDiagram(diagramName);
 
-		// The view is still there, of course, but it would have a new edit part
-
+		if (verificationPoint()) {
+			// The view is still there, of course, but it would have a new edit part
+			requireEditPart(yesno_maybe);
+		}
 
 		// Undo creation of the new literal
 		undo();
 
-		assertDetached(yesno_maybe);
+		if (verificationPoint()) {
+			assertDetached(yesno_maybe);
 
-		// No view any longer
-		assertNoView(yesno_maybe);
+			// No view any longer
+			assertNoView(yesno_maybe);
 
-		// And only two enumeration literal views in the compartment
-		assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)).getChildren().size(), is(2));
+			// And only two enumeration literal views in the compartment
+			assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)).getChildren().size(), is(2));
+		}
 	}
 
 	//

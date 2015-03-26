@@ -13,6 +13,10 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
+import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
+
+import org.eclipse.papyrus.junit.framework.runner.Scenario;
+import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Association;
@@ -27,6 +31,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Usage;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Tests the manipulation of canonical state in various views in a class diagram that has not persisted
@@ -34,6 +39,7 @@ import org.junit.Test;
  */
 @PluginResource("models/classdiagram_canonical.di")
 @ActiveDiagram("default")
+@RunWith(ScenarioRunner.class)
 public class CanonicalStateInClassDiagramTest extends AbstractCanonicalTest {
 
 	private org.eclipse.uml2.uml.Class foo;
@@ -76,86 +82,119 @@ public class CanonicalStateInClassDiagramTest extends AbstractCanonicalTest {
 				types_foo, types_bar);
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void toggleCanonicalOn() {
 		setCanonical(true, foo, bar, super_, yesno, types);
 
-		// Nodes
-		requireViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes,
-				types_subfoo, types_date);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
 
-		// Edges
-		requireViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar, types_subfoo_foo);
+			// Edges
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar, types_subfoo_foo);
 
-		// Nested in canonical views
-		assertNoViews(types_subfoo_createdon, types_subfoo_date);
-	}
-
-	@Test
-	public void undoToggleCanonicalOn() {
-		setCanonical(true, foo, bar, super_, yesno, types);
+			// Nested in canonical views
+			assertNoViews(types_subfoo_createdon, types_subfoo_date);
+		}
 
 		undo();
 
-		// Nodes
-		assertNoViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes,
-				types_subfoo, types_date);
+		if (verificationPoint()) {
+			// Nodes
+			assertNoViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
 
-		// Edges
-		assertNoViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar);
-	}
+			// Edges
+			assertNoViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar);
+		}
 
-	@Test
-	public void redoToggleCanonicalOn() {
-		setCanonical(true, foo, bar, super_, yesno, types);
-
-		undo();
 		redo();
 
-		// Nodes
-		requireViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes,
-				types_subfoo, types_date);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
 
-		// Edges
-		requireViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar, types_subfoo_foo);
+			// Edges
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar, types_subfoo_foo);
 
-		// Nested in canonical views
-		assertNoViews(types_subfoo_createdon, types_subfoo_date);
+			// Nested in canonical views
+			assertNoViews(types_subfoo_createdon, types_subfoo_date);
+		}
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void toggleCanonicalOff() {
 		setCanonical(true, foo, bar, super_, yesno, types);
 		setCanonical(false, foo, bar, super_, yesno, types);
 
-		// Nodes are still there
-		requireViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes,
-				types_subfoo, types_date);
+		if (verificationPoint()) {
+			// Nodes are still there
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
 
-		// Edges are still there
-		requireViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar, types_subfoo_foo);
+			// Edges are still there
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar, types_subfoo_foo);
 
-		// Nested in canonical views never were there
-		assertNoViews(types_subfoo_createdon, types_subfoo_date);
+			// Nested in canonical views never were there
+			assertNoViews(types_subfoo_createdon, types_subfoo_date);
+		}
+
+		undo();
+
+		if (verificationPoint()) {
+			// Nodes are still there
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
+
+			// Edges are still there
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar, types_subfoo_foo);
+
+			// Nested in canonical views never were there
+			assertNoViews(types_subfoo_createdon, types_subfoo_date);
+		}
+
+		redo();
+
+		if (verificationPoint()) {
+			// Nodes are still there
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes,
+					types_subfoo, types_date);
+
+			// Edges are still there
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar, types_subfoo_foo);
+
+			// Nested in canonical views never were there
+			assertNoViews(types_subfoo_createdon, types_subfoo_date);
+		}
 	}
 
-	@Test
+	@Scenario({ "on", "off" })
 	public void toggleCanonicalInCanonicalNestedViews() {
 		setCanonical(true, types);
 
-		requireViews(types_subfoo, types_date);
+		if (verificationPoint()) {
+			requireViews(types_subfoo, types_date);
+		}
 
 		setCanonical(true, types_subfoo, types_date);
 
-		requireViews(types_subfoo_createdon, types_subfoo_foo);
+		if (verificationPoint()) {
+			requireViews(types_subfoo_createdon, types_subfoo_foo);
+		}
 	}
 
 	//

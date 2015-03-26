@@ -13,13 +13,17 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
+import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
+
+import org.eclipse.papyrus.junit.framework.runner.Scenario;
+import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Generalization;
 import org.eclipse.uml2.uml.Operation;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Tests various add/delete scenarios on canonical views in the diagram, with undo and redo.
@@ -28,6 +32,7 @@ import org.junit.Test;
  */
 @PluginResource("models/classdiagram_canonical.di")
 @ActiveDiagram("canonical")
+@RunWith(ScenarioRunner.class)
 public class CanonicalViewDeletionInClassDiagramTest extends AbstractCanonicalTest {
 	private org.eclipse.uml2.uml.Package root;
 
@@ -43,121 +48,95 @@ public class CanonicalViewDeletionInClassDiagramTest extends AbstractCanonicalTe
 		super();
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteOperationViewFromClass() {
 		delete(requireEditPart(foo_doit));
 
-		assertDetached(foo_doit);
-	}
-
-	@Test
-	public void deleteOperationViewFromClass_undo() {
-		delete(requireEditPart(foo_doit));
+		if (verificationPoint()) {
+			assertDetached(foo_doit);
+		}
 
 		undo();
 
-		requireEditPart(foo_doit);
-		assertAttached(foo_doit);
-	}
+		if (verificationPoint()) {
+			requireEditPart(foo_doit);
+			assertAttached(foo_doit);
+		}
 
-	@Test
-	public void deleteOperationViewFromClass_undo_redo() {
-		delete(requireEditPart(foo_doit));
-
-		undo();
 		redo();
 
-		assertDetached(foo_doit);
+		if (verificationPoint()) {
+			assertDetached(foo_doit);
+		}
 	}
 
 	@NeedsUIEvents
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteClassViewFromPackage() {
 		delete(requireEditPart(types_subfoo));
 
-		assertDetached(types_subfoo);
-	}
-
-	@NeedsUIEvents
-	@Test
-	public void deleteClassViewFromPackage_undo() {
-		delete(requireEditPart(types_subfoo));
+		if (verificationPoint()) {
+			assertDetached(types_subfoo);
+		}
 
 		undo();
 
-		requireEditPart(types_subfoo);
-		assertAttached(types_subfoo);
-	}
+		if (verificationPoint()) {
+			requireEditPart(types_subfoo);
+			assertAttached(types_subfoo);
+		}
 
-	@NeedsUIEvents
-	@Test
-	public void deleteClassViewFromPackage_undo_redo() {
-		delete(requireEditPart(types_subfoo));
-
-		undo();
 		redo();
 
-		assertDetached(types_subfoo);
+		if (verificationPoint()) {
+			assertDetached(types_subfoo);
+		}
 	}
 
 	@NeedsUIEvents
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteGeneralizationViewFromClass() {
 		delete(requireConnectionEditPart(types_subfoo_foo));
 
-		assertDetached(types_subfoo_foo);
-	}
-
-	@NeedsUIEvents
-	@Test
-	public void deleteGeneralizationViewFromClass_undo() {
-		delete(requireConnectionEditPart(types_subfoo_foo));
+		if (verificationPoint()) {
+			assertDetached(types_subfoo_foo);
+		}
 
 		undo();
 
-		requireConnectionEditPart(types_subfoo_foo);
-		assertAttached(types_subfoo_foo);
-	}
+		if (verificationPoint()) {
+			requireConnectionEditPart(types_subfoo_foo);
+			assertAttached(types_subfoo_foo);
+		}
 
-	@NeedsUIEvents
-	@Test
-	public void deleteGeneralizationViewFromClass_undo_redo() {
-		delete(requireConnectionEditPart(types_subfoo_foo));
-
-		undo();
 		redo();
 
-		assertDetached(types_subfoo_foo);
+		if (verificationPoint()) {
+			assertDetached(types_subfoo_foo);
+		}
 	}
 
 	@NeedsUIEvents
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteAssociationViewFromClass() {
 		delete(requireConnectionEditPart(foo_bar));
 
-		assertDetached(foo_bar);
-	}
-
-	@NeedsUIEvents
-	@Test
-	public void deleteAssociationViewFromClass_undo() {
-		delete(requireConnectionEditPart(foo_bar));
+		if (verificationPoint()) {
+			assertDetached(foo_bar);
+		}
 
 		undo();
 
-		requireConnectionEditPart(foo_bar);
-		assertAttached(foo_bar);
-	}
+		if (verificationPoint()) {
+			requireConnectionEditPart(foo_bar);
+			assertAttached(foo_bar);
+		}
 
-	@NeedsUIEvents
-	@Test
-	public void deleteAssociationViewFromClass_undo_redo() {
-		delete(requireConnectionEditPart(foo_bar));
-
-		undo();
 		redo();
 
-		assertDetached(foo_bar);
+		if (verificationPoint()) {
+			assertDetached(foo_bar);
+		}
 	}
 
 

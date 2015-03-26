@@ -13,11 +13,14 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
+import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
+import org.eclipse.papyrus.junit.framework.runner.Scenario;
+import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Association;
@@ -29,7 +32,7 @@ import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Before;
-import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Regression tests for add/delete scenarios in the diagram using the palette tools that operate on notation
@@ -37,6 +40,7 @@ import org.junit.Test;
  */
 @PluginResource("models/classdiagram_canonical.di")
 @ActiveDiagram("canonical")
+@RunWith(ScenarioRunner.class)
 public class EditingInClassDiagramRegressionTest extends AbstractCanonicalTest {
 	private org.eclipse.uml2.uml.Package root;
 
@@ -54,118 +58,98 @@ public class EditingInClassDiagramRegressionTest extends AbstractCanonicalTest {
 		super();
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void createPropertyInClass() {
 		Property property = createWithView(bar, UMLPackage.Literals.PROPERTY, Property.class);
-
 		EditPart editPart = requireEditPart(property);
-		assertThat(getClassAttributeCompartment(requireEditPart(bar)), is(editPart.getParent()));
-	}
 
-	@Test
-	public void createPropertyInClass_undo() {
-		Property property = createWithView(bar, UMLPackage.Literals.PROPERTY, Property.class);
+		if (verificationPoint()) {
+			assertThat(getClassAttributeCompartment(requireEditPart(bar)), is(editPart.getParent()));
+		}
 
 		undo();
 
-		assertNoView(property);
-	}
+		if (verificationPoint()) {
+			assertNoView(property);
+		}
 
-	@Test
-	public void createPropertyInClass_undo_redo() {
-		Property property = createWithView(bar, UMLPackage.Literals.PROPERTY, Property.class);
-
-		undo();
 		redo();
 
-		EditPart editPart = requireEditPart(property);
-		assertThat(getClassAttributeCompartment(requireEditPart(bar)), is(editPart.getParent()));
+		if (verificationPoint()) {
+			editPart = requireEditPart(property);
+			assertThat(getClassAttributeCompartment(requireEditPart(bar)), is(editPart.getParent()));
+		}
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteLiteralInEnumeration() {
 		removeWithView(yesno_no);
 
-		assertNoView(yesno_no);
-	}
-
-	@Test
-	public void deleteLiteralInEnumeration_undo() {
-		removeWithView(yesno_no);
+		if (verificationPoint()) {
+			assertNoView(yesno_no);
+		}
 
 		undo();
 
-		EditPart editPart = requireEditPart(yesno_no);
-		assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)), is(editPart.getParent()));
-	}
+		if (verificationPoint()) {
+			EditPart editPart = requireEditPart(yesno_no);
+			assertThat(getEnumerationLiteralCompartment(requireEditPart(yesno)), is(editPart.getParent()));
+		}
 
-	@Test
-	public void deleteLiteralInEnumeration_undo_redo() {
-		removeWithView(yesno_no);
-
-		undo();
 		redo();
 
-		assertNoView(yesno_no);
+		if (verificationPoint()) {
+			assertNoView(yesno_no);
+		}
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void createInterfaceInPackage() {
 		Interface interface_ = createWithView(types, UMLPackage.Literals.INTERFACE, Interface.class);
-
 		EditPart editPart = requireEditPart(interface_);
-		assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
-	}
 
-	@Test
-	public void createInterfaceInPackage_undo() {
-		Interface interface_ = createWithView(types, UMLPackage.Literals.INTERFACE, Interface.class);
+		if (verificationPoint()) {
+			assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
+		}
 
 		undo();
 
-		assertNoView(interface_);
-	}
+		if (verificationPoint()) {
+			assertNoView(interface_);
+		}
 
-	@Test
-	public void createInterfaceInPackage_undo_redo() {
-		Interface interface_ = createWithView(types, UMLPackage.Literals.INTERFACE, Interface.class);
-
-		undo();
 		redo();
 
-		EditPart editPart = requireEditPart(interface_);
-		assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
+		if (verificationPoint()) {
+			editPart = requireEditPart(interface_);
+			assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
+		}
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteDataTypeFromPackage() {
 		removeWithView(types_date);
 
-		assertNoView(types_date);
-	}
-
-	@Test
-	public void deleteDataTypeFromPackage_undo() {
-		removeWithView(types_date);
+		if (verificationPoint()) {
+			assertNoView(types_date);
+		}
 
 		undo();
 
-		EditPart editPart = requireEditPart(types_date);
-		assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
-	}
+		if (verificationPoint()) {
+			EditPart editPart = requireEditPart(types_date);
+			assertThat(getPackageContentsCompartment(requireEditPart(types)), is(editPart.getParent()));
+		}
 
-	@Test
-	public void deleteDataTypeFromPackage_undo_redo() {
-		removeWithView(types_date);
-
-		undo();
 		redo();
 
-		assertNoView(types_date);
+		if (verificationPoint()) {
+			assertNoView(types_date);
+		}
 	}
 
 	@NeedsUIEvents
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void createDependencyInClass() {
 		// Ensure canonical connections
 		setCanonical(true, requireEditPart(root));
@@ -173,77 +157,49 @@ public class EditingInClassDiagramRegressionTest extends AbstractCanonicalTest {
 
 		Dependency dependency = createDependencyWithView(bar, types_date);
 
-		ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(dependency);
-		assertThat(editPart.getSource(), is((EditPart) requireEditPart(bar)));
-		assertThat(editPart.getTarget(), is((EditPart) requireEditPart(types_date)));
-	}
-
-	@NeedsUIEvents
-	@Test
-	public void createDependencyInClass_undo() {
-		// Ensure canonical connections
-		setCanonical(true, requireEditPart(root));
-		setCanonical(true, requireEditPart(types_date));
-
-		Dependency dependency = createDependencyWithView(bar, types_date);
+		if (verificationPoint()) {
+			ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(dependency);
+			assertThat(editPart.getSource(), is((EditPart) requireEditPart(bar)));
+			assertThat(editPart.getTarget(), is((EditPart) requireEditPart(types_date)));
+		}
 
 		undo();
 
-		assertNoView(dependency);
-	}
+		if (verificationPoint()) {
+			assertNoView(dependency);
+		}
 
-	@NeedsUIEvents
-	@Test
-	public void createDependencyInClass_undo_redo() {
-		// Ensure canonical connections
-		setCanonical(true, requireEditPart(root));
-		setCanonical(true, requireEditPart(types_date));
-
-		Dependency dependency = createDependencyWithView(bar, types_date);
-
-		undo();
 		redo();
 
-		ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(dependency);
-		assertThat(editPart.getSource(), is((EditPart) requireEditPart(bar)));
-		assertThat(editPart.getTarget(), is((EditPart) requireEditPart(types_date)));
+		if (verificationPoint()) {
+			ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(dependency);
+			assertThat(editPart.getSource(), is((EditPart) requireEditPart(bar)));
+			assertThat(editPart.getTarget(), is((EditPart) requireEditPart(types_date)));
+		}
 	}
 
 	@NeedsUIEvents
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void deleteAssociationFromClass() {
 		removeWithView(foo_bar);
 
-		assertNoView(foo_bar);
-	}
-
-	@NeedsUIEvents
-	@Test
-	public void deleteAssociationFromClass_undo() {
-		// Ensure canonical connections
-		setCanonical(true, requireEditPart(root));
-
-		removeWithView(foo_bar);
+		if (verificationPoint()) {
+			assertNoView(foo_bar);
+		}
 
 		undo();
 
-		ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(foo_bar);
-		assertThat(editPart.getSource(), is((EditPart) requireEditPart(foo)));
-		assertThat(editPart.getTarget(), is((EditPart) requireEditPart(bar)));
-	}
+		if (verificationPoint()) {
+			ConnectionEditPart editPart = (ConnectionEditPart) requireConnectionEditPart(foo_bar);
+			assertThat(editPart.getSource(), is((EditPart) requireEditPart(foo)));
+			assertThat(editPart.getTarget(), is((EditPart) requireEditPart(bar)));
+		}
 
-	@NeedsUIEvents
-	@Test
-	public void deleteAssociationFromClass_undo_redo() {
-		// Ensure canonical connections
-		setCanonical(true, requireEditPart(root));
-
-		removeWithView(foo_bar);
-
-		undo();
 		redo();
 
-		assertNoView(foo_bar);
+		if (verificationPoint()) {
+			assertNoView(foo_bar);
+		}
 	}
 
 

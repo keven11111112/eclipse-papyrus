@@ -13,6 +13,10 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.canonical.tests;
 
+import static org.eclipse.papyrus.junit.framework.runner.ScenarioRunner.verificationPoint;
+
+import org.eclipse.papyrus.junit.framework.runner.Scenario;
+import org.eclipse.papyrus.junit.framework.runner.ScenarioRunner;
 import org.eclipse.papyrus.junit.utils.rules.ActiveDiagram;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.uml2.uml.Association;
@@ -26,6 +30,7 @@ import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Usage;
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
 
 /**
  * Tests the manipulation of canonical state in various views by CSS in a class diagram
@@ -33,6 +38,7 @@ import org.junit.Test;
  */
 @PluginResource("models/classdiagram_css.di")
 @ActiveDiagram("default")
+@RunWith(ScenarioRunner.class)
 public class CSSCanonicalStateInClassDiagramTest extends AbstractCSSCanonicalTest {
 
 	private org.eclipse.uml2.uml.Class foo;
@@ -74,98 +80,86 @@ public class CSSCanonicalStateInClassDiagramTest extends AbstractCSSCanonicalTes
 				types_foo, types_bar);
 	}
 
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void addStylesheet() {
 		referenceEmbeddedStylesheet("canonical_styles");
 
-		// Nodes
-		requireViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes);
 
-		// Edges
-		requireViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar);
+			// Edges
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar);
 
-		// These require an explicit style on the package
-		assertNoViews(types_subfoo_createdon, types_subfoo_foo);
-	}
-
-	@Test
-	public void addStylesheet_undo() {
-		referenceEmbeddedStylesheet("canonical_styles");
+			// These require an explicit style on the package
+			assertNoViews(types_subfoo_createdon, types_subfoo_foo);
+		}
 
 		undo();
 
-		// Nodes
-		assertNoViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes);
+		if (verificationPoint()) {
+			// Nodes
+			assertNoViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes);
 
-		// Edges
-		assertNoViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar);
-	}
+			// Edges
+			assertNoViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar);
+		}
 
-	@Test
-	public void addStylesheet_redo() {
-		referenceEmbeddedStylesheet("canonical_styles");
-
-		undo();
 		redo();
 
-		// Nodes
-		requireViews(foo_ok, foo_doit, foo_nested,
-				yesno_no, yesno_yes);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(foo_ok, foo_doit, foo_nested,
+					yesno_no, yesno_yes);
 
-		// Edges
-		requireViews(foo_bar, bar_super, super_yesno,
-				types_foo, types_bar);
+			// Edges
+			requireViews(foo_bar, bar_super, super_yesno,
+					types_foo, types_bar);
 
-		// These require an explicit style on the package
-		assertNoViews(types_subfoo_createdon, types_subfoo_foo);
+			// These require an explicit style on the package
+			assertNoViews(types_subfoo_createdon, types_subfoo_foo);
+		}
 	}
 
 	@StylesheetRef("canonical_styles")
-	@Test
+	@Scenario({ "execute", "undo", "redo" })
 	public void addStyleClass() {
 		addStyleClass(requireView(types), "synch");
 
-		// Nodes
-		requireViews(types_subfoo, types_date,
-				types_subfoo_createdon);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(types_subfoo, types_date,
+					types_subfoo_createdon);
 
-		// Edges
-		requireView(types_subfoo_foo);
-	}
-
-	@StylesheetRef("canonical_styles")
-	@Test
-	public void addStyleClass_undo() {
-		addStyleClass(requireView(types), "synch");
+			// Edges
+			requireView(types_subfoo_foo);
+		}
 
 		undo();
 
-		// Nodes
-		assertNoViews(types_subfoo, types_date,
-				types_subfoo_createdon);
+		if (verificationPoint()) {
+			// Nodes
+			assertNoViews(types_subfoo, types_date,
+					types_subfoo_createdon);
 
-		// Edges
-		assertNoView(types_subfoo_foo);
-	}
+			// Edges
+			assertNoView(types_subfoo_foo);
+		}
 
-	@StylesheetRef("canonical_styles")
-	@Test
-	public void addStyleClass_redo() {
-		addStyleClass(requireView(types), "synch");
-
-		undo();
 		redo();
 
-		// Nodes
-		requireViews(types_subfoo, types_date,
-				types_subfoo_createdon);
+		if (verificationPoint()) {
+			// Nodes
+			requireViews(types_subfoo, types_date,
+					types_subfoo_createdon);
 
-		// Edges
-		requireView(types_subfoo_foo);
+			// Edges
+			requireView(types_subfoo_foo);
+		}
 	}
 
 	@StylesheetRef("canonical_styles")
