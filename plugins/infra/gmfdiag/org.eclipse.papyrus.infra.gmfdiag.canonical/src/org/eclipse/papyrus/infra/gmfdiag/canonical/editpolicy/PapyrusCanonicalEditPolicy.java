@@ -318,7 +318,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		List<EObject> result = getSemanticChildrenList(ChildrenKind.NODE);
 
 		if (isManageConnections()) {
-			result = concat(result, getSemanticChildrenList());
+			result = concat(result, getSemanticChildrenList(ChildrenKind.CONNECTION));
 		}
 
 		return result;
@@ -546,7 +546,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 
 			CompoundCommand compoundCommand = new CompoundCommand();
 			for (ViewDescriptor viewDescriptor : descriptors) {
-				EObject element = (EObject) viewDescriptor.getElementAdapter().getAdapter(EObject.class);
+				EObject element = viewDescriptor.getElementAdapter().getAdapter(EObject.class);
 
 				if (element != null) {
 					List<EObject> elementToDrop = Collections.singletonList(element);
@@ -665,7 +665,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 			@Override
 			protected void postProcessView(Object viewish, List<IAdaptable> accumulator) {
 				if (viewish instanceof IAdaptable) {
-					View view = (View) ((IAdaptable) viewish).getAdapter(View.class);
+					View view = ((IAdaptable) viewish).getAdapter(View.class);
 					if (view != null) {
 						// Arrange the parent of a label, not the label
 						if (view instanceof DecorationNode) {
