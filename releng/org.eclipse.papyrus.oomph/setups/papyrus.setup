@@ -249,7 +249,7 @@
           </annotation>
         </repository>
         <repository
-            url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201503251708">
+            url="http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201503261653">
           <annotation
               source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
             <detail

@@ -132,7 +132,7 @@
 			<id>gmp-gmf-runtime</id>
 			<layout>p2</layout>
 			<!-- updateFrom("GMF Runtime",0) -->
-			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201503251708</url>
+			<url>http://download.eclipse.org/modeling/gmp/gmf-runtime/updates/milestones/S201503261653</url>
 		</repository>
 		<repository>
 			<id>gmf-tooling</id>
