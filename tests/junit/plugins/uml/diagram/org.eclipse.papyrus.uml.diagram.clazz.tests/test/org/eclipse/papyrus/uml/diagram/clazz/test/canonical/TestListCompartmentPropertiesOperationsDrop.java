@@ -183,6 +183,66 @@ public class TestListCompartmentPropertiesOperationsDrop extends AbstractPapyrus
 	public void testOperationInPrimitiveTypeDropFromModelExplorer() throws Exception {
 		getHelper().checkDropPropertyFromModelExplorer2Canvas(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID, OperationForPrimitiveTypeEditPart.VISUAL_ID);
 	}
+	
+	@FailingTest
+	@Test
+	public void testDropClass2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(ClassEditPart.VISUAL_ID, ClassAttributeCompartmentEditPart.VISUAL_ID, ClassEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropClass2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(ClassEditPart.VISUAL_ID, ClassOperationCompartmentEditPart.VISUAL_ID, ClassEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropInterface2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(InterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropInterface2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(InterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, InterfaceEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropComponent2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(ComponentEditPart.VISUAL_ID, ComponentAttributeCompartmentEditPart.VISUAL_ID, ComponentEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropComponent2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(ComponentEditPart.VISUAL_ID, ComponentOperationCompartmentEditPart.VISUAL_ID, ComponentEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropDataType2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(DataTypeEditPart.VISUAL_ID, DataTypeAttributeCompartmentEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropDataType2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(DataTypeEditPart.VISUAL_ID, DataTypeOperationCompartmentEditPart.VISUAL_ID, DataTypeEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropSignal2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(SignalEditPart.VISUAL_ID, SignalAttributeCompartmentEditPart.VISUAL_ID, SignalEditPart.VISUAL_ID);
+	}
+	
+	@FailingTest
+	@Test
+	public void testDropPrimitiveType2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(PrimitiveTypeEditPart.VISUAL_ID, PrimitiveTypeOperationCompartmentEditPart.VISUAL_ID, PrimitiveTypeEditPart.VISUAL_ID);
+	}
 
 	private TestListCompartmentHelper getHelper() {
 		if (myHelper == null) {
