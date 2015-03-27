@@ -349,7 +349,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 					if (stereotype != null && stereotypesPropertiesToDisplay.contains(stereotype.getQualifiedName())) {
 						setVisivility(currentNode, displayInCompartment);
 					} else {
-						setVisivility(currentNode, false);
+						setVisivility(currentNode, currentNode.isVisible());
 					}
 				}
 			}
