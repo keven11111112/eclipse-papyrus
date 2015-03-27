@@ -20,9 +20,11 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateViewForKindOperation;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
  * This abstract view provider retrieve the view type from the graphical type
@@ -59,8 +61,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateViewForKindOperation op) {
-		// This method should generally not be called (https://bugs.eclipse.org/bugs/show_bug.cgi?id=346739).
-		if ((diagramType == null) || (!diagramType.equals(op.getContainerView().getDiagram().getType()))) {
+		if (! isRelevantDiagram(op.getContainerView().getDiagram())) {
 			return false;
 		}
 		// if(op.getViewKind() == Node.class) {
@@ -80,7 +81,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateEdgeViewOperation operation) {
-		if ((diagramType == null) || (!diagramType.equals(operation.getContainerView().getDiagram().getType()))) {
+		if (! isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
 		String graphicalType = getEdgeGraphicalType(operation.getSemanticAdapter(), operation.getContainerView(), operation.getSemanticHint());
@@ -92,14 +93,14 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 	 */
 	@Override
 	protected boolean provides(CreateNodeViewOperation operation) {
-		if ((diagramType == null) || (!diagramType.equals(operation.getContainerView().getDiagram().getType()))) {
+		if (! isRelevantDiagram(operation.getContainerView().getDiagram())) {
 			return false;
 		}
 		String graphicalType = getNodeGraphicalType(operation.getSemanticAdapter(), operation.getContainerView(), operation.getSemanticHint());
 		return (getNodeViewClass(operation.getSemanticAdapter(), operation.getContainerView(), graphicalType) != null);
 	}
 
-	private String getNodeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
+	protected String getNodeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		String graphicalType = null;
 		// Some ViewDescriptor constructors initialize unspecified semanticHint with ""
 		if ((semanticHint != null) && (!"".equals(semanticHint))) {
@@ -117,7 +118,7 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 		return graphicalType;
 	}
 
-	private String getEdgeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
+	protected String getEdgeGraphicalType(IAdaptable semanticAdapter, View containerView, String semanticHint) {
 		String graphicalType = null;
 		// Some ViewDescriptor constructors initialize unspecified semanticHint with ""
 		if ((semanticHint != null) && (!"".equals(semanticHint))) {
@@ -133,5 +134,19 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 			}
 		}
 		return graphicalType;
+	}
+	protected boolean isRelevantDiagram (Diagram diagram){
+		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if(viewPrototype!=null){
+			if(diagramType.equals(viewPrototype.getLabel())){
+				return true;
+			}
+			return false;
+			
+		}
+		if ((diagramType != null) && (diagramType.equals(diagram.getType()))) {
+			return true;
+		}
+		return false;
 	}
 }

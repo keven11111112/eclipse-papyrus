@@ -37,7 +37,7 @@
         xmi:id="_LoKXBcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3027</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -55,7 +55,7 @@
         xmi:id="_LoKXCMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3043</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -73,7 +73,7 @@
         xmi:id="_LoKXC8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3044</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -91,7 +91,7 @@
         xmi:id="_LoKXDsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ValueType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3045</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -109,7 +109,7 @@
         xmi:id="_LoKXEcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -127,7 +127,7 @@
         xmi:id="_LoKXFMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -145,7 +145,7 @@
         xmi:id="_LoKXF8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -163,7 +163,7 @@
         xmi:id="_LoKXGsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -181,7 +181,7 @@
         xmi:id="_LoKXHcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -199,7 +199,7 @@
         xmi:id="_LoKXIMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -217,7 +217,7 @@
         xmi:id="_LoKXI8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DistributedProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -235,7 +235,7 @@
         xmi:id="_LoKXJsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -253,7 +253,7 @@
         xmi:id="_LoKXKcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -271,7 +271,7 @@
         xmi:id="_LoKXLMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -289,7 +289,7 @@
         xmi:id="_LoKXL8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -307,7 +307,7 @@
         xmi:id="_LoKXMsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -325,7 +325,7 @@
         xmi:id="_LoKXNcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConnectorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -343,7 +343,7 @@
         xmi:id="_LoKXOMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -361,7 +361,7 @@
         xmi:id="_LoKXO8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -379,7 +379,7 @@
         xmi:id="_LoKXPsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -397,7 +397,7 @@
         xmi:id="_LoKXQcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -415,7 +415,7 @@
         xmi:id="_LoKXRMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ParticipantProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -433,11 +433,28 @@
         xmi:id="_LoKXR8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_LoKXSMJQEeSX9MoKMBV5Gw">
+      <stereotypesQualifiedNames>SysML::Blocks::Block</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_n9BYgNFeEeSxf_hKmhrahA"
+      name="Block (NestedBlock_Classifier)"
+      identifier="org.eclipse.papyrus.sysML.Block_NestedBlock_Classifier"
+      hint="NestedBlock_Classifier">
+    <iconEntry
+        xmi:id="_n9BYgdFeEeSxf_hKmhrahA"
+        iconPath="/icons/full/obj16/Class.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_n9BYgtFeEeSxf_hKmhrahA">
       <stereotypesQualifiedNames>SysML::Blocks::Block</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
@@ -451,7 +468,7 @@
         xmi:id="_LoKXSsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -469,7 +486,7 @@
         xmi:id="_LoKXTcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -487,7 +504,7 @@
         xmi:id="_LoKXUMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -505,7 +522,7 @@
         xmi:id="_LoKXU8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Block</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -523,7 +540,7 @@
         xmi:id="_LoKXVsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -541,7 +558,7 @@
         xmi:id="_LoKXWcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -559,7 +576,7 @@
         xmi:id="_LoKXXMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -577,7 +594,7 @@
         xmi:id="_LoKXX8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -595,7 +612,7 @@
         xmi:id="_LoKXYsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -613,7 +630,7 @@
         xmi:id="_LoKXZcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.EndPathMultiplicity</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -631,7 +648,7 @@
         xmi:id="_LoKXaMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -649,7 +666,7 @@
         xmi:id="_LoKXa8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -667,7 +684,7 @@
         xmi:id="_LoKXbsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -685,7 +702,7 @@
         xmi:id="_LoKXccJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -703,7 +720,7 @@
         xmi:id="_LoKXdMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -721,7 +738,7 @@
         xmi:id="_LoKXd8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.BoundReference</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -739,7 +756,7 @@
         xmi:id="_LoKXesJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -757,7 +774,7 @@
         xmi:id="_LoKXfcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -775,7 +792,7 @@
         xmi:id="_LoKXgMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -793,7 +810,7 @@
         xmi:id="_LoKXg8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -811,7 +828,7 @@
         xmi:id="_LoKXhsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -829,7 +846,7 @@
         xmi:id="_LoKXicJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.AdjunctProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -847,7 +864,7 @@
         xmi:id="_LoKXjMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -865,7 +882,7 @@
         xmi:id="_LoKXj8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -883,7 +900,7 @@
         xmi:id="_LoKXksJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -901,7 +918,7 @@
         xmi:id="_LoKXlcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -919,7 +936,7 @@
         xmi:id="_LoKXmMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -937,7 +954,7 @@
         xmi:id="_LoKXm8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -955,7 +972,7 @@
         xmi:id="_LoKXnsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/InformationFlow.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ItemFlow</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ItemFlow</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InformationFlow_4026</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -973,7 +990,7 @@
         xmi:id="_LoKXocJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -991,7 +1008,7 @@
         xmi:id="_LoKXpMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1009,7 +1026,7 @@
         xmi:id="_LoKXp8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1027,7 +1044,7 @@
         xmi:id="_LoKXqsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1045,7 +1062,7 @@
         xmi:id="_LoKXrcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1063,7 +1080,7 @@
         xmi:id="_LoKXsMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowProperty</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1081,7 +1098,7 @@
         xmi:id="_LoKXs8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1099,7 +1116,7 @@
         xmi:id="_LoKXtsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1117,7 +1134,7 @@
         xmi:id="_LoKXucJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1135,7 +1152,7 @@
         xmi:id="_LoKXvMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1153,7 +1170,7 @@
         xmi:id="_LoKXv8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.InterfaceBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1171,7 +1188,7 @@
         xmi:id="_LoKXwsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1189,7 +1206,7 @@
         xmi:id="_LoKXxcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1207,7 +1224,7 @@
         xmi:id="_LoKXyMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1225,7 +1242,7 @@
         xmi:id="_LoKXy8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1243,7 +1260,7 @@
         xmi:id="_LoKXzsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1261,7 +1278,7 @@
         xmi:id="_LoKX0cJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Rationale</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Rationale</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_2012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1279,7 +1296,7 @@
         xmi:id="_LoKX1MJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Rationale</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Rationale</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_3028</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1297,7 +1314,7 @@
         xmi:id="_LoKX18JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Package.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Package_2007</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1315,7 +1332,7 @@
         xmi:id="_LoKX2sJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Package.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Package_3009</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1333,7 +1350,7 @@
         xmi:id="_LoKX3cJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Package.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Package</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Package_1000</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1351,7 +1368,7 @@
         xmi:id="_LoKX4MJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1369,7 +1386,7 @@
         xmi:id="_LoKX48JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1387,7 +1404,7 @@
         xmi:id="_LoKX5sJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1405,7 +1422,7 @@
         xmi:id="_LoKX6cJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1423,7 +1440,7 @@
         xmi:id="_LoKX7MJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.View_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1441,7 +1458,7 @@
         xmi:id="_LoKX78JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1459,7 +1476,7 @@
         xmi:id="_LoKX8sJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1477,7 +1494,7 @@
         xmi:id="_LoKX9cJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Dependency</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1495,7 +1512,7 @@
         xmi:id="_LoKX-MJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Generalization.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Generalization</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Conform_Generalization</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Generalization_4002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1513,7 +1530,7 @@
         xmi:id="_LoKX-8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Problem</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Problem</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_2012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1531,7 +1548,7 @@
         xmi:id="_LoKX_sJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Problem</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Problem</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_3028</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1549,7 +1566,7 @@
         xmi:id="_LoKYAcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1567,7 +1584,7 @@
         xmi:id="_LoKYBMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1585,7 +1602,7 @@
         xmi:id="_LoKYB8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1603,7 +1620,7 @@
         xmi:id="_LoKYCsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1621,7 +1638,7 @@
         xmi:id="_LoKYDcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ViewPoint</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1639,7 +1656,7 @@
         xmi:id="_LoKYEMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1657,7 +1674,7 @@
         xmi:id="_LoKYE8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1675,7 +1692,7 @@
         xmi:id="_LoKYFsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Dependency.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Expose</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1693,7 +1710,7 @@
         xmi:id="_LoKYGcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ElementGroup</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ElementGroup</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_2012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1711,7 +1728,7 @@
         xmi:id="_LoKYHMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Comment.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ElementGroup</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ElementGroup</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Comment_3028</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1729,7 +1746,7 @@
         xmi:id="_LoKYH8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1747,7 +1764,7 @@
         xmi:id="_LoKYIsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1765,7 +1782,7 @@
         xmi:id="_LoKYJcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1783,7 +1800,7 @@
         xmi:id="_LoKYKMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1801,7 +1818,7 @@
         xmi:id="_LoKYK8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ConstraintBlock</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1819,7 +1836,7 @@
         xmi:id="_LoKYLsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Allocate_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Allocate_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1837,7 +1854,7 @@
         xmi:id="_LoKYMcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1855,7 +1872,7 @@
         xmi:id="_LoKYNMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Copy_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Copy_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1873,7 +1890,7 @@
         xmi:id="_LoKYN8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Satisfy_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Satisfy_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1891,7 +1908,7 @@
         xmi:id="_LoKYOsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1909,7 +1926,7 @@
         xmi:id="_LoKYPcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1927,7 +1944,7 @@
         xmi:id="_LoKYQMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1945,7 +1962,7 @@
         xmi:id="_LoKYQ8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1963,7 +1980,7 @@
         xmi:id="_LoKYRsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.TestCase_Operation</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1981,7 +1998,7 @@
         xmi:id="_LoKYScJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -1999,7 +2016,7 @@
         xmi:id="_LoKYTMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2017,7 +2034,7 @@
         xmi:id="_LoKYT8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2035,7 +2052,7 @@
         xmi:id="_LoKYUsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2053,7 +2070,7 @@
         xmi:id="_LoKYVcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Requirement</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2071,7 +2088,7 @@
         xmi:id="_LoKYWMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Verify_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Verify_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2089,7 +2106,7 @@
         xmi:id="_LoKYW8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Trace_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Trace_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2107,7 +2124,7 @@
         xmi:id="_LoKYXsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Abstraction.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Refine_Abstraction</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Refine_Abstraction</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Abstraction_4006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2125,7 +2142,7 @@
         xmi:id="_LoKYYcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Interface_2004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2143,7 +2160,7 @@
         xmi:id="_LoKYZMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Interface_3023</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2161,7 +2178,7 @@
         xmi:id="_LoKYZ8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Interface_3036</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2179,7 +2196,7 @@
         xmi:id="_LoKYasJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Interface_3037</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2197,7 +2214,7 @@
         xmi:id="_LoKYbcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Interface.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Interface_3038</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2215,7 +2232,7 @@
         xmi:id="_LoKYcMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/NamedElement.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Allocated</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Allocated</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2097</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2233,7 +2250,7 @@
         xmi:id="_LoKYc8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/NamedElement.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.RequirementRelated</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.RequirementRelated</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.NamedElement_2097</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2251,7 +2268,7 @@
         xmi:id="_LoKYdsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2269,7 +2286,7 @@
         xmi:id="_LoKYecJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2287,7 +2304,7 @@
         xmi:id="_LoKYfMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2305,7 +2322,7 @@
         xmi:id="_LoKYf8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2323,7 +2340,7 @@
         xmi:id="_LoKYgsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2341,7 +2358,7 @@
         xmi:id="_LoKYhcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Property.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2359,7 +2376,7 @@
         xmi:id="_LoKYiMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/InstanceSpecification.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecificationLink_4021</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2377,7 +2394,7 @@
         xmi:id="_LoKYi8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/InstanceSpecification.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2395,7 +2412,7 @@
         xmi:id="_LoKYjsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/InstanceSpecification.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2413,7 +2430,7 @@
         xmi:id="_LoKYkcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2431,7 +2448,7 @@
         xmi:id="_LoKYlMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2449,7 +2466,7 @@
         xmi:id="_LoKYl8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2467,7 +2484,7 @@
         xmi:id="_LoKYmsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2485,7 +2502,7 @@
         xmi:id="_LoKYncJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Class.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2503,7 +2520,7 @@
         xmi:id="_LoKYoMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Association.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-         <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_2015</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2521,7 +2538,7 @@
         xmi:id="_LoKYo8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Association.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2539,7 +2556,7 @@
         xmi:id="_LoKYpsJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Association.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4019</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2557,7 +2574,7 @@
         xmi:id="_LoKYqcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/Generalization.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Generalization</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Generalization</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Generalization_4002</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2575,7 +2592,7 @@
         xmi:id="_LoKYrMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_2010</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2593,7 +2610,7 @@
         xmi:id="_LoKYr8JQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3027</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2611,7 +2628,7 @@
         xmi:id="_LoKYssJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3043</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2629,7 +2646,7 @@
         xmi:id="_LoKYtcJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3044</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -2647,12 +2664,165 @@
         xmi:id="_LoKYuMJQEeSX9MoKMBV5Gw"
         iconPath="/icons/full/obj16/DataType.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-        <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3045</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_LoKYucJQEeSX9MoKMBV5Gw">
       <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_tjVDYM1xEeSsRbN4ihgqDg"
+      name="FlowPort (FlowPort_Label)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_Label"
+      hint="FlowPort_Label">
+    <iconEntry
+        xmi:id="_tjVDYc1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_tjVDYs1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_39Sg0M1xEeSsRbN4ihgqDg"
+      name="FlowPort (3005)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_3005"
+      hint="3005">
+    <iconEntry
+        xmi:id="_39Sg0c1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_39Sg0s1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_42BfoM1xEeSsRbN4ihgqDg"
+      name="FlowPort (3006)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_3006"
+      hint="3006">
+    <iconEntry
+        xmi:id="_42Bfoc1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_42Bfos1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_5h35AM1xEeSsRbN4ihgqDg"
+      name="FlowPort (3012)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_3012"
+      hint="3012">
+    <iconEntry
+        xmi:id="_5h35Ac1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_5h35As1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_8e8HEM1xEeSsRbN4ihgqDg"
+      name="FlowPort (3018)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_3018"
+      hint="3018">
+    <iconEntry
+        xmi:id="_8e8HEc1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_8e8HEs1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_9Ecn4M1xEeSsRbN4ihgqDg"
+      name="FlowPort (3041)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FlowPort_3041"
+      hint="3041">
+    <iconEntry
+        xmi:id="_9Ecn4c1xEeSsRbN4ihgqDg"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FlowPort</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_9Ecn4s1xEeSsRbN4ihgqDg"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_R01uQNH_EeSxf_hKmhrahA"
+      name="ControlOperator (Operation_BorderItem)"
+      identifier="org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"
+      hint="Operation_BorderItem">
+    <iconEntry
+        xmi:id="_R01uQdH_EeSxf_hKmhrahA"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ControlOperator_Operation</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_R01uQtH_EeSxf_hKmhrahA">
+      <stereotypesQualifiedNames>SysML::Activities::ControlOperator</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_TwAN8NPBEeSRNI7img_HuA"
+      name="Verify_Link"
+      identifier="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"
+      hint="Verify_Link">
+    <iconEntry
+        xmi:id="_YjE7YNPBEeSRNI7img_HuA"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Verify_Abstraction</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_YjE7YdPBEeSRNI7img_HuA">
+      <stereotypesQualifiedNames>SysML::Activities::ControlOperator</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

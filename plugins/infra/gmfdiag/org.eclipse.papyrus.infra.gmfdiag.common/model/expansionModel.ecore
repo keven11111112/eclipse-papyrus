@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="expansionmodel" nsURI="http:///expansionmodel.ecore" nsPrefix="expansionmodel">
+  <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <details key="originalName" value="ExpansionModel"/>
+  </eAnnotations>
+  <eClassifiers xsi:type="ecore:EClass" name="Representation">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editPartQualifiedName"
+        ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
+        eType="#//RepresentationKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="graphicalElementType" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" ordered="false"
+        upperBound="-1" eType="#//Compartments"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="viewFactory" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="RepresentationKind">
+    <eLiterals name="shape">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="Shape"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="label" value="1">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="Label"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="link" value="2">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="Link"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="borderItem" value="3">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="BorderItem"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="borderItemLabel" value="4">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="BorderItemLabel"/>
+      </eAnnotations>
+    </eLiterals>
+    <eLiterals name="custom" value="5">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="Custom"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Compartments">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="hint" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="kind" ordered="false" lowerBound="1"
+        eType="#//CompartmentKind"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="editPartQualifiedName"
+        ordered="false" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EEnum" name="CompartmentKind">
+    <eLiterals name="list"/>
+    <eLiterals name="xy" value="1">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="XY"/>
+      </eAnnotations>
+    </eLiterals>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="RepresentationLibrary" eSuperTypes="#//Library">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Representation" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="Library" abstract="true">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="CompartmentLibrary" eSuperTypes="#//Library">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="compartments" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Compartments" containment="true"/>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="UseContext">
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="diagramType" ordered="false"
+        lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="DiagramType"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="representations" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//Representation"/>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="gmftRepresentations" ordered="false"
+        upperBound="-1" eType="#//GmftBasedRepresentation" containment="true">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="GmftRepresentations"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="GmftBasedRepresentation" eSuperTypes="#//Representation">
+    <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+      <details key="originalName" value="GMFT_Based_Representation"/>
+    </eAnnotations>
+    <eAnnotations source="duplicates">
+      <contents xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
+          eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+        <eAnnotations source="redefines" references="#//Representation/name"/>
+      </contents>
+    </eAnnotations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="reusedId" ordered="false"
+        eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="reusedID"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="DiagramExpansion">
+    <eStructuralFeatures xsi:type="ecore:EReference" name="usages" ordered="false"
+        lowerBound="1" upperBound="-1" eType="#//UseContext" containment="true"/>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" ordered="false"
+        upperBound="-1" eType="#//Library" containment="true"/>
+  </eClassifiers>
+</ecore:EPackage>

@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<expansionmodel:DiagramExpansion xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:expansionmodel="http:///expansionmodel.ecore">
+  <usages diagramType="SysML 1.4 Block Definition" representations="//@libraries.0/@representations.0" name="SysML 1.4 BDD Context">
+    <gmftRepresentations compartments="//@libraries.1/@compartments.0 //@libraries.1/@compartments.1" name="Block based on Class representation of class diagram" viewFactory="org.eclipse.papyrus.sysml14.diagram.blockdefinition.factory.BlockClassifierViewFactory" reusedId="2008"/>
+  </usages>
+  <libraries xsi:type="expansionmodel:RepresentationLibrary" name="Independant Representations">
+    <representations editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart" kind="label" graphicalElementType="org.eclipse.papyrus.sysML.FlowPort_Label" name="Flow Port As Label" viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"/>
+  </libraries>
+  <libraries xsi:type="expansionmodel:CompartmentLibrary" name="Independant Compartments">
+    <compartments hint="Flow Ports" children="//@libraries.0/@representations.0" name="FlowPort Compartment"/>
+    <compartments hint="Nested Blocks" children="//@usages.0/@gmftRepresentations.0" kind="xy" name="Nested Blocks Compartment"/>
+  </libraries>
+</expansionmodel:DiagramExpansion>
