@@ -61,7 +61,7 @@ public class LifelineSemanticChildrenStrategy extends DefaultUMLSemanticChildren
 	}
 
 	@Override
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart) {
+	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
 		List<? extends EObject> result = null;
 
 		Lifeline lifeline = (semanticFromEditPart instanceof Lifeline) ? (Lifeline) semanticFromEditPart : null;

@@ -55,8 +55,13 @@ public interface ISemanticChildrenStrategy {
 	 * Retrieves objects, if any, related to the element behind a canonical edit-part
 	 * on which the that element depends for canonical refresh updates.
 	 * 
+	 * @param semanticFromEditPart
+	 *            the semantic model element represented by a canonical edit-part in the diagram
+	 * @param viewFromEditPart
+	 *            the visual (notational) representation of the semantic element, to provide diagram context if required (such as
+	 *            for determining the appropriate part-with-port match of a connector end)
 	 * @return dependents of the semantic element, or {@code null} to indicate that it does not support dependents
 	 */
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart);
+	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart);
 
 }

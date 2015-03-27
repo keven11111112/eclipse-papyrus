@@ -10,16 +10,19 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 433206
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.composite;
+package org.eclipse.papyrus.uml.diagram.composite.custom.canonical;
 
+import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Collections;
 import java.util.List;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.canonical.DefaultUMLSemanticChildrenStrategy;
+import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.Property;
+import org.eclipse.uml2.uml.StructuredClassifier;
 import org.eclipse.uml2.uml.Type;
 
 /**
@@ -36,7 +39,7 @@ public class PropertyPartCompartmentSemanticChildrenStrategy extends DefaultUMLS
 		List<? extends EObject> result = null;
 
 		Property property = (semanticFromEditPart instanceof Property) ? (Property) semanticFromEditPart : null;
-		if (property != null) {
+		if ((property != null) && !(property instanceof Port)) {
 			Type type = property.getType();
 			if (type != null) {
 				// Show nested structure of the part as defined by its type
@@ -48,11 +51,33 @@ public class PropertyPartCompartmentSemanticChildrenStrategy extends DefaultUMLS
 	}
 
 	@Override
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart) {
+	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
 		if (semanticFromEditPart instanceof Property) {
-			if (((Property) semanticFromEditPart).getType() != null) {
-				return Collections.singletonList(((Property) semanticFromEditPart).getType());
+			List<Element> result = new ArrayList<>();
+
+			Property property = (Property) semanticFromEditPart;
+
+			// We show the nested structure of parts only, not ports
+			if (!(property instanceof Port)) {
+				Type type = property.getType();
+
+				if (type != null) {
+					result.add(type);
+				}
 			}
+
+			// Add the composite structure context, too, to detect creation of
+			// connectors because that does not directly affect a connected part/port.
+			// Note that this navigates up the view hierarchy to account for ports on parts
+			for (EObject parent = viewFromEditPart.eContainer(); parent instanceof View; parent = parent.eContainer()) {
+				View parentView = (View) parent;
+				if (parentView.getElement() instanceof StructuredClassifier) {
+					result.add((StructuredClassifier) parentView.getElement());
+					break;
+				}
+			}
+
+			return result;
 		}
 		return null;
 	}

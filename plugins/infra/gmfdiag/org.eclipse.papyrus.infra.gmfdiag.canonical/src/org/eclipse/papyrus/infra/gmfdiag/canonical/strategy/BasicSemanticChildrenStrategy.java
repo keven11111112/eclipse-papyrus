@@ -73,7 +73,7 @@ public class BasicSemanticChildrenStrategy implements ISemanticChildrenStrategy 
 	}
 
 	@Override
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart) {
+	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
 		return (dependentReferences == null)
 				? ECollections.<EObject> emptyEList()
 				: new EContentsEList<EObject>(semanticFromEditPart, dependentReferences);

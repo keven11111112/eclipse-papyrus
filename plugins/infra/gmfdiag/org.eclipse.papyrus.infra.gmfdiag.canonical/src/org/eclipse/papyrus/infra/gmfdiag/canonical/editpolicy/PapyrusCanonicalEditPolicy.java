@@ -121,7 +121,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 		basicActivate();
 
 		if (semanticChildrenStrategy != null) {
-			dependents = semanticChildrenStrategy.getCanonicalDependents((getSemanticHost()));
+			dependents = semanticChildrenStrategy.getCanonicalDependents(getSemanticHost(), host().getNotationView());
 			hookDependentsListener(dependents);
 		}
 	}
@@ -403,7 +403,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 			super.handleNotificationEvent(event);
 			if (semanticChildrenStrategy != null) {
 				if (dependents == null) {
-					dependents = semanticChildrenStrategy.getCanonicalDependents(getSemanticHost());
+					dependents = semanticChildrenStrategy.getCanonicalDependents(getSemanticHost(), host().getNotationView());
 					hookDependentsListener(dependents);
 				}
 			}

@@ -81,7 +81,7 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 	}
 
 	@Override
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart) {
+	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
 		Collection<Element> result = null;
 
 		if (semanticFromEditPart instanceof NamedElement) {
