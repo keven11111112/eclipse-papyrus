@@ -38,8 +38,6 @@ import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.InternalTransitionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
@@ -382,13 +380,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Transition_7000 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.CommentAnnotatedElement_667 == baseElementType) {
 			return null;
 		}
@@ -421,13 +412,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Transition_7000 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
 		return null;
 	}
 
@@ -440,8 +424,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

@@ -27,9 +27,6 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.TransitionReorientCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 
 /**
@@ -97,13 +94,6 @@ public class PseudostateExitPointItemSemanticEditPolicy extends UMLBaseItemSeman
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Transition_7000 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedStartCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
 		if (UMLElementTypes.CommentAnnotatedElement_667 == baseElementType) {
 			return null;
 		}
@@ -133,13 +123,6 @@ public class PseudostateExitPointItemSemanticEditPolicy extends UMLBaseItemSeman
 				isExtendedType = true;
 			}
 		}
-		if (UMLElementTypes.Transition_7000 == baseElementType) {
-			if (isExtendedType) {
-				return getExtendedCompleteCreateRelationshipCommand(req, (IExtendedHintedElementType) requestElementType);
-			}
-			return getGEFWrapper(new TransitionCreateCommand(req,
-					req.getSource(), req.getTarget()));
-		}
 		return null;
 	}
 
@@ -152,8 +135,6 @@ public class PseudostateExitPointItemSemanticEditPolicy extends UMLBaseItemSeman
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new TransitionReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

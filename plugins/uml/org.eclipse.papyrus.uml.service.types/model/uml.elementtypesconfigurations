@@ -3426,7 +3426,7 @@
       name="UML::Transition"
       identifier="org.eclipse.papyrus.uml.Transition"
       hint="UML::Transition"
-      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.ElementEditHelper">
+      editHelperClassName="org.eclipse.papyrus.uml.service.types.helper.TransitionEditHelper">
     <iconEntry
         xmi:id="_SdLCtlYCEeS0WsAAtVmToA"
         iconPath="/icons/full/obj16/Transition.gif"

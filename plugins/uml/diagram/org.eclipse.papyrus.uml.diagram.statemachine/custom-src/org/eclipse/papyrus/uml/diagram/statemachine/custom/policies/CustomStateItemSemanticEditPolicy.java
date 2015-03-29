@@ -13,8 +13,6 @@ package org.eclipse.papyrus.uml.diagram.statemachine.custom.policies;
 
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomTransitionReorientCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateItemSemanticEditPolicy;
 
 
@@ -29,8 +27,6 @@ public class CustomStateItemSemanticEditPolicy extends StateItemSemanticEditPoli
 	@Override
 	protected Command getReorientRelationshipCommand(ReorientRelationshipRequest req) {
 		switch (getVisualID(req)) {
-		case TransitionEditPart.VISUAL_ID:
-			return getGEFWrapper(new CustomTransitionReorientCommand(req));
 		}
 		return super.getReorientRelationshipCommand(req);
 	}

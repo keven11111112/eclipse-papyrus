@@ -26,7 +26,9 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ContextLinkEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateChoiceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
 import org.junit.Assert;
 import org.junit.Test;
@@ -101,5 +103,21 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart contextConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(contextConnection instanceof ContextLinkEditPart);
+	}
+	
+
+	@Test
+	public void testTransitionLink() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart pseudostateEP = createChild(PseudostateChoiceEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+
+		Command endCommand = createLinkCommand(stateEP, pseudostateEP, UMLElementTypes.Transition_7000);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
 	}
 }
