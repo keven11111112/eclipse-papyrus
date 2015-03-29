@@ -19,7 +19,10 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
 import org.eclipse.uml2.uml.Comment;
+import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Region;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
@@ -37,6 +40,19 @@ public class TestSemantic extends BaseTestCase {
 		EReference expectedFeature = UMLPackage.eINSTANCE.getElement_OwnedComment();
 		
 		checkContainsChildren(region, comment, expectedFeature);
+	}
+
+	@Test
+	public void testConstraintInRegion() {
+		IGraphicalEditPart constraintEP = createChild(ConstraintEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		
+		Constraint constraint = (Constraint) constraintEP.resolveSemanticElement();
+		Region region = (Region) getRegionCompartmentEditPart().resolveSemanticElement();
+		Package packageElement = region.getNearestPackage();
+		
+		EReference expectedFeature = UMLPackage.eINSTANCE.getPackage_PackagedElement();
+		
+		checkContainsChildren(packageElement, constraint, expectedFeature);
 	}
 	
 	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {
