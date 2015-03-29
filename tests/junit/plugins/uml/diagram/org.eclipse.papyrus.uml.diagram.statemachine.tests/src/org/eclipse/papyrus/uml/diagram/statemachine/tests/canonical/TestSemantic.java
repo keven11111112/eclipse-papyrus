@@ -23,10 +23,15 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.emf.type.core.commands.SetValueCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.CommentEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConnectionPointReferenceEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ConstraintEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.DoActivityStateBehaviorStateEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.EntryStateBehaviorEditPart;
+import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.ExitStateBehaviorEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectionPointReference;
 import org.eclipse.uml2.uml.Constraint;
@@ -85,7 +90,7 @@ public class TestSemantic extends BaseTestCase {
 		
 		checkContainsChildren(state, point, expectedFeature);
 	}
-	
+
 	@Test
 	public void testConnectionPointReferenceInStateWithoutSubmachine() {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
@@ -97,10 +102,58 @@ public class TestSemantic extends BaseTestCase {
 		Assert.assertNotNull(cmd);
 		Assert.assertFalse(cmd.canExecute());
 	}
+
+	@Test
+	@InteractiveTest("Open a dialog")
+	public void testDoActivtyInState() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart doActivityEP = createChild(DoActivityStateBehaviorStateEditPart.VISUAL_ID, stateEP);
+		
+		Behavior doActivity = (Behavior) doActivityEP.resolveSemanticElement();
+		State state = (State) stateEP.resolveSemanticElement();
+		
+		EReference expectedFeature = UMLPackage.eINSTANCE.getState_DoActivity();
+		
+		checkContainChild(state, doActivity, expectedFeature);
+	}
+
+	@Test
+	@InteractiveTest("Open a dialog")
+	public void testEntryInState() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart entryEP = createChild(EntryStateBehaviorEditPart.VISUAL_ID, stateEP);
+
+		Behavior entry = (Behavior) entryEP.resolveSemanticElement();
+		State state = (State) stateEP.resolveSemanticElement();
+
+		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Entry();
+
+		checkContainChild(state, entry, expectedFeature);
+	}
+
+	@Test
+	@InteractiveTest("Open a dialog")
+	public void testExitInState() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart exitEP = createChild(ExitStateBehaviorEditPart.VISUAL_ID, stateEP);
+
+		Behavior exit = (Behavior) exitEP.resolveSemanticElement();
+		State state = (State) stateEP.resolveSemanticElement();
+
+		EReference expectedFeature = UMLPackage.eINSTANCE.getState_Exit();
+
+		checkContainChild(state, exit, expectedFeature);
+	}
 	
 	protected void checkContainsChildren(EObject parent, EObject child, EReference feature) {
 		List<?> containmentList = (List<?>)parent.eGet(feature);
 		String message = "Element [" + parent + "] don't contain [" + child +"] whith feature:" + feature.getName();
 		Assert.assertTrue(message, containmentList.contains(child));
+	}
+	
+	protected void checkContainChild(EObject parent, EObject child, EReference feature) {
+		Object containmentElement = parent.eGet(feature);
+		String message = "Element [" + parent + "] don't contain [" + child +"] whith feature:" + feature.getName();
+		Assert.assertTrue(message, child.equals(containmentElement));
 	}
 }

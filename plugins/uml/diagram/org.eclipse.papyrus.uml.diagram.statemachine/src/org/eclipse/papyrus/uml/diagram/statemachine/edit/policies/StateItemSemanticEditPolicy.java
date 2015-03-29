@@ -41,9 +41,6 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintCons
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkReorientCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.DoActivityStateBehaviorStateCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.EntryStateBehaviorCreateCommand;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ExitStateBehaviorCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.InternalTransitionCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.PseudostateExitPointCreateCommand;
@@ -86,23 +83,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		IElementType requestElementType = req.getElementType();
 		if (requestElementType == null) {
 			return super.getCreateCommand(req);
-		}
-
-
-		if (UMLElementTypes.Behavior_690 == requestElementType) {
-
-			return getGEFWrapper(new EntryStateBehaviorCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.Behavior_691 == requestElementType) {
-
-			return getGEFWrapper(new DoActivityStateBehaviorStateCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.Behavior_692 == requestElementType) {
-
-			return getGEFWrapper(new ExitStateBehaviorCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
 		}
 		if (UMLElementTypes.Transition_680 == requestElementType) {
 
