@@ -15,7 +15,6 @@ import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomConnectionPointReferenceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomPseudostateEntryPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomPseudostateExitPointCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.commands.CustomTransitionReorientCommand;
@@ -33,9 +32,6 @@ public class CustomStateItemSemanticEditPolicy extends StateItemSemanticEditPoli
 		}
 		if (UMLElementTypes.Pseudostate_17000 == req.getElementType()) {
 			return getGEFWrapper(new CustomPseudostateExitPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-		}
-		if (UMLElementTypes.ConnectionPointReference_18000 == req.getElementType()) {
-			return getGEFWrapper(new CustomConnectionPointReferenceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 		}
 		return super.getCreateCommand(req);
 	}

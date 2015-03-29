@@ -53,15 +53,20 @@ public class BaseTestCase extends AbstractPapyrusTestCase {
 	 * create childNodeEditPart in parentEditPart
 	 */
 	protected IGraphicalEditPart createChild(int childVID, IGraphicalEditPart container) {
-		final IElementType childType = UMLElementTypes.getElementType(childVID);
-		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
-		requestcreation.setSize(new Dimension(1, 1));
-		requestcreation.setLocation(new Point(10, 10));
+		final CreateViewRequest requestcreation = createRequest(childVID, container);
 		Command cmd = container.getCommand(requestcreation);
 		executeOnUIThread(cmd);
 		return findChildBySemanticHint(container, childVID);
 	}
 
+	protected CreateViewRequest createRequest(int childVID, IGraphicalEditPart container) {
+		final IElementType childType = UMLElementTypes.getElementType(childVID);
+		final CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(childType, container.getDiagramPreferencesHint());
+		requestcreation.setSize(new Dimension(1, 1));
+		requestcreation.setLocation(new Point(10, 10));
+		return requestcreation;
+	}
+	
 	protected IGraphicalEditPart findChildBySemanticHint(IGraphicalEditPart parent, int vid) {
 		IGraphicalEditPart childEP = parent.getChildBySemanticHint(Integer.toString(vid));
 		assertNotNull("Parent " + parent + ", type " + parent.getNotationView() + " looking for: " + vid, childEP);

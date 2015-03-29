@@ -37,7 +37,6 @@ import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.infra.extendedtypes.types.IExtendedHintedElementType;
 import org.eclipse.papyrus.infra.extendedtypes.util.ElementTypeUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConnectionPointReferenceCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintConstrainedElementCreateCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ConstraintConstrainedElementReorientCommand;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.commands.ContextLinkCreateCommand;
@@ -123,11 +122,6 @@ public class StateItemSemanticEditPolicy extends UMLBaseItemSemanticEditPolicy {
 		if (UMLElementTypes.Pseudostate_17000 == requestElementType) {
 
 			return getGEFWrapper(new PseudostateExitPointCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
-
-		}
-		if (UMLElementTypes.ConnectionPointReference_18000 == requestElementType) {
-
-			return getGEFWrapper(new ConnectionPointReferenceCreateCommand(req, DiagramUtils.getDiagramFrom(getHost())));
 
 		}
 		return super.getCreateCommand(req);
