@@ -37,6 +37,9 @@ import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.GetChildLayoutEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
@@ -46,17 +49,14 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentE
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.locator.PortPositionLocator;
 import org.eclipse.papyrus.uml.diagram.common.locator.RoundedRectangleLabelPositionLocator;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.StateFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateCreationEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.UMLVisualIDRegistry;
 import org.eclipse.swt.graphics.Color;
 
@@ -92,12 +92,15 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateCanonicalEditPolicy());
 
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
@@ -107,7 +110,6 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new CustomStateCreationEditPolicy());
 		installEditPolicy(AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE, new AffixedNodeAlignmentEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomStateItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new GetChildLayoutEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
 		// removeEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CONNECTION_HANDLES_ROLE);
@@ -213,14 +215,14 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 
 		if (childEditPart instanceof StateCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getStateCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((StateCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}
 
 
 
-		// Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateEntryPointEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateEntryPointEditPart) childEditPart).getFigure(), locator);
@@ -230,7 +232,7 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 
 
 
-		// Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof PseudostateExitPointEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((PseudostateExitPointEditPart) childEditPart).getFigure(), locator);
@@ -240,7 +242,7 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 
 
 
-		// Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
+		//Papyrus Gencode :Affixed EntryExitPoints ConnectionPointReferences Locator
 		if (childEditPart instanceof ConnectionPointReferenceEditPart) {
 			IBorderItemLocator locator = new PortPositionLocator(getMainFigure(), PositionConstants.NONE);
 			getBorderedFigure().getBorderItemContainer().add(((ConnectionPointReferenceEditPart) childEditPart).getFigure(), locator);

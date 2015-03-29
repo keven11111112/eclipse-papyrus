@@ -25,6 +25,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.RoundedRectangleNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
@@ -32,8 +34,6 @@ import org.eclipse.papyrus.uml.diagram.common.editparts.NamedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionComponentEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.RegionItemSemanticEditPolicy;
 import org.eclipse.swt.graphics.Color;
 
 /**
@@ -69,9 +69,11 @@ public class RegionEditPart extends NamedElementEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new RegionItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomRegionItemSemanticEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new CustomRegionComponentEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -143,7 +145,7 @@ public class RegionEditPart extends NamedElementEditPart {
 
 		if (childEditPart instanceof RegionCompartmentEditPart) {
 			IFigure pane = getPrimaryShape().getRegionCompartmentFigure();
-			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way
+			setupContentPane(pane); // FIXME each comparment should handle his content pane in his own way 
 			pane.add(((RegionCompartmentEditPart) childEditPart).getFigure());
 			return true;
 		}

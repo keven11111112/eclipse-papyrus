@@ -27,12 +27,12 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCompartmentSemanticEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineCompartmentXYLayoutEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateMachineDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.RemoveOrphanViewPolicy;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateMachineCompartmentItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.statemachine.part.Messages;
 
 /**
@@ -76,12 +76,12 @@ public class StateMachineCompartmentEditPart extends ShapeCompartmentEditPart {
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new StateMachineCompartmentItemSemanticEditPolicy());
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultCompartmentSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		installEditPolicy(EditPolicyRoles.DRAG_DROP_ROLE, new DragDropEditPolicy());
 		installEditPolicy(PasteEditPolicy.PASTE_ROLE, new PasteEditPolicy());
-		// in Papyrus diagrams are not strongly synchronised
-		// installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateMachineCompartmentCanonicalEditPolicy());
+		//in Papyrus diagrams are not strongly synchronised
+		//installEditPolicy(org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.CANONICAL_ROLE, new org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.StateMachineCompartmentCanonicalEditPolicy());
 
 		installEditPolicy("RemoveOrphanView", new RemoveOrphanViewPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, new CustomStateMachineCompartmentXYLayoutEditPolicy());

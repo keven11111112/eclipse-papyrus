@@ -90,14 +90,11 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"
             editHelperClassName="RegionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.RegionFigure"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionItemSemanticEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.COMPONENT_ROLE"
@@ -138,6 +135,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.FinalState_5000"
             displayName="FinalState"
+            definedExternally="true"
             editHelperClassName="FinalStateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -241,6 +239,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.State_6000"
             displayName="State"
+            definedExternally="true"
             editHelperClassName="StateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -273,10 +272,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy.AFFIXED_CHILD_ALIGNMENT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AffixedNodeAlignmentEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomStateItemSemanticEditPolicy"/>
         <behaviour
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
@@ -352,6 +347,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_8000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -463,6 +459,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_9000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -578,6 +575,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_10000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -690,6 +688,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_11000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -801,6 +800,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_12000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -912,6 +912,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_13000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1023,6 +1024,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_14000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1134,6 +1136,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_15000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1246,6 +1249,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_16000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1360,6 +1364,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Pseudostate_17000"
             displayName="Pseudostate"
+            definedExternally="true"
             editHelperClassName="PseudostateEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1474,6 +1479,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.ConnectionPointReference_18000"
             displayName="ConnectionPointReference"
+            definedExternally="true"
             editHelperClassName="ConnectionPointReferenceEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1574,6 +1580,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.StateMachineComment"
             displayName="Comment"
+            definedExternally="true"
             editHelperClassName="CommentEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1637,6 +1644,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Constraint_668"
             displayName="Constraint"
+            definedExternally="true"
             editHelperClassName="ConstraintEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1721,6 +1729,7 @@
             xsi:type="gmfgen:SpecializationType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.InternalTransition_680"
             displayName="InternalTransition"
+            definedExternally="true"
             metamodelType="/0/@diagram/@links.0/@elementType"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1768,6 +1777,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.EntryStateBehavior_690"
             displayName="EntryStateBehavior"
+            definedExternally="true"
             editHelperClassName="EntryStateBehaviorEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1807,6 +1817,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.DoActivityStateBehavior_691"
             displayName="DoActivityStateBehavior"
+            definedExternally="true"
             editHelperClassName="DoActivityStateBehaviorEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1846,6 +1857,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.ExitStateBehavior_692"
             displayName="ExitStateBehavior"
+            definedExternally="true"
             editHelperClassName="ExitStateBehaviorEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -1883,6 +1895,7 @@
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
         <elementType
             xsi:type="gmfgen:MetamodelType"
+            definedExternally="true"
             editHelperClassName="StateMachineEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2244,10 +2257,6 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionCompartmentXYLayoutEditPolicy"/>
-        <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.SEMANTIC_ROLE"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.policies.CustomRegionCompartmentItemSemanticEditPolicy"/>
       </compartments>
       <compartments
           visualID="2002"

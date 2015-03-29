@@ -16,8 +16,8 @@ import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure;
-import org.eclipse.papyrus.uml.diagram.statemachine.edit.policies.ConstraintConstrainedElementItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -42,7 +42,7 @@ public class ConstraintConstrainedElementEditPart extends ConnectionEditPart imp
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ConstraintConstrainedElementItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 	}
 
 	/**
