@@ -11,7 +11,7 @@
  Contributors:
    MOSKitt - Initial API and implementation
    Christian W. Damus (CEA) - bug 323802
-   Christian W. Damus - bug 433206
+   Christian W. Damus - bug 433206, 463513
    
 -->
 <plugin>
@@ -823,7 +823,7 @@
     <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
-         id="org.eclipse.papyrus.uml.diagram.activity.elementTypeSet"
+         id="org.eclipse.papyrus.uml.diagram.statemachine.elementTypeSet"
          path="model/stateMachineDiagram.elementtypesconfigurations">
    </elementTypeSet>
 </extension>
