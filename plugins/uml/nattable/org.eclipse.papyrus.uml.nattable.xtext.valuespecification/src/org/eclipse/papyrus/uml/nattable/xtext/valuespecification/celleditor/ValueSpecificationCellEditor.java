@@ -12,14 +12,13 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.nattable.xtext.valuespecification.celleditor;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
@@ -82,36 +81,33 @@ public class ValueSpecificationCellEditor extends AbstractXtextCellEditor {
 	/**
 	 * This allow to get the configuration for edited object.
 	 * 
-	 * @param editedEObject
-	 *            The edited object.
+	 * @param row
+	 *            The row element.
+	 * @param column
+	 *            The column element.
 	 * @return The {@link DefaultXtextDirectEditorConfiguration} corresponding
 	 *         the the edited object.
 	 */
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromEditedEObject(
 			final Object row, final Object column) {
 		if (row instanceof EObject && column instanceof EStructuralFeature || row instanceof EStructuralFeature && column instanceof EObject) {
-
 			final EStructuralFeature feature = (EStructuralFeature) (column instanceof EStructuralFeature ? column : row);
-			final EObject eObject = (EObject) (row instanceof EObject ? row : column);
+			final EObject contextElement = (EObject) (row instanceof EObject ? row : column);
+			final String semanticClassName = feature.getEType().getInstanceClassName();
 
-			IPreferenceStore store = Activator.getDefault()
-					.getPreferenceStore();
-			String semanticClassName = feature.getEType()
-					.getInstanceClassName();
+			if (contextElement instanceof EObject) {
+				// allow to init the extension point and allow to get existing language for the elements
+				final List<String> languages = DirectEditorsUtil.getLanguages(semanticClassName);
 
-			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-					+ semanticClassName;
-			String languagePreferred = store.getString(key);
-
-			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-				IDirectEditorConfiguration configuration = DirectEditorsUtil
-						.findEditorConfigurationWithPriority(languagePreferred,
-								semanticClassName);
-				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-
-					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
-					xtextConfiguration.preEditAction(eObject.eGet(feature));
-					return xtextConfiguration;
+				// if we are here, the default is not a Xtext editor
+				for (String currentLanguage : languages) {
+					IDirectEditorConfiguration directEditorConfiguration = DirectEditorsUtil.findEditorConfigurationWithPriority(currentLanguage, semanticClassName);
+					if (directEditorConfiguration instanceof DefaultXtextDirectEditorConfiguration) {
+						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) directEditorConfiguration;
+						xtextConfiguration.preEditAction(((EObject) contextElement)
+								.eGet((EStructuralFeature) feature));
+						return xtextConfiguration;
+					}
 				}
 			}
 		}

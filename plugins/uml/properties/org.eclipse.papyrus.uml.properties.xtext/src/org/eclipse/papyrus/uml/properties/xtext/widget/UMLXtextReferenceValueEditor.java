@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.xtext.widget;
 
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -20,12 +22,9 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
-import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
 import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
 import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor;
@@ -70,6 +69,11 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 * This allow to manage the focus lsot manually (for the 'ENTER' key).
 	 */
 	private boolean isFocus = false;
+
+	/**
+	 * The object instance class name edited.
+	 */
+	private String objectInstance;
 
 	/**
 	 * Constructor.
@@ -130,7 +134,8 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			} else {
 				command = parser.getParseCommand(new EObjectAdapter(
 						(EObject) getValue()), styledTextStringEditor.getText()
-						.getText(), 0);
+								.getText(),
+						0);
 			}
 
 			TransactionalEditingDomain domain = TransactionUtil
@@ -236,64 +241,37 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 * @return The {@link DefaultXtextDirectEditorConfiguration} corresponding.
 	 */
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
-		DefaultXtextDirectEditorConfiguration result = null;
-		final Object feature = modelProperty.getValueType();
-		if (null != feature && feature instanceof EStructuralFeature) {
-			IPreferenceStore store = Activator.getDefault()
-					.getPreferenceStore();
-			String semanticClassName = ((EStructuralFeature) feature)
-					.getEType().getInstanceClassName();
-
-			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-					+ semanticClassName;
-			String languagePreferred = store.getString(key);
-
-			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-				IDirectEditorConfiguration configuration = DirectEditorsUtil
-						.findEditorConfigurationWithPriority(languagePreferred,
-								semanticClassName);
-				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-
-					final Object contextElement = getContextElement();
-					if (null != contextElement
-							&& contextElement instanceof EObject) {
-						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
-						xtextConfiguration
-								.preEditAction(((EObject) contextElement)
-										.eGet((EStructuralFeature) feature));
-						result = xtextConfiguration;
-					}
-				}
+		if (null != objectInstance && !objectInstance.isEmpty()) {
+			Object feature = null;
+			Object contextElement = null;
+			if (null != modelProperty) {
+				feature = modelProperty.getValueType();
+				contextElement = getContextElement();
+			} else {
+				contextElement = getValue();
 			}
-		}
 
-		if (null == result) {
-			EObject semanticElement = (EObject) getValue();
+			if (contextElement instanceof EObject) {
+				// allow to init the extension point and allow to get existing language for the elements
+				final List<String> languages = DirectEditorsUtil.getLanguages(objectInstance);
 
-			if (null != semanticElement) {
-				IPreferenceStore store = Activator.getDefault()
-						.getPreferenceStore();
-				String semanticClassName = semanticElement.eClass()
-						.getInstanceClassName();
-
-				String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-						+ semanticClassName;
-				String languagePreferred = store.getString(key);
-
-				if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-					IDirectEditorConfiguration configuration = DirectEditorsUtil
-							.findEditorConfigurationWithPriority(languagePreferred,
-									semanticClassName);
-					if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-
-						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
-						xtextConfiguration.preEditAction(semanticElement);
+				// if we are here, the default is not a Xtext editor
+				for (String currentLanguage : languages) {
+					IDirectEditorConfiguration directEditorConfiguration = DirectEditorsUtil.findEditorConfigurationWithPriority(currentLanguage, objectInstance);
+					if (directEditorConfiguration instanceof DefaultXtextDirectEditorConfiguration) {
+						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) directEditorConfiguration;
+						if (null != feature) {
+							xtextConfiguration.preEditAction(((EObject) contextElement)
+									.eGet((EStructuralFeature) feature));
+						} else {
+							xtextConfiguration.preEditAction((EObject) contextElement);
+						}
 						return xtextConfiguration;
 					}
 				}
 			}
 		}
-		return result;
+		return null;
 	}
 
 	/**
@@ -355,5 +333,15 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	public EObject getContextObject() {
 		final Object value = getValue();
 		return value instanceof EObject ? (EObject) value : null;
+	}
+
+	/**
+	 * Sets the object instance class name.
+	 * 
+	 * @param objectInstance
+	 *            The object instance class name.
+	 */
+	public void setObjectInstance(String objectInstance) {
+		this.objectInstance = objectInstance;
 	}
 }

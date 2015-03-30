@@ -39,6 +39,11 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	protected UMLXtextReferenceValueEditor editor;
 
 	/**
+	 * The object instance attribute available in the XWT file.
+	 */
+	private String objectInstance;
+	
+	/**
 	 * Constructor.
 	 *
 	 * @param parent
@@ -73,6 +78,9 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	protected void doBinding() {
 		IStaticContentProvider provider = input
 				.getContentProvider(propertyPath);
+		if(null != getObjectInstance()){
+			editor.setObjectInstance(getObjectInstance());
+		}
 		editor.setLabelProvider(input.getLabelProvider(propertyPath));
 		editor.setContentProvider(provider);
 		editor.setDirectCreation(input.getDirectCreation(propertyPath));
@@ -108,6 +116,27 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	 */
 	public ReferenceValueFactory getFactory() {
 		return factory;
+	}
+	
+	/**
+	 * Sets the object instance attribute from XWT file.
+	 * 
+	 * @param objectInstance The object instance value.
+	 */
+	public void setObjectInstance(String objectInstance) {
+		this.objectInstance = objectInstance;
+		if(null != editor){
+			editor.setObjectInstance(objectInstance);
+		}
+	}
+
+	/**
+	 * Gets the object instance attribute value.
+	 * 
+	 * @return The object instance attribute value.
+	 */
+	public String getObjectInstance() {
+		return objectInstance;
 	}
 
 }
