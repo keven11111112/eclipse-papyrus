@@ -79,6 +79,12 @@ public class PseudostateKindInitializerAdvice extends AbstractEditHelperAdvice {
 		if (UMLElementTypes.Pseudostate_15000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_15000)) {
 			return PseudostateKind.TERMINATE_LITERAL;
 		}
+		if (UMLElementTypes.Pseudostate_16000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_16000)) {
+			return PseudostateKind.ENTRY_POINT_LITERAL;
+		}
+		if (UMLElementTypes.Pseudostate_17000.equals(type) || superTypes.contains(UMLElementTypes.Pseudostate_17000)) {
+			return PseudostateKind.EXIT_POINT_LITERAL;
+		}
 		return null;
 	}
 

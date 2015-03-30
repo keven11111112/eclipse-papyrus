@@ -264,6 +264,16 @@ public class TestSemantic extends BaseTestCase {
 	}
 
 	@Test
+	public void testEntryPointJunctionKind() {
+		checkPseudostateKind(PseudostateEntryPointEditPart.VISUAL_ID, PseudostateKind.ENTRY_POINT_LITERAL, "EntryPoint");
+	}
+
+	@Test
+	public void testPseudostateExitPointKind() {
+		checkPseudostateKind(PseudostateExitPointEditPart.VISUAL_ID, PseudostateKind.EXIT_POINT_LITERAL, "ExitPoint");
+	}
+
+	@Test
 	public void testPseudostateTerminateKind() {
 		checkPseudostateKind(PseudostateTerminateEditPart.VISUAL_ID, PseudostateKind.TERMINATE_LITERAL, "Terminate");
 	}
