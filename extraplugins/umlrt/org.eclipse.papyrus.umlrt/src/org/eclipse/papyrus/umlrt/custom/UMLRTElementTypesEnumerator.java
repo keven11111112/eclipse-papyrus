@@ -18,7 +18,7 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 public class UMLRTElementTypesEnumerator extends AbstractElementTypeEnumerator {
 
 	public static final IHintedType RT_MESSAGE_SET = (IHintedType) getElementType("org.eclipse.papyrus.umlrt.RTMessageSet"); //$NON-NLS-1$
-	
+
 	public static final IHintedType PROTOCOL_CONTAINER = (IHintedType) getElementType("org.eclipse.papyrus.umlrt.ProtocolContainer"); //$NON-NLS-1$
 
 }

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -73,8 +73,9 @@ public class CapsuleImpl extends MinimalEObjectImpl.Container implements Capsule
 			InternalEObject oldBase_Class = (InternalEObject)base_Class;
 			base_Class = (org.eclipse.uml2.uml.Class)eResolveProxy(oldBase_Class);
 			if (base_Class != oldBase_Class) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.CAPSULE__BASE_CLASS, oldBase_Class, base_Class));
+				}
 			}
 		}
 		return base_Class;
@@ -98,8 +99,9 @@ public class CapsuleImpl extends MinimalEObjectImpl.Container implements Capsule
 	public void setBase_Class(org.eclipse.uml2.uml.Class newBase_Class) {
 		org.eclipse.uml2.uml.Class oldBase_Class = base_Class;
 		base_Class = newBase_Class;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.CAPSULE__BASE_CLASS, oldBase_Class, base_Class));
+		}
 	}
 
 	/**
@@ -111,7 +113,9 @@ public class CapsuleImpl extends MinimalEObjectImpl.Container implements Capsule
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.CAPSULE__BASE_CLASS:
-				if (resolve) return getBase_Class();
+				if (resolve) {
+					return getBase_Class();
+				}
 				return basicGetBase_Class();
 		}
 		return super.eGet(featureID, resolve, coreType);

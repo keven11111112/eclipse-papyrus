@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -18,7 +18,7 @@ import org.eclipse.uml2.uml.State;
  * <!-- end-user-doc -->
  *
  * <!-- begin-model-doc -->
- * base_State.isComposite implies 
+ * base_State.isComposite implies
  *            (base_State.region->size() = 1)
  * not base_State.isSubmachineState
  * base_State.doActivity->size() = 0

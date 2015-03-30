@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class ProtocolImpl extends MinimalEObjectImpl.Container implements Protoc
 			InternalEObject oldBase_Collaboration = (InternalEObject)base_Collaboration;
 			base_Collaboration = (Collaboration)eResolveProxy(oldBase_Collaboration);
 			if (base_Collaboration != oldBase_Collaboration) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.PROTOCOL__BASE_COLLABORATION, oldBase_Collaboration, base_Collaboration));
+				}
 			}
 		}
 		return base_Collaboration;
@@ -100,8 +101,9 @@ public class ProtocolImpl extends MinimalEObjectImpl.Container implements Protoc
 	public void setBase_Collaboration(Collaboration newBase_Collaboration) {
 		Collaboration oldBase_Collaboration = base_Collaboration;
 		base_Collaboration = newBase_Collaboration;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.PROTOCOL__BASE_COLLABORATION, oldBase_Collaboration, base_Collaboration));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class ProtocolImpl extends MinimalEObjectImpl.Container implements Protoc
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.PROTOCOL__BASE_COLLABORATION:
-				if (resolve) return getBase_Collaboration();
+				if (resolve) {
+					return getBase_Collaboration();
+				}
 				return basicGetBase_Collaboration();
 		}
 		return super.eGet(featureID, resolve, coreType);

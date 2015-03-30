@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -20,11 +20,11 @@ import org.eclipse.uml2.uml.StateMachine;
  * <!-- begin-model-doc -->
  * base_StateMachine.region->size() = 1
  * not base_StateMachine.isReentrant
- * (base_StateMachine.ownedParameter->size()=0) and 
+ * (base_StateMachine.ownedParameter->size()=0) and
  * (base_StateMachine.ownedParameterSet->size() = 0)
- * (base_StateMachine.behavioredClassifier->size()=1) 
+ * (base_StateMachine.behavioredClassifier->size()=1)
  * and (base_StateMachine.behavioredClassifier.oclIsKindOf(Class))
- * isPassive = not (base_StateMachine.behavioredClassifier.oclAsType(Class).isActive) 
+ * isPassive = not (base_StateMachine.behavioredClassifier.oclAsType(Class).isActive)
  * isPassive implies not (base_StateMachine.isReentrant)
  * <!-- end-model-doc -->
  *

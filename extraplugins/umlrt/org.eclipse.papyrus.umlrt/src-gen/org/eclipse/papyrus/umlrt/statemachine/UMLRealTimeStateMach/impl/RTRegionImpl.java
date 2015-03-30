@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class RTRegionImpl extends MinimalEObjectImpl.Container implements RTRegi
 			InternalEObject oldBase_Region = (InternalEObject)base_Region;
 			base_Region = (Region)eResolveProxy(oldBase_Region);
 			if (base_Region != oldBase_Region) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimeStateMachPackage.RT_REGION__BASE_REGION, oldBase_Region, base_Region));
+				}
 			}
 		}
 		return base_Region;
@@ -100,8 +101,9 @@ public class RTRegionImpl extends MinimalEObjectImpl.Container implements RTRegi
 	public void setBase_Region(Region newBase_Region) {
 		Region oldBase_Region = base_Region;
 		base_Region = newBase_Region;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_REGION__BASE_REGION, oldBase_Region, base_Region));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class RTRegionImpl extends MinimalEObjectImpl.Container implements RTRegi
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimeStateMachPackage.RT_REGION__BASE_REGION:
-				if (resolve) return getBase_Region();
+				if (resolve) {
+					return getBase_Region();
+				}
 				return basicGetBase_Region();
 		}
 		return super.eGet(featureID, resolve, coreType);

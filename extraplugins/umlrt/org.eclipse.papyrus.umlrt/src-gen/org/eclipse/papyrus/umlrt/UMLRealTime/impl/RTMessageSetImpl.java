@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -97,8 +97,9 @@ public class RTMessageSetImpl extends MinimalEObjectImpl.Container implements RT
 			InternalEObject oldBase_Interface = (InternalEObject)base_Interface;
 			base_Interface = (Interface)eResolveProxy(oldBase_Interface);
 			if (base_Interface != oldBase_Interface) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.RT_MESSAGE_SET__BASE_INTERFACE, oldBase_Interface, base_Interface));
+				}
 			}
 		}
 		return base_Interface;
@@ -122,8 +123,9 @@ public class RTMessageSetImpl extends MinimalEObjectImpl.Container implements RT
 	public void setBase_Interface(Interface newBase_Interface) {
 		Interface oldBase_Interface = base_Interface;
 		base_Interface = newBase_Interface;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_MESSAGE_SET__BASE_INTERFACE, oldBase_Interface, base_Interface));
+		}
 	}
 
 	/**
@@ -145,8 +147,9 @@ public class RTMessageSetImpl extends MinimalEObjectImpl.Container implements RT
 	public void setRtMsgKind(RTMessageKind newRtMsgKind) {
 		RTMessageKind oldRtMsgKind = rtMsgKind;
 		rtMsgKind = newRtMsgKind == null ? RT_MSG_KIND_EDEFAULT : newRtMsgKind;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_MESSAGE_SET__RT_MSG_KIND, oldRtMsgKind, rtMsgKind));
+		}
 	}
 
 	/**
@@ -158,7 +161,9 @@ public class RTMessageSetImpl extends MinimalEObjectImpl.Container implements RT
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.RT_MESSAGE_SET__BASE_INTERFACE:
-				if (resolve) return getBase_Interface();
+				if (resolve) {
+					return getBase_Interface();
+				}
 				return basicGetBase_Interface();
 			case UMLRealTimePackage.RT_MESSAGE_SET__RT_MSG_KIND:
 				return getRtMsgKind();
@@ -225,7 +230,9 @@ public class RTMessageSetImpl extends MinimalEObjectImpl.Container implements RT
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (rtMsgKind: "); //$NON-NLS-1$

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -73,8 +73,9 @@ public class ProtocolContainerImpl extends MinimalEObjectImpl.Container implemen
 			InternalEObject oldBase_Package = (InternalEObject)base_Package;
 			base_Package = (org.eclipse.uml2.uml.Package)eResolveProxy(oldBase_Package);
 			if (base_Package != oldBase_Package) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.PROTOCOL_CONTAINER__BASE_PACKAGE, oldBase_Package, base_Package));
+				}
 			}
 		}
 		return base_Package;
@@ -98,8 +99,9 @@ public class ProtocolContainerImpl extends MinimalEObjectImpl.Container implemen
 	public void setBase_Package(org.eclipse.uml2.uml.Package newBase_Package) {
 		org.eclipse.uml2.uml.Package oldBase_Package = base_Package;
 		base_Package = newBase_Package;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.PROTOCOL_CONTAINER__BASE_PACKAGE, oldBase_Package, base_Package));
+		}
 	}
 
 	/**
@@ -111,7 +113,9 @@ public class ProtocolContainerImpl extends MinimalEObjectImpl.Container implemen
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.PROTOCOL_CONTAINER__BASE_PACKAGE:
-				if (resolve) return getBase_Package();
+				if (resolve) {
+					return getBase_Package();
+				}
 				return basicGetBase_Package();
 		}
 		return super.eGet(featureID, resolve, coreType);

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class RTStateImpl extends MinimalEObjectImpl.Container implements RTState
 			InternalEObject oldBase_State = (InternalEObject)base_State;
 			base_State = (State)eResolveProxy(oldBase_State);
 			if (base_State != oldBase_State) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimeStateMachPackage.RT_STATE__BASE_STATE, oldBase_State, base_State));
+				}
 			}
 		}
 		return base_State;
@@ -100,8 +101,9 @@ public class RTStateImpl extends MinimalEObjectImpl.Container implements RTState
 	public void setBase_State(State newBase_State) {
 		State oldBase_State = base_State;
 		base_State = newBase_State;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_STATE__BASE_STATE, oldBase_State, base_State));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class RTStateImpl extends MinimalEObjectImpl.Container implements RTState
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimeStateMachPackage.RT_STATE__BASE_STATE:
-				if (resolve) return getBase_State();
+				if (resolve) {
+					return getBase_State();
+				}
 				return basicGetBase_State();
 		}
 		return super.eGet(featureID, resolve, coreType);

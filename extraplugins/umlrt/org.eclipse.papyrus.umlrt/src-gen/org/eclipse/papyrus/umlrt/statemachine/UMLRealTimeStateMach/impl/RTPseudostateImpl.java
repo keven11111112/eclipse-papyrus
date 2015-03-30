@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class RTPseudostateImpl extends MinimalEObjectImpl.Container implements R
 			InternalEObject oldBase_Pseudostate = (InternalEObject)base_Pseudostate;
 			base_Pseudostate = (Pseudostate)eResolveProxy(oldBase_Pseudostate);
 			if (base_Pseudostate != oldBase_Pseudostate) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimeStateMachPackage.RT_PSEUDOSTATE__BASE_PSEUDOSTATE, oldBase_Pseudostate, base_Pseudostate));
+				}
 			}
 		}
 		return base_Pseudostate;
@@ -100,8 +101,9 @@ public class RTPseudostateImpl extends MinimalEObjectImpl.Container implements R
 	public void setBase_Pseudostate(Pseudostate newBase_Pseudostate) {
 		Pseudostate oldBase_Pseudostate = base_Pseudostate;
 		base_Pseudostate = newBase_Pseudostate;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_PSEUDOSTATE__BASE_PSEUDOSTATE, oldBase_Pseudostate, base_Pseudostate));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class RTPseudostateImpl extends MinimalEObjectImpl.Container implements R
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimeStateMachPackage.RT_PSEUDOSTATE__BASE_PSEUDOSTATE:
-				if (resolve) return getBase_Pseudostate();
+				if (resolve) {
+					return getBase_Pseudostate();
+				}
 				return basicGetBase_Pseudostate();
 		}
 		return super.eGet(featureID, resolve, coreType);

@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -19,11 +19,11 @@ import org.eclipse.uml2.uml.Port;
  *
  * <!-- begin-model-doc -->
  * isWired implies not isPublish
- * (base_Port.visibility = UML::VisibilityKind::public) 
- *     implies base_Port.isService  
- * (not isWired and not isPublish) 
+ * (base_Port.visibility = UML::VisibilityKind::public)
+ *     implies base_Port.isService
+ * (not isWired and not isPublish)
  *    implies (base_Port.visibility = UML::VisibilityKind::protected)
- * (not isWired and isPublish) implies 
+ * (not isWired and isPublish) implies
  *    (base_Port.visibility = UML::VisibilityKind::public)
  * <!-- end-model-doc -->
  *

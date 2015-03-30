@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,31 +75,41 @@ public class UMLRealTimeStateMachSwitch<T> extends Switch<T> {
 			case UMLRealTimeStateMachPackage.RT_STATE_MACHINE: {
 				RTStateMachine rtStateMachine = (RTStateMachine)theEObject;
 				T result = caseRTStateMachine(rtStateMachine);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimeStateMachPackage.RT_REGION: {
 				RTRegion rtRegion = (RTRegion)theEObject;
 				T result = caseRTRegion(rtRegion);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimeStateMachPackage.RT_STATE: {
 				RTState rtState = (RTState)theEObject;
 				T result = caseRTState(rtState);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimeStateMachPackage.RT_PSEUDOSTATE: {
 				RTPseudostate rtPseudostate = (RTPseudostate)theEObject;
 				T result = caseRTPseudostate(rtPseudostate);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimeStateMachPackage.RT_TRIGGER: {
 				RTTrigger rtTrigger = (RTTrigger)theEObject;
 				T result = caseRTTrigger(rtTrigger);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

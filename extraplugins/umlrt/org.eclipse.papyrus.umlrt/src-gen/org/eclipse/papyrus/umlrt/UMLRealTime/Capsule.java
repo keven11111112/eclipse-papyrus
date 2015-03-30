@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -24,7 +24,7 @@ import org.eclipse.emf.ecore.EObject;
  * base_Class.ownedAttribute->forAll(at | at.type->size() = 1)
  * base_Class.feature->forAll (f | f.visibility <> UML::VisibilityKind::private)
  * base_Class.nestedClassifier->isEmpty()
- * base_Class.ownedOperation->notEmpty() implies 
+ * base_Class.ownedOperation->notEmpty() implies
  *    (base_Class.ownedOperation->forAll(op | op.concurrency = UML::CallConcurrencyKind::guarded))
  * <!-- end-model-doc -->
  *

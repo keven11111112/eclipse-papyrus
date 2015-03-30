@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -97,7 +97,7 @@ public class UMLRealTimeStateMachPackageImpl extends EPackageImpl implements UML
 
 	/**
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
-	 * 
+	 *
 	 * <p>This method is used to initialize {@link UMLRealTimeStateMachPackage#eINSTANCE} when that field is accessed.
 	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
 	 * <!-- begin-user-doc -->
@@ -108,7 +108,9 @@ public class UMLRealTimeStateMachPackageImpl extends EPackageImpl implements UML
 	 * @generated
 	 */
 	public static UMLRealTimeStateMachPackage init() {
-		if (isInited) return (UMLRealTimeStateMachPackage)EPackage.Registry.INSTANCE.getEPackage(UMLRealTimeStateMachPackage.eNS_URI);
+		if (isInited) {
+			return (UMLRealTimeStateMachPackage)EPackage.Registry.INSTANCE.getEPackage(UMLRealTimeStateMachPackage.eNS_URI);
+		}
 
 		// Obtain or create and register package
 		UMLRealTimeStateMachPackageImpl theUMLRealTimeStateMachPackage = (UMLRealTimeStateMachPackageImpl)(EPackage.Registry.INSTANCE.get(eNS_URI) instanceof UMLRealTimeStateMachPackageImpl ? EPackage.Registry.INSTANCE.get(eNS_URI) : new UMLRealTimeStateMachPackageImpl());
@@ -127,7 +129,7 @@ public class UMLRealTimeStateMachPackageImpl extends EPackageImpl implements UML
 		// Mark meta-data to indicate it can't be changed
 		theUMLRealTimeStateMachPackage.freeze();
 
-  
+
 		// Update the registry and return the package
 		EPackage.Registry.INSTANCE.put(UMLRealTimeStateMachPackage.eNS_URI, theUMLRealTimeStateMachPackage);
 		return theUMLRealTimeStateMachPackage;
@@ -268,7 +270,9 @@ public class UMLRealTimeStateMachPackageImpl extends EPackageImpl implements UML
 	 * @generated
 	 */
 	public void createPackageContents() {
-		if (isCreated) return;
+		if (isCreated) {
+			return;
+		}
 		isCreated = true;
 
 		// Create classes and their features
@@ -304,7 +308,9 @@ public class UMLRealTimeStateMachPackageImpl extends EPackageImpl implements UML
 	 * @generated
 	 */
 	public void initializePackageContents() {
-		if (isInitialized) return;
+		if (isInitialized) {
+			return;
+		}
 		isInitialized = true;
 
 		// Initialize package

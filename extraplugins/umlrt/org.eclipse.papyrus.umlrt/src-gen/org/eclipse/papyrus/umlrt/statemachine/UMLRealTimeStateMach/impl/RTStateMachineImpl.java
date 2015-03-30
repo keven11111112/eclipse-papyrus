@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -96,8 +96,9 @@ public class RTStateMachineImpl extends MinimalEObjectImpl.Container implements 
 			InternalEObject oldBase_StateMachine = (InternalEObject)base_StateMachine;
 			base_StateMachine = (StateMachine)eResolveProxy(oldBase_StateMachine);
 			if (base_StateMachine != oldBase_StateMachine) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimeStateMachPackage.RT_STATE_MACHINE__BASE_STATE_MACHINE, oldBase_StateMachine, base_StateMachine));
+				}
 			}
 		}
 		return base_StateMachine;
@@ -121,8 +122,9 @@ public class RTStateMachineImpl extends MinimalEObjectImpl.Container implements 
 	public void setBase_StateMachine(StateMachine newBase_StateMachine) {
 		StateMachine oldBase_StateMachine = base_StateMachine;
 		base_StateMachine = newBase_StateMachine;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_STATE_MACHINE__BASE_STATE_MACHINE, oldBase_StateMachine, base_StateMachine));
+		}
 	}
 
 	/**
@@ -144,8 +146,9 @@ public class RTStateMachineImpl extends MinimalEObjectImpl.Container implements 
 	public void setIsPassive(boolean newIsPassive) {
 		boolean oldIsPassive = isPassive;
 		isPassive = newIsPassive;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_STATE_MACHINE__IS_PASSIVE, oldIsPassive, isPassive));
+		}
 	}
 
 	/**
@@ -157,7 +160,9 @@ public class RTStateMachineImpl extends MinimalEObjectImpl.Container implements 
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimeStateMachPackage.RT_STATE_MACHINE__BASE_STATE_MACHINE:
-				if (resolve) return getBase_StateMachine();
+				if (resolve) {
+					return getBase_StateMachine();
+				}
 				return basicGetBase_StateMachine();
 			case UMLRealTimeStateMachPackage.RT_STATE_MACHINE__IS_PASSIVE:
 				return isPassive();
@@ -224,7 +229,9 @@ public class RTStateMachineImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isPassive: "); //$NON-NLS-1$

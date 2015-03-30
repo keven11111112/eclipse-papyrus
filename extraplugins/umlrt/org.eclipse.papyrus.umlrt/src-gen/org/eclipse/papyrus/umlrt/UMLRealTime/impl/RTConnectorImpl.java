@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class RTConnectorImpl extends MinimalEObjectImpl.Container implements RTC
 			InternalEObject oldBase_Connector = (InternalEObject)base_Connector;
 			base_Connector = (Connector)eResolveProxy(oldBase_Connector);
 			if (base_Connector != oldBase_Connector) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.RT_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
+				}
 			}
 		}
 		return base_Connector;
@@ -100,8 +101,9 @@ public class RTConnectorImpl extends MinimalEObjectImpl.Container implements RTC
 	public void setBase_Connector(Connector newBase_Connector) {
 		Connector oldBase_Connector = base_Connector;
 		base_Connector = newBase_Connector;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_CONNECTOR__BASE_CONNECTOR, oldBase_Connector, base_Connector));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class RTConnectorImpl extends MinimalEObjectImpl.Container implements RTC
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.RT_CONNECTOR__BASE_CONNECTOR:
-				if (resolve) return getBase_Connector();
+				if (resolve) {
+					return getBase_Connector();
+				}
 				return basicGetBase_Connector();
 		}
 		return super.eGet(featureID, resolve, coreType);

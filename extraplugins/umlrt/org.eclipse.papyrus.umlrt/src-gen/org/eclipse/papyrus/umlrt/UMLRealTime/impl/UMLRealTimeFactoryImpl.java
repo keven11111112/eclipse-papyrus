@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -205,7 +205,10 @@ public class UMLRealTimeFactoryImpl extends EFactoryImpl implements UMLRealTimeF
 	 */
 	public PortRegistrationType createPortRegistrationTypeFromString(EDataType eDataType, String initialValue) {
 		PortRegistrationType result = PortRegistrationType.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+		 {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 
@@ -225,7 +228,10 @@ public class UMLRealTimeFactoryImpl extends EFactoryImpl implements UMLRealTimeF
 	 */
 	public RTMessageKind createRTMessageKindFromString(EDataType eDataType, String initialValue) {
 		RTMessageKind result = RTMessageKind.get(initialValue);
-		if (result == null) throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		if (result == null)
+		 {
+			throw new IllegalArgumentException("The value '" + initialValue + "' is not a valid enumerator of '" + eDataType.getName() + "'"); //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
+		}
 		return result;
 	}
 

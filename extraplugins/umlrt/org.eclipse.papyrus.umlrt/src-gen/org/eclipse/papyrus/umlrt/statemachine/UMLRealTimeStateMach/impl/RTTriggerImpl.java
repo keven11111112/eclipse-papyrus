@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,8 +75,9 @@ public class RTTriggerImpl extends MinimalEObjectImpl.Container implements RTTri
 			InternalEObject oldBase_Operation = (InternalEObject)base_Operation;
 			base_Operation = (Operation)eResolveProxy(oldBase_Operation);
 			if (base_Operation != oldBase_Operation) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimeStateMachPackage.RT_TRIGGER__BASE_OPERATION, oldBase_Operation, base_Operation));
+				}
 			}
 		}
 		return base_Operation;
@@ -100,8 +101,9 @@ public class RTTriggerImpl extends MinimalEObjectImpl.Container implements RTTri
 	public void setBase_Operation(Operation newBase_Operation) {
 		Operation oldBase_Operation = base_Operation;
 		base_Operation = newBase_Operation;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimeStateMachPackage.RT_TRIGGER__BASE_OPERATION, oldBase_Operation, base_Operation));
+		}
 	}
 
 	/**
@@ -113,7 +115,9 @@ public class RTTriggerImpl extends MinimalEObjectImpl.Container implements RTTri
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimeStateMachPackage.RT_TRIGGER__BASE_OPERATION:
-				if (resolve) return getBase_Operation();
+				if (resolve) {
+					return getBase_Operation();
+				}
 				return basicGetBase_Operation();
 		}
 		return super.eGet(featureID, resolve, coreType);

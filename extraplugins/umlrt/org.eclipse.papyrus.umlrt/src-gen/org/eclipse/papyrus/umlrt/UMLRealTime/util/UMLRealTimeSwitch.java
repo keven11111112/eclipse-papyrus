@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -75,49 +75,65 @@ public class UMLRealTimeSwitch<T> extends Switch<T> {
 			case UMLRealTimePackage.CAPSULE: {
 				Capsule capsule = (Capsule)theEObject;
 				T result = caseCapsule(capsule);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.CAPSULE_PART: {
 				CapsulePart capsulePart = (CapsulePart)theEObject;
 				T result = caseCapsulePart(capsulePart);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.PROTOCOL: {
 				Protocol protocol = (Protocol)theEObject;
 				T result = caseProtocol(protocol);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.RT_PORT: {
 				RTPort rtPort = (RTPort)theEObject;
 				T result = caseRTPort(rtPort);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.RT_CONNECTOR: {
 				RTConnector rtConnector = (RTConnector)theEObject;
 				T result = caseRTConnector(rtConnector);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.PROTOCOL_CONTAINER: {
 				ProtocolContainer protocolContainer = (ProtocolContainer)theEObject;
 				T result = caseProtocolContainer(protocolContainer);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.RT_REDEFINED_ELEMENT: {
 				RTRedefinedElement rtRedefinedElement = (RTRedefinedElement)theEObject;
 				T result = caseRTRedefinedElement(rtRedefinedElement);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			case UMLRealTimePackage.RT_MESSAGE_SET: {
 				RTMessageSet rtMessageSet = (RTMessageSet)theEObject;
 				T result = caseRTMessageSet(rtMessageSet);
-				if (result == null) result = defaultCase(theEObject);
+				if (result == null) {
+					result = defaultCase(theEObject);
+				}
 				return result;
 			}
 			default: return defaultCase(theEObject);

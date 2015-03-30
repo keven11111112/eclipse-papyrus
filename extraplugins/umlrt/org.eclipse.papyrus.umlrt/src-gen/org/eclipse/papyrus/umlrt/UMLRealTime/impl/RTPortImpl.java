@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -189,8 +189,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setIsNotification(boolean newIsNotification) {
 		boolean oldIsNotification = isNotification;
 		isNotification = newIsNotification;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__IS_NOTIFICATION, oldIsNotification, isNotification));
+		}
 	}
 
 	/**
@@ -212,8 +213,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setIsPublish(boolean newIsPublish) {
 		boolean oldIsPublish = isPublish;
 		isPublish = newIsPublish;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__IS_PUBLISH, oldIsPublish, isPublish));
+		}
 	}
 
 	/**
@@ -235,8 +237,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setIsWired(boolean newIsWired) {
 		boolean oldIsWired = isWired;
 		isWired = newIsWired;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__IS_WIRED, oldIsWired, isWired));
+		}
 	}
 
 	/**
@@ -258,8 +261,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setRegistration(PortRegistrationType newRegistration) {
 		PortRegistrationType oldRegistration = registration;
 		registration = newRegistration == null ? REGISTRATION_EDEFAULT : newRegistration;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__REGISTRATION, oldRegistration, registration));
+		}
 	}
 
 	/**
@@ -281,8 +285,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setRegistrationOverride(String newRegistrationOverride) {
 		String oldRegistrationOverride = registrationOverride;
 		registrationOverride = newRegistrationOverride;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__REGISTRATION_OVERRIDE, oldRegistrationOverride, registrationOverride));
+		}
 	}
 
 	/**
@@ -296,8 +301,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 			InternalEObject oldBase_Port = (InternalEObject)base_Port;
 			base_Port = (Port)eResolveProxy(oldBase_Port);
 			if (base_Port != oldBase_Port) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.RT_PORT__BASE_PORT, oldBase_Port, base_Port));
+				}
 			}
 		}
 		return base_Port;
@@ -321,8 +327,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	public void setBase_Port(Port newBase_Port) {
 		Port oldBase_Port = base_Port;
 		base_Port = newBase_Port;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_PORT__BASE_PORT, oldBase_Port, base_Port));
+		}
 	}
 
 	/**
@@ -344,7 +351,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 			case UMLRealTimePackage.RT_PORT__REGISTRATION_OVERRIDE:
 				return getRegistrationOverride();
 			case UMLRealTimePackage.RT_PORT__BASE_PORT:
-				if (resolve) return getBase_Port();
+				if (resolve) {
+					return getBase_Port();
+				}
 				return basicGetBase_Port();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -441,7 +450,9 @@ public class RTPortImpl extends MinimalEObjectImpl.Container implements RTPort {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (isNotification: "); //$NON-NLS-1$

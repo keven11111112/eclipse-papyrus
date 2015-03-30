@@ -1,6 +1,6 @@
 /**
  * Copyright (c) 2014 CEA LIST.
- * 
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
@@ -86,8 +86,9 @@ public class RTRedefinedElementImpl extends MinimalEObjectImpl.Container impleme
 			InternalEObject oldBase_RedefinableElement = (InternalEObject)base_RedefinableElement;
 			base_RedefinableElement = (RedefinableElement)eResolveProxy(oldBase_RedefinableElement);
 			if (base_RedefinableElement != oldBase_RedefinableElement) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.RT_REDEFINED_ELEMENT__BASE_REDEFINABLE_ELEMENT, oldBase_RedefinableElement, base_RedefinableElement));
+				}
 			}
 		}
 		return base_RedefinableElement;
@@ -111,8 +112,9 @@ public class RTRedefinedElementImpl extends MinimalEObjectImpl.Container impleme
 	public void setBase_RedefinableElement(RedefinableElement newBase_RedefinableElement) {
 		RedefinableElement oldBase_RedefinableElement = base_RedefinableElement;
 		base_RedefinableElement = newBase_RedefinableElement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_REDEFINED_ELEMENT__BASE_REDEFINABLE_ELEMENT, oldBase_RedefinableElement, base_RedefinableElement));
+		}
 	}
 
 	/**
@@ -126,8 +128,9 @@ public class RTRedefinedElementImpl extends MinimalEObjectImpl.Container impleme
 			InternalEObject oldRootFragment = (InternalEObject)rootFragment;
 			rootFragment = (RedefinableElement)eResolveProxy(oldRootFragment);
 			if (rootFragment != oldRootFragment) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, UMLRealTimePackage.RT_REDEFINED_ELEMENT__ROOT_FRAGMENT, oldRootFragment, rootFragment));
+				}
 			}
 		}
 		return rootFragment;
@@ -151,8 +154,9 @@ public class RTRedefinedElementImpl extends MinimalEObjectImpl.Container impleme
 	public void setRootFragment(RedefinableElement newRootFragment) {
 		RedefinableElement oldRootFragment = rootFragment;
 		rootFragment = newRootFragment;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLRealTimePackage.RT_REDEFINED_ELEMENT__ROOT_FRAGMENT, oldRootFragment, rootFragment));
+		}
 	}
 
 	/**
@@ -164,10 +168,14 @@ public class RTRedefinedElementImpl extends MinimalEObjectImpl.Container impleme
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 			case UMLRealTimePackage.RT_REDEFINED_ELEMENT__BASE_REDEFINABLE_ELEMENT:
-				if (resolve) return getBase_RedefinableElement();
+				if (resolve) {
+					return getBase_RedefinableElement();
+				}
 				return basicGetBase_RedefinableElement();
 			case UMLRealTimePackage.RT_REDEFINED_ELEMENT__ROOT_FRAGMENT:
-				if (resolve) return getRootFragment();
+				if (resolve) {
+					return getRootFragment();
+				}
 				return basicGetRootFragment();
 		}
 		return super.eGet(featureID, resolve, coreType);
