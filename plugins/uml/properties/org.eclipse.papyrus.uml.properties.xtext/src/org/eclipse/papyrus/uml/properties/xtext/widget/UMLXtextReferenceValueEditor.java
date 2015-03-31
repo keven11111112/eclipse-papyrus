@@ -28,6 +28,7 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor;
+import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -37,6 +38,7 @@ import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.FocusEvent;
 import org.eclipse.swt.events.FocusListener;
+import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
@@ -66,9 +68,9 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			this);
 
 	/**
-	 * This allow to manage the focus lsot manually (for the 'ENTER' key).
+	 * This allow to manage if the text can be parsed or not.
 	 */
-	private boolean isFocus = false;
+	private boolean canParse = false;
 
 	/**
 	 * The object instance class name edited.
@@ -88,7 +90,7 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 		styledTextStringEditor.getText().addFocusListener(new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
-				if (isFocus) {
+				if (canParse) {
 					IParser parser = getParser();
 					if (null == xtextAdapter) {
 						return;
@@ -107,12 +109,12 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 					styledTextStringEditor.notifyListeners(SWT.FocusOut, new Event());
 					styledTextStringEditor.changeColorField();
 					controlDecoration.hide();
-					isFocus = false;
+					canParse = false;
 				}
 			}
 
 			public void focusGained(FocusEvent e) {
-				isFocus = true;
+				canParse = true;
 			}
 		});
 	}
@@ -166,13 +168,71 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 		// Change the style to set the singleText to a single line
 		int createdStyle = style | SWT.SINGLE;
 		return new StyledTextStringEditor(parent, createdStyle) {
-			public StyledText createStyledText(Composite parent, String value,
-					int createdStyle) {
+			public StyledText createStyledText(final Composite parent, final String value,
+					final int createdStyle) {
 				StyledText txt = new StyledText(parent, createdStyle);
 				if (null != labelProvider) {
 					txt.setText(labelProvider.getText(getValue()));
 				}
 				return txt;
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#keyPressed(org.eclipse.swt.events.KeyEvent)
+			 *
+			 * @param e
+			 */
+			@Override
+			public void keyPressed(final KeyEvent e) {
+				// Manage the 'enter' key with 'keyPressed' instead of 'keyReleased'
+				// because the proposal window is already closed in the 'keyReleased' method
+				if (e.keyCode == SWT.CR || e.keyCode == SWT.KEYPAD_CR) {
+					if ((text.getStyle() & SWT.MULTI) == 0) { // Single-line : Enter
+						if (e.stateMask == SWT.NONE) {
+							notifyChange();
+						}
+					} else { // Multi-line : Ctrl+Enter
+						if (e.stateMask == SWT.CTRL) {
+							String str = text.getText();
+							if (str.endsWith(StringSelector.LINE_SEPARATOR)) {
+								int newLength = str.length() - StringSelector.LINE_SEPARATOR.length();
+								text.setText(str.substring(0, newLength));
+								text.setSelection(newLength);
+							}
+							notifyChange();
+						}
+					}
+				}
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#notifyChange()
+			 *
+			 */
+			@Override
+			protected void notifyChange() {
+				// Don't notify if the enter key was for the proposal window
+				if (null != xtextAdapter
+						&& null != xtextAdapter.getCompletionProposalAdapter()
+						&& xtextAdapter.getCompletionProposalAdapter()
+								.delayedIsPopupOpen()) {
+					return;
+				}
+				// The 'enter' key was pressed, the parse will be called
+				canParse = true;
+				super.notifyChange();
+			}
+
+			/**
+			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#keyReleased(org.eclipse.swt.events.KeyEvent)
+			 *
+			 * @param e
+			 */
+			@Override
+			public void keyReleased(KeyEvent e) {
+				// Nothing
+				// Manage the 'enter' key with 'keyPressed' instead of 'keyReleased'
+				// because the proposal window is already closed in the 'keyReleased' method
 			}
 		};
 	}
@@ -341,7 +401,9 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 * @param objectInstance
 	 *            The object instance class name.
 	 */
-	public void setObjectInstance(String objectInstance) {
+	public void setObjectInstance(final String objectInstance) {
 		this.objectInstance = objectInstance;
+		// React of the object instance modification (this will happened after the binding call)
+		updateXtextAdapters(styledTextStringEditor.getText());
 	}
 }
