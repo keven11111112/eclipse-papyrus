@@ -309,20 +309,14 @@ public class SwitchStatementImpl extends StatementImpl implements SwitchStatemen
 	 * @ordered
 	 */
 	protected static final String SWITCH_STATEMENT_ASSIGNMENTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-			"                            if self.defaultClause = null then\n" +
-			"                              self.assignmentBefore.name->includesAll(self.assignmentBefore.name)\n" +
-			"                            else\n" +
-			"                              let blocks =\n" +
-			"                                if self.defaultClause = null then\n" +
-			"                                  self.nonDefaultClause.block\n" +
-			"                                else\n" +
-			"                                  self.nonDefaultClause.block->including(self.defaultClause)\n" +
-			"                                endif\n" +
-			"                              in\n" +
-			"                              let names = blocks.newAssignments().name in\n" +
-			"                              let n = blocks->size() in\n" +
-			"                                names->forAll(name | names->count(name) = n)\n" +
-			"                            endif";
+		"                            let newNames = self.assignmentAfter.name->excludingAll(self.assignmentBefore.name) in\n" +
+		"\t                            if self.defaultClause = null then\n" +
+		"\t                              newNames->isEmpty()\n" +
+		"\t                            else\n" +
+		"\t                              self.nonDefaultClause.block->including(self.defaultClause)->forAll(\n" +
+		"\t                              \tassignmentAfter.name->includesAll(newNames)\n" +
+		"\t                              )\n" +
+		"\t                            endif";
 
 	/**
 	 * <!-- begin-user-doc -->
