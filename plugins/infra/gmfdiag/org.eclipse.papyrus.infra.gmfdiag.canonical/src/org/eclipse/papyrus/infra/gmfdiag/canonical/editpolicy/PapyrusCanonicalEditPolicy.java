@@ -31,8 +31,6 @@ import org.eclipse.gef.commands.CompoundCommand;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.DeferredLayoutCommand;
-import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IResizableCompartmentEditPart;
@@ -57,6 +55,7 @@ import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStr
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.IVisualChildrenStrategy;
 import org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.SemanticChildrenStrategyRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.CanonicalDropObjectsRequest;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.requests.RollingDeferredArrangeRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IPapyrusCanonicalEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.DiagramHelper;
 
@@ -83,6 +82,19 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	static final String SEMI_ACTIVE_FILTER_ID = "org.eclipse.papyrus.semiCanonical"; //$NON-NLS-1$
 
 	private static final Set<View> createdByCanonical = Sets.newSetFromMap(new WeakHashMap<View, Boolean>());
+
+	private final RollingDeferredArrangeRequest.IArrangementContext arrangeContext = new RollingDeferredArrangeRequest.IArrangementContext() {
+
+		@Override
+		public EditPart getHost() {
+			return PapyrusCanonicalEditPolicy.this.getHost();
+		}
+
+		@Override
+		public void execute(Command command) {
+			executeCommand(command);
+		}
+	};
 
 	private ISemanticChildrenStrategy semanticChildrenStrategy = null;
 	private ICreationTargetStrategy creationTargetStrategy;
@@ -687,16 +699,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 			@Override
 			protected void complete(List<IAdaptable> accumulator) {
 				if (!accumulator.isEmpty()) {
-					final DeferredLayoutCommand layout = new DeferredLayoutCommand(host().getEditingDomain(), accumulator, host());
-					if (layout.canExecute()) {
-						DiagramHelper.asyncExec(getHost(), new Runnable() {
-
-							@Override
-							public void run() {
-								executeCommand(new ICommandProxy(layout));
-							}
-						});
-					}
+					RollingDeferredArrangeRequest.post(arrangeContext, accumulator);
 				}
 			}
 		};
@@ -717,9 +720,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 	//
 
 	protected enum State {
-		INACTIVE,
-		SEMIACTIVE,
-		ACTIVE;
+		INACTIVE, SEMIACTIVE, ACTIVE;
 
 		boolean validateTransition(State next) {
 			switch (this) {
@@ -729,7 +730,7 @@ public class PapyrusCanonicalEditPolicy extends CanonicalEditPolicy implements I
 			case ACTIVE:
 				return next == SEMIACTIVE;
 			default:
-				throw new IllegalStateException("No such state: " + this); //$NON-NLS-1$	
+				throw new IllegalStateException("No such state: " + this); //$NON-NLS-1$
 			}
 		}
 	}
