@@ -28,9 +28,9 @@
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="removeUnmappedProfilesAndStereotypes"
         ordered="false" unique="false" lowerBound="1" eType="ecore:EDataType ../../../org.eclipse.uml2.types/model/Types.ecore#//Boolean"
-        defaultValueLiteral="true">
+        defaultValueLiteral="false">
       <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="If true, the unsupported RSA profiles and stereotypes will be deleted. This includes the Deployment profile and a few stereotypes"/>
+        <details key="documentation" value="If true, all unsupported RSA profiles and stereotypes will be deleted at the end of the transformation"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="removeUnmappedAnnotations"
@@ -56,7 +56,11 @@
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EReference" name="profileUriMappings" ordered="false"
-        upperBound="-1" eType="#//URIMapping" containment="true"/>
+        upperBound="-1" eType="#//URIMapping" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="When profiles have been migrated separately, maps the profiles imported from RSA to their Papyrus equivalent"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="URIMapping">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="sourceURI" ordered="false"

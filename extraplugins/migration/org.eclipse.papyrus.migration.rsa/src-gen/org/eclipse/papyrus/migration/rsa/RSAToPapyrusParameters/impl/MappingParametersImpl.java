@@ -35,11 +35,11 @@ import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.MappingParametersImpl#getUriMappings <em>Uri Mappings</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.MappingParametersImpl#getProfileUriMappings <em>Profile Uri Mappings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

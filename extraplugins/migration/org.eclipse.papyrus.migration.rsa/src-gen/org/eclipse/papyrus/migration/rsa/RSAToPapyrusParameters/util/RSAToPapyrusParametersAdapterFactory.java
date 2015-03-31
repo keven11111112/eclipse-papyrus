@@ -79,28 +79,27 @@ public class RSAToPapyrusParametersAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected RSAToPapyrusParametersSwitch<Adapter> modelSwitch =
-			new RSAToPapyrusParametersSwitch<Adapter>() {
-				@Override
-				public Adapter caseConfig(Config object) {
-					return createConfigAdapter();
-				}
+	protected RSAToPapyrusParametersSwitch<Adapter> modelSwitch = new RSAToPapyrusParametersSwitch<Adapter>() {
+		@Override
+		public Adapter caseConfig(Config object) {
+			return createConfigAdapter();
+		}
 
-				@Override
-				public Adapter caseMappingParameters(MappingParameters object) {
-					return createMappingParametersAdapter();
-				}
+		@Override
+		public Adapter caseMappingParameters(MappingParameters object) {
+			return createMappingParametersAdapter();
+		}
 
-				@Override
-				public Adapter caseURIMapping(URIMapping object) {
-					return createURIMappingAdapter();
-				}
+		@Override
+		public Adapter caseURIMapping(URIMapping object) {
+			return createURIMappingAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

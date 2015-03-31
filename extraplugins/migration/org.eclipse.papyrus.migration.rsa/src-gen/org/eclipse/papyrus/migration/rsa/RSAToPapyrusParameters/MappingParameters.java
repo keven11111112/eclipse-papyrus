@@ -22,11 +22,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters#getUriMappings <em>Uri Mappings</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters#getProfileUriMappings <em>Profile Uri Mappings</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersPackage#getMappingParameters()
  * @model
@@ -57,6 +57,9 @@ public interface MappingParameters extends EObject {
 	 * If the meaning of the '<em>Profile Uri Mappings</em>' containment reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * When profiles have been migrated separately, maps the profiles imported from RSA to their Papyrus equivalent
+	 * <!-- end-model-doc -->
 	 *
 	 * @return the value of the '<em>Profile Uri Mappings</em>' containment reference list.
 	 * @see org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersPackage#getMappingParameters_ProfileUriMappings()

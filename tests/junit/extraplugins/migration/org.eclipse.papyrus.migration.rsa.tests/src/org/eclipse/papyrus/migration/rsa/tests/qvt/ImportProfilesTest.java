@@ -63,14 +63,14 @@ public class ImportProfilesTest extends AbstractTransformationTest {
 		expectedProfiles.add(URI.createURI("pathmap://UML_RT_PROFILE/uml-rt.profile.uml"));
 		expectedProfiles.add(URI.createURI("pathmap://UML_RT_PROFILE/UMLRealTimeSM-addendum.profile.uml"));
 
-		int expectedSize = expectedProfiles.size();
-		Assert.assertEquals("The Package should have exactly " + expectedSize + " applied profiles", expectedSize, appliedProfiles.size());
-
 		// Assert source profile is removed, new profile is applied
 		for (Profile appliedProfile : appliedProfiles) {
 			URI profileURI = EcoreUtil.getURI(appliedProfile).trimFragment();
 			Assert.assertTrue("Unexpected applied profile: " + profileURI, expectedProfiles.contains(profileURI));
 		}
+
+		int expectedSize = expectedProfiles.size();
+		Assert.assertEquals("The Package should have exactly " + expectedSize + " applied profiles", expectedSize, appliedProfiles.size());
 
 		// Assert standard stereotypes (Capsule, ...) are transformed
 		Assert.assertEquals("The package should have exactly one applied stereotype", 1, appliedStereotypes.size());
@@ -125,8 +125,7 @@ public class ImportProfilesTest extends AbstractTransformationTest {
 		String modelPath = path + "JavaModel.emx";
 		String[] fragments = new String[] {
 				path + "ModelFragment_1.efx",
-				path + "ModelFragment_2.efx"
-		};
+				path + "ModelFragment_2.efx" };
 
 		simpleImport(modelPath, fragments);
 		openEditor();

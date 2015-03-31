@@ -20,6 +20,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config#getMappingParameters <em>Mapping Parameters</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config#getMaxThreads <em>Max Threads</em>}</li>
@@ -29,7 +30,6 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config#isRemoveUnmappedAnnotations <em>Remove Unmapped Annotations</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config#isAlwaysAcceptSuggestedMappings <em>Always Accept Suggested Mappings</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersPackage#getConfig()
  * @model
@@ -154,17 +154,17 @@ public interface Config extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Remove Unmapped Profiles And Stereotypes</b></em>' attribute.
-	 * The default value is <code>"true"</code>.
+	 * The default value is <code>"false"</code>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If true, the unsupported RSA profiles and stereotypes will be deleted. This includes the Deployment profile and a few stereotypes
+	 * If true, all unsupported RSA profiles and stereotypes will be deleted at the end of the transformation
 	 * <!-- end-model-doc -->
 	 *
 	 * @return the value of the '<em>Remove Unmapped Profiles And Stereotypes</em>' attribute.
 	 * @see #setRemoveUnmappedProfilesAndStereotypes(boolean)
 	 * @see org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusParametersPackage#getConfig_RemoveUnmappedProfilesAndStereotypes()
-	 * @model default="true" unique="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
+	 * @model default="false" unique="false" dataType="org.eclipse.uml2.types.Boolean" required="true" ordered="false"
 	 * @generated
 	 */
 	boolean isRemoveUnmappedProfilesAndStereotypes();

@@ -30,9 +30,12 @@ import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.jobs.IJobChangeEvent;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.core.runtime.jobs.JobChangeAdapter;
+import org.eclipse.emf.common.util.TreeIterator;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -44,6 +47,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelMultiException;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.resource.DependencyManagementHelper;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.tools.util.StringHelper;
 import org.eclipse.papyrus.migration.rsa.Activator;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.Config;
 import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.MappingParameters;
@@ -65,6 +69,8 @@ import org.eclipse.ui.console.MessageConsole;
 import org.eclipse.ui.console.MessageConsoleStream;
 import org.eclipse.ui.dialogs.SelectionDialog;
 import org.eclipse.ui.statushandlers.StatusManager;
+import org.eclipse.uml2.uml.Profile;
+import org.eclipse.uml2.uml.ProfileApplication;
 
 /**
  * Executes a batch of {@link ImportTransformation}s, then restores the dependencies (References)
@@ -526,6 +532,65 @@ public class ImportTransformationLauncher {
 			return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occurred when repairing profiles/stereotypes", ex);
 		}
 
+		if (config.isRemoveUnmappedProfilesAndStereotypes()) {
+			try {
+				for (final Resource resource : resourcesToRepair) {
+					final List<EObject> eObjectsToDelete = new LinkedList<EObject>();
+					TreeIterator<EObject> allContents = resource.getAllContents();
+					while (allContents.hasNext()) {
+						EObject next = allContents.next();
+						if (next.eResource() != resource) {
+							allContents.prune();
+							continue;
+						}
+
+						// Delete instances of RSA Stereotypes
+						URI eClassURI = EcoreUtil.getURI(next.eClass());
+						if (StringHelper.equals("epx", eClassURI.fileExtension())) {
+							eObjectsToDelete.add(next);
+							allContents.prune();
+							continue;
+						}
+
+						// Delete applications of RSA Profiles
+						if (next instanceof ProfileApplication) {
+							ProfileApplication profileApplication = (ProfileApplication) next;
+							Profile appliedProfile = profileApplication.getAppliedProfile();
+							if (appliedProfile != null) {
+								URI profileURI = EcoreUtil.getURI(appliedProfile);
+								if (StringHelper.equals("epx", profileURI.fileExtension())) {
+									eObjectsToDelete.add(next);
+									allContents.prune();
+									continue;
+								}
+							}
+						}
+					}
+
+					Runnable runnable = new Runnable() {
+						@Override
+						public void run() {
+							for (EObject eObject : eObjectsToDelete) {
+								EObject parentElement = eObject.eContainer();
+								if (parentElement == null) {
+									resource.getContents().remove(eObject);
+								} else {
+									EStructuralFeature containingFeature = eObject.eContainingFeature();
+									EcoreUtil.remove(parentElement, containingFeature, eObject);
+								}
+							}
+						}
+					};
+
+					runFastTransaction(modelSet.getTransactionalEditingDomain(), runnable);
+
+				}
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+				return new Status(IStatus.ERROR, Activator.PLUGIN_ID, "An exception occurred when repairing profiles/stereotypes", ex);
+			}
+		}
+
 		try {
 
 			for (Resource resource : resourcesToRepair) {
@@ -614,10 +679,19 @@ public class ImportTransformationLauncher {
 		return false;
 	}
 
-	protected void repairProxies(final ModelSet modelSet, final Collection<Resource> resourcesToRepair, Map<URI, URI> urisToReplace, IProgressMonitor monitor) throws InterruptedException, RollbackException {
-
+	protected void repairProxies(final ModelSet modelSet, final Collection<Resource> resourcesToRepair, final Map<URI, URI> urisToReplace, IProgressMonitor monitor) throws InterruptedException, RollbackException {
 		final TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+		Runnable runnable = new Runnable() {
+			@Override
+			public void run() {
+				DependencyManagementHelper.batchUpdateDependencies(urisToReplace, resourcesToRepair, domain);
+			}
+		};
 
+		runFastTransaction(domain, runnable);
+	}
+
+	protected static final void runFastTransaction(TransactionalEditingDomain domain, Runnable runnable) throws InterruptedException, RollbackException {
 		InternalTransactionalEditingDomain internalDomain = (InternalTransactionalEditingDomain) domain;
 
 		Map<String, Object> options = new HashMap<String, Object>();
@@ -628,7 +702,7 @@ public class ImportTransformationLauncher {
 		// We're in a batch environment, with no undo/redo support. Run a vanilla transaction to improve performances
 		Transaction fastTransaction = internalDomain.startTransaction(false, options);
 		try {
-			DependencyManagementHelper.batchUpdateDependencies(urisToReplace, resourcesToRepair, domain);
+			runnable.run();
 		} finally {
 			fastTransaction.commit();
 		}

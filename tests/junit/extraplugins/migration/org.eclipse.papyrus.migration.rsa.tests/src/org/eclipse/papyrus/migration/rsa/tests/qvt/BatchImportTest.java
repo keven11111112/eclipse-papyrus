@@ -80,13 +80,14 @@ public class BatchImportTest extends AbstractTransformationTest {
 		Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
 		config.setMaxThreads(4);
 		config.setAlwaysAcceptSuggestedMappings(true);
+		config.setRemoveUnmappedProfilesAndStereotypes(true);
 		ImportTransformationLauncher launcher = new ImportTransformationLauncher(config);
 		launcher.run(urisToImport);
 
 		launcher.waitForCompletion();
 
 		Assert.assertTrue("The transformation didn't complete normally", launcher.getResult().isOK());
-		for (IFile sourceFile : mainModelFiles){
+		for (IFile sourceFile : mainModelFiles) {
 			checkResultFile(sourceFile);
 		}
 
@@ -133,13 +134,11 @@ public class BatchImportTest extends AbstractTransformationTest {
 		String path = "resources/profile+fragments/";
 		String[] mainModels = new String[] {
 				path + "Blank Package.emx",
-				path + "TestProfile - Fragments.epx"
-		};
+				path + "TestProfile - Fragments.epx" };
 
 		String[] fragments = new String[] {
 				path + "ModelFragment_1.efx",
-				path + "ModelFragment_2.efx"
-		};
+				path + "ModelFragment_2.efx" };
 
 		batchImport(mainModels, fragments);
 		openEditor();

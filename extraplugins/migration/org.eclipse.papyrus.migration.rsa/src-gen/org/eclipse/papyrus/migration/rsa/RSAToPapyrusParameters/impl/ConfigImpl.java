@@ -27,6 +27,7 @@ import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusPara
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.ConfigImpl#getMappingParameters <em>Mapping Parameters</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.ConfigImpl#getMaxThreads <em>Max Threads</em>}</li>
@@ -36,7 +37,6 @@ import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.RSAToPapyrusPara
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.ConfigImpl#isRemoveUnmappedAnnotations <em>Remove Unmapped Annotations</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.ConfigImpl#isAlwaysAcceptSuggestedMappings <em>Always Accept Suggested Mappings</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -127,7 +127,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 	 * @generated
 	 * @ordered
 	 */
-	protected static final boolean REMOVE_UNMAPPED_PROFILES_AND_STEREOTYPES_EDEFAULT = true;
+	protected static final boolean REMOVE_UNMAPPED_PROFILES_AND_STEREOTYPES_EDEFAULT = false;
 
 	/**
 	 * The cached value of the '{@link #isRemoveUnmappedProfilesAndStereotypes() <em>Remove Unmapped Profiles And Stereotypes</em>}' attribute.
@@ -256,8 +256,7 @@ public class ConfigImpl extends MinimalEObjectImpl.Container implements Config {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, RSAToPapyrusParametersPackage.CONFIG__MAPPING_PARAMETERS, newMappingParameters, newMappingParameters));
 		}
 	}

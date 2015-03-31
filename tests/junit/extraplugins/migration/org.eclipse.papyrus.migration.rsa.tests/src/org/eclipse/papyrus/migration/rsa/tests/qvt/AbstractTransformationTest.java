@@ -72,6 +72,7 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		if (useBatchLauncher) {
 			Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
 			config.setAlwaysAcceptSuggestedMappings(true);
+			config.setRemoveUnmappedProfilesAndStereotypes(true);
 
 			ImportTransformationLauncher launcher = new ImportTransformationLauncher(config);
 			launcher.run(Collections.singletonList(sourceURI));
@@ -81,7 +82,10 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 			Assert.assertTrue("The transformation didn't complete normally", launcher.getResult().isOK());
 			checkResultFile(mainModelFile);
 		} else {
-			ImportTransformation transformation = new ImportTransformation(sourceURI);
+			Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
+			config.setRemoveUnmappedProfilesAndStereotypes(true);
+
+			ImportTransformation transformation = new ImportTransformation(sourceURI, config, null);
 			transformation.run(false);
 			transformation.waitForCompletion();
 
@@ -127,28 +131,29 @@ public class AbstractTransformationTest extends AbstractPapyrusTest {
 		Config config = RSAToPapyrusParametersFactory.eINSTANCE.createConfig();
 		config.setMaxThreads(4);
 		config.setAlwaysAcceptSuggestedMappings(true);
+		config.setRemoveUnmappedProfilesAndStereotypes(true);
 		ImportTransformationLauncher launcher = new ImportTransformationLauncher(config);
 		launcher.run(urisToImport);
 
 		launcher.waitForCompletion();
 
 		Assert.assertTrue("The transformation didn't complete normally", launcher.getResult().isOK());
-		
-		for (IFile sourceFile : mainModelFiles){
+
+		for (IFile sourceFile : mainModelFiles) {
 			checkResultFile(sourceFile);
 		}
 	}
-	
-	protected void checkResultFile(IFile sourceFile){
+
+	protected void checkResultFile(IFile sourceFile) {
 		IPath targetPath;
-		if ("emx".equals(sourceFile.getFullPath().getFileExtension())){
-			targetPath = sourceFile.getFullPath().removeFileExtension().addFileExtension("uml"); 
-		} else if ("epx".equals(sourceFile.getFullPath().getFileExtension())){
+		if ("emx".equals(sourceFile.getFullPath().getFileExtension())) {
+			targetPath = sourceFile.getFullPath().removeFileExtension().addFileExtension("uml");
+		} else if ("epx".equals(sourceFile.getFullPath().getFileExtension())) {
 			targetPath = sourceFile.getFullPath().removeFileExtension().addFileExtension("profile.uml");
 		} else {
 			return;
 		}
-	
+
 		IFile targetFile = ResourcesPlugin.getWorkspace().getRoot().getFile(targetPath);
 		Assert.assertTrue(targetFile.exists());
 	}

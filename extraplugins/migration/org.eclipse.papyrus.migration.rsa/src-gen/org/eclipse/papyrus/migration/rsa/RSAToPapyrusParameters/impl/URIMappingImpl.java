@@ -24,11 +24,11 @@ import org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.URIMapping;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.URIMappingImpl#getSourceURI <em>Source URI</em>}</li>
  * <li>{@link org.eclipse.papyrus.migration.rsa.RSAToPapyrusParameters.impl.URIMappingImpl#getTargetURI <em>Target URI</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
