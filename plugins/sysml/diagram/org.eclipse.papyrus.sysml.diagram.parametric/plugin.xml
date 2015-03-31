@@ -19,7 +19,7 @@
 		icon="icons/obj16/Diagram_Parametric.png"
 		id="org.eclipse.papyrus.sysml.diagram.parametric.CreateCommand"
 		language="sysml"
-		label="SysML Parametric Diagram"/>
+		label="Parametric Diagram"/>
 	<editorDiagram
 		actionBarContributorId="org.eclipse.papyrus.uml.diagram.common.part.UMLDiagramActionBarContributor"
 		factoryClass="org.eclipse.papyrus.sysml.diagram.parametric.ParametricDiagramEditorFactory"
