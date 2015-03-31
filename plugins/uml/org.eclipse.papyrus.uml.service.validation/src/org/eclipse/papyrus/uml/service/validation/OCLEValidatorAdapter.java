@@ -20,6 +20,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.emf.validation.model.IConstraintStatus;
 import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateValidator;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
@@ -48,7 +49,7 @@ public class OCLEValidatorAdapter
 		if (eObject.eIsProxy()) {
 			if (context != null && context.get(ROOT_OBJECT) != null) {
 				if (diagnostics != null) {
-					diagnostics.add(createDiagnostic(Diagnostic.ERROR, DIAGNOSTIC_SOURCE,
+					diagnostics.add(createDiagnostic(Diagnostic.ERROR, EObjectValidator.DIAGNOSTIC_SOURCE,
 							EOBJECT__EVERY_PROXY_RESOLVES, "_UI_UnresolvedProxy_diagnostic",
 							new Object[] {
 									getFeatureLabel(eObject.eContainmentFeature(), context),
