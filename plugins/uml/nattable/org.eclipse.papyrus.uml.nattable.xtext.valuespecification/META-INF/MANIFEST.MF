@@ -26,3 +26,4 @@ Export-Package: org.eclipse.papyrus.uml.nattable.xtext.valuespecification,
  org.eclipse.papyrus.uml.nattable.xtext.valuespecification.manager.cell
 Bundle-Vendor: %providerName
 Bundle-Description: %pluginDescription
+Bundle-Localization: plugin
