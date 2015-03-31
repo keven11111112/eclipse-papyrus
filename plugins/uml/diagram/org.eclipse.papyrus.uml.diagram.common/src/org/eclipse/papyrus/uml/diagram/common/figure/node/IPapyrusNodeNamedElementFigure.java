@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -38,7 +39,7 @@ public interface IPapyrusNodeNamedElementFigure extends IPapyrusNodeUMLElementFi
 	 *
 	 * @return
 	 */
-	public Label getTaggedLabel();
+	public WrappingLabel getTaggedLabel();
 
 	/**
 	 * Sets the depth.
