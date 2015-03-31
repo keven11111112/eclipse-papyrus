@@ -21,7 +21,7 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({ ContentProviderTest.class, UMLStereotypePropertyContentProviderTest.class, DependencyManagementTest.class,
-		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class
+		NamedElementValidatorTest.class, StereotypeElementListenerTest.class, ProfileApplicationListenerTest.class, UMLReferenceConverterTest.class, UMLReferenceConverterCompletionTest.class
 
 })
 public class AllTests {

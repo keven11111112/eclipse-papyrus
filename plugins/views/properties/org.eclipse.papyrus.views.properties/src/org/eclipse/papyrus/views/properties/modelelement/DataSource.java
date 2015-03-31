@@ -33,6 +33,8 @@ import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
+import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.swt.graphics.Image;
@@ -525,5 +527,33 @@ public class DataSource implements IChangeListener {
 			return null;
 		}
 		return element.getValidator(getLocalPropertyPath(propertyPath));
+	}
+
+	/**
+	 * return the NameResolutionHelper to use for completion
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
+	public INameResolutionHelper getNameResolutionHelper(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if (element == null) {
+			return null;
+		}
+		return element.getNameResolutionHelper(getLocalPropertyPath(propertyPath));
+	}
+	
+	/**
+	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
+	public IPapyrusConverter getPapyrusConverter(String propertyPath){
+		ModelElement element = getModelElement(propertyPath);
+		if (element == null) {
+			return null;
+		}
+		return element.getPapyrusConverter(getLocalPropertyPath(propertyPath));
 	}
 }

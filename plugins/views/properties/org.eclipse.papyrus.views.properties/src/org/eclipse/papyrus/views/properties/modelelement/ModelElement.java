@@ -18,6 +18,8 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
+import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 
 /**
  * An interface representing Model Elements. A ModelElement is associated to a
@@ -167,4 +169,20 @@ public interface ModelElement {
 	 * @return
 	 */
 	public IValidator getValidator(String propertyPath);
+
+	/**
+	 * return the INameResolutionHelper to use for completion
+	 * 
+	 * @param propertyPath
+	 * @return
+	 */
+	public INameResolutionHelper getNameResolutionHelper(String propertyPath);
+
+	/**
+	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
+	 * 
+	 * @param localPropertyPath
+	 * @return
+	 */
+	public IPapyrusConverter getPapyrusConverter(String localPropertyPath);
 }

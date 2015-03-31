@@ -7,6 +7,14 @@
             class="org.eclipse.papyrus.uml.nattable.config.UMLFeatureCellEditorConfig"
             order="500">
       </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLSingleReferenceTextualCellEditorWithButtonConfiguration"
+            order="400">
+      </configuration>
+      <configuration
+            class="org.eclipse.papyrus.uml.nattable.config.UMLMultiReferenceTextualCellEditorWithButtonConfiguration"
+            order="401">
+      </configuration>
    </extension>
  <extension
          point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

@@ -30,6 +30,8 @@ import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
+import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.views.properties.creation.PropertyEditorFactory;
 
 /**
@@ -208,5 +210,26 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 
 		return observableDisposeListener;
 	}
+	
+	
+	/**
+	 * @see org.eclipse.papyrus.views.properties.modelelement.ModelElement#getNameResolutionHelper(java.lang.String)
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	public INameResolutionHelper getNameResolutionHelper(String propertyPath) {
+		return null;
+	}
 
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.modelelement.ModelElement#getPapyrusConverter(java.lang.String)
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
+		return null;
+	}
 }

@@ -35,7 +35,12 @@ public interface ICellManager {
 	public static final String NOT_AVALAIBLE = Messages.ICellManager_NotAvailable;
 
 	/**
-	 * the empty sting
+	 * the string used for <code>null</code> value
+	 */
+	public static final String NULL_VALUE = "null"; //$NON-NLS-1$
+
+	/**
+	 * empty string
 	 */
 	public static final String EMPTY_STRING = ""; //$NON-NLS-1$
 

@@ -26,8 +26,11 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EEnumLiteral;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
+import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
+import org.eclipse.papyrus.infra.nattable.utils.CrossAxisWrapper;
 import org.eclipse.papyrus.uml.nattable.paste.StereotypeApplicationStructure;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.uml2.uml.Element;
@@ -335,6 +338,52 @@ public class UMLTableUtils {
 					return Collections.singletonList(current);// TODO : doesn't manage when several stereotype with the same property are applied
 				}
 			}
+		}
+		return null;
+	}
+	
+		// currently consisder this method as internal
+	public static CrossAxisWrapper<EObject, EStructuralFeature> getRealEditedObject(final ILayerCell layerCell, ITableAxisElementProvider manager) {
+		int columnIndex = layerCell.getColumnIndex();
+		int rowIndex = layerCell.getRowIndex();
+		Object row = manager.getRowElement(rowIndex);
+		Object column = manager.getColumnElement(columnIndex);
+		row = AxisUtils.getRepresentedElement(row);
+		column = AxisUtils.getRepresentedElement(column);
+		Element editedElement = null;
+		Object feature = null;
+		if (row instanceof Element && !(column instanceof Element)) {
+			editedElement = (Element) row;
+			feature = column;
+		} else if (column instanceof Element && !(row instanceof Element)) {
+			editedElement = (Element) column;
+			feature = row;
+		} else {
+			return null;
+		}
+
+		EStructuralFeature realFeature = null;
+		EObject realEditedObject = null;
+//		Stereotype stereotype = null;
+		List<Stereotype> stereotypesWithEditedFeatureAppliedOnElement = null;
+		if (feature instanceof EStructuralFeature) {
+			realFeature = (EStructuralFeature) feature;
+			realEditedObject = editedElement;
+		} else if (feature instanceof String && ((String) feature).startsWith(PROPERTY_OF_STEREOTYPE_PREFIX)) {
+			final String id = AxisUtils.getPropertyId(feature);
+			stereotypesWithEditedFeatureAppliedOnElement = UMLTableUtils.getAppliedStereotypesWithThisProperty(editedElement, id);
+//			stereotype = stereotypesWithEditedFeatureAppliedOnElement.get(0);
+			realEditedObject = editedElement.getStereotypeApplication(stereotypesWithEditedFeatureAppliedOnElement.get(0));
+			Property prop = UMLTableUtils.getRealStereotypeProperty(editedElement, id);
+			realFeature = realEditedObject.eClass().getEStructuralFeature(prop.getName());
+		}
+		if (stereotypesWithEditedFeatureAppliedOnElement != null && stereotypesWithEditedFeatureAppliedOnElement.size() > 1) {
+			// TODO : not yet managed
+			return null;
+		}
+
+		if (realEditedObject != null && realFeature != null) {
+			return new CrossAxisWrapper<EObject, EStructuralFeature>(realEditedObject, realFeature);
 		}
 		return null;
 	}

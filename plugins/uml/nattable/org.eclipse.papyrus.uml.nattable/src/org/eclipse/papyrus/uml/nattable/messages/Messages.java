@@ -21,6 +21,8 @@ public class Messages extends NLS {
 	public static String StereotypePropertyCellManager_SeveralStereotypesWithThisFeatureAreApplied;
 
 	public static String StereotypePropertyHeaderLabelProvider_RequiredProfileNotFound;
+
+	public static String UMLReferenceCellEditorConfiguration_OpenDialogToChooseTheValue;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

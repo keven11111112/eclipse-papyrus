@@ -30,9 +30,11 @@ import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.emf.databinding.EMFProperties;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -43,6 +45,8 @@ import org.eclipse.papyrus.infra.emf.utils.ProviderHelper;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.util.INameResolutionHelper;
+import org.eclipse.papyrus.infra.widgets.util.IPapyrusConverter;
 import org.eclipse.papyrus.uml.properties.creation.ConnectorTypeEditorFactory;
 import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFactory;
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
@@ -57,9 +61,12 @@ import org.eclipse.papyrus.uml.tools.providers.ConstrainedElementContentProvider
 import org.eclipse.papyrus.uml.tools.providers.UMLContainerContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLFilteredLabelProvider;
+import org.eclipse.papyrus.uml.tools.util.UMLReferenceConverter;
+import org.eclipse.papyrus.uml.tools.utils.NameResolutionHelper;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.papyrus.views.properties.providers.FeatureContentProvider;
 import org.eclipse.uml2.uml.Connector;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
@@ -284,4 +291,38 @@ public class UMLModelElement extends EMFModelElement {
 		return null;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getNameResolutionHelper(java.lang.String)
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	@Override
+	public INameResolutionHelper getNameResolutionHelper(String propertyPath) {
+		EObject source = getSource();
+		Object feature = getFeature(propertyPath);
+		if (feature instanceof EStructuralFeature && source instanceof Element) {
+			EStructuralFeature f = (EStructuralFeature) feature;
+			EClassifier etype = f.getEType();
+			if (etype instanceof EClass) {
+				return new NameResolutionHelper((Element) source, (EClass) etype);
+			}
+		}
+		return super.getNameResolutionHelper(propertyPath);
+	}
+
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getPapyrusConverter(java.lang.String)
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
+		INameResolutionHelper helper = getNameResolutionHelper(propertyPath);
+		if (helper != null) {
+			return new UMLReferenceConverter(helper, getFeature(propertyPath).isMany());
+		}
+		return null;
+	}
 }

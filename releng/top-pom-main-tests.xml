@@ -99,6 +99,7 @@
 		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.port.tests</module>
 		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.property.tests</module>
 		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.parameter.tests</module>
+		<module>../tests/junit/plugins/uml/textedit/org.eclipse.papyrus.uml.textedit.valuespecification.tests</module>
 		<module>../tests/junit/plugins/uml/profile/org.eclipse.papyrus.uml.profile.drafter.tests</module>
 		<module>../tests/junit/plugins/uml/alf/org.eclipse.papyrus.uml.alf.tests</module>
 	</modules>
