@@ -12,7 +12,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *
  *****************************************************************************/
-package org.eclipse.papyrus.sysml14.tests.requirements;
+package org.eclipse.papyrus.sysml14.tests.deprecatedelements;
 
 import static org.junit.Assert.fail;
 

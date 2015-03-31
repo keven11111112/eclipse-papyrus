@@ -15,15 +15,15 @@ package org.eclipse.papyrus.sysml14.tests.requirements;
 
 import junit.framework.TestSuite;
 
+import org.eclipse.papyrus.sysml14.tests.deprecatedelements.RequirementRelatedTest;
 import org.junit.runner.RunWith;
 import org.junit.runners.Suite;
 import org.junit.runners.Suite.SuiteClasses;
 
 /**
- * A test suite for the '<em><b>requirements</b></em>' package. <!--
+ * A test suite for the '<em><b>requirements</b></em>' package.
  */
 @RunWith(Suite.class)
-@SuiteClasses({  RequirementTest.class, RequirementRelatedTest.class }) // FIXME TestCaseTest.class, : only test not running
+@SuiteClasses({  RequirementTest.class, RequirementRelatedTest.class }) 
 public class RequirementsTestSuite extends TestSuite {
-	// RequirementsTests
 }
