@@ -27,6 +27,7 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.papyrus.infra.tools.databinding.DelegatingObservable;
 import org.eclipse.papyrus.infra.tools.databinding.IDelegatingObservable;
 import org.eclipse.papyrus.infra.tools.databinding.ReferenceCountedObservable;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -170,7 +171,7 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	 * @param propertyPath
 	 *            The path of the property we want to observe
 	 * @return
-	 *         The new IObservable
+	 * 		The new IObservable
 	 */
 	protected abstract IObservable doGetObservable(String propertyPath);
 
@@ -210,8 +211,8 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 
 		return observableDisposeListener;
 	}
-	
-	
+
+
 	/**
 	 * @see org.eclipse.papyrus.views.properties.modelelement.ModelElement#getNameResolutionHelper(java.lang.String)
 	 *
@@ -223,7 +224,7 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.views.properties.modelelement.ModelElement#getPapyrusConverter(java.lang.String)
 	 *
 	 * @param propertyPath
@@ -231,5 +232,15 @@ public abstract class AbstractModelElement implements ModelElement, IDataSourceL
 	 */
 	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		return null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.views.properties.modelelement.ModelElement#getOperationExecutor(java.lang.String)
+	 *
+	 * @param localPropertyPath
+	 * @return
+	 */
+	public IAtomicOperationExecutor getOperationExecutor(String localPropertyPath) {
+		return IAtomicOperationExecutor.DEFAULT;
 	}
 }

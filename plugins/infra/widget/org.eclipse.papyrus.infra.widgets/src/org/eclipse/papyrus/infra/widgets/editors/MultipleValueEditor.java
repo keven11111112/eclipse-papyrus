@@ -412,7 +412,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 		if (directCreation) {
 			if (referenceFactory != null && referenceFactory.canCreateObject()) {
-				getOperationExecutor(context).execute(new Runnable() {
+				getOperationExecutor().execute(new Runnable() {
 
 					@Override
 					public void run() {
@@ -428,7 +428,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 			return;
 		}
 
-		getOperationExecutor(context).execute(new Runnable() {
+		getOperationExecutor().execute(new Runnable() {
 
 			@Override
 			public void run() {
@@ -546,7 +546,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 		final int index = parentTree.indexOf(selectedItem);
 		final Object currentValue = selection.getFirstElement();
 
-		getOperationExecutor(currentValue).execute(new Runnable() {
+		getOperationExecutor().execute(new Runnable() {
 
 			@SuppressWarnings("unchecked")
 			@Override
@@ -719,7 +719,7 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 
 	@Override
 	public void changeColorField() {
-		 //nothing to do here
+		// nothing to do here
 
 	}
 }

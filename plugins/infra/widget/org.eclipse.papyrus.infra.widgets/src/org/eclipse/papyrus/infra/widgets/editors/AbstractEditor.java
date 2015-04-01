@@ -81,6 +81,8 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	protected DataBindingContext dbc;
 
+	protected IAtomicOperationExecutor operationExecutor;
+
 	/**
 	 * The factory for creating all the editors with a common style
 	 */
@@ -300,7 +302,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 * Tests whether this editor is read-only or not
 	 *
 	 * @return
-	 *         True if the editor is read-only
+	 * 		True if the editor is read-only
 	 */
 	public abstract boolean isReadOnly();
 
@@ -390,6 +392,17 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	}
 
+	public void setOperationExecutor(IAtomicOperationExecutor executor) {
+		this.operationExecutor = executor;
+	}
+
+	public IAtomicOperationExecutor getOperationExecutor() {
+		if (operationExecutor == null) {
+			// Legacy
+			return getOperationExecutor(getContextElement());
+		}
+		return operationExecutor == null ? IAtomicOperationExecutor.DEFAULT : this.operationExecutor;
+	}
 
 	/**
 	 * Obtains the most appropriate operation executor for the object being edited.
@@ -397,13 +410,16 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 * @param context
 	 *            the object being edited
 	 * @return the executor to use to run operations (never {@code null})
+	 *
+	 * @deprecated IAtomicOperationExecutor should be explicitly provided. See {@link #setOperationExecutor(IAtomicOperationExecutor)}
 	 */
+	@Deprecated
 	public IAtomicOperationExecutor getOperationExecutor(Object context) {
 		IAtomicOperationExecutor result;
 		if (context instanceof IAdaptable) {
-			result = (IAtomicOperationExecutor) ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
+			result = ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
 		} else if (context != null) {
-			result = (IAtomicOperationExecutor) Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
+			result = Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
 		} else {
 			// We can't adapt null, of course, so we will have to settle for the default executor
 			result = null;
@@ -432,6 +448,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 	 *
 	 * @return the contextual model element
 	 */
+	@Deprecated
 	protected abstract Object getContextElement();
 
 	//

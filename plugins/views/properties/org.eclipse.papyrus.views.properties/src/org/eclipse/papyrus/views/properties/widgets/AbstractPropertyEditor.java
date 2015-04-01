@@ -23,6 +23,7 @@ import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.observable.list.IObservableList;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.databinding.validation.IValidator;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractListEditor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor;
@@ -198,27 +199,22 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			if (inputObservableList != null) {
 				listEditor.setModelObservable(inputObservableList);
 			}
-
 		} else if (valueEditor != null) {
 			IObservableValue inputObservableValue = getInputObservableValue();
 
 			if (inputObservableValue != null) {
 				valueEditor.setStrategies();
 
-
-
 				IValidator modelVal = getValidator();
 				if (modelVal != null) {
-
 					valueEditor.setModelValidator(modelVal);
 				}
 				valueEditor.setModelObservable(inputObservableValue);
-
-
-
-
 			}
 		}
+
+		IAtomicOperationExecutor executor = getOperationExecutor();
+		getEditor().setOperationExecutor(executor);
 
 		boolean isReadOnly = getReadOnly();
 		applyReadOnly(isReadOnly);
@@ -226,6 +222,10 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 		if (input.forceRefresh(propertyPath)) {
 			input.addChangeListener(this);
 		}
+	}
+
+	protected IAtomicOperationExecutor getOperationExecutor() {
+		return input.getOperationExecutor(propertyPath);
 	}
 
 	/**
@@ -276,7 +276,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	public void updateLabel() {
 		String label = getLabel();
 		// if(input != null && propertyPath != null && input.isMandatory(propertyPath)) {
-		//			label += " *"; //$NON-NLS-1$
+		// label += " *"; //$NON-NLS-1$
 		// }
 
 		updateLabel(label);
@@ -439,7 +439,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Tests if this editor is read-only
 	 *
 	 * @return
-	 *         True if this editor is read-only
+	 * 		True if this editor is read-only
 	 */
 	public boolean getReadOnly() {
 		boolean result = readOnly || !isEditable || getInputObservable() == null;
@@ -520,7 +520,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Returns the editor's Layout Data
 	 *
 	 * @return
-	 *         The editor's layout data
+	 * 		The editor's layout data
 	 */
 	public Object getLayoutData() {
 		return getEditor() == null ? null : getEditor().getLayoutData();
@@ -543,7 +543,7 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 	 * Indicates whether the editor's label is displayed or not
 	 *
 	 * @return
-	 *         true if the label should be displayed
+	 * 		true if the label should be displayed
 	 */
 	public boolean getShowLabel() {
 		return this.showLabel;

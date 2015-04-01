@@ -26,6 +26,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
@@ -37,9 +38,11 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
+import org.eclipse.papyrus.views.properties.creation.EMFAtomicOperationExecutor;
 import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 
 /**
@@ -136,7 +139,7 @@ public class EMFModelElement extends AbstractModelElement {
 	 *
 	 * @param featurePath
 	 * @return
-	 *         The last feature obtained by navigating the feature path
+	 * 		The last feature obtained by navigating the feature path
 	 */
 	public EStructuralFeature getFeature(FeaturePath featurePath) {
 		EStructuralFeature[] features = featurePath.getFeaturePath();
@@ -149,7 +152,7 @@ public class EMFModelElement extends AbstractModelElement {
 	 * @param propertyPath
 	 *            The property path may contain one or more dots to navigate the properties (e.g. : feature1.feature2.feature3)
 	 * @return
-	 *         The last feature obtained by resolving the full property path
+	 * 		The last feature obtained by resolving the full property path
 	 */
 	public EStructuralFeature getFeature(String propertyPath) {
 		FeaturePath featurePath = getFeaturePath(propertyPath);
@@ -162,7 +165,7 @@ public class EMFModelElement extends AbstractModelElement {
 	 * @param propertyPath
 	 *            The property path may contain one or more dots to navigate the properties (e.g. : feature1.feature2.feature3)
 	 * @return
-	 *         The featurePath corresponding to the given propertyPath
+	 * 		The featurePath corresponding to the given propertyPath
 	 */
 	public FeaturePath getFeaturePath(String propertyPath) {
 		String[] featureNames = propertyPath.split("\\."); //$NON-NLS-1$
@@ -205,7 +208,7 @@ public class EMFModelElement extends AbstractModelElement {
 	public ILabelProvider getLabelProvider(String propertyPath) {
 		try {
 			LabelProviderService lpSvc = (source.eResource() != null) //
-			? ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, source) //
+					? ServiceUtilsForEObject.getInstance().getService(LabelProviderService.class, source) //
 					: ServiceUtilsForResourceSet.getInstance().getService(LabelProviderService.class, NestedEditingDialogContext.getInstance().getResourceSet());
 			return lpSvc.getLabelProvider();
 		} catch (ServiceException ex) {
@@ -304,5 +307,19 @@ public class EMFModelElement extends AbstractModelElement {
 		}
 
 		return ((EReference) feature).isContainment();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getOperationExecutor(java.lang.String)
+	 *
+	 * @param localPropertyPath
+	 * @return
+	 */
+	@Override
+	public IAtomicOperationExecutor getOperationExecutor(String localPropertyPath) {
+		if (domain instanceof TransactionalEditingDomain) {
+			return new EMFAtomicOperationExecutor((TransactionalEditingDomain) domain);
+		}
+		return super.getOperationExecutor(localPropertyPath);
 	}
 }

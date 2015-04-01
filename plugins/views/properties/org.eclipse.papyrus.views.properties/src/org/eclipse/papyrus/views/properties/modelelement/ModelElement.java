@@ -15,6 +15,7 @@ package org.eclipse.papyrus.views.properties.modelelement;
 import org.eclipse.core.databinding.observable.IObservable;
 import org.eclipse.core.databinding.validation.IValidator;
 import org.eclipse.jface.viewers.ILabelProvider;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -42,7 +43,7 @@ public interface ModelElement {
 	 * @param propertyPath
 	 *            The property for which we need an IObservable
 	 * @return
-	 *         The IObservable corresponding to the given propertyPath
+	 * 		The IObservable corresponding to the given propertyPath
 	 */
 	public IObservable getObservable(String propertyPath);
 
@@ -54,7 +55,7 @@ public interface ModelElement {
 	 * @param propertyPath
 	 *            The name of the property for which we want a Content provider
 	 * @return
-	 *         The IStaticContentProvider containing the available values for
+	 * 		The IStaticContentProvider containing the available values for
 	 *         the given property
 	 */
 	public IStaticContentProvider getContentProvider(String propertyPath);
@@ -65,7 +66,7 @@ public interface ModelElement {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         the LabelProvider for the given path
+	 * 		the LabelProvider for the given path
 	 */
 	public ILabelProvider getLabelProvider(String propertyPath);
 
@@ -75,7 +76,7 @@ public interface ModelElement {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         true is the property should be ordered
+	 * 		true is the property should be ordered
 	 */
 	public boolean isOrdered(String propertyPath);
 
@@ -85,7 +86,7 @@ public interface ModelElement {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         true if the elements should be unique
+	 * 		true if the elements should be unique
 	 */
 	public boolean isUnique(String propertyPath);
 
@@ -172,7 +173,7 @@ public interface ModelElement {
 
 	/**
 	 * return the INameResolutionHelper to use for completion
-	 * 
+	 *
 	 * @param propertyPath
 	 * @return
 	 */
@@ -180,9 +181,17 @@ public interface ModelElement {
 
 	/**
 	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
-	 * 
+	 *
 	 * @param localPropertyPath
 	 * @return
 	 */
 	public IPapyrusConverter getPapyrusConverter(String localPropertyPath);
+
+	/**
+	 * Returns the IAtomicOperationExecutor used to execute edit operations on this property
+	 *
+	 * @param localPropertyPath
+	 * @return
+	 */
+	public IAtomicOperationExecutor getOperationExecutor(String localPropertyPath);
 }

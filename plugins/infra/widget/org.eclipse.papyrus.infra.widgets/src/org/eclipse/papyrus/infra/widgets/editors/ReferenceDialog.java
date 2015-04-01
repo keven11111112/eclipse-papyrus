@@ -245,7 +245,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	protected void createAction() {
 		if (valueFactory != null && valueFactory.canCreateObject()) {
 			final Object context = getContextElement();
-			getOperationExecutor(context).execute(new Runnable() {
+			getOperationExecutor().execute(new Runnable() {
 
 				@Override
 				public void run() {
@@ -272,7 +272,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		edit = true;
 		final Object currentValue = getValue();
 		if (currentValue != null && valueFactory != null && valueFactory.canEdit()) {
-			getOperationExecutor(currentValue).execute(new Runnable() {
+			getOperationExecutor().execute(new Runnable() {
 
 				@Override
 				public void run() {

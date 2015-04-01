@@ -29,6 +29,7 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.jface.viewers.LabelProviderChangedEvent;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
@@ -90,7 +91,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The propertyPath to lookup
 	 * @return
-	 *         The ModelElement associated to the given propertyPath
+	 * 		The ModelElement associated to the given propertyPath
 	 */
 	public ModelElement getModelElement(String propertyPath) {
 		// ConfigurationManager.instance.getProperty(propertyPath)
@@ -120,7 +121,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ObservableValue
 	 * @return
-	 *         The IObservable corresponding to the given propertyPath
+	 * 		The IObservable corresponding to the given propertyPath
 	 */
 	public IObservable getObservable(String propertyPath) {
 		String localPropertyPath = getLocalPropertyPath(propertyPath);
@@ -150,7 +151,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve a ContentProvider
 	 * @return
-	 *         The IStaticContentProvider corresponding to the given propertyPath
+	 * 		The IStaticContentProvider corresponding to the given propertyPath
 	 */
 	public IStaticContentProvider getContentProvider(final String propertyPath) {
 		class Delegator extends EncapsulatedContentProvider implements IDataSourceListener {
@@ -206,7 +207,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path for which we want to retrieve an ILabelProvider
 	 * @return
-	 *         The ILabelProvider corresponding to the given propertyPath
+	 * 		The ILabelProvider corresponding to the given propertyPath
 	 */
 	public ILabelProvider getLabelProvider(final String propertyPath) {
 		class Delegator extends LabelProvider implements IDataSourceListener, ILabelProviderListener {
@@ -384,7 +385,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is ordered
+	 * 		true if the property represented by this propertyPath is ordered
 	 */
 	public boolean isOrdered(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -397,7 +398,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is unique
+	 * 		true if the property represented by this propertyPath is unique
 	 */
 	public boolean isUnique(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -410,7 +411,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is mandatory
+	 * 		true if the property represented by this propertyPath is mandatory
 	 */
 	public boolean isMandatory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -423,7 +424,7 @@ public class DataSource implements IChangeListener {
 	/**
 	 * @param propertyPath
 	 * @return
-	 *         true if the property represented by this propertyPath is editable
+	 * 		true if the property represented by this propertyPath is editable
 	 */
 	public boolean isEditable(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -456,7 +457,7 @@ public class DataSource implements IChangeListener {
 	 * @param propertyPath
 	 *            The property path to lookup
 	 * @return
-	 *         The factory used to edit and/or instantiate values for this property path
+	 * 		The factory used to edit and/or instantiate values for this property path
 	 */
 	public ReferenceValueFactory getValueFactory(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -471,7 +472,7 @@ public class DataSource implements IChangeListener {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         The default value for the given property
+	 * 		The default value for the given property
 	 */
 	public Object getDefaultValue(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -492,7 +493,7 @@ public class DataSource implements IChangeListener {
 	 *
 	 * @param propertyPath
 	 * @return
-	 *         True if the widget should use the direct edition option for the given property
+	 * 		True if the widget should use the direct edition option for the given property
 	 */
 	public boolean getDirectCreation(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
@@ -531,7 +532,7 @@ public class DataSource implements IChangeListener {
 
 	/**
 	 * return the NameResolutionHelper to use for completion
-	 * 
+	 *
 	 * @param propertyPath
 	 * @return
 	 */
@@ -542,18 +543,32 @@ public class DataSource implements IChangeListener {
 		}
 		return element.getNameResolutionHelper(getLocalPropertyPath(propertyPath));
 	}
-	
+
 	/**
 	 * return the Papyrus Converter to convert the object to edit or display string and to find the object from a string
-	 * 
+	 *
 	 * @param propertyPath
 	 * @return
 	 */
-	public IPapyrusConverter getPapyrusConverter(String propertyPath){
+	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		ModelElement element = getModelElement(propertyPath);
 		if (element == null) {
 			return null;
 		}
 		return element.getPapyrusConverter(getLocalPropertyPath(propertyPath));
+	}
+
+	/**
+	 * Returns the IAtomicOperationExecutor used to execute edit operations on this property
+	 *
+	 * @param propertyPath
+	 * @return
+	 */
+	public IAtomicOperationExecutor getOperationExecutor(String propertyPath) {
+		ModelElement element = getModelElement(propertyPath);
+		if (element == null) {
+			return IAtomicOperationExecutor.DEFAULT;
+		}
+		return element.getOperationExecutor(getLocalPropertyPath(propertyPath));
 	}
 }

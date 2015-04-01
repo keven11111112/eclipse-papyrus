@@ -63,7 +63,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 *            The object being edited, in which context the new object is to be created and which will as a result have a reference to the new object.
 	 *            If there is no context object (creation of a free-floating object) or it cannot be determined, this may be {@code null}
 	 * @return
-	 *         The newly created object
+	 * 		The newly created object
 	 *
 	 * @see ReferenceValueFactory#createObject(Control, Object)
 	 * @see #createObject(Control, Object, Object)
@@ -87,7 +87,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * @param source
 	 *            The created EObject. If null, nothing will happen
 	 * @return
-	 *         The source EObject, which potential in-place modifications
+	 * 		The source EObject, which potential in-place modifications
 	 */
 	protected Object createObject(Control widget, Object context, Object source) {
 		if (source == null) {
@@ -190,7 +190,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * @see org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory#canCreateObject()
 	 *
 	 * @return
-	 *         True if the factory can create a new instance
+	 * 		True if the factory can create a new instance
 	 */
 	public boolean canCreateObject() {
 		return false;
@@ -198,7 +198,7 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 
 	/**
 	 * @return
-	 *         The title of the dialog used to edit the newly created instance
+	 * 		The title of the dialog used to edit the newly created instance
 	 *
 	 * @see #canCreateObject()
 	 * @see #createObject(Control)
@@ -217,13 +217,17 @@ public class PropertyEditorFactory implements ReferenceValueFactory {
 	 * @param context
 	 *            the object being edited
 	 * @return the executor to use to run operations (never {@code null})
+	 *
+	 * @deprecated IAtomicOperationExecutor is now explicitly provided by the ModelElement API
+	 *             (At the abstract properties:PropertyEditor / widgets:Editor level)
 	 */
+	@Deprecated
 	public IAtomicOperationExecutor getOperationExecutor(Object context) {
 		IAtomicOperationExecutor result;
 		if (context instanceof IAdaptable) {
-			result = (IAtomicOperationExecutor) ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
+			result = ((IAdaptable) context).getAdapter(IAtomicOperationExecutor.class);
 		} else {
-			result = (IAtomicOperationExecutor) Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
+			result = Platform.getAdapterManager().getAdapter(context, IAtomicOperationExecutor.class);
 		}
 
 		if (result == null) {

@@ -58,8 +58,8 @@ import org.eclipse.ui.dialogs.SelectionDialog;
  * @author Camille Letavernier
  *
  * @see #setContextElement(Object)
- * 
- * @deprecated use MultipleValueSelectionDialog instead
+ *
+ * @deprecated use {@link MultipleValueSelectionDialog} instead
  * @since Papyrus 1.1
  */
 @Deprecated
@@ -616,7 +616,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 * Handles the "Delete" action
 	 */
 	protected void deleteAction() {
-		 //nothing to do here
+		// nothing to do here
 	}
 
 	/**
@@ -735,6 +735,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 * @param contextElement
 	 *            the model element that is being edited
 	 */
+	@Deprecated
 	public void setContextElement(Object contextElement) {
 		this.contextElement = contextElement;
 	}
@@ -744,6 +745,7 @@ public class MultipleValueSelectorDialog extends SelectionDialog implements ISel
 	 *
 	 * @return the model element that is being edited
 	 */
+	@Deprecated
 	public Object getContextElement() {
 		return contextElement;
 	}

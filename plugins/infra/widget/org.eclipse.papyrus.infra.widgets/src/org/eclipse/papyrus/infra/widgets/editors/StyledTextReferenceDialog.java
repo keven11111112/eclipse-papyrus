@@ -9,7 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
- *  Nicolas FAUVERGUE (ALL4TECà nicolas.fauvergue@all4tec.net - Bug 459747
+ *  Nicolas FAUVERGUE (ALL4TECï¿½ nicolas.fauvergue@all4tec.net - Bug 459747
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -58,8 +58,8 @@ import org.eclipse.swt.widgets.Widget;
  * LabelProvider, describing the objects that can be referred by this property
  *
  * @author Vincent Lorenzo
- * 
- * Duplicated code from {@link ReferenceDialog}, replacing CLabel by {@link StyledTextStringEditor}
+ *
+ *         Duplicated code from {@link ReferenceDialog}, replacing CLabel by {@link StyledTextStringEditor}
  *
  */
 public class StyledTextReferenceDialog extends AbstractValueEditor implements SelectionListener {
@@ -205,7 +205,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * This allow to create the styled text editor.
-	 * 
+	 *
 	 * @param parent
 	 *            The parent composite.
 	 * @param initialValue
@@ -222,7 +222,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * This allow to create the dialog.
-	 * 
+	 *
 	 * @param shell
 	 *            The current shell.
 	 * @return The created {@link ITreeSelectorDialog}.
@@ -292,7 +292,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	protected void createAction() {
 		if (valueFactory != null && valueFactory.canCreateObject()) {
 			final Object context = getContextElement();
-			getOperationExecutor(context).execute(new Runnable() {
+			getOperationExecutor().execute(new Runnable() {
 
 				@Override
 				public void run() {
@@ -321,7 +321,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 		edit = true;
 		final Object currentValue = getValue();
 		if (currentValue != null && valueFactory != null && valueFactory.canEdit()) {
-			getOperationExecutor(currentValue).execute(new Runnable() {
+			getOperationExecutor().execute(new Runnable() {
 
 				@Override
 				public void run() {
@@ -414,10 +414,10 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	public Object getValue() {
 		if (modelProperty != null) {
 			Object modelPropertyValue = modelProperty.getValue();
-			if(modelPropertyValue == null){
+			if (modelPropertyValue == null) {
 				EObject contextElement = getContextElement() != null && getContextElement() instanceof EObject ? (EObject) getContextElement() : null;
-				if(modelProperty.getValueType() instanceof EStructuralFeature){
-					return contextElement.eGet((EStructuralFeature)modelProperty.getValueType());					
+				if (modelProperty.getValueType() instanceof EStructuralFeature) {
+					return contextElement.eGet((EStructuralFeature) modelProperty.getValueType());
 				}
 			}
 			return modelPropertyValue;
@@ -460,7 +460,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * Set the initial selection.
-	 * 
+	 *
 	 * @param initialValues
 	 *            The list of possible values.
 	 */
@@ -470,7 +470,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#setModelObservable(org.eclipse.core.databinding.observable.value.IObservableValue)
 	 */
 	@Override
@@ -478,13 +478,13 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 		setWidgetObservable(createWidgetObservable(modelProperty));
 		super.setModelObservable(modelProperty);
 		this.styledTextStringEditor.setModelObservable(modelProperty);
-		
+
 		updateControls();
 	}
 
 	/**
 	 * This allow to create the widget observable value.
-	 * 
+	 *
 	 * @param modelProperty
 	 *            The current observable value.
 	 * @return The created {@link StyledTextReferenceDialogObservableValue}.
@@ -495,7 +495,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Control#setToolTipText(java.lang.String)
 	 */
 	@Override
@@ -506,7 +506,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * Set the factory.
-	 * 
+	 *
 	 * @param factory
 	 *            The reference value factory.
 	 */
@@ -517,7 +517,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
 	@Override
@@ -536,7 +536,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.events.SelectionListener#widgetDefaultSelected(org.eclipse.swt.events.SelectionEvent)
 	 */
 	@Override
@@ -575,7 +575,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Control#update()
 	 */
 	@Override
@@ -586,7 +586,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * Set the direct creation value.
-	 * 
+	 *
 	 * @param directCreation
 	 *            Boolean to determinate the direct creation value.
 	 */
@@ -597,7 +597,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * Set the value.
-	 * 
+	 *
 	 * @param value
 	 *            The value object.
 	 */
@@ -629,7 +629,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * Set the mandatory.
-	 * 
+	 *
 	 * @param mandatory
 	 *            The mandatory boolean value.
 	 */
@@ -639,7 +639,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractValueEditor#updateStatus(org.eclipse.core.runtime.IStatus)
 	 */
 	@Override
@@ -662,7 +662,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.swt.widgets.Widget#dispose()
 	 */
 	@Override
@@ -690,7 +690,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 
 	/**
 	 * {@inheritDoc}
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.infra.widgets.editors.AbstractEditor#changeColorField()
 	 */
 	@Override

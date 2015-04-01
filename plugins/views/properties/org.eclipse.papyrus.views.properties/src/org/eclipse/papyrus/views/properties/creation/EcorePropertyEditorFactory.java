@@ -22,7 +22,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
-import java.util.concurrent.Callable;
 
 import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.common.notify.Notifier;
@@ -232,11 +231,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 		try {
 			NestedEditingDialogContext.getInstance().enter();
 			try {
-				result = getOperationExecutor(source).execute(new Callable<Object>() {
-					public Object call() throws Exception {
-						return basicDoEdit(widget, source, views, dialogTitle);
-					}
-				}, dialogTitle);
+				result = basicDoEdit(widget, source, views, dialogTitle);
 			} finally {
 				NestedEditingDialogContext.getInstance().exit();
 			}
@@ -314,7 +309,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 	 *            The control used to open a selection list (if more than one EClass
 	 *            can be instantiated)
 	 * @return
-	 *         The EClass to instantiate
+	 * 		The EClass to instantiate
 	 */
 	protected EClass chooseEClass(Control widget) {
 		if (eClass != null) {
@@ -377,7 +372,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	/**
 	 * @return
-	 *         The list of {@link EClass} that can be instantiated.
+	 * 		The list of {@link EClass} that can be instantiated.
 	 *         This is the list of all concrete subclasses of {@link #type}
 	 */
 	protected List<EClass> getAvailableEClasses() {
@@ -426,7 +421,7 @@ public class EcorePropertyEditorFactory extends PropertyEditorFactory {
 
 	/**
 	 * @return
-	 *         The EClass that will be instantiated, or null if this hasn't been forced
+	 * 		The EClass that will be instantiated, or null if this hasn't been forced
 	 */
 	public EClass getEClass() {
 		return eClass;
