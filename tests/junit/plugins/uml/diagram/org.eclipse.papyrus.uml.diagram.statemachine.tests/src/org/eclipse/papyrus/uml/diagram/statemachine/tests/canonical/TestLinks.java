@@ -120,4 +120,18 @@ public class TestLinks extends BaseTestCase {
 		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
 	}
+	
+	@Test
+	public void testTransitionLinkWithSameSourceAndTarget() {
+		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+
+		Command endCommand = createLinkCommand(stateEP, stateEP, UMLElementTypes.Transition_7000);
+		Assert.assertNotNull(endCommand);
+		Assert.assertTrue(endCommand.canExecute());
+
+		executeOnUIThread(endCommand);
+		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
+		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
+		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
+	}
 }

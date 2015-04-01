@@ -57,9 +57,6 @@ public class TransitionEditHelper extends ElementEditHelper {
 		if (false == target instanceof Vertex) {
 			return UnexecutableCommand.INSTANCE;
 		}
-		if (source == target) {
-			return UnexecutableCommand.INSTANCE;
-		}
 
 		setContainerAndFeature(req, (Vertex) source);
 		return super.getCreateRelationshipCommand(req);
