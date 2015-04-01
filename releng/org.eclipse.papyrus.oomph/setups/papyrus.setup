@@ -181,8 +181,6 @@
       <requirement
           name="org.eclipse.sdk.feature.group"/>
       <requirement
-          name="org.eclipse.acceleo.feature.group"/>
-      <requirement
           name="org.eclipse.uml2.sdk.feature.group"/>
       <requirement
           name="org.eclipse.emf.sdk.feature.group"/>
@@ -1329,6 +1327,17 @@
         <requirement
             name="org.eclipse.xtend.sdk.feature.group"/>
       </setupTask>
+      <setupTask
+          xsi:type="setup.targlets:TargletTask">
+        <targlet
+            name="Papyrus ALF Dependencies"
+            activeRepositoryList="${eclipse.target.platform}">
+          <requirement
+              name="org.eclipse.ocl.core.sdk.feature.group"/>
+          <requirement
+              name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>
+        </targlet>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -1849,6 +1858,17 @@
           </predicate>
         </workingSet>
       </setupTask>
+      <setupTask
+          xsi:type="setup.targlets:TargletTask">
+        <targlet
+            name="Papyrus ALF Test Dependencies"
+            activeRepositoryList="${eclipse.target.platform}">
+          <requirement
+              name="org.eclipse.ocl.all.feature.group"/>
+          <requirement
+              name="org.eclipse.m2m.qvt.oml.runtime.feature.group"/>
+        </targlet>
+      </setupTask>
       <stream
           name="master"
           label="master (Mars/1.1)">
@@ -2187,6 +2207,8 @@
               name="org.eclipse.cdt.feature.group"/>
           <requirement
               name="org.eclipse.emf.facet.sdk.feature.feature.group"/>
+          <requirement
+              name="org.eclipse.acceleo.feature.group"/>
           <repositoryList
               name="Mars">
             <repository
@@ -2239,6 +2261,8 @@
           xsi:type="setup.p2:P2Task">
         <requirement
             name="org.eclipse.xtend.sdk.feature.group"/>
+        <requirement
+            name="org.eclipse.acceleo.feature.group"/>
       </setupTask>
       <stream
           name="master"
@@ -2776,12 +2800,16 @@
           name="Papyrus Developer Tools Dependencies">
         <requirement
             name="org.eclipse.gmf.tooling.codegen.xtend2.feature.group"/>
+        <requirement
+            name="org.eclipse.acceleo.feature.group"/>
       </targlet>
     </setupTask>
     <setupTask
         xsi:type="setup.p2:P2Task">
       <requirement
           name="org.eclipse.xtend.sdk.feature.group"/>
+      <requirement
+          name="org.eclipse.acceleo.feature.group"/>
     </setupTask>
     <project
         name="Oomph"
@@ -2945,6 +2973,41 @@
         xsi:type="jdt:JRETask"
         version="JavaSE-1.6"
         location="${jre.location-1.6}"/>
+    <setupTask
+        xsi:type="setup.targlets:TargletTask">
+      <targlet
+          name="Papyrus Luna Dependencies"
+          activeRepositoryList="${eclipse.target.platform}">
+        <requirement
+            name="org.eclipse.acceleo.feature.group"/>
+        <repositoryList
+            name="Mars">
+          <repository
+              url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201503131323">
+            <annotation
+                source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
+              <detail
+                  key="updateFrom">
+                <value>M2T ACCELEO</value>
+              </detail>
+            </annotation>
+          </repository>
+        </repositoryList>
+        <repositoryList
+            name="Luna">
+          <repository
+              url="http://download.eclipse.org/acceleo/updates/milestones/3.6/S201503131323">
+            <annotation
+                source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
+              <detail
+                  key="updateFrom">
+                <value>M2T ACCELEO</value>
+              </detail>
+            </annotation>
+          </repository>
+        </repositoryList>
+      </targlet>
+    </setupTask>
   </stream>
   <logicalProjectContainer
       xsi:type="setup:ProjectCatalog"
