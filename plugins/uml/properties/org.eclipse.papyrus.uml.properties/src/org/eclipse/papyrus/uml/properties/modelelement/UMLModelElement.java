@@ -34,7 +34,6 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
-import org.eclipse.emf.ecore.ETypedElement;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.jface.viewers.ITreeContentProvider;
@@ -52,9 +51,9 @@ import org.eclipse.papyrus.uml.properties.creation.MessageValueSpecificationFact
 import org.eclipse.papyrus.uml.properties.creation.OwnedRuleCreationFactory;
 import org.eclipse.papyrus.uml.properties.creation.UMLPropertyEditorFactory;
 import org.eclipse.papyrus.uml.tools.databinding.ExtensionRequiredObservableValue;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
 import org.eclipse.papyrus.uml.tools.databinding.ProvidedInterfaceObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.RequiredInterfaceObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.UnsettableStringValue;
 import org.eclipse.papyrus.uml.tools.providers.ConstrainedElementContentProvider;
@@ -69,6 +68,7 @@ import org.eclipse.uml2.uml.Connector;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Message;
+import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.ParameterDirectionKind;
 import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -127,7 +127,7 @@ public class UMLModelElement extends EMFModelElement {
 		}
 
 		if (feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new RequestBasedObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 
@@ -261,6 +261,7 @@ public class UMLModelElement extends EMFModelElement {
 	 * The set of all EStructuralFeature representing subsets of {@link Namespace#getOwnedRules()}
 	 */
 	public final static Set<EStructuralFeature> ownedRuleSubsets = new HashSet<EStructuralFeature>();
+
 	static {
 		// Behavior
 		ownedRuleSubsets.add(UMLPackage.eINSTANCE.getBehavior_Precondition());
@@ -312,12 +313,13 @@ public class UMLModelElement extends EMFModelElement {
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement#getPapyrusConverter(java.lang.String)
 	 *
 	 * @param propertyPath
 	 * @return
 	 */
+	@Override
 	public IPapyrusConverter getPapyrusConverter(String propertyPath) {
 		INameResolutionHelper helper = getNameResolutionHelper(propertyPath);
 		if (helper != null) {

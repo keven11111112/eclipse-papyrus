@@ -454,16 +454,20 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 					throw new OperationCanceledException();
 				}
 
-				modelProperty.clear();
+				final Object[] result = dialog.getResult();
 
-				Object[] result = dialog.getResult();
-				if (result == null) {
-					return;
-				}
+				getOperationExecutor().execute(new Runnable() {
+					@Override
+					public void run() {
+						modelProperty.clear();
 
-				modelProperty.addAll(Arrays.asList(result));
+						if (result != null) {
+							modelProperty.addAll(Arrays.asList(result));
+						}
 
-				commit();
+						commit();
+					}
+				}, "Change values");
 			}
 		}, NLS.bind(Messages.MultipleValueEditor_addOperation, labelText));
 	}
@@ -480,12 +484,17 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle remove Action
 	 */
 	protected void removeAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-		for (Object value : selection.toArray()) {
-			modelProperty.remove(value);
-		}
-		treeViewer.setSelection(null);
+		final IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
+		getOperationExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				for (Object value : selection.toArray()) {
+					modelProperty.remove(value);
+				}
+			}
+		}, "Remove elements");
 
+		treeViewer.setSelection(null);
 		commit();
 	}
 
@@ -493,17 +502,22 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle up Action
 	 */
 	protected void upAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
-		for (Object o : selection.toArray()) {
-			int oldIndex = modelProperty.indexOf(o);
-			if (oldIndex > 0) {
-				modelProperty.move(oldIndex, oldIndex - 1);
+		final IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
+
+		getOperationExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				for (Object o : selection.toArray()) {
+					int oldIndex = modelProperty.indexOf(o);
+					if (oldIndex > 0) {
+						modelProperty.move(oldIndex, oldIndex - 1);
+					}
+				}
 			}
-		}
+		}, "Move element up");
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
 		treeViewer.setSelection(selectionCopy);
-
 		commit();
 	}
 
@@ -511,22 +525,26 @@ public class MultipleValueEditor extends AbstractListEditor implements Selection
 	 * Handle down Action
 	 */
 	protected void downAction() {
-		IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
+		final IStructuredSelection selection = (IStructuredSelection) treeViewer.getSelection();
 
-		int maxIndex = modelProperty.size() - 1;
+		getOperationExecutor().execute(new Runnable() {
+			@Override
+			public void run() {
+				int maxIndex = modelProperty.size() - 1;
 
-		Object[] selectionArray = selection.toArray();
-		for (int i = selectionArray.length - 1; i >= 0; i--) {
-			Object o = selectionArray[i];
-			int oldIndex = modelProperty.indexOf(o);
-			if (oldIndex < maxIndex) {
-				modelProperty.move(oldIndex, oldIndex + 1);
+				Object[] selectionArray = selection.toArray();
+				for (int i = selectionArray.length - 1; i >= 0; i--) {
+					Object o = selectionArray[i];
+					int oldIndex = modelProperty.indexOf(o);
+					if (oldIndex < maxIndex) {
+						modelProperty.move(oldIndex, oldIndex + 1);
+					}
+				}
 			}
-		}
+		}, "Move element down");
 
 		IStructuredSelection selectionCopy = new StructuredSelection(selection.toArray());
 		treeViewer.setSelection(selectionCopy);
-
 		commit();
 	}
 

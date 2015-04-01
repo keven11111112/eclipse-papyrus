@@ -246,14 +246,15 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 
 	/**
 	 * Informs the commit listeners that a modification occured
+	 *
+	 * @deprecated Use an {@link IAtomicOperationExecutor} instead
+	 *             See {@link #setOperationExecutor(IAtomicOperationExecutor)}
 	 */
+	@Deprecated
 	protected void commit() {
 		for (ICommitListener listener : commitListeners) {
 			listener.commit(this);
-
 		}
-
-
 	}
 
 	/**
@@ -401,7 +402,7 @@ public abstract class AbstractEditor extends Composite implements DisposeListene
 			// Legacy
 			return getOperationExecutor(getContextElement());
 		}
-		return operationExecutor == null ? IAtomicOperationExecutor.DEFAULT : this.operationExecutor;
+		return this.operationExecutor;
 	}
 
 	/**

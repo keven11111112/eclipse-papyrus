@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EEnum;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.emf.providers.EMFEnumeratorContentProvider;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -48,9 +50,10 @@ import org.eclipse.papyrus.infra.widgets.editors.MultipleValueEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.papyrus.uml.tools.utils.DataTypeUtil;
+import org.eclipse.papyrus.views.properties.creation.EMFAtomicOperationExecutor;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.widgets.Composite;
@@ -239,10 +242,13 @@ public class EStructuralFeatureEditor implements IValueChangeListener, IListChan
 			editor.setReadOnly(true);
 		}
 
-		PapyrusObservableList observable = new PapyrusObservableList(initialList, EMFHelper.resolveEditingDomain(stereotypeApplication), stereotypeApplication, feature);
+		EditingDomain domain = EMFHelper.resolveEditingDomain(stereotypeApplication);
+		RequestBasedObservableList observable = new RequestBasedObservableList(initialList, domain, stereotypeApplication, feature);
 
 		editor.setModelObservable(observable);
-		editor.addCommitListener(observable);
+		if (domain instanceof TransactionalEditingDomain) {
+			editor.setOperationExecutor(new EMFAtomicOperationExecutor((TransactionalEditingDomain) EMFHelper.resolveEditingDomain(stereotypeApplication)));
+		}
 
 		observable.addListChangeListener(this);
 	}

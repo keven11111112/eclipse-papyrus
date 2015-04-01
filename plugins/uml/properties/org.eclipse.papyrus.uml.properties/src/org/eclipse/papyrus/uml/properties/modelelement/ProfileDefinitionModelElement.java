@@ -25,7 +25,7 @@ import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.uml2.uml.Profile;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -52,7 +52,7 @@ public class ProfileDefinitionModelElement extends AbstractModelElement {
 				EAnnotation definitions = profile.getEAnnotation(UMLUtil.UML2_UML_PACKAGE_2_0_NS_URI);
 				if (definitions != null) {
 					EditingDomain domain = EMFHelper.resolveEditingDomain(profile);
-					return new PapyrusObservableList(EMFObservables.observeList(definitions, EcorePackage.eINSTANCE.getEAnnotation_Contents()), domain, definitions, EcorePackage.eINSTANCE.getEAnnotation_Contents());
+					return new RequestBasedObservableList(EMFObservables.observeList(definitions, EcorePackage.eINSTANCE.getEAnnotation_Contents()), domain, definitions, EcorePackage.eINSTANCE.getEAnnotation_Contents());
 				}
 			}
 		}

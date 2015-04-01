@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
+ * Copyright (c) 2010-2015 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -28,7 +28,7 @@ import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
@@ -39,9 +39,8 @@ import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
  * @author Camille Letavernier
  *
  */
-@Deprecated
 @SuppressWarnings("unchecked")
-public class PapyrusObservableList extends EMFObservableList {
+public class RequestBasedObservableList extends CommandBasedObservableList {
 
 	/**
 	 *
@@ -56,7 +55,7 @@ public class PapyrusObservableList extends EMFObservableList {
 	 * @param feature
 	 *            The feature from which the list will be retrieved
 	 */
-	public PapyrusObservableList(List<?> wrappedList, EditingDomain domain, EObject source, EStructuralFeature feature) {
+	public RequestBasedObservableList(List<?> wrappedList, EditingDomain domain, EObject source, EStructuralFeature feature) {
 		super(wrappedList, domain, source, feature);
 	}
 

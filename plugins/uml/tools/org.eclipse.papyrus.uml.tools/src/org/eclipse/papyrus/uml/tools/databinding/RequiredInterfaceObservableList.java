@@ -50,7 +50,7 @@ import org.eclipse.uml2.uml.Usage;
  * @author Camille Letavernier
  *
  */
-public class RequiredInterfaceObservableList extends PapyrusObservableList {
+public class RequiredInterfaceObservableList extends RequestBasedObservableList {
 
 	/** The port. */
 	protected Port port = null;

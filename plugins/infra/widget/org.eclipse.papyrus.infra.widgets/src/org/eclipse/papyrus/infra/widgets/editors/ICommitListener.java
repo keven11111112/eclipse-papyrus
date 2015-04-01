@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.infra.widgets.editors;
 
 import org.eclipse.core.databinding.observable.IObservable;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 
 
 /**
@@ -21,7 +22,11 @@ import org.eclipse.core.databinding.observable.IObservable;
  * commands when its methods are called, but instead wait for a commit event.
  *
  * @author Camille Letavernier
+ *
+ * @deprecated Use an {@link IAtomicOperationExecutor} instead
+ *             see {@link AbstractEditor#setOperationExecutor(IAtomicOperationExecutor)}
  */
+@Deprecated
 public interface ICommitListener {
 
 	/**

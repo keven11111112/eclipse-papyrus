@@ -32,6 +32,7 @@ import org.eclipse.emf.edit.command.DeleteCommand;
 import org.eclipse.emf.edit.command.RemoveCommand;
 import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 
@@ -42,8 +43,12 @@ import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
  * results, even when {@link #commit(AbstractEditor)} hasn't been called.
  *
  * @author Camille Letavernier
+ *
+ * @deprecated Use/Extend {@link CommandBasedObservableList}, and rely on
+ *             an {@link IAtomicOperationExecutor} to handle the transaction
  */
 @SuppressWarnings({ "unchecked", "rawtypes" })
+@Deprecated
 public class EMFObservableList extends ObservableList implements ICommitListener, IChangeListener, IObserving {
 
 	/**
@@ -98,6 +103,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 
 	protected boolean isCommitting;
 
+	@Override
 	public void handleChange(ChangeEvent event) {
 		if (isCommitting) {
 			return; // We're modifying the wrapped Observable list, which sends us change events. Ignore them.
@@ -109,6 +115,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 		}
 	}
 
+	@Override
 	public Object getObserved() {
 		return source;
 	}
@@ -128,6 +135,7 @@ public class EMFObservableList extends ObservableList implements ICommitListener
 	 * @see org.eclipse.papyrus.infra.widgets.editors.ICommitListener#commit(AbstractEditor)
 	 *
 	 */
+	@Override
 	public synchronized void commit(AbstractEditor editor) {
 
 		isCommitting = true;

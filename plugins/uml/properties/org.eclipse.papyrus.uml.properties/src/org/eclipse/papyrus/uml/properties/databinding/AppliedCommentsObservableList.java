@@ -11,7 +11,7 @@
  *  Mickaël ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 435174
  *  Gabriel Pascual (ALL4TEC)  -  Bug 441511
  *  Christian W. Damus (CEA) - Bug 441227
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.databinding;
 
@@ -31,7 +31,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Observable list for applied comments.
  */
-public class AppliedCommentsObservableList extends PapyrusObservableList {
+public class AppliedCommentsObservableList extends RequestBasedObservableList {
 
 	public AppliedCommentsObservableList(EditingDomain domain, Element source) {
 		super(getAppliedCommentsList(source), domain, source, UMLPackage.eINSTANCE.getElement_OwnedComment());
@@ -85,26 +85,6 @@ public class AppliedCommentsObservableList extends PapyrusObservableList {
 		}
 		return result;
 	}
-
-	/**
-	 * <p>
-	 * Redefine refresh cache because applied comments list is a subset of {@link Element#getOwnedComments <em>Owned Comments</em>}.
-	 * </p>
-	 *
-	 * @see org.eclipse.papyrus.infra.emf.databinding.EMFObservableList#refreshCacheList()
-	 *
-	 */
-	@Override
-	protected void refreshCacheList() {
-		if (isDisposed()) {
-			return;
-		}
-		wrappedList.clear();
-		wrappedList.addAll(getAppliedCommentsList((Element) source));
-		fireListChange(null);
-	}
-
-
 
 	/**
 	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getAddCommand(java.lang.Object)

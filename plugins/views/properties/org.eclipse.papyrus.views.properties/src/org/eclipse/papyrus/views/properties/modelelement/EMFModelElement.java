@@ -29,7 +29,7 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
-import org.eclipse.papyrus.infra.emf.databinding.EMFObservableList;
+import org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList;
 import org.eclipse.papyrus.infra.emf.databinding.EMFObservableValue;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.emf.providers.EMFContentProvider;
@@ -48,7 +48,7 @@ import org.eclipse.papyrus.views.properties.creation.EcorePropertyEditorFactory;
 /**
  * A ModelElement to manipulate EMF objects.
  * This ModelElement uses EMFProperties to retrieve Observables when there
- * is no Editing Domain, and {@link EMFObservableValue} / {@link EMFObservableList} when
+ * is no Editing Domain, and {@link EMFObservableValue} / {@link CommandBasedObservableList} when
  * an Editing domain is available
  *
  * @author Camille Letavernier
@@ -110,7 +110,7 @@ public class EMFModelElement extends AbstractModelElement {
 		}
 
 		if (feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new EMFObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new CommandBasedObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 

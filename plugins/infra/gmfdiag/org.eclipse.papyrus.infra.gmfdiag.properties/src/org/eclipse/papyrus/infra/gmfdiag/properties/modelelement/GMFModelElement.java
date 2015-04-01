@@ -39,8 +39,8 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.papyrus.infra.viewpoints.style.StylePackage;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
 import org.eclipse.swt.graphics.Image;
 
@@ -115,7 +115,7 @@ public class GMFModelElement extends EMFModelElement {
 		}
 
 		if (feature.getUpperBound() != 1) {
-			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			IObservableList list = domain == null ? EMFProperties.list(featurePath).observe(source) : new RequestBasedObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 			return list;
 		}
 

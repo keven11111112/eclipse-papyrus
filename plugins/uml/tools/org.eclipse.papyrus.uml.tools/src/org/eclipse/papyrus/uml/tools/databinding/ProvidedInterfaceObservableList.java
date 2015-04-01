@@ -49,7 +49,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  * @author Camille Letavernier
  */
-public class ProvidedInterfaceObservableList extends PapyrusObservableList {
+public class ProvidedInterfaceObservableList extends RequestBasedObservableList {
 
 
 	/** The port. */

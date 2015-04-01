@@ -9,7 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - bug 453445
- *  
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
@@ -27,8 +27,8 @@ import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.datatype.DataTypeProvider;
 import org.eclipse.papyrus.uml.properties.datatype.StructuredDataTypeObservableValue;
-import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList;
 import org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableValue;
+import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
 import org.eclipse.papyrus.uml.tools.providers.UMLContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
@@ -85,7 +85,7 @@ public class StereotypeModelElement extends EMFModelElement {
 		}
 
 		if (feature.getUpperBound() != 1) {
-			return new PapyrusObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
+			return new RequestBasedObservableList(EMFProperties.list(featurePath).observe(source), domain, getSource(featurePath), feature);
 		}
 
 		return new PapyrusObservableValue(getSource(featurePath), feature, domain);
@@ -127,7 +127,7 @@ public class StereotypeModelElement extends EMFModelElement {
 
 		return FeaturePath.fromList(features);
 	}
-	
+
 	/**
 	 * {@inheritDoc}
 	 */
