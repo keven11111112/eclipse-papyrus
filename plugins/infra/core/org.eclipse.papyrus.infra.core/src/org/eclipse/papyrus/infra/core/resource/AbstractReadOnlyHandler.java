@@ -12,6 +12,7 @@
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 429826
  *  Christian W. Damus - bug 457560
+ *  Christian W. Damus - bug 463564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.resource;
@@ -70,11 +71,12 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 		Resource res = eObject.eResource();
 		URI uri = (res == null) ? null : res.getURI();
 		if (uri != null) {
-			if (resourceCache != null) {
-				result = resourceCache.get(axes, uri);
+			final ResourceReadOnlyCache cache = getResourceCache();
+			if (cache != null) {
+				result = cache.get(axes, uri);
 				if (result == null) {
 					result = anyReadOnly(axes, new URI[] { uri });
-					resourceCache.put(axes, uri, result);
+					cache.put(axes, uri, result);
 				}
 			} else {
 				result = anyReadOnly(axes, new URI[] { uri });
@@ -177,6 +179,15 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 		}
 	}
 
+	/**
+	 * Obtains my resource read-only state cache, if I have one.
+	 * 
+	 * @return my resource read-only cache, or {@code null} if none is available
+	 */
+	protected final ResourceReadOnlyCache getResourceCache() {
+		return resourceCache;
+	}
+
 	//
 	// Nested types
 	//
@@ -256,6 +267,13 @@ public abstract class AbstractReadOnlyHandler implements IReadOnlyHandler2 {
 		 *            the read-only state to cache
 		 */
 		void put(Set<ReadOnlyAxis> axes, URI resourceURI, Optional<Boolean> readOnly);
+
+		/**
+		 * Purges the cache. This should be called whenever the external state of resources
+		 * has changed in such a way that it could potentially invalidate previously cached
+		 * results.
+		 */
+		void clear();
 
 		//
 		// Nested types

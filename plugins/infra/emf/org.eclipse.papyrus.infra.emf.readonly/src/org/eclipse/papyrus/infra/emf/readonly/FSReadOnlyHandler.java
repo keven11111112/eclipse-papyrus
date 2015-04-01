@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011, 2014 Atos Origin, CEA, and otherw.
+ * Copyright (c) 2011, 2015 Atos Origin, CEA, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -11,6 +11,7 @@
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
  *  Christian W. Damus (CEA) - bug 429826
+ *  Christian W. Damus - bug 463564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -45,18 +46,47 @@ public class FSReadOnlyHandler extends AbstractReadOnlyHandler {
 	}
 
 	public Optional<Boolean> anyReadOnly(Set<ReadOnlyAxis> axes, URI[] uris) {
-		if (axes.contains(ReadOnlyAxis.PERMISSION)) {
-			for (URI uri : uris) {
-				IFile ifile = getIFile(uri);
-				if (ifile != null) {
-					if (ifile.isReadOnly()) {
-						return Optional.of(Boolean.TRUE);
+		Optional<Boolean> result;
+
+		if (!axes.contains(ReadOnlyAxis.PERMISSION)) {
+			result = Optional.absent();
+		} else {
+			final ResourceReadOnlyCache cache = getResourceCache();
+			if (cache != null) {
+				result = Optional.absent();
+
+				for (int i = 0; i < uris.length; i++) {
+					final URI uri = uris[i];
+
+					result = cache.get(axes, uri);
+					if (result == null) {
+						result = computeAnyReadOnly(new URI[] { uri });
+						cache.put(ReadOnlyAxis.permissionAxes(), uri, result);
 					}
-				} else {
-					File file = getFile(uri);
-					if ((file != null) && file.exists() && !file.canWrite()) {
-						return Optional.of(Boolean.TRUE);
+
+					if (result.or(Boolean.FALSE)) {
+						break;
 					}
+				}
+			} else {
+				result = computeAnyReadOnly(uris);
+			}
+		}
+
+		return result;
+	}
+
+	protected Optional<Boolean> computeAnyReadOnly(URI[] uris) {
+		for (URI uri : uris) {
+			IFile ifile = getIFile(uri);
+			if (ifile != null) {
+				if (ifile.isReadOnly()) {
+					return Optional.of(Boolean.TRUE);
+				}
+			} else {
+				File file = getFile(uri);
+				if ((file != null) && file.exists() && !file.canWrite()) {
+					return Optional.of(Boolean.TRUE);
 				}
 			}
 		}

@@ -14,6 +14,7 @@
  *  Christian W. Damus - bug 451557
  *  Christian W. Damus - bug 457560
  *  Christian W. Damus - bug 461629
+ *  Christian W. Damus - bug 463564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.core.utils;
@@ -48,6 +49,10 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 
 	public static final String TRANSACTION_OPTION_READ_ONLY_AXIS = "papyrus.read_only_axis"; //$NON-NLS-1$
 
+	/**
+	 * @deprecated Since 1.1 M7 read-only state of resources is always cached and the cache lifecycle is not tied to transactions.
+	 */
+	@Deprecated
 	public static final String TRANSACTION_OPTION_NO_READ_ONLY_CACHE = "papyrus.no_read_only_cache"; //$NON-NLS-1$
 
 	public static final String TRANSACTION_OPTION_INTERACTIVE = "papyrus.interactive"; //$NON-NLS-1$
@@ -175,7 +180,9 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 * @param disableCache
 	 *            whether to disable read-only caching
 	 * @return the augmented {@code options}
+	 * @deprecated Since 1.1 M7 read-only state of resources is always cached and the cache lifecycle is not tied to transactions.
 	 */
+	@Deprecated
 	public static Map<String, Object> mergeDisableReadOnlyOption(Map<String, Object> options, boolean disableCache) {
 		options.put(TRANSACTION_OPTION_NO_READ_ONLY_CACHE, disableCache);
 		return options;
@@ -189,7 +196,9 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 * @param disableCache
 	 *            whether to disable read-only caching
 	 * @return a new map based on the {@code options} and including the {@code disableCache} option
+	 * @deprecated Since 1.1 M7 read-only state of resources is always cached and the cache lifecycle is not tied to transactions.
 	 */
+	@Deprecated
 	public static Map<String, Object> addDisableReadOnlyCacheOption(Map<String, ?> options, boolean disableCache) {
 		Map<String, Object> result = (options == null) ? Maps.<String, Object> newHashMap() : Maps.newHashMap(options);
 		result.put(TRANSACTION_OPTION_NO_READ_ONLY_CACHE, disableCache);
@@ -202,7 +211,9 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 * @param disableCache
 	 *            whether to disable read-only caching
 	 * @return a new mutable map including the {@code disableCache} option
+	 * @deprecated Since 1.1 M7 read-only state of resources is always cached and the cache lifecycle is not tied to transactions.
 	 */
+	@Deprecated
 	public static Map<String, Object> disableReadOnlyCacheOption(boolean disableCache) {
 		return addDisableReadOnlyCacheOption(null, disableCache);
 	}
@@ -213,7 +224,9 @@ public class TransactionHelper extends org.eclipse.papyrus.infra.core.sasheditor
 	 * @param transaction
 	 *            a transaction
 	 * @return {@code true} if the {@code transaction} has the {@linkplain #TRANSACTION_OPTION_NO_READ_ONLY_CACHE interactive option} set {@code true}; {@code false}, otherwise (including the default case of no option set)
+	 * @deprecated Since 1.1 M7 read-only state of resources is always cached and the cache lifecycle is not tied to transactions.
 	 */
+	@Deprecated
 	public static boolean isReadOnlyCacheDisabled(Transaction transaction) {
 		Object value = transaction.getOptions().get(TRANSACTION_OPTION_NO_READ_ONLY_CACHE);
 		return (value instanceof Boolean) ? (Boolean) value : false;

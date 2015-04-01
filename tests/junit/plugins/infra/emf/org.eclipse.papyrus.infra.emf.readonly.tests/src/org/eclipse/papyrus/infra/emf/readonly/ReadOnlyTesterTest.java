@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 463564
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -35,6 +36,9 @@ import com.google.common.collect.Iterators;
 public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 
 	@Rule
+	public final ReadOnlyCacheRule cacheRule = new ReadOnlyCacheRule();
+
+	@Rule
 	public final PapyrusROEditingDomainFixture domain = new PapyrusROEditingDomainFixture();
 
 	private final ProjectFixture project = domain.getProject();
@@ -57,6 +61,7 @@ public class ReadOnlyTesterTest extends AbstractPapyrusTest {
 		assertThat(fixture.testIsReadOnly(Iterators.singletonIterator(string), true), is(true));
 
 		project.setReadOnly(domain.getModelResource());
+		cacheRule.clear(); // Clear the cache
 		assertThat(fixture.testIsReadOnly(Iterators.singletonIterator(domain.getModel()), true), is(true));
 	}
 

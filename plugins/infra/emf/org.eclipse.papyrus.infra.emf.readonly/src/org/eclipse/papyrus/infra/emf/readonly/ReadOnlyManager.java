@@ -15,6 +15,7 @@
  *  Christian W. Damus (CEA) - bug 422257
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 457560
+ *  Christian W. Damus - bug 463564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -210,7 +211,7 @@ public class ReadOnlyManager implements IReadOnlyHandler2, IEditorReloadListener
 
 	public ReadOnlyManager(final EditingDomain editingDomain) {
 		// Create our transaction cache
-		cache = ReadOnlyCache.create(this, editingDomain);
+		cache = ReadOnlyCache.create(this, Activator.getDefault().getReadOnlyCacheExecutor());
 
 		final Map<ReadOnlyAxis, List<IReadOnlyHandler2>> handlers = new EnumMap<ReadOnlyAxis, List<IReadOnlyHandler2>>(ReadOnlyAxis.class);
 		cache.run(new Runnable() {

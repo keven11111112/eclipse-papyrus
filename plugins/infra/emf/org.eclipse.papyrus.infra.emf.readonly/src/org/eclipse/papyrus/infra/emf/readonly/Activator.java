@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2011 Atos Origin.
+ * Copyright (c) 2011, 2015 Atos Origin, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,12 +9,18 @@
  *
  * Contributors:
  *  Mathieu Velten (Atos Origin) mathieu.velten@atosorigin.com - Initial API and implementation
+ *  Christian W. Damus - bug 463564
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.emf.readonly;
 
+import java.util.concurrent.Executor;
+
 import org.eclipse.core.runtime.Plugin;
 import org.eclipse.papyrus.infra.core.log.LogHelper;
+import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
+import org.eclipse.papyrus.infra.tools.util.UIUtil;
+import org.eclipse.swt.widgets.Display;
 import org.osgi.framework.BundleContext;
 
 /**
@@ -31,6 +37,8 @@ public class Activator extends Plugin {
 	private static Activator plugin;
 
 	public static LogHelper log;
+
+	private Executor readOnlyCacheExecutor;
 
 	/**
 	 * The constructor
@@ -68,5 +76,36 @@ public class Activator extends Plugin {
 	 */
 	public static Activator getDefault() {
 		return plugin;
+	}
+
+	/**
+	 * Queries the executor to use in the initialization of a {@link ReadOnlyManager}'s
+	 * {@linkplain AbstractReadOnlyHandler.ResourceReadOnlyCache read-only caches}.
+	 * 
+	 * @return the executor to use in initialization of read-only resource caches. never {@code null}
+	 */
+	public synchronized Executor getReadOnlyCacheExecutor() {
+		if (readOnlyCacheExecutor == null) {
+			// The default executor is one that runs tasks on the display's event queue
+			readOnlyCacheExecutor = UIUtil.createUIExecutor(Display.getDefault());
+		}
+		return readOnlyCacheExecutor;
+	}
+
+	/**
+	 * Assigns the executor to use in the initialization of a {@link ReadOnlyManager}'s
+	 * {@linkplain AbstractReadOnlyHandler.ResourceReadOnlyCache read-only caches}.
+	 * 
+	 * @param executor
+	 *            the executor to use in initialization of read-only resource caches.
+	 *            May be {@code null} to use a default executor
+	 * @return the executor previously in use (so that, for example, it could be restored)
+	 */
+	public synchronized Executor setReadOnlyCacheExecutor(Executor executor) {
+		Executor result = getReadOnlyCacheExecutor();
+
+		this.readOnlyCacheExecutor = executor;
+
+		return result;
 	}
 }

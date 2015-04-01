@@ -17,21 +17,15 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.ConcurrentMap;
-import java.util.concurrent.atomic.AtomicInteger;
+import java.util.concurrent.Executor;
 
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.edit.domain.EditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
-import org.eclipse.emf.transaction.TransactionalEditingDomainListenerImpl;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.AbstractReadOnlyHandler.ResourceReadOnlyCache;
 import org.eclipse.papyrus.infra.core.resource.IReadOnlyHandler;
 import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
-import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.Maps;
@@ -39,13 +33,13 @@ import com.google.common.collect.Maps;
 /**
  * A transaction-scoped cache of read-only states of resources and objects.
  */
-class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
+class ReadOnlyCache {
 
 	private static final ThreadLocal<ReadOnlyCache> context = new ThreadLocal<ReadOnlyCache>();
 
-	private final TransactionalEditingDomain transactionalEditingDomain;
+	private final ReadOnlyManager manager;
+	private final Executor executor;
 
-	private AtomicInteger activeTransactionCount = new AtomicInteger();
 	private Map<Set<URI>, ReadOnlyState> resourceReadOnlyStates;
 	private Map<EObject, ReadOnlyState> objectReadOnlyStates;
 	private ConcurrentMap<AbstractReadOnlyHandler, ConcurrentMap<URI, ReadOnlyState>> handlerResourceReadOnlyCache;
@@ -55,10 +49,11 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 		AbstractReadOnlyHandler.setResourceReadOnlyCacheProvider(new ResourceReadOnlyCacheProvider());
 	}
 
-	ReadOnlyCache(TransactionalEditingDomain transactionalEditingDomain) {
+	ReadOnlyCache(ReadOnlyManager manager, Executor executor) {
 		super();
 
-		this.transactionalEditingDomain = transactionalEditingDomain;
+		this.manager = manager;
+		this.executor = executor;
 	}
 
 	/**
@@ -66,46 +61,33 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	 * 
 	 * @param manager
 	 *            a read-only manager
-	 * @param domain
-	 *            its editing domain
+	 * @param executor
+	 *            an asynchronous executor on which the cache may post tasks that it needs to defer, in particular
+	 *            its own expiry
 	 * 
-	 * @return an appropriate cache, which may be one that doesn't actually cache anything if the editing domain isn't a suitable {@link TransactionalEditingDomain}, but never {@code null}
+	 * @return an appropriate cache, which may be one that doesn't actually cache anything (if necessary), but never {@code null}
 	 */
-	static ReadOnlyCache create(ReadOnlyManager manager, EditingDomain domain) {
-		ReadOnlyCache result = null;
-
-		if (domain instanceof TransactionalEditingDomain) {
-			TransactionalEditingDomain ted = (TransactionalEditingDomain) domain;
-			TransactionalEditingDomain.Lifecycle lifecycle = TransactionUtil.getAdapter(ted, TransactionalEditingDomain.Lifecycle.class);
-			if (lifecycle != null) {
-				result = new ReadOnlyCache(ted);
-				lifecycle.addTransactionalEditingDomainListener(result);
-				if (Platform.inDebugMode()) {
-					Activator.log.info("Read-only cache activated for editing domain " + domain); //$NON-NLS-1$
-				}
-			}
-		}
-
-		if (result == null) {
-			result = Dud.INSTANCE;
+	static ReadOnlyCache create(ReadOnlyManager manager, Executor executor) {
+		ReadOnlyCache result = new ReadOnlyCache(manager, executor);
+		if (Platform.inDebugMode()) {
+			Activator.log.info("Read-only cache activated for manager: " + manager); //$NON-NLS-1$
 		}
 
 		return result;
 	}
 
 	/**
-	 * Forcibly disposes me.
+	 * Disposes me.
 	 */
 	public void dispose() {
-		if (transactionalEditingDomain != null) {
-			// Pretend as though
-			editingDomainDisposing(new TransactionalEditingDomainEvent(transactionalEditingDomain, TransactionalEditingDomainEvent.EDITING_DOMAIN_DISPOSING));
+		synchronized (this) {
+			resourceReadOnlyStates = null;
+			objectReadOnlyStates = null;
+			handlerResourceReadOnlyCache = null;
+		}
 
-			// This would be done for us if it were actually disposing
-			TransactionalEditingDomain.Lifecycle lifecycle = TransactionUtil.getAdapter(transactionalEditingDomain, TransactionalEditingDomain.Lifecycle.class);
-			if (lifecycle != null) {
-				lifecycle.removeTransactionalEditingDomainListener(this);
-			}
+		if (Platform.inDebugMode()) {
+			Activator.log.info("Read-only cache deactivated for manager: " + manager); //$NON-NLS-1$
 		}
 	}
 
@@ -202,72 +184,43 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 	}
 
 	private Map<Set<URI>, ReadOnlyState> getResourceReadOnlyStates() {
-		if (activeTransactionCount.get() > 0) {
+		if (resourceReadOnlyStates == null) {
 			initCache();
-			return resourceReadOnlyStates;
 		}
-		return null;
+		return resourceReadOnlyStates;
 	}
 
 	private Map<EObject, ReadOnlyState> getObjectReadOnlyStates() {
-		if (activeTransactionCount.get() > 0) {
+		if (objectReadOnlyStates == null) {
 			initCache();
-			return objectReadOnlyStates;
 		}
-		return null;
+		return objectReadOnlyStates;
 	}
 
 	private ConcurrentMap<AbstractReadOnlyHandler, ConcurrentMap<URI, ReadOnlyState>> getHandlerResourceReadOnlyCache() {
-		if (activeTransactionCount.get() > 0) {
+		if (handlerResourceReadOnlyCache == null) {
 			initCache();
-			return handlerResourceReadOnlyCache;
 		}
-		return null;
+		return handlerResourceReadOnlyCache;
 	}
 
 	private synchronized void initCache() {
 		if (resourceReadOnlyStates == null) {
 			resourceReadOnlyStates = Maps.newHashMap();
+		}
+		if (objectReadOnlyStates == null) {
 			objectReadOnlyStates = Maps.newHashMap();
+		}
+		if (handlerResourceReadOnlyCache == null) {
 			handlerResourceReadOnlyCache = Maps.newConcurrentMap();
 		}
-	}
 
-	@Override
-	public void transactionStarted(TransactionalEditingDomainEvent event) {
-		// Any number of read-only transactions could be open concurrently, but only one of
-		// them actually *running* at any time, thanks to the cooperative "yield" API.
-		// Of course, a transaction may have the cache disabled, but the cache will still
-		// be there if some other transaction has it enabled
-		if (!TransactionHelper.isReadOnlyCacheDisabled(event.getTransaction())) {
-			activeTransactionCount.incrementAndGet();
-		}
-	}
-
-	@Override
-	public void transactionClosed(TransactionalEditingDomainEvent event) {
-		// Only decrement the count for transactions that triggered an increment!
-		if (!TransactionHelper.isReadOnlyCacheDisabled(event.getTransaction()) && (activeTransactionCount.decrementAndGet() <= 0)) {
-			synchronized (this) {
-				resourceReadOnlyStates = null;
-				objectReadOnlyStates = null;
-				handlerResourceReadOnlyCache = null;
+		// Schedule my expiry
+		executor.execute(new Runnable() {
+			public void run() {
+				clear();
 			}
-		}
-	}
-
-	@Override
-	public void editingDomainDisposing(TransactionalEditingDomainEvent event) {
-		activeTransactionCount.set(0);
-		synchronized (this) {
-			resourceReadOnlyStates = null;
-			objectReadOnlyStates = null;
-			handlerResourceReadOnlyCache = null;
-		}
-
-		if (Platform.inDebugMode()) {
-			Activator.log.info("Read-only cache deactivated for editing domain " + event.getSource()); //$NON-NLS-1$
-		}
+		});
 	}
 
 	/**
@@ -333,48 +286,16 @@ class ReadOnlyCache extends TransactionalEditingDomainListenerImpl {
 					state.put(axes, readOnlyState);
 				}
 			}
+
+			public void clear() {
+				ReadOnlyCache.this.clear();
+			}
 		};
 	}
 
 	//
 	// Nested types
 	//
-
-	/**
-	 * A cache that overrides all caching behaviour with no-ops.
-	 */
-	private static final class Dud extends ReadOnlyCache {
-		static final Dud INSTANCE = new Dud();
-
-		private Dud() {
-			super(null);
-		}
-
-		@Override
-		public Optional<Boolean> getResources(Set<ReadOnlyAxis> axes, Set<URI> uris) {
-			return null;
-		}
-
-		@Override
-		public Optional<Boolean> getObject(Set<ReadOnlyAxis> axes, EObject object) {
-			return null;
-		}
-
-		@Override
-		public void putResources(Set<ReadOnlyAxis> axes, Set<URI> uris, Optional<Boolean> readonly) {
-			// Pass
-		}
-
-		@Override
-		public void putObject(Set<ReadOnlyAxis> axes, EObject object, Optional<Boolean> readonly) {
-			// Pass
-		}
-
-		@Override
-		ResourceReadOnlyCache getResourceReadOnlyCache(AbstractReadOnlyHandler handler) {
-			return null;
-		}
-	}
 
 	private static class ReadOnlyState extends HashMap<Set<ReadOnlyAxis>, Optional<Boolean>> {
 		private static final long serialVersionUID = 1L;
