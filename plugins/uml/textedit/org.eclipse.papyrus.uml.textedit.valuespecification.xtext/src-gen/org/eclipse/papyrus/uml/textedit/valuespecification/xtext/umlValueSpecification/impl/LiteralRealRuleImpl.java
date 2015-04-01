@@ -18,10 +18,10 @@ import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecifi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.LiteralRealRuleImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -22,26 +22,29 @@ import java.util.ArrayList;
 @SuppressWarnings("all")
 public class InternalUmlValueSpecificationParser extends AbstractInternalContentAssistParser {
     public static final String[] tokenNames = new String[] {
-        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_ID", "RULE_INT", "RULE_DOUBLE", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'='", "'null'", "'<Undefined>'", "'+'", "'-'", "'#'", "'~'"
+        "<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_VALUE_SPECIFICATION_ID", "RULE_ID", "RULE_VALUE_SPECIFICATION_INT", "RULE_VALUE_SPECIFICATION_DOUBLE", "RULE_VALUE_SPECIFICATION_STRING", "RULE_INT", "RULE_STRING", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "'true'", "'false'", "'='", "'null'", "'<Undefined>'", "'+'", "'-'", "'#'", "'~'"
     };
+    public static final int RULE_ID=5;
+    public static final int RULE_VALUE_SPECIFICATION_DOUBLE=7;
+    public static final int T__23=23;
+    public static final int T__22=22;
+    public static final int RULE_ANY_OTHER=14;
+    public static final int T__21=21;
+    public static final int T__20=20;
+    public static final int RULE_VALUE_SPECIFICATION_INT=6;
+    public static final int RULE_SL_COMMENT=12;
+    public static final int EOF=-1;
+    public static final int RULE_ML_COMMENT=11;
     public static final int T__19=19;
-    public static final int RULE_ID=4;
-    public static final int RULE_STRING=7;
+    public static final int RULE_STRING=10;
     public static final int T__16=16;
     public static final int T__15=15;
     public static final int T__18=18;
     public static final int T__17=17;
-    public static final int T__12=12;
-    public static final int T__14=14;
-    public static final int T__13=13;
-    public static final int RULE_ANY_OTHER=11;
-    public static final int T__20=20;
-    public static final int RULE_INT=5;
-    public static final int RULE_WS=10;
-    public static final int RULE_SL_COMMENT=9;
-    public static final int EOF=-1;
-    public static final int RULE_DOUBLE=6;
-    public static final int RULE_ML_COMMENT=8;
+    public static final int RULE_VALUE_SPECIFICATION_STRING=8;
+    public static final int RULE_INT=9;
+    public static final int RULE_VALUE_SPECIFICATION_ID=4;
+    public static final int RULE_WS=13;
 
     // delegates
     // delegators
@@ -707,10 +710,10 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             int alt1=2;
             int LA1_0 = input.LA(1);
 
-            if ( ((LA1_0>=RULE_ID && LA1_0<=RULE_STRING)||(LA1_0>=12 && LA1_0<=13)||LA1_0==15||(LA1_0>=17 && LA1_0<=20)) ) {
+            if ( ((LA1_0>=RULE_VALUE_SPECIFICATION_ID && LA1_0<=RULE_VALUE_SPECIFICATION_STRING)||(LA1_0>=15 && LA1_0<=16)||LA1_0==18||(LA1_0>=20 && LA1_0<=23)) ) {
                 alt1=1;
             }
-            else if ( (LA1_0==16) ) {
+            else if ( (LA1_0==19) ) {
                 alt1=2;
             }
             else {
@@ -798,7 +801,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             int alt2=2;
             int LA2_0 = input.LA(1);
 
-            if ( ((LA2_0>=RULE_INT && LA2_0<=RULE_STRING)||(LA2_0>=12 && LA2_0<=13)||LA2_0==15) ) {
+            if ( ((LA2_0>=RULE_VALUE_SPECIFICATION_INT && LA2_0<=RULE_VALUE_SPECIFICATION_STRING)||(LA2_0>=15 && LA2_0<=16)||LA2_0==18) ) {
                 alt2=1;
             }
             else if ( (LA2_0==RULE_ID) ) {
@@ -888,28 +891,28 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:332:1: ( ( ruleLiteralBooleanRule ) | ( ruleLiteralIntegerOrUnlimitedNaturalRule ) | ( ruleLiteralRealRule ) | ( ruleLiteralNullRule ) | ( ruleLiteralStringRule ) )
             int alt3=5;
             switch ( input.LA(1) ) {
-            case 12:
-            case 13:
+            case 15:
+            case 16:
                 {
                 alt3=1;
                 }
                 break;
-            case RULE_INT:
+            case RULE_VALUE_SPECIFICATION_INT:
                 {
                 alt3=2;
                 }
                 break;
-            case RULE_DOUBLE:
+            case RULE_VALUE_SPECIFICATION_DOUBLE:
                 {
                 alt3=3;
                 }
                 break;
-            case 15:
+            case 18:
                 {
                 alt3=4;
                 }
                 break;
-            case RULE_STRING:
+            case RULE_VALUE_SPECIFICATION_STRING:
                 {
                 alt3=5;
                 }
@@ -1045,10 +1048,10 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             int alt4=2;
             int LA4_0 = input.LA(1);
 
-            if ( (LA4_0==12) ) {
+            if ( (LA4_0==15) ) {
                 alt4=1;
             }
-            else if ( (LA4_0==13) ) {
+            else if ( (LA4_0==16) ) {
                 alt4=2;
             }
             else {
@@ -1065,7 +1068,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:374:1: 'true'
                     {
                      before(grammarAccess.getLiteralBooleanRuleAccess().getValueTrueKeyword_0_0()); 
-                    match(input,12,FOLLOW_12_in_rule__LiteralBooleanRule__ValueAlternatives_0753); 
+                    match(input,15,FOLLOW_15_in_rule__LiteralBooleanRule__ValueAlternatives_0753); 
                      after(grammarAccess.getLiteralBooleanRuleAccess().getValueTrueKeyword_0_0()); 
 
                     }
@@ -1080,7 +1083,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:382:1: 'false'
                     {
                      before(grammarAccess.getLiteralBooleanRuleAccess().getValueFalseKeyword_0_1()); 
-                    match(input,13,FOLLOW_13_in_rule__LiteralBooleanRule__ValueAlternatives_0773); 
+                    match(input,16,FOLLOW_16_in_rule__LiteralBooleanRule__ValueAlternatives_0773); 
                      after(grammarAccess.getLiteralBooleanRuleAccess().getValueFalseKeyword_0_1()); 
 
                     }
@@ -1115,22 +1118,22 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:398:1: ( ( ( rule__VisibilityKind__PublicAssignment_0 ) ) | ( ( rule__VisibilityKind__PrivateAssignment_1 ) ) | ( ( rule__VisibilityKind__ProtectedAssignment_2 ) ) | ( ( rule__VisibilityKind__PackageAssignment_3 ) ) )
             int alt5=4;
             switch ( input.LA(1) ) {
-            case 17:
+            case 20:
                 {
                 alt5=1;
                 }
                 break;
-            case 18:
+            case 21:
                 {
                 alt5=2;
                 }
                 break;
-            case 19:
+            case 22:
                 {
                 alt5=3;
                 }
                 break;
-            case 20:
+            case 23:
                 {
                 alt5=4;
                 }
@@ -1316,7 +1319,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             int alt6=2;
             int LA6_0 = input.LA(1);
 
-            if ( ((LA6_0>=17 && LA6_0<=20)) ) {
+            if ( ((LA6_0>=20 && LA6_0<=23)) ) {
                 alt6=1;
             }
             switch (alt6) {
@@ -1412,12 +1415,8 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             int alt7=2;
             int LA7_0 = input.LA(1);
 
-            if ( (LA7_0==RULE_ID) ) {
-                int LA7_1 = input.LA(2);
-
-                if ( (LA7_1==14) ) {
-                    alt7=1;
-                }
+            if ( (LA7_0==RULE_VALUE_SPECIFICATION_ID) ) {
+                alt7=1;
             }
             switch (alt7) {
                 case 1 :
@@ -1668,7 +1667,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:568:1: '='
             {
              before(grammarAccess.getAbstractRuleAccess().getEqualsSignKeyword_0_1_1()); 
-            match(input,14,FOLLOW_14_in_rule__AbstractRule__Group_0_1__1__Impl1165); 
+            match(input,17,FOLLOW_17_in_rule__AbstractRule__Group_0_1__1__Impl1165); 
              after(grammarAccess.getAbstractRuleAccess().getEqualsSignKeyword_0_1_1()); 
 
             }
@@ -1733,21 +1732,21 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__AbstractRule__NameAssignment_0_1_0"
-    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:601:1: rule__AbstractRule__NameAssignment_0_1_0 : ( RULE_ID ) ;
+    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:601:1: rule__AbstractRule__NameAssignment_0_1_0 : ( RULE_VALUE_SPECIFICATION_ID ) ;
     public final void rule__AbstractRule__NameAssignment_0_1_0() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:605:1: ( ( RULE_ID ) )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:606:1: ( RULE_ID )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:605:1: ( ( RULE_VALUE_SPECIFICATION_ID ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:606:1: ( RULE_VALUE_SPECIFICATION_ID )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:606:1: ( RULE_ID )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:607:1: RULE_ID
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:606:1: ( RULE_VALUE_SPECIFICATION_ID )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:607:1: RULE_VALUE_SPECIFICATION_ID
             {
-             before(grammarAccess.getAbstractRuleAccess().getNameIDTerminalRuleCall_0_1_0_0()); 
-            match(input,RULE_ID,FOLLOW_RULE_ID_in_rule__AbstractRule__NameAssignment_0_1_01236); 
-             after(grammarAccess.getAbstractRuleAccess().getNameIDTerminalRuleCall_0_1_0_0()); 
+             before(grammarAccess.getAbstractRuleAccess().getNameVALUE_SPECIFICATION_IDTerminalRuleCall_0_1_0_0()); 
+            match(input,RULE_VALUE_SPECIFICATION_ID,FOLLOW_RULE_VALUE_SPECIFICATION_ID_in_rule__AbstractRule__NameAssignment_0_1_01236); 
+             after(grammarAccess.getAbstractRuleAccess().getNameVALUE_SPECIFICATION_IDTerminalRuleCall_0_1_0_0()); 
 
             }
 
@@ -1950,21 +1949,21 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:682:1: rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment : ( RULE_INT ) ;
+    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:682:1: rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment : ( RULE_VALUE_SPECIFICATION_INT ) ;
     public final void rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:686:1: ( ( RULE_INT ) )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:687:1: ( RULE_INT )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:686:1: ( ( RULE_VALUE_SPECIFICATION_INT ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:687:1: ( RULE_VALUE_SPECIFICATION_INT )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:687:1: ( RULE_INT )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:688:1: RULE_INT
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:687:1: ( RULE_VALUE_SPECIFICATION_INT )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:688:1: RULE_VALUE_SPECIFICATION_INT
             {
-             before(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueINTTerminalRuleCall_0()); 
-            match(input,RULE_INT,FOLLOW_RULE_INT_in_rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment1403); 
-             after(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueINTTerminalRuleCall_0()); 
+             before(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueVALUE_SPECIFICATION_INTTerminalRuleCall_0()); 
+            match(input,RULE_VALUE_SPECIFICATION_INT,FOLLOW_RULE_VALUE_SPECIFICATION_INT_in_rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment1403); 
+             after(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueVALUE_SPECIFICATION_INTTerminalRuleCall_0()); 
 
             }
 
@@ -1987,21 +1986,21 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__LiteralRealRule__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:697:1: rule__LiteralRealRule__ValueAssignment : ( RULE_DOUBLE ) ;
+    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:697:1: rule__LiteralRealRule__ValueAssignment : ( RULE_VALUE_SPECIFICATION_DOUBLE ) ;
     public final void rule__LiteralRealRule__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:701:1: ( ( RULE_DOUBLE ) )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:702:1: ( RULE_DOUBLE )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:701:1: ( ( RULE_VALUE_SPECIFICATION_DOUBLE ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:702:1: ( RULE_VALUE_SPECIFICATION_DOUBLE )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:702:1: ( RULE_DOUBLE )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:703:1: RULE_DOUBLE
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:702:1: ( RULE_VALUE_SPECIFICATION_DOUBLE )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:703:1: RULE_VALUE_SPECIFICATION_DOUBLE
             {
-             before(grammarAccess.getLiteralRealRuleAccess().getValueDOUBLETerminalRuleCall_0()); 
-            match(input,RULE_DOUBLE,FOLLOW_RULE_DOUBLE_in_rule__LiteralRealRule__ValueAssignment1434); 
-             after(grammarAccess.getLiteralRealRuleAccess().getValueDOUBLETerminalRuleCall_0()); 
+             before(grammarAccess.getLiteralRealRuleAccess().getValueVALUE_SPECIFICATION_DOUBLETerminalRuleCall_0()); 
+            match(input,RULE_VALUE_SPECIFICATION_DOUBLE,FOLLOW_RULE_VALUE_SPECIFICATION_DOUBLE_in_rule__LiteralRealRule__ValueAssignment1434); 
+             after(grammarAccess.getLiteralRealRuleAccess().getValueVALUE_SPECIFICATION_DOUBLETerminalRuleCall_0()); 
 
             }
 
@@ -2041,7 +2040,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:720:1: 'null'
             {
              before(grammarAccess.getLiteralNullRuleAccess().getValueNullKeyword_0()); 
-            match(input,15,FOLLOW_15_in_rule__LiteralNullRule__ValueAssignment1470); 
+            match(input,18,FOLLOW_18_in_rule__LiteralNullRule__ValueAssignment1470); 
              after(grammarAccess.getLiteralNullRuleAccess().getValueNullKeyword_0()); 
 
             }
@@ -2069,21 +2068,21 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
 
 
     // $ANTLR start "rule__LiteralStringRule__ValueAssignment"
-    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:735:1: rule__LiteralStringRule__ValueAssignment : ( RULE_STRING ) ;
+    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:735:1: rule__LiteralStringRule__ValueAssignment : ( RULE_VALUE_SPECIFICATION_STRING ) ;
     public final void rule__LiteralStringRule__ValueAssignment() throws RecognitionException {
 
         		int stackSize = keepStackSize();
             
         try {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:739:1: ( ( RULE_STRING ) )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:740:1: ( RULE_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:739:1: ( ( RULE_VALUE_SPECIFICATION_STRING ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:740:1: ( RULE_VALUE_SPECIFICATION_STRING )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:740:1: ( RULE_STRING )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:741:1: RULE_STRING
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:740:1: ( RULE_VALUE_SPECIFICATION_STRING )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:741:1: RULE_VALUE_SPECIFICATION_STRING
             {
-             before(grammarAccess.getLiteralStringRuleAccess().getValueSTRINGTerminalRuleCall_0()); 
-            match(input,RULE_STRING,FOLLOW_RULE_STRING_in_rule__LiteralStringRule__ValueAssignment1509); 
-             after(grammarAccess.getLiteralStringRuleAccess().getValueSTRINGTerminalRuleCall_0()); 
+             before(grammarAccess.getLiteralStringRuleAccess().getValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0()); 
+            match(input,RULE_VALUE_SPECIFICATION_STRING,FOLLOW_RULE_VALUE_SPECIFICATION_STRING_in_rule__LiteralStringRule__ValueAssignment1509); 
+             after(grammarAccess.getLiteralStringRuleAccess().getValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0()); 
 
             }
 
@@ -2123,7 +2122,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:758:1: '<Undefined>'
             {
              before(grammarAccess.getUndefinedRuleAccess().getValueUndefinedKeyword_0()); 
-            match(input,16,FOLLOW_16_in_rule__UndefinedRule__ValueAssignment1545); 
+            match(input,19,FOLLOW_19_in_rule__UndefinedRule__ValueAssignment1545); 
              after(grammarAccess.getUndefinedRuleAccess().getValueUndefinedKeyword_0()); 
 
             }
@@ -2168,7 +2167,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:781:1: '+'
             {
              before(grammarAccess.getVisibilityKindAccess().getPublicPlusSignKeyword_0_0()); 
-            match(input,17,FOLLOW_17_in_rule__VisibilityKind__PublicAssignment_01589); 
+            match(input,20,FOLLOW_20_in_rule__VisibilityKind__PublicAssignment_01589); 
              after(grammarAccess.getVisibilityKindAccess().getPublicPlusSignKeyword_0_0()); 
 
             }
@@ -2213,7 +2212,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:804:1: '-'
             {
              before(grammarAccess.getVisibilityKindAccess().getPrivateHyphenMinusKeyword_1_0()); 
-            match(input,18,FOLLOW_18_in_rule__VisibilityKind__PrivateAssignment_11633); 
+            match(input,21,FOLLOW_21_in_rule__VisibilityKind__PrivateAssignment_11633); 
              after(grammarAccess.getVisibilityKindAccess().getPrivateHyphenMinusKeyword_1_0()); 
 
             }
@@ -2258,7 +2257,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:827:1: '#'
             {
              before(grammarAccess.getVisibilityKindAccess().getProtectedNumberSignKeyword_2_0()); 
-            match(input,19,FOLLOW_19_in_rule__VisibilityKind__ProtectedAssignment_21677); 
+            match(input,22,FOLLOW_22_in_rule__VisibilityKind__ProtectedAssignment_21677); 
              after(grammarAccess.getVisibilityKindAccess().getProtectedNumberSignKeyword_2_0()); 
 
             }
@@ -2303,7 +2302,7 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:850:1: '~'
             {
              before(grammarAccess.getVisibilityKindAccess().getPackageTildeKeyword_3_0()); 
-            match(input,20,FOLLOW_20_in_rule__VisibilityKind__PackageAssignment_31721); 
+            match(input,23,FOLLOW_23_in_rule__VisibilityKind__PackageAssignment_31721); 
              after(grammarAccess.getVisibilityKindAccess().getPackageTildeKeyword_3_0()); 
 
             }
@@ -2367,39 +2366,39 @@ public class InternalUmlValueSpecificationParser extends AbstractInternalContent
     public static final BitSet FOLLOW_ruleLiteralRealRule_in_rule__AbstractRule__ValueAlternatives_0_2_0_0686 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteralNullRule_in_rule__AbstractRule__ValueAlternatives_0_2_0_0703 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleLiteralStringRule_in_rule__AbstractRule__ValueAlternatives_0_2_0_0720 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_12_in_rule__LiteralBooleanRule__ValueAlternatives_0753 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_13_in_rule__LiteralBooleanRule__ValueAlternatives_0773 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_15_in_rule__LiteralBooleanRule__ValueAlternatives_0753 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_16_in_rule__LiteralBooleanRule__ValueAlternatives_0773 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VisibilityKind__PublicAssignment_0_in_rule__VisibilityKind__Alternatives807 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VisibilityKind__PrivateAssignment_1_in_rule__VisibilityKind__Alternatives825 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VisibilityKind__ProtectedAssignment_2_in_rule__VisibilityKind__Alternatives843 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__VisibilityKind__PackageAssignment_3_in_rule__VisibilityKind__Alternatives861 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AbstractRule__Group_0__0__Impl_in_rule__AbstractRule__Group_0__0892 = new BitSet(new long[]{0x000000000000B0F0L});
+    public static final BitSet FOLLOW_rule__AbstractRule__Group_0__0__Impl_in_rule__AbstractRule__Group_0__0892 = new BitSet(new long[]{0x00000000000581F0L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0__1_in_rule__AbstractRule__Group_0__0895 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__VisibilityAssignment_0_0_in_rule__AbstractRule__Group_0__0__Impl922 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AbstractRule__Group_0__1__Impl_in_rule__AbstractRule__Group_0__1953 = new BitSet(new long[]{0x000000000000B0F0L});
+    public static final BitSet FOLLOW_rule__AbstractRule__Group_0__1__Impl_in_rule__AbstractRule__Group_0__1953 = new BitSet(new long[]{0x00000000000581F0L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0__2_in_rule__AbstractRule__Group_0__1956 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0_1__0_in_rule__AbstractRule__Group_0__1__Impl983 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0__2__Impl_in_rule__AbstractRule__Group_0__21014 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__Alternatives_0_2_in_rule__AbstractRule__Group_0__2__Impl1041 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_rule__AbstractRule__Group_0_1__0__Impl_in_rule__AbstractRule__Group_0_1__01077 = new BitSet(new long[]{0x0000000000004000L});
+    public static final BitSet FOLLOW_rule__AbstractRule__Group_0_1__0__Impl_in_rule__AbstractRule__Group_0_1__01077 = new BitSet(new long[]{0x0000000000020000L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0_1__1_in_rule__AbstractRule__Group_0_1__01080 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__NameAssignment_0_1_0_in_rule__AbstractRule__Group_0_1__0__Impl1107 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__Group_0_1__1__Impl_in_rule__AbstractRule__Group_0_1__11137 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_14_in_rule__AbstractRule__Group_0_1__1__Impl1165 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_17_in_rule__AbstractRule__Group_0_1__1__Impl1165 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleVisibilityKind_in_rule__AbstractRule__VisibilityAssignment_0_01205 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_ID_in_rule__AbstractRule__NameAssignment_0_1_01236 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VALUE_SPECIFICATION_ID_in_rule__AbstractRule__NameAssignment_0_1_01236 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__AbstractRule__ValueAlternatives_0_2_0_0_in_rule__AbstractRule__ValueAssignment_0_2_01267 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_RULE_ID_in_rule__AbstractRule__InstanceSpecificationAssignment_0_2_11304 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_ruleUndefinedRule_in_rule__AbstractRule__UndefinedAssignment_11339 = new BitSet(new long[]{0x0000000000000002L});
     public static final BitSet FOLLOW_rule__LiteralBooleanRule__ValueAlternatives_0_in_rule__LiteralBooleanRule__ValueAssignment1370 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_INT_in_rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment1403 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_DOUBLE_in_rule__LiteralRealRule__ValueAssignment1434 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_15_in_rule__LiteralNullRule__ValueAssignment1470 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_RULE_STRING_in_rule__LiteralStringRule__ValueAssignment1509 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_16_in_rule__UndefinedRule__ValueAssignment1545 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_17_in_rule__VisibilityKind__PublicAssignment_01589 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_18_in_rule__VisibilityKind__PrivateAssignment_11633 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_19_in_rule__VisibilityKind__ProtectedAssignment_21677 = new BitSet(new long[]{0x0000000000000002L});
-    public static final BitSet FOLLOW_20_in_rule__VisibilityKind__PackageAssignment_31721 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VALUE_SPECIFICATION_INT_in_rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment1403 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VALUE_SPECIFICATION_DOUBLE_in_rule__LiteralRealRule__ValueAssignment1434 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_18_in_rule__LiteralNullRule__ValueAssignment1470 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_RULE_VALUE_SPECIFICATION_STRING_in_rule__LiteralStringRule__ValueAssignment1509 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_19_in_rule__UndefinedRule__ValueAssignment1545 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_20_in_rule__VisibilityKind__PublicAssignment_01589 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_21_in_rule__VisibilityKind__PrivateAssignment_11633 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_22_in_rule__VisibilityKind__ProtectedAssignment_21677 = new BitSet(new long[]{0x0000000000000002L});
+    public static final BitSet FOLLOW_23_in_rule__VisibilityKind__PackageAssignment_31721 = new BitSet(new long[]{0x0000000000000002L});
 
 }

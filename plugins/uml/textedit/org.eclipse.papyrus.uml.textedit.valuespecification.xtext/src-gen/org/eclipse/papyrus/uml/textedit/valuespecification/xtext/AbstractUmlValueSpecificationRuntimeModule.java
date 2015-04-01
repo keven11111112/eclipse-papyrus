@@ -6,7 +6,6 @@ package org.eclipse.papyrus.uml.textedit.valuespecification.xtext;
 import java.util.Properties;
 
 import org.eclipse.xtext.Constants;
-import org.eclipse.xtext.service.DefaultRuntimeModule;
 
 import com.google.inject.Binder;
 import com.google.inject.name.Names;
@@ -14,8 +13,8 @@ import com.google.inject.name.Names;
 /**
  * Manual modifications go to {org.eclipse.papyrus.uml.textedit.valuespecification.xtext.UmlValueSpecificationRuntimeModule}
  */
- @SuppressWarnings("all")
-public abstract class AbstractUmlValueSpecificationRuntimeModule extends DefaultRuntimeModule {
+@SuppressWarnings("all")
+public abstract class AbstractUmlValueSpecificationRuntimeModule extends org.eclipse.xtext.service.DefaultRuntimeModule {
 
 	protected Properties properties = null;
 

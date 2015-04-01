@@ -13,6 +13,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getName <em>Name</em>}</li>
@@ -20,7 +21,6 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getInstanceSpecification <em>Instance Specification</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getUndefined <em>Undefined</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.UmlValueSpecificationPackage#getAbstractRule()
  * @model

@@ -4,14 +4,13 @@
  */
 package org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui;
 
-import org.eclipse.xtext.ui.DefaultUiModule;
 import org.eclipse.ui.plugin.AbstractUIPlugin;
 
 /**
  * Manual modifications go to {org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.UmlValueSpecificationUiModule}
  */
 @SuppressWarnings("all")
-public abstract class AbstractUmlValueSpecificationUiModule extends DefaultUiModule {
+public abstract class AbstractUmlValueSpecificationUiModule extends org.eclipse.xtext.ui.DefaultUiModule {
 	
 	public AbstractUmlValueSpecificationUiModule(AbstractUIPlugin plugin) {
 		super(plugin);

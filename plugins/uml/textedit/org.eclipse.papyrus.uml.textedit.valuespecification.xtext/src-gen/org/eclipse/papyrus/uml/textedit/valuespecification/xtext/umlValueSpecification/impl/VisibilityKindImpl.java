@@ -18,13 +18,13 @@ import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecifi
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.VisibilityKindImpl#getPublic <em>Public</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.VisibilityKindImpl#getPrivate <em>Private</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.VisibilityKindImpl#getProtected <em>Protected</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.VisibilityKindImpl#getPackage <em>Package</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

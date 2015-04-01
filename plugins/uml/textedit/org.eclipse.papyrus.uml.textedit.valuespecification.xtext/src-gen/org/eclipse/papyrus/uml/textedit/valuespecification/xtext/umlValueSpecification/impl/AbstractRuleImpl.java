@@ -25,6 +25,7 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getName <em>Name</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getInstanceSpecification <em>Instance Specification</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getUndefined <em>Undefined</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
