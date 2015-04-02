@@ -132,10 +132,16 @@ class TransactionPrecommitExecutor implements Executor, TransactionalEditingDoma
 			final InternalTransactionalCommandStack stack = (InternalTransactionalCommandStack) event.getSource().getCommandStack();
 			try {
 				Map<?, ?> options = transaction.getOptions();
+				Map<Object, Object> mergedOptions = null;
+
 				if (this.options != null) {
-					Map<Object, Object> mergedOptions = Maps.newHashMap(options);
+					options = (mergedOptions == null) ? (mergedOptions = Maps.newHashMap(options)) : mergedOptions;
 					mergedOptions.putAll(this.options);
-					options = mergedOptions;
+				}
+				if (transaction.isReadOnly()) {
+					// Must use an unprotected write transaction
+					options = (mergedOptions == null) ? (mergedOptions = Maps.newHashMap(options)) : mergedOptions;
+					mergedOptions.put(Transaction.OPTION_UNPROTECTED, true);
 				}
 
 				stack.executeTriggers(triggeringCommand, Collections.singletonList(trigger), options);

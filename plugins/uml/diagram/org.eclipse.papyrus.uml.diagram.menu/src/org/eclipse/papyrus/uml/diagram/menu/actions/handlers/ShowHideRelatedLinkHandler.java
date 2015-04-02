@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463263
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.menu.actions.handlers;
@@ -75,6 +76,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	 * @param data
 	 * @throws CoreException
 	 */
+	@Override
 	public void setInitializationData(IConfigurationElement config, String propertyName, Object data) throws CoreException {
 		if (data instanceof Hashtable<?, ?> && this.parameterID != null) {
 			this.kind = ShowHideKind.valueOf((String) ((Hashtable<?, ?>) data).get(this.parameterID));
@@ -101,13 +103,16 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	 * @return
 	 * @throws ExecutionException
 	 */
+	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
 		final Request request = buildRequest();
 		final DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(this.selection.get(0));
 		final TransactionalEditingDomain domain = getEditingDomain();
 		if (diagramEP != null && domain != null) {
 			final Command cmd = diagramEP.getCommand(request);
-			domain.getCommandStack().execute(new GEFtoEMFCommandWrapper(cmd));
+			if ((cmd != null) && cmd.canExecute()) {
+				domain.getCommandStack().execute(GEFtoEMFCommandWrapper.wrap(cmd));
+			}
 		}
 		return null;
 	}
@@ -115,7 +120,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	/**
 	 *
 	 * @return
-	 *         the request required to do the action
+	 * 		the request required to do the action
 	 */
 	protected Request buildRequest() {
 		switch (this.kind) {
@@ -130,7 +135,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	/**
 	 *
 	 * @return
-	 *         the list of all top semantic edit part in the diagram
+	 * 		the list of all top semantic edit part in the diagram
 	 */
 	protected Collection<EditPart> getAllTopSemanticEditParts() {
 		final DiagramEditPart diagramEP = DiagramEditPartsUtil.getDiagramEditPart(this.selection.get(0));
@@ -182,7 +187,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	/**
 	 *
 	 * @return
-	 *         the selection for the current editor
+	 * 		the selection for the current editor
 	 */
 	public static final ISelection getSelectionInCurrentEditor() {
 		final IEditorPart editorPart = EditorHelper.getCurrentEditor();
@@ -201,7 +206,7 @@ public class ShowHideRelatedLinkHandler extends AbstractHandler implements IExec
 	/**
 	 *
 	 * @return
-	 *         the editing domain to use or <code>null</code> if not found
+	 * 		the editing domain to use or <code>null</code> if not found
 	 */
 	protected TransactionalEditingDomain getEditingDomain() {
 		if (!this.selection.isEmpty()) {

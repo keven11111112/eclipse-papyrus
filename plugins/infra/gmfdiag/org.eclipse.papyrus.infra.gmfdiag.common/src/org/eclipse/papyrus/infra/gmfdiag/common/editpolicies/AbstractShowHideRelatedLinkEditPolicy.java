@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,11 +9,11 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463263
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
-import java.rmi.UnexpectedException;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -124,11 +124,11 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			getHost().refresh();
 
 			// 2. we associate each view to a semantic element
-			domain2NotationMap.mapModel((View) getHost().getAdapter(View.class));
+			domain2NotationMap.mapModel(getHost().getAdapter(View.class));
 
 			// 3.we collect the link descriptors
 			for (final EditPart currentEp : request.getSelectedEditParts()) {
-				final View view = (View) currentEp.getAdapter(View.class);
+				final View view = currentEp.getAdapter(View.class);
 				if (view != null) {
 					final Collection<? extends UpdaterLinkDescriptor> desc = collectPartRelatedLinks(view, domain2NotationMap);
 					linksDescriptors.addAll(desc);
@@ -164,7 +164,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			case SHOW_ALL_LINK_BETWEEN_SELECTED_ELEMENT:
 				final Collection<EObject> possibleEnds = new HashSet<EObject>();
 				for (final EditPart currentIGraphical : request.getSelectedEditParts()) {
-					possibleEnds.add((EObject) currentIGraphical.getAdapter(EObject.class));
+					possibleEnds.add(currentIGraphical.getAdapter(EObject.class));
 				}
 				final Collection<UpdaterLinkDescriptor> toRemove = new ArrayList<UpdaterLinkDescriptor>();
 				for (final UpdaterLinkDescriptor current : linksDescriptors) {
@@ -223,7 +223,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 *         the current diagram; hosting this edit policy
 	 */
 	protected Diagram getCurrentDiagram() {
-		return (Diagram) getHost().getAdapter(Diagram.class);
+		return getHost().getAdapter(Diagram.class);
 	}
 
 
@@ -241,7 +241,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 		final Collection<UpdaterLinkDescriptor> toAdd = new ArrayList<UpdaterLinkDescriptor>();
 		for (final UpdaterLinkDescriptor current : descriptors) {
 			if (current.getModelElement() == null) {
-				final IElementType elementType = (IElementType) current.getSemanticAdapter().getAdapter(IElementType.class);
+				final IElementType elementType = current.getSemanticAdapter().getAdapter(IElementType.class);
 				final EdgeWithNoSemanticElementRepresentationImpl noSemantic = new EdgeWithNoSemanticElementRepresentationImpl(current.getSource(), current.getDestination(), ((IHintedType) elementType).getSemanticHint());
 				final UpdaterLinkDescriptor replacement = new UpdaterLinkDescriptor(current.getSource(), current.getDestination(), noSemantic, elementType, current.getVisualID());
 				toRemove.add(current);
@@ -382,7 +382,8 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 * @return the compute command result command
 	 *         the command to show/hide links according to the previous command result
 	 */
-	protected ICommand getComputeCommandResultCommand(final TransactionalEditingDomain domain, final ICommand previousCommand, final Set<EObject> initialSelection, final Domain2Notation domain2NotationMap, final Collection<UpdaterLinkDescriptor> linkDescriptor) {
+	protected ICommand getComputeCommandResultCommand(final TransactionalEditingDomain domain, final ICommand previousCommand, final Set<EObject> initialSelection, final Domain2Notation domain2NotationMap,
+			final Collection<UpdaterLinkDescriptor> linkDescriptor) {
 		final ICommand computeCommand = new AbstractTransactionalCommand(domain, "Compute Result", null) {//$NON-NLS-1$
 
 			/**
@@ -408,7 +409,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 						if (cmd.canExecute()) {
 							cmd.execute(monitor, info);
 						} else {
-							Activator.log.error(new UnexpectedException("The command is not executable"));//$NON-NLS-1$
+							Activator.log.error(new IllegalStateException("The command is not executable"));//$NON-NLS-1$
 						}
 					}
 				} else {
@@ -542,7 +543,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 	 *         the command to display the link on the diagram
 	 */
 	protected ICommand getShowLinkCommand(final TransactionalEditingDomain domain, final EObject linkToShow, final Domain2Notation domain2NotationMap, final Collection<? extends UpdaterLinkDescriptor> linkDescriptors) {
-		domain2NotationMap.mapModel((View) getHost().getAdapter(View.class));
+		domain2NotationMap.mapModel(getHost().getAdapter(View.class));
 		final View view = domain2NotationMap.getFirstView(linkToShow);
 		if (view != null) {
 			return new SetPropertyCommand(domain, "Restore related linksCommand show view", new EObjectAdapter(view), Properties.ID_ISVISIBLE, Boolean.TRUE);//$NON-NLS-1$
@@ -552,7 +553,7 @@ public abstract class AbstractShowHideRelatedLinkEditPolicy extends AbstractEdit
 			UpdaterLinkDescriptor descriptor = getLinkDescriptor(linkToShow, linkDescriptors);
 			if (linkToShow instanceof EdgeWithNoSemanticElementRepresentationImpl) {
 				// we replace the specific link descriptor by a new one, with no model element (if not the view provider refuse to create the view
-				final IElementType elementType = (IElementType) descriptor.getSemanticAdapter().getAdapter(IElementType.class);
+				final IElementType elementType = descriptor.getSemanticAdapter().getAdapter(IElementType.class);
 				descriptor = new UpdaterLinkDescriptor(descriptor.getSource(), descriptor.getDestination(), elementType, descriptor.getVisualID());
 			}
 			if (descriptor != null) {
