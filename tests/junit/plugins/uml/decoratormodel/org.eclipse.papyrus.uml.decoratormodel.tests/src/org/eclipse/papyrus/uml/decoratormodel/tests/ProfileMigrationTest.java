@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -16,6 +16,10 @@ package org.eclipse.papyrus.uml.decoratormodel.tests;
 import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.MatcherAssert.assertThat;
 
+import java.util.EnumSet;
+
+import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
+import org.eclipse.papyrus.infra.core.utils.TransactionHelper;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
 import org.eclipse.papyrus.uml.tools.helper.IProfileApplicationDelegate;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -62,6 +66,8 @@ public class ProfileMigrationTest extends AbstractProfileExternalizationTest {
 
 	@Before
 	public void defineNewProfileVersion() {
+		// Referenced profiles are read-only in the context of the model being edited, so
+		// disable read-only controls
 		execute(new Runnable() {
 
 			@Override
@@ -72,7 +78,7 @@ public class ProfileMigrationTest extends AbstractProfileExternalizationTest {
 				bool.setValue(true);
 				profile.define();
 			}
-		});
+		}, TransactionHelper.readOnlyAxisOption(EnumSet.noneOf(ReadOnlyAxis.class)));
 	}
 
 	void migrate(final Package package_, final Profile profile) {

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -105,8 +105,6 @@ public class DecoratorModelIndex {
 	/**
 	 * Asynchronously queries the mapping of URIs of user models to URIs of decorator models that apply profiles to them.
 	 * 
-	 * @param modelResourceURI
-	 *            the URI of a user model resource
 	 * @return a future result of the mapping of user model URIs to decorator model URIs
 	 */
 	public ListenableFuture<SetMultimap<URI, URI>> getDecoratorModelsAsync() {
@@ -439,6 +437,33 @@ public class DecoratorModelIndex {
 	 */
 	public String getDecoratorModelName(URI resourceURI) throws CoreException {
 		return sync(getDecoratorModelNameAsync(resourceURI));
+	}
+
+	/**
+	 * Asynchronously queries the mapping of URIs of decorator models to URIs of user models to which they apply profiles.
+	 * 
+	 * @return a future result of the mapping of decorator model URIs to user model URIs
+	 */
+	public ListenableFuture<SetMultimap<URI, URI>> getUserModelsByDecoratorAsync() {
+		return afterIndex(getUserModelsByDecoratorCallable());
+	}
+
+	/**
+	 * Queries the mapping of URIs of decorator models to URIs of user models to which they apply profiles.
+	 * 
+	 * @return the mapping of decorator model URIs to user model URIs
+	 */
+	public SetMultimap<URI, URI> getUserModelsByDecorator() throws CoreException {
+		return sync(afterIndex(getUserModelsByDecoratorCallable()));
+	}
+
+	Callable<SetMultimap<URI, URI>> getUserModelsByDecoratorCallable() {
+		return new SyncCallable<SetMultimap<URI, URI>>() {
+			@Override
+			protected SetMultimap<URI, URI> doCall() {
+				return ImmutableSetMultimap.copyOf(decoratorToModels);
+			}
+		};
 	}
 
 	<V> ListenableFuture<V> afterIndex(Callable<V> callable) {

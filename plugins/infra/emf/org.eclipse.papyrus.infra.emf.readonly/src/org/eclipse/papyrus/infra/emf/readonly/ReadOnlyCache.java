@@ -80,11 +80,7 @@ class ReadOnlyCache {
 	 * Disposes me.
 	 */
 	public void dispose() {
-		synchronized (this) {
-			resourceReadOnlyStates = null;
-			objectReadOnlyStates = null;
-			handlerResourceReadOnlyCache = null;
-		}
+		clear();
 
 		if (Platform.inDebugMode()) {
 			Activator.log.info("Read-only cache deactivated for manager: " + manager); //$NON-NLS-1$
@@ -172,15 +168,9 @@ class ReadOnlyCache {
 	 * This is necessary, for example, after resources and/or objects have been made writable that were previously read-only.
 	 */
 	public synchronized void clear() {
-		if (resourceReadOnlyStates != null) {
-			resourceReadOnlyStates.clear();
-		}
-		if (objectReadOnlyStates != null) {
-			objectReadOnlyStates.clear();
-		}
-		if (handlerResourceReadOnlyCache != null) {
-			handlerResourceReadOnlyCache.clear();
-		}
+		resourceReadOnlyStates = null;
+		objectReadOnlyStates = null;
+		handlerResourceReadOnlyCache = null;
 	}
 
 	private Map<Set<URI>, ReadOnlyState> getResourceReadOnlyStates() {

@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 463631
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -20,6 +21,7 @@ import static org.junit.Assert.fail;
 import static org.junit.Assume.assumeThat;
 
 import java.util.Collections;
+import java.util.Set;
 
 import org.eclipse.core.commands.operations.IOperationHistory;
 import org.eclipse.core.resources.IFile;
@@ -62,6 +64,7 @@ import org.junit.rules.TestName;
 
 import com.google.common.base.Optional;
 import com.google.common.collect.ImmutableList;
+import com.google.common.collect.Iterables;
 
 
 /**
@@ -175,8 +178,8 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 	public void testObjectURIsWithFragment() {
 		Property ssn = person.getAttribute("ssn", null);
 		URI uri = EcoreUtil.getURI(ssn);
-		assertThat(fixture.anyReadOnly(discretionAxes(), new URI[]{ uri }).or(false), is(false));
-		assertThat(fixture.canMakeWritable(discretionAxes(), new URI[]{ uri }).or(true), is(false));
+		assertThat(fixture.anyReadOnly(discretionAxes(), new URI[] { uri }).or(false), is(false));
+		assertThat(fixture.canMakeWritable(discretionAxes(), new URI[] { uri }).or(true), is(false));
 	}
 
 	//
@@ -195,17 +198,17 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 		Resource res = importModel();
 		saveModels();
 
-		model = (Model)res.getContents().get(0);
+		model = (Model) res.getContents().get(0);
 		core = model.getNestedPackage("core");
-		person = (Class)core.getOwnedType("Person");
+		person = (Class) core.getOwnedType("Person");
 	}
 
 	protected void createProject() throws Exception {
 		project = ResourcesPlugin.getWorkspace().getRoot().getProject(testName.getMethodName());
-		if(!project.exists()) {
+		if (!project.exists()) {
 			project.create(null);
 		}
-		if(!project.isOpen()) {
+		if (!project.isOpen()) {
 			project.open(null);
 		}
 	}
@@ -240,7 +243,7 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 		domain = null;
 		fixture = null;
 
-		for(Resource next : rset.getResources()) {
+		for (Resource next : rset.getResources()) {
 			next.unload();
 			next.eAdapters().clear();
 		}
@@ -269,7 +272,7 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 		URI source = URI.createPlatformPluginURI("org.eclipse.papyrus.infra.emf.readonly.tests/resources/" + name, true);
 		URI destination = URI.createPlatformResourceURI(project.getName(), true);
 
-		for(String component : ImmutableList.of("uml", "notation", "di")) {
+		for (String component : ImmutableList.of("uml", "notation", "di")) {
 			Resource res = rset.getResource(source.appendFileExtension(component), true);
 			EcoreUtil.resolveAll(res);
 			res.setURI(destination.appendSegment(res.getURI().lastSegment()));
@@ -277,8 +280,8 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 	}
 
 	void saveModels() throws Exception {
-		for(Resource next : services.getService(ModelSet.class).getResources()) {
-			if(next.getURI().isPlatformResource()) {
+		for (Resource next : services.getService(ModelSet.class).getResources()) {
+			if (next.getURI().isPlatformResource()) {
 				next.save(null);
 			}
 		}
@@ -288,7 +291,7 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 		URI unit = element.eResource().getURI().trimSegments(1).appendSegment("units").appendSegment(URI.encodeSegment(element.getName() + ".uml", true));
 		execute(ControlModeManager.getInstance().getControlCommand(new ControlModeRequest(domain, element, unit)));
 
-		assertThat("Controlling the unit failed", ((InternalEObject)element).eDirectResource(), notNullValue());
+		assertThat("Controlling the unit failed", ((InternalEObject) element).eDirectResource(), notNullValue());
 
 		try {
 			saveModels();
@@ -299,7 +302,7 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 	}
 
 	void execute(ICommand command) {
-		IOperationHistory history = ((IWorkspaceCommandStack)domain.getCommandStack()).getOperationHistory();
+		IOperationHistory history = ((IWorkspaceCommandStack) domain.getCommandStack()).getOperationHistory();
 
 		try {
 			history.execute(command, null, null);
@@ -327,11 +330,12 @@ public class ReferencedModelReadOnlyHandlerTest extends AbstractPapyrusTest {
 	void assertLocalViewsNotReadOnly(EObject object) {
 		boolean foundSomeLocalViews = false;
 
-		for(EStructuralFeature.Setting setting : CacheAdapter.getCacheAdapter(object).getNonNavigableInverseReferences(object)) {
-			if(setting.getEStructuralFeature() == NotationPackage.Literals.VIEW__ELEMENT) {
+		for (EStructuralFeature.Setting setting : CacheAdapter.getCacheAdapter(object).getNonNavigableInverseReferences(object)) {
+			if (setting.getEStructuralFeature() == NotationPackage.Literals.VIEW__ELEMENT) {
 				EObject view = setting.getEObject();
-				URI uri = ControlledResourceTracker.getInstance(domain).getRootResourceURI(view.eResource().getURI());
-				if(uri.trimFileExtension().lastSegment().equals("referencing")) {
+				Set<URI> uris = ControlledResourceTracker.getInstance(domain).getRootResourceURIs(view.eResource().getURI());
+				assertThat(uris.size(), is(1));
+				if (Iterables.getOnlyElement(uris).trimFileExtension().lastSegment().equals("referencing")) {
 					foundSomeLocalViews = true;
 					assertNotReadOnly(view);
 				}

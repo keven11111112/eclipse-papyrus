@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 Christian W. Damus and others.
+ * Copyright (c) 2014, 2015 Christian W. Damus and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -19,9 +19,9 @@ import static org.hamcrest.CoreMatchers.nullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
@@ -39,6 +39,8 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.edit.command.ChangeCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -68,6 +70,7 @@ import org.junit.Rule;
 import org.junit.rules.TestName;
 
 import com.google.common.collect.ImmutableSet;
+import com.google.common.collect.Iterables;
 import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 import com.google.common.collect.Maps;
@@ -180,10 +183,18 @@ public abstract class AbstractProfileExternalizationTest extends AbstractPapyrus
 	}
 
 	protected void execute(final Runnable write) {
-		Command command;
+		execute(command(write));
+	}
+
+	protected void execute(final Runnable write, Map<?, ?> options) {
+		execute(command(write), options);
+	}
+
+	private Command command(final Runnable write) {
+		Command result;
 
 		if (getTestContext() instanceof TransactionalEditingDomain) {
-			command = new RecordingCommand((TransactionalEditingDomain) getTestContext()) {
+			result = new RecordingCommand((TransactionalEditingDomain) getTestContext()) {
 
 				@Override
 				protected void doExecute() {
@@ -191,7 +202,7 @@ public abstract class AbstractProfileExternalizationTest extends AbstractPapyrus
 				}
 			};
 		} else {
-			command = new ChangeCommand(getTestContextResourceSet()) {
+			result = new ChangeCommand(getTestContextResourceSet()) {
 				@Override
 				protected void doExecute() {
 					write.run();
@@ -199,15 +210,33 @@ public abstract class AbstractProfileExternalizationTest extends AbstractPapyrus
 			};
 		}
 
-		execute(command);
+		return result;
 	}
 
 	protected <V> V execute(final Callable<V> write) {
-		final List<V> result = Lists.newArrayListWithCapacity(1);
-		Command command;
+		Command command = command(write);
+		execute(command);
+
+		@SuppressWarnings("unchecked")
+		V result = (V) Iterables.getFirst(command.getResult(), null);
+		return result;
+	}
+
+	protected <V> V execute(final Callable<V> write, Map<?, ?> options) {
+		Command command = command(write);
+		execute(command, options);
+
+		@SuppressWarnings("unchecked")
+		V result = (V) Iterables.getFirst(command.getResult(), null);
+		return result;
+	}
+
+	private Command command(final Callable<?> write) {
+		Command result;
 
 		if (getTestContext() instanceof TransactionalEditingDomain) {
-			command = new RecordingCommand((TransactionalEditingDomain) getTestContext()) {
+			result = new RecordingCommand((TransactionalEditingDomain) getTestContext()) {
+				private final Collection<Object> result = Lists.newArrayListWithCapacity(1);
 
 				@Override
 				protected void doExecute() {
@@ -218,9 +247,16 @@ public abstract class AbstractProfileExternalizationTest extends AbstractPapyrus
 						fail("Exception in write operation: " + e.getLocalizedMessage());
 					}
 				}
+
+				@Override
+				public Collection<?> getResult() {
+					return result;
+				}
 			};
 		} else {
-			command = new ChangeCommand(getTestContextResourceSet()) {
+			result = new ChangeCommand(getTestContextResourceSet()) {
+				private final Collection<Object> result = Lists.newArrayListWithCapacity(1);
+
 				@Override
 				protected void doExecute() {
 					try {
@@ -229,17 +265,31 @@ public abstract class AbstractProfileExternalizationTest extends AbstractPapyrus
 						e.printStackTrace();
 						fail("Exception in write operation: " + e.getLocalizedMessage());
 					}
+				}
+
+				@Override
+				public Collection<?> getResult() {
+					return result;
 				}
 			};
 		}
 
-		execute(command);
-
-		return result.get(0);
+		return result;
 	}
 
 	protected void execute(Command command) {
 		getTestContext().getCommandStack().execute(command);
+	}
+
+	protected void execute(Command command, Map<?, ?> options) {
+		try {
+			((TransactionalCommandStack) getTestContext().getCommandStack()).execute(command, options);
+		} catch (RollbackException e) {
+			e.printStackTrace();
+			fail("Command execution rolled back: " + e.getLocalizedMessage());
+		} catch (InterruptedException e) {
+			fail("Command execution interrupted");
+		}
 	}
 
 	protected void undo() {

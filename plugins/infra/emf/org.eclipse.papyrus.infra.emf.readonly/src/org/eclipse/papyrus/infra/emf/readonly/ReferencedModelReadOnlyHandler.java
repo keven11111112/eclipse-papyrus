@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 463631
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly;
@@ -30,7 +31,6 @@ import org.eclipse.papyrus.infra.core.resource.ReadOnlyAxis;
 import org.eclipse.papyrus.infra.emf.readonly.internal.messages.Messages;
 import org.eclipse.swt.widgets.Display;
 
-import com.google.common.base.Objects;
 import com.google.common.base.Optional;
 
 
@@ -181,16 +181,19 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler impl
 		ResourceSet rset = getEditingDomain().getResourceSet();
 		if (rset instanceof ModelSet) {
 			ModelSet modelSet = (ModelSet) rset;
-			uri = resolveRootResourceURI(modelSet, uri);
+			Set<URI> rootURIs = resolveRootResourceURIs(modelSet, uri);
 
-			result = modelSet.isUserModelResource(uri) && !Objects.equal(modelSet.getURIWithoutExtension(), uri.trimFileExtension());
+			if (!rootURIs.isEmpty()) {
+				result = modelSet.isUserModelResource(rootURIs.iterator().next())
+						&& !rootURIs.contains(modelSet.getURIWithoutExtension());
+			}
 		}
 
 		return result;
 	}
 
 	/**
-	 * Trace a potential controlled unit's root resource.
+	 * Trace a potential controlled unit's root resources.
 	 *
 	 * @param modelSet
 	 *            the contextual model-set
@@ -199,8 +202,8 @@ public class ReferencedModelReadOnlyHandler extends AbstractReadOnlyHandler impl
 	 *
 	 * @return the corresponding root resource URI, which is just the original {@code uri} if either it isn't a controlled unit or we cannot tell
 	 */
-	protected URI resolveRootResourceURI(ModelSet modelSet, URI uri) {
-		return controlledResourceTracker.getRootResourceURI(uri);
+	protected Set<URI> resolveRootResourceURIs(ModelSet modelSet, URI uri) {
+		return controlledResourceTracker.getRootResourceURIs(uri);
 	}
 
 	public Object createReloadContext() {

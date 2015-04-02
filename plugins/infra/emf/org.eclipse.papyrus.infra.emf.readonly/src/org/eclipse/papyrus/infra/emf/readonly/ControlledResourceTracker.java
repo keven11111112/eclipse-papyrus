@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014 CEA and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,13 +8,14 @@
  *
  * Contributors:
  *   Christian W. Damus (CEA) - Initial API and implementation
+ *   Christian W. Damus - bug 463631
  *
  */
 package org.eclipse.papyrus.infra.emf.readonly;
 
 import java.util.Collection;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.Queue;
+import java.util.Set;
 
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.emf.common.notify.Notification;
@@ -31,6 +32,12 @@ import org.eclipse.emf.transaction.TransactionalEditingDomainEvent;
 import org.eclipse.emf.transaction.TransactionalEditingDomainListener;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 
+import com.google.common.collect.ArrayListMultimap;
+import com.google.common.collect.Iterables;
+import com.google.common.collect.ListMultimap;
+import com.google.common.collect.Lists;
+import com.google.common.collect.Sets;
+
 /**
  * A resource-set listener that tracks controlled resource connectivity structure. It adds controlled-resource links immediately that they occur
  * and removes them after a transaction has committed that removes them. This makes it reasonably efficient to determine that a referenced model
@@ -40,9 +47,15 @@ import org.eclipse.emf.transaction.util.TransactionUtil;
  */
 class ControlledResourceTracker extends AdapterImpl implements TransactionalEditingDomainListener {
 
-	private volatile Map<URI, URI> unitMap = new HashMap<URI, URI>();
+	// A resource may be a sub-unit of multiple parent units (it can have multiple roots that are
+	// cross-resource-contained by elements in multiple other resources, or all in the same resource,
+	// or anything in-between). The mapping is to a list, not a set, because a resource may be a
+	// repeated parent of a child.
+	// This map contains URIs without extension
+	private volatile ListMultimap<URI, URI> unitMap = ArrayListMultimap.create();
 
-	private volatile Map<URI, URI> pending;
+	// This map contains URIs without extension
+	private volatile ListMultimap<URI, URI> pending;
 
 	/**
 	 * Obtains the single tracker instance associated with the specified editing {@code domain}.
@@ -88,22 +101,37 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 	 *
 	 * @return the URI of the corresponding resource in the model's root unit, which could be the same {@code uri} if this is the root unit
 	 */
-	URI getRootResourceURI(URI uri) {
-		URI result = uri.trimFileExtension();
+	Set<URI> getRootResourceURIs(URI uri) {
+		Set<URI> result = Sets.newHashSet();
+		Queue<URI> units = Lists.newLinkedList();
+		units.add(uri.trimFileExtension());
 
-		for (URI parent = get(result); parent != null; parent = get(parent)) {
-			if (parent != null) {
-				result = parent;
+		for (URI next = units.poll(); next != null; next = units.poll()) {
+			if (isRoot(next)) {
+				result.add(next);
+			} else {
+				Iterables.addAll(units, get(next));
 			}
 		}
 
-		return (uri.fileExtension() == null) ? result : result.appendFileExtension(uri.fileExtension());
+		return result;
 	}
 
-	private URI get(URI potentialUnit) {
-		URI result = unitMap.get(potentialUnit);
+	/**
+	 * Queries whether the given URI (without extension, thus representing the set of Papyrus resources comprising
+	 * a model unit) is a root unit.
+	 */
+	private boolean isRoot(URI uriWithoutFileExtension) {
+		return (!unitMap.containsKey(uriWithoutFileExtension) || unitMap.get(uriWithoutFileExtension).isEmpty())
+				&& ((pending == null) || !pending.containsKey(uriWithoutFileExtension) || pending.get(uriWithoutFileExtension).isEmpty());
+	}
 
-		if ((result == null) && (pending != null)) {
+	private Iterable<URI> get(URI potentialUnit) {
+		Collection<URI> result = null;
+
+		if (unitMap.containsKey(potentialUnit)) {
+			result = unitMap.get(potentialUnit);
+		} else if (pending != null) {
 			// Look here, too, in case the current transaction is adding the relationship
 			result = pending.get(potentialUnit);
 		}
@@ -113,7 +141,7 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 
 	private void ensurePending() {
 		if (pending == null) {
-			pending = new HashMap<URI, URI>(unitMap);
+			pending = ArrayListMultimap.create(unitMap);
 		}
 	}
 
@@ -122,9 +150,9 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 		pending.put(controlledUnit.trimFileExtension(), parentUnit.trimFileExtension());
 	}
 
-	private void unmap(URI controlledUnit) {
+	private void unmap(URI controlledUnit, URI parentUnit) {
 		ensurePending();
-		pending.remove(controlledUnit.trimFileExtension());
+		pending.remove(controlledUnit.trimFileExtension(), parentUnit.trimFileExtension());
 	}
 
 	private void commit() {
@@ -176,14 +204,30 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 	 */
 	protected void handleResource(Resource resource) {
 		if (!resource.getContents().isEmpty()) {
-			EObject root = resource.getContents().get(0);
-			EObject container = ((InternalEObject) root).eInternalContainer();
-			if (container != null) {
-				// Found cross-resource containment
-				URI parentURI = container.eIsProxy() ? ((InternalEObject) container).eProxyURI().trimFragment() : container.eResource().getURI();
-				if (parentURI != null) {
-					map(resource.getURI(), parentURI);
-				}
+			for (EObject root : resource.getContents()) {
+				handleAdd(resource, root);
+			}
+		}
+	}
+
+	protected void handleAdd(Resource resource, EObject newRoot) {
+		InternalEObject container = ((InternalEObject) newRoot).eInternalContainer();
+		if (container != null) {
+			// Found cross-resource containment
+			URI parentURI = container.eIsProxy() ? container.eProxyURI().trimFragment() : container.eResource().getURI();
+			if (parentURI != null) {
+				map(resource.getURI(), parentURI);
+			}
+		}
+	}
+
+	protected void handleRemove(Resource resource, EObject oldRoot) {
+		InternalEObject container = ((InternalEObject) oldRoot).eInternalContainer();
+		if (container != null) {
+			// Found cross-resource containment
+			URI parentURI = container.eIsProxy() ? container.eProxyURI().trimFragment() : container.eResource().getURI();
+			if (parentURI != null) {
+				unmap(resource.getURI(), parentURI);
 			}
 		}
 	}
@@ -196,8 +240,8 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 	 */
 	protected void handleCrossResourceContainment(InternalEObject crossResourceContained) {
 		URI resourceURI = crossResourceContained.eIsProxy() ? crossResourceContained.eProxyURI().trimFragment() : crossResourceContained.eDirectResource().getURI();
-		EObject container = crossResourceContained.eInternalContainer();
-		URI parentURI = container.eIsProxy() ? ((InternalEObject) container).eProxyURI().trimFragment() : container.eResource().getURI();
+		InternalEObject container = crossResourceContained.eInternalContainer();
+		URI parentURI = container.eIsProxy() ? container.eProxyURI().trimFragment() : container.eResource().getURI();
 		if (parentURI != null) {
 			map(resourceURI, parentURI);
 		}
@@ -235,29 +279,33 @@ class ControlledResourceTracker extends AdapterImpl implements TransactionalEdit
 				break;
 			}
 		} else if (notifier instanceof Resource) {
+			final Resource resource = (Resource) notifier;
+
 			switch (msg.getFeatureID(Resource.class)) {
 			case Resource.RESOURCE__CONTENTS:
 				switch (msg.getEventType()) {
-				case Notification.ADD:
+				case Notification.ADD: {
+					handleAdd(resource, (EObject) msg.getNewValue());
+					break;
+				}
 				case Notification.ADD_MANY:
-					// Only process the resource when the first root is added
-					if (msg.getPosition() == 0) {
-						handleResource((Resource) notifier);
+					for (Object next : (Iterable<?>) msg.getNewValue()) {
+						handleAdd(resource, (EObject) next);
 					}
 					break;
-				case Notification.SET:
-					// Only process the resource when the first root is replaced
-					if (msg.getPosition() == 0) {
-						Resource resource = (Resource) notifier;
-						unmap(resource.getURI());
-						handleResource(resource);
-					}
+				case Notification.SET: {
+					handleRemove(resource, (EObject) msg.getOldValue());
+					handleAdd(resource, (EObject) msg.getNewValue());
 					break;
-				case Notification.REMOVE:
+				}
+					// case MOVE: moving within the list does not change sub-unit relationships
+				case Notification.REMOVE: {
+					handleRemove(resource, (EObject) msg.getOldValue());
+					break;
+				}
 				case Notification.REMOVE_MANY:
-					// Only process the resource when the first root is removed
-					if (msg.getPosition() == 0) {
-						unmap(((Resource) msg.getNotifier()).getURI());
+					for (Object next : (Iterable<?>) msg.getOldValue()) {
+						handleRemove(resource, (EObject) next);
 					}
 					break;
 				}
