@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - 402525
+ *  Celine JANSSENS (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.databinding;
@@ -27,6 +28,7 @@ import org.eclipse.core.databinding.observable.Diffs;
 import org.eclipse.core.databinding.observable.IObserving;
 import org.eclipse.core.databinding.observable.value.AbstractObservableValue;
 import org.eclipse.core.internal.databinding.Util;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
@@ -34,9 +36,14 @@ import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStyleValueCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.tools.utils.ElementUtil;
 import org.eclipse.uml2.uml.Element;
@@ -49,6 +56,8 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public class StereotypeAppearanceObservableValue extends AbstractObservableValue implements IObserving {
 
+
+	protected final static String DEFAULT_LOCATION = "Compartment";//$NON-NLS-1$
 	/**
 	 * The name of the property being observed
 	 */
@@ -190,7 +199,7 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 
 	private String getDisplayPlaceValue() {
 		if (diagramElement != null) {
-			return AppliedStereotypeHelper.getAppliedStereotypesPropertiesLocalization(diagramElement);
+			return NotationUtils.getStringValue((View) diagramElement, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION, DEFAULT_LOCATION);
 		} else {
 			return null;
 		}
@@ -268,9 +277,29 @@ public class StereotypeAppearanceObservableValue extends AbstractObservableValue
 
 	}
 
-	private void setDisplayPlaceValue(String stereotypePlacePresentation) {
-		RecordingCommand command = AppliedStereotypeHelper.getSetAppliedStereotypePropertiesLocalizationCommand(domain, diagramElement, stereotypePlacePresentation);
-		domain.getCommandStack().execute(command);
+	private void setDisplayPlaceValue(final String stereotypePlacePresentation) {
+		if (diagramElement instanceof View) {
+			try {
+
+				domain.runExclusive(new Runnable() {
+
+					public void run() {
+						Command command = new CustomStyleValueCommand((View) diagramElement, stereotypePlacePresentation, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(),
+								StereotypeDisplayUtils.STEREOTYPE_PROPERTY_LOCATION);
+
+						// use to avoid to put it in the command stack
+						try {
+							GMFUnsafe.write(domain, command);
+						} catch (Exception e) {
+							Activator.log.error(e);
+						}
+					}
+				});
+			} catch (Exception e) {
+				Activator.log.error(e);
+			}
+		}
+
 	}
 
 	public Object getObserved() {

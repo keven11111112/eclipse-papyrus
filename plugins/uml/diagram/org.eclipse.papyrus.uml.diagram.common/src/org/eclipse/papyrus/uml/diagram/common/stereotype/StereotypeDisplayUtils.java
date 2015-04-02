@@ -68,11 +68,16 @@ public class StereotypeDisplayUtils {
 	// Ornament Constants
 	public final static String QUOTE_LEFT = Activator.ST_LEFT;
 	public final static String QUOTE_RIGHT = Activator.ST_RIGHT;
-	public final static String BRACE_LEFT = "{";
-	public final static String BRACE_RIGHT = "}";
+	public final static String BRACE_LEFT = "{";// $NON-NLS-1$
+	public final static String BRACE_RIGHT = "}";// $NON-NLS-1$
 
 
+	// Define if Stereotype View are Persistent or not.
+	public static final boolean PERSISTENT = false;
 
-	public static final boolean PERSISTENT = false;//$NON-NLS-1$
+	// Icon NamedStyle Property
+	public static final String DISPLAY_ICON = "displayIcon";// $NON-NLS-1$
+
+	public static final String STEREOTYPE_PROPERTY_LOCATION = "stereotypePropertyLocation";//$NON-NLS-1$
 
 }

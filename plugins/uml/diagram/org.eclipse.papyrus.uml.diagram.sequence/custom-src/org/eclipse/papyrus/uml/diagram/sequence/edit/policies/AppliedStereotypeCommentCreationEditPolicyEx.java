@@ -26,7 +26,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateAppliedStereotypeCommentViewCommandEx;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomDurationConstraintEditPart;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentCreationEditPolicy;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCommentEditPolicy;
 import org.eclipse.swt.widgets.Display;
 
 
@@ -37,7 +37,7 @@ import org.eclipse.swt.widgets.Display;
  *
  * @author Jin Liu (jin.liu@soyatec.com)
  */
-public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereotypeCommentCreationEditPolicy {
+public class AppliedStereotypeCommentCreationEditPolicyEx extends AppliedStereotypeCommentEditPolicy {
 
 
 	@Override

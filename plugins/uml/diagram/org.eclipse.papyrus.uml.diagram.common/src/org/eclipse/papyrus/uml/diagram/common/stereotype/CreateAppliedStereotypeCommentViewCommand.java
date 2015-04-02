@@ -99,7 +99,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, StereotypeDisplayUtils.PERSISTENT);
+		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, true);
 		edge.setType(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE);
 		edge.setElement(base_element);
 		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
@@ -153,7 +153,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 			if (commonParent != null) {
 				((Bounds) commentNode.getLayoutConstraint()).setX(100);
 				((Bounds) commentNode.getLayoutConstraint()).setY(100);
-				ViewUtil.insertChildView(commonParent, commentNode, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+				ViewUtil.insertChildView(commonParent, commentNode, ViewUtil.APPEND, true);
 				return;
 			}
 		}
@@ -165,7 +165,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 				econtainer = (View) econtainer.eContainer();
 			}
 		}
-		ViewUtil.insertChildView(econtainer, commentNode, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+		ViewUtil.insertChildView(econtainer, commentNode, ViewUtil.APPEND, true);
 
 	}
 

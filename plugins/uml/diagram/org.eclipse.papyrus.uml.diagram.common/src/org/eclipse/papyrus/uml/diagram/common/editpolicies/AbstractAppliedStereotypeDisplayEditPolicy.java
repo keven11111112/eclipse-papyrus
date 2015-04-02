@@ -20,7 +20,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
-import java.util.StringTokenizer;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
@@ -37,9 +36,8 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypePropertyViewCommand;
 import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeViewCommand;
@@ -61,7 +59,7 @@ import org.eclipse.uml2.uml.Stereotype;
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
 	/** constant for this edit policy role */
-	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";
+	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";//$NON-NLS-1$
 
 	/** host semantic element */
 	protected Element hostSemanticElement;
@@ -221,19 +219,16 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	public Image stereotypeIconToDisplay() {
 		Image icon = null;
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getHost().getModel());
-		if (stereotypespresentationKind == null) {
-			icon = null;
-		}
-		if (stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
+		boolean displayIcon = NotationUtils.getBooleanValue(hostView, StereotypeDisplayUtils.DISPLAY_ICON, false);
+		if (displayIcon) {
 			// retrieve the first stereotype in the list of displayed stereotype
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getHost().getModel());
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			if (tokenizer.hasMoreTokens()) {
-				String firstStereotypeName = tokenizer.nextToken();
-				Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
-				icon = Activator.getIconElement(getUMLElement(), stereotype, false);
+			Stereotype appliedStereotype;
+			Iterator<Stereotype> stereotypeIterator = getUMLElement().getAppliedStereotypes().iterator();
+			while (stereotypeIterator.hasNext() && null == icon) {
+				appliedStereotype = stereotypeIterator.next();
+				icon = Activator.getIconElement(getUMLElement(), appliedStereotype, false);
 			}
+
 		}
 		return icon;
 	}

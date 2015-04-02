@@ -17,20 +17,24 @@ package org.eclipse.papyrus.uml.diagram.common.stereotype;
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStyleValueCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.Stereotype;
@@ -168,31 +172,32 @@ public class StereotypeDisplayHelper {
 	 */
 	public String getStereotypeTextToDisplay(View model) {
 
-		String textToDisplay = EMPTY_STRING;
-		String finalText = EMPTY_STRING;
-		Iterator<?> iter = model.getChildren().iterator();
+		StringBuilder textToDisplay = new StringBuilder();
+		StringBuilder finalText = new StringBuilder();
+
+		Iterator<?> childrenIterator = model.getChildren().iterator();
 
 		// For all children, check if it's a StereotypeLabel and add the Name
-		while (iter.hasNext()) {
-			Object object = iter.next();
-			if (object instanceof DecorationNode) {
-				DecorationNode label = (DecorationNode) object;
-
-				if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
-					if (label.isVisible()) {
-						textToDisplay = addStereotypeName(textToDisplay, label, model);
+		while (childrenIterator.hasNext()) {
+			Object object = childrenIterator.next();
+			if (isStereotypeLabel(object)) {
+				if (((View) object).isVisible()) {
+					if (!EMPTY_STRING.equals(textToDisplay.toString()) && (textToDisplay != null)) {
+						textToDisplay.append(StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
 					}
+					textToDisplay.append(getStereotypeName((DecorationNode) object));
 				}
+
 			}
 		}
 
 		// Then add the ornament around the text.
-		if ((textToDisplay != null) && (!EMPTY_STRING.equals(textToDisplay))) {
-			finalText = StereotypeDisplayUtils.QUOTE_LEFT + textToDisplay + StereotypeDisplayUtils.QUOTE_RIGHT;
+		if ((textToDisplay.toString() != null) && (!EMPTY_STRING.equals(textToDisplay.toString()))) {
+			finalText.append(StereotypeDisplayUtils.QUOTE_LEFT).append(textToDisplay).append(StereotypeDisplayUtils.QUOTE_RIGHT);
 		}
 
 		// Return the text or null if empty
-		return finalText;
+		return finalText.toString();
 	}
 
 
@@ -224,29 +229,25 @@ public class StereotypeDisplayHelper {
 	}
 
 	/**
-	 * Add the Stereotype Name to the text to display.
+	 * Get the Stereotype Name to the text to display.
 	 * 
-	 * @param textToDisplay
-	 *            The actual string before adding the new Stereotype Name
 	 * @param label
 	 *            The StereotypeLabel of the new stereotype to added
-	 * @param model
 	 * 
 	 * @return The String with the new StereotypeName and
 	 */
-	protected String addStereotypeName(String textToDisplay, DecorationNode label, View model) {
-		String newTextToDisplay = textToDisplay;
-		if (!EMPTY_STRING.equals(newTextToDisplay) && (newTextToDisplay != null)) {
-			newTextToDisplay = (newTextToDisplay + StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
-		}
+	protected String getStereotypeName(DecorationNode label) {
+
+
 		// Retrieve Name and Depth from CSS or NamedStyle
 		String name = getName(label);
 		String depth = getDepth(label);
 
 		// Compute name according to the depth
 		String nameWithDepth = getStereotypeNameWithDepth(name, depth);
-		newTextToDisplay = ((newTextToDisplay == null ? EMPTY_STRING : newTextToDisplay) + nameWithDepth);
-		return newTextToDisplay;
+
+
+		return nameWithDepth;
 	}
 
 
@@ -378,6 +379,36 @@ public class StereotypeDisplayHelper {
 
 		return null;
 	}
+
+	/**
+	 * Return the associated DecorationNode of a node from it's qualified name.
+	 * 
+	 * @param node
+	 *            Container Node of the StereotypeLabel
+	 * @param qualifiedName
+	 *            Qualified Name of the Stereotype associated to this Label
+	 * @return associated StereotypeLabel
+	 */
+	public DecorationNode getStereotypeProperty(View node, Stereotype stereotype, Property property) {
+		DecorationNode propertyView = null;
+		if ((stereotype != null) && (property != null)) {
+			View compartment = getStereotypeCompartment(node, stereotype);
+			Object obj;
+			if (compartment != null) {
+				Iterator<?> iter = compartment.getChildren().iterator();
+				while (iter.hasNext()) {
+					obj = iter.next();
+					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
+						propertyView = (DecorationNode) obj;
+					}
+
+				}
+			}
+		}
+
+		return propertyView;
+	}
+
 
 
 	/**
@@ -574,9 +605,14 @@ public class StereotypeDisplayHelper {
 	 */
 	public String getName(DecorationNode label) {
 		String name = EMPTY_STRING;
-		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
+
+		String defaultName = EMPTY_STRING;
+		if (label != null && label.getElement() instanceof Stereotype) {
+			defaultName = ((Stereotype) label.getElement()).getQualifiedName();
+		}
+		if (isStereotypeLabel(label)) {
 			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(label, StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME, EMPTY_STRING);
+			name = NotationUtils.getStringValue(label, StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME, defaultName);
 		}
 		return name;
 	}
@@ -590,9 +626,13 @@ public class StereotypeDisplayHelper {
 	 */
 	public String getName(BasicCompartment compartment) {
 		String name = EMPTY_STRING;
+		String defaultName = EMPTY_STRING;
+		if (compartment != null && compartment.getElement() instanceof Stereotype) {
+			defaultName = ((Stereotype) compartment.getElement()).getQualifiedName();
+		}
 		if (isStereotypeCompartment(compartment) || isStereotypeBrace(compartment)) {
 			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(compartment, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME, EMPTY_STRING);
+			name = NotationUtils.getStringValue(compartment, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME, defaultName);
 		}
 		return name;
 	}
@@ -704,17 +744,19 @@ public class StereotypeDisplayHelper {
 	 * @param isVisible
 	 *            True to make the Compartment visible
 	 */
-	public void setVisibility(final IGraphicalEditPart editPart, final View view, final boolean isVisible) {
+	public void setVisibility(final TransactionalEditingDomain domain, final View view, final boolean isVisible) {
 		try {
 
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+			domain.runExclusive(new Runnable() {
 
 				@Override
 				public void run() {
-					SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
+
+					SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(domain, view, isVisible);
+
 					// use to avoid to put it in the command stack
 					try {
-						GMFUnsafe.write(editPart.getEditingDomain(), setCommand);
+						GMFUnsafe.write(domain, setCommand);
 					} catch (Exception e) {
 						Activator.log.error(e);
 					}
@@ -724,6 +766,46 @@ public class StereotypeDisplayHelper {
 			Activator.log.error(e);
 		}
 	}
+
+
+	/**
+	 * Set the visibility of a view
+	 *
+	 * @param view
+	 *            The view on which the visibility has to be set
+	 * @param isVisible
+	 *            True to make the Compartment visible
+	 */
+	public void setPersistency(final TransactionalEditingDomain domain, final View view) {
+		try {
+			domain.runExclusive(new Runnable() {
+
+
+				@Override
+				public void run() {
+					Display.getCurrent().syncExec(new Runnable() {
+
+
+						@Override
+						public void run() {
+
+							// use to avoid to put it in the command stack
+							SetPersistentViewCommand command = new SetPersistentViewCommand(domain, view);
+							try {
+								GMFUnsafe.write(domain, command);
+							} catch (Exception e) {
+								Activator.log.error(e);
+							}
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
 
 
 	/**
@@ -923,7 +1005,9 @@ public class StereotypeDisplayHelper {
 	public boolean isEmpty(Node compartment) {
 		boolean empty = true;
 		if (compartment != null) {
-			for (Object property : compartment.getChildren()) {
+			Iterator<?> childrenIterator = compartment.getChildren().iterator();
+			while (childrenIterator.hasNext() && empty) {
+				Object property = childrenIterator.next();
 				if (isStereotypeProperty(property) || isStereotypeBraceProperty(property)) {
 					if (isDisplayed((Node) property)) {
 						empty &= false;
@@ -952,12 +1036,7 @@ public class StereotypeDisplayHelper {
 	 */
 	public boolean isStereotypeView(Object element) {
 
-		boolean stereotypeView = (
-				isStereotypeCompartment(element) ||
-						isStereotypeBrace(element) ||
-						isStereotypeLabel(element) ||
-						isStereotypeBraceProperty(element) ||
-				isStereotypeProperty(element));
+		boolean stereotypeView = (isStereotypeCompartment(element) || isStereotypeBrace(element) || isStereotypeLabel(element) || isStereotypeBraceProperty(element) || isStereotypeProperty(element));
 
 
 		return stereotypeView;
@@ -1045,6 +1124,115 @@ public class StereotypeDisplayHelper {
 		}
 
 		return null;
+	}
+
+	/**
+	 * Define if a Stereotype Compartment has visibleproperties.
+	 * 
+	 * @param stereotypeCompartment
+	 *            The Compartment To Test
+	 * @return true if at least one property is displayed
+	 */
+	public boolean hasVisibleProperties(View stereotypeCompartment) {
+		boolean visibleProperties = false;
+		if (stereotypeCompartment != null) {
+			Iterator<?> iter = stereotypeCompartment.getChildren().iterator();
+			while (iter.hasNext() && !visibleProperties) {
+				Object child = iter.next();
+				if (isStereotypeProperty(child)) {
+					visibleProperties |= (((DecorationNode) child).isVisible());
+
+				}
+
+			}
+		}
+		return visibleProperties;
+	}
+
+	/**
+	 * Set the depth Name of the Stereotype Label.
+	 * It uses the NamedStyle to store the depth into a View.
+	 * 
+	 * @param stereotype
+	 *            The Stereotype of the Label that should be modified.
+	 * @param nodeView
+	 *            The view of the element that needs to be updated (i.e. The Class)
+	 * @param depth
+	 *            The Depth value as a string (Can be "none", "full" or a negative number )
+	 */
+	public void setDepth(final TransactionalEditingDomain domain, final Stereotype stereotype, final View nodeView, final String depth) {
+		final View label = getStereotypeLabel(nodeView, stereotype);
+		try {
+
+			domain.runExclusive(new Runnable() {
+
+				@Override
+				public void run() {
+					Command command = new CustomStyleValueCommand(label, depth, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(), StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH);
+
+					// use to avoid to put it in the command stack
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
+					}
+				}
+			});
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+
+
+	}
+
+	/**
+	 * @param domain
+	 * @param view
+	 * @return
+	 */
+	public void unsetPersistency(final TransactionalEditingDomain domain, final View view) {
+		try {
+			domain.runExclusive(new Runnable() {
+
+
+				@Override
+				public void run() {
+					Display.getCurrent().asyncExec(new Runnable() {
+
+
+						@Override
+						public void run() {
+
+							// use to avoid to put it in the command stack
+							UnsetPersistentViewCommand command = new UnsetPersistentViewCommand(domain, view);
+							try {
+								GMFUnsafe.write(domain, command);
+							} catch (Exception e) {
+								Activator.log.error(e);
+							}
+						}
+					});
+				}
+			});
+
+		} catch (Exception e) {
+			Activator.log.error(e);
+		}
+	}
+
+	/**
+	 * Define if the element is a Stereotype Comment Link
+	 * 
+	 * @param element
+	 *            the object to test
+	 * @return true if it is a Stereotype Comment Link
+	 */
+	public boolean isStereotypeCommentLink(Object element) {
+		boolean stereotypeCommentLink = Boolean.FALSE;
+		if (element instanceof Edge) {
+			stereotypeCommentLink = StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE.equals(((Edge) element).getType());
+		}
+		return stereotypeCommentLink;
 	}
 
 

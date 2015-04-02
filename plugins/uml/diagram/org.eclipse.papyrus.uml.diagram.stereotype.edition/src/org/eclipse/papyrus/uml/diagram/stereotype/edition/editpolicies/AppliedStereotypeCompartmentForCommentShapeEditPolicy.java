@@ -24,8 +24,8 @@ import org.eclipse.uml2.uml.Element;
 /**
  * • AppliedStereotypeCompartmentForCommentShapeEditPolicy is another editpolicy attached
  * to StereotypeCommentEdipart. It does the same work as AppliedStereotypeCompartmentEditPolicy.
- * Because the StereotypeCommentEdipart is not attached to a semantic element by the attribute element of the notation view. It specializes the method
- * getUMLElement to find the semantic element
+ * Because the StereotypeCommentEdipart is not attached to a semantic element by the attribute element of the notation view.
+ * It specializes the method getUMLElement to find the semantic element
  *
  */
 public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends AppliedStereotypeCompartmentEditPolicy {
@@ -35,6 +35,17 @@ public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends Appli
 	 *
 	 * @return the uml element controlled by the host edit part
 	 */
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#activate()
+	 *
+	 */
+	@Override
+	public void activate() {
+		// TODO Auto-generated method stub
+		super.activate();
+	}
+
 	@Override
 	protected Element getUMLElement() {
 		if ((Element) getView().getElement() != null) {

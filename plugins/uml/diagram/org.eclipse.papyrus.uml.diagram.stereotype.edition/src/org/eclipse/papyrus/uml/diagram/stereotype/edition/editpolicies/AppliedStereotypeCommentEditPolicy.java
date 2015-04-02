@@ -15,6 +15,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
+import java.util.Iterator;
+
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -30,6 +33,7 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
@@ -51,7 +55,7 @@ import org.eclipse.uml2.uml.Stereotype;
  * 
  *
  */
-public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
+public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
 
 
 	/** constant for this edit policy role */
@@ -59,6 +63,24 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 	/** the comment node associated to the Host EditPart */
 	private Node comment;
+
+
+	@Override
+	public void activate() {
+		super.activate();
+		getDiagramEventBroker().addNotificationListener(hostView.eContainer(), this);
+
+	};
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#deactivate()
+	 *
+	 */
+	@Override
+	public void deactivate() {
+		getDiagramEventBroker().removeNotificationListener(hostView.eContainer(), this);
+		super.deactivate();
+	}
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshNotationStructure()
@@ -71,10 +93,32 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 
 			removeUnappliedStereotypes(comment);
 
+
 			if (!stereotypeList.isEmpty()) {
 				refreshStereotypeCommentStructure();
 			}
 		}
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#notifyChanged(org.eclipse.emf.common.notify.Notification)
+	 *
+	 * @param notification
+	 */
+	@Override
+	public void notifyChanged(Notification notification) {
+		super.notifyChanged(notification);
+		if (comment != null) {
+
+			int eventType = notification.getEventType();
+			EObject object = NotationUtils.getEObjectValue(comment, StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			// If the reference object of the comment is removed, delete the Comment node itself.
+			if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && object == null) {
+				executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+			}
+		}
+
+
 	}
 
 
@@ -102,6 +146,43 @@ public class AppliedStereotypeCommentCreationEditPolicy extends AppliedStereotyp
 		}
 
 	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy#refreshStereotypeDisplay()
+	 *
+	 */
+	@Override
+	protected void refreshStereotypeDisplay() {
+
+		super.refreshStereotypeDisplay();
+		// If no more Compartment, delete the Comment
+		if (comment != null && getAppliedStereotypeCompartmentNumber(comment) == 0) {
+			executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
+		}
+	}
+
+
+	/**
+	 * Get the number of Visible Compartments
+	 * 
+	 * @param view
+	 *            The View where the number of visible Compartment are evaluated
+	 * 
+	 * @return the number of Visible Stereotype Compartment
+	 */
+	protected int getAppliedStereotypeCompartmentNumber(View view) {
+		int nbVisibleCompartment = 0;
+		Iterator<View> iteratorView = view.getChildren().iterator();
+		while (iteratorView.hasNext()) {
+			View subview = iteratorView.next();
+			if (helper.isStereotypeBrace(subview) || helper.isStereotypeCompartment(subview)) {
+				nbVisibleCompartment++;
+			}
+		}
+		return nbVisibleCompartment;
+	}
+
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeCompartmentStructure(org.eclipse.uml2.uml.Stereotype)

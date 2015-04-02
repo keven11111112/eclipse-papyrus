@@ -15,8 +15,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import java.util.Iterator;
-
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -133,31 +131,13 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 		});
 	}
 
-	/**
-	 * Get the number of Visible Compartments
-	 * 
-	 * @param view
-	 *            The View where the number of visible Compartment are evaluated
-	 * 
-	 * @return the number of Visible Stereotype Compartment
-	 */
-	protected int getAppliedStereotypeCompartmentNumber(View view) {
-		int nbVisibleCompartment = 0;
-		Iterator<View> iteratorView = view.getChildren().iterator();
-		while (iteratorView.hasNext()) {
-			View subview = iteratorView.next();
-			if (helper.isStereotypeBrace(subview) || helper.isStereotypeCompartment(subview)) {
-				nbVisibleCompartment++;
-			}
-		}
-		return nbVisibleCompartment;
-	}
 
 
 
 
 	@Override
 	public void activate() {
+		super.activate();
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
 		if (view == null) {
@@ -167,6 +147,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 		// adds a listener on the view and the element controlled by the
 		// editpartrefr
 		getDiagramEventBroker().addNotificationListener(view, this);
+
 	}
 
 	/**
@@ -214,6 +195,8 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	 */
 
 	protected void refreshStereotypeDisplay() {
+
+
 		IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
 
 		// refresh Brace display
@@ -230,15 +213,10 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 			if (getUMLElement() == null) {
 				executeAppliedStereotypeCommentDeletion(domain, commentNode);
 			}
-
-			// If no more Compartment, delete the Comment
-			if (getAppliedStereotypeCompartmentNumber(commentNode) == 0) {
-				executeAppliedStereotypeCommentDeletion(domain, commentNode);
-			}
-
 		}
 
 	}
+
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshDisplay()
@@ -246,6 +224,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 	 */
 	@Override
 	public void refreshDisplay() {
+
 		refreshStereotypeDisplay();
 
 	}
