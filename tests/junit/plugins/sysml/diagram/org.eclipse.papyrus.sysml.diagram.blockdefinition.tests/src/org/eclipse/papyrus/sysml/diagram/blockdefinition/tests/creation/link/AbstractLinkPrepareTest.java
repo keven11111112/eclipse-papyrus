@@ -20,6 +20,7 @@ import static org.eclipse.papyrus.sysml.diagram.blockdefinition.tests.utils.Test
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -219,15 +220,16 @@ public class AbstractLinkPrepareTest extends AbstractTest {
 		createEdgeFromPalette("blockdefinition.tool.association_none", sourceBlockView, targetBlockView, true);
 		createEdgeFromPalette("blockdefinition.tool.association_none", sourceBlockView, targetBlockView, true);
 		Set<Edge> edges = ViewUtil.getAllInnerEdges(sourceBlockView.getDiagram());
-		ArrayList<Edge> edgeList = new ArrayList<Edge>();
+		// The edges are filtered to exclude the Stereotype Comment Link from the Edges to be tested.
+		List<Edge> edgeListToTest = new ArrayList<Edge>();
 		for (Edge edge : edges) {
 			if (!edge.getType().equals("StereotypeCommentLink")) {
-				edgeList.add(edge);
+				edgeListToTest.add(edge);
 			}
 		}
-		Assert.assertEquals("There should be 2 edges", 2, edgeList.size());
-		associationSourceView = edges.toArray(new Edge[] {})[0];
-		associationTargetView = edges.toArray(new Edge[] {})[1];
+		Assert.assertEquals("There should be 2 edges", 2, edgeListToTest.size());
+		associationSourceView = edgeListToTest.toArray(new Edge[] {})[0];
+		associationTargetView = edgeListToTest.toArray(new Edge[] {})[1];
 		Assert.assertNotNull("association should not be null", associationSourceView);
 		Assert.assertNotNull("association should not be null", associationTargetView);
 
