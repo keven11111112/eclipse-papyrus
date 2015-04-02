@@ -9,17 +9,15 @@
  * Contributors:
  *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Initial API and implementation
  *  Christian W. Damus - bug 459566
+ *  Christian W. Damus - bug 463846
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.gmfdiag.menu.utils;
 
 import java.util.Iterator;
-import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
@@ -86,19 +84,15 @@ public final class DeleteActionUtil {
 
 
 			if (isSemanticDeletion && readOnly != null) {
-
-				// Get URIs
-				List<URI> uris = new LinkedList<URI>();
-				uris.add(EcoreUtil.getURI(semantic));
-
-				if (graphical != null) {
-					uris.add(EcoreUtil.getURI(graphical));
+				// Is the semantic element read-only?
+				Optional<Boolean> result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), semantic);
+				if (!result.or(false) && (graphical != null)) {
+					// Or, if not, is the graphical element read-only?
+					result = readOnly.isReadOnly(ReadOnlyAxis.anyAxis(), graphical);
 				}
 
-				// Verify RO properties
-				Optional<Boolean> result = readOnly.anyReadOnly(ReadOnlyAxis.anyAxis(), uris.toArray(new URI[uris.size()]));
-				isSemanticDeletion = !(result.isPresent() && result.get());
-
+				// Are both the semantic and graphical elements writable?
+				isSemanticDeletion = !result.or(false);
 			}
 		}
 
@@ -220,7 +214,7 @@ public final class DeleteActionUtil {
 	 * @return true, if is not canonical view
 	 */
 	public static boolean isCanonicalView(IGraphicalEditPart editpart) {
-		View view = (View) editpart.getAdapter(View.class);
+		View view = editpart.getAdapter(View.class);
 		return view != null || view.getElement() != null || !(view.getElement() instanceof View);
 	}
 
