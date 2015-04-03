@@ -24,18 +24,18 @@ import org.eclipse.xtend2.lib.StringConcatenation;
  */
 @SuppressWarnings("all")
 public class CppEnumerations {
-  public static CharSequence CppEnumerationDefinition(final Enumeration enume) {
+  public static CharSequence CppEnumerationDefinition(final Enumeration enumeration) {
     StringConcatenation _builder = new StringConcatenation();
-    CharSequence _CppElementDoc = CppDocumentation.CppElementDoc(enume);
+    CharSequence _CppElementDoc = CppDocumentation.CppElementDoc(enumeration);
     _builder.append(_CppElementDoc, "");
     _builder.newLineIfNotEmpty();
     _builder.append("enum ");
-    String _name = enume.getName();
+    String _name = enumeration.getName();
     _builder.append(_name, "");
     _builder.append(" {");
     _builder.newLineIfNotEmpty();
     {
-      EList<EnumerationLiteral> _ownedLiterals = enume.getOwnedLiterals();
+      EList<EnumerationLiteral> _ownedLiterals = enumeration.getOwnedLiterals();
       for(final EnumerationLiteral ownedLiteral : _ownedLiterals) {
         _builder.append("\t");
         CharSequence _CppElementDoc_1 = CppDocumentation.CppElementDoc(ownedLiteral);

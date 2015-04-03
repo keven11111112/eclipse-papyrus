@@ -102,9 +102,10 @@ public class CppClassifierGenerator {
     _builder.append(_CppIncludeHeader, "");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
-    EList<TemplateBinding> tb = classifier.getTemplateBindings();
+    TemplateBinding tb = GenUtils.getTemplateBinding(classifier);
     _builder.newLineIfNotEmpty();
-    TemplateBinding templateElement = tb.get(0);
+    EList<Element> _targets = tb.getTargets();
+    Element templateElement = _targets.get(0);
     _builder.newLineIfNotEmpty();
     org.eclipse.uml2.uml.Package _package_1 = classifier.getPackage();
     String _fullPath = GenUtils.getFullPath(_package_1);
@@ -128,14 +129,21 @@ public class CppClassifierGenerator {
     Element _owner_1 = templateElement.getOwner();
     String _name_2 = ((NamedElement) _owner_1).getName();
     _builder.append(_name_2, "");
+    _builder.append("<");
     {
-      EList<TemplateParameterSubstitution> _parameterSubstitutions = templateElement.getParameterSubstitutions();
+      EList<TemplateParameterSubstitution> _parameterSubstitutions = tb.getParameterSubstitutions();
+      boolean _hasElements = false;
       for(final TemplateParameterSubstitution ps : _parameterSubstitutions) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "");
+        }
         Object _CppTemplateBindingParameter = CppTemplates.CppTemplateBindingParameter(ps);
         _builder.append(_CppTemplateBindingParameter, "");
       }
     }
-    _builder.append(" ");
+    _builder.append("> ");
     String _name_3 = classifier.getName();
     _builder.append(_name_3, "");
     _builder.append(";");
@@ -227,7 +235,7 @@ public class CppClassifierGenerator {
     _builder.newLine();
     _builder.append("/************************************************************/");
     _builder.newLine();
-    TemplateBinding tb = GenUtils.getTemplateBindings(((org.eclipse.uml2.uml.Class) classifier));
+    TemplateBinding tb = GenUtils.getTemplateBinding(classifier);
     _builder.newLineIfNotEmpty();
     EList<Element> _targets = tb.getTargets();
     Element templateElement = _targets.get(0);
@@ -239,12 +247,18 @@ public class CppClassifierGenerator {
     _builder.append("<");
     {
       EList<TemplateParameterSubstitution> _parameterSubstitutions = tb.getParameterSubstitutions();
+      boolean _hasElements = false;
       for(final TemplateParameterSubstitution ps : _parameterSubstitutions) {
+        if (!_hasElements) {
+          _hasElements = true;
+        } else {
+          _builder.appendImmediate(", ", "");
+        }
         Object _CppTemplateBindingParameter = CppTemplates.CppTemplateBindingParameter(ps);
         _builder.append(_CppTemplateBindingParameter, "");
       }
     }
-    _builder.append(";");
+    _builder.append(">;");
     _builder.newLineIfNotEmpty();
     _builder.newLine();
     String _closeNS = CppGenUtils.closeNS(classifier);
