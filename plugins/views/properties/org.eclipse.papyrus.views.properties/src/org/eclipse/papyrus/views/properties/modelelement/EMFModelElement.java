@@ -38,8 +38,12 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForResourceSet;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.widgets.creation.BooleanEditionFactory;
 import org.eclipse.papyrus.infra.widgets.creation.IAtomicOperationExecutor;
+import org.eclipse.papyrus.infra.widgets.creation.IntegerEditionFactory;
+import org.eclipse.papyrus.infra.widgets.creation.RealEditionFactory;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
+import org.eclipse.papyrus.infra.widgets.creation.StringEditionFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.views.properties.Activator;
 import org.eclipse.papyrus.views.properties.creation.EMFAtomicOperationExecutor;
@@ -279,6 +283,21 @@ public class EMFModelElement extends AbstractModelElement {
 				EReference reference = (EReference) feature;
 				if (reference.isContainment()) {
 					return new EcorePropertyEditorFactory(reference);
+				}
+			} else {
+				EClassifier type = feature.getEType();
+				Class<?> javaClass = type.getInstanceClass();
+
+				if (javaClass == String.class) {
+					return new StringEditionFactory();
+				} else if (javaClass == Integer.class || javaClass == Integer.TYPE) {
+					return new IntegerEditionFactory();
+				} else if (javaClass == Boolean.class || javaClass == Boolean.TYPE) {
+					return new BooleanEditionFactory();
+				} else if (javaClass == Float.class || javaClass == Float.TYPE) {
+					return new RealEditionFactory();
+				} else if (javaClass == Double.class || javaClass == Double.TYPE) {
+					return new RealEditionFactory();
 				}
 			}
 		}
