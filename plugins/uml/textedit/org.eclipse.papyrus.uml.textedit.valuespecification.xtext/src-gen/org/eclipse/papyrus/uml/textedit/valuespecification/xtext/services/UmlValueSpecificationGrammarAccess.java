@@ -419,14 +419,14 @@ public class UmlValueSpecificationGrammarAccess extends AbstractGrammarElementFi
 		return tVALUE_SPECIFICATION_ID;
 	} 
 
-	//terminal VALUE_SPECIFICATION_INT returns ecore::EInt:
-	//	"0".."9"+;
+	//terminal VALUE_SPECIFICATION_INT:
+	//	"-"? "0".."9"+ | "*";
 	public TerminalRule getVALUE_SPECIFICATION_INTRule() {
 		return tVALUE_SPECIFICATION_INT;
 	} 
 
 	//terminal VALUE_SPECIFICATION_DOUBLE returns ecore::EDouble:
-	//	"0".."9"+ ("." | ",") "0".."9"* | "0".."9"* ("." | ",") "0".."9"+;
+	//	"-"? ("0".."9"+ ("." | ",") "0".."9"* | "0".."9"* ("." | ",") "0".."9"+);
 	public TerminalRule getVALUE_SPECIFICATION_DOUBLERule() {
 		return tVALUE_SPECIFICATION_DOUBLE;
 	} 

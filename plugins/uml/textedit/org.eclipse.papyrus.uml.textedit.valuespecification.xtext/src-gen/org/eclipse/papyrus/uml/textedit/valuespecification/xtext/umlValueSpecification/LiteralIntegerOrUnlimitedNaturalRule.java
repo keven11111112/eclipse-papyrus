@@ -31,12 +31,12 @@ public interface LiteralIntegerOrUnlimitedNaturalRule extends EObject
    * </p>
    * <!-- end-user-doc -->
    * @return the value of the '<em>Value</em>' attribute.
-   * @see #setValue(int)
+   * @see #setValue(String)
    * @see org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.UmlValueSpecificationPackage#getLiteralIntegerOrUnlimitedNaturalRule_Value()
    * @model
    * @generated
    */
-  int getValue();
+  String getValue();
 
   /**
    * Sets the value of the '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule#getValue <em>Value</em>}' attribute.
@@ -46,6 +46,6 @@ public interface LiteralIntegerOrUnlimitedNaturalRule extends EObject
    * @see #getValue()
    * @generated
    */
-  void setValue(int value);
+  void setValue(String value);
 
 } // LiteralIntegerOrUnlimitedNaturalRule

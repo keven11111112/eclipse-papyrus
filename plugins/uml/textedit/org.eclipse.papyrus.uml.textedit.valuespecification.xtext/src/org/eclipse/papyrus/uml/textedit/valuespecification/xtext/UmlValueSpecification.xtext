@@ -63,8 +63,8 @@ VisibilityKind:
 	
 // Manage the basic terminals to avoid XText completion problem
 terminal VALUE_SPECIFICATION_ID returns ecore::EString: '^'?('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
-terminal VALUE_SPECIFICATION_INT returns ecore::EInt: ('0'..'9')+;
-terminal VALUE_SPECIFICATION_DOUBLE returns ecore::EDouble: (('0'..'9')+("."|",")('0'..'9')*|('0'..'9')*("."|",")('0'..'9')+);
+terminal VALUE_SPECIFICATION_INT returns ecore::EString: (('-')?('0'..'9')+|'*');
+terminal VALUE_SPECIFICATION_DOUBLE returns ecore::EDouble: ('-')?(('0'..'9')+("."|",")('0'..'9')*|('0'..'9')*("."|",")('0'..'9')+);
 terminal VALUE_SPECIFICATION_STRING	: 
 			'"' ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|'"') )* '"' |
 			"'" ( '\\' . /* 'b'|'t'|'n'|'f'|'r'|'u'|'"'|"'"|'\\' */ | !('\\'|"'") )* "'"

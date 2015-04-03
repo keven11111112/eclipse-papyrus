@@ -67,6 +67,11 @@ import com.google.inject.Injector;
 public class ValueSpecificationSetCommand {
 
 	/**
+	 * The unlimited value for the LiteralunlimitedNatural
+	 */
+	private static final String UNLIMITED = "*"; //$NON-NLS-1$
+
+	/**
 	 * The instance of the class.
 	 */
 	private static ValueSpecificationSetCommand instance = new ValueSpecificationSetCommand();
@@ -313,7 +318,7 @@ public class ValueSpecificationSetCommand {
 
 				// If the object to update is not correct, create the good ValueSpecification
 				if (null != newValueSpecification) {
-					resultCommand = createUpdateValueSpecificationCommand(newValueSpecification, abstractRule);
+					resultCommand = createUpdateValueSpecificationCommand(objectToEdit, structuralFeature, newValueSpecification, abstractRule);
 				} else {
 					newValueSpecification = createValueSpecification(objectToEdit, initialValueSpecification, abstractRule);
 
@@ -374,49 +379,62 @@ public class ValueSpecificationSetCommand {
 			} else if (value instanceof LiteralIntegerOrUnlimitedNaturalRule) {
 				boolean created = false;
 				final LiteralIntegerOrUnlimitedNaturalRule integerValue = (LiteralIntegerOrUnlimitedNaturalRule) value;
+
 				// Check that the value is upper than 0 and the type of the
 				// parent is a integer
-				if (0 <= integerValue.getValue()
-						&& isTypeNeeeded(
-								objectToEdit,
-								UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
+				if (integerValue.getValue().equals(UNLIMITED)) {
 					// Create a literal unlimited natural
 					createdValueSpecification = UMLFactory.eINSTANCE
 							.createLiteralUnlimitedNatural();
 					copyFeatureValues(createdValueSpecification,
 							initialValueSpecification);
 					((LiteralUnlimitedNatural) createdValueSpecification)
-							.setValue(integerValue.getValue());
+							.setValue(-1);
 					created = true;
-				}
+				} else {
+					int intValue = Integer.parseInt(integerValue.getValue());
+					if (0 <= intValue && isTypeNeeeded(
+							objectToEdit,
+							UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
 
-				// Check that the value specification is not already created
-				// and the type of the parent is an integer
-				if (!created
-						&& isTypeNeeeded(objectToEdit,
-								UMLPackage.Literals.LITERAL_INTEGER)) {
-					// Create a literal unlimited natural
-					createdValueSpecification = UMLFactory.eINSTANCE
-							.createLiteralInteger();
-					copyFeatureValues(createdValueSpecification,
-							initialValueSpecification);
-					((LiteralInteger) createdValueSpecification)
-							.setValue(integerValue.getValue());
-					created = true;
-				}
+						// Create a literal unlimited natural
+						createdValueSpecification = UMLFactory.eINSTANCE
+								.createLiteralUnlimitedNatural();
+						copyFeatureValues(createdValueSpecification,
+								initialValueSpecification);
+						((LiteralUnlimitedNatural) createdValueSpecification).setValue(intValue);
+						created = true;
+					}
 
-				// Check that the value specification is not already created
-				// and the type of the parent is a real
-				if (!created
-						&& isTypeNeeeded(objectToEdit,
-								UMLPackage.Literals.LITERAL_REAL)) {
-					// Create a literal unlimited natural
-					createdValueSpecification = UMLFactory.eINSTANCE
-							.createLiteralReal();
-					copyFeatureValues(createdValueSpecification,
-							initialValueSpecification);
-					((LiteralReal) createdValueSpecification)
-							.setValue(integerValue.getValue());
+
+					// Check that the value specification is not already created
+					// and the type of the parent is an integer
+					if (!created
+							&& isTypeNeeeded(objectToEdit,
+									UMLPackage.Literals.LITERAL_INTEGER)) {
+						// Create a literal unlimited natural
+						createdValueSpecification = UMLFactory.eINSTANCE
+								.createLiteralInteger();
+						copyFeatureValues(createdValueSpecification,
+								initialValueSpecification);
+						((LiteralInteger) createdValueSpecification)
+								.setValue(intValue);
+						created = true;
+					}
+
+					// Check that the value specification is not already created
+					// and the type of the parent is a real
+					if (!created
+							&& isTypeNeeeded(objectToEdit,
+									UMLPackage.Literals.LITERAL_REAL)) {
+						// Create a literal unlimited natural
+						createdValueSpecification = UMLFactory.eINSTANCE
+								.createLiteralReal();
+						copyFeatureValues(createdValueSpecification,
+								initialValueSpecification);
+						((LiteralReal) createdValueSpecification)
+								.setValue(intValue);
+					}
 				}
 			} else if (value instanceof LiteralRealRule) {
 				// Check that the type of the parent is a real
@@ -487,13 +505,17 @@ public class ValueSpecificationSetCommand {
 	/**
 	 * This allow to create the command to update the value specification (visibility, name and value).
 	 * 
+	 * @param objectToEdit
+	 *            The object to edit (parent of ValueSpecification).
+	 * @param structuralFeature
+	 *            The structural feature.
 	 * @param valueSpecification
 	 *            The value specification to update.
 	 * @param abstractRule
 	 *            The xtext object parsed.
 	 * @return The command with the update commands.
 	 */
-	protected ICommand createUpdateValueSpecificationCommand(final ValueSpecification valueSpecification, final AbstractRule abstractRule) {
+	protected ICommand createUpdateValueSpecificationCommand(final EObject objectToEdit, final EStructuralFeature structuralFeature, final ValueSpecification valueSpecification, final AbstractRule abstractRule) {
 		final CompositeCommand setAttributesCommand = new CompositeCommand("Update Value Specification Command"); //$NON-NLS-1$
 
 		// Check that the visibility was set
@@ -540,6 +562,33 @@ public class ValueSpecificationSetCommand {
 		if (null != setValueCommand
 				&& setValueCommand.canExecute()) {
 			setAttributesCommand.add(setValueCommand);
+		}
+
+		// For the refresh of properties ValueSpecification, this one will be used and reset to allow
+		// the notification and the refresh after this
+
+		// Unset the structural feature
+		final SetRequest unsetRequest = new SetRequest(objectToEdit,
+				structuralFeature, null);
+
+		final IElementEditService commandProvider = ElementEditServiceUtils
+				.getCommandProvider(objectToEdit);
+		final ICommand unsetCommand = commandProvider
+				.getEditCommand(unsetRequest);
+		if (null != unsetCommand
+				&& unsetCommand.canExecute()) {
+			setAttributesCommand.add(unsetCommand);
+
+			// Reset the structural feature
+			final SetRequest resetRequest = new SetRequest(objectToEdit,
+					structuralFeature, valueSpecification);
+
+			final ICommand resetCommand = commandProvider
+					.getEditCommand(resetRequest);
+			if (null != resetCommand
+					&& resetCommand.canExecute()) {
+				setAttributesCommand.add(resetCommand);
+			}
 		}
 
 		return setAttributesCommand.isEmpty() ? null : setAttributesCommand;
@@ -592,8 +641,15 @@ public class ValueSpecificationSetCommand {
 				request = new SetRequest(valueSpecification,
 						UMLPackage.Literals.LITERAL_INTEGER__VALUE, ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue());
 			} else if (valueSpecification instanceof LiteralUnlimitedNatural && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule) {
+				final String stringValue = ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue();
+				int intValue = 0;
+				if (UNLIMITED.equals(stringValue)) {
+					intValue = -1;
+				} else {
+					intValue = Integer.parseInt(stringValue);
+				}
 				request = new SetRequest(valueSpecification,
-						UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL__VALUE, ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue());
+						UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL__VALUE, intValue);
 			} else if (valueSpecification instanceof LiteralReal && xtextValue instanceof LiteralRealRule) {
 				request = new SetRequest(valueSpecification,
 						UMLPackage.Literals.LITERAL_REAL__VALUE, ((LiteralRealRule) xtextValue).getValue());
@@ -807,10 +863,13 @@ public class ValueSpecificationSetCommand {
 				if (initialValueSpecification instanceof LiteralBoolean && xtextValue instanceof LiteralBooleanRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_BOOLEAN)) {
 					result = (LiteralBoolean) initialValueSpecification;
 				} else if (initialValueSpecification instanceof LiteralInteger && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_INTEGER)) {
-					result = (LiteralInteger) initialValueSpecification;
+					if (!UNLIMITED.equals(((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue())) {
+						result = (LiteralInteger) initialValueSpecification;
+					}
 				} else if (initialValueSpecification instanceof LiteralUnlimitedNatural && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
 					// Check that the value if positive for the unlimited natural type
-					if (((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue() >= 0) {
+					final String value = ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue();
+					if (UNLIMITED.equals(value) || Integer.parseInt(value) >= 0) {
 						result = (LiteralUnlimitedNatural) initialValueSpecification;
 					}
 				} else if (initialValueSpecification instanceof LiteralReal && xtextValue instanceof LiteralRealRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_REAL)) {
