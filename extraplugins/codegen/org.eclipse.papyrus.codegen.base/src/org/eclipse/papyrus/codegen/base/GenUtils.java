@@ -55,6 +55,21 @@ public class GenUtils {
 	public static final String NL = System.getProperties().getProperty("line.separator"); //$NON-NLS-1$
 
 	/**
+	 * Retrieve template bindings for the class passed as a Parameter
+	 * only one template binding can exist for an element
+	 *
+	 * @param current
+	 *            Class on which the template binding is searched
+	 * @return the template binding of current Class
+	 * 
+	 * @deprecated use {@link #getTemplateBinding()} instead.  
+	 */
+	@Deprecated
+	public static TemplateBinding getTemplateBindings(org.eclipse.uml2.uml.Class current) {
+		return getTemplateBinding(current);
+	}
+
+	/**
 	 * Retrieve first template binding from list of template bindings, if
 	 * exactly one exists. Return null otherwise.
 	 *
