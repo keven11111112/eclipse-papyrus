@@ -40,11 +40,11 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayCommandExecution;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.tests.bug.m7.AbstractNodeTest;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
 import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
@@ -63,7 +63,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 
 	private static final URI SYSML_PROFILE = URI.createURI("pathmap://SysML_PROFILES/SysML.profile.uml");
 
-	private StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+	private StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 
 	protected void prepareStereotypes(EditPart editPart) {
 		assertNotNull("editPart", editPart);
@@ -97,8 +97,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		}
 
 
-		assertTrue("Label Name", labelName.equals(Activator.ST_LEFT + "Allocated" + Activator.ST_RIGHT) ||
-				labelName.equals(Activator.ST_LEFT + "SysML::Allocations::Allocated" + Activator.ST_RIGHT));
+		assertTrue("Label Name", labelName.equals(Activator.ST_LEFT + "Allocated" + Activator.ST_RIGHT) || labelName.equals(Activator.ST_LEFT + "SysML::Allocations::Allocated" + Activator.ST_RIGHT));
 
 
 		IFigure stereotypeFigure = null;
@@ -161,7 +160,7 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 		final View diagramElement = getDiagramElement(stereotypeEditPart);
 		View brace = null;
 		// doCheck
-		StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 		for (Object child : diagramElement.getChildren()) {
 			if (helper.isStereotypeBrace(child)) {
 				brace = (View) child;
@@ -258,15 +257,17 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 					});
 					appliedStereotype = element.getAppliedStereotype(stereotype.getQualifiedName());
 					// Display current stereotype
-					String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-					getCommandStack().execute(AppliedStereotypeHelper.getAddAppliedStereotypeCommand(getEditingDomain(), diagramElement, appliedStereotype.getQualifiedName(), presentationKind));
+					StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+					View stereotypeLabel = helper.getStereotypeLabel(diagramElement, appliedStereotype);
+					StereotypeDisplayCommandExecution.getInstance().setPersistency(getEditingDomain(), stereotypeLabel, false);
+					StereotypeDisplayCommandExecution.getInstance().setVisibility(getEditingDomain(), stereotypeLabel, true, false);
 					if (appliedStereotype != null) {
-						// Display all properties of it.
+						// // Display all properties of it.
 						Iterator<Property> propIt = appliedStereotype.getAllAttributes().iterator();
 						while (propIt.hasNext()) {
 							final Property currentProp = propIt.next();
+							View propertyView = helper.getStereotypeProperty(diagramElement, appliedStereotype, currentProp);
 							boolean adding = false;
-							// Select authorized properties
 							if (currentProp.getAssociation() != null) {
 								if (!currentProp.getName().startsWith("base_")) {
 									adding = true;
@@ -275,12 +276,13 @@ public class BaseStereotypesTest extends AbstractNodeTest {
 								adding = true;
 							}
 							if (adding) {
-								String appliedStereotypeListToAdd = stereotype.getQualifiedName() + "." + currentProp.getName();
-								RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(getEditingDomain(), diagramElement, appliedStereotypeListToAdd);
-								getCommandStack().execute(command);
+								StereotypeDisplayCommandExecution.getInstance().setPersistency(getEditingDomain(), propertyView, false);
+								StereotypeDisplayCommandExecution.getInstance().setVisibility(getEditingDomain(), propertyView, true, false);
 							}
 						}
 					}
+
+
 				}
 				return appliedStereotype;
 			}

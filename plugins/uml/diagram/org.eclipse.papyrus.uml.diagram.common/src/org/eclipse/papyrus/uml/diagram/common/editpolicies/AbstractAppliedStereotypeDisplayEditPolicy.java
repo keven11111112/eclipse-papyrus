@@ -25,7 +25,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
@@ -37,16 +36,16 @@ import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypePropertyViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateStereotypeLabelCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateStereotypeLabelCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.migration.StereotypeMigrationHelper;
+import org.eclipse.papyrus.uml.diagram.common.util.CommandUtil;
 import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
@@ -58,6 +57,8 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends GraphicalEditPolicyEx implements NotificationListener, IPapyrusListener {
 
+	protected String EMPTY_STRING = "";//$NON-NLS-1$
+
 	/** constant for this edit policy role */
 	public final static String STEREOTYPE_LABEL_POLICY = "AppliedStereotypeDisplayEditPolicy";//$NON-NLS-1$
 
@@ -65,7 +66,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	protected Element hostSemanticElement;
 
 	/** Helper to manipulate applied Stereotype Display model */
-	protected StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+	protected StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+	protected StereotypeMigrationHelper migrationHelper = StereotypeMigrationHelper.getInstance();
+
+
 
 	protected IGraphicalEditPart hostEditPart;
 
@@ -96,9 +100,12 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 			// Create and Delete nodes if necessary
 			refreshNotationStructure();
 
+
 		}
 
 	}
+
+
 
 	/**
 	 * Initialize Variables.
@@ -219,7 +226,7 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 */
 	public Image stereotypeIconToDisplay() {
 		Image icon = null;
-		boolean displayIcon = NotationUtils.getBooleanValue(hostView, StereotypeDisplayUtils.DISPLAY_ICON, false);
+		boolean displayIcon = NotationUtils.getBooleanValue(hostView, StereotypeDisplayConstant.DISPLAY_ICON, false);
 		if (displayIcon) {
 			// retrieve the first stereotype in the list of displayed stereotype
 			Stereotype appliedStereotype;
@@ -341,31 +348,9 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 *            the stereotype application
 	 */
 	protected void executeAppliedStereotypeBraceCompartmentCreation(final IGraphicalEditPart editPart, final Stereotype stereotype) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
+		CommandUtil.executeUnsafeCommand(command, editPart);
 
-				@Override
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						@Override
-						public void run() {
-							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE);
-
-							// use to avoid to put it in the command stack
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
 	}
 
 
@@ -380,35 +365,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 *            the stereotype associated to compartment node
 	 */
 	protected void executeAppliedStereotypeBracePropertyViewCreation(final IGraphicalEditPart editPart, final Node compartment, final Property stereotypeProperty) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
+		CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_BRACE_TYPE);
+		CommandUtil.executeUnsafeCommand(command, editPart);
 
-				@Override
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-						@Override
-						public void run() {
-
-							// use to avoid to put it in the command stack
-							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_BRACE_TYPE);
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
 	}
-
-
-
 
 	/**
 	 * The goal of this method is to execute the a command to create a notation node for a stereotype Label.
@@ -419,34 +379,11 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 *            The stereotype related to the Label
 	 */
 	protected void executeStereotypeLabelCreation(final IGraphicalEditPart editPart, final Stereotype stereotype) {
-		try {
-			editPart.getEditingDomain().runExclusive(new Runnable() {
-				@Override
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
+		CreateStereotypeLabelCommand command = new CreateStereotypeLabelCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype);
+		CommandUtil.executeUnsafeCommand(command, editPart);
 
-						@Override
-						public void run() {
 
-							CreateStereotypeLabelCommand command = new CreateStereotypeLabelCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype);
-							// use to avoid to put it in the command stack
-							try {
-								GMFUnsafe.write(editPart.getEditingDomain(), command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
 	}
-
-
-
 
 	/**
 	 * Gets the diagram event broker from the editing domain.
@@ -492,24 +429,10 @@ public abstract class AbstractAppliedStereotypeDisplayEditPolicy extends Graphic
 	 *            DecorationNode of the Stereotype Label that has to be removed
 	 */
 	protected void executeStereotypeViewRemove(final IGraphicalEditPart editPart, final View view) {
-		try {
-			TransactionUtil.getEditingDomain(getView()).runExclusive(new Runnable() {
 
-				@Override
-				public void run() {
-					DeleteCommand command = new DeleteCommand(view);
-					// use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(editPart.getEditingDomain(), command);
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-				}
-			});
+		DeleteCommand command = new DeleteCommand(view);
+		CommandUtil.executeUnsafeCommand(command, editPart);
 
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
 	}
 
 

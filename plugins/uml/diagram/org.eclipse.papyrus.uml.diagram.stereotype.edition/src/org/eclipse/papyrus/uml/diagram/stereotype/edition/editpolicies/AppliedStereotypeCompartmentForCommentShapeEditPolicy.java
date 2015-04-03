@@ -17,7 +17,7 @@ package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies;
 
 import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.uml2.uml.Element;
 
 
@@ -51,8 +51,8 @@ public class AppliedStereotypeCompartmentForCommentShapeEditPolicy extends Appli
 		if ((Element) getView().getElement() != null) {
 			return (Element) getView().getElement();
 		}
-		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME) != null) {
-			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
+		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME) != null) {
+			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME);
 			return (Element) eObjectValueStyle.getEObjectValue();
 		}
 		return null;

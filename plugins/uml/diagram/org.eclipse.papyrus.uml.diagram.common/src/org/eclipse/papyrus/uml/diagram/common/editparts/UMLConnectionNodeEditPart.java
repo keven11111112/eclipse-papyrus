@@ -23,14 +23,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ConnectionEditPart;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
-import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ApplyStereotypeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.edge.UMLEdgeFigure;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.tools.listeners.StereotypeElementListener.StereotypeExtensionNotification;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -187,7 +185,7 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart imple
 	 * @return the list of stereotypes to display
 	 */
 	public String stereotypesToDisplay() {
-		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay((View) getModel());
+		String stereotypesToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeTextToDisplay((View) getModel());
 
 		return stereotypesToDisplay;
 
@@ -199,21 +197,17 @@ public abstract class UMLConnectionNodeEditPart extends ConnectionEditPart imple
 	 * @return the image that represents the first applied stereotype or <code>null</code> if no image has to be displayed
 	 */
 	public Image stereotypeIconToDisplay() {
-		String stereotypespresentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind((View) getModel());
-		if (stereotypespresentationKind == null) {
-			return null;
-		}
-		if (stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 
-			// retrieve the first stereotype in the list of displayed stereotype
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) getModel());
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			if (tokenizer.hasMoreTokens()) {
-				String firstStereotypeName = tokenizer.nextToken();
-				Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
-				return Activator.getIconElement(getUMLElement(), stereotype, false);
-			}
+
+		// retrieve the first stereotype in the list of displayed stereotype
+		String stereotypesToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeTextToDisplay((View) getModel());
+		StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
+		if (tokenizer.hasMoreTokens()) {
+			String firstStereotypeName = tokenizer.nextToken();
+			Stereotype stereotype = getUMLElement().getAppliedStereotype(firstStereotypeName);
+			return Activator.getIconElement(getUMLElement(), stereotype, false);
 		}
+
 		return null;
 	}
 

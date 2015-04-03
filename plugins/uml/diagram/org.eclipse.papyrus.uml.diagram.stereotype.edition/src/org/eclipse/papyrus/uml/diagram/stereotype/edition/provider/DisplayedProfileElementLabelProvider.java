@@ -23,8 +23,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.profile.ImageManager;
 import org.eclipse.papyrus.uml.profile.Message;
 import org.eclipse.papyrus.uml.profile.tree.objects.AppliedStereotypePropertyTreeObject;
@@ -59,7 +59,7 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 public class DisplayedProfileElementLabelProvider extends LabelProvider {
 
 
-	private StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+	private StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 
 
 	private View mainView;
@@ -84,9 +84,9 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 	 */
 	public boolean isQualifiedNameDisplay(View labelView) {
 
-		String depth = NotationUtils.getStringValue(labelView, StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH, StereotypeDisplayUtils.DEFAULT_DEPTH_VALUE);
+		String depth = NotationUtils.getStringValue(labelView, StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH, StereotypeDisplayConstant.DEFAULT_DEPTH_VALUE);
 
-		return StereotypeDisplayUtils.DEPTH_MAX.equals(depth);
+		return StereotypeDisplayConstant.DEPTH_MAX.equals(depth);
 	}
 
 

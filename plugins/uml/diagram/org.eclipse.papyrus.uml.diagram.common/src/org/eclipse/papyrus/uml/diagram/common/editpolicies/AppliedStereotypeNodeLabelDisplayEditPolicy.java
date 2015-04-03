@@ -40,6 +40,8 @@ public class AppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereoty
 		super(tag);
 	}
 
+
+
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeDisplay()
 	 *

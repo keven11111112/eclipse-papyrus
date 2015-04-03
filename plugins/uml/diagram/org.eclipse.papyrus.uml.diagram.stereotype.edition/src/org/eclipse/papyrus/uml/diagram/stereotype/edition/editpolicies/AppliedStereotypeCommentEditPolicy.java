@@ -33,14 +33,14 @@ import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.LayoutConstraint;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeCommentViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypePropertyViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCommentViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
@@ -111,7 +111,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		if (comment != null) {
 
 			int eventType = notification.getEventType();
-			EObject object = NotationUtils.getEObjectValue(comment, StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			EObject object = StereotypeDisplayUtil.getInstance().getCommentSemanticElement(comment);
 			// If the reference object of the comment is removed, delete the Comment node itself.
 			if (eventType == Notification.REMOVE && notification.getOldValue().equals(hostView) && object == null) {
 				executeAppliedStereotypeCommentDeletion(hostEditPart.getEditingDomain(), comment);
@@ -172,6 +172,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 * @return the number of Visible Stereotype Compartment
 	 */
 	protected int getAppliedStereotypeCompartmentNumber(View view) {
+
 		int nbVisibleCompartment = 0;
 		Iterator<View> iteratorView = view.getChildren().iterator();
 		while (iteratorView.hasNext()) {
@@ -228,7 +229,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		// doesn't exist already
 		if (!helper.isCompartmentExist(node, stereotype)) {
 			// Create Compartment
-			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE);
+			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
 		}
 	}
 
@@ -256,7 +257,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 	 * In Charge of PropertyView Creation
 	 * 
 	 * @param propertyType
-	 *            Type of Property {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_BRACE_TYPE}
+	 *            Type of Property {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_BRACE_TYPE}
 	 * @param compartment
 	 *            The Compartment owner of the Property that will be created
 	 * @param property
@@ -286,7 +287,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 		// doesn't exist already
 		if (!helper.isCompartmentExist(node, stereotype)) {
 			// Create Compartment
-			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE);
+			executeAppliedStereotypeCompartmentCreation(hostEditPart, stereotype, StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE);
 
 		}
 	}
@@ -349,7 +350,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 
 
 						public void run() {
-							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), comment, stereotype, type);
+							CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), comment, stereotype, type);
 
 							// use to avoid to put it in the command stack
 							try {
@@ -389,7 +390,7 @@ public class AppliedStereotypeCommentEditPolicy extends AppliedStereotypeNodeLab
 						public void run() {
 
 							// use to avoid to put it in the command stack
-							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE);
+							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
 							try {
 								GMFUnsafe.write(editPart.getEditingDomain(), command);
 							} catch (Exception e) {

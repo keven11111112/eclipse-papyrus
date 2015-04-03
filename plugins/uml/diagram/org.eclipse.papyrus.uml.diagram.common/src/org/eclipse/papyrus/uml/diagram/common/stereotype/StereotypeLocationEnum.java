@@ -34,13 +34,14 @@ public enum StereotypeLocationEnum {
 
 	/**
 	 * Defines the Brace Label into a separate Comment Figure that contains the list of Stereotype Properties
+	 * {@link Deprecated Not used}
 	 */
-	IN_COMMENT_BRACE,
+	@Deprecated IN_COMMENT_BRACE,
 
 	/**
 	 * Defines the Compartment into a separate Comment Figure dedicated to the Stereotype Properties
 	 */
-	IN_COMMENT_COMPARTMENT
+	IN_COMMENT
 
 
 }

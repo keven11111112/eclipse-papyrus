@@ -58,7 +58,11 @@ import org.w3c.dom.NodeList;
  * <p>
  * More precisely, it is in charge of the display of properties of Stereotypes in Compartments
  * </p>
+ * 
+ * @deprecated Use the commands into oep.uml.diagram.common.stereotype.display.command
+ * 
  */
+@Deprecated
 public class DisplayAppliedStereotypePropertiesInCompartmentPostAction extends GraphicalPostAction {
 
 	/** map of stereotypes / properties to display with their qualified names */
@@ -134,7 +138,7 @@ public class DisplayAppliedStereotypePropertiesInCompartmentPostAction extends G
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 
-				View view = (View) viewAdapter.getAdapter(View.class);
+				View view = viewAdapter.getAdapter(View.class);
 				String stereotypesStrList = PaletteUtil.convertToCommaSeparatedRepresentation(listOfDisplayableStereotypeProperties);
 
 				AppliedStereotypeHelper.getAddAppliedStereotypePropertiesCommand(editingDomain, view, stereotypesStrList).execute();

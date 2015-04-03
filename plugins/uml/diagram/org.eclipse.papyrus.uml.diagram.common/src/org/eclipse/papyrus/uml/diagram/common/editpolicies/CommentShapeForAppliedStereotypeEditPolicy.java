@@ -36,7 +36,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.util.UMLUtil;
@@ -61,7 +61,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedS
 			element = (Element) getView().getElement();
 		} else {
 
-			EObject object = NotationUtils.getEObjectValue(getView(), StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			EObject object = NotationUtils.getEObjectValue(getView(), StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME, null);
 			if (object != null) {
 				if (object instanceof Element) {
 					element = (Element) object;

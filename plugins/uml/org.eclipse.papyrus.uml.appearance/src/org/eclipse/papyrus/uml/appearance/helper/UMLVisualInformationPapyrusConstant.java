@@ -13,7 +13,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.appearance.helper;
 
-//Refactoring 0.9: Some constants have been moved to VisualInformationPapyrusConstant in infra/gmfdiag/common
+/**
+ * @deprecated Use the Constant into oep.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant
+ * 
+ * @author Céline JANSSENS
+ *
+ */
+// Refactoring 0.9: Some constants have been moved to VisualInformationPapyrusConstant in infra/gmfdiag/common
+@Deprecated
 public interface UMLVisualInformationPapyrusConstant {
 
 	public static String STEREOTYPE_ANNOTATION = "Stereotype_Annotation";

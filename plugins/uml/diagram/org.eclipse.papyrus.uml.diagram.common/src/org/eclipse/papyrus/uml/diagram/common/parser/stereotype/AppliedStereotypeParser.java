@@ -13,7 +13,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.parser.stereotype;
 
-import java.text.MessageFormat;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -28,14 +27,23 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.uml.diagram.common.parser.assist.FixedSetCompletionProcessor;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class AppliedStereotypeParser implements ISemanticParser {
 
-	private static final MessageFormat APPLIED_PROFILE = new MessageFormat("\u00AB{0}\u00BB"); //$NON-NLS-1$
+	private final String myDefaultPrintString;
+
+	public AppliedStereotypeParser() {
+		this(null);
+	}
+
+	public AppliedStereotypeParser(String defaultPrintString) {
+		myDefaultPrintString = defaultPrintString;
+	}
+
 
 	@Override
 	public boolean areSemanticElementsAffected(EObject listener, Object notification) {
@@ -98,9 +106,9 @@ public class AppliedStereotypeParser implements ISemanticParser {
 	public String getPrintString(IAdaptable element, int flags) {
 		String editString = getEditString(element, flags);
 		if (editString != null && !editString.isEmpty()) {
-			return StereotypeDisplayUtils.QUOTE_LEFT + editString + StereotypeDisplayUtils.QUOTE_RIGHT;
+			return StereotypeDisplayConstant.QUOTE_LEFT + editString + StereotypeDisplayConstant.QUOTE_RIGHT;
 		}
-		return editString;
+		return myDefaultPrintString;
 	}
 
 	@Override

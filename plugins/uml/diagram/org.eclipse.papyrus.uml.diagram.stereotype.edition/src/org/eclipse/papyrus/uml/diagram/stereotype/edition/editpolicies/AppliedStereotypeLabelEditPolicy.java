@@ -33,6 +33,16 @@ public class AppliedStereotypeLabelEditPolicy extends AppliedStereotypeNodeLabel
 	}
 
 	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#activate()
+	 *
+	 */
+	@Override
+	public void activate() {
+		// CEJ Auto-generated method stub
+		super.activate();
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy#refreshStereotypeDisplay()
 	 *
 	 */

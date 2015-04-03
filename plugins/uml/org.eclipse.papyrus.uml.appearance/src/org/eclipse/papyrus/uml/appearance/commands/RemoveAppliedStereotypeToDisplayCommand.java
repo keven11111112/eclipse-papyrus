@@ -25,7 +25,11 @@ import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusCons
 /**
  * The Class RemoveAppliedStereotypeToDisplayCommand used to set the list of applied stereotype to
  * display
+ * 
+ * @deprecated Use the commands into oep.uml.diagram.common.stereotype.display.command
+ * 
  */
+@Deprecated
 public class RemoveAppliedStereotypeToDisplayCommand extends CreateEAnnotationCommand {
 
 	/** The qualified namedepht. */

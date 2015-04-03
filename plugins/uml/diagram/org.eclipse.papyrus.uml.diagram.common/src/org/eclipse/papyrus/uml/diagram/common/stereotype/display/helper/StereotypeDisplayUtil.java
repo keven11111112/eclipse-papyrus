@@ -12,12 +12,11 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper;
 
 import java.util.Iterator;
 import java.util.StringTokenizer;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -25,14 +24,12 @@ import org.eclipse.gmf.runtime.notation.BasicCompartment;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStyleValueCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.UnsetPersistentViewCommand;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
@@ -47,17 +44,17 @@ import org.eclipse.uml2.uml.util.UMLUtil;
  * @author Celine JANSSENS
  *
  */
-public class StereotypeDisplayHelper {
+public class StereotypeDisplayUtil {
 
 
 	private static final String EMPTY_STRING = ""; // $NON-NLS-1$
 	/**
 	 * singleton instance
 	 */
-	private static StereotypeDisplayHelper labelHelper;
+	private static StereotypeDisplayUtil labelHelper;
 
 	/** Singleton contructor */
-	private StereotypeDisplayHelper() {
+	private StereotypeDisplayUtil() {
 	}
 
 	/**
@@ -65,9 +62,9 @@ public class StereotypeDisplayHelper {
 	 *
 	 * @return the singleton instance.
 	 */
-	public static StereotypeDisplayHelper getInstance() {
+	public static StereotypeDisplayUtil getInstance() {
 		if (labelHelper == null) {
-			labelHelper = new StereotypeDisplayHelper();
+			labelHelper = new StereotypeDisplayUtil();
 		}
 		return labelHelper;
 	}
@@ -101,18 +98,18 @@ public class StereotypeDisplayHelper {
 	/**
 	 * Get the Semantic Element of the Comment View.
 	 * The Comment View is not attached to its semantic element through the method {@link View#getElement()}.
-	 * To retrieve the semantic element, it has been added as a namedStyle with the name {@link StereotypeDisplayUtils#STEREOTYPE_COMMENT_RELATION_NAME}
+	 * To retrieve the semantic element, it has been added as a namedStyle with the name {@link StereotypeDisplayConstant#STEREOTYPE_COMMENT_RELATION_NAME}
 	 * 
 	 * @param view
 	 *            The Stereotype Comment View (of type "StereotypeComment")
 	 * @return The Base Element of the Comment
 	 */
-	protected Element getCommentSemanticElement(View view) {
+	public Element getCommentSemanticElement(View view) {
 
 		Element elementSemantic = null;
 		if (isStereotypeComment(view)) {
 			// Retrieve the Base Element of the Comment as the Semantic element
-			EObject baseElement = NotationUtils.getEObjectValue(view, StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			EObject baseElement = NotationUtils.getEObjectValue(view, StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME, null);
 
 			if (baseElement instanceof Element) {
 				elementSemantic = (Element) baseElement;
@@ -183,7 +180,7 @@ public class StereotypeDisplayHelper {
 			if (isStereotypeLabel(object)) {
 				if (((View) object).isVisible()) {
 					if (!EMPTY_STRING.equals(textToDisplay.toString()) && (textToDisplay != null)) {
-						textToDisplay.append(StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
+						textToDisplay.append(StereotypeDisplayConstant.STEREOTYPE_LABEL_SEPARATOR);
 					}
 					textToDisplay.append(getStereotypeName((DecorationNode) object));
 				}
@@ -193,7 +190,7 @@ public class StereotypeDisplayHelper {
 
 		// Then add the ornament around the text.
 		if ((textToDisplay.toString() != null) && (!EMPTY_STRING.equals(textToDisplay.toString()))) {
-			finalText.append(StereotypeDisplayUtils.QUOTE_LEFT).append(textToDisplay).append(StereotypeDisplayUtils.QUOTE_RIGHT);
+			finalText.append(StereotypeDisplayConstant.QUOTE_LEFT).append(textToDisplay).append(StereotypeDisplayConstant.QUOTE_RIGHT);
 		}
 
 		// Return the text or null if empty
@@ -236,7 +233,7 @@ public class StereotypeDisplayHelper {
 	 * 
 	 * @return The String with the new StereotypeName and
 	 */
-	protected String getStereotypeName(DecorationNode label) {
+	public String getStereotypeName(DecorationNode label) {
 
 
 		// Retrieve Name and Depth from CSS or NamedStyle
@@ -263,11 +260,11 @@ public class StereotypeDisplayHelper {
 	protected String getStereotypeNameWithDepth(String qualifiedName, String depth) {
 
 		if (depth != null && !EMPTY_STRING.equals(depth)) {
-			if (StereotypeDisplayUtils.DEPTH_MIN.equals(depth)) {
+			if (StereotypeDisplayConstant.DEPTH_MIN.equals(depth)) {
 				return getMinimumDepthName(qualifiedName);
-			} else if (StereotypeDisplayUtils.DEPTH_MAX.equals(depth)) {
+			} else if (StereotypeDisplayConstant.DEPTH_MAX.equals(depth)) {
 				return qualifiedName;
-			} else if (StereotypeDisplayUtils.DEPTH_AUTO.equals(depth)) {
+			} else if (StereotypeDisplayConstant.DEPTH_AUTO.equals(depth)) {
 				// TODO to be computed
 				return qualifiedName;
 			} else {
@@ -311,8 +308,8 @@ public class StereotypeDisplayHelper {
 		StringBuffer name = new StringBuffer(qualifiedName);
 		try {
 			for (int i = 0; i > depthRetrieve; i--) {
-				int index = name.indexOf(StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
-				name = name.delete(0, index + StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH_SEPARATOR.length());
+				int index = name.indexOf(StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
+				name = name.delete(0, index + StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH_SEPARATOR.length());
 			}
 
 		} catch (IndexOutOfBoundsException e) {
@@ -331,8 +328,8 @@ public class StereotypeDisplayHelper {
 	public String getMinimumDepthName(String qualifiedName) {
 		String segment = EMPTY_STRING;
 		StringBuffer name = new StringBuffer(qualifiedName);
-		int index = name.lastIndexOf(StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
-		segment = name.substring(index + StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH_SEPARATOR.length());
+		int index = name.lastIndexOf(StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
+		segment = name.substring(index + StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH_SEPARATOR.length());
 		return segment;
 	}
 
@@ -345,7 +342,7 @@ public class StereotypeDisplayHelper {
 	 */
 	protected int getMaxDepth(String qualifiedName) {
 
-		StringTokenizer tok = new StringTokenizer(qualifiedName, StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
+		StringTokenizer tok = new StringTokenizer(qualifiedName, StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH_SEPARATOR);
 		return tok.countTokens();
 
 	}
@@ -368,7 +365,7 @@ public class StereotypeDisplayHelper {
 				obj = iter.next();
 				if (obj instanceof DecorationNode) {
 					DecorationNode label = (DecorationNode) obj;
-					if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
+					if (StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
 						if (qualifiedName.equals(getName(label))) {
 							return label;
 						}
@@ -381,7 +378,7 @@ public class StereotypeDisplayHelper {
 	}
 
 	/**
-	 * Return the associated DecorationNode of a node from it's qualified name.
+	 * Return the associated Property view of a node from the property name.
 	 * 
 	 * @param node
 	 *            Container Node of the StereotypeLabel
@@ -391,6 +388,66 @@ public class StereotypeDisplayHelper {
 	 */
 	public DecorationNode getStereotypeProperty(View node, Stereotype stereotype, Property property) {
 		DecorationNode propertyView = null;
+		if ((stereotype != null) && (property != null)) {
+			View compartment = getStereotypeCompartment(node, stereotype);
+			Object obj;
+			if (compartment != null) {
+				Iterator<?> iter = compartment.getChildren().iterator();
+				while (iter.hasNext()) {
+					obj = iter.next();
+					if (isStereotypeProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
+						propertyView = (DecorationNode) obj;
+					}
+
+				}
+			}
+		}
+
+		return propertyView;
+	}
+
+	/**
+	 * Return the associated Property view of a node from the property name.
+	 * 
+	 * @param node
+	 *            Container Node of the StereotypeLabel
+	 * @param qualifiedName
+	 *            Qualified Name of the Stereotype associated to this Label
+	 * @return associated StereotypeLabel
+	 */
+	public DecorationNode getStereotypePropertyInBrace(View node, Stereotype stereotype, Property property) {
+		DecorationNode propertyView = null;
+		if ((stereotype != null) && (property != null)) {
+			View compartment = getStereotypeBraceCompartment(node, stereotype);
+			Object obj;
+			if (compartment != null) {
+				Iterator<?> iter = compartment.getChildren().iterator();
+				while (iter.hasNext()) {
+					obj = iter.next();
+					if (isStereotypeBraceProperty(obj) && ((DecorationNode) obj).getElement().equals(property)) {
+						propertyView = (DecorationNode) obj;
+					}
+
+				}
+			}
+		}
+
+		return propertyView;
+	}
+
+	/**
+	 * Return the associated Property view of a node from the property name.
+	 * 
+	 * @param node
+	 *            Container Node of the StereotypeLabel
+	 * @param qualifiedName
+	 *            Qualified Name of the Stereotype associated to this Label
+	 * @return associated StereotypeLabel
+	 */
+	public DecorationNode getStereotypePropertyInComment(View mainView, Stereotype stereotype, Property property) {
+		View node = getStereotypeComment(mainView);
+		DecorationNode propertyView = null;
+
 		if ((stereotype != null) && (property != null)) {
 			View compartment = getStereotypeCompartment(node, stereotype);
 			Object obj;
@@ -483,7 +540,7 @@ public class StereotypeDisplayHelper {
 			Edge appliedStereotypeLink = null;
 			while (edgeIterator.hasNext() && appliedStereotypeLink == null) {
 				Edge edge = edgeIterator.next();
-				if (edge.getType().equals(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE)) {
+				if (edge.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE)) {
 					appliedStereotypeLink = edge;
 				}
 			}
@@ -507,7 +564,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeLabel(Object element) {
 		boolean stereotypeLabel = Boolean.FALSE;
 		if (element instanceof DecorationNode) {
-			stereotypeLabel = StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(((DecorationNode) element).getType());
+			stereotypeLabel = StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE.equals(((DecorationNode) element).getType());
 
 		}
 		return stereotypeLabel;
@@ -523,7 +580,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeCompartment(Object element) {
 		boolean stereotypeCompartment = Boolean.FALSE;
 		if (element instanceof BasicCompartment) {
-			stereotypeCompartment = StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE.equals(((DecorationNode) element).getType());
+			stereotypeCompartment = StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE.equals(((DecorationNode) element).getType());
 		}
 		return stereotypeCompartment;
 	}
@@ -538,7 +595,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeProperty(Object element) {
 		boolean stereotypeProperty = Boolean.FALSE;
 		if (element instanceof DecorationNode) {
-			stereotypeProperty = StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE.equals(((DecorationNode) element).getType());
+			stereotypeProperty = StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE.equals(((DecorationNode) element).getType());
 
 		}
 		return stereotypeProperty;
@@ -555,7 +612,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeBrace(Object element) {
 		boolean stereotypeBraceCmpt = Boolean.FALSE;
 		if (element instanceof BasicCompartment) {
-			stereotypeBraceCmpt = StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE.equals(((BasicCompartment) element).getType());
+			stereotypeBraceCmpt = StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE.equals(((BasicCompartment) element).getType());
 
 		}
 		return stereotypeBraceCmpt;
@@ -572,7 +629,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeBraceProperty(Object element) {
 		boolean stereotypeProperty = Boolean.FALSE;
 		if (element instanceof DecorationNode) {
-			stereotypeProperty = StereotypeDisplayUtils.STEREOTYPE_PROPERTY_BRACE_TYPE.equals(((DecorationNode) element).getType());
+			stereotypeProperty = StereotypeDisplayConstant.STEREOTYPE_PROPERTY_BRACE_TYPE.equals(((DecorationNode) element).getType());
 		}
 		return stereotypeProperty;
 	}
@@ -590,7 +647,7 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeComment(Object element) {
 		boolean stereotypeComment = Boolean.FALSE;
 		if (element instanceof Shape) {
-			stereotypeComment = StereotypeDisplayUtils.STEREOTYPE_COMMENT_TYPE.equals(((Shape) element).getType());
+			stereotypeComment = StereotypeDisplayConstant.STEREOTYPE_COMMENT_TYPE.equals(((Shape) element).getType());
 		}
 		return stereotypeComment;
 	}
@@ -612,7 +669,7 @@ public class StereotypeDisplayHelper {
 		}
 		if (isStereotypeLabel(label)) {
 			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(label, StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME, defaultName);
+			name = NotationUtils.getStringValue(label, StereotypeDisplayConstant.STEREOTYPE_LABEL_NAME, defaultName);
 		}
 		return name;
 	}
@@ -632,7 +689,7 @@ public class StereotypeDisplayHelper {
 		}
 		if (isStereotypeCompartment(compartment) || isStereotypeBrace(compartment)) {
 			// Retrieve Name from CSS or NamedStyle from the Notation model.
-			name = NotationUtils.getStringValue(compartment, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME, defaultName);
+			name = NotationUtils.getStringValue(compartment, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_NAME, defaultName);
 		}
 		return name;
 	}
@@ -647,9 +704,9 @@ public class StereotypeDisplayHelper {
 	 */
 	public String getDepth(DecorationNode label) {
 		String depth = EMPTY_STRING;
-		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
+		if (label != null && StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE.equals(label.getType())) {
 			// Retrieve Depth from CSS or NamedStyle from the Notation model.
-			depth = NotationUtils.getStringValue(label, StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH, StereotypeDisplayUtils.DEFAULT_DEPTH_VALUE);
+			depth = NotationUtils.getStringValue(label, StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH, StereotypeDisplayConstant.DEFAULT_DEPTH_VALUE);
 
 		}
 		return depth;
@@ -675,7 +732,7 @@ public class StereotypeDisplayHelper {
 
 				DecorationNode stereo = (DecorationNode) obj;
 
-				if (StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE.equals(stereo.getType())) {
+				if (StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE.equals(stereo.getType())) {
 					exist = stereo.getElement().equals(stereotype);
 				}
 			}
@@ -736,76 +793,6 @@ public class StereotypeDisplayHelper {
 	}
 
 
-	/**
-	 * Set the visibility of a view
-	 *
-	 * @param view
-	 *            The view on which the visibility has to be set
-	 * @param isVisible
-	 *            True to make the Compartment visible
-	 */
-	public void setVisibility(final TransactionalEditingDomain domain, final View view, final boolean isVisible) {
-		try {
-
-			domain.runExclusive(new Runnable() {
-
-				@Override
-				public void run() {
-
-					SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(domain, view, isVisible);
-
-					// use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(domain, setCommand);
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
-	}
-
-
-	/**
-	 * Set the visibility of a view
-	 *
-	 * @param view
-	 *            The view on which the visibility has to be set
-	 * @param isVisible
-	 *            True to make the Compartment visible
-	 */
-	public void setPersistency(final TransactionalEditingDomain domain, final View view) {
-		try {
-			domain.runExclusive(new Runnable() {
-
-
-				@Override
-				public void run() {
-					Display.getCurrent().syncExec(new Runnable() {
-
-
-						@Override
-						public void run() {
-
-							// use to avoid to put it in the command stack
-							SetPersistentViewCommand command = new SetPersistentViewCommand(domain, view);
-							try {
-								GMFUnsafe.write(domain, command);
-							} catch (Exception e) {
-								Activator.log.error(e);
-							}
-						}
-					});
-				}
-			});
-
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
-	}
-
 
 
 	/**
@@ -830,7 +817,7 @@ public class StereotypeDisplayHelper {
 					// if (node.isVisible()) {
 
 					if (stereotype != null && property != null && umlElement != null) {
-						propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, StereotypeDisplayUtils.STEREOTYPE_PROPERTIES_SEPARATOR);
+						propertyAndValue = StereotypeUtil.displayPropertyValue(stereotype, property, umlElement, StereotypeDisplayConstant.STEREOTYPE_PROPERTIES_SEPARATOR);
 					}
 				}
 
@@ -902,13 +889,13 @@ public class StereotypeDisplayHelper {
 					String propAndValueText = getStereotypePropertyToDisplay(propertyNode, propertyElement);
 
 					// add it to the String (i.e: "allocatedTo=[], allocatedFrom=[]")
-					propertiesText = addTextWithSeparator(propertiesText, propAndValueText, StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
+					propertiesText = addTextWithSeparator(propertiesText, propAndValueText, StereotypeDisplayConstant.STEREOTYPE_LABEL_SEPARATOR);
 				}
 			}
 		}
 
 		// And concatenate it to the existing text.(i.e: "isEncapsulated=false, allocatedTo=[], allocatedFrom=[]" )
-		newTextToDisplay = addTextWithSeparator(newTextToDisplay, propertiesText.toString(), StereotypeDisplayUtils.STEREOTYPE_LABEL_SEPARATOR);
+		newTextToDisplay = addTextWithSeparator(newTextToDisplay, propertiesText.toString(), StereotypeDisplayConstant.STEREOTYPE_LABEL_SEPARATOR);
 
 		String finalText = newTextToDisplay.toString();
 		return finalText;
@@ -979,6 +966,28 @@ public class StereotypeDisplayHelper {
 	}
 
 
+	/**
+	 * Defines if the Node has at least one Stereotype View as Child
+	 * 
+	 * @param view
+	 *            The node on which we do the test
+	 * @return true if at least one Stereotype Compartment, Brace or Label
+	 */
+	public boolean hasStereotypeViews(View view) {
+
+		Iterator<?> iter = view.getChildren().iterator();
+		boolean compartmentExist = false;
+		while (iter.hasNext() && !compartmentExist) {
+
+			Object obj = iter.next();
+			compartmentExist = isStereotypeCompartment(obj)
+					|| isStereotypeBrace(obj)
+					|| isStereotypeLabel(obj);
+
+		}
+		return compartmentExist;
+	}
+
 
 	/**
 	 * Defines if a Stereotype Comment Node has at least a brace or a compartment
@@ -1032,7 +1041,14 @@ public class StereotypeDisplayHelper {
 	 * Defines if an object is a Stereotype View
 	 * 
 	 * @param element
-	 * @return
+	 *            the Object on which the test is done
+	 * @return true if object is one of the following:
+	 *         <ul>
+	 *         <li>Stereotype Compartment</li>
+	 *         <li>Stereotype Brace</li>
+	 *         <li>Stereotype Label</li>
+	 *         <li>Stereotype Property</li>
+	 *         </ul>
 	 */
 	public boolean isStereotypeView(Object element) {
 
@@ -1149,41 +1165,6 @@ public class StereotypeDisplayHelper {
 		return visibleProperties;
 	}
 
-	/**
-	 * Set the depth Name of the Stereotype Label.
-	 * It uses the NamedStyle to store the depth into a View.
-	 * 
-	 * @param stereotype
-	 *            The Stereotype of the Label that should be modified.
-	 * @param nodeView
-	 *            The view of the element that needs to be updated (i.e. The Class)
-	 * @param depth
-	 *            The Depth value as a string (Can be "none", "full" or a negative number )
-	 */
-	public void setDepth(final TransactionalEditingDomain domain, final Stereotype stereotype, final View nodeView, final String depth) {
-		final View label = getStereotypeLabel(nodeView, stereotype);
-		try {
-
-			domain.runExclusive(new Runnable() {
-
-				@Override
-				public void run() {
-					Command command = new CustomStyleValueCommand(label, depth, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(), StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH);
-
-					// use to avoid to put it in the command stack
-					try {
-						GMFUnsafe.write(domain, command);
-					} catch (Exception e) {
-						Activator.log.error(e);
-					}
-				}
-			});
-		} catch (Exception e) {
-			Activator.log.error(e);
-		}
-
-
-	}
 
 	/**
 	 * @param domain
@@ -1230,11 +1211,57 @@ public class StereotypeDisplayHelper {
 	public boolean isStereotypeCommentLink(Object element) {
 		boolean stereotypeCommentLink = Boolean.FALSE;
 		if (element instanceof Edge) {
-			stereotypeCommentLink = StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE.equals(((Edge) element).getType());
+			stereotypeCommentLink = StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE.equals(((Edge) element).getType());
 		}
 		return stereotypeCommentLink;
 	}
 
+	/**
+	 * Get the semantic element from a view.
+	 * In case of a view into a Stereotype Comment, return the semantic element of Base Element
+	 * 
+	 * @param view
+	 *            The view of which the Semantic element is retrieved
+	 * @return the semantic element
+	 */
+	public Element getSemanticElement(View view) {
+		if (isStereotypeComment(view)) {
+			return getCommentSemanticElement(view);
+		} else {
+			if (view.getElement() instanceof Element) {
+				return (Element) view.getElement();
+			}
+		}
+
+		return null;
+	}
+
+	/**
+	 * Concatenate Label and Property in Brace for the floating Stereotype Label.
+	 * 
+	 * @param view
+	 *            The Main view of the object on which the stereotype is applied
+	 * @return String with Stereotype Label and Properties in Braces
+	 */
+	public String getStereotypeTextForFloatingLabel(View view) {
+		StringBuilder text = new StringBuilder();
+
+		String label = getStereotypeTextToDisplay(view);
+		String brace = getStereotypePropertiesInBrace(view);
+
+		if (label != null && !label.isEmpty()) {
+			text.append(label);
+
+		}
+
+
+		if (brace != null && !brace.isEmpty()) {
+			text.append(StereotypeDisplayConstant.STEREOTYPE_PROPERTY_SEPARATOR).append(StereotypeDisplayConstant.BRACE_LEFT + brace + StereotypeDisplayConstant.BRACE_RIGHT);
+		}
+
+
+		return text.toString();
+	}
 
 
 }

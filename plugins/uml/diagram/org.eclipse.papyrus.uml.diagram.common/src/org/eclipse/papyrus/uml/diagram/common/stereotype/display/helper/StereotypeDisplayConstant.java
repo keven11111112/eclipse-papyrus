@@ -12,7 +12,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper;
 
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 
@@ -24,7 +24,7 @@ import org.eclipse.papyrus.uml.diagram.common.Activator;
  * @author Celine JANSSENS
  *
  */
-public class StereotypeDisplayUtils {
+public class StereotypeDisplayConstant {
 
 	// Depth Separator of the Stereotype Name
 	public static final String STEREOTYPE_LABEL_DEPTH_SEPARATOR = "::";//$NON-NLS-1$
@@ -78,6 +78,26 @@ public class StereotypeDisplayUtils {
 	// Icon NamedStyle Property
 	public static final String DISPLAY_ICON = "displayIcon";// $NON-NLS-1$
 
-	public static final String STEREOTYPE_PROPERTY_LOCATION = "stereotypePropertyLocation";//$NON-NLS-1$
+	// NamedStyle Name for Property Location
+	public static final String STEREOTYPE_PROPERTY_LOCATION = "StereotypePropertyLocation";//$NON-NLS-1$
+
+	// NamedStyle Name for Label Alignment
+	public static final String STEREOTYPE_LABEL_ALIGNMENT = "stereotypeAlignment";//$NON-NLS-1$
+
+	/**
+	 * String represent the location of stereotype properties within a comment
+	 */
+	public static final String STEREOTYPE_COMMENT_LOCATION = "Comment";//$NON-NLS-1$
+
+	/**
+	 * String represent the location of stereotype properties within a compartment of a graph node
+	 */
+	public static final String STEREOTYPE_COMPARTMENT_LOCATION = "Compartment";//$NON-NLS-1$
+
+	/**
+	 * properties of applied stereotypes are enclose in braces
+	 */
+	public static final String STEREOTYPE_BRACE_LOCATION = "With brace";//$NON-NLS-1$
+
 
 }

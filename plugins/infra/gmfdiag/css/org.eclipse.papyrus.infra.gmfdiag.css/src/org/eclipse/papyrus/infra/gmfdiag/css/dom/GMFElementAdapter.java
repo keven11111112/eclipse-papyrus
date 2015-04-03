@@ -65,6 +65,11 @@ import org.w3c.dom.NodeList;
 @SuppressWarnings("restriction")
 public class GMFElementAdapter extends ElementAdapter implements NodeList, IChangeListener, StatefulView, IAdaptable {
 
+	/**
+	 * 
+	 */
+	protected static final String KIND = "kind"; //$NON-NLS-1$
+
 	public static final String CSS_VALUES_SEPARATOR = " "; //$NON-NLS-1$
 
 	public CSSDOMSemanticElementHelper helper;
@@ -116,7 +121,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * @param sourceElement
 	 *            The source element must be a GMF notation object (View, Style, ...)
 	 * @return
-	 *         The CSS ID associated to the source element, or null if it cannot be found
+	 * 		The CSS ID associated to the source element, or null if it cannot be found
 	 */
 	public static String getCSSID(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_ID_KEY);
@@ -130,7 +135,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * @param sourceElement
 	 *            The source element must be a GMF notation object (View, Style, ...)
 	 * @return
-	 *         The CSS Class associated to the source element, or null if it cannot be found
+	 * 		The CSS Class associated to the source element, or null if it cannot be found
 	 */
 	public static String getCSSClass(EObject sourceElement) {
 		List<String> allClasses = getCSSValues(sourceElement, CSS_GMF_CLASS_KEY);
@@ -143,7 +148,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * @param sourceElement
 	 *            The source element must be a GMF notation object (View, Style, ...)
 	 * @return
-	 *         the source element's local CSS style.
+	 * 		the source element's local CSS style.
 	 */
 	public static String getCSSStyle(EObject sourceElement) {
 		return getCSSValue(sourceElement, CSS_GMF_STYLE_KEY);
@@ -232,7 +237,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * the diagram is itself the semantic element.
 	 *
 	 * @return
-	 *         The semantic element associated to this adapter
+	 * 		The semantic element associated to this adapter
 	 */
 	public EObject getSemanticElement() {
 		if (semanticElement == null) {
@@ -417,7 +422,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 		if (notationElement instanceof DecorationNode) {
 			// DecorationNode can be filtered by type (notation::View::type), or by title (From GmfGen model)
 			// We add the "kind" attribute which is specific to the CSS (More user-friendly)
-			if ("kind".equals(attr)) {
+			if (KIND.equals(attr)) {
 
 				DecorationNode node = (DecorationNode) notationElement;
 				String humanType = NotationTypesMap.instance.getHumanReadableType(node);
@@ -570,7 +575,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * The GMF View element associated to this adapter
 	 *
 	 * @return
-	 *         The GMF View element associated to this adapter
+	 * 		The GMF View element associated to this adapter
 	 */
 	public View getNotationElement() {
 		return notationElement;

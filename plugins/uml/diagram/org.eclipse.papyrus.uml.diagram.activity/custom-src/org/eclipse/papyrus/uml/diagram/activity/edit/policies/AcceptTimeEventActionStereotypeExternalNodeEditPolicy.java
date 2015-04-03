@@ -18,7 +18,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.AcceptEventAction;
 import org.eclipse.uml2.uml.TimeEvent;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -76,7 +76,7 @@ public class AcceptTimeEventActionStereotypeExternalNodeEditPolicy extends Appli
 		}
 
 		// try to display stereotype properties
-		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay(parentView);
+		String stereotypesToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeTextToDisplay(parentView);
 		return stereotypesToDisplay;
 
 	}

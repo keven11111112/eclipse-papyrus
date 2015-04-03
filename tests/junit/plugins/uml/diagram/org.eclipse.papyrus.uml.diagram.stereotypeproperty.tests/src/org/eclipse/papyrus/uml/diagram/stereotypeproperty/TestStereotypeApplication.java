@@ -44,7 +44,7 @@ import org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PackageEditPart;
 import org.eclipse.papyrus.uml.diagram.clazz.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ClassifierFigure;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.PackageFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeEmptyEditPart;
 import org.eclipse.papyrus.uml.extensionpoints.profile.IRegisteredProfile;
 import org.eclipse.papyrus.uml.extensionpoints.profile.RegisteredProfile;
@@ -147,13 +147,13 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 		for (int i = 0; i < NotationClass1.getTransientChildren().size(); i++) {
 			View view = (View) NotationClass1.getTransientChildren().get(i);
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
 			}
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE)) {
 				appliedStereotypeBraceNotation = view;
 			}
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE)) {
 				appliedStereotypeLabelNotation = view;
 			}
 			if (view.getType().equals(IShapeCompartmentEditPart.VIEW_TYPE)) {
@@ -286,13 +286,13 @@ public class TestStereotypeApplication extends AbstractPapyrusTestCase {
 
 		for (int i = 0; i < Notationpackage1.getTransientChildren().size(); i++) {
 			View view = (View) Notationpackage1.getTransientChildren().get(i);
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE)) {
 				appliedStereotypeCompartmentNotation = view;
 			}
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_BRACE_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_BRACE_TYPE)) {
 				appliedStereotypeBraceNotation = view;
 			}
-			if (view.getType().equals(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE)) {
+			if (view.getType().equals(StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE)) {
 				appliedStereotypeLabelNotation = view;
 			}
 			if (view.getType().equals(IShapeCompartmentEditPart.VIEW_TYPE)) {

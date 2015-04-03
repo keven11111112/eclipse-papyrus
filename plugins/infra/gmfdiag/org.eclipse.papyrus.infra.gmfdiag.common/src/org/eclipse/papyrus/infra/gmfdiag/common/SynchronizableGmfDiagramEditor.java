@@ -18,6 +18,7 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -346,6 +347,8 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		private final TransactionalEditingDomain domain;
 
+		private static final String ALL_DIAGRAMS = "AllDiagrams";//$NON-NLS-1$
+
 		/**
 		 * Instantiates helper that will work with given {@link TransactionalEditingDomain}.
 		 * Note that reconcile operations are performed outside the diagram command stack using {@link GMFUnsafe}.
@@ -393,43 +396,56 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 		 *            the diagram to reconcile
 		 */
 		protected CompositeCommand buildReconcileCommand(Diagram diagram) {
-			if (DiagramVersioningUtils.isOfCurrentPapyrusVersion(diagram)) {
-				return null;
-			}
-			String sourceVersion = DiagramVersioningUtils.getCompatibilityVersion(diagram);
-			Map<String, Collection<DiagramReconciler>> diagramReconcilers = DiagramReconcilersReader.getInstance().load();
-			String diagramType = diagram.getType();
-			if (!diagramReconcilers.containsKey(diagramType)) {
-				return null;
-			}
-			Collection<DiagramReconciler> reconcilers = diagramReconcilers.get(diagram.getType());
 
-			boolean someFailed = false;
-			CompositeCommand whole = new CompositeCommand("Reconciling");
-			for (DiagramReconciler next : reconcilers) {
-				if (!next.canReconcileFrom(diagram, sourceVersion)) {
-					// asked for ignore it for this instance, all fine
-					continue;
+			CompositeCommand reconcileCommand = new CompositeCommand("Reconciling");//$NON-NLS-1$
+
+			if (!DiagramVersioningUtils.isOfCurrentPapyrusVersion(diagram)) {
+
+				String sourceVersion = DiagramVersioningUtils.getCompatibilityVersion(diagram);
+				Map<String, Collection<DiagramReconciler>> diagramReconcilers = DiagramReconcilersReader.getInstance().load();
+				String diagramType = diagram.getType();
+				Collection<DiagramReconciler> reconcilers = new LinkedList<DiagramReconciler>();
+				if (diagramReconcilers.containsKey(diagramType)) {
+					reconcilers.addAll(diagramReconcilers.get(diagramType));
 				}
-				ICommand nextCommand = next.getReconcileCommand(diagram);
-				if (nextCommand == null) {
-					// legitimate no-op response, all fine
-					continue;
+
+				if (diagramReconcilers.containsKey(ALL_DIAGRAMS)) {
+					reconcilers.addAll(diagramReconcilers.get(ALL_DIAGRAMS));
 				}
-				if (nextCommand.canExecute()) {
-					whole.add(nextCommand);
-				} else {
-					Activator.log.error("Diagram reconciler " + next + " failed to reconcile diagram : " + diagram, null); //$NON-NLS-1$ //$NON-NLS-2$
-					someFailed = true;
+
+				boolean someFailed = false;
+				Iterator<DiagramReconciler> reconciler = reconcilers.iterator();
+				while (reconciler.hasNext() && !someFailed) {
+					DiagramReconciler next = reconciler.next();
+
+					if (!next.canReconcileFrom(diagram, sourceVersion)) {
+						// asked for ignore it for this instance, all fine
+						continue;
+					}
+					ICommand nextCommand = next.getReconcileCommand(diagram);
+					if (nextCommand == null) {
+						// legitimate no-op response, all fine
+						continue;
+					}
+					if (nextCommand.canExecute()) {
+						reconcileCommand.add(nextCommand);
+					} else {
+						Activator.log.error("Diagram reconciler " + next + " failed to reconcile diagram : " + diagram, null);
+						someFailed = true;
+					}
 				}
-			}
-			if (someFailed) {
-				// probably better to fail the whole reconicle process as user will have a chance to reconcile later when we fix the problem with one of the reconcilers
-				// executing partial reconciliation will leave the diagram in the state with partially current and partially outdated versions
-				return null;
+
+
+
+				if (someFailed) {
+					// probably better to fail the whole reconicle process as user will have a chance to reconcile later when we fix the problem with one of the reconcilers
+					// executing partial reconciliation will leave the diagram in the state with partially current and partially outdated versions
+					reconcileCommand = null;
+				}
+
 			}
 
-			return whole;
+			return reconcileCommand;
 		}
 
 		/**

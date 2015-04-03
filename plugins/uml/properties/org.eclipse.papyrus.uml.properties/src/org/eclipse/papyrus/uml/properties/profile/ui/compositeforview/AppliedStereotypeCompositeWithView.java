@@ -18,14 +18,12 @@ package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.CompoundCommand;
 import org.eclipse.emf.ecore.EModelElement;
-import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.widgets.editors.MultipleReferenceEditor;
-import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
@@ -163,14 +161,6 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 		Command parentCommmand = super.getApplyStereotypeCommand(elt, st, domain);
 		compoundCommand.append(parentCommmand);
 
-		// Fix regression / Bug 431258
-		// The graphical element is not necessarily available (e.g. Selection in ModelExplorer)
-		if (diagramElement != null) {
-			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-			RecordingCommand command = AppliedStereotypeHelper.getAddAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-			compoundCommand.append(command);
-		}
-
 		return compoundCommand;
 	}
 
@@ -189,14 +179,6 @@ public class AppliedStereotypeCompositeWithView extends org.eclipse.papyrus.uml.
 
 		Command parentCommand = super.getUnapplyStereotypeCommand(elt, st, domain);
 		compoundCommand.append(parentCommand);
-
-		// Fix regression / Bug 431258
-		// The graphical element is not necessarily available (e.g. Selection in ModelExplorer)
-		if (diagramElement != null) {
-			String presentationKind = AppliedStereotypeHelper.getAppliedStereotypePresentationKind(diagramElement);
-			RecordingCommand command = AppliedStereotypeHelper.getRemoveAppliedStereotypeCommand(domain, diagramElement, st.getQualifiedName(), presentationKind);
-			compoundCommand.append(command);
-		}
 
 		return compoundCommand;
 	}

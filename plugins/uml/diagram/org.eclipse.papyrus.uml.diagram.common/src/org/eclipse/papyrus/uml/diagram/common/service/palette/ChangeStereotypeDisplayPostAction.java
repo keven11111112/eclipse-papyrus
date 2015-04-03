@@ -42,7 +42,11 @@ import org.w3c.dom.Node;
 
 /**
  * Post action that manages the display of applied stereotypes.
+ * 
+ * @deprecated Use the commands into oep.uml.diagram.common.stereotype.display.command
+ * 
  */
+@Deprecated
 public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 
 	/** list of stereotypes to display with their names */
@@ -139,7 +143,7 @@ public class ChangeStereotypeDisplayPostAction extends GraphicalPostAction {
 
 			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-				View view = (View) viewAdapter.getAdapter(View.class);
+				View view = viewAdapter.getAdapter(View.class);
 
 				if (view != null) {
 					String stereotypetoDisplay = AppliedStereotypeHelper.getStereotypesToDisplay(view);

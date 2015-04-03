@@ -18,7 +18,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.papyrus.infra.gmfdiag.css.helper.CSSDOMSemanticElementHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 
 /**
  * This class is a helper for retrieving view and semantic element from a compatible object related to UML.
@@ -63,7 +63,7 @@ public class CSSDOMUMLSemanticElementHelper extends CSSDOMSemanticElementHelper 
 	public EObject findSemanticElement(EObject notationElement) {
 
 
-		StereotypeDisplayHelper stereotypeHelper = StereotypeDisplayHelper.getInstance();
+		StereotypeDisplayUtil stereotypeHelper = StereotypeDisplayUtil.getInstance();
 
 		// Add Stereotype Comment
 		if (notationElement instanceof Shape) {

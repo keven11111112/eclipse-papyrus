@@ -33,7 +33,7 @@ import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
@@ -148,7 +148,7 @@ public class StereotypePropertyParser implements IParser, ISemanticParser {
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
 
-		StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 		if (element instanceof IAdaptable) {
 			final Property property = ((Property) (EMFHelper.getEObject(element)));
 			final View view = ((View) element.getAdapter(View.class));

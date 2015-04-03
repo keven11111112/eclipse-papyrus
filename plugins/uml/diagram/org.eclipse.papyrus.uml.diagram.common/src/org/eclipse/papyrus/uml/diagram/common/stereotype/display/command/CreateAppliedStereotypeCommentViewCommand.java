@@ -12,7 +12,7 @@
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
 
 import java.util.ArrayList;
 
@@ -34,6 +34,7 @@ import org.eclipse.gmf.runtime.notation.RelativeBendpoints;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 
 /**
  * the goal of this command is to create a comment in the notation that represent a compartment of stereotypes
@@ -82,13 +83,13 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		ts.setShowTitle(true);
 		node.getStyles().add(ts);
 		node.setElement(null);
-		node.setType(StereotypeDisplayUtils.STEREOTYPE_COMMENT_TYPE);
+		node.setType(StereotypeDisplayConstant.STEREOTYPE_COMMENT_TYPE);
 
 		connectCommentNode(owner, node);
 
 		EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) node.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
-		eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
+		eObjectValueStyle.setName(StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME);
 
 		// create the link
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -100,7 +101,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
 		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, true);
-		edge.setType(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE);
+		edge.setType(StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE);
 		edge.setElement(base_element);
 		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 		edge.setSourceAnchor(anchor);
@@ -111,7 +112,7 @@ public class CreateAppliedStereotypeCommentViewCommand extends RecordingCommand 
 		edge.setElement(null);
 		eObjectValueStyle = (EObjectValueStyle) edge.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
-		eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
+		eObjectValueStyle.setName(StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME);
 
 
 

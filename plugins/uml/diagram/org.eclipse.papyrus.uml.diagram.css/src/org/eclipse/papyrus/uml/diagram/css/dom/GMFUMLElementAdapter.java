@@ -12,6 +12,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.css.dom;
 
+
+
 import java.util.LinkedList;
 import java.util.List;
 
@@ -24,8 +26,8 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.css.helper.CSSDOMUMLSemanticElementHelper;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
@@ -43,8 +45,16 @@ import org.eclipse.uml2.uml.Stereotype;
 public class GMFUMLElementAdapter extends GMFElementAdapter {
 
 
+	/**
+	 * Name of the CSS Simple Selector to match on the Stereotype Compartment Shape
+	 */
+	private static final String STEREOTYPE_COMMENT = "StereotypeComment"; //$NON-NLS-1$
 
-	public final StereotypeDisplayHelper stereotypeHelper = StereotypeDisplayHelper.getInstance();
+
+	// Helpers
+	public final StereotypeDisplayUtil stereotypeHelper = StereotypeDisplayUtil.getInstance();
+
+
 	public static final String APPLIED_STEREOTYPES_PROPERTY = "appliedStereotypes"; //$NON-NLS-1$
 
 
@@ -165,7 +175,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 * @return The matching value for this Attribute
 	 */
 	protected String getStereotypeCompartmentAttribute(String attr) {
-		if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
+		if (StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
 
 			BasicCompartment propertyCompartment = (BasicCompartment) semanticElement;
 			return stereotypeHelper.getName(propertyCompartment);
@@ -183,7 +193,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	protected String getStereotypePropertyAttribute(String attr) {
 		// CSS can match property level
-		if (StereotypeDisplayUtils.STEREOTYPE_PROPERTY_NAME.equals(attr)) {
+		if (StereotypeDisplayConstant.STEREOTYPE_PROPERTY_NAME.equals(attr)) {
 
 			DecorationNode propertyLabel = (DecorationNode) semanticElement;
 			if (propertyLabel.getElement() instanceof Property) {
@@ -192,7 +202,7 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 				return propLabel;
 			}
 			// CSS can match Container Name
-		} else if (StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
+		} else if (StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_NAME.equals(attr)) {
 
 			EObject propertyCompartment = ((DecorationNode) semanticElement).eContainer();
 			if (stereotypeHelper.isStereotypeCompartment(propertyCompartment)) {
@@ -214,11 +224,18 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 	 */
 	protected String getStereotypeLabelAttribute(String attr) {
 
-		if (StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME.equals(attr)) {
+		if (StereotypeDisplayConstant.STEREOTYPE_LABEL_NAME.equals(attr)) {
 			DecorationNode label = (DecorationNode) semanticElement;
 
 			String stereoName = stereotypeHelper.getName(label);
 			return stereoName;
+
+		}
+
+		if (KIND.equals(attr)) {
+			if (stereotypeHelper.isStereotypeLabel(semanticElement)) {
+				return StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE;
+			}
 
 		}
 		return null;
@@ -232,5 +249,22 @@ public class GMFUMLElementAdapter extends GMFElementAdapter {
 			return ((NamedElement) value).getName();
 		}
 		return super.getCSSValue(feature, value);
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.css.dom.GMFElementAdapter#getLocalName()
+	 *
+	 * @return The Local name for the CSS matching.
+	 */
+	@Override
+	public String getLocalName() {
+		if (localName == null) {
+			// In case of StereotypeComment type, the selector should match on the Stereotype Comment.
+			if (stereotypeHelper.isStereotypeComment(getNotationElement())) {
+				return STEREOTYPE_COMMENT;
+			}
+		}
+		return super.getLocalName();
 	}
 }

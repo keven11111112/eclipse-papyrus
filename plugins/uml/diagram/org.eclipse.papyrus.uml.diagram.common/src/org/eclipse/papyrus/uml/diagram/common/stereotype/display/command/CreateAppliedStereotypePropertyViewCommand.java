@@ -12,7 +12,7 @@
  *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
@@ -61,7 +62,7 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 		propertyLabel.setElement(property);
 
 		// Add the new Label to it's owner Object
-		ViewUtil.insertChildView(owner, propertyLabel, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+		ViewUtil.insertChildView(owner, propertyLabel, ViewUtil.APPEND, StereotypeDisplayConstant.PERSISTENT);
 		propertyLabel.setMutable(true);
 
 	}

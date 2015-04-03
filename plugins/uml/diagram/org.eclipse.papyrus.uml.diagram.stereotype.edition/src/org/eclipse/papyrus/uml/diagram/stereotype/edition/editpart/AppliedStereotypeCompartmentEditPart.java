@@ -28,12 +28,14 @@ import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.diagram.ui.internal.figures.NestedResizableCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.ResizeableListCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.PasteEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeCompartmentFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -67,15 +69,21 @@ public class AppliedStereotypeCompartmentEditPart extends ResizeableListCompartm
 	@Override
 	public String getCompartmentName() {
 
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+		String name = NO_STEREOTYPE_COMPARTMENT;
+		View compartment = (View) getModel();
 		EObject element = resolveSemanticElement();
 		if (element instanceof Stereotype) {
 			Stereotype stereotype = (Stereotype) resolveSemanticElement();
+
 			if (stereotype != null) {
-				return (StereotypeDisplayUtils.QUOTE_LEFT + stereotype.getName() + StereotypeDisplayUtils.QUOTE_RIGHT);
+				View label = helper.getStereotypeLabel((View) compartment.eContainer(), stereotype);
+				name = StereotypeDisplayConstant.QUOTE_LEFT + helper.getStereotypeName((DecorationNode) label) + StereotypeDisplayConstant.QUOTE_RIGHT;
 			}
 		}
-		return NO_STEREOTYPE_COMPARTMENT;
+		return name;
 	}
+
 
 
 

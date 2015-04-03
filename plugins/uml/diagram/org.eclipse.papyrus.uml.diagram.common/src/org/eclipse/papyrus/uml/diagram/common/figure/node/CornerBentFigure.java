@@ -27,7 +27,7 @@ import org.eclipse.draw2d.geometry.Insets;
 import org.eclipse.gmf.runtime.diagram.ui.figures.NoteFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.graphics.Image;
 
@@ -201,7 +201,7 @@ public class CornerBentFigure extends NoteFigure implements IPapyrusNodeUMLEleme
 
 		// Set stereotype text on figure
 		if (!"".equals(stereotypeProperties)) {
-			this.stereotypePropertiesInBraceContent.setText(StereotypeDisplayUtils.BRACE_LEFT + stereotypeProperties + StereotypeDisplayUtils.BRACE_RIGHT);
+			this.stereotypePropertiesInBraceContent.setText(StereotypeDisplayConstant.BRACE_LEFT + stereotypeProperties + StereotypeDisplayConstant.BRACE_RIGHT);
 		} else {
 			this.stereotypePropertiesInBraceContent.setText("");
 		}

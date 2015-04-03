@@ -15,6 +15,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalReferenceEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.SemanticElementHelper;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Constraint;
@@ -74,6 +75,10 @@ public class ImportedElementEditPolicy extends ExternalReferenceEditPolicy {
 			return false;
 		}
 
+
+		if (StereotypeDisplayUtil.getInstance().isStereotypeView(getView())) {
+			return false;
+		}
 
 		// Generic case: graphical containment doesn't match the semantic containment (We only check Package containment)
 		Element semanticUMLElement = (Element) semanticElement;

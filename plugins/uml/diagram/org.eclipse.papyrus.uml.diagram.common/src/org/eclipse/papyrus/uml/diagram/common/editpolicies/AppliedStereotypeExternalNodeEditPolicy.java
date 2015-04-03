@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusUMLElementFigure;
-import org.eclipse.uml2.uml.Stereotype;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 
 /**
  * This edit policy is used to display only applied stereotypes and properties
@@ -50,7 +50,7 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 			getDiagramEventBroker().addNotificationListener(parentView, this);
 		}
 
-		refreshDisplay();
+
 
 	}
 
@@ -62,48 +62,6 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 
 		super.deactivate();
 	}
-
-	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	public void refreshDisplay() {
-		refreshStereotypeDisplay();
-	}
-
-	/**
-	 * Retrieve the List of the Stereotypes to Display
-	 *
-	 * @return the list of stereotypes to display with properties if there are
-	 *         selected to be displayed
-	 */
-	@Override
-	public String stereotypesToDisplay() {
-
-		// retrieve all stereotypes to be displayed
-
-		if (parentView == null) {
-			return "";
-		}
-
-		// try to display stereotype properties
-		String stereotypesToDisplay = helper.getStereotypeTextToDisplay(parentView);
-		return stereotypesToDisplay;
-	}
-
-
-	/**
-	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshStereotypeBraceStructure(org.eclipse.uml2.uml.Stereotype)
-	 *
-	 * @param stereotype
-	 *            Stereotype related to the Brace to refresh
-	 */
-	@Override
-	public void refreshStereotypeBraceStructure(Stereotype stereotype) {
-		// Nothing to Do
-	}
-
-
 
 	/**
 	 * Refresh the text of the stereotype
@@ -127,4 +85,51 @@ public class AppliedStereotypeExternalNodeEditPolicy extends AppliedStereotypeLa
 
 
 	}
+
+	/**
+	 * Retrieve the List of the Stereotypes to Display
+	 *
+	 * @return the list of stereotypes to display with properties if there are
+	 *         selected to be displayed
+	 */
+	@Override
+	public String stereotypesToDisplay() {
+
+		// retrieve all stereotypes to be displayed
+
+		if (parentView == null) {
+			return EMPTY_STRING;
+		}
+
+		// try to display stereotype properties
+		final String stereotypesToDisplay = helper.getStereotypeTextToDisplay(parentView);
+		final String stereotypesPropertiesToDisplay = helper.getStereotypePropertiesInBrace(parentView);
+
+		String display = getStereotypeAndPropertiesTextToDisplay(stereotypesToDisplay, stereotypesPropertiesToDisplay);
+
+		return display;
+
+	}
+
+	/**
+	 * @param stereotypesToDisplay
+	 * @param stereotypesPropertiesToDisplay
+	 * @param display
+	 * @return
+	 */
+	private String getStereotypeAndPropertiesTextToDisplay(final String stereotypesToDisplay, final String stereotypesPropertiesToDisplay) {
+		StringBuilder display = new StringBuilder();
+		if (stereotypesToDisplay != null && !stereotypesToDisplay.isEmpty()) {
+			display.append(stereotypesToDisplay);
+		}
+
+		if (stereotypesPropertiesToDisplay != null && !stereotypesPropertiesToDisplay.isEmpty()) {
+			if (display.length() > 0) {
+				display.append(StereotypeDisplayConstant.STEREOTYPE_PROPERTY_SEPARATOR);
+			}
+			display.append(StereotypeDisplayConstant.BRACE_LEFT + stereotypesPropertiesToDisplay + StereotypeDisplayConstant.BRACE_RIGHT);
+		}
+		return display.toString();
+	}
+
 }

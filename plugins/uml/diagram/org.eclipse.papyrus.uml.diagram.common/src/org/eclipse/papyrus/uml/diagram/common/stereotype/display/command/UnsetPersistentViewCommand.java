@@ -12,24 +12,24 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.View;
 
 /**
- * This Command set a view and all its ancestors persistent.
- * The method {@link View#persist()} makes all the sibling persistent, this Command does not.
+ * This Command set a view Transcient.
+ *
  * 
  * @author Céline JANSSENS
  *
  */
-public class SetPersistentViewCommand extends RecordingCommand {
+public class UnsetPersistentViewCommand extends RecordingCommand {
 
 	protected View view;
 
-	protected final static String LABEL_COMMAND = "Set Persistency"; //$NON-NLS-1$
+	protected final static String LABEL_COMMAND = "Unset Persistency"; //$NON-NLS-1$
 
 	/**
 	 * 
@@ -40,7 +40,7 @@ public class SetPersistentViewCommand extends RecordingCommand {
 	 * @param view
 	 *            The view to make persistent
 	 */
-	public SetPersistentViewCommand(TransactionalEditingDomain domain, View view) {
+	public UnsetPersistentViewCommand(TransactionalEditingDomain domain, View view) {
 
 		super(domain, LABEL_COMMAND);
 		this.view = view;
@@ -53,7 +53,7 @@ public class SetPersistentViewCommand extends RecordingCommand {
 	 */
 	@Override
 	protected void doExecute() {
-		makeViewPersistant(view);
+		makeViewTranscient(view);
 
 	}
 
@@ -64,15 +64,13 @@ public class SetPersistentViewCommand extends RecordingCommand {
 	 *            The view to make persistent ( cannot be {@code null})
 	 */
 	@SuppressWarnings("unchecked")
-	protected void makeViewPersistant(final View view) {
+	protected void makeViewTranscient(final View view) {
 		if (view != null) {
 			if (view.eContainer() != null && view.eContainer() instanceof View) {
 
-				// Make the Parent Persistent
-				makeViewPersistant((View) view.eContainer());
 				// Move the view from the Transient List to the Persistent Children list
-				((View) view.eContainer()).getPersistedChildren().add(view);
-				((View) view.eContainer()).getTransientChildren().remove(view);
+				((View) view.eContainer()).getTransientChildren().add(view);
+				((View) view.eContainer()).getPersistedChildren().remove(view);
 
 			}
 		}

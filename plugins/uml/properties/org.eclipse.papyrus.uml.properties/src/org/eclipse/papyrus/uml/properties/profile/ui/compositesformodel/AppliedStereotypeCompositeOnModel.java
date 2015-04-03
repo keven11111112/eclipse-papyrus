@@ -58,7 +58,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetWidgetFactory;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
-// TODO: Auto-generated Javadoc
+
 /**
  * This composite is used to display applied stereotype in the model. It allows applying or desapply a stereotype
  */

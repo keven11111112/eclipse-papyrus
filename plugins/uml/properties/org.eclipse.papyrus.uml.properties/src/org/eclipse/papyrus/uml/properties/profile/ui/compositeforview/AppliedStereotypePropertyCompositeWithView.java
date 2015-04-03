@@ -56,9 +56,12 @@ public class AppliedStereotypePropertyCompositeWithView extends org.eclipse.papy
 
 	/**
 	 * Touch model.
-	 *
+	 * TODO Update this method when the new GUI will be in place with Nattable
+	 * 
+	 * @deprecated
 	 *
 	 */
+	@Deprecated
 	protected void touchModel() {
 
 		// CommandSupport.exec ("update stereotype", /* command)

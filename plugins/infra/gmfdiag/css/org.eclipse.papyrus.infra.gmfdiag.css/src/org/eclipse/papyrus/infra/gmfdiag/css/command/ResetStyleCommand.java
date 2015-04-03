@@ -29,8 +29,8 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusC
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.NotationHelper;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSAnnotations;
 import org.eclipse.papyrus.infra.gmfdiag.css.notation.CSSStyles;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 
 
 public class ResetStyleCommand extends RecordingCommand {
@@ -42,7 +42,7 @@ public class ResetStyleCommand extends RecordingCommand {
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.SHADOWFIGURE);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.QUALIFIED_NAME);
 		papyrusStyleAnnotations.add(VisualInformationPapyrusConstants.CUSTOM_APPEARENCE_ANNOTATION);
-		papyrusStyleAnnotations.add(StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH);
+		papyrusStyleAnnotations.add(StereotypeDisplayConstant.STEREOTYPE_LABEL_DEPTH);
 	}
 
 	private Iterator<?> iterator;
@@ -183,7 +183,7 @@ public class ResetStyleCommand extends RecordingCommand {
 	 *            Stereotype View
 	 */
 	private void resetStereotypeView(final View view) {
-		StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+		StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 
 		if (helper.isStereotypeView(view)) {
 			helper.unsetPersistency(domain, view);

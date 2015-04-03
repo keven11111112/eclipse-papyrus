@@ -12,7 +12,7 @@
  *   
  *****************************************************************************/
 
-package org.eclipse.papyrus.uml.diagram.common.stereotype;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
 
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -21,6 +21,7 @@ import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.StringValueStyle;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Stereotype;
 
@@ -71,18 +72,18 @@ public class CreateStereotypeLabelCommand extends RecordingCommand {
 
 		// Create Label
 		DecorationNode label = NotationFactory.eINSTANCE.createDecorationNode();
-		label.setType(StereotypeDisplayUtils.STEREOTYPE_LABEL_TYPE);
+		label.setType(StereotypeDisplayConstant.STEREOTYPE_LABEL_TYPE);
 		label.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
 		label.setElement(stereotype);
 
 		// Create Stereotype Name Style
 		StringValueStyle stereotypeNameStyle = NotationFactory.eINSTANCE.createStringValueStyle();
-		stereotypeNameStyle.setName(StereotypeDisplayUtils.STEREOTYPE_LABEL_NAME);
+		stereotypeNameStyle.setName(StereotypeDisplayConstant.STEREOTYPE_LABEL_NAME);
 		stereotypeNameStyle.setStringValue(stereotype.getQualifiedName());
 		label.getStyles().add(stereotypeNameStyle);
 
 		// Add the new Label to it's owner Object
-		ViewUtil.insertChildView(owner, label, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+		ViewUtil.insertChildView(owner, label, ViewUtil.APPEND, StereotypeDisplayConstant.PERSISTENT);
 
 		label.setMutable(true);
 

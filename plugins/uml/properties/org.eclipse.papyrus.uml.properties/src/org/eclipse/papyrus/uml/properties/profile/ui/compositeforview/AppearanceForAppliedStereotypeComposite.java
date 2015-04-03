@@ -16,14 +16,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.profile.ui.compositeforview;
 
-import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.notify.Adapter;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.impl.AdapterImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ui.parts.TreeViewer;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.resource.JFaceColors;
 import org.eclipse.jface.viewers.ISelection;
@@ -32,11 +30,9 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.SetNodeVisibilityCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.databinding.custom.CustomStyleValueCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.SetPersistentViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayCommandExecution;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.provider.DisplayedProfileElementLabelProvider;
 import org.eclipse.papyrus.uml.profile.Activator;
 import org.eclipse.papyrus.uml.profile.ImageManager;
@@ -80,7 +76,8 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 	protected DisplayedProfileElementLabelProvider displayedProfileElementLabelProvider = new DisplayedProfileElementLabelProvider();
 
-	protected StereotypeDisplayHelper helper = StereotypeDisplayHelper.getInstance();
+	protected StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
+	protected StereotypeDisplayCommandExecution commandhelper = StereotypeDisplayCommandExecution.getInstance();
 
 
 
@@ -291,10 +288,10 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 				if (treeSelection[i].getImage().equals(ImageManager.IMG_STEREOTYPE)) { // if not visible display it with the proper depth.
 					displayStereotypeLabel(stereo);
 					if (withQualifiedName) {
-						setDepth(getDomain(), stereo, (View) diagramElement, StereotypeDisplayUtils.DEPTH_MAX);
+						commandhelper.setDepth(getDomain(), stereo, (View) diagramElement, StereotypeDisplayConstant.DEPTH_MAX, true);
 						treeSelection[i].setImage(ImageManager.DISPLAYED_STEREOTYPE_QN);
 					} else {
-						setDepth(getDomain(), stereo, (View) diagramElement, StereotypeDisplayUtils.DEPTH_MIN);
+						commandhelper.setDepth(getDomain(), stereo, (View) diagramElement, StereotypeDisplayConstant.DEPTH_MIN, true);
 						treeSelection[i].setImage(ImageManager.IMG_STEREOTYPEDISPLAYED);
 					}
 
@@ -391,7 +388,7 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		}
 	}
 
-	/** Stereotype display operations **********************/
+	/** Stereotype display operations **/
 
 	/**
 	 * Sets the diagram element.
@@ -471,20 +468,33 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 *            the stereotype to add
 	 * @param prop
 	 */
-	protected void displayStereotypeProperty(final Stereotype stereotype, final Property prop) {
+	protected void displayStereotypeProperty(final Stereotype stereotype, final Property propertyToDisplay) {
 		// bugfix: a selected element is not necessary a diagram element (ex: selection in the outline)
 		if (diagramElement != null) {
 
 			try {
 
-				View nodeToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeProperty((View) diagramElement, stereotype, prop);
+
+				View nodeToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeProperty((View) diagramElement, stereotype, propertyToDisplay);
 				View compartment = helper.getStereotypeCompartment((View) diagramElement, stereotype);
-				setPersistency(getDomain(), nodeToDisplay);
-				setVisibility(getDomain(), nodeToDisplay, true);
-				if (!compartment.isVisible()) {
-					setPersistency(getDomain(), compartment);
-					setVisibility(getDomain(), compartment, true);
-					hideOtherProperties(compartment, nodeToDisplay);
+
+				if (nodeToDisplay == null) {
+					nodeToDisplay = StereotypeDisplayUtil.getInstance().getStereotypePropertyInBrace((View) diagramElement, stereotype, propertyToDisplay);
+				}
+
+				if (compartment == null) {
+					compartment = helper.getStereotypeBraceCompartment((View) diagramElement, stereotype);
+				}
+
+				if (compartment != null && nodeToDisplay != null) {
+
+					commandhelper.setPersistency(getDomain(), nodeToDisplay, true);
+					commandhelper.setVisibility(getDomain(), nodeToDisplay, true, true);
+					if (!compartment.isVisible()) {
+						commandhelper.setPersistency(getDomain(), compartment, true);
+						commandhelper.setVisibility(getDomain(), compartment, true, true);
+						hideOtherProperties(compartment, nodeToDisplay);
+					}
 				}
 
 
@@ -513,13 +523,24 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			try {
 				if (stereotype != null && propertyToHide != null) {
 					// Retrieve the Stereotype Property View in Notation Model then make it persistent and hide it.
-					View nodeToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeProperty((View) diagramElement, stereotype, propertyToHide);
+					View nodeToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeProperty((View) diagramElement, stereotype, propertyToHide);
 					View compartment = helper.getStereotypeCompartment((View) diagramElement, stereotype);
 
-					setPersistency(getDomain(), nodeToDisplay);
-					setVisibility(getDomain(), nodeToDisplay, false);
-					// Then update the Compartment Visibility Accordingly
-					updateCompartmentVisibility(compartment);
+					if (nodeToDisplay == null) {
+						nodeToDisplay = StereotypeDisplayUtil.getInstance().getStereotypePropertyInBrace((View) diagramElement, stereotype, propertyToHide);
+					}
+
+					if (compartment == null) {
+						compartment = helper.getStereotypeBraceCompartment((View) diagramElement, stereotype);
+					}
+
+					if (compartment != null && nodeToDisplay != null) {
+
+						commandhelper.setPersistency(getDomain(), nodeToDisplay, true);
+						commandhelper.setVisibility(getDomain(), nodeToDisplay, false, true);
+						// Then update the Compartment Visibility Accordingly
+						updateCompartmentVisibility(compartment);
+					}
 				}
 
 			} catch (Exception e) {
@@ -544,8 +565,10 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 
 				// Retrieve the Stereotype Label View in Notation Model then make it persistent and show it.
 				View nodeToDisplay = helper.getStereotypeLabel((View) diagramElement, stereotype);
-				setPersistency(getDomain(), nodeToDisplay);
-				setVisibility(getDomain(), nodeToDisplay, true);
+				if (nodeToDisplay != null) {
+					commandhelper.setPersistency(getDomain(), nodeToDisplay, true);
+					commandhelper.setVisibility(getDomain(), nodeToDisplay, true, true);
+				}
 
 			} catch (Exception e) {
 				Activator.logException(e);
@@ -567,8 +590,8 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 			try {
 				// Retrieve the Stereotype Label View in Notation Model then make it persistent and hide it.
 				View nodeToDisplay = helper.getStereotypeLabel((View) diagramElement, stereotype);
-				setPersistency(getDomain(), nodeToDisplay);
-				setVisibility(getDomain(), nodeToDisplay, false);
+				commandhelper.setPersistency(getDomain(), nodeToDisplay, true);
+				commandhelper.setVisibility(getDomain(), nodeToDisplay, false, true);
 
 			} catch (Exception e) {
 				Activator.logException(e);
@@ -591,13 +614,11 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 		// if the compartment has visible properties but is not displayed then change the visibility
 		// if the compartment doesn't have visible property but is displayed then change the visibility
 		if (helper.hasVisibleProperties(stereotypeCompartment) != display) {
-			setPersistency(getDomain(), stereotypeCompartment);
-			setVisibility(getDomain(), stereotypeCompartment, helper.hasVisibleProperties(stereotypeCompartment));
+			commandhelper.setPersistency(getDomain(), stereotypeCompartment, true);
+			commandhelper.setVisibility(getDomain(), stereotypeCompartment, helper.hasVisibleProperties(stereotypeCompartment), true);
 
 		}
 	}
-
-
 
 	/**
 	 * Make the Properties node not visible except one.
@@ -609,45 +630,15 @@ public class AppearanceForAppliedStereotypeComposite extends org.eclipse.papyrus
 	 */
 	private void hideOtherProperties(final View compartment, final View propertyToDisplay) {
 		for (Object child : compartment.getChildren()) {
-			if (helper.isStereotypeProperty(child) && propertyToDisplay != child) {
-				setVisibility(getDomain(), (View) child, false);
+			if (((helper.isStereotypeProperty(child)) || (helper.isStereotypeBraceProperty(child))) && (propertyToDisplay != child)) {
+				commandhelper.setVisibility(getDomain(), (View) child, false, true);
 			}
 		}
 
 	}
 
 
-	private void setDepth(TransactionalEditingDomain domain, Stereotype stereotype, View nodeView, String depth) {
-		final View label = helper.getStereotypeLabel(nodeView, stereotype);
-		Command command = new CustomStyleValueCommand(label, depth, NotationPackage.eINSTANCE.getStringValueStyle(), NotationPackage.eINSTANCE.getStringValueStyle_StringValue(), StereotypeDisplayUtils.STEREOTYPE_LABEL_DEPTH);
-		domain.getCommandStack().execute(command);
-	}
 
-	/**
-	 * Set The visibility
-	 * 
-	 * @param domain
-	 * @param view
-	 * @param visible
-	 */
-	private void setVisibility(TransactionalEditingDomain domain, View view, boolean visible) {
 
-		SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(domain, view, visible);
-		domain.getCommandStack().execute(setCommand);
-
-	}
-
-	/**
-	 * Set the Persistency
-	 * 
-	 * @param domain
-	 * @param view
-	 */
-	private void setPersistency(TransactionalEditingDomain domain, View view) {
-
-		SetPersistentViewCommand command = new SetPersistentViewCommand(domain, view);
-		domain.getCommandStack().execute(command);
-
-	}
 
 }

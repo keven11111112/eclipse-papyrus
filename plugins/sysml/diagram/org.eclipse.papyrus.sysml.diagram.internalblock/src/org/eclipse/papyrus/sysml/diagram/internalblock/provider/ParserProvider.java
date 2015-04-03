@@ -30,6 +30,7 @@ import org.eclipse.papyrus.uml.diagram.common.parser.ConnectorLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.MultiplicityElementLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.NamedElementLabelParser;
 import org.eclipse.papyrus.uml.diagram.common.parser.PropertyLabelParser;
+import org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser;
 import org.eclipse.papyrus.uml.diagram.common.utils.UMLGraphicalTypes;
 
 /**
@@ -46,6 +47,8 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 
 		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_PORT_LABEL_ID, new PropertyLabelParser());
 		graphicalHintToParser.put(SysMLGraphicalTypes.AFFIXEDLABEL_SYSML_FLOWPORT_LABEL_ID, new FlowPortLabelParser());
+		graphicalHintToParser.put(UMLGraphicalTypes.AFFIXEDLABEL_UML_APPLIEDSTEREOTYPE_ID, new AppliedStereotypeParser());
+
 
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_NAMEDELEMENT_NAME_ID, new NamedElementLabelParser());
 		graphicalHintToParser.put(UMLGraphicalTypes.LINKLABEL_UML_CONNECTOR_LABEL_ID, new ConnectorLabelParser());
@@ -73,7 +76,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	 * {@inheritDoc}
 	 */
 	public IParser getParser(IAdaptable hint) {
-		String parserHint = (String) hint.getAdapter(String.class);
+		String parserHint = hint.getAdapter(String.class);
 		if (parserHint != null) {
 			IParser parser = graphicalHintToParser.get(parserHint);
 			if (parser != null) {
@@ -81,7 +84,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 			}
 		}
 
-		View view = (View) hint.getAdapter(View.class);
+		View view = hint.getAdapter(View.class);
 		if (view != null) {
 			IParser parser = graphicalHintToParser.get(view.getType());
 			if (parser != null) {
@@ -93,7 +96,7 @@ public class ParserProvider extends AbstractProvider implements IParserProvider 
 	}
 
 	private String getDiagramType(IAdaptable hint) {
-		Diagram diagram = (Diagram) hint.getAdapter(Diagram.class);
+		Diagram diagram = hint.getAdapter(Diagram.class);
 		if (diagram != null) {
 			return diagram.getType();
 		}

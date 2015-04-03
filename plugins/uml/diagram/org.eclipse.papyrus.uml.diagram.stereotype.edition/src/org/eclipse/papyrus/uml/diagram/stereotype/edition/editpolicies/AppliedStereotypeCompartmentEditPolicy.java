@@ -26,9 +26,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypePropertyViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypePropertyViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCompartmentCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Extension;
 import org.eclipse.uml2.uml.Property;
@@ -139,7 +139,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 	 * In Charge of PropertyView Creation
 	 * 
 	 * @param propertyType
-	 *            Type of Property {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayUtils#STEREOTYPE_PROPERTY_BRACE_TYPE}
+	 *            Type of Property {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_TYPE} or {@link StereotypeDisplayConstant#STEREOTYPE_PROPERTY_BRACE_TYPE}
 	 * @param compartment
 	 *            The Compartment owner of the Property that will be created
 	 * @param property
@@ -177,7 +177,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 
 
 						public void run() {
-							CreateAppliedStereotypeViewCommand command = new CreateAppliedStereotypeViewCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayUtils.STEREOTYPE_COMPARTMENT_TYPE);
+							CreateAppliedStereotypeCompartmentCommand command = new CreateAppliedStereotypeCompartmentCommand(editPart.getEditingDomain(), editPart.getNotationView(), stereotype, StereotypeDisplayConstant.STEREOTYPE_COMPARTMENT_TYPE);
 
 							// use to avoid to put it in the command stack
 							try {
@@ -219,7 +219,7 @@ public class AppliedStereotypeCompartmentEditPolicy extends AppliedStereotypeNod
 						public void run() {
 
 							// use to avoid to put it in the command stack
-							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayUtils.STEREOTYPE_PROPERTY_TYPE);
+							CreateAppliedStereotypePropertyViewCommand command = new CreateAppliedStereotypePropertyViewCommand(editPart.getEditingDomain(), compartment, stereotypeProperty, StereotypeDisplayConstant.STEREOTYPE_PROPERTY_TYPE);
 							try {
 								GMFUnsafe.write(editPart.getEditingDomain(), command);
 							} catch (Exception e) {

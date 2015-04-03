@@ -31,8 +31,8 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.TitleStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.RelativeBendpoint;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.CreateAppliedStereotypeCommentViewCommand;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.command.CreateAppliedStereotypeCommentViewCommand;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.InteractionOperand;
 import org.eclipse.uml2.uml.Lifeline;
@@ -70,13 +70,13 @@ public class CreateAppliedStereotypeCommentViewCommandEx extends CreateAppliedSt
 		ts.setShowTitle(true);
 		node.getStyles().add(ts);
 		node.setElement(null);
-		node.setType(StereotypeDisplayUtils.STEREOTYPE_COMMENT_TYPE);
+		node.setType(StereotypeDisplayConstant.STEREOTYPE_COMMENT_TYPE);
 
 		connectCommentNode(owner, node);
 
 		EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) node.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
-		eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
+		eObjectValueStyle.setName(StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME);
 
 		// create the link
 		Connector edge = NotationFactory.eINSTANCE.createConnector();
@@ -87,8 +87,8 @@ public class CreateAppliedStereotypeCommentViewCommandEx extends CreateAppliedSt
 		points.add(new RelativeBendpoint());
 		bendpoints.setPoints(points);
 		edge.setBendpoints(bendpoints);
-		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, StereotypeDisplayUtils.PERSISTENT);
-		edge.setType(StereotypeDisplayUtils.STEREOTYPE_COMMENT_LINK_TYPE);
+		ViewUtil.insertChildView(owner.getDiagram(), edge, -1, StereotypeDisplayConstant.PERSISTENT);
+		edge.setType(StereotypeDisplayConstant.STEREOTYPE_COMMENT_LINK_TYPE);
 		edge.setElement(base_element);
 		IdentityAnchor anchor = NotationFactory.eINSTANCE.createIdentityAnchor();
 		edge.setSourceAnchor(anchor);
@@ -103,7 +103,7 @@ public class CreateAppliedStereotypeCommentViewCommandEx extends CreateAppliedSt
 		edge.setElement(null);
 		eObjectValueStyle = (EObjectValueStyle) edge.createStyle(NotationPackage.eINSTANCE.getEObjectValueStyle());
 		eObjectValueStyle.setEObjectValue(base_element);
-		eObjectValueStyle.setName(StereotypeDisplayUtils.STEREOTYPE_COMMENT_RELATION_NAME);
+		eObjectValueStyle.setName(StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME);
 
 
 	}
@@ -142,7 +142,7 @@ public class CreateAppliedStereotypeCommentViewCommandEx extends CreateAppliedSt
 		while (econtainer != null && (ViewUtil.resolveSemanticElement(econtainer) instanceof Lifeline || ViewUtil.resolveSemanticElement(econtainer) instanceof CombinedFragment || ViewUtil.resolveSemanticElement(econtainer) instanceof InteractionOperand)) {
 			econtainer = (View) econtainer.eContainer();
 		}
-		ViewUtil.insertChildView(econtainer, commentNode, ViewUtil.APPEND, StereotypeDisplayUtils.PERSISTENT);
+		ViewUtil.insertChildView(econtainer, commentNode, ViewUtil.APPEND, StereotypeDisplayConstant.PERSISTENT);
 
 	}
 

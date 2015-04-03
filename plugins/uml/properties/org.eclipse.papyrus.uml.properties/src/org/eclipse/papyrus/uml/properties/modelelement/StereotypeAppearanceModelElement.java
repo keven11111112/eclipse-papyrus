@@ -14,9 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.modelelement;
 
-import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION;
-import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION;
-import static org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.DISPLAY_PLACE;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.HORIZONTAL;
 import static org.eclipse.papyrus.uml.properties.util.StereotypeAppearanceConstants.ICON;
@@ -34,6 +31,7 @@ import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.StaticContentProvider;
+import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.properties.Activator;
 import org.eclipse.papyrus.uml.properties.databinding.StereotypeAppearanceObservableValue;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
@@ -99,7 +97,8 @@ public class StereotypeAppearanceModelElement extends AbstractModelElement {
 		} else if (propertyPath.equals(TEXT_ALIGNMENT)) {
 			return new StaticContentProvider(new String[] { HORIZONTAL, VERTICAL });
 		} else if (propertyPath.equals(DISPLAY_PLACE)) {
-			return new StaticContentProvider(new String[] { STEREOTYPE_COMPARTMENT_LOCATION, STEREOTYPE_COMMENT_LOCATION, STEREOTYPE_BRACE_LOCATION });
+			return new StaticContentProvider(new String[] { UMLVisualInformationPapyrusConstant.STEREOTYPE_COMPARTMENT_LOCATION, UMLVisualInformationPapyrusConstant.STEREOTYPE_COMMENT_LOCATION, UMLVisualInformationPapyrusConstant.STEREOTYPE_BRACE_LOCATION });
+
 		}
 
 		return EmptyContentProvider.instance;

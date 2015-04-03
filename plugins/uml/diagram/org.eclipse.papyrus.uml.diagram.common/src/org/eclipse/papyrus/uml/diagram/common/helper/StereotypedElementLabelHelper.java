@@ -16,6 +16,7 @@ package org.eclipse.papyrus.uml.diagram.common.helper;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 import java.util.StringTokenizer;
@@ -33,8 +34,8 @@ import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.uml.appearance.helper.AppliedStereotypeHelper;
 import org.eclipse.papyrus.uml.appearance.helper.UMLVisualInformationPapyrusConstant;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayHelper;
-import org.eclipse.papyrus.uml.diagram.common.stereotype.StereotypeDisplayUtils;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayUtil;
 import org.eclipse.papyrus.uml.tools.utils.UMLUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -46,7 +47,9 @@ import org.eclipse.uml2.uml.Stereotype;
  */
 public abstract class StereotypedElementLabelHelper {
 
-	private final static String EMPTY_STRING = "";
+	private final static String EMPTY_STRING = "";//$NON-NLS-1$
+
+	private final static String SPACE = " "; //$NON-NLS-1$
 
 	/**
 	 * {@inheritDoc}
@@ -99,12 +102,14 @@ public abstract class StereotypedElementLabelHelper {
 		}
 		if (stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.ICON_STEREOTYPE_PRESENTATION) || stereotypespresentationKind.equals(UMLVisualInformationPapyrusConstant.TEXT_ICON_STEREOTYPE_PRESENTATION)) {
 			// retrieve the first stereotype in the list of displayed stereotype
-			String stereotypesToDisplay = AppliedStereotypeHelper.getStereotypesToDisplay((View) editPart.getModel());
 			Collection<Stereotype> stereotypes = new ArrayList<Stereotype>();
-			StringTokenizer tokenizer = new StringTokenizer(stereotypesToDisplay, ",");
-			while (tokenizer.hasMoreTokens()) {
-				String firstStereotypeName = tokenizer.nextToken();
-				stereotypes.add(getUMLElement(editPart).getAppliedStereotype(firstStereotypeName));
+			Iterator<Stereotype> appliedStereotypes = getUMLElement(editPart).getAppliedStereotypes().iterator();
+			while (appliedStereotypes.hasNext()) {
+				Stereotype appliedStereotype = appliedStereotypes.next();
+				if (editPart.getModel() instanceof View
+						&& StereotypeDisplayUtil.getInstance().getStereotypeLabel(((View) editPart.getModel()), appliedStereotype).isVisible()) {
+					stereotypes.add(appliedStereotype);
+				}
 			}
 			return Activator.getIconElements(getUMLElement(editPart), stereotypes, false);
 		}
@@ -120,18 +125,18 @@ public abstract class StereotypedElementLabelHelper {
 		View view = (View) editPart.getModel();
 		// retrieve all stereotypes to be displayed
 		// try to display stereotype properties
-		String stereotypesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypeTextToDisplay(view);
-		String stereotypesPropertiesToDisplay = StereotypeDisplayHelper.getInstance().getStereotypePropertiesInBrace(view);
+		String stereotypesToDisplay = StereotypeDisplayUtil.getInstance().getStereotypeTextToDisplay(view);
+		String stereotypesPropertiesToDisplay = StereotypeDisplayUtil.getInstance().getStereotypePropertiesInBrace(view);
 
 
 		String display = EMPTY_STRING;
 
 		if (stereotypesToDisplay != null && !stereotypesToDisplay.equals(EMPTY_STRING)) {
-			display += stereotypesToDisplay + StereotypeDisplayUtils.STEREOTYPE_PROPERTIES_SEPARATOR;
+			display += stereotypesToDisplay + StereotypeDisplayConstant.STEREOTYPE_PROPERTIES_SEPARATOR;
 		}
 		if (stereotypesPropertiesToDisplay != null && !stereotypesPropertiesToDisplay.equals(EMPTY_STRING)) {
 
-			display += StereotypeDisplayUtils.BRACE_LEFT + stereotypesPropertiesToDisplay + StereotypeDisplayUtils.BRACE_RIGHT;
+			display += StereotypeDisplayConstant.BRACE_LEFT + stereotypesPropertiesToDisplay + StereotypeDisplayConstant.BRACE_RIGHT + SPACE;
 		}
 
 		return display;

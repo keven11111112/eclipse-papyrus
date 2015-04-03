@@ -15,6 +15,8 @@ package org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.StackLayout;
+import org.eclipse.gef.Request;
+import org.eclipse.gef.commands.Command;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.ConstrainedToolbarLayout;
@@ -31,6 +33,7 @@ import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommentShapeForApplie
 import org.eclipse.papyrus.uml.diagram.common.figure.node.CornerBentFigure;
 import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeCompartmentForCommentShapeEditPolicy;
 
+// TODO: Auto-generated Javadoc
 /**
  * The Applied StereotypeCommentEdipart and the appliedStereotypeCommentLinkEditPart are connected to the semantic element.
  * Thanks to this, if the semantic element is deleted the comment will be also deleted.
@@ -43,35 +46,46 @@ import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedSt
 
 public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IGraphicalEditPart, IPrimaryEditPart {
 
+	/**
+	 * Group Request type of deletion request.
+	 */
+	private static final String DELETE = "delete";//$NON-NLS-1$
+
+	/**
+	 * Instantiates a new applied stereotype comment edit part.
+	 *
+	 * @param view
+	 *            the view
+	 */
 	public AppliedStereotypeCommentEditPart(View view) {
 		super(view);
 	}
 
-	/**
-	 * @generated
-	 */
+	/** The content pane. */
 	protected IFigure contentPane;
 
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#createDefaultEditPolicies()
+	 *
+	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		// TODO Auto-generated method stub
+
 		super.createDefaultEditPolicies();
 		installEditPolicy("AppliedStereotypeCompartment", new AppliedStereotypeCompartmentForCommentShapeEditPolicy());
 		installEditPolicy("AutomaticDeletionIfEmpty", new CommentShapeForAppliedStereotypeEditPolicy());
 	}
 
-	/**
-	 * @generated
-	 */
+	/** The Constant ID. */
 	public static final String ID = "AppliedStereotypesComment";
 
 	/**
 	 * Creates figure for this edit part.
-	 *
+	 * 
 	 * Body of this method does not depend on settings in generation model
 	 * so you may safely remove <i>generated</i> tag and modify it.
 	 *
-	 * @generated
+	 * @return the node figure
 	 */
 	@Override
 	protected NodeFigure createMainFigure() {
@@ -83,6 +97,11 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 		return figure;
 	}
 
+	/**
+	 * @see org.eclipse.gef.editparts.AbstractEditPart#toString()
+	 *
+	 * @return
+	 */
 	@Override
 	public String toString() {
 		// return super.toString();
@@ -98,7 +117,9 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 
 
 	/**
-	 * @generated
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#getContentPane()
+	 *
+	 * @return the Content Pane
 	 */
 	@Override
 	public IFigure getContentPane() {
@@ -110,7 +131,11 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 
 
 	/**
-	 * @generated
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart#getContentPaneFor(org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart)
+	 *
+	 * @param editPart
+	 *            The EditPart of which the ContentPane is retrive
+	 * @returnThe content Pane
 	 */
 	@Override
 	protected IFigure getContentPaneFor(IGraphicalEditPart editPart) {
@@ -118,7 +143,9 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 	}
 
 	/**
-	 * @generated
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#createNodePlate()
+	 *
+	 * @return the Figure created
 	 */
 	@Override
 	protected NodeFigure createNodePlate() {
@@ -132,7 +159,7 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 	 *
 	 * @param nodeShape
 	 *            instance of generated figure class
-	 * @generated
+	 * @return the i figure
 	 */
 	@Override
 	protected IFigure setupContentPane(IFigure nodeShape) {
@@ -146,13 +173,14 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 
 
 
-	/**
-	 * @generated
-	 */
+	/** The primary shape. */
 	protected IFigure primaryShape;
 
+
 	/**
-	 * @generated
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#createNodeShape()
+	 *
+	 * @return
 	 */
 	@Override
 	protected IFigure createNodeShape() {
@@ -161,12 +189,35 @@ public class AppliedStereotypeCommentEditPart extends NodeEditPart implements IG
 	}
 
 	/**
-	 * @generated
+	 * Gets the primary shape.
+	 *
+	 * @return the primary shape
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.editpart.NodeEditPart#getPrimaryShape()
 	 */
 	@Override
 	public CornerBentFigure getPrimaryShape() {
 		return (CornerBentFigure) primaryShape;
 	}
 
+	/**
+	 * The Comment edit Part should not be deleted because it cannot be recreated.
+	 * The best solution to not show it is to hide it (through CSS or Appearance View)
+	 *
+	 * @param req
+	 *            the req
+	 * @return the command
+	 * @see org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart#getCommand(org.eclipse.gef.Request)
+	 */
+	@Override
+	public Command getCommand(Request req) {
+
+		Command command = null;
+		if (req.getType().equals(DELETE)) {
+			command = null;
+		} else {
+			command = super.getCommand(req);
+		}
+		return command;
+	}
 
 }
