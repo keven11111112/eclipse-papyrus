@@ -16,13 +16,13 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextElement#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextElement#getProperties <em>Properties</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextElement#getPackage <em>Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextElement#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getDataContextElement()
  * @model

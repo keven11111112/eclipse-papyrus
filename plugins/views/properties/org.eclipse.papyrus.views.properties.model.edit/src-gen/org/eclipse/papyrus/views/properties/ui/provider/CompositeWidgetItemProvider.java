@@ -65,23 +65,22 @@ public class CompositeWidgetItemProvider
 	 * @generated
 	 */
 	protected void addWidgetTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_CompositeWidget_widgetType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"),
-						UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_CompositeWidget_widgetType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_CompositeWidget_widgetType_feature", "_UI_CompositeWidget_type"),
+				UiPackage.Literals.COMPOSITE_WIDGET__WIDGET_TYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -169,30 +168,20 @@ public class CompositeWidgetItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.COMPOSITE_WIDGET__LAYOUT,
-						UiFactory.eINSTANCE.createLayout()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__LAYOUT,
+				UiFactory.eINSTANCE.createLayout()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-						UiFactory.eINSTANCE.createStandardWidget()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				UiFactory.eINSTANCE.createStandardWidget()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-						UiFactory.eINSTANCE.createPropertyEditor()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				UiFactory.eINSTANCE.createPropertyEditor()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-						UiFactory.eINSTANCE.createCompositeWidget()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				UiFactory.eINSTANCE.createCompositeWidget()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
-						UiFactory.eINSTANCE.createUnknownComponent()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.COMPOSITE_WIDGET__WIDGETS,
+				UiFactory.eINSTANCE.createUnknownComponent()));
 	}
 
 }

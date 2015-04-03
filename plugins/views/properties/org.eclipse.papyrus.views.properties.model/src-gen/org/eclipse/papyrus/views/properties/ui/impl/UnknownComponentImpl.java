@@ -18,10 +18,10 @@ import org.eclipse.papyrus.views.properties.ui.UnknownComponent;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.UnknownComponentImpl#getTypeName <em>Type Name</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

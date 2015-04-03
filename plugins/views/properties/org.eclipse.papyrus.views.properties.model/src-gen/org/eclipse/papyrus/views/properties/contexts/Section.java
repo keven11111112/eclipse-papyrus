@@ -16,13 +16,14 @@ import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Section#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Section#getTab <em>Tab</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Section#getSectionFile <em>Section File</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Section#getWidget <em>Widget</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.Section#isUseExtraSpace <em>Use Extra Space</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getSection()
  * @model
@@ -142,5 +143,35 @@ public interface Section extends DisplayUnit {
 	 * @generated
 	 */
 	void setWidget(CompositeWidget value);
+
+	/**
+	 * Returns the value of the '<em><b>Use Extra Space</b></em>' attribute.
+	 * The default value is <code>"false"</code>.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Use Extra Space</em>' attribute isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Use Extra Space</em>' attribute.
+	 * @see #setUseExtraSpace(boolean)
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getSection_UseExtraSpace()
+	 * @model default="false" required="true"
+	 * @generated
+	 */
+	boolean isUseExtraSpace();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.views.properties.contexts.Section#isUseExtraSpace <em>Use Extra Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @param value
+	 *            the new value of the '<em>Use Extra Space</em>' attribute.
+	 * @see #isUseExtraSpace()
+	 * @generated
+	 */
+	void setUseExtraSpace(boolean value);
 
 } // Section

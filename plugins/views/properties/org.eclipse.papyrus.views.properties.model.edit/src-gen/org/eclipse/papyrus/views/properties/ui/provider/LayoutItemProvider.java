@@ -61,19 +61,17 @@ public class LayoutItemProvider
 	 * @generated
 	 */
 	protected void addLayoutTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Layout_layoutType_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Layout_layoutType_feature", "_UI_Layout_type"),
-						UiPackage.Literals.LAYOUT__LAYOUT_TYPE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Layout_layoutType_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Layout_layoutType_feature", "_UI_Layout_type"),
+				UiPackage.Literals.LAYOUT__LAYOUT_TYPE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**

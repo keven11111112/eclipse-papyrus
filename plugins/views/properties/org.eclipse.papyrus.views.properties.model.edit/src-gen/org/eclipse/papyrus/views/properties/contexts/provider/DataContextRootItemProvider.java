@@ -65,19 +65,17 @@ public class DataContextRootItemProvider
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DataContextRoot_label_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_label_feature", "_UI_DataContextRoot_type"),
-						ContextsPackage.Literals.DATA_CONTEXT_ROOT__LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataContextRoot_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_label_feature", "_UI_DataContextRoot_type"),
+				ContextsPackage.Literals.DATA_CONTEXT_ROOT__LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -88,19 +86,17 @@ public class DataContextRootItemProvider
 	 * @generated
 	 */
 	protected void addModelElementFactoryPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DataContextRoot_modelElementFactory_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_modelElementFactory_feature", "_UI_DataContextRoot_type"),
-						ContextsPackage.Literals.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataContextRoot_modelElementFactory_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_modelElementFactory_feature", "_UI_DataContextRoot_type"),
+				ContextsPackage.Literals.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -125,9 +121,7 @@ public class DataContextRootItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DataContextRoot) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_DataContextRoot_type") :
-				getString("_UI_DataContextRoot_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DataContextRoot_type") : getString("_UI_DataContextRoot_type") + " " + label;
 	}
 
 	/**

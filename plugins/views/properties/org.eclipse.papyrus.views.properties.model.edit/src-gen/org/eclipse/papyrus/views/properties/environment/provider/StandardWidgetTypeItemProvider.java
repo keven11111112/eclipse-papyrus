@@ -73,9 +73,7 @@ public class StandardWidgetTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((StandardWidgetType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_StandardWidgetType_type") :
-				getString("_UI_StandardWidgetType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_StandardWidgetType_type") : getString("_UI_StandardWidgetType_type") + " " + label;
 	}
 
 	/**

@@ -22,6 +22,7 @@ import org.eclipse.emf.ecore.EModelElement;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDependencies <em>Dependencies</em>}</li>
@@ -30,7 +31,6 @@ import org.eclipse.emf.ecore.EModelElement;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext()
  * @model

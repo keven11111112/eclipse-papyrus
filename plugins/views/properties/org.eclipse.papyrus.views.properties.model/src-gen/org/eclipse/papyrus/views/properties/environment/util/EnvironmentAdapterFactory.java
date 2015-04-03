@@ -81,63 +81,62 @@ public class EnvironmentAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected EnvironmentSwitch<Adapter> modelSwitch =
-			new EnvironmentSwitch<Adapter>() {
-				@Override
-				public Adapter caseEnvironment(Environment object) {
-					return createEnvironmentAdapter();
-				}
+	protected EnvironmentSwitch<Adapter> modelSwitch = new EnvironmentSwitch<Adapter>() {
+		@Override
+		public Adapter caseEnvironment(Environment object) {
+			return createEnvironmentAdapter();
+		}
 
-				@Override
-				public Adapter casePropertyEditorType(PropertyEditorType object) {
-					return createPropertyEditorTypeAdapter();
-				}
+		@Override
+		public Adapter casePropertyEditorType(PropertyEditorType object) {
+			return createPropertyEditorTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseWidgetType(WidgetType object) {
-					return createWidgetTypeAdapter();
-				}
+		@Override
+		public Adapter caseWidgetType(WidgetType object) {
+			return createWidgetTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseCompositeWidgetType(CompositeWidgetType object) {
-					return createCompositeWidgetTypeAdapter();
-				}
+		@Override
+		public Adapter caseCompositeWidgetType(CompositeWidgetType object) {
+			return createCompositeWidgetTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseLayoutType(LayoutType object) {
-					return createLayoutTypeAdapter();
-				}
+		@Override
+		public Adapter caseLayoutType(LayoutType object) {
+			return createLayoutTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseModelElementFactoryDescriptor(ModelElementFactoryDescriptor object) {
-					return createModelElementFactoryDescriptorAdapter();
-				}
+		@Override
+		public Adapter caseModelElementFactoryDescriptor(ModelElementFactoryDescriptor object) {
+			return createModelElementFactoryDescriptorAdapter();
+		}
 
-				@Override
-				public Adapter caseStandardWidgetType(StandardWidgetType object) {
-					return createStandardWidgetTypeAdapter();
-				}
+		@Override
+		public Adapter caseStandardWidgetType(StandardWidgetType object) {
+			return createStandardWidgetTypeAdapter();
+		}
 
-				@Override
-				public Adapter caseNamespace(Namespace object) {
-					return createNamespaceAdapter();
-				}
+		@Override
+		public Adapter caseNamespace(Namespace object) {
+			return createNamespaceAdapter();
+		}
 
-				@Override
-				public Adapter caseMiscClass(MiscClass object) {
-					return createMiscClassAdapter();
-				}
+		@Override
+		public Adapter caseMiscClass(MiscClass object) {
+			return createMiscClassAdapter();
+		}
 
-				@Override
-				public Adapter caseConstraintEnvironment(ConstraintEnvironment object) {
-					return createConstraintEnvironmentAdapter();
-				}
+		@Override
+		public Adapter caseConstraintEnvironment(ConstraintEnvironment object) {
+			return createConstraintEnvironmentAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

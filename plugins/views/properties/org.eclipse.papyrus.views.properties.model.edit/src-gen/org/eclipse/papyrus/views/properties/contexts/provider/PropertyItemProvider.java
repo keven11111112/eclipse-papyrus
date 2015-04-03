@@ -82,19 +82,17 @@ public class PropertyItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Property_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"),
-						ContextsPackage.Literals.PROPERTY__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_name_feature", "_UI_Property_type"),
+				ContextsPackage.Literals.PROPERTY__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -105,19 +103,17 @@ public class PropertyItemProvider
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Property_label_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Property_label_feature", "_UI_Property_type"),
-						ContextsPackage.Literals.PROPERTY__LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_label_feature", "_UI_Property_type"),
+				ContextsPackage.Literals.PROPERTY__LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -128,19 +124,17 @@ public class PropertyItemProvider
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Property_type_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Property_type_feature", "_UI_Property_type"),
-						ContextsPackage.Literals.PROPERTY__TYPE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_type_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_type_feature", "_UI_Property_type"),
+				ContextsPackage.Literals.PROPERTY__TYPE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -151,19 +145,17 @@ public class PropertyItemProvider
 	 * @generated
 	 */
 	protected void addMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Property_multiplicity_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Property_multiplicity_feature", "_UI_Property_type"),
-						ContextsPackage.Literals.PROPERTY__MULTIPLICITY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_multiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_multiplicity_feature", "_UI_Property_type"),
+				ContextsPackage.Literals.PROPERTY__MULTIPLICITY,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -174,19 +166,17 @@ public class PropertyItemProvider
 	 * @generated
 	 */
 	protected void addDescriptionPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Property_description_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"),
-						ContextsPackage.Literals.PROPERTY__DESCRIPTION,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Property_description_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Property_description_feature", "_UI_Property_type"),
+				ContextsPackage.Literals.PROPERTY__DESCRIPTION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -211,9 +201,7 @@ public class PropertyItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Property) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Property_type") :
-				getString("_UI_Property_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Property_type") : getString("_UI_Property_type") + " " + label;
 	}
 
 	/**

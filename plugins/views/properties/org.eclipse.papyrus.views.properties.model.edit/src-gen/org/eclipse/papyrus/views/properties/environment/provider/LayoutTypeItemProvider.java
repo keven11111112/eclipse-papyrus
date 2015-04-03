@@ -73,9 +73,7 @@ public class LayoutTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((LayoutType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_LayoutType_type") :
-				getString("_UI_LayoutType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_LayoutType_type") : getString("_UI_LayoutType_type") + " " + label;
 	}
 
 	/**

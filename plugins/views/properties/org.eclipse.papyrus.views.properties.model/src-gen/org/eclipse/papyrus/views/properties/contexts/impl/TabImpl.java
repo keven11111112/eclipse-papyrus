@@ -27,6 +27,7 @@ import org.eclipse.papyrus.views.properties.contexts.Tab;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl#getId <em>Id</em>}</li>
@@ -37,7 +38,6 @@ import org.eclipse.papyrus.views.properties.contexts.Tab;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl#isIndented <em>Indented</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl#getPriority <em>Priority</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

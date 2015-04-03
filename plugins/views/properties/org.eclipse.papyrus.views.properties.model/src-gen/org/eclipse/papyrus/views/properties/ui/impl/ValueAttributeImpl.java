@@ -18,10 +18,10 @@ import org.eclipse.papyrus.views.properties.ui.ValueAttribute;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.ValueAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

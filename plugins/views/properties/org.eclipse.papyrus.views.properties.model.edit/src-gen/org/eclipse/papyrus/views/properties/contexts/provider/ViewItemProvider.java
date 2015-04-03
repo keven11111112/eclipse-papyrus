@@ -70,19 +70,17 @@ public class ViewItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_View_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_View_name_feature", "_UI_View_type"),
-						ContextsPackage.Literals.VIEW__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_View_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_name_feature", "_UI_View_type"),
+				ContextsPackage.Literals.VIEW__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -93,19 +91,17 @@ public class ViewItemProvider
 	 * @generated
 	 */
 	protected void addSectionsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_View_sections_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_View_sections_feature", "_UI_View_type"),
-						ContextsPackage.Literals.VIEW__SECTIONS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_View_sections_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_sections_feature", "_UI_View_type"),
+				ContextsPackage.Literals.VIEW__SECTIONS,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -116,19 +112,17 @@ public class ViewItemProvider
 	 * @generated
 	 */
 	protected void addAutomaticContextPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_View_automaticContext_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_View_automaticContext_feature", "_UI_View_type"),
-						ContextsPackage.Literals.VIEW__AUTOMATIC_CONTEXT,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_View_automaticContext_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_automaticContext_feature", "_UI_View_type"),
+				ContextsPackage.Literals.VIEW__AUTOMATIC_CONTEXT,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -139,19 +133,17 @@ public class ViewItemProvider
 	 * @generated
 	 */
 	protected void addDatacontextsPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_View_datacontexts_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"),
-						ContextsPackage.Literals.VIEW__DATACONTEXTS,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_View_datacontexts_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_View_datacontexts_feature", "_UI_View_type"),
+				ContextsPackage.Literals.VIEW__DATACONTEXTS,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -176,9 +168,7 @@ public class ViewItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((View) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_View_type") :
-				getString("_UI_View_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_View_type") : getString("_UI_View_type") + " " + label;
 	}
 
 	/**

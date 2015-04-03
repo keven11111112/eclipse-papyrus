@@ -21,10 +21,10 @@ import org.eclipse.papyrus.views.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.ReferenceAttributeImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -112,8 +112,7 @@ public class ReferenceAttributeImpl extends WidgetAttributeImpl implements Refer
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.REFERENCE_ATTRIBUTE__VALUE, newValue, newValue));
 		}
 	}

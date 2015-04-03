@@ -73,9 +73,7 @@ public class CompositeWidgetTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((CompositeWidgetType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_CompositeWidgetType_type") :
-				getString("_UI_CompositeWidgetType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_CompositeWidgetType_type") : getString("_UI_CompositeWidgetType_type") + " " + label;
 	}
 
 	/**

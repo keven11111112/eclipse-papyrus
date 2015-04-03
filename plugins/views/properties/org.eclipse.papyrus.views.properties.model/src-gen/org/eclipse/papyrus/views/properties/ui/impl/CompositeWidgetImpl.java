@@ -28,12 +28,12 @@ import org.eclipse.papyrus.views.properties.ui.Widget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.CompositeWidgetImpl#getLayout <em>Layout</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.CompositeWidgetImpl#getWidgets <em>Widgets</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.CompositeWidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -143,8 +143,7 @@ public class CompositeWidgetImpl extends WidgetImpl implements CompositeWidget {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.COMPOSITE_WIDGET__LAYOUT, newLayout, newLayout));
 		}
 	}

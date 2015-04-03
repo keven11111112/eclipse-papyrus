@@ -14,8 +14,6 @@ import org.eclipse.papyrus.views.properties.environment.LayoutType;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Layout Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

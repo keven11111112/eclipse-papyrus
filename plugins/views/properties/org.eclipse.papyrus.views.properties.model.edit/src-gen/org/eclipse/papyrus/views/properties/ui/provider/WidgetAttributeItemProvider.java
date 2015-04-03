@@ -64,19 +64,17 @@ public class WidgetAttributeItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WidgetAttribute_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WidgetAttribute_name_feature", "_UI_WidgetAttribute_type"),
-						UiPackage.Literals.WIDGET_ATTRIBUTE__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WidgetAttribute_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetAttribute_name_feature", "_UI_WidgetAttribute_type"),
+				UiPackage.Literals.WIDGET_ATTRIBUTE__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -89,9 +87,7 @@ public class WidgetAttributeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((WidgetAttribute) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_WidgetAttribute_type") :
-				getString("_UI_WidgetAttribute_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_WidgetAttribute_type") : getString("_UI_WidgetAttribute_type") + " " + label;
 	}
 
 	/**

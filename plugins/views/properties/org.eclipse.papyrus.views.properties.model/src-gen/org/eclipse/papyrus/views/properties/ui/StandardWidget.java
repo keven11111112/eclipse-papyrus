@@ -15,10 +15,10 @@ import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.StandardWidget#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.ui.UiPackage#getStandardWidget()
  * @model

@@ -64,19 +64,17 @@ public class ValueAttributeItemProvider
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_ValueAttribute_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_ValueAttribute_value_feature", "_UI_ValueAttribute_type"),
-						UiPackage.Literals.VALUE_ATTRIBUTE__VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_ValueAttribute_value_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_ValueAttribute_value_feature", "_UI_ValueAttribute_type"),
+				UiPackage.Literals.VALUE_ATTRIBUTE__VALUE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -101,9 +99,7 @@ public class ValueAttributeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ValueAttribute) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ValueAttribute_type") :
-				getString("_UI_ValueAttribute_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ValueAttribute_type") : getString("_UI_ValueAttribute_type") + " " + label;
 	}
 
 	/**

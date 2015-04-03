@@ -30,13 +30,14 @@ import org.eclipse.papyrus.views.properties.ui.CompositeWidget;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.SectionImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.SectionImpl#getTab <em>Tab</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.SectionImpl#getSectionFile <em>Section File</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.SectionImpl#getWidget <em>Widget</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.SectionImpl#isUseExtraSpace <em>Use Extra Space</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -95,6 +96,28 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * @ordered
 	 */
 	protected CompositeWidget widget;
+
+	/**
+	 * The default value of the '{@link #isUseExtraSpace() <em>Use Extra Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isUseExtraSpace()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final boolean USE_EXTRA_SPACE_EDEFAULT = false;
+
+	/**
+	 * The cached value of the '{@link #isUseExtraSpace() <em>Use Extra Space</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #isUseExtraSpace()
+	 * @generated
+	 * @ordered
+	 */
+	protected boolean useExtraSpace = USE_EXTRA_SPACE_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -191,8 +214,7 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__TAB, newTab, newTab));
 		}
 	}
@@ -275,6 +297,32 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 	 * @generated
 	 */
 	@Override
+	public boolean isUseExtraSpace() {
+		return useExtraSpace;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public void setUseExtraSpace(boolean newUseExtraSpace) {
+		boolean oldUseExtraSpace = useExtraSpace;
+		useExtraSpace = newUseExtraSpace;
+		if (eNotificationRequired()) {
+			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.SECTION__USE_EXTRA_SPACE, oldUseExtraSpace, useExtraSpace));
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
 		case ContextsPackage.SECTION__TAB:
@@ -336,6 +384,8 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 				return getWidget();
 			}
 			return basicGetWidget();
+		case ContextsPackage.SECTION__USE_EXTRA_SPACE:
+			return isUseExtraSpace();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -360,6 +410,9 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 			return;
 		case ContextsPackage.SECTION__WIDGET:
 			setWidget((CompositeWidget) newValue);
+			return;
+		case ContextsPackage.SECTION__USE_EXTRA_SPACE:
+			setUseExtraSpace((Boolean) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -386,6 +439,9 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 		case ContextsPackage.SECTION__WIDGET:
 			setWidget((CompositeWidget) null);
 			return;
+		case ContextsPackage.SECTION__USE_EXTRA_SPACE:
+			setUseExtraSpace(USE_EXTRA_SPACE_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -407,6 +463,8 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 			return SECTION_FILE_EDEFAULT == null ? sectionFile != null : !SECTION_FILE_EDEFAULT.equals(sectionFile);
 		case ContextsPackage.SECTION__WIDGET:
 			return widget != null;
+		case ContextsPackage.SECTION__USE_EXTRA_SPACE:
+			return useExtraSpace != USE_EXTRA_SPACE_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -428,6 +486,8 @@ public class SectionImpl extends DisplayUnitImpl implements Section {
 		result.append(name);
 		result.append(", sectionFile: ");
 		result.append(sectionFile);
+		result.append(", useExtraSpace: ");
+		result.append(useExtraSpace);
 		result.append(')');
 		return result.toString();
 	}

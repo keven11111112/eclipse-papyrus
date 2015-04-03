@@ -20,11 +20,11 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextRootImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextRootImpl#getModelElementFactory <em>Model Element Factory</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

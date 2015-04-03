@@ -19,11 +19,11 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.ModelElementFactoryDescriptorImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.ModelElementFactoryDescriptorImpl#getFactoryClass <em>Factory Class</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

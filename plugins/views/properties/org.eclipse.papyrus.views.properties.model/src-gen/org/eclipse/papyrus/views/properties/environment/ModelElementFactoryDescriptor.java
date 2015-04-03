@@ -15,11 +15,11 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor#getFactoryClass <em>Factory Class</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getModelElementFactoryDescriptor()
  * @model

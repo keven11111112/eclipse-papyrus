@@ -77,14 +77,14 @@ public enum Type implements Enumerator {
 	 * @ordered
 	 */
 	ENUMERATION(4, "Enumeration", "Enumeration"), /**
-	 * The '<em><b>Double</b></em>' literal object.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 *
-	 * @see #DOUBLE_VALUE
-	 * @generated
-	 * @ordered
-	 */
+													 * The '<em><b>Double</b></em>' literal object.
+													 * <!-- begin-user-doc -->
+													 * <!-- end-user-doc -->
+													 *
+													 * @see #DOUBLE_VALUE
+													 * @generated
+													 * @ordered
+													 */
 	DOUBLE(5, "Double", "Double");
 
 	/**
@@ -184,15 +184,13 @@ public enum Type implements Enumerator {
 	 *
 	 * @generated
 	 */
-	private static final Type[] VALUES_ARRAY =
-			new Type[] {
-					STRING,
-					BOOLEAN,
-					INTEGER,
-					REFERENCE,
-					ENUMERATION,
-					DOUBLE,
-			};
+	private static final Type[] VALUES_ARRAY = new Type[] {
+			STRING,
+			BOOLEAN,
+			INTEGER,
+			REFERENCE,
+			ENUMERATION,
+			DOUBLE, };
 
 	/**
 	 * A public read-only list of all the '<em><b>Type</b></em>' enumerators.
@@ -208,6 +206,9 @@ public enum Type implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param literal
+	 *            the literal.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Type get(String literal) {
@@ -225,6 +226,9 @@ public enum Type implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param name
+	 *            the name.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Type getByName(String name) {
@@ -242,6 +246,9 @@ public enum Type implements Enumerator {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
+	 * @param value
+	 *            the integer value.
+	 * @return the matching enumerator or <code>null</code>.
 	 * @generated
 	 */
 	public static Type get(int value) {

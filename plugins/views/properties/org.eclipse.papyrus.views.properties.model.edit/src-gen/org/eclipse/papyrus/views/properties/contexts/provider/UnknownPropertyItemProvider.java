@@ -73,9 +73,7 @@ public class UnknownPropertyItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((UnknownProperty) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_UnknownProperty_type") :
-				getString("_UI_UnknownProperty_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_UnknownProperty_type") : getString("_UI_UnknownProperty_type") + " " + label;
 	}
 
 	/**

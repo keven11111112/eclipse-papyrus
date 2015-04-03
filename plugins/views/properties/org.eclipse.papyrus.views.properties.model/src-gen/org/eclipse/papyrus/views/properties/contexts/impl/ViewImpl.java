@@ -35,6 +35,7 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getSections <em>Sections</em>}</li>
@@ -42,7 +43,6 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#isAutomaticContext <em>Automatic Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ViewImpl#getDatacontexts <em>Datacontexts</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -222,8 +222,7 @@ public class ViewImpl extends DisplayUnitImpl implements View {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.VIEW__CONTEXT, newContext, newContext));
 		}
 	}

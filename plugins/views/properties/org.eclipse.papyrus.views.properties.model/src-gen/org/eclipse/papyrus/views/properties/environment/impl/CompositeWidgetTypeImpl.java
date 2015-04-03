@@ -14,8 +14,6 @@ import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Composite Widget Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
  *
  * @generated
  */

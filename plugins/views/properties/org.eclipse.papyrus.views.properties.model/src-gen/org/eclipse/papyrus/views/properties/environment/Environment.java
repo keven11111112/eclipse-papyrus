@@ -16,6 +16,7 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getModelElementFactories <em>Model Element Factories</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getWidgetTypes <em>Widget Types</em>}</li>
@@ -25,7 +26,6 @@ import org.eclipse.papyrus.infra.constraints.environment.ConstraintEnvironment;
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getNamespaces <em>Namespaces</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Environment#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getEnvironment()
  * @model

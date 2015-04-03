@@ -21,12 +21,12 @@ import org.eclipse.papyrus.views.properties.environment.WidgetType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.WidgetTypeImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.WidgetTypeImpl#getWidgetClass <em>Widget Class</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.WidgetTypeImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

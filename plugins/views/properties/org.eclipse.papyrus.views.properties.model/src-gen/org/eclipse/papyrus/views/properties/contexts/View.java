@@ -16,6 +16,7 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getSections <em>Sections</em>}</li>
@@ -23,7 +24,6 @@ import org.eclipse.papyrus.infra.constraints.DisplayUnit;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.View#isAutomaticContext <em>Automatic Context</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.View#getDatacontexts <em>Datacontexts</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getView()
  * @model

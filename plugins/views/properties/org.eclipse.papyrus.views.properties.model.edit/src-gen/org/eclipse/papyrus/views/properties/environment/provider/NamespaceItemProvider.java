@@ -79,19 +79,17 @@ public class NamespaceItemProvider
 	 * @generated
 	 */
 	protected void addPrefixPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Namespace_prefix_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Namespace_prefix_feature", "_UI_Namespace_type"),
-						EnvironmentPackage.Literals.NAMESPACE__PREFIX,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Namespace_prefix_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_prefix_feature", "_UI_Namespace_type"),
+				EnvironmentPackage.Literals.NAMESPACE__PREFIX,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -102,19 +100,17 @@ public class NamespaceItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Namespace_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Namespace_name_feature", "_UI_Namespace_type"),
-						EnvironmentPackage.Literals.NAMESPACE__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Namespace_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_name_feature", "_UI_Namespace_type"),
+				EnvironmentPackage.Literals.NAMESPACE__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -125,19 +121,17 @@ public class NamespaceItemProvider
 	 * @generated
 	 */
 	protected void addValuePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Namespace_value_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Namespace_value_feature", "_UI_Namespace_type"),
-						EnvironmentPackage.Literals.NAMESPACE__VALUE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Namespace_value_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Namespace_value_feature", "_UI_Namespace_type"),
+				EnvironmentPackage.Literals.NAMESPACE__VALUE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -162,9 +156,7 @@ public class NamespaceItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Namespace) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Namespace_type") :
-				getString("_UI_Namespace_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Namespace_type") : getString("_UI_Namespace_type") + " " + label;
 	}
 
 	/**

@@ -19,11 +19,11 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.PropertyEditorTypeImpl#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.PropertyEditorTypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

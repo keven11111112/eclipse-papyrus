@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.MiscClass#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.MiscClass#getClass_ <em>Class</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.MiscClass#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getMiscClass()
  * @model

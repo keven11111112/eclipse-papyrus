@@ -56,7 +56,8 @@ public class UIComponentItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -130,15 +131,11 @@ public class UIComponentItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
-						UiFactory.eINSTANCE.createValueAttribute()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
+				UiFactory.eINSTANCE.createValueAttribute()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
-						UiFactory.eINSTANCE.createReferenceAttribute()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.UI_COMPONENT__ATTRIBUTES,
+				UiFactory.eINSTANCE.createReferenceAttribute()));
 	}
 
 }

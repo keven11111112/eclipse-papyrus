@@ -15,10 +15,10 @@ import org.eclipse.papyrus.views.properties.environment.LayoutType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.Layout#getLayoutType <em>Layout Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.ui.UiPackage#getLayout()
  * @model

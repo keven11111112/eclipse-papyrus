@@ -82,68 +82,67 @@ public class UiAdapterFactory extends AdapterFactoryImpl {
 	 *
 	 * @generated
 	 */
-	protected UiSwitch<Adapter> modelSwitch =
-			new UiSwitch<Adapter>() {
-				@Override
-				public Adapter caseElement(Element object) {
-					return createElementAdapter();
-				}
+	protected UiSwitch<Adapter> modelSwitch = new UiSwitch<Adapter>() {
+		@Override
+		public Adapter caseElement(Element object) {
+			return createElementAdapter();
+		}
 
-				@Override
-				public Adapter caseUIComponent(UIComponent object) {
-					return createUIComponentAdapter();
-				}
+		@Override
+		public Adapter caseUIComponent(UIComponent object) {
+			return createUIComponentAdapter();
+		}
 
-				@Override
-				public Adapter caseWidget(Widget object) {
-					return createWidgetAdapter();
-				}
+		@Override
+		public Adapter caseWidget(Widget object) {
+			return createWidgetAdapter();
+		}
 
-				@Override
-				public Adapter caseStandardWidget(StandardWidget object) {
-					return createStandardWidgetAdapter();
-				}
+		@Override
+		public Adapter caseStandardWidget(StandardWidget object) {
+			return createStandardWidgetAdapter();
+		}
 
-				@Override
-				public Adapter casePropertyEditor(PropertyEditor object) {
-					return createPropertyEditorAdapter();
-				}
+		@Override
+		public Adapter casePropertyEditor(PropertyEditor object) {
+			return createPropertyEditorAdapter();
+		}
 
-				@Override
-				public Adapter caseCompositeWidget(CompositeWidget object) {
-					return createCompositeWidgetAdapter();
-				}
+		@Override
+		public Adapter caseCompositeWidget(CompositeWidget object) {
+			return createCompositeWidgetAdapter();
+		}
 
-				@Override
-				public Adapter caseUnknownComponent(UnknownComponent object) {
-					return createUnknownComponentAdapter();
-				}
+		@Override
+		public Adapter caseUnknownComponent(UnknownComponent object) {
+			return createUnknownComponentAdapter();
+		}
 
-				@Override
-				public Adapter caseLayout(Layout object) {
-					return createLayoutAdapter();
-				}
+		@Override
+		public Adapter caseLayout(Layout object) {
+			return createLayoutAdapter();
+		}
 
-				@Override
-				public Adapter caseWidgetAttribute(WidgetAttribute object) {
-					return createWidgetAttributeAdapter();
-				}
+		@Override
+		public Adapter caseWidgetAttribute(WidgetAttribute object) {
+			return createWidgetAttributeAdapter();
+		}
 
-				@Override
-				public Adapter caseValueAttribute(ValueAttribute object) {
-					return createValueAttributeAdapter();
-				}
+		@Override
+		public Adapter caseValueAttribute(ValueAttribute object) {
+			return createValueAttributeAdapter();
+		}
 
-				@Override
-				public Adapter caseReferenceAttribute(ReferenceAttribute object) {
-					return createReferenceAttributeAdapter();
-				}
+		@Override
+		public Adapter caseReferenceAttribute(ReferenceAttribute object) {
+			return createReferenceAttributeAdapter();
+		}
 
-				@Override
-				public Adapter defaultCase(EObject object) {
-					return createEObjectAdapter();
-				}
-			};
+		@Override
+		public Adapter defaultCase(EObject object) {
+			return createEObjectAdapter();
+		}
+	};
 
 	/**
 	 * Creates an adapter for the <code>target</code>.

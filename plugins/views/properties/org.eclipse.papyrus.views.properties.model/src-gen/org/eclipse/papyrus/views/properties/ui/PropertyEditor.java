@@ -17,6 +17,7 @@ import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.PropertyEditor#getProperty <em>Property</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.PropertyEditor#isReadOnly <em>Read Only</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
  * <li>{@link org.eclipse.papyrus.views.properties.ui.PropertyEditor#isShowLabel <em>Show Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.PropertyEditor#getCustomLabel <em>Custom Label</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.ui.UiPackage#getPropertyEditor()
  * @model

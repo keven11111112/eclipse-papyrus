@@ -19,12 +19,12 @@ import org.eclipse.papyrus.views.properties.environment.Namespace;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.NamespaceImpl#getPrefix <em>Prefix</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.NamespaceImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.NamespaceImpl#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

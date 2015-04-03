@@ -14,11 +14,11 @@ package org.eclipse.papyrus.views.properties.environment;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getMultiplicity <em>Multiplicity</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getPropertyEditorType()
  * @model

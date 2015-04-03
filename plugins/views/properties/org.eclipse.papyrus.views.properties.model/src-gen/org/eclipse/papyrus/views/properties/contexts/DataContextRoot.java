@@ -15,11 +15,11 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getModelElementFactory <em>Model Element Factory</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getDataContextRoot()
  * @model

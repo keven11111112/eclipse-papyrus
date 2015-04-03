@@ -428,6 +428,16 @@ public interface ContextsPackage extends EPackage {
 	int SECTION__WIDGET = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Use Extra Space</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SECTION__USE_EXTRA_SPACE = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Section</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -435,7 +445,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int SECTION_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 4;
+	int SECTION_FEATURE_COUNT = ConstraintsPackage.DISPLAY_UNIT_FEATURE_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl <em>Data Context Element</em>}' class.
@@ -1144,6 +1154,18 @@ public interface ContextsPackage extends EPackage {
 	EReference getSection_Widget();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.views.properties.contexts.Section#isUseExtraSpace <em>Use Extra Space</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the attribute '<em>Use Extra Space</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Section#isUseExtraSpace()
+	 * @see #getSection()
+	 * @generated
+	 */
+	EAttribute getSection_UseExtraSpace();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.DataContextElement <em>Data Context Element</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1629,6 +1651,15 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference SECTION__WIDGET = eINSTANCE.getSection_Widget();
+
+		/**
+		 * The meta object literal for the '<em><b>Use Extra Space</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EAttribute SECTION__USE_EXTRA_SPACE = eINSTANCE.getSection_UseExtraSpace();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl <em>Data Context Element</em>}' class.

@@ -79,19 +79,17 @@ public class WidgetTypeItemProvider
 	 * @generated
 	 */
 	protected void addLabelPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WidgetType_label_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"),
-						EnvironmentPackage.Literals.WIDGET_TYPE__LABEL,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WidgetType_label_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_label_feature", "_UI_WidgetType_type"),
+				EnvironmentPackage.Literals.WIDGET_TYPE__LABEL,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -102,19 +100,17 @@ public class WidgetTypeItemProvider
 	 * @generated
 	 */
 	protected void addWidgetClassPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WidgetType_widgetClass_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"),
-						EnvironmentPackage.Literals.WIDGET_TYPE__WIDGET_CLASS,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WidgetType_widgetClass_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_widgetClass_feature", "_UI_WidgetType_type"),
+				EnvironmentPackage.Literals.WIDGET_TYPE__WIDGET_CLASS,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -125,19 +121,17 @@ public class WidgetTypeItemProvider
 	 * @generated
 	 */
 	protected void addNamespacePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_WidgetType_namespace_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"),
-						EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_WidgetType_namespace_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_WidgetType_namespace_feature", "_UI_WidgetType_type"),
+				EnvironmentPackage.Literals.WIDGET_TYPE__NAMESPACE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -150,9 +144,7 @@ public class WidgetTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((WidgetType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_WidgetType_type") :
-				getString("_UI_WidgetType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_WidgetType_type") : getString("_UI_WidgetType_type") + " " + label;
 	}
 
 	/**

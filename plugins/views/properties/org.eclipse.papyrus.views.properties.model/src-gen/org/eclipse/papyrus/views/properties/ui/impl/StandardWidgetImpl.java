@@ -20,10 +20,10 @@ import org.eclipse.papyrus.views.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.StandardWidgetImpl#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

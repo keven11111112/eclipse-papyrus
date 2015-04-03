@@ -36,13 +36,13 @@ import org.eclipse.papyrus.views.properties.contexts.Property;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl#getProperties <em>Properties</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl#getPackage <em>Package</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextElementImpl#getSupertypes <em>Supertypes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -200,8 +200,7 @@ public class DataContextElementImpl extends EObjectImpl implements DataContextEl
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.DATA_CONTEXT_ELEMENT__PACKAGE, newPackage, newPackage));
 		}
 	}

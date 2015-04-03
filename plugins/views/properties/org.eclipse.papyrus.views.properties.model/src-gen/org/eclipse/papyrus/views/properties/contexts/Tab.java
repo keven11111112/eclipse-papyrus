@@ -16,6 +16,7 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Tab#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Tab#getId <em>Id</em>}</li>
@@ -26,7 +27,6 @@ import org.eclipse.emf.ecore.EObject;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Tab#isIndented <em>Indented</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Tab#getPriority <em>Priority</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getTab()
  * @model

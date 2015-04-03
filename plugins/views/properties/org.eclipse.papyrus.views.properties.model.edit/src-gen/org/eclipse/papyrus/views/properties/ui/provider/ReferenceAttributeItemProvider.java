@@ -56,7 +56,8 @@ public class ReferenceAttributeItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -108,9 +109,7 @@ public class ReferenceAttributeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((ReferenceAttribute) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_ReferenceAttribute_type") :
-				getString("_UI_ReferenceAttribute_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_ReferenceAttribute_type") : getString("_UI_ReferenceAttribute_type") + " " + label;
 	}
 
 	/**
@@ -145,30 +144,20 @@ public class ReferenceAttributeItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-						UiFactory.eINSTANCE.createStandardWidget()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createStandardWidget()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-						UiFactory.eINSTANCE.createPropertyEditor()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createPropertyEditor()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-						UiFactory.eINSTANCE.createCompositeWidget()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createCompositeWidget()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-						UiFactory.eINSTANCE.createUnknownComponent()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createUnknownComponent()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
-						UiFactory.eINSTANCE.createLayout()));
+		newChildDescriptors.add(createChildParameter(UiPackage.Literals.REFERENCE_ATTRIBUTE__VALUE,
+				UiFactory.eINSTANCE.createLayout()));
 	}
 
 }

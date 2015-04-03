@@ -58,7 +58,8 @@ public class EnvironmentItemProvider
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -156,40 +157,26 @@ public class EnvironmentItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
-						EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MODEL_ELEMENT_FACTORIES,
+				EnvironmentFactory.eINSTANCE.createModelElementFactoryDescriptor()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
-						EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__WIDGET_TYPES,
+				EnvironmentFactory.eINSTANCE.createStandardWidgetType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
-						EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__PROPERTY_EDITOR_TYPES,
+				EnvironmentFactory.eINSTANCE.createPropertyEditorType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
-						EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__COMPOSITE_WIDGET_TYPES,
+				EnvironmentFactory.eINSTANCE.createCompositeWidgetType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
-						EnvironmentFactory.eINSTANCE.createLayoutType()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__LAYOUT_TYPES,
+				EnvironmentFactory.eINSTANCE.createLayoutType()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
-						EnvironmentFactory.eINSTANCE.createNamespace()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__NAMESPACES,
+				EnvironmentFactory.eINSTANCE.createNamespace()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
-						EnvironmentFactory.eINSTANCE.createMiscClass()));
+		newChildDescriptors.add(createChildParameter(EnvironmentPackage.Literals.ENVIRONMENT__MISC_CLASSES,
+				EnvironmentFactory.eINSTANCE.createMiscClass()));
 	}
 
 	/**

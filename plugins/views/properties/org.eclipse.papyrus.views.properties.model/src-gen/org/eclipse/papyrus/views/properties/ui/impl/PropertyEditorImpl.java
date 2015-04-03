@@ -23,6 +23,7 @@ import org.eclipse.papyrus.views.properties.ui.UiPackage;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.PropertyEditorImpl#getProperty <em>Property</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.PropertyEditorImpl#isReadOnly <em>Read Only</em>}</li>
@@ -32,7 +33,6 @@ import org.eclipse.papyrus.views.properties.ui.UiPackage;
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.PropertyEditorImpl#isShowLabel <em>Show Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.impl.PropertyEditorImpl#getCustomLabel <em>Custom Label</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -346,8 +346,7 @@ public class PropertyEditorImpl extends WidgetImpl implements PropertyEditor {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, UiPackage.PROPERTY_EDITOR__UNRESOLVED_PROPERTY, newUnresolvedProperty, newUnresolvedProperty));
 		}
 	}

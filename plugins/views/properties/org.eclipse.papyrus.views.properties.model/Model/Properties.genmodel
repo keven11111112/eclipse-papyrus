@@ -97,6 +97,7 @@
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/sectionFile"/>
         <genFeatures notify="false" createChild="false" propertySortChoices="true"
             ecoreFeature="ecore:EReference Properties.ecore#//contexts/Section/widget"/>
+        <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/Section/useExtraSpace"/>
       </genClasses>
       <genClasses ecoreClass="Properties.ecore#//contexts/DataContextElement">
         <genFeatures createChild="false" ecoreFeature="ecore:EAttribute Properties.ecore#//contexts/DataContextElement/name"/>

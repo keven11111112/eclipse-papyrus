@@ -15,12 +15,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Namespace#getPrefix <em>Prefix</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Namespace#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.Namespace#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getNamespace()
  * @model

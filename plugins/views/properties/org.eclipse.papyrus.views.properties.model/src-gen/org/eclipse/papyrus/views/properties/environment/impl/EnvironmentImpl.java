@@ -31,6 +31,7 @@ import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getModelElementFactories <em>Model Element Factories</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getWidgetTypes <em>Widget Types</em>}</li>
@@ -40,7 +41,6 @@ import org.eclipse.papyrus.views.properties.environment.StandardWidgetType;
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getNamespaces <em>Namespaces</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.EnvironmentImpl#getMiscClasses <em>Misc Classes</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

@@ -16,12 +16,12 @@ import org.eclipse.papyrus.views.properties.environment.CompositeWidgetType;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.CompositeWidget#getLayout <em>Layout</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.CompositeWidget#getWidgets <em>Widgets</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.CompositeWidget#getWidgetType <em>Widget Type</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.ui.UiPackage#getCompositeWidget()
  * @model

@@ -14,10 +14,10 @@ package org.eclipse.papyrus.views.properties.ui;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.ui.ReferenceAttribute#getValue <em>Value</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.ui.UiPackage#getReferenceAttribute()
  * @model

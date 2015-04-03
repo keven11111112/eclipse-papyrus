@@ -16,6 +16,7 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  *
  * <p>
  * The following features are supported:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Property#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Property#getLabel <em>Label</em>}</li>
@@ -24,7 +25,6 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Property#getMultiplicity <em>Multiplicity</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Property#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getProperty()
  * @model

@@ -21,12 +21,12 @@ import org.eclipse.papyrus.views.properties.environment.Namespace;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.MiscClassImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.MiscClassImpl#getClass_ <em>Class</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.MiscClassImpl#getNamespace <em>Namespace</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

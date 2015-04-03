@@ -37,6 +37,7 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDependencies <em>Dependencies</em>}</li>
@@ -45,7 +46,6 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getPrototype <em>Prototype</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */

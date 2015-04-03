@@ -57,6 +57,7 @@ public class SectionItemProvider
 			addNamePropertyDescriptor(object);
 			addSectionFilePropertyDescriptor(object);
 			addWidgetPropertyDescriptor(object);
+			addUseExtraSpacePropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -69,19 +70,17 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_name_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_name_feature", "_UI_Section_type"),
+				ContextsPackage.Literals.SECTION__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -92,19 +91,17 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addSectionFilePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_sectionFile_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_sectionFile_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__SECTION_FILE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_sectionFile_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_sectionFile_feature", "_UI_Section_type"),
+				ContextsPackage.Literals.SECTION__SECTION_FILE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -115,19 +112,38 @@ public class SectionItemProvider
 	 * @generated
 	 */
 	protected void addWidgetPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_Section_widget_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_Section_widget_feature", "_UI_Section_type"),
-						ContextsPackage.Literals.SECTION__WIDGET,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_widget_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_widget_feature", "_UI_Section_type"),
+				ContextsPackage.Literals.SECTION__WIDGET,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Use Extra Space feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addUseExtraSpacePropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Section_useExtraSpace_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Section_useExtraSpace_feature", "_UI_Section_type"),
+				ContextsPackage.Literals.SECTION__USE_EXTRA_SPACE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -152,9 +168,7 @@ public class SectionItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((Section) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_Section_type") :
-				getString("_UI_Section_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_Section_type") : getString("_UI_Section_type") + " " + label;
 	}
 
 	/**
@@ -172,6 +186,7 @@ public class SectionItemProvider
 		switch (notification.getFeatureID(Section.class)) {
 		case ContextsPackage.SECTION__NAME:
 		case ContextsPackage.SECTION__SECTION_FILE:
+		case ContextsPackage.SECTION__USE_EXTRA_SPACE:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
 			return;
 		}

@@ -48,8 +48,7 @@ public final class PropertiesEditorPlugin extends EMFPlugin {
 	public PropertiesEditorPlugin() {
 		super(new ResourceLocator[] {
 				ConstraintsEditPlugin.INSTANCE,
-				EcoreEditPlugin.INSTANCE,
-		});
+				EcoreEditPlugin.INSTANCE, });
 	}
 
 	/**

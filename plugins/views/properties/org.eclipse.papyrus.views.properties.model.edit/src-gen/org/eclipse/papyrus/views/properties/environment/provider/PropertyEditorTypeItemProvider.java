@@ -65,19 +65,17 @@ public class PropertyEditorTypeItemProvider
 	 * @generated
 	 */
 	protected void addTypePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditorType_type_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_type_feature", "_UI_PropertyEditorType_type"),
-						EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__TYPE,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditorType_type_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_type_feature", "_UI_PropertyEditorType_type"),
+				EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__TYPE,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -88,19 +86,17 @@ public class PropertyEditorTypeItemProvider
 	 * @generated
 	 */
 	protected void addMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_PropertyEditorType_multiplicity_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_multiplicity_feature", "_UI_PropertyEditorType_type"),
-						EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__MULTIPLICITY,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditorType_multiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_multiplicity_feature", "_UI_PropertyEditorType_type"),
+				EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__MULTIPLICITY,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -125,9 +121,7 @@ public class PropertyEditorTypeItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((PropertyEditorType) object).getLabel();
-		return label == null || label.length() == 0 ?
-				getString("_UI_PropertyEditorType_type") :
-				getString("_UI_PropertyEditorType_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_PropertyEditorType_type") : getString("_UI_PropertyEditorType_type") + " " + label;
 	}
 
 	/**

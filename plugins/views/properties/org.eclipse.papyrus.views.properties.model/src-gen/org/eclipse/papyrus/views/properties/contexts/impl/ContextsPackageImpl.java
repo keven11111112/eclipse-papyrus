@@ -116,10 +116,15 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	private EClass dataContextRootEClass = null;
 
 	/**
-	 * Creates an instance of the model <b>Package</b>, registered with {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
+	 * Creates an instance of the model <b>Package</b>, registered with
+	 * {@link org.eclipse.emf.ecore.EPackage.Registry EPackage.Registry} by the package
 	 * package URI value.
 	 * <p>
-	 * Note: the correct way to create the package is via the static factory method {@link #init init()}, which also performs initialization of the package, or returns the registered package, if one already exists. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * Note: the correct way to create the package is via the static
+	 * factory method {@link #init init()}, which also performs
+	 * initialization of the package, or returns the registered package,
+	 * if one already exists.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see org.eclipse.emf.ecore.EPackage.Registry
 	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#eNS_URI
@@ -142,7 +147,9 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * Creates, registers, and initializes the <b>Package</b> for this model, and for any others upon which it depends.
 	 *
 	 * <p>
-	 * This method is used to initialize {@link ContextsPackage#eINSTANCE} when that field is accessed. Clients should not invoke it directly. Instead, they should simply access that field to obtain the package. <!-- begin-user-doc --> <!-- end-user-doc -->
+	 * This method is used to initialize {@link ContextsPackage#eINSTANCE} when that field is accessed.
+	 * Clients should not invoke it directly. Instead, they should simply access that field to obtain the package.
+	 * <!-- begin-user-doc --> <!-- end-user-doc -->
 	 *
 	 * @see #eNS_URI
 	 * @see #createPackageContents()
@@ -491,6 +498,17 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
+	public EAttribute getSection_UseExtraSpace() {
+		return (EAttribute) sectionEClass.getEStructuralFeatures().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EClass getDataContextElement() {
 		return dataContextElementEClass;
 	}
@@ -746,6 +764,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(sectionEClass, SECTION__TAB);
 		createEAttribute(sectionEClass, SECTION__SECTION_FILE);
 		createEReference(sectionEClass, SECTION__WIDGET);
+		createEAttribute(sectionEClass, SECTION__USE_EXTRA_SPACE);
 
 		dataContextElementEClass = createEClass(DATA_CONTEXT_ELEMENT);
 		createEAttribute(dataContextElementEClass, DATA_CONTEXT_ELEMENT__NAME);
@@ -847,6 +866,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getSection_Tab(), this.getTab(), this.getTab_Sections(), "tab", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getSection_SectionFile(), ecorePackage.getEString(), "sectionFile", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getSection_Widget(), theUiPackage.getCompositeWidget(), null, "widget", null, 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEAttribute(getSection_UseExtraSpace(), theEcorePackage.getEBoolean(), "useExtraSpace", "false", 1, 1, Section.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(dataContextElementEClass, DataContextElement.class, "DataContextElement", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getDataContextElement_Name(), ecorePackage.getEString(), "name", null, 1, 1, DataContextElement.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

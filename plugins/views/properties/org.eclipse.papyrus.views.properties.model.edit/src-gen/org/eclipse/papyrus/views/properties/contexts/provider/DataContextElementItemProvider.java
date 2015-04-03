@@ -81,19 +81,17 @@ public class DataContextElementItemProvider
 	 * @generated
 	 */
 	protected void addNamePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DataContextElement_name_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_name_feature", "_UI_DataContextElement_type"),
-						ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__NAME,
-						true,
-						false,
-						false,
-						ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataContextElement_name_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_name_feature", "_UI_DataContextElement_type"),
+				ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__NAME,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -104,23 +102,22 @@ public class DataContextElementItemProvider
 	 * @generated
 	 */
 	protected void addSupertypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-						getResourceLocator(),
-						getString("_UI_DataContextElement_supertypes_feature"),
-						getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_supertypes_feature", "_UI_DataContextElement_type"),
-						ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__SUPERTYPES,
-						true,
-						false,
-						true,
-						null,
-						null,
-						null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataContextElement_supertypes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextElement_supertypes_feature", "_UI_DataContextElement_type"),
+				ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__SUPERTYPES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
-	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -172,9 +169,7 @@ public class DataContextElementItemProvider
 	@Override
 	public String getText(Object object) {
 		String label = ((DataContextElement) object).getName();
-		return label == null || label.length() == 0 ?
-				getString("_UI_DataContextElement_type") :
-				getString("_UI_DataContextElement_type") + " " + label;
+		return label == null || label.length() == 0 ? getString("_UI_DataContextElement_type") : getString("_UI_DataContextElement_type") + " " + label;
 	}
 
 	/**
@@ -212,15 +207,11 @@ public class DataContextElementItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__PROPERTIES,
-						ContextsFactory.eINSTANCE.createProperty()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__PROPERTIES,
+				ContextsFactory.eINSTANCE.createProperty()));
 
-		newChildDescriptors.add
-				(createChildParameter
-				(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__PROPERTIES,
-						ContextsFactory.eINSTANCE.createUnknownProperty()));
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.DATA_CONTEXT_ELEMENT__PROPERTIES,
+				ContextsFactory.eINSTANCE.createUnknownProperty()));
 	}
 
 	/**

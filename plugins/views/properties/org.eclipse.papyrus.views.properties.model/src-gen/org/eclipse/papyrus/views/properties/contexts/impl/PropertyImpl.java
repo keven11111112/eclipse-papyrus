@@ -30,6 +30,7 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyImpl#getName <em>Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyImpl#getLabel <em>Label</em>}</li>
@@ -38,7 +39,6 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyImpl#getMultiplicity <em>Multiplicity</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyImpl#getDescription <em>Description</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
@@ -300,8 +300,7 @@ public class PropertyImpl extends EObjectImpl implements Property {
 			if (msgs != null) {
 				msgs.dispatch();
 			}
-		}
-		else if (eNotificationRequired()) {
+		} else if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ContextsPackage.PROPERTY__CONTEXT_ELEMENT, newContextElement, newContextElement));
 		}
 	}
