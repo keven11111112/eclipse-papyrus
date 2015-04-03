@@ -219,7 +219,8 @@ public class CppOperations {
     }
     if (_and) {
       ConstInit _stereotypeApplication = UMLUtil.<ConstInit>getStereotypeApplication(operation, ConstInit.class);
-      _xifexpression = ((ConstInit) _stereotypeApplication).getInitialisation();
+      String _initialisation = _stereotypeApplication.getInitialisation();
+      _xifexpression = (": " + _initialisation);
     }
     return _xifexpression;
   }
