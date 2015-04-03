@@ -163,7 +163,8 @@ public class EnumerationEditPartCN extends ClassifierEditPart {
 		if (NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 			Object notifier = event.getNotifier();
 			List<?> modelChildren = ((View) getModel()).getChildren();
-			if (!(notifier instanceof Edge)) {
+			if (false == notifier instanceof Edge
+					&& false == notifier instanceof org.eclipse.gmf.runtime.notation.BasicCompartment) {
 				if (modelChildren.contains(event.getNotifier())) {
 					return;
 				}
