@@ -66,7 +66,7 @@ class MappingTest extends ParserTest {
       if (name.substring(l - 4, l).equals(".alf")) {
         System.out.print(name + ": ")
         val resource = mapper.getResource(file.path)
-        val parseFailures = parseResource(resource, false)
+        val parseFailures = parseResource(resource, true)
         if (parseFailures > 0) {
           failures = failures + parseFailures
         } else {
