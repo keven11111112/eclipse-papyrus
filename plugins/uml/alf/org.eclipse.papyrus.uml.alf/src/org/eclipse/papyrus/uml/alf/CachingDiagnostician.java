@@ -40,10 +40,10 @@ public class CachingDiagnostician extends CancelableDiagnostician {
 		if (this.caching) {
 			result = super.validate(eObject, diagnostics, context);
 		} else {
+			RunTimeCaching.clearAll();
 			this.caching = true;
 			result = super.validate(eObject, diagnostics, context);
 			this.caching = false;
-			RunTimeCaching.clearAll();
 		}
 		return result;
 	}
