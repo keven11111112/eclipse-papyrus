@@ -13,11 +13,14 @@
 
 package org.eclipse.papyrus.junit.framework.runner;
 
+import java.lang.annotation.Annotation;
 import java.util.ArrayDeque;
 import java.util.Arrays;
 import java.util.Deque;
 import java.util.List;
 
+import org.eclipse.papyrus.junit.framework.classification.ClassificationConfig;
+import org.junit.Ignore;
 import org.junit.Test;
 import org.junit.runner.Description;
 import org.junit.runner.Runner;
@@ -34,6 +37,7 @@ import org.junit.runners.model.Statement;
 import com.google.common.base.Function;
 import com.google.common.collect.ImmutableList;
 import com.google.common.collect.Iterables;
+import com.google.common.collect.Iterators;
 import com.google.common.collect.Lists;
 
 /**
@@ -105,7 +109,7 @@ public class ScenarioRunner extends ParentRunner<Runner> {
 	 *     
 	 *     // ...
 	 *     
-	 *     @Scenario({ "first", "second" })
+	 *     &#64;Scenario({ "first", "second" })
 	 *     public void myLongAndIntricateScenario() {
 	 *       // Setup stuff ...
 	 *       
@@ -137,6 +141,27 @@ public class ScenarioRunner extends ParentRunner<Runner> {
 		runnerStack.addLast(runner);
 	}
 
+	/**
+	 * Queries whether a test's annotations indicate that it is to be ignored in the
+	 * current run. That may is if any of the annotations is the {@code @Ignore} annotation
+	 * or if none of the {@link ClassificationConfig} annotations match the current run.
+	 * 
+	 * @param testAnnotations
+	 *            a test's annotations (including those inherited from its class)
+	 * 
+	 * @return whether the test should be skipped
+	 */
+	static boolean isIgnored(Annotation[] testAnnotations) {
+		boolean result = !ClassificationConfig.shouldRun(testAnnotations);
+
+		if (!result) {
+			// Look for the @Ignore annotation
+			result = Iterators.filter(Arrays.asList(testAnnotations).iterator(), Ignore.class).hasNext();
+		}
+
+		return result;
+	}
+
 	//
 	// Nested types
 	//
@@ -148,16 +173,27 @@ public class ScenarioRunner extends ParentRunner<Runner> {
 			super();
 
 			this.scenarioMethod = scenarioMethod;
+
 		}
 
 		@Override
 		public Runner runnerForClass(Class<?> testClass) throws Throwable {
+			Runner result;
+
 			if (scenarioMethod.getAnnotation(Scenario.class) != null) {
-				return new VerificationPointsRunner(scenarioMethod);
+				result = new VerificationPointsRunner(scenarioMethod);
 			} else {
 				// It's just an @Test method
-				return new JUnitAccess(testClass).classicTest(scenarioMethod);
+				result = new JUnitAccess(testClass).classicTest(scenarioMethod);
 			}
+
+			List<Annotation> allAnnotations = Lists.newArrayList(scenarioMethod.getAnnotations());
+			allAnnotations.addAll(Arrays.asList(scenarioMethod.getMethod().getDeclaringClass().getAnnotations()));
+			if (isIgnored(Iterables.toArray(allAnnotations, Annotation.class))) {
+				result = new IgnoreRunner(result.getDescription());
+			}
+
+			return result;
 		}
 
 		public Runner build() {
