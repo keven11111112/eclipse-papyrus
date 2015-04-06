@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST.
- *
+ * Copyright (c) 2013-2015 CEA LIST.
  *    
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,15 +7,19 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  IJI - Initial implementation
- *  MDS - Updated for Luna
+ *   Ed Seidewitz
  * 
  *****************************************************************************/
 import org.eclipse.papyrus.uml.alf.to.fuml.qvt.QVTLibrary;
+import AlfStatement2UML;
+import UML2AlfLibrary;
+
 modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
 modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
 
-transformation Alf2UML(in alf : Alf, inout uml : UML);
+transformation Alf2UML(in alf : Alf, inout uml : UML)
+	extends transformation AlfStatement2UML(in Alf, inout UML)
+	access library UML2AlfLibrary;
 
 // blackbox query SyntaxElement::serialize() : String;
 
@@ -27,6 +30,7 @@ main() {
       name := "Model";
     };
   } endif;
+  UML2AlfLibrary::setModel(model);
   alf.rootObjects()[UnitDefinition]->any(true).map toNamespace();
   model.packagedElement := uml.rootObjects()[PackageableElement]->excluding(model);
   applyStereotypes();
@@ -54,6 +58,17 @@ helper addAsStereotyped(inout element : Element, names : Set(String)) {
   return;
 }
 
+query Element::isToBeStereotyped(stereotypeName : String) : Boolean {
+	return stereotypedElements->exists(
+		target = self and stereotypeNames->includes(stereotypeName)
+	);
+}
+
+query Element::hasStereotype(stereotypeName : String) : Boolean {
+	return self.isStereotypeApplied(self.getStereotype(stereotypeName)) or 
+			   self.isToBeStereotyped(stereotypeName);
+}
+
 helper applyStereotypes() {
   if stereotypedElements->notEmpty() then {
     stereotypedElements.applyStereotypes();
@@ -70,6 +85,15 @@ helper StereotypedElement::applyStereotypes() {
 // Note: The application of stereotypes presumes that a root UML model is passed
 // in with the appropriate profile(s) already applied.
 helper Element::applyStereotype(name : String) {
+  var stereotype := self.getStereotype(name);
+//  log("  stereotypeName=" + stereotypeName);
+//  log("  stereotype=" + stereotype.toString());
+  if stereotype <> null then
+    self.applyStereotype(stereotype)
+  endif
+}
+
+query Element::getStereotype(name : String) : Stereotype {
   var stereotypeName := name;
   var stereotype : Stereotype := null;
   if stereotypeName.indexOf("::") = 0 then {
@@ -83,53 +107,62 @@ helper Element::applyStereotype(name : String) {
   if (stereotype = null) then
     stereotype := self.getApplicableStereotype(stereotypeName)
   endif;
-//  log("  stereotypeName=" + stereotypeName);
-//  log("  stereotype=" + stereotype.toString());
-  if stereotype <> null then
-    self.applyStereotype(stereotype)
-  endif
+  return stereotype;
 }
 
 // ALF DEFINITIONS OF ACTIVITIES
 
 intermediate class AlfDefinition {
 	target : Activity;
-	source : String;
+	source : SyntaxElement;
 }
 
 property alfDefinitions : Set(AlfDefinition) = Set{};
 
-helper addDefinition(activity : Activity, definition : String) {
-	alfDefinitions += object AlfDefinition {
-		target := activity;
-		source := definition;
-	};
+helper addDefinition(activity : Activity, definition : SyntaxElement) {
+	var currentDefinitions := alfDefinitions[target = activity];
+	if currentDefinitions->notEmpty() then {
+		currentDefinitions->any(true).source := definition;
+	} else {
+		alfDefinitions += object AlfDefinition {
+			target := activity;
+			source := definition;
+		};
+	} endif;
 	return;
 }
 
 helper applyDefinitions() {
   if alfDefinitions->notEmpty() then {
   	alfDefinitions->forEach(alfDefinition) {
-  		var definition :=
-  		  if alfDefinition.source.at(1) = "{" then
-  		    activityDeclarationFor(alfDefinition.target) + " " + alfDefinition.source
-  		  else
-  		    alfDefinition.source
-  		  endif;
-  		  var comment := object Comment {
-  		  	body := definition;
-  		  	annotatedElement := alfDefinition.target;
-  		  };
-  		  alfDefinition.target.ownedComment += comment;
-        var stereotype := 
-          comment.getApplicableStereotype("ActionLanguage::TextualRepresentation");
-        if stereotype <> null then {
-          comment.applyStereotype(stereotype);
-          comment.setValue(stereotype, "language", "Alf");
-        } endif;
+  		var representation = alfDefinition.source.serialize();
+  		if alfDefinition.source.oclIsKindOf(Expression) then {
+  			if representation.startsWith("=") then {
+  				representation := representation.substring(3, representation.length());
+  			} endif;
+  			representation := "{\n  return " + representation + ";\n}";
+  		} endif;
+  		if not alfDefinition.source.oclIsKindOf(Activity) then {
+  			representation := activityDeclarationFor(alfDefinition.target) + " " + representation;
+  		} endif;
+  		addTextualRepresentation(alfDefinition.target, representation);
   	};
   } endif;
 	return;
+}
+
+helper addTextualRepresentation(inout element : Element, representation : String) {
+  var comment := object Comment {
+  	body := representation;
+  	annotatedElement := element;
+  };
+  element.ownedComment += comment;
+  var stereotype := 
+    comment.getApplicableStereotype("ActionLanguage::TextualRepresentation");
+  if stereotype <> null then {
+    comment.applyStereotype(stereotype);
+    comment.setValue(stereotype, "language", "Alf");
+  } endif;
 }
 
 query activityDeclarationFor(activity : Activity) : String {
@@ -163,7 +196,8 @@ query activityDeclarationFor(activity : Activity) : String {
   		if notFirstParameter then
   		  text := text + ", "
   		endif;
-  		text := text + parameter.direction.toString() + " " + parameter.alfName() + parameter.typePart();
+  		text := text + parameter.direction.toString() + " " + 
+  			parameter.alfName() + parameter.typePart(activity);
   		notFirstParameter := true;
   	} endif;
   };
@@ -171,16 +205,16 @@ query activityDeclarationFor(activity : Activity) : String {
   text := text + ")";
   
   if returnParameter <> null then
-    text := text + returnParameter.typePart()
+    text := text + returnParameter.typePart(activity)
   endif;
   
   return text;
 }
 
-query Parameter::typePart() : String {
+query Parameter::typePart(context : NamedElement) : String {
 	return ": " +
 	  ( let type = self.type.oclAsType(Classifier) in
-	    if type = null then "any" else type.alfName() endif
+	    if type = null then "any" else type.alfPathName(context) endif
 	  ) + self.multiplicity();    
 }
 
@@ -199,6 +233,7 @@ query MultiplicityElement::multiplicity() : String {
     else "" endif endif endif
 }
 
+/*
 query NamedElement::alfName() : String {
   return
   	if self.name = null then null
@@ -228,7 +263,7 @@ query String::toRestrictedName() : String {
    replace("'", "\\'") +
    "'";
 }
-
+*/
 // COMMON
 
 // Syntax Elements
@@ -236,58 +271,10 @@ query String::toRestrictedName() : String {
 mapping SyntaxElement::toUml() : Element
   disjuncts MemberDefinition::memberToNamedElement, Expression::toActivity;
   
-// Documented Elements
-
-abstract mapping DocumentedElement::toElement() : Element {
-  self.documentation->forEach(d) {
-    var comment = object Comment {
-      annotatedElement := result;
-      body := d.substring(4,d.length()-2)
-    };
-    ownedComment += comment;
-  }
-}
-
 // Element References
-
-helper ElementReference::toUml() : Element;
 
 helper InternalElementReference::toUml() : Element {
   return self.asAlf().map toUml();
-}
-
-helper ExternalElementReference::toUml() : Element {
- return self.asUml().oclAsType(Element);
-}
-
-helper BoundElementReference::toUml() : Element {
-  // TODO: Handle expansion of template bindings.
-  return 
-    if self.isTemplateBinding() then
-      self.templateBinding.toUml()
-    else
-      self.referent.toUml()
-    endif;
-}
-
-// EXPRESSIONS
-
-// General
-
-mapping Expression::toActivity() : Activity {
-  /*
-  ownedParameter := object Parameter {
-    direction := ParameterDirectionKind::_return;
-    type := if self.type = null then null else self.type.toUml().oclAsType(Classifier) endif;
-    lower := self.lower;
-    upper := if self.upper = -1 then -1 else self.upper endif;
-  };
-  */
-  var serialization = self.serialize();
-  if serialization.at(1) = '=' then
-    serialization := serialization.substring(2, serialization.length())
-  endif;
-  addDefinition(result, "{\n\treturn " + serialization + ";\n}");
 }
 
 // UNITS
@@ -316,6 +303,7 @@ init {
       endif endif
   endif;
   */
+  visibility := VisibilityKind::public;
   elementImport := self._import[ElementImportReference]->map toElementImport();
   packageImport := self._import[PackageImportReference]->map toPackageImport();
   if self.annotation->notEmpty() then
@@ -349,7 +337,7 @@ query toVisibilityKind(visibility : String) : VisibilityKind {
 
 mapping Member::toNamedElement() : NamedElement
   inherits DocumentedElement::toElement
-  when { not self.definition.oclIsKindOf(ClassifierTemplateParameter) } {
+  when { not self.definition.oclIsKindOf(ClassifierTemplateParameter) and not self.definition.isStub } {
 init {
   result := self.definition.map memberToNamedElement();
 }
@@ -511,25 +499,27 @@ mapping ClassDefinition::toClass() : Class
   
   // Create initialization flag.
   var initializationFlagName := uniqueName(self.actualName() + "$initializationFlag", result);
-  ownedAttribute += object Property {
+  var initializationFlag := object Property {
   	name := initializationFlagName;
   	lower := 0;
   	upper := 1;
   	visibility := VisibilityKind::protected;
   };
+  ownedAttribute += initializationFlag;
   
   // Create initialization operation.
   var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
-  var initializationMethod := createInitializationMethod(result, initializationFlagName, initializationOperationName);
-  ownedOperation += object Operation {
+  var initializationMethod := self.createInitializationMethod(result, initializationFlag, initializationOperationName);
+  var initializationOperation := object Operation {
   	name := initializationOperationName;
   	visibility := VisibilityKind::protected;
   	method := initializationMethod;
   };
+  ownedOperation += initializationOperation;
   ownedBehavior += initializationMethod;
   
   self.ownedMember.definition[OperationDefinition]->select(not isAbstract and isConstructor)->
-    mapConstructor(initializationFlagName, initializationOperationName);
+    mapConstructor(initializationFlag, initializationOperation);
     
   if not self.ownedMember.definition[OperationDefinition]->exists(isConstructor) then {
   
@@ -540,11 +530,10 @@ mapping ClassDefinition::toClass() : Class
         type := result;
         lower := 1;
         upper := 1;
-        direction := ParameterDirectionKind::_return;
+        direction := ParameterDirectionKind::_'return';
       };
   	};
     ownedBehavior += activity;
-  	addDefinition(activity, "{\n\tthis." + initializationOperationName.toName() + "();\n\treturn this;\n}");
     var operation := object Operation {
       name := self.actualName();
       method := activity;
@@ -557,6 +546,7 @@ mapping ClassDefinition::toClass() : Class
     };
   	ownedOperation += operation;
   	addAsStereotyped(operation, Set{"Create"});
+  	mapDefaultConstructor(activity, result, initializationOperation);
   	
 	} endif;
 	
@@ -567,13 +557,13 @@ mapping ClassDefinition::toClass() : Class
       name := uniqueName("destroy$method", result);
     };
     ownedBehavior += activity;
-    addDefinition(activity, "{ }");
     var operation := object Operation {
       name := "destroy";
       method := activity;
     };
     ownedOperation += operation;
     addAsStereotyped(operation, Set{"Destroy"});
+    self.mapDefaultDestructor(activity, result);
     
   } endif;    
   
@@ -587,35 +577,267 @@ query uniqueName(name : String, namespace : Namespace) : String {
   };
 }
 
-query createInitializationMethod(class_ : Class, flagName : String, operationName: String) : Activity {
-  var body := "activity " + operationName.toName() + "(){\n  if (this." + flagName.toName() + " == null) {\n";
-  
+helper ClassDefinition::createInitializationMethod(class_ : Class, initializationFlag : Property, operationName: String) : Activity {
+	var method = object Activity {
+	  name := operationName;
+	  visibility := VisibilityKind::protected;
+	};
+	
+	var readSelfAction := object ReadSelfAction {
+		activity := method;
+		name := "ReadSelf";
+		_'result' := object OutputPin {
+			name := "ReadSelf.result";
+			type := class_;
+			lower := 1;
+			upper := 1;
+		};
+	};
+	var selfFork := object ForkNode {
+		activity := method;
+		name := "Fork(" + readSelfAction._'result'.name + ")";
+	};
+	object ObjectFlow {
+		activity := method;
+		source := readSelfAction.result;
+		target := selfFork;
+	};
+	
+	var initializationNode := object StructuredActivityNode {
+		activity := method;
+		name := "Initialization";
+	};
+	
+	var previousNode : ActivityNode := null;
+	
   // Add initialization of superclass properties.
-  class_.general.oclAsType(Class)->forEach(superclass) {
-  	var initializationOperation := initializationOperationFor(superclass);
+  // Note: Using the specialization referents ensures that initializations are done
+  // in the order in which superclasses are given in the text.
+  self.specializationReferent->forEach(referent) {
+  	var superclass := referent.resolveone(Generalization).general.oclAsType(Class);
+  	var initializationOperation := superclass.initializationOperation();
   	if initializationOperation <> null then {
-  	  body := body + "    super." + adjustName(superclass.qualifiedName) +
-  	    "::" + initializationOperation.alfName() + "();\n";
+  		var callActionName := "Call(" + initializationOperation.name + ")";
+  		var callAction := object CallOperationAction {
+  			inStructuredNode := initializationNode;
+  			name := callActionName;
+  			operation := initializationOperation;
+  			target := object InputPin {
+  				name := callActionName + ".target";
+  				type := superclass;
+  				lower := 1;
+  				upper := 1;
+  			};
+  		};
+  		object ObjectFlow {
+  			activity := method;
+  			source := selfFork;
+  			target := callAction.target;
+  		};
+  		if previousNode <> null then {
+  			object ControlFlow {
+  				inStructuredNode := initializationNode;
+  				source := previousNode;
+  				target := callAction;
+  			};
+  		} endif;
+  		previousNode := callAction;
   	} endif;
   };
   
   // Add initialization of each property that has an initializer.
   class_.ownedAttribute->forEach(attribute) {
   	if attribute.defaultValue <> null then {
-  	  var behavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
-  	  body := body + "    this." + attribute.alfName() + " = " + behavior.alfName() + "();\n";
+  	  var defaultBehavior := attribute.defaultValue.oclAsType(OpaqueExpression).behavior;
+  	  var callActionName := "Call(" + defaultBehavior.name + ")";
+  	  var callAction := object CallBehaviorAction {
+  	  	inStructuredNode := initializationNode;
+  	  	name := callActionName;
+  	  	behavior := defaultBehavior;
+  	  	_'result' += object OutputPin {
+  	  		name := callActionName + ".result";
+  	  		type := attribute.type;
+  	  		lower := attribute.lower;
+  	  		upper := attribute.upper;
+  	  	};
+  	  };
+  	  var graph := self.mapPropertyAssignment(attribute, selfFork, callAction._'result'->at(1));
+  	  var node := object StructuredActivityNode {
+  	  	inStructuredNode := initializationNode;
+  	  	name := "Initialization(" + attribute.name + ")";
+  	  	node := graph.nodes;
+  	  };
+  	  initializationNode.edge += graph.edges;
+  	  if previousNode <> null then {
+  	  	object ObjectFlow {
+  	  		inStructuredNode := initializationNode;
+  	  		source := previousNode;
+  	  		target := node;
+  	  	}
+  	  } endif;
+  	  previousNode := node;
   	} endif;
   };
   
-  body := body + "    this." + flagName.toName() + " = true;\n  }\n}\n";
-	var activity = object Activity {
-	  name := operationName;
-	  visibility := VisibilityKind::protected;
-	};
-	addDefinition(activity, body);
-	return activity;
+  // Add action to set initialization to true.
+  var valueAction := object ValueSpecificationAction {
+  	inStructuredNode := initializationNode;
+  	name := "Value(true)";
+  	value := object LiteralBoolean {
+  		value := true;
+  	};
+  	_'result' := object OutputPin {
+  		name := "Value(true).result";
+  		type := initializationFlag.type;
+  		lower := 1;
+  		upper := 1;
+  	};
+  };
+  var writeActionName := "Write(" + initializationFlag.name + ")";
+  var writeAction := object AddStructuralFeatureValueAction {
+  	inStructuredNode := initializationNode;
+  	name := writeActionName;
+  	structuralFeature := initializationFlag;
+  	isReplaceAll := true;
+  	_'object' := object InputPin {
+  		name := writeActionName + ".object";
+  		type := class_;
+  		lower := 1;
+  		upper := 1;
+  	};
+  	value := object InputPin {
+  		name := writeActionName + ".value";
+  		type := initializationFlag.type;
+  		lower := 1;
+  		upper := 1;
+  	}
+  };
+  object ObjectFlow {
+  	activity := method;
+  	source := selfFork;
+  	target := writeAction._'object';
+  };
+  object ObjectFlow {
+  	inStructuredNode := initializationNode;
+  	source := valueAction._'result';
+  	target := writeAction.value;
+  };
+  if previousNode <> null then {
+  	object ControlFlow {
+  		inStructuredNode := initializationNode;
+  		source := previousNode;
+  		target := valueAction;
+  	};
+  } endif;
+  
+  // Add decision to skip initialization if this object is already initialized.
+	var readActionName := "Read(" + initializationFlag.name + ")";
+  var readAction := object ReadStructuralFeatureAction {
+  	activity := method;
+  	name := readActionName;
+  	structuralFeature := initializationFlag;
+  	_'object' := object InputPin {
+  		name := readActionName + ".object";
+  		type := class_;
+  		lower := 1;
+  		upper := 1;
+  	};
+  	_'result' := object OutputPin {
+  		name := readActionName + ".result";
+  		type := initializationFlag.type;
+  		lower := 0;
+  		upper := 1;
+  	};
+  };
+  object ObjectFlow {
+  	activity := method;
+  	source := selfFork;
+  	target := readAction._'object';
+  };
+  
+  var sizeAction := object CallBehaviorAction {
+  	activity := method;
+  	name := "Call(Size)";
+  	behavior := self.functionSize();
+  	argument += object InputPin {
+  		name := "Call(Size).argument";
+  		lower := 0;
+  		upper := -1;
+  	};
+  	_'result' += object OutputPin {
+  		name := "Call(Size).result";
+  		type := self.integerType().toUml().oclAsType(Type);
+  		lower := 1;
+  		upper := 1;
+  	};
+  };
+  object ObjectFlow {
+  	activity := method;
+  	source := readAction._'result';
+  	target := sizeAction.argument->at(1);
+  };
+
+  valueAction := object ValueSpecificationAction {
+  	activity := method;
+  	name := "Value(0)";
+  	value := object LiteralInteger {
+  		value := 0;
+  	};
+  	_'result' := object OutputPin {
+  		name := "Value(0).result";
+  		type := sizeAction._'result'->at(1).type;
+  		lower := 1;
+  		upper := 1;
+  	};
+  };
+  
+  var testAction := object TestIdentityAction {
+  	activity := method;
+  	name := "Test(Size==0)";
+  	first := object InputPin {
+  		name := "Test(Size==0).first";
+  		lower := 0;
+  		upper := 1;
+  	};
+  	second := object InputPin {
+  		name := "Test(Size==0).second";
+  		lower := 0;
+  		upper := 1;
+  	};
+  	_'result' := object OutputPin {
+  		name := "Test(Size==0).result";
+  		type := self.booleanType().toUml().oclAsType(Type);
+  		lower := 1;
+  		upper := 1;
+  	};
+  };
+  object ObjectFlow {
+  	activity := method;
+  	source := sizeAction._'result'->at(1);
+  	target := testAction.first;
+  };
+  object ObjectFlow {
+  	activity := method;
+  	source := valueAction._'result';
+  	target := testAction.second;
+  };
+  
+  var initialNode := object InitialNode {
+  	activity := method;
+  	name := "InitialNode";
+  };
+  var graph := createObjectDecisionGraph(
+  	"Test(" + initializationFlag.name + ")",
+  	initialNode, testAction.result,
+  	initializationNode, null
+  );
+  method.ownedNode += graph.nodes;
+  method.edge += graph.edges;
+  
+	return method;
 }
 
+/*
 helper adjustName(qualifiedName : String) : String {
   return qualifiedName.tokenize("::")->iterate(name; adjustedName : String = "" |
     if adjustedName = "" then name.toName()
@@ -623,12 +845,13 @@ helper adjustName(qualifiedName : String) : String {
     endif
   )
 }
+*/
 
-query initializationOperationFor(class_ : Class) : Operation {
+query Class::initializationOperation() : Operation {
 	var operation : Operation := null;
-  var initializerName := class_.name + "$initialization$";
+  var initializerName := self.name + "$initialization$";
   var n = initializerName.size();
-	class_.ownedOperation->forEach(ownedOperation) {
+	self.ownedOperation->forEach(ownedOperation) {
 		var operationName := ownedOperation.name;
 		var m := operationName.size();
 		if operationName <> null and m > n and
@@ -651,7 +874,8 @@ mapping ActiveClassDefinition::toClass() : Class
   classifierBehavior := self.classifierBehavior.map toActivity();
   classifierBehavior.name := uniqueName(result.name + "$behavior", result);
   classifierBehavior.visibility := VisibilityKind::private;
-  ownedBehavior += classifierBehavior // Eclipse implmentation only
+  ownedBehavior += classifierBehavior; // Eclipse implmentation only
+  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
 }
 
 // Data Type Definitions
@@ -664,8 +888,7 @@ mapping DataTypeDefinition::toDataType() : DataType
 
 mapping DataTypeDefinition::toPrimitive() : PrimitiveType
   inherits ClassifierDefinition::toNamespace
-  when { self.isPrimitive } {
-	// TODO: Handle primitive types.
+  when { self.isPrimitive } {	
 }
   
 // Association Definitions
@@ -706,22 +929,32 @@ mapping Member::toReception() : Reception
 // Activity Definitions
 
 mapping ActivityDefinition::toActivity() : Activity
-  inherits ClassifierDefinition::toClassifier {
+  inherits ClassifierDefinition::toClassifier
+  when { not self.isStub } {
 init {
   var parameters := self.parameters();
   var returnParameter := self.returnParameter();
   if returnParameter <> null then
     parameters += returnParameter
   endif;
-  result :=
-    if self.isStub then
-      object Activity {
-      	ownedParameter := parameters->map toParameter();
-      }
-    else
-  	  self.body.map toActivity(parameters->map toParameter())
-  	endif;	
+  result := new Activity(parameters->map toParameter());
 }
+	isActive := self.toReference().isActiveBehavior();
+	self.body.map toActivity(result);
+  if self.unit->isEmpty() then {
+  	addDefinition(result, self.body);	
+  } endif;
+}
+
+query Activity::inputParameterForkFor(parameter : Parameter) : ForkNode {
+	var nodes := self.node[
+		oclIsKindOf(ActivityParameterNode) and 
+		oclAsType(ActivityParameterNode).parameter = parameter and 
+		outgoing->notEmpty()];
+	return
+		if nodes->isEmpty() then null
+		else nodes->any(true).outgoing->any(true).target.oclAsType(ForkNode)
+		endif;
 }
 
 // Typed Element Definitions
@@ -770,6 +1003,48 @@ query toParameterDirectionKind(direction : String) : ParameterDirectionKind {
 
 mapping TypedElementDefinition::toProperty() : Property
   merges TypedElementDefinition::toTypedElement, TypedElementDefinition::toMultiplicityElement;
+  
+query FormalParameter::assignedValueSource(assignedName : String) : ActivityNode {
+	var activity : Activity;
+	var parameter : Parameter;
+	var context := self.containingMember().namespace;
+	var stub := context.stub();
+	var element :=
+		if stub = null then context.map toUml()
+		else stub.toUml() endif;
+		
+	if element.oclIsKindOf(Operation) then {
+		var operation := element.oclAsType(Operation);
+		activity := operation.method->any(true).oclAsType(Activity);
+		var i =
+			if stub = null then operation.ownedParameter->indexOf(self.map toParameter())
+			else context.oclAsType(ActivityDefinition).parameters()->indexOf(self) endif;
+		parameter := activity.ownedParameter->at(i);
+	} else {
+		activity := element.oclAsType(Activity);
+		parameter := self.map toParameter();
+	} endif;
+	
+	return activity.inputParameterForkFor(parameter);
+	
+	/*
+	var activityNode = activity.inputParameterForkFor(parameter);
+	
+	var comment := object Comment {
+		annotatedElement += element;
+		body :=
+			"element = " + nameOf(element) +
+			"\nactivity = " + nameOf(activity) +
+			"\nparameter = " + nameOf(parameter) +
+			"\nactivityNode = " + nameOf(activityNode);
+	};
+	if element <> null then {
+		element.ownedComment += comment;
+	} endif;
+	
+	return activityNode;
+	*/
+}
 
 // Property Definitions
 
@@ -783,34 +1058,35 @@ mapping PropertyDefinition::toProperty() : Property
 		else AggregationKind::none endif;
   if self.initializer <> null then {
   	 var expression := self.initializer.map toOpaqueExpression().oclAsType(OpaqueExpression);
-  	 expression.behavior.ownedParameter := object Parameter {
-  	   direction := ParameterDirectionKind::_return;
-       type := result.type;
-       lowerValue := result.lowerValue.deepclone().oclAsType(ValueSpecification);
-       upperValue := result.upperValue.deepclone().oclAsType(ValueSpecification);
-       isOrdered := result.isOrdered;
-       isUnique := result.isUnique;  	 	
-  	 };
   	 defaultValue := expression;
   } endif;
 }
 
 mapping Expression::toOpaqueExpression() : OpaqueExpression {
   behavior := self.map toActivity();
+  addDefinition(behavior.oclAsType(Activity), self);
 }
 
 // Operation Definitions
 
 mapping OperationDefinition::toOperation() : Operation
-  inherits MemberDefinition::toNamedElement {
+  inherits MemberDefinition::toNamedElement
+  when { not self.isStub } {
   isAbstract := self.isAbstract;
   ownedParameter := self.parameters()->map toParameter();
   var returnParameter := self.returnParameter();
   if returnParameter <> null then
     ownedParameter += returnParameter.map toParameter()
   endif;
-  if not self.isAbstract then
-    if self.isStub or self.isConstructor then
+  if not self.isAbstract then {
+  	var activity := new Activity(result.ownedParameter->deepclone()->oclAsType(Parameter));
+  	method += activity;
+  	self.body.map toActivity(activity);
+  	addDefinition(activity, self.body);
+  /*
+    if self.isConstructor then
+    	// Defer mapping of constructor body until later, after the initialization infrastructure
+    	// is set up for the owning class.
       method := object Activity {
       	ownedParameter := result.ownedParameter->deepclone()->oclAsType(Parameter);
       	visibility := VisibilityKind::protected;
@@ -818,33 +1094,450 @@ mapping OperationDefinition::toOperation() : Operation
     else
       method := self.body.map toActivity(result.ownedParameter->deepclone()->oclAsType(Parameter))
     endif
-  endif;
+  */
+  } endif;
 }
 
-helper OperationDefinition::mapConstructor(initializationFlagName : String, initializationOperationName : String) {
-  var i := self.indexOfBodyStatement();
-  var superInvocationSegment := 
-    if i = 1 then ""
-    else 
-      concat(self.body.statement->subOrderedSet(1, i-1).serializeMethodCall()) + "\n"
-    endif;
-  var bodySegment := 
-    if i > self.body.statement->size() then ""
-    else
-      concat(self.body.statement->
-          subOrderedSet(i, self.body.statement->size()).serialize()
-      ) + "\n"
-    endif;
+helper mapDefaultConstructor(inout method : Activity, class_ : Class, initializationOperation : Operation) {
+
+  // Add an output parameter node.
+	var returnParameter := method.ownedParameter->at(1);
+	var outputNode := object ActivityParameterNode {
+		activity := method;
+		name := "Return";
+		parameter := returnParameter;
+	};	
+
+  // Return context object as the constructor result.
+	var readSelfAction := object ReadSelfAction {
+		activity := method;
+		name := "ReadSelf";
+		_'result' := object OutputPin {
+			name := "ReadSelf.result";
+			type := class_;
+			lower := 1;
+			upper := 1;
+		}
+	};	
+	var fork := object ForkNode {
+		activity := method;
+		name := "Fork(" + readSelfAction._'result'.name + ")";
+	};	
+	object ObjectFlow {
+		activity := method;
+		source := readSelfAction._'result';
+		target := fork;
+	};
+	object ObjectFlow {
+		activity := method;
+		source := fork;
+		target := outputNode;
+	};
+	
+	// Add call to local initialization operation.	
+	var callActionName := "Call(" + initializationOperation.name + ")";
+	var callAction := object CallOperationAction {
+		activity := method;
+		name := callActionName;
+    target := object InputPin {
+    	name := callActionName + ".target";
+    	type := readSelfAction._'result'.type;
+    	lower := 1;
+    	upper := 1;
+    }
+	};	
+	object ObjectFlow {
+		activity := method;
+		source := fork;
+		target := callAction.target;
+	};
+	
+}
+
+helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : Class) {
+	var previousNode : ActivityNode := null;
+	
+	// Add calls to superclass destructors.
+	self.specializationReferent->forEach(referent) {
+		var superclass := referent.resolveone(Generalization).general.oclAsType(Class);
+		var destructorOperation := superclass.destructorOperation();
+		if destructorOperation <> null and destructorOperation.method->notEmpty() then {
+			var destructorMethod := destructorOperation.method->any(true);
+			var callAction := object CallBehaviorAction {
+				activity := method;
+				name := "Call(" + superclass.name + "::destroy)";
+				behavior := destructorMethod;
+			};
+			if previousNode <> null then {
+				object ControlFlow {
+					activity := method;
+					source := previousNode;
+					target := callAction;
+				};
+			} endif;
+			previousNode := callAction;
+		} endif;	
+	};
+	
+	// Add calls to destructors for composite attributes.
+	class_.ownedAttribute->select(isComposite)->forEach(attribute) {
+		var structuredNode := class_.mapDestructionOf(attribute);
+		if structuredNode <> null then {
+			structuredNode.activity := method;
+			if previousNode <> null then {
+				object ControlFlow {
+					activity := method;
+					source := previousNode;
+					target := structuredNode;
+				}
+			} endif;
+			previousNode := structuredNode;
+		} endif;
+	};
+	
+	// Add calls to destructors for opposite ends of composite associations.
+	var additionalNodes : Set(StructuredActivityNode) := Set{};
+	self.member.toReference().toUml()->
+		select(oclIsKindOf(Association)).oclAsType(Association).ownedEnd->
+		select(isComposite and opposite().type.conformsTo(class_))->forEach(associationEnd) {
+			var structuredNode := class_.mapDestructionOf(associationEnd);
+			if structuredNode <> null then {
+				structuredNode.activity := method;
+				additionalNodes += structuredNode;
+			} endif;
+		};
+	if additionalNodes->size() = 1 then {
+		var structuredNode = additionalNodes->any(true);
+		structuredNode.activity := method;
+		if previousNode <> null then {
+			object ControlFlow {
+				activity := method;
+				source := previousNode;
+				target := structuredNode;
+			}
+		} endif;
+	} else if additionalNodes->size() > 1 then {
+		var enclosingNode := object StructuredActivityNode {
+			activity := method;
+			name := "DestroyEnds";
+			node := additionalNodes;
+		};
+		if previousNode <> null then {
+			object ControlFlow {
+				activity := method;
+				source := previousNode;
+				target := enclosingNode;
+			}
+		} endif;
+	} endif endif;
+	
+}
+
+// NOTE: This is necessary because the Property::opposite derived property
+// does not seem to be computed properly.
+query Property::opposite() : Property {
+	// Precondition: self.association <> null.
+	return self.association.memberEnd->any(e | e <> self);
+}
+
+helper Class::mapDestructionOf(property_ : Property) : StructuredActivityNode {
+	var structuredNode : StructuredActivityNode := null;
+	var propertyType :=  property_.type;	
+	if propertyType<>null and propertyType.oclIsKindOf(Class) then {
+		var targetClass := propertyType.oclAsType(Class);
+		var destructorOperation := targetClass.destructorOperation();
+		if destructorOperation <> null then {
+			structuredNode := object StructuredActivityNode {
+				name := "Destroy(" + property_.name + ")";
+			};
+		  var readSelfAction := object ReadSelfAction {
+		  	inStructuredNode := structuredNode;
+				name := "ReadSelf";
+				_'result' := object OutputPin {
+					name := "ReadSelf.result";
+					type := self;
+					lower := 1;
+					upper := 1;
+				}
+			};
+			var readActionName := "Read(" + property_.name + ")";
+			var readAction := object ReadStructuralFeatureAction {
+				inStructuredNode := structuredNode;
+				name := readActionName;
+				structuralFeature := property_;
+				_'object' := object InputPin {
+					name := readActionName + ".object";
+					type := self;
+					lower := 1;
+					upper := 1;
+				};
+				_'result' := object OutputPin {
+					name := readActionName + ".result";
+					type := targetClass;
+					lower := property_.lower;
+					upper := property_.upper;
+				}
+			};
+			object ObjectFlow {
+				inStructuredNode := structuredNode;
+				source := readSelfAction._'result';
+				target := readAction._'object';
+			};
+			var callActionName := "Call(" + targetClass.name + "::destroy)";
+			var callAction := object CallOperationAction {
+				inStructuredNode := structuredNode;
+				name := callActionName;
+				target := object InputPin {
+					name := callActionName + ".target";
+					type := targetClass;
+					lower := 1;
+					upper := 1;
+				}
+			};
+			if property_.upper = 1 then {
+				object ObjectFlow {
+					inStructuredNode := structuredNode;
+					source := readAction._'result';
+					target := callAction.target;
+				}
+			} else {
+				var regionName := "DestroyAll(" + property_.name + ")";
+				var region := object ExpansionRegion {
+					inStructuredNode := structuredNode;
+					mode := ExpansionKind::iterative;
+					name := regionName;
+					node := callAction;
+				};
+				object ControlFlow {
+					inStructuredNode := structuredNode;
+					source := readAction;
+					target := region;
+				};
+				var inputNode := object ExpansionNode {
+					inStructuredNode := structuredNode;
+					regionAsInput := region;
+					name := regionName + ".inputNode";
+					type := targetClass;
+				};
+				object ObjectFlow {
+					inStructuredNode := structuredNode;
+					source := readAction._'result';
+					target := inputNode;
+				};
+				object ObjectFlow {
+					inStructuredNode := structuredNode;
+					source := inputNode;
+					target := callAction.target;
+				};
+			} endif;
+		} endif;
+	} endif;
+	return structuredNode;
+}
+
+query Class::destructorOperation() : Operation {
+	var destructors := self.ownedOperation->select(
+		name = "destroy" and ownedParameter->isEmpty() and
+		hasStereotype("Destroy")
+	);
+	return
+		if destructors->isEmpty() then null
+		else destructors->any(true) endif;
+}
+
+helper OperationDefinition::mapConstructor(initializationFlag : Property, initializationOperation : Operation) {
   var operation := self.resolveone(Operation);
-  addDefinition(
-    operation.method->any(true).oclAsType(Activity), 
-    "{\nif (this." + initializationFlagName.toName() + " == null) {\n" +
-    superInvocationSegment + 
-    "this." + initializationOperationName.toName() + "();\n" +
-    bodySegment + "}\nreturn this;\n}");
+  var method := operation.method->any(true).oclAsType(Activity);
+  var structuredNodes := method.node->select(oclIsKindOf(StructuredActivityNode));
+  var firstNode := 
+  	if structuredNodes->isEmpty() then null
+  	else structuredNodes->any(incoming->isEmpty()) endif;
+  var bodyNode := self.firstBodyNode(firstNode);
+  
+  // Return context object as the constructor result.
+  var readSelfAction := object ReadSelfAction {
+  	activity := method;
+		name := "ReadSelf";
+		_'result' := object OutputPin {
+			name := "ReadSelf.result";
+			type := operation._'class';
+			lower := 1;
+			upper := 1;
+		}
+	};
+	var selfFork := object ForkNode {
+		name := "Fork(" + readSelfAction._'result'.name + ")";
+  	activity := method;
+	};
+	object ObjectFlow {
+  	activity := method;
+		source := readSelfAction._'result';
+		target := selfFork;
+	};
+	
+	var returnParameter := method.ownedParameter->any(direction = ParameterDirectionKind::_'return');
+	var outputNode := method.node->any(
+		oclIsKindOf(ActivityParameterNode) and 
+		oclAsType(ActivityParameterNode).parameter = returnParameter);
+	object ObjectFlow {
+  	activity := method;
+		source := selfFork;
+		target := outputNode;
+	};
+	
+	if not self.hasAlternativeConstructorCall() then {
+		
+		// Insert call to local initialization operation.
+		var callActionName := "Call(" + initializationOperation.name + ")";
+		var callAction := object CallOperationAction {
+	  	activity := method;
+			name := callActionName;
+	    target := object InputPin {
+	    	name := callActionName + ".target";
+	    	type := readSelfAction._'result'.type;
+	    	lower := 1;
+	    	upper := 1;
+	    }
+		};
+		object ObjectFlow {
+	  	activity := method;
+			source := selfFork;
+			target := callAction.target;
+		};
+		if firstNode = null then {
+			firstNode := callAction;
+		} else if bodyNode = null then {
+			object ControlFlow {
+				activity := method;
+				source := firstNode;
+				target := callAction;
+			}
+		} else {
+			if bodyNode.incoming->isEmpty() then {
+				firstNode := callAction;
+		  } else {
+				var incoming := bodyNode.incoming->any(true);
+				object ControlFlow {
+			  	activity := method;
+					source := incoming.source;
+					target := callAction;
+				};
+				incoming.source := callAction;
+			} endif;
+			object ControlFlow {
+	  		activity := method;
+				source := callAction;
+				target := bodyNode;
+			};
+		} endif endif;
+		
+		// Add decision to skip constructor behavior if this object is already initialized.
+		var readActionName := "Read(" + initializationFlag.name + ")";
+		var readAction := object ReadStructuralFeatureAction {
+	  	activity := method;
+			name := readActionName;
+			structuralFeature := initializationFlag;
+			_'object' := object InputPin {
+				name := readActionName + ".object";
+				type := operation._'class';
+				lower := 1;
+				upper := 1;
+			};
+			_'result' := object OutputPin {
+				name := readActionName + ".result";
+				type := initializationFlag.type;
+				lower := 0;
+				upper := 1;
+			};
+		};
+		object ObjectFlow {
+	  	activity := method;
+			source := selfFork;
+			target := readAction._'object';
+		};
+		
+		var functionSize := self.functionSize();
+		var sizeActionName := "Call(" + functionSize.name + ")";
+		var sizeAction := object CallBehaviorAction {
+	  	activity := method;
+			name := sizeActionName;
+			argument += object InputPin {
+				name := sizeActionName + ".argument";
+				lower := 0;
+				upper := -1;
+			};
+			_'result' += object OutputPin {
+				name := sizeActionName + ".result";
+				type := self.integerType().toUml().oclAsType(Type);
+				lower := 1;
+				upper := 1;
+			};
+		};
+		object ObjectFlow {
+	  	activity := method;
+			source := readAction._'result';
+			target := sizeAction.argument->at(1);
+		};
+		
+		var valueAction := object ValueSpecificationAction {
+	  	activity := method;
+			name := "Value(0)";
+			_'result' := object OutputPin {
+				name := "Value(0).result";
+				type := self.integerType().toUml().oclAsType(Type);
+				lower := 1;
+				upper := 1;
+			}
+		};
+		
+		var testAction := object TestIdentityAction {
+	  	activity := method;
+			name := "Test(Size==0)";
+			first := object InputPin {
+				name := "Test(Size==0).first";
+				lower := 0;
+				upper := 1;
+			};
+			second := object InputPin {
+				name := "Test(Size==0).second";
+				lower := 0;
+				upper := 1;
+			};
+			_'result' := object OutputPin {
+				name := "Test(Size==0).result";
+				type := self.booleanType().toUml().oclAsType(Type);
+				lower := 1;
+				upper := 1;
+			}
+		};
+		object ObjectFlow {
+	  	activity := method;
+			source := sizeAction._'result'->at(1);
+			target := testAction.first;
+		};
+		object ObjectFlow {
+	  	activity := method;
+			source := valueAction._'result';
+			target := testAction.second;
+		};
+		
+		var initialNode := object InitialNode {
+	  	activity := method;
+			name := "InitialNode";
+		};
+		
+		var decisionGraph := createControlDecisionGraph(
+			"Test(" + initializationFlag.name + ")",
+			initialNode, testAction._'result', firstNode, null
+		);
+		method.ownedNode += decisionGraph.nodes;
+		method.edge += decisionGraph.edges;
+		
+	} endif;
+  
 }
 
-
+/*
 helper AnnotatedStatement::serializeMethodCall() : String {
   var expression := self.statement.oclAsType(ExpressionStatement).
     expression.oclAsType(SuperInvocationExpression);
@@ -860,23 +1553,30 @@ helper AnnotatedStatement::serializeMethodCall() : String {
 helper concat(strings : Sequence(String)) : String {
 	return strings->iterate(string; s : String = "" | s + string + " ");
 }
-
-mapping Block::toActivity(ownedParameters : Sequence(Parameter)) : Activity {
-  ownedParameter := ownedParameters;
-  visibility := VisibilityKind::protected;
-  addDefinition(result, self.serialize());
-}
+*/
 
 helper OperationDefinition::hasAlternativeConstructorCall() : Boolean {
 	return self.body <> null and self.body.statement->notEmpty() and
-	let statement = self.body.statement->at(1) in
+	let statement = self.body.statement->at(1).statement in
 	  statement.oclIsKindOf(ExpressionStatement) and
 	  let expression = statement.oclAsType(ExpressionStatement).expression in
 	    expression.oclIsKindOf(FeatureInvocationExpression) and
 	    expression.oclAsType(FeatureInvocationExpression).referent.isConstructor();
 }
 
-helper OperationDefinition::indexOfBodyStatement() : Integer {
+query OperationDefinition::firstBodyNode(firstNode : ActivityNode) : ActivityNode {
+	var i := self.indexOfBodyStatement();
+	return
+		if i > self.body.statement->size() then null
+		else
+			while (node := firstNode; i > 1) {
+				node := node.outgoing->any(true).target;
+				i := i - 1;
+			}
+		endif;
+}
+
+query OperationDefinition::indexOfBodyStatement() : Integer {
   // log("[indexOfBodyStatement] operation=" + self.name);
 	return 
     while (i := 1; i <= self.body.statement->size() and 
@@ -886,12 +1586,12 @@ helper OperationDefinition::indexOfBodyStatement() : Integer {
 	  }
 }
 
-helper Statement::isSuperConstructorInvocation() : Boolean {
+query Statement::isSuperConstructorInvocation() : Boolean {
   // log("[isSuperConstructorInvocation] statement=" + self.serialize());
 	return false;
 }
 
-helper ExpressionStatement::isSuperConstructorInvocation() : Boolean {
+query ExpressionStatement::isSuperConstructorInvocation() : Boolean {
   // log("[isSuperConstructorInvocation] expressionStatement=" + self.serialize());
   // log(" isSuperInvocationExpresion=" + self.expression.oclIsKindOf(SuperInvocationExpression).toString());
 	var is := let expression = self.expression in

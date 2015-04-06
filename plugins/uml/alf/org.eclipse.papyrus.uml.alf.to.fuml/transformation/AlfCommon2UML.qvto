@@ -1,0 +1,361 @@
+/*****************************************************************************
+ * Copyright (c) 2015 CEA LIST.
+ *
+ *    
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *   Ed Seidewitz
+ * 
+ *****************************************************************************/
+modeltype Alf uses "http://www.omg.org/spec/ALF/20120827";
+modeltype UML uses "http://www.eclipse.org/uml2/5.0.0/UML";
+
+transformation AlfCommon2UML(in alf : Alf, inout uml : UML);
+
+// Syntax Elements
+
+abstract mapping SyntaxElement::toUml() : Element;
+
+helper SyntaxElement::libraryFunction(path : String) : Behavior {
+	var referents := self.resolveInLibrary(path)->select(isBehavior());
+  return
+    if referents->isEmpty() then null
+    else referents->any(true).toUml().oclAsType(Behavior)
+    endif;
+}
+
+query SyntaxElement::literalBoolean(b : Boolean) : LiteralBoolean {
+	return object LiteralBoolean {
+	  name := b.toString();
+		type := self.booleanType().toType();
+		value := b;
+	}
+}
+
+query SyntaxElement::literalNatural(n : Integer) : LiteralInteger {
+	return object LiteralInteger {
+		name := n.toString();
+		type := self.naturalType().toType();
+		value := n;
+	}
+}
+
+helper SyntaxElement::functionSize() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::Size");
+}
+
+helper SyntaxElement::functionAt() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::SequenceFunctions::At");
+}
+
+helper SyntaxElement::functionPlus() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::+");
+}
+
+helper SyntaxElement::functionMinus() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::-");
+}
+
+helper SyntaxElement::functionLessThanOrEqual() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::IntegerFunctions::<=");
+}
+
+helper SyntaxElement::functionOr() : Behavior {
+	return self.libraryFunction("PrimitiveBehaviors::BooleanFunctions::|");
+}
+
+// Documented Elements
+
+abstract mapping DocumentedElement::toElement() : Element {
+  self.documentation->forEach(d) {
+    var comment = object Comment {
+      annotatedElement := result;
+      body := d.substring(4,d.length()-2)
+    };
+    ownedComment += comment;
+  }
+}
+
+// Element References
+
+abstract helper ElementReference::toUml() : Element;
+
+abstract helper InternalElementReference::toUml() : Element;
+
+helper ExternalElementReference::toUml() : Element {
+ return self.asUml().oclAsType(Element);
+}
+
+helper ElementReference::toType() : Type {
+	return self.toUml().oclAsType(Type);
+}
+
+helper toType(reference : ElementReference) : Type {
+	return
+		if reference = null then null
+		else reference.toType() endif;
+}
+
+helper BoundElementReference::toUml() : Element {
+  // TODO: Handle expansion of template bindings.
+  return 
+    if self.isTemplateBinding() then
+      self.templateBinding.toUml()
+    else
+      self.referent.toUml()
+    endif;
+}
+
+// Activity-related constructors
+
+constructor Activity::Activity(ownedParameters : Sequence(Parameter)) {
+  ownedParameter := ownedParameters;
+  ownedParameters->forEach(ownedParameter) {
+  	var parameterNode := new ActivityParameterNode(result, ownedParameter, false);
+		if ownedParameter.direction = ParameterDirectionKind::_'in' or 
+		   ownedParameter.direction = ParameterDirectionKind::_'inout' then {
+			var forkNode := new ForkNode(result, ownedParameter.name);
+			new ObjectFlow(result, parameterNode, forkNode);
+	  } endif;
+	  if ownedParameter.direction = ParameterDirectionKind::_'inout' then {
+			new ActivityParameterNode(result, ownedParameter, true);
+		} endif;
+  };
+}
+
+constructor ObjectFlow::ObjectFlow(sourceNode : ActivityNode, targetNode : ActivityNode) {
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ObjectFlow::ObjectFlow(owner : Activity, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	activity := owner;
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ObjectFlow::ObjectFlow(owner : StructuredActivityNode, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	inStructuredNode := owner;
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ControlFlow::ControlFlow(sourceNode : ActivityNode, targetNode : ActivityNode) {
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ControlFlow::ControlFlow(structuredNode : StructuredActivityNode, sourceNode : ActivityNode, targetNode : ActivityNode) {
+	inStructuredNode := structuredNode;
+	source := sourceNode;
+	target := targetNode;
+}
+
+constructor ActivityParameterNode::ActivityParameterNode(owner : Activity, ownedParameter : Parameter, isOutput : Boolean) {
+	activity := owner;
+	parameter := ownedParameter;
+	name :=
+		if isOutput or ownedParameter.direction = ParameterDirectionKind::_'out' then 
+			"Output(" + ownedParameter.name + ")"
+		else if ownedParameter.direction = ParameterDirectionKind::_'in' or 
+			      ownedParameter.direction = ParameterDirectionKind::_'inout' then 
+			"Input(" + ownedParameter.name + ")"
+		else 
+			"Return" 
+		endif endif;
+}
+
+constructor InitialNode::InitialNode(label : String) {
+	name := "Initial(" + label + ")";
+}
+
+constructor InitialNode::InitialNode(structuredNode : StructuredActivityNode) {
+	inStructuredNode := structuredNode;
+	name := "Initial(" + structuredNode.name + ")"
+}
+
+constructor ForkNode::ForkNode(sourceName : String) {
+	name := "Fork(" + sourceName + ")";
+}
+
+constructor ForkNode::ForkNode(owner : Activity, sourceName : String) {
+	activity := owner;
+	name := "Fork(" + sourceName + ")";
+}
+
+constructor ForkNode::ForkNode(structuredNode : StructuredActivityNode, sourceName : String) {
+	inStructuredNode := structuredNode;
+	name := "Fork(" + sourceName + ")";
+}
+
+constructor ActivityFinalNode::ActivityFinalNode(containerName : String) {
+	name := "FinalNode(" + containerName + ")";
+}
+
+constructor ActivityFinalNode::ActivityFinalNode(owner : Activity) {
+	activity := owner;
+	name := "FinalNode(" + activity.name + ")";
+}
+
+constructor ActivityFinalNode::ActivityFinalNode(structuredNode : StructuredActivityNode) {
+	inStructuredNode := structuredNode;
+	name := "FinalNode(" + structuredNode.name + ")";
+}
+
+constructor InputPin::InputPin(pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	name := pinName;
+	type := pinType;
+	lower := pinLower;
+	upper := pinUpper;
+}
+
+constructor InputPin::InputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	inStructuredNode := structuredNode;
+	name := pinName;
+	type := pinType;
+	lower := pinLower;
+	upper := pinUpper;
+}
+
+constructor OutputPin::OutputPin(pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	name := pinName;
+	type := pinType;
+	lower := pinLower;
+	upper := pinUpper;
+}
+
+constructor OutputPin::OutputPin(structuredNode : StructuredActivityNode, pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
+	inStructuredNode := structuredNode;
+	name := pinName;
+	type := pinType;
+	lower := pinLower;
+	upper := pinUpper;
+}
+
+constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
+	if isInput then {
+		name := region.name + ".inputElement(" + sourceName + ")";
+		regionAsInput := region;
+	} else {
+		name := region.name + ".outputElement(" + sourceName + ")";
+		regionAsOutput := region;
+	} endif;
+}
+
+constructor AcceptEventAction::AcceptEventAction(structuredNode : StructuredActivityNode, signals : Set(Signal), hasOutput : Boolean) {
+	inStructuredNode := structuredNode;
+	isUnmarshall := false;
+	
+	var signalNames := "";
+	signals->forEach(signal) {
+		if signalNames.length() > 0 then {
+			signalNames := signalNames + ",";
+		} endif;
+		signalNames := signalNames + signal.name;
+		
+		trigger += new Trigger(signal);		
+	};
+	
+	name := "Accept(" + signalNames + ")";
+	
+	if hasOutput then {
+		result.result += new OutputPin(name + ".result", null, 1, 1);
+	} endif;
+}
+
+constructor Trigger::Trigger(signal : Signal) {
+	event := new SignalEvent(signal);
+}
+
+constructor SignalEvent::SignalEvent(sig : Signal) {
+	name := "Event(" + sig.name + ")";
+	signal := sig;
+}
+
+constructor CallBehaviorAction::CallBehaviorAction(target : Behavior) {
+	var actionName := "Call(" + target.name +")";
+	name := actionName;
+	behavior := target;
+	argument := target.ownedParameter[direction = ParameterDirectionKind::_'in' or direction = ParameterDirectionKind::_'inout']->
+		collect(parameter |
+			new InputPin(actionName + ".argument(" + parameter.name + ")", 
+				parameter.type, parameter.lower, parameter.upper)
+		);
+	result._'result' := target.ownedParameter[direction = ParameterDirectionKind::_'out' or direction = ParameterDirectionKind::_'inout' or direction = ParameterDirectionKind::_'return']->collect(parameter | 
+		new OutputPin(actionName + ".result(" + parameter.name + ")", 
+			parameter.type, parameter.lower, parameter.upper)
+	);
+}
+
+constructor ReadIsClassifiedObjectAction::ReadIsClassifiedObjectAction(type : Classifier, direct : Boolean, booleanType : Type) {
+	name := "ReadClassifiedObject(" + type.name + ")";
+	classifier := type;
+	isDirect := direct;
+	_'object' := new InputPin(name + ".object", null, 1, 1);
+	result.result := new OutputPin(name + ".result", booleanType, 1, 1);
+}
+
+constructor ReclassifyObjectAction::ReclassifyObjectAction(type : Type, oldClassifiers : Set(Classifier), newClassifiers : Set(Classifier), replaceAll : Boolean) {
+	var oldClassifierList := "";
+	oldClassifiers.name->forEach(oldName) {
+		if oldClassifierList.length() > 0 then {
+			oldClassifierList := oldClassifierList + ",";
+		} endif;
+		oldClassifierList := oldClassifierList + oldName;
+	};
+	if oldClassifierList.length() = 0 and isReplaceAll then {
+		oldClassifierList := "*";
+	} endif;
+	
+	var newClassifierList := "";
+	newClassifiers.name->forEach(newName) {
+		if newClassifierList.length() > 0 then {
+			newClassifierList := newClassifierList + ",";
+		} endif;
+		newClassifierList := newClassifierList + newName;
+	};
+	
+	name := "Reclassify(" + oldClassifierList + " to " + newClassifierList + ")";	
+	_'object' := new InputPin(name + ".object", type, 1, 1);
+	oldClassifier := oldClassifiers;
+	newClassifier := newClassifiers;
+	isReplaceAll := replaceAll;
+}
+
+constructor StartObjectBehaviorAction::StartObjectBehaviorAction(class_ : Class) {
+	name := "Start(" + if class_ = null then "any" else class_.name endif + ")";
+	_'object' := new InputPin(name + ".object", class_, 1, 1);
+	isSynchronous := false;
+}
+
+constructor TestIdentityAction::TestIdentityAction(testName : String, booleanType : Type) {
+	name := "Test(" + testName + ")";
+	first := new InputPin(name + ".first", null, 1, 1);
+	second := new InputPin(name + ".second", null, 1, 1);
+	result._'result' := new OutputPin(name + ".result", booleanType, 1, 1);
+}
+
+constructor ValueSpecificationAction::ValueSpecificationAction(valueSpecification : ValueSpecification) {
+	name := "Value(" + valueSpecification.name + ")";
+	value := valueSpecification;
+	result.result := new OutputPin(name + ".result", valueSpecification.type, 1, 1);
+}
+
+// Other
+
+helper nameOf(element : Element) : String {
+	return
+		if element = null then "<Null>"
+		else if element.oclIsInvalid() then "<Invalid>"
+		else if not element.oclIsKindOf(NamedElement) then "<Not Named>"
+		else let name = element.oclAsType(NamedElement).name in
+			if name = null then "<No Name>"
+			else "'" + name + "'" endif
+		endif endif endif;
+}
+
+
