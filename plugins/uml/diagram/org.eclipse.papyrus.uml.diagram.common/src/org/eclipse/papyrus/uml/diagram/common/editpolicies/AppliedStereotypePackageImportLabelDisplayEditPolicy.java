@@ -15,7 +15,6 @@ package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
-import org.eclipse.papyrus.uml.diagram.common.Messages;
 import org.eclipse.uml2.uml.PackageImport;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.VisibilityKind;
@@ -28,9 +27,9 @@ import org.eclipse.uml2.uml.VisibilityKind;
  */
 public class AppliedStereotypePackageImportLabelDisplayEditPolicy extends AppliedStereotypeLinkLabelDisplayEditPolicy {
 
-	String importTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportTag + Activator.ST_RIGHT;
+	String importTag = Activator.ST_LEFT + "import" + Activator.ST_RIGHT; //$NON-NLS-1$
 
-	String accessTag = Activator.ST_LEFT + Messages.AppliedStereotypeLabel_PackageImportAccessTag + Activator.ST_RIGHT;
+	String accessTag = Activator.ST_LEFT + "access" + Activator.ST_RIGHT; //$NON-NLS-1$
 
 	@Override
 	public void activate() {
