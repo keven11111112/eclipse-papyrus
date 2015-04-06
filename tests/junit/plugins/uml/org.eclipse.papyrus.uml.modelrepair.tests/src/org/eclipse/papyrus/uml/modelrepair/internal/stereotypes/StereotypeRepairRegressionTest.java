@@ -80,6 +80,10 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 	@Rule
 	public final ModelSetFixture modelSet = new ModelSetFixture();
 
+	// Ensure that the cache is purged after each text execution (don't rely on the UI thread)
+	@Rule
+	public final ReadOnlyCacheRule readonly = new ReadOnlyCacheRule();
+
 	private StereotypeApplicationRepairSnippet fixture;
 
 	private TestPresenter presenter; // For tests that use it
@@ -488,6 +492,9 @@ public class StereotypeRepairRegressionTest extends AbstractPapyrusTest {
 				for (Resource next : Iterables.filter(modelSet.getResourceSet().getResources(), Predicates.not(Predicates.equalTo(modelSet.getModelResource())))) {
 					next.unload();
 				}
+
+				// Forget about any read-only resource states before loading again
+				readonly.clearCache();
 
 				EcoreUtil.resolveAll(modelSet.getResourceSet());
 			}

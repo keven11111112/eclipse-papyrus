@@ -13,6 +13,7 @@
  *   Christian W. Damus - bug 458736
  *   Christian W. Damus - bug 458652
  *   Christian W. Damus - bug 459488
+ *   Christian W. Damus - bug 463631
  *
  */
 package org.eclipse.papyrus.uml.modelrepair.internal.stereotypes;
@@ -223,13 +224,17 @@ public class StereotypeApplicationRepairSnippet implements IModelSetSnippet {
 		Element root = getRootUMLElement(resource);
 
 		EditingDomain domain = EMFHelper.resolveEditingDomain(root);
-		if ((domain == null) && (adapter != null)) {
+		if (domain == null) {
 			// Assume our editing domain context
-			domain = ((ModelSet) adapter.getResourceSet()).getTransactionalEditingDomain();
+			ModelSet modelSet = (ModelSet) adapter.getResourceSet();
+			if (modelSet != null) {
+				domain = ((ModelSet) adapter.getResourceSet()).getTransactionalEditingDomain();
+			}
 		}
 
-		// Only check for zombies in resources that we can modify (those being the resources in the user model opened in the editor)
-		if ((root instanceof Element) && !EMFHelper.isReadOnly(resource, domain)) {
+		// Only check for zombies in resources that we can modify (those being the resources in the user model opened in the editor).
+		// If there is no editing domain, then there is no read-only control
+		if ((root instanceof Element) && ((domain == null) || !EMFHelper.isReadOnly(resource, domain))) {
 			Element rootElement = root;
 			if (rootElement.getNearestPackage() != null) {
 				result = getZombieStereotypes(resource, rootElement);

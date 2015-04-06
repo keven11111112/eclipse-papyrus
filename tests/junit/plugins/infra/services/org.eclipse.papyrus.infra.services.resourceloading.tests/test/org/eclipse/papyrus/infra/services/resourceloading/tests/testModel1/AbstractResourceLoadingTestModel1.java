@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 Atos Origin, CEA, and others.
+ * Copyright (c) 2010, 2015 Atos Origin, CEA, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Emilien Perico (Atos Origin) emilien.perico@atosorigin.com - Initial API and implementation
  *  Christian W. Damus (CEA) - Work around regression in URI parsing in EMF 2.9
  *  Christian W. Damus (CEA) - bug 437217 - control-mode strategy changes interfere with later tests
+ *  Christian W. Damus - bug 463631
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.services.resourceloading.tests.testModel1;
@@ -63,9 +64,9 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 
 	public static final String RESOURCE_URI = ITestConstants.FRAGMENT_ID + "/" + INITIAL_PATH;
 
-	private String[] resources = new String[]{ "model1", "Package0", "Package1" };
+	private String[] resources = new String[] { "model1", "Package0", "Package1" };
 
-	private String[] extensions = new String[]{ ".di", ".notation", ".uml" };
+	private String[] extensions = new String[] { ".di", ".notation", ".uml" };
 
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
@@ -82,8 +83,8 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 
 		// first we need to create the test project from the plugin to the workspace test platform
 		IProject project = copyTestModelToThePlatform();
-		modelSet = houseKeeper.cleanUpLater((ModelSet)new OnDemandLoadingModelSetServiceFactory().createServiceInstance());
-		if(project != null) {
+		modelSet = houseKeeper.cleanUpLater((ModelSet) new OnDemandLoadingModelSetServiceFactory().createServiceInstance());
+		if (project != null) {
 			IFile modelFile = project.getFile(INITIAL_PATH + "model1.di");
 			modelSet.loadModels(modelFile);
 		} else {
@@ -101,19 +102,19 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 		IProject project = ResourcesPlugin.getWorkspace().getRoot().getProject(ITestConstants.FRAGMENT_ID);
 		IProgressMonitor monitor = new NullProgressMonitor();
 
-		if(project != null && project.exists()) {
+		if (project != null && project.exists()) {
 			project.delete(true, monitor);
 		}
 
-		if(project != null && !project.exists()) {
+		if (project != null && !project.exists()) {
 			project.create(monitor);
 		}
 		project.open(monitor);
-		for(String res : resources) {
-			for(String s : extensions) {
+		for (String res : resources) {
+			for (String s : extensions) {
 				IFile file = project.getFile(INITIAL_PATH + res + s);
 				// link all the models resources
-				if(!file.exists()) {
+				if (!file.exists()) {
 					createFolder(project, "resources/");
 					createFolder(project, INITIAL_PATH);
 					// URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(INITIAL_PATH + res + s), null);
@@ -126,12 +127,12 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 		// link the profile
 		String profilePath = INITIAL_PATH + "MyProfile.uml";
 		IFile file = project.getFile(profilePath);
-		if(!file.exists()) {
-			//URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(profilePath), null);
-			//URL newFile = FileLocator.resolve(url);
-			//file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
+		if (!file.exists()) {
+			// URL url = FileLocator.find(Platform.getBundle(ITestConstants.FRAGMENT_ID), new Path(profilePath), null);
+			// URL newFile = FileLocator.resolve(url);
+			// file.createLink(newFile.toURI(), IResource.REPLACE, monitor);
 			file.create(Platform.getBundle(ITestConstants.FRAGMENT_ID).getEntry(profilePath).openStream(), true, monitor);
-			if(!file.exists()) {
+			if (!file.exists()) {
 				fail("Impossible to create the profile file");
 			}
 		}
@@ -170,14 +171,14 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	}
 
 	private void assertTestGetObjectOfControlledResource(String message, Object object, URI uri) {
-		switch(getStrategy()) {
+		switch (getStrategy()) {
 		case 0:
 			// Load all the needed resources
 			assertNotNull(message, object);
 			break;
 		case 1:
 			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
-			if(uri.toString().contains("model1")) {
+			if (uri.toString().contains("model1")) {
 				// object in current resource
 				assertNotNull(message, object);
 			} else {
@@ -218,14 +219,14 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	}
 
 	private void assertTestGetDiagramOfControlledResource(String message, Object object, URI uri) {
-		switch(getStrategy()) {
+		switch (getStrategy()) {
 		case 0:
 			// Load all the needed resources
 			assertNotNull(message, object);
 			break;
 		case 1:
 			// Load the additional resources (profile and pathmap). Controlled resources are not loaded
-			if(uri.toString().contains("model1")) {
+			if (uri.toString().contains("model1")) {
 				// object in current resource
 				assertNotNull(message, object);
 			} else {
@@ -249,7 +250,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	public void testGetObjectOfProfileResource() {
 		URI uriPlatformProfile = URI.createPlatformResourceURI(RESOURCE_URI + "MyProfile.uml", false).appendFragment("_XkGiwB07Ed-QQ4mYkrb7Gg");
 		System.err.println(uriPlatformProfile);
-		Resource resource = modelSet.getResource(uriPlatformProfile, true);
+		Resource resource = modelSet.getResource(uriPlatformProfile.trimFragment(), true);
 		assertNotNull("Resource should not be null", resource);
 
 		EObject platformProfile = modelSet.getEObject(uriPlatformProfile, true);
@@ -278,14 +279,14 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	public void testGetDanglingReferenceFromAControlledResource() {
 		URI uriProperty0 = URI.createPlatformResourceURI(RESOURCE_URI + "model1.uml", false).appendFragment("_RHuPYIQsEd-SDs-So_GGkw");
 		EObject property0 = modelSet.getEObject(uriProperty0, true);
-		if(property0 instanceof Property) {
-			Type type = ((Property)property0).getType();
+		if (property0 instanceof Property) {
+			Type type = ((Property) property0).getType();
 			assertTestGetDanglingReferenceFromAControlledResource("Get type from controlled resource is resolved", type);
 		}
 	}
 
 	private void assertTestGetDanglingReferenceFromAControlledResource(String message, EObject eObject) {
-		switch(getStrategy()) {
+		switch (getStrategy()) {
 		case 0:
 			// Load all the needed resources
 			assertTrue(message, !eObject.eIsProxy());
@@ -310,7 +311,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	public void tearDown() throws Exception {
 		// Unload models
 		List<Resource> resources = new LinkedList<Resource>(modelSet.getResources());
-		for(Resource r : resources) {
+		for (Resource r : resources) {
 			try {
 				r.unload();
 			} catch (Exception e) {
@@ -328,7 +329,7 @@ public abstract class AbstractResourceLoadingTestModel1 extends AbstractPapyrusT
 	 */
 	private void createFolder(IProject project, String name) throws CoreException {
 		IFolder parent = project.getFolder(name);
-		if(!parent.exists()) {
+		if (!parent.exists()) {
 			parent.create(true, true, new NullProgressMonitor());
 		}
 		assertTrue(parent.exists());
