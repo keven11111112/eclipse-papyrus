@@ -36,17 +36,16 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSequenceTermSequenceTermRuleParserRuleCall_1_1_0 = (RuleCall) cSequenceTermAssignment_1_1.eContents().get(0);
 		private final Keyword cColonKeyword_2 = (Keyword) cGroup.eContents().get(2);
 		private final Assignment cNameAssignment_3 = (Assignment) cGroup.eContents().get(3);
-		private final RuleCall cNameNameRuleTerminalRuleCall_3_0 = (RuleCall) cNameAssignment_3.eContents().get(0);
+		private final RuleCall cNameNAME_RULETerminalRuleCall_3_0 = (RuleCall) cNameAssignment_3.eContents().get(0);
 
 		// MessageRule:
-		//
-		// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=nameRule;
+		// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=NAME_RULE;
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=nameRule
+		// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=NAME_RULE
 		public Group getGroup() {
 			return cGroup;
 		}
@@ -86,14 +85,14 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 			return cColonKeyword_2;
 		}
 
-		// name=nameRule
+		// name=NAME_RULE
 		public Assignment getNameAssignment_3() {
 			return cNameAssignment_3;
 		}
 
-		// nameRule
-		public RuleCall getNameNameRuleTerminalRuleCall_3_0() {
-			return cNameNameRuleTerminalRuleCall_3_0;
+		// NAME_RULE
+		public RuleCall getNameNAME_RULETerminalRuleCall_3_0() {
+			return cNameNAME_RULETerminalRuleCall_3_0;
 		}
 	}
 
@@ -107,17 +106,10 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		private final Assignment cRecurrenceAssignment_2 = (Assignment) cGroup.eContents().get(2);
 		private final RuleCall cRecurrenceRecurrenceRuleParserRuleCall_2_0 = (RuleCall) cRecurrenceAssignment_2.eContents().get(0);
 
-		// //('.' leftTerms += LeftSequenceTermRule)*
+		//// ('.' leftTerms += LeftSequenceTermRule)*
 		// SequenceTermRule:
-		//
 		// sequencialOrder= //represents the sequential order of the Message within the next higher level of procedural calling
-		//
-		//
-		// INT sequenceName=ID?
-		//
-		// // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
-		//
-		//
+		// INT sequenceName=ID? // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
 		// recurrence=RecurrenceRule? // The recurrence represents conditional or iterative execution.
 		// ;
 		@Override
@@ -126,27 +118,19 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		}
 
 		// sequencialOrder= //represents the sequential order of the Message within the next higher level of procedural calling
-		//
-		//
-		// INT sequenceName=ID?
-		//
-		// // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
-		//
-		//
+		// INT sequenceName=ID? // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
 		// recurrence=RecurrenceRule? // The recurrence represents conditional or iterative execution.
 		public Group getGroup() {
 			return cGroup;
 		}
 
 		// sequencialOrder= //represents the sequential order of the Message within the next higher level of procedural calling
-		//
-		//
 		// INT
 		public Assignment getSequencialOrderAssignment_0() {
 			return cSequencialOrderAssignment_0;
 		}
 
-		// //represents the sequential order of the Message within the next higher level of procedural calling
+		//// represents the sequential order of the Message within the next higher level of procedural calling
 		// INT
 		public RuleCall getSequencialOrderINTTerminalRuleCall_0_0() {
 			return cSequencialOrderINTTerminalRuleCall_0_0;
@@ -186,11 +170,9 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		private final RuleCall cSTRINGTerminalRuleCall_1_1 = (RuleCall) cGroup_1.eContents().get(1);
 		private final Keyword cRightSquareBracketKeyword_1_2 = (Keyword) cGroup_1.eContents().get(2);
 
-		// //terminal STRING :
-		// //( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
-		//
-		//
-		// / * messagename= sequenceterm ('.' sequenceterm)* (':' name);
+		//// terminal STRING :
+		//// ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
+		/// * messagename= sequenceterm ('.' sequenceterm)* (':' name);
 		// terminal name:
 		// ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 		// terminal sequenceterm:
@@ -201,17 +183,27 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		// sequenceTerm1 = SequenceTermRule
 		// ('.' sequenceTerm2 = SequenceTermRule )*
 		//
-		// * /
-		//
-		// RecurrenceRule:
-		//
+		// * / RecurrenceRule:
 		// "*" "[" STRING "]" | "[" STRING "]";
 		@Override
 		public ParserRule getRule() {
 			return rule;
 		}
 
-		// "*" "[" STRING "]" | "[" STRING "]"
+		// "*" "[" STRING "]" //terminal STRING :
+		//// ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
+		/// * messagename= sequenceterm ('.' sequenceterm)* (':' name);
+		// terminal name:
+		// ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+		// terminal sequenceterm:
+		// (INT)(name)?(recurrence)?;
+		// terminal recurrence:
+		// ('*''[' STRING ']')|('[' STRING ']');
+		//
+		// sequenceTerm1 = SequenceTermRule
+		// ('.' sequenceTerm2 = SequenceTermRule )*
+		//
+		// * / | "[" STRING "]"
 		public Alternatives getAlternatives() {
 			return cAlternatives;
 		}
@@ -241,7 +233,20 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 			return cRightSquareBracketKeyword_0_3;
 		}
 
-		// "[" STRING "]"
+		// "[" STRING "]" //terminal STRING :
+		//// ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
+		/// * messagename= sequenceterm ('.' sequenceterm)* (':' name);
+		// terminal name:
+		// ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
+		// terminal sequenceterm:
+		// (INT)(name)?(recurrence)?;
+		// terminal recurrence:
+		// ('*''[' STRING ']')|('[' STRING ']');
+		//
+		// sequenceTerm1 = SequenceTermRule
+		// ('.' sequenceTerm2 = SequenceTermRule )*
+		//
+		// * /
 		public Group getGroup_1() {
 			return cGroup_1;
 		}
@@ -263,20 +268,24 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 	}
 
 
-	private MessageRuleElements pMessageRule;
-	private SequenceTermRuleElements pSequenceTermRule;
-	private TerminalRule tNameRule;
-	private RecurrenceRuleElements pRecurrenceRule;
+	private final MessageRuleElements pMessageRule;
+	private final SequenceTermRuleElements pSequenceTermRule;
+	private final TerminalRule tNAME_RULE;
+	private final RecurrenceRuleElements pRecurrenceRule;
 
 	private final Grammar grammar;
 
-	private CommonGrammarAccess gaCommon;
+	private final CommonGrammarAccess gaCommon;
 
 	@Inject
 	public UmlMessageGrammarAccess(GrammarProvider grammarProvider,
 			CommonGrammarAccess gaCommon) {
 		this.grammar = internalFindGrammar(grammarProvider);
 		this.gaCommon = gaCommon;
+		this.pMessageRule = new MessageRuleElements();
+		this.pSequenceTermRule = new SequenceTermRuleElements();
+		this.tNAME_RULE = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "NAME_RULE");
+		this.pRecurrenceRule = new RecurrenceRuleElements();
 	}
 
 	protected Grammar internalFindGrammar(GrammarProvider grammarProvider) {
@@ -295,7 +304,6 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 		return grammar;
 	}
 
-
 	@Override
 	public Grammar getGrammar() {
 		return grammar;
@@ -308,49 +316,38 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 
 
 	// MessageRule:
-	//
-	// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=nameRule;
+	// sequenceTerm+=SequenceTermRule ("." sequenceTerm+=SequenceTermRule)* ":" name=NAME_RULE;
 	public MessageRuleElements getMessageRuleAccess() {
-		return (pMessageRule != null) ? pMessageRule : (pMessageRule = new MessageRuleElements());
+		return pMessageRule;
 	}
 
 	public ParserRule getMessageRuleRule() {
 		return getMessageRuleAccess().getRule();
 	}
 
-	// //('.' leftTerms += LeftSequenceTermRule)*
+	//// ('.' leftTerms += LeftSequenceTermRule)*
 	// SequenceTermRule:
-	//
 	// sequencialOrder= //represents the sequential order of the Message within the next higher level of procedural calling
-	//
-	//
-	// INT sequenceName=ID?
-	//
-	// // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
-	//
-	//
+	// INT sequenceName=ID? // represents a concurrent thread of control. Messages that differ in the final name are concurrent at that level of nesting
 	// recurrence=RecurrenceRule? // The recurrence represents conditional or iterative execution.
 	// ;
 	public SequenceTermRuleElements getSequenceTermRuleAccess() {
-		return (pSequenceTermRule != null) ? pSequenceTermRule : (pSequenceTermRule = new SequenceTermRuleElements());
+		return pSequenceTermRule;
 	}
 
 	public ParserRule getSequenceTermRuleRule() {
 		return getSequenceTermRuleAccess().getRule();
 	}
 
-	// terminal nameRule:
-	//
+	// terminal NAME_RULE:
 	// ("a".."z" | "A".."Z") ("a".."z" | "A".."Z" | "_" | "-" | "0".."9" | "(" | ")")*;
-	public TerminalRule getNameRuleRule() {
-		return (tNameRule != null) ? tNameRule : (tNameRule = (TerminalRule) GrammarUtil.findRuleForName(getGrammar(), "nameRule"));
+	public TerminalRule getNAME_RULERule() {
+		return tNAME_RULE;
 	}
 
-	// //terminal STRING :
-	// //( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
-	//
-	//
-	// / * messagename= sequenceterm ('.' sequenceterm)* (':' name);
+	//// terminal STRING :
+	//// ( '\\' ('b'|'t'|'n'|'f'|'r'|'"'|"'"|'\\') | !('\\'|'"') )* ;
+	/// * messagename= sequenceterm ('.' sequenceterm)* (':' name);
 	// terminal name:
 	// ('a'..'z'|'A'..'Z') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')*;
 	// terminal sequenceterm:
@@ -361,92 +358,70 @@ public class UmlMessageGrammarAccess extends AbstractGrammarElementFinder {
 	// sequenceTerm1 = SequenceTermRule
 	// ('.' sequenceTerm2 = SequenceTermRule )*
 	//
-	// * /
-	//
-	// RecurrenceRule:
-	//
+	// * / RecurrenceRule:
 	// "*" "[" STRING "]" | "[" STRING "]";
 	public RecurrenceRuleElements getRecurrenceRuleAccess() {
-		return (pRecurrenceRule != null) ? pRecurrenceRule : (pRecurrenceRule = new RecurrenceRuleElements());
+		return pRecurrenceRule;
 	}
 
 	public ParserRule getRecurrenceRuleRule() {
 		return getRecurrenceRuleAccess().getRule();
 	}
 
-	// terminal INTEGER_VALUE:
-	//
-	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
-	//
-	// // BINARY
-	//
-	// // HEX
-	//
-	// // OCT
-	//
-	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
-	//
-	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
-	public TerminalRule getINTEGER_VALUERule() {
-		return gaCommon.getINTEGER_VALUERule();
-	}
-
 	// terminal ID:
-	//
 	// ("a".."z" | "A".."Z" | "_") ("a".."z" | "A".."Z" | "_" | "0".."9")* | "\'"->"\'";
 	public TerminalRule getIDRule() {
 		return gaCommon.getIDRule();
 	}
 
 	// terminal STRING:
-	//
 	// "\"" ("\\" ("b" | "t" | "n" | "f" | "r" | "\"" | "\'" | "\\") | !("\\" | "\""))* "\"";
 	public TerminalRule getSTRINGRule() {
 		return gaCommon.getSTRINGRule();
 	}
 
 	// terminal ML_COMMENT:
-	//
 	// "/ *" !"@"->"* /";
 	public TerminalRule getML_COMMENTRule() {
 		return gaCommon.getML_COMMENTRule();
 	}
 
-	// //terminal DOUBLE_COLON : '::' ;
-	//
-	// //terminal IDENTIFIER : ID ;
-	//
-	// //terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
-	//
-	// //terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
-	//
-	// //terminal ML_COMMENT : '/°' -> '°/';
-	//
-	// //terminal SL_COMMENT : '°°' !('\n'|'\r')* ('\r'? '\n')?;
-	//
-	// //terminal WS : (' '|'\t'|'\r'|'\n')+; terminal SL_COMMENT:
-	//
+	// terminal SL_COMMENT:
 	// "//" !("\n" | "\r" | "@")* ("\r"? "\n")?;
 	public TerminalRule getSL_COMMENTRule() {
 		return gaCommon.getSL_COMMENTRule();
 	}
 
 	// terminal INT returns ecore::EInt:
-	//
 	// "0".."9"+;
 	public TerminalRule getINTRule() {
 		return gaCommon.getINTRule();
 	}
 
+	//// terminal DOUBLE_COLON : '::' ;
+	//// terminal IDENTIFIER : ID ;
+	//// terminal IDENTIFIER : ('a'..'z'|'A'..'Z'|'_') ('a'..'z'|'A'..'Z'|'_'|'0'..'9')* | ('\'' -> '\'') ;
+	//// terminal DOCUMENTATION_COMMENT : '/ *' -> '* /' ;
+	//// terminal ML_COMMENT : '/ï¿½' -> 'ï¿½/';
+	//// terminal SL_COMMENT : 'ï¿½ï¿½' !('\n'|'\r')* ('\r'? '\n')?;
+	//// terminal WS : (' '|'\t'|'\r'|'\n')+; terminal INTEGER_VALUE:
+	// ("0" | "1".."9" ("_"? "0".."9")*) //DECIMAL
+	// // BINARY
+	// // HEX
+	// // OCT
+	// | ("0b" | "0B") "0".."1" ("_"? "0".."1")* | ("0x" | "0X") ("0".."9" | "a".."f" | "A".."F") ("_"? ("0".."9" | "a".."f" |
+	// "A".."F"))* | "0" "_"? "0".."7" ("_"? "0".."7")*;
+	public TerminalRule getINTEGER_VALUERule() {
+		return gaCommon.getINTEGER_VALUERule();
+	}
+
 	// terminal WS:
-	//
 	// (" " | "\t" | "\r" | "\n")+;
 	public TerminalRule getWSRule() {
 		return gaCommon.getWSRule();
 	}
 
 	// terminal ANY_OTHER:
-	//
 	// .;
 	public TerminalRule getANY_OTHERRule() {
 		return gaCommon.getANY_OTHERRule();

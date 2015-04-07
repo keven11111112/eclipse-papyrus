@@ -45,7 +45,7 @@ public class AbstractUmlMessageProposalProvider extends org.eclipse.papyrus.uml.
 		// subclasses may override
 	}
 
-	public void complete_nameRule(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
+	public void complete_NAME_RULE(EObject model, RuleCall ruleCall, ContentAssistContext context, ICompletionProposalAcceptor acceptor) {
 		// subclasses may override
 	}
 

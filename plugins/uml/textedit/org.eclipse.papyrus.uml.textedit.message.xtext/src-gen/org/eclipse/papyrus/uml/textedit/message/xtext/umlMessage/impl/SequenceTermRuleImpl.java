@@ -15,17 +15,16 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
+ * </p>
  * <ul>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.SequenceTermRuleImpl#getSequencialOrder <em>Sequencial Order</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.SequenceTermRuleImpl#getSequenceName <em>Sequence Name</em>}</li>
  * <li>{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.SequenceTermRuleImpl#getRecurrence <em>Recurrence</em>}</li>
  * </ul>
- * </p>
  *
  * @generated
  */
-public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implements SequenceTermRule
-{
+public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implements SequenceTermRule {
 	/**
 	 * The default value of the '{@link #getSequencialOrder() <em>Sequencial Order</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -98,8 +97,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 *
 	 * @generated
 	 */
-	protected SequenceTermRuleImpl()
-	{
+	protected SequenceTermRuleImpl() {
 		super();
 	}
 
@@ -110,8 +108,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	protected EClass eStaticClass()
-	{
+	protected EClass eStaticClass() {
 		return UmlMessagePackage.Literals.SEQUENCE_TERM_RULE;
 	}
 
@@ -122,8 +119,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public int getSequencialOrder()
-	{
+	public int getSequencialOrder() {
 		return sequencialOrder;
 	}
 
@@ -134,8 +130,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setSequencialOrder(int newSequencialOrder)
-	{
+	public void setSequencialOrder(int newSequencialOrder) {
 		int oldSequencialOrder = sequencialOrder;
 		sequencialOrder = newSequencialOrder;
 		if (eNotificationRequired()) {
@@ -150,8 +145,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public String getSequenceName()
-	{
+	public String getSequenceName() {
 		return sequenceName;
 	}
 
@@ -162,8 +156,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setSequenceName(String newSequenceName)
-	{
+	public void setSequenceName(String newSequenceName) {
 		String oldSequenceName = sequenceName;
 		sequenceName = newSequenceName;
 		if (eNotificationRequired()) {
@@ -178,8 +171,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public String getRecurrence()
-	{
+	public String getRecurrence() {
 		return recurrence;
 	}
 
@@ -190,8 +182,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void setRecurrence(String newRecurrence)
-	{
+	public void setRecurrence(String newRecurrence) {
 		String oldRecurrence = recurrence;
 		recurrence = newRecurrence;
 		if (eNotificationRequired()) {
@@ -206,10 +197,8 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public Object eGet(int featureID, boolean resolve, boolean coreType)
-	{
-		switch (featureID)
-		{
+	public Object eGet(int featureID, boolean resolve, boolean coreType) {
+		switch (featureID) {
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCIAL_ORDER:
 			return getSequencialOrder();
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCE_NAME:
@@ -227,10 +216,8 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void eSet(int featureID, Object newValue)
-	{
-		switch (featureID)
-		{
+	public void eSet(int featureID, Object newValue) {
+		switch (featureID) {
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCIAL_ORDER:
 			setSequencialOrder((Integer) newValue);
 			return;
@@ -251,10 +238,8 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public void eUnset(int featureID)
-	{
-		switch (featureID)
-		{
+	public void eUnset(int featureID) {
+		switch (featureID) {
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCIAL_ORDER:
 			setSequencialOrder(SEQUENCIAL_ORDER_EDEFAULT);
 			return;
@@ -275,10 +260,8 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public boolean eIsSet(int featureID)
-	{
-		switch (featureID)
-		{
+	public boolean eIsSet(int featureID) {
+		switch (featureID) {
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCIAL_ORDER:
 			return sequencialOrder != SEQUENCIAL_ORDER_EDEFAULT;
 		case UmlMessagePackage.SEQUENCE_TERM_RULE__SEQUENCE_NAME:
@@ -296,8 +279,7 @@ public class SequenceTermRuleImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 */
 	@Override
-	public String toString()
-	{
+	public String toString() {
 		if (eIsProxy()) {
 			return super.toString();
 		}

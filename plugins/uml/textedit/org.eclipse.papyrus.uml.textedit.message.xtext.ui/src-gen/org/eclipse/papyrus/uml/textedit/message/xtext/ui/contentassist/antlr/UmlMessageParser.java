@@ -35,6 +35,7 @@ public class UmlMessageParser extends AbstractContentAssistParser {
 		if (nameMappings == null) {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
+
 				{
 					put(grammarAccess.getRecurrenceRuleAccess().getAlternatives(), "rule__RecurrenceRule__Alternatives");
 					put(grammarAccess.getMessageRuleAccess().getGroup(), "rule__MessageRule__Group__0");

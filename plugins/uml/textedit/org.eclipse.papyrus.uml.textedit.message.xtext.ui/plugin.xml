@@ -228,6 +228,7 @@
    <extension
          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
       <DirectEditor
+            additionalConstraint="org.eclipse.papyrus.uml.textedit.message.xtext.ui.contributions.AdvancedMessageDirectEditorConstraint"
             contributor="CEA List"
             icon="icons/Diagram_Communication.gif"
             language="Advanced message editor"
