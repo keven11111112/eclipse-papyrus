@@ -15,18 +15,26 @@ package org.eclipse.papyrus.infra.gmfdiag.common.editpolicies;
 
 import java.util.Iterator;
 
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.commands.Command;
+import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CreateCommand;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ListCompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.CreationEditPolicy;
 import org.eclipse.gmf.runtime.diagram.ui.l10n.DiagramUIMessages;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest.ViewDescriptor;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
+import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.SemanticAdapter;
 
 /**
  * Default creation edit policy replacement used to replace {@link CreateCommand} by {@link CreateViewCommand},
@@ -65,4 +73,36 @@ public class DefaultCreationEditPolicy extends CreationEditPolicy {
 
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getReparentViewCommand(IGraphicalEditPart gep) {
+		GraphicalEditPart parent = (GraphicalEditPart) getHost();
+		if (parent instanceof ListCompartmentEditPart) {
+			if (false == canCreate(gep)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		}
+		return super.getReparentViewCommand(gep);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	private boolean canCreate(IGraphicalEditPart gep) {
+		ViewDescriptor descriptor = getViewDescriptor(gep);
+		CreateViewRequest request = new CreateViewRequest(descriptor);
+		Command createCommand = getCreateCommand(request);
+		return createCommand.canExecute();
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	private CreateViewRequest.ViewDescriptor getViewDescriptor(IGraphicalEditPart gep) {
+		String type = gep.getNotationView().getType();
+		IAdaptable elementAdapter = new SemanticAdapter(gep.resolveSemanticElement(), null);
+		return new CreateViewRequest.ViewDescriptor(elementAdapter, Node.class, type, ViewUtil.APPEND, false, ((IGraphicalEditPart) getHost()).getDiagramPreferencesHint());
+	}
 }

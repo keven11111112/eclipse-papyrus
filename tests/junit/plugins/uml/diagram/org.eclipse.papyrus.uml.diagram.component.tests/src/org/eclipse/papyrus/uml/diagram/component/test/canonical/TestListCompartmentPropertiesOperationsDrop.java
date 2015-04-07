@@ -57,6 +57,16 @@ public class TestListCompartmentPropertiesOperationsDrop extends AbstractPapyrus
 		getHelper().checkDropPropertyFromModelExplorer2Canvas(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, OperationForInterfaceEditPart.VISUAL_ID);
 	}
 
+	@Test
+	public void testDropInterface2PropertyAttributeCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(RectangleInterfaceEditPart.VISUAL_ID, InterfaceAttributeCompartmentEditPart.VISUAL_ID, RectangleInterfaceEditPart.VISUAL_ID);
+	}
+
+	@Test
+	public void testDropInterface2OperationCompartment() throws Exception {
+		getHelper().checkUnexecutableDrop(RectangleInterfaceEditPart.VISUAL_ID, InterfaceOperationCompartmentEditPart.VISUAL_ID, RectangleInterfaceEditPart.VISUAL_ID);
+	}
+
 	private TestListCompartmentHelper getHelper() {
 		if (myHelper == null) {
 			myHelper = new ComponentDiagramListCompartmentTestHelper(getDiagramEditPart(), diagramEditor);
