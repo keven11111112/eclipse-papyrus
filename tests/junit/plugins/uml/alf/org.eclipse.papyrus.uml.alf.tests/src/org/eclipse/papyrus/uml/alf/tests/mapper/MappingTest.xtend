@@ -14,21 +14,20 @@
 
 package org.eclipse.papyrus.uml.alf.tests.mapper
 
+import java.io.File
+import java.io.IOException
+import org.eclipse.emf.common.util.BasicDiagnostic
+import org.eclipse.papyrus.uml.alf.MappingError
+import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
+import org.eclipse.papyrus.uml.alf.tests.ParserTest
+import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
 import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
-
-import org.junit.Test
-import org.junit.BeforeClass
-import java.io.IOException
-import org.eclipse.emf.common.util.BasicDiagnostic
-import java.io.File
-import org.eclipse.papyrus.uml.alf.tests.mapper.AlfMapper
-import org.eclipse.papyrus.uml.alf.MappingError
-import org.eclipse.papyrus.uml.alf.tests.ParserTest
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
 
 @RunWith(XtextRunner)
 class MappingTest extends ParserTest {
@@ -50,6 +49,7 @@ class MappingTest extends ParserTest {
   }
 
   @Test
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testMapping() {
     var failures = 0
     var File[] files

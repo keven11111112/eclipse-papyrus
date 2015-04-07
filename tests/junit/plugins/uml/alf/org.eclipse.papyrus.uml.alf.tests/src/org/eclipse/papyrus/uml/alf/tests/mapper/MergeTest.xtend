@@ -14,34 +14,33 @@
 
 package org.eclipse.papyrus.uml.alf.tests.mapper
 
+import java.io.File
+import java.io.FileOutputStream
+import java.io.IOException
+import org.eclipse.emf.common.util.BasicDiagnostic
+import org.eclipse.papyrus.uml.alf.ActiveClassDefinition
+import org.eclipse.papyrus.uml.alf.ActivityDefinition
+import org.eclipse.papyrus.uml.alf.AssociationDefinition
+import org.eclipse.papyrus.uml.alf.ClassDefinition
+import org.eclipse.papyrus.uml.alf.DataTypeDefinition
+import org.eclipse.papyrus.uml.alf.EnumerationDefinition
+import org.eclipse.papyrus.uml.alf.MappingError
+import org.eclipse.papyrus.uml.alf.PackageDefinition
+import org.eclipse.papyrus.uml.alf.SignalDefinition
+import org.eclipse.papyrus.uml.alf.UnitDefinition
+import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
+import org.eclipse.papyrus.uml.alf.tests.ParserTest
+import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
+import org.eclipse.uml2.uml.Package
+import org.eclipse.uml2.uml.PackageableElement
+import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
-
-import org.junit.Test
-import org.junit.BeforeClass
-import java.io.IOException
-import java.io.File
-import org.eclipse.emf.common.util.BasicDiagnostic
-import org.eclipse.papyrus.uml.alf.tests.mapper.AlfMapper
-import org.eclipse.papyrus.uml.alf.MappingError
-import org.eclipse.papyrus.uml.alf.tests.ParserTest
-import org.eclipse.papyrus.uml.alf.PackageDefinition
-import org.eclipse.papyrus.uml.alf.ClassDefinition
-import org.eclipse.papyrus.uml.alf.ActiveClassDefinition
-import org.eclipse.papyrus.uml.alf.DataTypeDefinition
-import org.eclipse.papyrus.uml.alf.EnumerationDefinition
-import org.eclipse.papyrus.uml.alf.AssociationDefinition
-import org.eclipse.papyrus.uml.alf.SignalDefinition
-import org.eclipse.papyrus.uml.alf.ActivityDefinition
-import org.eclipse.papyrus.uml.alf.UnitDefinition
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
-import org.eclipse.uml2.uml.PackageableElement
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.UMLFactory
-import java.io.FileOutputStream
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
 
 @RunWith(XtextRunner)
 class MergeTest extends ParserTest {
@@ -61,6 +60,7 @@ class MergeTest extends ParserTest {
   }
 
   @Test
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testMerging() {
     val contextNamespace = ModelNamespaceImpl.getContext() as Package
     val contextResource = contextNamespace.eResource;
