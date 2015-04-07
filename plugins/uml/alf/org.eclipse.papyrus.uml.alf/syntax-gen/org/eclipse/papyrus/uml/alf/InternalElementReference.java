@@ -548,7 +548,7 @@ public interface InternalElementReference extends ElementReference {
 	 * <!-- end-user-doc -->
 	 * 
 	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.parameters()\n          else if self.isBehavior() or self.isOperation() then\n            self.element.oclAsType(NamespaceDefinition).parameters().toReference()\n          else\n            OrderedSet(ElementReference){}\n          endif endif'"
+	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template <> null then\n            template.parameters()\n          else if self.isBehavior() or self.isOperation() then\n            self.element.oclAsType(NamespaceDefinition).parameters().toReference()->asOrderedSet()\n          else\n            OrderedSet(ElementReference){}\n          endif endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameters();

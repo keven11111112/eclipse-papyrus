@@ -45,7 +45,7 @@ public interface SwitchStatement extends Statement {
 	 * 
 	 * @return the value of the '<em>Non Default Clause</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSwitchStatement_NonDefaultClause()
-	 * @model containment="true" required="true" ordered="false"
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<SwitchClause> getNonDefaultClause();
@@ -249,7 +249,7 @@ public interface SwitchStatement extends Statement {
 	 * <!-- end-model-doc -->
 	 * 
 	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            if self.defaultClause = null then\n                              self.assignmentBefore.name->includesAll(self.assignmentBefore.name)\n                            else\n                              let blocks =\n                                if self.defaultClause = null then\n                                  self.nonDefaultClause.block\n                                else\n                                  self.nonDefaultClause.block->including(self.defaultClause)\n                                endif\n                              in\n                              let names = blocks.newAssignments().name in\n                              let n = blocks->size() in\n                                names->forAll(name | names->count(name) = n)\n                            endif'"
+	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                            let newNames = self.assignmentAfter.name->excludingAll(self.assignmentBefore.name) in\n\t                            if self.defaultClause = null then\n\t                              newNames->isEmpty()\n\t                            else\n\t                              self.nonDefaultClause.block->including(self.defaultClause)->forAll(\n\t                              \tassignmentAfter.name->includesAll(newNames)\n\t                              )\n\t                            endif'"
 	 * @generated
 	 */
 	boolean switchStatementAssignments(DiagnosticChain diagnostics, Map<Object, Object> context);

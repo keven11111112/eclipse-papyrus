@@ -15,10 +15,9 @@ package org.eclipse.papyrus.uml.profile.newchildmenu.generator.ui.handlers;
 
 import java.net.URI;
 
+import org.eclipse.core.commands.AbstractHandler;
 import org.eclipse.core.commands.ExecutionEvent;
 import org.eclipse.core.commands.ExecutionException;
-import org.eclipse.core.commands.IHandler;
-import org.eclipse.core.commands.IHandlerListener;
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.resources.IFile;
 import org.eclipse.jface.viewers.ISelection;
@@ -27,15 +26,7 @@ import org.eclipse.papyrus.uml.profile.newchildmenu.generator.NewChildMenuGenera
 import org.eclipse.ui.handlers.HandlerUtil;
 
 
-public class GenerateNewChildMenuHandler implements IHandler {
-
-	@Override
-	public void addHandlerListener(IHandlerListener handlerListener) {
-	}
-
-	@Override
-	public void dispose() {
-	}
+public class GenerateNewChildMenuHandler extends AbstractHandler {
 
 	@Override
 	public Object execute(ExecutionEvent event) throws ExecutionException {
@@ -59,20 +50,6 @@ public class GenerateNewChildMenuHandler implements IHandler {
 			}
 		}
 		return null;
-	}
-
-	@Override
-	public boolean isEnabled() {
-		return true;
-	}
-
-	@Override
-	public boolean isHandled() {
-		return true;
-	}
-
-	@Override
-	public void removeHandlerListener(IHandlerListener handlerListener) {
 	}
 
 }

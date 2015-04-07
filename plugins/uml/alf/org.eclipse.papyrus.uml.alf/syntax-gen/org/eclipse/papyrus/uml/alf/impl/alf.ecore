@@ -726,7 +726,7 @@
     </eOperations>
     <eOperations name="parameters" upperBound="-1" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;        let template = self.template() in&#xA;          if template &lt;> null then&#xA;            template.parameters()&#xA;          else if self.isBehavior() or self.isOperation() then&#xA;            self.element.oclAsType(NamespaceDefinition).parameters().toReference()&#xA;          else&#xA;            OrderedSet(ElementReference){}&#xA;          endif endif"/>
+        <details key="body" value="&#xA;        let template = self.template() in&#xA;          if template &lt;> null then&#xA;            template.parameters()&#xA;          else if self.isBehavior() or self.isOperation() then&#xA;            self.element.oclAsType(NamespaceDefinition).parameters().toReference()->asOrderedSet()&#xA;          else&#xA;            OrderedSet(ElementReference){}&#xA;          endif endif"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="returnParameter" eType="#//ElementReference">
@@ -7890,7 +7890,7 @@
     </eOperations>
     <eOperations name="switchStatementAssignments" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;                            if self.defaultClause = null then&#xA;                              self.assignmentBefore.name->includesAll(self.assignmentBefore.name)&#xA;                            else&#xA;                              let blocks =&#xA;                                if self.defaultClause = null then&#xA;                                  self.nonDefaultClause.block&#xA;                                else&#xA;                                  self.nonDefaultClause.block->including(self.defaultClause)&#xA;                                endif&#xA;                              in&#xA;                              let names = blocks.newAssignments().name in&#xA;                              let n = blocks->size() in&#xA;                                names->forAll(name | names->count(name) = n)&#xA;                            endif"/>
+        <details key="body" value="&#xA;                            let newNames = self.assignmentAfter.name->excludingAll(self.assignmentBefore.name) in&#xA;&#x9;                            if self.defaultClause = null then&#xA;&#x9;                              newNames->isEmpty()&#xA;&#x9;                            else&#xA;&#x9;                              self.nonDefaultClause.block->including(self.defaultClause)->forAll(&#xA;&#x9;                              &#x9;assignmentAfter.name->includesAll(newNames)&#xA;&#x9;                              )&#xA;&#x9;                            endif"/>
       </eAnnotations>
       <eParameters name="diagnostics" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EDiagnosticChain"/>
       <eParameters name="context">
@@ -7946,7 +7946,7 @@
       <eParameters name="annotation" lowerBound="1" eType="#//Annotation"/>
     </eOperations>
     <eStructuralFeatures xsi:type="ecore:EReference" name="nonDefaultClause" ordered="false"
-        lowerBound="1" upperBound="-1" eType="#//SwitchClause" containment="true"/>
+        upperBound="-1" eType="#//SwitchClause" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="expression" lowerBound="1"
         eType="#//Expression" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="defaultClause" eType="#//Block"
