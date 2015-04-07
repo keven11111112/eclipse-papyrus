@@ -53,28 +53,28 @@ query NamedElement::NamedElement_alfQualifiedName(context : NamedElement) : Qual
 }
 
 query Classifier::alfQualifiedName(context : NamedElement) : QualifiedName {
-  return
-    if (self.templateBinding->isEmpty()) then {
-      return self.NamedElement_alfQualifiedName(context)
-    } else {
-      var templateBinding := self.templateBinding->any(true);
-      var template := templateBinding.signature.template.oclAsType(NamedElement);
-      var qualifiedName := template.alfQualifiedName(context);
-      var parameterSubstitutions := templateBinding.parameterSubstitution;
-      var finalBinding := 
-        if parameterSubstitutions->size() <= 1 then
-          object PositionalTemplateBinding {
-          	argumentName := parameterSubstitutions->toArgumentName(context);
-          }
-        else
-          object NamedTemplateBinding{
-            substitution := templateBinding.parameterSubstitution->
-              toTemplateParameterSubstitution(context);
-          }
-        endif;
-      qualifiedName.nameBinding->last().binding := finalBinding;
-      return qualifiedName;
-    } endif;
+  var qualifiedName : QualifiedName;
+  if (self.templateBinding->isEmpty()) then {
+    return self.NamedElement_alfQualifiedName(context)
+  } else {
+    var templateBinding := self.templateBinding->any(true);
+    var template := templateBinding.signature.template.oclAsType(NamedElement);
+    qualifiedName := template.alfQualifiedName(context);
+    var parameterSubstitutions := templateBinding.parameterSubstitution;
+    var finalBinding := 
+      if parameterSubstitutions->size() <= 1 then
+        object PositionalTemplateBinding {
+        	argumentName := parameterSubstitutions->toArgumentName(context);
+        }
+      else
+        object NamedTemplateBinding{
+          substitution := templateBinding.parameterSubstitution->
+            toTemplateParameterSubstitution(context);
+        }
+      endif;
+    qualifiedName.nameBinding->last().binding := finalBinding;
+  } endif;
+  return qualifiedName;
 }
 
 query uml::TemplateParameterSubstitution::toTemplateParameterSubstitution(context : NamedElement) : TemplateParameterSubstitution {
