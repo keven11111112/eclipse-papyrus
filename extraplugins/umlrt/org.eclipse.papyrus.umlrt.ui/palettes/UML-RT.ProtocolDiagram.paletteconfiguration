@@ -23,18 +23,13 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Reception" label="RT OutMessage" description="Create a RT OutMessage">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Reception.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Reception_3011"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Reception_3039"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Signal" label="RT InMessage" description="Create a RT InMessage">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Reception.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_2003"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3022"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3049"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3050"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Signal_3051"/>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Operation" label="Operation" description="Create an Operation">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Operation.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3013"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3019"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

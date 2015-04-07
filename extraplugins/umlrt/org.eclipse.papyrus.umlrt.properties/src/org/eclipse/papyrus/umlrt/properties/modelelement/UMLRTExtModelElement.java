@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST and others.
+ * Copyright (c) 2010, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,30 +7,33 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - Initial API and implementation
+ *  Onder GURCAN (CEA LIST) onder.gurcan@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
 
 package org.eclipse.papyrus.umlrt.properties.modelelement;
 
 import java.util.Hashtable;
+import java.util.Iterator;
 
 import org.eclipse.core.databinding.observable.IObservable;
-import org.eclipse.emf.common.util.BasicEList;
-import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.databinding.FeaturePath;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
 import org.eclipse.papyrus.uml.properties.modelelement.UMLModelElement;
+import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
+import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
 import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.Dependency;
 import org.eclipse.uml2.uml.DirectedRelationship;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.NamedElement;
-import org.eclipse.uml2.uml.Realization;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
  * A UMLRTModelElement provider. In particular, it will take care of UMLRT protocols which reference provided, required and prov/required interfaces.
@@ -44,20 +47,20 @@ public class UMLRTExtModelElement extends UMLModelElement {
 	private final String ownedOp = "ownedOperation"; //$NON-NLS-1$
 
 	public UMLRTExtModelElement(EObject source) {
-		super(source);
+		super(source, TransactionUtil.getEditingDomain(source));
 		delegationModelElements = new Hashtable<Element, UMLModelElement>();
-		// TODO Auto-generated constructor stub
 	}
 
 	/**
 	 * Get the delegating model element
+	 * 
 	 * @param element
 	 * @return
 	 */
 	public UMLModelElement getDelegationModelElement(Element element) {
 		UMLModelElement delegationModelElement = delegationModelElements.get(element);
 		if (delegationModelElement == null) {
-			delegationModelElement = new UMLModelElement(element);
+			delegationModelElement = new UMLModelElement(element, this.getDomain());
 			delegationModelElements.put(element, delegationModelElement);
 		}
 		return delegationModelElement;
@@ -137,61 +140,57 @@ public class UMLRTExtModelElement extends UMLModelElement {
 
 	/**
 	 * return the interface that is required or provides, depending on propertyPath
+	 * 
 	 * @param propertyPath
 	 * @return provided or required interface
 	 */
 	protected Interface getProvidedOrRequiredInterface(String propertyPath) {
+		Interface result = null;
 		if (source instanceof Collaboration) {
-			if (propertyPath.endsWith("provides")) { //$NON-NLS-1$
-				for (Interface intf : getProvideds()) {
-					// interface is only in provided list
-					if (!getRequireds().contains(intf)) {
-						return intf;
-					}
-				}
-			}
-			else if (propertyPath.endsWith("required")) { //$NON-NLS-1$
-				for (Interface intf : getRequireds()) {
-					// interface is only in required list
-					if (!getProvideds().contains(intf)) {
-						return intf;
-					}
-				}
-			}
-			else if (propertyPath.endsWith("provreq")) { //$NON-NLS-1$
-				for (Interface intf : getRequireds()) {
-					// interface must be in both lists
-					if (getProvideds().contains(intf)) {
-						return intf;
-					}
-				}
+			if (propertyPath.endsWith("Incoming")) { //$NON-NLS-1$
+				result = getInterface(RTMessageKind.IN);
+			} else if (propertyPath.endsWith("Outgoing")) { //$NON-NLS-1$
+				result = getInterface(RTMessageKind.OUT);
+			} else if (propertyPath.endsWith("InOut")) { //$NON-NLS-1$
+				result = getInterface(RTMessageKind.IN_OUT);
 			}
 		}
-		return null;
+		return result;
 	}
 
 	/**
-	 * Get the list of required interfaces. Don't use getImplementedInterfaces, since it only captures
+	 * Get the incmoing interfaces. Don't use getImplementedInterfaces, since it only captures
 	 * the interface realization and not the realization relationship.
+	 * 
 	 * @return list of required interfaces
 	 */
-	protected EList<Interface> getProvideds() {
-		EList<Interface> provideds = new BasicEList<Interface>();
-		for (DirectedRelationship directedRelation : ((Collaboration) source).getSourceDirectedRelationships()) {
-			if (directedRelation instanceof Realization) {
-				EList<NamedElement> suppliers = ((Realization) directedRelation).getSuppliers();
-				if (suppliers.size() > 0) {
-					NamedElement supplier = suppliers.get(0);
+	protected Interface getInterface(RTMessageKind rtMessageKind) {
+		Interface result = null;
+		
+		Collaboration protocol = (Collaboration) source;
+		Iterator<DirectedRelationship> relationshipIterator = protocol.getSourceDirectedRelationships().iterator();
+		while (relationshipIterator.hasNext() && (result == null)) {
+			DirectedRelationship directedRelation = relationshipIterator.next();
+			if (directedRelation instanceof Dependency) { // Realization or Usage
+				Dependency dependency = (Dependency) directedRelation;
+				Iterator<NamedElement> dependencyIterator = dependency.getSuppliers().iterator();
+				while (dependencyIterator.hasNext() && (result == null)) {
+					NamedElement supplier = dependencyIterator.next();
 					if (supplier instanceof Interface) {
-						provideds.add((Interface) supplier);
-					}
-				}
-			}
-		}
-		return provideds;
+						Interface interfaceImpl = (Interface) supplier;
+						RTMessageSet rtMessageSet = UMLUtil.getStereotypeApplication(interfaceImpl, RTMessageSet.class);
+						if (rtMessageSet != null) {
+							if (rtMessageSet.getRtMsgKind() == rtMessageKind) {
+								result = (Interface) supplier;
+							} // if
+						} // if
+					} // if
+				} // while
+			} // if
+		} // while
+
+		return result;
 	}
-	
-	protected EList<Interface> getRequireds() {
-		return ((Collaboration) source).getUsedInterfaces();
-	}
+
+
 }
