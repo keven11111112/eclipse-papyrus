@@ -41,7 +41,7 @@ public class TableEditingDomainUtils {
 	 * Returns the EditingDomain associated to the table
 	 *
 	 * @return
-	 *         the EditingDomain associated to the table
+	 * 		the EditingDomain associated to the table
 	 */
 	public static final TransactionalEditingDomain getTableEditingDomain(final Table table) {
 		ServicesRegistry registry = null;
@@ -49,7 +49,8 @@ public class TableEditingDomainUtils {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(table);
 			return registry.getService(TransactionalEditingDomain.class);
 		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+			// The table doesn't have an editing domain (e.g. the table is used in the properties view)
+			// Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
 		}
 		return null;
 
@@ -59,7 +60,7 @@ public class TableEditingDomainUtils {
 	 * Returns the EditingDomain associated to the context
 	 *
 	 * @return
-	 *         the EditingDomain associated to the context
+	 * 		the EditingDomain associated to the context
 	 */
 	public static final TransactionalEditingDomain getTableContextEditingDomain(final Table table) {
 		ServicesRegistry registry = null;

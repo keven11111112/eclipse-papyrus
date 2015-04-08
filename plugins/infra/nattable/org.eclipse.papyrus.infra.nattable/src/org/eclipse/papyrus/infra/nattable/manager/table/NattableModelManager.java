@@ -113,16 +113,16 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.IWorkbenchPartSite;
 import org.eclipse.ui.commands.ICommandService;
 
+import com.google.common.collect.BiMap;
+import com.google.common.collect.HashBiMap;
+
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
 
-import com.google.common.collect.BiMap;
-import com.google.common.collect.HashBiMap;
-
 /**
  * TODO : this class must be refactored, all the part concerning tree table must be push in the subclass {@link TreeNattableModelManager}
- * 
+ *
  *
  */
 public class NattableModelManager extends AbstractNattableWidgetManager implements INattableModelManager {
@@ -309,9 +309,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         the new list to use for vertical element
+	 * 		the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -322,9 +322,9 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         the new list to use for horizontal element
+	 * 		the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
@@ -366,7 +366,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		};
 
 		getContextEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
-		if (getTableEditingDomain() != getContextEditingDomain()) {
+		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
 			getTableEditingDomain().getCommandStack().addCommandStackListener(this.refreshListener);
 		}
 		this.focusListener = new FocusListener() {
@@ -399,6 +399,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 * this command update the status of the toggle actions
 	 */
+	@Override
 	protected void updateToggleActionState() {
 		super.updateToggleActionState();
 		final ICommandService commandService = EclipseCommandUtils.getCommandService();
@@ -866,7 +867,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	/**
 	 *
 	 * @return
-	 *         a new runnable for the refreash action
+	 * 		a new runnable for the refreash action
 	 */
 	private Runnable createRefreshRunnable() {
 		return new Runnable() {
@@ -978,7 +979,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	 * @param table
 	 *            the table
 	 * @return
-	 *         the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
+	 * 		the celleditor declaration to use according to the table configuration and {@link Table#isInvertAxis()}
 	 */
 	private CellEditorDeclaration getCellEditorDeclarationToUse(final Table table) {
 		CellEditorDeclaration declaration = table.getTableConfiguration().getCellEditorDeclaration();
@@ -1637,19 +1638,21 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 				return ((NotificationFilter.createEventTypeFilter(Notification.SET))
 						.or(NotificationFilter.createEventTypeFilter(Notification.ADD))
 						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
-						.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
+								.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
 				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
 			}
 		};
 
 		getContextEditingDomain().addResourceSetListener(resourceSetListener);
-		getTableEditingDomain().addResourceSetListener(resourceSetListener);
+		if (getTableEditingDomain() != null && getTableEditingDomain() != getContextEditingDomain()) {
+			getTableEditingDomain().addResourceSetListener(resourceSetListener);
+		}
 
 	}
 
@@ -1758,9 +1761,10 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 
 	/**
 	 * @return
-	 *         the filter strategy to use
-	 * 
+	 * 		the filter strategy to use
+	 *
 	 */
+	@Override
 	protected IFilterStrategy<Object> createFilterStrategy() {
 		return new PapyrusFilterStrategy(this, new PapyrusColumnAccesor());
 		// TODO
