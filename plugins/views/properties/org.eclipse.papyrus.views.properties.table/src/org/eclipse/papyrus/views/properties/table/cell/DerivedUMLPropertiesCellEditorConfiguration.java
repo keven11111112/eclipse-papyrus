@@ -13,15 +13,12 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.properties.table.cell;
 
-import org.eclipse.jface.viewers.ILabelProvider;
-import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.data.validate.DataValidator;
 import org.eclipse.nebula.widgets.nattable.data.validate.IDataValidator;
 import org.eclipse.nebula.widgets.nattable.edit.editor.ICellEditor;
 import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ICellPainter;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
-import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.celleditor.config.AbstractCellAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.manager.table.ITableAxisElementProvider;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
@@ -40,11 +37,6 @@ public class DerivedUMLPropertiesCellEditorConfiguration extends AbstractCellAxi
 	public static final String CONFIGURATION_ID = Activator.PLUGIN_ID + ".multiplicityEditor"; //$NON-NLS-1$
 
 	@Override
-	public IDisplayConverter getDisplayConvert(Table table, Object axisElement, ILabelProvider provider) {
-		return null;
-	}
-
-	@Override
 	public ICellPainter getCellPainter(Table table, Object axisElement) {
 		return new TextPainter();
 	}
@@ -52,11 +44,6 @@ public class DerivedUMLPropertiesCellEditorConfiguration extends AbstractCellAxi
 	@Override
 	public ICellEditor getICellEditor(Table table, Object axisElement, ITableAxisElementProvider elementProvider) {
 		return new TextCellEditor();
-	}
-
-	@Override
-	public String getDisplayMode(Table table, Object axisElement) {
-		return DisplayMode.NORMAL;
 	}
 
 	@Override
