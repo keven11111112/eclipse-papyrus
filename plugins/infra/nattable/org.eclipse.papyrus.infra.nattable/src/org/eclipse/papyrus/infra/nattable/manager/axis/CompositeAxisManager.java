@@ -321,6 +321,9 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public boolean canMoveAxis() {
+		// if (getTableEditingDomain() == null) {
+		// return false;
+		// }
 		for (final IAxisManager current : this.subManagers) {
 			if (!current.canMoveAxis() || current.isDynamic()) {
 				return false;
@@ -339,9 +342,13 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	@Override
 	public void sortAxisByName(boolean alphabeticOrder, final IConfigRegistry configRegistry) {
 		if (canMoveAxis()) {
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getRepresentedContentProvider());
+			if (domain == null) {
+				return;
+			}
+
 			final List<IAxis> axis = new ArrayList<IAxis>(getRepresentedContentProvider().getAxis());
 			Collections.sort(axis, new AxisComparator(alphabeticOrder, configRegistry));
-			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(getRepresentedContentProvider());
 			final AbstractEditCommandRequest request = new SetRequest(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), axis);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(getRepresentedContentProvider());
 			final ICommand cmd = provider.getEditCommand(request);
@@ -505,8 +512,10 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	public void moveAxis(Object elementToMove, int newIndex) {
 		if (!isDynamic() && elementToMove instanceof IAxis) {
 			TransactionalEditingDomain domain = getTableEditingDomain();
-			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
-			domain.getCommandStack().execute(command);
+			if (domain != null) {
+				final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
+				domain.getCommandStack().execute(command);
+			}
 		}
 	}
 
@@ -719,7 +728,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 */
 	@Override
 	public Command getSetNewAxisOrderCommand(final List<Object> newOrder) {
-		if (canMoveAxis() && !isDynamic()) {
+		if (canMoveAxis() && !isDynamic() && getTableEditingDomain() != null) {
 			return new RecordingCommand(getTableEditingDomain()) {
 
 				@Override

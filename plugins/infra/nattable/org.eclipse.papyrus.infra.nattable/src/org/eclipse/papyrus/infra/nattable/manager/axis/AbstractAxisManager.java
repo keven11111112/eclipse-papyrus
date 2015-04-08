@@ -96,7 +96,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         a new managed object list
+	 * 		a new managed object list
 	 */
 	protected List<Object> createManagedObjectList() {
 		return new ArrayList<Object>();
@@ -409,7 +409,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         the context of the managed table
+	 * 		the context of the managed table
 	 */
 	protected final EObject getTableContext() {
 		return this.tableContext;
@@ -443,7 +443,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			registry = ServiceUtilsForEObject.getInstance().getServiceRegistry(getTableManager().getTable());
 			return registry.getService(TransactionalEditingDomain.class);
 		} catch (final ServiceException e) {
-			Activator.log.error(Messages.NattableModelManager_ServiceRegistryNotFound, e);
+			// Bug 464168: The Table doesn't have an editing domain. Ignore and return null
 		}
 
 		return null;
@@ -478,6 +478,11 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 */
 	@Override
 	public void openEditAxisAliasDialog(final NatEventData event, int axisPosition) {
+		final TransactionalEditingDomain domain = getTableEditingDomain();
+		if (domain == null) {
+			return;
+		}
+
 		final IAxis axis = this.representedContentProvider.getAxis().get(axisPosition);
 		String alias = axis.getAlias();
 		if (alias == null) {
@@ -495,7 +500,6 @@ public abstract class AbstractAxisManager implements IAxisManager {
 			if ("".equals(newAlias)) { //$NON-NLS-1$
 				newAlias = null;
 			}
-			final TransactionalEditingDomain domain = getTableEditingDomain();
 			final SetRequest request = new SetRequest(domain, axis, NattableaxisPackage.eINSTANCE.getIAxis_Alias(), newAlias);
 			final IElementEditService provider = ElementEditServiceUtils.getCommandProvider(axis);
 			final ICommand cmd = provider.getEditCommand(request);
@@ -612,7 +616,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	 * @param axisPositions
 	 *            axis positions
 	 * @return
-	 *         the elements located at these axis position
+	 * 		the elements located at these axis position
 	 */
 	protected List<Object> getElements(final List<Integer> axisPositions) {
 		final List<Object> elements = getElements();
@@ -644,7 +648,7 @@ public abstract class AbstractAxisManager implements IAxisManager {
 	/**
 	 *
 	 * @return
-	 *         the list owning the elements displayed on the managed axis
+	 * 		the list owning the elements displayed on the managed axis
 	 */
 	protected final List<Object> getElements() {
 		if (isUsedAsColumnManager()) {
