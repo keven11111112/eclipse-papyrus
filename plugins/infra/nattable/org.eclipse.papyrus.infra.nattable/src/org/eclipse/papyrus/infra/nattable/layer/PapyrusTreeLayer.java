@@ -183,15 +183,20 @@ public class PapyrusTreeLayer extends TreeLayer {
 		if (index != -1) {
 			// we notify the layer than a row has been added
 			if (natTable != null) {
-				// required to avoid bug during paste from Excel which is not executed in the UI Thread
-				natTable.getDisplay().asyncExec(new Runnable() {
+								/* not in asyncExec to fix the bug 463312 (excepted collapse all
+				 * // required to avoid bug during paste from Excel which is not executed in the UI Thread
+				 * natTable.getDisplay().asyncExec(new Runnable() {
+				 * 
+				 * @Override
+				 * public void run() {
+				 * RowInsertEvent event = new RowInsertEvent(PapyrusTreeLayer.this, index);
+				 * rowHideShowLayer.handleLayerEvent(event);
+				 * }
+				 * });
+				 */
 
-					@Override
-					public void run() {
-						RowInsertEvent event = new RowInsertEvent(PapyrusTreeLayer.this, index);
-						rowHideShowLayer.handleLayerEvent(event);
-					}
-				});
+				RowInsertEvent event = new RowInsertEvent(PapyrusTreeLayer.this, index);
+				rowHideShowLayer.handleLayerEvent(event);
 			}
 			Object element = getTableManager().getRowElement(index);
 			if (!(element instanceof IAxis)) {
