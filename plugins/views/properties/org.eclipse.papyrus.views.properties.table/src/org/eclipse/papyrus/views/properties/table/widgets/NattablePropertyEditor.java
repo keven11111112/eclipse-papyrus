@@ -67,11 +67,11 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		self.setLayoutData(data);
 	}
 
-	public void setURI(String uri) {
+	public void setTableURI(String uri) {
 		tableConfigURI = URI.createURI(uri);
 	}
 
-	public String getURI() {
+	public String getTableURI() {
 		return tableConfigURI == null ? null : tableConfigURI.toString();
 	}
 

@@ -213,8 +213,11 @@ public abstract class AbstractPropertyEditor implements IChangeListener, Customi
 			}
 		}
 
-		IAtomicOperationExecutor executor = getOperationExecutor();
-		getEditor().setOperationExecutor(executor);
+		AbstractEditor editor = getEditor();
+		if (editor != null) {
+			IAtomicOperationExecutor executor = getOperationExecutor();
+			editor.setOperationExecutor(executor);
+		}
 
 		boolean isReadOnly = getReadOnly();
 		applyReadOnly(isReadOnly);
