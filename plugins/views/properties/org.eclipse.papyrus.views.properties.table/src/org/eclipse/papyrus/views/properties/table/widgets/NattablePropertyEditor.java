@@ -69,6 +69,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	public void setTableURI(String uri) {
 		tableConfigURI = URI.createURI(uri);
+		checkInput();
 	}
 
 	public String getTableURI() {

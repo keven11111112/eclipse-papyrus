@@ -1,5 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<environment:Environment xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9" xmi:id="_dMc-EN00EeSsxPjAcEX4yQ">
-  <propertyEditorTypes xmi:id="_ePP30N00EeSsxPjAcEX4yQ" label="Multi Reference Table" widgetClass="NattablePropertyEditor" namespace="_d63jQN00EeSsxPjAcEX4yQ" type="Reference" multiplicity="-1"/>
-  <namespaces xmi:id="_d63jQN00EeSsxPjAcEX4yQ" name="table" value="org.eclipse.papyrus.views.properties.table.widgets"/>
+<environment:Environment
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:environment="http://www.eclipse.org/papyrus/properties/environment/0.9"
+    xmi:id="_dMc-EN00EeSsxPjAcEX4yQ">
+  <propertyEditorTypes
+      xmi:id="_ePP30N00EeSsxPjAcEX4yQ"
+      label="Multi Reference Table"
+      widgetClass="NattablePropertyEditor"
+      namespace="_d63jQN00EeSsxPjAcEX4yQ"
+      type="Reference"
+      multiplicity="-1"/>
+  <namespaces
+      xmi:id="_d63jQN00EeSsxPjAcEX4yQ"
+      name="table"
+      value="org.eclipse.papyrus.views.properties.table.widgets"/>
 </environment:Environment>

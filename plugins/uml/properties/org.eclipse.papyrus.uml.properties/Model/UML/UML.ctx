@@ -4606,7 +4606,7 @@
       <properties xmi:id="_690yuKDJEeSZxfCXzZz3-w" name="ownedPort" type="Reference" description="References a set of ports that an encapsulated classifier owns."/>
     </elements>
     <elements xmi:id="_690yuaDJEeSZxfCXzZz3-w" name="StructuredClassifier" supertypes="_690xwaDJEeSZxfCXzZz3-w">
-      <properties xmi:id="_690yuqDJEeSZxfCXzZz3-w" name="ownedAttribute" type="Reference" description="References the properties owned by the classifier."/>
+      <properties xmi:id="_690yuqDJEeSZxfCXzZz3-w" name="ownedAttribute" type="Reference" multiplicity="-1" description="References the properties owned by the classifier."/>
       <properties xmi:id="_690yu6DJEeSZxfCXzZz3-w" name="part" type="Reference" description="References the properties specifying instances that the classifier owns by composition. This association is derived, selecting those owned properties where isComposite is true."/>
       <properties xmi:id="_690yvKDJEeSZxfCXzZz3-w" name="role" type="Reference" description="References the roles that instances may play in this classifier."/>
       <properties xmi:id="_690yvaDJEeSZxfCXzZz3-w" name="ownedConnector" type="Reference" description="References the connectors owned by the classifier."/>

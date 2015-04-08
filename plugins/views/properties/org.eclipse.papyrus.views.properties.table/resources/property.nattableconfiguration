@@ -15,21 +15,28 @@
   </columnHeaderAxisConfiguration>
   <columnAxisProviders xsi:type="nattableaxisprovider:SlaveObjectAxisProvider" description="This axis provider provides available columns according to the rows of the table (features of the object displayed on the other axis)" name="UML Feature axis provider">
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@rowHeaderAxisConfiguration/@axisManagers.0">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
       <element xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
     </axis>
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@rowHeaderAxisConfiguration/@axisManagers.0">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
       <element xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//TypedElement/type"/>
     </axis>
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@rowHeaderAxisConfiguration/@axisManagers.0">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
       <element xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/visibility"/>
     </axis>
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@rowHeaderAxisConfiguration/@axisManagers.0">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
       <element xsi:type="ecore:EReference" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property/defaultValue"/>
     </axis>
     <axis xsi:type="nattableaxis:EStructuralFeatureAxis" manager="//@rowHeaderAxisConfiguration/@axisManagers.0">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
       <element xsi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//Property/isDerived"/>
     </axis>
-    <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.1" element="uml_derived_features:/multiplicity"/>
+    <axis xsi:type="nattableaxis:FeatureIdAxis" manager="//@columnHeaderAxisConfiguration/@axisManagers.1" element="uml_derived_features:/multiplicity">
+      <localLabelConfiguration xsi:type="nattablelabelprovider:FeatureLabelProviderConfiguration" displayIcon="false" displayType="false" displayMultiplicity="false"/>
+    </axis>
   </columnAxisProviders>
   <rowAxisProviders xsi:type="nattableaxisprovider:MasterObjectAxisProvider" name="Owned Attributes" disconnectSlave="true"/>
 </nattableconfiguration:TableConfiguration>

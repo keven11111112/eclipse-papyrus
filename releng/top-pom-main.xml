@@ -318,6 +318,7 @@
 		<module>../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.resourceloading</module>
 		<module>../plugins/views/modelexplorer/org.eclipse.papyrus.views.modelexplorer.widgets</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties</module>
+		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.table</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model.edit</module>
 		<module>../plugins/views/properties/org.eclipse.papyrus.views.properties.model.editor</module>
