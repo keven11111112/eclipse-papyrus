@@ -164,14 +164,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
-	 * 
+	 *
 	 * The editing domain to use to edit context element
 	 */
 	protected TransactionalEditingDomain contextEditingDomain;
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
-	 * 
+	 *
 	 * The editing domain to use to edit table elements
 	 */
 	protected TransactionalEditingDomain tableEditingDomain;
@@ -378,7 +378,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * @return
-	 *         the filter strategy to use
+	 * 		the filter strategy to use
 	 */
 	protected abstract IFilterStrategy<Object> createFilterStrategy();
 
@@ -446,18 +446,18 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 											refreshFilter = true;
 										}
 									}
-									if(refreshFilter && axisToRefresh!=null){
-										//we need to update the filter map value (manage Undo/Redo for example)
+									if (refreshFilter && axisToRefresh != null) {
+										// we need to update the filter map value (manage Undo/Redo for example)
 										int index = -1;
-										if(table.isInvertAxis() && getRowElementsList().contains(axisToRefresh)){
+										if (table.isInvertAxis() && getRowElementsList().contains(axisToRefresh)) {
 											index = getRowElementsList().indexOf(axisToRefresh);
-										}else if(!table.isInvertAxis() && getColumnElementsList().contains(axisToRefresh)){
+										} else if (!table.isInvertAxis() && getColumnElementsList().contains(axisToRefresh)) {
 											index = getColumnElementsList().indexOf(axisToRefresh);
 										}
-										if(index!=-1){
+										if (index != -1) {
 											filterColumnHeaderComposite.doCommand(new UpdateFilterMapCommand(index));
 										}
-										
+
 									}
 								}
 							}
@@ -489,32 +489,33 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				return ((NotificationFilter.createEventTypeFilter(Notification.SET))
 						.or(NotificationFilter.createEventTypeFilter(Notification.ADD))
 						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
-						.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Style.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
+								.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Style.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
 				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
 			}
 		};
 
-		this.tableEditingDomain.addResourceSetListener(resourceSetListener);
+		if (this.tableEditingDomain != null) {
+			this.tableEditingDomain.addResourceSetListener(resourceSetListener);
+		}
 	}
 
 	/**
 	 *
 	 * @param notification
 	 * @return
-	 *         The nearest table containing the style in order to verify the table's styled event's source
+	 * 		The nearest table containing the style in order to verify the table's styled event's source
 	 */
 	protected static Table findTable(Notification notification) {
 		if (notification.getNotifier() instanceof Table) {
 			return (Table) notification.getNotifier();
-		}
-		else {
+		} else {
 			Object notifier = notification.getNotifier();
 			if (notifier instanceof EObject) {
 				EObject container = ((EObject) notifier).eContainer();
@@ -528,12 +529,12 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @param bodyLayerStack
 	 *            the body layer stack to use
-	 * 
+	 *
 	 * @return
-	 *         the row header layer stack to use
+	 * 		the row header layer stack to use
 	 */
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
 		return new RowHeaderLayerStack(bodyLayerStack, this);
@@ -673,6 +674,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				if (event instanceof ColumnResizeEvent || event instanceof RowResizeEvent) {
 					final CompositeCommand resizeCommand = new CompositeCommand("resize IAxis' width or height"); //$NON-NLS-1$
 					TransactionalEditingDomain tableDomain = TableEditingDomainUtils.getTableEditingDomain(table);
+					if (tableDomain == null) {
+						return;
+					}
 
 					if (event instanceof ColumnResizeEvent) {
 						// get the index of the first column modified by the user
@@ -907,6 +911,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					if (resizedHeaderPosition != -1) {
 						final CompositeCommand resizeRowHeaderCommand = new CompositeCommand("resize RowHeader's width"); //$NON-NLS-1$
 						TransactionalEditingDomain tableDomain = TableEditingDomainUtils.getTableEditingDomain(table);
+						if (tableDomain == null) {
+							return;
+						}
 						LocalTableHeaderAxisConfiguration localRowHeaderAxis = null;
 
 
@@ -994,7 +1001,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param event
 	 *            an event
 	 * @return
-	 *         a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
+	 * 		a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
 	 *         elements, the cell, the point and its translation).
 	 *         Some of these values can be <code>null</code> or not depending of the region of the table
 	 */
@@ -1127,7 +1134,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         the created sort model to use for
+	 * 		the created sort model to use for
 	 */
 	protected IPapyrusSortModel getRowSortModel() {
 		if (this.rowSortModel == null) {
@@ -1455,7 +1462,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating that some row axis are to be merged in the selection
+	 * 		The boolean indicating that some row axis are to be merged in the selection
 	 */
 	protected boolean getToMergeRowBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentRowAxisProvider().getAxis()) {
@@ -1476,7 +1483,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating that some column axis are to be merged in the selection
+	 * 		The boolean indicating that some column axis are to be merged in the selection
 	 */
 	protected boolean getToMergeColumnBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentColumnAxisProvider().getAxis()) {
@@ -1497,7 +1504,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedRows() {
@@ -1526,7 +1533,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedColumns() {
@@ -1555,7 +1562,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllRows() {
@@ -1585,7 +1592,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllColumns() {
@@ -1599,7 +1606,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 *
 	 * @param adapter
@@ -1628,9 +1635,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
+	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 */
 	protected final TableStructuredSelection getSelectionInTable() {
 		ISelection selection = this.selectionProvider.getSelection();
@@ -1641,10 +1648,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a map representing index of fully selected rows linked to the associated element
-	 * 
+	 * 		a map representing index of fully selected rows linked to the associated element
+	 *
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedRows() {
@@ -1659,10 +1666,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a map representing index of fully selected columns linked to the associated element
-	 * 
+	 * 		a map representing index of fully selected columns linked to the associated element
+	 *
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedColumns() {
