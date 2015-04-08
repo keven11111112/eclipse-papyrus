@@ -14,21 +14,20 @@
 
 package org.eclipse.papyrus.uml.alf.tests.generator
 
+import java.io.File
+import java.io.FileWriter
+import java.io.IOException
+import java.io.PrintWriter
+import org.eclipse.emf.common.util.BasicDiagnostic
+import org.eclipse.papyrus.uml.alf.MappingError
+import org.eclipse.papyrus.uml.alf.tests.ParserTest
 import org.eclipse.xtext.junit4.XtextRunner
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
-
-import org.junit.Test
-import org.junit.BeforeClass
-import java.io.IOException
-import org.eclipse.emf.common.util.BasicDiagnostic
-import java.io.File
-import org.eclipse.papyrus.uml.alf.MappingError
-import org.eclipse.papyrus.uml.alf.tests.ParserTest
-import org.eclipse.papyrus.uml.alf.tests.generator.AlfGenerator
-import java.io.PrintWriter
-import java.io.FileWriter
 
 @RunWith(XtextRunner)
 class GenerationTest extends ParserTest {
@@ -46,6 +45,7 @@ class GenerationTest extends ParserTest {
   }
 
   @Test
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testGeneration() {
     var failures = 0;
     System.out.println("[GenerationTest] Directory " + umlDirectory + ":")

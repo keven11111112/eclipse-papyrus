@@ -491,7 +491,7 @@ public class UmlValueSpecificationPackageImpl extends EPackageImpl implements Um
     initEAttribute(getLiteralBooleanRule_Value(), theEcorePackage.getEString(), "value", null, 0, 1, LiteralBooleanRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalIntegerOrUnlimitedNaturalRuleEClass, LiteralIntegerOrUnlimitedNaturalRule.class, "LiteralIntegerOrUnlimitedNaturalRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
-    initEAttribute(getLiteralIntegerOrUnlimitedNaturalRule_Value(), theEcorePackage.getEInt(), "value", null, 0, 1, LiteralIntegerOrUnlimitedNaturalRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+    initEAttribute(getLiteralIntegerOrUnlimitedNaturalRule_Value(), theEcorePackage.getEString(), "value", null, 0, 1, LiteralIntegerOrUnlimitedNaturalRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
     initEClass(literalRealRuleEClass, LiteralRealRule.class, "LiteralRealRule", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
     initEAttribute(getLiteralRealRule_Value(), theEcorePackage.getEDouble(), "value", null, 0, 1, LiteralRealRule.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

@@ -54,13 +54,6 @@
       </profile>
    </extension>
    <extension
-         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
-      <configuration
-            file="configuration/UMLRT.configuration"
-            priority="100">
-      </configuration>
-   </extension>
-   <extension
          point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
       <elementTypeSet
             id="org.eclipse.papyrus.umlrt.elementTypeSet"

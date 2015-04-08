@@ -14,20 +14,21 @@
 
 package org.eclipse.papyrus.uml.alf.tests
 
+import org.eclipse.emf.ecore.resource.ResourceSet
+import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
+import org.eclipse.ocl.pivot.model.OCLstdlib
+import org.eclipse.ocl.uml.OCL
+import org.eclipse.papyrus.uml.alf.AlfInjectorProvider
+import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
+import org.eclipse.xtext.resource.XtextResourceSet
+import org.junit.AfterClass
+import org.junit.BeforeClass
+import org.junit.Ignore
+import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
-import org.junit.Test
-import org.eclipse.emf.ecore.resource.ResourceSet
-import org.junit.BeforeClass
-import org.eclipse.xtext.resource.XtextResourceSet
-import org.eclipse.xtext.junit4.InjectWith
-import org.eclipse.papyrus.uml.alf.AlfInjectorProvider
-import org.junit.AfterClass
-import org.eclipse.ocl.uml.OCL
-import org.eclipse.ocl.pivot.model.OCLstdlib
-import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
 
 @InjectWith(AlfInjectorProvider)
 @RunWith(XtextRunner)
@@ -53,6 +54,7 @@ class SyntacticTest extends ParserTest {
   }
   
   @Test
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testSyntax() {
   	System.out.print("[SyntacticTest] ")
     val failures = parseDirectory(resourceSet, testDirectory, false);

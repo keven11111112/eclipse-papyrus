@@ -36,7 +36,7 @@
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:Property:defaultValue"></ppe:ReferenceDialog>
 		<xtexteditor:UMLStyledTextReferenceDialog
-			property="UML:Property:defaultValue" input="{Binding}"  objectInstance="org.eclipse.uml2.uml.ValueSpecification"></xtexteditor:UMLStyledTextReferenceDialog>
+			property="UML:Property:defaultValue" input="{Binding}" directEditorConfiguration="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.ValueSpecificationXtextDirectEditorConfiguration"></xtexteditor:UMLStyledTextReferenceDialog>
 		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation"></ppe:EnumCombo>
 		<ppe:MultiReference input="{Binding}"
 			property="UML:Property:subsettedProperty"></ppe:MultiReference>

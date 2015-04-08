@@ -39,9 +39,9 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	protected UMLXtextReferenceValueEditor editor;
 
 	/**
-	 * The object instance attribute available in the XWT file.
+	 * The direct editor configuration class name.
 	 */
-	private String objectInstance;
+	private String directEditorConfiguration;
 	
 	/**
 	 * Constructor.
@@ -78,8 +78,8 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	protected void doBinding() {
 		IStaticContentProvider provider = input
 				.getContentProvider(propertyPath);
-		if(null != getObjectInstance()){
-			editor.setObjectInstance(getObjectInstance());
+		if(null != getDirectEditorConfiguration()){
+			editor.setDirectEditorConfiguration(getDirectEditorConfiguration());
 		}
 		editor.setLabelProvider(input.getLabelProvider(propertyPath));
 		editor.setContentProvider(provider);
@@ -119,24 +119,24 @@ public class UMLStyledTextReferenceDialog extends AbstractPropertyEditor {
 	}
 	
 	/**
-	 * Sets the object instance attribute from XWT file.
+	 * Sets the direct editor configuration class name from XWT file.
 	 * 
-	 * @param objectInstance The object instance value.
+	 * @param directEditorConfiguration The direct editor configuration class name value.
 	 */
-	public void setObjectInstance(String objectInstance) {
-		this.objectInstance = objectInstance;
+	public void setDirectEditorConfiguration(final String directEditorConfiguration) {
+		this.directEditorConfiguration = directEditorConfiguration;
 		if(null != editor){
-			editor.setObjectInstance(objectInstance);
+			editor.setDirectEditorConfiguration(directEditorConfiguration);
 		}
 	}
 
 	/**
-	 * Gets the object instance attribute value.
+	 * Gets the direct editor configuration class name value.
 	 * 
-	 * @return The object instance attribute value.
+	 * @return The direct editor configuration class name value.
 	 */
-	public String getObjectInstance() {
-		return objectInstance;
+	public String getDirectEditorConfiguration() {
+		return directEditorConfiguration;
 	}
 
 }

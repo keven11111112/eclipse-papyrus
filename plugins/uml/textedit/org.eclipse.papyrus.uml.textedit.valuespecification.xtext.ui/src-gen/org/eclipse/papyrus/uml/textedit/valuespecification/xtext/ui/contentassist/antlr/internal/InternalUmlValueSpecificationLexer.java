@@ -315,38 +315,89 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
         try {
             int _type = RULE_VALUE_SPECIFICATION_INT;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:30: ( ( '0' .. '9' )+ )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:32: ( '0' .. '9' )+
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:30: ( ( ( '-' )? ( '0' .. '9' )+ | '*' ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:32: ( ( '-' )? ( '0' .. '9' )+ | '*' )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:32: ( '0' .. '9' )+
-            int cnt3=0;
-            loop3:
-            do {
-                int alt3=2;
-                int LA3_0 = input.LA(1);
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:32: ( ( '-' )? ( '0' .. '9' )+ | '*' )
+            int alt5=2;
+            int LA5_0 = input.LA(1);
 
-                if ( ((LA3_0>='0' && LA3_0<='9')) ) {
-                    alt3=1;
-                }
+            if ( (LA5_0=='-'||(LA5_0>='0' && LA5_0<='9')) ) {
+                alt5=1;
+            }
+            else if ( (LA5_0=='*') ) {
+                alt5=2;
+            }
+            else {
+                NoViableAltException nvae =
+                    new NoViableAltException("", 5, 0, input);
+
+                throw nvae;
+            }
+            switch (alt5) {
+                case 1 :
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:33: ( '-' )? ( '0' .. '9' )+
+                    {
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:33: ( '-' )?
+                    int alt3=2;
+                    int LA3_0 = input.LA(1);
+
+                    if ( (LA3_0=='-') ) {
+                        alt3=1;
+                    }
+                    switch (alt3) {
+                        case 1 :
+                            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:33: '-'
+                            {
+                            match('-'); 
+
+                            }
+                            break;
+
+                    }
+
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:38: ( '0' .. '9' )+
+                    int cnt4=0;
+                    loop4:
+                    do {
+                        int alt4=2;
+                        int LA4_0 = input.LA(1);
+
+                        if ( ((LA4_0>='0' && LA4_0<='9')) ) {
+                            alt4=1;
+                        }
 
 
-                switch (alt3) {
-            	case 1 :
-            	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:33: '0' .. '9'
-            	    {
-            	    matchRange('0','9'); 
+                        switch (alt4) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:39: '0' .. '9'
+                    	    {
+                    	    matchRange('0','9'); 
 
-            	    }
-            	    break;
+                    	    }
+                    	    break;
 
-            	default :
-            	    if ( cnt3 >= 1 ) break loop3;
-                        EarlyExitException eee =
-                            new EarlyExitException(3, input);
-                        throw eee;
-                }
-                cnt3++;
-            } while (true);
+                    	default :
+                    	    if ( cnt4 >= 1 ) break loop4;
+                                EarlyExitException eee =
+                                    new EarlyExitException(4, input);
+                                throw eee;
+                        }
+                        cnt4++;
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:868:50: '*'
+                    {
+                    match('*'); 
+
+                    }
+                    break;
+
+            }
 
 
             }
@@ -364,121 +415,35 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
         try {
             int _type = RULE_VALUE_SPECIFICATION_DOUBLE;
             int _channel = DEFAULT_TOKEN_CHANNEL;
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:33: ( ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ ) )
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:35: ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:33: ( ( '-' )? ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ ) )
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:35: ( '-' )? ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )
             {
-            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:35: ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )
-            int alt8=2;
-            alt8 = dfa8.predict(input);
-            switch (alt8) {
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:35: ( '-' )?
+            int alt6=2;
+            int LA6_0 = input.LA(1);
+
+            if ( (LA6_0=='-') ) {
+                alt6=1;
+            }
+            switch (alt6) {
                 case 1 :
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:36: ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )*
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:35: '-'
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:36: ( '0' .. '9' )+
-                    int cnt4=0;
-                    loop4:
-                    do {
-                        int alt4=2;
-                        int LA4_0 = input.LA(1);
-
-                        if ( ((LA4_0>='0' && LA4_0<='9')) ) {
-                            alt4=1;
-                        }
-
-
-                        switch (alt4) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:37: '0' .. '9'
-                    	    {
-                    	    matchRange('0','9'); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    if ( cnt4 >= 1 ) break loop4;
-                                EarlyExitException eee =
-                                    new EarlyExitException(4, input);
-                                throw eee;
-                        }
-                        cnt4++;
-                    } while (true);
-
-                    if ( input.LA(1)==','||input.LA(1)=='.' ) {
-                        input.consume();
-
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        recover(mse);
-                        throw mse;}
-
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:58: ( '0' .. '9' )*
-                    loop5:
-                    do {
-                        int alt5=2;
-                        int LA5_0 = input.LA(1);
-
-                        if ( ((LA5_0>='0' && LA5_0<='9')) ) {
-                            alt5=1;
-                        }
-
-
-                        switch (alt5) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:59: '0' .. '9'
-                    	    {
-                    	    matchRange('0','9'); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop5;
-                        }
-                    } while (true);
-
+                    match('-'); 
 
                     }
                     break;
-                case 2 :
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:70: ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+
+
+            }
+
+            // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:40: ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )
+            int alt11=2;
+            alt11 = dfa11.predict(input);
+            switch (alt11) {
+                case 1 :
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:41: ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )*
                     {
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:70: ( '0' .. '9' )*
-                    loop6:
-                    do {
-                        int alt6=2;
-                        int LA6_0 = input.LA(1);
-
-                        if ( ((LA6_0>='0' && LA6_0<='9')) ) {
-                            alt6=1;
-                        }
-
-
-                        switch (alt6) {
-                    	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:71: '0' .. '9'
-                    	    {
-                    	    matchRange('0','9'); 
-
-                    	    }
-                    	    break;
-
-                    	default :
-                    	    break loop6;
-                        }
-                    } while (true);
-
-                    if ( input.LA(1)==','||input.LA(1)=='.' ) {
-                        input.consume();
-
-                    }
-                    else {
-                        MismatchedSetException mse = new MismatchedSetException(null,input);
-                        recover(mse);
-                        throw mse;}
-
-                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:92: ( '0' .. '9' )+
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:41: ( '0' .. '9' )+
                     int cnt7=0;
                     loop7:
                     do {
@@ -492,7 +457,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
 
                         switch (alt7) {
                     	case 1 :
-                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:93: '0' .. '9'
+                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:42: '0' .. '9'
                     	    {
                     	    matchRange('0','9'); 
 
@@ -506,6 +471,110 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                                 throw eee;
                         }
                         cnt7++;
+                    } while (true);
+
+                    if ( input.LA(1)==','||input.LA(1)=='.' ) {
+                        input.consume();
+
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;}
+
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:63: ( '0' .. '9' )*
+                    loop8:
+                    do {
+                        int alt8=2;
+                        int LA8_0 = input.LA(1);
+
+                        if ( ((LA8_0>='0' && LA8_0<='9')) ) {
+                            alt8=1;
+                        }
+
+
+                        switch (alt8) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:64: '0' .. '9'
+                    	    {
+                    	    matchRange('0','9'); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop8;
+                        }
+                    } while (true);
+
+
+                    }
+                    break;
+                case 2 :
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:75: ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+
+                    {
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:75: ( '0' .. '9' )*
+                    loop9:
+                    do {
+                        int alt9=2;
+                        int LA9_0 = input.LA(1);
+
+                        if ( ((LA9_0>='0' && LA9_0<='9')) ) {
+                            alt9=1;
+                        }
+
+
+                        switch (alt9) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:76: '0' .. '9'
+                    	    {
+                    	    matchRange('0','9'); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    break loop9;
+                        }
+                    } while (true);
+
+                    if ( input.LA(1)==','||input.LA(1)=='.' ) {
+                        input.consume();
+
+                    }
+                    else {
+                        MismatchedSetException mse = new MismatchedSetException(null,input);
+                        recover(mse);
+                        throw mse;}
+
+                    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:97: ( '0' .. '9' )+
+                    int cnt10=0;
+                    loop10:
+                    do {
+                        int alt10=2;
+                        int LA10_0 = input.LA(1);
+
+                        if ( ((LA10_0>='0' && LA10_0<='9')) ) {
+                            alt10=1;
+                        }
+
+
+                        switch (alt10) {
+                    	case 1 :
+                    	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:870:98: '0' .. '9'
+                    	    {
+                    	    matchRange('0','9'); 
+
+                    	    }
+                    	    break;
+
+                    	default :
+                    	    if ( cnt10 >= 1 ) break loop10;
+                                EarlyExitException eee =
+                                    new EarlyExitException(10, input);
+                                throw eee;
+                        }
+                        cnt10++;
                     } while (true);
 
 
@@ -534,41 +603,41 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:35: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:35: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt11=2;
-            int LA11_0 = input.LA(1);
+            int alt14=2;
+            int LA14_0 = input.LA(1);
 
-            if ( (LA11_0=='\"') ) {
-                alt11=1;
+            if ( (LA14_0=='\"') ) {
+                alt14=1;
             }
-            else if ( (LA11_0=='\'') ) {
-                alt11=2;
+            else if ( (LA14_0=='\'') ) {
+                alt14=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 11, 0, input);
+                    new NoViableAltException("", 14, 0, input);
 
                 throw nvae;
             }
-            switch (alt11) {
+            switch (alt14) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:36: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:40: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop9:
+                    loop12:
                     do {
-                        int alt9=3;
-                        int LA9_0 = input.LA(1);
+                        int alt12=3;
+                        int LA12_0 = input.LA(1);
 
-                        if ( (LA9_0=='\\') ) {
-                            alt9=1;
+                        if ( (LA12_0=='\\') ) {
+                            alt12=1;
                         }
-                        else if ( ((LA9_0>='\u0000' && LA9_0<='!')||(LA9_0>='#' && LA9_0<='[')||(LA9_0>=']' && LA9_0<='\uFFFF')) ) {
-                            alt9=2;
+                        else if ( ((LA12_0>='\u0000' && LA12_0<='!')||(LA12_0>='#' && LA12_0<='[')||(LA12_0>=']' && LA12_0<='\uFFFF')) ) {
+                            alt12=2;
                         }
 
 
-                        switch (alt9) {
+                        switch (alt12) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:41: '\\\\' .
                     	    {
@@ -594,7 +663,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop9;
+                    	    break loop12;
                         }
                     } while (true);
 
@@ -607,20 +676,20 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     {
                     match('\''); 
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:73: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop10:
+                    loop13:
                     do {
-                        int alt10=3;
-                        int LA10_0 = input.LA(1);
+                        int alt13=3;
+                        int LA13_0 = input.LA(1);
 
-                        if ( (LA10_0=='\\') ) {
-                            alt10=1;
+                        if ( (LA13_0=='\\') ) {
+                            alt13=1;
                         }
-                        else if ( ((LA10_0>='\u0000' && LA10_0<='&')||(LA10_0>='(' && LA10_0<='[')||(LA10_0>=']' && LA10_0<='\uFFFF')) ) {
-                            alt10=2;
+                        else if ( ((LA13_0>='\u0000' && LA13_0<='&')||(LA13_0>='(' && LA13_0<='[')||(LA13_0>=']' && LA13_0<='\uFFFF')) ) {
+                            alt13=2;
                         }
 
 
-                        switch (alt10) {
+                        switch (alt13) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:872:74: '\\\\' .
                     	    {
@@ -646,7 +715,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop10;
+                    	    break loop13;
                         }
                     } while (true);
 
@@ -677,13 +746,13 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:874:11: ( '^' )? ( 'a' .. 'z' | 'A' .. 'Z' | '_' ) ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
             {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:874:11: ( '^' )?
-            int alt12=2;
-            int LA12_0 = input.LA(1);
+            int alt15=2;
+            int LA15_0 = input.LA(1);
 
-            if ( (LA12_0=='^') ) {
-                alt12=1;
+            if ( (LA15_0=='^') ) {
+                alt15=1;
             }
-            switch (alt12) {
+            switch (alt15) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:874:11: '^'
                     {
@@ -704,17 +773,17 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                 throw mse;}
 
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:874:40: ( 'a' .. 'z' | 'A' .. 'Z' | '_' | '0' .. '9' )*
-            loop13:
+            loop16:
             do {
-                int alt13=2;
-                int LA13_0 = input.LA(1);
+                int alt16=2;
+                int LA16_0 = input.LA(1);
 
-                if ( ((LA13_0>='0' && LA13_0<='9')||(LA13_0>='A' && LA13_0<='Z')||LA13_0=='_'||(LA13_0>='a' && LA13_0<='z')) ) {
-                    alt13=1;
+                if ( ((LA16_0>='0' && LA16_0<='9')||(LA16_0>='A' && LA16_0<='Z')||LA16_0=='_'||(LA16_0>='a' && LA16_0<='z')) ) {
+                    alt16=1;
                 }
 
 
-                switch (alt13) {
+                switch (alt16) {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:
             	    {
@@ -732,7 +801,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop13;
+            	    break loop16;
                 }
             } while (true);
 
@@ -756,18 +825,18 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:876:12: ( '0' .. '9' )+
             {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:876:12: ( '0' .. '9' )+
-            int cnt14=0;
-            loop14:
+            int cnt17=0;
+            loop17:
             do {
-                int alt14=2;
-                int LA14_0 = input.LA(1);
+                int alt17=2;
+                int LA17_0 = input.LA(1);
 
-                if ( ((LA14_0>='0' && LA14_0<='9')) ) {
-                    alt14=1;
+                if ( ((LA17_0>='0' && LA17_0<='9')) ) {
+                    alt17=1;
                 }
 
 
-                switch (alt14) {
+                switch (alt17) {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:876:13: '0' .. '9'
             	    {
@@ -777,12 +846,12 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt14 >= 1 ) break loop14;
+            	    if ( cnt17 >= 1 ) break loop17;
                         EarlyExitException eee =
-                            new EarlyExitException(14, input);
+                            new EarlyExitException(17, input);
                         throw eee;
                 }
-                cnt14++;
+                cnt17++;
             } while (true);
 
 
@@ -805,41 +874,41 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
             {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:15: ( '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"' | '\\'' ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )* '\\'' )
-            int alt17=2;
-            int LA17_0 = input.LA(1);
+            int alt20=2;
+            int LA20_0 = input.LA(1);
 
-            if ( (LA17_0=='\"') ) {
-                alt17=1;
+            if ( (LA20_0=='\"') ) {
+                alt20=1;
             }
-            else if ( (LA17_0=='\'') ) {
-                alt17=2;
+            else if ( (LA20_0=='\'') ) {
+                alt20=2;
             }
             else {
                 NoViableAltException nvae =
-                    new NoViableAltException("", 17, 0, input);
+                    new NoViableAltException("", 20, 0, input);
 
                 throw nvae;
             }
-            switch (alt17) {
+            switch (alt20) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:16: '\"' ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )* '\"'
                     {
                     match('\"'); 
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:20: ( '\\\\' . | ~ ( ( '\\\\' | '\"' ) ) )*
-                    loop15:
+                    loop18:
                     do {
-                        int alt15=3;
-                        int LA15_0 = input.LA(1);
+                        int alt18=3;
+                        int LA18_0 = input.LA(1);
 
-                        if ( (LA15_0=='\\') ) {
-                            alt15=1;
+                        if ( (LA18_0=='\\') ) {
+                            alt18=1;
                         }
-                        else if ( ((LA15_0>='\u0000' && LA15_0<='!')||(LA15_0>='#' && LA15_0<='[')||(LA15_0>=']' && LA15_0<='\uFFFF')) ) {
-                            alt15=2;
+                        else if ( ((LA18_0>='\u0000' && LA18_0<='!')||(LA18_0>='#' && LA18_0<='[')||(LA18_0>=']' && LA18_0<='\uFFFF')) ) {
+                            alt18=2;
                         }
 
 
-                        switch (alt15) {
+                        switch (alt18) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:21: '\\\\' .
                     	    {
@@ -865,7 +934,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop15;
+                    	    break loop18;
                         }
                     } while (true);
 
@@ -878,20 +947,20 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     {
                     match('\''); 
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:53: ( '\\\\' . | ~ ( ( '\\\\' | '\\'' ) ) )*
-                    loop16:
+                    loop19:
                     do {
-                        int alt16=3;
-                        int LA16_0 = input.LA(1);
+                        int alt19=3;
+                        int LA19_0 = input.LA(1);
 
-                        if ( (LA16_0=='\\') ) {
-                            alt16=1;
+                        if ( (LA19_0=='\\') ) {
+                            alt19=1;
                         }
-                        else if ( ((LA16_0>='\u0000' && LA16_0<='&')||(LA16_0>='(' && LA16_0<='[')||(LA16_0>=']' && LA16_0<='\uFFFF')) ) {
-                            alt16=2;
+                        else if ( ((LA19_0>='\u0000' && LA19_0<='&')||(LA19_0>='(' && LA19_0<='[')||(LA19_0>=']' && LA19_0<='\uFFFF')) ) {
+                            alt19=2;
                         }
 
 
-                        switch (alt16) {
+                        switch (alt19) {
                     	case 1 :
                     	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:878:54: '\\\\' .
                     	    {
@@ -917,7 +986,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
                     	    break;
 
                     	default :
-                    	    break loop16;
+                    	    break loop19;
                         }
                     } while (true);
 
@@ -950,29 +1019,29 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             match("/*"); 
 
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:880:24: ( options {greedy=false; } : . )*
-            loop18:
+            loop21:
             do {
-                int alt18=2;
-                int LA18_0 = input.LA(1);
+                int alt21=2;
+                int LA21_0 = input.LA(1);
 
-                if ( (LA18_0=='*') ) {
-                    int LA18_1 = input.LA(2);
+                if ( (LA21_0=='*') ) {
+                    int LA21_1 = input.LA(2);
 
-                    if ( (LA18_1=='/') ) {
-                        alt18=2;
+                    if ( (LA21_1=='/') ) {
+                        alt21=2;
                     }
-                    else if ( ((LA18_1>='\u0000' && LA18_1<='.')||(LA18_1>='0' && LA18_1<='\uFFFF')) ) {
-                        alt18=1;
+                    else if ( ((LA21_1>='\u0000' && LA21_1<='.')||(LA21_1>='0' && LA21_1<='\uFFFF')) ) {
+                        alt21=1;
                     }
 
 
                 }
-                else if ( ((LA18_0>='\u0000' && LA18_0<=')')||(LA18_0>='+' && LA18_0<='\uFFFF')) ) {
-                    alt18=1;
+                else if ( ((LA21_0>='\u0000' && LA21_0<=')')||(LA21_0>='+' && LA21_0<='\uFFFF')) ) {
+                    alt21=1;
                 }
 
 
-                switch (alt18) {
+                switch (alt21) {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:880:52: .
             	    {
@@ -982,7 +1051,7 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop18;
+            	    break loop21;
                 }
             } while (true);
 
@@ -1010,17 +1079,17 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             match("//"); 
 
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:24: (~ ( ( '\\n' | '\\r' ) ) )*
-            loop19:
+            loop22:
             do {
-                int alt19=2;
-                int LA19_0 = input.LA(1);
+                int alt22=2;
+                int LA22_0 = input.LA(1);
 
-                if ( ((LA19_0>='\u0000' && LA19_0<='\t')||(LA19_0>='\u000B' && LA19_0<='\f')||(LA19_0>='\u000E' && LA19_0<='\uFFFF')) ) {
-                    alt19=1;
+                if ( ((LA22_0>='\u0000' && LA22_0<='\t')||(LA22_0>='\u000B' && LA22_0<='\f')||(LA22_0>='\u000E' && LA22_0<='\uFFFF')) ) {
+                    alt22=1;
                 }
 
 
-                switch (alt19) {
+                switch (alt22) {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:24: ~ ( ( '\\n' | '\\r' ) )
             	    {
@@ -1038,29 +1107,29 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             	    break;
 
             	default :
-            	    break loop19;
+            	    break loop22;
                 }
             } while (true);
 
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:40: ( ( '\\r' )? '\\n' )?
-            int alt21=2;
-            int LA21_0 = input.LA(1);
+            int alt24=2;
+            int LA24_0 = input.LA(1);
 
-            if ( (LA21_0=='\n'||LA21_0=='\r') ) {
-                alt21=1;
+            if ( (LA24_0=='\n'||LA24_0=='\r') ) {
+                alt24=1;
             }
-            switch (alt21) {
+            switch (alt24) {
                 case 1 :
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:41: ( '\\r' )? '\\n'
                     {
                     // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:41: ( '\\r' )?
-                    int alt20=2;
-                    int LA20_0 = input.LA(1);
+                    int alt23=2;
+                    int LA23_0 = input.LA(1);
 
-                    if ( (LA20_0=='\r') ) {
-                        alt20=1;
+                    if ( (LA23_0=='\r') ) {
+                        alt23=1;
                     }
-                    switch (alt20) {
+                    switch (alt23) {
                         case 1 :
                             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:882:41: '\\r'
                             {
@@ -1098,18 +1167,18 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:884:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
             {
             // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:884:11: ( ' ' | '\\t' | '\\r' | '\\n' )+
-            int cnt22=0;
-            loop22:
+            int cnt25=0;
+            loop25:
             do {
-                int alt22=2;
-                int LA22_0 = input.LA(1);
+                int alt25=2;
+                int LA25_0 = input.LA(1);
 
-                if ( ((LA22_0>='\t' && LA22_0<='\n')||LA22_0=='\r'||LA22_0==' ') ) {
-                    alt22=1;
+                if ( ((LA25_0>='\t' && LA25_0<='\n')||LA25_0=='\r'||LA25_0==' ') ) {
+                    alt25=1;
                 }
 
 
-                switch (alt22) {
+                switch (alt25) {
             	case 1 :
             	    // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:
             	    {
@@ -1127,12 +1196,12 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             	    break;
 
             	default :
-            	    if ( cnt22 >= 1 ) break loop22;
+            	    if ( cnt25 >= 1 ) break loop25;
                         EarlyExitException eee =
-                            new EarlyExitException(22, input);
+                            new EarlyExitException(25, input);
                         throw eee;
                 }
-                cnt22++;
+                cnt25++;
             } while (true);
 
 
@@ -1168,9 +1237,9 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
 
     public void mTokens() throws RecognitionException {
         // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:1:8: ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | RULE_VALUE_SPECIFICATION_ID | RULE_VALUE_SPECIFICATION_INT | RULE_VALUE_SPECIFICATION_DOUBLE | RULE_VALUE_SPECIFICATION_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER )
-        int alt23=20;
-        alt23 = dfa23.predict(input);
-        switch (alt23) {
+        int alt26=20;
+        alt26 = dfa26.predict(input);
+        switch (alt26) {
             case 1 :
                 // ../org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/valuespecification/xtext/ui/contentassist/antlr/internal/InternalUmlValueSpecification.g:1:10: T__15
                 {
@@ -1317,21 +1386,21 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
     }
 
 
-    protected DFA8 dfa8 = new DFA8(this);
-    protected DFA23 dfa23 = new DFA23(this);
-    static final String DFA8_eotS =
+    protected DFA11 dfa11 = new DFA11(this);
+    protected DFA26 dfa26 = new DFA26(this);
+    static final String DFA11_eotS =
         "\3\uffff\1\4\1\uffff";
-    static final String DFA8_eofS =
+    static final String DFA11_eofS =
         "\5\uffff";
-    static final String DFA8_minS =
+    static final String DFA11_minS =
         "\2\54\1\uffff\1\0\1\uffff";
-    static final String DFA8_maxS =
+    static final String DFA11_maxS =
         "\2\71\1\uffff\1\0\1\uffff";
-    static final String DFA8_acceptS =
+    static final String DFA11_acceptS =
         "\2\uffff\1\2\1\uffff\1\1";
-    static final String DFA8_specialS =
+    static final String DFA11_specialS =
         "\5\uffff}>";
-    static final String[] DFA8_transitionS = {
+    static final String[] DFA11_transitionS = {
             "\1\2\1\uffff\1\2\1\uffff\12\1",
             "\1\3\1\uffff\1\3\1\uffff\12\1",
             "",
@@ -1339,153 +1408,157 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
             ""
     };
 
-    static final short[] DFA8_eot = DFA.unpackEncodedString(DFA8_eotS);
-    static final short[] DFA8_eof = DFA.unpackEncodedString(DFA8_eofS);
-    static final char[] DFA8_min = DFA.unpackEncodedStringToUnsignedChars(DFA8_minS);
-    static final char[] DFA8_max = DFA.unpackEncodedStringToUnsignedChars(DFA8_maxS);
-    static final short[] DFA8_accept = DFA.unpackEncodedString(DFA8_acceptS);
-    static final short[] DFA8_special = DFA.unpackEncodedString(DFA8_specialS);
-    static final short[][] DFA8_transition;
+    static final short[] DFA11_eot = DFA.unpackEncodedString(DFA11_eotS);
+    static final short[] DFA11_eof = DFA.unpackEncodedString(DFA11_eofS);
+    static final char[] DFA11_min = DFA.unpackEncodedStringToUnsignedChars(DFA11_minS);
+    static final char[] DFA11_max = DFA.unpackEncodedStringToUnsignedChars(DFA11_maxS);
+    static final short[] DFA11_accept = DFA.unpackEncodedString(DFA11_acceptS);
+    static final short[] DFA11_special = DFA.unpackEncodedString(DFA11_specialS);
+    static final short[][] DFA11_transition;
 
     static {
-        int numStates = DFA8_transitionS.length;
-        DFA8_transition = new short[numStates][];
+        int numStates = DFA11_transitionS.length;
+        DFA11_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA8_transition[i] = DFA.unpackEncodedString(DFA8_transitionS[i]);
+            DFA11_transition[i] = DFA.unpackEncodedString(DFA11_transitionS[i]);
         }
     }
 
-    class DFA8 extends DFA {
+    class DFA11 extends DFA {
 
-        public DFA8(BaseRecognizer recognizer) {
+        public DFA11(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 8;
-            this.eot = DFA8_eot;
-            this.eof = DFA8_eof;
-            this.min = DFA8_min;
-            this.max = DFA8_max;
-            this.accept = DFA8_accept;
-            this.special = DFA8_special;
-            this.transition = DFA8_transition;
+            this.decisionNumber = 11;
+            this.eot = DFA11_eot;
+            this.eof = DFA11_eof;
+            this.min = DFA11_min;
+            this.max = DFA11_max;
+            this.accept = DFA11_accept;
+            this.special = DFA11_special;
+            this.transition = DFA11_transition;
         }
         public String getDescription() {
-            return "870:35: ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )";
+            return "870:40: ( ( '0' .. '9' )+ ( '.' | ',' ) ( '0' .. '9' )* | ( '0' .. '9' )* ( '.' | ',' ) ( '0' .. '9' )+ )";
         }
     }
-    static final String DFA23_eotS =
-        "\1\uffff\2\25\1\uffff\1\25\1\22\4\uffff\1\22\1\25\1\37\4\22\2\uffff"+
-        "\2\25\1\uffff\1\25\1\uffff\1\25\5\uffff\1\25\1\uffff\1\37\12\uffff"+
-        "\3\25\3\uffff\1\64\1\25\1\66\1\uffff\1\67\2\uffff";
-    static final String DFA23_eofS =
-        "\70\uffff";
-    static final String DFA23_minS =
-        "\1\0\2\60\1\uffff\1\60\1\125\4\uffff\1\101\1\60\1\54\1\60\2\0\1"+
-        "\52\2\uffff\2\60\1\uffff\1\60\1\uffff\1\60\5\uffff\1\60\1\uffff"+
-        "\1\54\1\uffff\2\0\1\uffff\2\0\4\uffff\3\60\1\0\1\uffff\1\0\3\60"+
-        "\1\uffff\1\60\2\uffff";
-    static final String DFA23_maxS =
-        "\1\uffff\2\172\1\uffff\1\172\1\125\4\uffff\2\172\2\71\2\uffff\1"+
-        "\57\2\uffff\2\172\1\uffff\1\172\1\uffff\1\172\5\uffff\1\172\1\uffff"+
-        "\1\71\1\uffff\2\uffff\1\uffff\2\uffff\4\uffff\3\172\1\uffff\1\uffff"+
-        "\1\uffff\3\172\1\uffff\1\172\2\uffff";
-    static final String DFA23_acceptS =
-        "\3\uffff\1\3\2\uffff\1\6\1\7\1\10\1\11\7\uffff\1\23\1\24\2\uffff"+
-        "\1\12\1\uffff\1\3\1\uffff\1\5\1\6\1\7\1\10\1\11\1\uffff\1\13\1\uffff"+
-        "\1\14\2\uffff\1\15\2\uffff\1\15\1\21\1\22\1\23\4\uffff\1\15\4\uffff"+
-        "\1\1\1\uffff\1\4\1\2";
-    static final String DFA23_specialS =
-        "\1\4\15\uffff\1\1\1\3\22\uffff\1\6\1\10\1\uffff\1\2\1\7\7\uffff"+
-        "\1\0\1\uffff\1\5\7\uffff}>";
-    static final String[] DFA23_transitionS = {
-            "\11\22\2\21\2\22\1\21\22\22\1\21\1\22\1\16\1\10\3\22\1\17\3"+
-            "\22\1\6\1\15\1\7\1\15\1\20\12\14\2\22\1\5\1\3\3\22\32\13\3\22"+
-            "\1\12\1\13\1\22\5\13\1\2\7\13\1\4\5\13\1\1\6\13\3\22\1\11\uff81"+
-            "\22",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\21\24\1\23\10\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\1\26\31\24",
+    static final String DFA26_eotS =
+        "\1\uffff\2\26\1\uffff\1\26\1\23\1\uffff\1\36\2\uffff\1\23\1\26"+
+        "\1\42\1\uffff\4\23\2\uffff\2\26\1\uffff\1\26\1\uffff\1\26\2\uffff"+
+        "\1\42\4\uffff\1\26\1\uffff\1\42\11\uffff\3\26\3\uffff\1\66\1\26"+
+        "\1\70\1\uffff\1\71\2\uffff";
+    static final String DFA26_eofS =
+        "\72\uffff";
+    static final String DFA26_minS =
+        "\1\0\2\60\1\uffff\1\60\1\125\1\uffff\1\54\2\uffff\1\101\1\60\1"+
+        "\54\1\uffff\1\60\2\0\1\52\2\uffff\2\60\1\uffff\1\60\1\uffff\1\60"+
+        "\2\uffff\1\54\4\uffff\1\60\1\uffff\1\54\2\0\1\uffff\2\0\4\uffff"+
+        "\3\60\1\0\1\uffff\1\0\3\60\1\uffff\1\60\2\uffff";
+    static final String DFA26_maxS =
+        "\1\uffff\2\172\1\uffff\1\172\1\125\1\uffff\1\71\2\uffff\2\172\1"+
+        "\71\1\uffff\1\71\2\uffff\1\57\2\uffff\2\172\1\uffff\1\172\1\uffff"+
+        "\1\172\2\uffff\1\71\4\uffff\1\172\1\uffff\1\71\2\uffff\1\uffff\2"+
+        "\uffff\4\uffff\3\172\1\uffff\1\uffff\1\uffff\3\172\1\uffff\1\172"+
+        "\2\uffff";
+    static final String DFA26_acceptS =
+        "\3\uffff\1\3\2\uffff\1\6\1\uffff\1\10\1\11\3\uffff\1\13\4\uffff"+
+        "\1\23\1\24\2\uffff\1\12\1\uffff\1\3\1\uffff\1\5\1\6\1\uffff\1\14"+
+        "\1\7\1\10\1\11\1\uffff\1\13\3\uffff\1\15\2\uffff\1\15\1\21\1\22"+
+        "\1\23\4\uffff\1\15\4\uffff\1\1\1\uffff\1\4\1\2";
+    static final String DFA26_specialS =
+        "\1\6\16\uffff\1\5\1\0\23\uffff\1\1\1\4\1\uffff\1\3\1\10\7\uffff"+
+        "\1\2\1\uffff\1\7\7\uffff}>";
+    static final String[] DFA26_transitionS = {
+            "\11\23\2\22\2\23\1\22\22\23\1\22\1\23\1\17\1\10\3\23\1\20\2"+
+            "\23\1\15\1\6\1\16\1\7\1\16\1\21\12\14\2\23\1\5\1\3\3\23\32\13"+
+            "\3\23\1\12\1\13\1\23\5\13\1\2\7\13\1\4\5\13\1\1\6\13\3\23\1"+
+            "\11\uff81\23",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\21\25\1\24\10\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\1\27\31\25",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\24\24\1\30\5\24",
-            "\1\31",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\24\25\1\31\5\25",
+            "\1\32",
             "",
-            "",
-            "",
-            "",
-            "\32\36\4\uffff\1\36\1\uffff\32\36",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
-            "\1\41\1\uffff\1\41\1\uffff\12\40",
-            "\12\41",
-            "\42\43\1\44\71\43\1\42\uffa3\43",
-            "\47\46\1\47\64\46\1\45\uffa3\46",
-            "\1\50\4\uffff\1\51",
+            "\1\35\1\uffff\1\35\1\uffff\12\34",
             "",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\24\24\1\53\5\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\32\41\4\uffff\1\41\1\uffff\32\41",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\1\35\1\uffff\1\35\1\uffff\12\43",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\13\24\1\54\16\24",
-            "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\13\24\1\55\16\24",
-            "",
-            "",
-            "",
+            "\12\35",
+            "\42\45\1\46\71\45\1\44\uffa3\45",
+            "\47\50\1\51\64\50\1\47\uffa3\50",
+            "\1\52\4\uffff\1\53",
             "",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\24\25\1\55\5\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "",
-            "\1\41\1\uffff\1\41\1\uffff\12\40",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\13\25\1\56\16\25",
             "",
-            "\0\56",
-            "\42\43\1\44\71\43\1\42\uffa3\43",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\13\25\1\57\16\25",
             "",
+            "",
+            "\1\35\1\uffff\1\35\1\uffff\12\34",
+            "",
+            "",
+            "",
+            "",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "",
+            "\1\35\1\uffff\1\35\1\uffff\12\43",
             "\0\60",
-            "\47\46\1\47\64\46\1\45\uffa3\46",
+            "\42\45\1\46\71\45\1\44\uffa3\45",
+            "",
+            "\0\62",
+            "\47\50\1\51\64\50\1\47\uffa3\50",
             "",
             "",
             "",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\4\24\1\61\25\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\22\24\1\62\7\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\13\24\1\63\16\24",
-            "\42\43\1\44\71\43\1\42\uffa3\43",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\4\25\1\63\25\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\22\25\1\64\7\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\13\25\1\65\16\25",
+            "\42\45\1\46\71\45\1\44\uffa3\45",
             "",
-            "\47\46\1\47\64\46\1\45\uffa3\46",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\4\24\1\65\25\24",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\47\50\1\51\64\50\1\47\uffa3\50",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\4\25\1\67\25\25",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "",
-            "\12\24\7\uffff\32\24\4\uffff\1\24\1\uffff\32\24",
+            "\12\25\7\uffff\32\25\4\uffff\1\25\1\uffff\32\25",
             "",
             ""
     };
 
-    static final short[] DFA23_eot = DFA.unpackEncodedString(DFA23_eotS);
-    static final short[] DFA23_eof = DFA.unpackEncodedString(DFA23_eofS);
-    static final char[] DFA23_min = DFA.unpackEncodedStringToUnsignedChars(DFA23_minS);
-    static final char[] DFA23_max = DFA.unpackEncodedStringToUnsignedChars(DFA23_maxS);
-    static final short[] DFA23_accept = DFA.unpackEncodedString(DFA23_acceptS);
-    static final short[] DFA23_special = DFA.unpackEncodedString(DFA23_specialS);
-    static final short[][] DFA23_transition;
+    static final short[] DFA26_eot = DFA.unpackEncodedString(DFA26_eotS);
+    static final short[] DFA26_eof = DFA.unpackEncodedString(DFA26_eofS);
+    static final char[] DFA26_min = DFA.unpackEncodedStringToUnsignedChars(DFA26_minS);
+    static final char[] DFA26_max = DFA.unpackEncodedStringToUnsignedChars(DFA26_maxS);
+    static final short[] DFA26_accept = DFA.unpackEncodedString(DFA26_acceptS);
+    static final short[] DFA26_special = DFA.unpackEncodedString(DFA26_specialS);
+    static final short[][] DFA26_transition;
 
     static {
-        int numStates = DFA23_transitionS.length;
-        DFA23_transition = new short[numStates][];
+        int numStates = DFA26_transitionS.length;
+        DFA26_transition = new short[numStates][];
         for (int i=0; i<numStates; i++) {
-            DFA23_transition[i] = DFA.unpackEncodedString(DFA23_transitionS[i]);
+            DFA26_transition[i] = DFA.unpackEncodedString(DFA26_transitionS[i]);
         }
     }
 
-    class DFA23 extends DFA {
+    class DFA26 extends DFA {
 
-        public DFA23(BaseRecognizer recognizer) {
+        public DFA26(BaseRecognizer recognizer) {
             this.recognizer = recognizer;
-            this.decisionNumber = 23;
-            this.eot = DFA23_eot;
-            this.eof = DFA23_eof;
-            this.min = DFA23_min;
-            this.max = DFA23_max;
-            this.accept = DFA23_accept;
-            this.special = DFA23_special;
-            this.transition = DFA23_transition;
+            this.decisionNumber = 26;
+            this.eot = DFA26_eot;
+            this.eof = DFA26_eof;
+            this.min = DFA26_min;
+            this.max = DFA26_max;
+            this.accept = DFA26_accept;
+            this.special = DFA26_special;
+            this.transition = DFA26_transition;
         }
         public String getDescription() {
             return "1:1: Tokens : ( T__15 | T__16 | T__17 | T__18 | T__19 | T__20 | T__21 | T__22 | T__23 | RULE_VALUE_SPECIFICATION_ID | RULE_VALUE_SPECIFICATION_INT | RULE_VALUE_SPECIFICATION_DOUBLE | RULE_VALUE_SPECIFICATION_STRING | RULE_ID | RULE_INT | RULE_STRING | RULE_ML_COMMENT | RULE_SL_COMMENT | RULE_WS | RULE_ANY_OTHER );";
@@ -1495,142 +1568,144 @@ public class InternalUmlValueSpecificationLexer extends Lexer {
         	int _s = s;
             switch ( s ) {
                     case 0 : 
-                        int LA23_46 = input.LA(1);
+                        int LA26_16 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_46=='\"') ) {s = 36;}
+                        if ( (LA26_16=='\\') ) {s = 39;}
 
-                        else if ( (LA23_46=='\\') ) {s = 34;}
+                        else if ( ((LA26_16>='\u0000' && LA26_16<='&')||(LA26_16>='(' && LA26_16<='[')||(LA26_16>=']' && LA26_16<='\uFFFF')) ) {s = 40;}
 
-                        else if ( ((LA23_46>='\u0000' && LA23_46<='!')||(LA23_46>='#' && LA23_46<='[')||(LA23_46>=']' && LA23_46<='\uFFFF')) ) {s = 35;}
+                        else if ( (LA26_16=='\'') ) {s = 41;}
+
+                        else s = 19;
 
                         if ( s>=0 ) return s;
                         break;
                     case 1 : 
-                        int LA23_14 = input.LA(1);
+                        int LA26_36 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_14=='\\') ) {s = 34;}
-
-                        else if ( ((LA23_14>='\u0000' && LA23_14<='!')||(LA23_14>='#' && LA23_14<='[')||(LA23_14>=']' && LA23_14<='\uFFFF')) ) {s = 35;}
-
-                        else if ( (LA23_14=='\"') ) {s = 36;}
-
-                        else s = 18;
+                        if ( ((LA26_36>='\u0000' && LA26_36<='\uFFFF')) ) {s = 48;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 2 : 
-                        int LA23_37 = input.LA(1);
+                        int LA26_48 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA23_37>='\u0000' && LA23_37<='\uFFFF')) ) {s = 48;}
+                        if ( (LA26_48=='\"') ) {s = 38;}
+
+                        else if ( (LA26_48=='\\') ) {s = 36;}
+
+                        else if ( ((LA26_48>='\u0000' && LA26_48<='!')||(LA26_48>='#' && LA26_48<='[')||(LA26_48>=']' && LA26_48<='\uFFFF')) ) {s = 37;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 3 : 
-                        int LA23_15 = input.LA(1);
+                        int LA26_39 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_15=='\\') ) {s = 37;}
-
-                        else if ( ((LA23_15>='\u0000' && LA23_15<='&')||(LA23_15>='(' && LA23_15<='[')||(LA23_15>=']' && LA23_15<='\uFFFF')) ) {s = 38;}
-
-                        else if ( (LA23_15=='\'') ) {s = 39;}
-
-                        else s = 18;
+                        if ( ((LA26_39>='\u0000' && LA26_39<='\uFFFF')) ) {s = 50;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 4 : 
-                        int LA23_0 = input.LA(1);
+                        int LA26_37 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_0=='t') ) {s = 1;}
+                        if ( (LA26_37=='\"') ) {s = 38;}
 
-                        else if ( (LA23_0=='f') ) {s = 2;}
+                        else if ( (LA26_37=='\\') ) {s = 36;}
 
-                        else if ( (LA23_0=='=') ) {s = 3;}
-
-                        else if ( (LA23_0=='n') ) {s = 4;}
-
-                        else if ( (LA23_0=='<') ) {s = 5;}
-
-                        else if ( (LA23_0=='+') ) {s = 6;}
-
-                        else if ( (LA23_0=='-') ) {s = 7;}
-
-                        else if ( (LA23_0=='#') ) {s = 8;}
-
-                        else if ( (LA23_0=='~') ) {s = 9;}
-
-                        else if ( (LA23_0=='^') ) {s = 10;}
-
-                        else if ( ((LA23_0>='A' && LA23_0<='Z')||LA23_0=='_'||(LA23_0>='a' && LA23_0<='e')||(LA23_0>='g' && LA23_0<='m')||(LA23_0>='o' && LA23_0<='s')||(LA23_0>='u' && LA23_0<='z')) ) {s = 11;}
-
-                        else if ( ((LA23_0>='0' && LA23_0<='9')) ) {s = 12;}
-
-                        else if ( (LA23_0==','||LA23_0=='.') ) {s = 13;}
-
-                        else if ( (LA23_0=='\"') ) {s = 14;}
-
-                        else if ( (LA23_0=='\'') ) {s = 15;}
-
-                        else if ( (LA23_0=='/') ) {s = 16;}
-
-                        else if ( ((LA23_0>='\t' && LA23_0<='\n')||LA23_0=='\r'||LA23_0==' ') ) {s = 17;}
-
-                        else if ( ((LA23_0>='\u0000' && LA23_0<='\b')||(LA23_0>='\u000B' && LA23_0<='\f')||(LA23_0>='\u000E' && LA23_0<='\u001F')||LA23_0=='!'||(LA23_0>='$' && LA23_0<='&')||(LA23_0>='(' && LA23_0<='*')||(LA23_0>=':' && LA23_0<=';')||(LA23_0>='>' && LA23_0<='@')||(LA23_0>='[' && LA23_0<=']')||LA23_0=='`'||(LA23_0>='{' && LA23_0<='}')||(LA23_0>='\u007F' && LA23_0<='\uFFFF')) ) {s = 18;}
+                        else if ( ((LA26_37>='\u0000' && LA26_37<='!')||(LA26_37>='#' && LA26_37<='[')||(LA26_37>=']' && LA26_37<='\uFFFF')) ) {s = 37;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 5 : 
-                        int LA23_48 = input.LA(1);
+                        int LA26_15 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_48=='\'') ) {s = 39;}
+                        if ( (LA26_15=='\\') ) {s = 36;}
 
-                        else if ( (LA23_48=='\\') ) {s = 37;}
+                        else if ( ((LA26_15>='\u0000' && LA26_15<='!')||(LA26_15>='#' && LA26_15<='[')||(LA26_15>=']' && LA26_15<='\uFFFF')) ) {s = 37;}
 
-                        else if ( ((LA23_48>='\u0000' && LA23_48<='&')||(LA23_48>='(' && LA23_48<='[')||(LA23_48>=']' && LA23_48<='\uFFFF')) ) {s = 38;}
+                        else if ( (LA26_15=='\"') ) {s = 38;}
+
+                        else s = 19;
 
                         if ( s>=0 ) return s;
                         break;
                     case 6 : 
-                        int LA23_34 = input.LA(1);
+                        int LA26_0 = input.LA(1);
 
                         s = -1;
-                        if ( ((LA23_34>='\u0000' && LA23_34<='\uFFFF')) ) {s = 46;}
+                        if ( (LA26_0=='t') ) {s = 1;}
+
+                        else if ( (LA26_0=='f') ) {s = 2;}
+
+                        else if ( (LA26_0=='=') ) {s = 3;}
+
+                        else if ( (LA26_0=='n') ) {s = 4;}
+
+                        else if ( (LA26_0=='<') ) {s = 5;}
+
+                        else if ( (LA26_0=='+') ) {s = 6;}
+
+                        else if ( (LA26_0=='-') ) {s = 7;}
+
+                        else if ( (LA26_0=='#') ) {s = 8;}
+
+                        else if ( (LA26_0=='~') ) {s = 9;}
+
+                        else if ( (LA26_0=='^') ) {s = 10;}
+
+                        else if ( ((LA26_0>='A' && LA26_0<='Z')||LA26_0=='_'||(LA26_0>='a' && LA26_0<='e')||(LA26_0>='g' && LA26_0<='m')||(LA26_0>='o' && LA26_0<='s')||(LA26_0>='u' && LA26_0<='z')) ) {s = 11;}
+
+                        else if ( ((LA26_0>='0' && LA26_0<='9')) ) {s = 12;}
+
+                        else if ( (LA26_0=='*') ) {s = 13;}
+
+                        else if ( (LA26_0==','||LA26_0=='.') ) {s = 14;}
+
+                        else if ( (LA26_0=='\"') ) {s = 15;}
+
+                        else if ( (LA26_0=='\'') ) {s = 16;}
+
+                        else if ( (LA26_0=='/') ) {s = 17;}
+
+                        else if ( ((LA26_0>='\t' && LA26_0<='\n')||LA26_0=='\r'||LA26_0==' ') ) {s = 18;}
+
+                        else if ( ((LA26_0>='\u0000' && LA26_0<='\b')||(LA26_0>='\u000B' && LA26_0<='\f')||(LA26_0>='\u000E' && LA26_0<='\u001F')||LA26_0=='!'||(LA26_0>='$' && LA26_0<='&')||(LA26_0>='(' && LA26_0<=')')||(LA26_0>=':' && LA26_0<=';')||(LA26_0>='>' && LA26_0<='@')||(LA26_0>='[' && LA26_0<=']')||LA26_0=='`'||(LA26_0>='{' && LA26_0<='}')||(LA26_0>='\u007F' && LA26_0<='\uFFFF')) ) {s = 19;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 7 : 
-                        int LA23_38 = input.LA(1);
+                        int LA26_50 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_38=='\'') ) {s = 39;}
+                        if ( (LA26_50=='\'') ) {s = 41;}
 
-                        else if ( (LA23_38=='\\') ) {s = 37;}
+                        else if ( (LA26_50=='\\') ) {s = 39;}
 
-                        else if ( ((LA23_38>='\u0000' && LA23_38<='&')||(LA23_38>='(' && LA23_38<='[')||(LA23_38>=']' && LA23_38<='\uFFFF')) ) {s = 38;}
+                        else if ( ((LA26_50>='\u0000' && LA26_50<='&')||(LA26_50>='(' && LA26_50<='[')||(LA26_50>=']' && LA26_50<='\uFFFF')) ) {s = 40;}
 
                         if ( s>=0 ) return s;
                         break;
                     case 8 : 
-                        int LA23_35 = input.LA(1);
+                        int LA26_40 = input.LA(1);
 
                         s = -1;
-                        if ( (LA23_35=='\"') ) {s = 36;}
+                        if ( (LA26_40=='\'') ) {s = 41;}
 
-                        else if ( (LA23_35=='\\') ) {s = 34;}
+                        else if ( (LA26_40=='\\') ) {s = 39;}
 
-                        else if ( ((LA23_35>='\u0000' && LA23_35<='!')||(LA23_35>='#' && LA23_35<='[')||(LA23_35>=']' && LA23_35<='\uFFFF')) ) {s = 35;}
+                        else if ( ((LA26_40>='\u0000' && LA26_40<='&')||(LA26_40>='(' && LA26_40<='[')||(LA26_40>=']' && LA26_40<='\uFFFF')) ) {s = 40;}
 
                         if ( s>=0 ) return s;
                         break;
             }
             NoViableAltException nvae =
-                new NoViableAltException(getDescription(), 23, _s, input);
+                new NoViableAltException(getDescription(), 26, _s, input);
             error(nvae);
             throw nvae;
         }

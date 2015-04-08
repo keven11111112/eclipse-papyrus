@@ -1036,7 +1036,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name? signalNames=QualifiedNameList block=Block)
 	 */
 	protected void sequence_AcceptBlock_AcceptClause(EObject context, AcceptBlock semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1045,7 +1045,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name? signalNames=QualifiedNameList)
 	 */
 	protected void sequence_AcceptClause(EObject context, AcceptBlock semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1054,7 +1054,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (acceptBlock+=AcceptClause | (acceptBlock+=AcceptBlock acceptBlock+=AcceptBlock*))
 	 */
 	protected void sequence_AcceptStatement(EObject context, AcceptStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1068,7 +1068,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActiveClassDeclaration(EObject context, ActiveClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1083,7 +1083,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActiveClassDeclaration_ActiveClassDefinitionOrStub(EObject context, ActiveClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1099,7 +1099,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActiveClassDeclaration_ActiveClassDefinition(EObject context, ActiveClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1108,7 +1108,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator? definition=ActiveClassMemberDefinition)
 	 */
 	protected void sequence_ActiveClassMember(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1122,7 +1122,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActivityDeclaration(EObject context, ActivityDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1137,7 +1137,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActivityDeclaration_ActivityDefinitionOrStub(EObject context, ActivityDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1152,7 +1152,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ActivityDeclaration_ActivityDefinition(EObject context, ActivityDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1164,7 +1164,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_AdditiveExpression_MultiplicativeExpression(EObject context, ArithmeticExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1177,7 +1177,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_AndExpression_ExclusiveOrExpression_InclusiveOrExpression(EObject context, LogicalExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1186,7 +1186,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=STATEMENT_ANNOTATION* statement=Statement)
 	 */
 	protected void sequence_AnnotatedStatement(EObject context, AnnotatedStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1195,7 +1195,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (leftHandSide=LeftHandSide operator=AssignmentOperator rightHandSide=Expression)
 	 */
 	protected void sequence_AssignmentExpression(EObject context, AssignmentExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1209,7 +1209,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_AssociationDeclaration(EObject context, AssociationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1224,7 +1224,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_AssociationDeclaration_AssociationDefinitionOrStub(EObject context, AssociationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1239,7 +1239,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_AssociationDeclaration_AssociationDefinition(EObject context, AssociationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1248,7 +1248,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name isComposite?='compose'? typePart=TypePart initializer=AttributeInitializer?)
 	 */
 	protected void sequence_AttributeDefinition_PropertyDeclaration(EObject context, PropertyDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1261,7 +1261,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_BaseExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1275,7 +1275,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_BaseExpression_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1284,7 +1284,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (body=Block | name=Name)
 	 */
 	protected void sequence_BehaviorClause(EObject context, ActivityDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1293,7 +1293,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (target=PotentiallyAmbiguousQualifiedName tuple=Tuple)
 	 */
 	protected void sequence_BehaviorInvocationExpression(EObject context, BehaviorInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1302,7 +1302,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operator='~' operand=UnaryExpression)
 	 */
 	protected void sequence_BitStringUnaryExpression(EObject context, BitStringUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1311,7 +1311,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     block=Block
 	 */
 	protected void sequence_BlockStatement(EObject context, BlockStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1320,7 +1320,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (statement+=DocumentedStatement*)
 	 */
 	protected void sequence_Block(EObject context, Block semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1329,7 +1329,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     image=BOOLEAN_VALUE
 	 */
 	protected void sequence_BooleanLiteralExpression(EObject context, BooleanLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1338,7 +1338,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operator='!' operand=UnaryExpression)
 	 */
 	protected void sequence_BooleanUnaryExpression(EObject context, BooleanUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1347,7 +1347,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {BreakStatement}
 	 */
 	protected void sequence_BreakStatement(EObject context, BreakStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1356,7 +1356,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ((isAny?='any' | typeName=QualifiedName) operand=CastCompletion)
 	 */
 	protected void sequence_CastExpression(EObject context, CastExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1370,7 +1370,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ClassDeclaration(EObject context, ClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1385,7 +1385,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ClassDeclaration_ClassDefinitionOrStub(EObject context, ClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1400,7 +1400,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ClassDeclaration_ClassDefinition(EObject context, ClassDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1409,7 +1409,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     className=PotentiallyAmbiguousQualifiedName
 	 */
 	protected void sequence_ClassExtentExpression(EObject context, ClassExtentExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1418,7 +1418,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility=VisibilityIndicator? definition=ClassMemberDefinition)
 	 */
 	protected void sequence_ClassMember(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1427,7 +1427,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand=ClassificationExpression_ClassificationExpression_1_0 operator=ClassificationOperator typeName=QualifiedName)
 	 */
 	protected void sequence_ClassificationExpression(EObject context, ClassificationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1436,7 +1436,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name (ownedMember+=ClassifierTemplateParameter ownedMember+=ClassifierTemplateParameter*)? specialization=SpecializationClause?)
 	 */
 	protected void sequence_ClassifierSignature(EObject context, ClassifierDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1445,7 +1445,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=TemplateParameterConstraint?)
 	 */
 	protected void sequence_ClassifierTemplateParameterDefinition(EObject context, ClassifierTemplateParameter semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1454,7 +1454,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? definition=ClassifierTemplateParameterDefinition)
 	 */
 	protected void sequence_ClassifierTemplateParameter(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1466,7 +1466,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ClassifyStatement(EObject context, ClassifyStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1475,7 +1475,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nameBinding+=NameBinding nameBinding+=NameBinding+)
 	 */
 	protected void sequence_ColonQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1484,7 +1484,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (clause+=NonFinalClause clause+=NonFinalClause*)
 	 */
 	protected void sequence_ConcurrentClauses(EObject context, ConcurrentClauses semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1496,7 +1496,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_ConditionalAndExpression_ConditionalOrExpression(EObject context, ConditionalLogicalExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1505,7 +1505,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand1=ConditionalExpression_ConditionalTestExpression_1_0 operand2=Expression operand3=ConditionalExpression)
 	 */
 	protected void sequence_ConditionalExpression(EObject context, ConditionalTestExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1519,7 +1519,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_DataTypeDeclaration(EObject context, DataTypeDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1534,7 +1534,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_DataTypeDeclaration_DataTypeDefinitionOrStub(EObject context, DataTypeDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1549,7 +1549,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_DataTypeDeclaration_DataTypeDefinition(EObject context, DataTypeDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1558,7 +1558,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (body=Block condition=Expression)
 	 */
 	protected void sequence_DoStatement(EObject context, DoStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1567,7 +1567,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nameBinding+=NameBinding nameBinding+=NameBinding+)
 	 */
 	protected void sequence_DotQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1576,7 +1576,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (visibility=ImportVisibilityIndicator referentName=QualifiedName alias=Name?)
 	 */
 	protected void sequence_ElementImportReference(EObject context, ElementImportReference semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1585,7 +1585,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {EmptyStatement}
 	 */
 	protected void sequence_EmptyStatement(EObject context, EmptyStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1594,7 +1594,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=SpecializationClause?)
 	 */
 	protected void sequence_EnumerationDeclaration(EObject context, EnumerationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1603,7 +1603,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | (ownedMember+=EnumerationLiteralName ownedMember+=EnumerationLiteralName*)?))
 	 */
 	protected void sequence_EnumerationDeclaration_EnumerationDefinitionOrStub(EObject context, EnumerationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1612,7 +1612,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=SpecializationClause? (ownedMember+=EnumerationLiteralName ownedMember+=EnumerationLiteralName*)?)
 	 */
 	protected void sequence_EnumerationDeclaration_EnumerationDefinition(EObject context, EnumerationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1621,7 +1621,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     name=Name
 	 */
 	protected void sequence_EnumerationLiteralNameDefinition(EObject context, EnumerationLiteralName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1630,7 +1630,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? definition=EnumerationLiteralNameDefinition)
 	 */
 	protected void sequence_EnumerationLiteralName(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1639,7 +1639,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand1=EqualityExpression_EqualityExpression_1_0 operator=EqualityOperator operand2=ClassificationExpression)
 	 */
 	protected void sequence_EqualityExpression(EObject context, EqualityExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1648,7 +1648,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     expression=Expression
 	 */
 	protected void sequence_ExpressionStatement(EObject context, ExpressionStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1657,7 +1657,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     expression=PrimaryExpression
 	 */
 	protected void sequence_FeatureLeftHandSide(EObject context, FeatureLeftHandSide semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1666,7 +1666,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (variableDefinition+=LoopVariableDefinition variableDefinition+=LoopVariableDefinition* body=Block)
 	 */
 	protected void sequence_ForStatement(EObject context, ForStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1675,7 +1675,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (direction=ParameterDirection name=Name typePart=TypePart)
 	 */
 	protected void sequence_FormalParameterDefinition(EObject context, NonReturnParameter semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1684,7 +1684,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* definition=FormalParameterDefinition)
 	 */
 	protected void sequence_FormalParameter(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1693,7 +1693,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nonFinalClauses+=ConcurrentClauses nonFinalClauses+=ConcurrentClauses* finalClause=Block?)
 	 */
 	protected void sequence_IfStatement(EObject context, IfStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1702,7 +1702,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     code=INLINE_STATEMENT
 	 */
 	protected void sequence_InLineStatement(EObject context, InLineStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1711,7 +1711,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name index=Index? expression=Expression)
 	 */
 	protected void sequence_IndexedNamedExpression(EObject context, NamedExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1720,7 +1720,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (namedExpression+=IndexedNamedExpression namedExpression+=IndexedNamedExpression*)
 	 */
 	protected void sequence_IndexedNamedTupleExpressionList(EObject context, NamedTuple semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1729,7 +1729,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ((constructor=QualifiedName tuple=Tuple) | tuple=Tuple)
 	 */
 	protected void sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_InstanceInitializationExpression(EObject context, InstanceCreationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1743,7 +1743,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_InitializationExpression_InstanceCreationOrSequenceConstructionExpression_SequenceConstructionExpression_SequenceInitializationExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1752,7 +1752,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (constructor=QualifiedName tuple=Tuple)
 	 */
 	protected void sequence_InstanceCreationOrSequenceConstructionExpression(EObject context, InstanceCreationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1761,7 +1761,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (typeName=QualifiedName hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?)
 	 */
 	protected void sequence_InstanceCreationOrSequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1770,7 +1770,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     tuple=Tuple
 	 */
 	protected void sequence_InstanceInitializationExpression(EObject context, InstanceCreationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1779,7 +1779,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operator='$' operand=UnaryExpression)
 	 */
 	protected void sequence_IsolationExpression(EObject context, IsolationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1788,7 +1788,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (associationName=PotentiallyAmbiguousQualifiedName operation=LinkOperation tuple=LinkOperationTuple)
 	 */
 	protected void sequence_LinkOperationExpression(EObject context, LinkOperationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1803,7 +1803,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_LocalNameDeclarationStatement(EObject context, LocalNameDeclarationStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1815,7 +1815,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_LoopVariableDefinition(EObject context, LoopVariableDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1824,7 +1824,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name binding=TemplateBinding?)
 	 */
 	protected void sequence_NameBinding(EObject context, NameBinding semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1833,7 +1833,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     name=PotentiallyAmbiguousQualifiedName
 	 */
 	protected void sequence_NameExpression(EObject context, NameExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1842,7 +1842,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (target=PotentiallyAmbiguousQualifiedName index=Index?)
 	 */
 	protected void sequence_NameLeftHandSide(EObject context, NameLeftHandSide semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1851,7 +1851,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name expression=Expression)
 	 */
 	protected void sequence_NamedExpression(EObject context, NamedExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1860,7 +1860,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (substitution+=TemplateParameterSubstitution substitution+=TemplateParameterSubstitution*)
 	 */
 	protected void sequence_NamedTemplateBinding(EObject context, NamedTemplateBinding semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1869,7 +1869,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (namedExpression+=NamedExpression namedExpression+=NamedExpression*)
 	 */
 	protected void sequence_NamedTupleExpressionList(EObject context, NamedTuple semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1878,7 +1878,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     image=NATURAL_VALUE
 	 */
 	protected void sequence_NaturalLiteralExpression(EObject context, NaturalLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1887,7 +1887,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     statement+=DocumentedStatement+
 	 */
 	protected void sequence_NonEmptyStatementSequence(EObject context, Block semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1896,7 +1896,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (condition=Expression body=Block)
 	 */
 	protected void sequence_NonFinalClause(EObject context, NonFinalClause semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1905,7 +1905,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operator=NumericUnaryOperator operand=UnaryExpression)
 	 */
 	protected void sequence_NumericUnaryExpression(EObject context, NumericUnaryExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1920,7 +1920,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_OperationDeclaration(EObject context, OperationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1936,7 +1936,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_OperationDeclaration_OperationDefinitionOrStub(EObject context, OperationDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1945,7 +1945,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name (isStub?=';' | ownedMember+=PackagedElement*))
 	 */
 	protected void sequence_PackageDefinitionOrStub(EObject context, PackageDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1954,7 +1954,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name ownedMember+=PackagedElement*)
 	 */
 	protected void sequence_PackageDefinition(EObject context, PackageDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1963,7 +1963,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding* | nameBinding+=NameBinding*))
 	 */
 	protected void sequence_PackageImportQualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1972,7 +1972,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (visibility=ImportVisibilityIndicator referentName=PackageImportQualifiedName)
 	 */
 	protected void sequence_PackageImportReference(EObject context, PackageImportReference semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1986,7 +1986,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_PackagedElement(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -1995,7 +1995,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (argumentName+=QualifiedName argumentName+=QualifiedName*)
 	 */
 	protected void sequence_PositionalTemplateBinding(EObject context, PositionalTemplateBinding semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2004,7 +2004,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ((expression+=Expression expression+=Expression*)?)
 	 */
 	protected void sequence_PositionalTupleExpressionList(EObject context, PositionalTuple semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2013,7 +2013,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand=LeftHandSide operator=AffixOperator)
 	 */
 	protected void sequence_PostfixExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2022,7 +2022,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ((operand=LeftHandSide operator=AffixOperator) | (operator=AffixOperator operand=LeftHandSide))
 	 */
 	protected void sequence_PostfixExpression_PrefixExpression_UnaryExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2031,7 +2031,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding+ | (isAmbiguous?='.' nameBinding+=NameBinding nameBinding+=NameBinding*))?)
 	 */
 	protected void sequence_PotentiallyAmbiguousQualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2040,7 +2040,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operator=AffixOperator operand=LeftHandSide)
 	 */
 	protected void sequence_PrefixExpression(EObject context, IncrementOrDecrementExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2049,7 +2049,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (expression=PrimaryExpression_FeatureReference_1_0_0 nameBinding=NameBinding)
 	 */
 	protected void sequence_PrimaryExpression_FeatureInvocationExpression_1_0_3(EObject context, FeatureReference semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2058,7 +2058,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     featureReference=PrimaryExpression_PropertyAccessExpression_1_1_3
 	 */
 	protected void sequence_PrimaryExpression(EObject context, PropertyAccessExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2067,7 +2067,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (expression=PrimaryExpression_FeatureReference_1_1_0 nameBinding=NameBinding)
 	 */
 	protected void sequence_PrimaryExpression_PropertyAccessExpression_1_1_3(EObject context, FeatureReference semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2076,7 +2076,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (primary=PrimaryExpression_SequenceAccessExpression_1_3_0 index=Index)
 	 */
 	protected void sequence_PrimaryExpression(EObject context, SequenceAccessExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2085,7 +2085,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     nonNameExpression=PrimaryExpression_ExtentOrExpression_1_2_0
 	 */
 	protected void sequence_PrimaryExpression_SequenceExpansionExpression_1_2_2_2_0_SequenceOperationExpression_1_2_2_0_0_SequenceReductionExpression_1_2_2_1_0(EObject context, ExtentOrExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2097,7 +2097,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceExpansionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2109,7 +2109,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceOperationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2125,7 +2125,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_PrimaryExpression_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2134,7 +2134,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     ((target=PrimaryExpression_FeatureInvocationExpression_1_0_3 tuple=Tuple) | tuple=Tuple)
 	 */
 	protected void sequence_PrimaryExpression_ThisExpression(EObject context, FeatureInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2143,7 +2143,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name isComposite?='compose'? typePart=TypePart)
 	 */
 	protected void sequence_PropertyDeclaration(EObject context, PropertyDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2152,7 +2152,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name+=QualifiedName name+=QualifiedName*)
 	 */
 	protected void sequence_QualifiedNameList(EObject context, QualifiedNameList semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2161,7 +2161,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (nameBinding+=NameBinding (nameBinding+=NameBinding+ | nameBinding+=NameBinding+)?)
 	 */
 	protected void sequence_QualifiedName_UnqualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2170,7 +2170,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     signalName=QualifiedName
 	 */
 	protected void sequence_ReceptionDefinition(EObject context, ReceptionDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2179,7 +2179,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand1=RelationalExpression_RelationalExpression_1_0 operator=RelationalOperator operand2=ShiftExpression)
 	 */
 	protected void sequence_RelationalExpression(EObject context, RelationalExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2188,7 +2188,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     typePart=TypePart
 	 */
 	protected void sequence_ReturnParameterDefinition(EObject context, ReturnParameter semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2197,7 +2197,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     definition=ReturnParameterDefinition
 	 */
 	protected void sequence_ReturnParameter(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2206,7 +2206,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (expression=Expression?)
 	 */
 	protected void sequence_ReturnStatement(EObject context, ReturnStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2215,7 +2215,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (((isAny?='any' | typeName=QualifiedName) hasMultiplicity?=MultiplicityIndicator? elements=SequenceElements?) | hasMultiplicity?='null')
 	 */
 	protected void sequence_SequenceConstructionExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2224,7 +2224,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (element+=SequenceElement element+=SequenceElement*)
 	 */
 	protected void sequence_SequenceExpressionList(EObject context, SequenceExpressionList semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2233,7 +2233,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     elements=SequenceElements
 	 */
 	protected void sequence_SequenceInitializationExpression(EObject context, SequenceConstructionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2242,7 +2242,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0 operation=ID variable=Name argument=Expression)
 	 */
 	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceExpansionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2251,7 +2251,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     name=PotentiallyAmbiguousQualifiedName
 	 */
 	protected void sequence_SequenceOperationOrReductionOrExpansionExpression_SequenceExpansionExpression_3_2_0_SequenceOperationExpression_3_0_0_SequenceReductionExpression_3_1_0(EObject context, ExtentOrExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2260,7 +2260,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (primary=SequenceOperationOrReductionOrExpansionExpression_SequenceOperationExpression_3_0_0 operation=QualifiedName tuple=Tuple)
 	 */
 	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceOperationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2272,7 +2272,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_SequenceOperationOrReductionOrExpansionExpression(EObject context, SequenceReductionExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2281,7 +2281,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (rangeLower=Expression rangeUpper=Expression)
 	 */
 	protected void sequence_SequenceRange(EObject context, SequenceRange semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2290,7 +2290,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (operand1=ShiftExpression_ShiftExpression_1_0 operator=ShiftOperator operand2=AdditiveExpression)
 	 */
 	protected void sequence_ShiftExpression(EObject context, ShiftExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2304,7 +2304,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_SignalDeclaration(EObject context, SignalDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2319,7 +2319,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_SignalDeclaration_SignalDefinitionOrStub(EObject context, SignalDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2334,7 +2334,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_SignalDeclaration_SignalDefinition(EObject context, SignalDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2343,7 +2343,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=SpecializationClause?)
 	 */
 	protected void sequence_SignalReceptionDeclaration(EObject context, SignalReceptionDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2352,7 +2352,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name specialization=SpecializationClause? (isStub?=';' | ownedMember+=StructuredMember*))
 	 */
 	protected void sequence_SignalReceptionDeclaration_SignalReceptionDefinitionOrStub(EObject context, SignalReceptionDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2361,7 +2361,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (statement+=DocumentedStatement*)
 	 */
 	protected void sequence_StatementSequence(EObject context, Block semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2370,7 +2370,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (stereotypeName=QualifiedName (names=QualifiedNameList | taggedValues=TaggedValueList)?)
 	 */
 	protected void sequence_StereotypeAnnotation(EObject context, StereotypeAnnotation semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2379,7 +2379,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     image=STRING
 	 */
 	protected void sequence_StringLiteralExpression(EObject context, StringLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2388,7 +2388,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (documentation+=DOCUMENTATION_COMMENT? annotation+=StereotypeAnnotation* visibility='public'? definition=PropertyDefinition)
 	 */
 	protected void sequence_StructuredMember(EObject context, Member semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2397,7 +2397,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (target=QualifiedName? tuple=Tuple)
 	 */
 	protected void sequence_SuperInvocationExpression(EObject context, SuperInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2406,7 +2406,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (case+=SwitchCase case+=SwitchCase* block=NonEmptyStatementSequence)
 	 */
 	protected void sequence_SwitchClause(EObject context, SwitchClause semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2415,7 +2415,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (expression=Expression nonDefaultClause+=SwitchClause* defaultClause=SwitchDefaultClause?)
 	 */
 	protected void sequence_SwitchStatement(EObject context, SwitchStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2424,7 +2424,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (taggedValue+=TaggedValue taggedValue+=TaggedValue*)
 	 */
 	protected void sequence_TaggedValueList(EObject context, TaggedValueList semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2433,7 +2433,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (name=Name (value=BOOLEAN_VALUE | (operator=NumericUnaryOperator? value=NATURAL_VALUE) | value='*' | value=STRING))
 	 */
 	protected void sequence_TaggedValue(EObject context, TaggedValue semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2442,7 +2442,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     name+=QualifiedName
 	 */
 	protected void sequence_TemplateParameterConstraint(EObject context, QualifiedNameList semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2451,7 +2451,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (parameterName=Name argumentName=QualifiedName)
 	 */
 	protected void sequence_TemplateParameterSubstitution(EObject context, TemplateParameterSubstitution semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2460,7 +2460,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     tuple=Tuple
 	 */
 	protected void sequence_ThisExpression(EObject context, FeatureInvocationExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2469,7 +2469,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {ThisExpression}
 	 */
 	protected void sequence_ThisExpression(EObject context, ThisExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2484,7 +2484,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_TypePart(EObject context, TypedElementDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2493,7 +2493,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     {UnboundedLiteralExpression}
 	 */
 	protected void sequence_UnboundedLiteralExpression(EObject context, UnboundedLiteralExpression semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2508,7 +2508,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     )
 	 */
 	protected void sequence_UnitDefinition(EObject context, UnitDefinition semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2517,7 +2517,7 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     nameBinding+=NameBinding
 	 */
 	protected void sequence_UnqualifiedName(EObject context, QualifiedName semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -2526,6 +2526,6 @@ public class AlfSemanticSequencer extends AbstractDelegatingSemanticSequencer {
 	 *     (condition=Expression body=Block)
 	 */
 	protected void sequence_WhileStatement(EObject context, WhileStatement semanticObject) {
-		genericSequencer.createSequence(context, (EObject)semanticObject);
+		genericSequencer.createSequence(context, semanticObject);
 	}
 }

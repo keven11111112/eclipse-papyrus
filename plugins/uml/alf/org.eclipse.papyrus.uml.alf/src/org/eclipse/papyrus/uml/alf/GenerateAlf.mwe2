@@ -27,7 +27,7 @@ var runtimeProject = "../${projectname}"
 var generateXtendStub = true
 
 var grammarURI = "platform:/resource/${projectname}/src/org/eclipse/papyrus/uml/alf/Alf.xtext"
-var genmodelURI = "platform:/resource/${projectname}/src/org/eclipse/papyrus/uml/alf/alf.genmodel"
+var genmodelURI = "platform:/resource/${projectname}/model/alf.genmodel"
 
 Workflow {
     bean = StandaloneSetup {

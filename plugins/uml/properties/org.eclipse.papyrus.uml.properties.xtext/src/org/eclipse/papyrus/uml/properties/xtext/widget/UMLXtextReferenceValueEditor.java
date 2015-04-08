@@ -12,8 +12,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.xtext.widget;
 
-import java.util.List;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.resource.ResourceSet;
@@ -23,12 +21,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
 import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
+import org.eclipse.papyrus.uml.properties.xtext.Activator;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
@@ -73,9 +70,9 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	private boolean canParse = false;
 
 	/**
-	 * The object instance class name edited.
+	 * The direct editor configuration class name to use.
 	 */
-	private String objectInstance;
+	private String directEditorConfiguration;
 
 	/**
 	 * Constructor.
@@ -301,34 +298,35 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 * @return The {@link DefaultXtextDirectEditorConfiguration} corresponding.
 	 */
 	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
-		if (null != objectInstance && !objectInstance.isEmpty()) {
-			Object feature = null;
-			Object contextElement = null;
-			if (null != modelProperty) {
-				feature = modelProperty.getValueType();
-				contextElement = getContextElement();
-			} else {
-				contextElement = getValue();
-			}
+		if (null != directEditorConfiguration && !directEditorConfiguration.isEmpty()) {
+			try {
+				// Search the direct editor configuration by the class name filled in XWT file
+				final Class<?> directEditorConfigurationClass = Class.forName(directEditorConfiguration);
+				if (null != directEditorConfigurationClass) {
+					// Create an instance of the found class
+					final Object classInstance = directEditorConfigurationClass.newInstance();
+					// If the created instance is a direct xtext editor configuration, return the created direct editor configuration
+					if (classInstance instanceof DefaultXtextDirectEditorConfiguration) {
+						final DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) classInstance;
 
-			if (contextElement instanceof EObject) {
-				// allow to init the extension point and allow to get existing language for the elements
-				final List<String> languages = DirectEditorsUtil.getLanguages(objectInstance);
-
-				// if we are here, the default is not a Xtext editor
-				for (String currentLanguage : languages) {
-					IDirectEditorConfiguration directEditorConfiguration = DirectEditorsUtil.findEditorConfigurationWithPriority(currentLanguage, objectInstance);
-					if (directEditorConfiguration instanceof DefaultXtextDirectEditorConfiguration) {
-						DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) directEditorConfiguration;
-						if (null != feature) {
-							xtextConfiguration.preEditAction(((EObject) contextElement)
-									.eGet((EStructuralFeature) feature));
+						// Set the correct object to edit as pre edit action
+						if (null != modelProperty && getContextElement() instanceof EObject && modelProperty.getValueType() instanceof EStructuralFeature) {
+							xtextConfiguration.preEditAction(((EObject) getContextElement())
+									.eGet((EStructuralFeature) modelProperty.getValueType()));
 						} else {
-							xtextConfiguration.preEditAction((EObject) contextElement);
+							xtextConfiguration.preEditAction((EObject) getValue());
 						}
+
+						// Return the created direct editor configuration
 						return xtextConfiguration;
 					}
 				}
+			} catch (final ClassNotFoundException e) {
+				Activator.log.error(e);
+			} catch (final InstantiationException e) {
+				Activator.log.error(e);
+			} catch (final IllegalAccessException e) {
+				Activator.log.error(e);
 			}
 		}
 		return null;
@@ -396,14 +394,14 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	}
 
 	/**
-	 * Sets the object instance class name.
+	 * Sets the direct editor configuration class name.
 	 * 
-	 * @param objectInstance
-	 *            The object instance class name.
+	 * @param directEditorConfiguration
+	 *            The direct editor configuration class name.
 	 */
-	public void setObjectInstance(final String objectInstance) {
-		this.objectInstance = objectInstance;
-		// React of the object instance modification (this will happened after the binding call)
+	public void setDirectEditorConfiguration(final String directEditorConfiguration) {
+		this.directEditorConfiguration = directEditorConfiguration;
+		// React of the direct editor configuration modification (this will happened after the binding call)
 		updateXtextAdapters(styledTextStringEditor.getText());
 	}
 }

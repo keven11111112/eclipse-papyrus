@@ -18,10 +18,10 @@
 			<ppel:PropertiesLayout numColumns="3"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="UMLRealTimeExt:Protocol:provides" customLabel="Provided"></ppe:MultiReference>
+			property="UMLRealTimeExt:Protocol:Incoming" customLabel="Incoming"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
-			property="UMLRealTimeExt:Protocol:required" customLabel="Required"></ppe:MultiReference>
+			property="UMLRealTimeExt:Protocol:Outgoing" customLabel="Outgoing"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
-			property="UMLRealTimeExt:Protocol:provreq" customLabel="Prov/Req"></ppe:MultiReference>
+			property="UMLRealTimeExt:Protocol:InOut" customLabel="In-Out"></ppe:MultiReference>
 	</Composite>
 </Composite>

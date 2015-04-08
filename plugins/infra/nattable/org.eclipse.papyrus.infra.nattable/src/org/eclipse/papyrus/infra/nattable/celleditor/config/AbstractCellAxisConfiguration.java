@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.celleditor.config;
 
+import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.data.convert.IDisplayConverter;
@@ -27,6 +28,13 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 
 /**
+ * Bridge between the old {@link IAxisCellEditorConfiguration} and the new {@link ICellAxisConfiguration}
+ *
+ * CellEditors which extend this class can be declared on the org.eclipse.papyrus.infra.nattable.celleditor.configuration
+ * extension point, using any of the following elements:
+ * - configuration (Old one)
+ * - cellAxisConfiguration (New one)
+ *
  * @author Camille Letavernier
  *
  */
@@ -79,5 +87,43 @@ public abstract class AbstractCellAxisConfiguration implements ICellAxisConfigur
 			configRegistry.registerConfigAttribute(EditConfigAttributes.DATA_VALIDATOR, validator, displayMode, configLabel);
 		}
 	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDataValidator(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
+	 *
+	 * @param table
+	 * @param axisElement
+	 * @return
+	 */
+	@Override
+	public IDataValidator getDataValidator(Table table, Object axisElement) {
+		return null; // To be overridden by clients if necessary
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDisplayConvert(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object, org.eclipse.jface.viewers.ILabelProvider)
+	 *
+	 * @param table
+	 * @param axisElement
+	 * @param provider
+	 * @return
+	 */
+	@Override
+	public IDisplayConverter getDisplayConvert(Table table, Object axisElement, ILabelProvider provider) {
+		return null; // To be overridden by clients if necessary
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.IAxisCellEditorConfiguration#getDisplayMode(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
+	 *
+	 * @param table
+	 * @param axisElement
+	 * @return
+	 */
+	@Override
+	public String getDisplayMode(Table table, Object axisElement) {
+		return DisplayMode.NORMAL; // To be overridden by clients if necessary
+	}
+
 
 }
