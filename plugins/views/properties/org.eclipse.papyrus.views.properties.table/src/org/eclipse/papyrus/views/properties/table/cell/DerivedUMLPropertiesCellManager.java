@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -32,6 +32,7 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean handles(Object columnElement, Object rowElement) {
 		return getMultiplicityElement(columnElement, rowElement) != null && getMultiplicityHandler(columnElement, rowElement) != null;
 	}
@@ -49,7 +50,7 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	@Override
 	protected Object doGetValue(Object columnElement, Object rowElement, INattableModelManager tableManager) {
 		MultiplicityElement element = getMultiplicityElement(columnElement, rowElement);
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 
@@ -64,34 +65,32 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 	/**
 	 * {@inheritDoc}
 	 */
+	@Override
 	public boolean isCellEditable(Object columnElement, Object rowElement) {
 		return getMultiplicityElement(columnElement, rowElement) != null;
 	}
 
-	/**
-	 * {@inheritDoc}
-	 */
-	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElemenet, Object newValue) {
+	@Override
+	public Command getSetValueCommand(TransactionalEditingDomain domain, Object columnElement, Object rowElement, Object newValue, INattableModelManager tableManager) {
+		MultiplicityElement element = getMultiplicityElement(columnElement, rowElement);
 
-		MultiplicityElement element = getMultiplicityElement(columnElement, rowElemenet);
-
-		if(element == null) {
+		if (element == null) {
 			return null;
 		}
 
-		if(newValue == null || newValue instanceof String) {
-			return getSetValueCommand(element, (String)newValue);
+		if (newValue == null || newValue instanceof String) {
+			return getSetValueCommand(element, (String) newValue);
 		}
 
 		return null;
 	}
 
 	protected MultiplicityElement getMultiplicityElement(Object obj1, Object obj2) {
-		if(obj1 instanceof MultiplicityElement) {
-			return (MultiplicityElement)obj1;
+		if (obj1 instanceof MultiplicityElement) {
+			return (MultiplicityElement) obj1;
 		}
-		if(obj2 instanceof MultiplicityElement) {
-			return (MultiplicityElement)obj2;
+		if (obj2 instanceof MultiplicityElement) {
+			return (MultiplicityElement) obj2;
 		}
 
 		return null;
@@ -99,21 +98,21 @@ public class DerivedUMLPropertiesCellManager extends AbstractCellManager impleme
 
 	private String getMultiplicityHandler(Object obj1, Object obj2) {
 		String featureId = getFeatureId(obj1);
-		if(featureId != null) {
+		if (featureId != null) {
 			return featureId;
 		}
 
 		featureId = getFeatureId(obj2);
-		if(featureId != null) {
+		if (featureId != null) {
 			return featureId;
 		}
 		return null;
 	}
 
 	private String getFeatureId(Object object) {
-		if(object instanceof FeatureIdAxis) {
-			FeatureIdAxis idAxis = (FeatureIdAxis)object;
-			if(DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(idAxis.getElement())) {
+		if (object instanceof FeatureIdAxis) {
+			FeatureIdAxis idAxis = (FeatureIdAxis) object;
+			if (DerivedUMLPropertiesAxisManager.MULTIPLICITY.equals(idAxis.getElement())) {
 				return DerivedUMLPropertiesAxisManager.MULTIPLICITY;
 			}
 		}

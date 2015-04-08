@@ -13,11 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.configuration;
 
-import java.util.ArrayList;
 import java.util.Collection;
+import java.util.HashSet;
 import java.util.List;
-
-
 
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
@@ -57,7 +55,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 	/**
 	 * the list of the message already displayed
 	 */
-	private Collection<String> messagesAlreadyDisplayed = new ArrayList<String>();
+	private final Collection<String> messagesAlreadyDisplayed = new HashSet<String>();
 
 	@Override
 	public void configureRegistry(IConfigRegistry configRegistry) {
@@ -127,7 +125,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			// final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
 			// if (ceConfig != null) {
 			// if (existingEditorIds.contains(ceConfig.getConfigurationId())) {
-			//					org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
 			// } else {
 			// existingEditorIds.add(ceConfig.getConfigurationId());
 			// }
@@ -150,12 +148,12 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			// if (editor != null) {
 			// final String editorId = config.getEditorConfigId() + Integer.toString(i);
 			// if (existingEditorIds.contains(editorId)) {
-			//						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
 			// } else {
 			// existingEditorIds.add(editorId);
 			// }
 			//
-			//					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+			// final String cellId = editorId + "_cellId"; //$NON-NLS-1$
 			//
 			// final ICellPainter painter = config.getCellPainter(table, current);
 			// final String displayMode = config.getDisplayMode(table, current);
@@ -255,7 +253,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			final CustomRowOverrideLabelAccumulator rowAccumulator) {
 		final CellAxisConfigurationRegistry ceFactory = CellAxisConfigurationRegistry.INSTANCE;
 		final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
-		
+
 
 		if (ceConfig != null) {
 			final String editorId = ceConfig.getConfigurationId() + Integer.toString(indexOfTheAxis);

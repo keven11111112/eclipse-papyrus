@@ -27,10 +27,10 @@
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.celleditor.configuration">
-      <configuration
+      <cellAxisConfiguration
             class="org.eclipse.papyrus.views.properties.table.cell.DerivedUMLPropertiesCellEditorConfiguration"
             order="1">
-      </configuration>
+      </cellAxisConfiguration>
    </extension>
    <extension
          point="org.eclipse.papyrus.infra.nattable.cellmanager">
@@ -39,6 +39,20 @@
             manager="org.eclipse.papyrus.views.properties.table.cell.DerivedUMLPropertiesCellManager"
             order="1">
       </cellManager>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.nattable.configuration">
+      <configuration
+            file="resources/property.nattableconfiguration"
+            type="PapyrusOwnedAttributeTable">
+      </configuration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.viewpoints.policy.custom">
+      <contribution
+            file="resources/UMLTables.configuration"
+            original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
+      </contribution>
    </extension>
 
 </plugin>

@@ -1,7 +1,7 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -46,15 +46,15 @@ import org.eclipse.swt.widgets.Label;
 
 /**
  * A PropertyEditor to manipulate Papyrus Nattables in the properties view
- * 
+ *
  * @author Camille Letavernier
- * 
+ *
  */
 public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	private Composite self;
 
-	private URI tableConfigURI = URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/property.nattableconfiguration", true);
+	private URI tableConfigURI; // URI.createPlatformPluginURI(Activator.PLUGIN_ID + "/resources/property.nattableconfiguration", true);
 
 	public NattablePropertyEditor(Composite parent, int style) {
 		self = new Group(parent, SWT.NONE);
@@ -77,7 +77,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	@Override
 	protected void checkInput() {
-		if(tableConfigURI != null) {
+		if (tableConfigURI != null) {
 			super.checkInput();
 		}
 	}
@@ -86,17 +86,17 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	protected void doBinding() {
 		super.doBinding();
 
-		//Configure the table
+		// Configure the table
 		ModelElement modelElement = input.getModelElement(propertyPath);
 
 		Table table;
-		if(modelElement instanceof EMFModelElement) {
-			EMFModelElement emfModelElement = (EMFModelElement)modelElement;
+		if (modelElement instanceof EMFModelElement) {
+			EMFModelElement emfModelElement = (EMFModelElement) modelElement;
 			EObject sourceElement = emfModelElement.getSource();
 			EStructuralFeature feature = emfModelElement.getFeature(getLocalPropertyPath());
 
 			table = createTable(sourceElement, feature);
-			if(table == null) {
+			if (table == null) {
 				displayError("Cannot initialize the table");
 				return;
 			}
@@ -105,11 +105,12 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 			return;
 		}
 
-		//Create the widget
+		// Create the widget
 		final NattableModelManager nattableManager = new NattableModelManager(table);
 		NatTable widget = nattableManager.createNattable(self, SWT.NONE, null);
 		self.addDisposeListener(new DisposeListener() {
 
+			@Override
 			public void widgetDisposed(DisposeEvent e) {
 				nattableManager.dispose();
 			}
@@ -125,8 +126,8 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	@Override
 	public void updateLabel(String label) {
-		if(showLabel) {
-			((Group)self).setText(getLabel());
+		if (showLabel) {
+			((Group) self).setText(getLabel());
 		}
 	}
 
@@ -138,7 +139,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 	protected Table createTable(EObject sourceElement, EStructuralFeature synchronizedFeature) {
 		final TableConfiguration tableConfiguration = getTableConfiguration();
-		if(tableConfiguration == null) {
+		if (tableConfiguration == null) {
 			return null;
 		}
 
@@ -146,9 +147,9 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 		table.setTableConfiguration(tableConfiguration);
 		Property property = getModelProperty();
-		if(property != null) {
+		if (property != null) {
 			String description = property.getDescription();
-			if(description != null) {
+			if (description != null) {
 				table.setDescription(description);
 			}
 		}
@@ -157,14 +158,14 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 		table.setContext(sourceElement);
 
 		AbstractAxisProvider rowProvider = tableConfiguration.getDefaultRowAxisProvider();
-		if(rowProvider == null) {
+		if (rowProvider == null) {
 			rowProvider = NattableaxisproviderFactory.eINSTANCE.createMasterObjectAxisProvider();
 		} else {
 			rowProvider = EcoreUtil.copy(rowProvider);
 		}
 
 		AbstractAxisProvider columnProvider = tableConfiguration.getDefaultColumnAxisProvider();
-		if(columnProvider == null) {
+		if (columnProvider == null) {
 			columnProvider = NattableaxisproviderFactory.eINSTANCE.createSlaveObjectAxisProvider();
 		} else {
 			columnProvider = EcoreUtil.copy(columnProvider);
@@ -172,16 +173,16 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 
 
 		TableHeaderAxisConfiguration rowHeaderAxisconfig = tableConfiguration.getRowHeaderAxisConfiguration();
-		for(IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfigurations()) {
-			if(axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
-				((EStructuralFeatureValueFillingConfiguration)axisConfig).setListenFeature(synchronizedFeature);
+		for (IAxisConfiguration axisConfig : rowHeaderAxisconfig.getOwnedAxisConfigurations()) {
+			if (axisConfig instanceof EStructuralFeatureValueFillingConfiguration) {
+				((EStructuralFeatureValueFillingConfiguration) axisConfig).setListenFeature(synchronizedFeature);
 			}
 		}
-		//		if(rowProvider instanceof EMFFeatureValueAxisProvider) {
-		//			EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
+		// if(rowProvider instanceof EMFFeatureValueAxisProvider) {
+		// EMFFeatureValueAxisProvider emfAxisProvider = (EMFFeatureValueAxisProvider)rowProvider;
 		//
-		//			emfAxisProvider.setListenFeature(synchronizedFeature);
-		//		}
+		// emfAxisProvider.setListenFeature(synchronizedFeature);
+		// }
 
 		table.setCurrentColumnAxisProvider(columnProvider);
 		table.setCurrentRowAxisProvider(rowProvider);
@@ -192,7 +193,7 @@ public class NattablePropertyEditor extends AbstractPropertyEditor {
 	protected TableConfiguration getTableConfiguration() {
 		ResourceSet resourceSet = new ResourceSetImpl();
 		try {
-			TableConfiguration tableConfiguration = (TableConfiguration)EMFHelper.loadEMFModel(resourceSet, tableConfigURI);
+			TableConfiguration tableConfiguration = (TableConfiguration) EMFHelper.loadEMFModel(resourceSet, tableConfigURI);
 			return tableConfiguration;
 		} catch (Exception ex) {
 			Activator.log.error("Invalid table configuration", ex);

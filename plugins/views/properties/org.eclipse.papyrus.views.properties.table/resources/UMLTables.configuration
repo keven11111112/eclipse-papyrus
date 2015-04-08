@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration:PapyrusConfiguration xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:configuration="http://www.eclipse.org/papyrus/infra/viewpoints/configuration" xmi:id="_Ue5ioN01EeSsxPjAcEX4yQ">
+  <viewpoints xsi:type="configuration:PapyrusViewpoint" xmi:id="_219SYN01EeSsxPjAcEX4yQ" name="Default Papyrus Viewpoint">
+    <modelKinds xsi:type="configuration:PapyrusSyncTable" xmi:id="_AdTnIN02EeSsxPjAcEX4yQ" name="Owned Attributes Table" icon="platform:/plugin/org.eclipse.papyrus.uml.nattable.generic.config/icons/uml_generic_table.png" implementationID="PapyrusOwnedAttributeTable">
+      <modelRules xmi:id="_ce8F4N02EeSsxPjAcEX4yQ">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//StructuredClassifier"/>
+      </modelRules>
+      <owningRules xmi:id="_gqvX8N02EeSsxPjAcEX4yQ">
+        <element href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+      </owningRules>
+      <categories href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb4txhEeOqHvRyiN87hA"/>
+    </modelKinds>
+  </viewpoints>
+  <defaultStakeholder href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wLmkdxhEeOqHvRyiN87hA"/>
+  <metamodel href="http://www.eclipse.org/uml2/5.0.0/UML#/"/>
+</configuration:PapyrusConfiguration>

@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.emf.nattable.celleditor.config;
@@ -18,7 +18,6 @@ import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.data.convert.DefaultIntegerDisplayConverter;
 import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.edit.editor.TextCellEditor;
 import org.eclipse.nebula.widgets.nattable.painter.cell.TextPainter;
@@ -32,12 +31,12 @@ import org.eclipse.papyrus.infra.tools.util.TypesConstants;
  * @author MA244259
  *
  */
-public class SingleStringCellEditorConfiguration implements ICellAxisConfiguration{
+public class SingleStringCellEditorConfiguration implements ICellAxisConfiguration {
 
 	/**
 	 * the id of this editor
 	 */
-	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleStringCellEditorConfiguration.MultiLineText";//$NON-NLS-1$	
+	private static final String ID = "org.eclipse.papyrus.infra.emf.nattable.celleditor.configuration.SingleStringCellEditorConfiguration.MultiLineText";//$NON-NLS-1$
 
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.configuration.IPapyrusNatTableConfiguration#getConfigurationId()
@@ -58,7 +57,7 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	public String getConfigurationDescription() {
 		return "This configuration provides a multi-line text editor for a single String"; //$NON-NLS-1$
 	}
-	
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.celleditor.config.ICellAxisConfiguration#handles(org.eclipse.papyrus.infra.nattable.model.nattable.Table, java.lang.Object)
 	 *
@@ -91,7 +90,7 @@ public class SingleStringCellEditorConfiguration implements ICellAxisConfigurati
 	public void configureCellEditor(IConfigRegistry configRegistry, Object axis, String configLabel) {
 		configRegistry.registerConfigAttribute(CellConfigAttributes.CELL_PAINTER, new TextPainter(), DisplayMode.EDIT, configLabel);
 		configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, new TextCellEditor(), DisplayMode.EDIT, configLabel);
-		//I believe that we don't need converters because we are working with the standard type --String. 
-		//configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);
+		// I believe that we don't need converters because we are working with the standard type --String.
+		// configRegistry.registerConfigAttribute(CellConfigAttributes.DISPLAY_CONVERTER, null, DisplayMode.EDIT, configLabel);
 	}
 }
