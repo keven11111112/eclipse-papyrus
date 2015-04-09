@@ -857,13 +857,13 @@ public class ValueSpecificationSetCommand {
 				if (initialValueSpecification instanceof LiteralBoolean && xtextValue instanceof LiteralBooleanRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_BOOLEAN)) {
 					result = (LiteralBoolean) initialValueSpecification;
 				} else if (initialValueSpecification instanceof LiteralInteger && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_INTEGER)) {
-					if (null != ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getUnlimited()) {
+					if (null == ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getUnlimited()) {
 						result = (LiteralInteger) initialValueSpecification;
 					}
 				} else if (initialValueSpecification instanceof LiteralUnlimitedNatural && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
 					// Check that the value if positive for the unlimited natural type
-
-					if (null != ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getUnlimited() || 0 <= ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue()) {
+					final LiteralIntegerOrUnlimitedNaturalRule integerValue = ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue);
+					if (null != integerValue.getUnlimited() || 0 <= integerValue.getValue()) {
 						result = (LiteralUnlimitedNatural) initialValueSpecification;
 					}
 				} else if (initialValueSpecification instanceof LiteralReal && xtextValue instanceof LiteralRealRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_REAL)) {

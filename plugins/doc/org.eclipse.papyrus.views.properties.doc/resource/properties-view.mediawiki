@@ -1,4 +1,5 @@
-== INTRODUCTION ==
+==Properties view customization==
+===Introduction===
 In UML, the main information is represented in graphical diagrams. However, it is not always possible to represent graphically the whole semantic of UML, not talking of all the cosmetic properties. For example, it is pretty easy to represent and to edit a Class' name graphically. While we still can represent the 'is abstract' property graphically (By using the italic font for the Class' name), it is harder to edit this property directly from the diagram. Worse, the 'is leaf' property doesn't even have a graphical representation. Thus, we often need a different view for representing all the properties of a UML Element, without polluting the graphical view.
 
 
@@ -16,7 +17,7 @@ Papyrus provides its own Property View framework, based on the Tabbed Property V
 *	Statically, through Java code, for advanced operations: create a new widget for editing the properties, add a custom Content Provider for selecting a reference value'
 This document aims at detailing all the features related to the property view customization, both dynamically and statically.
 
-== THE CUSTOMIZATION TOOL ==
+===The customization tool===
 
 Most customizations can be done through the Property view customization Editor. It provides native support for EMF Models, UML models and profiles. It also provides a set of basic widgets and property editors.
 
@@ -43,7 +44,7 @@ The Editor presents the elements defined by this configuration. The Preview disp
 [[File:images/fig3.png|The property view Editor]]
 
 
-=== The property view elements ===
+====The property view elements====
 
 The editor contains a Tree, containing the following elements :
 *	Context: it is a property view configuration. You will typically have one property view Context per Ecore Metamodel or UML Profile, but you can choose the granularity you want. A context has a list of tabs, and a list of views.
@@ -57,11 +58,11 @@ The editor contains a Tree, containing the following elements :
 *	Standard Widget: a widget from the standard SWT Library. Few of them are currently available, because they are rarely needed.
 The Tree allows reordering or removing easily the elements (Through drag & drop, delete). The editor also supports the Undo/Redo commands.
 
-==== Preview ====
+=====Preview=====
 
 The preview displays a real-time overview of the selected View. However, some widgets can only be computed at runtime, which prevents a pertinent preview. This is the case of the 'Enum Radio' widget, for example, as the enumerated values are only known at runtime.
 
-==== Property view ====
+=====Property view=====
 
 The property view is used to edit the properties of the element selected in the tree. The property view uses the Papyrus Property View framework, thus can be customized just the same way you would customize any other property view.
 
@@ -107,7 +108,7 @@ Finally, in the previous example, the following views will be displayed:
 *	FillStyle, FontStyle, LineStyle (Appearance tab)
 *	StereotypeDisplay (overrideable=false ; Appearance tab)
 
-=== Preferences ===
+====Preferences====
 
 When you make a copy of a property view, it is not automatically activated. Thus, the modifications brought to the copy are not immediately visible on your property view. To activate a property view, you need to open the Papyrus preferences, from Window > Preferences.
 
@@ -115,19 +116,19 @@ When you make a copy of a property view, it is not automatically activated. Thus
 
 When making a copy of an existing configuration, you should uncheck the default one, and check the new one.
 
-== ADVANCED CUSTOMIZATION ==
+===Advanced Customization===
 
 The customization tool only allows basic operations, such as adding, removing or reordering properties.
 
 The property view framework is much more powerful, but this requires some Java development. This chapter will focus on the advanced customization of the property view.
 
-=== The Environment model ===
+====The Environment model====
 
 To associate Java implementations with the property view model, you need to declare an Environment model. You can create a new Environment model with the 'Environment Model' wizard in 'Example EMF Model Creation Wizards' category. Select 'Environment' as the Model Object.
 
 Once you've added your Java class declarations, you should register the environment model so that the property view knows about it. Add an extension to org.eclipse.papyrus.properties.environment, and select your model file.
 
-=== Create a new widget === 
+====Create a new widget==== 
 
 You can create new widgets for the property view. There are four kinds of graphical elements: CompositeWidget, Layout, StandardWidget and PropertyEditor.
 The widgets contain three common fields:
@@ -146,7 +147,7 @@ To implement a Composite, Layout or Standard widget, you should simply follow th
 *	Extend Composite, have a (Composite, int) constructor, and implement the CustomizablePropertyEditor interface (From org.eclipse.papyrus.properties.widgets)
 *	Extend directly AbstractPropertyEditor (From org.eclipse.papyrus.properties.widgets)
 
-=== Constraints === 
+====Constraints==== 
 
 Adding a Constraint is similar to creating a new Widget. You have two options to implement a new Constraint:
 
@@ -167,7 +168,7 @@ The important methods are the following (depending on whether you're implement C
 The equivalent() and overrides() methods are used to automatically resolve constraints conflicts (Two different constraints matching the same element).
 Once the Constraint is implemented, don't forget to register it in your environment model.
 
-===ModelElement===
+====ModelElement====
 
 The ModelElement is the interface between the property view and your domain model. It is used to retrieve information about the object(s) being edited from the property. These informations will be used to configure the widget. AbstractModelElement provides a base implementation for this interface.
 
@@ -189,7 +190,7 @@ This method is used to display an element's label for a few widgets. Note that t
 
 This method returns an IValidator, if there's one which is set up for the current property. 
 
-=== ModelElement Factory ===
+====ModelElement Factory====
 
 The ModelElements are associated to DataContextElements through a ModelElementFactory. The ModelElementFactory is defined on the DataContextRoot. All children of a DataContextRoot will share the same ModelElementFactory.
 
@@ -199,7 +200,7 @@ Note: to display the Data contexts, you need to check the toggle button on top o
 
 [[File:images/fig9.png|The UML DataContextRoots, with their own factories]]
 
-=== Content Providers and Widgets ===
+====Content Providers and Widgets====
 
 Note: The ContentProviders have been refactored in Papyrus 0.9, to be simplified. However, most of this chapter should remain true.
 
@@ -211,7 +212,7 @@ When a flat widget (e.g. ReferenceCombo) is used, only the valid values will be 
 
 [[File:images/fig10.png|IHierarchicContentProvider at runtime]]
 
-=== Dynamic sections === 
+====Dynamic sections==== 
 
 Sometimes, the property view should not depend on a selection, but on a specific property of the selected element. In such a case, it is frequent that this specific property might be edited by the property view itself. However, the property view is only refreshed when the selection changes.
 
@@ -229,7 +230,7 @@ A view with dynamic sections will typically look like the following:
 
 Please note that tabs cannot be added nor removed dynamically. For example, when you apply a stereotype on a UML Element, the tab associated to the stereotype's property view cannot be displayed until you select the element again.
 
-=== Property view Header ===
+====Property view Header====
 The Eclipse Tabbed Property View offers an extension point to define the label provider for the property view header. However, this label provider will be specific to the editor. For generic editors, it is not always possible to provide a pertinent label provider: they will always be too generic, and won't be able to handle specific elements. For example, a generic EMF Model Editor with the customizable property view will only be able to display standard EMF labels and icons. To overcome this problem, Papyrus offers a configurable label provider for the header: org.eclipse.papyrus.properties.provider.SelectionLabelProvider
 
 This label provider uses the selected element to find the most appropriate label provider, then dispatches the getText and getIcon calls to it. This label provider can be configured through an extension point: org.eclipse.papyrus.properties.labelprovider
@@ -248,7 +249,7 @@ The lower the priority number, the higher the priority actually is:
 
 If no label provider matches the selection, the default JFace LabelProvider is used.
 
-=== Binding and Validation ===
+====Binding and Validation====
 
 View Properties support JFace Databinding, which connects our UI to our model. For the validation there are two kinds of validators: 
 
@@ -260,13 +261,13 @@ If there are errors during the binding a control decoration is shown next to the
 
 [[File:images/fig13.png|Example of binding with a model validator and warning severity result]]
 
-=== Field coloration ===
+====Field coloration====
 
 Properties views have fields' coloration. If you modify a value the background of the field will be orange, when you validate a change the background will turn green for couple of seconds if the synchronization was successful, it will turn red otherwise. 
 
 [[File:images/fig14.png|Example of a field being modified]]
 
-== GENERATION TOOL ==
+===Generation Tool===
 
 Editing an existing property view can be useful, but most of the time, you'll want a brand new configuration for your own profile or meta-model. Thus, the framework provides a tool to automatically generate the initial property view, which you can then customize using the customization tool.
 The generator can create a property view configuration from either a UML Profile or an Ecore Meta-model. The wizard is available in the Papyrus category: File -> New -> Other' -> Papyrus/Property view configuration.
@@ -302,6 +303,83 @@ Press finish: two files or more files according to the chosen strategy and a fol
 You can now open the *.ctx file and customize your property view.
 
 
-== DEPLOYING A PROPERTY VIEW ==
+===Deploying a property view===
 
 Papyrus provides a simple tool to deploy a property view locally (Right click on a CTX file -> Deploy/Undeploy) 
+
+==Multipllicity Editor==
+===Description===
+The multiplicity editor contains two modes of edition:
+* The '''simple''' mode which allows to edit the lower and the upper values from a unique editor
+* The '''advanced''' mode which allows to edit the lower and the upper values from two editors of ValueSpecification.
+
+===Usage===
+====Simple mode====
+The simple mode is represented as the following:
+
+[[File:images/simpleMode.png]]
+
+This editor must be filled by the following pattern:
+{| class="wikitable" border="1" cellspacing="0"
+! Value filled
+! Lower value
+! Upper value
+|-
+| 1
+| <code>null</code> (default value is '''1''')
+| <code>null</code> (default value is '''1''')
+|-
+| x..y
+| <code>LiteralInteger</code> with value '''x'''
+| <code>LiteralUnlimitedNatural</code> with value '''y'''
+|-
+| x..*
+| <code>LiteralInteger</code> with value '''x'''
+| <code>LiteralUnlimitedNatural</code> with value '''-1''' (interpreted as <code>*</code>)
+|-
+| x
+| <code>LiteralInteger</code> with value '''x'''
+| <code>LiteralUnlimitedNatural</code> with value '''x'''
+|}
+
+The values set as lower and upper are always positive (except the <code>*</code> for the upper which is valued as '''-1''').
+
+This editor is usable only when the lower ValueSpecification is a <code>LiteralInteger</code> or <code>null</code> and when the upper ValueSpecification is a <code>LiteralUnlimitedNatural</code> or <code>null</code>. 
+On the other hand, this editor will be displayed like the following:
+
+[[File:images/simpleModeDisabled.png]]
+
+====Advanced mode====
+=====Simple ValueSpecification editor=====
+The advanced mode with simple ValueSpecificatiton editors is represented as the following:
+
+[[File:images/advancedMode.png]]
+
+The lower and the upper ValueSpecification can be created/edited/deleted by the buttons:
+
+[[File:images/buttonsEdit.png]]
+
+=====XText ValueSpecification editor=====
+The advanced mode with XText ValueSpecification editors is represented as the following:
+
+[[File:images/advancedModeXText.png]]
+
+This editor use the XText ValueSpecification editors (explain [[Papyrus_User_Guide#UML_ValueSpecification_editor|here]]) with some specificities depending on lower or upper value edition.
+
+The specificity of the '''lower''' ValueSpecification edition is when the value filled is an integer, this one will be handled as <code>LiteralInteger</code> instead of <code>LiteralUnlimitedNatural</code> or <code>LiteralInteger</code> (the <code>*</code> value will create an <code>OpaqueExpression</code>).
+
+The specificity of the '''upper''' ValueSpecification edition is when the value filled is an integer or <code>*</code>:
+* if the integer is '''positive or -1''', a <code>LiteralUnlimitedNatural</code> will be created
+* if the integer is '''negative''', an <code>OpaqueExpression</code> will be created instead of <code>LiteralInteger</code>
+
+====Switch modes====
+This is possible to switch between the two modes by two ways:
+* The button in the multiplicity editor:
+
+[[File:images/buttonSwitch.png]]
+
+* The '''multiplicity editor''' preferences in the '''property views''' preferences:
+
+[[File:images/preferencesMultiplicityEditor.png]]
+
+Regarless of the way used to switch modes, the mode used is saved in the preferences and will be used for each multiplicity in Papyrus.

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.infra.emf.dialog.NestedEditingDialogContext;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor;
 import org.eclipse.papyrus.infra.widgets.selectors.StringSelector;
+import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
 import org.eclipse.papyrus.uml.properties.xtext.Activator;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
@@ -39,6 +40,7 @@ import org.eclipse.swt.events.KeyEvent;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Control;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Event;
 
 /**
@@ -47,6 +49,17 @@ import org.eclipse.swt.widgets.Event;
  */
 public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 		implements IContextElementProvider, SelectionListener {
+
+	/**
+	 * The equal character.
+	 */
+	private static final String EQUAL = "="; //$NON-NLS-1$
+
+	/**
+	 * The default value to validate.
+	 */
+	private static final String DEFAULT_VALIDATE_VALUE = "0"; //$NON-NLS-1$
+
 
 	/**
 	 * The xtext adapter.
@@ -74,6 +87,7 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 */
 	private String directEditorConfiguration;
 
+
 	/**
 	 * Constructor.
 	 *
@@ -83,30 +97,40 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	 *            The style for the widget.
 	 */
 	public UMLXtextReferenceValueEditor(final Composite parent, final int style) {
-		super(parent, style);
+		this(parent, style, null);
+	}
+
+	/**
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The composite in which the widget will be displayed.
+	 * @param style
+	 *            The style for the widget.
+	 * @param targetValidator
+	 *            The validator used for the styled text.
+	 */
+	public UMLXtextReferenceValueEditor(final Composite parent, final int style, final AbstractValidator targetValidator) {
+		super(parent, style, targetValidator);
 		styledTextStringEditor.getText().addFocusListener(new FocusListener() {
 
 			public void focusLost(FocusEvent e) {
 				if (canParse) {
 					IParser parser = getParser();
-					if (null == xtextAdapter) {
-						return;
-					}
+					if (null != xtextAdapter) {
+						if (null == xtextAdapter
+								|| null == xtextAdapter.getCompletionProposalAdapter()
+								|| !xtextAdapter.getCompletionProposalAdapter()
+										.delayedIsPopupOpen()) {
+							manageParserCommand(parser);
 
-					if (null != xtextAdapter
-							&& null != xtextAdapter.getCompletionProposalAdapter()
-							&& xtextAdapter.getCompletionProposalAdapter()
-									.delayedIsPopupOpen()) {
-						// ignore focus lost
-						return;
+							// Manage the color field and the control decoration
+							styledTextStringEditor.notifyListeners(SWT.FocusOut, new Event());
+							styledTextStringEditor.changeColorField();
+							controlDecoration.hide();
+							canParse = false;
+						}
 					}
-					manageParserCommand(parser);
-
-					// Manage the color field and the control decoration
-					styledTextStringEditor.notifyListeners(SWT.FocusOut, new Event());
-					styledTextStringEditor.changeColorField();
-					controlDecoration.hide();
-					canParse = false;
 				}
 			}
 
@@ -164,7 +188,13 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			final Composite parent, final String initialValue, final int style) {
 		// Change the style to set the singleText to a single line
 		int createdStyle = style | SWT.SINGLE;
-		return new StyledTextStringEditor(parent, createdStyle) {
+		return new StyledTextStringEditor(parent, createdStyle, targetValidator) {
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#createStyledText(org.eclipse.swt.widgets.Composite, java.lang.String, int)
+			 */
 			public StyledText createStyledText(final Composite parent, final String value,
 					final int createdStyle) {
 				StyledText txt = new StyledText(parent, createdStyle);
@@ -175,9 +205,9 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			}
 
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#keyPressed(org.eclipse.swt.events.KeyEvent)
-			 *
-			 * @param e
 			 */
 			@Override
 			public void keyPressed(final KeyEvent e) {
@@ -203,8 +233,9 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			}
 
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#notifyChange()
-			 *
 			 */
 			@Override
 			protected void notifyChange() {
@@ -221,15 +252,39 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 			}
 
 			/**
+			 * {@inheritDoc}
+			 * 
 			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#keyReleased(org.eclipse.swt.events.KeyEvent)
-			 *
-			 * @param e
 			 */
 			@Override
 			public void keyReleased(KeyEvent e) {
 				// Nothing
 				// Manage the 'enter' key with 'keyPressed' instead of 'keyReleased'
 				// because the proposal window is already closed in the 'keyReleased' method
+			}
+
+			/**
+			 * {@inheritDoc}
+			 * 
+			 * @see org.eclipse.papyrus.infra.widgets.editors.StyledTextStringEditor#getTextToValidate()
+			 */
+			@Override
+			protected String getTextToValidate() {
+				// Manage the string to parse (because the XText parser allow a filled name with the value)
+				String result = super.getTextToValidate();
+				// If the text contains '=', just parse the value after
+				if (result.contains(EQUAL) && result.indexOf(EQUAL) != (result.length() - 1)) {
+					result = result.substring(result.indexOf(EQUAL) + 1, result.length());
+				} else {
+					// Try to parse the value as integer if id doesn't contain '='
+					try {
+						Integer.parseInt(result);
+					} catch (NumberFormatException exception) {
+						// Set the default value validation to avoid validation error
+						result = DEFAULT_VALIDATE_VALUE;
+					}
+				}
+				return result;
 			}
 		};
 	}
@@ -358,7 +413,12 @@ public class UMLXtextReferenceValueEditor extends StyledTextReferenceDialog
 	protected void doBinding() {
 		super.doBinding();
 		updateXtextAdapters(styledTextStringEditor.getText());
-		styledTextStringEditor.setValue(labelProvider.getText(getValue()));
+		// Manage the setText of StyledText by a Runnable because the UI is blocker previously
+		Display.getDefault().asyncExec(new Runnable() {
+			public void run() {
+				styledTextStringEditor.setValue(labelProvider.getText(getValue()));
+			}
+		});
 		updateLabel();
 	}
 

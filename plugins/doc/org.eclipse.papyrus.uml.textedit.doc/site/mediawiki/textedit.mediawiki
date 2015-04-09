@@ -278,7 +278,7 @@ Developer documentation is available [[Papyrus_Developer_Guide/Papyrus_Embedded_
 
 ===Usage===
 * This editors allows to find named element typing its name. 
-* In case of several elements to found, the separator to use is the comma </code>'</code>
+* In case of several elements to found, the separator to use is the comma <code>'</code>
 * If the name of the element contains a comma, you should prefix and suffix its name by a quote <code>'</code>.
 * The value will not be set if the element can't be found is the model
 
@@ -307,5 +307,5 @@ If you have 3 Classes in your model, named <code>Class1</code>, <code>Class2</co
 |-
 | Clas,
 | <Undefined>,...
-| interpreted as a list of value, the first value is </code>Clas</code>, and we have no information for the second one, for the completion it is an empty string
+| interpreted as a list of value, the first value is <code>Clas</code>, and we have no information for the second one, for the completion it is an empty string
 |}
