@@ -13,7 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.tools.utils;
 
+import org.eclipse.uml2.uml.LiteralInteger;
+import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
 import org.eclipse.uml2.uml.MultiplicityElement;
+import org.eclipse.uml2.uml.ValueSpecification;
 
 /**
  * Utility class for <code>org.eclipse.uml2.uml.MultiplicityElement</code><BR>
@@ -21,18 +24,29 @@ import org.eclipse.uml2.uml.MultiplicityElement;
 public class MultiplicityElementUtil {
 
 	/**
+	 * The string representing the multiplicity with space " [x..y]"
+	 * Clients should format the spaces at the calling side, but this method left here for backward compatibility
+	 */
+	@Deprecated
+	public static String getMultiplicityAsString(MultiplicityElement element) {
+		String multiplicity = formatMultiplicity(element);
+		return multiplicity == null || multiplicity.isEmpty() ? "" : " " + multiplicity;
+	}
+
+	/**
 	 * Return the multiplicity of the element "[x..y]"
 	 *
 	 * @return the string representing the multiplicity
 	 */
-	public static String getMultiplicityAsString(MultiplicityElement element) {
-		StringBuffer buffer = new StringBuffer();
-		String multiplicityStr = getMultiplicityAsStringWithoutSquareBrackets(element);
-		if (multiplicityStr != null && !"".equals(multiplicityStr)) {
-			buffer.append(" [");
-			buffer.append(multiplicityStr);
-			buffer.append("]");
+	public static String formatMultiplicity(MultiplicityElement element) {
+		String multiplicityStr = formatMultiplicityNoBrackets(element);
+		if (multiplicityStr == null || multiplicityStr.isEmpty()) {
+			return "";
 		}
+		StringBuffer buffer = new StringBuffer();
+		buffer.append("[");
+		buffer.append(multiplicityStr);
+		buffer.append("]");
 		return buffer.toString();
 	}
 
@@ -41,26 +55,55 @@ public class MultiplicityElementUtil {
 	 *
 	 * @return the string representing the multiplicity, without square brackets
 	 */
-	public static String getMultiplicityAsStringWithoutSquareBrackets(MultiplicityElement element) {
-		StringBuffer buffer = new StringBuffer();
-		// special case for [1] and [*]
-		int lower = element.getLower();
-		int upper = element.getUpper();
-
-		if (lower == upper) {
-			buffer.append(lower);
-		} else if ((lower == 0) && (upper == -1)) {
-			buffer.append("*");
-		} else if (upper == -1) {
-			buffer.append(lower);
-			buffer.append("..*");
-		} else {
-			buffer.append(lower);
-			buffer.append("..");
-			buffer.append(upper);
+	public static String formatMultiplicityNoBrackets(MultiplicityElement element) {
+		ValueSpecification lowerSpecification = element.getLowerValue();
+		ValueSpecification upperSpecification = element.getUpperValue();
+		if (lowerSpecification == null && upperSpecification == null) {
+			return setupMultiplicityAsInteger(element.getLower(), element.getUpper());
 		}
+		if (lowerSpecification == null && upperSpecification instanceof LiteralUnlimitedNatural) {
+			return setupMultiplicityAsInteger(element.getLower(), ((LiteralUnlimitedNatural) upperSpecification).unlimitedValue());
+		}
+		if (lowerSpecification instanceof LiteralInteger && upperSpecification == null) {
+			return setupMultiplicityAsInteger(((LiteralInteger) lowerSpecification).integerValue(), element.getUpper());
+		}
+		if (lowerSpecification instanceof LiteralInteger && upperSpecification instanceof LiteralUnlimitedNatural) {
+			return setupMultiplicityAsInteger(((LiteralInteger) lowerSpecification).integerValue(), ((LiteralUnlimitedNatural) upperSpecification).unlimitedValue());
+		}
+		return setupMultiplicityAsString(element, lowerSpecification, upperSpecification);
+	}
 
-		return buffer.toString();
+	private static String setupMultiplicityAsInteger(int lower, int upper) {
+		// special case for [1] and [*]
+		if (lower == upper) {
+			return new Integer(lower).toString();
+		} else if ((lower == 0) && (upper == -1)) {
+			return "*";
+		} else if (upper == -1) {
+			return lower + "..*";
+		} else {
+			return lower + ".." + upper;
+		}
+	}
+
+	private static String setupMultiplicityAsString(MultiplicityElement element, ValueSpecification lower, ValueSpecification upper) {
+		String lowerStr = ValueSpecificationUtil.getSpecificationValue(lower);
+		if ("*".equals(lowerStr)) {
+			return "";
+		}
+		String upperStr = ValueSpecificationUtil.getSpecificationValue(upper);
+		if (lowerStr != null && false == lowerStr.isEmpty() && lowerStr.equalsIgnoreCase(upperStr)) {
+			return lowerStr;
+		}
+		StringBuffer result = new StringBuffer();
+		result.append(lowerStr == null || lowerStr.isEmpty() ? element.getLower() : lowerStr);
+		result.append("..");
+		result.append(upperStr == null || upperStr.isEmpty() ? getUpper(element) : upperStr);
+		return result.toString();
+	}
+
+	private static String getUpper(MultiplicityElement element) {
+		return element.getUpper() == -1 ? "" : new Integer(element.getUpper()).toString();
 	}
 
 	/**
