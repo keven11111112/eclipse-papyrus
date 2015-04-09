@@ -16,7 +16,6 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-import org.eclipse.papyrus.dsml.validation.IDSMLValidation;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.Category;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintProvider;
 import org.eclipse.papyrus.dsml.validation.model.elements.interfaces.IConstraintsManager;
@@ -174,19 +173,20 @@ public class ConstraintManagerImpl implements IConstraintsManager {
 		for (Element element : profile.allOwnedElements()) {
 
 			if (element instanceof Constraint) {
-				if (element.getAppliedStereotype(IDSMLValidation.VALIDATIONRULE_STEREOTYPE) != null) {
+				// don't restrict to elements that apply validation rule stereotype, see bug
+				// 464249 - [..] The validation plugin generator silently ignores constraints without ValidationRule stereotype
+				// if (element.getAppliedStereotype(IDSMLValidation.VALIDATIONRULE_STEREOTYPE) != null) {
 
-					Element contextElement = ((Constraint) element).getContext();
+				Element contextElement = ((Constraint) element).getContext();
 
-					// get the stereotype to add the constraint
-					if (contextElement instanceof Stereotype) {
-						if (this.constraintsOfStereotype.keySet().contains(contextElement)) {
-							this.constraintsOfStereotype.get(contextElement).add((Constraint) element);
-						} else {
-							List<Constraint> constraintsList = new ArrayList<Constraint>();
-							constraintsList.add((Constraint) element);
-							this.constraintsOfStereotype.put((Stereotype) contextElement, constraintsList);
-						}
+				// get the stereotype to add the constraint
+				if (contextElement instanceof Stereotype) {
+					if (this.constraintsOfStereotype.keySet().contains(contextElement)) {
+						this.constraintsOfStereotype.get(contextElement).add((Constraint) element);
+					} else {
+						List<Constraint> constraintsList = new ArrayList<Constraint>();
+						constraintsList.add((Constraint) element);
+						this.constraintsOfStereotype.put((Stereotype) contextElement, constraintsList);
 					}
 				}
 			}

@@ -9,6 +9,7 @@
  * Contributors:
  *  Ernest Wozniak (CEA LIST) ernest.wozniak@cea.fr - Initial API and implementation
  *  Patrick Tessier (CEA LIST) patrick.tessier@cea.fr - modifications
+ *  Ansgar Radermacher (CEA LIST) ansgar.radermacher@cea.fr - clean-up, bug 464249 (constraints without ValidationRule stereotype)
  *****************************************************************************/
 package org.eclipse.papyrus.dsml.validation.model.elements.impl;
 
@@ -26,21 +27,39 @@ import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
- * Implementation of an interface relating to the constraint.
- *
+ * Implementation of an interface relating to the ValidationRule interface.
  *
  */
 public class ValidationRuleImpl implements IValidationRule {
 
-	private static final String ERROR = "Constraint is not stereotyepd with ValidationRule";
+	/**
+	 * Attributes of stereotype ValidationRule
+	 */
+	private static final String SA_TARGET = "target"; //$NON-NLS-1$
+
+	private static final String SA_ID = "id"; //$NON-NLS-1$
+
+	private static final String SA_STATUS_CODE = "statusCode"; //$NON-NLS-1$
+
+	private static final String SA_SEVERITY = "severity"; //$NON-NLS-1$
+
+	private static final String SA_MODE = "mode"; //$NON-NLS-1$
+
+	private static final String SA_IS_ENABLED_BY_DEFAULT = "isEnabledByDefault"; //$NON-NLS-1$
+
+	private static final String SA_DESCRIPTION = "description"; //$NON-NLS-1$
+
+	private static final String SA_MESSAGE = "message"; //$NON-NLS-1$
+
+	private String id;
 
 	private Constraint constraint;
 
 	private Stereotype stereotype;
 
-	private String contextID;
-
 	private List<String> targets;
+
+	private String implementingClass;
 
 	/**
 	 * Constructor which takes as an parameter constraint from the model.
@@ -55,7 +74,7 @@ public class ValidationRuleImpl implements IValidationRule {
 		this.constraint = constraint;
 		stereotype = constraint.getAppliedStereotype(IDSMLValidation.VALIDATIONRULE_STEREOTYPE);
 		if (stereotype == null) {
-			throw new WrongStereotypeException(ERROR);
+			// throw new WrongStereotypeException(ERROR);
 		}
 	}
 
@@ -80,72 +99,51 @@ public class ValidationRuleImpl implements IValidationRule {
 		 * If the value of id has not been declared by the user, generated id
 		 * value will be assigned and saved in the model.
 		 */
-		if (constraint.getValue(stereotype, "id") == null || constraint.getValue(stereotype, "id").equals("")) {
+		if ((getStereoAttribValue(SA_ID) instanceof String) && ((String) getStereoAttribValue(SA_ID)).length() > 0) {
+			id = (String) getStereoAttribValue(SA_ID);
+		}
+		else {
 			String qname = constraint.getQualifiedName().replace("::", ".");
-			this.id = qname;
-
-		} else {
-
-			this.id = (String) constraint.getValue(stereotype, "id");
+			id = qname;
 		}
 
-		this.implementingClass = parentCategory.getID() + "." + this.getName() + "Constraint";
+		implementingClass = parentCategory.getID() + "." + this.getName() + "Constraint";
 
-		this.contextID = parentCategory.getID();
+		// unused
+		// this.contextID = parentCategory.getID();
 
-		this.targets = new ArrayList<String>();
+		targets = new ArrayList<String>();
 
 		/*
 		 * If there is no target specified, plugin will automatically assign as
 		 * a target for a constraint, those elements which are extended by the
 		 * stereotype to which the constraint applies.
 		 */
-		if (constraint.getValue(stereotype, "target") != null && ((EDataTypeUniqueEList) constraint.getValue(stereotype, "target")).size() > 0) {
-			for (Object target : (EDataTypeUniqueEList) constraint.getValue(stereotype, "target")) {
-				if (target != null) {
-					this.targets.add((String) target);
+		Object targetsObj = getStereoAttribValue(SA_TARGET);
+		if ((targetsObj instanceof EDataTypeUniqueEList) && ((EDataTypeUniqueEList) targetsObj).size() > 0) {
+			for (Object target : (EDataTypeUniqueEList) targetsObj) {
+				if (target instanceof String) {
+					targets.add((String) target);
 				}
 			}
-
 		}
-
-		/*
-		 * If status code has not been specified in the model, plugin will
-		 * assign default value for each constraint which is 1 and save it to
-		 * the model.
-		 */
-		this.statusCode = (Integer) constraint.getValue(stereotype, "statusCode");
-		if (this.statusCode == null) {
-			this.statusCode = new Integer(1);
-		}
-
 	}
 
 	public String getName() {
-		// TODO Auto-generated method stub
 		return constraint.getName();
 	}
 
 	public String getID() {
-		// TODO Auto-generated method stub
-		return id == null ? (String) constraint.getValue(stereotype, "id") : id;
+		return id == null ? (String) getStereoAttribValue(SA_ID) : id;
 	}
 
-	private String id;
-
-
 	public Integer getStatusCode() {
-		// TODO Auto-generated method stub
-
-		Integer statusCode = (Integer) constraint.getValue(stereotype, "statusCode");
-
+		Integer statusCode = (Integer) getStereoAttribValue(SA_STATUS_CODE);
 		return statusCode == null ? new Integer(1) : statusCode;
 	}
 
-	private Integer statusCode;
-
 	public Severity getSeverity() {
-		Object severityObj = constraint.getValue(stereotype, "severity"); //$NON-NLS-1$
+		Object severityObj = getStereoAttribValue(SA_SEVERITY);
 		if (severityObj instanceof Enumerator) {
 			Enumerator severity = (Enumerator) severityObj;
 
@@ -160,17 +158,14 @@ public class ValidationRuleImpl implements IValidationRule {
 			}
 		}
 		return Severity.ERROR;
-
 	}
 
 	public String getImplementingClass() {
-		return this.implementingClass;
+		return implementingClass;
 	}
 
-	private String implementingClass;
-
 	public Mode getMode() {
-		Object modeObj = constraint.getValue(stereotype, "mode"); //$NON-NLS-1$
+		Object modeObj = (stereotype != null) ? constraint.getValue(stereotype, SA_MODE) : null;
 		if (modeObj instanceof Enumerator) {
 			Enumerator mode = (Enumerator) modeObj;
 
@@ -186,30 +181,36 @@ public class ValidationRuleImpl implements IValidationRule {
 	}
 
 	public boolean isEnabledByDefault() {
-		// TODO Auto-generated method stub
-		return constraint.getValue(stereotype, "isEnabledByDefault") == null ? true : ((Boolean) constraint.getValue(stereotype, "isEnabledByDefault")).booleanValue();
+		Object enabledByDefault = getStereoAttribValue(SA_IS_ENABLED_BY_DEFAULT);
+		return enabledByDefault instanceof Boolean ? ((Boolean) enabledByDefault).booleanValue() : true;
 	}
 
 	public String getMessage() {
-		// TODO Auto-generated method stub
-		return (String) constraint.getValue(stereotype, "message");
+		return (String) getStereoAttribValue(SA_MESSAGE);
 	}
 
 	public String getDescription() {
-		// TODO Auto-generated method stub
-		return (String) constraint.getValue(stereotype, "description");
+		return (String) getStereoAttribValue(SA_DESCRIPTION);
 	}
 
 	public List<String> getTargets() {
-		// TODO Auto-generated method stub
-		return this.targets;
+		return targets;
 	}
 
-
-
-
 	public Constraint getConstraint() {
-		// TODO Auto-generated method stub
 		return this.constraint;
+	}
+	
+	/**
+	 * Helper function that returns the value of the ValidationRule stereotype,
+	 * if applied to the underlying constraint
+	 * @param attributeName the name of the stereotype attribute
+	 * @return null or value of stereotype attribute
+	 */
+	public Object getStereoAttribValue(String attributeName) {
+		if (stereotype != null) {
+			return constraint.getValue(stereotype, attributeName);
+		}
+		return null;
 	}
 }
