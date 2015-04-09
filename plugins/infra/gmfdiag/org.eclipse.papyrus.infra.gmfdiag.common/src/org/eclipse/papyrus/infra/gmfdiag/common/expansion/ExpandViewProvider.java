@@ -1,0 +1,210 @@
+/**
+ * Copyright (c) 2015 CEA LIST.
+ *
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *
+ * Contributors:
+ *  CEA LIST - Initial API and implementation
+ */
+package org.eclipse.papyrus.infra.gmfdiag.common.expansion;
+
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.Platform;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.diagram.core.providers.IViewProvider;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateChildViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperation;
+import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
+import org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
+import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
+
+/**
+ * 
+ * This class is a generic ViewProvider that is enable to create notation element by reading an expansion model
+ *
+ */
+public class ExpandViewProvider extends CustomAbstractViewProvider implements IViewProvider {
+
+	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
+			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
+	/** Map containing node view types supported by this provider */
+	protected Map<String, Class<?>> nodeMap = new HashMap<String, Class<?>>();
+
+	/** Map containing edge view types supported by this provider */
+	protected Map<String, Class<?>> edgeMap = new HashMap<String, Class<?>>();
+
+	protected DiagramExpansionsRegistry diagramExpansionRegistry;
+
+	/** Default constructor */
+	public ExpandViewProvider() {
+		super();
+		initDiagramType();
+		initGraphicalTypeRegistry();
+		diagramExpansionRegistry = new DiagramExpansionsRegistry();
+	}
+
+
+	/**
+	 * Initialize the graphical type registry. This should be set in the constructor, and not called again after that.
+	 */
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void initGraphicalTypeRegistry() {
+		this.registry = new IdentityGraphicalElementType();
+	}
+
+	
+	
+
+	@Override
+	protected boolean provides(CreateNodeViewOperation operation) {
+		return providesFromExpansionModel(operation);
+	}
+	@Override
+	protected boolean provides(CreateEdgeViewOperation operation) {
+		return providesFromExpansionModel(operation);
+	}
+	
+	/**
+	 * this method consults the expansion model to know if the view can be created in the current container.
+	 * @param operation the proposition of creation
+	 * @return true if the expansion model declare it, else false
+	 */
+	protected boolean providesFromExpansionModel(CreateChildViewOperation operation) {
+		String currentDiagramType = getDiagramType(operation.getContainerView());
+
+		//this diagram is known as extended?
+		if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType)==null){
+			//this diagram is unknown
+			return false;
+		}
+		String graphicalType =operation.getSemanticHint();
+		String containerType;
+		if(operation.getContainerView() instanceof Diagram ){
+			containerType=currentDiagramType;
+		}
+		else{
+			containerType	= operation.getContainerView().getType();
+		}
+		if(DEBUG_EXPANSION){
+			System.out.println(this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint());
+		}
+		//get the list of childreen Id from a parent ID
+		List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).parentChildrenRelation.get(containerType);
+		if(possibleChildreenIDs==null){
+			return false;
+		}
+		//the child ID is known?
+		if(possibleChildreenIDs.contains(graphicalType)){
+			return true;
+		}
+		return false;
+	}
+
+	
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Class<?> getNodeViewClass(IAdaptable semanticAdapter, View containerView, String graphicalType) {
+		return getViewFactory(containerView, graphicalType);
+	}
+
+
+	protected Class<?> getViewFactory(View containerView, String graphicalType) {
+		String currentDiagramType = getDiagramType(containerView);
+
+		// the map from the diagram ID
+		if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType)!=null){
+			EObject eObject=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
+
+			//look for the representation and the view factory path
+			if( eObject instanceof AbstractRepresentation){
+				String viewFactoryPath=((AbstractRepresentation)eObject).getViewFactory();
+				if( viewFactoryPath!=null&& (!"".equals(viewFactoryPath.trim()))){
+					return ClassLoaderHelper.loadClass( viewFactoryPath);
+				}
+				else{
+					RepresentationKind  representationKind=((AbstractRepresentation)eObject).getKind();
+					if(representationKind!=null){
+						viewFactoryPath=representationKind.getViewFactory();
+						if( viewFactoryPath!=null){
+							return 	ClassLoaderHelper.loadClass( viewFactoryPath);
+						}
+					}
+				}
+				return ClassLoaderHelper.loadClass(viewFactoryPath);
+			}
+		}
+		return null;
+	}
+
+	/**
+	 * get the diagram type from a view.
+	 * @param currentView the current view
+	 * @return the diagram type it can be also a view point
+	 */
+	protected String getDiagramType(View currentView) {
+		Diagram diagram=currentView.getDiagram();
+		String currentDiagramType=null;
+		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if(viewPrototype!=null){
+			currentDiagramType=viewPrototype.getLabel();
+		}
+		else{
+			currentDiagramType=diagram.getType();
+		}
+		diagramType=currentDiagramType;
+		return currentDiagramType;
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected Class<?> getEdgeViewClass(IAdaptable semanticAdapter, View containerView, String graphicalType) {
+		return getViewFactory(containerView, graphicalType);
+	}
+	/**
+	 * {@inheritDoc}
+	 */
+	protected void initDiagramType() {
+		diagramType=null;
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.providers.CustomAbstractViewProvider#isRelevantDiagram(org.eclipse.gmf.runtime.notation.Diagram)
+	 *
+	 * @param diagram
+	 * @return
+	 */
+	@Override
+	protected boolean isRelevantDiagram(Diagram diagram) {
+		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
+		if(viewPrototype!=null){
+			if(diagramExpansionRegistry.getUsage(viewPrototype.getLabel())!=null){
+				return true;
+			}
+			return false;
+
+		}
+		if ((diagramExpansionRegistry.getUsage(diagram.getType())!=null)) {
+			return true;
+		}
+		return false;
+	}
+}

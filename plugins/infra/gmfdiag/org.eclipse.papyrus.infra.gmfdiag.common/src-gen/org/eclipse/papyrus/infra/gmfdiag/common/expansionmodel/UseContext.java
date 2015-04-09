@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
 
@@ -21,7 +31,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext#getGmftRepresentations <em>Gmft Representations</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getUseContext()
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext()
  * @model
  * @generated
  */
@@ -36,9 +46,8 @@ public interface UseContext extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Diagram Type</em>' attribute.
 	 * @see #setDiagramType(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getUseContext_DiagramType()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_DiagramType()
 	 * @model required="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='DiagramType'"
 	 * @generated
 	 */
 	String getDiagramType();
@@ -63,7 +72,7 @@ public interface UseContext extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representations</em>' reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getUseContext_Representations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_Representations()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -79,7 +88,7 @@ public interface UseContext extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getUseContext_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
@@ -97,7 +106,7 @@ public interface UseContext extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Gmft Representations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GmftBasedRepresentation}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gmft Representations</em>' containment reference list isn't clear,
@@ -105,11 +114,10 @@ public interface UseContext extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Gmft Representations</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getUseContext_GmftRepresentations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_GmftRepresentations()
 	 * @model containment="true" ordered="false"
-	 *        annotation="http://www.eclipse.org/uml2/2.0.0/UML originalName='GmftRepresentations'"
 	 * @generated
 	 */
-	EList<GmftBasedRepresentation> getGmftRepresentations();
+	EList<GMFT_Based_Representation> getGmftRepresentations();
 
 } // UseContext

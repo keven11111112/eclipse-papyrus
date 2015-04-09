@@ -8,6 +8,7 @@ Export-Package: org.eclipse.papyrus.infra.gmfdiag.common,
  org.eclipse.papyrus.infra.gmfdiag.common.decoration,
  org.eclipse.papyrus.infra.gmfdiag.common.editpart,
  org.eclipse.papyrus.infra.gmfdiag.common.editpolicies,
+ org.eclipse.papyrus.infra.gmfdiag.common.expansion,
  org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel,
  org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl,
  org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util,
@@ -79,7 +80,8 @@ Require-Bundle: org.eclipse.emf.edit.ui;bundle-version="2.5.0",
  org.eclipse.gmf.runtime.draw2d.ui.render.awt,
  org.apache.xerces;bundle-version="2.9.0",
  org.eclipse.core.runtime,
- org.eclipse.emf.ecore;visibility:=reexport
+ org.eclipse.emf.ecore;visibility:=reexport,
+ org.eclipse.emf.ecore.xmi;visibility:=reexport
 Bundle-Vendor: %providerName
 Bundle-ActivationPolicy: lazy
 Bundle-ClassPath: .

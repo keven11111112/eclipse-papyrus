@@ -6,11 +6,12 @@
 
 <plugin>
 
+
    <extension point="org.eclipse.emf.edit.itemProviderAdapterFactories">
-      <!-- @generated expansionModel -->
+      <!-- @generated ExpandModel -->
       <factory
             uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider.ExpansionModelItemProviderAdapterFactory"
+            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider.ExpansionmodelItemProviderAdapterFactory"
             supportedTypes=
               "org.eclipse.emf.edit.provider.IEditingDomainItemProvider
                org.eclipse.emf.edit.provider.IStructuredItemContentProvider

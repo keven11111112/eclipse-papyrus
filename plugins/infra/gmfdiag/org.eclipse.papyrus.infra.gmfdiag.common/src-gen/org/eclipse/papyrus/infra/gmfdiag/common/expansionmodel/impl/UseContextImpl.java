@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl;
 
@@ -19,8 +29,8 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GmftBasedRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
 
@@ -99,7 +109,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GmftBasedRepresentation> gmftRepresentations;
+	protected EList<GMFT_Based_Representation> gmftRepresentations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -117,7 +127,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionModelPackage.Literals.USE_CONTEXT;
+		return ExpansionmodelPackage.Literals.USE_CONTEXT;
 	}
 
 	/**
@@ -138,7 +148,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		String oldDiagramType = diagramType;
 		diagramType = newDiagramType;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE, oldDiagramType, diagramType));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE, oldDiagramType, diagramType));
 	}
 
 	/**
@@ -148,7 +158,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 */
 	public EList<Representation> getRepresentations() {
 		if (representations == null) {
-			representations = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS);
+			representations = new EObjectResolvingEList<Representation>(Representation.class, this, ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS);
 		}
 		return representations;
 	}
@@ -171,7 +181,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionModelPackage.USE_CONTEXT__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.USE_CONTEXT__NAME, oldName, name));
 	}
 
 	/**
@@ -179,9 +189,9 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GmftBasedRepresentation> getGmftRepresentations() {
+	public EList<GMFT_Based_Representation> getGmftRepresentations() {
 		if (gmftRepresentations == null) {
-			gmftRepresentations = new EObjectContainmentEList<GmftBasedRepresentation>(GmftBasedRepresentation.class, this, ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
+			gmftRepresentations = new EObjectContainmentEList<GMFT_Based_Representation>(GMFT_Based_Representation.class, this, ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
 		}
 		return gmftRepresentations;
 	}
@@ -194,7 +204,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return ((InternalEList<?>)getGmftRepresentations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -208,13 +218,13 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				return getDiagramType();
-			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
 				return getRepresentations();
-			case ExpansionModelPackage.USE_CONTEXT__NAME:
+			case ExpansionmodelPackage.USE_CONTEXT__NAME:
 				return getName();
-			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return getGmftRepresentations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -229,19 +239,19 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				setDiagramType((String)newValue);
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
 				getRepresentations().clear();
 				getRepresentations().addAll((Collection<? extends Representation>)newValue);
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__NAME:
+			case ExpansionmodelPackage.USE_CONTEXT__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
-				getGmftRepresentations().addAll((Collection<? extends GmftBasedRepresentation>)newValue);
+				getGmftRepresentations().addAll((Collection<? extends GMFT_Based_Representation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);
@@ -255,16 +265,16 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				setDiagramType(DIAGRAM_TYPE_EDEFAULT);
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
 				getRepresentations().clear();
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__NAME:
+			case ExpansionmodelPackage.USE_CONTEXT__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
 				return;
 		}
@@ -279,13 +289,13 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionModelPackage.USE_CONTEXT__DIAGRAM_TYPE:
+			case ExpansionmodelPackage.USE_CONTEXT__DIAGRAM_TYPE:
 				return DIAGRAM_TYPE_EDEFAULT == null ? diagramType != null : !DIAGRAM_TYPE_EDEFAULT.equals(diagramType);
-			case ExpansionModelPackage.USE_CONTEXT__REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__REPRESENTATIONS:
 				return representations != null && !representations.isEmpty();
-			case ExpansionModelPackage.USE_CONTEXT__NAME:
+			case ExpansionmodelPackage.USE_CONTEXT__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionModelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
+			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				return gmftRepresentations != null && !gmftRepresentations.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -301,7 +311,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (diagramType: ");
+		result.append(" (DiagramType: ");
 		result.append(diagramType);
 		result.append(", name: ");
 		result.append(name);

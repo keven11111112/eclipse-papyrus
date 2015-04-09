@@ -43,47 +43,10 @@
 			</mapping>
 </extension>
    <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpartProviders">
-      <editpartProvider
-            class="org.eclipse.papyrus.sysml14.diagram.blockdefinition.provider.BddEditPartProvider">
-         <Priority
-               name="Low">
-         </Priority>
-      </editpartProvider>
-   </extension>
-   <extension
-      id="view-provider"
-      point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
-   <viewProvider
-         class="org.eclipse.papyrus.sysml14.diagram.blockdefinition.provider.BDDViewProvider">
-      <Priority
-            name="Highest">
-      </Priority>
-      <!--context
-            semanticHints="PapyrusUMLClassDiagram"
-            viewClass="org.eclipse.gmf.runtime.notation.Diagram">
-      </context>
-      <context
-            semanticHints="FlowPort_Label"
-            viewClass="org.eclipse.gmf.runtime.notation.Node">
-      </context-->
-     
-   </viewProvider>
-</extension>
-   <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-      <editpolicyProvider
-            class="org.eclipse.papyrus.sysml14.diagram.blockdefinition.provider.AddCompartmentPolicyProvider">
-         <Priority
-               name="Highest">
-         </Priority>
-      </editpolicyProvider>
-   </extension>
-   <extension
-         point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
-      <strategy
-            strategy="org.eclipse.papyrus.sysml14.diagram.blockdefinition.dnd.AddedElementDropStrategy">
-      </strategy>
+         point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
+      <diagramexpansion
+            model="resources/configuration/BDDconfig.xmi">
+      </diagramexpansion>
    </extension>
 >>>>>>> 696cda6 Bug 463290 - Papyrus diagram shall be expanded with new visual graphical notation
 </plugin>

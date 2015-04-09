@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
 
@@ -19,7 +29,7 @@ import org.eclipse.emf.ecore.EObject;
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion#getLibraries <em>Libraries</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getDiagramExpansion()
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getDiagramExpansion()
  * @model
  * @generated
  */
@@ -34,8 +44,8 @@ public interface DiagramExpansion extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Usages</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getDiagramExpansion_Usages()
-	 * @model containment="true" required="true" ordered="false"
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_Usages()
+	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<UseContext> getUsages();
@@ -50,7 +60,7 @@ public interface DiagramExpansion extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Libraries</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage#getDiagramExpansion_Libraries()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getDiagramExpansion_Libraries()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */

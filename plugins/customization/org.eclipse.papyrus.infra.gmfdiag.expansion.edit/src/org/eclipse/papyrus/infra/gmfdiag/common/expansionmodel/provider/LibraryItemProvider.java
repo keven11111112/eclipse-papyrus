@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider;
 
@@ -11,6 +21,8 @@ import org.eclipse.emf.common.notify.Notification;
 
 import org.eclipse.emf.common.util.ResourceLocator;
 
+import org.eclipse.emf.ecore.EStructuralFeature;
+
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
 import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
 import org.eclipse.emf.edit.provider.IItemLabelProvider;
@@ -22,10 +34,11 @@ import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionModelEditPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpandModelEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library} object.
@@ -80,7 +93,7 @@ public class LibraryItemProvider
 				 getResourceLocator(),
 				 getString("_UI_Library_name_feature"),
 				 getString("_UI_PropertyDescriptor_description", "_UI_Library_name_feature", "_UI_Library_type"),
-				 ExpansionModelPackage.Literals.LIBRARY__NAME,
+				 ExpansionmodelPackage.Literals.LIBRARY__NAME,
 				 true,
 				 false,
 				 false,
@@ -90,14 +103,34 @@ public class LibraryItemProvider
 	}
 
 	/**
-	 * This returns Library.gif.
+	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
+	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
+	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	@Override
-	public Object getImage(Object object) {
-		return overlayImage(object, getResourceLocator().getImage("full/obj16/Library"));
+	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
+		if (childrenFeatures == null) {
+			super.getChildrenFeatures(object);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONKINDS);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS);
+		}
+		return childrenFeatures;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected EStructuralFeature getChildFeature(Object object, Object child) {
+		// Check the type of the specified child object and return the proper feature to use for
+		// adding (see {@link AddCommand}) it as a child.
+
+		return super.getChildFeature(object, child);
 	}
 
 	/**
@@ -127,8 +160,12 @@ public class LibraryItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Library.class)) {
-			case ExpansionModelPackage.LIBRARY__NAME:
+			case ExpansionmodelPackage.LIBRARY__NAME:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
 		super.notifyChanged(notification);
@@ -144,6 +181,26 @@ public class LibraryItemProvider
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONKINDS,
+				 ExpansionmodelFactory.eINSTANCE.createRepresentationKind()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
+				 ExpansionmodelFactory.eINSTANCE.createRepresentation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
+				 ExpansionmodelFactory.eINSTANCE.createInducedRepresentation()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(ExpansionmodelPackage.Literals.LIBRARY__REPRESENTATIONS,
+				 ExpansionmodelFactory.eINSTANCE.createGMFT_Based_Representation()));
 	}
 
 	/**
@@ -154,7 +211,7 @@ public class LibraryItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ExpansionModelEditPlugin.INSTANCE;
+		return ExpandModelEditPlugin.INSTANCE;
 	}
 
 }

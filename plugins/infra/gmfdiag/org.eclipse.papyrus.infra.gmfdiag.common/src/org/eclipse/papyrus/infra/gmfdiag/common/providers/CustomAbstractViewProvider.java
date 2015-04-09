@@ -135,6 +135,12 @@ public abstract class CustomAbstractViewProvider extends AbstractViewProvider {
 		}
 		return graphicalType;
 	}
+	
+	/**
+	 * This method is used to know id the diagram is conform to type, it may be a prototype view, or a generatedDiagram 
+	 * @param diagram
+	 * @return
+	 */
 	protected boolean isRelevantDiagram (Diagram diagram){
 		ViewPrototype viewPrototype=org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils.getPrototype(diagram);
 		if(viewPrototype!=null){

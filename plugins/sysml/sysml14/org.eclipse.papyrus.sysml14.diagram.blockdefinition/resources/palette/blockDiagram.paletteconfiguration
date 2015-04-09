@@ -26,8 +26,6 @@
           elementTypeId="org.eclipse.papyrus.sysML.Block_3010"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Block_3014"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Block_NestedBlock_Classifier"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"

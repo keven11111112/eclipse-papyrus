@@ -2,15 +2,7 @@
 <xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA">
   <uml:Model xmi:id="_haqhoNenEeSTpeYJP6Dwgg" name="expansionmodel">
     <packagedElement xmi:type="uml:Class" xmi:id="_32MTgNenEeSTpeYJP6Dwgg" name="Representation">
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_AieuMNeoEeSTpeYJP6Dwgg" name="editPartQualifiedName">
-        <ownedComment xmi:type="uml:Comment" xmi:id="_iHyQ4NeoEeSTpeYJP6Dwgg">
-          <body>if the kind is custom the editPartQualifiedName has to be filled</body>
-        </ownedComment>
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FpE0kNeoEeSTpeYJP6Dwgg"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FpFboNeoEeSTpeYJP6Dwgg" value="1"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_IloFQNeoEeSTpeYJP6Dwgg" name="kind" type="_KOVIcNeoEeSTpeYJP6Dwgg"/>
+      <generalization xmi:type="uml:Generalization" xmi:id="_eZXCoN0fEeSNXY2BRFZeZg" general="_7eLO8N0aEeSNXY2BRFZeZg"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_tD7OUNeoEeSTpeYJP6Dwgg" name="graphicalElementType">
         <ownedComment xmi:type="uml:Comment" xmi:id="_GTtQgNepEeSTpeYJP6Dwgg">
           <body>This the reference of a graphical element type, it can be null.&#xD;
@@ -21,26 +13,17 @@ If it is used the hint has to be null</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_xlIvsNeoEeSTpeYJP6Dwgg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_xlJWwNeoEeSTpeYJP6Dwgg" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_7rSOYNeqEeSTpeYJP6Dwgg" name="compartments" type="_4OcUENeqEeSTpeYJP6Dwgg" association="_7q_TcNeqEeSTpeYJP6Dwgg">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_7rSOYNeqEeSTpeYJP6Dwgg" name="inducedRepresentations" type="_4OcUENeqEeSTpeYJP6Dwgg" association="_7q_TcNeqEeSTpeYJP6Dwgg">
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FWtJ0Ne2EeSNDtqi0sM-EA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FWw0MNe2EeSNDtqi0sM-EA" value="*"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_-aOVUNe0EeSYm5n6c73Y-g" name="name">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_gIUXcNhAEeSLXqlejJgoBg" name="viewFactory">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_Wy8NMd0GEeSNXY2BRFZeZg" name="subRepresentations" type="_32MTgNenEeSTpeYJP6Dwgg" association="_Wy5J4N0GEeSNXY2BRFZeZg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_eDwvcN0GEeSNXY2BRFZeZg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eDxWgN0GEeSNXY2BRFZeZg" value="*"/>
       </ownedAttribute>
     </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_KOVIcNeoEeSTpeYJP6Dwgg" name="RepresentationKind">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_MHVRcNeoEeSTpeYJP6Dwgg" name="Shape"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_OdVfgNeoEeSTpeYJP6Dwgg" name="Label"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_QDasgNeoEeSTpeYJP6Dwgg" name="Link"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_R1a1oNeoEeSTpeYJP6Dwgg" name="BorderItem"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_TT8pINeoEeSTpeYJP6Dwgg" name="BorderItemLabel"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_e5izQNeoEeSTpeYJP6Dwgg" name="Custom"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_4OcUENeqEeSTpeYJP6Dwgg" name="Compartments">
+    <packagedElement xmi:type="uml:Class" xmi:id="_4OcUENeqEeSTpeYJP6Dwgg" name="InducedRepresentation">
+      <generalization xmi:type="uml:Generalization" xmi:id="_dr9xIN0fEeSNXY2BRFZeZg" general="_7eLO8N0aEeSNXY2BRFZeZg"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_AuetYNepEeSTpeYJP6Dwgg" name="hint">
         <ownedComment xmi:type="uml:Comment" xmi:id="_VnXAwNepEeSTpeYJP6Dwgg">
           <body>This a id for a compartment of label for example:&#xD;
@@ -53,17 +36,8 @@ If is used, the graphical element is null.</body>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_E8IZkNepEeSTpeYJP6Dwgg" value="1"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_EJHWUterEeSTpeYJP6Dwgg" name="children" type="_32MTgNenEeSTpeYJP6Dwgg" association="_EJGIMNerEeSTpeYJP6Dwgg">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LUTxsNerEeSTpeYJP6Dwgg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_LUTxsNerEeSTpeYJP6Dwgg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_LUU_0NerEeSTpeYJP6Dwgg" value="*"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_P5PVcNerEeSTpeYJP6Dwgg" name="kind" type="_ReqbINerEeSTpeYJP6Dwgg"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_BhH00Ne1EeSYm5n6c73Y-g" name="name">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-      </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_-5AtoNe1EeSNDtqi0sM-EA" name="editPartQualifiedName">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_Bm2M4Ne2EeSNDtqi0sM-EA"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_Bm4CENe2EeSNDtqi0sM-EA" value="1"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_7q_TcNeqEeSTpeYJP6Dwgg" name="A_compartments_representation" memberEnd="_7rSOYNeqEeSTpeYJP6Dwgg _7rSOYdeqEeSTpeYJP6Dwgg">
@@ -80,43 +54,27 @@ If is used, the graphical element is null.</body>
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_EJHWUderEeSTpeYJP6Dwgg" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_EJH9YNerEeSTpeYJP6Dwgg" name="owner" type="_4OcUENeqEeSTpeYJP6Dwgg" association="_EJGIMNerEeSTpeYJP6Dwgg">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HdGOkNe2EeSNDtqi0sM-EA" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_HdGOkNe2EeSNDtqi0sM-EA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_HdIDwNe2EeSNDtqi0sM-EA" value="*"/>
       </ownedEnd>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Enumeration" xmi:id="_ReqbINerEeSTpeYJP6Dwgg" name="CompartmentKind">
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_T2bjwNerEeSTpeYJP6Dwgg" name="list"/>
-      <ownedLiteral xmi:type="uml:EnumerationLiteral" xmi:id="_WGRfcNerEeSTpeYJP6Dwgg" name="XY"/>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_jaw3gNevEeSTpeYJP6Dwgg" name="RepresentationLibrary">
-      <generalization xmi:type="uml:Generalization" xmi:id="_2SMQgNevEeSTpeYJP6Dwgg" general="_zsTzYNevEeSTpeYJP6Dwgg"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_ykXT4tevEeSTpeYJP6Dwgg" name="representations" type="_32MTgNenEeSTpeYJP6Dwgg" aggregation="composite" association="_ykWs0NevEeSTpeYJP6Dwgg">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Qk-8NevEeSTpeYJP6Dwgg" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9QlmANevEeSTpeYJP6Dwgg" value="*"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_syrpINevEeSTpeYJP6Dwgg" name="CompartmentLibrary">
-      <generalization xmi:type="uml:Generalization" xmi:id="_1o-UYNevEeSTpeYJP6Dwgg" general="_zsTzYNevEeSTpeYJP6Dwgg"/>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_x4MxcNevEeSTpeYJP6Dwgg" name="compartments" type="_4OcUENeqEeSTpeYJP6Dwgg" aggregation="composite" association="_x4LjUNevEeSTpeYJP6Dwgg">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_8UJy8NevEeSTpeYJP6Dwgg" value="1"/>
-        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_8UKaANevEeSTpeYJP6Dwgg" value="*"/>
-      </ownedAttribute>
-    </packagedElement>
-    <packagedElement xmi:type="uml:Association" xmi:id="_x4LjUNevEeSTpeYJP6Dwgg" name="A_compartments_compartmentlibrary" memberEnd="_x4MxcNevEeSTpeYJP6Dwgg _x4MxcdevEeSTpeYJP6Dwgg">
-      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_x4MKYNevEeSTpeYJP6Dwgg" source="org.eclipse.papyrus">
-        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_x4MKYdevEeSTpeYJP6Dwgg" key="nature" value="UML_Nature"/>
-      </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_x4MxcdevEeSTpeYJP6Dwgg" name="compartmentlibrary" type="_syrpINevEeSTpeYJP6Dwgg" association="_x4LjUNevEeSTpeYJP6Dwgg"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_ykWs0NevEeSTpeYJP6Dwgg" name="A_representation_representationlibrary" memberEnd="_ykXT4tevEeSTpeYJP6Dwgg _ykX68NevEeSTpeYJP6Dwgg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_ykXT4NevEeSTpeYJP6Dwgg" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_ykXT4devEeSTpeYJP6Dwgg" key="nature" value="UML_Nature"/>
       </eAnnotations>
-      <ownedEnd xmi:type="uml:Property" xmi:id="_ykX68NevEeSTpeYJP6Dwgg" name="representationlibrary" type="_jaw3gNevEeSTpeYJP6Dwgg" association="_ykWs0NevEeSTpeYJP6Dwgg"/>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_ykX68NevEeSTpeYJP6Dwgg" name="representationlibrary" type="_zsTzYNevEeSTpeYJP6Dwgg" association="_ykWs0NevEeSTpeYJP6Dwgg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_zsTzYNevEeSTpeYJP6Dwgg" name="Library" isAbstract="true">
+    <packagedElement xmi:type="uml:Class" xmi:id="_zsTzYNevEeSTpeYJP6Dwgg" name="Library">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2H52oNewEeSTpeYJP6Dwgg" name="name">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_XGktIN0BEeSNXY2BRFZeZg" name="representationkinds" type="_x9vrQNz-EeSXNr6NQKjGBg" aggregation="composite" association="_XGdYYN0BEeSNXY2BRFZeZg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_epdPwN0BEeSNXY2BRFZeZg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_eped4N0BEeSNXY2BRFZeZg" value="*"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_ykXT4tevEeSTpeYJP6Dwgg" name="representations" type="_7eLO8N0aEeSNXY2BRFZeZg" aggregation="composite" association="_ykWs0NevEeSTpeYJP6Dwgg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_9Qk-8NevEeSTpeYJP6Dwgg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_9QlmANevEeSTpeYJP6Dwgg" value="*"/>
       </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_FvIfoNewEeSTpeYJP6Dwgg" name="UseContext">
@@ -143,7 +101,7 @@ If is used, the graphical element is null.</body>
     </packagedElement>
     <packagedElement xmi:type="uml:Class" xmi:id="_mFdtwNewEeSTpeYJP6Dwgg" name="DiagramExpansion">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_qaDvctewEeSTpeYJP6Dwgg" name="usages" type="_FvIfoNewEeSTpeYJP6Dwgg" aggregation="composite" association="_qaDIYNewEeSTpeYJP6Dwgg">
-        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s8U34NewEeSTpeYJP6Dwgg" value="1"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_s8U34NewEeSTpeYJP6Dwgg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_s8Ve8NewEeSTpeYJP6Dwgg" value="*"/>
       </ownedAttribute>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_q-6wAtewEeSTpeYJP6Dwgg" name="libraries" type="_zsTzYNevEeSTpeYJP6Dwgg" aggregation="composite" association="_q-6I8NewEeSTpeYJP6Dwgg">
@@ -170,15 +128,59 @@ If is used, the graphical element is null.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_YGfG4NevEeSTpeYJP6Dwgg"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_YGft8NevEeSTpeYJP6Dwgg" value="1"/>
       </ownedAttribute>
-      <ownedAttribute xmi:type="uml:Property" xmi:id="_MRM4gNg_EeSLXqlejJgoBg" name="name">
-        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
-      </ownedAttribute>
     </packagedElement>
     <packagedElement xmi:type="uml:Association" xmi:id="_7Bg5YNg-EeSLXqlejJgoBg" name="A_gmftrepresentation_usecontext" memberEnd="_7BmY8Ng-EeSLXqlejJgoBg _7BnAANg-EeSLXqlejJgoBg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_7Bj8sNg-EeSLXqlejJgoBg" source="org.eclipse.papyrus">
         <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_7BkjwNg-EeSLXqlejJgoBg" key="nature" value="UML_Nature"/>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_7BnAANg-EeSLXqlejJgoBg" name="usecontext" type="_FvIfoNewEeSTpeYJP6Dwgg" association="_7Bg5YNg-EeSLXqlejJgoBg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_x9vrQNz-EeSXNr6NQKjGBg" name="RepresentationKind">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_2PkFwNz-EeSXNr6NQKjGBg" name="editPartQualifiedName">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_2PkFwdz-EeSXNr6NQKjGBg" value="1"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_2PkFwtz-EeSXNr6NQKjGBg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_LFYhQN0DEeSNXY2BRFZeZg" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_tzqB0N3tEeSNVdeGrY9mBA" name="viewFactory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_XGdYYN0BEeSNXY2BRFZeZg" name="A_representationkind_library" memberEnd="_XGktIN0BEeSNXY2BRFZeZg _XGktId0BEeSNXY2BRFZeZg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_XGiQ4N0BEeSNXY2BRFZeZg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_XGi38N0BEeSNXY2BRFZeZg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_XGktId0BEeSNXY2BRFZeZg" name="library" type="_zsTzYNevEeSTpeYJP6Dwgg" association="_XGdYYN0BEeSNXY2BRFZeZg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Association" xmi:id="_Wy5J4N0GEeSNXY2BRFZeZg" name="A_representation_representation" memberEnd="_Wy8NMd0GEeSNXY2BRFZeZg _Wy80QN0GEeSNXY2BRFZeZg">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_Wy7mIN0GEeSNXY2BRFZeZg" source="org.eclipse.papyrus">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_Wy8NMN0GEeSNXY2BRFZeZg" key="nature" value="UML_Nature"/>
+      </eAnnotations>
+      <ownedEnd xmi:type="uml:Property" xmi:id="_Wy80QN0GEeSNXY2BRFZeZg" name="representation" type="_32MTgNenEeSTpeYJP6Dwgg" association="_Wy5J4N0GEeSNXY2BRFZeZg"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Class" xmi:id="_7eLO8N0aEeSNXY2BRFZeZg" name="AbstractRepresentation" isAbstract="true">
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_AieuMNeoEeSTpeYJP6Dwgg" name="editPartQualifiedName">
+        <ownedComment xmi:type="uml:Comment" xmi:id="_iHyQ4NeoEeSTpeYJP6Dwgg">
+          <body>if the kind is custom the editPartQualifiedName has to be filled</body>
+        </ownedComment>
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_FpE0kNeoEeSTpeYJP6Dwgg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_FpFboNeoEeSTpeYJP6Dwgg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_IloFQNeoEeSTpeYJP6Dwgg" name="kind" type="_x9vrQNz-EeSXNr6NQKjGBg">
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_PD3F0Nz_EeSXNr6NQKjGBg"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_PD3s4Nz_EeSXNr6NQKjGBg" value="1"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_-aOVUNe0EeSYm5n6c73Y-g" name="name">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+      </ownedAttribute>
+      <ownedAttribute xmi:type="uml:Property" xmi:id="_gIUXcNhAEeSLXqlejJgoBg" name="viewFactory">
+        <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
+        <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iXhgQN3uEeSNVdeGrY9mBA"/>
+        <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iXiHUN3uEeSNVdeGrY9mBA" value="1"/>
+      </ownedAttribute>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_khXM0NenEeSTpeYJP6Dwgg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_khaQINenEeSTpeYJP6Dwgg" source="http://www.eclipse.org/uml2/2.0.0/UML">

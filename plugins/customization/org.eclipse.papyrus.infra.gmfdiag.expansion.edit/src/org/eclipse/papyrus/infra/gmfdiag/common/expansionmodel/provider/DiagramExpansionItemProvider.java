@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.provider;
 
@@ -23,10 +33,10 @@ import org.eclipse.emf.edit.provider.ItemProviderAdapter;
 import org.eclipse.emf.edit.provider.ViewerNotification;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelFactory;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelFactory;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 
-import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpansionModelEditPlugin;
+import org.eclipse.papyrus.infra.gmfdiag.expansion.expansionmodel.provider.ExpandModelEditPlugin;
 
 /**
  * This is the item provider adapter for a {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion} object.
@@ -79,8 +89,8 @@ public class DiagramExpansionItemProvider
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
 		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
-			childrenFeatures.add(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__USAGES);
-			childrenFeatures.add(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__USAGES);
+			childrenFeatures.add(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES);
 		}
 		return childrenFeatures;
 	}
@@ -133,8 +143,8 @@ public class DiagramExpansionItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(DiagramExpansion.class)) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 				return;
 		}
@@ -154,18 +164,13 @@ public class DiagramExpansionItemProvider
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__USAGES,
-				 ExpansionModelFactory.eINSTANCE.createUseContext()));
+				(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__USAGES,
+				 ExpansionmodelFactory.eINSTANCE.createUseContext()));
 
 		newChildDescriptors.add
 			(createChildParameter
-				(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES,
-				 ExpansionModelFactory.eINSTANCE.createRepresentationLibrary()));
-
-		newChildDescriptors.add
-			(createChildParameter
-				(ExpansionModelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES,
-				 ExpansionModelFactory.eINSTANCE.createCompartmentLibrary()));
+				(ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION__LIBRARIES,
+				 ExpansionmodelFactory.eINSTANCE.createLibrary()));
 	}
 
 	/**
@@ -176,7 +181,7 @@ public class DiagramExpansionItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ExpansionModelEditPlugin.INSTANCE;
+		return ExpandModelEditPlugin.INSTANCE;
 	}
 
 }

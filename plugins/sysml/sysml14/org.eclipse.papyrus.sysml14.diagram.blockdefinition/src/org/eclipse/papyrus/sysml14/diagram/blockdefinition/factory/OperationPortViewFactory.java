@@ -12,11 +12,18 @@ import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.sysml14.diagram.blockdefinition.IDRegistry;
 import org.eclipse.papyrus.uml.diagram.common.helper.PreferenceInitializerForElementHelper;
 
 public class OperationPortViewFactory implements ViewFactory {
 
+	/**
+	 * visual ID for stereotype label of border item
+	 */
+	protected static final String OPERATION_BORDER_ITEM_STEREOTYPE_LABEL = "Operation_BorderItem_Stereotype_Label";
+	/**
+	 * visual ID for name label of border item
+	 */
+	protected static final String OPERATION_BORDER_ITEM_LABEL = "Operation_BorderItem_Label";
 	@Override
 	public View createView(IAdaptable semanticAdapter, View containerView, String semanticHint, int index,	boolean persisted, PreferencesHint preferencesHint) {
 		return createPort((EObject)semanticAdapter.getAdapter(EObject.class), containerView,semanticHint, index, persisted, preferencesHint);
@@ -30,12 +37,12 @@ public class OperationPortViewFactory implements ViewFactory {
 		// initializeFromPreferences 
 		final IPreferenceStore prefStore = (IPreferenceStore)preferencesHint.getPreferenceStore();
 		PreferenceInitializerForElementHelper.initFontStyleFromPrefs(node, prefStore, "Port");
-		Node label5125 = createLabel(node, IDRegistry.OPERATION_BORDER_ITEM_LABEL);
+		Node label5125 = createLabel(node, OPERATION_BORDER_ITEM_LABEL);
 		label5125.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location5125 = (Location)label5125.getLayoutConstraint();
 		location5125.setX(25);
 		location5125.setY(3);
-		Node label6029 = createLabel(node, IDRegistry.OPERATION_BORDER_ITEM_STEREOTYPE_LABEL);
+		Node label6029 = createLabel(node, OPERATION_BORDER_ITEM_STEREOTYPE_LABEL);
 		label6029.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
 		Location location6029 = (Location)label6029.getLayoutConstraint();
 		location6029.setX(25);

@@ -1,4 +1,14 @@
 /**
+ * Copyright (c) 2015 CEA LIST.
+ *  
+ * All rights reserved. This program and the accompanying materials
+ * are made available under the terms of the Eclipse Public License v1.0
+ * which accompanies this distribution, and is available at
+ * http://www.eclipse.org/legal/epl-v10.html
+ *  
+ * Contributors:
+ * 	CEA LIST - Initial API and implementation
+ * 
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl;
 
@@ -17,7 +27,7 @@ import org.eclipse.emf.ecore.util.EObjectContainmentEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
 
@@ -72,7 +82,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionModelPackage.Literals.DIAGRAM_EXPANSION;
+		return ExpansionmodelPackage.Literals.DIAGRAM_EXPANSION;
 	}
 
 	/**
@@ -82,7 +92,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<UseContext> getUsages() {
 		if (usages == null) {
-			usages = new EObjectContainmentEList<UseContext>(UseContext.class, this, ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES);
+			usages = new EObjectContainmentEList<UseContext>(UseContext.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES);
 		}
 		return usages;
 	}
@@ -94,7 +104,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 */
 	public EList<Library> getLibraries() {
 		if (libraries == null) {
-			libraries = new EObjectContainmentEList<Library>(Library.class, this, ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES);
+			libraries = new EObjectContainmentEList<Library>(Library.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES);
 		}
 		return libraries;
 	}
@@ -107,9 +117,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
 				return ((InternalEList<?>)getUsages()).basicRemove(otherEnd, msgs);
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return ((InternalEList<?>)getLibraries()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -123,9 +133,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
 				return getUsages();
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return getLibraries();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -140,11 +150,11 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
 				getUsages().clear();
 				getUsages().addAll((Collection<? extends UseContext>)newValue);
 				return;
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
 				getLibraries().addAll((Collection<? extends Library>)newValue);
 				return;
@@ -160,10 +170,10 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
 				getUsages().clear();
 				return;
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
 				return;
 		}
@@ -178,9 +188,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__USAGES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__USAGES:
 				return usages != null && !usages.isEmpty();
-			case ExpansionModelPackage.DIAGRAM_EXPANSION__LIBRARIES:
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return libraries != null && !libraries.isEmpty();
 		}
 		return super.eIsSet(featureID);
