@@ -25,6 +25,12 @@
           eType="#//environment/Type"/>
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="multiplicity" lowerBound="1"
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EInt" defaultValueLiteral="1"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="substitutes" upperBound="-1"
+          eType="#//environment/PropertyEditorType">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Indicates that this PropertyEditorType should be used to replace all the specified PropertyEditorTypes"/>
+        </eAnnotations>
+      </eStructuralFeatures>
     </eClassifiers>
     <eClassifiers xsi:type="ecore:EClass" name="WidgetType" abstract="true">
       <eStructuralFeatures xsi:type="ecore:EAttribute" name="label" lowerBound="1"
@@ -80,6 +86,18 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="prototype" eType="#//contexts/Context">
         <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
           <details key="documentation" value="References the context from which a context was copied.  The context manager caches the prototype reference so that it can enable a prototype when the copied context is not available."/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="substitutes" upperBound="-1"
+          eType="#//contexts/Context">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="Indicates that this Configuration replaces (disables) all the specified Configurations when it is enabled"/>
+        </eAnnotations>
+      </eStructuralFeatures>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="substitution" upperBound="-1"
+          eType="#//contexts/Substitution" containment="true">
+        <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+          <details key="documentation" value="The list of Configuration-wide substitutions that are introduced by this configuration. This substitutions have a wide scope which is computed dynamically, based on the Substitution's constraints"/>
         </eAnnotations>
       </eStructuralFeatures>
     </eClassifiers>
@@ -154,6 +172,21 @@
           eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="modelElementFactory"
           lowerBound="1" eType="#//environment/ModelElementFactoryDescriptor"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="substitutes" upperBound="-1"
+          eType="#//contexts/DataContextRoot"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="Substitution" abstract="true">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="constraints" upperBound="-1"
+          eType="ecore:EClass ../../org.eclipse.papyrus.infra.constraints/Model/Constraints.ecore#//ConstraintDescriptor"
+          containment="true"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="PropertyEditorTypeSubstitution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEditorType" eType="#//environment/PropertyEditorType"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetEditorType" eType="#//environment/PropertyEditorType"/>
+    </eClassifiers>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementFactorySubstitution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFactoryType" eType="#//environment/ModelElementFactoryDescriptor"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetFactoryType" eType="#//environment/ModelElementFactoryDescriptor"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="ui" nsURI="http://www.eclipse.org/papyrus/properties/ui/0.9"
