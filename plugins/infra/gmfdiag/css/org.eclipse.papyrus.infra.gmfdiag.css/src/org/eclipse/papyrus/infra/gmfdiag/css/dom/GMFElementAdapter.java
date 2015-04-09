@@ -9,6 +9,7 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 461629
+ *  Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - bug 462381
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.dom;
 
@@ -37,6 +38,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.gmf.runtime.notation.BasicCompartment;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
@@ -324,7 +326,7 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	@Override
 	public String getNamespaceURI() {
 		if (namespaceURI == null) {
-			namespaceURI = EMFHelper.getQualifiedName(getSemanticElement().eClass().getEPackage(), ".");
+			namespaceURI = EMFHelper.getQualifiedName(getSemanticElement().eClass().getEPackage(), ".");//$NON-NLS-1$
 		}
 		return namespaceURI;
 	}
@@ -407,15 +409,16 @@ public class GMFElementAdapter extends ElementAdapter implements NodeList, IChan
 	 * Returns null if the attribute is not known
 	 */
 	protected String doGetAttribute(String attr) {
-		if (notationElement instanceof BasicCompartment) {
-			// Compartments can be filtered by type (notation::View::type), or by title (From GmfGen model)
+
+		if (notationElement instanceof DecorationNode) {
+			// DecorationNode can be filtered by type (notation::View::type), or by title (From GmfGen model)
 			// We add the "kind" attribute which is specific to the CSS (More user-friendly)
 			if ("kind".equals(attr)) {
 
-				BasicCompartment compartment = (BasicCompartment) notationElement;
-				String humanType = NotationTypesMap.instance.getHumanReadableType(compartment);
+				DecorationNode node = (DecorationNode) notationElement;
+				String humanType = NotationTypesMap.instance.getHumanReadableType(node);
 				if (humanType == null) {
-					return compartment.getType();
+					return node.getType();
 				}
 				return humanType; // 7017, 7018, 7019 for Attribute/Operation/Classifier compartments
 				// TODO: Create a mapping list between GMF ID (Type) and user-readable labels

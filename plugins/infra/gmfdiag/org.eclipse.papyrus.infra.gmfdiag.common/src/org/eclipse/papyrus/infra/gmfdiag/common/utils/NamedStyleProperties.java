@@ -143,9 +143,6 @@ public interface NamedStyleProperties {
 
 	/* NamedStyle for NamedElementEditPart */
 
-	/** The Constant NAME_POSITION. */
-	public static final String NAME_POSITION = "namePosition"; //$NON-NLS-1$
-
 	/** CSS boolean property controlling whether stereotypes should be displayed. */
 	public static final String DISPLAY_STEREOTYPES = "displayStereotypes"; //$NON-NLS-1$
 

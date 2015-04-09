@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
  *
  *****************************************************************************/
 
@@ -114,7 +115,7 @@ public class QualifiedNameWrappingLabelFigure extends PapyrusWrappingLabel imple
 	}
 
 	@Override
-	public Label getTaggedLabel() {
+	public WrappingLabel getTaggedLabel() {
 		return null;
 	}
 

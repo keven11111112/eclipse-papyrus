@@ -1302,6 +1302,7 @@
 </extension>
 
 <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <?gmfgen generated="true"?>
 		<diagramMappings diagramID="PapyrusUMLClassDiagram">
 			<mapping type="PapyrusUMLClassDiagram" humanReadableType="ClassDiagram"/>
 			
@@ -1795,13 +1796,102 @@
 		humanReadableType="Stereotype"
 		type="6041">
 	</mapping>
-
-
-
-	
-
-
-
+			<mapping
+				humanReadableType="Stereotype"
+				type="8501">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8509">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8513">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8514">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8515">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8516">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8517">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8518">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8519">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8520">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8522">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8504">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8521">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8505">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8503">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8506">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8507">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8508">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8512">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8510">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8511">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8502">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5155">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5153">
+			</mapping>
 		</diagramMappings>
 	</extension>
 <extension point="org.eclipse.ui.handlers" id="menu-handlers">
