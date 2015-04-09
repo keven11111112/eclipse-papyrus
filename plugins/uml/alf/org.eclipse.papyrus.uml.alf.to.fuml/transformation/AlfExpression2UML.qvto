@@ -50,54 +50,42 @@ helper createDecisionGraph(
 ) : ActivityGraph {
 	var graph := object ActivityGraph {};
 	
-	graph.nodes += graph.resultSource := 
-	var decisionNode ::= object DecisionNode {
-		name := "Decision(" + label + ")";
-	};
+	graph.nodes += graph.resultSource := var decisionNode ::= 
+		object DecisionNode {
+			name := "Decision(" + label + ")";
+		};
 	
 	if inputSource <> null then {
-		graph.edges += createFlow(inputSource, decisionNode, isObjectFlow);
+		graph.edges += createFlow(inputSource, decisionNode, isObjectFlow, null);
 	} endif;
 	
 	if decisionSource <> null then {
-		graph.edges += decisionNode.decisionInputFlow := object ObjectFlow {
-			source := decisionSource;
-			target := decisionNode;
-		};
+		graph.edges += decisionNode.decisionInputFlow := new ObjectFlow(decisionSource, decisionNode);
 	} endif;
 	
 	if trueTarget <> null then {
-		graph.edges += var flow ::= createFlow(decisionNode, trueTarget, isObjectFlow);
-		flow.guard := object LiteralBoolean {
-			name := "Value(true)";
-			value := true;
-		};
+		graph.edges += createFlow(decisionNode, trueTarget, isObjectFlow, true);
 	} endif;
 	
 	if falseTarget <> null then {
-		graph.edges += var flow ::= createFlow(decisionNode, falseTarget, isObjectFlow);
-		flow.guard := object LiteralBoolean {
-			name := "Value(false)";
-			value := true;
-		};
+		graph.edges += createFlow(decisionNode, falseTarget, isObjectFlow, false);
 	} endif;
 	
 	return graph;
 }
 
-helper createFlow(source_: ActivityNode, target_: ActivityNode, isObjectFlow : Boolean) : ActivityEdge {
-	return
-		if isObjectFlow then
-			object ObjectFlow {
-				source := source_;
-				target := target_;
-			}
-		else
-			object ControlFlow {
-				source := source_;
-				target := target_;
-			}
+helper createFlow(source : ActivityNode, target : ActivityNode, isObjectFlow : Boolean, guard : Boolean) : ActivityEdge {
+	var activityEdge :=
+		if isObjectFlow then new ObjectFlow(source, target)
+		else new ControlFlow(source, target)
 		endif;
+	if guard <> null then {
+		activityEdge.guard := object LiteralBoolean {
+			name := guard.toString();
+			value := guard;
+		};
+	} endif;
+	return activityEdge;
 }
 
 helper createObjectDecisionGraph(
@@ -209,40 +197,21 @@ mapping Expression::Dummy_toActivityGraph() : ActivityGraph
 	nodes += resultSource;
 }
 
-
 // Literal Expressions
 
 mapping LiteralExpression::toActivityGraph() : ActivityGraph
 	inherits Expression::toActivityGraph {
-	var valueAction := self.map toValueSpecificationAction();
-	valueAction.value.type := self.type.map toUml().oclAsType(uml::Type);
-	valueAction.result := object OutputPin {
-		name := valueAction.name + ".result";
-		type := valueAction.value.type;
-		lower := 1;
-		upper := 1;
-	};
-	nodes += valueAction;
-	resultSource := valueAction.result;
+	nodes += new ValueSpecificationAction(self.toValueSpecification());
 }
 
-abstract mapping LiteralExpression::toValueSpecificationAction() : ValueSpecificationAction;
+abstract helper LiteralExpression::toValueSpecification() : ValueSpecification;
 
-mapping BooleanLiteralExpression::toValueSpecificationAction() : ValueSpecificationAction
-	inherits LiteralExpression::toValueSpecificationAction {
-	name := "Value(" + self.image + ")";
-	value := object LiteralBoolean {
-		value := self.image = "true";
-	}
+helper BooleanLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralBoolean(self.image = "true", self.type.toType());
 }
 
-mapping NaturalLiteralExpression::toValueSpecificationAction() : ValueSpecificationAction
-	inherits LiteralExpression::toValueSpecificationAction {
-	name := "Value(" + self.image + ")";
-	value := object LiteralInteger {
-		value := self.image.replaceAll("_", "").parseInt(self.radix());
-		type := self.type.map toUml().oclAsType(uml::Type);
-	}
+helper NaturalLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralInteger(self.image.replaceAll("_", "").parseInt(self.radix()), self.type.toType());
 }
 
 query NaturalLiteralExpression::radix() : Integer {
@@ -290,24 +259,19 @@ query String::hexValue() : Integer {
 		endif
 }
 
-mapping UnboundedLiteralExpression::toValueSpecificationAction() : ValueSpecificationAction
-	inherits LiteralExpression::toValueSpecificationAction {
-	name := "Value(*)";
-	value := object LiteralUnlimitedNatural {
-		value := -1;
-	}
+helper UnboundedLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralUnlimitedNatural(self.type.toType());
 }
 
-mapping StringLiteralExpression::toValueSpecificationAction() : ValueSpecificationAction
-	inherits LiteralExpression::toValueSpecificationAction {
-	name := "Value(" + self.image + ")";
-	value := object LiteralString {
-		value := 
+helper StringLiteralExpression::toValueSpecification() : ValueSpecification {
+	return new LiteralString( 
 			if self.image.length() <= 2 then ""
 			else self.image.substring(2, self.image.length()-1)
-			endif;
-	}
+			endif,
+			self.type.toType());
 }
+
+// Name Expressions
 
 mapping NameExpression::toActivityGraph() : ActivityGraph
  	inherits Expression::toActivityGraph  {
@@ -331,24 +295,16 @@ init {
 		var enumerationLiteral = enumerationLiteralReference.toUml().oclAsType(EnumerationLiteral);
 		var valueActionName := "Value(" + enumerationLiteral.name + ")";
 		result := object ActivityGraph {
-			nodes += var valueAction ::= object ValueSpecificationAction {
-				name := valueActionName;
-				value := object InstanceValue {
-					instance := enumerationLiteral;
-				};
-			};
-			resultSource := valueAction._'result' := object OutputPin {
-				name := valueActionName + ".result";
-				type := enumerationLiteral.enumeration;
-				lower := 1;
-				upper := 1;
-			};
+			nodes += var valueAction ::= new ValueSpecificationAction(new InstanceValue(enumerationLiteral));
+			resultSource := valueAction._'result';
 		};
 	} else if propertyAccess <> null then {
 		result := propertyAccess.map toActivityGraph();
 	} endif endif endif;
 }
 }
+
+// This Expressions
 
 mapping ThisExpression::toActivityGraph() : ActivityGraph
  	inherits Expression::Dummy_toActivityGraph  {
