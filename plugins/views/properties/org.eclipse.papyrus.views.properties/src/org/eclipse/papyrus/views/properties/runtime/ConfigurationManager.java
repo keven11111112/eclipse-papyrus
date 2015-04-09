@@ -211,6 +211,7 @@ public class ConfigurationManager {
 		if (contextStorageProviderListener == null) {
 			contextStorageProviderListener = new IContextStorageProviderListener() {
 
+				@Override
 				public void contextsAdded(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -229,6 +230,7 @@ public class ConfigurationManager {
 					}
 				}
 
+				@Override
 				public void contextsChanged(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -247,6 +249,7 @@ public class ConfigurationManager {
 					}
 				}
 
+				@Override
 				public void contextsRemoved(Collection<? extends Context> contexts) {
 					List<Context> appliedContexts = new java.util.ArrayList<Context>(contexts.size());
 
@@ -304,6 +307,7 @@ public class ConfigurationManager {
 
 		Display.getDefault().asyncExec(new Runnable() {
 
+			@Override
 			public void run() {
 				NotificationBuilder.createAsyncPopup(message).setType(org.eclipse.papyrus.infra.widgets.toolbox.notification.Type.INFO).setDelay(5000L).run();
 			}
@@ -339,14 +343,18 @@ public class ConfigurationManager {
 		URI contextURI = EcoreUtil.getURI(context);
 
 		if (contexts.containsKey(contextURI)) {
-			// Unloads the previous objects corresponding to this context
 			Context previousContext = contexts.get(contextURI);
+
+			boolean isCustomizable = isCustomizable(previousContext);
+			// Unloads the previous objects corresponding to this context
+
 			enabledContexts.remove(previousContext);
 			previousContext.eResource().unload();
+			contexts.remove(contextURI);
 
 			// Adds the new object corresponding to this context
 			try {
-				addContext(contextURI);
+				addContext(contextURI, isCustomizable);
 				constraintEngine.refresh();
 			} catch (IOException ex) {
 				Activator.log.error(ex);
@@ -359,7 +367,7 @@ public class ConfigurationManager {
 	 *
 	 * @param context
 	 * @return
-	 *         true if the given context is enabled.
+	 * 		true if the given context is enabled.
 	 *
 	 * @see Preferences
 	 */
@@ -654,7 +662,7 @@ public class ConfigurationManager {
 	 *
 	 * @param context
 	 * @return
-	 *         True if the context comes from a plugin, and is thus read-only
+	 * 		True if the context comes from a plugin, and is thus read-only
 	 */
 	public boolean isPlugin(Context context) {
 		// a missing context can't be a plug-in context because plug-ins can't go missing
@@ -680,7 +688,7 @@ public class ConfigurationManager {
 	 * @param uri
 	 *            The URI from which the Context is loaded
 	 * @return
-	 *         The loaded context
+	 * 		The loaded context
 	 * @throws IOException
 	 *             If the URI doesn't represent a valid Context model
 	 */
@@ -707,7 +715,7 @@ public class ConfigurationManager {
 
 	/**
 	 * @return
-	 *         The PropertiesRoot for the Property view framework. The PropertiesRoot contains
+	 * 		The PropertiesRoot for the Property view framework. The PropertiesRoot contains
 	 *         all registered Environments and Contexts (Whether they are enabled or disabled)
 	 */
 	public PropertiesRoot getPropertiesRoot() {
@@ -720,7 +728,7 @@ public class ConfigurationManager {
 	 * @param contextName
 	 *            The name of the context to retrieve
 	 * @return
-	 *         The context corresponding to the given name
+	 * 		The context corresponding to the given name
 	 */
 	public Context getContext(String contextName) {
 		for (Context context : getContexts()) {
@@ -888,7 +896,7 @@ public class ConfigurationManager {
 	/**
 	 * @param name
 	 * @return
-	 *         The namespace corresponding to the given name
+	 * 		The namespace corresponding to the given name
 	 */
 	public Namespace getNamespaceByName(String name) {
 		for (Environment environment : root.getEnvironments()) {
@@ -905,7 +913,7 @@ public class ConfigurationManager {
 	/**
 	 * @param property
 	 * @return
-	 *         the default PropertyEditorType for the given Property
+	 * 		the default PropertyEditorType for the given Property
 	 */
 	public PropertyEditorType getDefaultEditorType(Property property) {
 		return getDefaultEditorType(property.getType(), property.getMultiplicity() != 1);
@@ -987,7 +995,7 @@ public class ConfigurationManager {
 	 * @param propertyPath
 	 * @param context
 	 * @return
-	 *         The property associated to the given propertyPath
+	 * 		The property associated to the given propertyPath
 	 */
 	public Property getProperty(String propertyPath, Context context) {
 		String elementName = propertyPath.substring(0, propertyPath.lastIndexOf(":")); //$NON-NLS-1$
@@ -1032,7 +1040,7 @@ public class ConfigurationManager {
 	 * be displayed at the same time
 	 *
 	 * @return
-	 *         The list of conflicts
+	 * 		The list of conflicts
 	 */
 	public Collection<ConfigurationConflict> checkConflicts() {
 		Map<String, List<Context>> sections = new HashMap<String, List<Context>>();
