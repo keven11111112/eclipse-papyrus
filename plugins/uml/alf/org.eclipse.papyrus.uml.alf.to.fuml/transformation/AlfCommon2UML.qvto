@@ -345,6 +345,38 @@ constructor ValueSpecificationAction::ValueSpecificationAction(valueSpecificatio
 	result.result := new OutputPin(name + ".result", valueSpecification.type, 1, 1);
 }
 
+constructor LiteralBoolean::LiteralBoolean(b : Boolean, t : Type) {
+	name := b.toString();
+	value := b;
+	type := t;
+}
+
+constructor LiteralString::LiteralString(s : String, t : Type) {
+	name := "\"" + s + "\"";
+	value := s;
+	type := t;
+}
+
+constructor LiteralInteger::LiteralInteger(i : Integer, t : Type) {
+	name := i.toString();
+	value := i;
+	type := t;
+}
+
+constructor LiteralUnlimitedNatural::LiteralUnlimitedNatural(t : Type) {
+	name := "*";
+	type := t;
+}
+
+constructor LiteralNull::LiteralNull() {
+	name := "null";
+}
+
+constructor InstanceValue::InstanceValue(spec : InstanceSpecification) {
+	instance := spec;
+	type := spec.classifier![true];
+}
+
 // Other
 
 helper nameOf(element : Element) : String {
