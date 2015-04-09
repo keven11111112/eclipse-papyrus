@@ -80,13 +80,10 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		return result;
 	}
 
-<<<<<<< Upstream, based on gerrit/master
+
 	@Override
 	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
-=======
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart) {
->>>>>>> ee00fb1 Bug 463290 - Papyrus diagram shall be expanded with new visual graphical notation create the first version of interpretors
-		Collection<Element> result = null;
+	Collection<Element> result = null;
 
 		if (semanticFromEditPart instanceof NamedElement) {
 			// Handle changes to client/supplier dependencies
@@ -169,16 +166,4 @@ public class DefaultUMLSemanticChildrenStrategy implements ISemanticChildrenStra
 		}
 	}
 
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.canonical.strategy.ISemanticChildrenStrategy#getCanonicalDependents(org.eclipse.emf.ecore.EObject, org.eclipse.gmf.runtime.notation.View)
-	 *
-	 * @param semanticFromEditPart
-	 * @param viewFromEditPart
-	 * @return
-	 */
-	@Override
-	public Collection<? extends EObject> getCanonicalDependents(EObject semanticFromEditPart, View viewFromEditPart) {
-		// TODO Auto-generated method stub
-		return null;
-	}
 }
