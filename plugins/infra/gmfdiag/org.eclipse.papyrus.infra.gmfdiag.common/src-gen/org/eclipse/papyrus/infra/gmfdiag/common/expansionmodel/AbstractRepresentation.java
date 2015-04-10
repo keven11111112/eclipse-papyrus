@@ -12,6 +12,8 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
 
+import java.util.Map;
+import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.emf.ecore.EObject;
 
 /**
@@ -137,5 +139,13 @@ public interface AbstractRepresentation extends EObject {
 	 * @generated
 	 */
 	void setViewFactory(String value);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true" ordered="false" diagnosticRequired="true" diagnosticOrdered="false" contextRequired="true" contextOrdered="false"
+	 * @generated
+	 */
+	boolean validate(DiagnosticChain diagnostic, Map context);
 
 } // AbstractRepresentation

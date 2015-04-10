@@ -50,6 +50,10 @@
           propertySortChoices="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//AbstractRepresentation/kind"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//AbstractRepresentation/name"/>
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//AbstractRepresentation/viewFactory"/>
+      <genOperations xsi:type="genmodel:GenOperation" ecoreOperation="expansionmodel.ecore#//AbstractRepresentation/validate">
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="expansionmodel.ecore#//AbstractRepresentation/validate/diagnostic"/>
+        <genParameters xsi:type="genmodel:GenParameter" ecoreParameter="expansionmodel.ecore#//AbstractRepresentation/validate/context"/>
+      </genOperations>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//RepresentationKind">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//RepresentationKind/editPartQualifiedName"/>

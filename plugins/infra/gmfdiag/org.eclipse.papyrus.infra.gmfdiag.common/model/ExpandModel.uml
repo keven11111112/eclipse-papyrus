@@ -181,6 +181,17 @@ If is used, the graphical element is null.</body>
         <lowerValue xmi:type="uml:LiteralInteger" xmi:id="_iXhgQN3uEeSNVdeGrY9mBA"/>
         <upperValue xmi:type="uml:LiteralUnlimitedNatural" xmi:id="_iXiHUN3uEeSNVdeGrY9mBA" value="1"/>
       </ownedAttribute>
+      <ownedOperation xmi:type="uml:Operation" xmi:id="_RrkMEN9pEeS3V7Bu6N14fQ" name="validate">
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_jsCu8N9pEeS3V7Bu6N14fQ" name="result" direction="return">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EBoolean"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_qxBNkN9pEeS3V7Bu6N14fQ" name="diagnostic">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EDiagnosticChain"/>
+        </ownedParameter>
+        <ownedParameter xmi:type="uml:Parameter" xmi:id="_tjII0N9pEeS3V7Bu6N14fQ" name="context">
+          <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EMap"/>
+        </ownedParameter>
+      </ownedOperation>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_khXM0NenEeSTpeYJP6Dwgg">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_khaQINenEeSTpeYJP6Dwgg" source="http://www.eclipse.org/uml2/2.0.0/UML">

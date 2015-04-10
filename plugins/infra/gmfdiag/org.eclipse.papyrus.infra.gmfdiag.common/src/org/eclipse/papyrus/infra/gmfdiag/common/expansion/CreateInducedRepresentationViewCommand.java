@@ -25,8 +25,9 @@ import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 
 /**
  * Command to create the compartment displaying shapes for an element
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011
  */
-public class CreateDynamicCompartmentViewCommand extends RecordingCommand {
+public class CreateInducedRepresentationViewCommand extends RecordingCommand {
 
 	/** owner of the compartment view to create */
 	private View owner;
@@ -48,7 +49,7 @@ public class CreateDynamicCompartmentViewCommand extends RecordingCommand {
 	 * @param description
 	 *            description of the command
 	 */
-	public CreateDynamicCompartmentViewCommand(TransactionalEditingDomain domain, String label,String visualHint, String description, View owner, boolean isVisible,PreferencesHint preferenceHint) {
+	public CreateInducedRepresentationViewCommand(TransactionalEditingDomain domain, String label,String visualHint, String description, View owner, boolean isVisible,PreferencesHint preferenceHint) {
 		super(domain, label, description);
 		this.owner = owner;
 		this.setVisible(isVisible);

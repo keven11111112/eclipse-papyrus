@@ -12,17 +12,26 @@
  */
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl;
 
+import java.lang.reflect.InvocationTargetException;
+import java.util.Map;
 import org.eclipse.emf.common.notify.Notification;
 
+import org.eclipse.emf.common.util.BasicDiagnostic;
+import org.eclipse.emf.common.util.Diagnostic;
+import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
+import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelValidator;
 
 /**
  * <!-- begin-user-doc -->
@@ -236,6 +245,31 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public boolean validate(DiagnosticChain diagnostic, Map context) {
+		// TODO: implement this method
+		// -> specify the condition that violates the invariant
+		// -> verify the details of the diagnostic, including severity and message
+		// Ensure that you remove @generated or mark it @generated NOT
+		if (false) {
+			if (diagnostic != null) {
+				diagnostic.add
+					(new BasicDiagnostic
+						(Diagnostic.ERROR,
+						 ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+						 ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "validate", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
+			}
+			return false;
+		}
+		return true;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
@@ -318,6 +352,20 @@ public abstract class AbstractRepresentationImpl extends MinimalEObjectImpl.Cont
 				return VIEW_FACTORY_EDEFAULT == null ? viewFactory != null : !VIEW_FACTORY_EDEFAULT.equals(viewFactory);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
+		switch (operationID) {
+			case ExpansionmodelPackage.ABSTRACT_REPRESENTATION___VALIDATE__DIAGNOSTICCHAIN_MAP:
+				return validate((DiagnosticChain)arguments.get(0), (Map)arguments.get(1));
+		}
+		return super.eInvoke(operationID, arguments);
 	}
 
 	/**

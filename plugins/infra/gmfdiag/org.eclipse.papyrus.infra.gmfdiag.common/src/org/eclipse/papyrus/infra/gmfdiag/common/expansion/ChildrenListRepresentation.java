@@ -29,6 +29,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
 
 /**
  * This class is a structure that is adapted for the code of provider not to describe compartments as the model
+ *  it satisfy #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060
  *
  */
 public class ChildrenListRepresentation {

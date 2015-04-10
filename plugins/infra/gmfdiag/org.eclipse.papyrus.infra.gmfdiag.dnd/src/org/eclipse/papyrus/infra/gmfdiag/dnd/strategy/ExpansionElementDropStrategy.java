@@ -44,7 +44,8 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
 
 /**
-
+ * This strategy has been added in order allow dropping new element done by using expansion model
+ * See Requirement #org.eclipse.papyrus.infra.gmfdiag.expansion.Req_020
  *
  */
 public class ExpansionElementDropStrategy extends TransactionalDropStrategy {

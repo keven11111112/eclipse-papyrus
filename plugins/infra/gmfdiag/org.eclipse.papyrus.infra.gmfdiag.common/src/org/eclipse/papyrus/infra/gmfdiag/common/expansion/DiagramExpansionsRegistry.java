@@ -33,6 +33,8 @@ import org.osgi.framework.Bundle;
 /**
  * This class is used to load all extension point call org.eclipse.papyrus.infra.gmfdiag.diagramexpansion
  * It gives the set of all Diagram expansion that has to be used
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060 
+ * 
  */
 public class DiagramExpansionsRegistry {
 

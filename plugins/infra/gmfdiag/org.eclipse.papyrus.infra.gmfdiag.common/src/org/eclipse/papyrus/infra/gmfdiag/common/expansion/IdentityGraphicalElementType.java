@@ -19,7 +19,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.infra.gmfdiag.common.providers.IGraphicalTypeRegistry;
 
 /**
- * @author PT202707
+ * This class is used to know all graphical type that can be added in the diagram.
+ * By defaut it accopt all. This is the ExpandViewProvider that verify the job
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
  *
  */
 public class IdentityGraphicalElementType implements  IGraphicalTypeRegistry {

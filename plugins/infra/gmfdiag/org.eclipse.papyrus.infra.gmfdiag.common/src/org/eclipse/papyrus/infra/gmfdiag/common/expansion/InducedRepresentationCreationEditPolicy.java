@@ -38,7 +38,9 @@ import org.eclipse.swt.widgets.Display;
 /**
  * this edit policy can be apply only on {@link IPapyrusEditPart} in order to
  * access to primary figure. the primary figure has to be a {@link IPapyrusNodeUMLElementFigure}.
- * 
+
+ * it creates the compartment displaying shapes for an element by reading the expansion model
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011
  */
 public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
 
@@ -121,7 +123,7 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 					try {
 						TransactionalEditingDomain domain = getEditingDomain(editPart);
 
-						CreateDynamicCompartmentViewCommand command = new CreateDynamicCompartmentViewCommand
+						CreateInducedRepresentationViewCommand command = new CreateInducedRepresentationViewCommand
 								(domain,
 										"view Creation",
 										wantedID,

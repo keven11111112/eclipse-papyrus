@@ -13,12 +13,15 @@
         <nestedClassifier xmi:type="uml:Class" xmi:id="_-9oyANRfEeSRNI7img_HuA" name="Add new nodes"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_KAiewNRgEeSRNI7img_HuA" name="Add new child label"/>
         <nestedClassifier xmi:type="uml:Class" xmi:id="_bHq-0NRgEeSRNI7img_HuA" name="Add new border item"/>
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_i-WycN99EeS3V7Bu6N14fQ" name="Reuse representations from diagram"/>
       </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_A0UykNR7EeSRNI7img_HuA" name="Drop of new Elements"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_IzpZkNR7EeSRNI7img_HuA" name="Assistant"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_TvjGcNR7EeSRNI7img_HuA" name="Creation from the palette"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_hAd5ENE9EeSLjPxDpRV9AQ" name="Non impact on parent diagrams"/>
-      <packagedElement xmi:type="uml:Class" xmi:id="_ajYZgNFAEeSLjPxDpRV9AQ" name="ExpransionModel"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_ajYZgNFAEeSLjPxDpRV9AQ" name="ExpransionModel">
+        <nestedClassifier xmi:type="uml:Class" xmi:id="_EzirkN97EeS3V7Bu6N14fQ" name="The model has to be well-built"/>
+      </packagedElement>
       <packagedElement xmi:type="uml:Class" xmi:id="_dOkloNR7EeSRNI7img_HuA" name="Expanded diagrams viewed with original editor"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_awNtwNelEeS6Ldj4lOPYhg" name="CSS driven"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0ZvgNelEeS6Ldj4lOPYhg" name="View point relation"/>
@@ -149,5 +152,7 @@
   <Requirements:Requirement xmi:id="_TvkUkNR7EeSRNI7img_HuA" text="Elements can be created fom the palette" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040" base_Class="_TvjGcNR7EeSRNI7img_HuA"/>
   <Requirements:Requirement xmi:id="_dOlMsNR7EeSRNI7img_HuA" text="The original diagram must be view in original diagram, exteernal element must have a predefined shape." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_070" base_Class="_dOkloNR7EeSRNI7img_HuA"/>
   <Requirements:Requirement xmi:id="_awPi8NelEeS6Ldj4lOPYhg" text="The added element must be driven by CSS" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_080" base_Class="_awNtwNelEeS6Ldj4lOPYhg"/>
-  <Requirements:Requirement xmi:id="_k0aWkNelEeS6Ldj4lOPYhg" text="what means if the diagram is open by the parent view point or what means if a sub view point is created" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090" base_Class="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Requirements:Requirement xmi:id="_k0aWkNelEeS6Ldj4lOPYhg" text="The new specialization editor must benefit of all specializations." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090" base_Class="_k0ZvgNelEeS6Ldj4lOPYhg"/>
+  <Requirements:Requirement xmi:id="_EzmV8N97EeS3V7Bu6N14fQ" text="When the model is done, the ystem has to ensure that it can be correctly interpreted." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061" base_Class="_EzirkN97EeS3V7Bu6N14fQ"/>
+  <Requirements:Requirement xmi:id="_i-ZOsN99EeS3V7Bu6N14fQ" text="It must be able to reuse rperesentations from existed diagrams" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015" base_Class="_i-WycN99EeS3V7Bu6N14fQ"/>
 </xmi:XMI>

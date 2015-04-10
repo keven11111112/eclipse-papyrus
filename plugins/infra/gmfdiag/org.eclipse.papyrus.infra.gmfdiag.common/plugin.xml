@@ -489,5 +489,12 @@
          </Priority>
       </editpolicyProvider>
    </extension>
+   <extension
+         point="org.eclipse.emf.ecore.factory_override">
+      <factory
+            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.CustomExpansionmodelFactoryImpl"
+            uri="http:///expansionmodel.ecore">
+      </factory>
+   </extension>
 
 </plugin>

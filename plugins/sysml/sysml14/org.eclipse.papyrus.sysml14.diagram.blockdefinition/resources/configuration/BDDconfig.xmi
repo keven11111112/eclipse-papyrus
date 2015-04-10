@@ -17,6 +17,8 @@
         inducedRepresentations="_rC19oNnoEeSqwOe5_frWm6 _rC19oNnoEeSqwOe5_frWm7"
         subRepresentations="//@libraries.0/@representations.2"
         reusedID="2008"/>
+    <GmftRepresentations
+        name="test"/>
   </usages>
   <libraries
       xmi:id="_rC19oNnoEeSqwOe5_frWm3"
@@ -41,7 +43,7 @@
         graphicalElementType="org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"
         inducedRepresentations="//@libraries.1/@representations.3 //@libraries.1/@representations.2">
       <kind
-          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
+          href="../../../../plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
     </representations>
   </libraries>
   <libraries
@@ -54,7 +56,7 @@
         hint="Flow Ports"
         children="_rC19oNnoEeSqwOe5_frWm4">
       <kind
-          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
+          href="../../../../plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
     </representations>
     <representations
         xsi:type="expansionmodel:InducedRepresentation"
@@ -64,7 +66,7 @@
         hint="Nested Parts"
         children="_rC19oNnoEeSqwOe5_frWm2">
       <kind
-          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_1uXq8N0DEeS-X4lB2Ut-YA"/>
+          href="../../../../plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_1uXq8N0DEeS-X4lB2Ut-YA"/>
     </representations>
     <representations
         xsi:type="expansionmodel:InducedRepresentation"
@@ -72,7 +74,7 @@
         name="Stereotype Label representation for BorderItem"
         hint="Operation_BorderItem_Stereotype_Label">
       <kind
-          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1Q"/>
+          href="../../../../plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1Q"/>
     </representations>
     <representations
         xsi:type="expansionmodel:InducedRepresentation"
@@ -80,7 +82,7 @@
         name=" Name Label representation for BorderItem"
         hint="Operation_BorderItem_Label">
       <kind
-          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1Q"/>
+          href="../../../../plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1Q"/>
     </representations>
   </libraries>
 </expansionmodel:DiagramExpansion>

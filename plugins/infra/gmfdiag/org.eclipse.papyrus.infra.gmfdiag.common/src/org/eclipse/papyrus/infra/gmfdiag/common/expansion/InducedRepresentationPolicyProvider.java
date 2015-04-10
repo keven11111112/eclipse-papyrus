@@ -24,7 +24,9 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 
 /**
- * Edit policy provider to install InducedRepresentationPolicy
+ * Edit policy provider to install InducedRepresentationPolicy in charge to create
+ * compartments displaying shapes for an element by reading the expansion model
+ * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_011
  */
 public class InducedRepresentationPolicyProvider extends AbstractProvider implements IEditPolicyProvider {
 

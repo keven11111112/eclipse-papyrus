@@ -34,6 +34,8 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 /**
  * 
  * This class is a generic ViewProvider that is enable to create notation element by reading an expansion model
+ * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
+ *                 #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_040
  *
  */
 public class ExpandViewProvider extends CustomAbstractViewProvider implements IViewProvider {

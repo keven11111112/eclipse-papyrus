@@ -14,7 +14,6 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.expansion;
 
 import java.lang.reflect.Constructor;
-import java.rmi.activation.Activator;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -37,7 +36,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresent
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-
+/**
+ * 
+ * This class is a generic EditpartProvider that is enable to associate controler to new notation element by reading an expansion model
+ * See Requirement #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_010
+ *
+ */
 public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
 	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
