@@ -20,14 +20,10 @@ import java.util.List;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.InteractiveTest;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.*;
 import org.eclipse.papyrus.uml.diagram.activity.tests.IActivityDiagramTestsConstants;
 import org.eclipse.uml2.uml.UMLPackage;
-import org.eclipse.uml2.uml.internal.impl.ActionInputPinImpl;
-import org.eclipse.uml2.uml.internal.impl.InputPinImpl;
-import org.eclipse.uml2.uml.internal.impl.ValuePinImpl;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -155,7 +151,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInCallBeActEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -165,7 +161,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInCallBeActEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -175,7 +171,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInCallBeActEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -194,7 +190,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInCallOpActEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -204,7 +200,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInCallOpActEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -214,7 +210,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInCallOpActEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -228,32 +224,32 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testInputPinAsTargetInCallOpAct() {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInCallOpActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getCallOperationAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testActionPinAsTargetInCallOpAct() {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInCallOpActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getCallOperationAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testValuePinAsTargetInCallOpAct() {
 		IGraphicalEditPart actionEP = createChild(CallOperationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInCallOpActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getCallOperationAction_Target());
 	}
 	
@@ -262,7 +258,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(OpaqueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInOpaqueActEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getOpaqueAction_InputValue());
 	}
 	
@@ -271,7 +267,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(OpaqueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInOpaqueActEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getOpaqueAction_InputValue());
 	}
 	
@@ -280,7 +276,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(OpaqueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInOpaqueActEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getOpaqueAction_InputValue());
 	}
 	
@@ -293,62 +289,56 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testInputPinAsRequestInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInSendObjActAsReqEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Request());
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testActionPinAsRequestInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInSendObjActAsReqEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Request());
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testValuePinAsRequestInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInSendObjActAsReqEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Request());
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testInputPinAsTargetInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInSendObjActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testActionPinAsTargetInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInSendObjActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Pin can't be created")
 	public void testValuePinAsTargetInSendObjectAction() {
 		IGraphicalEditPart actionEP = createChild(SendObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInSendObjActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendObjectAction_Target());
 	}
 	
@@ -358,7 +348,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInSendSigActEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -368,7 +358,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInSendSigActEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -378,37 +368,37 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInSendSigActEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testInputPinAsTargetInSendSignalAction() {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInSendSigActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendSignalAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testActionPinAsTargetInSendSignalAction() {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInSendSigActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendSignalAction_Target());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
+	@InteractiveTest("It opens a dialog")
 	public void testValuePinAsTargetInSendSignalAction() {
 		IGraphicalEditPart actionEP = createChild(SendSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInSendSigActAsTargetEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getSendSignalAction_Target());
 	}
 	
@@ -417,7 +407,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInLoopNodeAsVariableEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput());
 	}
 	
@@ -426,7 +416,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInLoopNodeAsVariableEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput());
 	}
 	
@@ -435,7 +425,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInLoopNodeAsVariableEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLoopNode_LoopVariableInput());
 	}
 	@Test
@@ -447,7 +437,6 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testOuputPinAsLoopVariableInLoopNode() {
 		IGraphicalEditPart actionEP = createChild(LoopNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(OutputPinInLoopNodeAsLoopVariableEditPart.VISUAL_ID, actionEP);
@@ -460,7 +449,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -469,7 +458,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -478,7 +467,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -495,7 +484,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -504,7 +493,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -513,7 +502,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -530,7 +519,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -539,7 +528,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -548,7 +537,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -565,7 +554,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -574,7 +563,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -583,7 +572,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StructuredActivityNodeEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStructuredActivityNodeAsStructuredNodeInputsEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuredActivityNode_StructuredNodeInput());
 	}
 	
@@ -596,32 +585,29 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testInputPinAsInsertAtInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testActionPinAsInsertAtInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testValuePinAsInsertAtInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddStructuralFeatureValueActionAsInserAtEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddStructuralFeatureValueAction_InsertAt());
 	}
 	
@@ -638,7 +624,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
@@ -647,7 +633,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
@@ -656,37 +642,34 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddStructuralFeatureValueActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testInputPinAsValueInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testActionPinAsValueInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testValuePinAsValueInAddStructuralFeatureValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddStructuralFeatureValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddStructuralFeatureValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteStructuralFeatureAction_Value());
 	}
 	
@@ -695,7 +678,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInDestroyObjectActionEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getDestroyObjectAction_Target());
 	}
 	
@@ -704,7 +687,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInDestroyObjectActionEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getDestroyObjectAction_Target());
 	}
 	
@@ -713,7 +696,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInDestroyObjectActionEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getDestroyObjectAction_Target());
 	}
 	
@@ -726,32 +709,29 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 	}
 	
 	@Test
-	@FailingTest("Wrong pin type")
 	public void testInputPinAsInsertAtInAddVariableValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testActionPinAsInsertAtInAddVariableValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testValuePinAsInsertAtInAddVariableValueAction() {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddVariableValueActionAsInsertAtEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getAddVariableValueAction_InsertAt());
 	}
 	
@@ -760,7 +740,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInAddVariableValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteVariableAction_Value());
 	}
 	
@@ -769,7 +749,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInAddVariableValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteVariableAction_Value());
 	}
 	
@@ -778,7 +758,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(AddVariableValueActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInAddVariableValueActionAsValueEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getWriteVariableAction_Value());
 	}
 	
@@ -787,7 +767,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(BroadcastSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInBroadcastSignalActionEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -796,7 +776,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(BroadcastSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInBroadcastSignalActionEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -805,7 +785,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(BroadcastSignalActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInBroadcastSignalActionEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -814,7 +794,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -823,7 +803,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
@@ -832,37 +812,34 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStartObjectBehaviorActionAsArgumentEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getInvocationAction_Argument());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testInputPinAsObjectInStartObjectBehaviorAction() {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartObjectBehaviorAction_Object());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testActionPinAsObjectInStartObjectBehaviorAction() {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartObjectBehaviorAction_Object());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testValuePinAsObjectInStartObjectBehaviorAction() {
 		IGraphicalEditPart actionEP = createChild(StartObjectBehavoiurActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStartObjectBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartObjectBehaviorAction_Object());
 	}
 	
@@ -879,7 +856,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_First());
 	}
 	
@@ -888,7 +865,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_First());
 	}
 	
@@ -897,37 +874,34 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInTestIdentityActionAsFirstEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_First());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testInputPinAsSecondInTestIdentityAction() {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_Second());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testActionPinAsSecondInTestIdentityAction() {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_Second());
 	}
 	
 	@Test
-	@FailingTest("Wrong feature")
 	public void testValuePinAsSecondInTestIdentityAction() {
 		IGraphicalEditPart actionEP = createChild(TestIdentityActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInTestIdentityActionAsSecondEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getTestIdentityAction_Second());
 	}
 	
@@ -944,7 +918,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
@@ -953,7 +927,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
@@ -962,7 +936,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearStructuralFeatureActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInClearStructuralFeatureActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStructuralFeatureAction_Object());
 	}
 	
@@ -979,7 +953,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CreateLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -988,7 +962,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CreateLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInCreateLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -997,7 +971,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(CreateLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInCreateLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1006,7 +980,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1015,7 +989,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInReadLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1024,7 +998,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInReadLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1041,7 +1015,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1050,7 +1024,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionInputPinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1059,7 +1033,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(DestroyLinkActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInDestroyLinkActionAsInputValueEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkListElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getLinkAction_InputValue());
 	}
 	
@@ -1068,7 +1042,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearAssociationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInClearAssociationActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getClearAssociationAction_Object());
 	}
 	
@@ -1077,7 +1051,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearAssociationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInClearAssociationActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getClearAssociationAction_Object());
 	}
 	
@@ -1086,7 +1060,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ClearAssociationActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInClearAssociationActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getClearAssociationAction_Object());
 	}
 	
@@ -1103,7 +1077,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReclassifyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReclassifyObjectAction_Object());
 	}
 	
@@ -1112,7 +1086,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReclassifyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReclassifyObjectAction_Object());
 	}
 	
@@ -1121,7 +1095,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReclassifyObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInReclassifyObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReclassifyObjectAction_Object());
 	}
 	
@@ -1130,7 +1104,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadIsClassifiedObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction_Object());
 	}
 	
@@ -1139,7 +1113,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadIsClassifiedObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction_Object());
 	}
 	
@@ -1148,7 +1122,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReadIsClassifiedObjectActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInReadIsClassifiedObjectActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReadIsClassifiedObjectAction_Object());
 	}
 	
@@ -1165,7 +1139,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReduceActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInReduceActionAsCollectionEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReduceAction_Collection());
 	}
 	
@@ -1174,7 +1148,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReduceActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInReduceActionAsCollectionEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReduceAction_Collection());
 	}
 	
@@ -1183,7 +1157,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(ReduceActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInReduceActionAsCollectionEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getReduceAction_Collection());
 	}
 	
@@ -1200,7 +1174,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(InputPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkInputPinType(pinEP);
+		assertInputPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction_Object());
 	}
 	
@@ -1209,7 +1183,7 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkActionPinType(pinEP);
+		assertActionPinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction_Object());
 	}
 	
@@ -1218,32 +1192,32 @@ public class TestSemanticContainerFeature extends AbstractPapyrusTestCase {
 		IGraphicalEditPart actionEP = createChild(StartClassifierBehaviorActionEditPart.VISUAL_ID, getActivityCompartmentEditPart());
 		IGraphicalEditPart pinEP = createChild(ValuePinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID, actionEP);
 
-		checkValuePinType(pinEP);
+		assertValuePinType(pinEP);
 		checkOneElementReferenceSemantic(pinEP, actionEP, UMLPackage.eINSTANCE.getStartClassifierBehaviorAction_Object());
 	}
 	
-	public void checkInputPinType(IGraphicalEditPart pinEP) {
+	public void assertInputPinType(IGraphicalEditPart pinEP) {
 		EObject pin = getSemanticElement(pinEP);
-		Assert.assertEquals(pin.getClass().getName(), InputPinImpl.class.getName());
+		Assert.assertSame(pin.eClass(), UMLPackage.eINSTANCE.getInputPin());
 	}
 	
-	public void checkActionPinType(IGraphicalEditPart pinEP) {
+	public void assertActionPinType(IGraphicalEditPart pinEP) {
 		EObject actionPin = getSemanticElement(pinEP);
-		Assert.assertEquals(actionPin.getClass().getName(), ActionInputPinImpl.class.getName());
+		Assert.assertSame(actionPin.eClass(), UMLPackage.eINSTANCE.getActionInputPin());
 	}
 	
-	public void checkValuePinType(IGraphicalEditPart pinEP) {
+	public void assertValuePinType(IGraphicalEditPart pinEP) {
 		EObject valuePin = getSemanticElement(pinEP);
-		Assert.assertEquals(valuePin.getClass().getName(), ValuePinImpl.class.getName());
+		Assert.assertSame(valuePin.eClass(), UMLPackage.eINSTANCE.getValuePin());
 	}
-	
+
 	public void checkListElementReferenceSemantic(IGraphicalEditPart childEP, IGraphicalEditPart parentEP, EReference... expectedFeature) {
 		EObject child = getSemanticElement(childEP);
 		EObject parent = getSemanticElement(parentEP);
 		for (EReference feature: expectedFeature) {
 			Object objectList = parent.eGet(feature);
 			Assert.assertTrue("Feature result should be list", objectList instanceof List<?>);
-			List<Object> children = (List<Object>) objectList;
+			List<?> children = (List<?>) objectList;
 			Assert.assertTrue(getAssertMasageForContainChild(parent, child, feature), children.contains(child));
 		}
 	}
