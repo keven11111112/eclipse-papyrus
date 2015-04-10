@@ -15,7 +15,7 @@
    <extension
          point="org.eclipse.papyrus.views.properties.environment">
       <environment
-            environmentModel="resources/Environment.xmi">
+            environmentModel="resources/environment.xmi">
       </environment>
    </extension>
    <extension
