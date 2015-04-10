@@ -21,6 +21,7 @@ import org.eclipse.core.runtime.Assert;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.common.core.util.Log;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;

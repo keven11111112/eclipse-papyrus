@@ -28,6 +28,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
+import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.osgi.framework.Bundle;
 
 /**
@@ -60,7 +61,7 @@ public class DiagramExpansionsRegistry {
 	 */
 	public void init() {
 		// Obtain a new resource set
-		ResourceSet resourceSet = new ResourceSetImpl();
+		ResourceSet resourceSet = Util.createTemporaryResourceSet();
 		resourceSet.getPackageRegistry().put(ExpansionmodelPackage.eINSTANCE.getNsURI(), ExpansionmodelPackage.eINSTANCE);
 
 		// Reading data from plugins

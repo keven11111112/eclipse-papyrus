@@ -62,7 +62,7 @@ public class CreateInducedRepresentationViewCommand extends RecordingCommand {
 	 */
 	@Override
 	protected void doExecute() {
-		ViewService.createNode(owner,null, visualHint, preferenceHint);
+		ViewService.createNode(owner,owner.getElement(), visualHint, preferenceHint);
 		
 		//BasicCompartmentViewFactory compartmentViewFactory= new BasicCompartmentViewFactory();
 		//compartmentViewFactory.createView(new SemanticAdapter(owner.getElement(), null), owner, visualHint, -1, true,preferenceHint );
