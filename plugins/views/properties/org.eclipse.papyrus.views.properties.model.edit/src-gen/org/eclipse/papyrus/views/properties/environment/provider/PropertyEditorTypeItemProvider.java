@@ -53,6 +53,7 @@ public class PropertyEditorTypeItemProvider
 
 			addTypePropertyDescriptor(object);
 			addMultiplicityPropertyDescriptor(object);
+			addSubstitutesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -95,6 +96,27 @@ public class PropertyEditorTypeItemProvider
 				false,
 				false,
 				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Substitutes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addSubstitutesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PropertyEditorType_substitutes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PropertyEditorType_substitutes_feature", "_UI_PropertyEditorType_type"),
+				EnvironmentPackage.Literals.PROPERTY_EDITOR_TYPE__SUBSTITUTES,
+				true,
+				false,
+				true,
+				null,
 				null,
 				null));
 	}

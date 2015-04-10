@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.impl.EFactoryImpl;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.views.properties.contexts.*;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsFactory;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
@@ -95,6 +96,10 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 			return createDataContextPackage();
 		case ContextsPackage.DATA_CONTEXT_ROOT:
 			return createDataContextRoot();
+		case ContextsPackage.PROPERTY_EDITOR_TYPE_SUBSTITUTION:
+			return createPropertyEditorTypeSubstitution();
+		case ContextsPackage.MODEL_ELEMENT_FACTORY_SUBSTITUTION:
+			return createModelElementFactorySubstitution();
 		default:
 			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
@@ -206,6 +211,30 @@ public class ContextsFactoryImpl extends EFactoryImpl implements ContextsFactory
 	public DataContextRoot createDataContextRoot() {
 		DataContextRootImpl dataContextRoot = new DataContextRootImpl();
 		return dataContextRoot;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public PropertyEditorTypeSubstitution createPropertyEditorTypeSubstitution() {
+		PropertyEditorTypeSubstitutionImpl propertyEditorTypeSubstitution = new PropertyEditorTypeSubstitutionImpl();
+		return propertyEditorTypeSubstitution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public ModelElementFactorySubstitution createModelElementFactorySubstitution() {
+		ModelElementFactorySubstitutionImpl modelElementFactorySubstitution = new ModelElementFactorySubstitutionImpl();
+		return modelElementFactorySubstitution;
 	}
 
 	/**

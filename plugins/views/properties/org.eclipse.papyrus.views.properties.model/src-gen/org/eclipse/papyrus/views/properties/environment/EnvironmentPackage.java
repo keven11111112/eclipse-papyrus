@@ -280,6 +280,16 @@ public interface EnvironmentPackage extends EPackage {
 	int PROPERTY_EDITOR_TYPE__MULTIPLICITY = WIDGET_TYPE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Substitutes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR_TYPE__SUBSTITUTES = WIDGET_TYPE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Property Editor Type</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -287,7 +297,7 @@ public interface EnvironmentPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int PROPERTY_EDITOR_TYPE_FEATURE_COUNT = WIDGET_TYPE_FEATURE_COUNT + 2;
+	int PROPERTY_EDITOR_TYPE_FEATURE_COUNT = WIDGET_TYPE_FEATURE_COUNT + 3;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.environment.impl.CompositeWidgetTypeImpl <em>Composite Widget Type</em>}' class.
@@ -728,6 +738,18 @@ public interface EnvironmentPackage extends EPackage {
 	EAttribute getPropertyEditorType_Multiplicity();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getSubstitutes <em>Substitutes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>Substitutes</em>'.
+	 * @see org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getSubstitutes()
+	 * @see #getPropertyEditorType()
+	 * @generated
+	 */
+	EReference getPropertyEditorType_Substitutes();
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.environment.WidgetType <em>Widget Type</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1074,6 +1096,15 @@ public interface EnvironmentPackage extends EPackage {
 		 * @generated
 		 */
 		EAttribute PROPERTY_EDITOR_TYPE__MULTIPLICITY = eINSTANCE.getPropertyEditorType_Multiplicity();
+
+		/**
+		 * The meta object literal for the '<em><b>Substitutes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference PROPERTY_EDITOR_TYPE__SUBSTITUTES = eINSTANCE.getPropertyEditorType_Substitutes();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.environment.impl.WidgetTypeImpl <em>Widget Type</em>}' class.

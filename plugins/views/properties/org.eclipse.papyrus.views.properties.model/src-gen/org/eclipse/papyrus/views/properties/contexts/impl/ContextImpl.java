@@ -28,6 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.Substitution;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.View;
 
@@ -45,6 +46,8 @@ import org.eclipse.papyrus.views.properties.contexts.View;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getViews <em>Views</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getPrototype <em>Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getSubstitutes <em>Substitutes</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.ContextImpl#getSubstitution <em>Substitution</em>}</li>
  * </ul>
  *
  * @generated
@@ -126,6 +129,28 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 * @ordered
 	 */
 	protected Context prototype;
+
+	/**
+	 * The cached value of the '{@link #getSubstitutes() <em>Substitutes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSubstitutes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Context> substitutes;
+
+	/**
+	 * The cached value of the '{@link #getSubstitution() <em>Substitution</em>}' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSubstitution()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<Substitution> substitution;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -281,6 +306,34 @@ public class ContextImpl extends EModelElementImpl implements Context {
 	 *
 	 * @generated
 	 */
+	@Override
+	public EList<Context> getSubstitutes() {
+		if (substitutes == null) {
+			substitutes = new EObjectResolvingEList<Context>(Context.class, this, ContextsPackage.CONTEXT__SUBSTITUTES);
+		}
+		return substitutes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EList<Substitution> getSubstitution() {
+		if (substitution == null) {
+			substitution = new EObjectContainmentEList<Substitution>(Substitution.class, this, ContextsPackage.CONTEXT__SUBSTITUTION);
+		}
+		return substitution;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
@@ -306,6 +359,8 @@ public class ContextImpl extends EModelElementImpl implements Context {
 			return ((InternalEList<?>) getViews()).basicRemove(otherEnd, msgs);
 		case ContextsPackage.CONTEXT__DATA_CONTEXTS:
 			return ((InternalEList<?>) getDataContexts()).basicRemove(otherEnd, msgs);
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
+			return ((InternalEList<?>) getSubstitution()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -334,6 +389,10 @@ public class ContextImpl extends EModelElementImpl implements Context {
 				return getPrototype();
 			}
 			return basicGetPrototype();
+		case ContextsPackage.CONTEXT__SUBSTITUTES:
+			return getSubstitutes();
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
+			return getSubstitution();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -370,6 +429,14 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			setPrototype((Context) newValue);
 			return;
+		case ContextsPackage.CONTEXT__SUBSTITUTES:
+			getSubstitutes().clear();
+			getSubstitutes().addAll((Collection<? extends Context>) newValue);
+			return;
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
+			getSubstitution().clear();
+			getSubstitution().addAll((Collection<? extends Substitution>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -401,6 +468,12 @@ public class ContextImpl extends EModelElementImpl implements Context {
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			setPrototype((Context) null);
 			return;
+		case ContextsPackage.CONTEXT__SUBSTITUTES:
+			getSubstitutes().clear();
+			return;
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
+			getSubstitution().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -426,6 +499,10 @@ public class ContextImpl extends EModelElementImpl implements Context {
 			return dataContexts != null && !dataContexts.isEmpty();
 		case ContextsPackage.CONTEXT__PROTOTYPE:
 			return prototype != null;
+		case ContextsPackage.CONTEXT__SUBSTITUTES:
+			return substitutes != null && !substitutes.isEmpty();
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
+			return substitution != null && !substitution.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

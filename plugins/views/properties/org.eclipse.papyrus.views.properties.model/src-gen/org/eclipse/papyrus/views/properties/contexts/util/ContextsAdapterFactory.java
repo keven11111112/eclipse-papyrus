@@ -12,6 +12,7 @@ import org.eclipse.emf.common.notify.impl.AdapterFactoryImpl;
 import org.eclipse.emf.ecore.EModelElement;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
+import org.eclipse.papyrus.views.properties.contexts.*;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -126,6 +127,21 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 		@Override
 		public Adapter caseDataContextRoot(DataContextRoot object) {
 			return createDataContextRootAdapter();
+		}
+
+		@Override
+		public Adapter caseSubstitution(Substitution object) {
+			return createSubstitutionAdapter();
+		}
+
+		@Override
+		public Adapter casePropertyEditorTypeSubstitution(PropertyEditorTypeSubstitution object) {
+			return createPropertyEditorTypeSubstitutionAdapter();
+		}
+
+		@Override
+		public Adapter caseModelElementFactorySubstitution(ModelElementFactorySubstitution object) {
+			return createModelElementFactorySubstitutionAdapter();
 		}
 
 		@Override
@@ -292,6 +308,51 @@ public class ContextsAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createDataContextRootAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.Substitution <em>Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Substitution
+	 * @generated
+	 */
+	public Adapter createSubstitutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution <em>Property Editor Type Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution
+	 * @generated
+	 */
+	public Adapter createPropertyEditorTypeSubstitutionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution <em>Model Element Factory Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution
+	 * @generated
+	 */
+	public Adapter createModelElementFactorySubstitutionAdapter() {
 		return null;
 	}
 

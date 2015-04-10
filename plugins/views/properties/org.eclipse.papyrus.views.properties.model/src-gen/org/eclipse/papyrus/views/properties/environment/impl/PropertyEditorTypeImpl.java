@@ -6,9 +6,12 @@
  */
 package org.eclipse.papyrus.views.properties.environment.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.environment.PropertyEditorType;
 import org.eclipse.papyrus.views.properties.environment.Type;
@@ -23,6 +26,7 @@ import org.eclipse.papyrus.views.properties.environment.Type;
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.PropertyEditorTypeImpl#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.PropertyEditorTypeImpl#getMultiplicity <em>Multiplicity</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.environment.impl.PropertyEditorTypeImpl#getSubstitutes <em>Substitutes</em>}</li>
  * </ul>
  *
  * @generated
@@ -71,6 +75,17 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * @ordered
 	 */
 	protected int multiplicity = MULTIPLICITY_EDEFAULT;
+
+	/**
+	 * The cached value of the '{@link #getSubstitutes() <em>Substitutes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSubstitutes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<PropertyEditorType> substitutes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -152,12 +167,28 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 * @generated
 	 */
 	@Override
+	public EList<PropertyEditorType> getSubstitutes() {
+		if (substitutes == null) {
+			substitutes = new EObjectResolvingEList<PropertyEditorType>(PropertyEditorType.class, this, EnvironmentPackage.PROPERTY_EDITOR_TYPE__SUBSTITUTES);
+		}
+		return substitutes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__TYPE:
 			return getType();
 		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__MULTIPLICITY:
 			return getMultiplicity();
+		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__SUBSTITUTES:
+			return getSubstitutes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -168,6 +199,7 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 	 *
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -176,6 +208,10 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 			return;
 		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__MULTIPLICITY:
 			setMultiplicity((Integer) newValue);
+			return;
+		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__SUBSTITUTES:
+			getSubstitutes().clear();
+			getSubstitutes().addAll((Collection<? extends PropertyEditorType>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -196,6 +232,9 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__MULTIPLICITY:
 			setMultiplicity(MULTIPLICITY_EDEFAULT);
 			return;
+		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__SUBSTITUTES:
+			getSubstitutes().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -213,6 +252,8 @@ public class PropertyEditorTypeImpl extends WidgetTypeImpl implements PropertyEd
 			return type != TYPE_EDEFAULT;
 		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__MULTIPLICITY:
 			return multiplicity != MULTIPLICITY_EDEFAULT;
+		case EnvironmentPackage.PROPERTY_EDITOR_TYPE__SUBSTITUTES:
+			return substitutes != null && !substitutes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

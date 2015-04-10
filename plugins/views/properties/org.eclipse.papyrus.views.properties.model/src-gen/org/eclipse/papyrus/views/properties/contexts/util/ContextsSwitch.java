@@ -11,6 +11,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.util.Switch;
 import org.eclipse.papyrus.infra.constraints.DisplayUnit;
+import org.eclipse.papyrus.views.properties.contexts.*;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
@@ -177,6 +178,30 @@ public class ContextsSwitch<T> extends Switch<T> {
 			}
 			return result;
 		}
+		case ContextsPackage.SUBSTITUTION: {
+			Substitution substitution = (Substitution) theEObject;
+			T result = caseSubstitution(substitution);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ContextsPackage.PROPERTY_EDITOR_TYPE_SUBSTITUTION: {
+			PropertyEditorTypeSubstitution propertyEditorTypeSubstitution = (PropertyEditorTypeSubstitution) theEObject;
+			T result = casePropertyEditorTypeSubstitution(propertyEditorTypeSubstitution);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
+		case ContextsPackage.MODEL_ELEMENT_FACTORY_SUBSTITUTION: {
+			ModelElementFactorySubstitution modelElementFactorySubstitution = (ModelElementFactorySubstitution) theEObject;
+			T result = caseModelElementFactorySubstitution(modelElementFactorySubstitution);
+			if (result == null) {
+				result = defaultCase(theEObject);
+			}
+			return result;
+		}
 		default:
 			return defaultCase(theEObject);
 		}
@@ -332,6 +357,57 @@ public class ContextsSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseDataContextRoot(DataContextRoot object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Substitution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseSubstitution(Substitution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Property Editor Type Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Property Editor Type Substitution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T casePropertyEditorTypeSubstitution(PropertyEditorTypeSubstitution object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Model Element Factory Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 *
+	 * @param object
+	 *            the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Model Element Factory Substitution</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseModelElementFactorySubstitution(ModelElementFactorySubstitution object) {
 		return null;
 	}
 

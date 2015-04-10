@@ -155,6 +155,26 @@ public interface ContextsPackage extends EPackage {
 	int CONTEXT__PROTOTYPE = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 5;
 
 	/**
+	 * The feature id for the '<em><b>Substitutes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__SUBSTITUTES = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+
+	/**
+	 * The feature id for the '<em><b>Substitution</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int CONTEXT__SUBSTITUTION = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 7;
+
+	/**
 	 * The number of structural features of the '<em>Context</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -162,7 +182,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 6;
+	int CONTEXT_FEATURE_COUNT = EcorePackage.EMODEL_ELEMENT_FEATURE_COUNT + 8;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
@@ -823,6 +843,16 @@ public interface ContextsPackage extends EPackage {
 	int DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY = DATA_CONTEXT_PACKAGE_FEATURE_COUNT + 1;
 
 	/**
+	 * The feature id for the '<em><b>Substitutes</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int DATA_CONTEXT_ROOT__SUBSTITUTES = DATA_CONTEXT_PACKAGE_FEATURE_COUNT + 2;
+
+	/**
 	 * The number of structural features of the '<em>Data Context Root</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -830,7 +860,121 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int DATA_CONTEXT_ROOT_FEATURE_COUNT = DATA_CONTEXT_PACKAGE_FEATURE_COUNT + 2;
+	int DATA_CONTEXT_ROOT_FEATURE_COUNT = DATA_CONTEXT_PACKAGE_FEATURE_COUNT + 3;
+
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.SubstitutionImpl <em>Substitution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.SubstitutionImpl
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getSubstitution()
+	 * @generated
+	 */
+	int SUBSTITUTION = 9;
+
+	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTITUTION__CONSTRAINTS = 0;
+
+	/**
+	 * The number of structural features of the '<em>Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int SUBSTITUTION_FEATURE_COUNT = 1;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyEditorTypeSubstitutionImpl <em>Property Editor Type Substitution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.PropertyEditorTypeSubstitutionImpl
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getPropertyEditorTypeSubstitution()
+	 * @generated
+	 */
+	int PROPERTY_EDITOR_TYPE_SUBSTITUTION = 10;
+
+	/**
+	 * The feature id for the '<em><b>Source Editor Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR_TYPE_SUBSTITUTION__SOURCE_EDITOR_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Editor Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR_TYPE_SUBSTITUTION__TARGET_EDITOR_TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Property Editor Type Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_EDITOR_TYPE_SUBSTITUTION_FEATURE_COUNT = 2;
+
+	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.ModelElementFactorySubstitutionImpl <em>Model Element Factory Substitution</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.ModelElementFactorySubstitutionImpl
+	 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getModelElementFactorySubstitution()
+	 * @generated
+	 */
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION = 11;
+
+	/**
+	 * The feature id for the '<em><b>Source Factory Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__SOURCE_FACTORY_TYPE = 0;
+
+	/**
+	 * The feature id for the '<em><b>Target Factory Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__TARGET_FACTORY_TYPE = 1;
+
+	/**
+	 * The number of structural features of the '<em>Model Element Factory Substitution</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION_FEATURE_COUNT = 2;
 
 
 	/**
@@ -915,6 +1059,30 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getContext_Prototype();
+
+	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.views.properties.contexts.Context#getSubstitutes <em>Substitutes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>Substitutes</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Context#getSubstitutes()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_Substitutes();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.views.properties.contexts.Context#getSubstitution <em>Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference list '<em>Substitution</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Context#getSubstitution()
+	 * @see #getContext()
+	 * @generated
+	 */
+	EReference getContext_Substitution();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.Tab <em>Tab</em>}'.
@@ -1377,6 +1545,111 @@ public interface ContextsPackage extends EPackage {
 	EReference getDataContextRoot_ModelElementFactory();
 
 	/**
+	 * Returns the meta object for the reference list '{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getSubstitutes <em>Substitutes</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference list '<em>Substitutes</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getSubstitutes()
+	 * @see #getDataContextRoot()
+	 * @generated
+	 */
+	EReference getDataContextRoot_Substitutes();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.Substitution <em>Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Substitution</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Substitution
+	 * @generated
+	 */
+	EClass getSubstitution();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.views.properties.contexts.Substitution#getConstraints <em>Constraints</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the containment reference list '<em>Constraints</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.Substitution#getConstraints()
+	 * @see #getSubstitution()
+	 * @generated
+	 */
+	EReference getSubstitution_Constraints();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution <em>Property Editor Type Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Property Editor Type Substitution</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution
+	 * @generated
+	 */
+	EClass getPropertyEditorTypeSubstitution();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution#getSourceEditorType <em>Source Editor Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Source Editor Type</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution#getSourceEditorType()
+	 * @see #getPropertyEditorTypeSubstitution()
+	 * @generated
+	 */
+	EReference getPropertyEditorTypeSubstitution_SourceEditorType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution#getTargetEditorType <em>Target Editor Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Target Editor Type</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution#getTargetEditorType()
+	 * @see #getPropertyEditorTypeSubstitution()
+	 * @generated
+	 */
+	EReference getPropertyEditorTypeSubstitution_TargetEditorType();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution <em>Model Element Factory Substitution</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for class '<em>Model Element Factory Substitution</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution
+	 * @generated
+	 */
+	EClass getModelElementFactorySubstitution();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution#getSourceFactoryType <em>Source Factory Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Source Factory Type</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution#getSourceFactoryType()
+	 * @see #getModelElementFactorySubstitution()
+	 * @generated
+	 */
+	EReference getModelElementFactorySubstitution_SourceFactoryType();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution#getTargetFactoryType <em>Target Factory Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the meta object for the reference '<em>Target Factory Type</em>'.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution#getTargetFactoryType()
+	 * @see #getModelElementFactorySubstitution()
+	 * @generated
+	 */
+	EReference getModelElementFactorySubstitution_TargetFactoryType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1465,6 +1738,24 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference CONTEXT__PROTOTYPE = eINSTANCE.getContext_Prototype();
+
+		/**
+		 * The meta object literal for the '<em><b>Substitutes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference CONTEXT__SUBSTITUTES = eINSTANCE.getContext_Substitutes();
+
+		/**
+		 * The meta object literal for the '<em><b>Substitution</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference CONTEXT__SUBSTITUTION = eINSTANCE.getContext_Substitution();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.TabImpl <em>Tab</em>}' class.
@@ -1832,6 +2123,93 @@ public interface ContextsPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY = eINSTANCE.getDataContextRoot_ModelElementFactory();
+
+		/**
+		 * The meta object literal for the '<em><b>Substitutes</b></em>' reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference DATA_CONTEXT_ROOT__SUBSTITUTES = eINSTANCE.getDataContextRoot_Substitutes();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.SubstitutionImpl <em>Substitution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.SubstitutionImpl
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getSubstitution()
+		 * @generated
+		 */
+		EClass SUBSTITUTION = eINSTANCE.getSubstitution();
+
+		/**
+		 * The meta object literal for the '<em><b>Constraints</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference SUBSTITUTION__CONSTRAINTS = eINSTANCE.getSubstitution_Constraints();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.PropertyEditorTypeSubstitutionImpl <em>Property Editor Type Substitution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.PropertyEditorTypeSubstitutionImpl
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getPropertyEditorTypeSubstitution()
+		 * @generated
+		 */
+		EClass PROPERTY_EDITOR_TYPE_SUBSTITUTION = eINSTANCE.getPropertyEditorTypeSubstitution();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Editor Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference PROPERTY_EDITOR_TYPE_SUBSTITUTION__SOURCE_EDITOR_TYPE = eINSTANCE.getPropertyEditorTypeSubstitution_SourceEditorType();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Editor Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference PROPERTY_EDITOR_TYPE_SUBSTITUTION__TARGET_EDITOR_TYPE = eINSTANCE.getPropertyEditorTypeSubstitution_TargetEditorType();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.views.properties.contexts.impl.ModelElementFactorySubstitutionImpl <em>Model Element Factory Substitution</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.ModelElementFactorySubstitutionImpl
+		 * @see org.eclipse.papyrus.views.properties.contexts.impl.ContextsPackageImpl#getModelElementFactorySubstitution()
+		 * @generated
+		 */
+		EClass MODEL_ELEMENT_FACTORY_SUBSTITUTION = eINSTANCE.getModelElementFactorySubstitution();
+
+		/**
+		 * The meta object literal for the '<em><b>Source Factory Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT_FACTORY_SUBSTITUTION__SOURCE_FACTORY_TYPE = eINSTANCE.getModelElementFactorySubstitution_SourceFactoryType();
+
+		/**
+		 * The meta object literal for the '<em><b>Target Factory Type</b></em>' reference feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 *
+		 * @generated
+		 */
+		EReference MODEL_ELEMENT_FACTORY_SUBSTITUTION__TARGET_FACTORY_TYPE = eINSTANCE.getModelElementFactorySubstitution_TargetFactoryType();
 
 	}
 

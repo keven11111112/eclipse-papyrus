@@ -304,6 +304,56 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected PropertyEditorTypeSubstitutionItemProvider propertyEditorTypeSubstitutionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public Adapter createPropertyEditorTypeSubstitutionAdapter() {
+		if (propertyEditorTypeSubstitutionItemProvider == null) {
+			propertyEditorTypeSubstitutionItemProvider = new PropertyEditorTypeSubstitutionItemProvider(this);
+		}
+
+		return propertyEditorTypeSubstitutionItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected ModelElementFactorySubstitutionItemProvider modelElementFactorySubstitutionItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public Adapter createModelElementFactorySubstitutionAdapter() {
+		if (modelElementFactorySubstitutionItemProvider == null) {
+			modelElementFactorySubstitutionItemProvider = new ModelElementFactorySubstitutionItemProvider(this);
+		}
+
+		return modelElementFactorySubstitutionItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -443,6 +493,12 @@ public class ContextsItemProviderAdapterFactory extends ContextsAdapterFactory i
 		}
 		if (dataContextRootItemProvider != null) {
 			dataContextRootItemProvider.dispose();
+		}
+		if (propertyEditorTypeSubstitutionItemProvider != null) {
+			propertyEditorTypeSubstitutionItemProvider.dispose();
+		}
+		if (modelElementFactorySubstitutionItemProvider != null) {
+			modelElementFactorySubstitutionItemProvider.dispose();
 		}
 	}
 

@@ -6,6 +6,8 @@
  */
 package org.eclipse.papyrus.views.properties.environment;
 
+import org.eclipse.emf.common.util.EList;
+
 
 /**
  * <!-- begin-user-doc -->
@@ -18,6 +20,7 @@ package org.eclipse.papyrus.views.properties.environment;
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getType <em>Type</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getMultiplicity <em>Multiplicity</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType#getSubstitutes <em>Substitutes</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getPropertyEditorType()
@@ -84,5 +87,21 @@ public interface PropertyEditorType extends WidgetType {
 	 * @generated
 	 */
 	void setMultiplicity(int value);
+
+	/**
+	 * Returns the value of the '<em><b>Substitutes</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.environment.PropertyEditorType}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Indicates that this PropertyEditorType should be used to replace all the specified PropertyEditorTypes
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Substitutes</em>' reference list.
+	 * @see org.eclipse.papyrus.views.properties.environment.EnvironmentPackage#getPropertyEditorType_Substitutes()
+	 * @model
+	 * @generated
+	 */
+	EList<PropertyEditorType> getSubstitutes();
 
 } // PropertyEditorType

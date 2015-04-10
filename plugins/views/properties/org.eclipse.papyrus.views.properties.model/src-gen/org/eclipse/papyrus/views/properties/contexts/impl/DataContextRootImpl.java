@@ -6,10 +6,13 @@
  */
 package org.eclipse.papyrus.views.properties.contexts.impl;
 
+import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
 import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
@@ -24,6 +27,7 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextRootImpl#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextRootImpl#getModelElementFactory <em>Model Element Factory</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.impl.DataContextRootImpl#getSubstitutes <em>Substitutes</em>}</li>
  * </ul>
  *
  * @generated
@@ -61,6 +65,17 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 * @ordered
 	 */
 	protected ModelElementFactoryDescriptor modelElementFactory;
+
+	/**
+	 * The cached value of the '{@link #getSubstitutes() <em>Substitutes</em>}' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @see #getSubstitutes()
+	 * @generated
+	 * @ordered
+	 */
+	protected EList<DataContextRoot> substitutes;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -161,6 +176,20 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 * @generated
 	 */
 	@Override
+	public EList<DataContextRoot> getSubstitutes() {
+		if (substitutes == null) {
+			substitutes = new EObjectResolvingEList<DataContextRoot>(DataContextRoot.class, this, ContextsPackage.DATA_CONTEXT_ROOT__SUBSTITUTES);
+		}
+		return substitutes;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
 		case ContextsPackage.DATA_CONTEXT_ROOT__LABEL:
@@ -170,6 +199,8 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 				return getModelElementFactory();
 			}
 			return basicGetModelElementFactory();
+		case ContextsPackage.DATA_CONTEXT_ROOT__SUBSTITUTES:
+			return getSubstitutes();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -180,6 +211,7 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 	 *
 	 * @generated
 	 */
+	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
@@ -188,6 +220,10 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 			return;
 		case ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY:
 			setModelElementFactory((ModelElementFactoryDescriptor) newValue);
+			return;
+		case ContextsPackage.DATA_CONTEXT_ROOT__SUBSTITUTES:
+			getSubstitutes().clear();
+			getSubstitutes().addAll((Collection<? extends DataContextRoot>) newValue);
 			return;
 		}
 		super.eSet(featureID, newValue);
@@ -208,6 +244,9 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 		case ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY:
 			setModelElementFactory((ModelElementFactoryDescriptor) null);
 			return;
+		case ContextsPackage.DATA_CONTEXT_ROOT__SUBSTITUTES:
+			getSubstitutes().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -225,6 +264,8 @@ public class DataContextRootImpl extends DataContextPackageImpl implements DataC
 			return LABEL_EDEFAULT == null ? label != null : !LABEL_EDEFAULT.equals(label);
 		case ContextsPackage.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY:
 			return modelElementFactory != null;
+		case ContextsPackage.DATA_CONTEXT_ROOT__SUBSTITUTES:
+			return substitutes != null && !substitutes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}

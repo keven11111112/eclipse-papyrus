@@ -59,6 +59,7 @@ public class ContextItemProvider
 			addNamePropertyDescriptor(object);
 			addDependenciesPropertyDescriptor(object);
 			addPrototypePropertyDescriptor(object);
+			addSubstitutesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -127,6 +128,27 @@ public class ContextItemProvider
 	}
 
 	/**
+	 * This adds a property descriptor for the Substitutes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addSubstitutesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Context_substitutes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Context_substitutes_feature", "_UI_Context_type"),
+				ContextsPackage.Literals.CONTEXT__SUBSTITUTES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
+	}
+
+	/**
 	 * This specifies how to implement {@link #getChildren} and is used to deduce an appropriate feature for an
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
@@ -142,6 +164,7 @@ public class ContextItemProvider
 			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__TABS);
 			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__VIEWS);
 			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS);
+			childrenFeatures.add(ContextsPackage.Literals.CONTEXT__SUBSTITUTION);
 		}
 		return childrenFeatures;
 	}
@@ -204,6 +227,7 @@ public class ContextItemProvider
 		case ContextsPackage.CONTEXT__TABS:
 		case ContextsPackage.CONTEXT__VIEWS:
 		case ContextsPackage.CONTEXT__DATA_CONTEXTS:
+		case ContextsPackage.CONTEXT__SUBSTITUTION:
 			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
 			return;
 		}

@@ -30,6 +30,8 @@ import org.eclipse.emf.ecore.EModelElement;
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getViews <em>Views</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getDataContexts <em>Data Contexts</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getPrototype <em>Prototype</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getSubstitutes <em>Substitutes</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.Context#getSubstitution <em>Substitution</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext()
@@ -158,5 +160,37 @@ public interface Context extends EModelElement {
 	 * @generated
 	 */
 	void setPrototype(Context value);
+
+	/**
+	 * Returns the value of the '<em><b>Substitutes</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.Context}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Indicates that this Configuration replaces (disables) all the specified Configurations when it is enabled
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Substitutes</em>' reference list.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Substitutes()
+	 * @model
+	 * @generated
+	 */
+	EList<Context> getSubstitutes();
+
+	/**
+	 * Returns the value of the '<em><b>Substitution</b></em>' containment reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.Substitution}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * The list of Configuration-wide substitutions that are introduced by this configuration. This substitutions have a wide scope which is computed dynamically, based on the Substitution's constraints
+	 * <!-- end-model-doc -->
+	 *
+	 * @return the value of the '<em>Substitution</em>' containment reference list.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getContext_Substitution()
+	 * @model containment="true"
+	 * @generated
+	 */
+	EList<Substitution> getSubstitution();
 
 } // Context

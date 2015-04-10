@@ -326,6 +326,17 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 	 * @generated
 	 */
 	@Override
+	public EReference getPropertyEditorType_Substitutes() {
+		return (EReference) propertyEditorTypeEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public EClass getWidgetType() {
 		return widgetTypeEClass;
 	}
@@ -574,6 +585,7 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		propertyEditorTypeEClass = createEClass(PROPERTY_EDITOR_TYPE);
 		createEAttribute(propertyEditorTypeEClass, PROPERTY_EDITOR_TYPE__TYPE);
 		createEAttribute(propertyEditorTypeEClass, PROPERTY_EDITOR_TYPE__MULTIPLICITY);
+		createEReference(propertyEditorTypeEClass, PROPERTY_EDITOR_TYPE__SUBSTITUTES);
 
 		widgetTypeEClass = createEClass(WIDGET_TYPE);
 		createEAttribute(widgetTypeEClass, WIDGET_TYPE__LABEL);
@@ -663,6 +675,8 @@ public class EnvironmentPackageImpl extends EPackageImpl implements EnvironmentP
 		initEClass(propertyEditorTypeEClass, PropertyEditorType.class, "PropertyEditorType", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getPropertyEditorType_Type(), this.getType(), "type", null, 1, 1, PropertyEditorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEAttribute(getPropertyEditorType_Multiplicity(), ecorePackage.getEInt(), "multiplicity", "1", 1, 1, PropertyEditorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyEditorType_Substitutes(), this.getPropertyEditorType(), null, "substitutes", null, 0, -1, PropertyEditorType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE,
+				!IS_DERIVED, IS_ORDERED);
 
 		initEClass(widgetTypeEClass, WidgetType.class, "WidgetType", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getWidgetType_Label(), ecorePackage.getEString(), "label", null, 1, 1, WidgetType.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);

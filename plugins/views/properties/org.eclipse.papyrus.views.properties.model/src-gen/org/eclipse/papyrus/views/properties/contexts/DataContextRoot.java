@@ -6,6 +6,7 @@
  */
 package org.eclipse.papyrus.views.properties.contexts;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
 
 /**
@@ -19,6 +20,7 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  * <ul>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getLabel <em>Label</em>}</li>
  * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getModelElementFactory <em>Model Element Factory</em>}</li>
+ * <li>{@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot#getSubstitutes <em>Substitutes</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getDataContextRoot()
@@ -81,5 +83,22 @@ public interface DataContextRoot extends DataContextPackage {
 	 * @generated
 	 */
 	void setModelElementFactory(ModelElementFactoryDescriptor value);
+
+	/**
+	 * Returns the value of the '<em><b>Substitutes</b></em>' reference list.
+	 * The list contents are of type {@link org.eclipse.papyrus.views.properties.contexts.DataContextRoot}.
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Substitutes</em>' reference list isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 *
+	 * @return the value of the '<em>Substitutes</em>' reference list.
+	 * @see org.eclipse.papyrus.views.properties.contexts.ContextsPackage#getDataContextRoot_Substitutes()
+	 * @model
+	 * @generated
+	 */
+	EList<DataContextRoot> getSubstitutes();
 
 } // DataContextRoot

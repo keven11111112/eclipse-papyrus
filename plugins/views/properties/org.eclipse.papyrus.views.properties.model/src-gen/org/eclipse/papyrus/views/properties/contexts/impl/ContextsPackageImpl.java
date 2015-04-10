@@ -25,8 +25,11 @@ import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.DataContextPackage;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution;
 import org.eclipse.papyrus.views.properties.contexts.Property;
+import org.eclipse.papyrus.views.properties.contexts.PropertyEditorTypeSubstitution;
 import org.eclipse.papyrus.views.properties.contexts.Section;
+import org.eclipse.papyrus.views.properties.contexts.Substitution;
 import org.eclipse.papyrus.views.properties.contexts.Tab;
 import org.eclipse.papyrus.views.properties.contexts.UnknownProperty;
 import org.eclipse.papyrus.views.properties.contexts.View;
@@ -114,6 +117,30 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	private EClass dataContextRootEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass substitutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass propertyEditorTypeSubstitutionEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	private EClass modelElementFactorySubstitutionEClass = null;
 
 	/**
 	 * Creates an instance of the model <b>Package</b>, registered with
@@ -269,6 +296,28 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	@Override
 	public EReference getContext_Prototype() {
 		return (EReference) contextEClass.getEStructuralFeatures().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getContext_Substitutes() {
+		return (EReference) contextEClass.getEStructuralFeatures().get(6);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getContext_Substitution() {
+		return (EReference) contextEClass.getEStructuralFeatures().get(7);
 	}
 
 	/**
@@ -707,6 +756,105 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 	 * @generated
 	 */
 	@Override
+	public EReference getDataContextRoot_Substitutes() {
+		return (EReference) dataContextRootEClass.getEStructuralFeatures().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getSubstitution() {
+		return substitutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getSubstitution_Constraints() {
+		return (EReference) substitutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getPropertyEditorTypeSubstitution() {
+		return propertyEditorTypeSubstitutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyEditorTypeSubstitution_SourceEditorType() {
+		return (EReference) propertyEditorTypeSubstitutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getPropertyEditorTypeSubstitution_TargetEditorType() {
+		return (EReference) propertyEditorTypeSubstitutionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EClass getModelElementFactorySubstitution() {
+		return modelElementFactorySubstitutionEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getModelElementFactorySubstitution_SourceFactoryType() {
+		return (EReference) modelElementFactorySubstitutionEClass.getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
+	public EReference getModelElementFactorySubstitution_TargetFactoryType() {
+		return (EReference) modelElementFactorySubstitutionEClass.getEStructuralFeatures().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	@Override
 	public ContextsFactory getContextsFactory() {
 		return (ContextsFactory) getEFactoryInstance();
 	}
@@ -741,6 +889,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		createEReference(contextEClass, CONTEXT__VIEWS);
 		createEReference(contextEClass, CONTEXT__DATA_CONTEXTS);
 		createEReference(contextEClass, CONTEXT__PROTOTYPE);
+		createEReference(contextEClass, CONTEXT__SUBSTITUTES);
+		createEReference(contextEClass, CONTEXT__SUBSTITUTION);
 
 		tabEClass = createEClass(TAB);
 		createEAttribute(tabEClass, TAB__LABEL);
@@ -788,6 +938,18 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		dataContextRootEClass = createEClass(DATA_CONTEXT_ROOT);
 		createEAttribute(dataContextRootEClass, DATA_CONTEXT_ROOT__LABEL);
 		createEReference(dataContextRootEClass, DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY);
+		createEReference(dataContextRootEClass, DATA_CONTEXT_ROOT__SUBSTITUTES);
+
+		substitutionEClass = createEClass(SUBSTITUTION);
+		createEReference(substitutionEClass, SUBSTITUTION__CONSTRAINTS);
+
+		propertyEditorTypeSubstitutionEClass = createEClass(PROPERTY_EDITOR_TYPE_SUBSTITUTION);
+		createEReference(propertyEditorTypeSubstitutionEClass, PROPERTY_EDITOR_TYPE_SUBSTITUTION__SOURCE_EDITOR_TYPE);
+		createEReference(propertyEditorTypeSubstitutionEClass, PROPERTY_EDITOR_TYPE_SUBSTITUTION__TARGET_EDITOR_TYPE);
+
+		modelElementFactorySubstitutionEClass = createEClass(MODEL_ELEMENT_FACTORY_SUBSTITUTION);
+		createEReference(modelElementFactorySubstitutionEClass, MODEL_ELEMENT_FACTORY_SUBSTITUTION__SOURCE_FACTORY_TYPE);
+		createEReference(modelElementFactorySubstitutionEClass, MODEL_ELEMENT_FACTORY_SUBSTITUTION__TARGET_FACTORY_TYPE);
 	}
 
 	/**
@@ -843,6 +1005,8 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEReference(getContext_Views(), this.getView(), this.getView_Context(), "views", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_DataContexts(), this.getDataContextRoot(), null, "dataContexts", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getContext_Prototype(), this.getContext(), null, "prototype", null, 0, 1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Substitutes(), this.getContext(), null, "substitutes", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getContext_Substitution(), this.getSubstitution(), null, "substitution", null, 0, -1, Context.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		initEClass(tabEClass, Tab.class, "Tab", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
 		initEAttribute(getTab_Label(), ecorePackage.getEString(), "label", null, 1, 1, Tab.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
@@ -896,6 +1060,24 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		initEAttribute(getDataContextRoot_Label(), ecorePackage.getEString(), "label", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_UNSETTABLE, !IS_ID, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 		initEReference(getDataContextRoot_ModelElementFactory(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "modelElementFactory", null, 1, 1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
 				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getDataContextRoot_Substitutes(), this.getDataContextRoot(), null, "substitutes", null, 0, -1, DataContextRoot.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED,
+				IS_ORDERED);
+
+		initEClass(substitutionEClass, Substitution.class, "Substitution", IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getSubstitution_Constraints(), theConstraintsPackage.getConstraintDescriptor(), null, "constraints", null, 0, -1, Substitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, IS_COMPOSITE, !IS_RESOLVE_PROXIES, !IS_UNSETTABLE,
+				IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(propertyEditorTypeSubstitutionEClass, PropertyEditorTypeSubstitution.class, "PropertyEditorTypeSubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getPropertyEditorTypeSubstitution_SourceEditorType(), theEnvironmentPackage.getPropertyEditorType(), null, "sourceEditorType", null, 0, 1, PropertyEditorTypeSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getPropertyEditorTypeSubstitution_TargetEditorType(), theEnvironmentPackage.getPropertyEditorType(), null, "targetEditorType", null, 0, 1, PropertyEditorTypeSubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE, !IS_COMPOSITE,
+				IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+
+		initEClass(modelElementFactorySubstitutionEClass, ModelElementFactorySubstitution.class, "ModelElementFactorySubstitution", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);
+		initEReference(getModelElementFactorySubstitution_SourceFactoryType(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "sourceFactoryType", null, 0, 1, ModelElementFactorySubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
+		initEReference(getModelElementFactorySubstitution_TargetFactoryType(), theEnvironmentPackage.getModelElementFactoryDescriptor(), null, "targetFactoryType", null, 0, 1, ModelElementFactorySubstitution.class, !IS_TRANSIENT, !IS_VOLATILE, IS_CHANGEABLE,
+				!IS_COMPOSITE, IS_RESOLVE_PROXIES, !IS_UNSETTABLE, IS_UNIQUE, !IS_DERIVED, IS_ORDERED);
 
 		// Create resource
 		createResource(eNS_URI);

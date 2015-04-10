@@ -118,6 +118,26 @@ public interface ContextsFactory extends EFactory {
 	DataContextRoot createDataContextRoot();
 
 	/**
+	 * Returns a new object of class '<em>Property Editor Type Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Property Editor Type Substitution</em>'.
+	 * @generated
+	 */
+	PropertyEditorTypeSubstitution createPropertyEditorTypeSubstitution();
+
+	/**
+	 * Returns a new object of class '<em>Model Element Factory Substitution</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @return a new object of class '<em>Model Element Factory Substitution</em>'.
+	 * @generated
+	 */
+	ModelElementFactorySubstitution createModelElementFactorySubstitution();
+
+	/**
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

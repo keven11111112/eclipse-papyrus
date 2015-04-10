@@ -53,6 +53,7 @@ public class DataContextRootItemProvider
 
 			addLabelPropertyDescriptor(object);
 			addModelElementFactoryPropertyDescriptor(object);
+			addSubstitutesPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
 	}
@@ -91,6 +92,27 @@ public class DataContextRootItemProvider
 				getString("_UI_DataContextRoot_modelElementFactory_feature"),
 				getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_modelElementFactory_feature", "_UI_DataContextRoot_type"),
 				ContextsPackage.Literals.DATA_CONTEXT_ROOT__MODEL_ELEMENT_FACTORY,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
+	}
+
+	/**
+	 * This adds a property descriptor for the Substitutes feature.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 */
+	protected void addSubstitutesPropertyDescriptor(Object object) {
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_DataContextRoot_substitutes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_DataContextRoot_substitutes_feature", "_UI_DataContextRoot_type"),
+				ContextsPackage.Literals.DATA_CONTEXT_ROOT__SUBSTITUTES,
 				true,
 				false,
 				true,
