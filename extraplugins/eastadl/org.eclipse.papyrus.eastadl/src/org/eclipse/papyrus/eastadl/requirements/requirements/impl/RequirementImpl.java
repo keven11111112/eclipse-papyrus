@@ -716,6 +716,7 @@ public class RequirementImpl extends org.eclipse.papyrus.sysml.requirements.inte
 						DeriveReqt.class);
 
 				if (currentDeriveReqt != null) {
+					if (currentDeriveReqt.getBase_Abstraction() != null) {
 					EList<NamedElement> clients = currentDeriveReqt.getBase_Abstraction().getClients();
 					Iterator<NamedElement> it = clients.iterator();
 					while (it.hasNext()) {
@@ -724,6 +725,7 @@ public class RequirementImpl extends org.eclipse.papyrus.sysml.requirements.inte
 						if (currentRequirement != null) {
 							derived.add(currentRequirement);
 						}
+					}
 					}
 				}
 			}
