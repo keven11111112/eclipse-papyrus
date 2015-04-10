@@ -16,7 +16,6 @@
 package org.eclipse.papyrus.uml.properties.databinding;
 
 import java.util.Collection;
-import java.util.Collections;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -30,8 +29,12 @@ import org.eclipse.emf.edit.command.AddCommand;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
-import org.eclipse.papyrus.uml.tools.databinding.RequestBasedObservableList;
+import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
+import org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList;
+import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
+import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.uml2.common.util.UML2Util;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.Element;
@@ -40,7 +43,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * Observable list for applied comments.
  */
-public class AppliedCommentsObservableList extends RequestBasedObservableList {
+public class AppliedCommentsObservableList extends CommandBasedObservableList {
 
 	public AppliedCommentsObservableList(EditingDomain domain, Element source) {
 		super(getAppliedCommentsList(source), domain, source, UMLPackage.eINSTANCE.getElement_OwnedComment());
@@ -87,6 +90,59 @@ public class AppliedCommentsObservableList extends RequestBasedObservableList {
 	}
 
 	/**
+	 * @return the IElementEditService used to retrieve the command
+	 */
+	protected IElementEditService getProvider() {
+		return ElementEditServiceUtils.getCommandProvider(source);
+	}
+
+	/**
+	 * Creates an EMF command from a GMF request, with the given IElementEditService
+	 *
+	 * @param provider
+	 * @param request
+	 * @return
+	 * 		The EMF command corresponding to the given request
+	 */
+	protected Command getCommandFromRequests(IElementEditService provider, IEditCommandRequest request) {
+		return new GMFtoEMFCommandWrapper(provider.getEditCommand(request));
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList#add(java.lang.Object)
+	 *
+	 * @param o
+	 * @return
+	 */
+	@Override
+	public boolean add(Object o) {
+		super.add(o);
+		return wrappedList.add(o);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList#remove(java.lang.Object)
+	 *
+	 * @param o
+	 * @return
+	 */
+	@Override
+	public boolean remove(Object o) {
+		super.remove(o);
+		return wrappedList.remove(o);
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.infra.emf.databinding.CommandBasedObservableList#clear()
+	 *
+	 */
+	@Override
+	public void clear() {
+		super.clear();
+		wrappedList.clear();
+	}
+
+	/**
 	 * @see org.eclipse.papyrus.uml.tools.databinding.PapyrusObservableList#getAddCommand(java.lang.Object)
 	 *
 	 * @param value
@@ -102,7 +158,7 @@ public class AppliedCommentsObservableList extends RequestBasedObservableList {
 
 			// Add the comment to source#ownedComment
 			SetRequest setRequest = new SetRequest((TransactionalEditingDomain) editingDomain, source, feature, value);
-			addAppliedCommentCommand.append(getCommandFromRequests(getProvider(), Collections.singletonList(setRequest)));
+			addAppliedCommentCommand.append(getCommandFromRequests(getProvider(), setRequest));
 
 			// Check if source was already had to comment
 			if (!((Comment) value).getAnnotatedElements().contains(source)) {
@@ -134,12 +190,12 @@ public class AppliedCommentsObservableList extends RequestBasedObservableList {
 				List<Element> values = new LinkedList<Element>(comment.getAnnotatedElements());
 				values.remove(source);
 				SetRequest setRequest = new SetRequest(comment, UMLPackage.eINSTANCE.getComment_AnnotatedElement(), values);
-				removeAppliedCommentCommand = getCommandFromRequests(getProvider(), Collections.singletonList(setRequest));
+				removeAppliedCommentCommand = getCommandFromRequests(getProvider(), setRequest);
 
 			} else {
 				// Remove comment in element
 				DestroyElementRequest detroyRequest = new DestroyElementRequest((TransactionalEditingDomain) editingDomain, comment, false);
-				removeAppliedCommentCommand = getCommandFromRequests(getProvider(), Collections.singleton(detroyRequest));
+				removeAppliedCommentCommand = getCommandFromRequests(getProvider(), detroyRequest);
 			}
 
 		}
