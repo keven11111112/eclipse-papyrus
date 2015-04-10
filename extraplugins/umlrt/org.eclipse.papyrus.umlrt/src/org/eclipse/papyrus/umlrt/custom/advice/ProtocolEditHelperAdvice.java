@@ -131,8 +131,8 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			 */
 			private void createInterfaceRealization(final Collaboration protocol, final String name, Interface rtMessageSetInt) throws ExecutionException {
 				InterfaceRealization realization = (InterfaceRealization) createElement(protocol, name, INTERFACE_REALIZATION, Relation.CHILD); 
-				realization.getClients().add(protocol);
-				realization.getSuppliers().add(rtMessageSetInt);
+				realization.setContract(rtMessageSetInt);
+				realization.setImplementingClassifier(protocol);
 			}
 
 			/**

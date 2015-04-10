@@ -22,7 +22,9 @@ Bundle-Vendor: %providerName
 Export-Package: org.eclipse.papyrus.umlrt.UMLRealTime,
  org.eclipse.papyrus.umlrt.UMLRealTime.impl,
  org.eclipse.papyrus.umlrt.UMLRealTime.util,
+ org.eclipse.papyrus.umlrt.custom,
  org.eclipse.papyrus.umlrt.custom.advice,
+ org.eclipse.papyrus.umlrt.custom.utils,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.impl,
  org.eclipse.papyrus.umlrt.statemachine.UMLRealTimeStateMach.util
