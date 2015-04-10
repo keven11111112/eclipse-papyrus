@@ -67,11 +67,6 @@ import com.google.inject.Injector;
 public class ValueSpecificationSetCommand {
 
 	/**
-	 * The unlimited value for the LiteralunlimitedNatural
-	 */
-	private static final String UNLIMITED = "*"; //$NON-NLS-1$
-
-	/**
 	 * The instance of the class.
 	 */
 	private static ValueSpecificationSetCommand instance = new ValueSpecificationSetCommand();
@@ -382,7 +377,7 @@ public class ValueSpecificationSetCommand {
 
 				// Check that the value is upper than 0 and the type of the
 				// parent is a integer
-				if (integerValue.getValue().equals(UNLIMITED)) {
+				if (null != integerValue.getUnlimited()) {
 					// Create a literal unlimited natural
 					createdValueSpecification = UMLFactory.eINSTANCE
 							.createLiteralUnlimitedNatural();
@@ -392,7 +387,7 @@ public class ValueSpecificationSetCommand {
 							.setValue(-1);
 					created = true;
 				} else {
-					int intValue = Integer.parseInt(integerValue.getValue());
+					int intValue = integerValue.getValue();
 					if (0 <= intValue && isTypeNeeeded(
 							objectToEdit,
 							UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
@@ -497,8 +492,8 @@ public class ValueSpecificationSetCommand {
 		}
 
 		// Set the name if it was created
-		if (null != abstractRule.getName()) {
-			createdValueSpecification.setName(abstractRule.getName());
+		if (null != getName(abstractRule)) {
+			createdValueSpecification.setName(getName(abstractRule));
 		}
 	}
 
@@ -548,9 +543,9 @@ public class ValueSpecificationSetCommand {
 		}
 
 		// Set the name if it was created
-		if (null != abstractRule.getName()) {
+		if (null != getName(abstractRule)) {
 			// Set the name by command
-			final ICommand setNameCommand = createSetNameCommand(valueSpecification, abstractRule.getName());
+			final ICommand setNameCommand = createSetNameCommand(valueSpecification, getName(abstractRule));
 			if (null != setNameCommand
 					&& setNameCommand.canExecute()) {
 				setAttributesCommand.add(setNameCommand);
@@ -637,19 +632,18 @@ public class ValueSpecificationSetCommand {
 			if (valueSpecification instanceof LiteralBoolean && xtextValue instanceof LiteralBooleanRule) {
 				request = new SetRequest(valueSpecification,
 						UMLPackage.Literals.LITERAL_BOOLEAN__VALUE, Boolean.parseBoolean(((LiteralBooleanRule) xtextValue).getValue()));
-			} else if (valueSpecification instanceof LiteralInteger && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule) {
-				request = new SetRequest(valueSpecification,
-						UMLPackage.Literals.LITERAL_INTEGER__VALUE, ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue());
+			} else if (valueSpecification instanceof LiteralInteger && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && null == ((LiteralIntegerOrUnlimitedNaturalRule)xtextValue).getUnlimited()) {
+				 request = new SetRequest(valueSpecification,
+				 UMLPackage.Literals.LITERAL_INTEGER__VALUE, ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue());
 			} else if (valueSpecification instanceof LiteralUnlimitedNatural && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule) {
-				final String stringValue = ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue();
-				int intValue = 0;
-				if (UNLIMITED.equals(stringValue)) {
-					intValue = -1;
-				} else {
-					intValue = Integer.parseInt(stringValue);
-				}
-				request = new SetRequest(valueSpecification,
-						UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL__VALUE, intValue);
+				 int intValue = 0;
+				 if (null != ((LiteralIntegerOrUnlimitedNaturalRule)xtextValue).getUnlimited()) {
+					 intValue = -1;
+				 } else {
+					 intValue = ((LiteralIntegerOrUnlimitedNaturalRule)xtextValue).getValue();
+				 }
+				 request = new SetRequest(valueSpecification,
+				 UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL__VALUE, intValue);
 			} else if (valueSpecification instanceof LiteralReal && xtextValue instanceof LiteralRealRule) {
 				request = new SetRequest(valueSpecification,
 						UMLPackage.Literals.LITERAL_REAL__VALUE, ((LiteralRealRule) xtextValue).getValue());
@@ -863,13 +857,13 @@ public class ValueSpecificationSetCommand {
 				if (initialValueSpecification instanceof LiteralBoolean && xtextValue instanceof LiteralBooleanRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_BOOLEAN)) {
 					result = (LiteralBoolean) initialValueSpecification;
 				} else if (initialValueSpecification instanceof LiteralInteger && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_INTEGER)) {
-					if (!UNLIMITED.equals(((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue())) {
+					if (null != ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getUnlimited()) {
 						result = (LiteralInteger) initialValueSpecification;
 					}
 				} else if (initialValueSpecification instanceof LiteralUnlimitedNatural && xtextValue instanceof LiteralIntegerOrUnlimitedNaturalRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_UNLIMITED_NATURAL)) {
 					// Check that the value if positive for the unlimited natural type
-					final String value = ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue();
-					if (UNLIMITED.equals(value) || Integer.parseInt(value) >= 0) {
+
+					if (null != ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getUnlimited() || 0 <= ((LiteralIntegerOrUnlimitedNaturalRule) xtextValue).getValue()) {
 						result = (LiteralUnlimitedNatural) initialValueSpecification;
 					}
 				} else if (initialValueSpecification instanceof LiteralReal && xtextValue instanceof LiteralRealRule && isTypeNeeeded(objectToEdit, UMLPackage.Literals.LITERAL_REAL)) {
@@ -882,5 +876,16 @@ public class ValueSpecificationSetCommand {
 			}
 		}
 		return result;
+	}
+
+	/**
+	 * Get the name from the abstractRule.
+	 * 
+	 * @param abstractRule
+	 *            The abstract rule.
+	 * @return The string corresponding to the name.
+	 */
+	protected String getName(final AbstractRule abstractRule) {
+		return null == abstractRule.getName() ? null : abstractRule.getName().substring(0, abstractRule.getName().length() - 1);
 	}
 }

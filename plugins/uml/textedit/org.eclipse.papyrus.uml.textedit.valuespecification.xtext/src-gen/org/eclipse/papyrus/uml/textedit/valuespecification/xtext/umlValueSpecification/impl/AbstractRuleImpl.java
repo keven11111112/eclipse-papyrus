@@ -29,8 +29,8 @@ import org.eclipse.uml2.uml.InstanceSpecification;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getVisibility <em>Visibility</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getInstanceSpecification <em>Instance Specification</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getValue <em>Value</em>}</li>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.AbstractRuleImpl#getUndefined <em>Undefined</em>}</li>
  * </ul>
  *
@@ -69,16 +69,6 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
   protected String name = NAME_EDEFAULT;
 
   /**
-   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @see #getValue()
-   * @generated
-   * @ordered
-   */
-  protected EObject value;
-
-  /**
    * The cached value of the '{@link #getInstanceSpecification() <em>Instance Specification</em>}' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -87,6 +77,16 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
    * @ordered
    */
   protected InstanceSpecification instanceSpecification;
+
+  /**
+   * The cached value of the '{@link #getValue() <em>Value</em>}' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getValue()
+   * @generated
+   * @ordered
+   */
+  protected EObject value;
 
   /**
    * The cached value of the '{@link #getUndefined() <em>Undefined</em>}' containment reference.
@@ -195,6 +195,49 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
    * <!-- end-user-doc -->
    * @generated
    */
+  public InstanceSpecification getInstanceSpecification()
+  {
+    if (instanceSpecification != null && instanceSpecification.eIsProxy())
+    {
+      InternalEObject oldInstanceSpecification = (InternalEObject)instanceSpecification;
+      instanceSpecification = (InstanceSpecification)eResolveProxy(oldInstanceSpecification);
+      if (instanceSpecification != oldInstanceSpecification)
+      {
+        if (eNotificationRequired())
+          eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION, oldInstanceSpecification, instanceSpecification));
+      }
+    }
+    return instanceSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public InstanceSpecification basicGetInstanceSpecification()
+  {
+    return instanceSpecification;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setInstanceSpecification(InstanceSpecification newInstanceSpecification)
+  {
+    InstanceSpecification oldInstanceSpecification = instanceSpecification;
+    instanceSpecification = newInstanceSpecification;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION, oldInstanceSpecification, instanceSpecification));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
   public EObject getValue()
   {
     return value;
@@ -236,49 +279,6 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
     }
     else if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE, newValue, newValue));
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InstanceSpecification getInstanceSpecification()
-  {
-    if (instanceSpecification != null && instanceSpecification.eIsProxy())
-    {
-      InternalEObject oldInstanceSpecification = (InternalEObject)instanceSpecification;
-      instanceSpecification = (InstanceSpecification)eResolveProxy(oldInstanceSpecification);
-      if (instanceSpecification != oldInstanceSpecification)
-      {
-        if (eNotificationRequired())
-          eNotify(new ENotificationImpl(this, Notification.RESOLVE, UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION, oldInstanceSpecification, instanceSpecification));
-      }
-    }
-    return instanceSpecification;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public InstanceSpecification basicGetInstanceSpecification()
-  {
-    return instanceSpecification;
-  }
-
-  /**
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   */
-  public void setInstanceSpecification(InstanceSpecification newInstanceSpecification)
-  {
-    InstanceSpecification oldInstanceSpecification = instanceSpecification;
-    instanceSpecification = newInstanceSpecification;
-    if (eNotificationRequired())
-      eNotify(new ENotificationImpl(this, Notification.SET, UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION, oldInstanceSpecification, instanceSpecification));
   }
 
   /**
@@ -363,11 +363,11 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
         return getVisibility();
       case UmlValueSpecificationPackage.ABSTRACT_RULE__NAME:
         return getName();
-      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
-        return getValue();
       case UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION:
         if (resolve) return getInstanceSpecification();
         return basicGetInstanceSpecification();
+      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
+        return getValue();
       case UmlValueSpecificationPackage.ABSTRACT_RULE__UNDEFINED:
         return getUndefined();
     }
@@ -390,11 +390,11 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
       case UmlValueSpecificationPackage.ABSTRACT_RULE__NAME:
         setName((String)newValue);
         return;
-      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
-        setValue((EObject)newValue);
-        return;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION:
         setInstanceSpecification((InstanceSpecification)newValue);
+        return;
+      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
+        setValue((EObject)newValue);
         return;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__UNDEFINED:
         setUndefined((UndefinedRule)newValue);
@@ -419,11 +419,11 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
       case UmlValueSpecificationPackage.ABSTRACT_RULE__NAME:
         setName(NAME_EDEFAULT);
         return;
-      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
-        setValue((EObject)null);
-        return;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION:
         setInstanceSpecification((InstanceSpecification)null);
+        return;
+      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
+        setValue((EObject)null);
         return;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__UNDEFINED:
         setUndefined((UndefinedRule)null);
@@ -446,10 +446,10 @@ public class AbstractRuleImpl extends MinimalEObjectImpl.Container implements Ab
         return visibility != null;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__NAME:
         return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
-        return value != null;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__INSTANCE_SPECIFICATION:
         return instanceSpecification != null;
+      case UmlValueSpecificationPackage.ABSTRACT_RULE__VALUE:
+        return value != null;
       case UmlValueSpecificationPackage.ABSTRACT_RULE__UNDEFINED:
         return undefined != null;
     }
