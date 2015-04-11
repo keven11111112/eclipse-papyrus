@@ -712,6 +712,10 @@ public class PapyrusEditorFixture extends AbstractModelFixture<TransactionalEdit
 		return result;
 	}
 
+	public void save() {
+		save(getEditor());
+	}
+
 	public void save(ISaveablePart part) {
 		if (part.isDirty()) {
 			try {

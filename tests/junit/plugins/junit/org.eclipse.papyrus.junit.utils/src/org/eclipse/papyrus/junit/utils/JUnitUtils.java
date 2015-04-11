@@ -101,12 +101,13 @@ public class JUnitUtils {
 			}
 		}
 
-		if ((result == null) && (description.getTestClass() != null)) {
-			Class<?> testClass = description.getTestClass();
-			for (Class<? extends Annotation> next : types) {
-				result = testClass.getAnnotation(next);
-				if (result != null) {
-					break;
+		if (result == null) {
+			out: for (Class<?> testClass = description.getTestClass(); testClass != null; testClass = testClass.getSuperclass()) {
+				for (Class<? extends Annotation> next : types) {
+					result = testClass.getAnnotation(next);
+					if (result != null) {
+						break out;
+					}
 				}
 			}
 		}
