@@ -27,8 +27,8 @@ import org.eclipse.papyrus.FCM.InitPrecedence;
 import org.eclipse.papyrus.MARTE.MARTE_DesignModel.SRM.SW_Concurrency.SwSchedulableResource;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
+import org.eclipse.papyrus.qompass.designer.core.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.transformations.ExecuteOOTrafo;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.PrefixConstants;
@@ -91,6 +91,9 @@ public class BootLoaderGen {
 				"const int nodeIndex = " + nodeIndex + ";" + NL + //$NON-NLS-1$//$NON-NLS-2$
 						"const int numberOfNodes = " + numberOfNodes + ";" + NL; //$NON-NLS-1$ //$NON-NLS-2$
 		Include cppIncludeNodeInfo = StereotypeUtil.applyApp(nodeInfo, Include.class);
+		if (cppIncludeNodeInfo == null) {
+			throw new TransformationException("Can not apply C++ stereotypes during bootloader generation. Please apply the C++ profile to the source model");
+		}
 		cppIncludeNodeInfo.setHeader(headerStr);
 
 		// bootLoader.createOwnedAttribute (mainInstance.getName (), composite);

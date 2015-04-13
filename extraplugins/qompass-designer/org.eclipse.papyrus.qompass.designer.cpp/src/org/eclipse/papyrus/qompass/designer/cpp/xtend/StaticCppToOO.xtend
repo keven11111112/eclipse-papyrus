@@ -1,15 +1,15 @@
 /*****************************************************************************
  * Copyright (c) 2015 CEA LIST.
- *
- *
+ * 
+ * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
- *
+ * 
  * Contributors:
  *  Ansgar Radermacher  ansgar.radermacher@cea.fr
- *
+ * 
  *****************************************************************************/
 package org.eclipse.papyrus.qompass.designer.cpp.xtend
 
@@ -54,7 +54,7 @@ import static extension org.eclipse.papyrus.qompass.designer.cpp.xtend.CppUtils.
  *    storage attribute*) for a port with a required interface
  * 3. add an implementation for the getcnx_q operation for a port
  *    with a required interface (the operation itself has been added before)
- *
+ * 
  * Problems: need to align bootloader creation with this mapping, since
  * the bootloader may be responsible for instantiation
  * 
@@ -75,7 +75,11 @@ class StaticCppToOO implements IOOTrafo {
 	}
 
 	override addPortOperations(Class implementation) {
-		addGetPortOperation(implementation)
+		// only implementations (non abstract classes) have get operations for ports
+		if (Utils.isCompImpl(implementation)) {
+			addGetPortOperation(implementation)
+		}
+		// but all classes need a connection operation, since it does not rely on an implementation 
 		addConnectPortOperation(implementation)
 	}
 
@@ -84,7 +88,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * adds a suitable implementation that evaluates delegation connectors from
 	 * the port to a property within the composite. The delegation target could
 	 * either be a normal class (no port) or an inner component.
-	 *
+	 * 
 	 * @param implementation
 	 */
 	def addGetPortOperation(Class implementation) {
@@ -109,22 +113,21 @@ class StaticCppToOO implements IOOTrafo {
 					retParam.setName(Constants.retParamName)
 					StereotypeUtil.apply(retParam, Ptr)
 
-					val behavior = implementation.createOwnedBehavior(opName, UMLPackage.eINSTANCE.getOpaqueBehavior()) as OpaqueBehavior
+					val behavior = implementation.createOwnedBehavior(opName,
+						UMLPackage.eINSTANCE.getOpaqueBehavior()) as OpaqueBehavior
 					op.getMethods().add(behavior)
 
 					val ce = ConnectorUtil.getDelegation(implementation, portInfo.getModelPort())
 
-					// if there is an delegation to an inner property, delegate to
-					// it
-					// Make distinction between delegation to component (with a
-					// port) or
+					// if there is an delegation to an inner property, delegate to it
+					// Make distinction between delegation to component (with a port) or
 					// "normal" class (without).
 					var String body
 					if (ce != null) {
 						val part = ce.partWithPort
 						val role = ce.role
 
-						body = "return " 
+						body = "return "
 						if (role instanceof Port) {
 
 							// check whether the part exists within the implementation (might not be the case
@@ -158,7 +161,7 @@ class StaticCppToOO implements IOOTrafo {
 							implementsIntf = implementation.getInterfaceRealization(null, providedIntfInCopy) != null
 						}
 						if (implementsIntf) {
-							body = "return this;" 
+							body = "return this;"
 						} else {
 							throw new RuntimeException(
 								String.format(Messages.CompImplTrafos_IntfNotImplemented, providedIntf.name,
@@ -178,7 +181,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * (method) is needed for ports inherited from a component type (the
 	 * behavior is implementation specific, as it needs to take delegation to
 	 * parts into account)
-	 *
+	 * 
 	 * @param implementation
 	 */
 	static def addConnectPortOperation(Class implementation) {
@@ -203,17 +206,18 @@ class StaticCppToOO implements IOOTrafo {
 						val eLong = Utils.getQualifiedElement(Utils.getTop(implementation),
 							CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE)
 						if (eLong instanceof Type) {
-							op.createOwnedParameter("index", eLong as Type) 
+							op.createOwnedParameter("index", eLong as Type)
 						} else {
 							throw new RuntimeException(
 								String.format(Messages.CompImplTrafos_CannotFindType,
 									CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE))
 						}
 					}
-					val refParam = op.createOwnedParameter("ref", requiredIntf) 
+					val refParam = op.createOwnedParameter("ref", requiredIntf)
 					StereotypeUtil.apply(refParam, Ptr)
 
-					val behavior = implementation.createOwnedBehavior(opName, UMLPackage.eINSTANCE.getOpaqueBehavior()) as OpaqueBehavior
+					val behavior = implementation.createOwnedBehavior(opName,
+						UMLPackage.eINSTANCE.getOpaqueBehavior()) as OpaqueBehavior
 
 					op.getMethods().add(behavior)
 
@@ -235,8 +239,7 @@ class StaticCppToOO implements IOOTrafo {
 							// TODO: no check that multiplicity of both port matches
 							if ((portInfo.getUpper() > 1) || (portInfo.getUpper() == -1)) {
 								body += "(index, ref);"
-							}
-							else {
+							} else {
 								body += "(ref);"
 							}
 
@@ -299,11 +302,11 @@ class StaticCppToOO implements IOOTrafo {
 	 * between composite parts. It only takes the assembly connections into
 	 * account, since delegation connectors are handled by the get_ and connect_
 	 * port operations above.
-	 *
+	 * 
 	 * @param implementation
 	 */
 	override addConnectionOperation(Class compositeImplementation) throws TransformationException {
-		var createConnBody = "" 
+		var createConnBody = ""
 		val Map<ConnectorEnd, Integer> indexMap = new HashMap<ConnectorEnd, Integer>()
 
 		for (Connector connector : compositeImplementation.getOwnedConnectors()) {
@@ -316,12 +319,12 @@ class StaticCppToOO implements IOOTrafo {
 				}
 				val end1 = connector.ends.get(0)
 				val end2 = connector.ends.get(1)
-				var cmd = '''// realization of connector <«connector.name»>\n'''
+				var cmd = '''// realization of connector <«connector.name»>''' + "\n"
 				if ((end1.role instanceof Port) && PortUtils.isExtendedPort(end1.role as Port)) {
 					val port = end1.role as Port
 					val EList<PortInfo> subPorts = PortUtils.flattenExtendedPort(port)
 					for (PortInfo subPort : subPorts) {
-						cmd += '''  // realization of connection for sub-port «subPort.port.name»\n'''
+						cmd += '''  // realization of connection for sub-port «subPort.port.name»''' + "\n"
 						cmd += connectPorts(indexMap, connector, end1, end2, subPort.port)
 						cmd += connectPorts(indexMap, connector, end2, end1, subPort.port)
 					}
@@ -329,7 +332,7 @@ class StaticCppToOO implements IOOTrafo {
 					cmd += connectPorts(indexMap, connector, end1, end2, null)
 					cmd += connectPorts(indexMap, connector, end2, end1, null)
 				}
-				createConnBody += cmd + "\n" 
+				createConnBody += cmd + "\n"
 			}
 		}
 
@@ -337,7 +340,7 @@ class StaticCppToOO implements IOOTrafo {
 		if (createConnBody.length() > 0) {
 			val operation = compositeImplementation.createOwnedOperation(Constants.CREATE_CONNECTIONS, null, null)
 
-			val behavior = compositeImplementation.createOwnedBehavior("b:" + operation.name, 
+			val behavior = compositeImplementation.createOwnedBehavior("b:" + operation.name,
 				UMLPackage.eINSTANCE.getOpaqueBehavior()) as OpaqueBehavior
 			behavior.getLanguages().add(Constants.progLang)
 			behavior.getBodies().add(createConnBody)
@@ -380,10 +383,10 @@ class StaticCppToOO implements IOOTrafo {
 				var subPortName = ""
 				if(subPort != null) subPortName += "_" + subPort.name
 				val indexName = getIndexName(indexMap, receptaclePort, receptacleEnd)
-				val setter = '''«receptaclePart.nameRef»connect_«receptaclePort.name» «subPortName»;'''
+				val setter = '''«receptaclePart.nameRef»connect_«receptaclePort.name» «subPortName»'''
 				val getter = '''«facetPart.nameRef»get_«facetPort.name» «subPortName»()'''
-				return '''«setter»(«indexName»«getter»);\n'''
-				}
+				return '''«setter»(«indexName»«getter»);''' + "\n"
+			}
 
 		} else if (receptacleEnd.role instanceof Port) {
 
@@ -396,7 +399,7 @@ class StaticCppToOO implements IOOTrafo {
 				val indexName = getIndexName(indexMap, receptaclePort, receptacleEnd)
 				val setter = '''«receptaclePart.nameRef»connect_«receptaclePort.name»'''
 				val getter = '''&«facetPart.name»'''
-				return '''«setter»(«indexName»«getter»);\n'''
+				return '''«setter»(«indexName»«getter»);''' + "\n"
 			}
 		} else if (facetEnd.role instanceof Port) {
 
@@ -408,7 +411,7 @@ class StaticCppToOO implements IOOTrafo {
 
 				val setter = receptaclePart.name
 				val getter = '''«facetPart.nameRef»get_«facetPort.name»();'''
-				return '''«setter» = «getter»;\n'''
+				return '''«setter» = «getter»;''' + "\n"
 			}
 		} else if (association != null) {
 
@@ -425,16 +428,15 @@ class StaticCppToOO implements IOOTrafo {
 			if ((assocProp1 != null) && assocProp1.isNavigable) {
 				val setter = '''«receptaclePart.nameRef»«assocProp1.name»'''
 				val getter = '''&«facetPart.name»'''
-				return '''«setter» = «getter»;\n'''
+				return '''«setter» = «getter»;''' + "\n"
 			}
 		} else {
 
 			// not handled (a connector not targeting a port must be typed)
-			throw new TransformationException(
-				"Connector <" + connector.name + 
-					"> does not use ports, but it is not typed (only connectors between ports should not be typed)") 
+			throw new TransformationException("Connector <" + connector.name +
+				"> does not use ports, but it is not typed (only connectors between ports should not be typed)")
 		}
-		return "" 
+		return ""
 	}
 
 	/**
@@ -443,7 +445,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * start with index 0. Implementations can make no assumption which
 	 * connection is associated with a certain index. [want to avoid associative
 	 * array in runtime].
-	 *
+	 * 
 	 * @param port
 	 * @param end
 	 * @return
@@ -458,7 +460,7 @@ class StaticCppToOO implements IOOTrafo {
 				indexValue = 0
 				indexMap.put(end, indexValue)
 			}
-			var index = indexValue + ", " 
+			var index = indexValue + ", "
 			indexValue++
 			indexMap.put(end, indexValue)
 			return index
@@ -470,7 +472,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * Return true, if the bootloader is responsible for the instantiation of a
 	 * part. [Structual difference: bootloader can decide instance based - and
 	 * instances are deployed]
-	 *
+	 * 
 	 * If a part is a component type or an abstract implementation, it cannot be
 	 * instantiated. Thus, a heir has to be selected in the deployment plan.
 	 * Since the selection might be different for different instances of the
@@ -478,17 +480,17 @@ class StaticCppToOO implements IOOTrafo {
 	 * the bootloader. The bootloader also has to instantiate, if different
 	 * allocation variants are required. (this is for instance the case for
 	 * distribution connectors and for the system itself)
-	 *
+	 * 
 	 * If possible, we want to let composites instantiate sub-components, since
 	 * this eases the transition to systems which support reconfiguration.
-	 *
+	 * 
 	 * [TODO: optimization: analyze whether the deployment plan selects a single
 	 * implementation. If yes, let the composite instantiate]
-	 *
+	 * 
 	 * [TODO: elements within an assembly need to be instantiated by composite -
 	 * if System - by bootloader. assembly also need to be instantiated by
 	 * composite!!
-	 *
+	 * 
 	 * @param implementation
 	 * @return
 	 */
@@ -501,7 +503,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * by the composite in which it is contained. The criteria is based on the
 	 * question whether the containing composite is flattened, as it is the case
 	 * for the system component and the interaction components for distribution.
-	 *
+	 * 
 	 * @param part
 	 * @return
 	 */
@@ -528,7 +530,7 @@ class StaticCppToOO implements IOOTrafo {
 	 * to change the aggregation kind, since it remains logically a composition,
 	 * it is merely an implementation issue that it must be a pointer for C++ if
 	 * the concrete type is not yet known.
-	 *
+	 * 
 	 * @param compositeImplementation
 	 *            a (composite) component
 	 */

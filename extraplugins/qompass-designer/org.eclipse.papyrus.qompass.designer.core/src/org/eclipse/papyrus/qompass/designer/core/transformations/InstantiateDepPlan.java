@@ -30,16 +30,15 @@ import org.eclipse.papyrus.FCM.Configuration;
 import org.eclipse.papyrus.FCM.OperatingSystem;
 import org.eclipse.papyrus.FCM.Target;
 import org.eclipse.papyrus.FCM.util.MapUtil;
-import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.qompass.designer.core.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.ProjectManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.deployment.AllocUtils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepCreation;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
@@ -165,7 +164,6 @@ public class InstantiateDepPlan {
 	private void instantiate(IProgressMonitor monitor, int genOptions) {
 		try {
 			initialize(monitor, genOptions);
-			AcceleoDriver.clearErrors();
 			executeTransformation();
 		} catch (AcceleoException e) {
 			displayError(Messages.InstantiateDepPlan_AcceleoErrors,
@@ -271,11 +269,6 @@ public class InstantiateDepPlan {
 		}
 
 		intermediateModelManagement.dispose();
-
-		if (AcceleoDriver.hasErrors()) {
-			throw new AcceleoException();
-		}
-
 	}
 
 	private void deployOnNodes(InstanceSpecification mainInstance,
@@ -555,8 +548,7 @@ public class InstantiateDepPlan {
 					profileResource = ModelManagement.getResourceSet()
 							.getResource(profile.eResource().getURI(), true);
 				}
-				Profile newProfileTop = (Profile) profileResource.getContents()
-						.get(0);
+				Profile newProfileTop = (Profile) profileResource.getContents().get(0);
 				Profile newProfile;
 				String qname = profile.getQualifiedName();
 				if ((qname != null) && qname.contains("::")) { //$NON-NLS-1$
