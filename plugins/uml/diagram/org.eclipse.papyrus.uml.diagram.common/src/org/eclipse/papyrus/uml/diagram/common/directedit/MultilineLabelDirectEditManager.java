@@ -32,7 +32,7 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	/**
 	 * the MultilineLabelDirectEditManager which really do the work
 	 */
-	private static MultilineLabelDirectEditManagerWrapped r;
+	private MultilineLabelDirectEditManagerWrapped r;
 
 	/**
 	 * 
@@ -126,7 +126,7 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	 *         the text editing.
 	 */
 	public static Class getTextCellEditorClass(GraphicalEditPart source) {
-		return r.getTextCellEditorClass(source);
+		return MultilineLabelDirectEditManagerWrapped.getTextCellEditorClass(source);
 	}
 
 	/**
@@ -137,7 +137,7 @@ public class MultilineLabelDirectEditManager extends TextDirectEditManager {
 	 *         source <code>EditPart</code>
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(final ITextAwareEditPart source) {
-		return r.getCellEditorLocator(source);
+		return MultilineLabelDirectEditManagerWrapped.getCellEditorLocator(source);
 	}
 	
 	
