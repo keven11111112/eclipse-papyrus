@@ -30,9 +30,6 @@
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
-		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
-		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
-		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.ui</module>
 		<module>../extraplugins/cdo/org.eclipse.papyrus.cdo.core</module>
 		<module>../extraplugins/cdo/org.eclipse.papyrus.cdo.ui</module>
 		<module>../extraplugins/cdo/org.eclipse.papyrus.cdo.ui.customization.properties</module>
