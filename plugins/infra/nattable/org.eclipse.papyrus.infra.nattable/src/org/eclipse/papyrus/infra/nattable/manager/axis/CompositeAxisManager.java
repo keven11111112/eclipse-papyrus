@@ -420,7 +420,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param resolve
 	 *            if <code>true</code> the path will be resolved
 	 * @return
-	 *         a list with the managed objects
+	 * 		a list with the managed objects
 	 */
 	public List<Object> getAllManagedAxis(final boolean resolve) {
 		final List<Object> allExistingAxis = new ArrayList<Object>();
@@ -508,7 +508,6 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 			final Command command = MoveCommand.create(domain, getRepresentedContentProvider(), NattableaxisproviderPackage.eINSTANCE.getAxisProvider_Axis(), elementToMove, newIndex);
 			domain.getCommandStack().execute(command);
 		}
-		;
 	}
 
 	@Override
@@ -564,7 +563,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the axis manager managing this axis
+	 * 		the axis manager managing this axis
 	 */
 	protected IAxisManager getAxisManager(final IAxis axis) {
 		final AxisManagerRepresentation rep = axis.getManager();
@@ -759,7 +758,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param axisManagerId
 	 *            an axis
 	 * @return
-	 *         the axis manager managing it
+	 * 		the axis manager managing it
 	 */
 	protected IAxisManager findAxisManager(final IAxis axis) {
 		final String axisManagerId = axis.getManager().getAxisManagerId();
@@ -776,7 +775,7 @@ public class CompositeAxisManager extends AbstractAxisManager implements ICompos
 	 * @param idAxis
 	 *            an idAxis
 	 * @return
-	 *         the resolved path or the {@link String} represented by the idAxis if the path can't be resolved
+	 * 		the resolved path or the {@link String} represented by the idAxis if the path can't be resolved
 	 */
 	protected Object getResolvedPath(final IdAxis idAxis) {
 		final String path = idAxis.getElement();

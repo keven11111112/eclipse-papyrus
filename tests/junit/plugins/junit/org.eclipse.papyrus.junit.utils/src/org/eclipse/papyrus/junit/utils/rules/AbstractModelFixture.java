@@ -519,9 +519,29 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 			} else {
 				search = Path.ROOT;
 			}
-			Enumeration<URL> urls = FrameworkUtil.getBundle(testClass).findEntries(search.toPortableString(), pattern, false);
+
+			Bundle testBundle = FrameworkUtil.getBundle(testClass);
+			Enumeration<URL> urls = testBundle.findEntries(search.toPortableString(), pattern, false);
 			if ((urls != null) && urls.hasMoreElements()) {
 				result = urls.nextElement();
+			}
+
+			if (result == null) {
+				// A test case can override a resource in a base test bundle with a corresponding resource of its
+				// own. But, it may also just use the resource provided by the base test bundle, so look for it
+				Bundle lastBundle = testBundle;
+				for (Class<?> baseClass = testClass.getSuperclass(); (baseClass != null); baseClass = baseClass.getSuperclass()) {
+					testBundle = FrameworkUtil.getBundle(baseClass);
+					if (testBundle == null) {
+						break;
+					} else if (testBundle != lastBundle) {
+						lastBundle = testBundle;
+						urls = testBundle.findEntries(search.toPortableString(), pattern, false);
+						if ((urls != null) && urls.hasMoreElements()) {
+							result = urls.nextElement();
+						}
+					}
+				}
 			}
 
 			return result;

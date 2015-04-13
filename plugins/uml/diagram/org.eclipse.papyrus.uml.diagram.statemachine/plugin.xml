@@ -433,32 +433,6 @@
 	   </listener>
 	</extension>
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-		<diagramMappings diagramID="PapyrusUMLStateMachineDiagram">
-			<mapping type="PapyrusUMLStateMachineDiagram" humanReadableType="StateMachineDiagram"/>
-			
-	<mapping
-		humanReadableType="Region"
-		type="3002">
-	</mapping>
-
-	<mapping
-		humanReadableType="StateMachine"
-		type="2002">
-	</mapping>
-
-	<mapping
-		humanReadableType="State"
-		type="6002">
-	</mapping>
-		</diagramMappings>
-	</extension>
-
-
-
-
-
-
 <extension
 			id="PapyrusUMLStateMachineDiagram.palettedefinition"
 			name="PapyrusUMLStateMachineDiagram Predefined Entries"
@@ -803,6 +777,73 @@
 			class="org.eclipse.papyrus.uml.diagram.statemachine.custom.preferences.CustomTransitionPreferenceInitializer">
 		</initializer>
 	</extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLStateMachineDiagram">
+   	<mapping type="PapyrusUMLStateMachineDiagram" humanReadableType="StateMachineDiagram"/>
+			<mapping
+				humanReadableType="Region"
+				type="3002">
+			</mapping>
+			<mapping
+				humanReadableType="StateMachine"
+				type="2002">
+			</mapping>
+			<mapping
+				humanReadableType="State"
+				type="6002">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="19003">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="8001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="9001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="10001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="11001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="12001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="13001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="14001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="15001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="16001">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="17001">
+			</mapping>
+   </diagramMappings>
+</extension>
+
 
     <extension
             point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">

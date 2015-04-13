@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net - Initial API and Implementation
+ *   Mickael ADAM (ALL4TEC) mickael.adam@all4tec.net
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -143,7 +143,7 @@ public abstract class NamedElementEditPart extends UMLNodeEditPart implements IU
 	public int getNamePosition() {
 		// get the value of the CSS property
 		View model = (View) getModel();
-		StringValueStyle labelAlignment = (StringValueStyle) model.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), NAME_POSITION);
+		StringValueStyle labelAlignment = (StringValueStyle) model.getNamedStyle(NotationPackage.eINSTANCE.getStringValueStyle(), TEXT_ALIGNMENT);
 
 		int textAlignment = 0;
 		if (labelAlignment != null) {

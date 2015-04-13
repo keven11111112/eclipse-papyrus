@@ -404,7 +404,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Class.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Property"
@@ -414,7 +414,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Property.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Port"
@@ -424,7 +424,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Port.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Collaboration"
@@ -434,7 +434,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Collaboration.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new CollaborationRole"
@@ -444,7 +444,7 @@
 				      large_icon="icons/obj16/CollaborationRole.gif"
 				      path=""
 				      small_icon="icons/obj16/CollaborationRole.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new CollaborationUse"
@@ -454,7 +454,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CollaborationUse.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Comment"
@@ -464,7 +464,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Constraint"
@@ -474,7 +474,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new TimeObservation"
@@ -484,7 +484,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new DurationObservation"
@@ -494,7 +494,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationObservation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new InformationItem"
@@ -504,7 +504,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationItem.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Parameter"
@@ -514,7 +514,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Parameter.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Activity"
@@ -524,7 +524,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Interaction"
@@ -534,7 +534,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new ProtocolStateMachine"
@@ -544,7 +544,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ProtocolStateMachine.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new StateMachine"
@@ -554,7 +554,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StateMachine.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new FunctionBehavior"
@@ -564,7 +564,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FunctionBehavior.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new OpaqueBehavior"
@@ -574,7 +574,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueBehavior.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new StringExpression"
@@ -584,7 +584,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StringExpression.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Link (Comment / Constraint)"
@@ -594,7 +594,7 @@
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Connector"
@@ -604,7 +604,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Connector.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new RoleBinding"
@@ -614,7 +614,7 @@
 				      large_icon="icons/obj16/CollaborationRoleBinding.gif"
 				      path=""
 				      small_icon="icons/obj16/CollaborationRoleBinding.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Generalization"
@@ -624,7 +624,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Generalization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Realization"
@@ -634,7 +634,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Realization.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Substitution"
@@ -644,7 +644,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Substitution.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Abstraction"
@@ -654,7 +654,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Abstraction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Usage"
@@ -664,7 +664,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Usage.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Dependency"
@@ -674,7 +674,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Dependency.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new representation for an InformationItem"
@@ -684,7 +684,7 @@
 				      large_icon="icons/obj16/Representation.gif"
 				      path=""
 				      small_icon="icons/obj16/Representation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new InformationFlow"
@@ -694,7 +694,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InformationFlow.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Manifestation"
@@ -704,7 +704,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Manifestation.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create new Deployment"
@@ -714,7 +714,7 @@
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Deployment.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -893,348 +893,6 @@
 		
 </extension>
 
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-		<diagramMappings diagramID="CompositeStructure">
-			<mapping type="CompositeStructure" humanReadableType="CompositeStructureDiagram"/>
-			
-	<mapping
-		humanReadableType="attributes"
-		type="7033">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7034">
-	</mapping>
-
-	<mapping
-		humanReadableType="attributes"
-		type="7036">
-	</mapping>
-
-	<mapping
-		humanReadableType="operations"
-		type="7037">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="7048">
-	</mapping>
-
-	<mapping
-		humanReadableType="literals"
-		type="7049">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7050">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7051">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7052">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7053">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7054">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7055">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7056">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7057">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7058">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7059">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7060">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7061">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7063">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7064">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7065">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7066">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7067">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7068">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7069">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7070">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7071">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7072">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7073">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7075">
-	</mapping>
-
-	<mapping
-		humanReadableType="internal structure"
-		type="7077">
-	</mapping>
-
-			
-	
-
-	
-
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6001">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6015">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6002">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6016">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6003">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6017">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6004">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6018">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6005">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6019">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6006">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6020">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6007">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6021">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6008">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6022">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6027">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6028">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6009">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6023">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6025">
-	</mapping>
-
-	<mapping
-		humanReadableType="Name"
-		type="6050">
-	</mapping>
-
-	<mapping
-		humanReadableType="SourceMultiplicity"
-		type="6051">
-	</mapping>
-
-	<mapping
-		humanReadableType="TargetMultiplicity"
-		type="6052">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Stereotype"
-		type="6024">
-	</mapping>
-
-
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Tag"
-		type="6030">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="ConveyedElements"
-		type="6031">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6032">
-	</mapping>
-
-
-		</diagramMappings>
-	</extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
    <semanticChildrenStrategy
@@ -1388,6 +1046,533 @@
          <advice ref="org.eclipse.gmf.runtime.diagram.core.advice.notationDepdendents"/>
       </binding>
    </extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="CompositeStructure">
+   	<mapping type="CompositeStructure" humanReadableType="CompositeStructureDiagram"/>
+			<mapping
+				humanReadableType="attributes"
+				type="7033">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7034">
+			</mapping>
+			<mapping
+				humanReadableType="attributes"
+				type="7036">
+			</mapping>
+			<mapping
+				humanReadableType="operations"
+				type="7037">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="7048">
+			</mapping>
+			<mapping
+				humanReadableType="literals"
+				type="7049">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7050">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7051">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7052">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7053">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7054">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7055">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7056">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7057">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7058">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7059">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7060">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7061">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7063">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7064">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7065">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7066">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7067">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7068">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7069">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7070">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7071">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7072">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7073">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7075">
+			</mapping>
+			<mapping
+				humanReadableType="internal structure"
+				type="7077">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6001">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6015">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6002">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6016">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6003">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6017">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6004">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6018">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6005">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6019">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6006">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6020">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6007">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6021">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6008">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6022">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6028">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6009">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6023">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6025">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6050">
+			</mapping>
+			<mapping
+				humanReadableType="SourceMultiplicity"
+				type="6051">
+			</mapping>
+			<mapping
+				humanReadableType="TargetMultiplicity"
+				type="6052">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6024">
+			</mapping>
+			<mapping
+				humanReadableType="Tag"
+				type="6030">
+			</mapping>
+			<mapping
+				humanReadableType="ConveyedElements"
+				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6032">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6053">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5125">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6054">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6055">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6056">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6057">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6058">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6059">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6060">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6061">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6062">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6063">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6064">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6065">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6066">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6067">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6068">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6069">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6070">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6071">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6072">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6073">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6074">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6075">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6076">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6077">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6078">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6079">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6080">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6081">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6082">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6083">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6084">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6085">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6086">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6087">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6088">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6089">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6090">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6091">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6092">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6093">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6094">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6095">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6096">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6097">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6098">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6099">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6100">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6101">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6102">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6103">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6104">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6105">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5151">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5142">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6106">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6107">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6108">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6109">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6110">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6111">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6112">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6113">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6114">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6115">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6116">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6117">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6118">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6119">
+			</mapping>
+   </diagramMappings>
+</extension>
+
 
 
 

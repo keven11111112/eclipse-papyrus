@@ -12,6 +12,14 @@ import xpt.Common
 import xpt.editor.extensions
 import xpt.plugin.pluginUtils
 import org.eclipse.emf.ecore.EObject
+import org.eclipse.gmf.codegen.gmfgen.GenLinkLabel
+import org.eclipse.gmf.codegen.gmfgen.GenCompartment
+import org.eclipse.gmf.codegen.gmfgen.GenExternalNodeLabel
+import org.eclipse.papyrus.papyrusgmfgenextension.ExtendedGenView
+import org.eclipse.papyrus.papyrusgmfgenextension.LabelVisibilityPreference
+import org.eclipse.gmf.codegen.gmfgen.GenLink
+import org.eclipse.gmf.codegen.gmfgen.GenNode
+import org.eclipse.gmf.codegen.gmfgen.GenTopLevelNode
 
 @Singleton class plugin extends xpt.plugin.plugin {
 
@@ -52,6 +60,7 @@ import org.eclipse.emf.ecore.EObject
 		«xptUpdaterExtension.extensions(it.editorGen.diagramUpdater)»
 		«xptActionExtension.Main(it.editorGen)»
 		«additions(it)»
+		«notationTypesMap(editorGen)»
 		</plugin>
 	'''
 
@@ -174,6 +183,62 @@ import org.eclipse.emf.ecore.EObject
 		      large_icon="«largeIconPath»"
 		      path=""
 		      small_icon="«smallIconPath»">
-			</entry>
+		</entry>
+	'''
+	
+	//	set notation type mapping extension point
+	def notationTypesMap(GenEditorGenerator it) '''	
+«tripleSpace(0)»<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+«tripleSpace(1)»«xmlGeneratedTag»
+«tripleSpace(1)»<diagramMappings diagramID="«modelID»">
+«tripleSpace(1)»	<mapping type="«modelID»" humanReadableType="«modelID.replaceAll('Papyrus|UML|Diagram', '')»Diagram"/>
+			«FOR compartment : diagram.compartments»
+				«compartmentToTypeMap(compartment)»
+			«ENDFOR»
+			«FOR link : diagram.links»
+				«linksToTypeMap(link)»
+			«ENDFOR»
+			«FOR floatingLabel : diagram.eResource.allContents.filter(typeof (GenExternalNodeLabel)).toIterable»
+				«nodesToTypeMap(floatingLabel)»
+			«ENDFOR»
+«tripleSpace(1)»</diagramMappings>
+«tripleSpace(0)»</extension>
+	'''
+	def compartmentToTypeMap(GenCompartment it) '''
+		<mapping
+			humanReadableType="«title.replaceAll('Compartment', '')»"
+			type="«visualID»">
+		</mapping>
+	'''
+
+	def linksToTypeMap(GenLink it) '''
+		«FOR label : labels»
+			«linkLabelToTypeMap(label)»
+		«ENDFOR»
+	'''
+	
+	def linkLabelToTypeMap(GenLinkLabel it)'''
+	«««	it is used on a LabelVisibilityPreference...
+	«IF it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v | v.linkLabels.contains(it) && v.role != null].size != 0»
+		<mapping
+			humanReadableType="«it.eResource.allContents.filter(typeof (LabelVisibilityPreference)).filter[v|v.linkLabels.contains(it)].head.role»"
+			type="«visualID»">
+		</mapping>
+	«ENDIF»	
+	'''
+		
+	def nodesToTypeMap(GenExternalNodeLabel it)'''
+	«««	it is used on a ExtensionGenView...
+	«IF it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v | v.genView.contains(it) && v.superOwnedEditPart != null].size != 0»
+	«FOR extendedObject : it.eResource.allContents.filter(typeof (ExtendedGenView)).filter[v|v.genView.contains(it) && v.superOwnedEditPart != null].toIterable»
+				«««...to be extended as floatingLabel			
+				«IF "FloatingLabelEditPart".equals(extendedObject.name) »
+					<mapping
+						humanReadableType="Floating Label"
+						type="«visualID»">
+					</mapping>
+				«ENDIF»
+	«ENDFOR»
+	«ENDIF»	
 	'''
 }

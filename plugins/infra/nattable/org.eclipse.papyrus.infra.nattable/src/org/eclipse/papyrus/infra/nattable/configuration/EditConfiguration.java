@@ -17,8 +17,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-
-
 import org.eclipse.core.runtime.Assert;
 import org.eclipse.nebula.widgets.nattable.config.CellConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
@@ -116,18 +114,13 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			boolean configWithNewRegistry = configureWithNewFactory(table, configRegistry, current, i, declareOnColumn, columnAccumulator, rowAccumulator);
 			boolean configWithOldFactory = false;
 			if (!configWithNewRegistry) {
-				final String errorMessage = NLS.bind("You should use the new interface {0} to declare cell editor for {1}", ICellAxisConfiguration.class.getName(), current);
-				if (!this.messagesAlreadyDisplayed.contains(errorMessage)) {
-					Activator.log.warn(errorMessage);
-					this.messagesAlreadyDisplayed.add(errorMessage);
-				}
 				configWithOldFactory = configureWithOldFactory(table, configRegistry, modelManager, current, i, declareOnColumn, columnAccumulator, rowAccumulator);
 			}
 			// // 1. Try to find configuration in the new factory --ceFactory-- of type CellEdConfigurationFactory. If found, then configure and continue()!
 			// final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
 			// if (ceConfig != null) {
 			// if (existingEditorIds.contains(ceConfig.getConfigurationId())) {
-			//					org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
 			// } else {
 			// existingEditorIds.add(ceConfig.getConfigurationId());
 			// }
@@ -150,12 +143,12 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			// if (editor != null) {
 			// final String editorId = config.getEditorConfigId() + Integer.toString(i);
 			// if (existingEditorIds.contains(editorId)) {
-			//						org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
+			// org.eclipse.papyrus.infra.nattable.Activator.log.warn("Several editor have the same id"); //$NON-NLS-1$
 			// } else {
 			// existingEditorIds.add(editorId);
 			// }
 			//
-			//					final String cellId = editorId + "_cellId"; //$NON-NLS-1$
+			// final String cellId = editorId + "_cellId"; //$NON-NLS-1$
 			//
 			// final ICellPainter painter = config.getCellPainter(table, current);
 			// final String displayMode = config.getDisplayMode(table, current);
@@ -255,7 +248,7 @@ public class EditConfiguration extends DefaultEditConfiguration {
 			final CustomRowOverrideLabelAccumulator rowAccumulator) {
 		final CellAxisConfigurationRegistry ceFactory = CellAxisConfigurationRegistry.INSTANCE;
 		final ICellAxisConfiguration ceConfig = ceFactory.getFirstCellEditorConfiguration(table, current);
-		
+
 
 		if (ceConfig != null) {
 			final String editorId = ceConfig.getConfigurationId() + Integer.toString(indexOfTheAxis);

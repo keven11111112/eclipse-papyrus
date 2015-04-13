@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Céline Janssens (All4TEC) celine.janssens@all4tec.net - Bug 440230 : Margin Label
+ *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
@@ -17,6 +18,7 @@ package org.eclipse.papyrus.uml.diagram.common.editparts;
 import org.eclipse.draw2d.Label;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.BorderedBorderItemEditPart;
+import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.emf.appearance.helper.NameLabelIconHelper;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeNamedElementFigure;
@@ -33,7 +35,7 @@ import org.eclipse.uml2.uml.NamedElement;
  */
 public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart implements IUMLNamedElementEditPart {
 
-	
+
 	/**
 	 *
 	 * Constructor.
@@ -85,7 +87,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 		}
 		refreshBounds();
 	}
-	
+
 
 
 	/**
@@ -109,7 +111,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 		}
 
 		// Apply the font to the tagged Label
-		Label tagLabel = getNodeNamedElementFigure().getTaggedLabel();
+		WrappingLabel tagLabel = getNodeNamedElementFigure().getTaggedLabel();
 		if (tagLabel != null) {
 			tagLabel.setFont(font);
 		}
@@ -137,7 +139,7 @@ public abstract class BorderNamedElementEditPart extends BorderUMLNodeEditPart i
 			qualifiedNameLabel.setForegroundColor(color);
 		}
 		// Tagged Label
-		Label tagLabel = getNodeNamedElementFigure().getTaggedLabel();
+		WrappingLabel tagLabel = getNodeNamedElementFigure().getTaggedLabel();
 		if (tagLabel != null) {
 			tagLabel.setForegroundColor(color);
 		}

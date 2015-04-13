@@ -21,11 +21,7 @@ import java.util.Arrays;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-import java.util.Set;
 
-import org.eclipse.core.runtime.Platform;
-import org.eclipse.papyrus.junit.framework.classification.ClassificationConfig;
-import org.eclipse.papyrus.junit.framework.classification.TestCategory;
 import org.junit.runners.Suite;
 import org.junit.runners.model.FrameworkField;
 import org.junit.runners.model.InitializationError;
@@ -47,17 +43,6 @@ public class AllTestsRunner extends Suite {
 	 */
 	public AllTestsRunner(final Class<?> clazz) throws InitializationError {
 		super(clazz, getSuites(clazz));
-
-		for (String arg : Platform.getApplicationArgs()) {
-			if (arg.contains("-testConfig=")) {
-				String configName = arg.substring("-testConfig=".length());
-				Set<TestCategory> testsConfig = ClassificationConfig.valueOf(configName);
-				if (testsConfig != null) {
-					ClassificationConfig.setTestsConfiguration(testsConfig);
-				}
-				break;
-			}
-		}
 	}
 
 	/**

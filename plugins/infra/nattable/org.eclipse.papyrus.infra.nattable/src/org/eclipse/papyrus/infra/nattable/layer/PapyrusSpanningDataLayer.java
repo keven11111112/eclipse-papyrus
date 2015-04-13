@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
+ * Copyright (c) 2014-2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Camille Letavernier - CEA LIST - Bug 464168 - Use the Context's EditingDomain
  *
  *****************************************************************************/
 
@@ -32,7 +33,7 @@ import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
  */
 public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 
-	private TransactionalEditingDomain tableDomain;
+	private TransactionalEditingDomain contextDomain;
 
 	private INattableModelManager manager;
 
@@ -43,9 +44,9 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	 * @param defaultColumnWidth
 	 * @param defaultRowHeight
 	 */
-	public PapyrusSpanningDataLayer(final TransactionalEditingDomain tableDomain, ISpanningDataProvider dataProvider, int defaultColumnWidth, int defaultRowHeight) {
+	public PapyrusSpanningDataLayer(final TransactionalEditingDomain contextDomain, ISpanningDataProvider dataProvider, int defaultColumnWidth, int defaultRowHeight) {
 		super(dataProvider, defaultColumnWidth, defaultRowHeight);
-		this.tableDomain = tableDomain;
+		this.contextDomain = contextDomain;
 
 	}
 
@@ -54,25 +55,25 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 	 *
 	 * @param dataProvider
 	 */
-	public PapyrusSpanningDataLayer(final TransactionalEditingDomain tableDomain, ISpanningDataProvider dataProvider) {
+	public PapyrusSpanningDataLayer(final TransactionalEditingDomain contextDomain, ISpanningDataProvider dataProvider) {
 		super(dataProvider);
-		this.tableDomain = tableDomain;
+		this.contextDomain = contextDomain;
 	}
 
 
 	/**
 	 * Constructor.
 	 *
-	 * @param tableEditingDomain
+	 * @param contextEditingDomain
 	 * @param manager
 	 * @param spanProvider
 	 * @param defaultCellWidth
 	 * @param defaultCellHeight
 	 */
-	public PapyrusSpanningDataLayer(TransactionalEditingDomain tableEditingDomain, INattableModelManager manager,
+	public PapyrusSpanningDataLayer(TransactionalEditingDomain contextEditingDomain, INattableModelManager manager,
 			ISpanningDataProvider spanProvider, int defaultCellWidth, int defaultCellHeight) {
 		super(spanProvider, defaultCellWidth, defaultCellHeight);
-		this.tableDomain = tableEditingDomain;
+		this.contextDomain = contextEditingDomain;
 		this.manager = manager;
 	}
 
@@ -90,7 +91,7 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 		final List<Integer> columnSpan = ArrayUtil.asIntegerList(manager.getBodyLayerStack().getSelectionLayer().getSelectedColumnPositions());
 		final List<Integer> rowSpanRange = ArrayUtil.asList(((Range) rowSpan.get(0)).getMembers().toArray(new Integer[0]));
 
-		RecordingCommand recordUpdate = new RecordingCommand(this.tableDomain) {
+		RecordingCommand recordUpdate = new RecordingCommand(this.contextDomain) {
 
 			@Override
 			protected void doExecute() {
@@ -103,6 +104,6 @@ public class PapyrusSpanningDataLayer extends SpanningDataLayer {
 				}
 			}
 		};
-		this.tableDomain.getCommandStack().execute(recordUpdate);
+		this.contextDomain.getCommandStack().execute(recordUpdate);
 	}
 }

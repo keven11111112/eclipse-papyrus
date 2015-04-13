@@ -18,8 +18,6 @@ import org.eclipse.papyrus.C_Cpp.ConstInit;
 import org.eclipse.papyrus.C_Cpp.Friend;
 import org.eclipse.papyrus.C_Cpp.Inline;
 import org.eclipse.papyrus.C_Cpp.Virtual;
-import org.eclipse.papyrus.acceleo.AcceleoDriver;
-import org.eclipse.papyrus.acceleo.AcceleoException;
 import org.eclipse.papyrus.cpp.profile.StdStereo;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.cpp.CommandSupport;
@@ -135,12 +133,6 @@ public class CppOperationPanel extends CppAbstractPanel {
 		isFriend = createButton("isFriend", this, isConst);
 		isCreate = createButton("isCreate", this, isFriend);
 		isDestroy = createButton("isDestroy", this, isCreate);
-		verifyAcceleo = new Button(this, SWT.PUSH);
-		verifyAcceleo.setText("verify embedded Acceleo");
-		FormData dataVA = new FormData();
-		dataVA.left = new FormAttachment(isDestroy, H_SPACE);
-		dataVA.top = new FormAttachment(0, H_SPACE);
-		verifyAcceleo.setLayoutData(dataVA);
 
 		// /////////////////////////////////////////////////////////////////////
 		// Add checkboxes listeners
@@ -160,20 +152,6 @@ public class CppOperationPanel extends CppAbstractPanel {
 
 			@Override
 			public void widgetDefaultSelected(SelectionEvent e) {
-			}
-		});
-
-		verifyAcceleo.addSelectionListener(new SelectionAdapter() {
-
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				try {
-					AcceleoDriver.evaluate(docBody.get(), selectedOperation, null);
-					openInformation("Validation information", "no errors");
-				}
-				catch (AcceleoException err) {
-					openInformation("Validation information", err.getMessage());
-				}
 			}
 		});
 
