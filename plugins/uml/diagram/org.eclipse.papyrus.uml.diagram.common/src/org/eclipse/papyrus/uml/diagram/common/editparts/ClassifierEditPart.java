@@ -9,7 +9,7 @@
  * Contributors:
  *		Thibault Landre (Atos Origin) - Initial API and implementation
  *		Mickaël ADAM (ALL4TEC) - mickael.adam@all4tec.net - moved class behavior to classEditPart
- *
+ *      Vincent Lorenzo (CEA-LIST)  - vincent.lorenzo@cea.fr - 464129: [Class Diagram] Italic font style not kept after re-opening any diagrams - italic is now done with CSS
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editparts;
 
@@ -17,7 +17,6 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.gmf.runtime.notation.FontStyle;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.common.helper.BasicClassifierCompartmentLayoutHelper;
-import org.eclipse.swt.SWT;
 import org.eclipse.swt.graphics.FontData;
 import org.eclipse.uml2.uml.Classifier;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -82,13 +81,20 @@ public abstract class ClassifierEditPart extends RoundedCompartmentEditPart {
 	 */
 	@Override
 	protected FontData getFontData(FontStyle style) {
-		FontData data = super.getFontData(style);
-		if (isAbstract) {
-			data.setStyle(data.getStyle() | SWT.ITALIC); // Force the Italic flag
-		} else {
-			data.setStyle(data.getStyle() & ~SWT.ITALIC); // Remove the Italic flag
-		}
-		return data;
+		return super.getFontData(style);
+
+		//next line commented for bug  464129: [Class Diagram] Italic font style not kept after re-opening any diagrams
+		// https://bugs.eclipse.org/bugs/show_bug.cgi?id=464129
+		//new implementation use CSS (umlBase.css)
+		
+		
+		// FontData data = super.getFontData(style);
+		// if (isAbstract) {
+		// data.setStyle(data.getStyle() | SWT.ITALIC); // Force the Italic flag
+		// } else {
+		// data.setStyle(data.getStyle() & ~SWT.ITALIC); // Remove the Italic flag
+		// }
+		// return data;
 	}
 
 }
