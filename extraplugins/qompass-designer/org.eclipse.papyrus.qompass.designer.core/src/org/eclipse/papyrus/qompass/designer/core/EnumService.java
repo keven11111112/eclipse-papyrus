@@ -12,12 +12,11 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.acceleo;
+package org.eclipse.papyrus.qompass.designer.core;
 
 import java.util.HashMap;
 import java.util.Map;
 
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;

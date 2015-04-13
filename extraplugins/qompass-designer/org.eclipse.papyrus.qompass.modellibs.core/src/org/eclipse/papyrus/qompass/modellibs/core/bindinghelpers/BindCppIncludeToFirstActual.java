@@ -17,9 +17,9 @@ package org.eclipse.papyrus.qompass.modellibs.core.bindinghelpers;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
+import org.eclipse.papyrus.qompass.designer.core.templates.TextTemplateBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -50,9 +50,9 @@ public class BindCppIncludeToFirstActual implements PostCopyListener, IBindingHe
 				Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
 				if ((actual != null) && (cppInclude != null)) {
 					TransformationContext.classifier = targetCl;
-					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), actual, null);
-					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), actual, null);
-					String newHeader = AcceleoDriverWrapper.evaluate(cppInclude.getHeader(), actual, null);
+					String newBody = TextTemplateBinding.bind(cppInclude.getBody(), actual, null);
+					String newPreBody = TextTemplateBinding.bind(cppInclude.getPreBody(), actual, null);
+					String newHeader = TextTemplateBinding.bind(cppInclude.getHeader(), actual, null);
 					cppInclude.setBody(newBody);
 					cppInclude.setPreBody(newPreBody);
 					cppInclude.setHeader(newHeader);

@@ -13,12 +13,13 @@
  *
  *****************************************************************************/
 
-package org.eclipse.papyrus.qompass.designer.core.acceleo;
+package org.eclipse.papyrus.qompass.designer.core;
 
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.common.util.UniqueEList;
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.papyrus.C_Cpp.External;
@@ -47,17 +48,20 @@ import org.eclipse.uml2.uml.util.UMLUtil;
 
 
 /**
- * Collection of utility functions. In contrast to core.Utils, it is chiefly used by Acceleo
- * scripts
- *
- * @author ansgar
- *
+ * Collection of utility functions. In contrast to core.Utils, it is chiefly used by xtend classes
  */
-
 public class UMLTool {
 
 	private static final String UNDERSCORE = "_"; //$NON-NLS-1$
 
+	public static <T extends EObject> EList<T> reverse(EList<T> list) {
+		EList<T> reverseList = new BasicEList<T>();
+		for (int i=list.size()-1; i>=0; i--) {
+			reverseList.add(list.get(i));
+		}
+		return reverseList;
+	}
+	
 	/**
 	 * @param operation
 	 * @return all in and inout parameters of an operation

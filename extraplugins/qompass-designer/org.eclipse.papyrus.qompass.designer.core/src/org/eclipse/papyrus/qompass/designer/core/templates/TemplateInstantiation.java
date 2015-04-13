@@ -88,6 +88,7 @@ public class TemplateInstantiation {
 		// set template instantiation parameter. Used by Acceleo templates to get relation between
 		// formal and actual parameters
 		TransformationContext.setTemplateInstantiation(this);
+		TransformationContext.copier = copier;
 
 		copier.setPackageTemplate(packageTemplate, boundPackage);
 		// some parameters of the package template may not be owned. Thus, an additional package
