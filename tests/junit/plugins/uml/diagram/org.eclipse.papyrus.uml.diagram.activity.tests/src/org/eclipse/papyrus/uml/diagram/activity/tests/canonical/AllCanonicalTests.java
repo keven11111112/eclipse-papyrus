@@ -28,7 +28,8 @@ TestActivityChildNodeInStructuredActivity.class,
 TestActivityGroup.class,
 TestDropObjects.class,
 TestCommentLink.class,
-TestSemanticContainerFeature.class
+TestSemanticContainerFeature.class,
+TestLinks.class
 })
 public class AllCanonicalTests {
 
