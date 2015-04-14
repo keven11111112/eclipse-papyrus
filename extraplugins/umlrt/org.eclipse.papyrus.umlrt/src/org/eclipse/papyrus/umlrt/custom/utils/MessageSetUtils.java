@@ -49,4 +49,20 @@ public class MessageSetUtils {
 		return null;
 	}
 
+	/**
+	 * @param newName
+	 * @return
+	 */
+	public static String computeInterfaceInName(String protocolName) {
+		return protocolName;
+	}
+
+	public static String computeInterfaceOutName(String protocolName) {
+		return protocolName + "~";
+	}
+
+	public static String computeInterfaceInOutName(String protocolName) {
+		return protocolName + "IO";
+	}
+
 }

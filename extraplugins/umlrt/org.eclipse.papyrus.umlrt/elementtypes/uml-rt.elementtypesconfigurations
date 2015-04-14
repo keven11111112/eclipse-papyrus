@@ -107,6 +107,12 @@
         iconPath="/icons/full/obj16/Package.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Package</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_JvApIOJyEeSsD4oQJgVJLQ"
+        name="org.eclipse.papyrus.umlrt.custom.advice.ProtocolContainerEditHelperAdvice"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.ProtocolContainerEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.ProtocolContainerEditHelperAdvice"
+        inheritance="all"/>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
         xmi:id="_ubJcwqeUEeSUR5jX0TaAcA">
