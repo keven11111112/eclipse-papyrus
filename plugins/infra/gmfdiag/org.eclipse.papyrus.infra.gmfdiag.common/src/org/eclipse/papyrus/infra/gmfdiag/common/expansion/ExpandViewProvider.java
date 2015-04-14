@@ -55,7 +55,7 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 		super();
 		initDiagramType();
 		initGraphicalTypeRegistry();
-		diagramExpansionRegistry = new DiagramExpansionsRegistry();
+		diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 	}
 
 

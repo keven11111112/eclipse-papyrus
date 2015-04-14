@@ -108,6 +108,13 @@
             priority="1"
             startKind="lazy">
       </service>
+      <service
+            classname="org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton"
+            description="It provides the reistry of diagram expansion"
+            id="org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionService"
+            priority="1"
+            startKind="lazy">
+      </service>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">

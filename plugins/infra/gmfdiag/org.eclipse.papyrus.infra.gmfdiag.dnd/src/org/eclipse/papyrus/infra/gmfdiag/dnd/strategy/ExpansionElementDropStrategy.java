@@ -37,6 +37,7 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
 import org.eclipse.papyrus.commands.wrappers.GMFtoGEFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.ChildrenListRepresentation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
@@ -59,7 +60,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 	 *
 	 */
 	public ExpansionElementDropStrategy() {
-		this.diagramExpansionRegistry = new DiagramExpansionsRegistry();
+		this.diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 	}
 	public String getLabel() {
 		return "Expansion element drag and drop";

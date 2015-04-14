@@ -25,6 +25,7 @@
       <packagedElement xmi:type="uml:Class" xmi:id="_dOkloNR7EeSRNI7img_HuA" name="Expanded diagrams viewed with original editor"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_awNtwNelEeS6Ldj4lOPYhg" name="CSS driven"/>
       <packagedElement xmi:type="uml:Class" xmi:id="_k0ZvgNelEeS6Ldj4lOPYhg" name="View point relation"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_YVqh0OG0EeSnB-BHGWjC_A" name="Loading at runtime"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_ubgMw9E7EeSLjPxDpRV9AQ" name="UseCases">
       <ownedComment xmi:type="uml:Comment" xmi:id="_UMznENFCEeSxf_hKmhrahA" annotatedElement="_ubgMw9E7EeSLjPxDpRV9AQ"/>
@@ -75,6 +76,17 @@
     <packagedElement xmi:type="uml:Model" xmi:id="_ubgMyNE7EeSLjPxDpRV9AQ" name="Test">
       <packagedElement xmi:type="uml:Dependency" xmi:id="_ubgMydE7EeSLjPxDpRV9AQ" name="Dependency1" client="_ubgMyNE7EeSLjPxDpRV9AQ" supplier="_ubgMw9E7EeSLjPxDpRV9AQ"/>
       <packagedElement xmi:type="uml:Dependency" xmi:id="_ubgMytE7EeSLjPxDpRV9AQ" name="Dependency2" client="_ubgMyNE7EeSLjPxDpRV9AQ" supplier="_ubgMxtE7EeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_-We7oOG2EeSJG5UikeIXVQ" name="T001-Load ExpansionModel">
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_B3DtEOKAEeSwE5hduTH6nQ" name="init_DiagramExpansionRegistry"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_D_XdYOKAEeSwE5hduTH6nQ" name="load_BadDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_FpjHQOKAEeSwE5hduTH6nQ" name="load_BadelementTypeDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_Hz_lkOKAEeSwE5hduTH6nQ" name="load_BadProviderDiagramExpansion"/>
+        <nestedClassifier xmi:type="uml:Activity" xmi:id="_fbBhQOKAEeSwE5hduTH6nQ" name="load_DiagramExpansion"/>
+      </packagedElement>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_iHx0wOG3EeSJG5UikeIXVQ" client="_-We7oOG2EeSJG5UikeIXVQ" supplier="_ajYZgNFAEeSLjPxDpRV9AQ"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_yR-hwOHTEeSJG5UikeIXVQ" client="_-We7oOG2EeSJG5UikeIXVQ" supplier="_YVqh0OG0EeSnB-BHGWjC_A"/>
+      <packagedElement xmi:type="uml:Activity" xmi:id="_HskbEOHUEeSJG5UikeIXVQ" name="T002-Add a compartment"/>
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_W-9AAOHUEeSJG5UikeIXVQ" client="_HskbEOHUEeSJG5UikeIXVQ" supplier="_yrPMQNRfEeSRNI7img_HuA"/>
     </packagedElement>
     <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_ubgMy9E7EeSLjPxDpRV9AQ">
       <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_8qYtUNE7EeSLjPxDpRV9AQ" source="PapyrusVersion">
@@ -155,4 +167,10 @@
   <Requirements:Requirement xmi:id="_k0aWkNelEeS6Ldj4lOPYhg" text="The new specialization editor must benefit of all specializations." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_090" base_Class="_k0ZvgNelEeS6Ldj4lOPYhg"/>
   <Requirements:Requirement xmi:id="_EzmV8N97EeS3V7Bu6N14fQ" text="When the model is done, the ystem has to ensure that it can be correctly interpreted." id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061" base_Class="_EzirkN97EeS3V7Bu6N14fQ"/>
   <Requirements:Requirement xmi:id="_i-ZOsN99EeS3V7Bu6N14fQ" text="It must be able to reuse rperesentations from existed diagrams" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_015" base_Class="_i-WycN99EeS3V7Bu6N14fQ"/>
+  <Requirements:Requirement xmi:id="_YV3WIOG0EeSnB-BHGWjC_A" text="An expansion model must be able to load during runtime, not only with extension point.&#xD;&#xA;It allow to be tested by Junit Tests.&#xD;&#xA;" id="org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100" base_Class="_YVqh0OG0EeSnB-BHGWjC_A"/>
+  <Requirements:TestCase xmi:id="_F3UP0OG3EeSJG5UikeIXVQ" base_Behavior="_-We7oOG2EeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_jdx-YOG3EeSJG5UikeIXVQ" base_Abstraction="_iHx0wOG3EeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_zfzm0OHTEeSJG5UikeIXVQ" base_Abstraction="_yR-hwOHTEeSJG5UikeIXVQ"/>
+  <Requirements:TestCase xmi:id="_R-xDoOHUEeSJG5UikeIXVQ" base_Behavior="_HskbEOHUEeSJG5UikeIXVQ"/>
+  <Requirements:Verify xmi:id="_X-zTcOHUEeSJG5UikeIXVQ" base_Abstraction="_W-9AAOHUEeSJG5UikeIXVQ"/>
 </xmi:XMI>

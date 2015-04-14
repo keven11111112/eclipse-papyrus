@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
@@ -58,7 +59,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	/** Default constructor */
 	public ExpandEditPartProvider() {
 		super();
-		this.diagramExpansionRegistry = new DiagramExpansionsRegistry();
+		this.diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 
 	}
 

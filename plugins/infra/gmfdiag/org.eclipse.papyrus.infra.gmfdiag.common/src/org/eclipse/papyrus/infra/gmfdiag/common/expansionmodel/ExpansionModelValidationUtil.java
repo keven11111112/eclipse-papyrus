@@ -20,7 +20,10 @@ import javax.naming.Context;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelValidator;
+import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
 /**
  * This utility class has been added in order to ensure that model is well built. 
@@ -29,7 +32,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.Expansionmod
  *
  */
 public class ExpansionModelValidationUtil {
-	
+
 	/**
 	 * This method is used to ensure that properties are filled
 	 * @param abstractRepresentation the {@link AbstractRepresentation} that is validate
@@ -48,10 +51,111 @@ public class ExpansionModelValidationUtil {
 								ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
 								ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
 										+ abstractRepresentation.getName() + "' has no kind , no editpartQualifiedName, no viewFactory.",
-								new Object[] { abstractRepresentation }));
+										new Object[] { abstractRepresentation }));
 					}
 				}
-				
+
+			}
+		}
+		return valid;
+	}
+
+	/**
+	 *  this method is used to verify if provider and editpart can be loaded
+	 * @param abstractRepresentation
+	 * @param diagnostic
+	 * @param context
+	 * @return
+	 */
+	public static boolean   validate_loadclasses(AbstractRepresentation abstractRepresentation,DiagnosticChain diagnostic, Map context) {
+		boolean valid = true;
+		if (diagnostic != null) {
+			if(abstractRepresentation.getEditPartQualifiedName()!=null &&!("".equals(abstractRepresentation.getEditPartQualifiedName().trim()))){
+				Class<?> loadedClass=ClassLoaderHelper.loadClass( abstractRepresentation.getEditPartQualifiedName());
+				if(loadedClass==null){
+					valid = false;
+					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+									+ abstractRepresentation.getName() + "' references an edit part that does not exist "+abstractRepresentation.getEditPartQualifiedName(),
+									new Object[] { abstractRepresentation }));
+
+				}
+
+			}
+			if(abstractRepresentation.getViewFactory()!=null &&!("".equals(abstractRepresentation.getViewFactory().trim()))){
+				Class<?> loadedClass=ClassLoaderHelper.loadClass( abstractRepresentation.getViewFactory());
+				if(loadedClass==null){
+					valid = false;
+					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+									+ abstractRepresentation.getName() + "' references a view factory that not exist "+abstractRepresentation.getViewFactory(),
+									new Object[] { abstractRepresentation }));
+
+				}
+			}
+		}
+		return valid;
+	}
+	/**
+	 *  this method is used to verify if provider and editpart can be loaded
+	 * @param abstractRepresentation
+	 * @param diagnostic
+	 * @param context
+	 * @return
+	 */
+	public static boolean   validate_loadclasses(RepresentationKind abstractRepresentation,DiagnosticChain diagnostic, Map context) {
+		boolean valid = true;
+		if (diagnostic != null) {
+			if(abstractRepresentation.getEditPartQualifiedName()!=null ||!("".equals(abstractRepresentation.getEditPartQualifiedName().trim()))){
+				Class<?> loadedClass=ClassLoaderHelper.loadClass( abstractRepresentation.getEditPartQualifiedName());
+				if(loadedClass==null){
+					valid = false;
+					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+									+ abstractRepresentation.getName() + "' references an edit part that does not exist "+abstractRepresentation.getEditPartQualifiedName(),
+									new Object[] { abstractRepresentation }));
+
+				}
+
+			}
+			if(abstractRepresentation.getViewFactory()!=null ||!("".equals(abstractRepresentation.getViewFactory().trim()))){
+				Class<?> loadedClass=ClassLoaderHelper.loadClass( abstractRepresentation.getViewFactory());
+				if(loadedClass==null){
+					valid = false;
+					diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+							ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+							ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+									+ abstractRepresentation.getName() + "' references a view factory that does not exist "+abstractRepresentation.getViewFactory(),
+									new Object[] { abstractRepresentation }));
+
+				}
+			}
+		}
+		return valid;
+	}
+	/**
+	 *  this method is used to verify if the element type  exists.
+	 * @param abstractRepresentation
+	 * @param diagnostic
+	 * @param context
+	 * @return
+	 */
+	public static boolean   validate_ElementType(Representation abstractRepresentation,DiagnosticChain diagnostic, Map context) {
+		boolean valid = true;
+		String elementTypeID=((Representation)abstractRepresentation).getGraphicalElementType();
+		if( elementTypeID!=null && elementTypeID!=""){
+			final IElementType elementType=ElementTypeRegistry.getInstance().getType(elementTypeID);
+			if( elementType==null){
+				valid = false;
+				diagnostic.add(new BasicDiagnostic(Diagnostic.ERROR,
+						ExpansionmodelValidator.DIAGNOSTIC_SOURCE,
+						ExpansionmodelValidator.ABSTRACT_REPRESENTATION__VALIDATE, "The representation '"
+								+ abstractRepresentation.getName() + "' references a element type that does not exist "+abstractRepresentation.getGraphicalElementType(),
+								new Object[] { abstractRepresentation }));
+
 			}
 		}
 		return valid;

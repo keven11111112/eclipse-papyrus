@@ -17,6 +17,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.Expansionmod
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_Based_RepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.InducedRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.RepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.RepresentationKindImpl;
 
 /**
  *  this class is overloaded in order to add the implementation of the method validate
@@ -55,5 +56,15 @@ public class CustomExpansionmodelFactoryImpl extends ExpansionmodelFactoryImpl {
 	public GMFT_Based_Representation createGMFT_Based_Representation() {
 		GMFT_Based_RepresentationImpl gmfT_Based_Representation = new CustomGMFT_Based_RepresentationImpl();
 		return gmfT_Based_Representation;
+	}
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.ExpansionmodelFactoryImpl#createRepresentationKind()
+	 *
+	 * @return
+	 */
+	@Override
+	public RepresentationKind createRepresentationKind() {
+		RepresentationKindImpl representationKind = new CustomRepresentationKindImpl();
+		return representationKind;
 	}
 }

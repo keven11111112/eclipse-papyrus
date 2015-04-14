@@ -34,6 +34,9 @@ public class CustomGMFT_Based_RepresentationImpl extends GMFT_Based_Representati
 	 */
 	@Override
 	public boolean validate(DiagnosticChain diagnostic, Map context) {
-		return ExpansionModelValidationUtil.validate_facrtories(this, diagnostic, context);
+		boolean result= ExpansionModelValidationUtil.validate_facrtories(this, diagnostic, context);
+		result= result&&ExpansionModelValidationUtil.validate_loadclasses(this, diagnostic, context);
+		return result;
 	}
+	
 }

@@ -38,7 +38,7 @@ public class InducedRepresentationPolicyProvider extends AbstractProvider implem
 	 *
 	 */
 	public InducedRepresentationPolicyProvider() {
-		this.diagramExpansionRegistry = new DiagramExpansionsRegistry();
+		this.diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 	}
 
 	/**

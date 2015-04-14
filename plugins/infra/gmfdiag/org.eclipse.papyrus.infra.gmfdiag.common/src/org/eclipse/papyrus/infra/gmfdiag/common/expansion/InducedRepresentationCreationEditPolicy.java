@@ -57,7 +57,7 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 	 */
 	public InducedRepresentationCreationEditPolicy() {
 		super();
-		this.diagramExpansionRegistry = new DiagramExpansionsRegistry();
+		this.diagramExpansionRegistry = DiagramExpansionSingleton.getInstance().getDiagramExpansionRegistry();
 	}
 
 	/**
