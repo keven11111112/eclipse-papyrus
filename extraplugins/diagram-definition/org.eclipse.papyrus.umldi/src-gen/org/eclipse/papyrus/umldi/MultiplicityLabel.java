@@ -11,40 +11,41 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Multiplicity Label</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getPropertyEdge <em>Property Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getAssociationEdge <em>Association Edge</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getPropertyEdge <em>Property Edge</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getConnectorEdge <em>Connector Edge</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getAssociationEdge <em>Association Edge</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getMultiplicityLabel()
  * @model
  * @generated
  */
 public interface MultiplicityLabel extends UmlLabel {
-
 	/**
 	 * Returns the value of the '<em><b>Property Edge</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.PropertyEdge#getMultiplicityLabel <em>Multiplicity Label</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Property Edge</em>' container reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Property Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Property Edge</em>' container reference.
 	 * @see #setPropertyEdge(PropertyEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getMultiplicityLabel_PropertyEdge()
@@ -58,30 +59,61 @@ public interface MultiplicityLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getPropertyEdge <em>Property Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Property Edge</em>' container reference.
+	 * @param value the new value of the '<em>Property Edge</em>' container reference.
 	 * @see #getPropertyEdge()
 	 * @generated
 	 */
 	void setPropertyEdge(PropertyEdge value);
 
 	/**
-	 * Returns the value of the '<em><b>Association Edge</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndMultiplicityLabel
-	 * <em>End Multiplicity Label</em>}'.
+	 * Returns the value of the '<em><b>Connector Edge</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConnectorEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Connector Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
+	 * @return the value of the '<em>Connector Edge</em>' container reference.
+	 * @see #setConnectorEdge(ConnectorEdge)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getMultiplicityLabel_ConnectorEdge()
+	 * @see org.eclipse.papyrus.umldi.ConnectorEdge#getEndMultiplicityLabel
+	 * @model opposite="endMultiplicityLabel" transient="false" ordered="false"
+	 * @generated
+	 */
+	ConnectorEdge getConnectorEdge();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getConnectorEdge <em>Connector Edge</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Connector Edge</em>' container reference.
+	 * @see #getConnectorEdge()
+	 * @generated
+	 */
+	void setConnectorEdge(ConnectorEdge value);
+
+	/**
+	 * Returns the value of the '<em><b>Association Edge</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndMultiplicityLabel <em>End Multiplicity Label</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Association Edge</em>' container reference.
 	 * @see #setAssociationEdge(AssociationEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getMultiplicityLabel_AssociationEdge()
@@ -95,11 +127,10 @@ public interface MultiplicityLabel extends UmlLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getAssociationEdge <em>Association Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Association Edge</em>' container reference.
+	 * @param value the new value of the '<em>Association Edge</em>' container reference.
 	 * @see #getAssociationEdge()
 	 * @generated
 	 */
 	void setAssociationEdge(AssociationEdge value);
+
 } // MultiplicityLabel

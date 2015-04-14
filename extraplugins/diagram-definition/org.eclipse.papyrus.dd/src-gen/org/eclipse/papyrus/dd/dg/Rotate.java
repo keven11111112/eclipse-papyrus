@@ -15,19 +15,19 @@ import org.eclipse.papyrus.dd.dc.Point;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Rotate</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * Rotate is a kind of transform that rotates a graphical element by a given angle about a given center point in the x-y coordinate system.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.Rotate#getAngle <em>Angle</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.Rotate#getCenter <em>Center</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Rotate#getAngle <em>Angle</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Rotate#getCenter <em>Center</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getRotate()
  * @model
  * @generated
@@ -53,9 +53,7 @@ public interface Rotate extends Transform {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Rotate#getAngle <em>Angle</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Angle</em>' attribute.
+	 * @param value the new value of the '<em>Angle</em>' attribute.
 	 * @see #getAngle()
 	 * @generated
 	 */
@@ -80,9 +78,7 @@ public interface Rotate extends Transform {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Rotate#getCenter <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Center</em>' containment reference.
+	 * @param value the new value of the '<em>Center</em>' containment reference.
 	 * @see #getCenter()
 	 * @generated
 	 */

@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Duration Observation Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class DurationObservationShapeImpl extends NamedShapeImpl implements DurationObservationShape {
-
+public class DurationObservationShapeImpl extends ElementShapeImpl implements DurationObservationShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DurationObservationShapeImpl() {
@@ -40,11 +36,11 @@ public class DurationObservationShapeImpl extends NamedShapeImpl implements Dura
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DURATION_OBSERVATION_SHAPE;
 	}
+
 } //DurationObservationShapeImpl

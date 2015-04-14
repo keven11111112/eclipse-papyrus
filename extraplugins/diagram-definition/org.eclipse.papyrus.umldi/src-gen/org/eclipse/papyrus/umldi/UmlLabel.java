@@ -17,8 +17,8 @@ import org.eclipse.papyrus.dd.di.Shape;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Uml Label</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlLabel()
  * @model abstract="true"
  * @generated

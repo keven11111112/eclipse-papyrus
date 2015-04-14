@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <ecore:EPackage xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" name="dg" nsURI="http://www.omg.org/spec/DD/20110901/DG" nsPrefix="dg">
+  <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+    <details key="originalName" value="DG"/>
+  </eAnnotations>
   <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
     <details key="documentation" value="The Diagram Graphics (DG) package contains a model of graphical primitives that can be instantiated when mapping from a language abstract syntax models and diagram interchange (DI) models to visual presentations. The mapping effectively defines the concrete syntax of a language. This specification does not restrict how the mappings are done, or what languages are used to define them."/>
   </eAnnotations>
@@ -12,6 +15,9 @@
       <details key="documentation" value="Canvas is a kind of group that has bounds."/>
     </eAnnotations>
     <eOperations name="canvasCannotHaveTransforms" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="canvas_cannot_have_transforms"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="transform->isEmpty()"/>
       </eAnnotations>
@@ -55,6 +61,9 @@
       <details key="documentation" value="GraphicalElement is the abstract superclass of all graphical elements that can be nested in a canvas."/>
     </eAnnotations>
     <eOperations name="referencedClippathHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_clippath_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="clipPath->notEmpty() implies clipPath.id->notEmpty()"/>
       </eAnnotations>
@@ -108,6 +117,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Definition" abstract="true">
     <eOperations name="idCannotBeEmpty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="id_cannot_be_empty"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="id->notEmpty() implies id.size() > 0"/>
       </eAnnotations>
@@ -165,6 +177,9 @@
       <details key="documentation" value="Style contains formatting properties that affect the appearance or style of graphical elements."/>
     </eAnnotations>
     <eOperations name="validFontSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_font_size"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="fontSize >=  0"/>
       </eAnnotations>
@@ -187,6 +202,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validFillOpacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_fill_opacity"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="fillOpacity >=  0 and fillOpacity &lt;=1"/>
       </eAnnotations>
@@ -209,6 +227,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validStrokeWidth" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_stroke_width"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="strokeWidth >=  0"/>
       </eAnnotations>
@@ -231,6 +252,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validDashLengthSize" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_dash_length_size"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="strokeDashLength->size().mod(2) = 0"/>
       </eAnnotations>
@@ -253,6 +277,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validStrokeOpacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_stroke_opacity"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="strokeOpacity >=  0 and strokeOpacity &lt;=1"/>
       </eAnnotations>
@@ -343,6 +370,9 @@
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Paint">
     <eOperations name="referencedPaintServerHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_paint_server_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="paintServer->notEmpty() implies paintServer.id->notEmpty()"/>
       </eAnnotations>
@@ -400,6 +430,9 @@
       <details key="documentation" value="Circle is a graphical element that defines a circular shape with a given center point and a radius."/>
     </eAnnotations>
     <eOperations name="nonNegativeRadius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="non_negative_radius"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="radius >= 0"/>
       </eAnnotations>
@@ -610,6 +643,9 @@
       <details key="documentation" value="GradientStop defines a color transition along the distance from a gradient's start to its end offsets."/>
     </eAnnotations>
     <eOperations name="validOffset" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_offset"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="offset>=0 and offset&lt;=1"/>
       </eAnnotations>
@@ -632,6 +668,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validOpacity" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_opacity"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="opacity>=0 and opacity&lt;=1"/>
       </eAnnotations>
@@ -677,6 +716,9 @@
       <details key="documentation" value="Image is a graphical element that defines a shape that paints an image with a given URL within given bounds."/>
     </eAnnotations>
     <eOperations name="sourceCannotBeEmpty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="source_cannot_be_empty"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="source->notEmpty() implies source.size() > 0"/>
       </eAnnotations>
@@ -737,6 +779,9 @@
       <details key="documentation" value="MarkedElement is a graphic element that can be decorated at its vertices with markers (e.g. arrowheads)."/>
     </eAnnotations>
     <eOperations name="referencedStartMarkerHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_start_marker_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="startMarker->notEmpty() implies startMarker.id->notEmpty()"/>
       </eAnnotations>
@@ -756,6 +801,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="referencedMidMarkerHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_mid_marker_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="midMarker->notEmpty() implies midMarker.id->notEmpty()"/>
       </eAnnotations>
@@ -775,6 +823,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="referencedEndMarkerHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_end_marker_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="endMarker->notEmpty() implies endMarker.id->notEmpty()"/>
       </eAnnotations>
@@ -834,6 +885,9 @@
       <details key="documentation" value="LinearGradient is a kind of gradient that fills a graphical element by smoothly changing color values along a vector."/>
     </eAnnotations>
     <eOperations name="validGradientVector" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_gradient_vector"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="start.x>=0 and start.x&lt;=1 and end.x>=0 and end.x&lt;=1 and start.y>=0 and start.y&lt;=1 and end.y>=0 and end.y&lt;=1"/>
       </eAnnotations>
@@ -925,6 +979,9 @@
       <details key="documentation" value="Path is a marked element that defines a custom shape whose geometry is specified with a sequence of path commands."/>
     </eAnnotations>
     <eOperations name="firstCommandMustBeMove" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="first_command_must_be_move"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="command->first().oclIsKindOf(MoveTo)"/>
       </eAnnotations>
@@ -994,6 +1051,9 @@
       <details key="documentation" value="RadialGradient is a kind of gradient that fills a graphical element by smoothly changing color values in a circle."/>
     </eAnnotations>
     <eOperations name="validCenterPoint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_center_point"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="centerX>=0 and centerX&lt;=1 and centerY>=0 and centerY&lt;=1"/>
       </eAnnotations>
@@ -1016,6 +1076,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validFocusPoint" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_focus_point"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="focusX>=0 and focusX&lt;=1 and focusY>=0 and focusY&lt;=1"/>
       </eAnnotations>
@@ -1038,6 +1101,9 @@
       </eParameters>
     </eOperations>
     <eOperations name="validRadius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="valid_radius"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="radius>=0 and radius&lt;=1"/>
       </eAnnotations>
@@ -1083,6 +1149,9 @@
       <details key="documentation" value="Rectangle is a graphical element that defines a rectangular shape with given bounds. A rectangle may be given rounded corners by setting its corner radius."/>
     </eAnnotations>
     <eOperations name="nonNegativeCornerRadius" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="non_negative_corner_radius"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="cornerRadius >= 0"/>
       </eAnnotations>
@@ -1136,8 +1205,6 @@
         <details key="documentation" value="A list of external style sheets that are imported by the canvas."/>
       </eAnnotations>
     </eStructuralFeatures>
-    <eStructuralFeatures xsi:type="ecore:EAttribute" name="script" ordered="false"
-        upperBound="-1" eType="ecore:EDataType DC.ecore#//String"/>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="Rotate" eSuperTypes="#//Transform">
     <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
@@ -1161,6 +1228,9 @@
       <details key="documentation" value="Scale is a kind of transform that scales (resizes) a graphical element by a given factor in the x-y coordinate system."/>
     </eAnnotations>
     <eOperations name="nonnegativescale" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="non-negative-scale"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="factorX>=0 and factorY>=0"/>
       </eAnnotations>
@@ -1217,6 +1287,9 @@
       <details key="documentation" value="Text is a graphical element that defines a shape that renders a character string at a given position."/>
     </eAnnotations>
     <eOperations name="dataCannotBeEmpty" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="data_cannot_be_empty"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="data->notEmpty() implies data.size() > 0"/>
       </eAnnotations>
@@ -1277,6 +1350,9 @@
       <details key="documentation" value="Rectangle is a graphical element that defines a rectangular shape with given bounds. A rectangle may be given rounded corners by setting its corner radius."/>
     </eAnnotations>
     <eOperations name="referencedElementHasId" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <details key="originalName" value="referenced_element_has_id"/>
+      </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL">
         <details key="body" value="referencedElement->notEmpty() implies referencedElement.id->notEmpty()"/>
       </eAnnotations>

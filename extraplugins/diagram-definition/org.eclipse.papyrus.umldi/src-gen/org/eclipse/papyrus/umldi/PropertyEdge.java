@@ -11,76 +11,74 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Property Edge</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.PropertyEdge#getModifierLabel <em>Modifier Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.PropertyEdge#getMultiplicityLabel <em>Multiplicity Label</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.PropertyEdge#getConstraintLabel <em>Constraint Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.PropertyEdge#getMultiplicityLabel <em>Multiplicity Label</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPropertyEdge()
  * @model
  * @generated
  */
-public interface PropertyEdge extends NamedEdge {
-
+public interface PropertyEdge extends ElementEdge {
 	/**
-	 * Returns the value of the '<em><b>Modifier Label</b></em>' containment reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ModifierLabel#getPropertyEdge <em>Property Edge</em>}'.
+	 * Returns the value of the '<em><b>Constraint Label</b></em>' containment reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ConstraintLabel#getPropertyEdge <em>Property Edge</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Modifier Label</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Constraint Label</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Modifier Label</em>' containment reference.
-	 * @see #setModifierLabel(ModifierLabel)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPropertyEdge_ModifierLabel()
-	 * @see org.eclipse.papyrus.umldi.ModifierLabel#getPropertyEdge
+	 * @return the value of the '<em>Constraint Label</em>' containment reference.
+	 * @see #setConstraintLabel(ConstraintLabel)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPropertyEdge_ConstraintLabel()
+	 * @see org.eclipse.papyrus.umldi.ConstraintLabel#getPropertyEdge
 	 * @model opposite="propertyEdge" containment="true" ordered="false"
 	 * @generated
 	 */
-	ModifierLabel getModifierLabel();
+	ConstraintLabel getConstraintLabel();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PropertyEdge#getModifierLabel <em>Modifier Label</em>}' containment reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PropertyEdge#getConstraintLabel <em>Constraint Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Modifier Label</em>' containment reference.
-	 * @see #getModifierLabel()
+	 * @param value the new value of the '<em>Constraint Label</em>' containment reference.
+	 * @see #getConstraintLabel()
 	 * @generated
 	 */
-	void setModifierLabel(ModifierLabel value);
+	void setConstraintLabel(ConstraintLabel value);
 
 	/**
 	 * Returns the value of the '<em><b>Multiplicity Label</b></em>' containment reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.MultiplicityLabel#getPropertyEdge <em>Property Edge</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Multiplicity Label</em>' containment reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Multiplicity Label</em>' containment reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Multiplicity Label</em>' containment reference.
 	 * @see #setMultiplicityLabel(MultiplicityLabel)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPropertyEdge_MultiplicityLabel()
@@ -94,11 +92,10 @@ public interface PropertyEdge extends NamedEdge {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.PropertyEdge#getMultiplicityLabel <em>Multiplicity Label</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Multiplicity Label</em>' containment reference.
+	 * @param value the new value of the '<em>Multiplicity Label</em>' containment reference.
 	 * @see #getMultiplicityLabel()
 	 * @generated
 	 */
 	void setMultiplicityLabel(MultiplicityLabel value);
+
 } // PropertyEdge

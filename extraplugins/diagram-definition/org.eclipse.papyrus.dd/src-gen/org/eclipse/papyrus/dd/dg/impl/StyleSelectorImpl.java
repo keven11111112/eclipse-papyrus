@@ -26,12 +26,12 @@ import org.eclipse.papyrus.dd.dg.StyleSelector;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Style Selector</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleSelectorImpl#getKind <em>Kind</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleSelectorImpl#getClasses <em>Class</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleSelectorImpl#getKind <em>Kind</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleSelectorImpl#getClasses <em>Class</em>}</li>
+ * </ul>
+ *
  * @generated
  */
 public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements StyleSelector {
@@ -39,7 +39,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 	/**
 	 * The default value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 	/**
 	 * The cached value of the '{@link #getKind() <em>Kind</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getKind()
 	 * @generated
 	 * @ordered
@@ -60,7 +58,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 	 * This is true if the Kind attribute has been set.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -69,7 +66,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 	/**
 	 * The cached value of the '{@link #getClasses() <em>Class</em>}' attribute list.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getClasses()
 	 * @generated
 	 * @ordered
@@ -78,7 +74,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StyleSelectorImpl() {
@@ -87,7 +82,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -97,7 +91,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementKind getKind() {
@@ -106,7 +99,6 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setKind(ElementKind newKind) {
@@ -114,13 +106,12 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 		kind = newKind == null ? KIND_EDEFAULT : newKind;
 		boolean oldKindESet = kindESet;
 		kindESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE_SELECTOR__KIND, oldKind, kind, !oldKindESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetKind() {
@@ -128,13 +119,12 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 		boolean oldKindESet = kindESet;
 		kind = KIND_EDEFAULT;
 		kindESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE_SELECTOR__KIND, oldKind, KIND_EDEFAULT, oldKindESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetKind() {
@@ -143,11 +133,10 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<String> getClasses() {
-		if(classes == null) {
+		if (classes == null) {
 			classes = new EDataTypeUniqueEList<String>(String.class, this, DGPackage.STYLE_SELECTOR__CLASS);
 		}
 		return classes;
@@ -155,89 +144,81 @@ public class StyleSelectorImpl extends MinimalEObjectImpl.Container implements S
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DGPackage.STYLE_SELECTOR__KIND:
-			return getKind();
-		case DGPackage.STYLE_SELECTOR__CLASS:
-			return getClasses();
+		switch (featureID) {
+			case DGPackage.STYLE_SELECTOR__KIND:
+				return getKind();
+			case DGPackage.STYLE_SELECTOR__CLASS:
+				return getClasses();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DGPackage.STYLE_SELECTOR__KIND:
-			setKind((ElementKind)newValue);
-			return;
-		case DGPackage.STYLE_SELECTOR__CLASS:
-			getClasses().clear();
-			getClasses().addAll((Collection<? extends String>)newValue);
-			return;
+		switch (featureID) {
+			case DGPackage.STYLE_SELECTOR__KIND:
+				setKind((ElementKind)newValue);
+				return;
+			case DGPackage.STYLE_SELECTOR__CLASS:
+				getClasses().clear();
+				getClasses().addAll((Collection<? extends String>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DGPackage.STYLE_SELECTOR__KIND:
-			unsetKind();
-			return;
-		case DGPackage.STYLE_SELECTOR__CLASS:
-			getClasses().clear();
-			return;
+		switch (featureID) {
+			case DGPackage.STYLE_SELECTOR__KIND:
+				unsetKind();
+				return;
+			case DGPackage.STYLE_SELECTOR__CLASS:
+				getClasses().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DGPackage.STYLE_SELECTOR__KIND:
-			return isSetKind();
-		case DGPackage.STYLE_SELECTOR__CLASS:
-			return classes != null && !classes.isEmpty();
+		switch (featureID) {
+			case DGPackage.STYLE_SELECTOR__KIND:
+				return isSetKind();
+			case DGPackage.STYLE_SELECTOR__CLASS:
+				return classes != null && !classes.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (kind: ");
-		if(kindESet)
-			result.append(kind);
-		else
-			result.append("<unset>");
+		if (kindESet) result.append(kind); else result.append("<unset>");
 		result.append(", class: ");
 		result.append(classes);
 		result.append(')');

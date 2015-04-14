@@ -16,19 +16,19 @@ import org.eclipse.papyrus.dd.dc.Point;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Ellipse</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * Ellipse is a graphical element that defines an elliptical shape with a given center point and two radii on the x and y axes.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.Ellipse#getCenter <em>Center</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.Ellipse#getRadii <em>Radii</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Ellipse#getCenter <em>Center</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Ellipse#getRadii <em>Radii</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getEllipse()
  * @model
  * @generated
@@ -52,9 +52,7 @@ public interface Ellipse extends GraphicalElement {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Ellipse#getCenter <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Center</em>' containment reference.
+	 * @param value the new value of the '<em>Center</em>' containment reference.
 	 * @see #getCenter()
 	 * @generated
 	 */
@@ -78,9 +76,7 @@ public interface Ellipse extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Ellipse#getRadii <em>Radii</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Radii</em>' containment reference.
+	 * @param value the new value of the '<em>Radii</em>' containment reference.
 	 * @see #getRadii()
 	 * @generated
 	 */

@@ -108,6 +108,14 @@ function setTextBounds(element, x, y, width, height) {
 }
 
 function layoutText(element) {
+	var transform = element.getAttribute("transform");
+	if (transform == "")
+		layoutTextHorizontal(element);
+	else
+		layoutTextVertical(element);
+}
+
+function layoutTextHorizontal(element) {
 	var x = +element.getAttribute("x");
 	var y = +element.getAttribute("y");
 	var width = +element.getAttribute("width");
@@ -121,8 +129,6 @@ function layoutText(element) {
 		x = x+width;
 
 	element.setAttribute("x", x);
-	element.setAttribute("y", y);
-	//element.setAttribute("dx", "0.2em");
 	element.setAttribute("dy", "0.9em");
 
 	var split = text.split("\\n");
@@ -133,6 +139,37 @@ function layoutText(element) {
 		if (i > 0) {
 			tspan.setAttribute("x", x);
 			tspan.setAttribute("dy", "1em");
+		}
+		element.appendChild(tspan);
+	}
+}
+
+function layoutTextVertical(element) {
+	var x = +element.getAttribute("x");
+	var y = +element.getAttribute("y");
+	var width = +element.getAttribute("width");
+	var height = +element.getAttribute("height");
+	var anchor = element.getAttribute("text-anchor");
+	var text = element.getTextContent();
+
+	if (anchor == "middle")
+		y = y+height/2;
+	else if (anchor == "end")
+		y = y+height;
+
+	element.setAttribute("y", y);
+	element.setAttribute("dx", "0.9em");
+	element.setAttribute("dy", "0.45em");
+
+	var split = text.split("\\n");
+	element.setTextContent("");
+	for (var i=0; i<split.length; i++) {
+		var tspan = document.createElementNS("http://www.w3.org/2000/svg", "tspan");
+		tspan.setTextContent(split[i]);
+		if (i > 0) {
+			tspan.setAttribute("y", y);
+			tspan.setAttribute("dx", "1em");
+			tspan.setAttribute("dy", "0.5em");
 		}
 		element.appendChild(tspan);
 	}

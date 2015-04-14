@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.umldi.CommentShape;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -19,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Comment Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class CommentShapeImpl extends BodyShapeImpl implements CommentShape {
-
+public class CommentShapeImpl extends ElementWithBodyShapeImpl implements CommentShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentShapeImpl() {
@@ -39,11 +36,11 @@ public class CommentShapeImpl extends BodyShapeImpl implements CommentShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.COMMENT_SHAPE;
 	}
+
 } //CommentShapeImpl

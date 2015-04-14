@@ -11,23 +11,20 @@
  */
 package org.eclipse.papyrus.umldi.impl;
 
-import java.util.Collection;
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
-import org.eclipse.emf.common.util.EList;
-import org.eclipse.emf.ecore.EClass;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
+
 import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.umldi.ClassifierWithReceptionsShape;
 import org.eclipse.papyrus.umldi.ReceptionCompartment;
-import org.eclipse.papyrus.umldi.ReceptionLabel;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
-import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 
 /**
  * <!-- begin-user-doc -->
@@ -35,33 +32,18 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getSignalShape <em>Signal Shape</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getReceptionLabel <em>Reception Label</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getOwningUmlDiagramElement <em>Owning Uml Diagram Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.ReceptionCompartmentImpl#getClassifierWithReceptionShape <em>Classifier With Reception Shape</em>}</li>
+ * </ul>
+ *
  * @generated
  */
-public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements ReceptionCompartment {
-
-	/**
-	 * The cached value of the '{@link #getReceptionLabel() <em>Reception Label</em>}' containment reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getReceptionLabel()
-	 * @generated
-	 * @ordered
-	 */
-	protected EList<ReceptionLabel> receptionLabel;
-
+public class ReceptionCompartmentImpl extends ListCompartmentImpl implements ReceptionCompartment {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReceptionCompartmentImpl() {
@@ -71,7 +53,6 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -82,7 +63,6 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -94,14 +74,13 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public UmlDiagramElement basicGetOwningUmlDiagramElement() {
-		ClassifierWithReceptionsShape signalShape = getSignalShape();
-		if(signalShape != null) {
-			return signalShape;
+		ClassifierWithReceptionsShape classifierWithReceptionShape = getClassifierWithReceptionShape();			
+		if (classifierWithReceptionShape != null) {
+			return classifierWithReceptionShape;
 		}
 		return super.basicGetOwningUmlDiagramElement();
 	}
@@ -109,99 +88,56 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@Override
-	public EList<UmlDiagramElement> getOwnedUmlDiagramElement() {
-		return new DerivedUnionEObjectEList<UmlDiagramElement>(UmlDiagramElement.class, this, UMLDIPackage.RECEPTION_COMPARTMENT__OWNED_UML_DIAGRAM_ELEMENT, OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS);
-	}
-
-	/**
-	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getOwnedUmlDiagramElement()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL };
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public ClassifierWithReceptionsShape getSignalShape() {
-		if(eContainerFeatureID() != UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE)
-			return null;
+	public ClassifierWithReceptionsShape getClassifierWithReceptionShape() {
+		if (eContainerFeatureID() != UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE) return null;
 		return (ClassifierWithReceptionsShape)eInternalContainer();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public NotificationChain basicSetSignalShape(ClassifierWithReceptionsShape newSignalShape, NotificationChain msgs) {
-		msgs = eBasicSetContainer((InternalEObject)newSignalShape, UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE, msgs);
+	public NotificationChain basicSetClassifierWithReceptionShape(ClassifierWithReceptionsShape newClassifierWithReceptionShape, NotificationChain msgs) {
+		msgs = eBasicSetContainer((InternalEObject)newClassifierWithReceptionShape, UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE, msgs);
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public void setSignalShape(ClassifierWithReceptionsShape newSignalShape) {
-		if(newSignalShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE && newSignalShape != null)) {
-			if(EcoreUtil.isAncestor(this, newSignalShape))
+	public void setClassifierWithReceptionShape(ClassifierWithReceptionsShape newClassifierWithReceptionShape) {
+		if (newClassifierWithReceptionShape != eInternalContainer() || (eContainerFeatureID() != UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE && newClassifierWithReceptionShape != null)) {
+			if (EcoreUtil.isAncestor(this, newClassifierWithReceptionShape))
 				throw new IllegalArgumentException("Recursive containment not allowed for " + toString());
 			NotificationChain msgs = null;
-			if(eInternalContainer() != null)
+			if (eInternalContainer() != null)
 				msgs = eBasicRemoveFromContainer(msgs);
-			if(newSignalShape != null)
-				msgs = ((InternalEObject)newSignalShape).eInverseAdd(this, UMLDIPackage.CLASSIFIER_WITH_RECEPTIONS_SHAPE__RECEPTION_COMPARTMENT, ClassifierWithReceptionsShape.class, msgs);
-			msgs = basicSetSignalShape(newSignalShape, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE, newSignalShape, newSignalShape));
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	public EList<ReceptionLabel> getReceptionLabel() {
-		if(receptionLabel == null) {
-			receptionLabel = new EObjectContainmentWithInverseEList<ReceptionLabel>(ReceptionLabel.class, this, UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL, UMLDIPackage.RECEPTION_LABEL__RECEPTION_COMPARTMENT);
+			if (newClassifierWithReceptionShape != null)
+				msgs = ((InternalEObject)newClassifierWithReceptionShape).eInverseAdd(this, UMLDIPackage.CLASSIFIER_WITH_RECEPTIONS_SHAPE__RECEPTION_COMPARTMENT, ClassifierWithReceptionsShape.class, msgs);
+			msgs = basicSetClassifierWithReceptionShape(newClassifierWithReceptionShape, msgs);
+			if (msgs != null) msgs.dispatch();
 		}
-		return receptionLabel;
+		else if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE, newClassifierWithReceptionShape, newClassifierWithReceptionShape));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			if(eInternalContainer() != null)
-				msgs = eBasicRemoveFromContainer(msgs);
-			return basicSetSignalShape((ClassifierWithReceptionsShape)otherEnd, msgs);
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getReceptionLabel()).basicAdd(otherEnd, msgs);
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				if (eInternalContainer() != null)
+					msgs = eBasicRemoveFromContainer(msgs);
+				return basicSetClassifierWithReceptionShape((ClassifierWithReceptionsShape)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -209,16 +145,13 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			return basicSetSignalShape(null, msgs);
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			return ((InternalEList<?>)getReceptionLabel()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				return basicSetClassifierWithReceptionShape(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -226,14 +159,13 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eBasicRemoveFromContainerFeature(NotificationChain msgs) {
-		switch(eContainerFeatureID()) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			return eInternalContainer().eInverseRemove(this, UMLDIPackage.CLASSIFIER_WITH_RECEPTIONS_SHAPE__RECEPTION_COMPARTMENT, ClassifierWithReceptionsShape.class, msgs);
+		switch (eContainerFeatureID()) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				return eInternalContainer().eInverseRemove(this, UMLDIPackage.CLASSIFIER_WITH_RECEPTIONS_SHAPE__RECEPTION_COMPARTMENT, ClassifierWithReceptionsShape.class, msgs);
 		}
 		return super.eBasicRemoveFromContainerFeature(msgs);
 	}
@@ -241,16 +173,13 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			return getSignalShape();
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			return getReceptionLabel();
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				return getClassifierWithReceptionShape();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -258,20 +187,14 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			setSignalShape((ClassifierWithReceptionsShape)newValue);
-			return;
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			getReceptionLabel().clear();
-			getReceptionLabel().addAll((Collection<? extends ReceptionLabel>)newValue);
-			return;
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				setClassifierWithReceptionShape((ClassifierWithReceptionsShape)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -279,18 +202,14 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			setSignalShape((ClassifierWithReceptionsShape)null);
-			return;
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			getReceptionLabel().clear();
-			return;
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				setClassifierWithReceptionShape((ClassifierWithReceptionsShape)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -298,20 +217,15 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.RECEPTION_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
-			return isSetOwningUmlDiagramElement();
-		case UMLDIPackage.RECEPTION_COMPARTMENT__OWNED_UML_DIAGRAM_ELEMENT:
-			return isSetOwnedUmlDiagramElement();
-		case UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE:
-			return getSignalShape() != null;
-		case UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL:
-			return receptionLabel != null && !receptionLabel.isEmpty();
+		switch (featureID) {
+			case UMLDIPackage.RECEPTION_COMPARTMENT__OWNING_UML_DIAGRAM_ELEMENT:
+				return isSetOwningUmlDiagramElement();
+			case UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE:
+				return getClassifierWithReceptionShape() != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -319,22 +233,12 @@ public class ReceptionCompartmentImpl extends UmlCompartmentImpl implements Rece
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwningUmlDiagramElement() {
-		return super.isSetOwningUmlDiagramElement() || eIsSet(UMLDIPackage.RECEPTION_COMPARTMENT__SIGNAL_SHAPE);
+		return super.isSetOwningUmlDiagramElement()
+			|| eIsSet(UMLDIPackage.RECEPTION_COMPARTMENT__CLASSIFIER_WITH_RECEPTION_SHAPE);
 	}
 
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.RECEPTION_COMPARTMENT__RECEPTION_LABEL);
-	}
 } //ReceptionCompartmentImpl

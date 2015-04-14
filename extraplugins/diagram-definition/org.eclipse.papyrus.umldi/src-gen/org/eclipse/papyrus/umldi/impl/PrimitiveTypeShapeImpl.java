@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Primitive Type Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class PrimitiveTypeShapeImpl extends DataTypeShapeImpl implements PrimitiveTypeShape {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PrimitiveTypeShapeImpl() {
@@ -40,11 +36,11 @@ public class PrimitiveTypeShapeImpl extends DataTypeShapeImpl implements Primiti
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PRIMITIVE_TYPE_SHAPE;
 	}
+
 } //PrimitiveTypeShapeImpl

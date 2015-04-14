@@ -12,18 +12,24 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import java.util.Collection;
+
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.util.EObjectContainmentWithInverseEList;
 import org.eclipse.emf.ecore.util.InternalEList;
+
 import org.eclipse.papyrus.umldi.AssociationEdge;
-import org.eclipse.papyrus.umldi.ModifierLabel;
+import org.eclipse.papyrus.umldi.ConstraintLabel;
 import org.eclipse.papyrus.umldi.MultiplicityLabel;
 import org.eclipse.papyrus.umldi.RoleLabel;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
+
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 
 /**
@@ -32,23 +38,21 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndModifierLabel <em>End Modifier Label</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndRoleLabel <em>End Role Label</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndMultiplicityLabel <em>End Multiplicity Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndConstraintLabel <em>End Constraint Label</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.AssociationEdgeImpl#getEndRoleLabel <em>End Role Label</em>}</li>
+ * </ul>
+ *
  * @generated
  */
-public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdge {
-
+public class AssociationEdgeImpl extends ElementEdgeImpl implements AssociationEdge {
 	/**
 	 * The cached value of the '{@link #getEndMultiplicityLabel() <em>End Multiplicity Label</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getEndMultiplicityLabel()
 	 * @generated
 	 * @ordered
@@ -56,21 +60,19 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	protected EList<MultiplicityLabel> endMultiplicityLabel;
 
 	/**
-	 * The cached value of the '{@link #getEndModifierLabel() <em>End Modifier Label</em>}' containment reference list.
+	 * The cached value of the '{@link #getEndConstraintLabel() <em>End Constraint Label</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @see #getEndModifierLabel()
+	 * @see #getEndConstraintLabel()
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<ModifierLabel> endModifierLabel;
+	protected EList<ConstraintLabel> endConstraintLabel;
 
 	/**
 	 * The cached value of the '{@link #getEndRoleLabel() <em>End Role Label</em>}' containment reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getEndRoleLabel()
 	 * @generated
 	 * @ordered
@@ -80,7 +82,6 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationEdgeImpl() {
@@ -90,7 +91,6 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -101,7 +101,6 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -113,21 +112,19 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.ASSOCIATION_EDGE__NAME_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL };
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.ASSOCIATION_EDGE__MAIN_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL, UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL};
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<MultiplicityLabel> getEndMultiplicityLabel() {
-		if(endMultiplicityLabel == null) {
+		if (endMultiplicityLabel == null) {
 			endMultiplicityLabel = new EObjectContainmentWithInverseEList<MultiplicityLabel>(MultiplicityLabel.class, this, UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL, UMLDIPackage.MULTIPLICITY_LABEL__ASSOCIATION_EDGE);
 		}
 		return endMultiplicityLabel;
@@ -136,24 +133,22 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	public EList<ModifierLabel> getEndModifierLabel() {
-		if(endModifierLabel == null) {
-			endModifierLabel = new EObjectContainmentWithInverseEList<ModifierLabel>(ModifierLabel.class, this, UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL, UMLDIPackage.MODIFIER_LABEL__ASSOCIATION_EDGE);
+	public EList<ConstraintLabel> getEndConstraintLabel() {
+		if (endConstraintLabel == null) {
+			endConstraintLabel = new EObjectContainmentWithInverseEList<ConstraintLabel>(ConstraintLabel.class, this, UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL, UMLDIPackage.CONSTRAINT_LABEL__ASSOCIATION_EDGE);
 		}
-		return endModifierLabel;
+		return endConstraintLabel;
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<RoleLabel> getEndRoleLabel() {
-		if(endRoleLabel == null) {
+		if (endRoleLabel == null) {
 			endRoleLabel = new EObjectContainmentWithInverseEList<RoleLabel>(RoleLabel.class, this, UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL, UMLDIPackage.ROLE_LABEL__ASSOCIATION_EDGE);
 		}
 		return endRoleLabel;
@@ -162,19 +157,18 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndMultiplicityLabel()).basicAdd(otherEnd, msgs);
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndModifierLabel()).basicAdd(otherEnd, msgs);
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndRoleLabel()).basicAdd(otherEnd, msgs);
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndMultiplicityLabel()).basicAdd(otherEnd, msgs);
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndConstraintLabel()).basicAdd(otherEnd, msgs);
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				return ((InternalEList<InternalEObject>)(InternalEList<?>)getEndRoleLabel()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -182,18 +176,17 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			return ((InternalEList<?>)getEndMultiplicityLabel()).basicRemove(otherEnd, msgs);
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			return ((InternalEList<?>)getEndModifierLabel()).basicRemove(otherEnd, msgs);
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			return ((InternalEList<?>)getEndRoleLabel()).basicRemove(otherEnd, msgs);
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				return ((InternalEList<?>)getEndMultiplicityLabel()).basicRemove(otherEnd, msgs);
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				return ((InternalEList<?>)getEndConstraintLabel()).basicRemove(otherEnd, msgs);
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				return ((InternalEList<?>)getEndRoleLabel()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -201,18 +194,17 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			return getEndMultiplicityLabel();
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			return getEndModifierLabel();
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			return getEndRoleLabel();
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				return getEndMultiplicityLabel();
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				return getEndConstraintLabel();
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				return getEndRoleLabel();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -220,25 +212,24 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			getEndMultiplicityLabel().clear();
-			getEndMultiplicityLabel().addAll((Collection<? extends MultiplicityLabel>)newValue);
-			return;
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			getEndModifierLabel().clear();
-			getEndModifierLabel().addAll((Collection<? extends ModifierLabel>)newValue);
-			return;
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			getEndRoleLabel().clear();
-			getEndRoleLabel().addAll((Collection<? extends RoleLabel>)newValue);
-			return;
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				getEndMultiplicityLabel().clear();
+				getEndMultiplicityLabel().addAll((Collection<? extends MultiplicityLabel>)newValue);
+				return;
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				getEndConstraintLabel().clear();
+				getEndConstraintLabel().addAll((Collection<? extends ConstraintLabel>)newValue);
+				return;
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				getEndRoleLabel().clear();
+				getEndRoleLabel().addAll((Collection<? extends RoleLabel>)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -246,21 +237,20 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			getEndMultiplicityLabel().clear();
-			return;
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			getEndModifierLabel().clear();
-			return;
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			getEndRoleLabel().clear();
-			return;
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				getEndMultiplicityLabel().clear();
+				return;
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				getEndConstraintLabel().clear();
+				return;
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				getEndRoleLabel().clear();
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -268,20 +258,19 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.ASSOCIATION_EDGE__OWNED_UML_DIAGRAM_ELEMENT:
-			return isSetOwnedUmlDiagramElement();
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
-			return endMultiplicityLabel != null && !endMultiplicityLabel.isEmpty();
-		case UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL:
-			return endModifierLabel != null && !endModifierLabel.isEmpty();
-		case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
-			return endRoleLabel != null && !endRoleLabel.isEmpty();
+		switch (featureID) {
+			case UMLDIPackage.ASSOCIATION_EDGE__OWNED_UML_DIAGRAM_ELEMENT:
+				return isSetOwnedUmlDiagramElement();
+			case UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL:
+				return endMultiplicityLabel != null && !endMultiplicityLabel.isEmpty();
+			case UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL:
+				return endConstraintLabel != null && !endConstraintLabel.isEmpty();
+			case UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL:
+				return endRoleLabel != null && !endRoleLabel.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -289,11 +278,14 @@ public class AssociationEdgeImpl extends NamedEdgeImpl implements AssociationEdg
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL) || eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_MODIFIER_LABEL) || eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL);
+		return super.isSetOwnedUmlDiagramElement()
+			|| eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_MULTIPLICITY_LABEL)
+			|| eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_CONSTRAINT_LABEL)
+			|| eIsSet(UMLDIPackage.ASSOCIATION_EDGE__END_ROLE_LABEL);
 	}
+
 } //AssociationEdgeImpl

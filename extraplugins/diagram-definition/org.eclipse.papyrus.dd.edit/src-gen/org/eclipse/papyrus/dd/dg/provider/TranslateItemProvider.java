@@ -13,22 +13,12 @@ package org.eclipse.papyrus.dd.dg.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemColorProvider;
-import org.eclipse.emf.edit.provider.IItemFontProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.dd.dg.DGPackage;
 import org.eclipse.papyrus.dd.dg.Translate;
 
@@ -36,10 +26,9 @@ import org.eclipse.papyrus.dd.dg.Translate;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Translate} object.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
-public class TranslateItemProvider extends TransformItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemColorProvider, IItemFontProvider {
+public class TranslateItemProvider extends TransformItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -59,8 +48,9 @@ public class TranslateItemProvider extends TransformItemProvider implements IEdi
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
+
 			addDeltaXPropertyDescriptor(object);
 			addDeltaYPropertyDescriptor(object);
 		}
@@ -74,7 +64,19 @@ public class TranslateItemProvider extends TransformItemProvider implements IEdi
 	 * @generated
 	 */
 	protected void addDeltaXPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Translate_deltaX_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaX_feature", "_UI_Translate_type"), DGPackage.Literals.TRANSLATE__DELTA_X, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Translate_deltaX_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaX_feature", "_UI_Translate_type"),
+				 DGPackage.Literals.TRANSLATE__DELTA_X,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -84,13 +86,24 @@ public class TranslateItemProvider extends TransformItemProvider implements IEdi
 	 * @generated
 	 */
 	protected void addDeltaYPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Translate_deltaY_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaY_feature", "_UI_Translate_type"), DGPackage.Literals.TRANSLATE__DELTA_Y, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Translate_deltaY_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Translate_deltaY_feature", "_UI_Translate_type"),
+				 DGPackage.Literals.TRANSLATE__DELTA_Y,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
 	 * This returns Translate.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -102,7 +115,6 @@ public class TranslateItemProvider extends TransformItemProvider implements IEdi
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -116,17 +128,17 @@ public class TranslateItemProvider extends TransformItemProvider implements IEdi
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		switch(notification.getFeatureID(Translate.class)) {
-		case DGPackage.TRANSLATE__DELTA_X:
-		case DGPackage.TRANSLATE__DELTA_Y:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
+
+		switch (notification.getFeatureID(Translate.class)) {
+			case DGPackage.TRANSLATE__DELTA_X:
+			case DGPackage.TRANSLATE__DELTA_Y:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
