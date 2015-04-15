@@ -65,12 +65,12 @@
       <genFeatures xsi:type="genmodel:GenFeature" notify="false" createChild="false"
           propertySortChoices="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//InducedRepresentation/children"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" image="false" ecoreClass="expansionmodel.ecore#//Library">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//Library/name"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//GraphicalElementLibrary">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//GraphicalElementLibrary/name"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//Library/representationkinds"/>
+          createChild="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//GraphicalElementLibrary/representationkinds"/>
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
-          createChild="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//Library/representations"/>
+          createChild="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//GraphicalElementLibrary/representations"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//UseContext">
       <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//UseContext/DiagramType"/>
@@ -80,8 +80,8 @@
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"
           createChild="true" ecoreFeature="ecore:EReference expansionmodel.ecore#//UseContext/GmftRepresentations"/>
     </genClasses>
-    <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//GMFT_Based_Representation">
-      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//GMFT_Based_Representation/reusedID"/>
+    <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//GMFT_BasedRepresentation">
+      <genFeatures xsi:type="genmodel:GenFeature" createChild="false" ecoreFeature="ecore:EAttribute expansionmodel.ecore#//GMFT_BasedRepresentation/reusedID"/>
     </genClasses>
     <genClasses xsi:type="genmodel:GenClass" ecoreClass="expansionmodel.ecore#//DiagramExpansion">
       <genFeatures xsi:type="genmodel:GenFeature" property="None" children="true"

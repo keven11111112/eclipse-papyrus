@@ -19,7 +19,7 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation;
 
 /**
  * <!-- begin-user-doc -->
@@ -29,12 +29,12 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Repres
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_Based_RepresentationImpl#getReusedID <em>Reused ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_BasedRepresentationImpl#getReusedID <em>Reused ID</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class GMFT_Based_RepresentationImpl extends RepresentationImpl implements GMFT_Based_Representation {
+public class GMFT_BasedRepresentationImpl extends RepresentationImpl implements GMFT_BasedRepresentation {
 	/**
 	 * The default value of the '{@link #getReusedID() <em>Reused ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -60,7 +60,7 @@ public class GMFT_Based_RepresentationImpl extends RepresentationImpl implements
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected GMFT_Based_RepresentationImpl() {
+	protected GMFT_BasedRepresentationImpl() {
 		super();
 	}
 
@@ -169,4 +169,4 @@ public class GMFT_Based_RepresentationImpl extends RepresentationImpl implements
 		return result.toString();
 	}
 
-} //GMFT_Based_RepresentationImpl
+} //GMFT_BasedRepresentationImpl

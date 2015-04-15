@@ -22,14 +22,14 @@ package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation#getReusedID <em>Reused ID</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation#getReusedID <em>Reused ID</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGMFT_Based_Representation()
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGMFT_BasedRepresentation()
  * @model
  * @generated
  */
-public interface GMFT_Based_Representation extends Representation {
+public interface GMFT_BasedRepresentation extends Representation {
 	/**
 	 * Returns the value of the '<em><b>Reused ID</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -40,14 +40,14 @@ public interface GMFT_Based_Representation extends Representation {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Reused ID</em>' attribute.
 	 * @see #setReusedID(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGMFT_Based_Representation_ReusedID()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGMFT_BasedRepresentation_ReusedID()
 	 * @model ordered="false"
 	 * @generated
 	 */
 	String getReusedID();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation#getReusedID <em>Reused ID</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation#getReusedID <em>Reused ID</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Reused ID</em>' attribute.
@@ -56,4 +56,4 @@ public interface GMFT_Based_Representation extends Representation {
 	 */
 	void setReusedID(String value);
 
-} // GMFT_Based_Representation
+} // GMFT_BasedRepresentation

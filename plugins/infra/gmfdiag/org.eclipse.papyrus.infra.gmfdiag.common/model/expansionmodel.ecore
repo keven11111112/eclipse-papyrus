@@ -36,7 +36,7 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="children" ordered="false"
         upperBound="-1" eType="#//Representation"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="Library">
+  <eClassifiers xsi:type="ecore:EClass" name="GraphicalElementLibrary">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="representationkinds" ordered="false"
@@ -52,9 +52,9 @@
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="name" ordered="false" lowerBound="1"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="GmftRepresentations" ordered="false"
-        upperBound="-1" eType="#//GMFT_Based_Representation" containment="true"/>
+        upperBound="-1" eType="#//GMFT_BasedRepresentation" containment="true"/>
   </eClassifiers>
-  <eClassifiers xsi:type="ecore:EClass" name="GMFT_Based_Representation" eSuperTypes="#//Representation">
+  <eClassifiers xsi:type="ecore:EClass" name="GMFT_BasedRepresentation" eSuperTypes="#//Representation">
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="reusedID" ordered="false"
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString"/>
   </eClassifiers>
@@ -62,6 +62,6 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="usages" ordered="false"
         upperBound="-1" eType="#//UseContext" containment="true"/>
     <eStructuralFeatures xsi:type="ecore:EReference" name="libraries" ordered="false"
-        upperBound="-1" eType="#//Library" containment="true"/>
+        upperBound="-1" eType="#//GraphicalElementLibrary" containment="true"/>
   </eClassifiers>
 </ecore:EPackage>

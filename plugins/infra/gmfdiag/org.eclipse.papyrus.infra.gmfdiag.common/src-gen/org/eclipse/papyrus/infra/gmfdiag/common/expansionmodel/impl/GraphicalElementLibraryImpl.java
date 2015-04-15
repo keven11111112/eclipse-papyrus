@@ -30,25 +30,25 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
 
 /**
  * <!-- begin-user-doc -->
- * An implementation of the model object '<em><b>Library</b></em>'.
+ * An implementation of the model object '<em><b>Graphical Element Library</b></em>'.
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.LibraryImpl#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.LibraryImpl#getRepresentationkinds <em>Representationkinds</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.LibraryImpl#getRepresentations <em>Representations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GraphicalElementLibraryImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GraphicalElementLibraryImpl#getRepresentationkinds <em>Representationkinds</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GraphicalElementLibraryImpl#getRepresentations <em>Representations</em>}</li>
  * </ul>
  *
  * @generated
  */
-public class LibraryImpl extends MinimalEObjectImpl.Container implements Library {
+public class GraphicalElementLibraryImpl extends MinimalEObjectImpl.Container implements GraphicalElementLibrary {
 	/**
 	 * The default value of the '{@link #getName() <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
@@ -94,7 +94,7 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	protected LibraryImpl() {
+	protected GraphicalElementLibraryImpl() {
 		super();
 	}
 
@@ -105,7 +105,7 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	 */
 	@Override
 	protected EClass eStaticClass() {
-		return ExpansionmodelPackage.Literals.LIBRARY;
+		return ExpansionmodelPackage.Literals.GRAPHICAL_ELEMENT_LIBRARY;
 	}
 
 	/**
@@ -126,7 +126,7 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 		String oldName = name;
 		name = newName;
 		if (eNotificationRequired())
-			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.LIBRARY__NAME, oldName, name));
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME, oldName, name));
 	}
 
 	/**
@@ -136,7 +136,7 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	 */
 	public EList<RepresentationKind> getRepresentationkinds() {
 		if (representationkinds == null) {
-			representationkinds = new EObjectContainmentEList<RepresentationKind>(RepresentationKind.class, this, ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS);
+			representationkinds = new EObjectContainmentEList<RepresentationKind>(RepresentationKind.class, this, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS);
 		}
 		return representationkinds;
 	}
@@ -148,7 +148,7 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	 */
 	public EList<AbstractRepresentation> getRepresentations() {
 		if (representations == null) {
-			representations = new EObjectContainmentEList<AbstractRepresentation>(AbstractRepresentation.class, this, ExpansionmodelPackage.LIBRARY__REPRESENTATIONS);
+			representations = new EObjectContainmentEList<AbstractRepresentation>(AbstractRepresentation.class, this, ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS);
 		}
 		return representations;
 	}
@@ -161,9 +161,9 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return ((InternalEList<?>)getRepresentationkinds()).basicRemove(otherEnd, msgs);
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return ((InternalEList<?>)getRepresentations()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
@@ -177,11 +177,11 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ExpansionmodelPackage.LIBRARY__NAME:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				return getName();
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return getRepresentationkinds();
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return getRepresentations();
 		}
 		return super.eGet(featureID, resolve, coreType);
@@ -196,14 +196,14 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ExpansionmodelPackage.LIBRARY__NAME:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				setName((String)newValue);
 				return;
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				getRepresentationkinds().clear();
 				getRepresentationkinds().addAll((Collection<? extends RepresentationKind>)newValue);
 				return;
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				getRepresentations().clear();
 				getRepresentations().addAll((Collection<? extends AbstractRepresentation>)newValue);
 				return;
@@ -219,13 +219,13 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.LIBRARY__NAME:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				setName(NAME_EDEFAULT);
 				return;
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				getRepresentationkinds().clear();
 				return;
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				getRepresentations().clear();
 				return;
 		}
@@ -240,11 +240,11 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ExpansionmodelPackage.LIBRARY__NAME:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__NAME:
 				return NAME_EDEFAULT == null ? name != null : !NAME_EDEFAULT.equals(name);
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONKINDS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONKINDS:
 				return representationkinds != null && !representationkinds.isEmpty();
-			case ExpansionmodelPackage.LIBRARY__REPRESENTATIONS:
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY__REPRESENTATIONS:
 				return representations != null && !representations.isEmpty();
 		}
 		return super.eIsSet(featureID);
@@ -266,4 +266,4 @@ public class LibraryImpl extends MinimalEObjectImpl.Container implements Library
 		return result.toString();
 	}
 
-} //LibraryImpl
+} //GraphicalElementLibraryImpl

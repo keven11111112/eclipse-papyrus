@@ -22,6 +22,7 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.DiagnosticChain;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeConfigurationTypeRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelValidator;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 
@@ -147,6 +148,8 @@ public class ExpansionModelValidationUtil {
 		boolean valid = true;
 		String elementTypeID=((Representation)abstractRepresentation).getGraphicalElementType();
 		if( elementTypeID!=null && elementTypeID!=""){
+			//ensure that element types model are loaded 
+			ElementTypeConfigurationTypeRegistry.getInstance();
 			final IElementType elementType=ElementTypeRegistry.getInstance().getType(elementTypeID);
 			if( elementType==null){
 				valid = false;

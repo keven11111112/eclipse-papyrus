@@ -28,7 +28,7 @@ import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
 
 /**
@@ -64,7 +64,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<Library> libraries;
+	protected EList<GraphicalElementLibrary> libraries;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -102,9 +102,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<Library> getLibraries() {
+	public EList<GraphicalElementLibrary> getLibraries() {
 		if (libraries == null) {
-			libraries = new EObjectContainmentEList<Library>(Library.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES);
+			libraries = new EObjectContainmentEList<GraphicalElementLibrary>(GraphicalElementLibrary.class, this, ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES);
 		}
 		return libraries;
 	}
@@ -156,7 +156,7 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				return;
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
-				getLibraries().addAll((Collection<? extends Library>)newValue);
+				getLibraries().addAll((Collection<? extends GraphicalElementLibrary>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

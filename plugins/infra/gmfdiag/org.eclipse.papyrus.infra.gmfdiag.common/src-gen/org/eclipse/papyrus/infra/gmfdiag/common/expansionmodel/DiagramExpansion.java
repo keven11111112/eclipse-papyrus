@@ -52,7 +52,7 @@ public interface DiagramExpansion extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Libraries</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Libraries</em>' containment reference list isn't clear,
@@ -64,6 +64,6 @@ public interface DiagramExpansion extends EObject {
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<Library> getLibraries();
+	EList<GraphicalElementLibrary> getLibraries();
 
 } // DiagramExpansion

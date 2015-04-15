@@ -24,7 +24,9 @@ import org.junit.runners.Suite.SuiteClasses;
 @SuiteClasses({
 // {oep.commands}
 LoadExpansionModel.class,
-ExpansionAddCompartment.class
+ExpansionAddCompartment.class,
+ExpansionAddChildLabel.class,
+ExpansionAddBorderItem.class
 //GMFUnsafeTest.class 
 }
 )

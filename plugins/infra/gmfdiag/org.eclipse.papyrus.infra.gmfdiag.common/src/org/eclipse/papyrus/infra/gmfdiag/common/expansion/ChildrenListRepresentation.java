@@ -22,7 +22,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.InducedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
@@ -51,8 +51,8 @@ public class ChildrenListRepresentation {
 
 		if( representation instanceof Representation) {
 			String hint=null;
-			if( representation instanceof GMFT_Based_Representation){
-				hint=((GMFT_Based_Representation)representation).getReusedID();
+			if( representation instanceof GMFT_BasedRepresentation){
+				hint=((GMFT_BasedRepresentation)representation).getReusedID();
 
 			}else{
 				final IElementType elementType=ElementTypeRegistry.getInstance().getType(((Representation)representation).getGraphicalElementType());

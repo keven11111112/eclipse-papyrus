@@ -64,7 +64,7 @@ If is used, the graphical element is null.</body>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_ykX68NevEeSTpeYJP6Dwgg" name="representationlibrary" type="_zsTzYNevEeSTpeYJP6Dwgg" association="_ykWs0NevEeSTpeYJP6Dwgg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_zsTzYNevEeSTpeYJP6Dwgg" name="Library">
+    <packagedElement xmi:type="uml:Class" xmi:id="_zsTzYNevEeSTpeYJP6Dwgg" name="GraphicalElementLibrary">
       <ownedAttribute xmi:type="uml:Property" xmi:id="_2H52oNewEeSTpeYJP6Dwgg" name="name">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>
       </ownedAttribute>
@@ -121,7 +121,7 @@ If is used, the graphical element is null.</body>
       </eAnnotations>
       <ownedEnd xmi:type="uml:Property" xmi:id="_q-6wA9ewEeSTpeYJP6Dwgg" name="diagramexpansion" type="_mFdtwNewEeSTpeYJP6Dwgg" association="_q-6I8NewEeSTpeYJP6Dwgg"/>
     </packagedElement>
-    <packagedElement xmi:type="uml:Class" xmi:id="_uzCKUNg-EeSLXqlejJgoBg" name="GMFT_Based_Representation">
+    <packagedElement xmi:type="uml:Class" xmi:id="_uzCKUNg-EeSLXqlejJgoBg" name="GMFT_BasedRepresentation">
       <generalization xmi:type="uml:Generalization" xmi:id="_28b6YNg-EeSLXqlejJgoBg" general="_32MTgNenEeSTpeYJP6Dwgg"/>
       <ownedAttribute xmi:type="uml:Property" xmi:id="_UiNH0NevEeSTpeYJP6Dwgg" name="reusedID">
         <type xmi:type="uml:PrimitiveType" href="pathmap://UML_LIBRARIES/EcorePrimitiveTypes.library.uml#EString"/>

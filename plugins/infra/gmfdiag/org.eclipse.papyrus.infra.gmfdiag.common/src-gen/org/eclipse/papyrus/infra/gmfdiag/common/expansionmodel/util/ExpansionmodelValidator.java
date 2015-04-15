@@ -111,12 +111,12 @@ public class ExpansionmodelValidator extends EObjectValidator {
 				return validateRepresentationKind((RepresentationKind)value, diagnostics, context);
 			case ExpansionmodelPackage.INDUCED_REPRESENTATION:
 				return validateInducedRepresentation((InducedRepresentation)value, diagnostics, context);
-			case ExpansionmodelPackage.LIBRARY:
-				return validateLibrary((Library)value, diagnostics, context);
+			case ExpansionmodelPackage.GRAPHICAL_ELEMENT_LIBRARY:
+				return validateGraphicalElementLibrary((GraphicalElementLibrary)value, diagnostics, context);
 			case ExpansionmodelPackage.USE_CONTEXT:
 				return validateUseContext((UseContext)value, diagnostics, context);
 			case ExpansionmodelPackage.GMFT_BASED_REPRESENTATION:
-				return validateGMFT_Based_Representation((GMFT_Based_Representation)value, diagnostics, context);
+				return validateGMFT_BasedRepresentation((GMFT_BasedRepresentation)value, diagnostics, context);
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION:
 				return validateDiagramExpansion((DiagramExpansion)value, diagnostics, context);
 			default:
@@ -205,8 +205,8 @@ public class ExpansionmodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateLibrary(Library library, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return validate_EveryDefaultConstraint(library, diagnostics, context);
+	public boolean validateGraphicalElementLibrary(GraphicalElementLibrary graphicalElementLibrary, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		return validate_EveryDefaultConstraint(graphicalElementLibrary, diagnostics, context);
 	}
 
 	/**
@@ -223,17 +223,17 @@ public class ExpansionmodelValidator extends EObjectValidator {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public boolean validateGMFT_Based_Representation(GMFT_Based_Representation gmfT_Based_Representation, DiagnosticChain diagnostics, Map<Object, Object> context) {
-		if (!validate_NoCircularContainment(gmfT_Based_Representation, diagnostics, context)) return false;
-		boolean result = validate_EveryMultiplicityConforms(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryProxyResolves(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_UniqueID(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryKeyUnique(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(gmfT_Based_Representation, diagnostics, context);
-		if (result || diagnostics != null) result &= validateAbstractRepresentation_validate(gmfT_Based_Representation, diagnostics, context);
+	public boolean validateGMFT_BasedRepresentation(GMFT_BasedRepresentation gmfT_BasedRepresentation, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(gmfT_BasedRepresentation, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(gmfT_BasedRepresentation, diagnostics, context);
+		if (result || diagnostics != null) result &= validateAbstractRepresentation_validate(gmfT_BasedRepresentation, diagnostics, context);
 		return result;
 	}
 

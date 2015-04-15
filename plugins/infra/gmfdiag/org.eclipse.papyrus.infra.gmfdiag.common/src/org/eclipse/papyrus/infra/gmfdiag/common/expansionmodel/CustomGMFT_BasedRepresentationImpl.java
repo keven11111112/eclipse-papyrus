@@ -16,14 +16,14 @@ package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
 import java.util.Map;
 
 import org.eclipse.emf.common.util.DiagnosticChain;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_Based_RepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_BasedRepresentationImpl;
 
 /**
  * this class is overloaded in order to add the implementation of the method validate
  * See Requirement #org.eclipse.papyrus.infra.gmfdiag.expansion.Req_061
  *
  */
-public class CustomGMFT_Based_RepresentationImpl extends GMFT_Based_RepresentationImpl {
+public class CustomGMFT_BasedRepresentationImpl extends GMFT_BasedRepresentationImpl {
 
 	/**
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.AbstractRepresentationImpl#validate(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)

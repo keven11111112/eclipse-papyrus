@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<xmi:XMI xmi:version="20131001" xmlns:xmi="http://www.omg.org/spec/XMI/20131001" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Requirements="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:structure="http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/papyrus/0.7.0/SysML/Requirements http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements http://DeveloperProcess/schemas/structure/_rpmLUHVxEeSZ-fQGFkyJeQ/6 pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ">
+  <uml:Model xmi:id="_OFsfcOLIEeSv5dwvZ9NSDw" name="MySystem">
+    <packageImport xmi:type="uml:PackageImport" xmi:id="_OFsfceLIEeSv5dwvZ9NSDw">
+      <importedPackage xmi:type="uml:Model" href="pathmap://UML_LIBRARIES/UMLPrimitiveTypes.library.uml#_0"/>
+    </packageImport>
+    <packagedElement xmi:type="uml:Model" xmi:id="_OFsfcuLIEeSv5dwvZ9NSDw" name="Requirements">
+      <packagedElement xmi:type="uml:Class" xmi:id="_a0GrwOLIEeSv5dwvZ9NSDw" name="Block display"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_OFsfc-LIEeSv5dwvZ9NSDw" name="UseCases">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_OFsfdOLIEeSv5dwvZ9NSDw" name="useCasesAbstraction" client="_OFsfc-LIEeSv5dwvZ9NSDw" supplier="_OFsfcuLIEeSv5dwvZ9NSDw"/>
+      <packagedElement xmi:type="uml:Component" xmi:id="_OFsfdeLIEeSv5dwvZ9NSDw" name="MySystem"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_OFsfduLIEeSv5dwvZ9NSDw" name="Design">
+      <packagedElement xmi:type="uml:Abstraction" xmi:id="_OFsfd-LIEeSv5dwvZ9NSDw" name="DesignAbstraction" client="_OFsfduLIEeSv5dwvZ9NSDw" supplier="_OFsfc-LIEeSv5dwvZ9NSDw"/>
+    </packagedElement>
+    <packagedElement xmi:type="uml:Model" xmi:id="_OFsfeOLIEeSv5dwvZ9NSDw" name="Test">
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_OFsfeeLIEeSv5dwvZ9NSDw" name="Dependency1" client="_OFsfeOLIEeSv5dwvZ9NSDw" supplier="_OFsfc-LIEeSv5dwvZ9NSDw"/>
+      <packagedElement xmi:type="uml:Dependency" xmi:id="_OFsfeuLIEeSv5dwvZ9NSDw" name="Dependency2" client="_OFsfeOLIEeSv5dwvZ9NSDw" supplier="_OFsfduLIEeSv5dwvZ9NSDw"/>
+    </packagedElement>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OFsfe-LIEeSv5dwvZ9NSDw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PKPssOLIEeSv5dwvZ9NSDw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PKQTwOLIEeSv5dwvZ9NSDw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PKQTweLIEeSv5dwvZ9NSDw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PKQTwuLIEeSv5dwvZ9NSDw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PKQTw-LIEeSv5dwvZ9NSDw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PKQTxOLIEeSv5dwvZ9NSDw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OFsffOLIEeSv5dwvZ9NSDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rplkQXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_kWqjAMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OFsffeLIEeSv5dwvZ9NSDw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PS4EQOLIEeSv5dwvZ9NSDw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS4EQeLIEeSv5dwvZ9NSDw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS4EQuLIEeSv5dwvZ9NSDw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS4EQ-LIEeSv5dwvZ9NSDw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS4EROLIEeSv5dwvZ9NSDw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS4EReLIEeSv5dwvZ9NSDw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OFsffuLIEeSv5dwvZ9NSDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpmyYHVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_qCT3MMbXEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OFsff-LIEeSv5dwvZ9NSDw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PS5SYOLIEeSv5dwvZ9NSDw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS5SYeLIEeSv5dwvZ9NSDw" key="Version" value="0.0.7"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS5SYuLIEeSv5dwvZ9NSDw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS5SY-LIEeSv5dwvZ9NSDw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS5SZOLIEeSv5dwvZ9NSDw" key="Date" value="2014-11-26"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS5SZeLIEeSv5dwvZ9NSDw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OFsfgOLIEeSv5dwvZ9NSDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_rpnZcXVxEeSZ-fQGFkyJeQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/developerprocess.profile.uml#_2LNtQMbYEeO09JBvNFZRNw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OFsfgeLIEeSv5dwvZ9NSDw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OFsfguLIEeSv5dwvZ9NSDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#//requirements"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://SysML_PROFILES/SysML.profile.uml#_OOJC4LX8EduFmqQsrNB9lw"/>
+    </profileApplication>
+    <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_OFsfg-LIEeSv5dwvZ9NSDw">
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_PS55cOLIEeSv5dwvZ9NSDw" source="PapyrusVersion">
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS55ceLIEeSv5dwvZ9NSDw" key="Version" value="0.0.11"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS55cuLIEeSv5dwvZ9NSDw" key="Comment" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS55c-LIEeSv5dwvZ9NSDw" key="Copyright" value=""/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS55dOLIEeSv5dwvZ9NSDw" key="Date" value="2014-11-14"/>
+        <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_PS55deLIEeSv5dwvZ9NSDw" key="Author" value=""/>
+      </eAnnotations>
+      <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_OFsfhOLIEeSv5dwvZ9NSDw" source="http://www.eclipse.org/uml2/2.0.0/UML">
+        <references xmi:type="ecore:EPackage" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_RQrLoWwBEeSIYu1Ih2FYyQ"/>
+      </eAnnotations>
+      <appliedProfile xmi:type="uml:Profile" href="pathmap://DEVELOPER_PROFILES/Document.profile.uml#_D0JcUMnzEeO9CYUoXDRplw"/>
+    </profileApplication>
+  </uml:Model>
+  <structure:Project xmi:id="_OFsfheLIEeSv5dwvZ9NSDw" base_Model="_OFsfcOLIEeSv5dwvZ9NSDw"/>
+  <structure:Requirements xmi:id="_OFsfhuLIEeSv5dwvZ9NSDw" base_Model="_OFsfcuLIEeSv5dwvZ9NSDw"/>
+  <structure:UseCases xmi:id="_OFsfh-LIEeSv5dwvZ9NSDw" base_Model="_OFsfc-LIEeSv5dwvZ9NSDw"/>
+  <structure:Design xmi:id="_OFsfiOLIEeSv5dwvZ9NSDw" base_Model="_OFsfduLIEeSv5dwvZ9NSDw"/>
+  <structure:Tests xmi:id="_OFsfieLIEeSv5dwvZ9NSDw" base_Model="_OFsfeOLIEeSv5dwvZ9NSDw"/>
+  <Requirements:Requirement xmi:id="_a0OAgOLIEeSv5dwvZ9NSDw" text="The block can display constraints, operations, parts, references, values, properties compartments" id="org.eclipse.papyrus.sysml14.diagram.internalblock.Req001" base_Class="_a0GrwOLIEeSv5dwvZ9NSDw"/>
+</xmi:XMI>

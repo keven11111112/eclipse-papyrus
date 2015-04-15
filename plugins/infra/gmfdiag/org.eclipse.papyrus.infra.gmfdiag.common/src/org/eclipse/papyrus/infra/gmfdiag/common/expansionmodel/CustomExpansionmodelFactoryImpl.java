@@ -14,7 +14,7 @@
 package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.ExpansionmodelFactoryImpl;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_Based_RepresentationImpl;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.GMFT_BasedRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.InducedRepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.RepresentationImpl;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.RepresentationKindImpl;
@@ -53,8 +53,8 @@ public class CustomExpansionmodelFactoryImpl extends ExpansionmodelFactoryImpl {
 	 * @return
 	 */
 	@Override
-	public GMFT_Based_Representation createGMFT_Based_Representation() {
-		GMFT_Based_RepresentationImpl gmfT_Based_Representation = new CustomGMFT_Based_RepresentationImpl();
+	public GMFT_BasedRepresentation createGMFT_BasedRepresentation() {
+		GMFT_BasedRepresentationImpl gmfT_Based_Representation = new CustomGMFT_BasedRepresentationImpl();
 		return gmfT_Based_Representation;
 	}
 	/**

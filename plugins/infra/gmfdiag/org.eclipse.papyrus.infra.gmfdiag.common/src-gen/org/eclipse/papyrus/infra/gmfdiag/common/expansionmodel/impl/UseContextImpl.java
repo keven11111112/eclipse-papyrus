@@ -30,7 +30,7 @@ import org.eclipse.emf.ecore.util.EObjectResolvingEList;
 import org.eclipse.emf.ecore.util.InternalEList;
 
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation;
+import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
 
@@ -109,7 +109,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * @generated
 	 * @ordered
 	 */
-	protected EList<GMFT_Based_Representation> gmftRepresentations;
+	protected EList<GMFT_BasedRepresentation> gmftRepresentations;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -189,9 +189,9 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EList<GMFT_Based_Representation> getGmftRepresentations() {
+	public EList<GMFT_BasedRepresentation> getGmftRepresentations() {
 		if (gmftRepresentations == null) {
-			gmftRepresentations = new EObjectContainmentEList<GMFT_Based_Representation>(GMFT_Based_Representation.class, this, ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
+			gmftRepresentations = new EObjectContainmentEList<GMFT_BasedRepresentation>(GMFT_BasedRepresentation.class, this, ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS);
 		}
 		return gmftRepresentations;
 	}
@@ -251,7 +251,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 				return;
 			case ExpansionmodelPackage.USE_CONTEXT__GMFT_REPRESENTATIONS:
 				getGmftRepresentations().clear();
-				getGmftRepresentations().addAll((Collection<? extends GMFT_Based_Representation>)newValue);
+				getGmftRepresentations().addAll((Collection<? extends GMFT_BasedRepresentation>)newValue);
 				return;
 		}
 		super.eSet(featureID, newValue);

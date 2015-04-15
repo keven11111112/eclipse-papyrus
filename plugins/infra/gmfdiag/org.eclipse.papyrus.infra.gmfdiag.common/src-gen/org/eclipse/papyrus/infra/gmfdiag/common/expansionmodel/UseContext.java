@@ -106,7 +106,7 @@ public interface UseContext extends EObject {
 
 	/**
 	 * Returns the value of the '<em><b>Gmft Representations</b></em>' containment reference list.
-	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_Based_Representation}.
+	 * The list contents are of type {@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GMFT_BasedRepresentation}.
 	 * <!-- begin-user-doc -->
 	 * <p>
 	 * If the meaning of the '<em>Gmft Representations</em>' containment reference list isn't clear,
@@ -118,6 +118,6 @@ public interface UseContext extends EObject {
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
-	EList<GMFT_Based_Representation> getGmftRepresentations();
+	EList<GMFT_BasedRepresentation> getGmftRepresentations();
 
 } // UseContext

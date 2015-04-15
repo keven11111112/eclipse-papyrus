@@ -18,23 +18,23 @@ import org.eclipse.emf.ecore.EObject;
 
 /**
  * <!-- begin-user-doc -->
- * A representation of the model object '<em><b>Library</b></em>'.
+ * A representation of the model object '<em><b>Graphical Element Library</b></em>'.
  * <!-- end-user-doc -->
  *
  * <p>
  * The following features are supported:
  * </p>
  * <ul>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library#getName <em>Name</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library#getRepresentationkinds <em>Representationkinds</em>}</li>
- *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library#getRepresentations <em>Representations</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getRepresentationkinds <em>Representationkinds</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getRepresentations <em>Representations</em>}</li>
  * </ul>
  *
- * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getLibrary()
+ * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary()
  * @model
  * @generated
  */
-public interface Library extends EObject {
+public interface GraphicalElementLibrary extends EObject {
 	/**
 	 * Returns the value of the '<em><b>Name</b></em>' attribute.
 	 * <!-- begin-user-doc -->
@@ -45,14 +45,14 @@ public interface Library extends EObject {
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getLibrary_Name()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Name()
 	 * @model required="true" ordered="false"
 	 * @generated
 	 */
 	String getName();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Library#getName <em>Name</em>}' attribute.
+	 * Sets the value of the '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.GraphicalElementLibrary#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @param value the new value of the '<em>Name</em>' attribute.
@@ -71,7 +71,7 @@ public interface Library extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representationkinds</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getLibrary_Representationkinds()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Representationkinds()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
@@ -87,10 +87,10 @@ public interface Library extends EObject {
 	 * </p>
 	 * <!-- end-user-doc -->
 	 * @return the value of the '<em>Representations</em>' containment reference list.
-	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getLibrary_Representations()
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGraphicalElementLibrary_Representations()
 	 * @model containment="true" ordered="false"
 	 * @generated
 	 */
 	EList<AbstractRepresentation> getRepresentations();
 
-} // Library
+} // GraphicalElementLibrary
