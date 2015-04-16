@@ -445,13 +445,6 @@
       </Priority>
    </IconProvider>
 </extension>
-   <extension point="org.eclipse.emf.ecore.generated_package">
-      <!-- @generated expansionModel -->
-      <package
-            uri="http:///expansionmodel.ecore"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionModelPackage"
-            genModel="model/expansionModel.genmodel"/>
-   </extension>
 
    <extension
          point="org.eclipse.gmf.runtime.diagram.core.viewProviders">
@@ -472,7 +465,7 @@
    </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated ExpandModel -->
+      <!-- @generated NOT  ExpandModel -->
       <parser
             type="expansionmodel"
             class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.CustomExpansionmodelResourceFactory"/>

@@ -20,33 +20,10 @@
             original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
       </contribution>
    </extension>
-<<<<<<< Upstream, based on gerrit/master
-=======
-   <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
-			
-			<mapping
-				humanReadableType="packagedElements"
-				type="7030">
-			</mapping>
-			<mapping
-				humanReadableType="packagedElements"
-				type="7010">
-			</mapping>
-			
-			<mapping
-				humanReadableType="packagedElements"
-				type="7009">
-			</mapping>
-			<mapping
-				humanReadableType="packagedElements"
-				type="7016">
-			</mapping>
-</extension>
    <extension
          point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
       <diagramexpansion
             model="resources/configuration/BDDconfig.xmi">
       </diagramexpansion>
    </extension>
->>>>>>> 696cda6 Bug 463290 - Papyrus diagram shall be expanded with new visual graphical notation
 </plugin>

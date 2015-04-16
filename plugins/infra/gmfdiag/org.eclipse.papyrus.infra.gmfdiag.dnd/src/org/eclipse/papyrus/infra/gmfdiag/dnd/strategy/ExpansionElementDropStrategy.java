@@ -41,6 +41,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingle
 import org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionsRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
+import org.eclipse.papyrus.infra.gmfdiag.dnd.Activator;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
 
@@ -52,6 +53,7 @@ import org.eclipse.swt.graphics.Image;
 public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 
 	private DiagramExpansionsRegistry diagramExpansionRegistry;
+	private static final String DEBUG_PREFIX = "[EXPANSION_DIAGRAM]";
 	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
 			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 
@@ -141,7 +143,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 				}
 			}
 			if(DEBUG_EXPANSION){
-				System.out.println("try to drop "+ sourceElements+" inside "+graphicalEditPart.getNotationView().getType()+ " accepts "+childrenList);
+				Activator.log.debug(DEBUG_PREFIX+"try to drop "+ sourceElements+" inside "+graphicalEditPart.getNotationView().getType()+ " accepts "+childrenList);
 			}
 			// get the sub list of accepted source element that match to elementType
 			for (EObject sourceElement : sourceElements) {
@@ -153,7 +155,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 					if( matcher.matches(sourceElement)){
 						valuesToAdd.add(sourceElement);
 						if(DEBUG_EXPANSION){
-							System.out.println("try to drop command created for "+ sourceElement+ " "+iSpecializationType);
+							Activator.log.debug(DEBUG_PREFIX+"try to drop command created for "+ sourceElement+ " "+iSpecializationType);
 						}
 						cmd= new Command() {
 							@Override

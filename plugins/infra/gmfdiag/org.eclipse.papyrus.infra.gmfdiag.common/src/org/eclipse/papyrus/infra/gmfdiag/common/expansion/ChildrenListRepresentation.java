@@ -34,6 +34,10 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
  */
 public class ChildrenListRepresentation {
 
+	/**
+	 * 
+	 */
+	private static final String DEBUG_PREFIX = "[EXPANSION_DIAGRAM]";
 	public HashMap<String, AbstractRepresentation> IDMap=new HashMap<String, AbstractRepresentation>();
 	public HashMap<String, List<String>> parentChildrenRelation= new HashMap<String, List<String>>();
 
@@ -110,15 +114,14 @@ public class ChildrenListRepresentation {
 	 */
 	@Override
 	public String toString() {
-		String out= "+ChildrenListRepresentation for "+useContext.getDiagramType();
-		out=out+"\n+-->ID - Representation";
+		String out=      DEBUG_PREFIX+"+ChildrenListRepresentation for "+useContext.getDiagramType();
+		out=out+    "\n"+DEBUG_PREFIX+"+-->ID - Representation";
 		for (String currentID : IDMap.keySet()) {
-			out=out+"\n    \""+currentID+ "\" "+IDMap.get(currentID);
+			out=out+"\n"+DEBUG_PREFIX+"    \""+currentID+ "\" "+IDMap.get(currentID);
 		}
-		out=out+"\n"
-				+ "+--> MAP Parent Childreen";
+		out=out+    "\n"+DEBUG_PREFIX+"+--> ParentID- ChildrenIDs";
 		for (String currentID : parentChildrenRelation.keySet()) {
-			out=out+"\n    \""+currentID+ "\" "+parentChildrenRelation.get(currentID);
+			out=out+"\n"+DEBUG_PREFIX+"    \""+currentID+ "\" "+parentChildrenRelation.get(currentID);
 		}
 		return out;
 	}

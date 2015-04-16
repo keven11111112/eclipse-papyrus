@@ -33,6 +33,7 @@ import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.core.utils.ServiceUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
@@ -46,6 +47,10 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  */
 public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
+	/**
+	 * 
+	 */
+	private static final String DEBUG_PREFIX = "[EXPANSION_DIAGRAM]";
 	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
 			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 	/** Map containing node view types supported by this provider */
@@ -98,7 +103,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
 				String graphicalType = newView.getType();
 				if(DEBUG_EXPANSION){
-					System.out.println(this.getClass().getName()+" view appears with the type "+graphicalType);
+					Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
 				}
 
 				if(diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType)!=null){
@@ -126,7 +131,7 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 
 		String graphicalType = view.getType();
 		if(DEBUG_EXPANSION){
-			System.out.println(this.getClass().getName()+" view appears with the type "+graphicalType);
+			Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" view appears with the type "+graphicalType);
 		}
 		EObject eObject= diagramExpansionRegistry.mapChildreen.get(currentDiagramType).IDMap.get(graphicalType);
 		Class editpartClass=null;

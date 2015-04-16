@@ -87,7 +87,7 @@ public class DiagramExpansionsRegistry {
 					ChildrenListRepresentation childrenListRepresentation= new ChildrenListRepresentation(usage);
 					mapChildreen.put(usage.getDiagramType(), childrenListRepresentation);
 					if(DEBUG_EXPANSION){
-						System.out.println(childrenListRepresentation);
+						Activator.log.debug(childrenListRepresentation.toString());
 					}
 				}
 				else{

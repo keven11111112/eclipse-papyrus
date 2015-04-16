@@ -24,6 +24,7 @@ import org.eclipse.gmf.runtime.diagram.core.services.view.CreateEdgeViewOperatio
 import org.eclipse.gmf.runtime.diagram.core.services.view.CreateNodeViewOperation;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.AbstractRepresentation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.Representation;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.RepresentationKind;
@@ -40,6 +41,7 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
  */
 public class ExpandViewProvider extends CustomAbstractViewProvider implements IViewProvider {
 
+	private static final String DEBUG_PREFIX = "[EXPANSION_DIAGRAM]";
 	private static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
 			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 	/** Map containing node view types supported by this provider */
@@ -103,7 +105,7 @@ public class ExpandViewProvider extends CustomAbstractViewProvider implements IV
 			containerType	= operation.getContainerView().getType();
 		}
 		if(DEBUG_EXPANSION){
-			System.out.println(this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint());
+			Activator.log.debug(DEBUG_PREFIX+this.getClass().getName()+" try to create view in the container "+containerType+ " the view "+ operation.getSemanticHint());
 		}
 		//get the list of childreen Id from a parent ID
 		List<String> possibleChildreenIDs=diagramExpansionRegistry.mapChildreen.get(currentDiagramType).parentChildrenRelation.get(containerType);
