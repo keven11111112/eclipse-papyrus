@@ -23,7 +23,6 @@ import java.util.StringTokenizer;
 import org.eclipse.emf.common.CommonPlugin;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
-import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
@@ -176,19 +175,12 @@ public class DGModelWizard extends Wizard implements INewWizard {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
-	 * @generated
+	 * @generated NOT
 	 */
 	protected Collection<String> getInitialObjectNames() {
 		if(initialObjectNames == null) {
 			initialObjectNames = new ArrayList<String>();
-			for(EClassifier eClassifier : dgPackage.getEClassifiers()) {
-				if(eClassifier instanceof EClass) {
-					EClass eClass = (EClass)eClassifier;
-					if(!eClass.isAbstract()) {
-						initialObjectNames.add(eClass.getName());
-					}
-				}
-			}
+			initialObjectNames.add(DGPackage.Literals.ROOT_CANVAS.getName());
 			Collections.sort(initialObjectNames, CommonPlugin.INSTANCE.getComparator());
 		}
 		return initialObjectNames;

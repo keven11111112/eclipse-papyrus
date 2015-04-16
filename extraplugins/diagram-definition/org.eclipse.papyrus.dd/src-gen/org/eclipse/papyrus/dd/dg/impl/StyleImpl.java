@@ -43,21 +43,21 @@ import org.eclipse.papyrus.dd.dg.util.DGValidator;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Style</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFill <em>Fill</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFillOpacity <em>Fill Opacity</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStroke <em>Stroke</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeWidth <em>Stroke Width</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeOpacity <em>Stroke Opacity</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeDashLengths <em>Stroke Dash Length</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontSize <em>Font Size</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontName <em>Font Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#isFontItalic <em>Font Italic</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#isFontBold <em>Font Bold</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontDecoration <em>Font Decoration</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFill <em>Fill</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFillOpacity <em>Fill Opacity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStroke <em>Stroke</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeWidth <em>Stroke Width</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeOpacity <em>Stroke Opacity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getStrokeDashLengths <em>Stroke Dash Length</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontSize <em>Font Size</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontName <em>Font Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#isFontItalic <em>Font Italic</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#isFontBold <em>Font Bold</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.StyleImpl#getFontDecoration <em>Font Decoration</em>}</li>
+ * </ul>
+ *
  * @generated
  */
 public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
@@ -65,7 +65,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getFill() <em>Fill</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFill()
 	 * @generated
 	 * @ordered
@@ -84,7 +83,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #getFillOpacity() <em>Fill Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFillOpacity()
 	 * @generated
 	 * @ordered
@@ -94,7 +92,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getFillOpacity() <em>Fill Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFillOpacity()
 	 * @generated
 	 * @ordered
@@ -113,7 +110,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getStroke() <em>Stroke</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getStroke()
 	 * @generated
 	 * @ordered
@@ -132,7 +128,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #getStrokeWidth() <em>Stroke Width</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getStrokeWidth()
 	 * @generated
 	 * @ordered
@@ -142,7 +137,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getStrokeWidth() <em>Stroke Width</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getStrokeWidth()
 	 * @generated
 	 * @ordered
@@ -162,7 +156,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * The default value of the '{@link #getStrokeOpacity() <em>Stroke Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStrokeOpacity()
 	 * @generated
 	 * @ordered
@@ -173,7 +166,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * The cached value of the '{@link #getStrokeOpacity() <em>Stroke Opacity</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getStrokeOpacity()
 	 * @generated
 	 * @ordered
@@ -193,7 +185,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * The cached value of the '{@link #getStrokeDashLengths() <em>Stroke Dash Length</em>}' attribute list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getStrokeDashLengths()
 	 * @generated
 	 * @ordered
@@ -203,7 +194,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -213,7 +203,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getFontSize() <em>Font Size</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFontSize()
 	 * @generated
 	 * @ordered
@@ -224,7 +213,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * This is true if the Font Size attribute has been set.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -233,7 +221,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #getFontName() <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFontName()
 	 * @generated
 	 * @ordered
@@ -243,7 +230,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #getFontName() <em>Font Name</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getFontName()
 	 * @generated
 	 * @ordered
@@ -254,7 +240,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * This is true if the Font Name attribute has been set.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -263,7 +248,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #isFontItalic() <em>Font Italic</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #isFontItalic()
 	 * @generated
 	 * @ordered
@@ -273,7 +257,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #isFontItalic() <em>Font Italic</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #isFontItalic()
 	 * @generated
 	 * @ordered
@@ -292,7 +275,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The default value of the '{@link #isFontBold() <em>Font Bold</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #isFontBold()
 	 * @generated
 	 * @ordered
@@ -302,7 +284,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	/**
 	 * The cached value of the '{@link #isFontBold() <em>Font Bold</em>}' attribute.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #isFontBold()
 	 * @generated
 	 * @ordered
@@ -313,7 +294,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * This is true if the Font Bold attribute has been set.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 * @ordered
 	 */
@@ -323,7 +303,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * The default value of the '{@link #getFontDecoration() <em>Font Decoration</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFontDecoration()
 	 * @generated
 	 * @ordered
@@ -334,7 +313,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	 * The cached value of the '{@link #getFontDecoration() <em>Font Decoration</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #getFontDecoration()
 	 * @generated
 	 * @ordered
@@ -352,7 +330,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StyleImpl() {
@@ -361,7 +338,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -371,7 +347,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Paint getFill() {
@@ -380,7 +355,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetFill(Paint newFill, NotificationChain msgs) {
@@ -388,42 +362,37 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fill = newFill;
 		boolean oldFillESet = fillESet;
 		fillESet = true;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FILL, oldFill, newFill, !oldFillESet);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFill(Paint newFill) {
-		if(newFill != fill) {
+		if (newFill != fill) {
 			NotificationChain msgs = null;
-			if(fill != null)
+			if (fill != null)
 				msgs = ((InternalEObject)fill).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__FILL, null, msgs);
-			if(newFill != null)
+			if (newFill != null)
 				msgs = ((InternalEObject)newFill).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__FILL, null, msgs);
 			msgs = basicSetFill(newFill, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else {
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
 			boolean oldFillESet = fillESet;
 			fillESet = true;
-			if(eNotificationRequired())
+			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FILL, newFill, newFill, !oldFillESet));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicUnsetFill(NotificationChain msgs) {
@@ -431,39 +400,34 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fill = null;
 		boolean oldFillESet = fillESet;
 		fillESet = false;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FILL, oldFill, null, oldFillESet);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFill() {
-		if(fill != null) {
+		if (fill != null) {
 			NotificationChain msgs = null;
 			msgs = ((InternalEObject)fill).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__FILL, null, msgs);
 			msgs = basicUnsetFill(msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else {
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
 			boolean oldFillESet = fillESet;
 			fillESet = false;
-			if(eNotificationRequired())
+			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FILL, null, null, oldFillESet));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFill() {
@@ -472,7 +436,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getFillOpacity() {
@@ -481,7 +444,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFillOpacity(double newFillOpacity) {
@@ -489,13 +451,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fillOpacity = newFillOpacity;
 		boolean oldFillOpacityESet = fillOpacityESet;
 		fillOpacityESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FILL_OPACITY, oldFillOpacity, fillOpacity, !oldFillOpacityESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFillOpacity() {
@@ -503,13 +464,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFillOpacityESet = fillOpacityESet;
 		fillOpacity = FILL_OPACITY_EDEFAULT;
 		fillOpacityESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FILL_OPACITY, oldFillOpacity, FILL_OPACITY_EDEFAULT, oldFillOpacityESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFillOpacity() {
@@ -518,7 +478,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Paint getStroke() {
@@ -527,7 +486,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetStroke(Paint newStroke, NotificationChain msgs) {
@@ -535,42 +493,37 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		stroke = newStroke;
 		boolean oldStrokeESet = strokeESet;
 		strokeESet = true;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__STROKE, oldStroke, newStroke, !oldStrokeESet);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStroke(Paint newStroke) {
-		if(newStroke != stroke) {
+		if (newStroke != stroke) {
 			NotificationChain msgs = null;
-			if(stroke != null)
+			if (stroke != null)
 				msgs = ((InternalEObject)stroke).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__STROKE, null, msgs);
-			if(newStroke != null)
+			if (newStroke != null)
 				msgs = ((InternalEObject)newStroke).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__STROKE, null, msgs);
 			msgs = basicSetStroke(newStroke, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else {
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
 			boolean oldStrokeESet = strokeESet;
 			strokeESet = true;
-			if(eNotificationRequired())
+			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__STROKE, newStroke, newStroke, !oldStrokeESet));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicUnsetStroke(NotificationChain msgs) {
@@ -578,39 +531,34 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		stroke = null;
 		boolean oldStrokeESet = strokeESet;
 		strokeESet = false;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__STROKE, oldStroke, null, oldStrokeESet);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetStroke() {
-		if(stroke != null) {
+		if (stroke != null) {
 			NotificationChain msgs = null;
 			msgs = ((InternalEObject)stroke).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DGPackage.STYLE__STROKE, null, msgs);
 			msgs = basicUnsetStroke(msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else {
+			if (msgs != null) msgs.dispatch();
+		}
+		else {
 			boolean oldStrokeESet = strokeESet;
 			strokeESet = false;
-			if(eNotificationRequired())
+			if (eNotificationRequired())
 				eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__STROKE, null, null, oldStrokeESet));
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetStroke() {
@@ -619,7 +567,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getStrokeWidth() {
@@ -628,7 +575,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStrokeWidth(double newStrokeWidth) {
@@ -636,13 +582,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		strokeWidth = newStrokeWidth;
 		boolean oldStrokeWidthESet = strokeWidthESet;
 		strokeWidthESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__STROKE_WIDTH, oldStrokeWidth, strokeWidth, !oldStrokeWidthESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetStrokeWidth() {
@@ -650,13 +595,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldStrokeWidthESet = strokeWidthESet;
 		strokeWidth = STROKE_WIDTH_EDEFAULT;
 		strokeWidthESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__STROKE_WIDTH, oldStrokeWidth, STROKE_WIDTH_EDEFAULT, oldStrokeWidthESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetStrokeWidth() {
@@ -665,7 +609,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getStrokeOpacity() {
@@ -674,7 +617,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setStrokeOpacity(double newStrokeOpacity) {
@@ -682,13 +624,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		strokeOpacity = newStrokeOpacity;
 		boolean oldStrokeOpacityESet = strokeOpacityESet;
 		strokeOpacityESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__STROKE_OPACITY, oldStrokeOpacity, strokeOpacity, !oldStrokeOpacityESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetStrokeOpacity() {
@@ -696,13 +637,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldStrokeOpacityESet = strokeOpacityESet;
 		strokeOpacity = STROKE_OPACITY_EDEFAULT;
 		strokeOpacityESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__STROKE_OPACITY, oldStrokeOpacity, STROKE_OPACITY_EDEFAULT, oldStrokeOpacityESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetStrokeOpacity() {
@@ -711,11 +651,10 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EList<Double> getStrokeDashLengths() {
-		if(strokeDashLengths == null) {
+		if (strokeDashLengths == null) {
 			strokeDashLengths = new EDataTypeEList.Unsettable<Double>(Double.class, this, DGPackage.STYLE__STROKE_DASH_LENGTH);
 		}
 		return strokeDashLengths;
@@ -723,17 +662,14 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetStrokeDashLengths() {
-		if(strokeDashLengths != null)
-			((InternalEList.Unsettable<?>)strokeDashLengths).unset();
+		if (strokeDashLengths != null) ((InternalEList.Unsettable<?>)strokeDashLengths).unset();
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetStrokeDashLengths() {
@@ -742,7 +678,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public double getFontSize() {
@@ -751,7 +686,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFontSize(double newFontSize) {
@@ -759,13 +693,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fontSize = newFontSize;
 		boolean oldFontSizeESet = fontSizeESet;
 		fontSizeESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FONT_SIZE, oldFontSize, fontSize, !oldFontSizeESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFontSize() {
@@ -773,13 +706,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFontSizeESet = fontSizeESet;
 		fontSize = FONT_SIZE_EDEFAULT;
 		fontSizeESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FONT_SIZE, oldFontSize, FONT_SIZE_EDEFAULT, oldFontSizeESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFontSize() {
@@ -788,7 +720,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getFontName() {
@@ -797,7 +728,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFontName(String newFontName) {
@@ -805,13 +735,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fontName = newFontName;
 		boolean oldFontNameESet = fontNameESet;
 		fontNameESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FONT_NAME, oldFontName, fontName, !oldFontNameESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFontName() {
@@ -819,13 +748,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFontNameESet = fontNameESet;
 		fontName = FONT_NAME_EDEFAULT;
 		fontNameESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FONT_NAME, oldFontName, FONT_NAME_EDEFAULT, oldFontNameESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFontName() {
@@ -834,7 +762,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isFontItalic() {
@@ -843,7 +770,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFontItalic(boolean newFontItalic) {
@@ -851,13 +777,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fontItalic = newFontItalic;
 		boolean oldFontItalicESet = fontItalicESet;
 		fontItalicESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FONT_ITALIC, oldFontItalic, fontItalic, !oldFontItalicESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFontItalic() {
@@ -865,13 +790,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFontItalicESet = fontItalicESet;
 		fontItalic = FONT_ITALIC_EDEFAULT;
 		fontItalicESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FONT_ITALIC, oldFontItalic, FONT_ITALIC_EDEFAULT, oldFontItalicESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFontItalic() {
@@ -880,7 +804,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isFontBold() {
@@ -889,7 +812,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFontBold(boolean newFontBold) {
@@ -897,13 +819,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fontBold = newFontBold;
 		boolean oldFontBoldESet = fontBoldESet;
 		fontBoldESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FONT_BOLD, oldFontBold, fontBold, !oldFontBoldESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFontBold() {
@@ -911,13 +832,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFontBoldESet = fontBoldESet;
 		fontBold = FONT_BOLD_EDEFAULT;
 		fontBoldESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FONT_BOLD, oldFontBold, FONT_BOLD_EDEFAULT, oldFontBoldESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFontBold() {
@@ -926,7 +846,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FontDecoration getFontDecoration() {
@@ -935,7 +854,6 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setFontDecoration(FontDecoration newFontDecoration) {
@@ -943,13 +861,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		fontDecoration = newFontDecoration == null ? FONT_DECORATION_EDEFAULT : newFontDecoration;
 		boolean oldFontDecorationESet = fontDecorationESet;
 		fontDecorationESet = true;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.STYLE__FONT_DECORATION, oldFontDecoration, fontDecoration, !oldFontDecorationESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void unsetFontDecoration() {
@@ -957,13 +874,12 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 		boolean oldFontDecorationESet = fontDecorationESet;
 		fontDecoration = FONT_DECORATION_EDEFAULT;
 		fontDecorationESet = false;
-		if(eNotificationRequired())
+		if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.UNSET, DGPackage.STYLE__FONT_DECORATION, oldFontDecoration, FONT_DECORATION_EDEFAULT, oldFontDecorationESet));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSetFontDecoration() {
@@ -971,11 +887,9 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #validFontSize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Valid Font Size</em>}' invariant operation.
+	 * The cached validation expression for the '{@link #validFontSize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Font Size</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #validFontSize(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -984,19 +898,27 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validFontSize(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return DGValidator.validate(DGPackage.Literals.STYLE, this, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL", DGPackage.Literals.STYLE___VALID_FONT_SIZE__DIAGNOSTICCHAIN_MAP, VALID_FONT_SIZE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR, DGValidator.DIAGNOSTIC_SOURCE, DGValidator.STYLE__VALID_FONT_SIZE);
+		return
+			DGValidator.validate
+				(DGPackage.Literals.STYLE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 DGPackage.Literals.STYLE___VALID_FONT_SIZE__DIAGNOSTICCHAIN_MAP,
+				 VALID_FONT_SIZE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DGValidator.DIAGNOSTIC_SOURCE,
+				 DGValidator.STYLE__VALID_FONT_SIZE);
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #validFillOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Valid Fill Opacity</em>}' invariant operation.
+	 * The cached validation expression for the '{@link #validFillOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Fill Opacity</em>}' invariant operation.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #validFillOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -1005,19 +927,27 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validFillOpacity(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return DGValidator.validate(DGPackage.Literals.STYLE, this, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL", DGPackage.Literals.STYLE___VALID_FILL_OPACITY__DIAGNOSTICCHAIN_MAP, VALID_FILL_OPACITY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR, DGValidator.DIAGNOSTIC_SOURCE, DGValidator.STYLE__VALID_FILL_OPACITY);
+		return
+			DGValidator.validate
+				(DGPackage.Literals.STYLE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 DGPackage.Literals.STYLE___VALID_FILL_OPACITY__DIAGNOSTICCHAIN_MAP,
+				 VALID_FILL_OPACITY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DGValidator.DIAGNOSTIC_SOURCE,
+				 DGValidator.STYLE__VALID_FILL_OPACITY);
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #validStrokeWidth(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Valid Stroke Width</em>}' invariant operation.
+	 * The cached validation expression for the '{@link #validStrokeWidth(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Stroke Width</em>}' invariant operation.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #validStrokeWidth(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -1026,11 +956,21 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validStrokeWidth(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return DGValidator.validate(DGPackage.Literals.STYLE, this, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL", DGPackage.Literals.STYLE___VALID_STROKE_WIDTH__DIAGNOSTICCHAIN_MAP, VALID_STROKE_WIDTH_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR, DGValidator.DIAGNOSTIC_SOURCE, DGValidator.STYLE__VALID_STROKE_WIDTH);
+		return
+			DGValidator.validate
+				(DGPackage.Literals.STYLE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 DGPackage.Literals.STYLE___VALID_STROKE_WIDTH__DIAGNOSTICCHAIN_MAP,
+				 VALID_STROKE_WIDTH_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DGValidator.DIAGNOSTIC_SOURCE,
+				 DGValidator.STYLE__VALID_STROKE_WIDTH);
 	}
 
 	/**
@@ -1046,19 +986,27 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validDashLengthSize(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return DGValidator.validate(DGPackage.Literals.STYLE, this, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL", DGPackage.Literals.STYLE___VALID_DASH_LENGTH_SIZE__DIAGNOSTICCHAIN_MAP, VALID_DASH_LENGTH_SIZE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR, DGValidator.DIAGNOSTIC_SOURCE, DGValidator.STYLE__VALID_DASH_LENGTH_SIZE);
+		return
+			DGValidator.validate
+				(DGPackage.Literals.STYLE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 DGPackage.Literals.STYLE___VALID_DASH_LENGTH_SIZE__DIAGNOSTICCHAIN_MAP,
+				 VALID_DASH_LENGTH_SIZE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DGValidator.DIAGNOSTIC_SOURCE,
+				 DGValidator.STYLE__VALID_DASH_LENGTH_SIZE);
 	}
 
 	/**
-	 * The cached validation expression for the '{@link #validStrokeOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 * <em>Valid Stroke Opacity</em>}' invariant operation.
+	 * The cached validation expression for the '{@link #validStrokeOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Valid Stroke Opacity</em>}' invariant operation.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @see #validStrokeOpacity(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -1067,264 +1015,243 @@ public class StyleImpl extends MinimalEObjectImpl.Container implements Style {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean validStrokeOpacity(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return DGValidator.validate(DGPackage.Literals.STYLE, this, diagnostics, context, "http://www.eclipse.org/emf/2002/Ecore/OCL", DGPackage.Literals.STYLE___VALID_STROKE_OPACITY__DIAGNOSTICCHAIN_MAP, VALID_STROKE_OPACITY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION, Diagnostic.ERROR, DGValidator.DIAGNOSTIC_SOURCE, DGValidator.STYLE__VALID_STROKE_OPACITY);
+		return
+			DGValidator.validate
+				(DGPackage.Literals.STYLE,
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL",
+				 DGPackage.Literals.STYLE___VALID_STROKE_OPACITY__DIAGNOSTICCHAIN_MAP,
+				 VALID_STROKE_OPACITY_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 DGValidator.DIAGNOSTIC_SOURCE,
+				 DGValidator.STYLE__VALID_STROKE_OPACITY);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case DGPackage.STYLE__FILL:
-			return basicUnsetFill(msgs);
-		case DGPackage.STYLE__STROKE:
-			return basicUnsetStroke(msgs);
+		switch (featureID) {
+			case DGPackage.STYLE__FILL:
+				return basicUnsetFill(msgs);
+			case DGPackage.STYLE__STROKE:
+				return basicUnsetStroke(msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DGPackage.STYLE__FILL:
-			return getFill();
-		case DGPackage.STYLE__FILL_OPACITY:
-			return getFillOpacity();
-		case DGPackage.STYLE__STROKE:
-			return getStroke();
-		case DGPackage.STYLE__STROKE_WIDTH:
-			return getStrokeWidth();
-		case DGPackage.STYLE__STROKE_OPACITY:
-			return getStrokeOpacity();
-		case DGPackage.STYLE__STROKE_DASH_LENGTH:
-			return getStrokeDashLengths();
-		case DGPackage.STYLE__FONT_SIZE:
-			return getFontSize();
-		case DGPackage.STYLE__FONT_NAME:
-			return getFontName();
-		case DGPackage.STYLE__FONT_ITALIC:
-			return isFontItalic();
-		case DGPackage.STYLE__FONT_BOLD:
-			return isFontBold();
-		case DGPackage.STYLE__FONT_DECORATION:
-			return getFontDecoration();
+		switch (featureID) {
+			case DGPackage.STYLE__FILL:
+				return getFill();
+			case DGPackage.STYLE__FILL_OPACITY:
+				return getFillOpacity();
+			case DGPackage.STYLE__STROKE:
+				return getStroke();
+			case DGPackage.STYLE__STROKE_WIDTH:
+				return getStrokeWidth();
+			case DGPackage.STYLE__STROKE_OPACITY:
+				return getStrokeOpacity();
+			case DGPackage.STYLE__STROKE_DASH_LENGTH:
+				return getStrokeDashLengths();
+			case DGPackage.STYLE__FONT_SIZE:
+				return getFontSize();
+			case DGPackage.STYLE__FONT_NAME:
+				return getFontName();
+			case DGPackage.STYLE__FONT_ITALIC:
+				return isFontItalic();
+			case DGPackage.STYLE__FONT_BOLD:
+				return isFontBold();
+			case DGPackage.STYLE__FONT_DECORATION:
+				return getFontDecoration();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DGPackage.STYLE__FILL:
-			setFill((Paint)newValue);
-			return;
-		case DGPackage.STYLE__FILL_OPACITY:
-			setFillOpacity((Double)newValue);
-			return;
-		case DGPackage.STYLE__STROKE:
-			setStroke((Paint)newValue);
-			return;
-		case DGPackage.STYLE__STROKE_WIDTH:
-			setStrokeWidth((Double)newValue);
-			return;
-		case DGPackage.STYLE__STROKE_OPACITY:
-			setStrokeOpacity((Double)newValue);
-			return;
-		case DGPackage.STYLE__STROKE_DASH_LENGTH:
-			getStrokeDashLengths().clear();
-			getStrokeDashLengths().addAll((Collection<? extends Double>)newValue);
-			return;
-		case DGPackage.STYLE__FONT_SIZE:
-			setFontSize((Double)newValue);
-			return;
-		case DGPackage.STYLE__FONT_NAME:
-			setFontName((String)newValue);
-			return;
-		case DGPackage.STYLE__FONT_ITALIC:
-			setFontItalic((Boolean)newValue);
-			return;
-		case DGPackage.STYLE__FONT_BOLD:
-			setFontBold((Boolean)newValue);
-			return;
-		case DGPackage.STYLE__FONT_DECORATION:
-			setFontDecoration((FontDecoration)newValue);
-			return;
+		switch (featureID) {
+			case DGPackage.STYLE__FILL:
+				setFill((Paint)newValue);
+				return;
+			case DGPackage.STYLE__FILL_OPACITY:
+				setFillOpacity((Double)newValue);
+				return;
+			case DGPackage.STYLE__STROKE:
+				setStroke((Paint)newValue);
+				return;
+			case DGPackage.STYLE__STROKE_WIDTH:
+				setStrokeWidth((Double)newValue);
+				return;
+			case DGPackage.STYLE__STROKE_OPACITY:
+				setStrokeOpacity((Double)newValue);
+				return;
+			case DGPackage.STYLE__STROKE_DASH_LENGTH:
+				getStrokeDashLengths().clear();
+				getStrokeDashLengths().addAll((Collection<? extends Double>)newValue);
+				return;
+			case DGPackage.STYLE__FONT_SIZE:
+				setFontSize((Double)newValue);
+				return;
+			case DGPackage.STYLE__FONT_NAME:
+				setFontName((String)newValue);
+				return;
+			case DGPackage.STYLE__FONT_ITALIC:
+				setFontItalic((Boolean)newValue);
+				return;
+			case DGPackage.STYLE__FONT_BOLD:
+				setFontBold((Boolean)newValue);
+				return;
+			case DGPackage.STYLE__FONT_DECORATION:
+				setFontDecoration((FontDecoration)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DGPackage.STYLE__FILL:
-			unsetFill();
-			return;
-		case DGPackage.STYLE__FILL_OPACITY:
-			unsetFillOpacity();
-			return;
-		case DGPackage.STYLE__STROKE:
-			unsetStroke();
-			return;
-		case DGPackage.STYLE__STROKE_WIDTH:
-			unsetStrokeWidth();
-			return;
-		case DGPackage.STYLE__STROKE_OPACITY:
-			unsetStrokeOpacity();
-			return;
-		case DGPackage.STYLE__STROKE_DASH_LENGTH:
-			unsetStrokeDashLengths();
-			return;
-		case DGPackage.STYLE__FONT_SIZE:
-			unsetFontSize();
-			return;
-		case DGPackage.STYLE__FONT_NAME:
-			unsetFontName();
-			return;
-		case DGPackage.STYLE__FONT_ITALIC:
-			unsetFontItalic();
-			return;
-		case DGPackage.STYLE__FONT_BOLD:
-			unsetFontBold();
-			return;
-		case DGPackage.STYLE__FONT_DECORATION:
-			unsetFontDecoration();
-			return;
+		switch (featureID) {
+			case DGPackage.STYLE__FILL:
+				unsetFill();
+				return;
+			case DGPackage.STYLE__FILL_OPACITY:
+				unsetFillOpacity();
+				return;
+			case DGPackage.STYLE__STROKE:
+				unsetStroke();
+				return;
+			case DGPackage.STYLE__STROKE_WIDTH:
+				unsetStrokeWidth();
+				return;
+			case DGPackage.STYLE__STROKE_OPACITY:
+				unsetStrokeOpacity();
+				return;
+			case DGPackage.STYLE__STROKE_DASH_LENGTH:
+				unsetStrokeDashLengths();
+				return;
+			case DGPackage.STYLE__FONT_SIZE:
+				unsetFontSize();
+				return;
+			case DGPackage.STYLE__FONT_NAME:
+				unsetFontName();
+				return;
+			case DGPackage.STYLE__FONT_ITALIC:
+				unsetFontItalic();
+				return;
+			case DGPackage.STYLE__FONT_BOLD:
+				unsetFontBold();
+				return;
+			case DGPackage.STYLE__FONT_DECORATION:
+				unsetFontDecoration();
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DGPackage.STYLE__FILL:
-			return isSetFill();
-		case DGPackage.STYLE__FILL_OPACITY:
-			return isSetFillOpacity();
-		case DGPackage.STYLE__STROKE:
-			return isSetStroke();
-		case DGPackage.STYLE__STROKE_WIDTH:
-			return isSetStrokeWidth();
-		case DGPackage.STYLE__STROKE_OPACITY:
-			return isSetStrokeOpacity();
-		case DGPackage.STYLE__STROKE_DASH_LENGTH:
-			return isSetStrokeDashLengths();
-		case DGPackage.STYLE__FONT_SIZE:
-			return isSetFontSize();
-		case DGPackage.STYLE__FONT_NAME:
-			return isSetFontName();
-		case DGPackage.STYLE__FONT_ITALIC:
-			return isSetFontItalic();
-		case DGPackage.STYLE__FONT_BOLD:
-			return isSetFontBold();
-		case DGPackage.STYLE__FONT_DECORATION:
-			return isSetFontDecoration();
+		switch (featureID) {
+			case DGPackage.STYLE__FILL:
+				return isSetFill();
+			case DGPackage.STYLE__FILL_OPACITY:
+				return isSetFillOpacity();
+			case DGPackage.STYLE__STROKE:
+				return isSetStroke();
+			case DGPackage.STYLE__STROKE_WIDTH:
+				return isSetStrokeWidth();
+			case DGPackage.STYLE__STROKE_OPACITY:
+				return isSetStrokeOpacity();
+			case DGPackage.STYLE__STROKE_DASH_LENGTH:
+				return isSetStrokeDashLengths();
+			case DGPackage.STYLE__FONT_SIZE:
+				return isSetFontSize();
+			case DGPackage.STYLE__FONT_NAME:
+				return isSetFontName();
+			case DGPackage.STYLE__FONT_ITALIC:
+				return isSetFontItalic();
+			case DGPackage.STYLE__FONT_BOLD:
+				return isSetFontBold();
+			case DGPackage.STYLE__FONT_DECORATION:
+				return isSetFontDecoration();
 		}
 		return super.eIsSet(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
-		switch(operationID) {
-		case DGPackage.STYLE___VALID_FONT_SIZE__DIAGNOSTICCHAIN_MAP:
-			return validFontSize((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		case DGPackage.STYLE___VALID_FILL_OPACITY__DIAGNOSTICCHAIN_MAP:
-			return validFillOpacity((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		case DGPackage.STYLE___VALID_STROKE_WIDTH__DIAGNOSTICCHAIN_MAP:
-			return validStrokeWidth((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		case DGPackage.STYLE___VALID_DASH_LENGTH_SIZE__DIAGNOSTICCHAIN_MAP:
-			return validDashLengthSize((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
-		case DGPackage.STYLE___VALID_STROKE_OPACITY__DIAGNOSTICCHAIN_MAP:
-			return validStrokeOpacity((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+		switch (operationID) {
+			case DGPackage.STYLE___VALID_FONT_SIZE__DIAGNOSTICCHAIN_MAP:
+				return validFontSize((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case DGPackage.STYLE___VALID_FILL_OPACITY__DIAGNOSTICCHAIN_MAP:
+				return validFillOpacity((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case DGPackage.STYLE___VALID_STROKE_WIDTH__DIAGNOSTICCHAIN_MAP:
+				return validStrokeWidth((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case DGPackage.STYLE___VALID_DASH_LENGTH_SIZE__DIAGNOSTICCHAIN_MAP:
+				return validDashLengthSize((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case DGPackage.STYLE___VALID_STROKE_OPACITY__DIAGNOSTICCHAIN_MAP:
+				return validStrokeOpacity((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String toString() {
-		if(eIsProxy())
-			return super.toString();
+		if (eIsProxy()) return super.toString();
+
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (fillOpacity: ");
-		if(fillOpacityESet)
-			result.append(fillOpacity);
-		else
-			result.append("<unset>");
+		if (fillOpacityESet) result.append(fillOpacity); else result.append("<unset>");
 		result.append(", strokeWidth: ");
-		if(strokeWidthESet)
-			result.append(strokeWidth);
-		else
-			result.append("<unset>");
+		if (strokeWidthESet) result.append(strokeWidth); else result.append("<unset>");
 		result.append(", strokeOpacity: ");
-		if(strokeOpacityESet)
-			result.append(strokeOpacity);
-		else
-			result.append("<unset>");
+		if (strokeOpacityESet) result.append(strokeOpacity); else result.append("<unset>");
 		result.append(", strokeDashLength: ");
 		result.append(strokeDashLengths);
 		result.append(", fontSize: ");
-		if(fontSizeESet)
-			result.append(fontSize);
-		else
-			result.append("<unset>");
+		if (fontSizeESet) result.append(fontSize); else result.append("<unset>");
 		result.append(", fontName: ");
-		if(fontNameESet)
-			result.append(fontName);
-		else
-			result.append("<unset>");
+		if (fontNameESet) result.append(fontName); else result.append("<unset>");
 		result.append(", fontItalic: ");
-		if(fontItalicESet)
-			result.append(fontItalic);
-		else
-			result.append("<unset>");
+		if (fontItalicESet) result.append(fontItalic); else result.append("<unset>");
 		result.append(", fontBold: ");
-		if(fontBoldESet)
-			result.append(fontBold);
-		else
-			result.append("<unset>");
+		if (fontBoldESet) result.append(fontBold); else result.append("<unset>");
 		result.append(", fontDecoration: ");
-		if(fontDecorationESet)
-			result.append(fontDecoration);
-		else
-			result.append("<unset>");
+		if (fontDecorationESet) result.append(fontDecoration); else result.append("<unset>");
 		result.append(')');
 		return result.toString();
 	}

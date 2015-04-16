@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.umldi.ElementImportEdge;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -19,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Element Import Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class ElementImportEdgeImpl extends NamedEdgeImpl implements ElementImportEdge {
-
+public class ElementImportEdgeImpl extends ElementEdgeImpl implements ElementImportEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ElementImportEdgeImpl() {
@@ -39,11 +36,11 @@ public class ElementImportEdgeImpl extends NamedEdgeImpl implements ElementImpor
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ELEMENT_IMPORT_EDGE;
 	}
+
 } //ElementImportEdgeImpl

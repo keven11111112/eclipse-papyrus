@@ -44,8 +44,8 @@ public class GeneralOrderingStereotypesTest extends BaseStereotypesTest {
 		assertNotNull(source);
 		LifelineEditPart target = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), null);
 		assertNotNull(target);
-		Point sourcePoint = getAbsoluteCenter(source);
-		Point targetPoint = getAbsoluteCenter(target);
+		Point sourcePoint = getAbsoluteBounds(source).getTop().translate(0, 50);
+		Point targetPoint = getAbsoluteBounds(target).getTop().translate(0, 50);
 		Message2EditPart message1 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint, targetPoint);
 		assertNotNull(message1);
 		Message2EditPart message2 = (Message2EditPart)createLink(UMLElementTypes.Message_4004, source.getViewer(), sourcePoint.getTranslated(0, 50), targetPoint.getTranslated(0, 50));

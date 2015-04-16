@@ -39,6 +39,7 @@ import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.impl.ShapeImpl;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
@@ -181,7 +182,7 @@ public class LifelineMessageCreateHelper {
 	public static Command reconnectMessageCreateTarget(ReconnectRequest request, Command command) {
 		LifelineEditPart oldTarget = (LifelineEditPart) request.getConnectionEditPart().getTarget();
 		// LifelineEditPart source = (LifelineEditPart)request.getConnectionEditPart().getSource();
-		LifelineEditPart newTarget = (LifelineEditPart) request.getTarget();
+		CustomLifelineEditPart newTarget = (CustomLifelineEditPart) request.getTarget();
 		// move up the original connection target lifeline, it has only one create message, which will be removed
 		if (getIncomingMessageCreate(oldTarget).size() == 1) {
 			Rectangle bounds = oldTarget.getPrimaryShape().getBounds();
@@ -196,7 +197,7 @@ public class LifelineMessageCreateHelper {
 		return command;
 	}
 
-	public static Command moveLifelineDown(Command command, LifelineEditPart part, Point sourcePointCopy) {
+	public static Command moveLifelineDown(Command command, CustomLifelineEditPart part, Point sourcePointCopy) {
 		IFigure fig = part.getFigure();
 		Rectangle bounds = fig.getBounds().getCopy();
 		int height = part.getPrimaryShape().getFigureLifelineNameContainerFigure().getBounds().height;
@@ -220,15 +221,22 @@ public class LifelineMessageCreateHelper {
 		return command;
 	}
 
-	// move all lifelines which has incoming create link from part
 	public static Command moveCascadeLifeline(LifelineEditPart part, Command command, int dy) {
+		command = moveCascadeLifelineRecursive(part, command, dy);
+		CustomInteractionEditPart interactionEP = (CustomInteractionEditPart) part.getParent().getParent();
+		command = interactionEP.getUpdateLifelinesHeightsCommand(command);
+		return command;
+	}
+
+	// move all lifelines which has incoming create link from part
+	public static Command moveCascadeLifelineRecursive(LifelineEditPart part, Command command, int dy) {
 		List<?> list = part.getSourceConnections();
 		if (list != null && list.size() > 0) {
 			for (Object l : list) {
 				if (l instanceof Message4EditPart) {
 					EditPart target = ((Message4EditPart) l).getTarget();
-					if (target instanceof LifelineEditPart) {
-						LifelineEditPart lp = (LifelineEditPart) target;
+					if (target instanceof CustomLifelineEditPart) {
+						CustomLifelineEditPart lp = (CustomLifelineEditPart) target;
 						Rectangle bounds = lp.getFigure().getBounds().getCopy();
 						View targetView = lp.getNotationView();
 						Point location = bounds.getLocation().getCopy().translate(0, dy);
@@ -236,9 +244,9 @@ public class LifelineMessageCreateHelper {
 						// Take care of the order of commands, to make sure target is always bellow the source.
 						if (dy < 0) { // move up
 							command = command == null ? boundsCommand : command.chain(boundsCommand);
-							command = moveCascadeLifeline(lp, command, dy);
+							command = moveCascadeLifelineRecursive(lp, command, dy);
 						} else { // move down
-							command = moveCascadeLifeline(lp, command, dy);
+							command = moveCascadeLifelineRecursive(lp, command, dy);
 							command = command == null ? boundsCommand : command.chain(boundsCommand);
 						}
 					}

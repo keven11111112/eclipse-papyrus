@@ -13,14 +13,19 @@ package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
+
 import org.eclipse.emf.common.util.EList;
+
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
+
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
+
 import org.eclipse.papyrus.umldi.EnumerationShape;
 import org.eclipse.papyrus.umldi.LiteralCompartment;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 import org.eclipse.papyrus.umldi.UmlDiagramElement;
+
 import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
 
 /**
@@ -29,21 +34,19 @@ import org.eclipse.uml2.common.util.DerivedUnionEObjectEList;
  * <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.impl.EnumerationShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.impl.EnumerationShapeImpl#getLiteralCompartment <em>Literal Compartment</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.EnumerationShapeImpl#getOwnedUmlDiagramElement <em>Owned Uml Diagram Element</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.impl.EnumerationShapeImpl#getLiteralCompartment <em>Literal Compartment</em>}</li>
+ * </ul>
+ *
  * @generated
  */
 public class EnumerationShapeImpl extends ClassifierShapeImpl implements EnumerationShape {
-
 	/**
 	 * The cached value of the '{@link #getLiteralCompartment() <em>Literal Compartment</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getLiteralCompartment()
 	 * @generated
 	 * @ordered
@@ -53,7 +56,6 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumerationShapeImpl() {
@@ -63,7 +65,6 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -74,7 +75,6 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -86,17 +86,15 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	 * The array of subset feature identifiers for the '{@link #getOwnedUmlDiagramElement() <em>Owned Uml Diagram Element</em>}' reference list.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #getOwnedUmlDiagramElement()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[]{ UMLDIPackage.ENUMERATION_SHAPE__NAME_LABEL, UMLDIPackage.ENUMERATION_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT };
+	protected static final int[] OWNED_UML_DIAGRAM_ELEMENT_ESUBSETS = new int[] {UMLDIPackage.ENUMERATION_SHAPE__MAIN_LABEL, UMLDIPackage.ENUMERATION_SHAPE__TEMPLATE_PARAMETER_COMPARTMENT, UMLDIPackage.ENUMERATION_SHAPE__OWNED_USE_CASE_COMPARTMENT, UMLDIPackage.ENUMERATION_SHAPE__USE_CASE_COMPARTMENT, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT};
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LiteralCompartment getLiteralCompartment() {
@@ -106,18 +104,14 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetLiteralCompartment(LiteralCompartment newLiteralCompartment, NotificationChain msgs) {
 		LiteralCompartment oldLiteralCompartment = literalCompartment;
 		literalCompartment = newLiteralCompartment;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, oldLiteralCompartment, newLiteralCompartment);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
@@ -125,36 +119,34 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLiteralCompartment(LiteralCompartment newLiteralCompartment) {
-		if(newLiteralCompartment != literalCompartment) {
+		if (newLiteralCompartment != literalCompartment) {
 			NotificationChain msgs = null;
-			if(literalCompartment != null)
+			if (literalCompartment != null)
 				msgs = ((InternalEObject)literalCompartment).eInverseRemove(this, UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE, LiteralCompartment.class, msgs);
-			if(newLiteralCompartment != null)
+			if (newLiteralCompartment != null)
 				msgs = ((InternalEObject)newLiteralCompartment).eInverseAdd(this, UMLDIPackage.LITERAL_COMPARTMENT__ENUMERATION_SHAPE, LiteralCompartment.class, msgs);
 			msgs = basicSetLiteralCompartment(newLiteralCompartment, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, newLiteralCompartment, newLiteralCompartment));
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			if(literalCompartment != null)
-				msgs = ((InternalEObject)literalCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, null, msgs);
-			return basicSetLiteralCompartment((LiteralCompartment)otherEnd, msgs);
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				if (literalCompartment != null)
+					msgs = ((InternalEObject)literalCompartment).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT, null, msgs);
+				return basicSetLiteralCompartment((LiteralCompartment)otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -162,14 +154,13 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			return basicSetLiteralCompartment(null, msgs);
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				return basicSetLiteralCompartment(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -177,14 +168,13 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			return getLiteralCompartment();
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				return getLiteralCompartment();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -192,15 +182,14 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			setLiteralCompartment((LiteralCompartment)newValue);
-			return;
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				setLiteralCompartment((LiteralCompartment)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -208,15 +197,14 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			setLiteralCompartment((LiteralCompartment)null);
-			return;
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				setLiteralCompartment((LiteralCompartment)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -224,16 +212,15 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case UMLDIPackage.ENUMERATION_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
-			return isSetOwnedUmlDiagramElement();
-		case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
-			return literalCompartment != null;
+		switch (featureID) {
+			case UMLDIPackage.ENUMERATION_SHAPE__OWNED_UML_DIAGRAM_ELEMENT:
+				return isSetOwnedUmlDiagramElement();
+			case UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT:
+				return literalCompartment != null;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -241,11 +228,12 @@ public class EnumerationShapeImpl extends ClassifierShapeImpl implements Enumera
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean isSetOwnedUmlDiagramElement() {
-		return super.isSetOwnedUmlDiagramElement() || eIsSet(UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT);
+		return super.isSetOwnedUmlDiagramElement()
+			|| eIsSet(UMLDIPackage.ENUMERATION_SHAPE__LITERAL_COMPARTMENT);
 	}
+
 } //EnumerationShapeImpl

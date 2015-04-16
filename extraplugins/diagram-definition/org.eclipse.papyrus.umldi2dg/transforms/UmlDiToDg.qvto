@@ -9,7 +9,6 @@
  * Contributors:
  *  CEA LIST - Initial API and implementation
  */
-import UmlDiagrams;
 import UmlShapes;
 import UmlEdges;
 import UmlCompartments;
@@ -27,61 +26,68 @@ main() {
 	umldi.rootObjects()[UMLDI::UmlDiagram]->sortedBy(name)->map diagramToRootCanvas();
 }
 
-mapping UMLDI::UmlCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
-	init {
-		if (self.umlModelElement->size() = 1) then {
-			result := self.umlModelElement.oclAsType(UML::Element).map compartmentToGraphicalElement(self);
-		} endif;
-	}
+abstract mapping UMLDI::UmlDiagramElement::diagramElementToGraphicalElement() : DG::GraphicalElement {
+	if self.localUmlStyle->notEmpty() then {
+		var style = result.createStyleIfNeeded();
+		style.fontName := self.localUmlStyle.fontName;
+		style.fontSize := self.localUmlStyle.fontSize;
+	} endif;	
 }
 
-mapping UMLDI::TemplateParameterCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
-	init {
-		result := object DG::Rectangle {
-			bounds := self.bounds.clone().oclAsType(DC::Bounds);
-			_class := "dashed";
-		}
-	}
-}
-
-mapping UMLDI::UmlCompartment::compartmentToGroup() : DG::Group 
-	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+mapping UMLDI::UmlDiagramElement::ownedElementToGraphicalElement() : DG::GraphicalElement 
 {
-	member += self.map compartmentToGraphicalElement();
-	member += self.mapOwnedElementToGraphicalElement();
+	init {
+		if self.oclIsKindOf(UMLDI::UmlShape) then 
+			result := self.oclAsType(UMLDI::UmlShape).map shapeToGroup()
+		else if self.oclIsKindOf(UMLDI::UmlEdge) then 
+			result := self.oclAsType(UMLDI::UmlEdge).map edgeToGroup()
+		else if self.oclIsKindOf(UMLDI::UmlCompartment) then 
+			result := self.oclAsType(UMLDI::UmlCompartment).map compartmentToGroup()
+		else if self.oclIsKindOf(UMLDI::UmlLabel) then 
+			result := self.oclAsType(UMLDI::UmlLabel).map labelToGraphicalElement()
+		endif endif endif endif;
+	}
 }
 
-mapping UMLDI::UmlDiagram::diagramToGraphicalElement() : DG::GraphicalElement 
-{ 
-	init {
-		if (self.umlModelElement->size() = 1) then {
-			result := self.umlModelElement.oclAsType(UML::Element).map diagramToGraphicalElement(self);
-		} endif;
-	}
+helper UMLDI::UmlDiagramElement::mapOwnedElementToGraphicalElement() : Collection(DG::GraphicalElement) {
+	var e := self.ownedUmlDiagramElement->reject(isBorderShape())->map ownedElementToGraphicalElement(); 
+	e += self.ownedUmlDiagramElement->select(isBorderShape())->map ownedElementToGraphicalElement(); 
+	return e;
+}
+
+query UMLDI::UmlDiagramElement::isBorderShape() : Boolean {
+	return self.oclIsKindOf(UMLDI::PortShape);
 }
 
 mapping UMLDI::UmlDiagram::diagramToRootCanvas() : DG::RootCanvas 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
 	id := self.name;
-	script += "platform:/plugin/org.eclipse.papyrus.umldi2dg/scripts/UmlLayouts.js";
 	definitions := self.map diagramToDefinitions();
-	member += self.map diagramToGraphicalElement();
 	member += self.mapOwnedElementToGraphicalElement();
 }
 
-abstract mapping UMLDI::UmlDiagramElement::diagramElementToGraphicalElement() : DG::GraphicalElement {
-	style := self.localUmlStyle.map styleToStyle()
+mapping UMLDI::UmlShape::shapeToGroup() : DG::Group 
+	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+{
+	member += self.map shapeToGraphicalElement();
+	member += self.mapOwnedElementToGraphicalElement();
 }
 
-mapping UMLDI::UmlDiagramElement::ownedElementToGraphicalElement() : DG::GraphicalElement 
-	disjuncts UMLDI::UmlLabel::labelToText,
-			  UMLDI::UmlCompartment::compartmentToGroup,
-			  UMLDI::UmlShape::shapeToGroup,
-			  UMLDI::UmlEdge::edgeToGroup; 
+mapping UMLDI::UmlShape::shapeToGraphicalElement() : DG::GraphicalElement { 
+	init {
+		if (result.oclIsUndefined() and self.umlModelElement->size() = 1) then {
+			result := self.umlModelElement.oclAsType(UML::Element).map shapeToGraphicalElement(self);
+		} endif;
+	}
+}
 
-helper UMLDI::UmlDiagramElement::mapOwnedElementToGraphicalElement() : Collection(DG::GraphicalElement) {
-	return self.ownedUmlDiagramElement->map ownedElementToGraphicalElement();
+helper UMLDI::TemplateableElementShape::mapOwnedElementToGraphicalElement() : Collection(DG::GraphicalElement) {
+	var c = self.ownedUmlDiagramElement->any(oclIsKindOf(UMLDI::TemplateParameterCompartment));
+	var r = self.ownedUmlDiagramElement->excluding(c)->reject(isBorderShape())->map ownedElementToGraphicalElement()->asOrderedSet();
+	r += self.ownedUmlDiagramElement->select(isBorderShape())->map ownedElementToGraphicalElement(); 
+	r += c->map ownedElementToGraphicalElement(); 
+	return r;
 }
 
 mapping UMLDI::UmlEdge::edgeToGroup() : DG::Group  
@@ -93,7 +99,7 @@ mapping UMLDI::UmlEdge::edgeToGroup() : DG::Group
 
 mapping UMLDI::UmlEdge::edgeToPath() : DG::Path {  
 	init {
-		if (self.umlModelElement->size() = 1) then {
+		if (result.oclIsUndefined() and self.umlModelElement->size() = 1) then {
 			result := self.umlModelElement.oclAsType(UML::Element).map edgeToPath(self);
 		} endif;
 	}
@@ -115,43 +121,152 @@ mapping UMLDI::AttachmentEdge::edgeToPath() : DG::Path
 	_class := "dotted";
 }
 
-mapping UMLDI::UmlLabel::labelToText() : DG::Text 
+mapping UMLDI::RepresentationEdge::edgeToPath() : DG::Path 
+	inherits UMLDI::UmlEdge::edgeToPath
+{  
+	_class := "dashed";
+	endMarker := self.resolveDefinitions().getMarker("endOpenArrow");		
+}
+
+mapping UMLDI::UmlCompartment::compartmentToGroup() : DG::Group 
+	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+{
+	member += self.map compartmentToGraphicalElement();
+	member += self.mapOwnedElementToGraphicalElement();
+}
+
+mapping UMLDI::UmlCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
+	init {
+		if (self.umlModelElement->size() = 1) then {
+			result := self.umlModelElement.oclAsType(UML::Element).map compartmentToGraphicalElement(self);
+		} endif;
+	}
+}
+
+mapping UMLDI::TemplateParameterCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
+	init {
+		result := object DG::Rectangle {
+			bounds := self.bounds.clone().oclAsType(DC::Bounds);
+			_class := "dashed";
+		}
+	}
+}
+
+mapping UMLDI::RegionCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
+	init {
+		result := if self.topUmlDiagramElement->size() > 1 then
+			compartmentSeparator(self)
+		else			
+			object DG::Group {}
+		endif;
+	}
+}
+
+mapping UMLDI::SubPartitionCompartment::compartmentToGraphicalElement() : DG::GraphicalElement { 
+	init {
+		result := if self.owningUmlDiagramElement.umlModelElement.oclAsType(UML::ActivityPartition).isDimension then
+			object DG::Group {}
+		else if self.owningUmlDiagramElement.oclAsType(UMLDI::ActivityPartitionShape).isVertical then		
+			compartmentSeparator(self)
+		else
+			compartmentSeparatorVertical(self)
+		endif endif;
+	}
+}
+
+mapping UMLDI::UmlLabel::labelToGraphicalElement() : DG::GraphicalElement 
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
 	init {
-		if (self.umlModelElement->size() = 1) then {
+		result := self.map labelToText();
+	}
+}
+
+mapping UMLDI::UmlLabel::labelToText() : DG::Text 
+{
+	init {
+		if (result.oclIsUndefined() and self.umlModelElement->size() = 1) then {
 			result := self.umlModelElement.oclAsType(UML::Element).map labelToText(self);
+		} else {
+			result := self.owningUmlDiagramElement.map labelToText(self);
 		} endif;
 	}
 	bounds := self.bounds.clone().oclAsType(DC::Bounds);
 }
 
-mapping UMLDI::UmlShape::shapeToGraphicalElement() : DG::GraphicalElement { 
+mapping UMLDI::SelectionLabel::labelToGraphicalElement() : DG::GraphicalElement
+	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+{
 	init {
-		if (self.umlModelElement->size() = 1) then {
-			result := self.umlModelElement.oclAsType(UML::Element).map shapeToGraphicalElement(self);
-		} endif;
+		result := self.map labelToNoteShape();
+	}
+} 
+
+mapping UMLDI::TransformationLabel::labelToGraphicalElement() : DG::GraphicalElement
+	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
+{
+	init {
+		result := self.map labelToNoteShape();
+	}
+} 
+
+mapping UMLDI::UmlLabel::labelToNoteShape() : DG::Group 
+{
+	init {
+		result := object DG::Group {
+			member += createNoteShape(self.bounds);
+			member += self.createNoteAttachment();
+			member += self.map labelToText();
+		};
 	}
 }
 
-mapping UMLDI::UmlShape::shapeToGroup() : DG::Group 
+helper UMLDI::UmlLabel::createNoteAttachment() : DG::Line {
+	var refX : Real, refY : Real;
+	var x1 : Real, y1 : Real;
+	if self.owningDiagramElement.oclIsKindOf(DI::Edge) then {
+		var w := self.owningDiagramElement.oclAsType(DI::Edge).waypoint;
+		refX := w->at(w->size()-1).x + (w->at(w->size()).x - w->at(w->size()-1).x) / 2;
+		refY := w->at(w->size()-1).y + (w->at(w->size()-1).y - w->at(w->size()-1).y) / 2;
+		x1 := refX;
+		y1 := refY;
+	} else {
+		var tb := self.owningDiagramElement.oclAsType(DI::Shape).bounds;
+		refX := tb.x + tb.width/2;
+		refY := tb.y + tb.height/2;
+		var sb := self.bounds;
+		var point1 := anchorPoint(tb, sb.x + sb.width/2, sb.y+sb.height/2);
+		x1 := point1.x;
+		y1 := point1.y;
+	} endif;
+
+	var point2 := anchorPoint(self.bounds, refX, refY);
+	var x2 := point2.x;
+	var y2 := point2.y;
+
+	return object DG::Line {
+		start := object DC::Point { x:=x1; y:=y1; };
+		_end := object DC::Point { x:=x2; y:=y2; };
+		_class := "dotted";
+	};
+}
+
+mapping UMLDI::IconLabel::labelToGraphicalElement() : DG::GraphicalElement
 	inherits UMLDI::UmlDiagramElement::diagramElementToGraphicalElement
 {
-	member += self.map shapeToGraphicalElement();
-	member += self.mapOwnedElementToGraphicalElement();
-}
+	init {
+		var b := self.bounds;
+		result := object DG::Path {
+			command += object DG::MoveTo { point := object DC::Point { x := b.x; y := b.y; } };
+			command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y; } };
+			command += object DG::LineTo { point := object DC::Point { x := b.x; y := b.y+b.height; } };
+			command += object DG::LineTo { point := object DC::Point { x := b.x+b.width; y := b.y+b.height; } };
+			endMarker := self.resolveDefinitions().getMarker("endSolidClosedArrowSmall");		
+		};
+	}
+} 
 
-mapping UMLDI::UmlStyle::styleToStyle() : DG::Style {
-	fontName := self.fontName;
-	fontSize := self.fontSize;
-}
-
-helper UMLDI::TemplateableElementShape::mapOwnedElementToGraphicalElement() : Collection(DG::GraphicalElement) {
-	var c = self.ownedUmlDiagramElement->any(oclIsKindOf(UMLDI::TemplateParameterCompartment));
-	var r = self.ownedUmlDiagramElement->excluding(c)->map ownedElementToGraphicalElement()->asOrderedSet();
-	r += c->map ownedElementToGraphicalElement(); 
-	return r;
-}
+//---------------------------------------------------------------------
 
 mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 	styleSheet := object DG::StyleSheet {
@@ -249,6 +364,18 @@ mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 	};	
 	
 	definition += object DG::Marker {
+		id := "endSolidClosedArrowSmall";
+		size := object DC::Dimension { width := 8; height := 8; };
+		reference := object DC::Point { x := 8; y := 4; };
+		member += object DG::Polygon {
+			point += object DC::Point { x := 1; y := 1; };
+			point += object DC::Point { x := 8; y := 4; };
+			point += object DC::Point { x := 1; y := 7; };
+			style := object DG::Style { fill := object DG::Paint { color := black } };
+		}
+	};	
+	
+	definition += object DG::Marker {
 		id := "endOpenArrow";
 		size := object DC::Dimension { width := 12; height := 12; };
 		reference := object DC::Point { x := 12; y := 6; };
@@ -259,6 +386,17 @@ mapping UMLDI::UmlDiagram::diagramToDefinitions() : DG::Definitions {
 		}
 	};	
 	
+	definition += object DG::Marker {
+		id := "endOpenArrowSmall";
+		size := object DC::Dimension { width := 8; height := 8; };
+		reference := object DC::Point { x := 8; y := 4; };
+		member += object DG::Polyline {
+			point += object DC::Point { x := 1; y := 1; };
+			point += object DC::Point { x := 8; y := 4; };
+			point += object DC::Point { x := 1; y := 7; };
+		}
+	};	
+
 	definition += object DG::Marker {
 		id := "endSolidCircleOpenArrow";
 		size := object DC::Dimension { width := 20; height := 12; };

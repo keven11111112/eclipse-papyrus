@@ -331,7 +331,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		Lifeline covered = (Lifeline) lifeline2.resolveSemanticElement();
 		assertTrue("lifeline should be covered by CombinedFragment", combinedFragment.getCovereds().contains(covered));
 		// 1. Message from Lifeline1 to CombinedFragment
-		Point startLocation = getAbsoluteBounds(lifeline1).getCenter();
+		Point startLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100);
 		Rectangle r = getAbsoluteBounds(cf);
 		Point endLocation = r.getLocation().setY(startLocation.y);
 		Message2EditPart message1EditPart = (Message2EditPart) createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), startLocation, endLocation);
@@ -606,7 +606,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		GateEditPart gate2 = createGate(combinedFragment, rect.getLeft().getTranslated(0, 20));
 		// gate3 is located on different CombinedFragment.
 		GateEditPart gate3 = createGateWithParent(UMLElementTypes.CombinedFragment_3004, new Point(300, 300), new Dimension(100, 100), true);
-		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(lifeline), getAbsoluteCenter(gate1));
+		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteBounds(lifeline).getTop().translate(0, 50), getAbsoluteCenter(gate1));
 		assertNotNull("Message Async", messageAsync);
 		checkGraphicalElements(messageAsync, gate1, false);
 		checkSemanticElements(messageAsync, gate1, false);
@@ -626,7 +626,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		GateEditPart gate1 = createGate(combinedFragment, rect.getRight().getTranslated(0, -20));
 		GateEditPart gate2 = createGate(combinedFragment, rect.getRight().getTranslated(0, 20));
 		GateEditPart gate3 = createGateWithParent(UMLElementTypes.CombinedFragment_3004, new Point(100, 380), new Dimension(100, 100), false);
-		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(gate1), getAbsoluteCenter(lifeline));
+		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(gate1), getAbsoluteBounds(lifeline).getTop().getTranslated(0, 70));
 		assertNotNull("Message Async", messageAsync);
 		checkGraphicalElements(messageAsync, gate1, true);
 		checkSemanticElements(messageAsync, gate1, true);
@@ -672,7 +672,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		CombinedFragmentEditPart cf1 = (CombinedFragmentEditPart) gate1.getParent();
 		CombinedFragmentEditPart cf2 = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(100, 220), new Dimension(100, 80));
 		LifelineEditPart lifeline = (LifelineEditPart) createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(300, 100), new Dimension(100, 500));
-		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(gate1), getAbsoluteCenter(lifeline));
+		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(gate1), getAbsoluteBounds(lifeline).getTop().getTranslated(0, 150));
 		checkSemanticElements(messageAsync, gate1, true);
 		// 1. moved on same combinedFragment.
 		reconnectSource(messageAsync, cf1, getAbsoluteCenter(gate1).getTranslated(0, 30));
@@ -694,7 +694,7 @@ public class TestGraphicalGate_389531 extends AbstractNodeTest {
 		GateEditPart gate1 = createGateWithParent(UMLElementTypes.CombinedFragment_3004, new Point(300, 100), new Dimension(100, 100), true);
 		CombinedFragmentEditPart cf1 = (CombinedFragmentEditPart) gate1.getParent();
 		CombinedFragmentEditPart cf2 = (CombinedFragmentEditPart) createNode(UMLElementTypes.CombinedFragment_3004, getRootEditPart(), new Point(300, 220), new Dimension(100, 80));
-		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteCenter(lifeline), getAbsoluteCenter(gate1));
+		AbstractMessageEditPart messageAsync = (AbstractMessageEditPart) createLink(UMLElementTypes.Message_4004, lifeline.getViewer(), getAbsoluteBounds(lifeline).getTop().getTranslated(0, 50), getAbsoluteCenter(gate1));
 		checkSemanticElements(messageAsync, gate1, false);
 		// 1. moved on same combinedFragment.
 		reconnectTarget(messageAsync, cf1, getAbsoluteCenter(gate1).getTranslated(0, 30));

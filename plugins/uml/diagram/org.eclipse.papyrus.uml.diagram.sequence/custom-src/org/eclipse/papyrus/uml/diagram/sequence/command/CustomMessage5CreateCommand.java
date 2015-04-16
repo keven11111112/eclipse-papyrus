@@ -28,6 +28,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.EObjectInheritanceCopyCom
 import org.eclipse.papyrus.uml.diagram.sequence.edit.commands.Message5CreateCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.policies.UMLBaseItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.util.CommandHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.MessageConnectionHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.common.util.UML2Util;
@@ -121,8 +122,11 @@ public class CustomMessage5CreateCommand extends Message5CreateCommand {
 		if (message != null) {
 			doConfigure(message, monitor, info);
 			((CreateElementRequest) getRequest()).setNewElement(message);
+			if (getTarget() instanceof DestructionOccurrenceSpecification) {
+				LifelineMessageDeleteHelper.setMessageEndDos(message, (DestructionOccurrenceSpecification)getTarget());
+			}
 			return CommandResult.newOKCommandResult(message);
-		}
+		} 
 		return CommandResult.newErrorCommandResult("There is now valid container for events"); //$NON-NLS-1$
 	}
 

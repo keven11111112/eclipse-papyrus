@@ -16,7 +16,6 @@ import org.eclipse.emf.ecore.EFactory;
 /**
  * <!-- begin-user-doc --> The <b>Factory</b> for the model. It provides a
  * create method for each non-abstract class of the model. <!-- end-user-doc -->
- * 
  * @see org.eclipse.papyrus.dd.dg.DGPackage
  * @generated
  */
@@ -26,7 +25,6 @@ public interface DGFactory extends EFactory {
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	DGFactory eINSTANCE = org.eclipse.papyrus.dd.dg.impl.DGFactoryImpl.init();
@@ -35,7 +33,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Canvas</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Canvas</em>'.
 	 * @generated
 	 */
@@ -45,7 +42,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Group</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Group</em>'.
 	 * @generated
 	 */
@@ -55,7 +51,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Move To</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Move To</em>'.
 	 * @generated
 	 */
@@ -65,7 +60,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Clip Path</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Clip Path</em>'.
 	 * @generated
 	 */
@@ -75,7 +69,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Style</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Style</em>'.
 	 * @generated
 	 */
@@ -85,7 +78,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Paint</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Paint</em>'.
 	 * @generated
 	 */
@@ -95,7 +87,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Circle</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Circle</em>'.
 	 * @generated
 	 */
@@ -105,7 +96,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Close Path</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Close Path</em>'.
 	 * @generated
 	 */
@@ -124,7 +114,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Definitions</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Definitions</em>'.
 	 * @generated
 	 */
@@ -134,7 +123,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Style Sheet</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Style Sheet</em>'.
 	 * @generated
 	 */
@@ -144,7 +132,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Style Rule</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Style Rule</em>'.
 	 * @generated
 	 */
@@ -163,7 +150,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Ellipse</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Ellipse</em>'.
 	 * @generated
 	 */
@@ -200,7 +186,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Image</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Image</em>'.
 	 * @generated
 	 */
@@ -210,7 +195,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Line</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Line</em>'.
 	 * @generated
 	 */
@@ -220,7 +204,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Marker</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Marker</em>'.
 	 * @generated
 	 */
@@ -239,7 +222,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Line To</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Line To</em>'.
 	 * @generated
 	 */
@@ -249,7 +231,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Matrix</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Matrix</em>'.
 	 * @generated
 	 */
@@ -259,7 +240,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Path</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Path</em>'.
 	 * @generated
 	 */
@@ -269,7 +249,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Pattern</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Pattern</em>'.
 	 * @generated
 	 */
@@ -279,7 +258,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Polygon</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Polygon</em>'.
 	 * @generated
 	 */
@@ -289,7 +267,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Polyline</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Polyline</em>'.
 	 * @generated
 	 */
@@ -308,7 +285,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Rectangle</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Rectangle</em>'.
 	 * @generated
 	 */
@@ -318,7 +294,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Root Canvas</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Root Canvas</em>'.
 	 * @generated
 	 */
@@ -328,7 +303,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Rotate</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Rotate</em>'.
 	 * @generated
 	 */
@@ -338,7 +312,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Scale</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Scale</em>'.
 	 * @generated
 	 */
@@ -348,7 +321,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Skew</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Skew</em>'.
 	 * @generated
 	 */
@@ -358,7 +330,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Text</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Text</em>'.
 	 * @generated
 	 */
@@ -368,7 +339,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Translate</em>'.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Translate</em>'.
 	 * @generated
 	 */
@@ -378,7 +348,6 @@ public interface DGFactory extends EFactory {
 	 * Returns a new object of class '<em>Use</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return a new object of class '<em>Use</em>'.
 	 * @generated
 	 */
@@ -388,7 +357,6 @@ public interface DGFactory extends EFactory {
 	 * Returns the package supported by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the package supported by this factory.
 	 * @generated
 	 */

@@ -67,19 +67,17 @@ public class UmlValueSpecificationSemanticSequencer extends AbstractDelegatingSe
 	/**
 	 * Constraint:
 	 *     (
+	 *         visibility=VisibilityKind? 
+	 *         name=VALUE_SPECIFICATION_ID? 
 	 *         (
-	 *             visibility=VisibilityKind? 
-	 *             name=VALUE_SPECIFICATION_ID? 
-	 *             (
-	 *                 value=LiteralBooleanRule | 
-	 *                 value=LiteralIntegerOrUnlimitedNaturalRule | 
-	 *                 value=LiteralRealRule | 
-	 *                 value=LiteralNullRule | 
-	 *                 value=LiteralStringRule | 
-	 *                 instanceSpecification=[InstanceSpecification|ID]
-	 *             )
-	 *         ) | 
-	 *         undefined=UndefinedRule
+	 *             instanceSpecification=[InstanceSpecification|ID] | 
+	 *             value=LiteralBooleanRule | 
+	 *             value=LiteralIntegerOrUnlimitedNaturalRule | 
+	 *             value=LiteralRealRule | 
+	 *             value=LiteralNullRule | 
+	 *             value=LiteralStringRule | 
+	 *             undefined=UndefinedRule
+	 *         )
 	 *     )
 	 */
 	protected void sequence_AbstractRule(EObject context, AbstractRule semanticObject) {
@@ -98,17 +96,10 @@ public class UmlValueSpecificationSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     value=VALUE_SPECIFICATION_INT
+	 *     (value=INT | value=VALUE_SPECIFICATION_NEGATIVE_INT | unlimited='*')
 	 */
 	protected void sequence_LiteralIntegerOrUnlimitedNaturalRule(EObject context, LiteralIntegerOrUnlimitedNaturalRule semanticObject) {
-		if(errorAcceptor != null) {
-			if(transientValues.isValueTransient(semanticObject, UmlValueSpecificationPackage.Literals.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE) == ValueTransient.YES)
-				errorAcceptor.accept(diagnosticProvider.createFeatureValueMissing(semanticObject, UmlValueSpecificationPackage.Literals.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE));
-		}
-		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
-		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueVALUE_SPECIFICATION_INTTerminalRuleCall_0(), semanticObject.getValue());
-		feeder.finish();
+		genericSequencer.createSequence(context, semanticObject);
 	}
 	
 	
@@ -146,7 +137,7 @@ public class UmlValueSpecificationSemanticSequencer extends AbstractDelegatingSe
 	
 	/**
 	 * Constraint:
-	 *     value=VALUE_SPECIFICATION_STRING
+	 *     value=STRING
 	 */
 	protected void sequence_LiteralStringRule(EObject context, LiteralStringRule semanticObject) {
 		if(errorAcceptor != null) {
@@ -155,7 +146,7 @@ public class UmlValueSpecificationSemanticSequencer extends AbstractDelegatingSe
 		}
 		INodesForEObjectProvider nodes = createNodeProvider(semanticObject);
 		SequenceFeeder feeder = createSequencerFeeder(semanticObject, nodes);
-		feeder.accept(grammarAccess.getLiteralStringRuleAccess().getValueVALUE_SPECIFICATION_STRINGTerminalRuleCall_0(), semanticObject.getValue());
+		feeder.accept(grammarAccess.getLiteralStringRuleAccess().getValueSTRINGTerminalRuleCall_0(), semanticObject.getValue());
 		feeder.finish();
 	}
 	

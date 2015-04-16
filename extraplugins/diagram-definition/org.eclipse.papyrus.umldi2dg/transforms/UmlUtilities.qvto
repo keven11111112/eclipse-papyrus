@@ -24,7 +24,7 @@ property black = createColor('#000000');
 property white = createColor('#FFFFFF');
 
 query Collection(String)::separate(separator : String) : String {
-	var str := self->iterate(s; acc : String = '' | acc.concat(s.concat(separator)));
+	var str := self->iterate(s; acc : String = '' | if s = null or s = '' then acc else acc.concat(s.concat(separator)) endif);
 	return if str = '' then '' else str.substring(1,str.size()-separator.size()) endif;
 }
 
@@ -40,8 +40,23 @@ query max(n1 : Real, n2 : Real) : Real {
 	return if (n1 > n2) then n1 else n2 endif;
 }
 
+query abs(n : Real) : Real {
+	return if (n<0) then -n else n endif;
+}
+
+query anchorPoint(bounds : Bounds, refX : Real, refY : Real) : Tuple(x: Real, y : Real) {
+	var centerX := bounds.x + bounds.width/2;
+	var centerY := bounds.y + bounds.height/2;
+	var dx = refX - centerX;
+	var dy = refY - centerY;
+	var scale = 0.5 / max(abs(dx) / bounds.width, abs(dy) / bounds.height);
+	dx := dx * scale;
+	dy := dy * scale;
+	return Tuple {x=centerX+dx, y=centerY+dy};
+}
+
 query replace(o : String, n : String, p : String) : String {
-	return if n <> '' then p.replaceAll('<o>', o).replaceAll('<n>', n) else o endif;
+	return if n = null or n = '' then o else p.replace('<o>', o).replace('<n>', n) endif;
 }
 
 query UMLDI::UmlDiagramElement::rootDiagram() : UMLDI::UmlDiagram {
@@ -62,4 +77,12 @@ query DG::Definitions::getDefinition(s : String) : DG::Definition {
 
 query DG::Definitions::getMarker(s : String) : DG::Marker {
 	return self.getDefinition(s).oclAsType(DG::Marker);
+}
+
+helper DG::GraphicalElement::createStyleIfNeeded() : DG::Style {
+	var e := self;
+	if e.style.oclIsUndefined() then
+		e.style := object DG::Style {}
+	endif;
+	return e.style;
 }

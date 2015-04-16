@@ -31,7 +31,6 @@ import org.eclipse.papyrus.dd.provider.DDEditPlugin;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.di.Style} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
 public class StyleItemProvider extends ItemProviderAdapter implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemColorProvider, IItemFontProvider {
@@ -54,8 +53,9 @@ public class StyleItemProvider extends ItemProviderAdapter implements IEditingDo
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
+
 		}
 		return itemPropertyDescriptors;
 	}
@@ -64,7 +64,6 @@ public class StyleItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -77,7 +76,6 @@ public class StyleItemProvider extends ItemProviderAdapter implements IEditingDo
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

@@ -29,9 +29,11 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
@@ -183,5 +185,21 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				rtMessageSet.setRtMsgKind(kind);
 			}
 		};
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterDestroyElementCommand(DestroyElementRequest request) {
+		PackageableElement protocolToDestroy = (PackageableElement) request.getElementToDestroy();
+		Package protocolContainerToDestroy = protocolToDestroy.getNearestPackage();
+		
+		request = new DestroyElementRequest(protocolContainerToDestroy, false);
+		
+		return new DestroyElementCommand(request);
 	}
 }

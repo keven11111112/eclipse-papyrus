@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Duration Observation Shape</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getDurationObservationShape()
  * @model
  * @generated
  */
-public interface DurationObservationShape extends NamedShape {
+public interface DurationObservationShape extends ElementShape {
 } // DurationObservationShape

@@ -16,7 +16,7 @@ package org.eclipse.papyrus.uml.textedit.valuespecification.tests.suites;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.xmi.XMIResource;
 import org.eclipse.papyrus.junit.utils.rules.PluginResource;
-import org.eclipse.papyrus.uml.textedit.valuespecification.tests.AbstractGrammarTest;
+import org.eclipse.papyrus.uml.textedit.tests.AbstractGrammarTest;
 import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.ValueSpecificationXtextDirectEditorConfiguration;
 import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
 import org.eclipse.uml2.uml.Class;
@@ -233,16 +233,16 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 	@Test
 	public void testInitialText() {
 		ValueSpecification testedValueSpecification = (ValueSpecification) testedProperty.createDefaultValue("valueSpec", null, UMLPackage.eINSTANCE.getLiteralBoolean());
-		Assert.assertEquals("valueSpec=false", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("valueSpec=false", tester.getParentInitialText(testedValueSpecification));
 
 		((LiteralBoolean) testedValueSpecification).setValue(true);
-		Assert.assertEquals("valueSpec=true", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("valueSpec=true", tester.getParentInitialText(testedValueSpecification));
 
 		testedValueSpecification.setName("boolean");
-		Assert.assertEquals("boolean=true", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("boolean=true", tester.getParentInitialText(testedValueSpecification));
 
 		testedValueSpecification.eUnset(UMLPackage.Literals.NAMED_ELEMENT__NAME);
-		Assert.assertEquals("true", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("true", tester.getParentInitialText(testedValueSpecification));
 	}
 
 	@Test
@@ -251,40 +251,40 @@ public class ValueSpecificationGrammarTests extends AbstractGrammarTest<EStructu
 		// Check the instance specification
 		ValueSpecification testedValueSpecification = testedProperty.createDefaultValue("literalInstanceValue", null, UMLPackage.eINSTANCE.getInstanceValue());
 		((InstanceValue) testedValueSpecification).setInstance(enumerationLiteral);
-		Assert.assertEquals("literalInstanceValue=EnumerationLiteral1", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalInstanceValue=EnumerationLiteral1", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal boolean
 		testedValueSpecification = testedProperty.createDefaultValue("literalBoolean", null, UMLPackage.eINSTANCE.getLiteralBoolean());
 		((LiteralBoolean) testedValueSpecification).setValue(true);
-		Assert.assertEquals("literalBoolean=true", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalBoolean=true", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal unlimited natural
 		testedValueSpecification = testedProperty.createDefaultValue("literalUnlimitedNatural", null, UMLPackage.eINSTANCE.getLiteralUnlimitedNatural());
 		((LiteralUnlimitedNatural) testedValueSpecification).setValue(12);
-		Assert.assertEquals("literalUnlimitedNatural=12", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalUnlimitedNatural=12", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal integer
 		testedValueSpecification = testedProperty.createDefaultValue("literalInteger", null, UMLPackage.eINSTANCE.getLiteralInteger());
 		((LiteralInteger) testedValueSpecification).setValue(-34);
-		Assert.assertEquals("literalInteger=-34", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalInteger=-34", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal real
 		testedValueSpecification = testedProperty.createDefaultValue("literalReal", null, UMLPackage.eINSTANCE.getLiteralReal());
 		((LiteralReal) testedValueSpecification).setValue(123.45);
-		Assert.assertEquals("literalReal=123.45", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalReal=123.45", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal null
 		testedValueSpecification = testedProperty.createDefaultValue("literalNull", null, UMLPackage.eINSTANCE.getLiteralNull());
-		Assert.assertEquals("literalNull=null", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalNull=null", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the literal string
 		testedValueSpecification = testedProperty.createDefaultValue("literalString", null, UMLPackage.eINSTANCE.getLiteralString());
 		((LiteralString) testedValueSpecification).setValue("abcdef");
-		Assert.assertEquals("literalString=\"abcdef\"", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("literalString=\"abcdef\"", tester.getParentInitialText(testedValueSpecification));
 
 		// Check the opaque expression
 		testedValueSpecification = testedProperty.createDefaultValue("opaqueExpression=Nothing", null, UMLPackage.eINSTANCE.getOpaqueExpression());
-		Assert.assertEquals("opaqueExpression=Nothing", tester.getInitialText(testedValueSpecification));
+		Assert.assertEquals("opaqueExpression=Nothing", tester.getParentInitialText(testedValueSpecification));
 	}
 
 	@Override

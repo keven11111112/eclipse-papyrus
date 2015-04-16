@@ -28,6 +28,9 @@
     <availablePage>
       <emfPageIdentifier href="UMLDI.notation#_9itVAERoEeSIxdUuItNc-A"/>
     </availablePage>
+    <availablePage>
+      <emfPageIdentifier href="UMLDI.notation#_gMf0MGMNEeSDGOFW-JoH6A"/>
+    </availablePage>
   </pageList>
   <sashModel currentSelection="//@sashModel/@windows.0/@children.0">
     <windows>
@@ -37,6 +40,9 @@
         </children>
         <children>
           <emfPageIdentifier href="UMLDI.notation#_eqyvEP8vEeObup8tdlL4zw"/>
+        </children>
+        <children>
+          <emfPageIdentifier href="UMLDI.notation#_gMf0MGMNEeSDGOFW-JoH6A"/>
         </children>
         <children>
           <emfPageIdentifier href="UMLDI.notation#_yGSecP8vEeObup8tdlL4zw"/>

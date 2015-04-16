@@ -15,23 +15,17 @@ import java.io.IOException;
 import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 
-import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.resources.IFile;
-import org.eclipse.core.resources.IResource;
 import org.eclipse.core.runtime.CoreException;
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubProgressMonitor;
 import org.eclipse.core.runtime.jobs.Job;
-import org.eclipse.emf.common.command.CommandStack;
 import org.eclipse.emf.common.notify.Notifier;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -40,14 +34,7 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
-import org.eclipse.emf.ecore.util.EcoreUtil;
-import org.eclipse.emf.ecore.xmi.XMLResource;
-import org.eclipse.emf.transaction.RollbackException;
-import org.eclipse.emf.transaction.Transaction;
-import org.eclipse.emf.transaction.TransactionalCommandStack;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.CommandResult;
-import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -56,9 +43,9 @@ import org.eclipse.m2m.qvt.oml.ExecutionContextImpl;
 import org.eclipse.m2m.qvt.oml.ExecutionDiagnostic;
 import org.eclipse.m2m.qvt.oml.ModelExtent;
 import org.eclipse.m2m.qvt.oml.TransformationExecutor;
-import org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper;
-import org.eclipse.papyrus.infra.onefile.model.IPapyrusFile;
-import org.eclipse.papyrus.infra.onefile.model.PapyrusModelHelper;
+import org.eclipse.papyrus.infra.core.resource.ModelSet;
+import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
+import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.actions.WorkspaceModifyOperation;
 import org.eclipse.ui.statushandlers.StatusManager;
@@ -109,92 +96,41 @@ public class ExportAllDiagrams {
 
 	}
 
-	/**
-	 * Export all diagrams of the IFile
-	 * 
-	 * @param newMonitor
-	 */
 	private void export(IProgressMonitor newMonitor) {
-		// Then iterates on all the diagrams and export them one by one
 		newMonitor.beginTask(Messages.ExportAllDiagrams_1, 10);
-		newMonitor.subTask(Messages.ExportAllDiagrams_2);
 		if (file != null) {
-			final ResourceSetImpl resourceSet = new ResourceSetImpl();
-			TransactionalEditingDomain editingDomain = null;
+			ModelSet modelSet = null;
 			try {
-				resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_IDREF_RESOLUTION, true);
-				resourceSet.getLoadOptions().put(XMLResource.OPTION_DEFER_ATTACHMENT, true);
-
-				IPapyrusFile logical = PapyrusModelHelper.getPapyrusModelFactory().createIPapyrusFile(file);
-				if (logical != null) {
-					for (IResource component : logical.getAssociatedResources()) {
-						if (component.getType() == IResource.FILE) {
-							resourceSet.getResource(URI.createPlatformResourceURI(component.getFullPath().toString(), true), true);
-						}
-					}
-				}
-
-				// create transactional editing domain
-				editingDomain = TransactionalEditingDomain.Factory.INSTANCE.createEditingDomain(resourceSet);
-
-				AbstractTransactionalCommand com = new AbstractTransactionalCommand(editingDomain, "Resolve", Collections.emptyList()) {
-					@Override
-					protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
-						EcoreUtil.resolveAll(resourceSet);
-						return null;
-					}
-				};
-
-				// bypass all the transaction/validate/notification mechanisms, it is a lot faster and it has no impact
-				// since we do not modify the model
-				CommandStack commandStack = editingDomain.getCommandStack();
-				if (commandStack instanceof TransactionalCommandStack) {
-					TransactionalCommandStack stack = (TransactionalCommandStack) commandStack;
-					Map<Object, Object> options = new HashMap<Object, Object>();
-					options.put(Transaction.OPTION_NO_NOTIFICATIONS, Boolean.TRUE);
-					options.put(Transaction.OPTION_NO_UNDO, Boolean.TRUE);
-					options.put(Transaction.OPTION_UNPROTECTED, Boolean.TRUE);
-					options.put(Transaction.OPTION_IS_UNDO_REDO_TRANSACTION, Boolean.FALSE);
-					options.put(Transaction.OPTION_NO_TRIGGERS, Boolean.TRUE);
-					options.put(Transaction.OPTION_VALIDATE_EDIT, Boolean.FALSE);
-					options.put(Transaction.OPTION_VALIDATE_EDIT_CONTEXT, Boolean.FALSE);
-					try {
-						stack.execute(new GMFtoEMFCommandWrapper(com), options);
-					} catch (InterruptedException e) {
-					} catch (RollbackException e) {
-					}
-				} else {
-					Activator.getDefault().log("no transactional editing domain found");
-				}
-
-				List<Diagram> diagrams = new ArrayList<Diagram>();
-				if (newMonitor.isCanceled()) {
-					return;
-				}
-				for (Iterator<Notifier> i = resourceSet.getAllContents(); i.hasNext();) {
-					Notifier n = i.next();
-					if (n instanceof Diagram) {
-						diagrams.add((Diagram) n);
-					}
-				}
-				if (newMonitor.isCanceled()) {
-					return;
-				}
-				newMonitor.worked(1);
-				export(new SubProgressMonitor(newMonitor, 9), diagrams);
-			} finally {
-				// Unload the resource set so that we don't leak loads of UML content in the CacheAdapter
-				unload(resourceSet);
-				if (editingDomain != null) {
-					editingDomain.dispose();
+				ServicesRegistry registry = new ExtensionServicesRegistry(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
+				registry.startServicesByClassKeys(ModelSet.class);
+				modelSet = (ModelSet) registry.getService(ModelSet.class);
+				modelSet.loadModels(URI.createPlatformResourceURI(file.getFullPath().toString(), true));
+				registry.startRegistry();
+			} catch (Exception e) {
+				/*ignore exceptions since some services may not have been started */
+			}
+			TransactionalEditingDomain domain = modelSet.getTransactionalEditingDomain();
+			List<Diagram> diagrams = new ArrayList<Diagram>();
+			if (newMonitor.isCanceled()) {
+				return;
+			}
+			for (Iterator<Notifier> i = modelSet.getAllContents(); i.hasNext();) {
+				Notifier n = i.next();
+				if (n instanceof Diagram) {
+					diagrams.add((Diagram) n);
 				}
 			}
-		} else {
-			Activator.getDefault().log(Messages.ExportAllDiagrams_3);
+			if (newMonitor.isCanceled()) {
+				return;
+			}
+			newMonitor.worked(2);
+			export(new SubProgressMonitor(newMonitor, 8), diagrams);
+			unload(modelSet);
+			domain.dispose();
 		}
-
+		newMonitor.done();
 	}
-
+	
 	private void unload(ResourceSet resourceSet) {
 		for (Resource next : resourceSet.getResources()) {
 			next.unload();

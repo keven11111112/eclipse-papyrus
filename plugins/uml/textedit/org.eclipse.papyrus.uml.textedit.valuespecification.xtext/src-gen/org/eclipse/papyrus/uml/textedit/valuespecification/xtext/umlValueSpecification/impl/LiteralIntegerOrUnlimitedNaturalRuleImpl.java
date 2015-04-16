@@ -21,6 +21,7 @@ import org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecifi
  * </p>
  * <ul>
  *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.LiteralIntegerOrUnlimitedNaturalRuleImpl#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.LiteralIntegerOrUnlimitedNaturalRuleImpl#getUnlimited <em>Unlimited</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,7 +36,7 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
    * @generated
    * @ordered
    */
-  protected static final String VALUE_EDEFAULT = null;
+  protected static final int VALUE_EDEFAULT = 0;
 
   /**
    * The cached value of the '{@link #getValue() <em>Value</em>}' attribute.
@@ -45,7 +46,27 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
    * @generated
    * @ordered
    */
-  protected String value = VALUE_EDEFAULT;
+  protected int value = VALUE_EDEFAULT;
+
+  /**
+   * The default value of the '{@link #getUnlimited() <em>Unlimited</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUnlimited()
+   * @generated
+   * @ordered
+   */
+  protected static final String UNLIMITED_EDEFAULT = null;
+
+  /**
+   * The cached value of the '{@link #getUnlimited() <em>Unlimited</em>}' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @see #getUnlimited()
+   * @generated
+   * @ordered
+   */
+  protected String unlimited = UNLIMITED_EDEFAULT;
 
   /**
    * <!-- begin-user-doc -->
@@ -73,7 +94,7 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public String getValue()
+  public int getValue()
   {
     return value;
   }
@@ -83,12 +104,35 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
    * <!-- end-user-doc -->
    * @generated
    */
-  public void setValue(String newValue)
+  public void setValue(int newValue)
   {
-    String oldValue = value;
+    int oldValue = value;
     value = newValue;
     if (eNotificationRequired())
       eNotify(new ENotificationImpl(this, Notification.SET, UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE, oldValue, value));
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public String getUnlimited()
+  {
+    return unlimited;
+  }
+
+  /**
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   */
+  public void setUnlimited(String newUnlimited)
+  {
+    String oldUnlimited = unlimited;
+    unlimited = newUnlimited;
+    if (eNotificationRequired())
+      eNotify(new ENotificationImpl(this, Notification.SET, UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED, oldUnlimited, unlimited));
   }
 
   /**
@@ -103,6 +147,8 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
     {
       case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE:
         return getValue();
+      case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED:
+        return getUnlimited();
     }
     return super.eGet(featureID, resolve, coreType);
   }
@@ -118,7 +164,10 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
     switch (featureID)
     {
       case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE:
-        setValue((String)newValue);
+        setValue((Integer)newValue);
+        return;
+      case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED:
+        setUnlimited((String)newValue);
         return;
     }
     super.eSet(featureID, newValue);
@@ -137,6 +186,9 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
       case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE:
         setValue(VALUE_EDEFAULT);
         return;
+      case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED:
+        setUnlimited(UNLIMITED_EDEFAULT);
+        return;
     }
     super.eUnset(featureID);
   }
@@ -152,7 +204,9 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
     switch (featureID)
     {
       case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE:
-        return VALUE_EDEFAULT == null ? value != null : !VALUE_EDEFAULT.equals(value);
+        return value != VALUE_EDEFAULT;
+      case UmlValueSpecificationPackage.LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED:
+        return UNLIMITED_EDEFAULT == null ? unlimited != null : !UNLIMITED_EDEFAULT.equals(unlimited);
     }
     return super.eIsSet(featureID);
   }
@@ -170,6 +224,8 @@ public class LiteralIntegerOrUnlimitedNaturalRuleImpl extends MinimalEObjectImpl
     StringBuffer result = new StringBuffer(super.toString());
     result.append(" (value: ");
     result.append(value);
+    result.append(", unlimited: ");
+    result.append(unlimited);
     result.append(')');
     return result.toString();
   }

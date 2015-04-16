@@ -17,20 +17,19 @@ import org.eclipse.papyrus.dd.dc.Bounds;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Rectangle</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
- * Rectangle is a graphical element that defines a rectangular shape with given bounds. A rectangle may be given rounded corners by setting its corner
- * radius.
+ * Rectangle is a graphical element that defines a rectangular shape with given bounds. A rectangle may be given rounded corners by setting its corner radius.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.Rectangle#getBounds <em>Bounds</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.Rectangle#getCornerRadius <em>Corner Radius</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Rectangle#getBounds <em>Bounds</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Rectangle#getCornerRadius <em>Corner Radius</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getRectangle()
  * @model
  * @generated
@@ -54,9 +53,7 @@ public interface Rectangle extends GraphicalElement {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Rectangle#getBounds <em>Bounds</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Bounds</em>' containment reference.
+	 * @param value the new value of the '<em>Bounds</em>' containment reference.
 	 * @see #getBounds()
 	 * @generated
 	 */
@@ -84,9 +81,7 @@ public interface Rectangle extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Rectangle#getCornerRadius <em>Corner Radius</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Corner Radius</em>' attribute.
+	 * @param value the new value of the '<em>Corner Radius</em>' attribute.
 	 * @see #isSetCornerRadius()
 	 * @see #unsetCornerRadius()
 	 * @see #getCornerRadius()
@@ -98,7 +93,6 @@ public interface Rectangle extends GraphicalElement {
 	 * Unsets the value of the '{@link org.eclipse.papyrus.dd.dg.Rectangle#getCornerRadius <em>Corner Radius</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @see #isSetCornerRadius()
 	 * @see #getCornerRadius()
 	 * @see #setCornerRadius(double)
@@ -110,7 +104,6 @@ public interface Rectangle extends GraphicalElement {
 	 * Returns whether the value of the '{@link org.eclipse.papyrus.dd.dg.Rectangle#getCornerRadius <em>Corner Radius</em>}' attribute is set.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @return whether the value of the '<em>Corner Radius</em>' attribute is set.
 	 * @see #unsetCornerRadius()
 	 * @see #getCornerRadius()

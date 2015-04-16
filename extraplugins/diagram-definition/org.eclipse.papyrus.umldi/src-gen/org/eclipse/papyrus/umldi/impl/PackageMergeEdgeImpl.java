@@ -12,6 +12,7 @@
 package org.eclipse.papyrus.umldi.impl;
 
 import org.eclipse.emf.ecore.EClass;
+
 import org.eclipse.papyrus.umldi.PackageMergeEdge;
 import org.eclipse.papyrus.umldi.UMLDIPackage;
 
@@ -19,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Package Merge Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class PackageMergeEdgeImpl extends NamedEdgeImpl implements PackageMergeEdge {
-
+public class PackageMergeEdgeImpl extends ElementEdgeImpl implements PackageMergeEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageMergeEdgeImpl() {
@@ -39,11 +36,11 @@ public class PackageMergeEdgeImpl extends NamedEdgeImpl implements PackageMergeE
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.PACKAGE_MERGE_EDGE;
 	}
+
 } //PackageMergeEdgeImpl

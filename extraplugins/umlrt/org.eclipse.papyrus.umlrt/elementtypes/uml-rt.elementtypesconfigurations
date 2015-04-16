@@ -145,6 +145,24 @@
       <stereotypesQualifiedNames>UMLRealTime::RTMessageSet</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_At0JAONwEeSMDu6IBsn9eg"
+      name="Operation"
+      identifier="org.eclipse.papyrus.umlrt.Operation">
+    <iconEntry
+        xmi:id="_At0JAeNwEeSMDu6IBsn9eg"
+        iconPath="/icons/full/obj16/Operation.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Operation</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_At0JAuNwEeSMDu6IBsn9eg"
+        name="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+        description="advice for Operation"
+        identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationEditHelperAdvice"
+        inheritance="all"/>
+  </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_ubJcyaeUEeSUR5jX0TaAcA"

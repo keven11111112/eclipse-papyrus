@@ -30,15 +30,14 @@ import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.papyrus.FCM.ContainerRule;
 import org.eclipse.papyrus.FCM.ContainerRuleKind;
 import org.eclipse.papyrus.FCM.util.FCMUtil;
-import org.eclipse.papyrus.acceleo.AcceleoDriver;
 import org.eclipse.papyrus.codegen.extensionpoints.ILangSupport;
 import org.eclipse.papyrus.codegen.extensionpoints.LanguageSupport;
+import org.eclipse.papyrus.qompass.designer.core.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.Log;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.ModelManagement;
 import org.eclipse.papyrus.qompass.designer.core.StUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.EnumService;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepUtils;
 import org.eclipse.papyrus.qompass.designer.core.generate.GenerateCode;
 import org.eclipse.papyrus.qompass.designer.core.transformations.filters.FilterTemplate;
@@ -128,7 +127,6 @@ public class TrafoAndCodegenPackage {
 		Model tmpModel = null;
 		ModelManagement tmpMM = null;
 
-		AcceleoDriver.clearErrors();
 		Package selectedPkg;
 		if (cdpOrConfig instanceof Package) {
 			selectedPkg = (Package) cdpOrConfig;
@@ -247,17 +245,6 @@ public class TrafoAndCodegenPackage {
 		if (tmpMM != null) {
 			tmpMM.dispose();
 		}
-		if (AcceleoDriver.hasErrors()) {
-			Display.getDefault().syncExec(new Runnable() {
-				@Override
-				public void run() {
-					Shell shell = new Shell();
-					MessageDialog.openInformation(shell, Messages.InstantiateDepPlan_AcceleoErrors,
-							Messages.InstantiateDepPlan_AcceleoErrorsCheckLog);
-				}
-			});
-		}
-
 	}
 
 

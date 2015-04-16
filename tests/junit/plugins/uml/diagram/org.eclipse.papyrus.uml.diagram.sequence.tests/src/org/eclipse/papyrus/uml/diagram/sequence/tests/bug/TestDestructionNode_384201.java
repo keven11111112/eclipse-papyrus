@@ -31,6 +31,7 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.commands.ICreationCommand;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
+import org.eclipse.papyrus.junit.framework.classification.InvalidTest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
@@ -65,6 +66,7 @@ public class TestDestructionNode_384201 extends TestTopNode {
 		return ISequenceDiagramTestsConstants.FILE_NAME;
 	}
 
+	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeNorth() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
@@ -78,6 +80,7 @@ public class TestDestructionNode_384201 extends TestTopNode {
 	}
 
 
+	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeWest() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
@@ -90,6 +93,7 @@ public class TestDestructionNode_384201 extends TestTopNode {
 		resize(dsep, getAbsoluteBounds(dsep).getLeft(), PositionConstants.WEST, new Dimension(-20, 0));
 	}
 
+	@InvalidTest("DestructionOccurrenceSpecification is nonresizable")
 	@Test
 	public void testResizeEast() {
 		createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(100, 100), new Dimension(62, 200));
