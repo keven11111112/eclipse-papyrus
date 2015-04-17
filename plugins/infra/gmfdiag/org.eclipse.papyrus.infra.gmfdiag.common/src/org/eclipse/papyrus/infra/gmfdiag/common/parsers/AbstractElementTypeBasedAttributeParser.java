@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015 CEA LIST.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,9 +7,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
- *   
+ * 	Remi Schnekenburger (CEA) remi.chnekenburger@cea.fr - Initial API and implementation
+ *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 464625
  *****************************************************************************/
+
 
 package org.eclipse.papyrus.infra.gmfdiag.common.parsers;
 
@@ -25,37 +26,64 @@ import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 
 /**
- * Attribute parser that uses the service edit to modify the attribute rather than directly create the command from a SetRequest
+ * Extended {@link AbstractAttributeParser} to use {@link IElementEditService}.
+ *
  */
 public abstract class AbstractElementTypeBasedAttributeParser extends AbstractAttributeParser {
 
-	public AbstractElementTypeBasedAttributeParser(EAttribute[] features) {
-		super(features);
-	}
-
-	public AbstractElementTypeBasedAttributeParser(EAttribute[] features, EAttribute[] editableFeatures) {
+	/**
+	 * Instantiates a new abstract element type based attribute parser.
+	 *
+	 * @param features
+	 *            the features
+	 * @param editableFeatures
+	 *            the editable features
+	 */
+	public AbstractElementTypeBasedAttributeParser(final EAttribute[] features, final EAttribute[] editableFeatures) {
 		super(features, editableFeatures);
 	}
 
 	/**
+	 * Instantiates a new abstract element type based attribute parser.
+	 *
+	 * @param features
+	 *            the features
+	 */
+	public AbstractElementTypeBasedAttributeParser(final EAttribute[] features) {
+		super(features);
+	}
+
+
+	/**
 	 * {@inheritDoc}
+	 * 
+	 * @see org.eclipse.gmf.tooling.runtime.parsers.AbstractFeatureParser#getModificationCommand(org.eclipse.emf.ecore.EObject, org.eclipse.emf.ecore.EStructuralFeature, java.lang.Object)
+	 *
+	 * @param element
+	 * @param feature
+	 * @param value
+	 * @return
 	 */
 	@Override
-	protected ICommand getModificationCommand(EObject element, EStructuralFeature feature, Object value) {
-		value = getValidNewValue(feature, value);
-		if (value instanceof InvalidValue) {
-			return UnexecutableCommand.INSTANCE;
+	protected ICommand getModificationCommand(final EObject element, final EStructuralFeature feature, final Object value) {
+		ICommand modificationCommand;
+		// Validate the value
+		Object validValue = getValidNewValue(feature, value);
+		if (validValue instanceof InvalidValue) {
+			modificationCommand = UnexecutableCommand.INSTANCE;
+		} else {
+			SetRequest request = new SetRequest(element, feature, validValue);
+			IElementEditService serviceEdit = ElementEditServiceUtils.getCommandProvider(element);
+			if(serviceEdit != null) {
+				// Ask to Edit Service for the command
+				modificationCommand = serviceEdit.getEditCommand(request);
+			}else {
+				// Return the standard command
+				modificationCommand= new SetValueCommand(request);
+			}
 		}
-		SetRequest request = new SetRequest(element, feature, value);
-
-		// use service edit here
-		IElementEditService service = ElementEditServiceUtils.getCommandProvider(element);
-		if (service != null) {
-			return service.getEditCommand(request);
-		}
-
-		// no service edit => return standard command
-		return new SetValueCommand(request);
+		return modificationCommand;
 	}
+
 
 }

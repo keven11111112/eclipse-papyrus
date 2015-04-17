@@ -21,21 +21,20 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.ui.services.parser.IParserEditStatus;
 import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
-import org.eclipse.gmf.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.osgi.util.NLS;
+import org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser;
 import org.eclipse.papyrus.uml.diagram.communication.part.Messages;
 import org.eclipse.papyrus.uml.diagram.communication.part.UMLDiagramEditorPlugin;
 
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractAttributeParser {
+public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser {
 
 	/**
 	 * @generated
 	 */
 	private String defaultPattern;
-
 	/**
 	 * @generated
 	 */
@@ -92,7 +91,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setViewPattern(String viewPattern) {
 		super.setViewPattern(viewPattern);
 		viewProcessor = null;
@@ -101,7 +99,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setEditorPattern(String editorPattern) {
 		super.setEditorPattern(editorPattern);
 		editorProcessor = null;
@@ -150,7 +147,6 @@ public class MessageFormatParser extends AbstractAttributeParser {
 	/**
 	 * @generated
 	 */
-	@Override
 	public void setEditPattern(String editPattern) {
 		super.setEditPattern(editPattern);
 		editProcessor = null;
@@ -204,4 +200,4 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		EObject element = (EObject) adapter.getAdapter(EObject.class);
 		return getViewProcessor().format(getValues(element), new StringBuffer(), new FieldPosition(0)).toString();
 	}
-}
+}	
