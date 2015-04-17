@@ -18,10 +18,13 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.common.core.command.IdentityCommand;
 import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.EditElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ReorientRelationshipRequest;
 import org.eclipse.uml2.uml.Transition;
@@ -67,6 +70,33 @@ public class TransitionEditHelper extends ElementEditHelper {
 		req.setContainmentFeature(UMLPackage.eINSTANCE.getRegion_Transition());
 	}
 
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getConfigureCommand(final ConfigureRequest req) {
+		ICommand configureCommand = new ConfigureElementCommand(req) {
+
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				EObject elementToConfigure = req.getElementToConfigure();
+				if (!(elementToConfigure instanceof Transition)) {
+					return CommandResult.newErrorCommandResult("This configure command should be run against a transition. element to configure was: "+elementToConfigure);
+				}
+				Transition transition = (Transition) elementToConfigure;
+				
+				Object source = req.getParameter(CreateRelationshipRequest.SOURCE);
+				Object target = req.getParameter(CreateRelationshipRequest.TARGET);
+				if (source instanceof Vertex) {
+					transition.setSource((Vertex) source);
+				}
+				if (target instanceof Vertex) {
+					transition.setTarget((Vertex) target);
+				}
+				return CommandResult.newOKCommandResult(transition);
+			}
+		};
+		return CompositeCommand.compose(configureCommand, super.getConfigureCommand(req));
+	}
 
 	@Override
 	protected ICommand getReorientRelationshipCommand(ReorientRelationshipRequest req) {
