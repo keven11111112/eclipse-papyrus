@@ -3,6 +3,7 @@
     xmi:version="2.0"
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:expansionmodel="http:///expansionmodel.ecore"
-    xmi:id="_BOX98NnkEeSFtu511b-yaw">
+    xmi:id="_BOX98NnkEeSFtu511b-yaw"
+    ID="BadContextTest">
   <usages/>
 </expansionmodel:DiagramExpansion>

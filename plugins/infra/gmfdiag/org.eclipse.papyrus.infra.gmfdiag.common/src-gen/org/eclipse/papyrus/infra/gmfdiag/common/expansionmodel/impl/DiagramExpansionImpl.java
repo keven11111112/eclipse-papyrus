@@ -14,6 +14,7 @@ package org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl;
 
 import java.util.Collection;
 
+import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.common.notify.NotificationChain;
 
 import org.eclipse.emf.common.util.EList;
@@ -21,6 +22,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
+import org.eclipse.emf.ecore.impl.ENotificationImpl;
 import org.eclipse.emf.ecore.impl.MinimalEObjectImpl;
 
 import org.eclipse.emf.ecore.util.EObjectContainmentEList;
@@ -41,6 +43,7 @@ import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
  * <ul>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getUsages <em>Usages</em>}</li>
  *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getLibraries <em>Libraries</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.impl.DiagramExpansionImpl#getID <em>ID</em>}</li>
  * </ul>
  *
  * @generated
@@ -65,6 +68,26 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * @ordered
 	 */
 	protected EList<GraphicalElementLibrary> libraries;
+
+	/**
+	 * The default value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final String ID_EDEFAULT = null;
+
+	/**
+	 * The cached value of the '{@link #getID() <em>ID</em>}' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #getID()
+	 * @generated
+	 * @ordered
+	 */
+	protected String id = ID_EDEFAULT;
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -114,6 +137,27 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public String getID() {
+		return id;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public void setID(String newID) {
+		String oldID = id;
+		id = newID;
+		if (eNotificationRequired())
+			eNotify(new ENotificationImpl(this, Notification.SET, ExpansionmodelPackage.DIAGRAM_EXPANSION__ID, oldID, id));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
@@ -137,6 +181,8 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				return getUsages();
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return getLibraries();
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+				return getID();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -158,6 +204,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				getLibraries().clear();
 				getLibraries().addAll((Collection<? extends GraphicalElementLibrary>)newValue);
 				return;
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+				setID((String)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -176,6 +225,9 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				getLibraries().clear();
 				return;
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+				setID(ID_EDEFAULT);
+				return;
 		}
 		super.eUnset(featureID);
 	}
@@ -192,8 +244,26 @@ public class DiagramExpansionImpl extends MinimalEObjectImpl.Container implement
 				return usages != null && !usages.isEmpty();
 			case ExpansionmodelPackage.DIAGRAM_EXPANSION__LIBRARIES:
 				return libraries != null && !libraries.isEmpty();
+			case ExpansionmodelPackage.DIAGRAM_EXPANSION__ID:
+				return ID_EDEFAULT == null ? id != null : !ID_EDEFAULT.equals(id);
 		}
 		return super.eIsSet(featureID);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String toString() {
+		if (eIsProxy()) return super.toString();
+
+		StringBuffer result = new StringBuffer(super.toString());
+		result.append(" (ID: ");
+		result.append(id);
+		result.append(')');
+		return result.toString();
 	}
 
 } //DiagramExpansionImpl

@@ -19,6 +19,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Representation</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * A representation is en element that is displyed on a diagram it is attached to a controler (see editpart) and to a notation structure( build bt the viewFactory)
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -41,6 +45,11 @@ public interface Representation extends AbstractRepresentation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This the reference of a graphical element type, it can be null.
+	 * It is used to defined  a Flow_port_as_label for example.
+	 * If it is used the hint has to be null
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Graphical Element Type</em>' attribute.
 	 * @see #setGraphicalElementType(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentation_GraphicalElementType()
@@ -68,6 +77,9 @@ public interface Representation extends AbstractRepresentation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This reperesentation that musr be automatically created with this representation, for example compartment, labels
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Induced Representations</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentation_InducedRepresentations()
 	 * @model ordered="false"
@@ -84,6 +96,9 @@ public interface Representation extends AbstractRepresentation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * this is representation that can be directly create inside this representation for example  borderItems like ports
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Sub Representations</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentation_SubRepresentations()
 	 * @model ordered="false"

@@ -41,6 +41,9 @@ public interface RepresentationKind extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * It references the controler see GEF framework
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Edit Part Qualified Name</em>' attribute.
 	 * @see #setEditPartQualifiedName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentationKind_EditPartQualifiedName()
@@ -67,6 +70,9 @@ public interface RepresentationKind extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * It is more like a comment, it is no used by interpretors.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentationKind_Name()
@@ -93,6 +99,9 @@ public interface RepresentationKind extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * It references the factory of notation element see (model inside GEF framework)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Factory</em>' attribute.
 	 * @see #setViewFactory(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getRepresentationKind_ViewFactory()

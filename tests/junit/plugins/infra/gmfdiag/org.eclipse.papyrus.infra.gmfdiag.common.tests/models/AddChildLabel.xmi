@@ -4,11 +4,12 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:expansionmodel="http:///expansionmodel.ecore"
-    xmi:id="_BOX98NnkEeSFtu511b-yaw">
-  <usages DiagramType="Class Diagram"
-      representations="//@usages.0/@GmftRepresentations.0"
+    xmi:id="_BOX98NnkEeSFtu511b-yaw"
+    ID="AddChildLabel">
+  <usages diagramType="Class Diagram"
+      representations="//@usages.0/@gmftRepresentations.0"
       name="Add acomparment on class of papyrus">
-    <GmftRepresentations
+    <gmftRepresentations
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"
         name="Reuse representation of class of the class diagram"
         viewFactory="org.eclipse.papyrus.infra.gmfdiag.common.utils.ClassifierViewFactory"

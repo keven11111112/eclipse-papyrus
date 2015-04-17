@@ -26,8 +26,8 @@ import org.junit.runners.Suite.SuiteClasses;
 LoadExpansionModel.class,
 ExpansionAddCompartment.class,
 ExpansionAddChildLabel.class,
-ExpansionAddBorderItem.class
-//GMFUnsafeTest.class 
+ExpansionAddBorderItem.class,
+GMFUnsafeTest.class 
 }
 )
 public class AllTests {

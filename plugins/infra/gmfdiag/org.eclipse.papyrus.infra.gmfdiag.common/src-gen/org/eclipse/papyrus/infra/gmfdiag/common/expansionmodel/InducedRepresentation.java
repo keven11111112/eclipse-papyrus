@@ -19,6 +19,10 @@ import org.eclipse.emf.common.util.EList;
  * A representation of the model object '<em><b>Induced Representation</b></em>'.
  * <!-- end-user-doc -->
  *
+ * <!-- begin-model-doc -->
+ * An Induced Representation is a representation that is automatically created by its parent representation (compartment, label of a shape, label of link, label or border item)
+ * <!-- end-model-doc -->
+ *
  * <p>
  * The following features are supported:
  * </p>
@@ -40,6 +44,12 @@ public interface InducedRepresentation extends AbstractRepresentation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This a id for a compartment of label for example:
+	 * "flow ports" for the name of flow port compartment,
+	 * "Operation BorderItem Label" to identifier the labler around a border item that is a operation.
+	 * If is used, the graphical element is null.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Hint</em>' attribute.
 	 * @see #setHint(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getInducedRepresentation_Hint()
@@ -67,6 +77,9 @@ public interface InducedRepresentation extends AbstractRepresentation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * There are representations that can be contained by this induced representation like  attribtutes inside attribute compartment.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Children</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getInducedRepresentation_Children()
 	 * @model ordered="false"

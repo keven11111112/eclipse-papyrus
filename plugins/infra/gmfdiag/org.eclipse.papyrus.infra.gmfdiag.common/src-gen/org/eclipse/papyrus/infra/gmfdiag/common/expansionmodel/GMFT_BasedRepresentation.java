@@ -38,6 +38,9 @@ public interface GMFT_BasedRepresentation extends Representation {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * In this case this is the visualID defined in gmf diagram
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Reused ID</em>' attribute.
 	 * @see #setReusedID(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getGMFT_BasedRepresentation_ReusedID()

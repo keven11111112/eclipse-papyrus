@@ -46,6 +46,9 @@ public interface AbstractRepresentation extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * if the kind is filled, the editPartQualifiedName has to be filled. It references the controler see GEF framework
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Edit Part Qualified Name</em>' attribute.
 	 * @see #setEditPartQualifiedName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_EditPartQualifiedName()
@@ -98,6 +101,9 @@ public interface AbstractRepresentation extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * It is more like a comment, it is no used by interpretors.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_Name()
@@ -124,6 +130,9 @@ public interface AbstractRepresentation extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * if the kind is filled, the view factory has to be filled. It references the factory of notation element see (model inside GEF framework)
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>View Factory</em>' attribute.
 	 * @see #setViewFactory(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getAbstractRepresentation_ViewFactory()

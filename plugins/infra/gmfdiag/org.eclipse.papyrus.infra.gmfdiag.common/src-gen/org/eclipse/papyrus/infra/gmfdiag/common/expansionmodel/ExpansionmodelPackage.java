@@ -643,13 +643,22 @@ public interface ExpansionmodelPackage extends EPackage {
 	int DIAGRAM_EXPANSION__LIBRARIES = 1;
 
 	/**
+	 * The feature id for the '<em><b>ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int DIAGRAM_EXPANSION__ID = 2;
+
+	/**
 	 * The number of structural features of the '<em>Diagram Expansion</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int DIAGRAM_EXPANSION_FEATURE_COUNT = 2;
+	int DIAGRAM_EXPANSION_FEATURE_COUNT = 3;
 
 	/**
 	 * The number of operations of the '<em>Diagram Expansion</em>' class.
@@ -994,6 +1003,17 @@ public interface ExpansionmodelPackage extends EPackage {
 	EReference getDiagramExpansion_Libraries();
 
 	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion#getID <em>ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>ID</em>'.
+	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion#getID()
+	 * @see #getDiagramExpansion()
+	 * @generated
+	 */
+	EAttribute getDiagramExpansion_ID();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1279,6 +1299,14 @@ public interface ExpansionmodelPackage extends EPackage {
 		 * @generated
 		 */
 		EReference DIAGRAM_EXPANSION__LIBRARIES = eINSTANCE.getDiagramExpansion_Libraries();
+
+		/**
+		 * The meta object literal for the '<em><b>ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute DIAGRAM_EXPANSION__ID = eINSTANCE.getDiagramExpansion_ID();
 
 	}
 

@@ -4,12 +4,13 @@
     xmlns:xmi="http://www.omg.org/XMI"
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xmlns:expansionmodel="http:///expansionmodel.ecore"
-    xmi:id="_BOX98NnkEeSFtu511b-yaw">
+    xmi:id="_BOX98NnkEeSFtu511b-yaw"
+    ID="SysML 1.4 BDD">
   <usages xmi:id="_rC19oNnoEeSqwOe5_frWm1"
-      DiagramType="SysML 1.4 Block Definition"
+      diagramType="SysML 1.4 Block Definition"
       representations="_rC19oNnoEeSqwOe5_frWm2 //@libraries.0/@representations.1"
       name="SysML 1.4 BDD Context">
-    <GmftRepresentations
+    <gmftRepresentations
         xmi:id="_rC19oNnoEeSqwOe5_frWm2"
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"
         name="Block based on Class representation of class diagram"

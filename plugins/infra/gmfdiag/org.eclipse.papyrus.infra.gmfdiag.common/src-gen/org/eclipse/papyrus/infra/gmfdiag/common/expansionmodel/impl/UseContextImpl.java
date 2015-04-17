@@ -311,7 +311,7 @@ public class UseContextImpl extends MinimalEObjectImpl.Container implements UseC
 		if (eIsProxy()) return super.toString();
 
 		StringBuffer result = new StringBuffer(super.toString());
-		result.append(" (DiagramType: ");
+		result.append(" (diagramType: ");
 		result.append(diagramType);
 		result.append(", name: ");
 		result.append(name);

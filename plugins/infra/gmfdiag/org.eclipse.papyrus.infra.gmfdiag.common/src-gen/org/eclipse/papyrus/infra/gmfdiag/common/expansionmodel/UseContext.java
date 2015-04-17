@@ -71,6 +71,9 @@ public interface UseContext extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * This is all representation that the framework must have to extend or add.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Representations</em>' reference list.
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_Representations()
 	 * @model required="true" ordered="false"
@@ -86,6 +89,9 @@ public interface UseContext extends EObject {
 	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * It is more like a comment, it is no used by interpretors.
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage#getUseContext_Name()
