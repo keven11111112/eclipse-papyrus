@@ -13,25 +13,13 @@
 
 package org.eclipse.papyrus.infra.gmfdiag.common.tests;
 
-import static org.junit.Assert.assertNotNull;
-import static org.junit.Assert.assertTrue;
-
 import java.util.List;
 
 import org.eclipse.emf.common.util.URI;
-import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPolicy;
-import org.eclipse.gef.commands.Command;
-import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.CompartmentEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.DiagramEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequest;
-import org.eclipse.gmf.runtime.diagram.ui.requests.CreateViewRequestFactory;
-import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
-import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.notation.Diagram;
-import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.editor.IMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
@@ -53,12 +41,7 @@ import org.osgi.framework.Bundle;
  * 
  *
  */
-public class ExpansionAddChildLabel extends AbstractEditorTest{
-
-	/**
-	 * 
-	 */
-	protected static final String NESTED_INTERFACE_LABEL = "Interface_Label";
+public class ExpansionAddCompartmentWithKind extends AbstractEditorTest{
 
 	public void openDiagram(IMultiDiagramEditor editor, final String name) {
 
@@ -90,7 +73,7 @@ public class ExpansionAddChildLabel extends AbstractEditorTest{
 	@Test
 	public void load_DiagramExpansion() {
 		//loading
-		DiagramExpansionsRegistry diagramExpansionsRegistry=  loadXMIExpansionModel("AddChildLabel.xmi");
+		DiagramExpansionsRegistry diagramExpansionsRegistry=  loadXMIExpansionModel("AddCompartmentWithKind.xmi");
 		Assert.assertEquals("Size ot the registry must be equals to 1",1,diagramExpansionsRegistry.getDiagramExpansions().size());
 		Assert.assertEquals("Size ot the map childreen must be equals to 1",1,diagramExpansionsRegistry.mapChildreen.size());
 
@@ -103,11 +86,7 @@ public class ExpansionAddChildLabel extends AbstractEditorTest{
 		List<String> the_2008_Children=childrenListRepresentation.parentChildrenRelation.get(CLASS_VISUALID);
 		Assert.assertEquals("2008 can have a new compartment",1, the_2008_Children.size());
 		Assert.assertEquals("2008 has to contain "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT, the_2008_Children.get(0));
-		
-		Assert.assertNotNull("The Nested Interface has to be added",childrenListRepresentation.IDMap.get(NESTED_INTERFACE_LABEL));
-		List<String> the_IMPLEMENTED_INTERFACES_Children=childrenListRepresentation.parentChildrenRelation.get(IMPLEMENTED_INTERFACES_HINT);
-		Assert.assertEquals("Nested Interface can have a new compartment",1, the_IMPLEMENTED_INTERFACES_Children.size());
-		Assert.assertEquals("Nested Interface has to contain "+NESTED_INTERFACE_LABEL,NESTED_INTERFACE_LABEL, the_IMPLEMENTED_INTERFACES_Children.get(0));
+
 		// the model is valid 
 		//now launch a class diagram
 
@@ -135,20 +114,9 @@ public class ExpansionAddChildLabel extends AbstractEditorTest{
 			//test in the editpart is created for this notation
 			Assert.assertEquals("the Type of class editpart must be 2008 must contains 2 labels and 4 compartments",classEditPart.getChildren().size(), 6);
 			IGraphicalEditPart compartmentEdiPart=(IGraphicalEditPart)classEditPart.getChildren().get(5);
-			Assert.assertEquals("The last compartment must have the type "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT , compartmentEdiPart.getNotationView().getType());
-			
-			//try to create a label inside this compartment.
-			final IElementType interfaceLabelelementType=ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.diagram.testexpansion.Interface_Label");
-			CreateViewRequest requestcreation = CreateViewRequestFactory.getCreateShapeRequest(interfaceLabelelementType, diagramEditPart.getDiagramPreferencesHint());
-			Command command = compartmentEdiPart.getCommand(requestcreation);
-			Assert.assertNotNull("the command musbe given", command);
-			Assert.assertNotEquals("The command must be not equls to UnexecutableCommand", command , UnexecutableCommand.INSTANCE);
-			Assert.assertTrue("The command must be executable" , command.canExecute()); //$NON-NLS-1$
-			diagramEditor.getDiagramEditDomain().getDiagramCommandStack().execute(command);
-			Assert.assertTrue("The notation compartment must contain a child", compartment.getChildren().size() == 1);
-			EditPart createdEditPart= (EditPart)compartmentEdiPart.getChildren().get(0);
-			Assert.assertNotNull("the editPart child must be created", createdEditPart);
-			
+			if( compartmentEdiPart.getNotationView().equals(compartment)){
+				Assert.assertEquals("The last compartment must have the type "+IMPLEMENTED_INTERFACES_HINT,IMPLEMENTED_INTERFACES_HINT , compartmentEdiPart.getNotationView().getType());
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

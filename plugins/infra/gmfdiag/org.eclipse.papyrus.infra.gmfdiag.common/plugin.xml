@@ -108,13 +108,6 @@
             priority="1"
             startKind="lazy">
       </service>
-      <service
-            classname="org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionSingleton"
-            description="It provides the reistry of diagram expansion"
-            id="org.eclipse.papyrus.infra.gmfdiag.common.expansion.DiagramExpansionService"
-            priority="1"
-            startKind="lazy">
-      </service>
    </extension>
 <extension
       point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
@@ -464,12 +457,6 @@
             genModel="model/ExpansionModel.genmodel"/>
    </extension>
 
-   <extension point="org.eclipse.emf.ecore.extension_parser">
-      <!-- @generated ExpansionModel -->
-      <parser
-            type="expansionmodel"
-            class="org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.util.ExpansionmodelResourceFactoryImpl"/>
-   </extension>
 
    <extension point="org.eclipse.emf.ecore.extension_parser">
       <!-- @generated NOT  ExpandModel -->

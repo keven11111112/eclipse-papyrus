@@ -235,29 +235,5 @@ public class InducedRepresentationCreationEditPolicy extends GraphicalEditPolicy
 		return dynamicCompartments;
 	}
 
-	/**
-	 * the goal of this method is to execute the a command to create a notation node for a compartment of stereotype
-	 *
-	 * @param editPart
-	 *            the editpart owner of the new compartment
-	 * @param appliedstereotype
-	 *            the stereotype application
-	 */
-	protected void setVisibility(final View view, final boolean isVisible) {
-		final GraphicalEditPart editPart = (GraphicalEditPart) getHost();
-		Display.getCurrent().asyncExec(new Runnable() {
-
-			@Override
-			public void run() {
-				SetNodeVisibilityCommand setCommand = new SetNodeVisibilityCommand(editPart.getEditingDomain(), view, isVisible);
-				// use to avoid to put it in the command stack
-				try {
-					GMFUnsafe.write(editPart.getEditingDomain(), setCommand);
-				} catch (Exception e) {
-					Activator.log.error(e);
-				}
-			}
-		});
-	}
 
 }

@@ -27,6 +27,7 @@ LoadExpansionModel.class,
 ExpansionAddCompartment.class,
 ExpansionAddChildLabel.class,
 ExpansionAddBorderItem.class,
+ExpansionAddCompartmentWithKind.class,
 GMFUnsafeTest.class 
 }
 )
