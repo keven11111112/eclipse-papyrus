@@ -14,6 +14,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.emf.gmf.command.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.parsers.AbstractAttributeParser;
 import org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.parsers.AbstractFeatureParser;
 import org.eclipse.papyrus.infra.internationalization.common.utils.InternationalizationPreferencesUtils;
@@ -26,7 +27,7 @@ import org.eclipse.uml2.uml.UMLPackage;
 /**
  * @generated
  */
-public class MessageFormatParser extends AbstractAttributeParser {
+public class MessageFormatParser extends AbstractElementTypeBasedAttributeParser {
 
 	/**
 	 * @generated
@@ -240,5 +241,5 @@ public class MessageFormatParser extends AbstractAttributeParser {
 		}
 
 		return null != result ? result : super.getValue(element, feature);
-	}	
+	}
 }

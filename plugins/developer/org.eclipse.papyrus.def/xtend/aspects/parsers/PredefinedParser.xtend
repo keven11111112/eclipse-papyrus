@@ -9,6 +9,7 @@
  * Contributors:
  *  Benoit Maggi (CEA LIST) benoit.maggi@cea.fr - Initial API and implementation
  *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 496905
+ *  Gabriel Pascual (ALL4TEC) gabriel.pascual@all4tec.net - Bug 464625
  *****************************************************************************/
 package aspects.parsers
 
@@ -17,7 +18,7 @@ import com.google.inject.Singleton
 @Singleton class PredefinedParser extends parsers.PredefinedParser{
 
 	override def extendsList(org.eclipse.gmf.codegen.gmfgen.PredefinedParser it) //
-	'''extends org.eclipse.papyrus.infra.gmfdiag.tooling.runtime.parsers.AbstractAttributeParser'''
+	'''extends org.eclipse.papyrus.infra.gmfdiag.common.parsers.AbstractElementTypeBasedAttributeParser'''
 	
 	override def additions(org.eclipse.gmf.codegen.gmfgen.PredefinedParser it) //
 	'''
