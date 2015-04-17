@@ -169,7 +169,6 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	 * @return a constructor (<tt>null</tt> if none could be found).
 	 */
 	private Constructor getCreationConstructor(Class editpartClass) {
-		Assert.isNotNull(editpartClass);
 
 		if (editpartClass != null) {
 			Constructor[] consts = editpartClass.getConstructors();
@@ -185,7 +184,6 @@ public class ExpandEditPartProvider extends AbstractEditPartProvider {
 	private IGraphicalEditPart createNewGraphicEditPart(Class editpartClass, Object[] constructorParams) {
 		try {
 			Constructor constructor = getCreationConstructor(editpartClass);
-			Assert.isNotNull(constructor);
 
 			return (constructor == null)? null : (IGraphicalEditPart) constructor.newInstance(constructorParams);
 		} 
