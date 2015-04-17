@@ -63,7 +63,7 @@ import org.eclipse.rmf.reqif10.SpecType;
 import org.eclipse.rmf.reqif10.Specification;
 import org.eclipse.rmf.reqif10.SpecificationType;
 import org.eclipse.rmf.reqif10.XhtmlContent;
-import org.eclipse.rmf.reqif10.pror.util.ProrXhtmlSimplifiedHelper;
+import org.eclipse.rmf.reqif10.common.util.ProrXhtmlSimplifiedHelper;
 import org.eclipse.rmf.reqif10.xhtml.XhtmlDivType;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Dependency;
