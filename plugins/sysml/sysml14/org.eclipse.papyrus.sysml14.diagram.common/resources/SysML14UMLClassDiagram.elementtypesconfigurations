@@ -2825,4 +2825,17 @@
       <stereotypesQualifiedNames>SysML::Activities::ControlOperator</stereotypesQualifiedNames>
     </matcherConfiguration>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_C-T9IOT-EeSduaYa-5Nr1A"
+      name="Constraint (Constraint_Label)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.Constraint_Label"
+      hint="Constraint_Label">
+    <iconEntry
+        xmi:id="_C-T9IeT-EeSduaYa-5Nr1A"
+        iconPath="/icons/full/obj16/Constraint.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

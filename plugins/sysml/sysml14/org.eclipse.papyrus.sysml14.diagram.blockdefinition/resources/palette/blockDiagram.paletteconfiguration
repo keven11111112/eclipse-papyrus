@@ -91,6 +91,21 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"/>
     </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Constraint"
+        label="Constraint"
+        description="Create a constraint">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_2011"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Constraint_3029"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Constraint_Label"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="Nodes"

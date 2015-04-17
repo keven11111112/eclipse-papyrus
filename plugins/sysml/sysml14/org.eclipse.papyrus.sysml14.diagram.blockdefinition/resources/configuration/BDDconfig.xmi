@@ -15,7 +15,7 @@
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"
         name="Block based on Class representation of class diagram"
         viewFactory="org.eclipse.papyrus.sysml14.diagram.blockdefinition.factory.BlockClassifierViewFactory"
-        inducedRepresentations="_rC19oNnoEeSqwOe5_frWm6 _rC19oNnoEeSqwOe5_frWm7"
+        inducedRepresentations="_rC19oNnoEeSqwOe5_frWm6 //@libraries.1/@representations.4 _rC19oNnoEeSqwOe5_frWm7"
         subRepresentations="//@libraries.0/@representations.2"
         reusedID="2008"/>
   </usages>
@@ -44,6 +44,12 @@
       <kind
           href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
     </representations>
+    <representations
+        xsi:type="expansionmodel:Representation"
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.common.edit.part.DefaultChildLabelEditPart"
+        name="Constraint As Label"
+        viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"
+        graphicalElementType="org.eclipse.papyrus.sysML.Constraint_Label"/>
   </libraries>
   <libraries
       xmi:id="_rC19oNnoEeSqwOe5_frWm5"
@@ -83,5 +89,13 @@
       <kind
           href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_dG-hoN0HEeSfTfTnKh2G1Q"/>
     </representations>
+    <representations
+        xsi:type="expansionmodel:InducedRepresentation"
+        name="Constraint Compartment"
+        hint="constraints"
+        children="//@libraries.0/@representations.3">
+      <kind
+          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>    
+    </representations>              
   </libraries>
 </expansionmodel:DiagramExpansion>
