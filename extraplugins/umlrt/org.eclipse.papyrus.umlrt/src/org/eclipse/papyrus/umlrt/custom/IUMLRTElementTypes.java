@@ -32,4 +32,6 @@ public interface IUMLRTElementTypes {
 	public static final String RT_CONNECTOR_ID = "org.eclipse.papyrus.umlrt.RTConnector";//$NON-NLS-1$
 	
 	public static final String RT_EXCLUDED_ELEMENT_ID = "org.eclipse.papyrus.umlrt.RTRExcludedElement";//$NON-NLS-1$
+
+	public static final String RT_OPERATION_AS_MESSAGE = "org.eclipse.papyrus.umlrt.OperationAsMessage";
 }

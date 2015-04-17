@@ -11,14 +11,24 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlrt.custom.advice;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
 import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
+import org.eclipse.papyrus.umlrt.custom.IUMLRTElementTypes;
 import org.eclipse.papyrus.umlrt.custom.utils.MessageSetUtils;
 import org.eclipse.papyrus.umlrt.custom.utils.ProtocolContainerUtils;
+import org.eclipse.papyrus.umlrt.internals.Activator;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Package;
@@ -28,6 +38,50 @@ import org.eclipse.uml2.uml.UMLPackage;
  * The helper advice class used for UMLRealTime::ProtocolContainer.
  */
 public class ProtocolContainerEditHelperAdvice extends AbstractEditHelperAdvice {
+
+/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	public boolean approveRequest(IEditCommandRequest request) {
+		if (request instanceof CreateElementRequest) {
+			CreateElementRequest createElementRequest = ((CreateElementRequest) request);
+			// retrieve element type from this request and check if this is a kind of UMLRT::Message
+			IElementType type = createElementRequest.getElementType();
+
+			// type should only be compatible with UMLRT::OperationAsMessages
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_OPERATION_AS_MESSAGE);
+			// should not be null, otherwise, element type model is not loaded correctly. abort.
+			if (umlRTMessageType == null) {
+				Activator.log.debug("MessageAsOperation element type is not accessible");
+				return super.approveRequest(request);
+			}
+
+			// check type is compatible with UMLRT::OperationAsMessages. If yes, allow creation
+			List<IElementType> types = Arrays.asList(type.getAllSuperTypes());
+			if (types.contains(umlRTMessageType)) {
+				return true;
+			}
+			return super.approveRequest(request);
+		}
+		return super.approveRequest(request);
+	}
+
+	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getAfterEditContextCommand(GetEditContextRequest request) {
+		IEditCommandRequest editCommandRequest = request.getEditCommandRequest();
+		if(editCommandRequest instanceof CreateElementRequest) {
+			// check the element to create is a sub kind of RTMessage
+			
+
+		}
+		
+		return super.getAfterEditContextCommand(request);
+	}
+
 
 	/**
 	 * {@inheritDoc}
