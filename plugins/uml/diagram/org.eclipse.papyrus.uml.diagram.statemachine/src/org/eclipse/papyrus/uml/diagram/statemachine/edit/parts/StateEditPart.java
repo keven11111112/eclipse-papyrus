@@ -135,8 +135,7 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				case PseudostateEntryPointEditPart.VISUAL_ID:
 				case PseudostateExitPointEditPart.VISUAL_ID:
 				case ConnectionPointReferenceEditPart.VISUAL_ID:
@@ -326,8 +325,7 @@ public class StateEditPart extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof StateFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}
