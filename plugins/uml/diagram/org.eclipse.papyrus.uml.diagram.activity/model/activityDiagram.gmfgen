@@ -6251,9 +6251,9 @@
               getterName="getNameLabel"
               figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
           <behaviour
-            xsi:type="gmfgen:CustomBehaviour"
-            key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
-            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterMaskEditPolicy"/>
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityParameterMaskEditPolicy"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.15"/>
         </labels>
@@ -19305,6 +19305,14 @@
               smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif"
               id="&quot;activity.nodes.datastorenode&quot;"
               genNodes="/0/@diagram/@childNodes.36"/>
+          <entries
+              xsi:type="gmfgen:ToolEntry"
+              title="Constraint"
+              description="Create a Constraint"
+              largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+              id="&quot;activity.nodes.constraint&quot;"
+              genNodes="/0/@diagram/@childNodes.114"/>
           <entries
               xsi:type="gmfgen:ToolEntry"
               title="Comment"
