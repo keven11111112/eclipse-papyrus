@@ -14,9 +14,6 @@
 
 package org.eclipse.papyrus.java.reverse.ui.dnd;
 
-import java.util.ArrayList;
-import java.util.List;
-
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -58,23 +55,6 @@ public class DropReverseStrategy implements DropStrategy {
 	@Override
 	public int getPriority() {
 		return 0;
-	}
-
-	/**
-	 * @see org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy#getCommands(org.eclipse.gef.Request, org.eclipse.gef.EditPart)
-	 *
-	 * @param request
-	 * @param targetEditPart
-	 * @return
-	 */
-	@Override
-	public List<Command> getCommands(Request request, EditPart targetEditPart) {
-		List<Command> commands = new ArrayList<Command>();
-		Command c = getCommand(request, targetEditPart);
-		if(c!=null){
-			commands.add(c);
-		}
-		return commands;
 	}
 
 }

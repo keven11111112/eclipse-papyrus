@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
-import java.util.ArrayList;
-import java.util.List;
 import java.util.Map;
 
 import org.eclipse.gef.EditPart;
@@ -65,14 +63,12 @@ public class DefaultDropStrategy implements DropStrategy {
 		return "Default drop strategy";
 	}
 
-	public List<Command> getCommands(Request request, final EditPart targetEditPart) {
-		ArrayList<Command> c = new ArrayList<Command>();
+	public Command getCommand(Request request, final EditPart targetEditPart) {
 		if (baseDropEditPolicy == null) {
 			if (baseCreationEditPolicy == null) {
 				return null;
 			}
-			c.add(baseCreationEditPolicy.getCommand(request));
-			return c;
+			return baseCreationEditPolicy.getCommand(request);
 		}
 
 		Command command = baseDropEditPolicy.getCommand(request);
@@ -80,31 +76,8 @@ public class DefaultDropStrategy implements DropStrategy {
 		if (command == null && baseCreationEditPolicy != null) {
 			command = baseCreationEditPolicy.getCommand(request);
 		}
-		c.add(command);
 
-		return c;
-	}
-	
-	/**
-	 * The default command to be executed when the strategy is applied.
-	 * Should return null if the strategy cannot handle the request.
-	 *
-	 * @param request
-	 *            The drop request
-	 * @param targetEditPart
-	 *            The target edit part
-	 * @return
-	 *         A command, or null if the strategy cannot handle the request
-	 */
-	public Command getCommand(Request request, EditPart targetEditPart){
-		List<Command> commands =  getCommands( request, targetEditPart);
-		if(commands != null && commands.size()>0){
-			return commands.get(0);
-		}
-		else{
-			return null;
-		}
-		
+		return command;
 	}
 
 	public Image getImage() {

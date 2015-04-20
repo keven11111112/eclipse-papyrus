@@ -20,11 +20,9 @@ import org.eclipse.osgi.util.NLS;
  *
  */
 public class Messages extends NLS {
-	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.dnd.messages.messages"; //$NON-NLS-1$
-	public static String SmartDropStrategy_As;
-	public static String SmartDropStrategy_Description;
-	public static String SmartDropStrategy_Label;
-
+	private static final String BUNDLE_NAME = "org.eclipse.papyrus.uml.diagram.dnd.signal2reception.messages"; //$NON-NLS-1$
+	public static String SignalToReceptionDropStrategy_Label;
+	public static String SignalToReceptionDropStrategy_Description;
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
-import java.util.List;
-
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
@@ -54,20 +52,7 @@ public interface DropStrategy {
 	public String getID();
 
 	/**
-	 * The commands to be executed when the strategy is applied.
-	 * Should return null if the strategy cannot handle the request.
-	 *
-	 * @param request
-	 *            The drop request
-	 * @param targetEditPart
-	 *            The target edit part
-	 * @return
-	 *         A command, or null if the strategy cannot handle the request
-	 */
-	public List<Command> getCommands(Request request, EditPart targetEditPart);
-	
-	/**
-	 * The default command to be executed when the strategy is applied.
+	 * The command to be executed when the strategy is applied.
 	 * Should return null if the strategy cannot handle the request.
 	 *
 	 * @param request
