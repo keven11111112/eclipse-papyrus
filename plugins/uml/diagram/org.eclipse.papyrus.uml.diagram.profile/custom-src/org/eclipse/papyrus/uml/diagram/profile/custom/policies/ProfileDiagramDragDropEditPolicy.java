@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA LIST.
+ * Copyright (c) 2009, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Adapted code from the class diagram
+ *  Christian W. Damus - bug 433206
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.profile.custom.policies;
 
@@ -49,10 +50,10 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.util.Util;
 import org.eclipse.papyrus.uml.diagram.profile.custom.commands.SetStereotypeVisibleOnMetaclassCommand;
 import org.eclipse.papyrus.uml.diagram.profile.custom.helper.MultiAssociationHelper;
@@ -246,7 +247,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 * @param nodeVISUALID
 	 *            the node VISUAL ID
 	 * @return
-	 *         the command to drop the metaclass
+	 * 		the command to drop the metaclass
 	 */
 	protected Command dropMetaclass(DropObjectsRequest dropRequest, Element semanticElement, int nodeVISUALID) {
 		// we test if the element to drop is a Class or a Metaclass
@@ -437,10 +438,10 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	 *
 	 * @return the composite command
 	 */
-	public CompositeCommand dropBinaryLinkExtension(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
+	CompositeCommand dropBinaryLinkExtension(CompositeCommand cc, Element source, Element target, int linkVISUALID, Point location, Element semanticLink) {
 		// look for editpart
-		GraphicalEditPart sourceEditPart = (GraphicalEditPart) lookForEditPartSource(source);
-		GraphicalEditPart targetEditPart = (GraphicalEditPart) lookForEditPartTarget(target, semanticLink);
+		GraphicalEditPart sourceEditPart = (GraphicalEditPart) lookForEditPart(source);
+		GraphicalEditPart targetEditPart = (GraphicalEditPart) lookForEditPart(target);
 		// descriptor of the link
 		CreateConnectionViewRequest.ConnectionViewDescriptor linkdescriptor = new CreateConnectionViewRequest.ConnectionViewDescriptor(getUMLElementType(linkVISUALID), ((IHintedType) getUMLElementType(linkVISUALID)).getSemanticHint(),
 				getDiagramPreferencesHint());
@@ -479,51 +480,6 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 	}
 
 	/**
-	 * Look for editPart from its semantic.
-	 *
-	 * @param semantic
-	 *            the semantic
-	 *
-	 * @return the edits the part or null if not found
-	 */
-	private EditPart lookForEditPartSource(EObject semantic) {
-		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		EditPart existedEditPart = null;
-		while (editPartIterator.hasNext() && existedEditPart == null) {
-			EditPart currentEditPart = editPartIterator.next();
-			if (isEditPartTypeAdapted(currentEditPart.getClass(), semantic.eClass()) && semantic.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
-				existedEditPart = currentEditPart;
-			}
-		}
-		return existedEditPart;
-	}
-
-	/**
-	 * Look for editPart from its semantic and its container.
-	 *
-	 * @param semantic
-	 *            the semantic
-	 *
-	 * @return the edits the part or null if not found
-	 */
-	private EditPart lookForEditPartTarget(EObject semantic, Element semanticLink) {
-		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
-		Collection<EditPart> editPartSet2 = getTheFirstLevel(semanticLink);
-		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		EditPart existedEditPart = null;
-		while (editPartIterator.hasNext() && existedEditPart == null) {
-			EditPart currentEditPart = editPartIterator.next();
-			if (editPartSet2.contains(currentEditPart)) {
-				if (isEditPartTypeAdapted(currentEditPart.getClass(), semantic.eClass()) && semantic.equals(((GraphicalEditPart) currentEditPart).resolveSemanticElement())) {
-					existedEditPart = currentEditPart;
-				}
-			}
-		}
-		return existedEditPart;
-	}
-
-	/**
 	 * Check if the edit part type is the best one to represent an object of the given EClass type
 	 *
 	 * @param editPartClass
@@ -551,7 +507,7 @@ public class ProfileDiagramDragDropEditPolicy extends CommonDiagramDragDropEditP
 		Collection<EditPart> profileContents = new ArrayList<EditPart>();
 		Collection<EditPart> editPartSet = getHost().getViewer().getEditPartRegistry().values();
 		Iterator<EditPart> editPartIterator = editPartSet.iterator();
-		// Je recherche les éléments qui ont le même parent que mon extension
+		// Je recherche les ï¿½lï¿½ments qui ont le mï¿½me parent que mon extension
 		while (editPartIterator.hasNext()) {
 			currentEditPart = editPartIterator.next();
 			if (currentEditPart.getParent() != null) {
