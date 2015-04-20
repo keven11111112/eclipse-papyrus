@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.strategy;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -91,4 +94,29 @@ public abstract class TransactionalDropStrategy extends AbstractDropStrategy {
 	 *         A command, or null if the strategy cannot handle the request
 	 */
 	protected abstract Command doGetCommand(Request request, EditPart targetEditPart);
+	
+	protected List<Command> doGetCommands(Request request, EditPart targetEditPart) {
+		List<Command> commands = new ArrayList<Command>();
+		Command c = doGetCommand(request, targetEditPart);
+		if(c!=null){
+			commands.add(c);
+		}
+		return commands;
+	}
+	
+	/**
+	 * @see org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.DropStrategy#getCommands(org.eclipse.gef.Request, org.eclipse.gef.EditPart)
+	 *
+	 * @param request
+	 * @param targetEditPart
+	 * @return
+	 */
+	public List<Command> getCommands(Request request, EditPart targetEditPart) {
+		List<Command> commands = new ArrayList<Command>();
+		Command c = getCommand(request, targetEditPart);
+		if(c!=null){
+			commands.add(c);
+		}
+		return commands;
+	}
 }
