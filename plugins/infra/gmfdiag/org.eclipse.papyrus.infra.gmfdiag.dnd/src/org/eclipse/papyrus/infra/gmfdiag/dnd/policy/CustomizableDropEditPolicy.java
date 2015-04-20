@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.dnd.policy;
 
+import java.util.ArrayList;
 import java.util.Collections;
 import java.util.LinkedHashMap;
 import java.util.LinkedList;
@@ -225,15 +226,15 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 * @return
 	 */
 	protected Command getCustomCommand(Request request) {
-		final Map<DropStrategy, Command> matchingStrategies = findStrategies(request);
+		final Map<DropStrategy, List<Command>> matchingStrategies = findStrategies(request);
 
 		// Only one strategy: return the associated command
-		if (matchingStrategies.size() == 1) {
-			return matchingStrategies.values().iterator().next();
+		if (matchingStrategies.size() == 1 && matchingStrategies.values().iterator().next().size()==1) {
+			return matchingStrategies.values().iterator().next().get(0);
 		}
 
 		// More than one strategy
-		if (matchingStrategies.size() > 1) {
+		if (matchingStrategies.size() > 1 || matchingStrategies.values().iterator().next().size()>1) {
 			boolean useDefault = true;
 
 			// FIXME: What's the exact semantic of EVENT_DETAIL=DND_COPY in Papyrus?
@@ -249,7 +250,7 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 			if (useDefault) {
 				DropStrategy defaultStrategy = DropStrategyManager.instance.getDefaultDropStrategy(matchingStrategies.keySet());
 				if (defaultStrategy != null) {
-					return matchingStrategies.get(defaultStrategy);
+					return matchingStrategies.get(defaultStrategy).get(0);
 				}
 			}
 
@@ -269,8 +270,17 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 					return "Change the default strategy";
 				}
 			};
-
-			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(matchingStrategies.values()), handler);
+			
+			ArrayList<Command> proposalCommands = new ArrayList<Command>();
+			for(List<Command> cs: matchingStrategies.values()){
+				for(Command c : cs){
+					if(c!=null){
+						proposalCommands.add(c);
+					}
+				}
+			}
+			Activator.log.info("proposalCommands"+proposalCommands.size());;
+			SelectAndExecuteCommand command = new SelectAndExecuteCommand("Select drop", shell, new LinkedList<Command>(proposalCommands), handler);
 			return new ICommandProxy(command);
 		}
 
@@ -278,8 +288,8 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 		return null;
 	}
 
-	private static DropStrategy findStrategy(Map<DropStrategy, Command> matchingStrategies, Command command) {
-		for (Map.Entry<DropStrategy, Command> entry : matchingStrategies.entrySet()) {
+	private static DropStrategy findStrategy(Map<DropStrategy, List<Command>> matchingStrategies, Command command) {
+		for (Map.Entry<DropStrategy, List<Command>> entry : matchingStrategies.entrySet()) {
 			if (entry.getValue() == command) {
 				return entry.getKey();
 			}
@@ -294,20 +304,27 @@ public class CustomizableDropEditPolicy extends DragDropEditPolicy {
 	 * @param request
 	 * @return
 	 */
-	protected Map<DropStrategy, Command> findStrategies(Request request) {
-		Map<DropStrategy, Command> matchingStrategies = new LinkedHashMap<DropStrategy, Command>();
+	protected Map<DropStrategy, List<Command>> findStrategies(Request request) {
+		Map<DropStrategy, List<Command>> matchingStrategies = new LinkedHashMap<DropStrategy, List<Command>>();
 
+		//Retrieve strategies
 		for (DropStrategy strategy : DropStrategyManager.instance.getActiveStrategies()) {
-			Command command = strategy.getCommand(request, getHost());
-			if (command != null && command.canExecute()) {
-				matchingStrategies.put(strategy, command);
+			List<Command> cs = strategy.getCommands(request, getHost());
+			ArrayList<Command> selectedCommands = new ArrayList<Command>();
+			for(Command command : cs){
+				if (command != null && command.canExecute()) {
+					selectedCommands.add(command);
+					
+				}
 			}
+			matchingStrategies.put(strategy, selectedCommands);
+			
 		}
 
-		Command command = defaultDropStrategy.getCommand(request, getHost());
-		if (command != null && command.canExecute()) {
-			matchingStrategies.put(defaultDropStrategy, command);
-		}
+		//Retrieve defaultStrategy
+		ArrayList<Command> selectedCommands = new ArrayList<Command>();
+		selectedCommands.add(defaultDropStrategy.getCommand(request, getHost()));
+		matchingStrategies.put(defaultDropStrategy, selectedCommands);
 
 		return matchingStrategies;
 	}

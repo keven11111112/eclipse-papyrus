@@ -717,4 +717,25 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		return hasHeader;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure#add(org.eclipse.draw2d.IFigure, java.lang.Object, int)
+	 *
+	 * @param figure
+	 * @param constraint
+	 * @param index
+	 */
+	@Override
+	public void add(IFigure figure, Object constraint, int index) {
+		// TODO Auto-generated method stub
+//		if(figure instanceof ResizableCompartmentFigure){
+//			System.err.println("Detection d'ajout de Compartiment dans Compartiment");
+//			RectangleFigure rectFigure= new RectangleFigure();
+//			rectFigure.add(figure);
+//			rectFigure.setLayoutManager(new SubCompartmentLayoutManager());
+//			super.add(rectFigure, constraint, index);
+//		}else{
+		
+			super.add(figure, constraint, index);
+//		}
+	}
 }

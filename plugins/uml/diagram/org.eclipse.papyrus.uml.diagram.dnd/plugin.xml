@@ -18,5 +18,8 @@
        <strategy
             strategy="org.eclipse.papyrus.uml.diagram.dnd.strategy.constraint.NamespaceToConstraintDropStrategy">
       </strategy>
+       <strategy
+             strategy="org.eclipse.papyrus.uml.diagram.dnd.smart.SmartDropStrategy">
+       </strategy>
    </extension>
 </plugin>

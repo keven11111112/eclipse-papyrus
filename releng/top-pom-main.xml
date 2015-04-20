@@ -490,7 +490,40 @@
 			<layout>p2</layout>
 			<!-- updateFrom("Subversive",0) -->
 			<url>http://download.eclipse.org/technology/subversive/3.0/mars-site/</url>
-		</repository>		
+		</repository>
+		<repository>
+			<releases>
+				<enabled>true</enabled>
+				<updatePolicy>daily</updatePolicy>
+				<checksumPolicy>warn</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+			<id>papyrus.repo.eclipse.org</id>
+			<name>Papyrus Repository - Releases</name>
+			<url>https://repo.eclipse.org/content/repositories/papyrus-releases/</url>
+			<layout>default</layout>
+		</repository>
+		<!--Papyrus Eclipse Offcial Nexus Reposiotry-->
+		<repository>
+			<releases>
+				<enabled>false</enabled>
+				<updatePolicy>never</updatePolicy>
+				<checksumPolicy>failed</checksumPolicy>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+				<updatePolicy>always</updatePolicy>
+				<checksumPolicy>fail</checksumPolicy>
+			</snapshots>
+			<id>papyrus.snap.repo.eclipse.org</id>
+			<name>Papyrus Repository - Snapshots</name>
+			<url>https://repo.eclipse.org/content/repositories/papyrus-snapshots/</url>
+			<layout>default</layout>
+		</repository>	
 	</repositories>
 	<pluginRepositories>
 		<pluginRepository>
