@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Structure Diagram</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public abstract class StructureDiagramImpl extends UmlDiagramImpl implements StructureDiagram {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected StructureDiagramImpl() {
@@ -40,11 +36,11 @@ public abstract class StructureDiagramImpl extends UmlDiagramImpl implements Str
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.STRUCTURE_DIAGRAM;
 	}
+
 } //StructureDiagramImpl

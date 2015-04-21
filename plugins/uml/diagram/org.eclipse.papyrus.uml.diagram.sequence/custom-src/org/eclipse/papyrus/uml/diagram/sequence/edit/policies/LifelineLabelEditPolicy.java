@@ -72,9 +72,9 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 		if (object == null || getUMLElement() == null) {
 			return;
 		}
-		if (notification.getFeature().equals(UMLPackage.eINSTANCE.getNamedElement_Name())) {
+		if (UMLPackage.eINSTANCE.getNamedElement_Name().equals(notification.getFeature())) {
 			refreshDisplay();
-		} else if (notification.getFeature().equals(UMLPackage.Literals.LIFELINE__REPRESENTS)) {
+		} else if (UMLPackage.Literals.LIFELINE__REPRESENTS.equals(notification.getFeature())) {
 			// change represent element
 			if (notification.getNewValue() instanceof ConnectableElement) {
 				ConnectableElement ce = (ConnectableElement) notification.getNewValue();
@@ -103,7 +103,7 @@ public class LifelineLabelEditPolicy extends AbstractMaskManagedEditPolicy {
 			}
 			refreshDisplay();
 		} else if(object.equals(getUMLElement().getSelector())
-				|| notification.getFeature().equals(UMLPackage.Literals.LIFELINE__SELECTOR)) {
+				|| UMLPackage.Literals.LIFELINE__SELECTOR.equals(notification.getFeature())) {
 			// change selector
 			if(notification.getNewValue() instanceof ValueSpecification) {
 				getDiagramEventBroker().addNotificationListener((ValueSpecification)notification.getNewValue(), this);

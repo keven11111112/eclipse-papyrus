@@ -11,40 +11,41 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Role Label</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.RoleLabel#getAssociationEdge <em>Association Edge</em>}</li>
- * <li>{@link org.eclipse.papyrus.umldi.RoleLabel#getInstanceSpecificationEdge <em>Instance Specification Edge</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.RoleLabel#getAssociationEdge <em>Association Edge</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.RoleLabel#getInstanceSpecificationEdge <em>Instance Specification Edge</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.umldi.RoleLabel#getRoleBindingEdge <em>Role Binding Edge</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRoleLabel()
  * @model
  * @generated
  */
-public interface RoleLabel extends NameLabel {
-
+public interface RoleLabel extends UmlLabel {
 	/**
 	 * Returns the value of the '<em><b>Association Edge</b></em>' container reference.
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.AssociationEdge#getEndRoleLabel <em>End Role Label</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Association Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Association Edge</em>' container reference.
 	 * @see #setAssociationEdge(AssociationEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRoleLabel_AssociationEdge()
@@ -58,9 +59,7 @@ public interface RoleLabel extends NameLabel {
 	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RoleLabel#getAssociationEdge <em>Association Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Association Edge</em>' container reference.
+	 * @param value the new value of the '<em>Association Edge</em>' container reference.
 	 * @see #getAssociationEdge()
 	 * @generated
 	 */
@@ -71,17 +70,16 @@ public interface RoleLabel extends NameLabel {
 	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge#getEndRoleLabel <em>End Role Label</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Instance Specification Edge</em>' container reference isn't clear, there really should be more of a description
-	 * here...
+	 * If the meaning of the '<em>Instance Specification Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Instance Specification Edge</em>' container reference.
 	 * @see #setInstanceSpecificationEdge(InstanceSpecificationEdge)
 	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRoleLabel_InstanceSpecificationEdge()
@@ -92,15 +90,47 @@ public interface RoleLabel extends NameLabel {
 	InstanceSpecificationEdge getInstanceSpecificationEdge();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RoleLabel#getInstanceSpecificationEdge <em>Instance Specification Edge</em>}' container
-	 * reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RoleLabel#getInstanceSpecificationEdge <em>Instance Specification Edge</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Instance Specification Edge</em>' container reference.
+	 * @param value the new value of the '<em>Instance Specification Edge</em>' container reference.
 	 * @see #getInstanceSpecificationEdge()
 	 * @generated
 	 */
 	void setInstanceSpecificationEdge(InstanceSpecificationEdge value);
+
+	/**
+	 * Returns the value of the '<em><b>Role Binding Edge</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.DependencyEdge#getRoleLabel <em>Role Label</em>}'.
+	 * <p>
+	 * This feature subsets the following features:
+	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
+	 * <!-- begin-user-doc -->
+	 * <p>
+	 * If the meaning of the '<em>Role Binding Edge</em>' container reference isn't clear,
+	 * there really should be more of a description here...
+	 * </p>
+	 * <!-- end-user-doc -->
+	 * @return the value of the '<em>Role Binding Edge</em>' container reference.
+	 * @see #setRoleBindingEdge(DependencyEdge)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRoleLabel_RoleBindingEdge()
+	 * @see org.eclipse.papyrus.umldi.DependencyEdge#getRoleLabel
+	 * @model opposite="roleLabel" transient="false" ordered="false"
+	 * @generated
+	 */
+	DependencyEdge getRoleBindingEdge();
+
+	/**
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.RoleLabel#getRoleBindingEdge <em>Role Binding Edge</em>}' container reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @param value the new value of the '<em>Role Binding Edge</em>' container reference.
+	 * @see #getRoleBindingEdge()
+	 * @generated
+	 */
+	void setRoleBindingEdge(DependencyEdge value);
+
 } // RoleLabel

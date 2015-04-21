@@ -44,14 +44,10 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
-import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 //import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
@@ -86,7 +82,9 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
+import org.eclipse.papyrus.infra.nattable.configuration.CellEditorAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
@@ -104,7 +102,6 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
-import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
@@ -255,6 +252,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	private ResourceSetListener resourceSetListener;
 
 	/**
+	 * the filter configuration
+	 */
+	private FilterRowAxisConfiguration filterConfiguration;
+
+	/**
+	 * the cell editor axis configuration
+	 */
+	private CellEditorAxisConfiguration cellAxisConfiguration;
+
+	/**
 	 *
 	 * Constructor.
 	 *
@@ -339,13 +346,37 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		this.natTable = new NatTable(parent, this.gridLayer, false);
 
+
+		// we register nattable configuration
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
-
-		this.natTable.addConfiguration(new CellEditionConfiguration());
 		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
-
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
-		configureNatTable();
+
+
+		// we register some information in the config registry of the nattable widget
+		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
+
+		// could be done by config file!
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getContextLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		// commented because seems generate several bugs with edition
+		// newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, GridRegion.BODY);
+
+		// configuration used by filter
+		ObjectNameAndPathDisplayConverter converter = new ObjectNameAndPathDisplayConverter(getContextLabelProviderService());
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
+
+		this.natTable.setConfigRegistry(configRegistry);
+		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
+		this.natTable.configure();
+
+		// we create editors and filter configuration, we can not add it to a layer, because the configuration must be updated after add/move axis and invert axis
+		this.filterConfiguration = new FilterRowAxisConfiguration();
+		this.cellAxisConfiguration = new CellEditorAxisConfiguration();
+		configureFilters();
+		configureCellAxisEditor();
+
 
 		// initialize the table by checking all its applied styles
 		initTableAxis();
@@ -540,30 +571,26 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		return new RowHeaderLayerStack(bodyLayerStack, this);
 	}
 
-	protected void configureNatTable() {
-
-		if (this.natTable != null && !this.natTable.isDisposed()) {
-			ConfigRegistry configRegistry = new ConfigRegistry();
-
-			// could be done by config file!
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-			// commented because seems generate several bugs with edition
-			// newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, GridRegion.BODY);
-
-			// configuration used by filter
-			ObjectNameAndPathDisplayConverter converter = new ObjectNameAndPathDisplayConverter(getLabelProviderService());
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
-
-			this.natTable.setConfigRegistry(configRegistry);
-			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
-			this.natTable.configure();
-		}
+	/**
+	 * configure the cell editor used in the table
+	 */
+	protected final void configureCellAxisEditor() {
+		this.cellAxisConfiguration.configureRegistry(this.natTable.getConfigRegistry());
 	}
 
+	/**
+	 * configure the filters
+	 */
+	protected final void configureFilters() {
+		this.filterConfiguration.configureRegistry(this.natTable.getConfigRegistry());
+	}
 
-	private LabelProviderService getLabelProviderService() {
+	/**
+	 * 
+	 * @return
+	 * 		the label provider serviceS
+	 */
+	private LabelProviderService getContextLabelProviderService() {
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
@@ -1141,35 +1168,6 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 			this.rowSortModel = new ColumnSortModel(this);
 		}
 		return this.rowSortModel;
-	}
-
-	/**
-	 *
-	 *
-	 * Configuration used for cell edition in the table
-	 */
-	private class CellEditionConfiguration extends AbstractRegistryConfiguration {
-
-		/**
-		 *
-		 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-		 *
-		 * @param configRegistry
-		 */
-		@Override
-		public void configureRegistry(IConfigRegistry configRegistry) {
-			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
-
-				@Override
-				public boolean isEditable(final int columnIndex, final int rowIndex) {
-					final Object rowElement = getRowElement(rowIndex);
-					final Object columnElement = getColumnElement(columnIndex);
-					return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
-				}
-			});
-
-			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, null, DisplayMode.EDIT, ""); //$NON-NLS-1$
-		}
 	}
 
 	/**

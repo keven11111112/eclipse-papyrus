@@ -18,8 +18,8 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.C_Cpp.Include;
 import org.eclipse.papyrus.FCM.Template;
 import org.eclipse.papyrus.FCM.util.IBindingHelper;
-import org.eclipse.papyrus.qompass.designer.core.acceleo.AcceleoDriverWrapper;
 import org.eclipse.papyrus.qompass.designer.core.listeners.PostCopyListener;
+import org.eclipse.papyrus.qompass.designer.core.templates.TextTemplateBinding;
 import org.eclipse.papyrus.qompass.designer.core.transformations.LazyCopier;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationException;
@@ -53,9 +53,9 @@ public class InstantiateCppIncludeWithItSelf implements PostCopyListener, IBindi
 				try {
 					Include cppInclude = UMLUtil.getStereotypeApplication(targetCl, Include.class);
 					TransformationContext.classifier = targetCl;
-					String newBody = AcceleoDriverWrapper.evaluate(cppInclude.getBody(), targetCl, null);
-					String newPreBody = AcceleoDriverWrapper.evaluate(cppInclude.getPreBody(), targetCl, null);
-					String newHeader = AcceleoDriverWrapper.evaluate(cppInclude.getHeader(), targetCl, null);
+					String newBody = TextTemplateBinding.bind(cppInclude.getBody(), targetCl, null);
+					String newPreBody = TextTemplateBinding.bind(cppInclude.getPreBody(), targetCl, null);
+					String newHeader = TextTemplateBinding.bind(cppInclude.getHeader(), targetCl, null);
 					cppInclude.setBody(newBody);
 					cppInclude.setPreBody(newPreBody);
 					cppInclude.setHeader(newHeader);

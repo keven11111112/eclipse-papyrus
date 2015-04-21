@@ -45,5 +45,24 @@
          </editor>
       </paletteDefinition>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="facet/SimpleUMLRT.custom">
+      </modeldeclaration>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="10"
+            provider="org.eclipse.papyrus.umlrt.ui.provider.UMLRTFilteredLabelProvider">
+      </labelProvider>
+   </extension>
+   <extension
+         point="org.eclipse.papyrus.emf.facet.util.emf.core.modeldeclaration">
+      <modeldeclaration
+            file="facet/Protocol.custom">
+      </modeldeclaration>
+   </extension>
 
 </plugin>

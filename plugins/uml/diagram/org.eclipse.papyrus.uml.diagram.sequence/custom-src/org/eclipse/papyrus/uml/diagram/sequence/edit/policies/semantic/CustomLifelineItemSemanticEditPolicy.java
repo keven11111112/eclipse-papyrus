@@ -64,6 +64,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.AbstractExecutionSpec
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CommentAnnotatedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.ConstraintConstrainedElementEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DestructionOccurrenceSpecificationEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.GeneralOrderingEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message2EditPart;
@@ -160,6 +161,9 @@ public class CustomLifelineItemSemanticEditPolicy extends LifelineItemSemanticEd
 					for (Object obj : children) {
 						if (obj instanceof AbstractExecutionSpecificationEditPart) {
 							SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, (AbstractExecutionSpecificationEditPart) obj, req.getEditingDomain());
+						}
+						if (obj instanceof DestructionOccurrenceSpecificationEditPart) {
+							SequenceDeleteHelper.destroyMessageEvents(deleteElementsCommand, (DestructionOccurrenceSpecificationEditPart) obj, req.getEditingDomain());
 						}
 					}
 				}

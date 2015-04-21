@@ -45,11 +45,14 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.draw2d.routers.MessageRouter;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message4EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.Message5EditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
 import org.eclipse.papyrus.uml.diagram.sequence.util.GateHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageDeleteHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OccurrenceSpecificationMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceRequestConstant;
 import org.eclipse.uml2.uml.CombinedFragment;
@@ -159,7 +162,7 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if (request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart) {
 				LifelineEditPart newSource = (LifelineEditPart) request.getTarget();
-				LifelineEditPart target = (LifelineEditPart) request.getConnectionEditPart().getTarget();
+				CustomLifelineEditPart target = (CustomLifelineEditPart) request.getConnectionEditPart().getTarget();
 				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, newSource.getFigure().getBounds().getLocation().getCopy());
 			}
 		}
@@ -182,6 +185,9 @@ public class LifelineChildGraphicalNodeEditPolicy extends SequenceGraphicalNodeE
 			command = OccurrenceSpecificationMoveHelper.completeReconnectConnectionCommand(command, request, getConnectableEditPart());
 			if (request.getConnectionEditPart() instanceof Message4EditPart && request.getTarget() instanceof LifelineEditPart) {
 				command = LifelineMessageCreateHelper.reconnectMessageCreateTarget(request, command);
+			}
+			if (request.getConnectionEditPart() instanceof Message5EditPart && request.getTarget() instanceof LifelineEditPart) {
+				command = LifelineMessageDeleteHelper.getReconnectMessageDeleteTargetCommand(request, command);
 			}
 		}
 		return command;

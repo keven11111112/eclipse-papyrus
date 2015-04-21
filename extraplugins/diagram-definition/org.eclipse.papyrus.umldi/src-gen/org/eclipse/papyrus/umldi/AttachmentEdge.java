@@ -11,12 +11,13 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Attachment Edge</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getAttachmentEdge()
  * @model
  * @generated

@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Representation Edge</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getRepresentationEdge()
  * @model
  * @generated
  */
-public interface RepresentationEdge extends NamedEdge {
+public interface RepresentationEdge extends UmlEdge {
 } // RepresentationEdge

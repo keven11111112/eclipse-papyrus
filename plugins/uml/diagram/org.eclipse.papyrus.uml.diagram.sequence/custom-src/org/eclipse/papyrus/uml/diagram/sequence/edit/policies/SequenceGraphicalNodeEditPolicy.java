@@ -58,6 +58,7 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool.CreateAspectUnspecifiedTypeConnectionRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomCombinedFragment2EditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionFragmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -345,7 +346,7 @@ public class SequenceGraphicalNodeEditPolicy extends GraphicalNodeEditPolicy {
 		// change constraint of the target lifeline after added a Create Message
 		if (request.getTargetEditPart() instanceof LifelineEditPart && !(request.getSourceEditPart().equals(request.getTargetEditPart()))) {
 			if (requestHint.equals((((IHintedType) UMLElementTypes.Message_4006).getSemanticHint()))) {
-				LifelineEditPart target = (LifelineEditPart) request.getTargetEditPart();
+				CustomLifelineEditPart target = (CustomLifelineEditPart) request.getTargetEditPart();
 				command = LifelineMessageCreateHelper.moveLifelineDown(command, target, sourcePoint.getCopy());
 			}
 		}

@@ -13,26 +13,14 @@ package org.eclipse.papyrus.dd.dg.provider;
 
 import java.util.Collection;
 import java.util.List;
-
 import org.eclipse.emf.common.notify.AdapterFactory;
 import org.eclipse.emf.common.notify.Notification;
-
 import org.eclipse.emf.ecore.EStructuralFeature;
-
 import org.eclipse.emf.edit.provider.ComposeableAdapterFactory;
-import org.eclipse.emf.edit.provider.IEditingDomainItemProvider;
-import org.eclipse.emf.edit.provider.IItemColorProvider;
-import org.eclipse.emf.edit.provider.IItemFontProvider;
-import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.IItemPropertyDescriptor;
-import org.eclipse.emf.edit.provider.IItemPropertySource;
-import org.eclipse.emf.edit.provider.IStructuredItemContentProvider;
-import org.eclipse.emf.edit.provider.ITreeItemContentProvider;
 import org.eclipse.emf.edit.provider.ItemPropertyDescriptor;
 import org.eclipse.emf.edit.provider.ViewerNotification;
-
 import org.eclipse.papyrus.dd.dc.DCFactory;
-
 import org.eclipse.papyrus.dd.dg.Circle;
 import org.eclipse.papyrus.dd.dg.DGPackage;
 
@@ -40,10 +28,9 @@ import org.eclipse.papyrus.dd.dg.DGPackage;
  * This is the item provider adapter for a {@link org.eclipse.papyrus.dd.dg.Circle} object.
  * <!-- begin-user-doc --> <!--
  * end-user-doc -->
- * 
  * @generated
  */
-public class CircleItemProvider extends GraphicalElementItemProvider implements IEditingDomainItemProvider, IStructuredItemContentProvider, ITreeItemContentProvider, IItemLabelProvider, IItemPropertySource, IItemColorProvider, IItemFontProvider {
+public class CircleItemProvider extends GraphicalElementItemProvider {
 
 	/**
 	 * This constructs an instance from a factory and a notifier. <!--
@@ -63,8 +50,9 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	 */
 	@Override
 	public List<IItemPropertyDescriptor> getPropertyDescriptors(Object object) {
-		if(itemPropertyDescriptors == null) {
+		if (itemPropertyDescriptors == null) {
 			super.getPropertyDescriptors(object);
+
 			addRadiusPropertyDescriptor(object);
 		}
 		return itemPropertyDescriptors;
@@ -77,7 +65,19 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	 * @generated
 	 */
 	protected void addRadiusPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(), getResourceLocator(), getString("_UI_Circle_radius_feature"), getString("_UI_PropertyDescriptor_description", "_UI_Circle_radius_feature", "_UI_Circle_type"), DGPackage.Literals.CIRCLE__RADIUS, true, false, false, ItemPropertyDescriptor.REAL_VALUE_IMAGE, null, null));
+		itemPropertyDescriptors.add
+			(createItemPropertyDescriptor
+				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
+				 getResourceLocator(),
+				 getString("_UI_Circle_radius_feature"),
+				 getString("_UI_PropertyDescriptor_description", "_UI_Circle_radius_feature", "_UI_Circle_type"),
+				 DGPackage.Literals.CIRCLE__RADIUS,
+				 true,
+				 false,
+				 false,
+				 ItemPropertyDescriptor.REAL_VALUE_IMAGE,
+				 null,
+				 null));
 	}
 
 	/**
@@ -85,12 +85,11 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	 * {@link org.eclipse.emf.edit.command.AddCommand}, {@link org.eclipse.emf.edit.command.RemoveCommand} or
 	 * {@link org.eclipse.emf.edit.command.MoveCommand} in {@link #createCommand}.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Collection<? extends EStructuralFeature> getChildrenFeatures(Object object) {
-		if(childrenFeatures == null) {
+		if (childrenFeatures == null) {
 			super.getChildrenFeatures(object);
 			childrenFeatures.add(DGPackage.Literals.CIRCLE__CENTER);
 		}
@@ -99,20 +98,19 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EStructuralFeature getChildFeature(Object object, Object child) {
 		// Check the type of the specified child object and return the proper feature to use for
 		// adding (see {@link AddCommand}) it as a child.
+
 		return super.getChildFeature(object, child);
 	}
 
 	/**
 	 * This returns Circle.gif.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -124,13 +122,14 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc
 	 * --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public String getText(Object object) {
 		String label = ((Circle)object).getId();
-		return label == null || label.length() == 0 ? getString("_UI_Circle_type") : getString("_UI_Circle_type") + " " + label;
+		return label == null || label.length() == 0 ?
+			getString("_UI_Circle_type") :
+			getString("_UI_Circle_type") + " " + label;
 	}
 
 	/**
@@ -138,19 +137,19 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	 * children and by creating a viewer notification, which it passes to {@link #fireNotifyChanged}.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void notifyChanged(Notification notification) {
 		updateChildren(notification);
-		switch(notification.getFeatureID(Circle.class)) {
-		case DGPackage.CIRCLE__RADIUS:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-			return;
-		case DGPackage.CIRCLE__CENTER:
-			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-			return;
+
+		switch (notification.getFeatureID(Circle.class)) {
+			case DGPackage.CIRCLE__RADIUS:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+				return;
+			case DGPackage.CIRCLE__CENTER:
+				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+				return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -165,6 +164,10 @@ public class CircleItemProvider extends GraphicalElementItemProvider implements 
 	@Override
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
-		newChildDescriptors.add(createChildParameter(DGPackage.Literals.CIRCLE__CENTER, DCFactory.eINSTANCE.createPoint()));
+
+		newChildDescriptors.add
+			(createChildParameter
+				(DGPackage.Literals.CIRCLE__CENTER,
+				 DCFactory.eINSTANCE.createPoint()));
 	}
 }

@@ -665,9 +665,16 @@ public class LazyCopier extends Copier {
 				} else {
 					for (EObject sourceEObj : source) {
 						// if eObject has already been copied, add it to target
+						// don't add, if copyEObj is identical to sourceEObj. This would imply manipulating an
+						// element of the source model.
 						EObject copyEObj = noCopy(sourceEObj);
-						if ((copyEObj != null) && (!target.contains(copyEObj))) {
-							target.add(copyEObj);
+						if ((copyEObj != null) && (copyEObj != sourceEObj) && (!target.contains(copyEObj))) {
+							try  {
+								target.add(copyEObj);
+							}
+							catch (Exception e) {
+								System.err.println(e);
+							}
 						}
 					}
 				}

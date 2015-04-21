@@ -148,4 +148,9 @@
 		<toc file="help/modellibs-core-examples.xml"/>
 		<toc file="help/modellibs-core-library.xml"/>
 	</extension>
+ <extension
+       point="org.eclipse.papyrus.qompass.designer.core.xtendGenerator">
+       <client class="org.eclipse.papyrus.qompass.modellibs.core.xtend.StateMachineGen" templateID="StateMachineGen">
+       </client>
+ </extension>
 </plugin>

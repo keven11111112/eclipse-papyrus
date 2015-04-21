@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Substitution Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class SubstitutionEdgeImpl extends RealizationEdgeImpl implements SubstitutionEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SubstitutionEdgeImpl() {
@@ -40,11 +36,11 @@ public class SubstitutionEdgeImpl extends RealizationEdgeImpl implements Substit
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.SUBSTITUTION_EDGE;
 	}
+
 } //SubstitutionEdgeImpl

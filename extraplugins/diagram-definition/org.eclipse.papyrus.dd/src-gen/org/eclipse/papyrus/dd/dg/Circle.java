@@ -19,19 +19,19 @@ import org.eclipse.papyrus.dd.dc.Point;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Circle</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * Circle is a graphical element that defines a circular shape with a given center point and a radius.
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.Circle#getCenter <em>Center</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.Circle#getRadius <em>Radius</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Circle#getCenter <em>Center</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.Circle#getRadius <em>Radius</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getCircle()
  * @model
  * @generated
@@ -56,9 +56,7 @@ public interface Circle extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.Circle#getCenter <em>Center</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Center</em>' containment reference.
+	 * @param value the new value of the '<em>Center</em>' containment reference.
 	 * @see #getCenter()
 	 * @generated
 	 */
@@ -71,7 +69,6 @@ public interface Circle extends GraphicalElement {
 	 * <!-- begin-model-doc -->
 	 * a real number (>=0) that represents the radius of the circle.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Radius</em>' attribute.
 	 * @see #setRadius(double)
 	 * @see org.eclipse.papyrus.dd.dg.DGPackage#getCircle_Radius()

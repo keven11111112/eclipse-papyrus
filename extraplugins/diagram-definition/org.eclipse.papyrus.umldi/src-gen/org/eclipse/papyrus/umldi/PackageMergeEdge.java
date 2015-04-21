@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package Merge Edge</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPackageMergeEdge()
  * @model
  * @generated
  */
-public interface PackageMergeEdge extends NamedEdge {
+public interface PackageMergeEdge extends ElementEdge {
 } // PackageMergeEdge

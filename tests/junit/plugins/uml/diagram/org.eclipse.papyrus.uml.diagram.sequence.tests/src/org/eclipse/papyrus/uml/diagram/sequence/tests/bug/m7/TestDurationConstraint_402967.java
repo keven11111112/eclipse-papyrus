@@ -483,21 +483,21 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		waitForComplete();
 
 		int offset = 40;
-		Point fromLocation = getAbsoluteBounds(lifeline1).getCenter().translate(0, -offset);
-		Point toLocation = getAbsoluteBounds(lifeline2).getCenter().translate(0, -offset);
+		Point fromLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100).translate(0, -offset);
+		Point toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100).translate(0, -offset);
 		// on Linux, the lifelines are not aligned vertically, so neither are their centres
 		alignVertically(fromLocation, toLocation);
 		createConnection(lifeline1.getViewer(), fromLocation, toLocation);
 
-		fromLocation = getAbsoluteBounds(lifeline1).getCenter().translate(0, offset);
-		toLocation = getAbsoluteBounds(lifeline2).getCenter().translate(0, offset);
+		fromLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100).translate(0, offset);
+		toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100).translate(0, offset);
 		// on Linux, the lifelines are not aligned vertically, so neither are their centres
 		alignVertically(fromLocation, toLocation);
 		createConnection(lifeline1.getViewer(), fromLocation, toLocation);
 
 		{ // link duration top
 			fromLocation = getAbsoluteBounds(dc).getTop();
-			toLocation = getAbsoluteBounds(lifeline1).getCenter().translate(0, -offset);
+			toLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100-offset);
 			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 			assertTrue(dc.getSourceConnections().size() == 1); // increase link count
 
@@ -509,7 +509,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 		{ // link duration bottom
 			fromLocation = getAbsoluteBounds(dc).getBottom();
-			toLocation = getAbsoluteBounds(lifeline2).getCenter().translate(0, offset);
+			toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100+offset);
 			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 			assertTrue(dc.getSourceConnections().size() == 2); // increase link count
 
@@ -534,8 +534,8 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 		waitForComplete();
 
 		int offset = 40;
-		Point fromLocation = getAbsoluteBounds(lifeline1).getCenter().translate(0, -offset);
-		Point toLocation = getAbsoluteBounds(lifeline2).getCenter().translate(0, -offset);
+		Point fromLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100).translate(0, -offset);
+		Point toLocation = getAbsoluteBounds(lifeline2).getTop().translate(0, 100).translate(0, -offset);
 		// on Linux, the lifelines are not aligned vertically, so neither are their centres
 		alignVertically(fromLocation, toLocation);
 		createConnection(lifeline1.getViewer(), fromLocation, toLocation);
@@ -545,7 +545,7 @@ public class TestDurationConstraint_402967 extends AbstractNodeTest {
 
 		{ // link duration top
 			fromLocation = getAbsoluteBounds(dc).getTop();
-			toLocation = getAbsoluteBounds(lifeline1).getCenter().translate(0, -offset);
+			toLocation = getAbsoluteBounds(lifeline1).getTop().translate(0, 100).translate(0, -offset);
 			CommentAnnotatedElementEditPart linkPart = createDurationLink(dc, fromLocation, toLocation);
 			assertTrue(dc.getSourceConnections().size() == 1); // increase link count
 

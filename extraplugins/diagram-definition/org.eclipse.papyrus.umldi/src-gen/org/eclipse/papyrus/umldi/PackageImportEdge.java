@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Package Import Edge</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getPackageImportEdge()
  * @model
  * @generated
  */
-public interface PackageImportEdge extends NamedEdge {
+public interface PackageImportEdge extends ElementEdge {
 } // PackageImportEdge

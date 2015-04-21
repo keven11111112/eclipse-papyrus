@@ -20,6 +20,7 @@ import java.util.List;
 
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.draw2d.Cursors;
+import org.eclipse.draw2d.geometry.Point;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.EditPolicy;
@@ -480,7 +481,25 @@ public class SequencePaletteFactory extends PaletteFactory.Adapter {
 		public MessageConnectionTool(List<IElementType> elementTypes) {
 			super(elementTypes);
 		}
-
+		
+		/**
+		 * Returns the current x, y position of the mouse cursor.
+		 * Sets the Y coordinate to the one of the start location
+		 * for messages created with SHIFT being pressed.
+		 * 
+		 * @return the mouse location
+		 */
+		@Override
+		protected Point getLocation() {
+			Point mouseLocation = getCurrentInput().getMouseLocation();
+			// Horizontal connection if Shift is pressed
+			if (getCurrentInput().isShiftKeyDown()) {
+				return new Point(mouseLocation.x, getStartLocation().y);
+			} else {
+				return mouseLocation;
+			}
+		}
+		
 		@Override
 		protected void selectAddedObject(EditPartViewer viewer, Collection objects) {
 			final List editparts = new ArrayList();

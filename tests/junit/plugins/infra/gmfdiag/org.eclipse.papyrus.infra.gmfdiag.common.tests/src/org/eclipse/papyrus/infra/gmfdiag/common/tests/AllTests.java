@@ -23,7 +23,14 @@ import org.junit.runners.Suite.SuiteClasses;
 @RunWith(Suite.class)
 @SuiteClasses({
 // {oep.commands}
-GMFUnsafeTest.class })
+LoadExpansionModel.class,
+ExpansionAddCompartment.class,
+ExpansionAddChildLabel.class,
+ExpansionAddBorderItem.class,
+ExpansionAddCompartmentWithKind.class,
+GMFUnsafeTest.class 
+}
+)
 public class AllTests {
 
 }

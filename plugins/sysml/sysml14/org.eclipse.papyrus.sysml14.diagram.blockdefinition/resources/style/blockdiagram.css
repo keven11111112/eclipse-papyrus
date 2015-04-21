@@ -33,6 +33,16 @@ Class[appliedStereotypes~="Block"] > Compartment[kind="operations"] {
     elementIcon: false;
 }
 
+Class[appliedStereotypes~="Block"] > Compartment[kind="constraints"] {
+    visible:true;
+    showTitle:true;
+}
+
+Class[appliedStereotypes~="Block"] > Compartment[kind="Flow Ports"] {
+    visible:true;
+    showTitle:true;
+}
+
 Signal  > Compartment {
 	visible:false;
 }

@@ -12,13 +12,42 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlrt.custom;
 
+import java.util.Arrays;
+import java.util.List;
+
 import org.eclipse.gmf.runtime.emf.type.core.AbstractElementTypeEnumerator;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 
-public class UMLRTElementTypesEnumerator extends AbstractElementTypeEnumerator {
+/**
+ * Static list of UML-RT specific element types
+ */
+public class UMLRTElementTypesEnumerator extends AbstractElementTypeEnumerator implements IUMLRTElementTypes {
 
-	public static final IHintedType RT_MESSAGE_SET = (IHintedType) getElementType("org.eclipse.papyrus.umlrt.RTMessageSet"); //$NON-NLS-1$
+	public static final IHintedType RT_MESSAGE_SET = (IHintedType) getElementType(RT_MESSAGE_SET_ID);
 
-	public static final IHintedType PROTOCOL_CONTAINER = (IHintedType) getElementType("org.eclipse.papyrus.umlrt.ProtocolContainer"); //$NON-NLS-1$
+	public static final IHintedType PROTOCOL_CONTAINER = (IHintedType) getElementType(PROTOCOL_CONTAINER_ID);
+
+	public static final IHintedType PROTOCOL = (IHintedType) getElementType(PROTOCOL_ID);
+
+	public static final IHintedType CAPSULE = (IHintedType) getElementType(CAPSULE_ID);
+
+	public static final IHintedType CAPSULE_PART = (IHintedType) getElementType(CAPSULE_PART_ID);
+
+	public static final IHintedType RT_PORT = (IHintedType) getElementType(RT_PORT_ID);
+
+	public static final IHintedType RT_CONNECTOR = (IHintedType) getElementType(RT_CONNECTOR_ID);
+
+	public static final IHintedType RT_EXCLUDED_ELEMENT = (IHintedType) getElementType(RT_EXCLUDED_ELEMENT_ID);
+
+	public static final List<IHintedType> rtTypes = Arrays.asList(RT_MESSAGE_SET, PROTOCOL_CONTAINER, PROTOCOL, CAPSULE, CAPSULE_PART, RT_PORT, RT_CONNECTOR, RT_EXCLUDED_ELEMENT);
+
+	/**
+	 * Returns all the specific semantic element types for UML-RT
+	 * 
+	 * @return all the specific semantic element types for UML-RT
+	 */
+	public static List<IHintedType> getAllRTTypes() {
+		return rtTypes;
+	}
 
 }

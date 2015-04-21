@@ -19,19 +19,63 @@ modeltype UML uses "http://www.eclipse.org/uml2/4.0.0/UML";
 
 library UmlCompartments;
 
-mapping UML::Element::compartmentToGraphicalElement(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+mapping UML::Activity::compartmentToGraphicalElement(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
 	init {
-		result := object DG::Line {
-			start := object DC::Point { 
-				x := compartment.bounds.x; 
-				y := compartment.bounds.y; 
-			};
-			_end := object DC::Point { 
-				x := compartment.bounds.x + compartment.bounds.width; 
-				y := compartment.bounds.y; 
-			};
-		}
+		if not compartment.owningUmlDiagramElement.oclAsType(UMLDI::ClassifierShape).useClassifierNotation and 
+			(compartment.oclIsKindOf(UMLDI::ContentCompartment) or compartment.oclIsKindOf(UMLDI::OwnedBehaviorCompartment)) then
+			result := object DG::Group {}
+		else			
+			result := self.map compartmentToDefault(compartment)
+		endif;
 	}
 }
 
+mapping UML::Element::compartmentToGraphicalElement(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+	init {
+		result := self.map compartmentToDefault(compartment);
+	}
+}
+
+mapping UML::Element::compartmentToDefault(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+	init {
+		if self.hasNoSeparator(compartment) then
+			result := object DG::Group {}
+		else
+			result := compartmentSeparator(compartment)
+		endif;
+	}
+}
+
+query UML::Element::hasNoSeparator(compartment : UMLDI::UmlCompartment) : Boolean {
+	return compartment.oclIsKindOf(UMLDI::SubvertexCompartment) or
+		   compartment.oclIsKindOf(UMLDI::ParameterCompartment) or
+		   compartment.oclIsKindOf(UMLDI::PreConditionCompartment) or
+		   compartment.oclIsKindOf(UMLDI::PostConditionCompartment);
+}
+
+helper compartmentSeparator(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+	var b := compartment.bounds;
+	return object DG::Line {
+		start := object DC::Point { x := b.x; y := b.y; };
+		_end := object DC::Point { x := b.x + b.width; y := b.y; };
+	}
+}
+
+helper compartmentSeparatorVertical(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+	var b := compartment.bounds;
+	return object DG::Line {
+		start := object DC::Point { x := b.x; y := b.y; };
+		_end := object DC::Point { x := b.x; y := b.y + b.height; };
+	}
+}
+
+mapping UML::StructuredActivityNode::compartmentToGraphicalElement(compartment : UMLDI::UmlCompartment) : DG::GraphicalElement { 
+	init {
+		result := if compartment.oclIsKindOf(UMLDI::ContentCompartment) then
+			object DG::Group {}
+		else
+			result := self.map compartmentToDefault(compartment)
+		endif;
+	}
+}
 

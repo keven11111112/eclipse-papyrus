@@ -20,6 +20,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IAdaptable;
+import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.ConnectionAnchor;
 import org.eclipse.draw2d.IFigure;
@@ -37,6 +40,7 @@ import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature.Setting;
 import org.eclipse.emf.edit.command.RemoveCommand;
+import org.eclipse.emf.edit.command.SetCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.ConnectionEditPart;
 import org.eclipse.gef.EditPart;
@@ -52,7 +56,9 @@ import org.eclipse.gef.requests.ChangeBoundsRequest;
 import org.eclipse.gef.requests.CreateConnectionRequest;
 import org.eclipse.gef.requests.CreateRequest;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
+import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
 import org.eclipse.gmf.runtime.diagram.ui.commands.CommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.commands.SetBoundsCommand;
@@ -69,20 +75,24 @@ import org.eclipse.gmf.runtime.diagram.ui.requests.DropObjectsRequest;
 import org.eclipse.gmf.runtime.diagram.ui.requests.RequestConstants;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.BaseSlidableAnchor;
 import org.eclipse.gmf.runtime.draw2d.ui.mapmode.IMapMode;
+import org.eclipse.gmf.runtime.emf.commands.core.command.AbstractTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.SlidableAnchor;
 import org.eclipse.gmf.runtime.notation.Bounds;
+import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.IdentityAnchor;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Shape;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.gmf.runtime.notation.datatype.GradientData;
 import org.eclipse.papyrus.commands.wrappers.GEFtoEMFCommandWrapper;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCommand;
+import org.eclipse.papyrus.uml.diagram.common.draw2d.LifelineDotLineFigure;
 import org.eclipse.papyrus.uml.diagram.common.draw2d.anchors.LifelineAnchor;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.BorderItemResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.providers.UIAdapterImpl;
@@ -109,15 +119,18 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineModelChildrenHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.NotificationHelper;
+import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.swt.graphics.Color;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.common.util.CacheAdapter;
 import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.ConnectableElement;
 import org.eclipse.uml2.uml.Constraint;
+import org.eclipse.uml2.uml.DestructionOccurrenceSpecification;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.InteractionFragment;
 import org.eclipse.uml2.uml.Lifeline;
+import org.eclipse.uml2.uml.Message;
 import org.eclipse.uml2.uml.MessageOccurrenceSpecification;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.StructuredClassifier;
@@ -222,7 +235,8 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 						width = Math.max(width, d.height);
 					}
 				}
-				return new Dimension(isInlineMode() ? width : minSize.width, getMinimumHeight(height));
+				int minHeight = getMinimumHeight(height, true);
+				return new Dimension(isInlineMode() ? width : minSize.width, minHeight);
 			}
 			return super.getMinimumSize(wHint, hHint);
 		}
@@ -240,6 +254,15 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 
 		@Override
 		protected String getNewIdStr(IdentityAnchor anchor) {
+			// DestructionOccurrenceSpecification is always on the bottom
+			if (anchor.eContainer() instanceof Edge) {
+				Edge edge = (Edge) anchor.eContainer();
+				if (edge.getElement() instanceof Message && ((Message)edge.getElement()).getReceiveEvent() instanceof DestructionOccurrenceSpecification) {
+					if (anchor.equals(edge.getTargetAnchor())) {
+						return "(0.5, 1.0)";
+					}
+				}
+			}
 			String res = super.getNewIdStr(anchor);
 			String id = anchor.getId();
 			int start = id.indexOf('{');
@@ -445,7 +468,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				case TimeConstraintEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
-				case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+				//case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -810,12 +833,22 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		return centerFigure;
 	}
 
-	private int getMinimumHeight(int heightHint) {
+	public int getMinimumHeight(int heightHint) {
+		return getMinimumHeight(heightHint, false);
+	}
+
+	public int getMinimumHeight(int heightHint, boolean ignoreDestructionOccurence) {
 		Rectangle rect = getFigure().getBounds().getCopy();
 		getFigure().translateToAbsolute(rect);
+		if (false == resolveSemanticElement() instanceof Lifeline) {
+			return heightHint;
+		}
 		Lifeline lifeline = (Lifeline) resolveSemanticElement();
 		EList<InteractionFragment> coveredBys = lifeline.getCoveredBys();
-		int bottom = 0;
+		LifelineDotLineFigure figureLifelineDotLineFigure = getPrimaryShape().getFigureLifelineDotLineFigure();
+		Rectangle rectDotLine = figureLifelineDotLineFigure.getBounds().getCopy();
+		figureLifelineDotLineFigure.translateToAbsolute(rectDotLine);
+		int bottom = rectDotLine.y + LifelineXYLayoutEditPolicy.SPACING_HEIGHT; // at least header height + spacing
 		for (InteractionFragment interactionFragment : coveredBys) {
 			Collection<Setting> settings = CacheAdapter.getInstance().getNonNavigableInverseReferences(interactionFragment);
 			for (Setting ref : settings) {
@@ -827,9 +860,17 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				if (!(part instanceof GraphicalEditPart)) {
 					continue;
 				}
+				if (ignoreDestructionOccurence) { 
+					if (part instanceof DestructionOccurrenceSpecificationEditPart) {
+						continue;
+					}
+					if (part.getParent() instanceof CustomMessage5EditPart && ((CustomMessage5EditPart)part.getParent()).getSource() != this) {
+						continue;
+					}
+				}
 				GraphicalEditPart ep = (GraphicalEditPart) part;
 				Rectangle r = ep.getFigure().getBounds().getCopy();
-				getFigure().translateToAbsolute(r);
+				ep.getFigure().translateToAbsolute(r);
 				bottom = Math.max(bottom, r.bottom());
 			}
 		}
@@ -1244,6 +1285,77 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		super.showTargetFeedback(request);
 	}
 
+	public int getAdjustedHeight() {
+		if (false == getParent() instanceof CustomInteractionInteractionCompartmentEditPart) {
+			return -1;
+		}
+		CustomInteractionInteractionCompartmentEditPart parentEP = (CustomInteractionInteractionCompartmentEditPart)getParent();
+		CustomInteractionEditPart grandParent = (CustomInteractionEditPart)parentEP.getParent();
+		final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
+		final Bounds boundsGrandParent = (Bounds) ((Shape)grandParent.getModel()).getLayoutConstraint();
+		if (bounds != null && boundsGrandParent != null) {
+			Rectangle grandParentRect = OperandBoundsComputeHelper.fillRectangle(boundsGrandParent);
+			if (grandParentRect.height == -1) {
+				grandParentRect = grandParent.getFigure().getBounds().getCopy();
+			}				
+			Rectangle boundsRect = OperandBoundsComputeHelper.fillRectangle(bounds);
+			if (boundsRect.height == -1) {
+				boundsRect.height = this.getFigure().getBounds().height;
+			}
+			grandParent.getFigure().translateToRelative(boundsRect);
+			//return boundsGrandParent.getHeight() - boundsRect.y - LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING;
+			int heightDiff = grandParent.getFigure().getBounds().height - parentEP.getFigure().getBounds().height;
+			Dimension zoomedAddon = new Dimension(0, LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING);
+			grandParent.getFigure().translateToRelative(zoomedAddon);
+			return grandParentRect.height() - bounds.getY() - heightDiff - zoomedAddon.height;
+		}
+		return -1; 
+	}
+	
+	/**
+	 * Allign bottom of the lifeline to the parent's one.
+	 *
+	 */
+	public Command getAlignLifelineBottomToParentCommand(Command command, boolean ignoreDOS) {
+		EObject element = ViewUtil.resolveSemanticElement((View)getModel());
+		if (false == element instanceof Lifeline) {
+			return command;
+		}
+		// do nothing if the lifeline has a DOS
+		Lifeline lifeline = (Lifeline) element;
+		if (!ignoreDOS) {
+			for (InteractionFragment coveredBy : lifeline.getCoveredBys()) {
+				if (coveredBy instanceof DestructionOccurrenceSpecification) {
+					return command;
+				}
+			}
+		}		
+		ICommand cmd = new AbstractTransactionalCommand(getEditingDomain(), "Allign Lifeline bottom", null) {
+			protected int heightDelta = 0;
+			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
+				final int adjustedHeight = getAdjustedHeight();
+				final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
+				if (adjustedHeight > 0) {
+					int oldHeight = bounds.getHeight();
+					bounds.setHeight(adjustedHeight);
+					heightDelta = bounds.getHeight() - oldHeight;
+					if (heightDelta == 0) {
+						return CommandResult.newOKCommandResult();
+					}
+					org.eclipse.emf.common.command.Command changeHeightCommand = SetCommand.create(getEditingDomain(), bounds, NotationPackage.Literals.SIZE__HEIGHT, bounds.getHeight());
+					changeHeightCommand.execute();
+					PreserveAnchorsPositionCommandEx preserveAnchorsCommand = new PreserveAnchorsPositionCommandEx(CustomLifelineEditPart.this, new Dimension(0, heightDelta), PreserveAnchorsPositionCommand.PRESERVE_Y, getPrimaryShape()
+							.getFigureLifelineDotLineFigure(), PositionConstants.SOUTH);
+					if (preserveAnchorsCommand.canExecute()) {
+						preserveAnchorsCommand.execute(monitor, info);
+					}
+				}
+				return CommandResult.newOKCommandResult();
+			}
+		};
+		return (command == null) ? new ICommandProxy(cmd) : command.chain(new ICommandProxy(cmd));
+	}
+
 	/**
 	 * set the bounds of the lifeline.
 	 *
@@ -1297,6 +1409,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 	/**
 	 * This method automatically moves a lifeline according to the change of the size of the name and stereotypes container.
 	 * This avoids the move of the dash line and its ES.
+	 * Also the dash line's height is adjusted (upon lifeline's creation) 
 	 */
 	public void updateLifelinePosition() {
 		Bounds bounds = getBounds();
@@ -1332,6 +1445,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				if (size.width != rect.width) {
 					moveExecutionParts(new Dimension(size.width - rect.width, 0));
 					rect.width = size.width;
+					rect.height = getAdjustedHeight(); 
 					updateLifelineBounds(rect);
 				}
 			}

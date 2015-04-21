@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<fragment>
+   <extension
+         point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
+      <elementTypeSet
+            id="org.eclipse.papyrus.infra.gmfdiag.common.tests.testexpansiondiagram"
+            path="models/TestExpansionDiagram.elementtypesconfigurations">
+      </elementTypeSet>
+   </extension>
+
+</fragment>

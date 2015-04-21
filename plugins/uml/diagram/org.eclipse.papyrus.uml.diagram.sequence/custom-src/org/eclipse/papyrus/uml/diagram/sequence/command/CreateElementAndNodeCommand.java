@@ -157,7 +157,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 	 */
 	protected void createElementView() {
 		if (nodeEditPart != null) {
-			// check if execution specification is already drawn
+			// check if node is already drawn
 			if (getCreatedView() == null) {
 				ViewDescriptor descriptor = new CreateViewRequest.ViewDescriptor(new EObjectAdapter(element), Node.class, elementType.getSemanticHint(), nodeEditPart.getDiagramPreferencesHint());
 				createViewRequest = new CreateViewRequest(descriptor);
@@ -173,7 +173,7 @@ public class CreateElementAndNodeCommand extends AbstractTransactionalCommand {
 	@Override
 	protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 		element = createModelElement();
-		// create the view for the execution specification
+		// create the view for the node
 		if (element != null) {
 			createElementView();
 		}

@@ -23,13 +23,13 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.uml.Operation" label="Operation" description="Create an Operation">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.Operation" label="Operation" description="Create an Operation">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Operation.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3003"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3007"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3013"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3019"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Operation_3042"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3003"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3007"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3013"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3019"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3042"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

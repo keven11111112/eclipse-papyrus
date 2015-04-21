@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UsageEdge;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Usage Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class UsageEdgeImpl extends DependencyEdgeImpl implements UsageEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UsageEdgeImpl() {
@@ -40,11 +36,11 @@ public class UsageEdgeImpl extends DependencyEdgeImpl implements UsageEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.USAGE_EDGE;
 	}
+
 } //UsageEdgeImpl

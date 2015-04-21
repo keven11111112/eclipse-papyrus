@@ -17,8 +17,8 @@ import org.eclipse.papyrus.dd.di.Shape;
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Uml Compartment</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getUmlCompartment()
  * @model abstract="true"
  * @generated

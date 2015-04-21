@@ -24,11 +24,13 @@ import org.eclipse.papyrus.qompass.designer.core.RunnableWithResult;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.sync.CompImplSync;
 import org.eclipse.papyrus.qompass.designer.core.sync.DepPlanSync;
+import org.eclipse.papyrus.qompass.designer.core.sync.InterfaceSync;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationRTException;
 import org.eclipse.papyrus.uml.diagram.common.handlers.CmdHandler;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.uml2.uml.Class;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.Property;
 
@@ -48,7 +50,10 @@ public class SyncHandler extends CmdHandler {
 		if (selectedEObject instanceof Property) {
 			selectedEObject = ((Property) selectedEObject).getType();
 		}
-
+		
+		if (selectedEObject instanceof Interface) {
+			return true;
+		}
 		if (selectedEObject instanceof Class) {
 			if (Utils.isComponent((Class) selectedEObject)) {
 				return true;
@@ -72,7 +77,18 @@ public class SyncHandler extends CmdHandler {
 			selectedEObject = ((Property) selectedEObject).getType();
 		}
 
-		if (selectedEObject instanceof Class) {
+		if (selectedEObject instanceof Interface) {
+			final Interface selectedIntf = (Interface) selectedEObject;
+			CommandSupport.exec("Synchronize interface", event, new Runnable() {
+
+				@Override
+				public void run() {
+					InterfaceSync.syncSignalReceptionSupport(selectedIntf);
+				}
+			});
+		}
+		
+		else if (selectedEObject instanceof Class) {
 			final Class selectedClass = (Class) selectedEObject;
 			if (Utils.isCompImpl(selectedClass)) {
 				CommandSupport.exec("Synchronize component via implementation", event, new RunnableWithResult() {

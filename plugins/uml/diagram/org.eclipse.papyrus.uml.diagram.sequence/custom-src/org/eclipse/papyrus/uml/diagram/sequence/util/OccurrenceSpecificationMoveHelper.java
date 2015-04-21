@@ -168,6 +168,9 @@ public class OccurrenceSpecificationMoveHelper {
 		// if referencePoint is on a moved part, it must be translated with the location delta of this part
 		if (!notToMoveEditParts.isEmpty() && childToReconnectTo != lifelinePart) {
 			Point oldLoc = SequenceUtil.findLocationOfEvent(lifelinePart, movedOccurrenceSpecification);
+			if (oldLoc == null) {
+				return null;
+			}
 			referencePoint.y = oldLoc.y;
 		}
 		// reconnect general ordering from the event

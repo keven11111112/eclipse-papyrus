@@ -16,20 +16,20 @@ import org.eclipse.emf.common.util.DiagnosticChain;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Marked Element</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <!-- begin-model-doc -->
  * MarkedElement is a graphic element that can be decorated at its vertices with markers (e.g. arrowheads).
  * <!-- end-model-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getEndMarker <em>End Marker</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getMidMarker <em>Mid Marker</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getStartMarker <em>Start Marker</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getEndMarker <em>End Marker</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getMidMarker <em>Mid Marker</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.MarkedElement#getStartMarker <em>Start Marker</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getMarkedElement()
  * @model abstract="true"
  * @generated
@@ -54,9 +54,7 @@ public interface MarkedElement extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.MarkedElement#getEndMarker <em>End Marker</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>End Marker</em>' reference.
+	 * @param value the new value of the '<em>End Marker</em>' reference.
 	 * @see #getEndMarker()
 	 * @generated
 	 */
@@ -80,9 +78,7 @@ public interface MarkedElement extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.MarkedElement#getMidMarker <em>Mid Marker</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Mid Marker</em>' reference.
+	 * @param value the new value of the '<em>Mid Marker</em>' reference.
 	 * @see #getMidMarker()
 	 * @generated
 	 */
@@ -106,9 +102,7 @@ public interface MarkedElement extends GraphicalElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.MarkedElement#getStartMarker <em>Start Marker</em>}' reference.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Start Marker</em>' reference.
+	 * @param value the new value of the '<em>Start Marker</em>' reference.
 	 * @see #getStartMarker()
 	 * @generated
 	 */

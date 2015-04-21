@@ -28,11 +28,11 @@ import org.eclipse.papyrus.dd.dg.LineTo;
  * <!-- begin-user-doc --> An implementation of the model object ' <em><b>Line To</b></em>'. <!-- end-user-doc -->
  * <p>
  * The following features are implemented:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.impl.LineToImpl#getPoint <em>Point</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.impl.LineToImpl#getPoint <em>Point</em>}</li>
+ * </ul>
+ *
  * @generated
  */
 public class LineToImpl extends PathCommandImpl implements LineTo {
@@ -40,7 +40,6 @@ public class LineToImpl extends PathCommandImpl implements LineTo {
 	/**
 	 * The cached value of the '{@link #getPoint() <em>Point</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @see #getPoint()
 	 * @generated
 	 * @ordered
@@ -49,7 +48,6 @@ public class LineToImpl extends PathCommandImpl implements LineTo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LineToImpl() {
@@ -58,7 +56,6 @@ public class LineToImpl extends PathCommandImpl implements LineTo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,7 +65,6 @@ public class LineToImpl extends PathCommandImpl implements LineTo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Point getPoint() {
@@ -77,109 +73,99 @@ public class LineToImpl extends PathCommandImpl implements LineTo {
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NotificationChain basicSetPoint(Point newPoint, NotificationChain msgs) {
 		Point oldPoint = point;
 		point = newPoint;
-		if(eNotificationRequired()) {
+		if (eNotificationRequired()) {
 			ENotificationImpl notification = new ENotificationImpl(this, Notification.SET, DGPackage.LINE_TO__POINT, oldPoint, newPoint);
-			if(msgs == null)
-				msgs = notification;
-			else
-				msgs.add(notification);
+			if (msgs == null) msgs = notification; else msgs.add(notification);
 		}
 		return msgs;
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setPoint(Point newPoint) {
-		if(newPoint != point) {
+		if (newPoint != point) {
 			NotificationChain msgs = null;
-			if(point != null)
+			if (point != null)
 				msgs = ((InternalEObject)point).eInverseRemove(this, EOPPOSITE_FEATURE_BASE - DGPackage.LINE_TO__POINT, null, msgs);
-			if(newPoint != null)
+			if (newPoint != null)
 				msgs = ((InternalEObject)newPoint).eInverseAdd(this, EOPPOSITE_FEATURE_BASE - DGPackage.LINE_TO__POINT, null, msgs);
 			msgs = basicSetPoint(newPoint, msgs);
-			if(msgs != null)
-				msgs.dispatch();
-		} else if(eNotificationRequired())
+			if (msgs != null) msgs.dispatch();
+		}
+		else if (eNotificationRequired())
 			eNotify(new ENotificationImpl(this, Notification.SET, DGPackage.LINE_TO__POINT, newPoint, newPoint));
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
-		switch(featureID) {
-		case DGPackage.LINE_TO__POINT:
-			return basicSetPoint(null, msgs);
+		switch (featureID) {
+			case DGPackage.LINE_TO__POINT:
+				return basicSetPoint(null, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
-		switch(featureID) {
-		case DGPackage.LINE_TO__POINT:
-			return getPoint();
+		switch (featureID) {
+			case DGPackage.LINE_TO__POINT:
+				return getPoint();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eSet(int featureID, Object newValue) {
-		switch(featureID) {
-		case DGPackage.LINE_TO__POINT:
-			setPoint((Point)newValue);
-			return;
+		switch (featureID) {
+			case DGPackage.LINE_TO__POINT:
+				setPoint((Point)newValue);
+				return;
 		}
 		super.eSet(featureID, newValue);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public void eUnset(int featureID) {
-		switch(featureID) {
-		case DGPackage.LINE_TO__POINT:
-			setPoint((Point)null);
-			return;
+		switch (featureID) {
+			case DGPackage.LINE_TO__POINT:
+				setPoint((Point)null);
+				return;
 		}
 		super.eUnset(featureID);
 	}
 
 	/**
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public boolean eIsSet(int featureID) {
-		switch(featureID) {
-		case DGPackage.LINE_TO__POINT:
-			return point != null;
+		switch (featureID) {
+			case DGPackage.LINE_TO__POINT:
+				return point != null;
 		}
 		return super.eIsSet(featureID);
 	}
