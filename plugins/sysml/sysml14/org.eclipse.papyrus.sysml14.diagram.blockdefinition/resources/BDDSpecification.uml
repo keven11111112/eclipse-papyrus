@@ -12,6 +12,46 @@
         <packagedElement xmi:type="uml:Class" xmi:id="_a0GrwOLIEeSv5dwvZ9NSDw" name="Block display"/>
         <packagedElement xmi:type="uml:Class" xmi:id="_lLZBYOc2EeSLdPGe2q9R0g" name="The block can display constraints "/>
       </packagedElement>
+      <packagedElement xmi:type="uml:Class" xmi:id="_IaVsQOgEEeSUQvXhEVQh8w" name="Block in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_aMTSAOgEEeSUQvXhEVQh8w" name="Actor in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_apngIOgEEeSUQvXhEVQh8w" name="Value Type in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_axoMoOgEEeSUQvXhEVQh8w" name="Enumeration in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_a4wvYOgEEeSUQvXhEVQh8w" name="Abstract Definition in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_a_d0UOgEEeSUQvXhEVQh8w" name="StereotypeProperty in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bGPxwOgEEeSUQvXhEVQh8w" name="Behavior Compartment in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bN7uIOgEEeSUQvXhEVQh8w" name="Namespace Compartment in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_bU7uAOgEEeSUQvXhEVQh8w" name="Structure Compartment in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_Bi7TEOgFEeSUQvXhEVQh8w" name="Structure Compartment in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_BzRcMOgFEeSUQvXhEVQh8w" name="BoundReference in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_B79eIOgFEeSUQvXhEVQh8w" name="Unit in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_B-_kAOgFEeSUQvXhEVQh8w" name="QuantityKind in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CFE94OgFEeSUQvXhEVQh8w" name="InstanceSpecification in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CM0koOgFEeSUQvXhEVQh8w" name="Dependency in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CSPQIOgFEeSUQvXhEVQh8w" name="ReferenceAssociation in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CX5zQOgFEeSUQvXhEVQh8w" name="PartAssociation in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CdEAEOgFEeSUQvXhEVQh8w" name="SharedAssociation in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_CjnUAOgFEeSUQvXhEVQh8w" name="MultibranchPart Association in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_VxRJwOgHEeSUQvXhEVQh8w" name="Multibranch  Shared Association in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_V_dWwOgHEeSUQvXhEVQh8w" name="Generalization in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WIFHQOgHEeSUQvXhEVQh8w" name="Multibranch Generalization in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WXgqYOgHEeSUQvXhEVQh8w" name="GeneralizationSet in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WeYHYOgHEeSUQvXhEVQh8w" name="BlockNamespace Containment in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WkU-YOgHEeSUQvXhEVQh8w" name="ParticipantProperty in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_WqB9wOgHEeSUQvXhEVQh8w" name="ConnectorProperty in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_p2GKAOgHEeSUQvXhEVQh8w" name="InternalBlockDiagram in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qDXJ8OgHEeSUQvXhEVQh8w" name="Port in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qOhREOgHEeSUQvXhEVQh8w" name="Port (Compartment Notation) in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qa78cOgHEeSUQvXhEVQh8w" name="Port (with Compartment) in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_qpLz0OgHEeSUQvXhEVQh8w" name="Port (Nested) in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_q0RCcOgHEeSUQvXhEVQh8w" name=" ProxyPort in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_q-XZoOgHEeSUQvXhEVQh8w" name="FullPort in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rHti4OgHEeSUQvXhEVQh8w" name="FlowProperty in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rOaAwOgHEeSUQvXhEVQh8w" name="Required and Provided features in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rUHnMOgHEeSUQvXhEVQh8w" name="InterfaceBlock in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rZX6oOgHEeSUQvXhEVQh8w" name="Item Flow in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_reaysOgHEeSUQvXhEVQh8w" name="Interface in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_rjW9EOgHEeSUQvXhEVQh8w" name="Required and Provided Interfaces in BDD Palette"/>
+      <packagedElement xmi:type="uml:Class" xmi:id="_roswEOgHEeSUQvXhEVQh8w" name="ConstraintBlock in BDD Palette"/>
     </packagedElement>
     <packagedElement xmi:type="uml:Model" xmi:id="_OFsfc-LIEeSv5dwvZ9NSDw" name="UseCases">
       <packagedElement xmi:type="uml:Abstraction" xmi:id="_OFsfdOLIEeSv5dwvZ9NSDw" name="useCasesAbstraction" client="_OFsfc-LIEeSv5dwvZ9NSDw" supplier="_OFsfcuLIEeSv5dwvZ9NSDw"/>
@@ -90,4 +130,44 @@
   <structure:Tests xmi:id="_OFsfieLIEeSv5dwvZ9NSDw" base_Model="_OFsfeOLIEeSv5dwvZ9NSDw"/>
   <Requirements:Requirement xmi:id="_a0OAgOLIEeSv5dwvZ9NSDw" text="The block can display constraints, operations, parts, references, values, properties compartments" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.Req001" base_Class="_a0GrwOLIEeSv5dwvZ9NSDw"/>
   <Requirements:Requirement xmi:id="_lLa2kOc2EeSLdPGe2q9R0g" text="The block can display a constraint compartment : &#xD;&#xA;    - this compartment is present by default in palette creation and drop&#xD;&#xA;    - the compartment is named &quot;constraints&quot;&#xD;&#xA;   - each constraint should take a line and display by default : &#xD;&#xA;         - the constraint icon&#xD;&#xA;         - the constraint specification value " id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.Req002" base_Class="_lLZBYOc2EeSLdPGe2q9R0g"/>
+  <Requirements:Requirement xmi:id="_IaYIgOgEEeSUQvXhEVQh8w" text="" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_IaVsQOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_aMT5EOgEEeSUQvXhEVQh8w" text="Actor should be present as a stick man figure or as a rectangle" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_aMTSAOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_appVUOgEEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_apngIOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_axpawOgEEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_axoMoOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_a4x9gOgEEeSUQvXhEVQh8w" text="UML4SysML::Classifier with&#xD;&#xA;isAbstract equal true" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_a4wvYOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_a_fpgOgEEeSUQvXhEVQh8w" text="" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_a_d0UOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_bGRm8OgEEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_bGPxwOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_bN9jUOgEEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_bN7uIOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_bU88IOgEEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_bU7uAOgEEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_Bi8hMOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_Bi7TEOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_BzTRYOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_BzRcMOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_B7_6YOgFEeSUQvXhEVQh8w" text="Create an uml InstanceSpecifiaction from the Unit type (definedby the Sysml library)" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_B79eIOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_B_ALEOgFEeSUQvXhEVQh8w" text="Create an uml InstanceSpecifiaction from the Quantity Kind type (definedby the Sysml library)" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_B-_kAOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CFFk8OgFEeSUQvXhEVQh8w" text="Create an UML instance specification" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CFE94OgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CM2Z0OgFEeSUQvXhEVQh8w" text="Create an UML dependency" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CM0koOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CSPQIegFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CSPQIOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CX7BYOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CX5zQOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CdEnIOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CdEAEOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_CjpJMOgFEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_CjnUAOgFEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_VxS-8OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_VxRJwOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_V_ek4OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_V_dWwOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_WIGVYOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WIFHQOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_WXhRcOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WXgqYOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_WeZVgOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WeYHYOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_WkWMgOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WkU-YOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_WqDL4OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_WqB9wOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_p2HYIOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_p2GKAOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_qDXxAOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_qDXJ8OgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_qOjtUOgHEeSUQvXhEVQh8w" text="" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_qOhREOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_qa9xoOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_qa78cOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_qpNB8OgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_qpLz0OgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_q0S3oOgHEeSUQvXhEVQh8w" text=" ProxyPort in BDD Palette" id=" ProxyPort in BDD Palette" base_Class="_q0RCcOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_q-YnwOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_q-XZoOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rHvYEOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rHti4OgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rOcdAOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rOaAwOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rUI1UOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rUHnMOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rZYhsOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rZX6oOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rebZwOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_reaysOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rjXkIOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_rjW9EOgHEeSUQvXhEVQh8w"/>
+  <Requirements:Requirement xmi:id="_rot-MOgHEeSUQvXhEVQh8w" id="org.eclipse.papyrus.sysml14.diagram.blockdefinition.palette.Req001" base_Class="_roswEOgHEeSUQvXhEVQh8w"/>
 </xmi:XMI>

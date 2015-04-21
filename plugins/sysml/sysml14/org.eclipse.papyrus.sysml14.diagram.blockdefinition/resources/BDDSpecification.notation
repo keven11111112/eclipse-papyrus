@@ -96,28 +96,6 @@
       <targetAnchor xmi:type="notation:IdentityAnchor" xmi:id="_OF3ezeLIEeSv5dwvZ9NSDw" id="(1.0,0.64)"/>
     </edges>
   </notation:Diagram>
-  <nattable:Table xmi:id="_UF8KoOLIEeSv5dwvZ9NSDw" name="RequirementTable" currentRowAxisProvider="_UF8xtOLIEeSv5dwvZ9NSDw" currentColumnAxisProvider="_UF8xsOLIEeSv5dwvZ9NSDw">
-    <context xmi:type="uml:Package" href="BDDSpecification.uml#_MKZekOc1EeSLdPGe2q9R0g"/>
-    <owner xmi:type="uml:Model" href="BDDSpecification.uml#_OFsfcuLIEeSv5dwvZ9NSDw"/>
-    <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb3txhEeOqHvRyiN87hA"/>
-    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#/"/>
-    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_UF8xsOLIEeSv5dwvZ9NSDw" description="Provides the columns of the tables with a default configuration" name="Requirements Feature Columns Provider">
-      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_UF8xseLIEeSv5dwvZ9NSDw" element="property_of_stereotype:/SysML::Requirements::Requirement::id">
-        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_3f6MgOc0EeSLdPGe2q9R0g" name="axisWidth" intValue="220"/>
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
-      </axis>
-      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_UF8xsuLIEeSv5dwvZ9NSDw">
-        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_3f7aoOc0EeSLdPGe2q9R0g" name="axisWidth" intValue="220"/>
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
-        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
-      </axis>
-      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_UF8xs-LIEeSv5dwvZ9NSDw" element="property_of_stereotype:/SysML::Requirements::Requirement::text">
-        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_3fYBAOc0EeSLdPGe2q9R0g" name="axisWidth" intValue="305"/>
-        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
-      </axis>
-    </columnAxisProvidersHistory>
-    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_UF8xtOLIEeSv5dwvZ9NSDw" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
-  </nattable:Table>
   <css:ModelStyleSheets xmi:id="_MXBlUOc1EeSLdPGe2q9R0g"/>
   <nattable:Table xmi:id="_JLAf0Oc2EeSLdPGe2q9R0g" name="Blocks Requirement" currentRowAxisProvider="_JLAf1ec2EeSLdPGe2q9R0g" currentColumnAxisProvider="_JLAf0ec2EeSLdPGe2q9R0g">
     <context xmi:type="uml:Package" href="BDDSpecification.uml#_MKZekOc1EeSLdPGe2q9R0g"/>
@@ -137,5 +115,27 @@
       </axis>
     </columnAxisProvidersHistory>
     <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_JLAf1ec2EeSLdPGe2q9R0g" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
+  </nattable:Table>
+  <nattable:Table xmi:id="_FB4isOgEEeSUQvXhEVQh8w" name="Palette Requirement Table" currentRowAxisProvider="_FB4itegEEeSUQvXhEVQh8w" currentColumnAxisProvider="_FB4isegEEeSUQvXhEVQh8w">
+    <context xmi:type="uml:Model" href="BDDSpecification.uml#_OFsfcuLIEeSv5dwvZ9NSDw"/>
+    <owner xmi:type="uml:Model" href="BDDSpecification.uml#_OFsfcuLIEeSv5dwvZ9NSDw"/>
+    <prototype xmi:type="configuration:PapyrusSyncTable" href="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration#_7wNb3txhEeOqHvRyiN87hA"/>
+    <tableConfiguration xmi:type="nattableconfiguration:TableConfiguration" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#/"/>
+    <columnAxisProvidersHistory xmi:type="nattableaxisprovider:SlaveObjectAxisProvider" xmi:id="_FB4isegEEeSUQvXhEVQh8w" description="Provides the columns of the tables with a default configuration" name="Requirements Feature Columns Provider">
+      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_FB4isugEEeSUQvXhEVQh8w" element="property_of_stereotype:/SysML::Requirements::Requirement::id">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_0CX7UOgIEeSUQvXhEVQh8w" name="axisWidth" intValue="320"/>
+        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
+      </axis>
+      <axis xmi:type="nattableaxis:EStructuralFeatureAxis" xmi:id="_FB4is-gEEeSUQvXhEVQh8w">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_0C78AOgIEeSUQvXhEVQh8w" name="axisWidth" intValue="220"/>
+        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.0"/>
+        <element xmi:type="ecore:EAttribute" href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement/name"/>
+      </axis>
+      <axis xmi:type="nattableaxis:FeatureIdAxis" xmi:id="_FB4itOgEEeSUQvXhEVQh8w" element="property_of_stereotype:/SysML::Requirements::Requirement::text">
+        <styles xmi:type="nattablestyle:IntValueStyle" xmi:id="_0C9KIOgIEeSUQvXhEVQh8w" name="axisWidth" intValue="220"/>
+        <manager xmi:type="nattableaxisconfiguration:AxisManagerRepresentation" href="platform:/plugin/org.eclipse.papyrus.sysml.nattable.requirement.config/configs/requirement.nattableconfiguration#//@columnHeaderAxisConfiguration/@axisManagers.1"/>
+      </axis>
+    </columnAxisProvidersHistory>
+    <rowAxisProvidersHistory xmi:type="nattableaxisprovider:MasterObjectAxisProvider" xmi:id="_FB4itegEEeSUQvXhEVQh8w" description="Provides the requirements directly owned by the context of the table" name="Requirement Axis Provider" disconnectSlave="true"/>
   </nattable:Table>
 </xmi:XMI>
