@@ -3846,4 +3846,12 @@
       editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.ActivityGroupEditHelperAdvice"
       inheritance="all"
       target="_ScTgI1YCEeS0WsAAtVmToA"/>
+  <adviceBindingsConfigurations
+      xmi:id="_yHsHwOg-EeSqZs7o0maBIQ"
+      name="Stereotype Applications Advice"
+      description="Advice for stereotype applications, primarily supplying them as dependents in the destruction of their base element."
+      identifier="org.eclipse.papyrus.uml.advice.StereotypeApplication"
+      editHelperAdviceClassName="org.eclipse.papyrus.uml.service.types.helper.advice.StereotypeApplicationAdvice"
+      inheritance="all"
+      target="_ScgUUFYCEeS0WsAAtVmToA"/>
 </elementtypesconfigurations:ElementTypeSetConfiguration>
