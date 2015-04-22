@@ -575,7 +575,42 @@ public class ConfigurationManager {
 	 * @return the list of <strong>enabled</strong> contexts
 	 */
 	public Collection<Context> getEnabledContexts() {
-		return enabledContexts;
+		Set<Context> filteredEnabledContexts = new LinkedHashSet<Context>();
+		for (Context context : enabledContexts) {
+			if (internalIsEnabled(context)) {
+				filteredEnabledContexts.add(context);
+			}
+		}
+		return filteredEnabledContexts;
+	}
+
+	/**
+	 * Returns true if:
+	 *
+	 * - The context is explicitly enabled by the user, AND
+	 * - There is no dynamic rule to disable the context (Substitution / prototype)
+	 *
+	 * @param context
+	 * @return
+	 */
+	private boolean internalIsEnabled(Context context) {
+		// Condition 1: the context must be explicitly enabled
+		if (!enabledContexts.contains(context)) {
+			// Explicit enablement is ignored for non-customizable contexts
+			if (isCustomizable(context)) {
+				return false;
+			}
+		}
+
+		// The context is either explicitly enabled or not customizable: check for conflicts
+
+		for (Context otherContext : contexts.values()) {
+			if (otherContext.getPrototype() == context || otherContext.getSubstitutes().contains(context)) {
+				return false;
+			}
+		}
+
+		return true;
 	}
 
 	/**
