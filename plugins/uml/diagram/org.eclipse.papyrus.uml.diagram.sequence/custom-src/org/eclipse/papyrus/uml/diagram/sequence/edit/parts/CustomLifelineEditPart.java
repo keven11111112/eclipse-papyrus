@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA
+ * Copyright (c) 2010, 2015 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Soyatec - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.parts;
@@ -257,7 +258,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			// DestructionOccurrenceSpecification is always on the bottom
 			if (anchor.eContainer() instanceof Edge) {
 				Edge edge = (Edge) anchor.eContainer();
-				if (edge.getElement() instanceof Message && ((Message)edge.getElement()).getReceiveEvent() instanceof DestructionOccurrenceSpecification) {
+				if (edge.getElement() instanceof Message && ((Message) edge.getElement()).getReceiveEvent() instanceof DestructionOccurrenceSpecification) {
 					if (anchor.equals(edge.getTargetAnchor())) {
 						return "(0.5, 1.0)";
 					}
@@ -468,7 +469,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				case TimeConstraintEditPart.VISUAL_ID:
 				case TimeObservationEditPart.VISUAL_ID:
 				case DurationConstraintEditPart.VISUAL_ID:
-				//case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
+					// case DestructionOccurrenceSpecificationEditPart.VISUAL_ID:
 					return new BorderItemResizableEditPolicy();
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
@@ -860,11 +861,11 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 				if (!(part instanceof GraphicalEditPart)) {
 					continue;
 				}
-				if (ignoreDestructionOccurence) { 
+				if (ignoreDestructionOccurence) {
 					if (part instanceof DestructionOccurrenceSpecificationEditPart) {
 						continue;
 					}
-					if (part.getParent() instanceof CustomMessage5EditPart && ((CustomMessage5EditPart)part.getParent()).getSource() != this) {
+					if (part.getParent() instanceof CustomMessage5EditPart && ((CustomMessage5EditPart) part.getParent()).getSource() != this) {
 						continue;
 					}
 				}
@@ -1289,35 +1290,35 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 		if (false == getParent() instanceof CustomInteractionInteractionCompartmentEditPart) {
 			return -1;
 		}
-		CustomInteractionInteractionCompartmentEditPart parentEP = (CustomInteractionInteractionCompartmentEditPart)getParent();
-		CustomInteractionEditPart grandParent = (CustomInteractionEditPart)parentEP.getParent();
+		CustomInteractionInteractionCompartmentEditPart parentEP = (CustomInteractionInteractionCompartmentEditPart) getParent();
+		CustomInteractionEditPart grandParent = (CustomInteractionEditPart) parentEP.getParent();
 		final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
-		final Bounds boundsGrandParent = (Bounds) ((Shape)grandParent.getModel()).getLayoutConstraint();
+		final Bounds boundsGrandParent = (Bounds) ((Shape) grandParent.getModel()).getLayoutConstraint();
 		if (bounds != null && boundsGrandParent != null) {
 			Rectangle grandParentRect = OperandBoundsComputeHelper.fillRectangle(boundsGrandParent);
 			if (grandParentRect.height == -1) {
 				grandParentRect = grandParent.getFigure().getBounds().getCopy();
-			}				
+			}
 			Rectangle boundsRect = OperandBoundsComputeHelper.fillRectangle(bounds);
 			if (boundsRect.height == -1) {
 				boundsRect.height = this.getFigure().getBounds().height;
 			}
 			grandParent.getFigure().translateToRelative(boundsRect);
-			//return boundsGrandParent.getHeight() - boundsRect.y - LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING;
+			// return boundsGrandParent.getHeight() - boundsRect.y - LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING;
 			int heightDiff = grandParent.getFigure().getBounds().height - parentEP.getFigure().getBounds().height;
 			Dimension zoomedAddon = new Dimension(0, LifelineXYLayoutEditPolicy.LIFELINE_SOUTH_SPACING);
 			grandParent.getFigure().translateToRelative(zoomedAddon);
 			return grandParentRect.height() - bounds.getY() - heightDiff - zoomedAddon.height;
 		}
-		return -1; 
+		return -1;
 	}
-	
+
 	/**
 	 * Allign bottom of the lifeline to the parent's one.
 	 *
 	 */
 	public Command getAlignLifelineBottomToParentCommand(Command command, boolean ignoreDOS) {
-		EObject element = ViewUtil.resolveSemanticElement((View)getModel());
+		EObject element = ViewUtil.resolveSemanticElement((View) getModel());
 		if (false == element instanceof Lifeline) {
 			return command;
 		}
@@ -1329,9 +1330,11 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 					return command;
 				}
 			}
-		}		
+		}
 		ICommand cmd = new AbstractTransactionalCommand(getEditingDomain(), "Allign Lifeline bottom", null) {
 			protected int heightDelta = 0;
+
+			@Override
 			protected CommandResult doExecuteWithResult(IProgressMonitor monitor, IAdaptable info) throws ExecutionException {
 				final int adjustedHeight = getAdjustedHeight();
 				final Bounds bounds = (Bounds) ((Shape) getModel()).getLayoutConstraint();
@@ -1409,7 +1412,7 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 	/**
 	 * This method automatically moves a lifeline according to the change of the size of the name and stereotypes container.
 	 * This avoids the move of the dash line and its ES.
-	 * Also the dash line's height is adjusted (upon lifeline's creation) 
+	 * Also the dash line's height is adjusted (upon lifeline's creation)
 	 */
 	public void updateLifelinePosition() {
 		Bounds bounds = getBounds();
@@ -1442,10 +1445,14 @@ public class CustomLifelineEditPart extends LifelineEditPart {
 			 */
 			Dimension size = getPrimaryShape().getFigureLifelineNameContainerFigure().getPreferredSize(-1, oldNameContainerHeight);
 			if (!LifelineResizeHelper.isManualSize(this)) {
+				// If rect.width == -1, then we haven't yet computed the bounds
+				if (rect.width == -1) {
+					rect.width = updatedRect.width / 2;
+				}
 				if (size.width != rect.width) {
 					moveExecutionParts(new Dimension(size.width - rect.width, 0));
 					rect.width = size.width;
-					rect.height = getAdjustedHeight(); 
+					rect.height = getAdjustedHeight();
 					updateLifelineBounds(rect);
 				}
 			}
