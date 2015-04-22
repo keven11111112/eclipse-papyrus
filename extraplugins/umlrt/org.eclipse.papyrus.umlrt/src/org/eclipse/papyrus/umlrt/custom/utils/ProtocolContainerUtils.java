@@ -17,6 +17,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
 import org.eclipse.uml2.uml.Collaboration;
@@ -107,5 +108,31 @@ public class ProtocolContainerUtils {
 			}
 		}
 		return null;
+	}
+	
+	/**
+	 * Returns ProtocolContainer of a given UML::PackagableElement.
+	 * @param element
+	 * @return
+	 */
+	public static Package getProtocolContainer(PackageableElement element) {
+		return element.getNearestPackage();
+	}
+	
+	/**
+	 * Returns ProtocolContainer of a given EObject.
+	 * @param eObject
+	 * @return
+	 */
+	public static EObject getProtocolContainer(EObject eObject) {
+		EObject result = null;
+		
+		if (eObject instanceof Package) {
+			result = eObject;
+		} else {
+			result = getProtocolContainer(eObject.eContainer());
+		}		
+		
+		return result;
 	}
 }
