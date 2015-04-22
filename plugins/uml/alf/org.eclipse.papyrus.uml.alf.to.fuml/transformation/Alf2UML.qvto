@@ -24,14 +24,14 @@ transformation Alf2UML(in alf : Alf, inout uml : UML)
 // blackbox query SyntaxElement::serialize() : String;
 
 main() {
-  var model := uml.rootObjects()[Model]->any(true);
+  var model := uml.rootObjects()![Model];
   if (model = null) then {
     model := object Model {
       name := "Model";
     };
   } endif;
   UML2AlfLibrary::setModel(model);
-  alf.rootObjects()[UnitDefinition]->any(true).map toNamespace();
+  alf.rootObjects()![UnitDefinition].map toNamespace();
   model.packagedElement := uml.rootObjects()[PackageableElement]->excluding(model);
   applyStereotypes();
   applyDefinitions();
@@ -99,7 +99,7 @@ query Element::getStereotype(name : String) : Stereotype {
   if stereotypeName.indexOf("::") = 0 then {
     var applicableStereotypes := self.getApplicableStereotypes()[name = stereotypeName];
     if applicableStereotypes->size() = 1 then
-      stereotype := applicableStereotypes->any(true)
+      stereotype := applicableStereotypes![true]
     else
       stereotypeName := "StandardProfile::" + stereotypeName
     endif
@@ -122,7 +122,7 @@ property alfDefinitions : Set(AlfDefinition) = Set{};
 helper addDefinition(activity : Activity, definition : SyntaxElement) {
 	var currentDefinitions := alfDefinitions[target = activity];
 	if currentDefinitions->notEmpty() then {
-		currentDefinitions->any(true).source := definition;
+		currentDefinitions![true].source := definition;
 	} else {
 		alfDefinitions += object AlfDefinition {
 			target := activity;
@@ -178,7 +178,7 @@ query activityDeclarationFor(activity : Activity) : String {
   			endif;
   			text := text + parameter.parameteredElement.oclAsType(Classifier).alfName();
   			if parameter.constrainingClassifier->notEmpty() then {
-  				text := text + " specializes " + parameter.constrainingClassifier->any(true).alfName();
+  				text := text + " specializes " + parameter.constrainingClassifier![true].alfName();
   			} endif;
   			notFirstParameter := true;
   		};
@@ -416,7 +416,7 @@ mapping ClassifierDefinition::toNamespace() : Namespace
 mapping ClassifierTemplateParameter::toTemplateParameter() : uml::ClassifierTemplateParameter {
   var constraint : Classifier := null;
   if self.specializationReferent->notEmpty() then {
-    var referent := self.specializationReferent->any(true);
+    var referent := self.specializationReferent![true];
     if referent <> null and referent.isClassifier() then
       constraint := referent.toUml().oclAsType(Classifier)
     endif
@@ -953,7 +953,7 @@ query Activity::inputParameterForkFor(parameter : Parameter) : ForkNode {
 		outgoing->notEmpty()];
 	return
 		if nodes->isEmpty() then null
-		else nodes->any(true).outgoing->any(true).target.oclAsType(ForkNode)
+		else nodes![true].outgoing![true].target.oclAsType(ForkNode)
 		endif;
 }
 
@@ -1015,7 +1015,7 @@ query FormalParameter::assignedValueSource(assignedName : String) : ActivityNode
 		
 	if element.oclIsKindOf(Operation) then {
 		var operation := element.oclAsType(Operation);
-		activity := operation.method->any(true).oclAsType(Activity);
+		activity := operation.method![true].oclAsType(Activity);
 		var i =
 			if stub = null then operation.ownedParameter->indexOf(self.map toParameter())
 			else context.oclAsType(ActivityDefinition).parameters()->indexOf(self) endif;
@@ -1162,7 +1162,7 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 		var superclass := referent.resolveone(Generalization).general.oclAsType(Class);
 		var destructorOperation := superclass.destructorOperation();
 		if destructorOperation <> null and destructorOperation.method->notEmpty() then {
-			var destructorMethod := destructorOperation.method->any(true);
+			var destructorMethod := destructorOperation.method![true];
 			var callAction := object CallBehaviorAction {
 				activity := method;
 				name := "Call(" + superclass.name + "::destroy)";
@@ -1207,7 +1207,7 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 			} endif;
 		};
 	if additionalNodes->size() = 1 then {
-		var structuredNode = additionalNodes->any(true);
+		var structuredNode = additionalNodes![true];
 		structuredNode.activity := method;
 		if previousNode <> null then {
 			object ControlFlow {
@@ -1237,7 +1237,7 @@ helper ClassDefinition::mapDefaultDestructor(inout method : Activity, class_ : C
 // does not seem to be computed properly.
 query Property::opposite() : Property {
 	// Precondition: self.association <> null.
-	return self.association.memberEnd->any(e | e <> self);
+	return self.association.memberEnd![e | e <> self];
 }
 
 helper Class::mapDestructionOf(property_ : Property) : StructuredActivityNode {
@@ -1342,16 +1342,16 @@ query Class::destructorOperation() : Operation {
 	);
 	return
 		if destructors->isEmpty() then null
-		else destructors->any(true) endif;
+		else destructors![true] endif;
 }
 
 helper OperationDefinition::mapConstructor(initializationFlag : Property, initializationOperation : Operation) {
   var operation := self.resolveone(Operation);
-  var method := operation.method->any(true).oclAsType(Activity);
+  var method := operation.method![true].oclAsType(Activity);
   var structuredNodes := method.node->select(oclIsKindOf(StructuredActivityNode));
   var firstNode := 
   	if structuredNodes->isEmpty() then null
-  	else structuredNodes->any(incoming->isEmpty()) endif;
+  	else structuredNodes![incoming->isEmpty()] endif;
   var bodyNode := self.firstBodyNode(firstNode);
   
   // Return context object as the constructor result.
@@ -1375,10 +1375,8 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
 		target := selfFork;
 	};
 	
-	var returnParameter := method.ownedParameter->any(direction = ParameterDirectionKind::_'return');
-	var outputNode := method.node->any(
-		oclIsKindOf(ActivityParameterNode) and 
-		oclAsType(ActivityParameterNode).parameter = returnParameter);
+	var returnParameter := method.ownedParameter![direction = ParameterDirectionKind::_'return'];
+	var outputNode := method.node[ActivityParameterNode]![parameter = returnParameter];
 	object ObjectFlow {
   	activity := method;
 		source := selfFork;
@@ -1416,7 +1414,7 @@ helper OperationDefinition::mapConstructor(initializationFlag : Property, initia
 			if bodyNode.incoming->isEmpty() then {
 				firstNode := callAction;
 		  } else {
-				var incoming := bodyNode.incoming->any(true);
+				var incoming := bodyNode.incoming![true];
 				object ControlFlow {
 			  	activity := method;
 					source := incoming.source;
@@ -1545,7 +1543,7 @@ helper AnnotatedStatement::serializeMethodCall() : String {
   // log(" expression.referent=" + expression.referent.name());
   return
     concat(self.statement.annotation().serialize()->asSequence()) +
-    adjustName(expression.referent.toUml().oclAsType(Operation).method->any(true).qualifiedName) + 
+    adjustName(expression.referent.toUml().oclAsType(Operation).method![true].qualifiedName) + 
         expression.tuple.serialize() + "; "
 }
 
@@ -1570,7 +1568,7 @@ query OperationDefinition::firstBodyNode(firstNode : ActivityNode) : ActivityNod
 		if i > self.body.statement->size() then null
 		else
 			while (node := firstNode; i > 1) {
-				node := node.outgoing->any(true).target;
+				node := node.outgoing![true].target;
 				i := i - 1;
 			}
 		endif;
