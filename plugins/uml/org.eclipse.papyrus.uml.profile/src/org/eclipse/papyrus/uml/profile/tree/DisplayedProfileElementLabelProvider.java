@@ -37,6 +37,7 @@ import org.eclipse.papyrus.uml.profile.tree.objects.UnlimitedNaturalValueTreeObj
 import org.eclipse.papyrus.uml.profile.tree.objects.UserPrimitiveTypeValueTreeObject;
 import org.eclipse.papyrus.uml.profile.tree.objects.ValueTreeObject;
 import org.eclipse.papyrus.uml.profile.utils.Util;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -371,24 +372,10 @@ public class DisplayedProfileElementLabelProvider extends LabelProvider {
 	 * @return the property short label
 	 */
 	private String getPropertyShortLabel(Property property) {
-
-		String label = "";
-
-		int upper = property.getUpper();
-		int lower = property.getLower();
-
 		Type type = property.getType();
-
 		String typeName = type.getName();
 		String name = property.getName();
-
-		if (upper != -1) {
-			label = name + ": " + typeName + " " + "[" + lower + ".." + upper + "]";
-		} else {
-			label = name + ": " + typeName + " " + "[" + lower + "..*]";
-		}
-
-		return label;
+		return name + ": " + typeName + " " + MultiplicityElementUtil.formatMultiplicity(property);
 	}
 
 	/**

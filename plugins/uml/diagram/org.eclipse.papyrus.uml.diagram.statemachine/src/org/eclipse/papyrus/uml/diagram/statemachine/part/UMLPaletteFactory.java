@@ -26,109 +26,105 @@ import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
  */
 public class UMLPaletteFactory extends PaletteFactory.Adapter {
 
-	// RS: New Palette generation
-	// Generates the ID for the tool elements
-	// Generate the tool factory (if(ID) createtool...)
 	/**
-	 * @generated
-	 */
-	private final static String CREATEREGIONCREATIONTOOL = "createRegionCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_REGION = "statemachine.createNodesGroup.region";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATESTATECREATIONTOOL = "createStateCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_STATE = "statemachine.createNodesGroup.state";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEINITIALCREATIONTOOL = "createInitialCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_INITIAL = "statemachine.createNodesGroup.initial";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEFINALSTATECREATIONTOOL = "createFinalStateCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_FINALSTATE = "statemachine.createNodesGroup.finalstate";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATESHALLOWHISTORYCREATIONTOOL = "createShallowHistoryCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_SHALLOWHISTORY = "statemachine.createNodesGroup.shallowhistory";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEDEEPHISTORYCREATIONTOOL = "createDeepHistoryCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_DEEPHISTORY = "statemachine.createNodesGroup.deephistory";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEFORKCREATIONTOOL = "createForkCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_FORK = "statemachine.createNodesGroup.fork";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEJOINCREATIONTOOL = "createJoinCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_JOIN = "statemachine.createNodesGroup.join";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATECHOICECREATIONTOOL = "createChoiceCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_CHOICE = "statemachine.createNodesGroup.choice";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEJUNCTIONCREATIONTOOL = "createJunctionCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_JUNCTION = "statemachine.createNodesGroup.junction";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEENTRYPOINTCREATIONTOOL = "createEntryPointCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_ENTRYPOINT = "statemachine.createNodesGroup.entrypoint";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATEEXITPOINTCREATIONTOOL = "createExitPointCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_EXITPOINT = "statemachine.createNodesGroup.exitpoint";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATETERMINATECREATIONTOOL = "createTerminateCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_TERMINATE = "statemachine.createNodesGroup.terminate";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATECONNECTIONPOINTREFERENCECREATIONTOOL = "createConnectionPointReferenceCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_CONNECTIONPOINTREFERENCE = "statemachine.createNodesGroup.connectionpointreference";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATESTATEMACHINECOMMENTCREATIONTOOL = "createStateMachineCommentCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_COMMENT = "statemachine.createNodesGroup.comment";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATECONSTRAINTCREATIONTOOL = "createConstraintCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATENODESGROUP_CONSTRAINT = "statemachine.createNodesGroup.constraint";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATETRANSITIONCREATIONTOOL = "createTransitionCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATEEDGESGROUP_TRANSITION = "statemachine.createEdgesGroup.transition";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATECOMMENTLINKCREATIONTOOL = "createCommentlinkCreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATEEDGESGROUP_LINK = "statemachine.createEdgesGroup.link";//$NON-NLS-1$
 
 	/**
-	 * @generated
-	 */
-	private final static String CREATECONTEXTLINK3CREATIONTOOL = "createContextLink3CreationTool";//$NON-NLS-1$
+	* @generated
+	*/
+	private final static String STATEMACHINE_CREATEEDGESGROUP_CONTEXTLINK = "statemachine.createEdgesGroup.contextlink";//$NON-NLS-1$
 
 	/**
 	 * @generated
 	 */
 	public UMLPaletteFactory() {
-
 	}
 
 	/**
@@ -136,61 +132,61 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Tool createTool(String toolId) {
-		if (toolId.equals(CREATEREGIONCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_REGION)) {
 			return createRegionCreationTool();
 		}
-		if (toolId.equals(CREATESTATECREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_STATE)) {
 			return createStateCreationTool();
 		}
-		if (toolId.equals(CREATEINITIALCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_INITIAL)) {
 			return createInitialCreationTool();
 		}
-		if (toolId.equals(CREATEFINALSTATECREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_FINALSTATE)) {
 			return createFinalStateCreationTool();
 		}
-		if (toolId.equals(CREATESHALLOWHISTORYCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_SHALLOWHISTORY)) {
 			return createShallowHistoryCreationTool();
 		}
-		if (toolId.equals(CREATEDEEPHISTORYCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_DEEPHISTORY)) {
 			return createDeepHistoryCreationTool();
 		}
-		if (toolId.equals(CREATEFORKCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_FORK)) {
 			return createForkCreationTool();
 		}
-		if (toolId.equals(CREATEJOINCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_JOIN)) {
 			return createJoinCreationTool();
 		}
-		if (toolId.equals(CREATECHOICECREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CHOICE)) {
 			return createChoiceCreationTool();
 		}
-		if (toolId.equals(CREATEJUNCTIONCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_JUNCTION)) {
 			return createJunctionCreationTool();
 		}
-		if (toolId.equals(CREATEENTRYPOINTCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_ENTRYPOINT)) {
 			return createEntryPointCreationTool();
 		}
-		if (toolId.equals(CREATEEXITPOINTCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_EXITPOINT)) {
 			return createExitPointCreationTool();
 		}
-		if (toolId.equals(CREATETERMINATECREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_TERMINATE)) {
 			return createTerminateCreationTool();
 		}
-		if (toolId.equals(CREATECONNECTIONPOINTREFERENCECREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CONNECTIONPOINTREFERENCE)) {
 			return createConnectionPointReferenceCreationTool();
 		}
-		if (toolId.equals(CREATESTATEMACHINECOMMENTCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_COMMENT)) {
 			return createStateMachineCommentCreationTool();
 		}
-		if (toolId.equals(CREATECONSTRAINTCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATENODESGROUP_CONSTRAINT)) {
 			return createConstraintCreationTool();
 		}
-		if (toolId.equals(CREATETRANSITIONCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_TRANSITION)) {
 			return createTransitionCreationTool();
 		}
-		if (toolId.equals(CREATECOMMENTLINKCREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_LINK)) {
 			return createCommentlinkCreationTool();
 		}
-		if (toolId.equals(CREATECONTEXTLINK3CREATIONTOOL)) {
+		if(toolId.equals(STATEMACHINE_CREATEEDGESGROUP_CONTEXTLINK)) {
 			return createContextLink3CreationTool();
 		}
 		// default return: null
@@ -202,7 +198,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	 */
 	@Override
 	public Object getTemplate(String templateId) {
-
 		// default return: null
 		return null;
 	}

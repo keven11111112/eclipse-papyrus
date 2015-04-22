@@ -1,14 +1,14 @@
 /*****************************************************************************
  * Copyright (c) 2013 CEA LIST.
  *
- *    
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- * 
+ *
  * 		Patrick Tessier (CEA LIST) Patrick.Tessier@cea.fr - Initial API and implementation
  *
  *****************************************************************************/
@@ -30,6 +30,14 @@ import org.eclipse.uml2.uml.UMLPackage;
  *
  */
 public class ComponentEditHelper extends ElementEditHelper {
+
+	/**
+	 * Constructor.
+	 *
+	 */
+	public ComponentEditHelper() {
+		getDefaultContainmentFeatures().put(UMLPackage.eINSTANCE.getClassifier(), UMLPackage.eINSTANCE.getComponent_PackagedElement());
+	}
 
 	@Override
 	protected ICommand getCreateCommand(CreateElementRequest req) {

@@ -1569,6 +1569,16 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 					</entry>
 				<entry
 				      defineOnly="true"
+				      description="Create a Constraint"
+				      id="activity.nodes.constraint"
+				      kind="tool"
+				      label="Constraint"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+					</entry>
+				<entry
+				      defineOnly="true"
 				      description="Create a Comment"
 				      id="activity.nodes.comment"
 				      kind="tool"
@@ -2447,6 +2457,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="activity.nodes.datastorenode"
+				path="/activity.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="activity.nodes.constraint"
 				path="/activity.nodes">
 		  </predefinedEntry>
 		<predefinedEntry

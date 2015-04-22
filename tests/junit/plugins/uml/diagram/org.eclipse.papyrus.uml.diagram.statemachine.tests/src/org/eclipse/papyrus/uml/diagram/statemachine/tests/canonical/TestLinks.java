@@ -17,10 +17,13 @@ import java.util.Arrays;
 import java.util.LinkedList;
 import java.util.List;
 
-import org.eclipse.gef.ConnectionEditPart;
+import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.ecore.EReference;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.RequestConstants;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.requests.ReconnectRequest;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.ConnectionEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeConnectionTool;
@@ -40,6 +43,7 @@ import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.PseudostateTermin
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.StateEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.edit.parts.TransitionEditPart;
 import org.eclipse.papyrus.uml.diagram.statemachine.providers.UMLElementTypes;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.junit.Assert;
 import org.junit.Test;
 
@@ -103,6 +107,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart constraintConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(constraintConnection instanceof ConstraintConstrainedElementEditPart);
+		checkListFeatureLinkConnection((ConstraintConstrainedElementEditPart)constraintConnection, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 	}
 
 	@Test
@@ -118,6 +123,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart contextConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(contextConnection instanceof ContextLinkEditPart);
+		checkElementFeatureLinkConnection((ContextLinkEditPart)contextConnection, UMLPackage.eINSTANCE.getConstraint_Context());
 	}
 	
 
@@ -134,6 +140,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
+		Assert.assertEquals(transitionConnection.resolveSemanticElement().eContainer(), getRegionCompartmentEditPart().resolveSemanticElement());
 	}
 	
 	@Test
@@ -148,6 +155,9 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
+		TransitionEditPart transitionEP = (TransitionEditPart) transitionConnection;
+		checkSourceOfModelLink(transitionEP, stateEP, UMLPackage.eINSTANCE.getTransition_Source());
+		checkTargetOfModelLink(transitionEP, stateEP, UMLPackage.eINSTANCE.getTransition_Target());
 	}
 
 	@Test
@@ -161,6 +171,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart commentConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(commentConnection instanceof CommentAnnotatedElementEditPart);
+		checkListFeatureLinkConnection((CommentAnnotatedElementEditPart)commentConnection, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 	}
 
 	/**
@@ -244,9 +255,9 @@ public class TestLinks extends BaseTestCase {
 	@Test
 	public void testTransitionLinkReorient() {
 		IGraphicalEditPart stateEP = createChild(StateEditPart.VISUAL_ID, getRegionCompartmentEditPart());
-		IGraphicalEditPart pseustateEP = createChild(PseudostateJunctionEditPart.VISUAL_ID, getRegionCompartmentEditPart());
+		IGraphicalEditPart pseudostateEP = createChild(PseudostateJunctionEditPart.VISUAL_ID, getRegionCompartmentEditPart());
 
-		Command endCommand = createLinkCommand(pseustateEP, stateEP, UMLElementTypes.Transition_7000);
+		Command endCommand = createLinkCommand(pseudostateEP, stateEP, UMLElementTypes.Transition_7000);
 		Assert.assertNotNull(endCommand);
 		Assert.assertTrue(endCommand.canExecute());
 
@@ -254,16 +265,20 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertEquals(1, getDiagramEditPart().getConnections().size());
 		IGraphicalEditPart transitionConnection = (IGraphicalEditPart) getDiagramEditPart().getConnections().get(0);
 		Assert.assertTrue(transitionConnection instanceof TransitionEditPart);
+		Assert.assertEquals(transitionConnection.resolveSemanticElement().eContainer(), getRegionCompartmentEditPart().resolveSemanticElement());
 
 		TransitionEditPart transitionEP = (TransitionEditPart)transitionConnection;
 
+		checkSourceOfModelLink(transitionEP, pseudostateEP, UMLPackage.eINSTANCE.getTransition_Source());
+		checkTargetOfModelLink(transitionEP, stateEP, UMLPackage.eINSTANCE.getTransition_Target());
+
 		ReconnectRequest reconnectSourceReq = getReconnectSource(transitionEP, stateEP);
 		doReconnect(reconnectSourceReq);
-		Assert.assertEquals(stateEP, transitionEP.getSource());
+		checkSourceOfModelLink(transitionEP, stateEP, UMLPackage.eINSTANCE.getTransition_Source());
 
-		ReconnectRequest reconnectTargetReq = getReconnectTarget(transitionEP, pseustateEP);
+		ReconnectRequest reconnectTargetReq = getReconnectTarget(transitionEP, pseudostateEP);
 		doReconnect(reconnectTargetReq);
-		Assert.assertEquals(stateEP, transitionEP.getSource());
+		checkTargetOfModelLink(transitionEP, pseudostateEP, UMLPackage.eINSTANCE.getTransition_Target());
 	}
 
 	@Test
@@ -289,6 +304,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertTrue(commentConnection instanceof CommentAnnotatedElementEditPart);
 
 		CommentAnnotatedElementEditPart commentAnnotatedElementEP = (CommentAnnotatedElementEditPart)commentConnection;
+		checkListFeatureLinkConnection(commentAnnotatedElementEP, UMLPackage.eINSTANCE.getComment_AnnotatedElement());
 
 		ReconnectRequest reconnectSourceReq = getReconnectSource(commentAnnotatedElementEP, commentEP2);
 		doReconnect(reconnectSourceReq);
@@ -327,6 +343,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertTrue(constraintConnection instanceof ConstraintConstrainedElementEditPart);
 
 		ConstraintConstrainedElementEditPart constraintConstrainedElementEP = (ConstraintConstrainedElementEditPart)constraintConnection;
+		checkListFeatureLinkConnection(constraintConstrainedElementEP, UMLPackage.eINSTANCE.getConstraint_ConstrainedElement());
 
 		ReconnectRequest reconnectSourceReq = getReconnectSource(constraintConstrainedElementEP, constraintEP2);
 		doReconnect(reconnectSourceReq);
@@ -367,6 +384,7 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertTrue(constraintContextConnection instanceof ContextLinkEditPart);
 
 		ContextLinkEditPart constraintConstextEP = (ContextLinkEditPart)constraintContextConnection;
+		checkElementFeatureLinkConnection(constraintConstextEP, UMLPackage.eINSTANCE.getConstraint_Context());
 
 		ReconnectRequest reconnectSourceReq = getReconnectSource(constraintConstextEP, constraintEP2);
 		doReconnect(reconnectSourceReq);
@@ -384,5 +402,45 @@ public class TestLinks extends BaseTestCase {
 		Assert.assertFalse(badReconnectTargetCommand.canExecute());
 
 		Assert.assertEquals(stateEP, constraintConstextEP.getTarget());
+	}
+
+	public void checkSourceOfModelLink(ConnectionEditPart connEP, IGraphicalEditPart expectedEndEP, EReference endFeature) {
+		EditPart actualEndEP = connEP.getSource();	
+		checkEndOfModelLink(connEP, actualEndEP, expectedEndEP, endFeature);
+	}
+
+	public void checkTargetOfModelLink(ConnectionEditPart connEP, IGraphicalEditPart expectedEndEP, EReference endFeature) {
+		EditPart actualEndEP = connEP.getTarget();
+		checkEndOfModelLink(connEP, actualEndEP, expectedEndEP, endFeature);
+	}
+
+	public void checkEndOfModelLink(ConnectionEditPart connEP, EditPart actualEndEP, IGraphicalEditPart expectedEndEP, EReference endFeature) {
+		Assert.assertEquals(expectedEndEP, actualEndEP);
+
+		EObject connection = getLinkElement(connEP);
+		Object semanticSource = connection.eGet(endFeature);
+		Assert.assertEquals(expectedEndEP.resolveSemanticElement(), semanticSource);
+	}
+
+	private EObject getLinkElement(ConnectionEditPart connEP) {
+		EObject connection = connEP.resolveSemanticElement();
+		Assert.assertNotNull(connection);
+		return connection;
+	}
+
+	public void checkListFeatureLinkConnection(ConnectionEditPart connEP, EReference feature) {
+		EObject parent = ((IGraphicalEditPart) connEP.getSource()).resolveSemanticElement();
+		EObject child = ((IGraphicalEditPart) connEP.getTarget()).resolveSemanticElement();
+		
+		List<?> children = (List<?>)parent.eGet(feature);
+		Assert.assertTrue("FeatureLink " + connEP.getClass().getCanonicalName() + " does not appear semantic representation", children.contains(child));
+	}
+
+	public void checkElementFeatureLinkConnection(ConnectionEditPart connEP, EReference feature) {
+		EObject parent = ((IGraphicalEditPart) connEP.getSource()).resolveSemanticElement();
+		EObject child = ((IGraphicalEditPart) connEP.getTarget()).resolveSemanticElement();
+		
+		Object actualChild = parent.eGet(feature);
+		Assert.assertEquals("FeatureLink " + connEP.getClass().getCanonicalName() + " does not appear semantic representation", child, actualChild);
 	}
 }

@@ -13,8 +13,7 @@ import org.eclipse.emf.ecore.EFactory;
  * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage
  * @generated
  */
-public interface UmlMessageFactory extends EFactory
-{
+public interface UmlMessageFactory extends EFactory {
 	/**
 	 * The singleton instance of the factory.
 	 * <!-- begin-user-doc -->

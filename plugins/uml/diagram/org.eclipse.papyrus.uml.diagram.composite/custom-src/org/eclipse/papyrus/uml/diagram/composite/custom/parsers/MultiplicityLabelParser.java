@@ -27,7 +27,7 @@ import org.eclipse.gmf.runtime.common.ui.services.parser.ParserEditStatus;
 import org.eclipse.gmf.runtime.emf.ui.services.parser.ISemanticParser;
 import org.eclipse.jface.text.contentassist.IContentAssistProcessor;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -36,30 +36,13 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class MultiplicityLabelParser implements ISemanticParser {
 
-	/** The String format for displaying a {@link MultiplicityElement} multiplicity */
-	protected static final String MULTIPLICITY_FORMAT = "%s..%s";
-
 	@Override
 	public String getPrintString(IAdaptable element, int flags) {
-
-		String result = "";
 		EObject eObject = EMFHelper.getEObject(element);
-
 		if ((eObject != null) && (eObject instanceof MultiplicityElement)) {
-
-			MultiplicityElement multiplicity = (MultiplicityElement) eObject;
-
-			// manage multiplicity
-			String lower = ValueSpecificationUtil.getSpecificationValue(multiplicity.getLowerValue());
-			String upper = ValueSpecificationUtil.getSpecificationValue(multiplicity.getUpperValue());
-			if (multiplicity.getLower() != multiplicity.getUpper()) {
-				result = String.format(MULTIPLICITY_FORMAT, lower, upper);
-			} else {
-				result = lower;
-			}
+			return MultiplicityElementUtil.formatMultiplicityNoBrackets((MultiplicityElement) eObject);
 		}
-
-		return result;
+		return "";
 	}
 
 	@Override

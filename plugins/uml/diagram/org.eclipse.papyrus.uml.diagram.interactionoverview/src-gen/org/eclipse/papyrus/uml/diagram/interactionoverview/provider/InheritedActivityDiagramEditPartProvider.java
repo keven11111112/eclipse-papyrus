@@ -15,9 +15,20 @@ import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.CreateGraphicEditPartOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpart.IEditPartOperation;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IShapeCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.providers.CustomUMLEditPartProvider;
 
 public class InheritedActivityDiagramEditPartProvider extends CustomUMLEditPartProvider {
+
+	/**
+	 * This is workaround for bug #464093. 
+	 * The view type 'compartment_shape_display' is auxiliary and is provided externally 
+	 * (from the org.eclipse.papyrus.uml.diagram.symbols plugin) for all diagrams. 
+	 * 
+	 * Views of this kind shares semantic element with the main node so we can't distinguish them by semantic checks 
+	 * and have to explicitly rule them out to avoid interferention
+	 */
+	public static final String ALIEN_VIEW_TYPE = IShapeCompartmentEditPart.VIEW_TYPE;
 
 	@Override
 	public synchronized boolean provides(final IOperation operation) {
@@ -26,6 +37,10 @@ public class InheritedActivityDiagramEditPartProvider extends CustomUMLEditPartP
 
 			// Ensure current diagram is a InteractionOverviewDiagram Diagram
 			if (!ElementTypes.DIAGRAM_ID.equals(view.getDiagram().getType())) {
+				return false;
+			}
+
+			if (ALIEN_VIEW_TYPE.equals(view.getType())) {
 				return false;
 			}
 

@@ -19,6 +19,7 @@ import java.util.List;
 
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
+import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
@@ -98,5 +99,13 @@ public class ProtocolContainerUtils {
 		return getMessageSet(protocolContainer, RTMessageKind.IN_OUT);
 	}
 
-
+	public static Collaboration getCollaboration(Package protocolContainer) {
+		for(PackageableElement packageableElement : protocolContainer.getPackagedElements()) {
+			// look each interface to find the right one with the stereotype message set
+			if(packageableElement instanceof Collaboration) {
+				return (Collaboration)packageableElement;
+			}
+		}
+		return null;
+	}
 }

@@ -64,6 +64,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
+	private final static String ACTIVITY_NODES_CONSTRAINT = "activity.nodes.constraint";//$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	private final static String ACTIVITY_NODES_COMMENT = "activity.nodes.comment";//$NON-NLS-1$
 
 	/**
@@ -389,8 +394,11 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(ACTIVITY_NODES_DATASTORENODE)) {
 			return createDataStoreNode19CreationTool();
 		}
+		if (toolId.equals(ACTIVITY_NODES_CONSTRAINT)) {
+			return createConstraint20CreationTool();
+		}
 		if (toolId.equals(ACTIVITY_NODES_COMMENT)) {
-			return createComment20CreationTool();
+			return createComment21CreationTool();
 		}
 		if (toolId.equals(ACTIVITY_EDGES_CONTROLFLOW)) {
 			return createControlFlow1CreationTool();
@@ -645,7 +653,17 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createComment20CreationTool() {
+	private Tool createConstraint20CreationTool() {
+		List<IElementType> types = new ArrayList<IElementType>(1);
+		types.add(UMLElementTypes.Constraint_3112);
+		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
+		return tool;
+	}
+
+	/**
+	 * @generated
+	 */
+	private Tool createComment21CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.Comment_3080);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);

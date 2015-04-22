@@ -450,193 +450,193 @@
 				<entry
 				      defineOnly="true"
 				      description="Region"
-				      id="createRegionCreationTool"
+				      id="statemachine.createNodesGroup.region"
 				      kind="tool"
 				      label="Region"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Region.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="State"
-				      id="createStateCreationTool"
+				      id="statemachine.createNodesGroup.state"
 				      kind="tool"
 				      label="State"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/State.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Initial"
-				      id="createInitialCreationTool"
+				      id="statemachine.createNodesGroup.initial"
 				      kind="tool"
 				      label="Initial"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_initial.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="FinalState"
-				      id="createFinalStateCreationTool"
+				      id="statemachine.createNodesGroup.finalstate"
 				      kind="tool"
 				      label="FinalState"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FinalState.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="ShallowHistory"
-				      id="createShallowHistoryCreationTool"
+				      id="statemachine.createNodesGroup.shallowhistory"
 				      kind="tool"
 				      label="ShallowHistory"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_shallowHistory.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="DeepHistory"
-				      id="createDeepHistoryCreationTool"
+				      id="statemachine.createNodesGroup.deephistory"
 				      kind="tool"
 				      label="DeepHistory"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_deepHistory.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Fork"
-				      id="createForkCreationTool"
+				      id="statemachine.createNodesGroup.fork"
 				      kind="tool"
 				      label="Fork"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_fork.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Join"
-				      id="createJoinCreationTool"
+				      id="statemachine.createNodesGroup.join"
 				      kind="tool"
 				      label="Join"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_join.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Choice"
-				      id="createChoiceCreationTool"
+				      id="statemachine.createNodesGroup.choice"
 				      kind="tool"
 				      label="Choice"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_choice.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Junction"
-				      id="createJunctionCreationTool"
+				      id="statemachine.createNodesGroup.junction"
 				      kind="tool"
 				      label="Junction"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_junction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="EntryPoint"
-				      id="createEntryPointCreationTool"
+				      id="statemachine.createNodesGroup.entrypoint"
 				      kind="tool"
 				      label="EntryPoint"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_entryPoint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="ExitPoint"
-				      id="createExitPointCreationTool"
+				      id="statemachine.createNodesGroup.exitpoint"
 				      kind="tool"
 				      label="ExitPoint"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_exitPoint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Terminate"
-				      id="createTerminateCreationTool"
+				      id="statemachine.createNodesGroup.terminate"
 				      kind="tool"
 				      label="Terminate"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Pseudostate_terminate.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="ConnectionPointReference"
-				      id="createConnectionPointReferenceCreationTool"
+				      id="statemachine.createNodesGroup.connectionpointreference"
 				      kind="tool"
 				      label="ConnectionPointReference"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConnectionPointReference.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Comment"
-				      id="createStateMachineCommentCreationTool"
+				      id="statemachine.createNodesGroup.comment"
 				      kind="tool"
 				      label="Comment"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Constraint"
-				      id="createConstraintCreationTool"
+				      id="statemachine.createNodesGroup.constraint"
 				      kind="tool"
 				      label="Constraint"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Transition"
-				      id="createTransitionCreationTool"
+				      id="statemachine.createEdgesGroup.transition"
 				      kind="tool"
 				      label="Transition"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Transition_local.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Creation of a link for comment, constraint"
-				      id="createCommentlinkCreationTool"
+				      id="statemachine.createEdgesGroup.link"
 				      kind="tool"
 				      label="Link"
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Creation of a context link for a Constraint"
-				      id="createContextLink3CreationTool"
+				      id="statemachine.createEdgesGroup.contextlink"
 				      kind="tool"
 				      label="ContextLink"
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Association.gif">
-					</entry>
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -670,67 +670,67 @@
 		   </expand>
 		</entry>
 		<predefinedEntry
-		        id="createRegionCreationTool"
+		        id="statemachine.createNodesGroup.region"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createStateCreationTool"
+		        id="statemachine.createNodesGroup.state"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createInitialCreationTool"
+		        id="statemachine.createNodesGroup.initial"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createFinalStateCreationTool"
+		        id="statemachine.createNodesGroup.finalstate"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createShallowHistoryCreationTool"
+		        id="statemachine.createNodesGroup.shallowhistory"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createDeepHistoryCreationTool"
+		        id="statemachine.createNodesGroup.deephistory"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createForkCreationTool"
+		        id="statemachine.createNodesGroup.fork"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createJoinCreationTool"
+		        id="statemachine.createNodesGroup.join"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createChoiceCreationTool"
+		        id="statemachine.createNodesGroup.choice"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createJunctionCreationTool"
+		        id="statemachine.createNodesGroup.junction"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createEntryPointCreationTool"
+		        id="statemachine.createNodesGroup.entrypoint"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createExitPointCreationTool"
+		        id="statemachine.createNodesGroup.exitpoint"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createTerminateCreationTool"
+		        id="statemachine.createNodesGroup.terminate"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createConnectionPointReferenceCreationTool"
+		        id="statemachine.createNodesGroup.connectionpointreference"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createStateMachineCommentCreationTool"
+		        id="statemachine.createNodesGroup.comment"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createConstraintCreationTool"
+		        id="statemachine.createNodesGroup.constraint"
 				path="/createNodesGroup">
 		  </predefinedEntry>
 		<entry
@@ -746,15 +746,15 @@
 		   </expand>
 		</entry>
 		<predefinedEntry
-		        id="createTransitionCreationTool"
+		        id="statemachine.createEdgesGroup.transition"
 				path="/createEdgesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createCommentlinkCreationTool"
+		        id="statemachine.createEdgesGroup.link"
 				path="/createEdgesGroup">
 		  </predefinedEntry>
 		<predefinedEntry
-		        id="createContextLink3CreationTool"
+		        id="statemachine.createEdgesGroup.contextlink"
 				path="/createEdgesGroup">
 		  </predefinedEntry>
 		</contribution>

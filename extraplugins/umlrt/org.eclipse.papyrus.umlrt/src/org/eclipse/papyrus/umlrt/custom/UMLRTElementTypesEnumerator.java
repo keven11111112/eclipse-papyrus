@@ -39,7 +39,7 @@ public class UMLRTElementTypesEnumerator extends AbstractElementTypeEnumerator i
 
 	public static final IHintedType RT_EXCLUDED_ELEMENT = (IHintedType) getElementType(RT_EXCLUDED_ELEMENT_ID);
 
-	public static final List<IHintedType> rtTypes = Arrays.asList(RT_MESSAGE_SET, PROTOCOL_CONTAINER, PROTOCOL, CAPSULE, CAPSULE_PART, RT_PORT, RT_CONNECTOR, RT_EXCLUDED_ELEMENT);
+	private static final List<IHintedType> rtTypes = Arrays.asList(RT_MESSAGE_SET, PROTOCOL_CONTAINER, PROTOCOL, CAPSULE, CAPSULE_PART, RT_PORT, RT_CONNECTOR, RT_EXCLUDED_ELEMENT);
 
 	/**
 	 * Returns all the specific semantic element types for UML-RT
