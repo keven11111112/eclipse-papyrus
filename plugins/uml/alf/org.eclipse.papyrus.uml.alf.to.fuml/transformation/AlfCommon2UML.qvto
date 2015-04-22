@@ -110,7 +110,7 @@ helper BoundElementReference::toUml() : Element {
     endif;
 }
 
-// Activity-related constructors
+// Activities
 
 constructor Activity::Activity(ownedParameters : Sequence(Parameter)) {
   ownedParameter := ownedParameters;
@@ -206,6 +206,8 @@ constructor ActivityFinalNode::ActivityFinalNode(structuredNode : StructuredActi
 	name := "FinalNode(" + structuredNode.name + ")";
 }
 
+// Pins
+
 constructor InputPin::InputPin(pinName : String, pinType: Type, pinLower : Integer, pinUpper : Integer) {
 	name := pinName;
 	type := pinType;
@@ -236,15 +238,124 @@ constructor OutputPin::OutputPin(structuredNode : StructuredActivityNode, pinNam
 	upper := pinUpper;
 }
 
-constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
-	if isInput then {
-		name := region.name + ".inputElement(" + sourceName + ")";
-		regionAsInput := region;
-	} else {
-		name := region.name + ".outputElement(" + sourceName + ")";
-		regionAsOutput := region;
+helper addPinsFromParameters(inout action : Action, parameters : OrderedSet(Parameter)) {
+	parameters->forEach(parameter) {
+		if parameter.direction = ParameterDirectionKind::_'in' or parameter.direction = ParameterDirectionKind::_inout then {
+			addPin(action, object InputPin {}, parameter);
+		} endif;
+		if parameter.direction = ParameterDirectionKind::_'out' or parameter.direction = ParameterDirectionKind::_inout or 
+			 parameter.direction = ParameterDirectionKind::_'return' then {
+			addPin(action, object OutputPin {}, parameter);
+		} endif;
+	}
+}
+
+helper addPin(inout action : Action, inout pin : Pin, parameter : Parameter) {
+	object pin: {
+		lower := parameter.lower;
+		upper := parameter.upper;
+		isOrdered := parameter.isOrdered;
+		isUnique := parameter.isUnique;
+		type := parameter.type;
+	};
+	
+	if pin.oclIsKindOf(InputPin) then {
+		if action.oclIsKindOf(InvocationAction) then {
+			pin.name := action.name + ".argument(" + parameter.name + ")";
+			action.oclAsType(InvocationAction).argument += pin.oclAsType(InputPin);
+		} else if action.oclIsKindOf(CallAction) then {
+			pin.name := action.name + ".result(" + parameter.name + ")";
+			action.oclAsType(CallAction).result += pin.oclAsType(OutputPin);
+		} endif endif;
 	} endif;
 }
+
+helper addPinsFromProperties(inout action : Action, properties : OrderedSet(Property)) {
+	properties->forEach(prop) {
+		addPin(action, object InputPin{}, prop);
+	}
+}
+
+helper addPin(inout action : Action, inout pin : Pin, property_ : Property) {
+	object pin: {
+		lower := property_.lower;
+		upper := property_.upper;
+		isOrdered := property_.isOrdered;
+		isUnique := property_.isUnique;
+		type := property_.type;
+	};
+	
+	if pin.oclIsKindOf(InputPin) then {
+		if action.oclIsKindOf(SendSignalAction) then {
+			pin.name := action.name + ".argument(" + property_.name + ")";
+			action.oclAsType(SendSignalAction).argument += pin.oclAsType(InputPin);
+		} else if action.oclIsKindOf(ReadLinkAction) then {
+			pin.name := action.name + ".inputValue(" + property_.name + ")";
+			new LinkEndData(action.oclAsType(ReadLinkAction), property_, pin);
+		} endif endif;
+	} else if action.oclIsKindOf(ReadLinkAction) then {
+		pin.name := action.name + ".result";
+		new LinkEndData(action.oclAsType(ReadLinkAction), property_, pin);
+	} endif endif;
+}
+
+query Action::returnPin() : OutputPin {
+	var parameters :=
+		switch {
+			case(self.oclIsKindOf(CallOperationAction)) self.oclAsType(CallOperationAction).operation.ownedParameter;
+			case(self.oclIsKindOf(CallBehaviorAction)) self.oclAsType(CallBehaviorAction).behavior.ownedParameter;
+			else OrderedSet{};
+		};
+	return
+		if not parameters->exists(direction = ParameterDirectionKind::_'return') then null
+		else
+			self.output->at(parameters.direction->indexOf(ParameterDirectionKind::_'return'))
+		endif;
+}
+
+// Link End Data
+
+constructor LinkEndData::LinkEndData(inout action : LinkAction, end_ : Property, pin : Pin) {
+	_'end' := end_;
+	action.endData += result;
+	
+	if pin.oclIsKindOf(InputPin) then {
+		value := pin.oclAsType(InputPin);
+		action.inputValue += pin.oclAsType(InputPin);
+	} else if action.oclIsKindOf(ReadLinkAction) then {
+		action.oclAsType(ReadLinkAction).result := pin.oclAsType(OutputPin);
+	} endif endif;	
+}
+
+constructor LinkEndCreationData::LinkEndCreationData(inout action : CreateLinkAction, end_ : Property, unlimitedNaturalType : Type) {
+	_'end' := end_;
+	value := new InputPin(action.name + ".value(" + end_.name + ")", end_.type, 1, 1);
+	isReplaceAll := false;
+
+	action.endData += result;
+	action.inputValue += value;
+	
+	if end_.isOrdered then {
+		insertAt := new InputPin(action.name + ".insertAt(" + end_.name + ")", unlimitedNaturalType, 1, 1);
+		action.inputValue += insertAt;
+	} endif;
+}
+
+constructor LinkEndDestructionData::LinkEndDestructionData(inout action : DestroyLinkAction, end_ : Property, unlimitedNaturalType : Type) {
+	_'end' := end_;
+	value := new InputPin(action.name + ".value(" + end_.name + ")", end_.type, 1, 1);
+	isDestroyDuplicates := not end_.isOrdered;
+
+	action.endData += result;
+	action.inputValue += value;
+	
+	if end_.isOrdered then {
+		destroyAt := new InputPin(action.name + ".destroyAt(" + end_.name + ")", unlimitedNaturalType, 1, 1);
+		action.inputValue += destroyAt;
+	} endif;
+}
+
+// Actions
 
 constructor AcceptEventAction::AcceptEventAction(structuredNode : StructuredActivityNode, signals : Set(Signal), hasOutput : Boolean) {
 	inStructuredNode := structuredNode;
@@ -277,18 +388,64 @@ constructor SignalEvent::SignalEvent(sig : Signal) {
 }
 
 constructor CallBehaviorAction::CallBehaviorAction(target : Behavior) {
-	var actionName := "Call(" + target.name +")";
-	name := actionName;
+	name := "Call(" + target.name +")";
 	behavior := target;
 	argument := target.ownedParameter[direction = ParameterDirectionKind::_'in' or direction = ParameterDirectionKind::_'inout']->
 		collect(parameter |
-			new InputPin(actionName + ".argument(" + parameter.name + ")", 
+			new InputPin(name + ".argument(" + parameter.name + ")", 
 				parameter.type, parameter.lower, parameter.upper)
 		);
 	result._'result' := target.ownedParameter[direction = ParameterDirectionKind::_'out' or direction = ParameterDirectionKind::_'inout' or direction = ParameterDirectionKind::_'return']->collect(parameter | 
-		new OutputPin(actionName + ".result(" + parameter.name + ")", 
+		new OutputPin(name + ".result(" + parameter.name + ")", 
 			parameter.type, parameter.lower, parameter.upper)
 	);
+}
+
+constructor CallOperationAction::CallOperationAction(operation_ : Operation) {
+	name := "Call(" + operation.name + ")";
+	operation := operation_;
+	target := new InputPin(name + ".target", operation_._'class', 1, 1);
+	addPinsFromParameters(result, operation_.ownedParameter);
+}
+
+constructor ClearAssociationAction::ClearAssociationAction(association_ : Association) {
+	name := "Clear(" + association_.name + ")";
+	association := association_;
+	_'object' := new InputPin(name + ".object", null, 1, 1);
+	_'object'.isOrdered := false;
+}
+
+constructor CreateLinkAction::CreateLinkAction(association_ : Association, unlimitedNaturalType : Type) {
+	name := "Create(" + association_.name + ")";
+	association_.ownedEnd->forEach(ownedEnd) {
+		new LinkEndCreationData(result, ownedEnd, unlimitedNaturalType);
+	};
+}
+
+constructor CreateObjectAction::CreateObjectAction(class_ : Class) {
+	name := "Create(" + class_.name + ")";
+	classifier := class_;
+	result.result := new OutputPin(name + ".result", class_, 1, 1);
+}
+
+constructor DestroyLinkAction::DestroyLinkAction(association_ : Association, unlimitedNaturalType : Type) {
+	name := "Destroy(" + association_.name + ")";
+	association_.ownedEnd->forEach(ownedEnd) {
+		new LinkEndDestructionData(result, ownedEnd, unlimitedNaturalType);
+	};
+}
+
+constructor DestroyObjectAction::DestroyObjectAction(class_ : Class) {
+	name := "Destroy(" + class_.name + ")";
+	isDestroyLinks := true;
+	isDestroyOwnedObjects := true;
+	target := new InputPin(name + ".target", class_, 1, 1);
+}
+
+constructor ReadExtentAction::ReadExtentAction(class_ : Class) {
+	name := "ReadExtent" + if class_ = null then "" else "(" + class_.name + ")" endif;
+	classifier := class_;
+	result.result := new OutputPin(name + ".result", class_, 0, -1);
 }
 
 constructor ReadIsClassifiedObjectAction::ReadIsClassifiedObjectAction(type : Classifier, direct : Boolean, booleanType : Type) {
@@ -297,6 +454,24 @@ constructor ReadIsClassifiedObjectAction::ReadIsClassifiedObjectAction(type : Cl
 	isDirect := direct;
 	_'object' := new InputPin(name + ".object", null, 1, 1);
 	result.result := new OutputPin(name + ".result", booleanType, 1, 1);
+}
+
+constructor ReadLinkAction::ReadLinkAction(associationEnd : Property) {
+	name := "ReadLink(" + associationEnd.name + ")";
+	addPinsFromProperties(result, associationEnd.association.ownedEnd->asSequence()->excluding(associationEnd)->asOrderedSet());
+	addPin(result, object OutputPin{}, associationEnd);
+}
+
+constructor ReadSelfAction::ReadSelfAction(type : Type) {
+	name := "ReadSelf";
+	result.result := new OutputPin(name + ".result", type, 1, 1);
+}
+
+constructor ReadStructuralFeatureAction::ReadStructuralFeatureAction(type : Type, feature : Property) {
+	name := "Read(" + feature.name + ")";
+	structuralFeature := feature;
+	_'object' := new InputPin(name + ".object", type, 1, 1);
+	result.result := new OutputPin(name + ".result", feature.type, 1, 1);
 }
 
 constructor ReclassifyObjectAction::ReclassifyObjectAction(type : Type, oldClassifiers : Set(Classifier), newClassifiers : Set(Classifier), replaceAll : Boolean) {
@@ -324,6 +499,13 @@ constructor ReclassifyObjectAction::ReclassifyObjectAction(type : Type, oldClass
 	oldClassifier := oldClassifiers;
 	newClassifier := newClassifiers;
 	isReplaceAll := replaceAll;
+}
+
+constructor SendSignalAction::SendSignalAction(signal_ : Signal) {
+	name := "SendSignal(" + signal.name + ")";
+	signal := signal_;
+	target := new InputPin(name + ".target", null, 1, 1);
+	addPinsFromProperties(result, signal.allAttributes());
 }
 
 constructor StartObjectBehaviorAction::StartObjectBehaviorAction(class_ : Class) {
@@ -375,6 +557,92 @@ constructor LiteralNull::LiteralNull() {
 constructor InstanceValue::InstanceValue(spec : InstanceSpecification) {
 	instance := spec;
 	type := spec.classifier![true];
+}
+
+constructor InstanceValue::InstanceValue(type_ : Classifier) {
+	instance := object InstanceSpecification {
+		classifier += type_;
+	};
+	type := type_;
+}
+
+// Structured Activity Nodes
+
+constructor StructuredActivityNode::StructuredActivityNode(name_ : String) {
+	name := name_;
+}
+
+constructor ExpansionRegion::ExpansionRegion(name_ : String, mode_ : ExpansionKind) {
+	name := name_;
+	mode := mode;
+}
+
+constructor ExpansionNode::ExpansionNode(sourceName : String, region : ExpansionRegion, isInput : Boolean) {
+	if isInput then {
+		name := region.name + if sourceName = null then ".inputElement" else ".inputElement(" + sourceName + ")" endif;
+		regionAsInput := region;
+	} else {
+		name := region.name + if sourceName = null then ".outputElement" else ".outputElement(" + sourceName + ")" endif;
+		regionAsOutput := region;
+	} endif;
+}
+
+helper addToStructuredNode(inout structuredNode : StructuredActivityNode, in nodes : Set(ActivityNode), in edges : Set(ActivityEdge)) : Set(ActivityEdge) {
+	structuredNode.node += nodes;
+	return addEdgesToStructuredNode(structuredNode, edges);
+}
+
+helper addEdgesToStructuredNode(inout structuredNode : StructuredActivityNode, in edges : Set(ActivityEdge)) : Set(ActivityEdge) {
+	var allOwnedNodes := structuredNode.allOwnedNodes();
+	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
+	structuredNode.edge += internalEdges;
+	return edges - internalEdges;
+}
+
+helper addToExpansionRegion(inout region : ExpansionRegion, nodes : Set(ActivityNode), edges : Set(ActivityEdge)) : Set(ActivityEdge) {
+	region.node += nodes;
+	var outerEdges : Set(ActivityEdge);
+	var allOwnedNodes := region.allOwnedNodes();
+	edges->forEach(edge) {
+		var sourceIsContained := allOwnedNodes->includes(edge.source);
+		var targetIsContained := allOwnedNodes->includes(edge.target);
+		if sourceIsContained and targetIsContained or
+			edge.source.oclIsKindOf(ExpansionNode) and
+				region = edge.source.oclAsType(ExpansionNode).regionAsInput or
+			edge.target.oclIsKindOf(ExpansionNode) and
+				region = edge.target.oclAsType(ExpansionNode).regionAsOutput then {
+			region.edge += edge;
+		} else {
+			if targetIsContained then {
+				// If an edge crosses into the region, then redirect its target.
+				edge.target :=
+					if edge.oclIsKindOf(ControlFlow) then region
+					else {
+						var inputPin := new InputPin (region,
+							region.name + ".input(" + edge.source.name + ")",
+							if edge.target.oclIsKindOf(ObjectNode) then edge.target.oclAsType(ObjectNode).type
+							else null endif,
+							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
+							else 0 endif,
+							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
+							else -1 endif
+						);
+						new ObjectFlow(region, inputPin, edge.target);
+						inputPin		
+					} endif;
+			} else if sourceIsContained then {
+				// If an edge crosses out of the region, then redirect its source.
+				edge.source :=
+					if edge.oclIsKindOf(ControlFlow) then region
+					else {
+						var outputNode ::= new ExpansionNode(edge.source.name, region, false);
+						new ObjectFlow(region, edge.source, outputNode);
+						outputNode
+					} endif;
+			} endif endif;
+		} endif;
+	};
+	return edges - region.edge;
 }
 
 // Other

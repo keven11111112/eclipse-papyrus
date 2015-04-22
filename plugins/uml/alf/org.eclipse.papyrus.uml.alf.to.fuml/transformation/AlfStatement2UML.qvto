@@ -61,50 +61,9 @@ helper StatementActivityGraph::addToLoopNode(inout graph : StatementActivityGrap
 }
 
 helper StatementActivityGraph::addToExpansionRegion(inout graph : StatementActivityGraph) {
-	var region = graph.structuredNode.oclAsType(ExpansionRegion);
-	region.node += self.nodes;
-	
-	var allOwnedNodes := region.allOwnedNodes();
-	self.edges->forEach(edge) {
-		var sourceIsContained := allOwnedNodes->includes(edge.source);
-		var targetIsContained := allOwnedNodes->includes(edge.target);
-		if sourceIsContained and targetIsContained or
-			edge.source.oclIsKindOf(ExpansionNode) and
-				region = edge.source.oclAsType(ExpansionNode).regionAsInput or
-			edge.target.oclIsKindOf(ExpansionNode) and
-				region = edge.target.oclAsType(ExpansionNode).regionAsOutput then {
-			region.edge += edge;
-		} else {
-			graph.edges += edge;
-			if targetIsContained then {
-				// If an edge crosses into the region, then redirect its target.
-				edge.target :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						var inputPin := new InputPin (region,
-							region.name + ".input(" + edge.source.name + ")",
-							if edge.target.oclIsKindOf(ObjectNode) then edge.target.oclAsType(ObjectNode).type
-							else null endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).lower
-							else 0 endif,
-							if edge.target.oclIsKindOf(Pin) then edge.target.oclAsType(Pin).upper
-							else -1 endif
-						);
-						new ObjectFlow(region, inputPin, edge.target);
-						inputPin		
-					} endif;
-			} else if sourceIsContained then {
-				// If an edge crosses out of the region, then redirect its source.
-				edge.source :=
-					if edge.oclIsKindOf(ControlFlow) then region
-					else {
-						graph.nodes += var outputNode ::= new ExpansionNode(edge.source.name, region, false);
-						new ObjectFlow(region, edge.source, outputNode);
-						outputNode
-					} endif;
-			} endif endif;
-		} endif;
-	}
+	var edges := addToExpansionRegion(graph.structuredNode.oclAsType(ExpansionRegion), self.nodes, self.edges);
+	graph.edges += edges;
+	graph.nodes += edges.source[ExpansionNode];
 }
 
 helper createStructuredNode(inout graph : StatementActivityGraph, nodeName : String) {
@@ -113,22 +72,11 @@ helper createStructuredNode(inout graph : StatementActivityGraph, nodeName : Str
 		node := graph.nodes;
 	};
 	graph.nodes := Set{graph.structuredNode};
-
-	var edges := graph.edges;
-	graph.edges := Set{};
-	addEdgesToStructuredNode(graph, edges);
+	graph.edges := addEdgesToStructuredNode(graph.structuredNode, graph.edges);
 }
 
 helper addToStructuredNode(inout graph: StatementActivityGraph, in nodes : Set(ActivityNode), in edges : Set(ActivityEdge)) {
-	graph.structuredNode.node += nodes;
-	addEdgesToStructuredNode(graph, edges);
-}
-
-helper addEdgesToStructuredNode(inout graph : StatementActivityGraph, in edges : Set(ActivityEdge)) {
-	var allOwnedNodes := graph.structuredNode.allOwnedNodes();
-	var internalEdges := edges[allOwnedNodes->includes(source) and allOwnedNodes->includes(target)];
-	graph.structuredNode.edge += internalEdges;
-	graph.edges += edges - internalEdges;
+	graph.edges += addToStructuredNode(graph.structuredNode, nodes, edges);
 }
 
 helper addToLoopNode(inout graph : StatementActivityGraph, nodes : Set(ActivityNode), edges : Set(ActivityEdge)) {
