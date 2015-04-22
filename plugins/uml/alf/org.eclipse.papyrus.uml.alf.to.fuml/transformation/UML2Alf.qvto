@@ -21,7 +21,7 @@ transformation UML2Alf(in uml : UML, out alf : Alf)
 
 main() {
   var rootObjects := uml.rootObjects();
-  model := rootObjects[Model]->any(true);
+  model := rootObjects![Model];
   if model = null then
   		rootObjects[Namespace]->map toUnitDefinition()
   else
