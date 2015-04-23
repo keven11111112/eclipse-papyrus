@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -38,7 +39,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Owning Rule</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -139,11 +139,12 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 */
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (EClass)eResolveProxy(oldElement);
+			InternalEObject oldElement = (InternalEObject) element;
+			element = (EClass) eResolveProxy(oldElement);
 			if (element != oldElement) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.OWNING_RULE__ELEMENT, oldElement, element));
+				}
 			}
 		}
 		return element;
@@ -166,8 +167,9 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.OWNING_RULE__ELEMENT, oldElement, element));
+		}
 	}
 
 	/**
@@ -199,8 +201,9 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.OWNING_RULE__MULTIPLICITY, oldMultiplicity, multiplicity));
+		}
 	}
 
 	/**
@@ -235,10 +238,10 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-				return ((InternalEList<?>)getNewModelPath()).basicRemove(otherEnd, msgs);
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				return ((InternalEList<?>)getSelectDiagramRoot()).basicRemove(otherEnd, msgs);
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+			return ((InternalEList<?>) getNewModelPath()).basicRemove(otherEnd, msgs);
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			return ((InternalEList<?>) getSelectDiagramRoot()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -251,17 +254,19 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.OWNING_RULE__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
-			case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
-				return getStereotypes();
-			case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
-				return getMultiplicity();
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-				return getNewModelPath();
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				return getSelectDiagramRoot();
+		case ConfigurationPackage.OWNING_RULE__ELEMENT:
+			if (resolve) {
+				return getElement();
+			}
+			return basicGetElement();
+		case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
+			return getStereotypes();
+		case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
+			return getMultiplicity();
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+			return getNewModelPath();
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			return getSelectDiagramRoot();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -275,24 +280,24 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.OWNING_RULE__ELEMENT:
-				setElement((EClass)newValue);
-				return;
-			case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				getStereotypes().addAll((Collection<? extends EClass>)newValue);
-				return;
-			case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
-				setMultiplicity((Integer)newValue);
-				return;
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-				getNewModelPath().clear();
-				getNewModelPath().addAll((Collection<? extends ModelAutoCreate>)newValue);
-				return;
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				getSelectDiagramRoot().clear();
-				getSelectDiagramRoot().addAll((Collection<? extends RootAutoSelect>)newValue);
-				return;
+		case ConfigurationPackage.OWNING_RULE__ELEMENT:
+			setElement((EClass) newValue);
+			return;
+		case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			getStereotypes().addAll((Collection<? extends EClass>) newValue);
+			return;
+		case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
+			setMultiplicity((Integer) newValue);
+			return;
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+			getNewModelPath().clear();
+			getNewModelPath().addAll((Collection<? extends ModelAutoCreate>) newValue);
+			return;
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			getSelectDiagramRoot().clear();
+			getSelectDiagramRoot().addAll((Collection<? extends RootAutoSelect>) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -305,21 +310,21 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.OWNING_RULE__ELEMENT:
-				setElement((EClass)null);
-				return;
-			case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				return;
-			case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
-				setMultiplicity(MULTIPLICITY_EDEFAULT);
-				return;
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-				getNewModelPath().clear();
-				return;
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				getSelectDiagramRoot().clear();
-				return;
+		case ConfigurationPackage.OWNING_RULE__ELEMENT:
+			setElement((EClass) null);
+			return;
+		case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			return;
+		case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
+			setMultiplicity(MULTIPLICITY_EDEFAULT);
+			return;
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+			getNewModelPath().clear();
+			return;
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			getSelectDiagramRoot().clear();
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -332,16 +337,16 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.OWNING_RULE__ELEMENT:
-				return element != null;
-			case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
-				return stereotypes != null && !stereotypes.isEmpty();
-			case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
-				return multiplicity != MULTIPLICITY_EDEFAULT;
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-				return newModelPath != null && !newModelPath.isEmpty();
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				return selectDiagramRoot != null && !selectDiagramRoot.isEmpty();
+		case ConfigurationPackage.OWNING_RULE__ELEMENT:
+			return element != null;
+		case ConfigurationPackage.OWNING_RULE__STEREOTYPES:
+			return stereotypes != null && !stereotypes.isEmpty();
+		case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
+			return multiplicity != MULTIPLICITY_EDEFAULT;
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+			return newModelPath != null && !newModelPath.isEmpty();
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			return selectDiagramRoot != null && !selectDiagramRoot.isEmpty();
 		}
 		return super.eIsSet(featureID);
 	}
@@ -353,7 +358,9 @@ public class OwningRuleImpl extends RuleImpl implements OwningRule {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (multiplicity: ");

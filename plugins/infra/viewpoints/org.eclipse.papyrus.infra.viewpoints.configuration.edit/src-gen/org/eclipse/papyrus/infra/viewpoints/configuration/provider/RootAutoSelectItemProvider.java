@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
 
@@ -40,9 +41,9 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
  * <!-- end-user-doc -->
  * @generated
  */
-public class RootAutoSelectItemProvider 
-	extends ItemProviderAdapter
-	implements
+public class RootAutoSelectItemProvider
+		extends ItemProviderAdapter
+		implements
 		IEditingDomainItemProvider,
 		IStructuredItemContentProvider,
 		ITreeItemContentProvider,
@@ -81,19 +82,17 @@ public class RootAutoSelectItemProvider
 	 * @generated
 	 */
 	protected void addFeaturePropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_RootAutoSelect_feature_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_RootAutoSelect_feature_feature", "_UI_RootAutoSelect_type"),
-				 ConfigurationPackage.Literals.ROOT_AUTO_SELECT__FEATURE,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_RootAutoSelect_feature_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_RootAutoSelect_feature_feature", "_UI_RootAutoSelect_type"),
+				ConfigurationPackage.Literals.ROOT_AUTO_SELECT__FEATURE,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -108,6 +107,16 @@ public class RootAutoSelectItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -117,7 +126,7 @@ public class RootAutoSelectItemProvider
 	public String getText(Object object) {
 		return getString("_UI_RootAutoSelect_type");
 	}
-	
+
 
 	/**
 	 * This handles model notifications by calling {@link #updateChildren} to update any cached
@@ -152,7 +161,7 @@ public class RootAutoSelectItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

@@ -50,6 +50,12 @@
         <details key="documentation" value="These rules determine which palette elements should be available for this diagram"/>
       </eAnnotations>
     </eStructuralFeatures>
+    <eStructuralFeatures xsi:type="ecore:EReference" name="assistantRules" upperBound="-1"
+        eType="#//AssistantRule" containment="true">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="These rules determine which modeling assistants should be presented in this diagram"/>
+      </eAnnotations>
+    </eStructuralFeatures>
   </eClassifiers>
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusSyncTable" eSuperTypes="#//PapyrusView"/>
   <eClassifiers xsi:type="ecore:EClass" name="PapyrusTable" eSuperTypes="#//PapyrusView">
@@ -115,4 +121,21 @@
     <eStructuralFeatures xsi:type="ecore:EReference" name="feature" lowerBound="1"
         eType="ecore:EClass http://www.eclipse.org/emf/2002/Ecore#//EReference"/>
   </eClassifiers>
+  <eClassifiers xsi:type="ecore:EClass" name="AssistantRule" eSuperTypes="#//Rule">
+    <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+      <details key="documentation" value="A rule that permits or forbids one or more modeling assistants by element type ID."/>
+    </eAnnotations>
+    <eOperations name="matches" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="Queries whether I match a given &lt;tt>elementType&lt;/tt>."/>
+      </eAnnotations>
+      <eParameters name="elementType" lowerBound="1" eType="#//ElementType"/>
+    </eOperations>
+    <eStructuralFeatures xsi:type="ecore:EAttribute" name="elementTypeID" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EString">
+      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
+        <details key="documentation" value="&lt;p>&#xA;Modeling assistants are identified by the ID of the element type that they create.&#xA;This element type ID supports very simple wildcard patterns:  an asterisk (&lt;tt>*&lt;/tt>)&#xA;may be used to match any substring, including the empty substring.  This is&#xA;particularly useful to match an entire family of related element types by namespace&#xA;prefix, using a terminal asterisk.&#xA;&lt;/p>&lt;p>&#xA;If the element type ID is omitted, then the rule applies to all element types&#xA;(universal wildcard).&#xA;&lt;/p>"/>
+      </eAnnotations>
+    </eStructuralFeatures>
+  </eClassifiers>
+  <eClassifiers xsi:type="ecore:EDataType" name="ElementType" instanceClassName="org.eclipse.gmf.runtime.emf.type.core.IElementType"/>
 </ecore:EPackage>
