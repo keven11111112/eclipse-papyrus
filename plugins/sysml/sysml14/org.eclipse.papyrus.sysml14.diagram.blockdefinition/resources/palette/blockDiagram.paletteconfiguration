@@ -41,7 +41,7 @@
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"
-        label="Create ControlOperator"
+        label="ControlOperator"
         description="Create ControlOperator">
       <icon
           pluginID="org.eclipse.papyrus.sysml"
@@ -184,22 +184,14 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Port"
+        id="org.eclipse.papyrus.sysML.Class_Port"
         label="Port"
         description="Create a Port">
       <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/requirements/Requirement.gif"/>
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Port.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_2008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3004"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3010"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3014"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Class_Port"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
