@@ -2260,420 +2260,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYdcJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3002)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3002"
-      hint="3002">
-    <iconEntry
-        xmi:id="_LoKYdsJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3002</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYd8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYeMJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3005)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3005"
-      hint="3005">
-    <iconEntry
-        xmi:id="_LoKYecJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3005</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYesJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYe8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (3006)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3006"
-      hint="3006">
-    <iconEntry
-        xmi:id="_LoKYfMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3006</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYfcJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYfsJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3012)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3012"
-      hint="3012">
-    <iconEntry
-        xmi:id="_LoKYf8JQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3012</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYgMJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYgcJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3018)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3018"
-      hint="3018">
-    <iconEntry
-        xmi:id="_LoKYgsJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3018</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYg8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYhMJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3041)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Property_3041"
-      hint="3041">
-    <iconEntry
-        xmi:id="_LoKYhcJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Property</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Property_3041</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYhsJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYh8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (4021)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_4021"
-      hint="4021">
-    <iconEntry
-        xmi:id="_LoKYiMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/InstanceSpecification.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecificationLink_4021</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYicJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYisJQEeSX9MoKMBV5Gw"
-      name="Deprecated (2001)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_2001"
-      hint="2001">
-    <iconEntry
-        xmi:id="_LoKYi8JQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/InstanceSpecification.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYjMJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYjcJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3020)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_3020"
-      hint="3020">
-    <iconEntry
-        xmi:id="_LoKYjsJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/InstanceSpecification.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYj8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYkMJQEeSX9MoKMBV5Gw"
-      name="Deprecated (2008)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Class_2008"
-      hint="2008">
-    <iconEntry
-        xmi:id="_LoKYkcJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_2008</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYksJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYk8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (3004)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Class_3004"
-      hint="3004">
-    <iconEntry
-        xmi:id="_LoKYlMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3004</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYlcJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYlsJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3008)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Class_3008"
-      hint="3008">
-    <iconEntry
-        xmi:id="_LoKYl8JQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3008</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYmMJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYmcJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3010)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Class_3010"
-      hint="3010">
-    <iconEntry
-        xmi:id="_LoKYmsJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3010</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYm8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYnMJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3014)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Class_3014"
-      hint="3014">
-    <iconEntry
-        xmi:id="_LoKYncJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Class</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Class_3014</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYnsJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYn8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (2015)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Association_2015"
-      hint="2015">
-    <iconEntry
-        xmi:id="_LoKYoMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Association.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_2015</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYocJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYosJQEeSX9MoKMBV5Gw"
-      name="Deprecated (4001)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Association_4001"
-      hint="4001">
-    <iconEntry
-        xmi:id="_LoKYo8JQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Association.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYpMJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYpcJQEeSX9MoKMBV5Gw"
-      name="Deprecated (4019)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Association_4019"
-      hint="4019">
-    <iconEntry
-        xmi:id="_LoKYpsJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Association.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Association</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4019</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYp8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYqMJQEeSX9MoKMBV5Gw"
-      name="Deprecated Generalization"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_Generalization_4002"
-      hint="4002">
-    <iconEntry
-        xmi:id="_LoKYqcJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/Generalization.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_Generalization</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Generalization_4002</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYqsJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYq8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (2010)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_DataType_2010"
-      hint="2010">
-    <iconEntry
-        xmi:id="_LoKYrMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_2010</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYrcJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYrsJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3027)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_DataType_3027"
-      hint="3027">
-    <iconEntry
-        xmi:id="_LoKYr8JQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3027</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYsMJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYscJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3043)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_DataType_3043"
-      hint="3043">
-    <iconEntry
-        xmi:id="_LoKYssJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3043</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYs8JQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYtMJQEeSX9MoKMBV5Gw"
-      name="Deprecated (3044)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_DataType_3044"
-      hint="3044">
-    <iconEntry
-        xmi:id="_LoKYtcJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3044</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYtsJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_LoKYt8JQEeSX9MoKMBV5Gw"
-      name="Deprecated (3045)"
-      identifier="org.eclipse.papyrus.sysML.Deprecated_DataType_3045"
-      hint="3045">
-    <iconEntry
-        xmi:id="_LoKYuMJQEeSX9MoKMBV5Gw"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.SysML14.Deprecated_DataType</specializedTypesID>
-    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.DataType_3045</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_LoKYucJQEeSX9MoKMBV5Gw">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_tjVDYM1xEeSsRbN4ihgqDg"
       name="FlowPort (FlowPort_Label)"
       description=""
@@ -2854,7 +2440,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_7fjysOgVEeSUQvXhEVQh8w"
-      name="Unit"
+      name="Unit_2001"
       description="Create an Unit in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.Unit_2001"
       hint="2001">
@@ -2864,7 +2450,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_v7PJAOgXEeSUQvXhEVQh8w"
-      name="Unit"
+      name="Unit_3020"
       description="Create an Unit in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.Unit_3020"
       hint="3020">
@@ -2874,7 +2460,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_zWOO4OgnEeSUQvXhEVQh8w"
-      name="Unit"
+      name="QuantityKind_2001"
       description="Create an QuantityKind in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.QuantityKind_2001"
       hint="2001">
@@ -2884,7 +2470,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_zWOO4egnEeSUQvXhEVQh8w"
-      name="Unit"
+      name="QuantityKind_3020"
       description="Create an QuantityKind in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.QuantityKind_3020"
       hint="3020">
@@ -2894,7 +2480,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_X7E5oOgtEeSUQvXhEVQh8w"
-      name="PartAssociation"
+      name="PartAssociation_2015"
       description="Create an Part Association in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.PartAssociation_2015"
       hint="2015">
@@ -2904,7 +2490,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_nJF78OgtEeSUQvXhEVQh8w"
-      name="PartAssociation"
+      name="PartAssociation_4001"
       description="Create an Part Association in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.PartAssociation_4001"
       hint="4001">
@@ -2914,7 +2500,7 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_oAQ0gOgtEeSUQvXhEVQh8w"
-      name="PartAssociation"
+      name="PartAssociation_4019"
       description="Create an Part Association in a UML Class Diagram"
       identifier="org.eclipse.papyrus.sysML.PartAssociation_4019"
       hint="4019">

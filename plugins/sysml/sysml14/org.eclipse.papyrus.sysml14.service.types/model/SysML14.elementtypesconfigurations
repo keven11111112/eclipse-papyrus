@@ -1253,125 +1253,6 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnXLwFEeSwNLK2W02HwA"
-      name="Deprecated ValueSpecification"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification"
-      hint="UML::ValueSpecification">
-    <iconEntry
-        xmi:id="_k4SnXbwFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/ValueSpecification.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.ValueSpecification</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnXrwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnX7wFEeSwNLK2W02HwA"
-      name="Deprecated Property"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_Property"
-      hint="UML::Property">
-    <iconEntry
-        xmi:id="_k4SnYLwFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/Property.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnYbwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnYrwFEeSwNLK2W02HwA"
-      name="Deprecated InstanceSpecification"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification"
-      hint="UML::InstanceSpecification">
-    <iconEntry
-        xmi:id="_k4SnY7wFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/InstanceSpecification.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnZLwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnZbwFEeSwNLK2W02HwA"
-      name="Deprecated Class"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_Class"
-      hint="UML::Class">
-    <iconEntry
-        xmi:id="_k4SnZrwFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/Class.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Class</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnZ7wFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnaLwFEeSwNLK2W02HwA"
-      name="Deprecated Association"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_Association"
-      hint="UML::Association">
-    <iconEntry
-        xmi:id="_k4SnabwFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/Association.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Association</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnarwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4Sna7wFEeSwNLK2W02HwA"
-      name="Deprecated Generalization"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_Generalization"
-      hint="UML::Generalization">
-    <iconEntry
-        xmi:id="_k4SnbLwFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/Generalization.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Generalization</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SnbbwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
-      xmi:id="_k4SnbrwFEeSwNLK2W02HwA"
-      name="Deprecated DataType"
-      identifier="org.eclipse.papyrus.SysML14.Deprecated_DataType"
-      hint="UML::DataType">
-    <iconEntry
-        xmi:id="_k4Snb7wFEeSwNLK2W02HwA"
-        iconPath="/icons/full/obj16/DataType.gif"
-        bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.DataType</specializedTypesID>
-    <matcherConfiguration
-        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
-        xmi:id="_k4SncLwFEeSwNLK2W02HwA">
-      <stereotypesQualifiedNames>SysML::DeprecatedElements::Deprecated</stereotypesQualifiedNames>
-    </matcherConfiguration>
-  </elementTypeConfigurations>
-  <elementTypeConfigurations
-      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_5R-xwOgeEeSUQvXhEVQh8w"
       name="Unit"
       identifier="org.eclipse.papyrus.SysML14.Unit"
@@ -2365,91 +2246,37 @@
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_k4SoA7wFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4SnXLwFEeSwNLK2W02HwA">
+      name="Apply Deprecated to Flow Port"
+      identifier="org.eclipse.papyrus.SysML14.deprecated.flowport"
+      editHelperAdviceClassName=""
+      target="_k4SnULwFEeSwNLK2W02HwA">
     <stereotypesToApply
         xmi:id="_k4SoBLwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
+        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_k4SoBbwFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4SnX7wFEeSwNLK2W02HwA">
+      name="Apply Deprecated to Flow Specification"
+      identifier="org.eclipse.papyrus.SysML14.deprecated.flowspecification"
+      target="_k4SnU7wFEeSwNLK2W02HwA">
     <stereotypesToApply
         xmi:id="_k4SoBrwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
+        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_k4SoB7wFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4SnYrwFEeSwNLK2W02HwA">
+      name="Apply Deprecated to Allocated"
+      identifier="org.eclipse.papyrus.SysML14.deprecated.allocated"
+      target="_k4SnVrwFEeSwNLK2W02HwA">
     <stereotypesToApply
         xmi:id="_k4SoCLwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
-      <requiredProfiles>SysML</requiredProfiles>
-    </stereotypesToApply>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_k4SoCbwFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4SnZbwFEeSwNLK2W02HwA">
-    <stereotypesToApply
-        xmi:id="_k4SoCrwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
-      <requiredProfiles>SysML</requiredProfiles>
-    </stereotypesToApply>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_k4SoC7wFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated_UML::Association"
-      target="_k4SnaLwFEeSwNLK2W02HwA">
-    <stereotypesToApply
-        xmi:id="_k4SoDLwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
-      <requiredProfiles>SysML</requiredProfiles>
-    </stereotypesToApply>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_k4SoDbwFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4Sna7wFEeSwNLK2W02HwA">
-    <stereotypesToApply
-        xmi:id="_k4SoDrwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
-      <requiredProfiles>SysML</requiredProfiles>
-    </stereotypesToApply>
-  </adviceBindingsConfigurations>
-  <adviceBindingsConfigurations
-      xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
-      xmi:id="_k4SoD7wFEeSwNLK2W02HwA"
-      name="Apply Deprecated"
-      identifier="org.eclipse.papyrus.SysML14.deprecated"
-      target="_k4SnbrwFEeSwNLK2W02HwA">
-    <stereotypesToApply
-        xmi:id="_k4SoELwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated"
-        updateName="true">
+        stereotypeQualifiedName="SysML::DeprecatedElements::Deprecated">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>

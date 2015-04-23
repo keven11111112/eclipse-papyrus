@@ -65,62 +65,6 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="Deprecated"
-      label="Deprecated"
-      description="Deprecated">
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.Deprecated_DataType"
-        label="Deprecated_DataType"
-        description="Create a Deprecated">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/DataType.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_2068"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_3080"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.Deprecated Generalization"
-        label="Deprecated Generalization"
-        description="Create a Deprecated Generalization"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Generalization.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Generalization_4015"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.Deprecated.property"
-        label="Deprecated_Property"
-        description="Create a Deprecated Property">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Property.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3070"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3101"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="palettemodel.Deprecated_Class"
-        label="Deprecated_Class"
-        description="Create a Deprecated_Class">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Class.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_3085"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_2073"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations
       id="SysML Nodes"
       label="Other Nodes"
       description="Other Nodes">

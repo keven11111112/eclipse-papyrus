@@ -35,6 +35,7 @@ public class SysML14ElementTypesTest {
 		Assert.assertNotNull("The SysML 1.4 element type set definition is missing", elementTypeSetConfiguration);
 	}
 	
+
     @Test
 	public void testRegistryContentForValueType() {
 		Assert.assertTrue("ValueType element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.ValueType"));
@@ -401,39 +402,20 @@ public class SysML14ElementTypesTest {
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_ValueSpecification() {
-		Assert.assertTrue("Deprecated ValueSpecification element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification"));
+	public void testRegistryContentForUnit() {
+		Assert.assertTrue("Unit element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Unit"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_Property() {
-		Assert.assertTrue("Deprecated Property element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_Property"));
+	public void testRegistryContentForQuantityKind() {
+		Assert.assertTrue("QuantityKind element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.QuantityKind"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_InstanceSpecification() {
-		Assert.assertTrue("Deprecated InstanceSpecification element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification"));
+	public void testRegistryContentForPartAssociation() {
+		Assert.assertTrue("PartAssociation element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.PartAssociation"));
 	}
 
-    @Test
-	public void testRegistryContentForDeprecated_Class() {
-		Assert.assertTrue("Deprecated Class element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_Class"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_Association() {
-		Assert.assertTrue("Deprecated Association element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_Association"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_Generalization() {
-		Assert.assertTrue("Deprecated Generalization element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_Generalization"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_DataType() {
-		Assert.assertTrue("Deprecated DataType element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Deprecated_DataType"));
-	}
 
 
 }
