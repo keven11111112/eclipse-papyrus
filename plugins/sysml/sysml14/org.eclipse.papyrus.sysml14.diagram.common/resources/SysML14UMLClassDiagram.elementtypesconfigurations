@@ -2838,4 +2838,87 @@
         bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_HQFw0OduEeSUQvXhEVQh8w"
+      name="Actor"
+      description="Create an Actor in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.Actor_2008"
+      hint="2008">
+    <iconEntry
+        xmi:id="_HQFw0eduEeSUQvXhEVQh8w"
+        iconPath="/icons/full/obj16/Constraint.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.Actor</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_7fjysOgVEeSUQvXhEVQh8w"
+      name="Unit"
+      description="Create an Unit in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.Unit_2001"
+      hint="2001">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Unit</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_v7PJAOgXEeSUQvXhEVQh8w"
+      name="Unit"
+      description="Create an Unit in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.Unit_3020"
+      hint="3020">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.Unit</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_zWOO4OgnEeSUQvXhEVQh8w"
+      name="Unit"
+      description="Create an QuantityKind in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.QuantityKind_2001"
+      hint="2001">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.QuantityKind</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_zWOO4egnEeSUQvXhEVQh8w"
+      name="Unit"
+      description="Create an QuantityKind in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.QuantityKind_3020"
+      hint="3020">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.QuantityKind</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_X7E5oOgtEeSUQvXhEVQh8w"
+      name="PartAssociation"
+      description="Create an Part Association in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.PartAssociation_2015"
+      hint="2015">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_2015</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_nJF78OgtEeSUQvXhEVQh8w"
+      name="PartAssociation"
+      description="Create an Part Association in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.PartAssociation_4001"
+      hint="4001">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4001</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_oAQ0gOgtEeSUQvXhEVQh8w"
+      name="PartAssociation"
+      description="Create an Part Association in a UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.PartAssociation_4019"
+      hint="4019">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.PartAssociation</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Association_4019</specializedTypesID>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

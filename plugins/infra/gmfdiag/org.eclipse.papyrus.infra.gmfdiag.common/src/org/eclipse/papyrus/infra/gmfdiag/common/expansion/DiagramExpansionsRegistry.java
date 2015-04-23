@@ -24,29 +24,27 @@ import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceSetImpl;
 import org.eclipse.emf.ecore.util.Diagnostician;
 import org.eclipse.emf.ecore.xmi.impl.XMIResourceFactoryImpl;
-import org.eclipse.papyrus.infra.core.services.IServiceFactory;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.DiagramExpansion;
-import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.ExpansionmodelPackage;
 import org.eclipse.papyrus.infra.gmfdiag.common.expansionmodel.UseContext;
-import org.eclipse.papyrus.uml.extensionpoints.utils.Util;
 import org.osgi.framework.Bundle;
 
 /**
  * This class is used to load all extension point call org.eclipse.papyrus.infra.gmfdiag.diagramexpansion
  * It gives the set of all Diagram expansion that has to be used
- * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060 
- * 
+ * #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_060
+ *
  */
 public class DiagramExpansionsRegistry {
 
 	protected final String EXPANSION_MODEL_EXTENSION_ID = "org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion"; //$NON-NLS-1$
 	protected final String MODEL_ID = "model"; //$NON-NLS-1$
 	protected ArrayList<DiagramExpansion> diagramExpansions = new ArrayList<DiagramExpansion>();
-	protected HashMap<String,UseContext > usages= new HashMap<String, UseContext>();
-	public HashMap<String,ChildrenListRepresentation > mapChildreen= new HashMap<String, ChildrenListRepresentation>();
+	protected HashMap<String, UseContext> usages = new HashMap<String, UseContext>();
+	public HashMap<String, ChildrenListRepresentation> mapChildreen = new HashMap<String, ChildrenListRepresentation>();
 	protected static final boolean DEBUG_EXPANSION = "true".equalsIgnoreCase(Platform.getDebugOption(
 			"org.eclipse.papyrus.infra.gmfdiag.common/debug/expansion"));
 
@@ -64,51 +62,46 @@ public class DiagramExpansionsRegistry {
 	 */
 	public void init() {
 		// Obtain a new resource set
-		ResourceSet resourceSet = Util.createTemporaryResourceSet();
-		resourceSet.getPackageRegistry().put(ExpansionmodelPackage.eINSTANCE.getNsURI(), ExpansionmodelPackage.eINSTANCE);
+		ResourceSet resourceSet = new ResourceSetImpl();
 
 		// Reading data from plugins
 		IConfigurationElement[] configElements = Platform.getExtensionRegistry().getConfigurationElementsFor(EXPANSION_MODEL_EXTENSION_ID);
 		for (int i = 0; i < configElements.length; i++) {
-			DiagramExpansion diagramExpansion=initializeOneModel(resourceSet, configElements[i]);
+			DiagramExpansion diagramExpansion = initializeOneModel(resourceSet, configElements[i]);
 			installExpansionModel(diagramExpansion);
 		}
 
 	}
 
 	protected void installExpansionModel(DiagramExpansion diagramExpansion) {
-		Diagnostic diagnostic=Diagnostician.INSTANCE.validate(diagramExpansion);
-		if( diagnostic.getSeverity()==Diagnostic.OK){
-			//load only valid models
+		Diagnostic diagnostic = Diagnostician.INSTANCE.validate(diagramExpansion);
+		if (diagnostic.getSeverity() == Diagnostic.OK) {
+			// load only valid models
 			diagramExpansions.add(diagramExpansion);
 			for (UseContext usage : diagramExpansion.getUsages()) {
-				if( (usages.get(usage.getDiagramType()))==null){
+				if ((usages.get(usage.getDiagramType())) == null) {
 					usages.put(usage.getDiagramType(), usage);
-					ChildrenListRepresentation childrenListRepresentation= new ChildrenListRepresentation(usage);
+					ChildrenListRepresentation childrenListRepresentation = new ChildrenListRepresentation(usage);
 					mapChildreen.put(usage.getDiagramType(), childrenListRepresentation);
-					if(DEBUG_EXPANSION){
+					if (DEBUG_EXPANSION) {
 						Activator.log.debug(childrenListRepresentation.toString());
 					}
-				}
-				else{
-					//there is two ewtension oon the smae diagram!
-					//do not load --error
+				} else {
+					// there is two ewtension oon the smae diagram!
+					// do not load --error
 					Activator.log.warn("Several expansions has been defined for the same diagram");
 				}
 			}
-		}
-		else{
+		} else {
 			Activator.log.warn("Expansion model not loaded");
-			for (Iterator<Diagnostic> i=diagnostic.getChildren().iterator(); i.hasNext();)
-		      {
-		        Diagnostic childDiagnostic = (Diagnostic)i.next();
-		        switch (childDiagnostic.getSeverity())
-		        {
-		          case Diagnostic.ERROR:
-		          case Diagnostic.WARNING:
-		        	  Activator.log.warn("\t" + childDiagnostic.getMessage());
-		        }
-		      }
+			for (Iterator<Diagnostic> i = diagnostic.getChildren().iterator(); i.hasNext();) {
+				Diagnostic childDiagnostic = i.next();
+				switch (childDiagnostic.getSeverity()) {
+				case Diagnostic.ERROR:
+				case Diagnostic.WARNING:
+					Activator.log.warn("\t" + childDiagnostic.getMessage());
+				}
+			}
 		}
 	}
 
@@ -122,10 +115,12 @@ public class DiagramExpansionsRegistry {
 
 	/**
 	 * get the usecontext associate to a diagram type
-	 * @param diagramType the id of a diagram of the id of a view prototype
+	 *
+	 * @param diagramType
+	 *            the id of a diagram of the id of a view prototype
 	 * @return a useConstext or null if not usage exist.
 	 */
-	public UseContext getUsage(String diagramType){
+	public UseContext getUsage(String diagramType) {
 		return usages.get(diagramType);
 	}
 
@@ -182,23 +177,25 @@ public class DiagramExpansionsRegistry {
 
 	/**
 	 * this method is used to load a model expansion at runtime.
-	 * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100 
-	 * @param resourceURI the URI of the model expansion.
+	 * see #Req org.eclipse.papyrus.infra.gmfdiag.expansion.Req_0100
+	 *
+	 * @param resourceURI
+	 *            the URI of the model expansion.
 	 */
-	public void loadExpansion(URI resourceURI){
+	public void loadExpansion(URI resourceURI) {
 		// Obtain a new resource set
-		ResourceSet resourceSet = Util.createTemporaryResourceSet();
-		resourceSet.getPackageRegistry().put(ExpansionmodelPackage.eINSTANCE.getNsURI(), ExpansionmodelPackage.eINSTANCE);
+		ResourceSet resourceSet = new ResourceSetImpl();
 		Resource resource = resourceSet.getResource(resourceURI, true);
 		if (resource.getContents().get(0) instanceof DiagramExpansion) {
-			DiagramExpansion diagramExpansion= (DiagramExpansion) resource.getContents().get(0);
+			DiagramExpansion diagramExpansion = (DiagramExpansion) resource.getContents().get(0);
 			installExpansionModel(diagramExpansion);
 		}
 	}
+
 	/**
-	 *  this method is used to clear the registry about all expansion.
+	 * this method is used to clear the registry about all expansion.
 	 */
-	public void clear(){
+	public void clear() {
 		diagramExpansions.clear();
 		usages.clear();
 		mapChildreen.clear();

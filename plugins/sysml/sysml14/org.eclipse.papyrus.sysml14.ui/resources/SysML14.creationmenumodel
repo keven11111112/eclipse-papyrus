@@ -1,83 +1,335 @@
 <?xml version="1.0" encoding="ASCII"?>
-<ElementCreationMenuModel:Folder xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel" xmi:id="_FUfLgMyuEeSuYbPdZwWlyw" label="SysML 1.4" icon="">
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfykMyuEeSuYbPdZwWlyw" label="ValueType" elementTypeIdRef="org.eclipse.papyrus.SysML14.ValueType"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfykcyuEeSuYbPdZwWlyw" label="DistributedProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.DistributedProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyksyuEeSuYbPdZwWlyw" label="ConnectorProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.ConnectorProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyk8yuEeSuYbPdZwWlyw" label="ParticipantProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.ParticipantProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfylMyuEeSuYbPdZwWlyw" label="BindingConnector" elementTypeIdRef="org.eclipse.papyrus.SysML14.BindingConnector"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfylcyuEeSuYbPdZwWlyw" label="Block" elementTypeIdRef="org.eclipse.papyrus.SysML14.Block"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfylsyuEeSuYbPdZwWlyw" label="PropertySpecificType" elementTypeIdRef="org.eclipse.papyrus.SysML14.PropertySpecificType"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyl8yuEeSuYbPdZwWlyw" label="NestedConnectorEnd ConnectorEnd" elementTypeIdRef="org.eclipse.papyrus.SysML14.NestedConnectorEnd_ConnectorEnd"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfymMyuEeSuYbPdZwWlyw" label="NestedConnectorEnd Element" elementTypeIdRef="org.eclipse.papyrus.SysML14.NestedConnectorEnd_Element"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfymcyuEeSuYbPdZwWlyw" label="DirectedRelationshipPropertyPath" elementTypeIdRef="org.eclipse.papyrus.SysML14.DirectedRelationshipPropertyPath"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfymsyuEeSuYbPdZwWlyw" label="ElementPropertyPath" elementTypeIdRef="org.eclipse.papyrus.SysML14.ElementPropertyPath"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfym8yuEeSuYbPdZwWlyw" label="EndPathMultiplicity" elementTypeIdRef="org.eclipse.papyrus.SysML14.EndPathMultiplicity"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfynMyuEeSuYbPdZwWlyw" label="BoundReference" elementTypeIdRef="org.eclipse.papyrus.SysML14.BoundReference"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyncyuEeSuYbPdZwWlyw" label="AdjunctProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.AdjunctProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfynsyuEeSuYbPdZwWlyw" label="ClassifierBehaviorProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyn8yuEeSuYbPdZwWlyw" label="ItemFlow" elementTypeIdRef="org.eclipse.papyrus.SysML14.ItemFlow"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyoMyuEeSuYbPdZwWlyw" label="FlowProperty" elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowProperty"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyocyuEeSuYbPdZwWlyw" label="FullPort" elementTypeIdRef="org.eclipse.papyrus.SysML14.FullPort"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyosyuEeSuYbPdZwWlyw" label="InterfaceBlock" elementTypeIdRef="org.eclipse.papyrus.SysML14.InterfaceBlock"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyo8yuEeSuYbPdZwWlyw" label="ProxyPort" elementTypeIdRef="org.eclipse.papyrus.SysML14.ProxyPort"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfypMyuEeSuYbPdZwWlyw" label="AcceptChangeStructuralFeatureEventAction" elementTypeIdRef="org.eclipse.papyrus.SysML14.AcceptChangeStructuralFeatureEventAction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfypcyuEeSuYbPdZwWlyw" label="ChangeStructuralFeatureEvent" elementTypeIdRef="org.eclipse.papyrus.SysML14.ChangeStructuralFeatureEvent"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfypsyuEeSuYbPdZwWlyw" label="DirectedFeature" elementTypeIdRef="org.eclipse.papyrus.SysML14.DirectedFeature"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyp8yuEeSuYbPdZwWlyw" label="InvocationOnNestedPortAction InvocationAction" elementTypeIdRef="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_InvocationAction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyqMyuEeSuYbPdZwWlyw" label="InvocationOnNestedPortAction Element" elementTypeIdRef="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_Element"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUfyqcyuEeSuYbPdZwWlyw" label="TriggerOnNestedPort Trigger" elementTypeIdRef="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Trigger"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZoMyuEeSuYbPdZwWlyw" label="TriggerOnNestedPort Element" elementTypeIdRef="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Element"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZocyuEeSuYbPdZwWlyw" label="Overwrite" elementTypeIdRef="org.eclipse.papyrus.SysML14.Overwrite"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZosyuEeSuYbPdZwWlyw" label="ControlOperator Behavior" elementTypeIdRef="org.eclipse.papyrus.SysML14.ControlOperator_Behavior"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZo8yuEeSuYbPdZwWlyw" label="ControlOperator Operation" elementTypeIdRef="org.eclipse.papyrus.SysML14.ControlOperator_Operation"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZpMyuEeSuYbPdZwWlyw" label="Rate ActivityEdge" elementTypeIdRef="org.eclipse.papyrus.SysML14.Rate_ActivityEdge"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZpcyuEeSuYbPdZwWlyw" label="Rate Parameter" elementTypeIdRef="org.eclipse.papyrus.SysML14.Rate_Parameter"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZpsyuEeSuYbPdZwWlyw" label="NoBuffer" elementTypeIdRef="org.eclipse.papyrus.SysML14.NoBuffer"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZp8yuEeSuYbPdZwWlyw" label="Discrete ActivityEdge" elementTypeIdRef="org.eclipse.papyrus.SysML14.Discrete_ActivityEdge"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZqMyuEeSuYbPdZwWlyw" label="Discrete Parameter" elementTypeIdRef="org.eclipse.papyrus.SysML14.Discrete_Parameter"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZqcyuEeSuYbPdZwWlyw" label="Continuous ActivityEdge" elementTypeIdRef="org.eclipse.papyrus.SysML14.Continuous_ActivityEdge"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZqsyuEeSuYbPdZwWlyw" label="Continuous Parameter" elementTypeIdRef="org.eclipse.papyrus.SysML14.Continuous_Parameter"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZq8yuEeSuYbPdZwWlyw" label="Probability ActivityEdge" elementTypeIdRef="org.eclipse.papyrus.SysML14.Probability_ActivityEdge"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZrMyuEeSuYbPdZwWlyw" label="Probability ParameterSet" elementTypeIdRef="org.eclipse.papyrus.SysML14.Probability_ParameterSet"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZrcyuEeSuYbPdZwWlyw" label="Optional" elementTypeIdRef="org.eclipse.papyrus.SysML14.Optional"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZrsyuEeSuYbPdZwWlyw" label="Rationale" elementTypeIdRef="org.eclipse.papyrus.SysML14.Rationale"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZr8yuEeSuYbPdZwWlyw" label="View Package" elementTypeIdRef="org.eclipse.papyrus.SysML14.View_Package"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZsMyuEeSuYbPdZwWlyw" label="View Class" elementTypeIdRef="org.eclipse.papyrus.SysML14.View_Class"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZscyuEeSuYbPdZwWlyw" label="Conform Dependency" elementTypeIdRef="org.eclipse.papyrus.SysML14.Conform_Dependency"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZssyuEeSuYbPdZwWlyw" label="Conform Generalization" elementTypeIdRef="org.eclipse.papyrus.SysML14.Conform_Generalization"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZs8yuEeSuYbPdZwWlyw" label="Problem" elementTypeIdRef="org.eclipse.papyrus.SysML14.Problem"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZtMyuEeSuYbPdZwWlyw" label="ViewPoint" elementTypeIdRef="org.eclipse.papyrus.SysML14.ViewPoint"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZtcyuEeSuYbPdZwWlyw" label="Stakeholder" elementTypeIdRef="org.eclipse.papyrus.SysML14.Stakeholder"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZtsyuEeSuYbPdZwWlyw" label="Expose" elementTypeIdRef="org.eclipse.papyrus.SysML14.Expose"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZt8yuEeSuYbPdZwWlyw" label="ElementGroup" elementTypeIdRef="org.eclipse.papyrus.SysML14.ElementGroup"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZuMyuEeSuYbPdZwWlyw" label="ConstraintBlock" elementTypeIdRef="org.eclipse.papyrus.SysML14.ConstraintBlock"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZucyuEeSuYbPdZwWlyw" label="AllocateActivityPartition" elementTypeIdRef="org.eclipse.papyrus.SysML14.AllocateActivityPartition"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZusyuEeSuYbPdZwWlyw" label="Allocate Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocate_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZu8yuEeSuYbPdZwWlyw" label="Allocate DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocate_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZvMyuEeSuYbPdZwWlyw" label="DeriveReqt Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZvcyuEeSuYbPdZwWlyw" label="DeriveReqt DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.DeriveReqt_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZvsyuEeSuYbPdZwWlyw" label="Copy Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Copy_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZv8yuEeSuYbPdZwWlyw" label="Copy DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Copy_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZwMyuEeSuYbPdZwWlyw" label="Satisfy Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Satisfy_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZwcyuEeSuYbPdZwWlyw" label="Satisfy DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Satisfy_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZwsyuEeSuYbPdZwWlyw" label="TestCase Operation" elementTypeIdRef="org.eclipse.papyrus.SysML14.TestCase_Operation"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZw8yuEeSuYbPdZwWlyw" label="TestCase Behavior" elementTypeIdRef="org.eclipse.papyrus.SysML14.TestCase_Behavior"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZxMyuEeSuYbPdZwWlyw" label="Requirement" elementTypeIdRef="org.eclipse.papyrus.SysML14.Requirement"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZxcyuEeSuYbPdZwWlyw" label="Verify Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Verify_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZxsyuEeSuYbPdZwWlyw" label="Verify DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Verify_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZx8yuEeSuYbPdZwWlyw" label="Trace Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Trace_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZyMyuEeSuYbPdZwWlyw" label="Trace DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Trace_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZycyuEeSuYbPdZwWlyw" label="Refine Abstraction" elementTypeIdRef="org.eclipse.papyrus.SysML14.Refine_Abstraction"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZysyuEeSuYbPdZwWlyw" label="Refine DirectedRelationship" elementTypeIdRef="org.eclipse.papyrus.SysML14.Refine_DirectedRelationship"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZy8yuEeSuYbPdZwWlyw" label="FlowPort" elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowPort"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZzMyuEeSuYbPdZwWlyw" label="FlowSpecification" elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowSpecification"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZzcyuEeSuYbPdZwWlyw" label="Allocated" elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocated"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZzsyuEeSuYbPdZwWlyw" label="RequirementRelated" elementTypeIdRef="org.eclipse.papyrus.SysML14.RequirementRelated"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZz8yuEeSuYbPdZwWlyw" label="Deprecated ValueSpecification" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ0MyuEeSuYbPdZwWlyw" label="Property (Deprecated)" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Property"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ0cyuEeSuYbPdZwWlyw" label="InstanceSpecification(Deprecated)" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ0syuEeSuYbPdZwWlyw" label="Class (Deprecated)" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Class"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ08yuEeSuYbPdZwWlyw" label="Association (Deprecated)" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Association_UML::Association"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ1MyuEeSuYbPdZwWlyw" label="Generalization (Deprecated)" icon="" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Generalization"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu" xmi:id="_FUgZ1cyuEeSuYbPdZwWlyw" label="DataType (Deprecated)" elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_DataType"/>
+<ElementCreationMenuModel:Folder
+    xmi:version="2.0"
+    xmlns:xmi="http://www.omg.org/XMI"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xmlns:ElementCreationMenuModel="http://www.eclipse.org/papyrus/infra/newchild/elementcreationmenumodel"
+    xmi:id="_FUfLgMyuEeSuYbPdZwWlyw"
+    label="SysML 1.4"
+    icon="">
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfykMyuEeSuYbPdZwWlyw"
+      label="ValueType"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ValueType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfykcyuEeSuYbPdZwWlyw"
+      label="DistributedProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.DistributedProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyksyuEeSuYbPdZwWlyw"
+      label="ConnectorProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ConnectorProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyk8yuEeSuYbPdZwWlyw"
+      label="ParticipantProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ParticipantProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfylMyuEeSuYbPdZwWlyw"
+      label="BindingConnector"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.BindingConnector"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfylcyuEeSuYbPdZwWlyw"
+      label="Block"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Block"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfylsyuEeSuYbPdZwWlyw"
+      label="PropertySpecificType"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.PropertySpecificType"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyl8yuEeSuYbPdZwWlyw"
+      label="NestedConnectorEnd ConnectorEnd"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.NestedConnectorEnd_ConnectorEnd"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfymMyuEeSuYbPdZwWlyw"
+      label="NestedConnectorEnd Element"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.NestedConnectorEnd_Element"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfymcyuEeSuYbPdZwWlyw"
+      label="DirectedRelationshipPropertyPath"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.DirectedRelationshipPropertyPath"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfymsyuEeSuYbPdZwWlyw"
+      label="ElementPropertyPath"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ElementPropertyPath"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfym8yuEeSuYbPdZwWlyw"
+      label="EndPathMultiplicity"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.EndPathMultiplicity"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfynMyuEeSuYbPdZwWlyw"
+      label="BoundReference"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.BoundReference"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyncyuEeSuYbPdZwWlyw"
+      label="AdjunctProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.AdjunctProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfynsyuEeSuYbPdZwWlyw"
+      label="ClassifierBehaviorProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyn8yuEeSuYbPdZwWlyw"
+      label="ItemFlow"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ItemFlow"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyoMyuEeSuYbPdZwWlyw"
+      label="FlowProperty"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowProperty"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyocyuEeSuYbPdZwWlyw"
+      label="FullPort"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.FullPort"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyosyuEeSuYbPdZwWlyw"
+      label="InterfaceBlock"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.InterfaceBlock"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyo8yuEeSuYbPdZwWlyw"
+      label="ProxyPort"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ProxyPort"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfypMyuEeSuYbPdZwWlyw"
+      label="AcceptChangeStructuralFeatureEventAction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.AcceptChangeStructuralFeatureEventAction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfypcyuEeSuYbPdZwWlyw"
+      label="ChangeStructuralFeatureEvent"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ChangeStructuralFeatureEvent"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfypsyuEeSuYbPdZwWlyw"
+      label="DirectedFeature"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.DirectedFeature"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyp8yuEeSuYbPdZwWlyw"
+      label="InvocationOnNestedPortAction InvocationAction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_InvocationAction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyqMyuEeSuYbPdZwWlyw"
+      label="InvocationOnNestedPortAction Element"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.InvocationOnNestedPortAction_Element"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUfyqcyuEeSuYbPdZwWlyw"
+      label="TriggerOnNestedPort Trigger"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Trigger"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZoMyuEeSuYbPdZwWlyw"
+      label="TriggerOnNestedPort Element"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.TriggerOnNestedPort_Element"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZocyuEeSuYbPdZwWlyw"
+      label="Overwrite"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Overwrite"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZosyuEeSuYbPdZwWlyw"
+      label="ControlOperator Behavior"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ControlOperator_Behavior"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZo8yuEeSuYbPdZwWlyw"
+      label="ControlOperator Operation"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ControlOperator_Operation"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZpMyuEeSuYbPdZwWlyw"
+      label="Rate ActivityEdge"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Rate_ActivityEdge"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZpcyuEeSuYbPdZwWlyw"
+      label="Rate Parameter"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Rate_Parameter"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZpsyuEeSuYbPdZwWlyw"
+      label="NoBuffer"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.NoBuffer"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZp8yuEeSuYbPdZwWlyw"
+      label="Discrete ActivityEdge"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Discrete_ActivityEdge"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZqMyuEeSuYbPdZwWlyw"
+      label="Discrete Parameter"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Discrete_Parameter"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZqcyuEeSuYbPdZwWlyw"
+      label="Continuous ActivityEdge"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Continuous_ActivityEdge"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZqsyuEeSuYbPdZwWlyw"
+      label="Continuous Parameter"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Continuous_Parameter"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZq8yuEeSuYbPdZwWlyw"
+      label="Probability ActivityEdge"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Probability_ActivityEdge"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZrMyuEeSuYbPdZwWlyw"
+      label="Probability ParameterSet"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Probability_ParameterSet"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZrcyuEeSuYbPdZwWlyw"
+      label="Optional"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Optional"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZrsyuEeSuYbPdZwWlyw"
+      label="Rationale"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Rationale"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZr8yuEeSuYbPdZwWlyw"
+      label="View Package"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.View_Package"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZsMyuEeSuYbPdZwWlyw"
+      label="View Class"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.View_Class"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZscyuEeSuYbPdZwWlyw"
+      label="Conform Dependency"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Conform_Dependency"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZssyuEeSuYbPdZwWlyw"
+      label="Conform Generalization"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Conform_Generalization"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZs8yuEeSuYbPdZwWlyw"
+      label="Problem"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Problem"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZtMyuEeSuYbPdZwWlyw"
+      label="ViewPoint"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ViewPoint"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZtcyuEeSuYbPdZwWlyw"
+      label="Stakeholder"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Stakeholder"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZtsyuEeSuYbPdZwWlyw"
+      label="Expose"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Expose"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZt8yuEeSuYbPdZwWlyw"
+      label="ElementGroup"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ElementGroup"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZuMyuEeSuYbPdZwWlyw"
+      label="ConstraintBlock"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.ConstraintBlock"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZucyuEeSuYbPdZwWlyw"
+      label="AllocateActivityPartition"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.AllocateActivityPartition"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZusyuEeSuYbPdZwWlyw"
+      label="Allocate Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocate_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZu8yuEeSuYbPdZwWlyw"
+      label="Allocate DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocate_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZvMyuEeSuYbPdZwWlyw"
+      label="DeriveReqt Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.DeriveReqt_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZvcyuEeSuYbPdZwWlyw"
+      label="DeriveReqt DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.DeriveReqt_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZvsyuEeSuYbPdZwWlyw"
+      label="Copy Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Copy_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZv8yuEeSuYbPdZwWlyw"
+      label="Copy DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Copy_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZwMyuEeSuYbPdZwWlyw"
+      label="Satisfy Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Satisfy_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZwcyuEeSuYbPdZwWlyw"
+      label="Satisfy DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Satisfy_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZwsyuEeSuYbPdZwWlyw"
+      label="TestCase Operation"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.TestCase_Operation"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZw8yuEeSuYbPdZwWlyw"
+      label="TestCase Behavior"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.TestCase_Behavior"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZxMyuEeSuYbPdZwWlyw"
+      label="Requirement"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Requirement"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZxcyuEeSuYbPdZwWlyw"
+      label="Verify Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Verify_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZxsyuEeSuYbPdZwWlyw"
+      label="Verify DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Verify_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZx8yuEeSuYbPdZwWlyw"
+      label="Trace Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Trace_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZyMyuEeSuYbPdZwWlyw"
+      label="Trace DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Trace_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZycyuEeSuYbPdZwWlyw"
+      label="Refine Abstraction"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Refine_Abstraction"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZysyuEeSuYbPdZwWlyw"
+      label="Refine DirectedRelationship"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Refine_DirectedRelationship"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZy8yuEeSuYbPdZwWlyw"
+      label="FlowPort"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowPort"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZzMyuEeSuYbPdZwWlyw"
+      label="FlowSpecification"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.FlowSpecification"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZzcyuEeSuYbPdZwWlyw"
+      label="Allocated"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Allocated"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZzsyuEeSuYbPdZwWlyw"
+      label="RequirementRelated"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.RequirementRelated"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_V9D8cOjrEeS0s_Pe-G3XMA"
+      label="Unit"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Unit"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZz8yuEeSuYbPdZwWlyw"
+      label="ValueSpecification (Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_ValueSpecification"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ0MyuEeSuYbPdZwWlyw"
+      label="Property (Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Property"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ0cyuEeSuYbPdZwWlyw"
+      label="InstanceSpecification(Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_InstanceSpecification"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ0syuEeSuYbPdZwWlyw"
+      label="Class (Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Class"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ08yuEeSuYbPdZwWlyw"
+      label="Association (Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Association_UML::Association"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ1MyuEeSuYbPdZwWlyw"
+      label="Generalization (Deprecated)"
+      icon=""
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_Generalization"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      xmi:id="_FUgZ1cyuEeSuYbPdZwWlyw"
+      label="DataType (Deprecated)"
+      elementTypeIdRef="org.eclipse.papyrus.SysML14.Deprecated_DataType"/>
 </ElementCreationMenuModel:Folder>

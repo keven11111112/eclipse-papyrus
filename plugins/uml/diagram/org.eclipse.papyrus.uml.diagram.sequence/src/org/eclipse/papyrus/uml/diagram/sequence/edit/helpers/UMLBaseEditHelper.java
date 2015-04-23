@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 Atos Origin.
+ * Copyright (c) 2009, 2015 Atos Origin, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,31 +9,16 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 458685
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.helpers;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.common.core.command.ICommand;
-import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.tooling.runtime.edit.helpers.GeneratedEditHelperBase;
-import org.eclipse.papyrus.uml.diagram.common.commands.UnapplyAllStereotypesCommand;
-import org.eclipse.uml2.uml.Element;
 
 /**
  * @generated
  */
 public class UMLBaseEditHelper extends GeneratedEditHelperBase {
 
-	@Override
-	protected ICommand getDestroyElementCommand(DestroyElementRequest req) {
-		EObject elementToDestroy = req.getElementToDestroy();
-		if (elementToDestroy instanceof Element) {
-			UnapplyAllStereotypesCommand command = new UnapplyAllStereotypesCommand(req.getEditingDomain(), req.getLabel(), (Element) elementToDestroy);
-			if (!command.isEmpty()) {
-				return command;
-			}
-		}
-		return null;
-	}
 }

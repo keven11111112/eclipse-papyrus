@@ -1,6 +1,47 @@
 <?xml version="1.0" encoding="ASCII"?>
 <paletteconfiguration:PaletteConfiguration xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:paletteconfiguration="http://www.eclipse.org/papyrus/diagram/paletteconfiguration/0.7" id="palettemodel" label="SysML">
-  <drawerConfigurations id="SysML Nodes" label="SysML Nodes" description="SysML Nodes">
+  <drawerConfigurations id="palette.sysml.parametric.nodes" label="Nodes" description="Nodes">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.sysML.Comment" label="Comment" description="Create a comment">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Comment.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Comment_2109"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Comment_3097"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.sysML.Constraint" label="Constraint" description="Create a constraint">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Constraint.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Constraint_3120"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations id="palette.sysml.parametric.edges" label="Edges" description="Edges">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="org.eclipse.papyrus.sysML.Dependency" label="Dependency" description="Create a dependency" kind="ConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="/icons/full/obj16/Dependency.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations id="Deprecated" label="Deprecated" description="Deprecated">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated_DataType" label="Deprecated_DataType" description="Create a Deprecated">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/DataType.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_2068"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_3080"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated Generalization" label="Deprecated Generalization" description="Create a Deprecated Generalization" kind="ConnectionTool">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Generalization.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Generalization_4015"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated.property" label="Deprecated_Property" description="Create a Deprecated Property">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3070"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3101"/>
+    </ownedConfigurations>
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated_Class" label="Deprecated_Class" description="Create a Deprecated_Class">
+      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Class.gif"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_3085"/>
+      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_2073"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations id="SysML Nodes" label="Other Nodes" description="Other Nodes">
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.ClassifierBehaviorProperty" label="ClassifierBehaviorProperty" description="Create a ClassifierBehaviorProperty">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Property.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.ClassifierBehaviorProperty_3070"/>
@@ -141,7 +182,7 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.BoundReference_3101"/>
     </ownedConfigurations>
   </drawerConfigurations>
-  <drawerConfigurations id="SysML Edges" label="SysML Edges" description="SysML Edges">
+  <drawerConfigurations id="SysML Edges" label="Other Edges" description="Other Edges">
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Expose" label="Expose" description="Create a Expose" kind="ConnectionTool">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Dependency.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Expose_4010"/>
@@ -189,27 +230,6 @@
     <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.BindingConnector" label="BindingConnector" description="Create a BindingConnector">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Connector.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.BindingConnector_4013"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations id="Deprecated" label="Deprecated" description="Deprecated">
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated_DataType" label="Deprecated_DataType" description="Create a Deprecated">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/DataType.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_2068"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_DataType_3080"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated Generalization" label="Deprecated Generalization" description="Create a Deprecated Generalization" kind="ConnectionTool">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Generalization.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Generalization_4015"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated.property" label="Deprecated_Property" description="Create a Deprecated Property">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Property.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3070"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Property_3101"/>
-    </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.Deprecated_Class" label="Deprecated_Class" description="Create a Deprecated_Class">
-      <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Class.gif"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_3085"/>
-      <elementDescriptors elementTypeId="org.eclipse.papyrus.SysML14.Deprecated_Class_2073"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

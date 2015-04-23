@@ -48,7 +48,8 @@ public class UMLOCLFactory {
 	 */
 	protected UMLOCLFactory() {
 		this.expressions = new UMLAbstractExpression[4];
-		this.expressionBodies = new String[] { "(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
+		this.expressionBodies = new String[] {
+				"(kind = TransitionKind::internal) implies (source.oclIsKindOf (State) and source = target)", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).exit->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).entry->includes(self)\r\nelse false endif", //$NON-NLS-1$
 				"if self.owner.oclIsKindOf(State)\r\nthen self.owner.oclAsType(State).doActivity->includes(self)\r\nelse false endif", //$NON-NLS-1$
