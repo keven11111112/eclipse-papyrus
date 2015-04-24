@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Composite
+	xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
+	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:x="http://www.eclipse.org/xwt">
+	<Composite.layout>
+		<ppel:PropertiesLayout></ppel:PropertiesLayout>
+	</Composite.layout>
+	<ppe:ReferenceDialog input="{Binding}"
+		property="properties:contexts:ModelElementFactorySubstitution:sourceFactoryType"></ppe:ReferenceDialog>
+	<ppe:ReferenceDialog input="{Binding}"
+		property="properties:contexts:ModelElementFactorySubstitution:targetFactoryType"></ppe:ReferenceDialog>
+	<ppe:MultiReference property="properties:contexts:Substitution:constraints"
+		input="{Binding}"></ppe:MultiReference>
+</Composite>

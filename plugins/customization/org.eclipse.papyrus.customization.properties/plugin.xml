@@ -200,4 +200,11 @@
             file="UICustom/PropertiesUI.custom">
       </modeldeclaration>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.services.labelprovider.labelProvider">
+      <labelProvider
+            priority="90"
+            provider="org.eclipse.papyrus.customization.properties.providers.ModelElementFactoryLabelProvider">
+      </labelProvider>
+   </extension>
 </plugin>

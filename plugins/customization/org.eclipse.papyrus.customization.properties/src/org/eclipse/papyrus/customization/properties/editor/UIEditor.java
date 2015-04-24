@@ -59,7 +59,8 @@ import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.editor.preview.Preview;
 import org.eclipse.papyrus.customization.properties.messages.Messages;
 import org.eclipse.papyrus.customization.properties.providers.ContextContentProvider;
-import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractEditor;
 import org.eclipse.papyrus.infra.widgets.editors.ICommitListener;
 import org.eclipse.papyrus.infra.widgets.editors.StringEditor;
@@ -102,6 +103,8 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 	private Set<Preview> previews = new HashSet<Preview>();
 
 	private TreeViewer selectionViewer;
+
+	private LabelProviderService labelProviderService;
 
 	@Override
 	public void createPages() {
@@ -149,7 +152,13 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 			ContextContentProvider contentProvider = new ContextContentProvider();
 			// contentProvider.getCustomizationManager().installCustomPainter(tree);
 
-			ILabelProvider labelProvider = new ContextLabelProvider();
+			labelProviderService = new LabelProviderServiceImpl();
+			try {
+				labelProviderService.startService();
+			} catch (Exception ex) {
+				Activator.log.error(ex);
+			}
+			ILabelProvider labelProvider = labelProviderService.getLabelProvider();
 
 			editingDomain.getCommandStack().addCommandStackListener(this);
 
@@ -443,6 +452,12 @@ public class UIEditor extends EcoreEditor implements ITabbedPropertySheetPageCon
 		previews.clear();
 		if (iPropertySheetPage != null) {
 			iPropertySheetPage.dispose();
+		}
+
+		try {
+			labelProviderService.disposeService();
+		} catch (Exception ex) {
+			Activator.log.error(ex);
 		}
 		super.dispose();
 	}

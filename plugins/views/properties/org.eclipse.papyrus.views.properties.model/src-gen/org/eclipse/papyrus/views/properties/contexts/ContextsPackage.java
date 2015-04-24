@@ -947,6 +947,16 @@ public interface ContextsPackage extends EPackage {
 	int MODEL_ELEMENT_FACTORY_SUBSTITUTION = 11;
 
 	/**
+	 * The feature id for the '<em><b>Constraints</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 *
+	 * @generated
+	 * @ordered
+	 */
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__CONSTRAINTS = SUBSTITUTION__CONSTRAINTS;
+
+	/**
 	 * The feature id for the '<em><b>Source Factory Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -954,7 +964,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__SOURCE_FACTORY_TYPE = 0;
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__SOURCE_FACTORY_TYPE = SUBSTITUTION_FEATURE_COUNT + 0;
 
 	/**
 	 * The feature id for the '<em><b>Target Factory Type</b></em>' reference.
@@ -964,7 +974,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__TARGET_FACTORY_TYPE = 1;
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION__TARGET_FACTORY_TYPE = SUBSTITUTION_FEATURE_COUNT + 1;
 
 	/**
 	 * The number of structural features of the '<em>Model Element Factory Substitution</em>' class.
@@ -974,7 +984,7 @@ public interface ContextsPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int MODEL_ELEMENT_FACTORY_SUBSTITUTION_FEATURE_COUNT = 2;
+	int MODEL_ELEMENT_FACTORY_SUBSTITUTION_FEATURE_COUNT = SUBSTITUTION_FEATURE_COUNT + 2;
 
 
 	/**

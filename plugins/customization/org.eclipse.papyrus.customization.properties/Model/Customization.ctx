@@ -295,6 +295,9 @@
     <sections xmi:id="_M4kxo-j4EeSykfbISDexwg" name="MultipleCompositeConstraint" sectionFile="ui/MultipleCompositeConstraint.xwt">
       <widget href="ui/MultipleCompositeConstraint.xwt#/"/>
     </sections>
+    <sections xmi:id="_am62sOmfEeSZNsffb8EY8g" name="SingleModelElementFactorySubstitution" sectionFile="ui/SingleModelElementFactorySubstitution.xwt">
+      <widget href="ui/SingleModelElementFactorySubstitution.xwt#/"/>
+    </sections>
   </tabs>
   <views xmi:id="_M4kxpOj4EeSykfbISDexwg" name="Single Environment" sections="_M4kxQuj4EeSykfbISDexwg" automaticContext="true">
     <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_M4kxpej4EeSykfbISDexwg" name="isSingleEnvironment">
@@ -772,6 +775,13 @@
       <properties xsi:type="constraints:ValueProperty" xmi:id="_M4kys-j4EeSykfbISDexwg" name="nsUri" value="http://www.eclipse.org/papyrus/constraints/0.9"/>
     </constraints>
   </views>
+  <views xmi:id="_UHFsgOmfEeSZNsffb8EY8g" name="SingleModelElementFactorySubstitution" sections="_am62sOmfEeSZNsffb8EY8g">
+    <constraints xsi:type="constraints:SimpleConstraint" xmi:id="_ZaJhkOmfEeSZNsffb8EY8g" name="IsSingleModelElementFactorySubstitution">
+      <constraintType href="ppe:/environment/org.eclipse.papyrus.views.properties/model/Environment.xmi#//@constraintTypes.0"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_M4kysuj4EeSykfbISDexwg" name="className" value="ModelElementFactorySubstitution"/>
+      <properties xsi:type="constraints:ValueProperty" xmi:id="_M4kys-j4EeSykfbISDexwg" name="nsUri" value="http://www.eclipse.org/papyrus/properties/contexts/0.9"/>
+    </constraints>
+  </views>
   <dataContexts xmi:id="_M4kytOj4EeSykfbISDexwg" name="properties" label="properties">
     <elements xsi:type="contexts:DataContextPackage" xmi:id="_M4kytej4EeSykfbISDexwg" name="environment">
       <elements xmi:id="_M4kytuj4EeSykfbISDexwg" name="Environment">
@@ -811,6 +821,7 @@
         <properties xmi:id="_M4ky0uj4EeSykfbISDexwg" name="dependencies" type="Reference" multiplicity="-1" description="The list of Configurations on which this configuration depends"/>
         <properties xmi:id="_Dy-CMOj5EeSykfbISDexwg" name="prototype" label="" description="If this properties view has been created from another one, the prorotype references the source properties view. The Prototype will be automatically disabled if this properties view configuration is enabled"/>
         <properties xmi:id="_OWEC8Oj4EeSykfbISDexwg" name="substitutes" type="Reference" multiplicity="-1" description="The list of properties view configurations disabled (Replaced) by this configuration"/>
+        <properties xmi:id="_4RTjUOmcEeS13-98To9cWA" name="substitution" label="Subsitutions" type="Reference" multiplicity="-1" description="Other substitutions managed by this configuration"/>
       </elements>
       <elements xmi:id="_M4ky0-j4EeSykfbISDexwg" name="DisplayUnit">
         <properties xmi:id="_M4ky1Oj4EeSykfbISDexwg" name="constraints" type="Reference" multiplicity="-1" description="The constraints associated to this Display Unit. The unit will be displayed only if at least one constraint is matched"/>
@@ -882,6 +893,13 @@
       <elements xmi:id="_M4kzCej4EeSykfbISDexwg" name="SimpleConstraint" supertypes="_M4ky--j4EeSykfbISDexwg">
         <properties xmi:id="_M4kzCuj4EeSykfbISDexwg" name="constraintType" type="Reference" description="The type of this constraint"/>
         <properties xmi:id="_M4kzC-j4EeSykfbISDexwg" name="properties" label="" type="Reference" multiplicity="-1" description="The list of properties used to instantiate this constraint (key - value pairs)"/>
+      </elements>
+      <elements xmi:id="_g_MAUOmfEeSZNsffb8EY8g" name="Substitution">
+        <properties xmi:id="_lqkKUOmfEeSZNsffb8EY8g" name="constraints" label="" type="Reference" multiplicity="-1" description=""/>
+      </elements>
+      <elements xmi:id="_hU1gMOmfEeSZNsffb8EY8g" name="ModelElementFactorySubstitution" supertypes="_g_MAUOmfEeSZNsffb8EY8g">
+        <properties xmi:id="_qjUB8OmfEeSZNsffb8EY8g" name="sourceFactoryType" type="Reference"/>
+        <properties xmi:id="_q0USYOmfEeSZNsffb8EY8g" name="targetFactoryType" type="Reference"/>
       </elements>
     </elements>
     <elements xsi:type="contexts:DataContextPackage" xmi:id="_M4kzDOj4EeSykfbISDexwg" name="ui">

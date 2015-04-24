@@ -130,6 +130,13 @@
           <value
               xsi:type="query:FalseLiteralQuery"/>
         </cases>
+        <cases>
+          <case
+              xsi:type="ecore:EReference"
+              href="http://www.eclipse.org/papyrus/properties/contexts/0.9#//Context/substitution"/>
+          <value
+              xsi:type="query:FalseLiteralQuery"/>
+        </cases>
       </query>
       <override
           xsi:type="efacet:FacetOperation"

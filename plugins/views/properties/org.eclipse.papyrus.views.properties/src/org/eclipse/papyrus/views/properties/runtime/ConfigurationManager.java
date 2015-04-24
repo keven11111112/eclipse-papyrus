@@ -538,6 +538,8 @@ public class ConfigurationManager {
 	 *            The new context to register
 	 * @param apply
 	 *            Whether the context should be enabled or not
+	 * @param isCustomizable
+	 *            Whether the context is customizable or not. If it is not customizable, it is always enabled
 	 *
 	 * @see ConfigurationManager#addContext(URI)
 	 */
@@ -605,8 +607,10 @@ public class ConfigurationManager {
 		// The context is either explicitly enabled or not customizable: check for conflicts
 
 		for (Context otherContext : contexts.values()) {
-			if (otherContext.getPrototype() == context || otherContext.getSubstitutes().contains(context)) {
-				return false;
+			if (enabledContexts.contains(otherContext) || !isCustomizable(otherContext)) {
+				if ((otherContext.getPrototype() == context || otherContext.getSubstitutes().contains(context))) {
+					return false;
+				}
 			}
 		}
 
@@ -684,9 +688,17 @@ public class ConfigurationManager {
 			savePreferences();
 		}
 
-		if (updateEngine && !missing) {
+		if (updateEngine && !missing && internalIsEnabled(context)) {
 			// Update the Engine
 			constraintEngine.addContext(context);
+
+			// If we just enabled a context which overrides another (active) one, update the engine
+			for (Context substitute : context.getSubstitutes()) {
+				if (enabledContexts.contains(substitute)) {
+					update();
+					break;
+				}
+			}
 		}
 	}
 
@@ -1063,7 +1075,7 @@ public class ConfigurationManager {
 
 	/**
 	 * Updates the constraint engine to handle changes in the contexts
-	 * activation
+	 * activation. Required when a context should be disabled; optional for additions
 	 */
 	public void update() {
 		constraintEngine.refresh();

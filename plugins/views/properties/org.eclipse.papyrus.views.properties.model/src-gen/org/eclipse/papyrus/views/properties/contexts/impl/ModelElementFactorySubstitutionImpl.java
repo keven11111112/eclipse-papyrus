@@ -8,8 +8,6 @@ import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.InternalEObject;
 
 import org.eclipse.emf.ecore.impl.ENotificationImpl;
-import org.eclipse.emf.ecore.impl.EObjectImpl;
-
 import org.eclipse.papyrus.views.properties.contexts.ContextsPackage;
 import org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution;
 
@@ -29,7 +27,7 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  *
  * @generated
  */
-public class ModelElementFactorySubstitutionImpl extends EObjectImpl implements ModelElementFactorySubstitution {
+public class ModelElementFactorySubstitutionImpl extends SubstitutionImpl implements ModelElementFactorySubstitution {
 	/**
 	 * The cached value of the '{@link #getSourceFactoryType() <em>Source Factory Type</em>}' reference.
 	 * <!-- begin-user-doc -->

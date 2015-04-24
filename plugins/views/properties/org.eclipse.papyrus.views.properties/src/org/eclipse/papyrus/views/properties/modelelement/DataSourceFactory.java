@@ -15,18 +15,28 @@
 package org.eclipse.papyrus.views.properties.modelelement;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.jface.viewers.IStructuredSelection;
+import org.eclipse.papyrus.infra.constraints.ConstraintDescriptor;
+import org.eclipse.papyrus.infra.constraints.constraints.Constraint;
+import org.eclipse.papyrus.infra.constraints.runtime.ConstraintFactory;
 import org.eclipse.papyrus.infra.tools.util.ClassLoaderHelper;
 import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.views.properties.contexts.Context;
 import org.eclipse.papyrus.views.properties.contexts.DataContextElement;
 import org.eclipse.papyrus.views.properties.contexts.DataContextRoot;
+import org.eclipse.papyrus.views.properties.contexts.ModelElementFactorySubstitution;
+import org.eclipse.papyrus.views.properties.contexts.Substitution;
 import org.eclipse.papyrus.views.properties.contexts.View;
 import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
+import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.util.PropertiesUtil;
 import org.eclipse.papyrus.views.properties.xwt.XWTSection;
 
@@ -89,7 +99,7 @@ public class DataSourceFactory {
 		for (Context context : PropertiesUtil.getDependencies(source.getView().getContext())) {
 			DataContextElement element = PropertiesUtil.getContextElementByQualifiedName(key, context.getDataContexts());
 			if (element != null) {
-				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source.getSelection());
+				ModelElement modelElement = DataSourceFactory.instance.createModelElement(element, source);
 				if (modelElement != null) {
 					modelElement.setDataSource(source);
 				}
@@ -109,22 +119,24 @@ public class DataSourceFactory {
 	 * @return The model element corresponding to the given contextElement and
 	 *         selection
 	 */
-	private ModelElement createModelElement(final DataContextElement contextElement, IStructuredSelection selection) {
+	private ModelElement createModelElement(final DataContextElement contextElement, final DataSource dataSource) {
+		IStructuredSelection selection = dataSource.getSelection();
 		if (selection.size() == 1) { // Single Selection
-			ModelElement modelElement = createFromSource(selection.getFirstElement(), contextElement);
+			ModelElement modelElement = createFromSource(selection.getFirstElement(), contextElement, dataSource);
 			return modelElement;
 		} else { // MultiSelection
 			// Bind the context element in a factory for the composite to create sub-elements
 			CompositeModelElement composite = new CompositeModelElement(new CompositeModelElement.BoundModelElementFactory() {
 
+				@Override
 				public ModelElement createModelElement(Object sourceElement) {
-					return createFromSource(sourceElement, contextElement);
+					return createFromSource(sourceElement, contextElement, dataSource);
 				}
 			});
 
 			Iterator<?> it = selection.iterator();
 			while (it.hasNext()) {
-				ModelElement element = createFromSource(it.next(), contextElement);
+				ModelElement element = createFromSource(it.next(), contextElement, dataSource);
 				if (element != null) {
 					composite.addModelElement(element);
 				}
@@ -145,7 +157,8 @@ public class DataSourceFactory {
 	 * @return The ModelElementFactory corresponding to the given
 	 *         DataContextElement
 	 */
-	private ModelElementFactory getFactory(DataContextElement context) {
+	private ModelElementFactory getFactory(DataContextElement context, DataSource dataSource) {
+
 		DataContextRoot rootPackage = getRootPackage(context);
 		ModelElementFactoryDescriptor factoryDescriptor = rootPackage.getModelElementFactory();
 
@@ -158,20 +171,94 @@ public class DataSourceFactory {
 			return null;
 		}
 
+		factoryDescriptor = getFactorySubstitution(factoryDescriptor, dataSource);
+
 		String factoryName = factoryDescriptor.getFactoryClass();
 		ModelElementFactory factory = ClassLoaderHelper.newInstance(factoryName, ModelElementFactory.class);
 
 		return factory;
 	}
 
-	private ModelElement createFromSource(Object source, DataContextElement context) {
-		ModelElementFactory factory = getFactory(context);
+	/**
+	 * Returns a substitute ModelElementFactoryDescriptor if one is enabled. Returns the parameter as-is otherwise
+	 *
+	 * @param factory
+	 * @return
+	 */
+	private ModelElementFactoryDescriptor getFactorySubstitution(ModelElementFactoryDescriptor factory, DataSource dataSource) {
+		return getFactorySubstitution(factory, dataSource, new HashSet<ModelElementFactoryDescriptor>());
+	}
+
+	/**
+	 * Returns a substitute ModelElementFactoryDescriptor if one is enabled. Returns the parameter as-is otherwise
+	 *
+	 * @param factory
+	 * @return
+	 */
+	private ModelElementFactoryDescriptor getFactorySubstitution(ModelElementFactoryDescriptor factory, DataSource dataSource, Set<ModelElementFactoryDescriptor> browsedDescriptors) {
+		if (browsedDescriptors.contains(factory)) {
+			Activator.log.warn("Cycle detected in ModelElementFactory descriptors");
+			return factory;
+		}
+
+		browsedDescriptors.add(factory);
+
+		for (Context configuration : ConfigurationManager.getInstance().getEnabledContexts()) {
+			for (Substitution substitution : configuration.getSubstitution()) {
+				if (substitution instanceof ModelElementFactorySubstitution) {
+					ModelElementFactorySubstitution factorySubstitution = (ModelElementFactorySubstitution) substitution;
+					if (factorySubstitution.getSourceFactoryType() == factory) {
+						if (factorySubstitution.getTargetFactoryType() == null) {
+							Activator.log.warn("Invalid ModelElementFactorySubstitution: target factory is undefined");
+							continue;
+						}
+						if (factorySubstitution.getTargetFactoryType().eIsProxy()) {
+							Activator.log.warn("Invalid ModelElementFactorySubstitution: target factory is unresolved: " + EcoreUtil.getURI(factorySubstitution));
+							continue;
+						}
+
+						if (isEnabled(factorySubstitution, dataSource)) {
+							return getFactorySubstitution(factorySubstitution.getTargetFactoryType(), dataSource, browsedDescriptors);
+						}
+					}
+				}
+			}
+		}
+
+		return factory;
+	}
+
+	private boolean isEnabled(Substitution substitution, DataSource dataSource) {
+		if (substitution.getConstraints().isEmpty()) {
+			return true;
+		}
+
+		IStructuredSelection selection = dataSource.getSelection();
+
+		for (Constraint constraint : parseConstraints(substitution)) {
+			if (constraint.match(selection)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	private List<Constraint> parseConstraints(Substitution substitution) {
+		List<Constraint> result = new LinkedList<Constraint>();
+		for (ConstraintDescriptor descriptor : substitution.getConstraints()) {
+			result.add(ConstraintFactory.getInstance().createFromModel(descriptor));
+		}
+		return result;
+	}
+
+	private ModelElement createFromSource(Object selectedElement, DataContextElement context, DataSource dataSource) {
+		ModelElementFactory factory = getFactory(context, dataSource);
 
 		if (factory == null) {
 			return null;
 		}
 
-		return factory.createFromSource(source, context);
+		return factory.createFromSource(selectedElement, context);
 	}
 
 	private DataContextRoot getRootPackage(DataContextElement context) {

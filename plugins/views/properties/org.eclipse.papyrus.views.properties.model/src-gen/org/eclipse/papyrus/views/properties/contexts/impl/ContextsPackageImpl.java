@@ -996,6 +996,7 @@ public class ContextsPackageImpl extends EPackageImpl implements ContextsPackage
 		unknownPropertyEClass.getESuperTypes().add(this.getProperty());
 		dataContextPackageEClass.getESuperTypes().add(this.getDataContextElement());
 		dataContextRootEClass.getESuperTypes().add(this.getDataContextPackage());
+		modelElementFactorySubstitutionEClass.getESuperTypes().add(this.getSubstitution());
 
 		// Initialize classes and features; add operations and parameters
 		initEClass(contextEClass, Context.class, "Context", !IS_ABSTRACT, !IS_INTERFACE, IS_GENERATED_INSTANCE_CLASS);

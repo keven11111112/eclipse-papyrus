@@ -184,9 +184,11 @@
       <eStructuralFeatures xsi:type="ecore:EReference" name="sourceEditorType" eType="#//environment/PropertyEditorType"/>
       <eStructuralFeatures xsi:type="ecore:EReference" name="targetEditorType" eType="#//environment/PropertyEditorType"/>
     </eClassifiers>
-    <eClassifiers xsi:type="ecore:EClass" name="ModelElementFactorySubstitution">
-      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFactoryType" eType="#//environment/ModelElementFactoryDescriptor"/>
-      <eStructuralFeatures xsi:type="ecore:EReference" name="targetFactoryType" eType="#//environment/ModelElementFactoryDescriptor"/>
+    <eClassifiers xsi:type="ecore:EClass" name="ModelElementFactorySubstitution" eSuperTypes="#//contexts/Substitution">
+      <eStructuralFeatures xsi:type="ecore:EReference" name="sourceFactoryType" lowerBound="1"
+          eType="#//environment/ModelElementFactoryDescriptor"/>
+      <eStructuralFeatures xsi:type="ecore:EReference" name="targetFactoryType" lowerBound="1"
+          eType="#//environment/ModelElementFactoryDescriptor"/>
     </eClassifiers>
   </eSubpackages>
   <eSubpackages name="ui" nsURI="http://www.eclipse.org/papyrus/properties/ui/0.9"

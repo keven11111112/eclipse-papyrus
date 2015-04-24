@@ -198,6 +198,9 @@ public class ContextsSwitch<T> extends Switch<T> {
 			ModelElementFactorySubstitution modelElementFactorySubstitution = (ModelElementFactorySubstitution) theEObject;
 			T result = caseModelElementFactorySubstitution(modelElementFactorySubstitution);
 			if (result == null) {
+				result = caseSubstitution(modelElementFactorySubstitution);
+			}
+			if (result == null) {
 				result = defaultCase(theEObject);
 			}
 			return result;

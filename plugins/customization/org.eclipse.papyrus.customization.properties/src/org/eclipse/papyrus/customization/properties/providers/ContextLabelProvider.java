@@ -24,6 +24,7 @@ import org.eclipse.swt.graphics.Image;
  *
  * @author Camille Letavernier
  */
+@Deprecated
 public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 
 	/**
@@ -37,7 +38,7 @@ public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 	public String getText(Object element) {
 		if (!(element instanceof EObjectTreeElement) && element instanceof EObject) {
 			try {
-				//				Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
+				// Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
 				// method.setAccessible(true);
 				// AppearanceConfiguration result = (AppearanceConfiguration)method.invoke(Activator.getDefault().getCustomizationManager());
 				// ITreeElement treeElement = new ModelElementItem((EObject)element, null, result);
@@ -69,7 +70,7 @@ public class ContextLabelProvider extends ResolvingCustomizedLabelProvider {
 	public Image getImage(Object element) {
 		if (!(element instanceof EObjectTreeElement) && element instanceof EObject) {
 			try {
-				//				Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
+				// Method method = CustomizationManager.class.getDeclaredMethod("getAppearanceConfiguration");//$NON-NLS-1$
 				// method.setAccessible(true);
 				// AppearanceConfiguration result = (AppearanceConfiguration)method.invoke(Activator.getDefault().getCustomizationManager());
 				// ITreeElement treeElement = new ModelElementItem((EObject)element, null, result);

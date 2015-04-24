@@ -254,6 +254,9 @@ public class ContextItemProvider
 
 		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.CONTEXT__DATA_CONTEXTS,
 				ContextsFactory.eINSTANCE.createDataContextRoot()));
+
+		newChildDescriptors.add(createChildParameter(ContextsPackage.Literals.CONTEXT__SUBSTITUTION,
+				ContextsFactory.eINSTANCE.createModelElementFactorySubstitution()));
 	}
 
 	/**

@@ -22,8 +22,8 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
+import org.eclipse.papyrus.customization.properties.Activator;
 import org.eclipse.papyrus.customization.properties.providers.ConstraintDescriptorContentProvider;
-import org.eclipse.papyrus.customization.properties.providers.ContextLabelProvider;
 import org.eclipse.papyrus.customization.properties.providers.DataContextElementContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.DependencyContentProvider;
 import org.eclipse.papyrus.customization.properties.providers.EnvironmentContentProvider;
@@ -32,9 +32,12 @@ import org.eclipse.papyrus.customization.properties.providers.PropertyEditorType
 import org.eclipse.papyrus.customization.properties.providers.TabContentProvider;
 import org.eclipse.papyrus.infra.constraints.ConstraintsPackage;
 import org.eclipse.papyrus.infra.constraints.providers.ConstraintTypeContentProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.providers.EMFGraphicalContentProvider;
 import org.eclipse.papyrus.infra.emf.providers.strategy.ContainmentBrowseStrategy;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
+import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
+import org.eclipse.papyrus.infra.services.labelprovider.service.impl.LabelProviderServiceImpl;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.providers.EmptyContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
@@ -50,6 +53,7 @@ import org.eclipse.papyrus.views.properties.environment.EnvironmentPackage;
 import org.eclipse.papyrus.views.properties.modelelement.AbstractModelElement;
 import org.eclipse.papyrus.views.properties.modelelement.DataSource;
 import org.eclipse.papyrus.views.properties.modelelement.EMFModelElement;
+import org.eclipse.papyrus.views.properties.modelelement.ModelElement;
 import org.eclipse.papyrus.views.properties.runtime.ConfigurationManager;
 import org.eclipse.papyrus.views.properties.ui.PropertyEditor;
 
@@ -71,6 +75,8 @@ public class CustomizationModelElement extends AbstractModelElement {
 
 	private static Map<EClassifier, IStaticContentProvider> providers;
 
+	private LabelProviderService labelProviderService;
+
 	/**
 	 * Constructs a new ModelElement.
 	 *
@@ -82,6 +88,13 @@ public class CustomizationModelElement extends AbstractModelElement {
 		this.delegate = delegate;
 		if (providers == null) {
 			initializeProviders();
+		}
+
+		labelProviderService = new LabelProviderServiceImpl();
+		try {
+			labelProviderService.startService();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
 		}
 	}
 
@@ -173,7 +186,7 @@ public class CustomizationModelElement extends AbstractModelElement {
 
 	@Override
 	public ILabelProvider getLabelProvider(String propertyPath) {
-		return new ContextLabelProvider();
+		return labelProviderService.getLabelProvider();
 	}
 
 	@Override
@@ -228,5 +241,10 @@ public class CustomizationModelElement extends AbstractModelElement {
 	public void dispose() {
 		super.dispose();
 		delegate.dispose();
+		try {
+			labelProviderService.disposeService();
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+		}
 	}
 }

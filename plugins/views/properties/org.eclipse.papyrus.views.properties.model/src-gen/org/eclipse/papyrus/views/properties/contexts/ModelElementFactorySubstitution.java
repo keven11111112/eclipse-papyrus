@@ -2,8 +2,6 @@
  */
 package org.eclipse.papyrus.views.properties.contexts;
 
-import org.eclipse.emf.ecore.EObject;
-
 import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescriptor;
 
 /**
@@ -23,7 +21,7 @@ import org.eclipse.papyrus.views.properties.environment.ModelElementFactoryDescr
  * @model
  * @generated
  */
-public interface ModelElementFactorySubstitution extends EObject {
+public interface ModelElementFactorySubstitution extends Substitution {
 	/**
 	 * Returns the value of the '<em><b>Source Factory Type</b></em>' reference.
 	 * <!-- begin-user-doc -->
