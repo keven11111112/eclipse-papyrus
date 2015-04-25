@@ -472,7 +472,7 @@ public abstract class CommonDiagramDragDropEditPolicy extends AbstractDiagramDra
 			semanticHint = type.getSemanticHint();
 		}
 
-		return getDefaultDropNodeCommand(getHost(), semanticHint, absoluteLocation, droppedObject, request);
+		return getDefaultDropNodeCommand(hostEP, semanticHint, absoluteLocation, droppedObject, request);
 	}
 
 	/**
