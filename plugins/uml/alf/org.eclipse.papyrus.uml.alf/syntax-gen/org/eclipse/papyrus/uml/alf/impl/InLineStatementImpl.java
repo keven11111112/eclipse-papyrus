@@ -27,12 +27,11 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>In Line Statement</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.InLineStatementImpl#getLanguage <em>Language</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.InLineStatementImpl#getCode <em>Code</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.InLineStatementImpl#getLanguage <em>Language</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.InLineStatementImpl#getCode <em>Code</em>}</li>
  * </ul>
  *
  * @generated
@@ -41,7 +40,6 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InLineStatementImpl() {
@@ -51,7 +49,6 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -62,17 +59,15 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getLanguage() {
-		return (String) eGet(AlfPackage.eINSTANCE.getInLineStatement_Language(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getInLineStatement_Language(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLanguage(String newLanguage) {
@@ -82,17 +77,15 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getCode() {
-		return (String) eGet(AlfPackage.eINSTANCE.getInLineStatement_Code(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getInLineStatement_Code(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setCode(String newCode) {
@@ -102,7 +95,6 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean inLineStatementAssignmentsAfter(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -113,12 +105,12 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.IN_LINE_STATEMENT__IN_LINE_STATEMENT_ASSIGNMENTS_AFTER,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "inLineStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.IN_LINE_STATEMENT__IN_LINE_STATEMENT_ASSIGNMENTS_AFTER,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "inLineStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -128,15 +120,14 @@ public class InLineStatementImpl extends StatementImpl implements InLineStatemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.IN_LINE_STATEMENT___IN_LINE_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
-			return inLineStatementAssignmentsAfter((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.IN_LINE_STATEMENT___IN_LINE_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
+				return inLineStatementAssignmentsAfter((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

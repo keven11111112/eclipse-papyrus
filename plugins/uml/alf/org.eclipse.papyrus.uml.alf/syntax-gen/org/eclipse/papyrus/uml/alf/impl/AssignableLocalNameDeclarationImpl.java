@@ -22,11 +22,10 @@ import org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement;
  * An implementation of the model object '<em><b>Assignable Local Name Declaration</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableLocalNameDeclarationImpl#getLocalNameDeclaration <em>Local Name Declaration</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableLocalNameDeclarationImpl#getLocalNameDeclaration <em>Local Name Declaration</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,7 +34,6 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssignableLocalNameDeclarationImpl() {
@@ -45,7 +43,6 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,17 +53,15 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LocalNameDeclarationStatement getLocalNameDeclaration() {
-		return (LocalNameDeclarationStatement) eGet(AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration_LocalNameDeclaration(), true);
+		return (LocalNameDeclarationStatement)eGet(AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration_LocalNameDeclaration(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLocalNameDeclaration(LocalNameDeclarationStatement newLocalNameDeclaration) {
@@ -77,23 +72,22 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -102,23 +96,22 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	 * The cached invocation delegate for the '{@link #lower() <em>Lower</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #lower()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Lower()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Lower()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger lower() {
 		try {
-			return (BigInteger) LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -127,23 +120,22 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	 * The cached invocation delegate for the '{@link #upper() <em>Upper</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #upper()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Upper()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableLocalNameDeclaration__Upper()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger upper() {
 		try {
-			return (BigInteger) UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -151,18 +143,17 @@ public class AssignableLocalNameDeclarationImpl extends AssignableElementImpl im
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___TYPE:
-			return type();
-		case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___LOWER:
-			return lower();
-		case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___UPPER:
-			return upper();
+			case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___TYPE:
+				return type();
+			case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___LOWER:
+				return lower();
+			case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION___UPPER:
+				return upper();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

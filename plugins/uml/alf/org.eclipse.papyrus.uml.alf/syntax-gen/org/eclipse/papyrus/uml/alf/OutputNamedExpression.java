@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.OutputNamedExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.OutputNamedExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getOutputNamedExpression()
@@ -34,13 +34,11 @@ public interface OutputNamedExpression extends InputNamedExpression {
 	 * <!-- begin-model-doc -->
 	 * The argument expression considered as an assignment left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Left Hand Side</em>' reference.
 	 * @see #setLeftHandSide(LeftHandSide)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getOutputNamedExpression_LeftHandSide()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n          if self.expression <> null and self.hasLegalExpression() then\n            EffectiveLeftHandSide{\n              expression = self.expression,\n              owner = self\n            }\n          else\n            null\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n          if self.expression <> null and self.hasLegalExpression() then\n            EffectiveLeftHandSide{\n              expression = self.expression,\n              owner = self\n            }\n          else\n            null\n          endif'"
 	 * @generated
 	 */
 	LeftHandSide getLeftHandSide();
@@ -49,9 +47,7 @@ public interface OutputNamedExpression extends InputNamedExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.OutputNamedExpression#getLeftHandSide <em>Left Hand Side</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Left Hand Side</em>' reference.
+	 * @param value the new value of the '<em>Left Hand Side</em>' reference.
 	 * @see #getLeftHandSide()
 	 * @generated
 	 */
@@ -76,7 +72,6 @@ public interface OutputNamedExpression extends InputNamedExpression {
 	 * index expression of the sequence access expression. Otherwise the left-
 	 * hand side is empty.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -91,7 +86,6 @@ public interface OutputNamedExpression extends InputNamedExpression {
 	 * whose primary expression is a name expression or a property access
 	 * expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression = null or self.hasLegalExpression()'"
 	 * @generated
 	 */
@@ -100,10 +94,8 @@ public interface OutputNamedExpression extends InputNamedExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let primary =\n          if self.expression.oclIsKindOf(SequenceAccessExpression) then\n            self.expression.oclAsType(SequenceAccessExpression).primary\n          else\n            self.expression\n          endif\n        in\n          primary.oclIsKindOf(NameExpression) or \n          primary.oclIsKindOf(PropertyAccessExpression)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let primary =\n          if self.expression.oclIsKindOf(SequenceAccessExpression) then\n            self.expression.oclAsType(SequenceAccessExpression).primary\n          else\n            self.expression\n          endif\n        in\n          primary.oclIsKindOf(NameExpression) or \n          primary.oclIsKindOf(PropertyAccessExpression)'"
 	 * @generated
 	 */
 	boolean hasLegalExpression();

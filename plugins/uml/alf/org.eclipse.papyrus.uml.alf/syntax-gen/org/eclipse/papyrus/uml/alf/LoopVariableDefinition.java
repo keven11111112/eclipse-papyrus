@@ -20,17 +20,17 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getVariable <em>Variable</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression1 <em>Expression1</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression2 <em>Expression2</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getTypeName <em>Type Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isTypeIsInferred <em>Type Is Inferred</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsFirst <em>Is First</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getAssignmentBefore <em>Assignment Before</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getAssignmentAfter <em>Assignment After</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsAny <em>Is Any</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getVariable <em>Variable</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression1 <em>Expression1</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression2 <em>Expression2</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isTypeIsInferred <em>Type Is Inferred</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsFirst <em>Is First</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getAssignmentBefore <em>Assignment Before</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getAssignmentAfter <em>Assignment After</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsAny <em>Is Any</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition()
@@ -45,7 +45,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the loop variable.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Variable</em>' attribute.
 	 * @see #setVariable(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_Variable()
@@ -58,9 +57,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getVariable <em>Variable</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Variable</em>' attribute.
+	 * @param value the new value of the '<em>Variable</em>' attribute.
 	 * @see #getVariable()
 	 * @generated
 	 */
@@ -71,10 +68,8 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * If there is only one expression, then this expression is evaluated to produce a sequence of values to be assigned to the loop variable on successive iterations. Otherwise it is evaluated to provide the first value of a range of values to be assigned to
-	 * the loop variable.
+	 * If there is only one expression, then this expression is evaluated to produce a sequence of values to be assigned to the loop variable on successive iterations. Otherwise it is evaluated to provide the first value of a range of values to be assigned to the loop variable.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression1</em>' containment reference.
 	 * @see #setExpression1(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_Expression1()
@@ -87,9 +82,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression1 <em>Expression1</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression1</em>' containment reference.
+	 * @param value the new value of the '<em>Expression1</em>' containment reference.
 	 * @see #getExpression1()
 	 * @generated
 	 */
@@ -102,7 +95,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to give the second value in a range of values to be assigned to the loop variable.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression2</em>' containment reference.
 	 * @see #setExpression2(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_Expression2()
@@ -115,9 +107,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getExpression2 <em>Expression2</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression2</em>' containment reference.
+	 * @param value the new value of the '<em>Expression2</em>' containment reference.
 	 * @see #getExpression2()
 	 * @generated
 	 */
@@ -130,7 +120,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The declared type of the loop variable.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' containment reference.
 	 * @see #setTypeName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_TypeName()
@@ -143,9 +132,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getTypeName <em>Type Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' containment reference.
+	 * @param value the new value of the '<em>Type Name</em>' containment reference.
 	 * @see #getTypeName()
 	 * @generated
 	 */
@@ -163,7 +150,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * just like a variable whose type is to be inferred, but, in the former
 	 * case, the type is actually intended to be empty, not inferred.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Is Inferred</em>' attribute.
 	 * @see #setTypeIsInferred(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_TypeIsInferred()
@@ -176,9 +162,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isTypeIsInferred <em>Type Is Inferred</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Is Inferred</em>' attribute.
+	 * @param value the new value of the '<em>Type Is Inferred</em>' attribute.
 	 * @see #isTypeIsInferred()
 	 * @generated
 	 */
@@ -191,7 +175,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Whether collection conversion is required.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #setIsCollectionConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_IsCollectionConversion()
@@ -205,9 +188,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Collection Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #isIsCollectionConversion()
 	 * @generated
 	 */
@@ -220,13 +201,11 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The declared or inferred type of the loop variable.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_Type()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      if self.typeIsInferred then expression1.type\n      else if self.typeName = null then null\n      else self.typeName.referent->any(isClassifier())\n      endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      if self.typeIsInferred then expression1.type\n      else if self.typeName = null then null\n      else self.typeName.referent->any(isClassifier())\n      endif endif'"
 	 * @generated
 	 */
 	ElementReference getType();
@@ -235,9 +214,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
@@ -251,7 +228,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Whether this definition is the first in the list of definitions in the
 	 * enclosing for statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is First</em>' attribute.
 	 * @see #setIsFirst(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_IsFirst()
@@ -265,9 +241,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsFirst <em>Is First</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is First</em>' attribute.
+	 * @param value the new value of the '<em>Is First</em>' attribute.
 	 * @see #isIsFirst()
 	 * @generated
 	 */
@@ -282,7 +256,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * The assigned sources for local names available lexically before this loop
 	 * variable definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment Before</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_AssignmentBefore()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
@@ -302,12 +275,10 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * the statement, but also any assignments that are unchanged from before
 	 * the statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment After</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_AssignmentAfter()
 	 * @model transient="true" volatile="true" derived="true" ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      let assignmentsAfter =\n        if self.expression2 = null then \n          self.expression1.assignmentAfter\n        else \n          self.updateAll(\n            self.expression1.assignmentAfter,\n            self.expression2.newAssignments()\n          )\n        endif\n      in\n        AssignedSource{\n          name = self.variable,\n          source = self,\n          type = \n            if self.isCollectionConversion then self.type.collectionArgument() \n            else self.type \n            endif,\n          lower = if self.isFirst then 1 else 0 endif,\n          upper = 1\n        }.update(assignmentsAfter)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      let assignmentsAfter =\n        if self.expression2 = null then \n          self.expression1.assignmentAfter\n        else \n          self.updateAll(\n            self.expression1.assignmentAfter,\n            self.expression2.newAssignments()\n          )\n        endif\n      in\n        AssignedSource{\n          name = self.variable,\n          source = self,\n          type = \n            if self.isCollectionConversion then self.type.collectionArgument() \n            else self.type \n            endif,\n          lower = if self.isFirst then 1 else 0 endif,\n          upper = 1\n        }.update(assignmentsAfter)'"
 	 * @generated
 	 */
 	EList<AssignedSource> getAssignmentAfter();
@@ -319,7 +290,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Whether the loop variable has an empty type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Any</em>' attribute.
 	 * @see #setIsAny(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLoopVariableDefinition_IsAny()
@@ -332,9 +302,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LoopVariableDefinition#isIsAny <em>Is Any</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Any</em>' attribute.
+	 * @param value the new value of the '<em>Is Any</em>' attribute.
 	 * @see #isIsAny()
 	 * @generated
 	 */
@@ -343,7 +311,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='NameBinding{name=self.variable}.toName()'"
 	 * @generated
@@ -356,7 +323,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Get the assignments made within this loop variable definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignmentsBefore = self.assignmentBefore in\n          self.assignmentAfter->select(isNew(assignmentsBefore))'"
 	 * @generated
@@ -378,7 +344,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * is required, then the variable has the argument type of the collection
 	 * class.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -392,7 +357,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * the assignments before the loop variable definition.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -406,9 +370,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * must have type Integer and a multiplicity upper bound of 1, and no name
 	 * may be newly assigned or reassigned in more than one of the expressions.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression2 = null then true\n        else\n          let type1 = self.expression1.type in\n          let type2 = self.expression2.type in\n            type1 <> null and self.isIntegerType(type) and self.expression1.upper = 1 and\n            type2 <> null and self.isIntegerType(type) and self.expression2.upper = 1 and\n            expression1.newAssignments().name->excludesAll(expression2.newAssignments().name)\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression2 = null then true\n        else\n          let type1 = self.expression1.type in\n          let type2 = self.expression2.type in\n            type1 <> null and self.isIntegerType(type) and self.expression1.upper = 1 and\n            type2 <> null and self.isIntegerType(type) and self.expression2.upper = 1 and\n            expression1.newAssignments().name->excludesAll(expression2.newAssignments().name)\n        endif'"
 	 * @generated
 	 */
 	boolean loopVariableDefinitionRangeExpressions(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -420,9 +382,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * If a loop variable definition has a type name, then this name must
 	 * resolve to a non-template classifier.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.typeName = null then true\n        else\n          let referents = self.typeName.referent->select(isClassifier()) in\n            referents->size() = 1 and not referents->exists(isTemplate())\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.typeName = null then true\n        else\n          let referents = self.typeName.referent->select(isClassifier()) in\n            referents->size() = 1 and not referents->exists(isTemplate())\n        endif'"
 	 * @generated
 	 */
 	boolean loopVariableDefinitionTypeName(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -436,7 +396,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * otherwise. If the type is inferred, them the variable has the same type
 	 * as the expression in its definition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -450,7 +409,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * expression of the definition must have a type that conforms to the
 	 * declared type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.typeIsInferred then true\n        else self.expression1.type.conformsTo(self.type)\n        endif'"
 	 * @generated
 	 */
@@ -464,7 +422,6 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * type for the definition is the instantiation of a collection class and
 	 * the multiplicity upper bound of the first expression is no greater than 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -477,9 +434,7 @@ public interface LoopVariableDefinition extends SyntaxElement {
 	 * The variable name given in a loop variable definition must be unassigned
 	 * after the expression or expressions in the definition.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.expression1.assignmentAfter.name->excludes(self.actualName()) and\n        self.expression2 <> null implies\n          self.expression2.assignmentAfter.name->excludes(self.actualName())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.expression1.assignmentAfter.name->excludes(self.actualName()) and\n        self.expression2 <> null implies\n          self.expression2.assignmentAfter.name->excludes(self.actualName())'"
 	 * @generated
 	 */
 	boolean loopVariableDefinitionVariable(DiagnosticChain diagnostics, Map<Object, Object> context);

@@ -15,11 +15,10 @@ import org.eclipse.papyrus.uml.alf.TaggedValueList;
  * An implementation of the model object '<em><b>Tagged Value List</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueListImpl#getTaggedValue <em>Tagged Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.TaggedValueListImpl#getTaggedValue <em>Tagged Value</em>}</li>
  * </ul>
  *
  * @generated
@@ -28,7 +27,6 @@ public class TaggedValueListImpl extends SyntaxElementImpl implements TaggedValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TaggedValueListImpl() {
@@ -38,7 +36,6 @@ public class TaggedValueListImpl extends SyntaxElementImpl implements TaggedValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -49,12 +46,11 @@ public class TaggedValueListImpl extends SyntaxElementImpl implements TaggedValu
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<TaggedValue> getTaggedValue() {
-		return (EList<TaggedValue>) eGet(AlfPackage.eINSTANCE.getTaggedValueList_TaggedValue(), true);
+		return (EList<TaggedValue>)eGet(AlfPackage.eINSTANCE.getTaggedValueList_TaggedValue(), true);
 	}
 
 } // TaggedValueListImpl

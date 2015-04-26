@@ -20,10 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#getNonFinalClauses <em>Non Final Clauses</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#getFinalClause <em>Final Clause</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsAssured <em>Is Assured</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsDeterminate <em>Is Determinate</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#getNonFinalClauses <em>Non Final Clauses</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#getFinalClause <em>Final Clause</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsAssured <em>Is Assured</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsDeterminate <em>Is Determinate</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIfStatement()
@@ -40,7 +40,6 @@ public interface IfStatement extends Statement {
 	 * A list of groupings of concurrent clauses that are to be checked
 	 * sequentially for a successful condition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Non Final Clauses</em>' containment reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIfStatement_NonFinalClauses()
 	 * @model containment="true" required="true"
@@ -56,7 +55,6 @@ public interface IfStatement extends Statement {
 	 * A sequence of statements to be executed if no other clause has a
 	 * successful condition.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Final Clause</em>' containment reference.
 	 * @see #setFinalClause(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIfStatement_FinalClause()
@@ -69,9 +67,7 @@ public interface IfStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IfStatement#getFinalClause <em>Final Clause</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Final Clause</em>' containment reference.
+	 * @param value the new value of the '<em>Final Clause</em>' containment reference.
 	 * @see #getFinalClause()
 	 * @generated
 	 */
@@ -85,7 +81,6 @@ public interface IfStatement extends Statement {
 	 * Whether at least one condition in the if statement is assured to evaluate
 	 * to true.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Assured</em>' attribute.
 	 * @see #setIsAssured(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIfStatement_IsAssured()
@@ -101,9 +96,7 @@ public interface IfStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsAssured <em>Is Assured</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Assured</em>' attribute.
+	 * @param value the new value of the '<em>Is Assured</em>' attribute.
 	 * @see #isIsAssured()
 	 * @generated
 	 */
@@ -117,7 +110,6 @@ public interface IfStatement extends Statement {
 	 * Whether at most one condition in the if statement will ever to evaluate
 	 * to true.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Determinate</em>' attribute.
 	 * @see #setIsDeterminate(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getIfStatement_IsDeterminate()
@@ -131,9 +123,7 @@ public interface IfStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.IfStatement#isIsDeterminate <em>Is Determinate</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Determinate</em>' attribute.
+	 * @param value the new value of the '<em>Is Determinate</em>' attribute.
 	 * @see #isIsDeterminate()
 	 * @generated
 	 */
@@ -142,10 +132,8 @@ public interface IfStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        let blocks =\n                          if self.finalClause = null then self.nonFinalClauses.clause.body\n                          else self.nonFinalClauses.clause.body->including(self.finalClause)\n                          endif\n                        in\n                          self.updateAll(\n                            self.Statement_assignmentsAfter(), \n                            self.mergeAssignments(blocks->asBag())\n                        )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        let blocks =\n                          if self.finalClause = null then self.nonFinalClauses.clause.body\n                          else self.nonFinalClauses.clause.body->including(self.finalClause)\n                          endif\n                        in\n                          self.updateAll(\n                            self.Statement_assignmentsAfter(), \n                            self.mergeAssignments(blocks->asBag())\n                        )'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -160,7 +148,6 @@ public interface IfStatement extends Statement {
 	 * as the assignments before the if statement.
 	 * (See assignmentBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -186,7 +173,6 @@ public interface IfStatement extends Statement {
 	 * the if statement.
 	 * (See assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -201,7 +187,6 @@ public interface IfStatement extends Statement {
 	 * the if statement.
 	 * (See SyntaxElement::enclosingStatement() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -213,7 +198,6 @@ public interface IfStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * An if statement is assured if it has an @assured annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -225,7 +209,6 @@ public interface IfStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * An if statement is determinate if it has an @determinate annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -238,10 +221,8 @@ public interface IfStatement extends Statement {
 	 * In addition to an @isolated annotation, an if statement may have @assured
 	 * and @determinate annotations. They may not have arguments.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or\n                  (annotation.identifier = \'assured\' or annotation.identifier = \'determinate\') and \n                    annotation.argument->isEmpty()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or\n                  (annotation.identifier = \'assured\' or annotation.identifier = \'determinate\') and \n                    annotation.argument->isEmpty()'"
 	 * @generated
 	 */
 	boolean annotationAllowed(Annotation annotation);

@@ -21,12 +21,11 @@ import org.eclipse.papyrus.uml.alf.TypedElementDefinition;
  * An implementation of the model object '<em><b>Formal Parameter</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.FormalParameterImpl#getDirection <em>Direction</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.FormalParameterImpl#getTypePart <em>Type Part</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.FormalParameterImpl#getDirection <em>Direction</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.FormalParameterImpl#getTypePart <em>Type Part</em>}</li>
  * </ul>
  *
  * @generated
@@ -35,7 +34,6 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected FormalParameterImpl() {
@@ -45,7 +43,6 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -56,17 +53,15 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getDirection() {
-		return (String) eGet(AlfPackage.eINSTANCE.getFormalParameter_Direction(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getFormalParameter_Direction(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDirection(String newDirection) {
@@ -76,17 +71,15 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TypedElementDefinition getTypePart() {
-		return (TypedElementDefinition) eGet(AlfPackage.eINSTANCE.getFormalParameter_TypePart(), true);
+		return (TypedElementDefinition)eGet(AlfPackage.eINSTANCE.getFormalParameter_TypePart(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setTypePart(TypedElementDefinition newTypePart) {
@@ -97,23 +90,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #currentScope() <em>Current Scope</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #currentScope()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate CURRENT_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__CurrentScope()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate CURRENT_SCOPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__CurrentScope()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference currentScope() {
 		try {
-			return (ElementReference) CURRENT_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)CURRENT_SCOPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -122,24 +114,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #annotationAllowed(org.eclipse.papyrus.uml.alf.StereotypeAnnotation) <em>Annotation Allowed</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #annotationAllowed(org.eclipse.papyrus.uml.alf.StereotypeAnnotation)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__AnnotationAllowed__StereotypeAnnotation())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__AnnotationAllowed__StereotypeAnnotation()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean annotationAllowed(StereotypeAnnotation annotation) {
 		try {
-			return (Boolean) ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { annotation }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)ANNOTATION_ALLOWED_STEREOTYPE_ANNOTATION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{annotation}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -148,23 +138,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #isSameKindAs(org.eclipse.papyrus.uml.alf.ElementReference) <em>Is Same Kind As</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isSameKindAs(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_SAME_KIND_AS_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__IsSameKindAs__ElementReference()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_SAME_KIND_AS_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__IsSameKindAs__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isSameKindAs(ElementReference member) {
 		try {
-			return (Boolean) IS_SAME_KIND_AS_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { member }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_SAME_KIND_AS_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{member}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -173,23 +162,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #matches(org.eclipse.papyrus.uml.alf.FormalParameter) <em>Matches</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #matches(org.eclipse.papyrus.uml.alf.FormalParameter)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate MATCHES_FORMAL_PARAMETER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__Matches__FormalParameter()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate MATCHES_FORMAL_PARAMETER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__Matches__FormalParameter()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean matches(FormalParameter other) {
 		try {
-			return (Boolean) MATCHES_FORMAL_PARAMETER__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { other }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)MATCHES_FORMAL_PARAMETER__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{other}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -198,23 +186,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #matchesElement(org.eclipse.papyrus.uml.alf.ElementReference) <em>Matches Element</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #matchesElement(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate MATCHES_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__MatchesElement__ElementReference()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate MATCHES_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__MatchesElement__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean matchesElement(ElementReference other) {
 		try {
-			return (Boolean) MATCHES_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { other }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)MATCHES_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{other}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -223,23 +210,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #matchesNameType(org.eclipse.papyrus.uml.alf.ElementReference) <em>Matches Name Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #matchesNameType(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate MATCHES_NAME_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__MatchesNameType__ElementReference()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate MATCHES_NAME_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__MatchesNameType__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean matchesNameType(ElementReference other) {
 		try {
-			return (Boolean) MATCHES_NAME_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { other }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)MATCHES_NAME_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{other}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -248,23 +234,22 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	 * The cached invocation delegate for the '{@link #matchesType(org.eclipse.papyrus.uml.alf.ElementReference) <em>Matches Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #matchesType(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate MATCHES_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getFormalParameter__MatchesType__ElementReference()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate MATCHES_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFormalParameter__MatchesType__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean matchesType(ElementReference other) {
 		try {
-			return (Boolean) MATCHES_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { other }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)MATCHES_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{other}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -272,27 +257,21 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == SyntaxElement.class) {
 			switch (baseOperationID) {
-			case AlfPackage.SYNTAX_ELEMENT___CURRENT_SCOPE:
-				return AlfPackage.FORMAL_PARAMETER___CURRENT_SCOPE;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.SYNTAX_ELEMENT___CURRENT_SCOPE: return AlfPackage.FORMAL_PARAMETER___CURRENT_SCOPE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == MemberDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.MEMBER_DEFINITION___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION:
-				return AlfPackage.FORMAL_PARAMETER___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION;
-			case AlfPackage.MEMBER_DEFINITION___IS_SAME_KIND_AS__ELEMENTREFERENCE:
-				return AlfPackage.FORMAL_PARAMETER___IS_SAME_KIND_AS__ELEMENTREFERENCE;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.MEMBER_DEFINITION___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION: return AlfPackage.FORMAL_PARAMETER___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION;
+				case AlfPackage.MEMBER_DEFINITION___IS_SAME_KIND_AS__ELEMENTREFERENCE: return AlfPackage.FORMAL_PARAMETER___IS_SAME_KIND_AS__ELEMENTREFERENCE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -301,26 +280,25 @@ public class FormalParameterImpl extends MemberDefinitionImpl implements FormalP
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.FORMAL_PARAMETER___CURRENT_SCOPE:
-			return currentScope();
-		case AlfPackage.FORMAL_PARAMETER___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION:
-			return annotationAllowed((StereotypeAnnotation) arguments.get(0));
-		case AlfPackage.FORMAL_PARAMETER___IS_SAME_KIND_AS__ELEMENTREFERENCE:
-			return isSameKindAs((ElementReference) arguments.get(0));
-		case AlfPackage.FORMAL_PARAMETER___MATCHES__FORMALPARAMETER:
-			return matches((FormalParameter) arguments.get(0));
-		case AlfPackage.FORMAL_PARAMETER___MATCHES_ELEMENT__ELEMENTREFERENCE:
-			return matchesElement((ElementReference) arguments.get(0));
-		case AlfPackage.FORMAL_PARAMETER___MATCHES_NAME_TYPE__ELEMENTREFERENCE:
-			return matchesNameType((ElementReference) arguments.get(0));
-		case AlfPackage.FORMAL_PARAMETER___MATCHES_TYPE__ELEMENTREFERENCE:
-			return matchesType((ElementReference) arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___CURRENT_SCOPE:
+				return currentScope();
+			case AlfPackage.FORMAL_PARAMETER___ANNOTATION_ALLOWED__STEREOTYPEANNOTATION:
+				return annotationAllowed((StereotypeAnnotation)arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___IS_SAME_KIND_AS__ELEMENTREFERENCE:
+				return isSameKindAs((ElementReference)arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___MATCHES__FORMALPARAMETER:
+				return matches((FormalParameter)arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___MATCHES_ELEMENT__ELEMENTREFERENCE:
+				return matchesElement((ElementReference)arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___MATCHES_NAME_TYPE__ELEMENTREFERENCE:
+				return matchesNameType((ElementReference)arguments.get(0));
+			case AlfPackage.FORMAL_PARAMETER___MATCHES_TYPE__ELEMENTREFERENCE:
+				return matchesType((ElementReference)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsComposite <em>Is Composite</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getInitializer <em>Initializer</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getTypePart <em>Type Part</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsComposite <em>Is Composite</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getInitializer <em>Initializer</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getTypePart <em>Type Part</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition()
@@ -40,7 +40,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Whether the property being defined has composite aggregation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Composite</em>' attribute.
 	 * @see #setIsComposite(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition_IsComposite()
@@ -53,9 +52,7 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsComposite <em>Is Composite</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Composite</em>' attribute.
+	 * @param value the new value of the '<em>Is Composite</em>' attribute.
 	 * @see #isIsComposite()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to initialize the property.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Initializer</em>' containment reference.
 	 * @see #setInitializer(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition_Initializer()
@@ -81,9 +77,7 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getInitializer <em>Initializer</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Initializer</em>' containment reference.
+	 * @param value the new value of the '<em>Initializer</em>' containment reference.
 	 * @see #getInitializer()
 	 * @generated
 	 */
@@ -96,13 +90,11 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Whether collection conversion is required for the initialization of this property.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #setIsCollectionConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition_IsCollectionConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        self.initializer <> null and \n        self.initializer.type <> null and\n        self.isCollectionClass(self.initializer.type) and\n        (self.typePart.type = null or \n          not self.isCollectionClass(self.typePart.type)\n        )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        self.initializer <> null and \n        self.initializer.type <> null and\n        self.isCollectionClass(self.initializer.type) and\n        (self.typePart.type = null or \n          not self.isCollectionClass(self.typePart.type)\n        )'"
 	 * @generated
 	 */
 	boolean isIsCollectionConversion();
@@ -111,9 +103,7 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsCollectionConversion <em>Is Collection Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Collection Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #isIsCollectionConversion()
 	 * @generated
 	 */
@@ -126,13 +116,11 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Whether BitString conversion is required for the initialization of this property.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        self.typePart.type <> null and\n        self.isIntegerType(self.typePart.type) and\n        self.initializer.type <> null and\n        (self.isIntegerType(self.initializer.type) or\n          self.isIntegerCollectionClass(self.initializer.type)\n        )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        self.typePart.type <> null and\n        self.isIntegerType(self.typePart.type) and\n        self.initializer.type <> null and\n        (self.isIntegerType(self.initializer.type) or\n          self.isIntegerCollectionClass(self.initializer.type)\n        )'"
 	 * @generated
 	 */
 	boolean isIsBitStringConversion();
@@ -141,9 +129,7 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#isIsBitStringConversion <em>Is Bit String Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #isIsBitStringConversion()
 	 * @generated
 	 */
@@ -156,7 +142,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * 
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Part</em>' containment reference.
 	 * @see #setTypePart(TypedElementDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getPropertyDefinition_TypePart()
@@ -169,9 +154,7 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.PropertyDefinition#getTypePart <em>Type Part</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Part</em>' containment reference.
+	 * @param value the new value of the '<em>Type Part</em>' containment reference.
 	 * @see #getTypePart()
 	 * @generated
 	 */
@@ -180,7 +163,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='Set(AssignedSource){}'"
 	 * @generated
@@ -194,7 +176,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Returns true if the annotation is for a stereotype that has a metaclass
 	 * consistent with Property.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                        /* TODO: Allow property stereotype annotations. \052/\n                        false'"
 	 * @generated
@@ -208,7 +189,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * Return true if the given member is either a PropertyDefinition or an
 	 * imported member whose referent is a PropertyDefinition or a Property.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='member.isProperty()'"
 	 * @generated
@@ -218,7 +198,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -234,7 +213,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * an initializer expression.
 	 * (See also assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.initializer <> null implies \n          self.typePart.isAssignableFrom(self.initializer)'"
 	 * @generated
 	 */
@@ -247,7 +225,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * A property definition requires collection conversion if its initializer has
 	 * a collection class as its type and the property definition does not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -260,7 +237,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * A property definition requires BitString conversion if its type is BitString and
 	 * the type of its initializer is Integer or a collection class whose argument type is Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -272,7 +248,6 @@ public interface PropertyDefinition extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * A property definition is a feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

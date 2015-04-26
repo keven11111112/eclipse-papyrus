@@ -14,11 +14,10 @@ import org.eclipse.papyrus.uml.alf.DocumentedElement;
  * An implementation of the model object '<em><b>Documented Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.DocumentedElementImpl#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.DocumentedElementImpl#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @generated
@@ -27,7 +26,6 @@ public abstract class DocumentedElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DocumentedElementImpl() {
@@ -37,7 +35,6 @@ public abstract class DocumentedElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -48,12 +45,11 @@ public abstract class DocumentedElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<String> getDocumentation() {
-		return (EList<String>) eGet(AlfPackage.eINSTANCE.getDocumentedElement_Documentation(), true);
+		return (EList<String>)eGet(AlfPackage.eINSTANCE.getDocumentedElement_Documentation(), true);
 	}
 
 } // DocumentedElementImpl

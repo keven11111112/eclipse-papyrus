@@ -24,7 +24,6 @@ public interface UnboundedLiteralExpression extends LiteralExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.unlimitedNaturalType()'"
 	 * @generated
 	 */
@@ -37,7 +36,6 @@ public interface UnboundedLiteralExpression extends LiteralExpression {
 	 * The type of an unbounded literal expression is UnlimitedNatural.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

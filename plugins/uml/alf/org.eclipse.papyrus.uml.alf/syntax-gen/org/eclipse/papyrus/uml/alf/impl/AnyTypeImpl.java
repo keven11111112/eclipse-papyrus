@@ -16,7 +16,6 @@ import org.eclipse.papyrus.uml.alf.MemberDefinition;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Any Type</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -24,7 +23,6 @@ public class AnyTypeImpl extends ClassifierDefinitionImpl implements AnyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AnyTypeImpl() {
@@ -34,7 +32,6 @@ public class AnyTypeImpl extends ClassifierDefinitionImpl implements AnyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -46,23 +43,22 @@ public class AnyTypeImpl extends ClassifierDefinitionImpl implements AnyType {
 	 * The cached invocation delegate for the '{@link #actualName() <em>Actual Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #actualName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ACTUAL_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAnyType__ActualName()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ACTUAL_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAnyType__ActualName()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String actualName() {
 		try {
-			return (String) ACTUAL_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (String)ACTUAL_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -70,17 +66,14 @@ public class AnyTypeImpl extends ClassifierDefinitionImpl implements AnyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == MemberDefinition.class) {
 			switch (baseOperationID) {
-			case AlfPackage.MEMBER_DEFINITION___ACTUAL_NAME:
-				return AlfPackage.ANY_TYPE___ACTUAL_NAME;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.MEMBER_DEFINITION___ACTUAL_NAME: return AlfPackage.ANY_TYPE___ACTUAL_NAME;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -89,14 +82,13 @@ public class AnyTypeImpl extends ClassifierDefinitionImpl implements AnyType {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ANY_TYPE___ACTUAL_NAME:
-			return actualName();
+			case AlfPackage.ANY_TYPE___ACTUAL_NAME:
+				return actualName();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

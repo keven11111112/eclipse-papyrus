@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BlockStatement#getBlock <em>Block</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.BlockStatement#isIsParallel <em>Is Parallel</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BlockStatement#getBlock <em>Block</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BlockStatement#isIsParallel <em>Is Parallel</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlockStatement()
@@ -36,7 +36,6 @@ public interface BlockStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The block to be executed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Block</em>' containment reference.
 	 * @see #setBlock(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlockStatement_Block()
@@ -49,9 +48,7 @@ public interface BlockStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BlockStatement#getBlock <em>Block</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Block</em>' containment reference.
+	 * @param value the new value of the '<em>Block</em>' containment reference.
 	 * @see #getBlock()
 	 * @generated
 	 */
@@ -65,7 +62,6 @@ public interface BlockStatement extends Statement {
 	 * Whether the statements in the block of this block statement should be
 	 * executed concurrently.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Parallel</em>' attribute.
 	 * @see #setIsParallel(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBlockStatement_IsParallel()
@@ -81,9 +77,7 @@ public interface BlockStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BlockStatement#isIsParallel <em>Is Parallel</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Parallel</em>' attribute.
+	 * @param value the new value of the '<em>Is Parallel</em>' attribute.
 	 * @see #isIsParallel()
 	 * @generated
 	 */
@@ -92,7 +86,6 @@ public interface BlockStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.block.assignmentAfter'"
 	 * @generated
@@ -107,9 +100,7 @@ public interface BlockStatement extends Statement {
 	 * block may not be further assigned in any subsequent statement in the same
 	 * block.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                    if not self.isParallel or self.block = null then true\n                    else self.block.statement.statement.newAssignments()->\n                        isUnique(name)\n                    endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                    if not self.isParallel or self.block = null then true\n                    else self.block.statement.statement.newAssignments()->\n                        isUnique(name)\n                    endif'"
 	 * @generated
 	 */
 	boolean blockStatementParallelAssignments(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -121,7 +112,6 @@ public interface BlockStatement extends Statement {
 	 * The assignments before the block of a block statement are the same as the
 	 * assignments before the block statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -134,7 +124,6 @@ public interface BlockStatement extends Statement {
 	 * The assignments after a block statement are the same as the assignments
 	 * after the block of the block statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -147,7 +136,6 @@ public interface BlockStatement extends Statement {
 	 * The enclosing statement for all the statements in the block of a block
 	 * statement is the block statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -159,7 +147,6 @@ public interface BlockStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A block statement is parallel if it has a @parallel annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -170,9 +157,8 @@ public interface BlockStatement extends Statement {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * In addition to an @isolated annotation, a block statement may have a
-	 * 
 	 * @parallel annotation. It may not have any arguments.
-	 *           <!-- end-model-doc -->
+	 * <!-- end-model-doc -->
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.Statement_annotationAllowed(annotation) or \n                  annotation.identifier = \'parallel\' and annotation.argument->isEmpty()'"
 	 * @generated

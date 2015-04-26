@@ -16,7 +16,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ShiftExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ShiftExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getShiftExpression()
@@ -31,7 +31,6 @@ public interface ShiftExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the first operand expression requires BitString conversion.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getShiftExpression_IsBitStringConversion()
@@ -45,9 +44,7 @@ public interface ShiftExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ShiftExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #isIsBitStringConversion()
 	 * @generated
 	 */
@@ -56,7 +53,6 @@ public interface ShiftExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.bitStringType()'"
 	 * @generated
 	 */
@@ -65,7 +61,6 @@ public interface ShiftExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.operand1.lower = 0 or self.operand2.lower = 0 then 0\n        else 1\n        endif'"
 	 * @generated
@@ -75,7 +70,6 @@ public interface ShiftExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -89,7 +83,6 @@ public interface ShiftExpression extends BinaryExpression {
 	 * A shift expression has type BitString.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -103,7 +96,6 @@ public interface ShiftExpression extends BinaryExpression {
 	 * if either operand expression is 0 and 1 otherwise.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -116,7 +108,6 @@ public interface ShiftExpression extends BinaryExpression {
 	 * A shift expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -130,9 +121,7 @@ public interface ShiftExpression extends BinaryExpression {
 	 * BitString or Integer. The second operand expression must have the type
 	 * Integer.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          (self.isBitStringType(type1) or self.isIntegerType(type1)) and self.isIntegerType(type2)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          (self.isBitStringType(type1) or self.isIntegerType(type1)) and self.isIntegerType(type2)'"
 	 * @generated
 	 */
 	boolean shiftExpressionOperands(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -144,7 +133,6 @@ public interface ShiftExpression extends BinaryExpression {
 	 * BitString conversion is required if the first operand expression of a
 	 * shift expression has type Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

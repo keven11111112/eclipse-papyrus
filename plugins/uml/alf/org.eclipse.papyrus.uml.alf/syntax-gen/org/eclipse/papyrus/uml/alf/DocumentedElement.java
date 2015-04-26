@@ -17,7 +17,7 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.DocumentedElement#getDocumentation <em>Documentation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.DocumentedElement#getDocumentation <em>Documentation</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getDocumentedElement()
@@ -33,7 +33,6 @@ public interface DocumentedElement extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The documentation text to be associated with a syntax element. Each string is intended to be mapped to the body of a comment element in the target UML model.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Documentation</em>' attribute list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getDocumentedElement_Documentation()
 	 * @model ordered="false"

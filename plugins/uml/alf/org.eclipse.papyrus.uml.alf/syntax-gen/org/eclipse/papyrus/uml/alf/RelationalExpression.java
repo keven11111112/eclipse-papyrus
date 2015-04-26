@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.RelationalExpression#isIsUnlimitedNatural <em>Is Unlimited Natural</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.RelationalExpression#isIsUnlimitedNatural <em>Is Unlimited Natural</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getRelationalExpression()
@@ -35,7 +35,6 @@ public interface RelationalExpression extends BinaryExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether this is an UnlimitedNatural comparison.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Unlimited Natural</em>' attribute.
 	 * @see #setIsUnlimitedNatural(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getRelationalExpression_IsUnlimitedNatural()
@@ -49,9 +48,7 @@ public interface RelationalExpression extends BinaryExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.RelationalExpression#isIsUnlimitedNatural <em>Is Unlimited Natural</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Unlimited Natural</em>' attribute.
+	 * @param value the new value of the '<em>Is Unlimited Natural</em>' attribute.
 	 * @see #isIsUnlimitedNatural()
 	 * @generated
 	 */
@@ -60,7 +57,6 @@ public interface RelationalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -69,7 +65,6 @@ public interface RelationalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.operand1.lower = 0 or self.operand2.lower = 0 then 0\n        else 1\n        endif'"
 	 * @generated
@@ -79,7 +74,6 @@ public interface RelationalExpression extends BinaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -93,7 +87,6 @@ public interface RelationalExpression extends BinaryExpression {
 	 * A relational expression is an UnlimitedNatural comparison if either one
 	 * of its operands has type UnlimitedNatural.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -106,7 +99,6 @@ public interface RelationalExpression extends BinaryExpression {
 	 * The type of a relational expression is Boolean.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -120,7 +112,6 @@ public interface RelationalExpression extends BinaryExpression {
 	 * bound if either operand expression is 0 and 1 otherwise.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -133,7 +124,6 @@ public interface RelationalExpression extends BinaryExpression {
 	 * A relational expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -147,9 +137,7 @@ public interface RelationalExpression extends BinaryExpression {
 	 * UnlimitedNatural or Natural. However, it is not allowed to have one
 	 * operand expression be Integer and the other be UnlimitedNatural.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          self.isNaturalType(type1) and self.isNumericType(type2) or\n          self.isIntegerType(type1) and self.isIntegerType(type2) or\n          self.isUnlimitedNaturalType(type1) and self.isUnlimitedNaturalType(type2)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let type1 = self.operand1.type in\n        let type2 = self.operand2.type in\n          self.isNaturalType(type1) and self.isNumericType(type2) or\n          self.isIntegerType(type1) and self.isIntegerType(type2) or\n          self.isUnlimitedNaturalType(type1) and self.isUnlimitedNaturalType(type2)'"
 	 * @generated
 	 */
 	boolean relationalExpressionOperandTypes(DiagnosticChain diagnostics, Map<Object, Object> context);

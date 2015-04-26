@@ -21,7 +21,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -31,7 +30,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -41,7 +39,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -51,7 +48,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='true'"
 	 * @generated
@@ -61,7 +57,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -70,7 +65,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ExternalEnumerationLiteralReference_visibility()'"
 	 * @generated
@@ -80,7 +74,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -89,7 +82,6 @@ public interface ExternalEnumerationLiteralReference extends ExternalElementRefe
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ExternalEnumerationLiteralReference_type()'"
 	 * @generated
 	 */

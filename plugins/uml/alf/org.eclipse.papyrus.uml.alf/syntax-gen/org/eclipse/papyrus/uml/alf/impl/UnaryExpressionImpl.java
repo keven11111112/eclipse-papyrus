@@ -31,12 +31,11 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Unary Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.UnaryExpressionImpl#getOperator <em>Operator</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.UnaryExpressionImpl#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.UnaryExpressionImpl#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.UnaryExpressionImpl#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @generated
@@ -45,7 +44,6 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UnaryExpressionImpl() {
@@ -55,7 +53,6 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,17 +63,15 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getOperator() {
-		return (String) eGet(AlfPackage.eINSTANCE.getUnaryExpression_Operator(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getUnaryExpression_Operator(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOperator(String newOperator) {
@@ -86,17 +81,15 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getOperand() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getUnaryExpression_Operand(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getUnaryExpression_Operand(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setOperand(Expression newOperand) {
@@ -106,7 +99,6 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean unaryExpressionAssignmentsBefore(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -117,12 +109,12 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.UNARY_EXPRESSION__UNARY_EXPRESSION_ASSIGNMENTS_BEFORE,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unaryExpressionAssignmentsBefore", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.UNARY_EXPRESSION__UNARY_EXPRESSION_ASSIGNMENTS_BEFORE,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unaryExpressionAssignmentsBefore", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -133,24 +125,23 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	 * The cached invocation delegate for the '{@link #updateAssignments() <em>Update Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #updateAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getUnaryExpression__UpdateAssignments()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getUnaryExpression__UpdateAssignments()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> updateAssignments() {
 		try {
-			return (EList<AssignedSource>) UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -158,17 +149,14 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
-			case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS:
-				return AlfPackage.UNARY_EXPRESSION___UPDATE_ASSIGNMENTS;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS: return AlfPackage.UNARY_EXPRESSION___UPDATE_ASSIGNMENTS;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -177,17 +165,16 @@ public abstract class UnaryExpressionImpl extends ExpressionImpl implements Unar
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.UNARY_EXPRESSION___UNARY_EXPRESSION_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP:
-			return unaryExpressionAssignmentsBefore((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.UNARY_EXPRESSION___UPDATE_ASSIGNMENTS:
-			return updateAssignments();
+			case AlfPackage.UNARY_EXPRESSION___UNARY_EXPRESSION_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP:
+				return unaryExpressionAssignmentsBefore((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.UNARY_EXPRESSION___UPDATE_ASSIGNMENTS:
+				return updateAssignments();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -20,10 +20,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getVisibility <em>Visibility</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferentName <em>Referent Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getUnit <em>Unit</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferentName <em>Referent Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ImportReference#getUnit <em>Unit</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportReference()
@@ -38,7 +38,6 @@ public interface ImportReference extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * An indication of the visibility of the import.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Visibility</em>' attribute.
 	 * @see #setVisibility(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportReference_Visibility()
@@ -53,9 +52,7 @@ public interface ImportReference extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ImportReference#getVisibility <em>Visibility</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Visibility</em>' attribute.
+	 * @param value the new value of the '<em>Visibility</em>' attribute.
 	 * @see #getVisibility()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface ImportReference extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the element or package to be imported.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent Name</em>' containment reference.
 	 * @see #setReferentName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportReference_ReferentName()
@@ -81,9 +77,7 @@ public interface ImportReference extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferentName <em>Referent Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent Name</em>' containment reference.
+	 * @param value the new value of the '<em>Referent Name</em>' containment reference.
 	 * @see #getReferentName()
 	 * @generated
 	 */
@@ -96,13 +90,11 @@ public interface ImportReference extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * A reference to the imported element denoted by the given qualified name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportReference_Referent()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                    let referents = self.referentName.modelReferents() in \n                      if referents->size() = 1 then referents->any(true)\n                      else null\n                      endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n                    let referents = self.referentName.modelReferents() in \n                      if referents->size() = 1 then referents->any(true)\n                      else null\n                      endif'"
 	 * @generated
 	 */
 	ElementReference getReferent();
@@ -111,9 +103,7 @@ public interface ImportReference extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ImportReference#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -127,7 +117,6 @@ public interface ImportReference extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The unit that is making this import reference.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Unit</em>' container reference.
 	 * @see #setUnit(UnitDefinition)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportReference_Unit()
@@ -141,9 +130,7 @@ public interface ImportReference extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ImportReference#getUnit <em>Unit</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Unit</em>' container reference.
+	 * @param value the new value of the '<em>Unit</em>' container reference.
 	 * @see #getUnit()
 	 * @generated
 	 */
@@ -155,7 +142,6 @@ public interface ImportReference extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * Return the set of all imported members.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -168,7 +154,6 @@ public interface ImportReference extends SyntaxElement {
 	 * The referent of an import reference is the element denoted by the
 	 * referent name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -181,7 +166,6 @@ public interface ImportReference extends SyntaxElement {
 	 * The referent name of an import reference must resolve to a single element
 	 * with public or empty visibility.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                  self.referent <> null and\n                  let visibility = self.referent.visibility() in \n                    visibility = null or visibility = \'public\''"
 	 * @generated
 	 */

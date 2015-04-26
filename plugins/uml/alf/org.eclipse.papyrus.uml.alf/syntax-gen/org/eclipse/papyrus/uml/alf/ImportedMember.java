@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ImportedMember#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ImportedMember#getReferent <em>Referent</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportedMember()
@@ -34,7 +34,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * 
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getImportedMember_Referent()
@@ -47,9 +46,7 @@ public interface ImportedMember extends MemberDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ImportedMember#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -58,7 +55,6 @@ public interface ImportedMember extends MemberDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.name'"
 	 * @generated
@@ -68,7 +64,6 @@ public interface ImportedMember extends MemberDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent'"
 	 * @generated
@@ -81,7 +76,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Returns false. (Imported members do not have annotations.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -102,7 +96,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * given member are UML elements, so return the result of checking their
 	 * distinguishability according to the rules of the UML superstructure.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isSameKindAs(member)'"
 	 * @generated
@@ -115,7 +108,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * Returns true if the referent of this imported member is a feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.referent.isFeature()'"
 	 * @generated
@@ -128,7 +120,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * An imported element is not a stub.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='not self.isStub'"
 	 * @generated
 	 */
@@ -140,7 +131,6 @@ public interface ImportedMember extends MemberDefinition {
 	 * <!-- begin-model-doc -->
 	 * An imported element is a feature if its referent is a feature.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

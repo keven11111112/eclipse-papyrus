@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getBehavior <em>Behavior</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getBehavior <em>Behavior</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getReturnStatement()
@@ -36,7 +36,6 @@ public interface ReturnStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to provide the returned value.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getReturnStatement_Expression()
@@ -49,9 +48,7 @@ public interface ReturnStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' containment reference.
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -64,7 +61,6 @@ public interface ReturnStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A reference to the enclosing behavior for this return statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Behavior</em>' reference.
 	 * @see #setBehavior(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getReturnStatement_Behavior()
@@ -78,9 +74,7 @@ public interface ReturnStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ReturnStatement#getBehavior <em>Behavior</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Behavior</em>' reference.
+	 * @param value the new value of the '<em>Behavior</em>' reference.
 	 * @see #getBehavior()
 	 * @generated
 	 */
@@ -89,7 +83,6 @@ public interface ReturnStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression = null then self.assignmentBefore\n        else self.expression.assignmentAfter\n        endif'"
 	 * @generated
@@ -106,9 +99,7 @@ public interface ReturnStatement extends Statement {
 	 * (And, if the behavior does not have a return parameter, then the return
 	 * statement must not have an expression.)
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let behavior = self.behavior in\n          if behavior = null then false\n          else\n            let returnParameter = behavior.returnParameter() in\n              self.expression = null and returnParameter = null or\n              self.expression <> null and returnParameter <> null and\n              returnParameter.isAssignableFrom(self.expression)\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let behavior = self.behavior in\n          if behavior = null then false\n          else\n            let returnParameter = behavior.returnParameter() in\n              self.expression = null and returnParameter = null or\n              self.expression <> null and returnParameter <> null and\n              returnParameter.isAssignableFrom(self.expression)\n          endif'"
 	 * @generated
 	 */
 	boolean returnStatementContext(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -121,7 +112,6 @@ public interface ReturnStatement extends Statement {
 	 * as the assignments before the statement.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -137,7 +127,6 @@ public interface ReturnStatement extends Statement {
 	 * before the statement.)
 	 * (See the assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

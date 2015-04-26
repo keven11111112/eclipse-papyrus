@@ -22,7 +22,6 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Unbounded Literal Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -30,7 +29,6 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UnboundedLiteralExpressionImpl() {
@@ -40,7 +38,6 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,23 +49,22 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getUnboundedLiteralExpression__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getUnboundedLiteralExpression__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -76,7 +72,6 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean unboundedLiteralExpressionTypeDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -87,12 +82,12 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.UNBOUNDED_LITERAL_EXPRESSION__UNBOUNDED_LITERAL_EXPRESSION_TYPE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unboundedLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.UNBOUNDED_LITERAL_EXPRESSION__UNBOUNDED_LITERAL_EXPRESSION_TYPE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "unboundedLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -102,17 +97,16 @@ public class UnboundedLiteralExpressionImpl extends LiteralExpressionImpl implem
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION___TYPE:
-			return type();
-		case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION___UNBOUNDED_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return unboundedLiteralExpressionTypeDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION___TYPE:
+				return type();
+			case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION___UNBOUNDED_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return unboundedLiteralExpressionTypeDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

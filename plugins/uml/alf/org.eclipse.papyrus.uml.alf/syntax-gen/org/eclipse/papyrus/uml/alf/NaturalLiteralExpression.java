@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.NaturalLiteralExpression#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NaturalLiteralExpression#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNaturalLiteralExpression()
@@ -34,7 +34,6 @@ public interface NaturalLiteralExpression extends LiteralExpression {
 	 * <!-- begin-model-doc -->
 	 * The textual image of the literal token for this expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Image</em>' attribute.
 	 * @see #setImage(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNaturalLiteralExpression_Image()
@@ -49,9 +48,7 @@ public interface NaturalLiteralExpression extends LiteralExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NaturalLiteralExpression#getImage <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Image</em>' attribute.
+	 * @param value the new value of the '<em>Image</em>' attribute.
 	 * @see #getImage()
 	 * @generated
 	 */
@@ -60,7 +57,6 @@ public interface NaturalLiteralExpression extends LiteralExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.naturalType()'"
 	 * @generated
 	 */
@@ -78,7 +74,6 @@ public interface NaturalLiteralExpression extends LiteralExpression {
 	 * must be used.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

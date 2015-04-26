@@ -12,7 +12,7 @@ package org.eclipse.papyrus.uml.alf;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getEffectiveLeftHandSide()
@@ -27,7 +27,6 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	 * If the meaning of the '<em>Expression</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getEffectiveLeftHandSide_Expression()
@@ -40,9 +39,7 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide#getExpression <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -51,9 +48,7 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary() in\n          if expression.oclIsKindOf(NameExpression) then\n            expression.oclAsType(NameExpression).name\n          else\n            null\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary() in\n          if expression.oclIsKindOf(NameExpression) then\n            expression.oclAsType(NameExpression).name\n          else\n            null\n          endif'"
 	 * @generated
 	 */
 	QualifiedName target();
@@ -61,9 +56,7 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          self.expression.oclAsType(SequenceAccessExpression).index\n        else\n          null\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          self.expression.oclAsType(SequenceAccessExpression).index\n        else\n          null\n        endif'"
 	 * @generated
 	 */
 	Expression index();
@@ -71,9 +64,7 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let primary = self.primary() in\n          if expression.oclIsKindOf(NameExpression) then\n            expression.oclAsType(NameExpression).name.disambiguation\n          else if expression.oclIsKindOf(PropertyAccessExpression) then\n            expression.oclAsType(PropertyAccessExpression).featureReference\n          else\n            null\n          endif endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let primary = self.primary() in\n          if expression.oclIsKindOf(NameExpression) then\n            expression.oclAsType(NameExpression).name.disambiguation\n          else if expression.oclIsKindOf(PropertyAccessExpression) then\n            expression.oclAsType(PropertyAccessExpression).featureReference\n          else\n            null\n          endif endif'"
 	 * @generated
 	 */
 	FeatureReference feature();
@@ -81,10 +72,8 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          self.expression.oclAsType(SequenceAccessExpression).primary\n        else\n          expression\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.expression.oclIsKindOf(SequenceAccessExpression) then\n          self.expression.oclAsType(SequenceAccessExpression).primary\n        else\n          expression\n        endif'"
 	 * @generated
 	 */
 	Expression primary();

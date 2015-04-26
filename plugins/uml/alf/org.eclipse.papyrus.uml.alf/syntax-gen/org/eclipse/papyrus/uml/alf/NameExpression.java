@@ -21,10 +21,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getEnumerationLiteral <em>Enumeration Literal</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getAssignment <em>Assignment</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getPropertyAccess <em>Property Access</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getEnumerationLiteral <em>Enumeration Literal</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getAssignment <em>Assignment</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getPropertyAccess <em>Property Access</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NameExpression#getName <em>Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNameExpression()
@@ -39,13 +39,11 @@ public interface NameExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The identified enumeration literal, if the referenced name is for an enumeration literal.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Enumeration Literal</em>' reference.
 	 * @see #setEnumerationLiteral(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNameExpression_EnumerationLiteral()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.name.isFeatureReference then null\n        else\n          let referents = self.name.referent->select(isEnumerationLiteral()) in\n            if referents->size() <> 1 then null\n            else referents->any(true)\n            endif\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.name.isFeatureReference then null\n        else\n          let referents = self.name.referent->select(isEnumerationLiteral()) in\n            if referents->size() <> 1 then null\n            else referents->any(true)\n            endif\n        endif'"
 	 * @generated
 	 */
 	ElementReference getEnumerationLiteral();
@@ -54,9 +52,7 @@ public interface NameExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NameExpression#getEnumerationLiteral <em>Enumeration Literal</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Enumeration Literal</em>' reference.
+	 * @param value the new value of the '<em>Enumeration Literal</em>' reference.
 	 * @see #getEnumerationLiteral()
 	 * @generated
 	 */
@@ -70,13 +66,11 @@ public interface NameExpression extends Expression {
 	 * The assigned source for the referenced name, if the name is a local or
 	 * parameter name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Assignment</em>' reference.
 	 * @see #setAssignment(AssignedSource)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNameExpression_Assignment()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      if self.name.isFeatureReference then null\n      else\n        let localName = self.name.unqualifiedName.toName() in\n          if name.qualification = null then\n            self.assignmentFor(localName)\n          else\n            let parameterReferent = self.parameterReferent() in\n              if parameterReferent <> null and \n                  parameterReferent.namespace().equals(self.currentScope()) then\n                self.assignmentFor(localName)\n              else\n                null\n              endif\n          endif\n      endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n      if self.name.isFeatureReference then null\n      else\n        let localName = self.name.unqualifiedName.toName() in\n          if name.qualification = null then\n            self.assignmentFor(localName)\n          else\n            let parameterReferent = self.parameterReferent() in\n              if parameterReferent <> null and \n                  parameterReferent.namespace().equals(self.currentScope()) then\n                self.assignmentFor(localName)\n              else\n                null\n              endif\n          endif\n      endif'"
 	 * @generated
 	 */
 	AssignedSource getAssignment();
@@ -85,9 +79,7 @@ public interface NameExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NameExpression#getAssignment <em>Assignment</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Assignment</em>' reference.
+	 * @param value the new value of the '<em>Assignment</em>' reference.
 	 * @see #getAssignment()
 	 * @generated
 	 */
@@ -101,13 +93,11 @@ public interface NameExpression extends Expression {
 	 * The equivalent property access expression, if the referenced name
 	 * disambiguates to a feature reference.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Property Access</em>' reference.
 	 * @see #setPropertyAccess(PropertyAccessExpression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNameExpression_PropertyAccess()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let disambiguation = self.name.disambiguation in\n          if disambiguation = null then null\n          else\n            PropertyAccessExpression{\n              featureReference = disambiguation,\n              owner = self\n            } \n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let disambiguation = self.name.disambiguation in\n          if disambiguation = null then null\n          else\n            PropertyAccessExpression{\n              featureReference = disambiguation,\n              owner = self\n            } \n          endif'"
 	 * @generated
 	 */
 	PropertyAccessExpression getPropertyAccess();
@@ -116,9 +106,7 @@ public interface NameExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NameExpression#getPropertyAccess <em>Property Access</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Property Access</em>' reference.
+	 * @param value the new value of the '<em>Property Access</em>' reference.
 	 * @see #getPropertyAccess()
 	 * @generated
 	 */
@@ -132,7 +120,6 @@ public interface NameExpression extends Expression {
 	 * The qualified name referenced in this expression. (For a local name, this
 	 * will actually have no qualification.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' containment reference.
 	 * @see #setName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNameExpression_Name()
@@ -145,9 +132,7 @@ public interface NameExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NameExpression#getName <em>Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' containment reference.
+	 * @param value the new value of the '<em>Name</em>' containment reference.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -156,9 +141,7 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignment in\n          if assignment <> null then assignment.type\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then enumerationLiteral.type()\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.type\n                  else null\n                  endif\n              endif\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = self.assignment in\n          if assignment <> null then assignment.type\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then enumerationLiteral.type()\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.type\n                  else null\n                  endif\n              endif\n          endif'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -166,10 +149,8 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.upper\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.upper\n                  else 0\n                  endif\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.upper\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.upper\n                  else 0\n                  endif\n              endif\n          endif'"
 	 * @generated
 	 */
 	BigInteger upper();
@@ -177,10 +158,8 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.lower\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.lower\n                  else 0\n                  endif\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.lower\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.lower\n                  else 0\n                  endif\n              endif\n          endif'"
 	 * @generated
 	 */
 	BigInteger lower();
@@ -188,7 +167,6 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let referents = self.name.referent->select(isParameter()) in\n        if referents->size() <> 1 then null\n        else referents->any(true)\n        endif'"
 	 * @generated
 	 */
@@ -202,7 +180,6 @@ public interface NameExpression extends Expression {
 	 * local name and it is only legal if this name expression is the target of
 	 * a CollectionFunctions::add invocation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model localNameRequired="true"
 	 * @generated
 	 */
@@ -211,10 +188,8 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model localNameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignments = self.assignmentBefore->select(name = localName) in\n        if assignments->isEmpty() or \n           assignments->forAll(isParallelLocalName) and not self.isAddTarget()\n        then \n          null\n        else \n          assignments->any(true)\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignments = self.assignmentBefore->select(name = localName) in\n        if assignments->isEmpty() or \n           assignments->forAll(isParallelLocalName) and not self.isAddTarget()\n        then \n          null\n        else \n          assignments->any(true)\n        endif'"
 	 * @generated
 	 */
 	AssignedSource assignmentFor_(String localName);
@@ -222,7 +197,6 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.enclosingExpression() in\n        if expression = null then false\n        else expression.isAddTarget(self)\n        endif'"
 	 * @generated
@@ -236,7 +210,6 @@ public interface NameExpression extends Expression {
 	 * If the name in a name expression is a local or parameter name, then its
 	 * assignment is its assigned source before the expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -249,7 +222,6 @@ public interface NameExpression extends Expression {
 	 * If the name in a name expression resolves to an enumeration literal name,
 	 * then that is the enumeration literal for the expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -265,7 +237,6 @@ public interface NameExpression extends Expression {
 	 * expression are the same as those before the name expression.
 	 * (See also the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -284,7 +255,6 @@ public interface NameExpression extends Expression {
 	 * expression.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -298,7 +268,6 @@ public interface NameExpression extends Expression {
 	 * name.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -312,7 +281,6 @@ public interface NameExpression extends Expression {
 	 * name.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -326,7 +294,6 @@ public interface NameExpression extends Expression {
 	 * reference or a local or parameter name, then it must resolve to exactly
 	 * one enumeration literal.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.validateNameExpressionResolution()'"
 	 * @generated
 	 */
@@ -335,10 +302,8 @@ public interface NameExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.propertyAccess <> null or \n        self.assignment <> null and self.assignment.source <> null or \n        self.enumerationLiteral <> null or\n        -- NOTE: The following allows the name of a name expression that is an\n        -- an argument of an out parameter to be unassigned.\n        let owner = \n          if self.owner().oclIsKindOf(NamedExpression) then self.owner().owner()\n          else self.owner()\n          endif\n        in\n          owner.oclIsKindOf(_\'Tuple\') and\n          owner.oclAsType(_\'Tuple\').output->exists(\n            expression = self and\n            owner.oclAsType(_\'Tuple\').invocation.parameterNamed(name).direction() = \'out\'\n          )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.propertyAccess <> null or \n        self.assignment <> null and self.assignment.source <> null or \n        self.enumerationLiteral <> null or\n        -- NOTE: The following allows the name of a name expression that is an\n        -- an argument of an out parameter to be unassigned.\n        let owner = \n          if self.owner().oclIsKindOf(NamedExpression) then self.owner().owner()\n          else self.owner()\n          endif\n        in\n          owner.oclIsKindOf(_\'Tuple\') and\n          owner.oclAsType(_\'Tuple\').output->exists(\n            expression = self and\n            owner.oclAsType(_\'Tuple\').invocation.parameterNamed(name).direction() = \'out\'\n          )'"
 	 * @generated
 	 */
 	boolean validateNameExpressionResolution();
@@ -352,10 +317,8 @@ public interface NameExpression extends Expression {
 	 * property access expression. Otherwise, return the result of the superclass
 	 * updateAssignments operation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.assignmentAfter\n                  else self.Expression_updateAssignments()\n                  endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.assignmentAfter\n                  else self.Expression_updateAssignments()\n                  endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateAssignments();

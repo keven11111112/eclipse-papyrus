@@ -21,8 +21,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getCondition <em>Condition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getBody <em>Body</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getCondition <em>Condition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getBody <em>Body</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNonFinalClause()
@@ -38,7 +38,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * The expression that is evaluated to determine whether the clause body may
 	 * be executed.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Condition</em>' containment reference.
 	 * @see #setCondition(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNonFinalClause_Condition()
@@ -51,9 +50,7 @@ public interface NonFinalClause extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getCondition <em>Condition</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Condition</em>' containment reference.
+	 * @param value the new value of the '<em>Condition</em>' containment reference.
 	 * @see #getCondition()
 	 * @generated
 	 */
@@ -67,7 +64,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * The sequence of statements that may be executed if the condition evaluates
 	 * to true.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Body</em>' containment reference.
 	 * @see #setBody(Block)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getNonFinalClause_Body()
@@ -80,9 +76,7 @@ public interface NonFinalClause extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.NonFinalClause#getBody <em>Body</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Body</em>' containment reference.
+	 * @param value the new value of the '<em>Body</em>' containment reference.
 	 * @see #getBody()
 	 * @generated
 	 */
@@ -91,7 +85,6 @@ public interface NonFinalClause extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      if element = self.body then self.condition.assignmentAfter\n                      else self.assignmentsBefore()\n                      endif'"
 	 * @generated
@@ -105,7 +98,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * The assignments before a non-final clause are the assignments before the
 	 * condition of the clause.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.SyntaxElement_assignmentsBefore()'"
 	 * @generated
@@ -119,7 +111,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * The assignments after a non-final clause are the assignments after the
 	 * block of the clause.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.body.assignmentAfter'"
 	 * @generated
@@ -134,7 +125,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * after the condition.
 	 * (See the assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -148,7 +138,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * clause, then it must be unassigned after that expression (i.e., new local
 	 * names may not be defined in the condition).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      self.condition.assignmentBefore.name->includesAll(\n                        self.condition.assignmentAfter.name\n                      )'"
 	 * @generated
 	 */
@@ -161,7 +150,6 @@ public interface NonFinalClause extends SyntaxElement {
 	 * The condition of a non-final clause must have type Boolean and a
 	 * multiplicity upper bound no greater than 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n                      let type = self.condition.type in\n                        type <> null and self.isBooleanType(type) and \n                        condition.upper <= 1'"
 	 * @generated
 	 */

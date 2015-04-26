@@ -20,11 +20,11 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getPrimary <em>Primary</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getOperation <em>Operation</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getPrimary <em>Primary</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getOperation <em>Operation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getLeftHandSide <em>Left Hand Side</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression()
@@ -40,7 +40,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * The expression or class name whose value is gives the sequence to be
 	 * operated on.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Primary</em>' containment reference.
 	 * @see #setPrimary(ExtentOrExpression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression_Primary()
@@ -53,9 +52,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getPrimary <em>Primary</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Primary</em>' containment reference.
+	 * @param value the new value of the '<em>Primary</em>' containment reference.
 	 * @see #getPrimary()
 	 * @generated
 	 */
@@ -68,7 +65,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * <!-- begin-model-doc -->
 	 * The qualified name of the behavior being invoked.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operation</em>' containment reference.
 	 * @see #setOperation(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression_Operation()
@@ -81,9 +77,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getOperation <em>Operation</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operation</em>' containment reference.
+	 * @param value the new value of the '<em>Operation</em>' containment reference.
 	 * @see #getOperation()
 	 * @generated
 	 */
@@ -96,13 +90,11 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether the primary expression requires collection conversion.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #setIsCollectionConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression_IsCollectionConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let expression = self.primary.expression in\n          expression <> null and expression.upper = 1 and\n          let type = expression.type in\n            type <> null and self.isCollectionClass(type)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let expression = self.primary.expression in\n          expression <> null and expression.upper = 1 and\n          let type = expression.type in\n            type <> null and self.isCollectionClass(type)'"
 	 * @generated
 	 */
 	boolean isIsCollectionConversion();
@@ -111,9 +103,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsCollectionConversion <em>Is Collection Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Collection Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Collection Conversion</em>' attribute.
 	 * @see #isIsCollectionConversion()
 	 * @generated
 	 */
@@ -126,13 +116,11 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * <!-- begin-model-doc -->
 	 * Whether type primary expression requires BitString conversion.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referent = self.referent in\n        let firstParameter = self.firstParameter() in\n        let expression = self.primary.expression in\n          referent <> null and firstParameter <> null and expression <> null and\n          let parameterType = firstParameter.type() in\n          let primaryType =\n            if self.isCollectionConversion then\n              expression.type.collectionArgument()\n            else\n              expression.type\n            endif\n          in\n            parameterType <> null and self.isBitStringType(parameterType) and\n            primaryType <> null and self.isIntegerType(primaryType)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referent = self.referent in\n        let firstParameter = self.firstParameter() in\n        let expression = self.primary.expression in\n          referent <> null and firstParameter <> null and expression <> null and\n          let parameterType = firstParameter.type() in\n          let primaryType =\n            if self.isCollectionConversion then\n              expression.type.collectionArgument()\n            else\n              expression.type\n            endif\n          in\n            parameterType <> null and self.isBitStringType(parameterType) and\n            primaryType <> null and self.isIntegerType(primaryType)'"
 	 * @generated
 	 */
 	boolean isIsBitStringConversion();
@@ -141,9 +129,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#isIsBitStringConversion <em>Is Bit String Conversion</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Bit String Conversion</em>' attribute.
+	 * @param value the new value of the '<em>Is Bit String Conversion</em>' attribute.
 	 * @see #isIsBitStringConversion()
 	 * @generated
 	 */
@@ -158,13 +144,11 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * the sequence operation is “in place” (that is, has a first parameter with
 	 * direction inout).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Left Hand Side</em>' reference.
 	 * @see #setLeftHandSide(LeftHandSide)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceOperationExpression_LeftHandSide()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let expression = self.primary.expression in\n        let firstParameter = self.firstParameter() in\n          if expression = null or firstParameter = null or \n            firstParameter.direction() <> \'inout\' then\n            null\n          else\n            EffectiveLeftHandSide{\n              expression = expression,\n              owner = self\n            }\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let expression = self.primary.expression in\n        let firstParameter = self.firstParameter() in\n          if expression = null or firstParameter = null or \n            firstParameter.direction() <> \'inout\' then\n            null\n          else\n            EffectiveLeftHandSide{\n              expression = expression,\n              owner = self\n            }\n          endif'"
 	 * @generated
 	 */
 	LeftHandSide getLeftHandSide();
@@ -173,9 +157,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#getLeftHandSide <em>Left Hand Side</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Left Hand Side</em>' reference.
+	 * @param value the new value of the '<em>Left Hand Side</em>' reference.
 	 * @see #getLeftHandSide()
 	 * @generated
 	 */
@@ -184,7 +166,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -193,9 +174,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.operation.referent in\n          if referents->select(isBehavior())->size() <> 1 then null\n          else\n            let referent = referents->any(isBehavior()) in\n              if referent.isTemplate() then \n                self.bindTemplateImplicitArguments(\n                  referent, self.primary.expression\n                )\n              else referent\n              endif\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.operation.referent in\n          if referents->select(isBehavior())->size() <> 1 then null\n          else\n            let referent = referents->any(isBehavior()) in\n              if referent.isTemplate() then \n                self.bindTemplateImplicitArguments(\n                  referent, self.primary.expression\n                )\n              else referent\n              endif\n          endif'"
 	 * @generated
 	 */
 	ElementReference referent();
@@ -203,10 +182,8 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" targetExpressionRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let collectionFunctionAdd = self.collectionFunctionAdd() in\n          if collectionFunctionAdd = null then false\n          else\n            collectionFunctionAdd.containedIn(self.operation.referent->asBag()) and\n            /* Note: This works even if the target expression is the\n             * derived name expression of an ExtentOrExpression element.\n             \052/\n            targetExpression.owner() = self.primary \n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let collectionFunctionAdd = self.collectionFunctionAdd() in\n          if collectionFunctionAdd = null then false\n          else\n            collectionFunctionAdd.containedIn(self.operation.referent->asBag()) and\n            /* Note: This works even if the target expression is the\n             * derived name expression of an ExtentOrExpression element.\n             \052/\n            targetExpression.owner() = self.primary \n          endif'"
 	 * @generated
 	 */
 	boolean isAddTarget(Expression targetExpression);
@@ -214,12 +191,23 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referent = self.referent in\n          if referent = null then null\n          else\n            let parameters = referent.parameters() in\n              if parameters->isEmpty() then null\n              else parameters->first()\n              endif\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referent = self.referent in\n          if referent = null then null\n          else\n            let parameters = referent.parameters() in\n              if parameters->isEmpty() then null\n              else parameters->first()\n              endif\n          endif'"
 	 * @generated
 	 */
 	ElementReference firstParameter();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * <!-- begin-model-doc -->
+	 * Return the behavior invocation expression that is equivalent to this
+	 * sequence operation expression.
+	 * <!-- end-model-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet firstParameter = self.firstParameter() in\n\t\t\t\tlet namedExpression = NamedExpression{\n\t\t\t\t\tname = if firstParameter = null then null else firstParameter.name() endif,\n\t\t\t\t\texpression = self.primary.expression\n\t\t\t\t} in\n\t\t\t\tlet namedTuple = NamedTuple{\n\t\t\t\t\tnamedExpression = OrderedSet{namedExpression}->\n\t\t\t\t\t\tincludingAll(self.tuple.input)->includingAll(self.tuple.output)\n\t\t\t\t} in\n\t\t\t\t\tBehaviorInvocationExpression{\n\t\t\t\t\t\ttarget = self.operation,\n\t\t\t\t\t\treferent = self.referent,\n\t\t\t\t\t\ttuple = namedTuple,\n\t\t\t\t\t\towner = self.owner()\n\t\t\t\t\t}'"
+	 * @generated
+	 */
+	BehaviorInvocationExpression invocation();
 
 	/**
 	 * <!-- begin-user-doc -->
@@ -229,7 +217,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * the operation for the expression.
 	 * (See the referent() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -242,7 +229,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * There is no feature for a sequence operation expression.
 	 * (See the feature() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -258,9 +244,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * multiplicity [0..*] and to which the target primary expression is
 	 * assignable.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameter = self.firstParameter() in\n          parameter <> null and\n            let direction = parameter.direction() in\n            let expression = self.primary.expression in\n              (direction = \'in\' or direction = \'inout\') and\n              parameter.lower() = 0 and parameter.upper() = -1 and\n              expression <> null implies parameter.isAssignableFrom(expression)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameter = self.firstParameter() in\n          parameter <> null and\n            let direction = parameter.direction() in\n            let expression = self.primary.expression in\n              (direction = \'in\' or direction = \'inout\') and\n              parameter.lower() = 0 and parameter.upper() = -1 and\n              expression <> null implies parameter.isAssignableFrom(expression)'"
 	 * @generated
 	 */
 	boolean sequenceOperationExpressionOperationReferent(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -275,9 +259,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * equivalent left-hand side is for a local name, that name must already
 	 * exist.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n        let parameter = self.firstParameter() in\n          expression <> null and parameter <> null and \n          parameter.direction() = \'inout\' implies\n            let lhs = self.leftHandSide in\n              lhs <> null and \n              let assignedName = lhs.assignedName() in\n                (assignedName <> null implies \n                  self.assignmentBefore->exists(name = assignedName)\n                ) and\n                let expressionType = self.type in\n                let type = parameter.type() in\n                  type <> null and type.equals(expressionType) or\n                  type = null and expressionType = null'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n        let parameter = self.firstParameter() in\n          expression <> null and parameter <> null and \n          parameter.direction() = \'inout\' implies\n            let lhs = self.leftHandSide in\n              lhs <> null and \n              let assignedName = lhs.assignedName() in\n                (assignedName <> null implies \n                  self.assignmentBefore->exists(name = assignedName)\n                ) and\n                let expressionType = self.type in\n                let type = parameter.type() in\n                  type <> null and type.equals(expressionType) or\n                  type = null and expressionType = null'"
 	 * @generated
 	 */
 	boolean sequenceOperationExpressionTargetCompatibility(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -293,9 +275,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * expression for an inout parameter must be the same as the type of that
 	 * parameter.)
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.referent <> null implies\n          (self.tuple.input->forAll(input | self.parameterIsAssignableFrom(input)) and\n           self.tuple.output->forAll(output | self.parameterIsAssignableTo(output))\n          )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.referent <> null implies\n          (self.tuple.input->forAll(input | self.parameterIsAssignableFrom(input)) and\n           self.tuple.output->forAll(output | self.parameterIsAssignableTo(output))\n          )'"
 	 * @generated
 	 */
 	boolean sequenceOperationExpressionArgumentCompatibility(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -309,7 +289,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * expression.
 	 * (See the InvocationExpression::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -323,7 +302,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * of a sequence operation expression is a collection class and the
 	 * multiplicity upper bound of the primary expression is 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -339,7 +317,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * required and the type of its primary expression is a collection class
 	 * whose argument type is Integer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -353,9 +330,7 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * operation expression may not be assigned in any expression in the tuple
 	 * of the sequence operation expression.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n          expression <> null implies\n            expression.newAssignments().name->\n              excludesAll(self.tuple.newAssignments().name)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n          expression <> null implies\n            expression.newAssignments().name->\n              excludesAll(self.tuple.newAssignments().name)'"
 	 * @generated
 	 */
 	boolean sequenceOperationExpressionAssignmentsAfter(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -377,7 +352,6 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * given previously and the index of the sequence access expression becomes
 	 * the index of the left-hand side.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -392,10 +366,8 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * place" operation (one whose first parameter is inout), that made by the
 	 * sequence operation expression itself.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n        let firstParameter = self.firstParameter() in\n        let assignments1 =\n          if expression = null then self.assignmentBefore\n          else expression.assignmentAfter\n          endif\n        in\n        let assignments2 =\n          self.updateAll(assignments1, self.tuple.assignmentsAfter())\n        in\n          if firstParameter = null or firstParameter.direction() <> \'inout\' then\n            assignments2\n          else\n            let oldAssignment = self.assignmentBefore->\n              select(name = self.leftHandSide.assignedName())\n            in\n              if oldAssignment->isEmpty() or oldAssignment->forAll(isParallelLocalName) then\n                assignments2\n              else\n                oldAssignment->any(true).copy(self, null).update(assignments2)\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let expression = self.primary.expression in\n        let firstParameter = self.firstParameter() in\n        let assignments1 =\n          if expression = null then self.assignmentBefore\n          else expression.assignmentAfter\n          endif\n        in\n        let assignments2 =\n          self.updateAll(assignments1, self.tuple.assignmentsAfter())\n        in\n          if firstParameter = null or firstParameter.direction() <> \'inout\' then\n            assignments2\n          else\n            let oldAssignment = self.assignmentBefore->\n              select(name = self.leftHandSide.assignedName())\n            in\n              if oldAssignment->isEmpty() or oldAssignment->forAll(isParallelLocalName) then\n                assignments2\n              else\n                oldAssignment->any(true).copy(self, null).update(assignments2)\n              endif\n          endif'"
 	 * @generated
 	 */
 	EList<AssignedSource> updateAssignments();
@@ -409,10 +381,8 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	 * parameter is given by the primary expression of a sequence operation
 	 * expression, not in its tuple).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let parameters = self.InvocationExpression_parameterElements() in\n          if parameters->size() < 2 then OrderedSet(ElementReference){}\n          else parameters->subOrderedSet(2, parameters->size())\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> parameterElements();
