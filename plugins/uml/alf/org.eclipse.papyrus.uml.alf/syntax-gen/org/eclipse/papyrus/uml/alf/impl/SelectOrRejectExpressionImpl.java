@@ -10,7 +10,6 @@ import org.eclipse.papyrus.uml.alf.SelectOrRejectExpression;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Select Or Reject Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -18,7 +17,6 @@ public class SelectOrRejectExpressionImpl extends SequenceExpansionExpressionImp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SelectOrRejectExpressionImpl() {
@@ -28,7 +26,6 @@ public class SelectOrRejectExpressionImpl extends SequenceExpansionExpressionImp
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

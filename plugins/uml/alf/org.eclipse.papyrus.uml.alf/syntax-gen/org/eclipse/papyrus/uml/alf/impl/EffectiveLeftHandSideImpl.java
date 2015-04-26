@@ -23,11 +23,10 @@ import org.eclipse.papyrus.uml.alf.QualifiedName;
  * An implementation of the model object '<em><b>Effective Left Hand Side</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.EffectiveLeftHandSideImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.EffectiveLeftHandSideImpl#getExpression <em>Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +35,6 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EffectiveLeftHandSideImpl() {
@@ -46,7 +44,6 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,17 +54,15 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getEffectiveLeftHandSide_Expression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getEffectiveLeftHandSide_Expression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExpression(Expression newExpression) {
@@ -78,23 +73,22 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	 * The cached invocation delegate for the '{@link #target() <em>Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #target()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TARGET__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Target()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TARGET__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Target()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QualifiedName target() {
 		try {
-			return (QualifiedName) TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (QualifiedName)TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -103,23 +97,22 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	 * The cached invocation delegate for the '{@link #index() <em>Index</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #index()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate INDEX__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Index()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate INDEX__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Index()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression index() {
 		try {
-			return (Expression) INDEX__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (Expression)INDEX__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -128,23 +121,22 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	 * The cached invocation delegate for the '{@link #feature() <em>Feature</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #feature()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Feature()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate FEATURE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Feature()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureReference feature() {
 		try {
-			return (FeatureReference) FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (FeatureReference)FEATURE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -153,23 +145,22 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	 * The cached invocation delegate for the '{@link #primary() <em>Primary</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #primary()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate PRIMARY__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Primary()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate PRIMARY__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Primary()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression primary() {
 		try {
-			return (Expression) PRIMARY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (Expression)PRIMARY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -177,31 +168,23 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == LeftHandSide.class) {
 			switch (baseOperationID) {
-			case AlfPackage.LEFT_HAND_SIDE___FEATURE:
-				return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
-			case AlfPackage.LEFT_HAND_SIDE___INDEX:
-				return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.LEFT_HAND_SIDE___FEATURE: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
+				case AlfPackage.LEFT_HAND_SIDE___INDEX: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		if (baseClass == NameLeftHandSide.class) {
 			switch (baseOperationID) {
-			case AlfPackage.NAME_LEFT_HAND_SIDE___TARGET:
-				return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___TARGET;
-			case AlfPackage.NAME_LEFT_HAND_SIDE___INDEX:
-				return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
-			case AlfPackage.NAME_LEFT_HAND_SIDE___FEATURE:
-				return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.NAME_LEFT_HAND_SIDE___TARGET: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___TARGET;
+				case AlfPackage.NAME_LEFT_HAND_SIDE___INDEX: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
+				case AlfPackage.NAME_LEFT_HAND_SIDE___FEATURE: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -210,20 +193,19 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___TARGET:
-			return target();
-		case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX:
-			return index();
-		case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE:
-			return feature();
-		case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___PRIMARY:
-			return primary();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___TARGET:
+				return target();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX:
+				return index();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE:
+				return feature();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___PRIMARY:
+				return primary();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

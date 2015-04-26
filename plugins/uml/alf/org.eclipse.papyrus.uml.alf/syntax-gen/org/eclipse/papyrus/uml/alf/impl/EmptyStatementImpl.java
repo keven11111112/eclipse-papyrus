@@ -26,7 +26,6 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Empty Statement</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -34,7 +33,6 @@ public class EmptyStatementImpl extends StatementImpl implements EmptyStatement 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EmptyStatementImpl() {
@@ -44,7 +42,6 @@ public class EmptyStatementImpl extends StatementImpl implements EmptyStatement 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -55,7 +52,6 @@ public class EmptyStatementImpl extends StatementImpl implements EmptyStatement 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean emptyStatementAssignmentsAfter(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -66,12 +62,12 @@ public class EmptyStatementImpl extends StatementImpl implements EmptyStatement 
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.EMPTY_STATEMENT__EMPTY_STATEMENT_ASSIGNMENTS_AFTER,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "emptyStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.EMPTY_STATEMENT__EMPTY_STATEMENT_ASSIGNMENTS_AFTER,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "emptyStatementAssignmentsAfter", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -81,15 +77,14 @@ public class EmptyStatementImpl extends StatementImpl implements EmptyStatement 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.EMPTY_STATEMENT___EMPTY_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
-			return emptyStatementAssignmentsAfter((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.EMPTY_STATEMENT___EMPTY_STATEMENT_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP:
+				return emptyStatementAssignmentsAfter((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

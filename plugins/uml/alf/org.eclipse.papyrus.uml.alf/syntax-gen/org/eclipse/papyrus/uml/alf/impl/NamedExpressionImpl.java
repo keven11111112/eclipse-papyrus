@@ -16,13 +16,12 @@ import org.eclipse.papyrus.uml.alf.NamedExpression;
  * An implementation of the model object '<em><b>Named Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getIndex <em>Index</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl#getIndex <em>Index</em>}</li>
  * </ul>
  *
  * @generated
@@ -31,7 +30,6 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected NamedExpressionImpl() {
@@ -41,7 +39,6 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -52,17 +49,15 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getName() {
-		return (String) eGet(AlfPackage.eINSTANCE.getNamedExpression_Name(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getNamedExpression_Name(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(String newName) {
@@ -72,17 +67,15 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getNamedExpression_Expression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getNamedExpression_Expression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExpression(Expression newExpression) {
@@ -92,17 +85,15 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getIndex() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getNamedExpression_Index(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getNamedExpression_Index(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setIndex(Expression newIndex) {
@@ -113,23 +104,22 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	 * The cached invocation delegate for the '{@link #actualName() <em>Actual Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #actualName()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate ACTUAL_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getNamedExpression__ActualName()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate ACTUAL_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNamedExpression__ActualName()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String actualName() {
 		try {
-			return (String) ACTUAL_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (String)ACTUAL_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -137,14 +127,13 @@ public class NamedExpressionImpl extends SyntaxElementImpl implements NamedExpre
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.NAMED_EXPRESSION___ACTUAL_NAME:
-			return actualName();
+			case AlfPackage.NAMED_EXPRESSION___ACTUAL_NAME:
+				return actualName();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

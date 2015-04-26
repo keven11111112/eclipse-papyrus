@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BooleanLiteralExpression#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BooleanLiteralExpression#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBooleanLiteralExpression()
@@ -34,7 +34,6 @@ public interface BooleanLiteralExpression extends LiteralExpression {
 	 * <!-- begin-model-doc -->
 	 * The textual image of the literal token for this expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Image</em>' attribute.
 	 * @see #setImage(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBooleanLiteralExpression_Image()
@@ -48,9 +47,7 @@ public interface BooleanLiteralExpression extends LiteralExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BooleanLiteralExpression#getImage <em>Image</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Image</em>' attribute.
+	 * @param value the new value of the '<em>Image</em>' attribute.
 	 * @see #getImage()
 	 * @generated
 	 */
@@ -59,7 +56,6 @@ public interface BooleanLiteralExpression extends LiteralExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.booleanType()'"
 	 * @generated
 	 */
@@ -72,7 +68,6 @@ public interface BooleanLiteralExpression extends LiteralExpression {
 	 * The type of a boolean literal expression is Boolean.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BoundClassifier#getTemplate <em>Template</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.BoundClassifier#getActual <em>Actual</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BoundClassifier#getTemplate <em>Template</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BoundClassifier#getActual <em>Actual</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundClassifier()
@@ -34,7 +34,6 @@ public interface BoundClassifier extends ClassifierDefinition {
 	 * If the meaning of the '<em>Template</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Template</em>' reference.
 	 * @see #setTemplate(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundClassifier_Template()
@@ -47,9 +46,7 @@ public interface BoundClassifier extends ClassifierDefinition {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BoundClassifier#getTemplate <em>Template</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Template</em>' reference.
+	 * @param value the new value of the '<em>Template</em>' reference.
 	 * @see #getTemplate()
 	 * @generated
 	 */
@@ -63,7 +60,6 @@ public interface BoundClassifier extends ClassifierDefinition {
 	 * If the meaning of the '<em>Actual</em>' reference list isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Actual</em>' reference list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBoundClassifier_Actual()
 	 * @model
@@ -74,10 +70,8 @@ public interface BoundClassifier extends ClassifierDefinition {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        BoundElementReference{\n          referent = self.template,\n          namespace = self.template.namespace(),\n          templateBinding = InternalElementReference{element = self}\n        }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        BoundElementReference{\n          referent = self.template,\n          namespace = self.template.namespace(),\n          templateBinding = InternalElementReference{element = self}\n        }'"
 	 * @generated
 	 */
 	ElementReference toReference();

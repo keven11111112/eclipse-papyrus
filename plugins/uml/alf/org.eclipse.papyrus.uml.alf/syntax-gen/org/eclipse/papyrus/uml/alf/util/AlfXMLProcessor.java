@@ -16,7 +16,6 @@ import org.eclipse.papyrus.uml.alf.AlfPackage;
  * This class contains helper methods to serialize and deserialize XML documents
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AlfXMLProcessor extends XMLProcessor {
@@ -25,7 +24,6 @@ public class AlfXMLProcessor extends XMLProcessor {
 	 * Public constructor to instantiate the helper.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlfXMLProcessor() {
@@ -37,7 +35,6 @@ public class AlfXMLProcessor extends XMLProcessor {
 	 * Register for "*" and "xml" file extensions the AlfResourceFactoryImpl factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

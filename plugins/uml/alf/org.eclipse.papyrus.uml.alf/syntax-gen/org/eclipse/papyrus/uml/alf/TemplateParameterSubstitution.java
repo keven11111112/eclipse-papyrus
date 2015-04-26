@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.alf;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getParameterName <em>Parameter Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getArgumentName <em>Argument Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getParameterName <em>Parameter Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getArgumentName <em>Argument Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getReferent <em>Referent</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTemplateParameterSubstitution()
@@ -33,7 +33,6 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the template parameter.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Parameter Name</em>' attribute.
 	 * @see #setParameterName(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTemplateParameterSubstitution_ParameterName()
@@ -46,9 +45,7 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getParameterName <em>Parameter Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Parameter Name</em>' attribute.
+	 * @param value the new value of the '<em>Parameter Name</em>' attribute.
 	 * @see #getParameterName()
 	 * @generated
 	 */
@@ -61,7 +58,6 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the argument type.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Argument Name</em>' containment reference.
 	 * @see #setArgumentName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTemplateParameterSubstitution_ArgumentName()
@@ -74,9 +70,7 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getArgumentName <em>Argument Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Argument Name</em>' containment reference.
+	 * @param value the new value of the '<em>Argument Name</em>' containment reference.
 	 * @see #getArgumentName()
 	 * @generated
 	 */
@@ -89,13 +83,11 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * If the meaning of the '<em>Referent</em>' reference isn't clear, there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTemplateParameterSubstitution_Referent()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n            let referents = argumentName.referent in \n              if referents->size() <> 1 or not referents->forAll(isClassifier()) then null\n              else referents->any(true)\n              endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n            let referents = argumentName.referent in \n              if referents->size() <> 1 or not referents->forAll(isClassifier()) then null\n              else referents->any(true)\n              endif'"
 	 * @generated
 	 */
 	ElementReference getReferent();
@@ -104,9 +96,7 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TemplateParameterSubstitution#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -115,7 +105,6 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='NameBinding{name = self.parameterName}.toName()'"
 	 * @generated
@@ -125,7 +114,6 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.parameterName + \'=>\' + argumentName.pathName'"
 	 * @generated
@@ -135,10 +123,8 @@ public interface TemplateParameterSubstitution extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='TemplateParameterSubstitution{\n            parameterName = self.parameterName,\n            argumentName = if self.argumentName = null then null else self.argumentName.copy() endif\n          }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='TemplateParameterSubstitution{\n            parameterName = self.parameterName,\n            argumentName = if self.argumentName = null then null else self.argumentName.copy() endif\n          }'"
 	 * @generated
 	 */
 	TemplateParameterSubstitution copy();

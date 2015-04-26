@@ -21,9 +21,9 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getNonNameExpression <em>Non Name Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getNonNameExpression <em>Non Name Expression</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExtentOrExpression()
@@ -39,7 +39,6 @@ public interface ExtentOrExpression extends Expression {
 	 * If the target is a qualified name, then that name, before it is
 	 * disambiguated into either a name expression or a class name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' containment reference.
 	 * @see #setName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExtentOrExpression_Name()
@@ -52,9 +51,7 @@ public interface ExtentOrExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getName <em>Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' containment reference.
+	 * @param value the new value of the '<em>Name</em>' containment reference.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -67,13 +64,11 @@ public interface ExtentOrExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The effective expression for the target.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExtentOrExpression_Expression()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.nonNameExpression <> null then self.nonNameExpression\n        else if self.name.referent->exists(isClass()) then\n          ClassExtentExpression{\n            className = self.name.copy(),\n            owner = self\n          }\n        else\n          NameExpression{\n            name = self.name.copy(),\n            owner = self\n          }\n        endif endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        if self.nonNameExpression <> null then self.nonNameExpression\n        else if self.name.referent->exists(isClass()) then\n          ClassExtentExpression{\n            className = self.name.copy(),\n            owner = self\n          }\n        else\n          NameExpression{\n            name = self.name.copy(),\n            owner = self\n          }\n        endif endif'"
 	 * @generated
 	 */
 	Expression getExpression();
@@ -82,9 +77,7 @@ public interface ExtentOrExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getExpression <em>Expression</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' reference.
+	 * @param value the new value of the '<em>Expression</em>' reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -97,7 +90,6 @@ public interface ExtentOrExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The target primary expression, if it is not a qualified name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Non Name Expression</em>' containment reference.
 	 * @see #setNonNameExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getExtentOrExpression_NonNameExpression()
@@ -110,9 +102,7 @@ public interface ExtentOrExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression#getNonNameExpression <em>Non Name Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Non Name Expression</em>' containment reference.
+	 * @param value the new value of the '<em>Non Name Expression</em>' containment reference.
 	 * @see #getNonNameExpression()
 	 * @generated
 	 */
@@ -121,7 +111,6 @@ public interface ExtentOrExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" targetExpressionRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.enclosingExpression().isAddTarget(targetExpression)'"
 	 * @generated
@@ -137,7 +126,6 @@ public interface ExtentOrExpression extends Expression {
 	 * is a qualified name other than a class name, or a class extent expression,
 	 * if the target is the qualified name of a class.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -146,9 +134,7 @@ public interface ExtentOrExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.expression in\n        expression.oclIsKindOf(ClassExtentExpression) implies\n          expression.oclAsType(ClassExtentExpression).validateClassExtentExpressionExtentType()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.expression in\n        expression.oclIsKindOf(ClassExtentExpression) implies\n          expression.oclAsType(ClassExtentExpression).validateClassExtentExpressionExtentType()'"
 	 * @generated
 	 */
 	boolean extentOrExpressionExtentType(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -156,9 +142,7 @@ public interface ExtentOrExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model 
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.expression in\n        expression.oclIsKindOf(NameExpression) implies\n          expression.oclAsType(NameExpression).validateNameExpressionResolution()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.expression in\n        expression.oclIsKindOf(NameExpression) implies\n          expression.oclAsType(NameExpression).validateNameExpressionResolution()'"
 	 * @generated
 	 */
 	boolean extentOrExpressionResolution(DiagnosticChain diagnostics, Map<Object, Object> context);

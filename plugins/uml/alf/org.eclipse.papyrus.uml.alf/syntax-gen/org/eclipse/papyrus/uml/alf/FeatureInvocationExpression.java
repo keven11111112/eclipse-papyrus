@@ -19,7 +19,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.FeatureInvocationExpression#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.FeatureInvocationExpression#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getFeatureInvocationExpression()
@@ -34,7 +34,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * <!-- begin-model-doc -->
 	 * A feature reference to the target feature to be invoked.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' containment reference.
 	 * @see #setTarget(FeatureReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getFeatureInvocationExpression_Target()
@@ -47,9 +46,7 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.FeatureInvocationExpression#getTarget <em>Target</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Target</em>' containment reference.
+	 * @param value the new value of the '<em>Target</em>' containment reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
@@ -58,9 +55,7 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.target <> null then self.target\n        else\n          let outerScope = self.currentScope().namespace() in\n            if outerScope = null or not outerScope.isClass() then null\n            else\n              FeatureReference{\n                expression = ThisExpression{},\n                nameBinding = NameBinding{name = outerScope.name()},\n                owner = self\n              }\n            endif\n        endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.target <> null then self.target\n        else\n          let outerScope = self.currentScope().namespace() in\n            if outerScope = null or not outerScope.isClass() then null\n            else\n              FeatureReference{\n                expression = ThisExpression{},\n                nameBinding = NameBinding{name = outerScope.name()},\n                owner = self\n              }\n            endif\n        endif'"
 	 * @generated
 	 */
 	FeatureReference feature();
@@ -68,7 +63,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let feature = self.feature in\n          if feature = null then null\n          else feature.behavioralFeatureReferent(self)\n          endif'"
 	 * @generated
 	 */
@@ -83,7 +77,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * invoked.
 	 * (See the referent() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -98,7 +91,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * its feature determined implicitly.
 	 * (See the feature() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -112,9 +104,7 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * then it must be possible to determine a single valid referent for it
 	 * according to the overloading resolution rules.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or\n          -- TODO: Remove this check once overloading resolution is implemented.\n          self.tuple.size() <= self.parameterCount() and\n          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and\n          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.isImplicit or\n          -- TODO: Remove this check once overloading resolution is implemented.\n          self.tuple.size() <= self.parameterCount() and\n          self.tuple.input()->forAll(input | self.parameterIsAssignableFrom(input)) and\n          self.tuple.output()->forAll(output | self.parameterIsAssignableTo(output))'"
 	 * @generated
 	 */
 	boolean featureInvocationExpressionReferentExists(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -127,7 +117,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * statement as the first statement in the definition for the method of a
 	 * constructor operation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.alternativeConstructorIsValid()'"
 	 * @generated
 	 */
@@ -140,7 +129,6 @@ public interface FeatureInvocationExpression extends InvocationExpression {
 	 * If there is no target feature expression, then the implicit feature with
 	 * the same name as the target type must be a constructor.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.target = null implies\n          let referent = self.referent in\n            referent <> null and referent.isConstructor()'"
 	 * @generated
 	 */

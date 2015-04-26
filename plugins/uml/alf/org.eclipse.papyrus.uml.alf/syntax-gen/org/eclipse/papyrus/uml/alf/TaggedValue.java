@@ -16,9 +16,9 @@ package org.eclipse.papyrus.uml.alf;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getValue <em>Value</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getValue <em>Value</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.TaggedValue#getOperator <em>Operator</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValue()
@@ -33,7 +33,6 @@ public interface TaggedValue extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The name of the stereotype attribute to be assigned a value.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValue_Name()
@@ -47,9 +46,7 @@ public interface TaggedValue extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TaggedValue#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -62,7 +59,6 @@ public interface TaggedValue extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * The string image of a literal value to be assigned to the stereotype attribute.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Value</em>' attribute.
 	 * @see #setValue(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValue_Value()
@@ -75,9 +71,7 @@ public interface TaggedValue extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TaggedValue#getValue <em>Value</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Value</em>' attribute.
+	 * @param value the new value of the '<em>Value</em>' attribute.
 	 * @see #getValue()
 	 * @generated
 	 */
@@ -90,7 +84,6 @@ public interface TaggedValue extends SyntaxElement {
 	 * <!-- begin-model-doc -->
 	 * For a numeric value, an optional unary plus or minus operator.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getTaggedValue_Operator()
@@ -103,9 +96,7 @@ public interface TaggedValue extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.TaggedValue#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operator</em>' attribute.
+	 * @param value the new value of the '<em>Operator</em>' attribute.
 	 * @see #getOperator()
 	 * @generated
 	 */

@@ -27,7 +27,6 @@ public interface CollectOrIterateExpression extends SequenceExpansionExpression 
 	 * <!-- begin-model-doc -->
 	 * A collect or iterate expression has the same type as its argument expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -39,7 +38,6 @@ public interface CollectOrIterateExpression extends SequenceExpansionExpression 
 	 * <!-- begin-model-doc -->
 	 * A collect or iterate expression has a multiplicity lower bound that is the product of the bounds of its primary and argument expressions.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -51,7 +49,6 @@ public interface CollectOrIterateExpression extends SequenceExpansionExpression 
 	 * <!-- begin-model-doc -->
 	 * A collect or iterate expression has a multiplicity upper bound that is the product of the bounds of its primary and argument expressions.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

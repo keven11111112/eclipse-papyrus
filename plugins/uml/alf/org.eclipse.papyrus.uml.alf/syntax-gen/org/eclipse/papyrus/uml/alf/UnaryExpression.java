@@ -20,8 +20,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperator <em>Operator</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperand <em>Operand</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperator <em>Operator</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperand <em>Operand</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnaryExpression()
@@ -36,7 +36,6 @@ public interface UnaryExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The symbol representing the operator.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operator</em>' attribute.
 	 * @see #setOperator(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnaryExpression_Operator()
@@ -49,9 +48,7 @@ public interface UnaryExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperator <em>Operator</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operator</em>' attribute.
+	 * @param value the new value of the '<em>Operator</em>' attribute.
 	 * @see #getOperator()
 	 * @generated
 	 */
@@ -64,7 +61,6 @@ public interface UnaryExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The expression giving the operand.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Operand</em>' containment reference.
 	 * @see #setOperand(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getUnaryExpression_Operand()
@@ -77,9 +73,7 @@ public interface UnaryExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.UnaryExpression#getOperand <em>Operand</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Operand</em>' containment reference.
+	 * @param value the new value of the '<em>Operand</em>' containment reference.
 	 * @see #getOperand()
 	 * @generated
 	 */
@@ -92,7 +86,6 @@ public interface UnaryExpression extends Expression {
 	 * The assignments before the operand of a unary expression are the same as
 	 * those before the unary expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -105,7 +98,6 @@ public interface UnaryExpression extends Expression {
 	 * By default, the assignments after a unary expression are the same as
 	 * those after its operand expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.assignmentAfter'"
 	 * @generated

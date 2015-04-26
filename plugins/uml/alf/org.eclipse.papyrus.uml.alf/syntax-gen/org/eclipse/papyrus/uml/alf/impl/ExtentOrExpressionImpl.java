@@ -32,13 +32,12 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Extent Or Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getNonNameExpression <em>Non Name Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl#getNonNameExpression <em>Non Name Expression</em>}</li>
  * </ul>
  *
  * @generated
@@ -47,7 +46,6 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExtentOrExpressionImpl() {
@@ -57,7 +55,6 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -68,17 +65,15 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QualifiedName getName() {
-		return (QualifiedName) eGet(AlfPackage.eINSTANCE.getExtentOrExpression_Name(), true);
+		return (QualifiedName)eGet(AlfPackage.eINSTANCE.getExtentOrExpression_Name(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setName(QualifiedName newName) {
@@ -88,17 +83,15 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getExtentOrExpression_Expression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getExtentOrExpression_Expression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setExpression(Expression newExpression) {
@@ -108,17 +101,15 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Expression getNonNameExpression() {
-		return (Expression) eGet(AlfPackage.eINSTANCE.getExtentOrExpression_NonNameExpression(), true);
+		return (Expression)eGet(AlfPackage.eINSTANCE.getExtentOrExpression_NonNameExpression(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNonNameExpression(Expression newNonNameExpression) {
@@ -129,23 +120,22 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	 * The cached invocation delegate for the '{@link #isAddTarget(org.eclipse.papyrus.uml.alf.Expression) <em>Is Add Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isAddTarget(org.eclipse.papyrus.uml.alf.Expression)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExtentOrExpression__IsAddTarget__Expression()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExtentOrExpression__IsAddTarget__Expression()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAddTarget(Expression targetExpression) {
 		try {
-			return (Boolean) IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { targetExpression }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{targetExpression}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -153,7 +143,6 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean extentOrExpressionExpressionDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -164,12 +153,12 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_EXPRESSION_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "extentOrExpressionExpressionDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_EXPRESSION_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "extentOrExpressionExpressionDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -180,84 +169,79 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	 * The cached validation expression for the '{@link #extentOrExpressionExtentType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Extent Or Expression Extent Type</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #extentOrExpressionExtentType(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String EXTENT_OR_EXPRESSION_EXTENT_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-			"      let expression = self.expression in\n" +
-			"        expression.oclIsKindOf(ClassExtentExpression) implies\n" +
-			"          expression.oclAsType(ClassExtentExpression).validateClassExtentExpressionExtentType()";
+		"      let expression = self.expression in\n" +
+		"        expression.oclIsKindOf(ClassExtentExpression) implies\n" +
+		"          expression.oclAsType(ClassExtentExpression).validateClassExtentExpressionExtentType()";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean extentOrExpressionExtentType(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getExtentOrExpression(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getExtentOrExpression__ExtentOrExpressionExtentType__DiagnosticChain_Map(),
-						EXTENT_OR_EXPRESSION_EXTENT_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_EXTENT_TYPE);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getExtentOrExpression__ExtentOrExpressionExtentType__DiagnosticChain_Map(),
+				 EXTENT_OR_EXPRESSION_EXTENT_TYPE_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_EXTENT_TYPE);
 	}
 
 	/**
 	 * The cached validation expression for the '{@link #extentOrExpressionResolution(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Extent Or Expression Resolution</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #extentOrExpressionResolution(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
 	 */
 	protected static final String EXTENT_OR_EXPRESSION_RESOLUTION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION = "\n" +
-			"      let expression = self.expression in\n" +
-			"        expression.oclIsKindOf(NameExpression) implies\n" +
-			"          expression.oclAsType(NameExpression).validateNameExpressionResolution()";
+		"      let expression = self.expression in\n" +
+		"        expression.oclIsKindOf(NameExpression) implies\n" +
+		"          expression.oclAsType(NameExpression).validateNameExpressionResolution()";
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean extentOrExpressionResolution(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getExtentOrExpression(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getExtentOrExpression__ExtentOrExpressionResolution__DiagnosticChain_Map(),
-						EXTENT_OR_EXPRESSION_RESOLUTION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_RESOLUTION);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getExtentOrExpression__ExtentOrExpressionResolution__DiagnosticChain_Map(),
+				 EXTENT_OR_EXPRESSION_RESOLUTION_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.EXTENT_OR_EXPRESSION__EXTENT_OR_EXPRESSION_RESOLUTION);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == Expression.class) {
 			switch (baseOperationID) {
-			case AlfPackage.EXPRESSION___IS_ADD_TARGET__EXPRESSION:
-				return AlfPackage.EXTENT_OR_EXPRESSION___IS_ADD_TARGET__EXPRESSION;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.EXPRESSION___IS_ADD_TARGET__EXPRESSION: return AlfPackage.EXTENT_OR_EXPRESSION___IS_ADD_TARGET__EXPRESSION;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -266,21 +250,20 @@ public class ExtentOrExpressionImpl extends ExpressionImpl implements ExtentOrEx
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.EXTENT_OR_EXPRESSION___IS_ADD_TARGET__EXPRESSION:
-			return isAddTarget((Expression) arguments.get(0));
-		case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_EXPRESSION_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return extentOrExpressionExpressionDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_EXTENT_TYPE__DIAGNOSTICCHAIN_MAP:
-			return extentOrExpressionExtentType((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_RESOLUTION__DIAGNOSTICCHAIN_MAP:
-			return extentOrExpressionResolution((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.EXTENT_OR_EXPRESSION___IS_ADD_TARGET__EXPRESSION:
+				return isAddTarget((Expression)arguments.get(0));
+			case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_EXPRESSION_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return extentOrExpressionExpressionDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_EXTENT_TYPE__DIAGNOSTICCHAIN_MAP:
+				return extentOrExpressionExtentType((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.EXTENT_OR_EXPRESSION___EXTENT_OR_EXPRESSION_RESOLUTION__DIAGNOSTICCHAIN_MAP:
+				return extentOrExpressionResolution((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

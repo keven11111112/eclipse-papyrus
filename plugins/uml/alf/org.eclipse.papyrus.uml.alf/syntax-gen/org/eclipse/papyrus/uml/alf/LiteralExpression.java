@@ -25,7 +25,6 @@ public interface LiteralExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -35,7 +34,6 @@ public interface LiteralExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -49,7 +47,6 @@ public interface LiteralExpression extends Expression {
 	 * The multiplicity upper bound of a literal expression is always 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -62,7 +59,6 @@ public interface LiteralExpression extends Expression {
 	 * The multiplicity lower bound of a literal expression is always 1.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

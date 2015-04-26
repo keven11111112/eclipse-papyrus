@@ -27,7 +27,6 @@ public interface IsUniqueExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * An isUnique expression has the type Boolean.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -39,7 +38,6 @@ public interface IsUniqueExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * An isUnique expression has a multiplicity lower bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -51,7 +49,6 @@ public interface IsUniqueExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * An isUnique expression has a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -63,7 +60,6 @@ public interface IsUniqueExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * The argument of an isUnique expression must have a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

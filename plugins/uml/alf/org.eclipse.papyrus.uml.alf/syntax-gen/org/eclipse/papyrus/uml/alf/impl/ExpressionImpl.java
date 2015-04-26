@@ -25,12 +25,11 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionImpl#getAssignmentBefore <em>Assignment Before</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionImpl#getAssignmentAfter <em>Assignment After</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionImpl#getAssignmentBefore <em>Assignment Before</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.ExpressionImpl#getAssignmentAfter <em>Assignment After</em>}</li>
  * </ul>
  *
  * @generated
@@ -39,7 +38,6 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ExpressionImpl() {
@@ -55,7 +53,6 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -66,47 +63,44 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> getAssignmentBefore() {
-		return (EList<AssignedSource>) eGet(AlfPackage.eINSTANCE.getExpression_AssignmentBefore(), true);
+		return (EList<AssignedSource>)eGet(AlfPackage.eINSTANCE.getExpression_AssignmentBefore(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> getAssignmentAfter() {
-		return (EList<AssignedSource>) eGet(AlfPackage.eINSTANCE.getExpression_AssignmentAfter(), true);
+		return (EList<AssignedSource>)eGet(AlfPackage.eINSTANCE.getExpression_AssignmentAfter(), true);
 	}
 
 	/**
 	 * The cached invocation delegate for the '{@link #newAssignments() <em>New Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #newAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate NEW_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpression__NewAssignments()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate NEW_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__NewAssignments()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> newAssignments() {
 		try {
-			return (EList<AssignedSource>) NEW_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)NEW_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -115,17 +109,15 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	 * The cached invocation delegate for the '{@link #updateAssignments() <em>Update Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #updateAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpression__UpdateAssignments()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__UpdateAssignments()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean expressionAssignmentAfterDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -136,12 +128,12 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.EXPRESSION__EXPRESSION_ASSIGNMENT_AFTER_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionAssignmentAfterDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.EXPRESSION__EXPRESSION_ASSIGNMENT_AFTER_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "expressionAssignmentAfterDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -151,34 +143,34 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean expressionUniqueAssignments(DiagnosticChain diagnostics, Map<Object, Object> context) {
-		return AlfValidator.validate
+		return
+			AlfValidator.validate
 				(AlfPackage.eINSTANCE.getExpression(),
-						this,
-						diagnostics,
-						context,
-						"http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
-						AlfPackage.eINSTANCE.getExpression__ExpressionUniqueAssignments__DiagnosticChain_Map(),
-						EXPRESSION_UNIQUE_ASSIGNMENTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
-						Diagnostic.ERROR,
-						AlfValidator.DIAGNOSTIC_SOURCE,
-						AlfValidator.EXPRESSION__EXPRESSION_UNIQUE_ASSIGNMENTS);
+				 this,
+				 diagnostics,
+				 context,
+				 "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot",
+				 AlfPackage.eINSTANCE.getExpression__ExpressionUniqueAssignments__DiagnosticChain_Map(),
+				 EXPRESSION_UNIQUE_ASSIGNMENTS_DIAGNOSTIC_CHAIN_MAP__EEXPRESSION,
+				 Diagnostic.ERROR,
+				 AlfValidator.DIAGNOSTIC_SOURCE,
+				 AlfValidator.EXPRESSION__EXPRESSION_UNIQUE_ASSIGNMENTS);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> updateAssignments() {
 		try {
-			return (EList<AssignedSource>) UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -187,24 +179,23 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	 * The cached invocation delegate for the '{@link #Expression_updateAssignments() <em>Expression update Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #Expression_updateAssignments()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate EXPRESSION_UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpression__Expression_updateAssignments()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate EXPRESSION_UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__Expression_updateAssignments()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> Expression_updateAssignments() {
 		try {
-			return (EList<AssignedSource>) EXPRESSION_UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (EList<AssignedSource>)EXPRESSION_UPDATE_ASSIGNMENTS__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -228,23 +219,22 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	 * The cached invocation delegate for the '{@link #resolve(java.lang.String) <em>Resolve</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #resolve(java.lang.String)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate RESOLVE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpression__Resolve__String()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate RESOLVE_STRING__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__Resolve__String()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SyntaxElement resolve(String name) {
 		try {
-			return (SyntaxElement) RESOLVE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { name }));
-		} catch (InvocationTargetException ite) {
+			return (SyntaxElement)RESOLVE_STRING__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{name}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -253,17 +243,15 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	 * The cached invocation delegate for the '{@link #isAddTarget(org.eclipse.papyrus.uml.alf.Expression) <em>Is Add Target</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isAddTarget(org.eclipse.papyrus.uml.alf.Expression)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getExpression__IsAddTarget__Expression()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__IsAddTarget__Expression()).getInvocationDelegate();
 	/**
 	 * The cached validation expression for the '{@link #expressionUniqueAssignments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Expression Unique Assignments</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #expressionUniqueAssignments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
 	 * @generated
 	 * @ordered
@@ -273,13 +261,13 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAddTarget(Expression targetExpression) {
 		try {
-			return (Boolean) IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { targetExpression }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_ADD_TARGET_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{targetExpression}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -287,29 +275,28 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.EXPRESSION___NEW_ASSIGNMENTS:
-			return newAssignments();
-		case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS:
-			return updateAssignments();
-		case AlfPackage.EXPRESSION___EXPRESSION_UPDATE_ASSIGNMENTS:
-			return Expression_updateAssignments();
-		case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS_CACHED:
-			return updateAssignmentsCached();
-		case AlfPackage.EXPRESSION___RESOLVE__STRING:
-			return resolve((String) arguments.get(0));
-		case AlfPackage.EXPRESSION___IS_ADD_TARGET__EXPRESSION:
-			return isAddTarget((Expression) arguments.get(0));
-		case AlfPackage.EXPRESSION___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return expressionAssignmentAfterDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.EXPRESSION___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP:
-			return expressionUniqueAssignments((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.EXPRESSION___NEW_ASSIGNMENTS:
+				return newAssignments();
+			case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS:
+				return updateAssignments();
+			case AlfPackage.EXPRESSION___EXPRESSION_UPDATE_ASSIGNMENTS:
+				return Expression_updateAssignments();
+			case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS_CACHED:
+				return updateAssignmentsCached();
+			case AlfPackage.EXPRESSION___RESOLVE__STRING:
+				return resolve((String)arguments.get(0));
+			case AlfPackage.EXPRESSION___IS_ADD_TARGET__EXPRESSION:
+				return isAddTarget((Expression)arguments.get(0));
+			case AlfPackage.EXPRESSION___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return expressionAssignmentAfterDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.EXPRESSION___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP:
+				return expressionUniqueAssignments((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

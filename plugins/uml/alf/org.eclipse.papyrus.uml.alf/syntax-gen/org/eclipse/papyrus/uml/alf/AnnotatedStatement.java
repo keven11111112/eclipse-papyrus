@@ -17,8 +17,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.AnnotatedStatement#getAnnotation <em>Annotation</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AnnotatedStatement#getStatement <em>Statement</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AnnotatedStatement#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AnnotatedStatement#getStatement <em>Statement</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAnnotatedStatement()
@@ -34,7 +34,6 @@ public interface AnnotatedStatement extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * The annotations applied to this statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Annotation</em>' attribute list.
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAnnotatedStatement_Annotation()
 	 * @model ordered="false"
@@ -50,7 +49,6 @@ public interface AnnotatedStatement extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * 
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Statement</em>' containment reference.
 	 * @see #setStatement(Statement)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAnnotatedStatement_Statement()
@@ -63,9 +61,7 @@ public interface AnnotatedStatement extends DocumentedElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AnnotatedStatement#getStatement <em>Statement</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Statement</em>' containment reference.
+	 * @param value the new value of the '<em>Statement</em>' containment reference.
 	 * @see #getStatement()
 	 * @generated
 	 */
@@ -77,7 +73,6 @@ public interface AnnotatedStatement extends DocumentedElement {
 	 * <!-- begin-model-doc -->
 	 * External
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */

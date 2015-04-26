@@ -21,12 +21,12 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getExpression <em>Expression</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isHasMultiplicity <em>Has Multiplicity</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getTypeName <em>Type Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isIsAny <em>Is Any</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getExpression <em>Expression</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isHasMultiplicity <em>Has Multiplicity</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getTypeName <em>Type Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isIsAny <em>Is Any</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement()
@@ -41,7 +41,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The local name being declared.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_Name()
@@ -55,9 +54,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -70,7 +67,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The expression to be evaluated to provide the initial value to be assigned to the local name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Expression</em>' containment reference.
 	 * @see #setExpression(Expression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_Expression()
@@ -83,9 +79,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getExpression <em>Expression</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Expression</em>' containment reference.
+	 * @param value the new value of the '<em>Expression</em>' containment reference.
 	 * @see #getExpression()
 	 * @generated
 	 */
@@ -99,7 +93,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * Whether the local name is to have a multiplicity upper bound of * rather than 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Has Multiplicity</em>' attribute.
 	 * @see #setHasMultiplicity(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_HasMultiplicity()
@@ -112,9 +105,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isHasMultiplicity <em>Has Multiplicity</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Has Multiplicity</em>' attribute.
+	 * @param value the new value of the '<em>Has Multiplicity</em>' attribute.
 	 * @see #isHasMultiplicity()
 	 * @generated
 	 */
@@ -127,7 +118,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The declared type of the local name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type Name</em>' containment reference.
 	 * @see #setTypeName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_TypeName()
@@ -140,9 +130,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getTypeName <em>Type Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type Name</em>' containment reference.
+	 * @param value the new value of the '<em>Type Name</em>' containment reference.
 	 * @see #getTypeName()
 	 * @generated
 	 */
@@ -155,7 +143,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The type declared for the given local name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_Type()
@@ -169,9 +156,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
@@ -185,7 +170,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Whether the local name is being declared with an empty type.
 	 * (Added solely to allow proper Xtext re-serialization.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Any</em>' attribute.
 	 * @see #setIsAny(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getLocalNameDeclarationStatement_IsAny()
@@ -198,9 +182,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.LocalNameDeclarationStatement#isIsAny <em>Is Any</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Any</em>' attribute.
+	 * @param value the new value of the '<em>Is Any</em>' attribute.
 	 * @see #isIsAny()
 	 * @generated
 	 */
@@ -209,7 +191,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='NameBinding{name = self.name}.toName()'"
 	 * @generated
@@ -219,10 +200,8 @@ public interface LocalNameDeclarationStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            AssignedSource{\n              name = self.actualName(),\n              source = self,\n              type = self.type,\n              lower = 0,\n              upper = if self.hasMultiplicity then -1 else 1 endif\n            }.update(self.expression.assignmentAfter)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            AssignedSource{\n              name = self.actualName(),\n              source = self,\n              type = self.type,\n              lower = 0,\n              upper = if self.hasMultiplicity then -1 else 1 endif\n            }.update(self.expression.assignmentAfter)'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsAfter();
@@ -235,7 +214,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * statement are the same as the assignments before the statement.
 	 * (See SyntaxElement::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -249,9 +227,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * it must resolve to a non-template classifier and the expression must be
 	 * assignable to that classifier.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.typeName <> null implies \n          self.type <> null and not self.type.isTemplate()\n          and AssignableLocalNameDeclaration{localNameDeclaration = self}.\n            isAssignableFrom(self.expression)'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        self.typeName <> null implies \n          self.type <> null and not self.type.isTemplate()\n          and AssignableLocalNameDeclaration{localNameDeclaration = self}.\n            isAssignableFrom(self.expression)'"
 	 * @generated
 	 */
 	boolean localNameDeclarationStatementType(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -264,9 +240,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * before the statement and before the expression in the statement.
 	 * It must remain unassigned after the expression.
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model 
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            not self.expression.assignmentBefore->exists(a | a.name = self.actualName()) and\n            not self.expression.assignmentAfter->exists(a | a.name = self.actualName())'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            not self.expression.assignmentBefore->exists(a | a.name = self.actualName()) and\n            not self.expression.assignmentAfter->exists(a | a.name = self.actualName())'"
 	 * @generated
 	 */
 	boolean localNameDeclarationStatementLocalName(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -284,7 +258,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * the local name is [0..*], otherwise it is [0..1].
 	 * (See assignmentsAfter() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -298,7 +271,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * the multiplicity of upper bound of the assigned expression must not be
 	 * greater than 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='(not self.hasMultiplicity) implies self.expression.upper <=1'"
 	 * @generated
 	 */
@@ -311,7 +283,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	 * The type of a local name declaration statement with a type name is the
 	 * single classifier referent of the type name. Otherwise the type is empty.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -320,7 +291,6 @@ public interface LocalNameDeclarationStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -329,9 +299,7 @@ public interface LocalNameDeclarationStatement extends Statement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            if self.typeName = null then null\n            else \n              let referent = self.typeName.referent->select(isClassifier()) in\n                if referent->size() <> 1 then null\n                else self.typeName.referent->any(true)\n                endif\n            endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n            if self.typeName = null then null\n            else \n              let referent = self.typeName.referent->select(isClassifier()) in\n                if referent->size() <> 1 then null\n                else self.typeName.referent->any(true)\n                endif\n            endif'"
 	 * @generated
 	 */
 	ElementReference type();

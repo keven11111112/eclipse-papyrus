@@ -27,7 +27,6 @@ public interface SelectOrRejectExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * A select or reject expression has the same type as its primary expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -39,7 +38,6 @@ public interface SelectOrRejectExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * A select or reject expression has a multiplicity lower bound of 0.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -51,7 +49,6 @@ public interface SelectOrRejectExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * A select or reject expression has a multiplicity upper bound of *.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -63,7 +60,6 @@ public interface SelectOrRejectExpression extends SequenceExpansionExpression {
 	 * <!-- begin-model-doc -->
 	 * The argument of a select or reject expression must have type Boolean and a multiplicity upper bound of 1.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

@@ -23,11 +23,10 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * An implementation of the model object '<em><b>Boolean Literal Expression</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.BooleanLiteralExpressionImpl#getImage <em>Image</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.BooleanLiteralExpressionImpl#getImage <em>Image</em>}</li>
  * </ul>
  *
  * @generated
@@ -36,7 +35,6 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BooleanLiteralExpressionImpl() {
@@ -46,7 +44,6 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -57,17 +54,15 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getImage() {
-		return (String) eGet(AlfPackage.eINSTANCE.getBooleanLiteralExpression_Image(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getBooleanLiteralExpression_Image(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setImage(String newImage) {
@@ -78,23 +73,22 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getBooleanLiteralExpression__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getBooleanLiteralExpression__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -102,7 +96,6 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean booleanLiteralExpressionTypeDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -113,12 +106,12 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.BOOLEAN_LITERAL_EXPRESSION__BOOLEAN_LITERAL_EXPRESSION_TYPE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "booleanLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.BOOLEAN_LITERAL_EXPRESSION__BOOLEAN_LITERAL_EXPRESSION_TYPE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "booleanLiteralExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -128,17 +121,16 @@ public class BooleanLiteralExpressionImpl extends LiteralExpressionImpl implemen
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.BOOLEAN_LITERAL_EXPRESSION___TYPE:
-			return type();
-		case AlfPackage.BOOLEAN_LITERAL_EXPRESSION___BOOLEAN_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return booleanLiteralExpressionTypeDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.BOOLEAN_LITERAL_EXPRESSION___TYPE:
+				return type();
+			case AlfPackage.BOOLEAN_LITERAL_EXPRESSION___BOOLEAN_LITERAL_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return booleanLiteralExpressionTypeDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -3,7 +3,6 @@
 package org.eclipse.papyrus.uml.alf;
 
 import java.math.BigInteger;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
 
@@ -21,14 +20,12 @@ import org.eclipse.emf.ecore.EObject;
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getElementReference()
  * @model abstract="true"
- * @extends EObject
  * @generated
  */
 public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -38,7 +35,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -48,7 +44,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -57,7 +52,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -66,7 +60,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -75,7 +68,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
 	 * @generated
 	 */
@@ -84,7 +76,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -93,7 +84,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -102,7 +92,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" unitRequired="true"
 	 * @generated
 	 */
@@ -111,7 +100,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -120,7 +108,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -129,7 +116,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -138,7 +124,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -147,7 +132,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -156,7 +140,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -165,7 +148,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -174,7 +156,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -183,7 +164,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -192,7 +172,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -201,7 +180,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -210,7 +188,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -219,7 +196,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -228,7 +204,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -237,7 +212,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -246,7 +220,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -255,7 +228,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -264,7 +236,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -273,7 +244,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -282,7 +252,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -291,7 +260,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -300,7 +268,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -309,7 +276,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -318,7 +284,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -327,7 +292,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -336,7 +300,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -345,7 +308,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -354,7 +316,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -363,7 +324,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -372,7 +332,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -381,7 +340,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -390,7 +348,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -399,7 +356,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -408,7 +364,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -417,7 +372,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='false'"
 	 * @generated
@@ -427,10 +381,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" otherRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let member = self.asMember() in\n        let otherMember = other.asMember() in\n          if member = null or otherMember = null then true\n          else\n            member.definition.isDistinguishableFrom(otherMember.definition)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let member = self.asMember() in\n        let otherMember = other.asMember() in\n          if member = null or otherMember = null then true\n          else\n            member.definition.isDistinguishableFrom(otherMember.definition)\n          endif'"
 	 * @generated
 	 */
 	boolean isDistinguishableFrom(ElementReference other);
@@ -438,7 +390,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" elementRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        AssignableElementReference{\n          reference = self, owner = element.owner()\n        }.isAssignableFrom(element)'"
 	 * @generated
@@ -448,9 +399,7 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let templateActuals = self.templateActuals() in\n--          if templateActuals->isEmpty() then null\n--          else templateActuals->first()\n--          endif;\n        let toSequenceOperation = self.resolve(\'toSequence\')->select(\n          isOperation() and parameters()->size() = 0 and returnParameter() <> null\n        ) in\n          if toSequenceOperation->size() <> 1 then null\n          else toSequenceOperation->any(true).type()\n          endif'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let templateActuals = self.templateActuals() in\n--          if templateActuals->isEmpty() then null\n--          else templateActuals->first()\n--          endif;\n        let toSequenceOperation = self.resolve(\'toSequence\')->select(\n          isOperation() and parameters()->size() = 0 and returnParameter() <> null\n        ) in\n          if toSequenceOperation->size() <> 1 then null\n          else toSequenceOperation->any(true).type()\n          endif'"
 	 * @generated
 	 */
 	ElementReference collectionArgument();
@@ -458,7 +407,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -467,7 +415,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -476,7 +423,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -485,7 +431,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -494,7 +439,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(visibility() = null or visibility() = \'public\')'"
 	 * @generated
@@ -504,7 +448,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isProperty())'"
 	 * @generated
 	 */
@@ -513,7 +456,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isAssociationEnd())'"
 	 * @generated
 	 */
@@ -522,7 +464,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -531,7 +472,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.members()->select(isReception())'"
 	 * @generated
@@ -541,7 +481,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -550,7 +489,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -559,7 +497,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -568,7 +505,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -577,7 +513,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -586,7 +521,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -595,7 +529,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -604,7 +537,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -613,7 +545,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -622,7 +553,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -631,7 +561,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -640,7 +569,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -649,7 +577,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -658,7 +585,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -667,7 +593,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -676,7 +601,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -685,7 +609,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 * @generated
 	 */
@@ -694,7 +617,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -703,7 +625,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -712,7 +633,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -721,7 +641,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -730,7 +649,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let template = self.template() in\n          if template = null then self\n          else template\n          endif'"
 	 * @generated
@@ -740,7 +658,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self'"
 	 * @generated
@@ -750,7 +667,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='null'"
 	 * @generated
 	 */
@@ -759,7 +675,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" actualsUnique="false" actualsMany="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        BoundClassifier{\n          name = self.boundElementName(actuals),\n          template = self,\n          actual = actuals\n        }.addToModel().toReference()'"
 	 * @generated
@@ -769,10 +684,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" actualsUnique="false" actualsMany="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        actuals->iterate(\n          actual, s : Types::String = \'$$\' + self.boundPathName() + \'__\' |\n          s + if actual = null then \'any\' else actual.boundPathName() endif + \'_\'\n        ) + \'_\''"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        actuals->iterate(\n          actual, s : Types::String = \'$$\' + self.boundPathName() + \'__\' |\n          s + if actual = null then \'any\' else actual.boundPathName() endif + \'_\'\n        ) + \'_\''"
 	 * @generated
 	 */
 	String boundElementName(EList<ElementReference> actuals);
@@ -780,10 +693,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isModelNamespace() then \'\'\n        else\n          let template = self.template() in\n            if template = null then\n              let namespace = self.namespace() in\n              let name = if self.name() = null then \'\' else self.name() endif in\n                if namespace = null or namespace.isModelNamespace() then name\n                else namespace.boundPathName() + \'$\' + name\n                endif\n            else\n              template.boundElementName(self.templateActuals()->asSequence())\n            endif\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isModelNamespace() then \'\'\n        else\n          let template = self.template() in\n            if template = null then\n              let namespace = self.namespace() in\n              let name = if self.name() = null then \'\' else self.name() endif in\n                if namespace = null or namespace.isModelNamespace() then name\n                else namespace.boundPathName() + \'$\' + name\n                endif\n            else\n              template.boundElementName(self.templateActuals()->asSequence())\n            endif\n        endif'"
 	 * @generated
 	 */
 	String boundPathName();
@@ -791,10 +702,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isModelNamespace() then\n          QualifiedName{nameBinding = OrderedSet(NameBinding){}}\n        else\n          let template = self.template() in\n            if template = null then\n              let namespace = self.namespace() in\n              let qualifiedName =\n                if namespace = null then null \n                else namespace.qualifiedName() endif in\n              let name = self.name() in\n              let nameBinding = NameBinding{\n                name = if name = null then \'\' else name endif\n              } in\n                if qualifiedName = null then\n                  QualifiedName{nameBinding = OrderedSet{nameBinding}}\n                else\n                  QualifiedName{\n                    nameBinding = qualifiedName.nameBinding->append(nameBinding)\n                  }\n                endif\n            else\n              let templateName = template.qualifiedName() in\n              let nameBindings = templateName.nameBinding in\n              let n = nameBindings->size() in\n                if n = 0 then\n                  templateName\n                else\n                  let templateBinding = PositionalTemplateBinding{\n                    argumentName = self.templateActuals()->\n                      collect(templateActual | \n                        if templateActual = null then \n                          QualifiedName{nameBinding = OrderedSet(NameBinding){}}\n                        else \n                          templateActual.qualifiedName() \n                        endif\n                      )\n                  } in\n                  let name = self.name() in\n                  let nameBinding = NameBinding{\n                    name = if name = null then \'\' else name endif,\n                    binding = templateBinding\n                  } in\n                  if n = 1 then\n                    QualifiedName{nameBinding = OrderedSet{nameBinding}}\n                  else\n                    QualifiedName{\n                      nameBinding =\n                        nameBindings->subOrderedSet(1,n-1)->append(nameBinding)\n                    }\n                  endif\n                endif\n          endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.isModelNamespace() then\n          QualifiedName{nameBinding = OrderedSet(NameBinding){}}\n        else\n          let template = self.template() in\n            if template = null then\n              let namespace = self.namespace() in\n              let qualifiedName =\n                if namespace = null then null \n                else namespace.qualifiedName() endif in\n              let name = self.name() in\n              let nameBinding = NameBinding{\n                name = if name = null then \'\' else name endif\n              } in\n                if qualifiedName = null then\n                  QualifiedName{nameBinding = OrderedSet{nameBinding}}\n                else\n                  QualifiedName{\n                    nameBinding = qualifiedName.nameBinding->append(nameBinding)\n                  }\n                endif\n            else\n              let templateName = template.qualifiedName() in\n              let nameBindings = templateName.nameBinding in\n              let n = nameBindings->size() in\n                if n = 0 then\n                  templateName\n                else\n                  let templateBinding = PositionalTemplateBinding{\n                    argumentName = self.templateActuals()->\n                      collect(templateActual | \n                        if templateActual = null then \n                          QualifiedName{nameBinding = OrderedSet(NameBinding){}}\n                        else \n                          templateActual.qualifiedName() \n                        endif\n                      )\n                  } in\n                  let name = self.name() in\n                  let nameBinding = NameBinding{\n                    name = if name = null then \'\' else name endif,\n                    binding = templateBinding\n                  } in\n                  if n = 1 then\n                    QualifiedName{nameBinding = OrderedSet{nameBinding}}\n                  else\n                    QualifiedName{\n                      nameBinding =\n                        nameBindings->subOrderedSet(1,n-1)->append(nameBinding)\n                    }\n                  endif\n                endif\n          endif\n          endif'"
 	 * @generated
 	 */
 	QualifiedName qualifiedName();
@@ -807,7 +716,6 @@ public interface ElementReference extends EObject {
 	 * This is either the activity itself, if it is active, or the class that
 	 * has the activity as a classifier behavior.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -816,7 +724,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model kind="operation" required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.activeClass() <> null'"
 	 * @generated
@@ -826,7 +733,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -835,7 +741,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -844,7 +749,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" referencesUnique="false" referencesMany="true" referencesOrdered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='references->exists(equals(self))'"
 	 * @generated
@@ -854,7 +758,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" referencesUnique="false" referencesMany="true" referencesOrdered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='references->select(equals(self))->size()'"
 	 * @generated
@@ -864,10 +767,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" referencesUnique="false" referencesMany="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if references->isEmpty() then 0\n        else\n          let indices = \n            Sequence{1..references->size()}->select(i | self.equals(references->at(i)))\n          in\n            if indices->isEmpty() then 0\n            else indices->first()\n            endif\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if references->isEmpty() then 0\n        else\n          let indices = \n            Sequence{1..references->size()}->select(i | self.equals(references->at(i)))\n          in\n            if indices->isEmpty() then 0\n            else indices->first()\n            endif\n        endif'"
 	 * @generated
 	 */
 	BigInteger positionIn(EList<ElementReference> references);
@@ -875,7 +776,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -884,7 +784,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -893,7 +792,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" pathNameRequired="true"
 	 * @generated
 	 */
@@ -902,10 +800,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let members = self.resolveInScope(name) in\n        let outerScope = self.namespace() in\n          if outerScope = null then\n            members\n          else\n            members->union(\n              outerScope.resolve(name)->select(m1 | \n                members->forAll(m2 | \n                  m1.isDistinguishableFrom(m2)\n                )\n              )\n            )\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let members = self.resolveInScope(name) in\n        let outerScope = self.namespace() in\n          if outerScope = null then\n            members\n          else\n            members->union(\n              outerScope.resolve(name)->select(m1 | \n                members->forAll(m2 | \n                  m1.isDistinguishableFrom(m2)\n                )\n              )\n            )\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolve(String name);
@@ -913,7 +809,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
 	 * @generated
 	 */
@@ -922,7 +817,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" stereotypeNameRequired="true"
 	 * @generated
 	 */
@@ -931,10 +825,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let members = self.resolveInScope(name) in\n          -- Note: If this namespace is the same as or a containing scope of the \n          -- given namespace, or if the given namespace is null, then all members \n          -- of this namespace are visible.\n          if namespace = null or\n             self.equals(namespace) or\n             self.containsMember(namespace) then\n            members\n          else\n             members->select(visibility() = \'public\' or \n                self.allowPackageOnly() and visibility() = \'package\'\n             )\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let members = self.resolveInScope(name) in\n          -- Note: If this namespace is the same as or a containing scope of the \n          -- given namespace, or if the given namespace is null, then all members \n          -- of this namespace are visible.\n          if namespace = null or\n             self.equals(namespace) or\n             self.containsMember(namespace) then\n            members\n          else\n             members->select(visibility() = \'public\' or \n                self.allowPackageOnly() and visibility() = \'package\'\n             )\n          endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveVisible(String name, ElementReference namespace);
@@ -942,10 +834,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" oppositeEndTypeRequired="true" nameRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.members()->\n          -- Note: Only association-owned ends are considered as association ends.\n          select(isAssociation() and (properties()->size() = 2)).associationEnds()->\n          select(associationEnd |\n              let opposite = associationEnd.opposite() in\n                opposite <> null and\n                oppositeEndType.conformsTo(opposite.type()) and\n                  name = associationEnd.name()\n          )\n        in\n          let outerScope = self.namespace() in\n            if outerScope = null then referents\n            else\n              let hiddenNames = referents.name() in\n                referents->union(\n                  outerScope.resolveAssociationEnd(oppositeEndType, name)->\n                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))\n              )\n            endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referents = self.members()->\n          -- Note: Only association-owned ends are considered as association ends.\n          select(isAssociation() and (properties()->size() = 2)).associationEnds()->\n          select(associationEnd |\n              let opposite = associationEnd.opposite() in\n                opposite <> null and\n                oppositeEndType.conformsTo(opposite.type()) and\n                  name = associationEnd.name()\n          )\n        in\n          let outerScope = self.namespace() in\n            if outerScope = null then referents\n            else\n              let hiddenNames = referents.name() in\n                referents->union(\n                  outerScope.resolveAssociationEnd(oppositeEndType, name)->\n                  reject(outerReferent | hiddenNames->includes(outerReferent.name()))\n              )\n            endif'"
 	 * @generated
 	 */
 	EList<ElementReference> resolveAssociationEnd(ElementReference oppositeEndType, String name);
@@ -953,10 +843,8 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" memberRequired="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        member = null or\n          let namespace = member.namespace() in\n            namespace <> null and\n              (self.equals(namespace) or\n                self.containsMember(namespace))'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        member = null or\n          let namespace = member.namespace() in\n            namespace <> null and\n              (self.equals(namespace) or\n                self.containsMember(namespace))'"
 	 * @generated
 	 */
 	boolean containsMember(ElementReference member);
@@ -964,7 +852,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='not self.isPackage()'"
 	 * @generated
@@ -974,7 +861,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -983,7 +869,6 @@ public interface ElementReference extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unitRequired="true"
 	 * @generated
 	 */

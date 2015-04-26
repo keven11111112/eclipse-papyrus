@@ -22,7 +22,6 @@ public interface TemplateBinding extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -31,7 +30,6 @@ public interface TemplateBinding extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" templateRequired="true"
 	 * @generated
 	 */
@@ -40,7 +38,6 @@ public interface TemplateBinding extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -49,7 +46,6 @@ public interface TemplateBinding extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model unique="false" templateRequired="true"
 	 * @generated
 	 */

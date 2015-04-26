@@ -10,7 +10,6 @@ import org.eclipse.papyrus.uml.alf.IsUniqueExpression;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Is Unique Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -18,7 +17,6 @@ public class IsUniqueExpressionImpl extends SequenceExpansionExpressionImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IsUniqueExpressionImpl() {
@@ -28,7 +26,6 @@ public class IsUniqueExpressionImpl extends SequenceExpansionExpressionImpl impl
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override

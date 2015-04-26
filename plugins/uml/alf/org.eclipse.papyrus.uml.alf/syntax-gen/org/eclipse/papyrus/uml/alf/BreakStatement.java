@@ -20,7 +20,7 @@ import org.eclipse.emf.common.util.DiagnosticChain;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.BreakStatement#getTarget <em>Target</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.BreakStatement#getTarget <em>Target</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBreakStatement()
@@ -35,7 +35,6 @@ public interface BreakStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The enclosing statement that is terminated by this break statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Target</em>' reference.
 	 * @see #setTarget(Statement)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getBreakStatement_Target()
@@ -49,9 +48,7 @@ public interface BreakStatement extends Statement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.BreakStatement#getTarget <em>Target</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Target</em>' reference.
+	 * @param value the new value of the '<em>Target</em>' reference.
 	 * @see #getTarget()
 	 * @generated
 	 */
@@ -64,7 +61,6 @@ public interface BreakStatement extends Statement {
 	 * The target of a break statement is the innermost switch, while, do or for
 	 * statement enclosing the break statement.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.target <> null'"
 	 * @generated
 	 */
@@ -76,7 +72,6 @@ public interface BreakStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * The target of a break statement may not have a @parallel annotation.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.target <> null implies not self.target.hasAnnotation(\'parallel\')'"
 	 * @generated
 	 */
@@ -88,7 +83,6 @@ public interface BreakStatement extends Statement {
 	 * <!-- begin-model-doc -->
 	 * A break statement may not have any annotations.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model required="true" annotationRequired="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.annotation()->isEmpty()'"
 	 * @generated

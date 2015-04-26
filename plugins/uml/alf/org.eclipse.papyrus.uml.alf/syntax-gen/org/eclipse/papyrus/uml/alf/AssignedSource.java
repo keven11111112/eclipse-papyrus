@@ -18,17 +18,16 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getName <em>Name</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getSource <em>Source</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getUpper <em>Upper</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getLower <em>Lower</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getType <em>Type</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#isIsParallelLocalName <em>Is Parallel Local Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getName <em>Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getSource <em>Source</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.AssignedSource#isIsParallelLocalName <em>Is Parallel Local Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource()
  * @model
- * @extends EObject
  * @generated
  */
 public interface AssignedSource extends EObject {
@@ -39,7 +38,6 @@ public interface AssignedSource extends EObject {
 	 * <!-- begin-model-doc -->
 	 * The local name for which this is the assigned source.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Name</em>' attribute.
 	 * @see #setName(String)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_Name()
@@ -52,9 +50,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#getName <em>Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Name</em>' attribute.
+	 * @param value the new value of the '<em>Name</em>' attribute.
 	 * @see #getName()
 	 * @generated
 	 */
@@ -67,7 +63,6 @@ public interface AssignedSource extends EObject {
 	 * <!-- begin-model-doc -->
 	 * The syntax element that is to be the source for the assigned value of the given local name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Source</em>' reference.
 	 * @see #setSource(SyntaxElement)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_Source()
@@ -80,9 +75,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#getSource <em>Source</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Source</em>' reference.
+	 * @param value the new value of the '<em>Source</em>' reference.
 	 * @see #getSource()
 	 * @generated
 	 */
@@ -95,7 +88,6 @@ public interface AssignedSource extends EObject {
 	 * <!-- begin-model-doc -->
 	 * The multiplicity upper bound for the local name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Upper</em>' attribute.
 	 * @see #setUpper(Integer)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_Upper()
@@ -108,9 +100,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#getUpper <em>Upper</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Upper</em>' attribute.
+	 * @param value the new value of the '<em>Upper</em>' attribute.
 	 * @see #getUpper()
 	 * @generated
 	 */
@@ -123,7 +113,6 @@ public interface AssignedSource extends EObject {
 	 * <!-- begin-model-doc -->
 	 * The multiplicity lower bound for the name.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Lower</em>' attribute.
 	 * @see #setLower(Integer)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_Lower()
@@ -136,9 +125,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#getLower <em>Lower</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Lower</em>' attribute.
+	 * @param value the new value of the '<em>Lower</em>' attribute.
 	 * @see #getLower()
 	 * @generated
 	 */
@@ -151,7 +138,6 @@ public interface AssignedSource extends EObject {
 	 * <!-- begin-model-doc -->
 	 * A reference to the element that gives the type for the local name (if any).
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Type</em>' reference.
 	 * @see #setType(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_Type()
@@ -164,9 +150,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#getType <em>Type</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Type</em>' reference.
+	 * @param value the new value of the '<em>Type</em>' reference.
 	 * @see #getType()
 	 * @generated
 	 */
@@ -179,9 +163,8 @@ public interface AssignedSource extends EObject {
 	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * An indication whether this assignment is for a local name listed in a
-	 * 
 	 * @parallel annotation of a for statement.
-	 *           <!-- end-model-doc -->
+	 * <!-- end-model-doc -->
 	 * @return the value of the '<em>Is Parallel Local Name</em>' attribute.
 	 * @see #setIsParallelLocalName(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignedSource_IsParallelLocalName()
@@ -194,9 +177,7 @@ public interface AssignedSource extends EObject {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.AssignedSource#isIsParallelLocalName <em>Is Parallel Local Name</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Parallel Local Name</em>' attribute.
+	 * @param value the new value of the '<em>Is Parallel Local Name</em>' attribute.
 	 * @see #isIsParallelLocalName()
 	 * @generated
 	 */
@@ -205,7 +186,6 @@ public interface AssignedSource extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true" assignmentsBeforeMany="true" assignmentsBeforeOrdered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let assignment = assignmentsBefore->select(name = self.name) in\n          assignment->isEmpty() or assignment.source->excludes(self.source)'"
 	 * @generated
@@ -215,7 +195,6 @@ public interface AssignedSource extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false" assignmentsMany="true" assignmentsOrdered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='assignments->reject(a | a.name = self.name)->including(self)'"
 	 * @generated
@@ -225,10 +204,8 @@ public interface AssignedSource extends EObject {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='AssignedSource{\n        name = self.name,\n        source = if newSource = null then self.source else newSource endif,\n        upper = self.upper,\n        lower = self.lower,\n        type = self.type,\n        isParallelLocalName = \n          if isParallelLocal = null then self.isParallelLocalName \n          else isParallelLocal endif\n      }'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='AssignedSource{\n        name = self.name,\n        source = if newSource = null then self.source else newSource endif,\n        upper = self.upper,\n        lower = self.lower,\n        type = self.type,\n        isParallelLocalName = \n          if isParallelLocal = null then self.isParallelLocalName \n          else isParallelLocal endif\n      }'"
 	 * @generated
 	 */
 	AssignedSource copy(SyntaxElement newSource, boolean isParallelLocal);

@@ -25,7 +25,6 @@ public interface IsolationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.type'"
 	 * @generated
 	 */
@@ -34,7 +33,6 @@ public interface IsolationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.lower'"
 	 * @generated
@@ -44,7 +42,6 @@ public interface IsolationExpression extends UnaryExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.operand.upper'"
 	 * @generated
@@ -58,7 +55,6 @@ public interface IsolationExpression extends UnaryExpression {
 	 * An isolation expression has the type of its operand expression.
 	 * (See the type() expression.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -72,7 +68,6 @@ public interface IsolationExpression extends UnaryExpression {
 	 * operand expression.
 	 * (see the lower() expression.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -86,7 +81,6 @@ public interface IsolationExpression extends UnaryExpression {
 	 * operand expression.
 	 * (See the upper() expression.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */

@@ -22,10 +22,10 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getReferent <em>Referent</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#isIsOrdered <em>Is Ordered</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getPrimary <em>Primary</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getBehaviorName <em>Behavior Name</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getReferent <em>Referent</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#isIsOrdered <em>Is Ordered</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getPrimary <em>Primary</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getBehaviorName <em>Behavior Name</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceReductionExpression()
@@ -40,13 +40,11 @@ public interface SequenceReductionExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * A reference to the behavior to be used as the reducer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Referent</em>' reference.
 	 * @see #setReferent(ElementReference)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceReductionExpression_Referent()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.behaviorName.referent->select(isBehavior()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let referents = self.behaviorName.referent->select(isBehavior()) in\n          if referents->size() <> 1 then null\n          else referents->any(true)\n          endif'"
 	 * @generated
 	 */
 	ElementReference getReferent();
@@ -55,9 +53,7 @@ public interface SequenceReductionExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getReferent <em>Referent</em>}' reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Referent</em>' reference.
+	 * @param value the new value of the '<em>Referent</em>' reference.
 	 * @see #getReferent()
 	 * @generated
 	 */
@@ -71,7 +67,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * Whether this is an ordered reduction or not.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Is Ordered</em>' attribute.
 	 * @see #setIsOrdered(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceReductionExpression_IsOrdered()
@@ -84,9 +79,7 @@ public interface SequenceReductionExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#isIsOrdered <em>Is Ordered</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Is Ordered</em>' attribute.
+	 * @param value the new value of the '<em>Is Ordered</em>' attribute.
 	 * @see #isIsOrdered()
 	 * @generated
 	 */
@@ -99,7 +92,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The target class name or primary expression for the reduction.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Primary</em>' containment reference.
 	 * @see #setPrimary(ExtentOrExpression)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceReductionExpression_Primary()
@@ -112,9 +104,7 @@ public interface SequenceReductionExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getPrimary <em>Primary</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Primary</em>' containment reference.
+	 * @param value the new value of the '<em>Primary</em>' containment reference.
 	 * @see #getPrimary()
 	 * @generated
 	 */
@@ -127,7 +117,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The name of the behavior to be used as the reducer.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Behavior Name</em>' containment reference.
 	 * @see #setBehaviorName(QualifiedName)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceReductionExpression_BehaviorName()
@@ -140,9 +129,7 @@ public interface SequenceReductionExpression extends Expression {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression#getBehaviorName <em>Behavior Name</em>}' containment reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Behavior Name</em>' containment reference.
+	 * @param value the new value of the '<em>Behavior Name</em>' containment reference.
 	 * @see #getBehaviorName()
 	 * @generated
 	 */
@@ -151,7 +138,6 @@ public interface SequenceReductionExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.primary.expression.type'"
 	 * @generated
 	 */
@@ -160,7 +146,6 @@ public interface SequenceReductionExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -170,7 +155,6 @@ public interface SequenceReductionExpression extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='1'"
 	 * @generated
@@ -184,7 +168,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * The referent for a sequence reduction expression is the behavior denoted
 	 * by the behavior name of the expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -198,7 +181,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * expression.
 	 * (See the type() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -211,7 +193,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * A sequence reduction expression has a multiplicity upper bound of 1.
 	 * (See the upper() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -224,7 +205,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * A sequence reduction expression has a multiplicity lower bound of 1.
 	 * (See the lower() operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -236,7 +216,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * <!-- begin-model-doc -->
 	 * The behavior name in a sequence reduction expression must denote a behavior.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        let referent = self.referent in\n          referent <> null and not referent.isTemplate()'"
 	 * @generated
 	 */
@@ -250,9 +229,7 @@ public interface SequenceReductionExpression extends Expression {
 	 * no other parameters. The parameters must all have the same type as the
 	 * argument expression and multiplicity [1..1].
 	 * <!-- end-model-doc -->
-	 * 
-	 * @model annotation=
-	 *        "http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        referent <> null implies\n          let parameters = referent.parameters() in\n          let returnParameter = referent.returnParameter() in\n          let type = self.type in\n            parameters->size() = 2 and returnParameter <> null and\n            parameters->forAll(direction() = \'in\') and\n            parameters->including(returnParameter)->forAll(\n              lower() = 1 and upper() = 1 and\n              let parameterType = type() in\n                parameterType = null and type = null or\n                parameterType <> null and parameterType.equals(type) \n            )'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        referent <> null implies\n          let parameters = referent.parameters() in\n          let returnParameter = referent.returnParameter() in\n          let type = self.type in\n            parameters->size() = 2 and returnParameter <> null and\n            parameters->forAll(direction() = \'in\') and\n            parameters->including(returnParameter)->forAll(\n              lower() = 1 and upper() = 1 and\n              let parameterType = type() in\n                parameterType = null and type = null or\n                parameterType <> null and parameterType.equals(type) \n            )'"
 	 * @generated
 	 */
 	boolean sequenceReductionExpressionBehaviorParameters(DiagnosticChain diagnostics, Map<Object, Object> context);
@@ -266,7 +243,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * expression.
 	 * (See the SyntaxElement::assignmentsBefore(element) operation.)
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model
 	 * @generated
 	 */
@@ -279,7 +255,6 @@ public interface SequenceReductionExpression extends Expression {
 	 * The assignments after a sequence reduction expression are the same as
 	 * after its primary expression.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @model ordered="false"
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.primary.expression.assignmentAfter'"
 	 * @generated

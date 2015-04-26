@@ -22,13 +22,12 @@ import org.eclipse.papyrus.uml.alf.ElementReference;
  * An implementation of the model object '<em><b>Assignable Element</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getUpper <em>Upper</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getLower <em>Lower</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getType <em>Type</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.AssignableElementImpl#getType <em>Type</em>}</li>
  * </ul>
  *
  * @generated
@@ -53,7 +52,6 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -64,17 +62,15 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger getUpper() {
-		return (BigInteger) eGet(AlfPackage.eINSTANCE.getAssignableElement_Upper(), true);
+		return (BigInteger)eGet(AlfPackage.eINSTANCE.getAssignableElement_Upper(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setUpper(BigInteger newUpper) {
@@ -84,17 +80,15 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger getLower() {
-		return (BigInteger) eGet(AlfPackage.eINSTANCE.getAssignableElement_Lower(), true);
+		return (BigInteger)eGet(AlfPackage.eINSTANCE.getAssignableElement_Lower(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setLower(BigInteger newLower) {
@@ -104,17 +98,15 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference getType() {
-		return (ElementReference) eGet(AlfPackage.eINSTANCE.getAssignableElement_Type(), true);
+		return (ElementReference)eGet(AlfPackage.eINSTANCE.getAssignableElement_Type(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setType(ElementReference newType) {
@@ -141,7 +133,6 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
@@ -153,7 +144,6 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger lower() {
@@ -165,7 +155,6 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger upper() {
@@ -178,23 +167,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isNull() <em>Is Null</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isNull()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_NULL__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsNull()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_NULL__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsNull()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isNull() {
 		try {
-			return (Boolean) IS_NULL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_NULL__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -203,24 +191,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isAssignableFromElement(org.eclipse.papyrus.uml.alf.ElementReference) <em>Is Assignable From Element</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isAssignableFromElement(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_ASSIGNABLE_FROM_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsAssignableFromElement__ElementReference())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_ASSIGNABLE_FROM_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsAssignableFromElement__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAssignableFromElement(ElementReference element) {
 		try {
-			return (Boolean) IS_ASSIGNABLE_FROM_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { element }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_ASSIGNABLE_FROM_ELEMENT_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{element}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -229,23 +215,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isAssignableFrom(org.eclipse.papyrus.uml.alf.AssignableElement) <em>Is Assignable From</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isAssignableFrom(org.eclipse.papyrus.uml.alf.AssignableElement)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_ASSIGNABLE_FROM_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsAssignableFrom__AssignableElement()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_ASSIGNABLE_FROM_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsAssignableFrom__AssignableElement()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isAssignableFrom(AssignableElement source) {
 		try {
-			return (Boolean) IS_ASSIGNABLE_FROM_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { source }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_ASSIGNABLE_FROM_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{source}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -254,24 +239,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isTypeConformantWith(org.eclipse.papyrus.uml.alf.AssignableElement) <em>Is Type Conformant With</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isTypeConformantWith(org.eclipse.papyrus.uml.alf.AssignableElement)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_TYPE_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsTypeConformantWith__AssignableElement())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_TYPE_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsTypeConformantWith__AssignableElement()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isTypeConformantWith(AssignableElement source) {
 		try {
-			return (Boolean) IS_TYPE_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { source }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_TYPE_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{source}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -280,24 +263,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isConformantWithType(org.eclipse.papyrus.uml.alf.ElementReference) <em>Is Conformant With Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isConformantWithType(org.eclipse.papyrus.uml.alf.ElementReference)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsConformantWithType__ElementReference())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsConformantWithType__ElementReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void isConformantWithType(ElementReference sourceType) {
 		try {
-			IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { sourceType }));
-		} catch (InvocationTargetException ite) {
+			IS_CONFORMANT_WITH_TYPE_ELEMENT_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{sourceType}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -306,24 +287,22 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	 * The cached invocation delegate for the '{@link #isMultiplicityConformantWith(org.eclipse.papyrus.uml.alf.AssignableElement) <em>Is Multiplicity Conformant With</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #isMultiplicityConformantWith(org.eclipse.papyrus.uml.alf.AssignableElement)
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_MULTIPLICITY_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getAssignableElement__IsMultiplicityConformantWith__AssignableElement())
-			.getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate IS_MULTIPLICITY_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getAssignableElement__IsMultiplicityConformantWith__AssignableElement()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean isMultiplicityConformantWith(AssignableElement source) {
 		try {
-			return (Boolean) IS_MULTIPLICITY_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[] { source }));
-		} catch (InvocationTargetException ite) {
+			return (Boolean)IS_MULTIPLICITY_CONFORMANT_WITH_ASSIGNABLE_ELEMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{source}));
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -331,33 +310,32 @@ public abstract class AssignableElementImpl extends SyntaxElementImpl implements
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.ASSIGNABLE_ELEMENT___TYPE_CACHED:
-			return typeCached();
-		case AlfPackage.ASSIGNABLE_ELEMENT___TYPE:
-			return type();
-		case AlfPackage.ASSIGNABLE_ELEMENT___LOWER:
-			return lower();
-		case AlfPackage.ASSIGNABLE_ELEMENT___UPPER:
-			return upper();
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_NULL:
-			return isNull();
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_ASSIGNABLE_FROM_ELEMENT__ELEMENTREFERENCE:
-			return isAssignableFromElement((ElementReference) arguments.get(0));
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_ASSIGNABLE_FROM__ASSIGNABLEELEMENT:
-			return isAssignableFrom((AssignableElement) arguments.get(0));
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_TYPE_CONFORMANT_WITH__ASSIGNABLEELEMENT:
-			return isTypeConformantWith((AssignableElement) arguments.get(0));
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_CONFORMANT_WITH_TYPE__ELEMENTREFERENCE:
-			isConformantWithType((ElementReference) arguments.get(0));
-			return null;
-		case AlfPackage.ASSIGNABLE_ELEMENT___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT:
-			return isMultiplicityConformantWith((AssignableElement) arguments.get(0));
+			case AlfPackage.ASSIGNABLE_ELEMENT___TYPE_CACHED:
+				return typeCached();
+			case AlfPackage.ASSIGNABLE_ELEMENT___TYPE:
+				return type();
+			case AlfPackage.ASSIGNABLE_ELEMENT___LOWER:
+				return lower();
+			case AlfPackage.ASSIGNABLE_ELEMENT___UPPER:
+				return upper();
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_NULL:
+				return isNull();
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_ASSIGNABLE_FROM_ELEMENT__ELEMENTREFERENCE:
+				return isAssignableFromElement((ElementReference)arguments.get(0));
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_ASSIGNABLE_FROM__ASSIGNABLEELEMENT:
+				return isAssignableFrom((AssignableElement)arguments.get(0));
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_TYPE_CONFORMANT_WITH__ASSIGNABLEELEMENT:
+				return isTypeConformantWith((AssignableElement)arguments.get(0));
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_CONFORMANT_WITH_TYPE__ELEMENTREFERENCE:
+				isConformantWithType((ElementReference)arguments.get(0));
+				return null;
+			case AlfPackage.ASSIGNABLE_ELEMENT___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT:
+				return isMultiplicityConformantWith((AssignableElement)arguments.get(0));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

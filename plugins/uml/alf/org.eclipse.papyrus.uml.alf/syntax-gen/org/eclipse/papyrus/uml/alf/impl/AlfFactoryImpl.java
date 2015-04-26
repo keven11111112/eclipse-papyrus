@@ -16,7 +16,6 @@ import org.eclipse.papyrus.uml.alf.*;
  * <!-- begin-user-doc -->
  * An implementation of the model <b>Factory</b>.
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
@@ -24,16 +23,16 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	 * Creates the default factory implementation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static AlfFactory init() {
 		try {
-			AlfFactory theAlfFactory = (AlfFactory) EPackage.Registry.INSTANCE.getEFactory(AlfPackage.eNS_URI);
+			AlfFactory theAlfFactory = (AlfFactory)EPackage.Registry.INSTANCE.getEFactory(AlfPackage.eNS_URI);
 			if (theAlfFactory != null) {
 				return theAlfFactory;
 			}
-		} catch (Exception exception) {
+		}
+		catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new AlfFactoryImpl();
@@ -43,7 +42,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlfFactoryImpl() {
@@ -53,249 +51,133 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-		case AlfPackage.ASSIGNED_SOURCE:
-			return (EObject) createAssignedSource();
-		case AlfPackage.INTERNAL_ELEMENT_REFERENCE:
-			return (EObject) createInternalElementReference();
-		case AlfPackage.EXTERNAL_ELEMENT_REFERENCE:
-			return (EObject) createExternalElementReference();
-		case AlfPackage.EXTERNAL_ENUMERATION_LITERAL_REFERENCE:
-			return (EObject) createExternalEnumerationLiteralReference();
-		case AlfPackage.BOUND_ELEMENT_REFERENCE:
-			return (EObject) createBoundElementReference();
-		case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION:
-			return (EObject) createSequenceExpansionExpression();
-		case AlfPackage.ASSIGNABLE_ELEMENT_REFERENCE:
-			return (EObject) createAssignableElementReference();
-		case AlfPackage.EXTENT_OR_EXPRESSION:
-			return (EObject) createExtentOrExpression();
-		case AlfPackage.QUALIFIED_NAME:
-			return (EObject) createQualifiedName();
-		case AlfPackage.FEATURE_REFERENCE:
-			return (EObject) createFeatureReference();
-		case AlfPackage.NAME_BINDING:
-			return (EObject) createNameBinding();
-		case AlfPackage.NAMED_TEMPLATE_BINDING:
-			return (EObject) createNamedTemplateBinding();
-		case AlfPackage.TEMPLATE_PARAMETER_SUBSTITUTION:
-			return (EObject) createTemplateParameterSubstitution();
-		case AlfPackage.NUMERIC_UNARY_EXPRESSION:
-			return (EObject) createNumericUnaryExpression();
-		case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION:
-			return (EObject) createForAllOrExistsOrOneExpression();
-		case AlfPackage.ISOLATION_EXPRESSION:
-			return (EObject) createIsolationExpression();
-		case AlfPackage.BOOLEAN_UNARY_EXPRESSION:
-			return (EObject) createBooleanUnaryExpression();
-		case AlfPackage.CAST_EXPRESSION:
-			return (EObject) createCastExpression();
-		case AlfPackage.POSITIONAL_TUPLE:
-			return (EObject) createPositionalTuple();
-		case AlfPackage.NAMED_EXPRESSION:
-			return (EObject) createNamedExpression();
-		case AlfPackage.INPUT_NAMED_EXPRESSION:
-			return (EObject) createInputNamedExpression();
-		case AlfPackage.OUTPUT_NAMED_EXPRESSION:
-			return (EObject) createOutputNamedExpression();
-		case AlfPackage.SEQUENCE_ACCESS_EXPRESSION:
-			return (EObject) createSequenceAccessExpression();
-		case AlfPackage.STRING_LITERAL_EXPRESSION:
-			return (EObject) createStringLiteralExpression();
-		case AlfPackage.SEQUENCE_OPERATION_EXPRESSION:
-			return (EObject) createSequenceOperationExpression();
-		case AlfPackage.SELECT_OR_REJECT_EXPRESSION:
-			return (EObject) createSelectOrRejectExpression();
-		case AlfPackage.CLASS_EXTENT_EXPRESSION:
-			return (EObject) createClassExtentExpression();
-		case AlfPackage.POSITIONAL_TEMPLATE_BINDING:
-			return (EObject) createPositionalTemplateBinding();
-		case AlfPackage.CONDITIONAL_LOGICAL_EXPRESSION:
-			return (EObject) createConditionalLogicalExpression();
-		case AlfPackage.LINK_OPERATION_EXPRESSION:
-			return (EObject) createLinkOperationExpression();
-		case AlfPackage.EQUALITY_EXPRESSION:
-			return (EObject) createEqualityExpression();
-		case AlfPackage.ASSIGNMENT_EXPRESSION:
-			return (EObject) createAssignmentExpression();
-		case AlfPackage.LOGICAL_EXPRESSION:
-			return (EObject) createLogicalExpression();
-		case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION:
-			return (EObject) createSequenceConstructionExpression();
-		case AlfPackage.COLLECT_OR_ITERATE_EXPRESSION:
-			return (EObject) createCollectOrIterateExpression();
-		case AlfPackage.IS_UNIQUE_EXPRESSION:
-			return (EObject) createIsUniqueExpression();
-		case AlfPackage.ARITHMETIC_EXPRESSION:
-			return (EObject) createArithmeticExpression();
-		case AlfPackage.FEATURE_LEFT_HAND_SIDE:
-			return (EObject) createFeatureLeftHandSide();
-		case AlfPackage.CONDITIONAL_TEST_EXPRESSION:
-			return (EObject) createConditionalTestExpression();
-		case AlfPackage.INSTANCE_CREATION_EXPRESSION:
-			return (EObject) createInstanceCreationExpression();
-		case AlfPackage.PROPERTY_ACCESS_EXPRESSION:
-			return (EObject) createPropertyAccessExpression();
-		case AlfPackage.NAME_EXPRESSION:
-			return (EObject) createNameExpression();
-		case AlfPackage.BIT_STRING_UNARY_EXPRESSION:
-			return (EObject) createBitStringUnaryExpression();
-		case AlfPackage.FEATURE_INVOCATION_EXPRESSION:
-			return (EObject) createFeatureInvocationExpression();
-		case AlfPackage.BEHAVIOR_INVOCATION_EXPRESSION:
-			return (EObject) createBehaviorInvocationExpression();
-		case AlfPackage.SHIFT_EXPRESSION:
-			return (EObject) createShiftExpression();
-		case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION:
-			return (EObject) createUnboundedLiteralExpression();
-		case AlfPackage.THIS_EXPRESSION:
-			return (EObject) createThisExpression();
-		case AlfPackage.CLASSIFICATION_EXPRESSION:
-			return (EObject) createClassificationExpression();
-		case AlfPackage.SUPER_INVOCATION_EXPRESSION:
-			return (EObject) createSuperInvocationExpression();
-		case AlfPackage.INCREMENT_OR_DECREMENT_EXPRESSION:
-			return (EObject) createIncrementOrDecrementExpression();
-		case AlfPackage.BOOLEAN_LITERAL_EXPRESSION:
-			return (EObject) createBooleanLiteralExpression();
-		case AlfPackage.NAMED_TUPLE:
-			return (EObject) createNamedTuple();
-		case AlfPackage.NATURAL_LITERAL_EXPRESSION:
-			return (EObject) createNaturalLiteralExpression();
-		case AlfPackage.SEQUENCE_RANGE:
-			return (EObject) createSequenceRange();
-		case AlfPackage.NAME_LEFT_HAND_SIDE:
-			return (EObject) createNameLeftHandSide();
-		case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE:
-			return (EObject) createEffectiveLeftHandSide();
-		case AlfPackage.SEQUENCE_REDUCTION_EXPRESSION:
-			return (EObject) createSequenceReductionExpression();
-		case AlfPackage.SEQUENCE_EXPRESSION_LIST:
-			return (EObject) createSequenceExpressionList();
-		case AlfPackage.RELATIONAL_EXPRESSION:
-			return (EObject) createRelationalExpression();
-		case AlfPackage.LOCAL_NAME_DECLARATION_STATEMENT:
-			return (EObject) createLocalNameDeclarationStatement();
-		case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION:
-			return (EObject) createAssignableLocalNameDeclaration();
-		case AlfPackage.ANNOTATION:
-			return (EObject) createAnnotation();
-		case AlfPackage.QUALIFIED_NAME_LIST:
-			return (EObject) createQualifiedNameList();
-		case AlfPackage.NON_FINAL_CLAUSE:
-			return (EObject) createNonFinalClause();
-		case AlfPackage.BLOCK:
-			return (EObject) createBlock();
-		case AlfPackage.BLOCK_STATEMENT:
-			return (EObject) createBlockStatement();
-		case AlfPackage.DO_STATEMENT:
-			return (EObject) createDoStatement();
-		case AlfPackage.CONCURRENT_CLAUSES:
-			return (EObject) createConcurrentClauses();
-		case AlfPackage.BREAK_STATEMENT:
-			return (EObject) createBreakStatement();
-		case AlfPackage.EXPRESSION_STATEMENT:
-			return (EObject) createExpressionStatement();
-		case AlfPackage.CLASSIFY_STATEMENT:
-			return (EObject) createClassifyStatement();
-		case AlfPackage.FOR_STATEMENT:
-			return (EObject) createForStatement();
-		case AlfPackage.LOOP_VARIABLE_DEFINITION:
-			return (EObject) createLoopVariableDefinition();
-		case AlfPackage.IF_STATEMENT:
-			return (EObject) createIfStatement();
-		case AlfPackage.SWITCH_STATEMENT:
-			return (EObject) createSwitchStatement();
-		case AlfPackage.SWITCH_CLAUSE:
-			return (EObject) createSwitchClause();
-		case AlfPackage.WHILE_STATEMENT:
-			return (EObject) createWhileStatement();
-		case AlfPackage.RETURN_STATEMENT:
-			return (EObject) createReturnStatement();
-		case AlfPackage.IN_LINE_STATEMENT:
-			return (EObject) createInLineStatement();
-		case AlfPackage.ACCEPT_STATEMENT:
-			return (EObject) createAcceptStatement();
-		case AlfPackage.ACCEPT_BLOCK:
-			return (EObject) createAcceptBlock();
-		case AlfPackage.EMPTY_STATEMENT:
-			return (EObject) createEmptyStatement();
-		case AlfPackage.MODEL_NAMESPACE:
-			return (EObject) createModelNamespace();
-		case AlfPackage.NAMESPACE_DEFINITION:
-			return (EObject) createNamespaceDefinition();
-		case AlfPackage.STEREOTYPE_ANNOTATION:
-			return (EObject) createStereotypeAnnotation();
-		case AlfPackage.TAGGED_VALUE_LIST:
-			return (EObject) createTaggedValueList();
-		case AlfPackage.TAGGED_VALUE:
-			return (EObject) createTaggedValue();
-		case AlfPackage.UNIT_DEFINITION:
-			return (EObject) createUnitDefinition();
-		case AlfPackage.IMPORTED_MEMBER:
-			return (EObject) createImportedMember();
-		case AlfPackage.ENUMERATION_LITERAL_NAME:
-			return (EObject) createEnumerationLiteralName();
-		case AlfPackage.OPERATION_DEFINITION:
-			return (EObject) createOperationDefinition();
-		case AlfPackage.ASSOCIATION_DEFINITION:
-			return (EObject) createAssociationDefinition();
-		case AlfPackage.CLASS_DEFINITION:
-			return (EObject) createClassDefinition();
-		case AlfPackage.TYPED_ELEMENT_DEFINITION:
-			return (EObject) createTypedElementDefinition();
-		case AlfPackage.DATA_TYPE_DEFINITION:
-			return (EObject) createDataTypeDefinition();
-		case AlfPackage.PACKAGE_DEFINITION:
-			return (EObject) createPackageDefinition();
-		case AlfPackage.PROPERTY_DEFINITION:
-			return (EObject) createPropertyDefinition();
-		case AlfPackage.SIGNAL_DEFINITION:
-			return (EObject) createSignalDefinition();
-		case AlfPackage.ACTIVE_CLASS_DEFINITION:
-			return (EObject) createActiveClassDefinition();
-		case AlfPackage.ACTIVITY_DEFINITION:
-			return (EObject) createActivityDefinition();
-		case AlfPackage.ELEMENT_IMPORT_REFERENCE:
-			return (EObject) createElementImportReference();
-		case AlfPackage.SIGNAL_RECEPTION_DEFINITION:
-			return (EObject) createSignalReceptionDefinition();
-		case AlfPackage.ENUMERATION_DEFINITION:
-			return (EObject) createEnumerationDefinition();
-		case AlfPackage.PACKAGE_IMPORT_REFERENCE:
-			return (EObject) createPackageImportReference();
-		case AlfPackage.CLASSIFIER_TEMPLATE_PARAMETER:
-			return (EObject) createClassifierTemplateParameter();
-		case AlfPackage.FORMAL_PARAMETER:
-			return (EObject) createFormalParameter();
-		case AlfPackage.RECEPTION_DEFINITION:
-			return (EObject) createReceptionDefinition();
-		case AlfPackage.MEMBER:
-			return (EObject) createMember();
-		case AlfPackage.ANNOTATED_STATEMENT:
-			return (EObject) createAnnotatedStatement();
-		case AlfPackage.BOUND_CLASSIFIER:
-			return (EObject) createBoundClassifier();
-		case AlfPackage.RETURN_PARAMETER:
-			return (EObject) createReturnParameter();
-		case AlfPackage.NON_RETURN_PARAMETER:
-			return (EObject) createNonReturnParameter();
-		case AlfPackage.ANY_TYPE:
-			return (EObject) createAnyType();
-		default:
-			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+			case AlfPackage.ASSIGNED_SOURCE: return createAssignedSource();
+			case AlfPackage.INTERNAL_ELEMENT_REFERENCE: return createInternalElementReference();
+			case AlfPackage.EXTERNAL_ELEMENT_REFERENCE: return createExternalElementReference();
+			case AlfPackage.EXTERNAL_ENUMERATION_LITERAL_REFERENCE: return createExternalEnumerationLiteralReference();
+			case AlfPackage.BOUND_ELEMENT_REFERENCE: return createBoundElementReference();
+			case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION: return createSequenceExpansionExpression();
+			case AlfPackage.ASSIGNABLE_ELEMENT_REFERENCE: return createAssignableElementReference();
+			case AlfPackage.EXTENT_OR_EXPRESSION: return createExtentOrExpression();
+			case AlfPackage.QUALIFIED_NAME: return createQualifiedName();
+			case AlfPackage.FEATURE_REFERENCE: return createFeatureReference();
+			case AlfPackage.NAME_BINDING: return createNameBinding();
+			case AlfPackage.NAMED_TEMPLATE_BINDING: return createNamedTemplateBinding();
+			case AlfPackage.TEMPLATE_PARAMETER_SUBSTITUTION: return createTemplateParameterSubstitution();
+			case AlfPackage.NUMERIC_UNARY_EXPRESSION: return createNumericUnaryExpression();
+			case AlfPackage.FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION: return createForAllOrExistsOrOneExpression();
+			case AlfPackage.ISOLATION_EXPRESSION: return createIsolationExpression();
+			case AlfPackage.BOOLEAN_UNARY_EXPRESSION: return createBooleanUnaryExpression();
+			case AlfPackage.CAST_EXPRESSION: return createCastExpression();
+			case AlfPackage.POSITIONAL_TUPLE: return createPositionalTuple();
+			case AlfPackage.NAMED_EXPRESSION: return createNamedExpression();
+			case AlfPackage.INPUT_NAMED_EXPRESSION: return createInputNamedExpression();
+			case AlfPackage.OUTPUT_NAMED_EXPRESSION: return createOutputNamedExpression();
+			case AlfPackage.SEQUENCE_ACCESS_EXPRESSION: return createSequenceAccessExpression();
+			case AlfPackage.STRING_LITERAL_EXPRESSION: return createStringLiteralExpression();
+			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION: return createSequenceOperationExpression();
+			case AlfPackage.SELECT_OR_REJECT_EXPRESSION: return createSelectOrRejectExpression();
+			case AlfPackage.CLASS_EXTENT_EXPRESSION: return createClassExtentExpression();
+			case AlfPackage.POSITIONAL_TEMPLATE_BINDING: return createPositionalTemplateBinding();
+			case AlfPackage.CONDITIONAL_LOGICAL_EXPRESSION: return createConditionalLogicalExpression();
+			case AlfPackage.LINK_OPERATION_EXPRESSION: return createLinkOperationExpression();
+			case AlfPackage.EQUALITY_EXPRESSION: return createEqualityExpression();
+			case AlfPackage.ASSIGNMENT_EXPRESSION: return createAssignmentExpression();
+			case AlfPackage.LOGICAL_EXPRESSION: return createLogicalExpression();
+			case AlfPackage.SEQUENCE_CONSTRUCTION_EXPRESSION: return createSequenceConstructionExpression();
+			case AlfPackage.COLLECT_OR_ITERATE_EXPRESSION: return createCollectOrIterateExpression();
+			case AlfPackage.IS_UNIQUE_EXPRESSION: return createIsUniqueExpression();
+			case AlfPackage.ARITHMETIC_EXPRESSION: return createArithmeticExpression();
+			case AlfPackage.FEATURE_LEFT_HAND_SIDE: return createFeatureLeftHandSide();
+			case AlfPackage.CONDITIONAL_TEST_EXPRESSION: return createConditionalTestExpression();
+			case AlfPackage.INSTANCE_CREATION_EXPRESSION: return createInstanceCreationExpression();
+			case AlfPackage.PROPERTY_ACCESS_EXPRESSION: return createPropertyAccessExpression();
+			case AlfPackage.NAME_EXPRESSION: return createNameExpression();
+			case AlfPackage.BIT_STRING_UNARY_EXPRESSION: return createBitStringUnaryExpression();
+			case AlfPackage.FEATURE_INVOCATION_EXPRESSION: return createFeatureInvocationExpression();
+			case AlfPackage.BEHAVIOR_INVOCATION_EXPRESSION: return createBehaviorInvocationExpression();
+			case AlfPackage.SHIFT_EXPRESSION: return createShiftExpression();
+			case AlfPackage.UNBOUNDED_LITERAL_EXPRESSION: return createUnboundedLiteralExpression();
+			case AlfPackage.THIS_EXPRESSION: return createThisExpression();
+			case AlfPackage.CLASSIFICATION_EXPRESSION: return createClassificationExpression();
+			case AlfPackage.SUPER_INVOCATION_EXPRESSION: return createSuperInvocationExpression();
+			case AlfPackage.INCREMENT_OR_DECREMENT_EXPRESSION: return createIncrementOrDecrementExpression();
+			case AlfPackage.BOOLEAN_LITERAL_EXPRESSION: return createBooleanLiteralExpression();
+			case AlfPackage.NAMED_TUPLE: return createNamedTuple();
+			case AlfPackage.NATURAL_LITERAL_EXPRESSION: return createNaturalLiteralExpression();
+			case AlfPackage.SEQUENCE_RANGE: return createSequenceRange();
+			case AlfPackage.NAME_LEFT_HAND_SIDE: return createNameLeftHandSide();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE: return createEffectiveLeftHandSide();
+			case AlfPackage.SEQUENCE_REDUCTION_EXPRESSION: return createSequenceReductionExpression();
+			case AlfPackage.SEQUENCE_EXPRESSION_LIST: return createSequenceExpressionList();
+			case AlfPackage.RELATIONAL_EXPRESSION: return createRelationalExpression();
+			case AlfPackage.LOCAL_NAME_DECLARATION_STATEMENT: return createLocalNameDeclarationStatement();
+			case AlfPackage.ASSIGNABLE_LOCAL_NAME_DECLARATION: return createAssignableLocalNameDeclaration();
+			case AlfPackage.ANNOTATION: return createAnnotation();
+			case AlfPackage.QUALIFIED_NAME_LIST: return createQualifiedNameList();
+			case AlfPackage.NON_FINAL_CLAUSE: return createNonFinalClause();
+			case AlfPackage.BLOCK: return createBlock();
+			case AlfPackage.BLOCK_STATEMENT: return createBlockStatement();
+			case AlfPackage.DO_STATEMENT: return createDoStatement();
+			case AlfPackage.CONCURRENT_CLAUSES: return createConcurrentClauses();
+			case AlfPackage.BREAK_STATEMENT: return createBreakStatement();
+			case AlfPackage.EXPRESSION_STATEMENT: return createExpressionStatement();
+			case AlfPackage.CLASSIFY_STATEMENT: return createClassifyStatement();
+			case AlfPackage.FOR_STATEMENT: return createForStatement();
+			case AlfPackage.LOOP_VARIABLE_DEFINITION: return createLoopVariableDefinition();
+			case AlfPackage.IF_STATEMENT: return createIfStatement();
+			case AlfPackage.SWITCH_STATEMENT: return createSwitchStatement();
+			case AlfPackage.SWITCH_CLAUSE: return createSwitchClause();
+			case AlfPackage.WHILE_STATEMENT: return createWhileStatement();
+			case AlfPackage.RETURN_STATEMENT: return createReturnStatement();
+			case AlfPackage.IN_LINE_STATEMENT: return createInLineStatement();
+			case AlfPackage.ACCEPT_STATEMENT: return createAcceptStatement();
+			case AlfPackage.ACCEPT_BLOCK: return createAcceptBlock();
+			case AlfPackage.EMPTY_STATEMENT: return createEmptyStatement();
+			case AlfPackage.MODEL_NAMESPACE: return createModelNamespace();
+			case AlfPackage.NAMESPACE_DEFINITION: return createNamespaceDefinition();
+			case AlfPackage.STEREOTYPE_ANNOTATION: return createStereotypeAnnotation();
+			case AlfPackage.TAGGED_VALUE_LIST: return createTaggedValueList();
+			case AlfPackage.TAGGED_VALUE: return createTaggedValue();
+			case AlfPackage.UNIT_DEFINITION: return createUnitDefinition();
+			case AlfPackage.IMPORTED_MEMBER: return createImportedMember();
+			case AlfPackage.ENUMERATION_LITERAL_NAME: return createEnumerationLiteralName();
+			case AlfPackage.OPERATION_DEFINITION: return createOperationDefinition();
+			case AlfPackage.ASSOCIATION_DEFINITION: return createAssociationDefinition();
+			case AlfPackage.CLASS_DEFINITION: return createClassDefinition();
+			case AlfPackage.TYPED_ELEMENT_DEFINITION: return createTypedElementDefinition();
+			case AlfPackage.DATA_TYPE_DEFINITION: return createDataTypeDefinition();
+			case AlfPackage.PACKAGE_DEFINITION: return createPackageDefinition();
+			case AlfPackage.PROPERTY_DEFINITION: return createPropertyDefinition();
+			case AlfPackage.SIGNAL_DEFINITION: return createSignalDefinition();
+			case AlfPackage.ACTIVE_CLASS_DEFINITION: return createActiveClassDefinition();
+			case AlfPackage.ACTIVITY_DEFINITION: return createActivityDefinition();
+			case AlfPackage.ELEMENT_IMPORT_REFERENCE: return createElementImportReference();
+			case AlfPackage.SIGNAL_RECEPTION_DEFINITION: return createSignalReceptionDefinition();
+			case AlfPackage.ENUMERATION_DEFINITION: return createEnumerationDefinition();
+			case AlfPackage.PACKAGE_IMPORT_REFERENCE: return createPackageImportReference();
+			case AlfPackage.CLASSIFIER_TEMPLATE_PARAMETER: return createClassifierTemplateParameter();
+			case AlfPackage.FORMAL_PARAMETER: return createFormalParameter();
+			case AlfPackage.RECEPTION_DEFINITION: return createReceptionDefinition();
+			case AlfPackage.MEMBER: return createMember();
+			case AlfPackage.ANNOTATED_STATEMENT: return createAnnotatedStatement();
+			case AlfPackage.BOUND_CLASSIFIER: return createBoundClassifier();
+			case AlfPackage.RETURN_PARAMETER: return createReturnParameter();
+			case AlfPackage.NON_RETURN_PARAMETER: return createNonReturnParameter();
+			case AlfPackage.ANY_TYPE: return createAnyType();
+			default:
+				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
 		}
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AssignedSource createAssignedSource() {
@@ -306,7 +188,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public InternalElementReference createInternalElementReference() {
@@ -317,7 +198,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExternalElementReference createExternalElementReference() {
@@ -328,7 +208,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExternalEnumerationLiteralReference createExternalEnumerationLiteralReference() {
@@ -339,7 +218,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BoundElementReference createBoundElementReference() {
@@ -350,7 +228,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceExpansionExpression createSequenceExpansionExpression() {
@@ -361,7 +238,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AssignableElementReference createAssignableElementReference() {
@@ -372,7 +248,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExtentOrExpression createExtentOrExpression() {
@@ -383,7 +258,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QualifiedName createQualifiedName() {
@@ -394,7 +268,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureReference createFeatureReference() {
@@ -405,7 +278,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NameBinding createNameBinding() {
@@ -416,7 +288,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NamedTemplateBinding createNamedTemplateBinding() {
@@ -427,7 +298,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TemplateParameterSubstitution createTemplateParameterSubstitution() {
@@ -438,7 +308,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NumericUnaryExpression createNumericUnaryExpression() {
@@ -449,7 +318,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ForAllOrExistsOrOneExpression createForAllOrExistsOrOneExpression() {
@@ -460,7 +328,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IsolationExpression createIsolationExpression() {
@@ -471,7 +338,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BooleanUnaryExpression createBooleanUnaryExpression() {
@@ -482,7 +348,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CastExpression createCastExpression() {
@@ -493,7 +358,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PositionalTuple createPositionalTuple() {
@@ -504,7 +368,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NamedExpression createNamedExpression() {
@@ -515,7 +378,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public InputNamedExpression createInputNamedExpression() {
@@ -526,7 +388,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OutputNamedExpression createOutputNamedExpression() {
@@ -537,7 +398,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceAccessExpression createSequenceAccessExpression() {
@@ -548,7 +408,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StringLiteralExpression createStringLiteralExpression() {
@@ -559,7 +418,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceOperationExpression createSequenceOperationExpression() {
@@ -570,7 +428,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SelectOrRejectExpression createSelectOrRejectExpression() {
@@ -581,7 +438,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassExtentExpression createClassExtentExpression() {
@@ -592,7 +448,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PositionalTemplateBinding createPositionalTemplateBinding() {
@@ -603,7 +458,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConditionalLogicalExpression createConditionalLogicalExpression() {
@@ -614,7 +468,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LinkOperationExpression createLinkOperationExpression() {
@@ -625,7 +478,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EqualityExpression createEqualityExpression() {
@@ -636,7 +488,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AssignmentExpression createAssignmentExpression() {
@@ -647,7 +498,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LogicalExpression createLogicalExpression() {
@@ -658,7 +508,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceConstructionExpression createSequenceConstructionExpression() {
@@ -669,7 +518,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public CollectOrIterateExpression createCollectOrIterateExpression() {
@@ -680,7 +528,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IsUniqueExpression createIsUniqueExpression() {
@@ -691,7 +538,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ArithmeticExpression createArithmeticExpression() {
@@ -702,7 +548,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureLeftHandSide createFeatureLeftHandSide() {
@@ -713,7 +558,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConditionalTestExpression createConditionalTestExpression() {
@@ -724,7 +568,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public InstanceCreationExpression createInstanceCreationExpression() {
@@ -735,7 +578,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PropertyAccessExpression createPropertyAccessExpression() {
@@ -746,7 +588,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NameExpression createNameExpression() {
@@ -757,7 +598,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BitStringUnaryExpression createBitStringUnaryExpression() {
@@ -768,7 +608,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FeatureInvocationExpression createFeatureInvocationExpression() {
@@ -779,7 +618,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BehaviorInvocationExpression createBehaviorInvocationExpression() {
@@ -790,7 +628,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ShiftExpression createShiftExpression() {
@@ -801,7 +638,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnboundedLiteralExpression createUnboundedLiteralExpression() {
@@ -812,7 +648,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ThisExpression createThisExpression() {
@@ -823,7 +658,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassificationExpression createClassificationExpression() {
@@ -834,7 +668,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SuperInvocationExpression createSuperInvocationExpression() {
@@ -845,7 +678,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IncrementOrDecrementExpression createIncrementOrDecrementExpression() {
@@ -856,7 +688,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BooleanLiteralExpression createBooleanLiteralExpression() {
@@ -867,7 +698,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NamedTuple createNamedTuple() {
@@ -878,7 +708,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NaturalLiteralExpression createNaturalLiteralExpression() {
@@ -889,7 +718,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceRange createSequenceRange() {
@@ -900,7 +728,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NameLeftHandSide createNameLeftHandSide() {
@@ -911,7 +738,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EffectiveLeftHandSide createEffectiveLeftHandSide() {
@@ -922,7 +748,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceReductionExpression createSequenceReductionExpression() {
@@ -933,7 +758,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SequenceExpressionList createSequenceExpressionList() {
@@ -944,7 +768,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public RelationalExpression createRelationalExpression() {
@@ -955,7 +778,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LocalNameDeclarationStatement createLocalNameDeclarationStatement() {
@@ -966,7 +788,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AssignableLocalNameDeclaration createAssignableLocalNameDeclaration() {
@@ -977,7 +798,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Annotation createAnnotation() {
@@ -988,7 +808,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public QualifiedNameList createQualifiedNameList() {
@@ -999,7 +818,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonFinalClause createNonFinalClause() {
@@ -1010,7 +828,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Block createBlock() {
@@ -1021,7 +838,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BlockStatement createBlockStatement() {
@@ -1032,7 +848,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DoStatement createDoStatement() {
@@ -1043,7 +858,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ConcurrentClauses createConcurrentClauses() {
@@ -1054,7 +868,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BreakStatement createBreakStatement() {
@@ -1065,7 +878,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ExpressionStatement createExpressionStatement() {
@@ -1076,7 +888,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassifyStatement createClassifyStatement() {
@@ -1087,7 +898,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ForStatement createForStatement() {
@@ -1098,7 +908,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public LoopVariableDefinition createLoopVariableDefinition() {
@@ -1109,7 +918,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public IfStatement createIfStatement() {
@@ -1120,7 +928,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SwitchStatement createSwitchStatement() {
@@ -1131,7 +938,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SwitchClause createSwitchClause() {
@@ -1142,7 +948,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public WhileStatement createWhileStatement() {
@@ -1153,7 +958,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReturnStatement createReturnStatement() {
@@ -1164,7 +968,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public InLineStatement createInLineStatement() {
@@ -1175,7 +978,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AcceptStatement createAcceptStatement() {
@@ -1186,7 +988,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AcceptBlock createAcceptBlock() {
@@ -1197,7 +998,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EmptyStatement createEmptyStatement() {
@@ -1208,7 +1008,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ModelNamespace createModelNamespace() {
@@ -1219,7 +1018,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NamespaceDefinition createNamespaceDefinition() {
@@ -1230,7 +1028,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public StereotypeAnnotation createStereotypeAnnotation() {
@@ -1241,7 +1038,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaggedValueList createTaggedValueList() {
@@ -1252,7 +1048,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TaggedValue createTaggedValue() {
@@ -1263,7 +1058,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UnitDefinition createUnitDefinition() {
@@ -1274,7 +1068,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ImportedMember createImportedMember() {
@@ -1285,7 +1078,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EnumerationLiteralName createEnumerationLiteralName() {
@@ -1296,7 +1088,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public OperationDefinition createOperationDefinition() {
@@ -1307,7 +1098,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AssociationDefinition createAssociationDefinition() {
@@ -1318,7 +1108,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassDefinition createClassDefinition() {
@@ -1329,7 +1118,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public TypedElementDefinition createTypedElementDefinition() {
@@ -1340,7 +1128,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public DataTypeDefinition createDataTypeDefinition() {
@@ -1351,7 +1138,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageDefinition createPackageDefinition() {
@@ -1362,7 +1148,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PropertyDefinition createPropertyDefinition() {
@@ -1373,7 +1158,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SignalDefinition createSignalDefinition() {
@@ -1384,7 +1168,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActiveClassDefinition createActiveClassDefinition() {
@@ -1395,7 +1178,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ActivityDefinition createActivityDefinition() {
@@ -1406,7 +1188,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementImportReference createElementImportReference() {
@@ -1417,7 +1198,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public SignalReceptionDefinition createSignalReceptionDefinition() {
@@ -1428,7 +1208,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public EnumerationDefinition createEnumerationDefinition() {
@@ -1439,7 +1218,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public PackageImportReference createPackageImportReference() {
@@ -1450,7 +1228,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ClassifierTemplateParameter createClassifierTemplateParameter() {
@@ -1461,7 +1238,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public FormalParameter createFormalParameter() {
@@ -1472,7 +1248,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReceptionDefinition createReceptionDefinition() {
@@ -1483,7 +1258,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public Member createMember() {
@@ -1494,7 +1268,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AnnotatedStatement createAnnotatedStatement() {
@@ -1505,7 +1278,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BoundClassifier createBoundClassifier() {
@@ -1516,7 +1288,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ReturnParameter createReturnParameter() {
@@ -1527,7 +1298,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NonReturnParameter createNonReturnParameter() {
@@ -1538,7 +1308,6 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AnyType createAnyType() {
@@ -1549,17 +1318,15 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public AlfPackage getAlfPackage() {
-		return (AlfPackage) getEPackage();
+		return (AlfPackage)getEPackage();
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @deprecated
 	 * @generated
 	 */

@@ -18,8 +18,8 @@ import org.eclipse.emf.common.util.EList;
  * The following features are supported:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceElements#getUpper <em>Upper</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.SequenceElements#getLower <em>Lower</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceElements#getUpper <em>Upper</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.SequenceElements#getLower <em>Lower</em>}</li>
  * </ul>
  *
  * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceElements()
@@ -35,7 +35,6 @@ public interface SequenceElements extends SyntaxElement {
 	 * The multiplicity upper bound of the elements of the sequence. The
 	 * derivation for this property is given in the subclasses of SequenceElements.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Upper</em>' attribute.
 	 * @see #setUpper(BigInteger)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceElements_Upper()
@@ -49,9 +48,7 @@ public interface SequenceElements extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceElements#getUpper <em>Upper</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Upper</em>' attribute.
+	 * @param value the new value of the '<em>Upper</em>' attribute.
 	 * @see #getUpper()
 	 * @generated
 	 */
@@ -65,7 +62,6 @@ public interface SequenceElements extends SyntaxElement {
 	 * The multiplicity lower bound of the elements of the sequence. The derivation
 	 * for this property is given in the subclasses of SequenceElements.
 	 * <!-- end-model-doc -->
-	 * 
 	 * @return the value of the '<em>Lower</em>' attribute.
 	 * @see #setLower(BigInteger)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getSequenceElements_Lower()
@@ -79,9 +75,7 @@ public interface SequenceElements extends SyntaxElement {
 	 * Sets the value of the '{@link org.eclipse.papyrus.uml.alf.SequenceElements#getLower <em>Lower</em>}' attribute.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *            the new value of the '<em>Lower</em>' attribute.
+	 * @param value the new value of the '<em>Lower</em>' attribute.
 	 * @see #getLower()
 	 * @generated
 	 */
@@ -90,7 +84,6 @@ public interface SequenceElements extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -99,7 +92,6 @@ public interface SequenceElements extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model ordered="false"
 	 * @generated
 	 */
@@ -108,7 +100,6 @@ public interface SequenceElements extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */
@@ -117,7 +108,6 @@ public interface SequenceElements extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @model required="true"
 	 * @generated
 	 */

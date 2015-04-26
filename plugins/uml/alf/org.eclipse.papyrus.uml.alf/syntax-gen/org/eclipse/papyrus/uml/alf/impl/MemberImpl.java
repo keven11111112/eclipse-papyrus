@@ -22,14 +22,13 @@ import org.eclipse.papyrus.uml.alf.SyntaxElement;
  * An implementation of the model object '<em><b>Member</b></em>'.
  * <!-- end-user-doc -->
  * <p>
- * <p>
  * The following features are implemented:
  * </p>
  * <ul>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getDefinition <em>Definition</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getVisibility <em>Visibility</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getNamespace <em>Namespace</em>}</li>
- * <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getAnnotation <em>Annotation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getDefinition <em>Definition</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getVisibility <em>Visibility</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getNamespace <em>Namespace</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.uml.alf.impl.MemberImpl#getAnnotation <em>Annotation</em>}</li>
  * </ul>
  *
  * @generated
@@ -38,7 +37,6 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MemberImpl() {
@@ -48,7 +46,6 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -59,17 +56,15 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public MemberDefinition getDefinition() {
-		return (MemberDefinition) eGet(AlfPackage.eINSTANCE.getMember_Definition(), true);
+		return (MemberDefinition)eGet(AlfPackage.eINSTANCE.getMember_Definition(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setDefinition(MemberDefinition newDefinition) {
@@ -79,17 +74,15 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String getVisibility() {
-		return (String) eGet(AlfPackage.eINSTANCE.getMember_Visibility(), true);
+		return (String)eGet(AlfPackage.eINSTANCE.getMember_Visibility(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setVisibility(String newVisibility) {
@@ -99,17 +92,15 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public NamespaceDefinition getNamespace() {
-		return (NamespaceDefinition) eGet(AlfPackage.eINSTANCE.getMember_Namespace(), true);
+		return (NamespaceDefinition)eGet(AlfPackage.eINSTANCE.getMember_Namespace(), true);
 	}
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setNamespace(NamespaceDefinition newNamespace) {
@@ -119,35 +110,33 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@SuppressWarnings("unchecked")
 	public EList<StereotypeAnnotation> getAnnotation() {
-		return (EList<StereotypeAnnotation>) eGet(AlfPackage.eINSTANCE.getMember_Annotation(), true);
+		return (EList<StereotypeAnnotation>)eGet(AlfPackage.eINSTANCE.getMember_Annotation(), true);
 	}
 
 	/**
 	 * The cached invocation delegate for the '{@link #toReference() <em>To Reference</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #toReference()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TO_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getMember__ToReference()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TO_REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getMember__ToReference()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference toReference() {
 		try {
-			return (ElementReference) TO_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TO_REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -156,23 +145,22 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	 * The cached invocation delegate for the '{@link #visibility() <em>Visibility</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #visibility()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate VISIBILITY__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getMember__Visibility()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate VISIBILITY__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getMember__Visibility()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public String visibility() {
 		try {
-			return (String) VISIBILITY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (String)VISIBILITY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -180,17 +168,14 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public int eDerivedOperationID(int baseOperationID, Class<?> baseClass) {
 		if (baseClass == SyntaxElement.class) {
 			switch (baseOperationID) {
-			case AlfPackage.SYNTAX_ELEMENT___TO_REFERENCE:
-				return AlfPackage.MEMBER___TO_REFERENCE;
-			default:
-				return super.eDerivedOperationID(baseOperationID, baseClass);
+				case AlfPackage.SYNTAX_ELEMENT___TO_REFERENCE: return AlfPackage.MEMBER___TO_REFERENCE;
+				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
 		return super.eDerivedOperationID(baseOperationID, baseClass);
@@ -199,16 +184,15 @@ public class MemberImpl extends DocumentedElementImpl implements Member {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.MEMBER___TO_REFERENCE:
-			return toReference();
-		case AlfPackage.MEMBER___VISIBILITY:
-			return visibility();
+			case AlfPackage.MEMBER___TO_REFERENCE:
+				return toReference();
+			case AlfPackage.MEMBER___VISIBILITY:
+				return visibility();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

@@ -23,7 +23,6 @@ import org.eclipse.papyrus.uml.alf.util.AlfValidator;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>This Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -31,7 +30,6 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ThisExpressionImpl() {
@@ -41,7 +39,6 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -53,23 +50,22 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	 * The cached invocation delegate for the '{@link #type() <em>Type</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #type()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getThisExpression__Type()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate TYPE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getThisExpression__Type()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ElementReference type() {
 		try {
-			return (ElementReference) TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (ElementReference)TYPE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -78,23 +74,22 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	 * The cached invocation delegate for the '{@link #upper() <em>Upper</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #upper()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getThisExpression__Upper()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate UPPER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getThisExpression__Upper()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger upper() {
 		try {
-			return (BigInteger) UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)UPPER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -103,23 +98,22 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	 * The cached invocation delegate for the '{@link #lower() <em>Lower</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @see #lower()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal) AlfPackage.eINSTANCE.getThisExpression__Lower()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate LOWER__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getThisExpression__Lower()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public BigInteger lower() {
 		try {
-			return (BigInteger) LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		} catch (InvocationTargetException ite) {
+			return (BigInteger)LOWER__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
 		}
 	}
@@ -127,7 +121,6 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean thisExpressionTypeDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -138,12 +131,12 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_TYPE_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_TYPE_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionTypeDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -153,7 +146,6 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean thisExpressionUpperDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -164,12 +156,12 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_UPPER_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionUpperDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_UPPER_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionUpperDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -179,7 +171,6 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public boolean thisExpressionLowerDerivation(DiagnosticChain diagnostics, Map<Object, Object> context) {
@@ -190,12 +181,12 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 		if (false) {
 			if (diagnostics != null) {
 				diagnostics.add
-						(new BasicDiagnostic
+					(new BasicDiagnostic
 						(Diagnostic.ERROR,
-								AlfValidator.DIAGNOSTIC_SOURCE,
-								AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_LOWER_DERIVATION,
-								EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionLowerDerivation", EObjectValidator.getObjectLabel(this, context) }),
-								new Object[] { this }));
+						 AlfValidator.DIAGNOSTIC_SOURCE,
+						 AlfValidator.THIS_EXPRESSION__THIS_EXPRESSION_LOWER_DERIVATION,
+						 EcorePlugin.INSTANCE.getString("_UI_GenericInvariant_diagnostic", new Object[] { "thisExpressionLowerDerivation", EObjectValidator.getObjectLabel(this, context) }),
+						 new Object [] { this }));
 			}
 			return false;
 		}
@@ -205,25 +196,24 @@ public class ThisExpressionImpl extends ExpressionImpl implements ThisExpression
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
-		case AlfPackage.THIS_EXPRESSION___TYPE:
-			return type();
-		case AlfPackage.THIS_EXPRESSION___UPPER:
-			return upper();
-		case AlfPackage.THIS_EXPRESSION___LOWER:
-			return lower();
-		case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return thisExpressionTypeDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return thisExpressionUpperDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
-		case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP:
-			return thisExpressionLowerDerivation((DiagnosticChain) arguments.get(0), (Map<Object, Object>) arguments.get(1));
+			case AlfPackage.THIS_EXPRESSION___TYPE:
+				return type();
+			case AlfPackage.THIS_EXPRESSION___UPPER:
+				return upper();
+			case AlfPackage.THIS_EXPRESSION___LOWER:
+				return lower();
+			case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return thisExpressionTypeDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return thisExpressionUpperDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
+			case AlfPackage.THIS_EXPRESSION___THIS_EXPRESSION_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP:
+				return thisExpressionLowerDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}
 		return super.eInvoke(operationID, arguments);
 	}

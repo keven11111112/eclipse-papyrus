@@ -10,7 +10,6 @@ import org.eclipse.papyrus.uml.alf.CollectOrIterateExpression;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Collect Or Iterate Expression</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  *
  * @generated
  */
@@ -18,7 +17,6 @@ public class CollectOrIterateExpressionImpl extends SequenceExpansionExpressionI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CollectOrIterateExpressionImpl() {
@@ -28,7 +26,6 @@ public class CollectOrIterateExpressionImpl extends SequenceExpansionExpressionI
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
