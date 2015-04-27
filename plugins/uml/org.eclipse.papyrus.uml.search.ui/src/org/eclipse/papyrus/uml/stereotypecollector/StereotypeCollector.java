@@ -61,7 +61,91 @@ public class StereotypeCollector implements IStereotypeCollector {
 		return StereotypeCollector.instance;
 	}
 
+	/**
+	 * Computes the list of applied profiles in the model(s)
+	 * 
+	 * @param container
+	 * @return
+	 */
+	public Collection<Profile> computeAppliedProfiles(ISearchPageContainer container) {
+		Set<Profile> profiles = new HashSet<Profile>();
+		Set<URI> umlResources = new HashSet<URI>();
 
+		if (container == null) {
+			umlResources.addAll(createWorkspaceScope());
+		} else {
+			switch (container.getSelectedScope()) {
+			case ISearchPageContainer.WORKSPACE_SCOPE: {
+				umlResources.addAll(createWorkspaceScope());
+				break;
+			}
+			case ISearchPageContainer.SELECTION_SCOPE: {
+				ISelection selection = container.getSelection();
+
+				if (!selection.isEmpty()) {
+					if (selection instanceof IStructuredSelection) {
+						umlResources.addAll(createSelectionScope((IStructuredSelection) selection));
+					} else {
+						// Do a workspace search instead
+						umlResources.addAll(createWorkspaceScope());
+					}
+				} else {
+					// Do a workspace search instead
+					umlResources.addAll(createWorkspaceScope());
+				}
+				break;
+			}
+			case ISearchPageContainer.SELECTED_PROJECTS_SCOPE: {
+				String[] projects = container.getSelectedProjectNames();
+				umlResources.addAll(createProjectsScope(projects));
+				break;
+			}
+			case ISearchPageContainer.WORKING_SET_SCOPE: {
+				IWorkingSet[] workingSets = container.getSelectedWorkingSets();
+				umlResources.addAll(createWorkingSetsScope(workingSets));
+				break;
+			}
+			default: {
+				break;
+			}
+			}
+		}
+
+		for (URI uri : umlResources) {
+			ModelSet resourceSet = new ModelSet();
+			Resource resource = resourceSet.getResource(uri, true);
+
+			TreeIterator<EObject> UMLResourceContentIterator = resource.getAllContents();
+			while (UMLResourceContentIterator.hasNext()) {
+				EObject umlElement = UMLResourceContentIterator.next();
+
+				if (umlElement instanceof ProfileApplication) {
+					boolean found = false;
+					Profile profileToProcess = ((ProfileApplication) umlElement).getAppliedProfile();
+					for (Profile alreadyAddedProfile : profiles) {
+						if (EcoreUtil.getURI(alreadyAddedProfile).equals(EcoreUtil.getURI(profileToProcess))) {
+							found = true;
+						}
+					}
+					
+					if (!found) {
+						profiles.add(profileToProcess);
+					}
+				}
+			}
+		}
+
+		return profiles;
+
+	}
+
+	/**
+	 * Computes the list of available stereotypes in profiles applied to the model(s)
+	 * @see org.eclipse.papyrus.uml.stereotypecollector.IStereotypeCollector#computeAvailableStereotypes(org.eclipse.search.ui.ISearchPageContainer)
+	 *
+	 * @param container
+	 * @return
+	 */
 	public Collection<Stereotype> computeAvailableStereotypes(ISearchPageContainer container) {
 		Set<Stereotype> preResult = new HashSet<Stereotype>();
 
@@ -122,8 +206,10 @@ public class StereotypeCollector implements IStereotypeCollector {
 					boolean found = false;
 					Profile profileToProcess = ((ProfileApplication) umlElement).getAppliedProfile();
 					for (Profile alreadyAddedProfile : profiles) {
-
-						if (EcoreUtil.equals(alreadyAddedProfile, profileToProcess)) {
+						
+						//if (EcoreUtil.equals(alreadyAddedProfile, profileToProcess)) {
+						if (EcoreUtil.getURI(alreadyAddedProfile).equals(EcoreUtil.getURI(profileToProcess))) {
+						
 							found = true;
 						}
 					}
@@ -144,8 +230,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 					boolean found = false;
 					Stereotype stereotypeToProcess = (Stereotype) profileContent;
 					for (Stereotype alreadyAddedStereotype : preResult) {
-
-						if (EcoreUtil.equals(alreadyAddedStereotype, stereotypeToProcess)) {
+						if (EcoreUtil.getURI(alreadyAddedStereotype).equals(EcoreUtil.getURI(stereotypeToProcess))) {
 							found = true;
 						}
 					}
@@ -168,8 +253,7 @@ public class StereotypeCollector implements IStereotypeCollector {
 					boolean found = false;
 					Stereotype stereotypeToProcess = (Stereotype) parent;
 					for (Stereotype alreadyAddedStereotype : result) {
-
-						if (EcoreUtil.equals(alreadyAddedStereotype, stereotypeToProcess)) {
+						if (EcoreUtil.getURI(alreadyAddedStereotype).equals(EcoreUtil.getURI(stereotypeToProcess))) {
 							found = true;
 						}
 					}
@@ -185,6 +269,64 @@ public class StereotypeCollector implements IStereotypeCollector {
 
 		return result;
 
+	}
+	
+	/**
+	 * Computes the list of available stereotypes in the given collection of profiles
+	 * 
+	 * @param container
+	 * @param profiles
+	 * @return
+	 */
+	public Collection<Stereotype> computeAvailableStereotypes(ISearchPageContainer container, Collection<Profile> profiles) {
+		Set<Stereotype> preResult = new HashSet<Stereotype>();
+
+		for (Profile profile : profiles) {
+			TreeIterator<EObject> profileContentIterator = profile.eAllContents();
+
+			while (profileContentIterator.hasNext()) {
+				EObject profileContent = profileContentIterator.next();
+				if (profileContent instanceof Stereotype) {
+					boolean found = false;
+					Stereotype stereotypeToProcess = (Stereotype) profileContent;
+					for (Stereotype alreadyAddedStereotype : preResult) {
+						if (EcoreUtil.getURI(alreadyAddedStereotype).equals(EcoreUtil.getURI(stereotypeToProcess))) {
+							found = true;
+						}
+					}
+
+					if (!found) {
+						preResult.add(stereotypeToProcess);
+					}
+				}
+			}
+		}
+
+		Set<Stereotype> result = new HashSet<Stereotype>();
+		for (Stereotype stereo : preResult) {
+			result.add(stereo);
+			for (Classifier parent : stereo.getGenerals()) {
+				if (parent instanceof Stereotype) {
+					result.add((Stereotype) parent);
+
+					boolean found = false;
+					Stereotype stereotypeToProcess = (Stereotype) parent;
+					for (Stereotype alreadyAddedStereotype : result) {
+						if (EcoreUtil.getURI(alreadyAddedStereotype).equals(EcoreUtil.getURI(stereotypeToProcess))) {
+							found = true;
+						}
+					}
+
+					if (!found) {
+						result.add(stereotypeToProcess);
+					}
+
+				}
+			}
+
+		}
+
+		return result;
 	}
 
 	public Collection<Stereotype> computeAppliedStereotypes(ISearchPageContainer container) {
@@ -247,7 +389,8 @@ public class StereotypeCollector implements IStereotypeCollector {
 							boolean exists = false;
 
 							for (Stereotype existingStereotype : stereotypes) {
-								if (EcoreUtil.equals(existingStereotype, stereotype)) {
+								//if (EcoreUtil.equals(existingStereotype, stereotype)) {
+								if (EcoreUtil.getURI(existingStereotype).equals(EcoreUtil.getURI(stereotype))) {
 									exists = true;
 									break;
 								}
@@ -295,6 +438,128 @@ public class StereotypeCollector implements IStereotypeCollector {
 		return stereotypes;
 	}
 
+	/**
+	 * Computes applied stereotypes in the given profile
+	 * 
+	 * @param container
+	 * @param profile
+	 * @return stereotypes
+	 */
+	
+	public Collection<Stereotype> computeAppliedStereotypes(ISearchPageContainer container, Profile profile) {
+		if (profile == null) {
+			return computeAppliedStereotypes(container);
+		}
+		
+		Set<URI> umlResources = new HashSet<URI>();
+		Set<Stereotype> stereotypes = new HashSet<Stereotype>();
+
+		if (container == null) {
+			umlResources.addAll(createWorkspaceScope());
+
+		} else {
+			switch (container.getSelectedScope()) {
+			case ISearchPageContainer.WORKSPACE_SCOPE: {
+				umlResources.addAll(createWorkspaceScope());
+				break;
+			}
+			case ISearchPageContainer.SELECTION_SCOPE: {
+				ISelection selection = container.getSelection();
+
+				if (!selection.isEmpty()) {
+					if (selection instanceof IStructuredSelection) {
+						umlResources.addAll(createSelectionScope((IStructuredSelection) selection));
+					} else {
+						// Do a workspace search instead
+						umlResources.addAll(createWorkspaceScope());
+					}
+				} else {
+					// Do a workspace search instead
+					umlResources.addAll(createWorkspaceScope());
+				}
+				break;
+			}
+			case ISearchPageContainer.SELECTED_PROJECTS_SCOPE: {
+				String[] projects = container.getSelectedProjectNames();
+				umlResources.addAll(createProjectsScope(projects));
+				break;
+			}
+			case ISearchPageContainer.WORKING_SET_SCOPE: {
+				IWorkingSet[] workingSets = container.getSelectedWorkingSets();
+				umlResources.addAll(createWorkingSetsScope(workingSets));
+				break;
+			}
+			default: {
+				break;
+			}
+			}
+		}
+
+		for (URI uri : umlResources) {
+			ModelSet resourceSet = new ModelSet();
+			Resource resource = resourceSet.getResource(uri, true);
+			EList<EObject> contents = resource.getContents();
+
+			for (EObject content : contents) {
+				if (!(content instanceof Model)) {
+					Element umlElement = UMLUtil.getBaseElement(content);
+
+					if (umlElement instanceof Element) {
+						for (Stereotype stereotype : umlElement.getAppliedStereotypes()) {
+							if (EcoreUtil.getURI(stereotype.getProfile()).equals(EcoreUtil.getURI(profile))) {
+								boolean exists = false;
+
+								for (Stereotype existingStereotype : stereotypes) {
+									//if (EcoreUtil.equals(existingStereotype, stereotype)) {
+									if (EcoreUtil.getURI(existingStereotype).equals(EcoreUtil.getURI(stereotype))) {
+										exists = true;
+										break;
+									}
+								}
+								
+								if (!exists) {
+									stereotypes.add(stereotype);
+								}	
+							}
+						}
+					}
+				}
+
+				/**
+				 * Keep old version for performance comparison
+				 */
+				/*while (UMLResourceContentIterator.hasNext()) {
+				EObject umlElement = UMLResourceContentIterator.next();
+
+				if (umlElement instanceof Model) {
+					Model umlModel = (Model) umlElement;
+					EList<Element> elements = umlModel.allOwnedElements();
+
+					for (Element element : elements) {
+						if (element.getAppliedStereotypes() != null && !element.getAppliedStereotypes().isEmpty()) {
+							for (Stereotype stereotype : element.getAppliedStereotypes()) {
+								boolean exists = false;
+
+								for (Stereotype existingStereotype : stereotypes) {
+									if (EcoreUtil.equals(existingStereotype, stereotype)) {
+										exists = true;
+										break;
+									}
+								}
+
+								if (!exists) {
+									stereotypes.add(stereotype);									
+								}
+							}
+						}
+					}
+				}*/
+			}
+		}
+
+		return stereotypes;
+	}
+	
 	/**
 	 * Create a scope when the container is ISearchPageContainer.SELECTION_SCOPE
 	 *

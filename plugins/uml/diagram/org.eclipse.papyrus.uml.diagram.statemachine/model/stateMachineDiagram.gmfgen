@@ -55,6 +55,7 @@
       <elementType
           xsi:type="gmfgen:MetamodelType"
           uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Package_1000"
+          definedExternally="true"
           editHelperClassName="PackageEditHelper"/>
       <viewmap
           xsi:type="gmfgen:FigureViewmap"
@@ -1989,6 +1990,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Transition_7000"
             displayName="Transition"
+            definedExternally="true"
             editHelperClassName="TransitionEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2092,6 +2094,7 @@
             xsi:type="gmfgen:MetamodelType"
             uniqueIdentifier="org.eclipse.papyrus.uml.diagram.statemachine.Generalization_19000"
             displayName="Generalization"
+            definedExternally="true"
             editHelperClassName="GeneralizationEditHelper"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
@@ -2146,7 +2149,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2165,7 +2169,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.edge.SimpleDashedEdgeFigure"/>
@@ -2184,7 +2189,8 @@
         <diagramRunTimeClass
             href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Edge"/>
         <elementType
-            xsi:type="gmfgen:SpecializationType"/>
+            xsi:type="gmfgen:SpecializationType"
+            definedExternally="true"/>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
             figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.statemachine.custom.figures.CustomContextLinkFigure"/>

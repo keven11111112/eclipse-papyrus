@@ -253,7 +253,31 @@ public class ProtocolContainerUtils {
 		return returnList;
 	}
 
+	/**
+	 * Returns ProtocolContainer of a given UML::PackagableElement.
+	 * @param element
+	 * @return
+	 */
+	public static Package getProtocolContainer(PackageableElement element) {
+		return element.getNearestPackage();
+	}
 	
+	/**
+	 * Returns ProtocolContainer of a given EObject.
+	 * @param eObject
+	 * @return
+	 */
+	public static EObject getProtocolContainer(EObject eObject) {
+		EObject result = null;
+		
+		if (eObject instanceof Package) {
+			result = eObject;
+		} else {
+			result = getProtocolContainer(eObject.eContainer());
+		}		
+		
+		return result;
+	}	
 
 
 

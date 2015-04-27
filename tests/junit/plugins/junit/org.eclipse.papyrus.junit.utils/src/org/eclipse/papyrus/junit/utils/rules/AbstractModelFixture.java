@@ -10,10 +10,13 @@
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 399859
  *   Christian W. Damus - bug 451230
+ *   Christian W. Damus - bug 458685
  *
  */
 package org.eclipse.papyrus.junit.utils.rules;
 
+import static org.hamcrest.CoreMatchers.instanceOf;
+import static org.hamcrest.CoreMatchers.is;
 import static org.hamcrest.CoreMatchers.notNullValue;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.junit.Assert.fail;
@@ -33,8 +36,14 @@ import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.commands.operations.IUndoableOperation;
+import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Path;
+import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
@@ -45,6 +54,7 @@ import org.eclipse.emf.ecore.xmi.XMLResource;
 import org.eclipse.emf.ecore.xml.type.AnyType;
 import org.eclipse.emf.edit.domain.EditingDomain;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.workspace.IWorkspaceCommandStack;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.sasheditor.DiModel;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
@@ -126,6 +136,48 @@ public abstract class AbstractModelFixture<T extends EditingDomain> extends Test
 
 	public T getEditingDomain() {
 		return domain;
+	}
+
+	public void execute(Command command) {
+		assertThat("Command not executable", command.canExecute(), is(true));
+		getEditingDomain().getCommandStack().execute(command);
+	}
+
+	public IStatus execute(IUndoableOperation operation, IProgressMonitor monitor, IAdaptable info) {
+		assertThat("Operation not executable", operation.canExecute(), is(true));
+		assertThat("No operation history available", getEditingDomain().getCommandStack(), instanceOf(IWorkspaceCommandStack.class));
+
+		try {
+			IWorkspaceCommandStack stack = (IWorkspaceCommandStack) getEditingDomain().getCommandStack();
+			operation.addContext(stack.getDefaultUndoContext());
+			return stack.getOperationHistory().execute(operation, monitor, info);
+		} catch (ExecutionException e) {
+			e.printStackTrace();
+			fail("Command execution failed: " + e.getLocalizedMessage());
+			return null; // Unreachable
+		}
+	}
+
+	public IStatus execute(IUndoableOperation operation) {
+		return execute(operation, null, null);
+	}
+
+	public boolean canUndo() {
+		return getEditingDomain().getCommandStack().canUndo();
+	}
+
+	public void undo() {
+		assertThat("Cannot undo", canUndo(), is(true));
+		getEditingDomain().getCommandStack().undo();
+	}
+
+	public boolean canRedo() {
+		return getEditingDomain().getCommandStack().canRedo();
+	}
+
+	public void redo() {
+		assertThat("Cannot redo", canRedo(), is(true));
+		getEditingDomain().getCommandStack().redo();
 	}
 
 	public ResourceSet getResourceSet() {

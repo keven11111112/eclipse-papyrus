@@ -5,9 +5,9 @@
     id="palettemodel"
     label="SysML">
   <drawerConfigurations
-      id="WorkingPalette"
-      label="WorkingPalette"
-      description="WorkingPalette">
+      id="palette.sysml.bdd.nodes"
+      label="Nodes"
+      description="Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Block"
@@ -29,37 +29,6 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Requirement"
-        label="Requirement"
-        description="Create a Requirement">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/requirements/Requirement.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_2008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3004"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3010"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3014"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Satisfy_Abstraction"
-        label="Satisfy"
-        description="Create a Satisfy"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/requirements/Satisfy.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Satisfy_Abstraction_4006"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.FlowPort"
         label="FlowPort"
         description="Create a FlowPort">
@@ -72,24 +41,13 @@
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"
-        label="Create ControlOperator"
+        label="ControlOperator"
         description="Create ControlOperator">
       <icon
           pluginID="org.eclipse.papyrus.sysml"
           iconPath="icons/portandflows/FlowProperty.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"
-        label="Verify_Link"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/InformationFlow.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
@@ -106,11 +64,203 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Constraint_Label"/>
     </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Actor"
+        label="Actor"
+        description="Create an Actor">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Actor.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Actor_2008"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.ValueType"
+        label="ValueType"
+        description="Create a ValueType">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/blocks/ValueType.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ValueType_2010"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3027"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3043"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3044"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3045"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Enumeration"
+        label="Enumeration"
+        description="Create an Enumeration">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Enumeration.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_2006"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3025"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3052"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3053"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Enumeration_3054"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Unit"
+        label="Unit"
+        description="Create a Sysml Unit">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/InstanceSpecification.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Unit_2001"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Unit_3020"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.QuantityKind"
+        label="QuantityKind"
+        description="Create a Sysml QuantityKind">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/InstanceSpecification.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.QuantityKind_2001"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.QuantityKind_3020"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Slot"
+        label="Slot"
+        description="Create a Slot">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Slot.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Slot_3030"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.InstanceSpecification"
+        label="Instance Specification"
+        description="Create an Uml Instance Specification">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/InstanceSpecification.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_2001"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.InstanceSpecification_3020"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Interface"
+        label="Interface"
+        description="Create an Uml Interface">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Interface.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Interface_2004"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Interface_3023"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Interface_3036"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Interface_3037"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Interface_3038"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Class_Port"
+        label="Port"
+        description="Create a Port">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Port.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Class_Port"/>
+    </ownedConfigurations>
+  </drawerConfigurations>
+  <drawerConfigurations
+      id="palette.sysml.bdd.edges"
+      label="Edges"
+      description="Edges">
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Satisfy_Abstraction"
+        label="Satisfy"
+        description="Create a Satisfy"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.papyrus.sysml"
+          iconPath="icons/requirements/Satisfy.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Satisfy_Abstraction_4006"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"
+        label="Verify_Link"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/InformationFlow.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Dependency"
+        label="Dependency"
+        description="Create a dependency"
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Dependency.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_2014"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4008"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.uml.diagram.clazz.Dependency_4018"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.SysML14.PartAssociation"
+        label="PartAssociation"
+        description="Create a Part Association"
+        kind="ConnectionTool">
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_2015"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4001"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4019"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.SysML14.SharedAssociation"
+        label="SharedAssociation"
+        description="Create a SharedAssociation"
+        kind="ConnectionTool"/>
   </drawerConfigurations>
   <drawerConfigurations
       id="Nodes"
-      label="Nodes"
-      description="Nodes">
+      label="Other Nodes"
+      description="Other Nodes">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.AdjunctProperty"
@@ -466,28 +616,28 @@
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.ValueType"
-        label="ValueType"
-        description="Create a ValueType">
+        id="org.eclipse.papyrus.sysML.Requirement"
+        label="Requirement"
+        description="Create a Requirement">
       <icon
           pluginID="org.eclipse.papyrus.sysml"
-          iconPath="icons/blocks/ValueType.gif"/>
+          iconPath="icons/requirements/Requirement.gif"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.ValueType_2010"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Requirement_2008"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3027"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3004"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3043"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3008"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3044"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3010"/>
       <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.ValueType_3045"/>
+          elementTypeId="org.eclipse.papyrus.sysML.Requirement_3014"/>
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="Edges"
-      label="Edges"
-      description="Edges">
+      label="Other Edges"
+      description="Other Edges">
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.sysML.Copy_Abstraction"
@@ -643,114 +793,6 @@
         description="Create a RequirementRelated">
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.RequirementRelated_2097"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations
-      id="Deprecated"
-      label="Deprecated"
-      description="Deprecated">
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_Property"
-        label="Property (Deprecated)"
-        description="Create a Deprecated Property">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Property.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3002"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3005"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3006"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3012"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3018"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Property_3041"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification"
-        label="InstanceSpecification (Deprecated)"
-        description="Create a Deprecated InstanceSpecification">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/InstanceSpecification.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_4021"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_2001"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_3020"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_Class"
-        label="Class (Deprecated)"
-        description="Create a Deprecated Class"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Class.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Class_2008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Class_3004"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Class_3008"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Class_3010"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Class_3014"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_Association"
-        label="Association (Deprecated)"
-        description="Create a Deprecated Association"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Association.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Association_2015"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Association_4001"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Association_4019"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_Generalization"
-        label="Generalization (Deprecated)"
-        description="Create a Deprecated Generalization"
-        kind="ConnectionTool">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/Generalization.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_Generalization_4002"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Deprecated_DataType"
-        label="DataType (Deprecated)"
-        description="Create a Deprecated DataType">
-      <icon
-          pluginID="org.eclipse.uml2.uml.edit"
-          iconPath="icons/full/obj16/DataType.gif"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_DataType_2010"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_DataType_3027"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_DataType_3043"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_DataType_3044"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Deprecated_DataType_3045"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

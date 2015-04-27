@@ -15,19 +15,25 @@ package org.eclipse.papyrus.umlrt.custom.advice;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.common.core.command.CompositeCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.MoveElementsCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.MoveRequest;
 import org.eclipse.papyrus.umlrt.custom.IUMLRTElementTypes;
+import org.eclipse.papyrus.umlrt.custom.utils.MessageUtils;
 import org.eclipse.papyrus.umlrt.internals.Activator;
+import org.eclipse.uml2.uml.CallEvent;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Operation;
 
 
 /**
@@ -43,9 +49,33 @@ public class MessageSetEditHelperAdvice extends AbstractEditHelperAdvice {
 		return super.getAfterEditContextCommand(request);
 	}
 
+
+	/**
+	 * {@inheritDoc}
+	 */
 	@Override
-	protected ICommand getAfterMoveCommand(MoveRequest request) {
-		return super.getAfterMoveCommand(request);
+	protected ICommand getAfterMoveCommand(final MoveRequest request) {
+		CompositeCommand compositeMoveCommand = new CompositeCommand("Composite Move Command");
+		
+		Map<?, ?> elementsToMove = request.getElementsToMove();
+		if (!elementsToMove.isEmpty()) {
+			for (Object elementToMove : elementsToMove.keySet()) {
+				if (elementToMove instanceof Operation) {
+					final Operation operation = (Operation) elementToMove;
+					final CallEvent callEvent = MessageUtils.getCallEvent(operation);
+					if (callEvent != null) {												
+						MoveElementsCommand command = MessageUtils.createMoveCallEventCommand(request, callEvent);
+						compositeMoveCommand.add(command);
+					}
+				}
+			}
+		}
+		
+		if (compositeMoveCommand.isEmpty()) {
+			compositeMoveCommand.add(super.getAfterMoveCommand(request));
+		} 
+		
+		return compositeMoveCommand;
 	}
 
 	/**

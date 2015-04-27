@@ -115,8 +115,7 @@ public class PseudostateDeepHistoryEditPart extends RoundedCompartmentEditPart {
 							mh.setBorder(null);
 							return Collections.singletonList(mh);
 						}
-					}
-					;
+					};
 				}
 				EditPolicy result = child.getEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE);
 				if (result == null) {
@@ -189,11 +188,11 @@ public class PseudostateDeepHistoryEditPart extends RoundedCompartmentEditPart {
 		if (borderItemEditPart instanceof PseudostateDeepHistoryFloatingLabelEditPart) {
 			IBorderItemLocator locator = new RoundedRectangleLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else if (borderItemEditPart instanceof PseudostateDeepHistoryStereotypeEditPart) {
+		} else
+			if (borderItemEditPart instanceof PseudostateDeepHistoryStereotypeEditPart) {
 			IBorderItemLocator locator = new ExternalLabelPositionLocator(getMainFigure());
 			borderItemContainer.add(borderItemEditPart.getFigure(), locator);
-		} else
-		{
+		} else {
 			super.addBorderItem(borderItemContainer, borderItemEditPart);
 		}
 	}

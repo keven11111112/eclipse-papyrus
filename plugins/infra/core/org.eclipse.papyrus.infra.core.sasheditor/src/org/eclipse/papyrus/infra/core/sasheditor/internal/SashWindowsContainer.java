@@ -36,6 +36,7 @@ import org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.ITabMouseEventsListener;
 import org.eclipse.papyrus.infra.core.sasheditor.utils.IObservableList;
 import org.eclipse.swt.SWT;
+import org.eclipse.swt.custom.CTabFolder;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
 import org.eclipse.swt.graphics.Cursor;
@@ -555,6 +556,43 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 		rootPart.visit(visitor);
 
 		return visitor.getVisiblePages();
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
+	 *
+	 * @return
+	 */
+	@Override
+	public IPage getNextPage() {
+		CollectNextPageVisitor visitor = new CollectNextPageVisitor(false);
+		return getPage(visitor);
+	}
+	
+	/**
+	 * 
+	 * @see org.eclipse.papyrus.infra.core.sasheditor.editor.ISashWindowsContainer#getNextPage()
+	 *
+	 * @return
+	 */
+	@Override
+	public IPage getPreviousPage() {
+		CollectNextPageVisitor visitor = new CollectNextPageVisitor(true);
+		return getPage(visitor);
+	}
+	
+	/**
+	 * Use the provided visitor to get the next page and return it.
+	 */
+	private IPage getPage(CollectNextPageVisitor visitor) {
+		if (visitor != null) {
+			rootPart.visit(visitor);			
+			if (!visitor.getNextPages().isEmpty()) {
+				return (IPage) visitor.getNextPages().get(0);
+			}
+		}
+		return null;
 	}
 
 	/**
@@ -1275,6 +1313,70 @@ public class SashWindowsContainer implements ISashWindowsContainer {
 			return true;
 		}
 
+	}
+	
+	/**
+	 * Inner class.
+	 * A visitor used to collect the next page of the next opened tab (right or left).
+	 * A tab is opened if it is visible in the editor.
+	 */
+	private class CollectNextPageVisitor extends PartVisitor {
+
+		private List<IPage> nextPages = new ArrayList<IPage>();
+		
+		private final boolean isPrevious;
+
+		/**
+		 * Constructor
+		 */
+		public CollectNextPageVisitor(boolean isPrevious) {
+			this.isPrevious = isPrevious;
+		}
+
+		/**
+		 * Get the results list.
+		 */
+		public List<IPage> getNextPages() {
+			return nextPages;
+		}
+
+		/**
+		 * Get the index of the currently active tab and then increments/decrements the index by 1
+		 * to select the next/previous tab. The page of the tab is returned.
+		 */
+		@Override
+		public boolean accept(TabFolderPart part) {
+			PagePart activePage = activePageTracker.getActiveEditor();
+			PagePart visiblePage = part.getVisiblePagePart();
+			
+			if (activePage == visiblePage) {
+				CTabFolder tabFolder = part.getTabFolder();
+				int itemCount = tabFolder.getItemCount();
+				
+				if (itemCount > 1) {
+					int selectionIndex = tabFolder.getSelectionIndex();
+					
+					if (isPrevious) {
+						selectionIndex--;
+						if (selectionIndex < 0) {
+							selectionIndex = itemCount - 1;
+						}
+					} else {
+						selectionIndex++;
+						if (selectionIndex >= itemCount) {
+							selectionIndex = 0;
+						}
+					}
+					
+					IPage nextPage = part.getPagePart(selectionIndex);
+					if (nextPage != null) {
+						nextPages.add(nextPage);
+					}
+				}
+			}
+			
+			return true;
+		}
 	}
 
 	/**

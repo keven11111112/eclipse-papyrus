@@ -56,11 +56,48 @@ Enumeration > Compartment[kind="literals"] {
     showTitle:true;
 }	
 
-DataType  > Compartment {
+DataType[appliedStereotypes~="ValueType"]  > Compartment {
 	visible:false;
 }
 
-DataType > Compartment[kind="properties"] {
+DataType[appliedStereotypes~="ValueType"] > Compartment[kind="properties"] {
     visible:true;
     showTitle:true;
 }
+
+DataType[appliedStereotypes~="ValueType"] > Compartment[kind="operations"] {
+    visible:true;
+    showTitle:true;
+}
+
+DataType[appliedStereotypes~="ValueType"] > Compartment[type=StereotypeCompartment] {
+    visible:true;
+    showTitle:true;
+}
+
+InstanceSpecification> Compartment[kind="slots"] {
+    visible:true;
+    showTitle:false;
+}
+
+Actor
+{
+	displayBorder:false;
+	displayName:false;
+	diplayIcon:false;
+	displayTag:false;
+	followSVGSymbol:true;
+	maintainSymbolRatio:true;
+	transparency:100;
+	/*displayFloatingLabel:true;*/
+	maxNumberOfSymbol:1;
+	useOriginalColors:false;
+	gradient:none;
+	fillColor:white;
+}
+
+Actor > Compartment[kind="symbol"]
+{
+    visible:true;
+}
+

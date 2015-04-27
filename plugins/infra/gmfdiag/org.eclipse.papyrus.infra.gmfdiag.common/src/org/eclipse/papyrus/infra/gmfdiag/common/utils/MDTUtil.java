@@ -35,13 +35,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.parts.DiagramEditor;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.Activator;
+import org.eclipse.papyrus.infra.tools.util.EditorHelper;
 import org.eclipse.ui.IEditorInput;
 import org.eclipse.ui.IEditorPart;
 import org.eclipse.ui.IFileEditorInput;
 import org.eclipse.ui.IURIEditorInput;
-import org.eclipse.uml2.common.util.CacheAdapter;
 import org.osgi.framework.Bundle;
 import org.osgi.framework.Constants;
 
@@ -232,7 +231,7 @@ public class MDTUtil {
 	 * @return the editor rootelement
 	 */
 	public static EObject getEditorRootelement(IEditorPart editorPart) {
-		EditPart rootEditPart = (EditPart) editorPart.getAdapter(EditPart.class);
+		EditPart rootEditPart = editorPart.getAdapter(EditPart.class);
 		if (rootEditPart == null) {
 			return null;
 		}
@@ -268,11 +267,11 @@ public class MDTUtil {
 	 */
 	public static List<EObject> getRootElementsFromFile(IEditorInput input, ResourceSet resourceSet) {
 		URI uri = null;
-		IURIEditorInput uriEditorInput = (IURIEditorInput) Platform.getAdapterManager().getAdapter(input, IURIEditorInput.class);
+		IURIEditorInput uriEditorInput = Platform.getAdapterManager().getAdapter(input, IURIEditorInput.class);
 		if (uriEditorInput != null) {
 			uri = URI.createURI(uriEditorInput.getURI().toString());
 		} else {
-			IFileEditorInput fileEditorInput = (IFileEditorInput) Platform.getAdapterManager().getAdapter(input, IFileEditorInput.class);
+			IFileEditorInput fileEditorInput = Platform.getAdapterManager().getAdapter(input, IFileEditorInput.class);
 			if (fileEditorInput != null) {
 				uri = URI.createURI(fileEditorInput.getFile().getLocationURI().toString());
 			}
@@ -419,7 +418,7 @@ public class MDTUtil {
 		if (resource != null && resource.getContents().size() > 0) {
 			// look for a Diagram in the whole Resource
 			for (EObject eObject : resource.getContents()) {
-				Diagram diagram = (Diagram) Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
+				Diagram diagram = Platform.getAdapterManager().getAdapter(eObject, Diagram.class);
 				if (diagram != null) {
 					// the first Diagram found is returned.
 					return diagram;
