@@ -27,6 +27,6 @@ public class GetMessageOutFromProtocolContainerQuery implements IJavaQuery2<Pack
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
 			throws DerivedTypedElementException {
-		return ProtocolContainerUtils.getAllOutOperations(context);
+		return ProtocolContainerUtils.getAllOutRTMessages(context);
 	}
 }

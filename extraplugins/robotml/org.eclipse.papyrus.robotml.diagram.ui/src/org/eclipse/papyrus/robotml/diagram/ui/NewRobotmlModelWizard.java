@@ -71,4 +71,8 @@ public class NewRobotmlModelWizard extends CreateModelWizard {
 		// here RobotML is the only available category
 	}
 
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
+	}
 }

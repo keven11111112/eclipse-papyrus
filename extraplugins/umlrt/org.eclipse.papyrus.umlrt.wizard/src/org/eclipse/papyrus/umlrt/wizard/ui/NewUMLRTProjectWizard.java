@@ -68,4 +68,8 @@ public class NewUMLRTProjectWizard extends NewPapyrusProjectWizard {
 		return new String[] { CreateUMLRTModelCommand.COMMAND_ID };
 	}
 
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
+	}
 }

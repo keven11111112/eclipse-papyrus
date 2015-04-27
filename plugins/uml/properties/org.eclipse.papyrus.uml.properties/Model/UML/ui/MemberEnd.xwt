@@ -2,6 +2,7 @@
 <Group xmlns:ppel="clr-namespace:org.eclipse.papyrus.views.properties.widgets.layout"
 	xmlns="http://www.eclipse.org/xwt/presentation" xmlns:j="clr-namespace:java.lang"
 	xmlns:x="http://www.eclipse.org/xwt" xmlns:ppe="clr-namespace:org.eclipse.papyrus.views.properties.widgets"
+	xmlns:uml="clr-namespace:org.eclipse.papyrus.uml.properties.widgets"
 	text="Member End">
 	<Group.layout>
 		<ppel:PropertiesLayout></ppel:PropertiesLayout>
@@ -14,6 +15,6 @@
 		<ppe:EnumCombo input="{Binding}" property="MemberEnd:owner"></ppe:EnumCombo>
 		<ppe:BooleanRadio input="{Binding}" property="MemberEnd:navigable"></ppe:BooleanRadio>
 		<ppe:EnumCombo input="{Binding}" property="UML:Property:aggregation"></ppe:EnumCombo>
-		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
+		<uml:MultiplicityDialog input="{Binding}" property="Multiplicity:multiplicity"></uml:MultiplicityDialog>
 	</Composite>
 </Group>

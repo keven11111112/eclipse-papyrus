@@ -152,7 +152,7 @@ public class ExpansionElementDropStrategy extends TransactionalDropStrategy {
 				while (cmd==null &&acceptedElementTypesIndex<acceptedElementTypes.size()){
 					final ISpecializationType iSpecializationType = acceptedElementTypes.get(acceptedElementTypesIndex);
 					IElementMatcher matcher=iSpecializationType.getMatcher();
-					if( matcher.matches(sourceElement)){
+					if(matcher!=null && matcher.matches(sourceElement)){
 						valuesToAdd.add(sourceElement);
 						if(DEBUG_EXPANSION){
 							Activator.log.debug(DEBUG_PREFIX+"try to drop command created for "+ sourceElement+ " "+iSpecializationType);

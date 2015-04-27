@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009 CEA
+ * Copyright (c) 2009, 2015 CEA, Christian W. Damus, and others
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *   Atos Origin - Initial API and implementation
+ *   Christian W. Damus - bug 433206
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
@@ -64,12 +65,12 @@ import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.jface.dialogs.MessageDialog;
 import org.eclipse.osgi.util.NLS;
 import org.eclipse.papyrus.commands.wrappers.CommandProxyWithResult;
-import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
+import org.eclipse.papyrus.uml.diagram.common.commands.DeferredCreateCommand;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationConstraintHelper;
 import org.eclipse.papyrus.uml.diagram.common.helper.DurationObservationHelper;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateGateViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.CreateLocatedConnectionViewCommand;
 import org.eclipse.papyrus.uml.diagram.sequence.command.RestoreDurationConstraintLinkCommand;
@@ -229,11 +230,9 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (someCombinedFragment && someNonCombinedFragment) {
 			// Can't Drop CombinedFragment and other nodes at the same time
 			return UnexecutableCommand.INSTANCE;
-		}
-		else if (someNonCombinedFragment) {
+		} else if (someNonCombinedFragment) {
 			return command;
-		}
-		else {
+		} else {
 			return getMoveCombinedFragmentCommand((ChangeBoundsRequest) request);
 		}
 	}
@@ -253,8 +252,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (editParts != null) {
 			for (Object part : editParts) {
 				CustomCombinedFragmentEditPart combinedFragmentEP = (CustomCombinedFragmentEditPart) part;
-				CombinedFragment combinedFragment = (CombinedFragment) ViewUtil.
-						resolveSemanticElement((View) ((IGraphicalEditPart) combinedFragmentEP).getModel());
+				CombinedFragment combinedFragment = (CombinedFragment) ViewUtil.resolveSemanticElement((View) ((IGraphicalEditPart) combinedFragmentEP).getModel());
 
 				if (combinedFragmentEP.getParent() == newParentEP) {
 					continue; // no change of the parent
@@ -1212,6 +1210,11 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 			finishLocation = SequenceUtil.findLocationOfEvent(hostLifeline, finishEvent);
 			if (finishLocation == null) {
 				possibleFinishLocations = SequenceUtil.findPossibleLocationsForEvent(hostLifeline, finishEvent);
+
+				// Minimum shape (not just an horizontal line)
+				if (possibleFinishLocations.height <= 0) {
+					possibleFinishLocations.height = LifelineXYLayoutEditPolicy.EXECUTION_INIT_HEIGHT;
+				}
 			}
 			// find start and finish locations with correct y (start.y < finish.y) and proportions
 			if (startLocation == null) {

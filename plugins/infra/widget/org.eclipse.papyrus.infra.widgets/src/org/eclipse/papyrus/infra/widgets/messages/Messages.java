@@ -99,6 +99,15 @@ public class Messages extends NLS {
 
 	/** Indicates that a list of elements have different values for the given property (Multi-selection) */
 	public static String ReferenceDialogObservable_Unchanged;
+	
+	/** The switch editors label for Multiplicity reference dialog. */
+	public static String MultiplicityReferenceDialog_SwitchEditors;
+	
+	/** The lower value tool tip for Multiplicity reference dialog. */
+	public static String MultiplicityReferenceDialog_LowerValueToolTip;
+	
+	/** The upper value tool tip for Multiplicity reference dialog. */
+	public static String MultiplicityReferenceDialog_UpperValueToolTip;
 
 	/** the Enum radio_ no value */
 	public static String EnumRadio_NoValue;

@@ -1860,4 +1860,12 @@
 
 
    <!-- optionally, specify keybindings -->
+
+    <extension
+            point="org.eclipse.papyrus.infra.gmfdiag.canonical.strategies">
+        <semanticChildrenStrategy
+                editPart="org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart"
+                class="org.eclipse.papyrus.uml.diagram.sequence.canonical.LifelineSemanticChildrenStrategy">
+        </semanticChildrenStrategy>
+    </extension>
 </plugin>

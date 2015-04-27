@@ -1,6 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010 CEA LIST.
- *
+ * Copyright (c) 2014 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,10 +7,10 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *  Tatiana Fesenko (CEA LIST) - Initial API and implementation
- *
+ * Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.wizards;
+
+package org.eclipse.papyrus.uml.diagram.wizards.utils;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -20,9 +19,7 @@ import java.util.StringTokenizer;
 
 import org.eclipse.jface.dialogs.IDialogSettings;
 
-/**
- * The Class SettingsUtils allows the Wizard to remember last selected diagram kinds and categories.
- */
+
 public class SettingsHelper {
 
 	/** The Constant DIAGRAM_KIND_SEPARATOR. */
@@ -69,7 +66,7 @@ public class SettingsHelper {
 	 * Save default diagram category.
 	 *
 	 * @param categories
-	 *            the categories
+	 *        the categories
 	 */
 	public void saveDefaultDiagramCategory(String[] categories) {
 		mySettings.put(LAST_SELECTED_CATEGORY, categories);
@@ -84,7 +81,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultDiagramKinds(String category) {
 		String csl = mySettings.get(getKeyForDiagramKind(category));
-		if (csl == null || csl == "") { //$NON-NLS-1$
+		if(csl == null || csl.equals("")) { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -121,7 +118,7 @@ public class SettingsHelper {
 	 */
 	public List<String> getDefaultTemplates(String category) {
 		String csl = mySettings.get(getKeyForTemplate(category));
-		if (csl == null || csl == "") { //$NON-NLS-1$
+		if(csl == null || csl.equals("")) { //$NON-NLS-1$
 			return Collections.emptyList();
 		}
 		List<String> result = new ArrayList<String>();
@@ -174,7 +171,7 @@ public class SettingsHelper {
 	 * Gets the key for diagram kind.
 	 *
 	 * @param category
-	 *            the category
+	 *        the category
 	 * @return the key for diagram kind
 	 */
 	private String getKeyForDiagramKind(String category) {
@@ -185,7 +182,7 @@ public class SettingsHelper {
 	 * Gets the key for template.
 	 *
 	 * @param category
-	 *            the category
+	 *        the category
 	 * @return the key for template
 	 */
 	private String getKeyForTemplate(String category) {

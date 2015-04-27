@@ -104,4 +104,12 @@ public class WizardsHelper {
 		}
 		return null;
 	}
+
+	public static String[] getListExcludedTemplate(String stringTemplate) {
+		if(stringTemplate != null) {
+			String[] arrayTemplate = stringTemplate.split("/"); //$NON-NLS-1$
+			return arrayTemplate;
+		}
+		return null;
+	}
 }

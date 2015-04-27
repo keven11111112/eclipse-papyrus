@@ -17,6 +17,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.gmf.runtime.emf.type.core.IElementMatcher;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.jface.viewers.ILabelProviderListener;
@@ -26,7 +27,7 @@ import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.custom.IUMLRTElementTypes;
 import org.eclipse.papyrus.umlrt.custom.UMLRTElementTypesEnumerator;
-import org.eclipse.papyrus.umlrt.custom.utils.MessageSetUtils;
+import org.eclipse.papyrus.umlrt.custom.utils.RTMessageUtils;
 import org.eclipse.papyrus.umlrt.ui.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -41,10 +42,10 @@ public class UMLRTFilteredLabelProvider implements IFilteredLabelProvider {
 	/** path to the icons in the plugin */
 	protected static String ICON_PATH = "/icons/";
 
-	protected static String RT_MESSAGE_SET_IN_ICON = ICON_PATH + "rt_messageset_in.gif";//$NON-NLS-1$
-	protected static String RT_MESSAGE_SET_IN_OUT_ICON = ICON_PATH + "rt_messageset_inout.gif";//$NON-NLS-1$
-	protected static String RT_MESSAGE_SET_OUT_ICON = ICON_PATH + "rt_messageset_out.gif";//$NON-NLS-1$
-	protected static String RT_MESSAGE_SET_UNDEFINED_ICON = ICON_PATH + "rt_messageset_undefined.gif";//$NON-NLS-1$
+	protected static String RT_MESSAGE_IN_ICON = ICON_PATH + "rt_message_in.gif";//$NON-NLS-1$
+	protected static String RT_MESSAGE_IN_OUT_ICON = ICON_PATH + "rt_message_inout.gif";//$NON-NLS-1$
+	protected static String RT_MESSAGE_OUT_ICON = ICON_PATH + "rt_message_out.gif";//$NON-NLS-1$
+	protected static String RT_MESSAGE_UNDEFINED_ICON = ICON_PATH + "rt_message_undefined.gif";//$NON-NLS-1$
 
 	/**
 	 * Default constructor
@@ -75,9 +76,15 @@ public class UMLRTFilteredLabelProvider implements IFilteredLabelProvider {
 
 		for (IElementType type : UMLRTElementTypesEnumerator.getAllRTTypes()) {
 			if (type instanceof ISpecializationType) {
-				if(((ISpecializationType) type).getMatcher().matches(semanticObject)) {
-					return true;
+				IElementMatcher matcher = ((ISpecializationType) type).getMatcher();
+				if (matcher != null) {
+					if (((ISpecializationType) type).getMatcher().matches(semanticObject)) {
+						return true;
+					}
+				} else {
+					Activator.log.debug("no matcher for this element type: " + type);
 				}
+
 			}
 		}
 
@@ -106,31 +113,51 @@ public class UMLRTFilteredLabelProvider implements IFilteredLabelProvider {
 		Image image = null;
 		// a match was done. give a different icon given the value
 		switch (matchingTypeMatcher) {
-		case IUMLRTElementTypes.RT_MESSAGE_SET_ID:
+//		case IUMLRTElementTypes.RT_MESSAGE_SET_ID:
+//			// for RT message, direction can give different icons
+//
+//			// the element has the RT messageset stereotype applied. It should be possible to retrieve it and even better the direction
+//			RTMessageKind kind = MessageSetUtils.getMessageKind(semanticObject);
+//			if (kind != null) {
+//				switch (kind) {
+//				case IN:
+//					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_IN_ICON);
+//					break;
+//				case OUT:
+//					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_OUT_ICON);
+//					break;
+//				case IN_OUT:
+//					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_IN_OUT_ICON);
+//					break;
+//				default:
+//					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_UNDEFINED_ICON);
+//					break;
+//				}
+//				break;
+//			}
+//			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_UNDEFINED_ICON);
+//			break;
+		case IUMLRTElementTypes.RT_MESSAGE_ID:
 			// for RT message, direction can give different icons
 
-			// the element has the RT messageset stereotype applied. It should be possible to retrieve it and even better the direction
-			RTMessageKind kind = MessageSetUtils.getMessageKind(semanticObject);
+			RTMessageKind kind = RTMessageUtils.getMessageKind(semanticObject);
 			if (kind != null) {
 				switch (kind) {
 				case IN:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_IN_ICON);
+					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_ICON);
 					break;
 				case OUT:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_OUT_ICON);
+					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_OUT_ICON);
 					break;
 				case IN_OUT:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_IN_OUT_ICON);
+					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_OUT_ICON);
 					break;
 				default:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_UNDEFINED_ICON);
+					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_UNDEFINED_ICON);
 					break;
 				}
 				break;
 			}
-			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_UNDEFINED_ICON);
-			break;
-
 		default:
 			image = getElementImage(matchingTypeMatcher, semanticObject);
 			break;

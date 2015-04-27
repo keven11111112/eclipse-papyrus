@@ -155,6 +155,11 @@ public class SysML14UMLClassDiagramElementTypesTest {
 	}
 
     @Test
+	public void testRegistryContentForBlock_NestedBlock_Classifier() {
+		Assert.assertTrue("Block (NestedBlock_Classifier) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Block_NestedBlock_Classifier"));
+	}
+
+    @Test
 	public void testRegistryContentForBlock_3004() {
 		Assert.assertTrue("Block (3004) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Block_3004"));
 	}
@@ -655,119 +660,88 @@ public class SysML14UMLClassDiagramElementTypesTest {
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3002() {
-		Assert.assertTrue("Deprecated (3002) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3002"));
+	public void testRegistryContentForFlowPort_FlowPort_Label() {
+		Assert.assertTrue("FlowPort (FlowPort_Label) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_Label"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3005() {
-		Assert.assertTrue("Deprecated (3005) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3005"));
+	public void testRegistryContentForFlowPort_3005() {
+		Assert.assertTrue("FlowPort (3005) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_3005"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3006() {
-		Assert.assertTrue("Deprecated (3006) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3006"));
+	public void testRegistryContentForFlowPort_3006() {
+		Assert.assertTrue("FlowPort (3006) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_3006"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3012() {
-		Assert.assertTrue("Deprecated (3012) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3012"));
+	public void testRegistryContentForFlowPort_3012() {
+		Assert.assertTrue("FlowPort (3012) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_3012"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3018() {
-		Assert.assertTrue("Deprecated (3018) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3018"));
+	public void testRegistryContentForFlowPort_3018() {
+		Assert.assertTrue("FlowPort (3018) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_3018"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3041() {
-		Assert.assertTrue("Deprecated (3041) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Property_3041"));
+	public void testRegistryContentForFlowPort_3041() {
+		Assert.assertTrue("FlowPort (3041) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.FlowPort_3041"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_4021() {
-		Assert.assertTrue("Deprecated (4021) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_4021"));
+	public void testRegistryContentForControlOperator_Operation_BorderItem() {
+		Assert.assertTrue("ControlOperator (Operation_BorderItem) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.ControlOperator_Operation_Operation_BorderItem"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_2001() {
-		Assert.assertTrue("Deprecated (2001) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_2001"));
+	public void testRegistryContentForVerify_Link() {
+		Assert.assertTrue("Verify_Link element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.SysML14.Verify_Abstraction_Verify_Link"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3020() {
-		Assert.assertTrue("Deprecated (3020) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_InstanceSpecification_3020"));
+	public void testRegistryContentForConstraint_Constraint_Label() {
+		Assert.assertTrue("Constraint (Constraint_Label) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Constraint_Label"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_2008() {
-		Assert.assertTrue("Deprecated (2008) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Class_2008"));
+	public void testRegistryContentForActor() {
+		Assert.assertTrue("Actor element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Actor_2008"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3004() {
-		Assert.assertTrue("Deprecated (3004) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Class_3004"));
+	public void testRegistryContentForUnit_2001() {
+		Assert.assertTrue("Unit_2001 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Unit_2001"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3008() {
-		Assert.assertTrue("Deprecated (3008) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Class_3008"));
+	public void testRegistryContentForUnit_3020() {
+		Assert.assertTrue("Unit_3020 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Unit_3020"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3010() {
-		Assert.assertTrue("Deprecated (3010) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Class_3010"));
+	public void testRegistryContentForQuantityKind_2001() {
+		Assert.assertTrue("QuantityKind_2001 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.QuantityKind_2001"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_3014() {
-		Assert.assertTrue("Deprecated (3014) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Class_3014"));
+	public void testRegistryContentForQuantityKind_3020() {
+		Assert.assertTrue("QuantityKind_3020 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.QuantityKind_3020"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_2015() {
-		Assert.assertTrue("Deprecated (2015) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Association_2015"));
+	public void testRegistryContentForPartAssociation_2015() {
+		Assert.assertTrue("PartAssociation_2015 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_2015"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_4001() {
-		Assert.assertTrue("Deprecated (4001) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Association_4001"));
+	public void testRegistryContentForPartAssociation_4001() {
+		Assert.assertTrue("PartAssociation_4001 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_4001"));
 	}
 
     @Test
-	public void testRegistryContentForDeprecated_4019() {
-		Assert.assertTrue("Deprecated (4019) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Association_4019"));
+	public void testRegistryContentForPartAssociation_4019() {
+		Assert.assertTrue("PartAssociation_4019 element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.PartAssociation_4019"));
 	}
-
-    @Test
-	public void testRegistryContentForDeprecated_Generalization() {
-		Assert.assertTrue("Deprecated Generalization element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_Generalization_4002"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_2010() {
-		Assert.assertTrue("Deprecated (2010) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_DataType_2010"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_3027() {
-		Assert.assertTrue("Deprecated (3027) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_DataType_3027"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_3043() {
-		Assert.assertTrue("Deprecated (3043) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_DataType_3043"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_3044() {
-		Assert.assertTrue("Deprecated (3044) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_DataType_3044"));
-	}
-
-    @Test
-	public void testRegistryContentForDeprecated_3045() {
-		Assert.assertTrue("Deprecated (3045) element type not found in SysML element type set ", ElementEditServiceUtils.getEditServiceProvider().isKnownElementType("org.eclipse.papyrus.sysML.Deprecated_DataType_3045"));
-	}
-
 
 }

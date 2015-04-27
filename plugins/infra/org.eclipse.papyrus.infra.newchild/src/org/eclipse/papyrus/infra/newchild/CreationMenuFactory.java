@@ -18,6 +18,9 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
 
+import org.eclipse.core.commands.ExecutionException;
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
@@ -31,9 +34,12 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.jface.resource.ImageDescriptor;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.CreationMenu;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.swt.SWT;
@@ -140,11 +146,47 @@ public class CreationMenuFactory {
 	 * @return true if sub-menu has been created
 	 */
 	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu) {
+		String menuType = currentCreationMenu.getElementTypeIdRef();
+
+		// find the destination owner
+		GetEditContextRequest editContextRequest = new GetEditContextRequest(editingDomain, buildRequest(null, selectedObject, menuType), selectedObject);
+		editContextRequest.setEditContext(selectedObject);
+		try {
+			editContextRequest.setClientContext(TypeContext.getContext());
+		} catch (ServiceException e) {
+			Activator.log.error(e);
+			return false;
+		}
+
+		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(selectedObject);
+		if (provider == null) {
+			return false;
+		}
+
+		EObject target = selectedObject;
+		Object result = null;
+		ICommand getEditContextCommand = provider.getEditCommand(editContextRequest);
+		if (getEditContextCommand != null) {
+			IStatus status = null;
+			try {
+				status = getEditContextCommand.execute(new NullProgressMonitor(), null);
+			} catch (ExecutionException e) {
+				Activator.log.error(e);
+				return false;
+			}
+			if (!(status == null || !status.isOK())) {
+				result = getEditContextCommand.getCommandResult().getReturnValue();
+			}
+			if(result instanceof EObject) {
+				target = (EObject)result;
+			}
+		}
+
 		// find the feature between children and owner
-		ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(selectedObject, currentCreationMenu);
+		ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(target, currentCreationMenu);
 
 		if (possibleEFeatures.size() == 1) {
-			Command cmd = buildCommand(null, selectedObject, currentCreationMenu.getElementTypeIdRef());
+			Command cmd = buildCommand(null, target, currentCreationMenu.getElementTypeIdRef());
 			if (cmd.canExecute()) {
 				MenuItem item = new MenuItem(menu, SWT.NONE);
 				fillIcon(currentCreationMenu, item);
@@ -162,7 +204,7 @@ public class CreationMenuFactory {
 			topMenuItem.setMenu(topMenu);
 			for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
 
-				Command cmd = buildCommand((EReference) eStructuralFeature, selectedObject, currentCreationMenu.getElementTypeIdRef());
+				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu.getElementTypeIdRef());
 				if (cmd.canExecute()) {
 					MenuItem item = new MenuItem(topMenu, SWT.NONE);
 					fillIcon(currentCreationMenu, item);
@@ -315,14 +357,13 @@ public class CreationMenuFactory {
 	 * @return a command that can be executed by the domain
 	 */
 	protected Command buildCommand(EReference reference, EObject container, String extendedType) {
-
-
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		ICommand createGMFCommand = provider.getEditCommand(buildRequest(reference, container, extendedType));
+		CreateElementRequest createElementRequest = buildRequest(reference, container, extendedType);
+		ICommand createGMFCommand = provider.getEditCommand(createElementRequest);
 		if (createGMFCommand != null) {
 			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 			return emfCommand;
@@ -333,7 +374,7 @@ public class CreationMenuFactory {
 	/**
 	 *
 	 * @return
-	 *         the creation request to use in this handler
+	 * 		the creation request to use in this handler
 	 */
 	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
 		if (reference == null) {

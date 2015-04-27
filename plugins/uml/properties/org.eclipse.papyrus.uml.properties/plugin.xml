@@ -78,4 +78,19 @@
             uri="http://www.eclipse.org/papyrus/properties/uml/languagePreferences">
       </package>
    </extension>
+   <extension
+         point="org.eclipse.ui.preferencePages">
+      <page
+            category="org.eclipse.papyrus.views.properties.propertyview"
+            class="org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferencePage"
+            id="org.eclipse.papyrus.uml.properties.multiplicityEditorProperties"
+            name="Multiplicity Editor">
+      </page>
+   </extension>
+   <extension
+         point="org.eclipse.core.runtime.preferences">
+      <initializer
+            class="org.eclipse.papyrus.uml.properties.preferences.MultiplicityEditorPreferenceInitializer">
+      </initializer>
+   </extension>
 </plugin>

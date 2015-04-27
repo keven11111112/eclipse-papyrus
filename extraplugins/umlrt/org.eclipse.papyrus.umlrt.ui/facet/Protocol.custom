@@ -14,9 +14,9 @@
     rank="-1">
   <eClassifiers
       xsi:type="efacet:Facet"
-      name="ProtocolContainerAsAProtocol"
+      name="ProtocolContainerFacet"
       documentation="This element represents the Package stereotyped PackageContainer as protocol definition"
-      conformanceTypedElement="//ProtocolContainerAsAProtocol/isProtocolContainer">
+      conformanceTypedElement="//ProtocolContainerFacet/isProtocolContainer">
     <extendedMetaclass
         href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
     <facetOperations
@@ -31,110 +31,113 @@
     </facetOperations>
   </eClassifiers>
   <eClassifiers
-      xsi:type="custom:EClassCustomization"
-      name="ProtocolContainerAsMainProtocolEntry"
-      documentation="Customize the display of a Protocol Container as a Protocol definition"
-      conformanceTypedElement="//ProtocolContainerAsAProtocol/isProtocolContainer">
+      xsi:type="efacet:Facet"
+      name="ProtocolContainerContainersFacet"
+      documentation="This element represents the Packages that contain ProtocolContainers">
     <extendedMetaclass
         href="http://www.eclipse.org/uml2/5.0.0/UML#//Package"/>
     <facetOperations
-        name="GetProtocolImage">
+        name="isProtocolContainersContainer">
       <eType
           xsi:type="ecore:EDataType"
-          href="http://www.eclipse.org/papyrus/emf/facet/custom/0.2.incubation/custom_primitive_types#//Image"/>
-      <eParameters
-          name="eObject">
-        <eType
-            xsi:type="ecore:EClass"
-            href="http://www.eclipse.org/emf/2002/Ecore#//EObject"/>
-      </eParameters>
+          href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetProtocolImageQuery"/>
-      <override
-          xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/image"/>
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.IsProtocolContainersContainerQuery"/>
     </facetOperations>
-    <extendedFacets
-        href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject"/>
   </eClassifiers>
   <eClassifiers
       xsi:type="custom:FacetCustomization"
-      name="ProtocolContainer_MessagesContainer"
-      documentation="Representation of the operations contained in the &quot;In&quot; Interface holder"
-      extendedFacets="//ProtocolContainerAsAProtocol"
-      customizedFacet="//ProtocolContainerAsAProtocol">
+      name="ProtocolContainerHidden"
+      documentation="hide the protocol containers from their parent package"
+      extendedFacets="//ProtocolContainerContainersFacet">
+    <facetElements
+        xsi:type="efacet:FacetReference"
+        name="filteredPackagedElements"
+        upperBound="-1"
+        derived="true"
+        documentation="Representation of the packaged Elements, replacing protocolcontainers by protocols">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/uml2/5.0.0/UML#//PackageableElement"/>
+      <query
+          xsi:type="query:OperationCallQuery"
+          operation="//ProtocolContainerHidden/GetFilteredProtocolsPackageElements"/>
+    </facetElements>
+    <facetOperations
+        name="HideProtocolContainers">
+      <eType
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <eParameters
+          name="eStructuralFeature">
+        <eType
+            xsi:type="ecore:EClass"
+            href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
+      </eParameters>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.HideProtocolContainersQuery"/>
+      <override
+          xsi:type="efacet:FacetOperation"
+          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
+    </facetOperations>
+    <facetOperations
+        name="GetFilteredProtocolsPackageElements"
+        upperBound="-1">
+      <eType
+          xsi:type="ecore:EClass"
+          href="http://www.eclipse.org/uml2/5.0.0/UML#//PackageableElement"/>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetFilteredProtocolsPackageElementsQuery"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="efacet:Facet"
+      name="ProtocolFacet"
+      documentation="Facet that represents Protocol Collaboration as the main holder for RT protocols">
+    <extendedMetaclass
+        href="http://www.eclipse.org/uml2/5.0.0/UML#//Collaboration"/>
+    <facetOperations
+        name="isProtocol">
+      <eType
+          xsi:type="ecore:EDataType"
+          href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
+      <query
+          xsi:type="javaQuery:JavaQuery"
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.IsProtocolQuery"/>
+    </facetOperations>
+  </eClassifiers>
+  <eClassifiers
+      xsi:type="custom:FacetCustomization"
+      name="ProtocolContainment_OnlyRTMessages"
+      documentation="Display RTMessages under the protocol  and nothing else"
+      extendedFacets="//ProtocolFacet">
     <facetElements
         xsi:type="efacet:FacetReference"
         name="in"
-        lowerBound="-1"
         upperBound="-1"
-        derived="true"
-        documentation="Representation of all the operations for the given protocol, direction in">
+        volatile="true"
+        transient="true"
+        derived="true">
       <eType
           xsi:type="ecore:EClass"
           href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
       <query
           xsi:type="query:OperationCallQuery"
-          operation="//ProtocolContainer_MessagesContainer/GetMessageInFromProtocolContainer"/>
+          operation="//ProtocolContainment_OnlyRTMessages/GetRTMessagesIn"/>
     </facetElements>
-    <facetElements
-        xsi:type="efacet:FacetReference"
-        name="out"
-        lowerBound="-1"
+    <facetOperations
+        name="GetRTMessagesIn"
         upperBound="-1"
-        derived="true"
-        documentation="Representation of all the operations for the given protocol, direction out">
-      <eType
-          xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-      <query
-          xsi:type="query:OperationCallQuery"
-          operation="//ProtocolContainer_MessagesContainer/GetMessageOutFromProtocolContainer"/>
-    </facetElements>
-    <facetElements
-        xsi:type="efacet:FacetReference"
-        name="inout"
-        lowerBound="-1"
-        upperBound="-1"
-        derived="true"
-        documentation="Representation of all the operations for the given protocol, both direction">
-      <eType
-          xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-      <query
-          xsi:type="query:OperationCallQuery"
-          operation="//ProtocolContainer_MessagesContainer/GetMessageInOutFromProtocolContainer"/>
-    </facetElements>
-    <facetOperations
-        name="GetMessageInFromProtocolContainer"
-        upperBound="-1">
+        documentation="Returns all Messages from the IN MessageSets">
       <eType
           xsi:type="ecore:EClass"
           href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetMessageInFromProtocolContainerQuery"/>
-    </facetOperations>
-    <facetOperations
-        name="GetMessageOutFromProtocolContainer"
-        upperBound="-1">
-      <eType
-          xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-      <query
-          xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetMessageOutFromProtocolContainerQuery"/>
-    </facetOperations>
-    <facetOperations
-        name="GetMessageInOutFromProtocolContainer"
-        upperBound="-1">
-      <eType
-          xsi:type="ecore:EClass"
-          href="http://www.eclipse.org/uml2/5.0.0/UML#//Operation"/>
-      <query
-          xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetMessageInOutFromProtocolContainerQuery"/>
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.GetRTMessagesInQuery"/>
     </facetOperations>
     <facetOperations
         name="DisplayMessageSetsOnly">
@@ -149,28 +152,10 @@
       </eParameters>
       <query
           xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.DisplayMessageSetsOnlyQuery"/>
+          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.DisplayMessagesOnlyQuery"/>
       <override
           xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
-    </facetOperations>
-    <facetOperations
-        name="NotCollapseMessageSets">
-      <eType
-          xsi:type="ecore:EDataType"
-          href="http://www.eclipse.org/emf/2002/Ecore#//EBoolean"/>
-      <eParameters
-          name="eStructuralFeature">
-        <eType
-            xsi:type="ecore:EClass"
-            href="http://www.eclipse.org/emf/2002/Ecore#//EStructuralFeature"/>
-      </eParameters>
-      <query
-          xsi:type="javaQuery:JavaQuery"
-          implementationClassName="org.eclipse.papyrus.umlrt.ui.queries.NotCollapseMessageSetQuery"/>
-      <override
-          xsi:type="efacet:FacetOperation"
-          href="../../../plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/collapseLink"/>
+          href="platform:/plugin/org.eclipse.papyrus.emf.facet.custom.ui/resources/customproperties.efacet#//CustomizedEObject/isVisible"/>
     </facetOperations>
   </eClassifiers>
 </custom:Customization>

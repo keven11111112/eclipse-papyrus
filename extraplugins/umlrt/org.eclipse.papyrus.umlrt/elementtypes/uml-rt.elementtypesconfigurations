@@ -160,8 +160,8 @@
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_At0JAONwEeSMDu6IBsn9eg"
-      name="Operation"
-      identifier="org.eclipse.papyrus.umlrt.OperationAsMessage">
+      name="RTMessage"
+      identifier="org.eclipse.papyrus.umlrt.RTMessage">
     <iconEntry
         xmi:id="_At0JAeNwEeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
@@ -174,17 +174,20 @@
         identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageEditHelperAdvice"
         editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageEditHelperAdvice"
         inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_OPE2wOqQEeS-F5lSZrhlvg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageMatcher"/>
   </elementTypeConfigurations>
   <elementTypeConfigurations
       xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
       xmi:id="_1puuMOToEeSW0_lDigZ13g"
-      name="Operation As Message IN"
-      identifier="org.eclipse.papyrus.umlrt.OperationAsMessageIn">
+      name="RTMessageIN"
+      identifier="org.eclipse.papyrus.umlrt.RTMessageIn">
     <iconEntry
         xmi:id="_7aYeMOToEeSW0_lDigZ13g"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_7aZFQOToEeSW0_lDigZ13g"
         name="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
@@ -192,6 +195,9 @@
         identifier="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
         editHelperAdviceClassName="org.eclipse.papyrus.umlrt.custom.advice.OperationAsMessageInEditHelperAdvice"
         inheritance="all"/>
+    <matcherConfiguration
+        xmi:id="_PLPkEOqQEeS-F5lSZrhlvg"
+        matcherClassName="org.eclipse.papyrus.umlrt.custom.advice.RTMessageInMatcher"/>
   </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"

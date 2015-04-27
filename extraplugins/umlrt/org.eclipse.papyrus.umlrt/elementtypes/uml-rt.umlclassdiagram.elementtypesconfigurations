@@ -451,7 +451,7 @@
         xmi:id="_UKFsweN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3003</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -469,7 +469,7 @@
         xmi:id="_iggYseN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3007</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -487,7 +487,7 @@
         xmi:id="_nR6SMeN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3013</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -505,7 +505,7 @@
         xmi:id="_sqMlgeN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3019</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
@@ -523,7 +523,7 @@
         xmi:id="_xQYGceN2EeSMDu6IBsn9eg"
         iconPath="/icons/full/obj16/Operation.gif"
         bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.umlrt.OperationAsMessage</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.umlrt.RTMessage</specializedTypesID>
     <specializedTypesID>org.eclipse.papyrus.uml.diagram.clazz.Operation_3042</specializedTypesID>
     <matcherConfiguration
         xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"

@@ -18,7 +18,9 @@ import org.junit.runners.Suite.SuiteClasses;
 
 @RunWith(Suite.class)
 @SuiteClasses({
-		ValueSpecificationGrammarTests.class
+		ValueSpecificationGrammarTests.class,
+		MultiplicityLowerValueSpecificationGrammarTests.class,
+		MultiplicityUpperValueSpecificationGrammarTests.class
 })
 public class AllTests {
 	// JUnit 4 Test Suite

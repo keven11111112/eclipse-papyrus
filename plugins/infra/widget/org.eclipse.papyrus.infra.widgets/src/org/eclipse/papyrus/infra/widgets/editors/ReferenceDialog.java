@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.databinding.CLabelObservableValue;
 import org.eclipse.papyrus.infra.widgets.databinding.ReferenceDialogObservableValue;
+import org.eclipse.papyrus.infra.widgets.databinding.StyledTextReferenceDialogObservableValue;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
@@ -61,7 +62,7 @@ import org.eclipse.swt.widgets.Widget;
  * @author Camille Letavernier
  *
  */
-public class ReferenceDialog extends AbstractValueEditor implements SelectionListener {
+public class ReferenceDialog extends AbstractReferenceDialog implements SelectionListener {
 
 	/**
 	 * The CLabel displaying the current value
@@ -306,8 +307,10 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 			binding.updateModelToTarget();
 
 		} else {
-			currentValueLabel.setImage(labelProvider.getImage(getValue()));
-			currentValueLabel.setText(labelProvider.getText(getValue()));
+			if (null != labelProvider) {
+				currentValueLabel.setImage(labelProvider.getImage(getValue()));
+				currentValueLabel.setText(labelProvider.getText(getValue()));
+			}
 		}
 	}
 
@@ -318,6 +321,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 *            The content provider used to retrieve the possible values for
 	 *            this Reference
 	 */
+	@Override
 	public void setContentProvider(IStaticContentProvider provider) {
 		dialog.setContentProvider(new EncapsulatedContentProvider(provider));
 		if (getValue() != null) {
@@ -335,6 +339,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	 * @param provider
 	 *            The label provider
 	 */
+	@Override
 	public void setLabelProvider(ILabelProvider provider) {
 		if (provider == null) {
 			setLabelProvider(new LabelProvider());
@@ -408,9 +413,20 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 	@Override
 	public void setModelObservable(IObservableValue modelProperty) {
-		setWidgetObservable(new ReferenceDialogObservableValue(this, this.currentValueLabel, modelProperty, labelProvider));
+		setWidgetObservable(createWidgetObservable(modelProperty));
 		super.setModelObservable(modelProperty);
 		updateControls();
+	}
+
+	/**
+	 * This allow to create the widget observable value.
+	 * 
+	 * @param modelProperty
+	 *            The current observable value.
+	 * @return The created {@link StyledTextReferenceDialogObservableValue}.
+	 */
+	protected IObservableValue createWidgetObservable(final IObservableValue modelProperty) {
+		return new ReferenceDialogObservableValue(this, this.currentValueLabel, modelProperty, labelProvider);
 	}
 
 	@Override
@@ -419,6 +435,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		currentValueLabel.setToolTipText(text);
 	}
 
+	@Override
 	public void setValueFactory(ReferenceValueFactory factory) {
 		valueFactory = factory;
 		updateControls();
@@ -446,6 +463,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	/**
 	 * Updates the buttons' status
 	 */
+	@Override
 	protected void updateControls() {
 		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
@@ -478,6 +496,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		updateControls();
 	}
 
+	@Override
 	public void setDirectCreation(boolean directCreation) {
 		this.directCreation = directCreation;
 		updateControls();
@@ -508,6 +527,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 		this.dialog.setInput(input);
 	}
 
+	@Override
 	public void setMandatory(boolean mandatory) {
 		this.mandatory = mandatory;
 	}

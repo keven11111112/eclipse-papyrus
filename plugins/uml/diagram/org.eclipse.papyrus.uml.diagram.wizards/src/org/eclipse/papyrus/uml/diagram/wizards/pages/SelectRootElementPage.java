@@ -43,7 +43,7 @@ import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.resource.ModelUtils;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.Type;
 import org.eclipse.papyrus.infra.widgets.toolbox.notification.builders.NotificationBuilder;
-import org.eclipse.papyrus.uml.diagram.wizards.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
 import org.eclipse.swt.events.DisposeListener;
@@ -206,8 +206,8 @@ public class SelectRootElementPage extends WizardPage {
 		}
 		if (!resource.getErrors().isEmpty()) {
 			StringBuilder builder = new StringBuilder();
-			for (Diagnostic d : resource.getErrors()) {
-				builder.append(String.format("<li>%s</li>", d.getMessage().replaceAll("\\<.*?\\>", ""))); // Basic strip tags to avoid breaking the NotificationBuilder with invalid HTML
+			for(Diagnostic d : resource.getErrors()) {
+				builder.append(String.format("<li>%s</li>", d.getMessage().replaceAll("\\<.*?\\>", ""))); //Basic strip tags to avoid breaking the NotificationBuilder with invalid HTML //$NON-NLS-1$ //$NON-NLS-2$ //$NON-NLS-3$
 			}
 			error(builder.toString());
 		}
@@ -220,7 +220,7 @@ public class SelectRootElementPage extends WizardPage {
 	 */
 	private void error(String message) {
 		try {
-			NotificationBuilder.createWarningPopup(String.format("<form>Problems encountered in your input model, after the save you could lose data :%s</form>", message)).setHTML(true).setType(Type.WARNING).run();
+			NotificationBuilder.createWarningPopup(String.format("<form>Problems encountered in your input model, after the save you could lose data :%s</form>", message)).setHTML(true).setType(Type.WARNING).run(); //$NON-NLS-1$
 		} catch (Exception ex) {
 			Activator.log.error(message, ex);
 		}
