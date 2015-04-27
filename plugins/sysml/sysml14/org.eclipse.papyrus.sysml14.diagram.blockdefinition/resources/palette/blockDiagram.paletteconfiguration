@@ -193,6 +193,32 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.Class_Port"/>
     </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Class_ProxyPort"
+        label="ProxyPort"
+        description="Create a ProxyPort">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Port.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Class_ProxyPort"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.ProxyPort_Label"/>
+    </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="org.eclipse.papyrus.sysML.Class_FullPort"
+        label="FullPort"
+        description="Create a FullPort">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="/icons/full/obj16/Port.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.Class_FullPort"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.FullPort_Label"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="palette.sysml.bdd.edges"
