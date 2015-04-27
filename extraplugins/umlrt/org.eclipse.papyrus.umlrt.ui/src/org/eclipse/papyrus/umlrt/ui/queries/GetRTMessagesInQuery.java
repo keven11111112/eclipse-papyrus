@@ -12,21 +12,27 @@
  *****************************************************************************/
 package org.eclipse.papyrus.umlrt.ui.queries;
 
-import java.util.Collection;
+import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.Operation;
 
+import java.util.List;
+
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.emf.facet.efacet.core.IFacetManager;
 import org.eclipse.papyrus.emf.facet.efacet.core.exception.DerivedTypedElementException;
 import org.eclipse.papyrus.emf.facet.query.java.core.IJavaQuery2;
 import org.eclipse.papyrus.emf.facet.query.java.core.IParameterValueList2;
-import org.eclipse.papyrus.umlrt.custom.utils.ProtocolContainerUtils;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Package;
+import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
+import org.eclipse.papyrus.umlrt.custom.utils.ProtocolUtils;
 
-public class GetMessageInOutFromProtocolContainerQuery implements IJavaQuery2<Package, Collection<Operation>> {
-	public Collection<Operation> evaluate(final Package context,
+public class GetRTMessagesInQuery implements IJavaQuery2<EObject, List<Operation>> {
+	public List<Operation> evaluate(final EObject context,
 			final IParameterValueList2 parameterValues,
 			final IFacetManager facetManager)
-			throws DerivedTypedElementException {
-		return ProtocolContainerUtils.getAllInOutRTMessages(context);
+					throws DerivedTypedElementException {
+		if (context instanceof Collaboration) {
+			return ProtocolUtils.getRTMessages((Collaboration) context, RTMessageKind.IN, true);
+		}
+		return null;
 	}
 }

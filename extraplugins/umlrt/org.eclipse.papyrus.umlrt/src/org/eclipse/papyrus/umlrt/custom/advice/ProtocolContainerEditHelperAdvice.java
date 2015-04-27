@@ -19,6 +19,7 @@ import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
+import org.eclipse.gmf.runtime.emf.type.core.commands.GetEditContextCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
@@ -50,10 +51,10 @@ public class ProtocolContainerEditHelperAdvice extends AbstractEditHelperAdvice 
 			IElementType type = createElementRequest.getElementType();
 
 			// type should only be compatible with UMLRT::OperationAsMessages
-			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_OPERATION_AS_MESSAGE);
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
 			// should not be null, otherwise, element type model is not loaded correctly. abort.
 			if (umlRTMessageType == null) {
-				Activator.log.debug("MessageAsOperation element type is not accessible");
+				Activator.log.debug("RTMessage element type is not accessible");
 				return super.approveRequest(request);
 			}
 
@@ -61,8 +62,10 @@ public class ProtocolContainerEditHelperAdvice extends AbstractEditHelperAdvice 
 			List<IElementType> types = Arrays.asList(type.getAllSuperTypes());
 			if (types.contains(umlRTMessageType)) {
 				return true;
+			} else {
+				// return false;
+				return super.approveRequest(createElementRequest);
 			}
-			return super.approveRequest(request);
 		}
 		return super.approveRequest(request);
 	}
@@ -71,15 +74,37 @@ public class ProtocolContainerEditHelperAdvice extends AbstractEditHelperAdvice 
 	 * {@inheritDoc}
 	 */
 	@Override
-	protected ICommand getAfterEditContextCommand(GetEditContextRequest request) {
+	protected ICommand getBeforeEditContextCommand(GetEditContextRequest request) {
 		IEditCommandRequest editCommandRequest = request.getEditCommandRequest();
 		if(editCommandRequest instanceof CreateElementRequest) {
 			// check the element to create is a sub kind of RTMessage
-			
+			CreateElementRequest createElementRequest = ((CreateElementRequest) editCommandRequest);
+			// retrieve element type from this request and check if this is a kind of UMLRT::Message
+			IElementType type = createElementRequest.getElementType();
+
+			// type should only be compatible with UMLRT::OperationAsMessages
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
+			// should not be null, otherwise, element type model is not loaded correctly. abort.
+			if (umlRTMessageType == null) {
+				Activator.log.debug("RTMessage element type is not accessible");
+				return super.getBeforeEditContextCommand(request);
+			}
+
+			// check type is compatible with UMLRT::OperationAsMessages. If yes, allow creation
+			List<IElementType> types = Arrays.asList(type.getAllSuperTypes());
+			if (types.contains(umlRTMessageType)) {
+				// return the right message set here rather than the protocol container
+
+				GetEditContextCommand command = new GetEditContextCommand(request);
+				if (request.getEditContext() instanceof Package) {
+					command.setEditContext(ProtocolContainerUtils.getMessageSetIn((Package) request.getEditContext()));
+				}
+				return command;
+			}
 
 		}
 		
-		return super.getAfterEditContextCommand(request);
+		return super.getBeforeEditContextCommand(request);
 	}
 
 

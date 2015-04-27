@@ -30,6 +30,6 @@
       label="RTMessageSet"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageSet"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
-      label="In Message"
-      elementTypeIdRef="org.eclipse.papyrus.umlrt.OperationAsMessageIn"/>
+      label="IN RTMessage "
+      elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageIn"/>
 </ElementCreationMenuModel:Folder>

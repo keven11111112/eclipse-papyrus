@@ -17,6 +17,7 @@ import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
 import org.eclipse.papyrus.umlrt.UMLRealTime.UMLRealTimePackage;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Stereotype;
 
 /**
@@ -63,6 +64,20 @@ public class MessageSetUtils {
 
 	public static String computeInterfaceInOutName(String protocolName) {
 		return protocolName + "IO";
+	}
+
+	/**
+	 * @param owner
+	 * @return
+	 */
+	public static boolean isRTMessageSet(Element owner) {
+		if (owner instanceof Interface) {
+			Stereotype stereotype = ((Interface) owner).getAppliedStereotype("UMLRealTime::" + UMLRealTimePackage.eINSTANCE.getRTMessageSet().getName());
+			if (stereotype != null) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }
