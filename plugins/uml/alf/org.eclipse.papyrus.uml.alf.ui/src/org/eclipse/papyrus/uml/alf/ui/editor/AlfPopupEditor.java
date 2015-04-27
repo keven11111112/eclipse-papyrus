@@ -14,7 +14,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.ui.editor;
 
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl;
 import org.eclipse.papyrus.uml.alf.libraries.helper.AlfUtil;
 import org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator;
 import org.eclipse.swt.SWT;
@@ -65,7 +64,7 @@ public class AlfPopupEditor {
 		this.contextElement = contextElement;
 		this.alfInjector = AlfActivator.getInstance().getInjector("org.eclipse.papyrus.uml.alf.Alf");
 		this.args = args;
-		ModelNamespaceImpl.setContextFor(contextElement);
+		//ModelNamespaceImpl.setContextFor(contextElement);
 	}
 
 	public void openEditor() {

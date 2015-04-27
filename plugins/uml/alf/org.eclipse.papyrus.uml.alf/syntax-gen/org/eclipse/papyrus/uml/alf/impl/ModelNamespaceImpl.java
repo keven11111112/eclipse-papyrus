@@ -4,12 +4,12 @@ package org.eclipse.papyrus.uml.alf.impl;
 
 import java.lang.reflect.InvocationTargetException;
 import java.util.Collection;
+
 import org.eclipse.emf.common.util.BasicEList;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.common.util.WrappedException;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EOperation;
-import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.AlfFactory;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.ElementReference;
@@ -18,14 +18,13 @@ import org.eclipse.papyrus.uml.alf.ImportedMember;
 import org.eclipse.papyrus.uml.alf.InternalElementReference;
 import org.eclipse.papyrus.uml.alf.Member;
 import org.eclipse.papyrus.uml.alf.MemberDefinition;
+import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.ModelNamespace;
 import org.eclipse.papyrus.uml.alf.NamespaceDefinition;
 import org.eclipse.papyrus.uml.alf.PackageDefinition;
 import org.eclipse.papyrus.uml.alf.QualifiedName;
 import org.eclipse.papyrus.uml.alf.UnitDefinition;
 import org.eclipse.papyrus.uml.tools.utils.NameResolutionUtils;
-import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -43,21 +42,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 		super();
 	}
 
-	private static ModelNamespaceImpl modelNamespace;
-
-	public static ModelNamespaceImpl getModelNamespace() {
-		if (modelNamespace == null) {
-			modelNamespace = (ModelNamespaceImpl) AlfFactory.eINSTANCE.createModelNamespace();
-		}
-		return modelNamespace;
-	}
-
-	public static NamespaceDefinition modelNamespaceFor(NamespaceDefinition namespace) {
-		final ModelNamespaceImpl modelNamespace = getModelNamespace();
-		modelNamespace.setModelUnit(namespace);
-		return modelNamespace;
-	}
-
 	static protected Member asMember(ElementReference reference) {
 		ImportedMember importedMember = AlfFactory.eINSTANCE.createImportedMember();
 		importedMember.setName(reference.name());
@@ -66,23 +50,6 @@ public class ModelNamespaceImpl extends PackageDefinitionImpl implements ModelNa
 		member.setVisibility("public");
 		member.setDefinition(importedMember);
 		return member;
-	}
-
-	public static EList<ElementReference> resolveInModelScope(QualifiedName qualifiedName) {
-		return getModelNamespace().resolvePathName(qualifiedName.getPathName());
-	}
-
-	public static void setContextFor(Element contextElement) {
-		setContext(!(contextElement instanceof NamedElement) ? null :
-				((NamedElement) contextElement).getNamespace());
-	}
-
-	public static void setContext(Namespace contextNamespace) {
-		getModelNamespace().setContextNamespace(contextNamespace);
-	}
-
-	public static Namespace getContext() {
-		return getModelNamespace().getContextNamespace();
 	}
 
 	private Namespace contextNamespace = null;

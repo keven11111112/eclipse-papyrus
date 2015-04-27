@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.alf.StereotypeAnnotation;
 import org.eclipse.papyrus.uml.alf.SyntaxElement;
 import org.eclipse.papyrus.uml.alf.UnitDefinition;
 import org.eclipse.papyrus.uml.alf.util.AlfValidator;
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 
 /**
  * <!-- begin-user-doc -->
@@ -139,7 +140,7 @@ public class NamespaceDefinitionImpl extends MemberDefinitionImpl implements Nam
 	 * @generated NOT
 	 */
 	public NamespaceDefinition modelNamespace() {
-		return ModelNamespaceImpl.modelNamespaceFor(this);
+		return ModelNamespaceFacade.getInstance().modelNamespaceFor(this);
 	}
 
 	/**

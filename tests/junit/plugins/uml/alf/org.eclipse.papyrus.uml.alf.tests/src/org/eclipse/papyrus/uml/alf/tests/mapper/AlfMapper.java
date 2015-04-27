@@ -35,7 +35,7 @@ import org.eclipse.papyrus.uml.alf.AlfStandaloneSetup;
 import org.eclipse.papyrus.uml.alf.MappingError;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfMapper;
 import org.eclipse.papyrus.uml.alf.tests.utils.RegisteredItemLoader;
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea.RequiredElementsNames;
+import org.eclipse.papyrus.uml.alf.tests.utils.RegisteredItemLoader.RequiredElementsNames;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.resources.util.UMLResourcesUtil;
@@ -59,7 +59,6 @@ public class AlfMapper extends org.eclipse.papyrus.uml.alf.AlfMapper {
 		OCL.initialize(this.resourceSet);
 		OCLstdlib.install();
 		OCLDelegateDomain.initialize(this.resourceSet);
-		//OCLstdlibStandaloneSetup.doSetup();
 
 		this.setStandardProfile(
 				RegisteredItemLoader.getInstance().loadProfile(this.resourceSet, RequiredElementsNames.STANDARD_PROFILE));

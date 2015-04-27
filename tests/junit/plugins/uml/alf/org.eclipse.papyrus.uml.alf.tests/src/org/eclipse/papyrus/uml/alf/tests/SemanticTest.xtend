@@ -20,18 +20,18 @@ import org.eclipse.ocl.ecore.delegate.OCLDelegateDomain
 import org.eclipse.ocl.pivot.model.OCLstdlib
 import org.eclipse.ocl.uml.OCL
 import org.eclipse.papyrus.uml.alf.AlfInjectorProvider
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
 import org.eclipse.xtext.junit4.InjectWith
 import org.eclipse.xtext.junit4.XtextRunner
 import org.eclipse.xtext.resource.XtextResourceSet
 import org.junit.AfterClass
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.junit.Ignore
+import org.eclipse.emf.ecore.resource.Resource
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade
 
 @InjectWith(AlfInjectorProvider)
 @RunWith(XtextRunner)
@@ -48,25 +48,27 @@ class SemanticTest extends ParserTest {
     resourceSet = new XtextResourceSet()
     
     OCL.initialize(resourceSet);
-    //UML2Pivot.initialize(resourceSet)
     OCLstdlib.install();
-    OCLDelegateDomain.initialize(resourceSet)
-    //OCLinEcoreStandaloneSetup.doSetup()
-    //OCLstdlibStandaloneSetup.doSetup()
-    
-    var modelArea = new ContextModelArea("Model")
-    ModelNamespaceImpl.setContext(modelArea.getModel);    
+    OCLDelegateDomain.initialize(resourceSet)  
 
     testDirectory = System.getProperty("test.directory", TEST_DIRECTORY)
   }
   
   @Test
-  // @Ignore("Doesn't run on Maven - Bug 464026")
+  @Ignore("Doesn't run on Maven - Bug 464026")
   def void testStaticSemantics() {
   	System.out.print("[SemanticTest] ")
     val failures = parseDirectory(resourceSet, testDirectory, true);
     assertEquals(0, failures)
   }
+  
+  override parseResource(Resource resource, boolean validate) {
+	ModelNamespaceFacade.instance.createEmptyValidationContext(resource);
+	val failures = super.parseResource(resource, validate);
+	ModelNamespaceFacade.instance.deleteValidationContext(resource);
+	return failures;
+  }
+  
     
   @AfterClass
   static def void cleanUp() {

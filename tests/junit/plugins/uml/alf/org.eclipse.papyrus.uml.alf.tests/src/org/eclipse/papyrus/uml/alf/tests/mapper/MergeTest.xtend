@@ -28,19 +28,18 @@ import org.eclipse.papyrus.uml.alf.MappingError
 import org.eclipse.papyrus.uml.alf.PackageDefinition
 import org.eclipse.papyrus.uml.alf.SignalDefinition
 import org.eclipse.papyrus.uml.alf.UnitDefinition
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl
 import org.eclipse.papyrus.uml.alf.tests.ParserTest
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade
 import org.eclipse.uml2.uml.Package
 import org.eclipse.uml2.uml.PackageableElement
 import org.eclipse.uml2.uml.UMLFactory
 import org.eclipse.xtext.junit4.XtextRunner
 import org.junit.BeforeClass
-import org.junit.Ignore
 import org.junit.Test
 import org.junit.runner.RunWith
 
 import static org.junit.Assert.*
+import org.junit.Ignore
 
 @RunWith(XtextRunner)
 class MergeTest extends ParserTest {
@@ -55,15 +54,11 @@ class MergeTest extends ParserTest {
   static def void setUp() {  
     mapper = new AlfMapper()
     testDirectory = System.getProperty("test.directory", TEST_DIRECTORY)
-  	var modelArea = new ContextModelArea("Model");
-  	ModelNamespaceImpl.setContext(modelArea.getModel);
   }
 
   @Test
   @Ignore("Doesn't run on Maven - Bug 464026")
   def void testMerging() {
-    val contextNamespace = ModelNamespaceImpl.getContext() as Package
-    val contextResource = contextNamespace.eResource;
     var failures = 0;
     System.out.println("[MergeTest] Directory " + testDirectory + ":")
     val directory = new File(testDirectory)
@@ -73,6 +68,7 @@ class MergeTest extends ParserTest {
       if (name.substring(l - 4, l).equals(".alf")) {
         System.out.print(name + ": ")
         val resource = mapper.getResource(file.path)
+        val modelNamespace = ModelNamespaceFacade.instance.createEmptyValidationContext(resource);
         val parseFailures = parseResource(resource, false)
         if (parseFailures > 0) {
           failures = failures + parseFailures
@@ -82,19 +78,13 @@ class MergeTest extends ParserTest {
             val unit = contents.get(0) as UnitDefinition;
             val contextElement = this.mapContext(unit);
             contextElement.name = unit.definition.actualName();
-            contextNamespace.packagedElements.clear();
-            contextNamespace.packagedElements.add(contextElement);
-            
+            (modelNamespace.contextNamespace as Package).packagedElements.clear();
+            (modelNamespace.contextNamespace as Package).packagedElements.add(contextElement);
             mapper.map(contextElement, contents)
-            
-            contextResource.save(
+            modelNamespace.contextNamespace.eResource.save(
               new FileOutputStream(UML_DIRECTORY + "/" + name.substring(0, l - 4) + ".uml"), 
               null
             );
-            
-            contextResource.contents.clear();
-            contextResource.contents.add(contextNamespace);
-                    
           } catch (MappingError e) {
             val status = BasicDiagnostic.toIStatus(e.diagnostic)
             System.out.println("  " + status)
@@ -104,6 +94,7 @@ class MergeTest extends ParserTest {
             e.printStackTrace()
           }
         }
+        ModelNamespaceFacade.instance.deleteValidationContext(resource);
         resource.unload()
       }
     }

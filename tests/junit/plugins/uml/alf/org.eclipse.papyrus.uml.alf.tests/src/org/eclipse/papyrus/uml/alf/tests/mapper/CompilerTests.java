@@ -21,10 +21,9 @@ import java.util.List;
 
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.uml.alf.MappingError;
+import org.eclipse.papyrus.uml.alf.Model;
 import org.eclipse.papyrus.uml.alf.ParsingError;
-import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl;
 import org.eclipse.papyrus.uml.alf.tests.mapper.AlfCompiler;
-import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.Behavior;
@@ -63,16 +62,17 @@ public class CompilerTests {
 
 	private static AlfCompiler compiler = null;
 
+	private static Model contextModel = null;
+	
 	@BeforeClass
 	public static void setup() throws Exception {
 		compiler = new AlfCompiler();
-		ContextModelArea modelArea = new ContextModelArea("Model");
-		ModelNamespaceImpl.setContext(modelArea.getModel());
+		contextModel = new Model();
 	}
 
 	@After
 	public void clean() {
-		((Package) ModelNamespaceImpl.getContext()).getPackagedElements().clear();
+		((Package)contextModel).getPackagedElements().clear();
 	}
 
 	public static void assertTextualRepresentation(
@@ -156,7 +156,7 @@ public class CompilerTests {
 	public static <T extends PackageableElement> T setupContextElement(
 			T element, String name)
 			throws ParsingError, MappingError {
-		((Package) ModelNamespaceImpl.getContext()).getPackagedElements().add(element);
+		((Package)contextModel).getPackagedElements().add(element);
 		// compiler.addTextualRepresentation(element, textualRepresentation);
 		// compiler.compile(element, textualRepresentation);
 		return element;

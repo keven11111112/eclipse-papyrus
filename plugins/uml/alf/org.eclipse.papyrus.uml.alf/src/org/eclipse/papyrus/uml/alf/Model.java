@@ -46,7 +46,7 @@ public class Model extends ModelImpl {
 
 	public Model() {
 		super();
-		this.setName("Model");
+		this.setName("EmptyModel");
 		this.modelStorage = new ResourceSetImpl();
 		this.loadLibraries();
 		this.importLibraries();
@@ -90,8 +90,14 @@ public class Model extends ModelImpl {
 	}
 
 	private void registerTmpModel() {
-		Resource r = this.modelStorage.createResource(URI.createURI("NAME_RESOLUTION_MODEL"));
+		Resource r = this.modelStorage.createResource(URI.createURI("EMPTY_UML_CONTEXT_MODEL.uml"));
 		r.getContents().add(this);
 		this.modelStorage.getResources().add(r);
+	}
+	
+	public void clean(){
+		for(Resource resource : this.modelStorage.getResources()){
+			resource.unload();
+		}
 	}
 }
