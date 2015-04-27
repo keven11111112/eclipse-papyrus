@@ -24,10 +24,8 @@ import org.eclipse.jface.viewers.ILabelProviderListener;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
-import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.custom.IUMLRTElementTypes;
 import org.eclipse.papyrus.umlrt.custom.UMLRTElementTypesEnumerator;
-import org.eclipse.papyrus.umlrt.custom.utils.RTMessageUtils;
 import org.eclipse.papyrus.umlrt.ui.Activator;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.Element;
@@ -60,6 +58,10 @@ public class UMLRTFilteredLabelProvider implements IFilteredLabelProvider {
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_EXCLUDED_ELEMENT_ID, ICON_PATH + "rt_excludedElement.gif");//$NON-NLS-1$
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_SET_ID, ICON_PATH + "rt_messageset.png");//$NON-NLS-1$
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_PORT_ID, ICON_PATH + "rt_port.png");//$NON-NLS-1$
+		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_IN_ID, RT_MESSAGE_IN_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_INOUT_ID, RT_MESSAGE_IN_OUT_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_OUT_ID, RT_MESSAGE_OUT_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_ID, RT_MESSAGE_UNDEFINED_ICON);
 	}
 
 	/**
@@ -137,27 +139,37 @@ public class UMLRTFilteredLabelProvider implements IFilteredLabelProvider {
 //			}
 //			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_SET_UNDEFINED_ICON);
 //			break;
-		case IUMLRTElementTypes.RT_MESSAGE_ID:
-			// for RT message, direction can give different icons
+		case IUMLRTElementTypes.RT_MESSAGE_IN_ID:
+			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_ICON);
+			break;
+		case IUMLRTElementTypes.RT_MESSAGE_OUT_ID:
+			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_OUT_ICON);
+			break;
+		case IUMLRTElementTypes.RT_MESSAGE_INOUT_ID:
+			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_OUT_ICON);
+			break;
 
-			RTMessageKind kind = RTMessageUtils.getMessageKind(semanticObject);
-			if (kind != null) {
-				switch (kind) {
-				case IN:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_ICON);
-					break;
-				case OUT:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_OUT_ICON);
-					break;
-				case IN_OUT:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_OUT_ICON);
-					break;
-				default:
-					image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_UNDEFINED_ICON);
-					break;
-				}
-				break;
-			}
+			//
+			// // for RT message, direction can give different icons
+			//
+			// RTMessageKind kind = RTMessageUtils.getMessageKind(semanticObject);
+			// if (kind != null) {
+			// switch (kind) {
+			// case IN:
+			// image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_ICON);
+			// break;
+			// case OUT:
+			// image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_OUT_ICON);
+			// break;
+			// case IN_OUT:
+			// image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_OUT_ICON);
+			// break;
+			// default:
+			// image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_UNDEFINED_ICON);
+			// break;
+			// }
+			// break;
+			// }
 		default:
 			image = getElementImage(matchingTypeMatcher, semanticObject);
 			break;

@@ -24,6 +24,7 @@ import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.custom.IUMLRTElementTypes;
 import org.eclipse.papyrus.umlrt.internals.Activator;
 import org.eclipse.uml2.uml.Collaboration;
+import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
 import org.eclipse.uml2.uml.Package;
 
@@ -39,7 +40,7 @@ public class ProtocolUtils {
 	 *            the collaboration for which the protocol container is searched
 	 * @return the collaboration for which the protocol container is searched or <code>null</code> if none is found
 	 */
-	public static Package getPackageContainer(Collaboration protocol) {
+	public static Package getProtocolContainer(Collaboration protocol) {
 		return protocol.getNearestPackage();
 	}
 
@@ -66,13 +67,50 @@ public class ProtocolUtils {
 	 * @return
 	 */
 	public static List<Operation> getRTMessages(Collaboration protocol, RTMessageKind direction, boolean showInherited) {
-		Package protocolContainer = getPackageContainer(protocol);
+		Package protocolContainer = getProtocolContainer(protocol);
 		if(protocolContainer ==null) {
 			Activator.log.error("Impossible to get the root protocol container", null);
 			return Collections.emptyList();
 		}
 		
 		return ProtocolContainerUtils.getRTMessages(protocolContainer, direction, showInherited);
+	}
+
+	/**
+	 * @param editContext
+	 * @return
+	 */
+	public static Interface getMessageSet(Collaboration editContext, RTMessageKind direction) {
+		Package protocolContainer = getProtocolContainer(editContext);
+
+		if (protocolContainer != null) {
+			return ProtocolContainerUtils.getMessageSet(protocolContainer, direction);
+		}
+		return null;
+	}
+
+	/**
+	 * @param editContext
+	 * @return
+	 */
+	public static Interface getMessageSetIn(Collaboration editContext) {
+		return getMessageSet(editContext, RTMessageKind.IN);
+	}
+
+	/**
+	 * @param editContext
+	 * @return
+	 */
+	public static Interface getMessageSetOut(Collaboration editContext) {
+		return getMessageSet(editContext, RTMessageKind.OUT);
+	}
+
+	/**
+	 * @param editContext
+	 * @return
+	 */
+	public static Interface getMessageSetInOut(Collaboration editContext) {
+		return getMessageSet(editContext, RTMessageKind.IN_OUT);
 	}
 
 }

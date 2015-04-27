@@ -40,7 +40,7 @@ import org.eclipse.uml2.uml.UMLPackage;
  */
 public class ProtocolContainerEditHelperAdvice extends AbstractEditHelperAdvice {
 
-/**
+	/**
 	 * {@inheritDoc}
 	 */
 	@Override
