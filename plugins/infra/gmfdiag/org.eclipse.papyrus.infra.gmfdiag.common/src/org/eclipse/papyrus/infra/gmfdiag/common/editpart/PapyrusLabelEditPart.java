@@ -15,6 +15,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.editpart;
 
+import org.eclipse.core.resources.IResource;
 import org.eclipse.draw2d.Connection;
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -353,6 +354,17 @@ public abstract class PapyrusLabelEditPart extends LabelEditPart implements Name
 				papyrusLabelLocator.setMargin(new Point(leftMargin + rightMargin, topMargin + bottomMargin));
 			}
 		}
+	}
+	
+	/**
+	 * Workaround for bug #465611, see https://bugs.eclipse.org/bugs/show_bug.cgi?id=465611
+	 */
+	@Override
+	public Object getAdapter(Class key) {
+		if (IResource.class == key && getParent() == null) {
+			return null;
+		}
+		return super.getAdapter(key);
 	}
 
 }
