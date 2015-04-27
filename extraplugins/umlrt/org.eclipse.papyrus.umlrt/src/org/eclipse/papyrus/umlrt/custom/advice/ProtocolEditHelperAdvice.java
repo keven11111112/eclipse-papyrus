@@ -102,7 +102,12 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			if (types.contains(umlRTMessageType)) {
 				return true;
 			} else {
-				return false;
+				if (types.contains(ElementTypeRegistry.getInstance().getType("org.eclipse.papyrus.uml.Generalization"))) {
+					return true;
+				} else {
+					return false;
+				}
+
 				// return super.approveRequest(createElementRequest);
 			}
 		}
@@ -184,6 +189,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 					}
 					
 					protocolContainer.setName(newName);
+					protocol.setName(newName);
 					
 					// rename protocol, avoid dependency to avoid circular dependencies towards advices
 					Interface interfaceIn = ProtocolContainerUtils.getMessageSetIn(protocolContainer);
@@ -258,6 +264,8 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				setRtMsgKind(rtMessageSetInOutInt, RTMessageKind.IN_OUT);
 				createInterfaceRealization(protocol, nameInOut, rtMessageSetInOutInt);
 				createUsage(protocol, nameInOut, rtMessageSetInOutInt);
+
+				protocol.setName(name);
 
 				return CommandResult.newOKCommandResult(protocol);
 			}
@@ -338,6 +346,27 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			private void setRtMsgKind(Interface rtMessageSetInt, RTMessageKind kind){
 				RTMessageSet rtMessageSet = UMLUtil.getStereotypeApplication(rtMessageSetInt, RTMessageSet.class);
 				rtMessageSet.setRtMsgKind(kind);
+			}
+		};
+	}
+
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getAfterConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterConfigureCommand(ConfigureRequest request) {
+		final Collaboration protocol = (Collaboration) request.getElementToConfigure();
+		final String name = protocol.getPackage().getName();
+
+		return new ConfigureElementCommand(request) {
+
+			@Override
+			protected CommandResult doExecuteWithResult(IProgressMonitor progressMonitor, IAdaptable info) throws ExecutionException {
+				protocol.setName(name);
+				return CommandResult.newOKCommandResult();
 			}
 		};
 	}
