@@ -78,7 +78,7 @@ public class RepairStereotypes {
 	 * Finds all zombie stereotypes, and repair them with the default action.
 	 *
 	 * If the profile can't be found automatically, the profileMappings map is used
-	 * 
+	 *
 	 * @throws InterruptedException
 	 * @throws RollbackException
 	 */
@@ -97,13 +97,13 @@ public class RepairStereotypes {
 
 		for (Resource resource : resourcesToRepair) {
 			Element rootElement = (Element) EcoreUtil.getObjectByType(resource.getContents(), UMLPackage.Literals.ELEMENT);
-			
-			if (rootElement == null || rootElement.getNearestPackage() == null){
+
+			if (rootElement == null || rootElement.getNearestPackage() == null) {
 				continue;
 			}
-			
+
 			Package rootPackage = rootElement.getNearestPackage();
-			
+
 			Collection<ProfileApplication> profileApplications = Lists.newArrayList();
 			for (TreeIterator<EObject> iter = EcoreUtil.getAllProperContents(Collections.singleton(rootPackage), false); iter.hasNext();) {
 				EObject next = iter.next();
@@ -145,6 +145,7 @@ public class RepairStereotypes {
 			options.put(Transaction.OPTION_NO_UNDO, true);
 			options.put(Transaction.OPTION_NO_VALIDATION, true);
 			options.put(Transaction.OPTION_NO_TRIGGERS, true);
+			options.put(Transaction.OPTION_UNPROTECTED, true);
 
 			// We're in a batch environment, with no undo/redo support. Run a vanilla transaction to improve performances
 			Transaction fastTransaction = internalDomain.startTransaction(false, options);
