@@ -3658,6 +3658,8 @@ public class AlfValidator extends EObjectValidator {
 				return validateAssignableElementReference((AssignableElementReference)value, diagnostics, context);
 			case AlfPackage.EXPRESSION:
 				return validateExpression((Expression)value, diagnostics, context);
+			case AlfPackage.EXPRESSION_REFERENCE:
+				return validateExpressionReference((ExpressionReference)value, diagnostics, context);
 			case AlfPackage.EXTENT_OR_EXPRESSION:
 				return validateExtentOrExpression((ExtentOrExpression)value, diagnostics, context);
 			case AlfPackage.QUALIFIED_NAME:
@@ -4280,6 +4282,26 @@ public class AlfValidator extends EObjectValidator {
 	 */
 	public boolean validateExpression_expressionUniqueAssignments(Expression expression, DiagnosticChain diagnostics, Map<Object, Object> context) {
 		return expression.expressionUniqueAssignments(diagnostics, context);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean validateExpressionReference(ExpressionReference expressionReference, DiagnosticChain diagnostics, Map<Object, Object> context) {
+		if (!validate_NoCircularContainment(expressionReference, diagnostics, context)) return false;
+		boolean result = validate_EveryMultiplicityConforms(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryDataValueConforms(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryReferenceIsContained(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryBidirectionalReferenceIsPaired(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryProxyResolves(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_UniqueID(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryKeyUnique(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validate_EveryMapEntryUnique(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExpression_expressionAssignmentAfterDerivation(expressionReference, diagnostics, context);
+		if (result || diagnostics != null) result &= validateExpression_expressionUniqueAssignments(expressionReference, diagnostics, context);
+		return result;
 	}
 
 	/**

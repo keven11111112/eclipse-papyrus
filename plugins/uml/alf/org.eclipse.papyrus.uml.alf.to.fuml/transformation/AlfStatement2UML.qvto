@@ -370,7 +370,7 @@ mapping LocalNameDeclarationStatement::toActivityGraph() : StatementActivityGrap
 mapping ExpressionStatement::toActivityGraph() : StatementActivityGraph
 	inherits Statement::toActivityGraph {
 	var resultSource : ActivityNode;
-	var graph := self.expression.map expressionToActivityGraph();
+	var graph := self.expression.map toActivityGraph();
   structuredNode.name := "Expression Statement";
   addToStructuredNode(result, graph.nodes, graph.edges);
 }
@@ -1011,12 +1011,8 @@ mapping LoopVariableDefinition::toActivityGraph(isParallel : Boolean, isFirst : 
 	nodes := graph1.nodes;
 	edges := graph1.edges;
 	if self.expression2 = null then {
-		self.resultSource1 :=
-			if not self.isCollectionConversion then
-				graph1.resultSource
-			else
-				mapConversions(nodes, edges, graph1.resultSource, self.expression1.type, true, false)
-			endif;
+		self.mapConversions(graph1, self.expression1.type, true, false);
+		self.resultSource1 := graph1.resultSource;
 	} else {
 		self.resultSource1 := graph1.resultSource;
 		var graph2 := self.expression2.map toActivityGraph();
@@ -1197,7 +1193,7 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 		  nodes += decisionGraph.nodes;
 		  edges += decisionGraph.edges;
 		  
-			self.decisionNode := decisionGraph.resultSource;
+			self.decisionNode := decisionGraph.nodes![DecisionNode];
 		};
 		
 		structuredNode.name := "AcceptBlock(" + signalNames + ")";

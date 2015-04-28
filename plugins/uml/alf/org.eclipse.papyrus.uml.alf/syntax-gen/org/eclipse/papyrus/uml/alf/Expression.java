@@ -70,6 +70,15 @@ public interface Expression extends AssignableElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='ExpressionReference{expression = self}'"
+	 * @generated
+	 */
+	ExpressionReference reference();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * Get the assigned sources for assignments made within this expression.
 	 * <!-- end-model-doc -->

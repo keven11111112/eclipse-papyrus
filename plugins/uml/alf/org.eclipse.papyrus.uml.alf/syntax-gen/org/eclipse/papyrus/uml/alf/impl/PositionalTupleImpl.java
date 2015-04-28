@@ -138,6 +138,30 @@ public class PositionalTupleImpl extends TupleImpl implements PositionalTuple {
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #outputForExpression(org.eclipse.papyrus.uml.alf.Expression) <em>Output For Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #outputForExpression(org.eclipse.papyrus.uml.alf.Expression)
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate OUTPUT_FOR_EXPRESSION_EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getPositionalTuple__OutputForExpression__Expression()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OutputNamedExpression outputForExpression(Expression expression) {
+		try {
+			return (OutputNamedExpression)OUTPUT_FOR_EXPRESSION_EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, new BasicEList.UnmodifiableEList<Object>(1, new Object[]{expression}));
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached validation expression for the '{@link #positionalTupleArguments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positional Tuple Arguments</em>}' invariant operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -182,6 +206,8 @@ public class PositionalTupleImpl extends TupleImpl implements PositionalTuple {
 				return inputFor((EList<ElementReference>)arguments.get(0));
 			case AlfPackage.POSITIONAL_TUPLE___OUTPUT_FOR__ELIST:
 				return outputFor((EList<ElementReference>)arguments.get(0));
+			case AlfPackage.POSITIONAL_TUPLE___OUTPUT_FOR_EXPRESSION__EXPRESSION:
+				return outputForExpression((Expression)arguments.get(0));
 			case AlfPackage.POSITIONAL_TUPLE___POSITIONAL_TUPLE_ARGUMENTS__DIAGNOSTICCHAIN_MAP:
 				return positionalTupleArguments((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 		}

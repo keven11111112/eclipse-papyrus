@@ -78,4 +78,12 @@ public interface EffectiveLeftHandSide extends NameLeftHandSide {
 	 */
 	Expression primary();
 
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression'"
+	 * @generated
+	 */
+	Expression expression();
+
 } // EffectiveLeftHandSide

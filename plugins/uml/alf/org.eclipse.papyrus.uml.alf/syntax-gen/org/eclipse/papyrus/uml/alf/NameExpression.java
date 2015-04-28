@@ -150,7 +150,7 @@ public interface NameExpression extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.upper\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.upper\n                  else 0\n                  endif\n              endif\n          endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n       let assignment = self.assignment in\n          if assignment <> null then assignment.upper\n          else\n            let enumerationLiteral = self.enumerationLiteral in\n              if enumerationLiteral <> null then 1\n              else\n                let propertyAccess = self.propertyAccess in\n                  if propertyAccess <> null then propertyAccess.upper\n                  else 1 -- Note: This ensures a name defined as an \"out\" argument is not considered null.\n                  endif\n              endif\n          endif'"
 	 * @generated
 	 */
 	BigInteger upper();
@@ -189,7 +189,7 @@ public interface NameExpression extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model localNameRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignments = self.assignmentBefore->select(name = localName) in\n        if assignments->isEmpty() or \n           assignments->forAll(isParallelLocalName) and not self.isAddTarget()\n        then \n          null\n        else \n          assignments->any(true)\n        endif'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let assignments = self.assignmentBefore->select(name = localName) in\n        if assignments->isEmpty() or \n           assignments->forAll(isParallelLocalName) and not self.isAddTargetName()\n        then \n          null\n        else \n          assignments->any(true)\n        endif'"
 	 * @generated
 	 */
 	AssignedSource assignmentFor_(String localName);
@@ -201,7 +201,7 @@ public interface NameExpression extends Expression {
 	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n      let expression = self.enclosingExpression() in\n        if expression = null then false\n        else expression.isAddTarget(self)\n        endif'"
 	 * @generated
 	 */
-	boolean isAddTarget();
+	boolean isAddTargetName();
 
 	/**
 	 * <!-- begin-user-doc -->

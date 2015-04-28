@@ -151,6 +151,15 @@ public class AlfSwitch<T> extends Switch<T> {
 				if (result == null) result = defaultCase(theEObject);
 				return result;
 			}
+			case AlfPackage.EXPRESSION_REFERENCE: {
+				ExpressionReference expressionReference = (ExpressionReference)theEObject;
+				T result = caseExpressionReference(expressionReference);
+				if (result == null) result = caseExpression(expressionReference);
+				if (result == null) result = caseAssignableElement(expressionReference);
+				if (result == null) result = caseSyntaxElement(expressionReference);
+				if (result == null) result = defaultCase(theEObject);
+				return result;
+			}
 			case AlfPackage.EXTENT_OR_EXPRESSION: {
 				ExtentOrExpression extentOrExpression = (ExtentOrExpression)theEObject;
 				T result = caseExtentOrExpression(extentOrExpression);
@@ -1364,6 +1373,21 @@ public class AlfSwitch<T> extends Switch<T> {
 	 * @generated
 	 */
 	public T caseExpression(Expression object) {
+		return null;
+	}
+
+	/**
+	 * Returns the result of interpreting the object as an instance of '<em>Expression Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * This implementation returns null;
+	 * returning a non-null result will terminate the switch.
+	 * <!-- end-user-doc -->
+	 * @param object the target of the switch.
+	 * @return the result of interpreting the object as an instance of '<em>Expression Reference</em>'.
+	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
+	 * @generated
+	 */
+	public T caseExpressionReference(ExpressionReference object) {
 		return null;
 	}
 

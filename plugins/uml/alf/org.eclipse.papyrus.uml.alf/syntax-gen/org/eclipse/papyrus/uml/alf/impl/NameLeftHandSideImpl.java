@@ -319,6 +319,54 @@ public class NameLeftHandSideImpl extends LeftHandSideImpl implements NameLeftHa
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #expression() <em>Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #expression()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNameLeftHandSide__Expression()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression expression() {
+		try {
+			return (Expression)EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #primary() <em>Primary</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #primary()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate PRIMARY__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNameLeftHandSide__Primary()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression primary() {
+		try {
+			return (Expression)PRIMARY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * The cached invocation delegate for the '{@link #localName() <em>Local Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -667,6 +715,7 @@ public class NameLeftHandSideImpl extends LeftHandSideImpl implements NameLeftHa
 				case AlfPackage.LEFT_HAND_SIDE___REFERENT: return AlfPackage.NAME_LEFT_HAND_SIDE___REFERENT;
 				case AlfPackage.LEFT_HAND_SIDE___LOCAL_NAME: return AlfPackage.NAME_LEFT_HAND_SIDE___LOCAL_NAME;
 				case AlfPackage.LEFT_HAND_SIDE___FEATURE: return AlfPackage.NAME_LEFT_HAND_SIDE___FEATURE;
+				case AlfPackage.LEFT_HAND_SIDE___EXPRESSION: return AlfPackage.NAME_LEFT_HAND_SIDE___EXPRESSION;
 				case AlfPackage.LEFT_HAND_SIDE___INDEX: return AlfPackage.NAME_LEFT_HAND_SIDE___INDEX;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
@@ -701,6 +750,10 @@ public class NameLeftHandSideImpl extends LeftHandSideImpl implements NameLeftHa
 				return oldAssignment();
 			case AlfPackage.NAME_LEFT_HAND_SIDE___FEATURE:
 				return feature();
+			case AlfPackage.NAME_LEFT_HAND_SIDE___EXPRESSION:
+				return expression();
+			case AlfPackage.NAME_LEFT_HAND_SIDE___PRIMARY:
+				return primary();
 			case AlfPackage.NAME_LEFT_HAND_SIDE___LOCAL_NAME:
 				return localName();
 			case AlfPackage.NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP:

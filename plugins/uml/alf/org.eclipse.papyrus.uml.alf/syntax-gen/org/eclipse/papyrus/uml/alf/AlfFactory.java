@@ -85,6 +85,15 @@ public interface AlfFactory extends EFactory {
 	AssignableElementReference createAssignableElementReference();
 
 	/**
+	 * Returns a new object of class '<em>Expression Reference</em>'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return a new object of class '<em>Expression Reference</em>'.
+	 * @generated
+	 */
+	ExpressionReference createExpressionReference();
+
+	/**
 	 * Returns a new object of class '<em>Extent Or Expression</em>'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->

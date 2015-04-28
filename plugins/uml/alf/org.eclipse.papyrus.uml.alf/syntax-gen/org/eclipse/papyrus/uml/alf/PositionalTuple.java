@@ -74,6 +74,15 @@ public interface PositionalTuple extends Tuple {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model expressionRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\t\tif self.expression->excludes(expression) then null\n\t\t\t\t\telse\n\t\t\t\t\t\tlet i = self.expression->indexOf(expression) in\n\t\t\t\t\t\tlet parameter = self.invocation.parameter->at(i) in\n\t\t\t\t\t\t\tOutputNamedExpression{\n\t\t\t\t\t\t\t\tname = parameter.name(),\n\t\t\t\t\t\t\t\texpression = expression,\n\t\t\t\t\t\t\t\towner = self\n\t\t\t\t\t\t\t}\n\t\t\t\t\tendif'"
+	 * @generated
+	 */
+	OutputNamedExpression outputForExpression(Expression expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
 	 * A positional tuple must not have more arguments than the invocation it is for has parameters.
 	 * <!-- end-model-doc -->

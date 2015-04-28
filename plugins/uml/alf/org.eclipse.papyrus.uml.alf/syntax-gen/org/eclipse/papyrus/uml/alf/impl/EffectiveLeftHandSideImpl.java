@@ -166,6 +166,30 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #expression() <em>Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #expression()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getEffectiveLeftHandSide__Expression()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public Expression expression() {
+		try {
+			return (Expression)EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
@@ -175,6 +199,7 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 		if (baseClass == LeftHandSide.class) {
 			switch (baseOperationID) {
 				case AlfPackage.LEFT_HAND_SIDE___FEATURE: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
+				case AlfPackage.LEFT_HAND_SIDE___EXPRESSION: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___EXPRESSION;
 				case AlfPackage.LEFT_HAND_SIDE___INDEX: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
@@ -184,6 +209,8 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 				case AlfPackage.NAME_LEFT_HAND_SIDE___TARGET: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___TARGET;
 				case AlfPackage.NAME_LEFT_HAND_SIDE___INDEX: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___INDEX;
 				case AlfPackage.NAME_LEFT_HAND_SIDE___FEATURE: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___FEATURE;
+				case AlfPackage.NAME_LEFT_HAND_SIDE___EXPRESSION: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___EXPRESSION;
+				case AlfPackage.NAME_LEFT_HAND_SIDE___PRIMARY: return AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___PRIMARY;
 				default: return super.eDerivedOperationID(baseOperationID, baseClass);
 			}
 		}
@@ -206,6 +233,8 @@ public class EffectiveLeftHandSideImpl extends NameLeftHandSideImpl implements E
 				return feature();
 			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___PRIMARY:
 				return primary();
+			case AlfPackage.EFFECTIVE_LEFT_HAND_SIDE___EXPRESSION:
+				return expression();
 		}
 		return super.eInvoke(operationID, arguments);
 	}

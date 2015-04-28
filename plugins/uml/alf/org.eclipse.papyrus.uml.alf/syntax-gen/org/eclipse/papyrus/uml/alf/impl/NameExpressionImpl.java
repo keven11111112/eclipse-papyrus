@@ -254,6 +254,30 @@ public class NameExpressionImpl extends ExpressionImpl implements NameExpression
 	}
 
 	/**
+	 * The cached invocation delegate for the '{@link #isAddTargetName() <em>Is Add Target Name</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #isAddTargetName()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET_NAME__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNameExpression__IsAddTargetName()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public boolean isAddTargetName() {
+		try {
+			return (Boolean)IS_ADD_TARGET_NAME__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
+	}
+
+	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * 
@@ -261,30 +285,6 @@ public class NameExpressionImpl extends ExpressionImpl implements NameExpression
 	 */
 	public AssignedSource assignmentFor(String localName) {
 		return this.assignmentFor_(localName);
-	}
-
-	/**
-	 * The cached invocation delegate for the '{@link #isAddTarget() <em>Is Add Target</em>}' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @see #isAddTarget()
-	 * @generated
-	 * @ordered
-	 */
-	protected static final EOperation.Internal.InvocationDelegate IS_ADD_TARGET__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getNameExpression__IsAddTarget()).getInvocationDelegate();
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public boolean isAddTarget() {
-		try {
-			return (Boolean)IS_ADD_TARGET__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
-		}
-		catch (InvocationTargetException ite) {
-			throw new WrappedException(ite);
-		}
 	}
 
 	/**
@@ -561,8 +561,8 @@ public class NameExpressionImpl extends ExpressionImpl implements NameExpression
 				return assignmentFor((String)arguments.get(0));
 			case AlfPackage.NAME_EXPRESSION___ASSIGNMENT_FOR____STRING:
 				return assignmentFor_((String)arguments.get(0));
-			case AlfPackage.NAME_EXPRESSION___IS_ADD_TARGET:
-				return isAddTarget();
+			case AlfPackage.NAME_EXPRESSION___IS_ADD_TARGET_NAME:
+				return isAddTargetName();
 			case AlfPackage.NAME_EXPRESSION___NAME_EXPRESSION_ASSIGNMENT_DERIVATION__DIAGNOSTICCHAIN_MAP:
 				return nameExpressionAssignmentDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case AlfPackage.NAME_EXPRESSION___NAME_EXPRESSION_ENUMERATION_LITERAL_DERIVATION__DIAGNOSTICCHAIN_MAP:
