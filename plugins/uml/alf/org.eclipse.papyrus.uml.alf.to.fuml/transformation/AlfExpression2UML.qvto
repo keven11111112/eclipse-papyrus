@@ -167,8 +167,7 @@ helper createControlDecisionGraph(
  * given local name that has this syntax element as its assigned source.
 */
 query SyntaxElement::assignedValueSource(assignedName : String) : ActivityNode {
-	// TODO: Remove this.
-	return new ForkNode("Unknown Source!");
+	return null;
 }
 
 query Expression::assignedValueSource(assignedName : String) : ActivityNode {
@@ -180,6 +179,15 @@ mapping AssignedSource::toActivityNode() : ActivityNode
 	when { self.source <> null } {
 init {
 	result := self.source.assignedValueSource(self.name);
+	/*
+	if result = null then {
+		var name = 
+			if self.source.oclIsKindOf(Member) then self.source.oclAsType(Member).definition.name
+			else if self.source.oclIsKindOf(MemberDefinition) then self.source.oclAsType(MemberDefinition).name
+			else null endif endif;
+		result := new ForkNode("No assigned value source! name = " + self.name + if name = null then "" else ", source = " + name endif);
+	} endif;
+	*/
 }
 }
 
@@ -413,13 +421,13 @@ helper InvocationExpression::mapAction(inout graph : ExpressionGraph) : Action {
 helper InvocationExpression::InvocationExpression_mapAction(inout graph : ExpressionGraph) : Action {
  	var action := self.mapTarget(graph);
   var lhsGraph := self.tuple.map toActivityGraph(graph, action);
-  self.mapFeature(graph, action);
+  self.mapFeature(graph, action);  
   
   // NOTE: Adding left-hand side elements here prevents them from being
   // wrapped in the expansion region mapped from a sequence feature
   // invocation.
   lhsGraph.addTo(graph);
-  
+    
   return action;
 }
 
@@ -516,11 +524,13 @@ helper InvocationExpression::mapFeature(inout graph : ExpressionGraph, action : 
 	  var featureNode := featureGraph.addStructuredActivityNodeTo(graph, "Feature(" + nameOf(featureGraph.resultSource) + ")");
 	  graph.edges += new ControlFlow(featureNode, region);
 
-  } else if featureGraph.resultSource <> null then {
-  	// Connect the feature mapping result source directly to the action target pin.
-  	graph.edges += new ObjectFlow(featureGraph.resultSource, targetNode);
-  	featureGraph.addTo(graph);
-	} endif endif;
+  } else {
+		featureGraph.addTo(graph);  	
+  	if featureGraph.resultSource <> null then {
+	  	// Connect the feature mapping result source directly to the action target pin.
+	  	graph.edges += new ObjectFlow(featureGraph.resultSource, targetNode);
+  	} endif;
+	} endif;
 }
 
 // Check whether this invocation expression is contained in the body of a constructor operation.
@@ -557,7 +567,7 @@ query _Tuple::assignedValueSource(assignedName : String) : ActivityNode {
 }
 
 // Adds tuple input elements to the given graph and effective left-hand side elements to the returned graph.
-mapping _Tuple::toActivityGraph(inout graph : ActivityGraph, inout action : Action) : ActivityGraph {
+mapping _Tuple::toActivityGraph(inout graph : ExpressionGraph, action : Action) : ActivityGraph {
 	var invocation := self.invocation;
 	var inputs := self.input;
 	var outputs := self.output;
@@ -738,9 +748,9 @@ helper InstanceCreationExpression::mapAction(inout graph : ExpressionGraph) : Ac
 			
 			graph.nodes := Set{};
 			graph.edges := Set{};
-			var node := addStructuredActivityNode(graph, "InstanceCreationExpression(" + class_.name + ")", nodes, edges);
+			var node := addStructuredActivityNode(graph, "InstanceCreationExpression(" + nameOf(class_) + ")", nodes, edges);
 						
-			graph.resultSource := new OutputPin(node, "Output(" + graph.resultSource.name + ")", class_, 1, 1);
+			graph.resultSource := new OutputPin(node, "Output(" + nameOf(graph.resultSource) + ")", class_, 1, 1);
 			new ObjectFlow(node, forkNode, graph.resultSource);
 						
 			action := node;
@@ -766,10 +776,11 @@ helper InstanceCreationExpression::mapTarget(inout graph : ExpressionGraph) : Ac
 		// so that the node can act as the action with input pins to which the results of the
 		// tuple mapping are connected.
 		
-		graph.nodes += var structuredNode ::= new StructuredActivityNode("Create(" + dataType.name + ")");
+		graph.nodes += var structuredNode ::= new StructuredActivityNode("Create(" + nameOf(dataType) + ")");
 		dataType.allAttributes()->forEach(attribute) {
+			var qualifiedName := attribute.qualifiedName;
 			var valuePin := new InputPin(structuredNode, 
-				structuredNode.name + ".input(" + attribute.qualifiedName + ")", 
+				structuredNode.name + ".input(" + if qualifiedName = null then "<No Name>" else qualifiedName endif + ")", 
 				attribute.type, attribute.lower, attribute.upper);
 			var assignmentGraph := self.mapPropertyAssignment(attribute, graph.resultSource, valuePin);
 			assignmentGraph.addTo(subgraph);
@@ -1233,10 +1244,14 @@ mapping AssignmentExpression::toActivityGraph() : ExpressionGraph
 	var rhs := self.rightHandSide;
 	
 	var rhsGraph := rhs.map toActivityGraph();
-	var lhsObjectSource : ActivityNode := null;
-	var lhsIndexSource : ActivityNode := null;
 	
-  if rhsGraph.resultSource <> null then {
+  if rhsGraph.resultSource = null then {
+  	// TODO: Set LHS to null?
+  	rhsGraph.addTo(result);
+  } else {
+		var lhsObjectSource : ActivityNode := null;
+		var lhsIndexSource : ActivityNode := null;
+					
 		if not self.isSimple then {
 			var expressionGraph := self.expression.map toActivityGraph();
 			expressionGraph.addTo(rhsGraph);
@@ -1258,6 +1273,8 @@ mapping AssignmentExpression::toActivityGraph() : ExpressionGraph
 			
 	  var lhsGraph = lhs.map toActivityGraph(lhsObjectSource, lhsIndexSource, rhs.upper);
 	  lhsGraph.addTo(result);
+	  resultSource := lhsGraph.resultSource;
+	  
 	  if lhsGraph.assignmentTarget <> null then {
 	  	edges += new ObjectFlow(rhsGraph.resultSource, lhsGraph.assignmentTarget);
 	  } endif;
