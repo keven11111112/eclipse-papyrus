@@ -138,12 +138,14 @@ helper toType(reference : ElementReference) : Type {
 
 helper BoundElementReference::toUml() : Element {
   // TODO: Handle expansion of template bindings.
-  return 
+  return self.referent.toUml();
+  /*
     if self.isTemplateBinding() then
       self.templateBinding.toUml()
     else
       self.referent.toUml()
     endif;
+  */
 }
 
 // Activities
@@ -326,17 +328,27 @@ helper inputPinsFromProperties(prefix : String, properties : OrderedSet(Property
 }
 
 query Action::returnPin() : OutputPin {
-	var parameters :=
-		switch {
-			case(self.oclIsKindOf(CallOperationAction)) self.oclAsType(CallOperationAction).operation.ownedParameter;
-			case(self.oclIsKindOf(CallBehaviorAction)) self.oclAsType(CallBehaviorAction).behavior.ownedParameter;
-			else OrderedSet{};
-		};
+	var outputParameters := self.parameters()[
+		direction = ParameterDirectionKind::_'out' or 
+		direction = ParameterDirectionKind::_'inout' or 
+		direction = ParameterDirectionKind::_'return'];
+	var parameter := outputParameters![direction = ParameterDirectionKind::_'return'];
 	return
-		if not parameters->exists(direction = ParameterDirectionKind::_'return') then null
-		else
-			self.output->at(parameters.direction->indexOf(ParameterDirectionKind::_'return'))
+		if parameter = null then null
+		else self.output->at(outputParameters->indexOf(parameter))
 		endif;
+}
+
+query Action::parameters() : OrderedSet(Parameter) {
+	return OrderedSet{};
+}
+
+query CallOperationAction::parameters() : OrderedSet(Parameter) {
+	return self.operation.ownedParameter;
+}
+
+query CallBehaviorAction::parameters() : OrderedSet(Parameter) {
+	return self.behavior.ownedParameter;
 }
 
 // Link End Data
