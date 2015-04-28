@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.perspective;
 
-import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
-import org.eclipse.papyrus.uml.diagram.wizards.NewPapyrusProjectWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.NewPapyrusProjectWizard;
 import org.eclipse.papyrus.views.validation.internal.ModelValidationView;
 import org.eclipse.ui.IFolderLayout;
 import org.eclipse.ui.IPageLayout;
@@ -45,7 +45,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 	 * Add actions into the workbench UI.
 	 *
 	 * @param layout
-	 *            the page layout
+	 *        the page layout
 	 *
 	 * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)
 	 */
@@ -74,7 +74,7 @@ public class PapyrusPerspective implements IPerspectiveFactory {
 	 * Defines the layout of the perspective (where and which views are available).
 	 *
 	 * @param layout
-	 *            the page layout
+	 *        the page layout
 	 *
 	 * @see org.eclipse.ui.IPerspectiveFactory#createInitialLayout(org.eclipse.ui.IPageLayout)
 	 */

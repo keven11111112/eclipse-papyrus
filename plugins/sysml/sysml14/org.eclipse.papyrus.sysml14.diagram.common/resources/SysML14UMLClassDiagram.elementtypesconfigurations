@@ -2516,4 +2516,60 @@
       hint="Class_Port">
     <specializedTypesID>org.eclipse.papyrus.uml.Port</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_UZmuEOqKEeSrzJhCjczRog"
+      name="Class_ProxyPort"
+      description="Create an UML ProxyPort in an UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.Class_ProxyPort"
+      hint="Class_ProxyPort">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ProxyPort</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_U54woOqKEeSrzJhCjczRog"
+      name="Class_FullPort"
+      description="Create an UML FullPort in an UML Class Diagram"
+      identifier="org.eclipse.papyrus.sysML.Class_FullPort"
+      hint="Class_FullPort">
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FullPort</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_0su20OyxEeSNB9Q0D5gJiA"
+      name="ProxyPort (ProxyPort_Label)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.ProxyPort_Label"
+      hint="ProxyPort_Label">
+    <iconEntry
+        xmi:id="_0su20eyxEeSNB9Q0D5gJiA"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.ProxyPort</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_0su20uyxEeSNB9Q0D5gJiA"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_1HdD8OyxEeSNB9Q0D5gJiA"
+      name="FullPort (FullPort_Label)"
+      description=""
+      identifier="org.eclipse.papyrus.sysML.FullPort_Label"
+      hint="FullPort_Label">
+    <iconEntry
+        xmi:id="_1HdD8eyxEeSNB9Q0D5gJiA"
+        iconPath="/icons/full/obj16/Property.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.SysML14.FullPort</specializedTypesID>
+    <matcherConfiguration
+        xsi:type="stereotypeapplicationmatcherconfiguration:StereotypeApplicationMatcherConfiguration"
+        xmi:id="_1HdD8uyxEeSNB9Q0D5gJiA"
+        matcherClassName="">
+      <stereotypesQualifiedNames>SysML::DeprecatedElements::FlowPort</stereotypesQualifiedNames>
+    </matcherConfiguration>
+  </elementTypeConfigurations>
 </elementtypesconfigurations:ElementTypeSetConfiguration>

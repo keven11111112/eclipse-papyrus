@@ -15,8 +15,8 @@
         editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.ClassEditPart"
         name="Block based on Class representation of class diagram"
         viewFactory="org.eclipse.papyrus.sysml14.diagram.blockdefinition.factory.BlockClassifierViewFactory"
-        inducedRepresentations="_rC19oNnoEeSqwOe5_frWm6 //@libraries.1/@representations.4 _rC19oNnoEeSqwOe5_frWm7"
-        subRepresentations="//@libraries.0/@representations.2 //@libraries.0/@representations.4"
+        inducedRepresentations="_rC19oNnoEeSqwOe5_frWm6 //@libraries.1/@representations.4 _rC19oNnoEeSqwOe5_frWm7 //@libraries.1/@representations.5 //@libraries.1/@representations.6"
+        subRepresentations="//@libraries.0/@representations.2 //@libraries.0/@representations.4 //@libraries.0/@representations.5 //@libraries.0/@representations.6"
         reusedID="2008"/>
   </usages>
   <libraries
@@ -59,6 +59,36 @@
       <kind
           href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
     </representations>
+    <representations
+        xsi:type="expansionmodel:Representation"
+        name="Class ProxyPort"
+        viewFactory="org.eclipse.papyrus.sysml14.diagram.blockdefinition.factory.PortViewFactory"
+        graphicalElementType="org.eclipse.papyrus.sysML.Class_ProxyPort"
+        inducedRepresentations="//@libraries.1/@representations.3">
+      <kind
+          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
+    </representations>
+    <representations
+        xsi:type="expansionmodel:Representation"
+        name="Class FullPort"
+        viewFactory="org.eclipse.papyrus.sysml14.diagram.blockdefinition.factory.PortViewFactory"
+        graphicalElementType="org.eclipse.papyrus.sysML.Class_FullPort"
+        inducedRepresentations="//@libraries.1/@representations.3">
+      <kind
+          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_EoAOIN0DEeSiOexlyH3Ifw"/>
+    </representations>
+    <representations
+        xsi:type="expansionmodel:Representation"
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart"
+        name="ProxyPort As Label"
+        viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"
+        graphicalElementType="org.eclipse.papyrus.sysML.ProxyPort_Label"/>
+    <representations
+        xsi:type="expansionmodel:Representation"
+        editPartQualifiedName="org.eclipse.papyrus.uml.diagram.clazz.edit.parts.PropertyForClassEditPart"
+        name="FullPort As Label"
+        viewFactory="org.eclipse.papyrus.gmf.diagram.common.factory.ShapeViewFactory"
+        graphicalElementType="org.eclipse.papyrus.sysML.FullPort_Label"/>
   </libraries>
   <libraries
       xmi:id="_rC19oNnoEeSqwOe5_frWm5"
@@ -103,6 +133,22 @@
         name="Constraint Compartment"
         hint="constraints"
         children="//@libraries.0/@representations.3">
+      <kind
+          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
+    </representations>
+    <representations
+        xsi:type="expansionmodel:InducedRepresentation"
+        name="ProxyPort Compartment"
+        hint="Proxy Ports"
+        children="//@libraries.0/@representations.7">
+      <kind
+          href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
+    </representations>
+    <representations
+        xsi:type="expansionmodel:InducedRepresentation"
+        name="FullPort Compartment"
+        hint="Full Ports"
+        children="//@libraries.0/@representations.8">
       <kind
           href="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/model/UMLRepresentationKind.xmi#_vbTKYN0DEeS-X4lB2Ut-YA"/>
     </representations>

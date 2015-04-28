@@ -1476,7 +1476,8 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="6033"
             editPartClassName="ActivityFinalNodeFloatingNameEditPart"
-            itemSemanticEditPolicyClassName="ActivityFinalNodeFloatingNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ActivityFinalNodeFloatingNameItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -1678,7 +1679,8 @@
             visualID="5003"
             editPartClassName="OpaqueActionNameEditPart"
             itemSemanticEditPolicyClassName="OpaqueActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="OpaqueActionNameViewFactory">
+            notationViewFactoryClassName="OpaqueActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2175,7 +2177,8 @@
             visualID="5004"
             editPartClassName="CallBehaviorActionNameEditPart"
             itemSemanticEditPolicyClassName="CallBehaviorActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="CallBehaviorActionNameViewFactory">
+            notationViewFactoryClassName="CallBehaviorActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2684,7 +2687,8 @@
             visualID="5006"
             editPartClassName="CallOperationActionNameEditPart"
             itemSemanticEditPolicyClassName="CallOperationActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="CallOperationActionNameViewFactory">
+            notationViewFactoryClassName="CallOperationActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -2784,13 +2788,13 @@
             notationViewFactoryClassName="ActionInputPinLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
-          <viewmap
-              xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -3305,13 +3309,13 @@
             notationViewFactoryClassName="ActionInputPinLabelViewFactory">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
-          <viewmap
-              xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -3515,7 +3519,8 @@
             visualID="5038"
             editPartClassName="DurationConstraintAsLocalPrecondNameEditPart"
             itemSemanticEditPolicyClassName="DurationConstraintAsLocalPrecondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="DurationConstraintNameViewFactory">
+            notationViewFactoryClassName="DurationConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3616,7 +3621,8 @@
             visualID="5039"
             editPartClassName="DurationConstraintAsLocalPostcondNameEditPart"
             itemSemanticEditPolicyClassName="DurationConstraintAsLocalPostcondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="DurationConstraintNameViewFactory">
+            notationViewFactoryClassName="DurationConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3717,7 +3723,8 @@
             visualID="5040"
             editPartClassName="TimeConstraintAsLocalPrecondNameEditPart"
             itemSemanticEditPolicyClassName="TimeConstraintAsLocalPrecondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="TimeConstraintNameViewFactory">
+            notationViewFactoryClassName="TimeConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3818,7 +3825,8 @@
             visualID="5041"
             editPartClassName="TimeConstraintAsLocalPostcondNameEditPart"
             itemSemanticEditPolicyClassName="TimeConstraintAsLocalPostcondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="TimeConstraintNameViewFactory">
+            notationViewFactoryClassName="TimeConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -3919,7 +3927,8 @@
             visualID="5036"
             editPartClassName="IntervalConstraintAsLocalPrecondNameEditPart"
             itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPrecondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="IntervalConstraintNameViewFactory">
+            notationViewFactoryClassName="IntervalConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -4020,7 +4029,8 @@
             visualID="5037"
             editPartClassName="IntervalConstraintAsLocalPostcondNameEditPart"
             itemSemanticEditPolicyClassName="IntervalConstraintAsLocalPostcondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="IntervalConstraintNameViewFactory">
+            notationViewFactoryClassName="IntervalConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -4119,7 +4129,8 @@
             visualID="5007"
             editPartClassName="ConstraintAsLocalPrecondNameEditPart"
             itemSemanticEditPolicyClassName="ConstraintAsLocalPrecondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ConstraintNameViewFactory">
+            notationViewFactoryClassName="ConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -4218,7 +4229,8 @@
             visualID="5008"
             editPartClassName="ConstraintAsLocalPostcondNameEditPart"
             itemSemanticEditPolicyClassName="ConstraintAsLocalPostcondNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ConstraintNameViewFactory">
+            notationViewFactoryClassName="ConstraintNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -4822,7 +4834,8 @@
             visualID="5059"
             editPartClassName="SendObjectActionNameEditPart"
             itemSemanticEditPolicyClassName="SendObjectActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="SendObjectActionNameViewFactory">
+            notationViewFactoryClassName="SendObjectActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -5531,7 +5544,8 @@
             visualID="5060"
             editPartClassName="SendSignalActionNameEditPart"
             itemSemanticEditPolicyClassName="SendSignalActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="SendSignalActionNameViewFactory">
+            notationViewFactoryClassName="SendSignalActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -6335,7 +6349,8 @@
             visualID="5079"
             editPartClassName="AcceptTimeEventActionLabelEditPart"
             itemSemanticEditPolicyClassName="AcceptTimeEventActionLabelItemSemanticEditPolicy"
-            notationViewFactoryClassName="AcceptEventActionLabelViewFactory">
+            notationViewFactoryClassName="AcceptEventActionLabelViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -6546,7 +6561,8 @@
             visualID="5126"
             editPartClassName="ValueSpecificationActionNameEditPart"
             itemSemanticEditPolicyClassName="ValueSpecificationActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ValueSpecificationActionNameViewFactory">
+            notationViewFactoryClassName="ValueSpecificationActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -6732,7 +6748,8 @@
             editPartClassName="ConditionalNodeKeywordEditPart"
             itemSemanticEditPolicyClassName="ConditionalNodeKeywordItemSemanticEditPolicy"
             notationViewFactoryClassName="ConditionalNodeLabelViewFactory"
-            readOnly="true">
+            readOnly="true"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -6799,7 +6816,8 @@
             editPartClassName="ExpansionRegionKeywordEditPart"
             itemSemanticEditPolicyClassName="ExpansionRegionKeywordItemSemanticEditPolicy"
             notationViewFactoryClassName="ExpansionRegionLabelViewFactory"
-            readOnly="true">
+            readOnly="true"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -6976,7 +6994,8 @@
             editPartClassName="LoopNodeKeywordEditPart"
             itemSemanticEditPolicyClassName="LoopNodeKeywordItemSemanticEditPolicy"
             notationViewFactoryClassName="LoopNodeLabelViewFactory"
-            readOnly="true">
+            readOnly="true"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -7609,7 +7628,8 @@
             editPartClassName="SequenceNodeKeywordEditPart"
             itemSemanticEditPolicyClassName="SequenceNodeKeywordItemSemanticEditPolicy"
             notationViewFactoryClassName="SequenceNodeLabelViewFactory"
-            readOnly="true">
+            readOnly="true"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -7676,7 +7696,8 @@
             editPartClassName="StructuredActivityNodeKeywordEditPart"
             itemSemanticEditPolicyClassName="StructuredActivityNodeKeywordItemSemanticEditPolicy"
             notationViewFactoryClassName="StructuredActivityNodeLabelViewFactory"
-            readOnly="true">
+            readOnly="true"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8117,7 +8138,8 @@
             visualID="5118"
             editPartClassName="ActivityPartitionNameEditPart"
             itemSemanticEditPolicyClassName="ActivityPartitionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ActivityPartitionNameViewFactory">
+            notationViewFactoryClassName="ActivityPartitionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8249,7 +8271,8 @@
             visualID="5138"
             editPartClassName="CommentBodyLabelEditPart"
             itemSemanticEditPolicyClassName="CommentBodyLabelItemSemanticEditPolicy"
-            notationViewFactoryClassName="CommentBodyViewFactory">
+            notationViewFactoryClassName="CommentBodyViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8330,7 +8353,8 @@
             visualID="5139"
             editPartClassName="ReadSelfActionNameEditPart"
             itemSemanticEditPolicyClassName="ReadSelfActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ReadSelfActionLabelViewFactory">
+            notationViewFactoryClassName="ReadSelfActionLabelViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8521,7 +8545,8 @@
             visualID="5142"
             editPartClassName="ActivityNameEditPartCN"
             itemSemanticEditPolicyClassName="ActivityNameEditPartItemSemanticEditPolicyCN"
-            notationViewFactoryClassName="OpaqueActionNameViewFactory">
+            notationViewFactoryClassName="OpaqueActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8624,7 +8649,8 @@
             visualID="5148"
             editPartClassName="CreateObjectActionNameEditPart"
             itemSemanticEditPolicyClassName="CreateObjectActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="CreateObjectActionNameViewFactory">
+            notationViewFactoryClassName="CreateObjectActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8789,7 +8815,8 @@
             xsi:type="gmfgen:GenExternalNodeLabel"
             visualID="5129"
             editPartClassName="ShapeNamedElementNameEditPart"
-            itemSemanticEditPolicyClassName="ShapeNamedElementNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ShapeNamedElementNameItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -8874,7 +8901,8 @@
             visualID="5153"
             editPartClassName="ReadStructuralFeatureActionNameEditPart"
             itemSemanticEditPolicyClassName="ReadStructuralFeatureActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ReadStructuralFeatureActionNameViewFactory">
+            notationViewFactoryClassName="ReadStructuralFeatureActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -9153,7 +9181,8 @@
             visualID="5160"
             editPartClassName="AddStructuralFeatureValueActionNameEditPart"
             itemSemanticEditPolicyClassName="AddStructuralFeatureValueActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="AddStructuralFeatureValueActionNameViewFactory">
+            notationViewFactoryClassName="AddStructuralFeatureValueActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -10255,7 +10284,8 @@
             visualID="5163"
             editPartClassName="DestroyObjectActionNameEditPart"
             itemSemanticEditPolicyClassName="DestroyObjectActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="DestroyObjectActionNameViewFactory">
+            notationViewFactoryClassName="DestroyObjectActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -10656,7 +10686,8 @@
             visualID="5166"
             editPartClassName="ReadVariableActionNameEditPart"
             itemSemanticEditPolicyClassName="ReadVariableActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ReadVariableActionNameViewFactory">
+            notationViewFactoryClassName="ReadVariableActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -10848,7 +10879,8 @@
             visualID="5171"
             editPartClassName="AddVariableValueActionNameEditPart"
             itemSemanticEditPolicyClassName="AddVariableValueActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="AddVariableValueActionNameViewFactory">
+            notationViewFactoryClassName="AddVariableValueActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -11557,7 +11589,8 @@
             visualID="5175"
             editPartClassName="BroadcastSignalActionNameEditPart"
             itemSemanticEditPolicyClassName="BroadcastSignalActionNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="BroadcastSignalActionNameViewFactory">
+            notationViewFactoryClassName="BroadcastSignalActionNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -11961,7 +11994,8 @@
         <labels
             visualID="5176"
             editPartClassName="CentralBufferNodeLabelEditPart"
-            itemSemanticEditPolicyClassName="CentralBufferNodeWrappingLabelItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="CentralBufferNodeWrappingLabelItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -12164,7 +12198,8 @@
         <labels
             visualID="5191"
             editPartClassName="StartObjectBehaviorActionNameEditPart"
-            itemSemanticEditPolicyClassName="StartObjectBehaviorActionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="StartObjectBehaviorActionNameItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -12934,7 +12969,8 @@
         <labels
             visualID="5192"
             editPartClassName="TestIdentityActionNameEditPart"
-            itemSemanticEditPolicyClassName="TestIdentityActionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="TestIdentityActionNameItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -13676,7 +13712,8 @@
         <labels
             visualID="5193"
             editPartClassName="ClearStructuralFeatureActionNameEditPart"
-            itemSemanticEditPolicyClassName="ClearStructuralFeatureActionNameItemSemanticEditPolicy">
+            itemSemanticEditPolicyClassName="ClearStructuralFeatureActionNameItemSemanticEditPolicy"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -14053,13 +14090,13 @@
             itemSemanticEditPolicyClassName="ActionInputPinInClearStructuralFeatureActionAsObjectLabelItemSemanticEditPolicy">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <behaviour
               xsi:type="gmfgen:CustomBehaviour"
               key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
               editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
-          <viewmap
-              xsi:type="gmfgen:FigureViewmap"
-              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
           <modelFacet
               parser="/0/@labelParsers/@implementations.6"/>
         </labels>
@@ -14137,7 +14174,8 @@
             xsi:type="gmfgen:CustomBehaviour"
             key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
             editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
-        <modelFacet>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.154">
           <metaClass
               href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkAction"/>
           <containmentMetaFeature
@@ -14155,7 +14193,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5195">
+            visualID="5195"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -14545,7 +14584,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5194">
+            visualID="5194"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -15024,7 +15064,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5196">
+            visualID="5196"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -15409,7 +15450,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5197">
+            visualID="5197"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -15794,7 +15836,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5198">
+            visualID="5198"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -15979,7 +16022,8 @@
         </modelFacet>
         <labels
             visualID="5199"
-            editPartClassName="ReclassifyObjectActionNameEditPart">
+            editPartClassName="ReclassifyObjectActionNameEditPart"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -16364,7 +16408,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5200">
+            visualID="5200"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -16838,7 +16883,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5201">
+            visualID="5201"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -17312,7 +17358,8 @@
           </modelElementInitializer>
         </modelFacet>
         <labels
-            visualID="5202">
+            visualID="5202"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -17641,6 +17688,478 @@
               parser="/0/@labelParsers/@implementations.1"/>
         </labels>
       </childNodes>
+      <childNodes
+          visualID="3198"
+          childNodes="/0/@diagram/@childNodes.174 /0/@diagram/@childNodes.175 /0/@diagram/@childNodes.176 /0/@diagram/@childNodes.177"
+          containers="/0/@diagram/@compartments.14 /0/@diagram/@compartments.3 /0/@diagram/@compartments.4 /0/@diagram/@compartments.5 /0/@diagram/@compartments.6 /0/@diagram/@compartments.7 /0/@diagram/@compartments.8 /0/@diagram/@compartments.9 /0/@diagram/@compartments.10">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            displayName="CreateLinkObjectAction">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.121/@elementType"/>
+        </elementType>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusRoundedNodeFigure"/>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_CREATE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CreateActionLocalConditionEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.GRAPHICAL_NODE_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ObjectFlowWithPinsCreationEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.DeleteActionViewEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.papyrus.uml.diagram.common.editpolicies.ChangeStereotypedShapeEditPolicy.CHANGE_SHAPE_POLICY"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.ActivityDiagramChangeStereotypedShapeEditpolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles.DRAG_DROP_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.CustomDiagramDragDropEditPolicy"/>
+        <modelFacet
+            modelElementSelector="/0/@expressionProviders/@providers.1/@expressions.155">
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkObjectAction"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity/ownedNode"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/Activity/ownedNode"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            visualID="5406">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:ParentAssignedViewmap"
+              getterName="getNameLabel"
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5407"
+            editPartClassName="CreateLinkObjectActionFloatingNameEditPart"
+            itemSemanticEditPolicyClassName="CreateLinkObjectActionFloatingNameItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.gef.EditPolicy.PRIMARY_DRAG_ROLE"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.ExternalLabelPrimaryDragRoleEditPolicy"/>
+          <modelFacet
+              xsi:type="gmfgen:FeatureLabelModelFacet"
+              parser="/0/@labelParsers/@implementations.0"
+              viewPattern=""
+              editorPattern=""
+              editPattern="">
+            <metaFeatures
+                href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+          </modelFacet>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3199"
+          editPartClassName="InputPinInCreateLinkObjectActionAsInputValueEditPart"
+          itemSemanticEditPolicyClassName="InputPinInCreateLinkObjectActionAsInputValueItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="InputPinInCreateLinkObjectActionAsInputValueCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="InputPinInCreateLinkObjectActionAsInputValueGraphicalNodeEditPolicy"
+          createCommandClassName="InputPinInCreateLinkObjectActionAsInputValueCreateCommand"
+          containers="/0/@diagram/@childNodes.173">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.75/@elementType"/>
+        </elementType>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/InputPin"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5408"
+            editPartClassName="InputPinInCreateLinkObjectActionAsInputValueLabelEditPart"
+            itemSemanticEditPolicyClassName="InputPinInCreateLinkObjectActionAsInputValueLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5409"
+            editPartClassName="InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3200"
+          editPartClassName="ValuePinInCreateLinkObjectActionAsInputValueEditPart"
+          itemSemanticEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueGraphicalNodeEditPolicy"
+          createCommandClassName="ValuePinInCreateLinkObjectActionAsInputValueCreateCommand"
+          containers="/0/@diagram/@childNodes.173">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.191/@elementType"/>
+        </elementType>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ValuePin"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5410"
+            editPartClassName="ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart"
+            itemSemanticEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5411"
+            editPartClassName="ValuePinInCreateLinkObjectActionAsInputValueValueEditPart"
+            itemSemanticEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueValueItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.7"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5412"
+            editPartClassName="ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3201"
+          editPartClassName="ActionPinInCreateLinkObjectActionAsInputValueEditPart"
+          itemSemanticEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueGraphicalNodeEditPolicy"
+          createCommandClassName="ActionPinInCreateLinkObjectActionAsInputValueCreateCommand"
+          containers="/0/@diagram/@childNodes.173">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.91/@elementType"/>
+        </elementType>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.InputPinFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/ActionInputPin"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/LinkAction/inputValue"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5413"
+            editPartClassName="ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart"
+            itemSemanticEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5414"
+            editPartClassName="ActionPinInCreateLinkObjectActionAsInputValueValueEditPart"
+            itemSemanticEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueValueItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.7"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5415"
+            editPartClassName="ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
+        </labels>
+      </childNodes>
+      <childNodes
+          xsi:type="gmfgen:GenChildSideAffixedNode"
+          visualID="3202"
+          editPartClassName="OutputPinInCreateLinkObjectActionEditPart"
+          itemSemanticEditPolicyClassName="OutputPinInCreateLinkObjectActionItemSemanticEditPolicy"
+          canonicalEditPolicyClassName="OutputPinInCreateLinkObjectActionCanonicalEditPolicy"
+          graphicalNodeEditPolicyClassName="OutputPinInCreateLinkObjectActionGraphicalNodeEditPolicy"
+          createCommandClassName="OutputPinInCreateLinkObjectActionCreateCommand"
+          containers="/0/@diagram/@childNodes.173"
+          preferredSideName="EAST">
+        <diagramRunTimeClass
+            href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+        <elementType
+            xsi:type="gmfgen:SpecializationType"
+            displayName="OutputPin"
+            definedExternally="true">
+          <metamodelType
+              href="../../org.eclipse.papyrus.uml.diagram.common/model/GenericUML.gmfgen#//@diagram/@topLevelNodes.76/@elementType"/>
+        </elementType>
+        <viewmap
+            xsi:type="gmfgen:FigureViewmap"
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.OutputPinFigure">
+          <attributes
+              xsi:type="gmfgen:DefaultSizeAttributes"
+              width="16"
+              height="16"/>
+        </viewmap>
+        <behaviour
+            xsi:type="gmfgen:OpenDiagramBehaviour"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.EditPolicy.LAYOUT_ROLE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.PinLayoutEditPolicy"/>
+        <behaviour
+            xsi:type="gmfgen:CustomBehaviour"
+            key="org.eclipse.gef.RequestConstants.REQ_DELETE"
+            editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.NoDeleteFromDiagramEditPolicy"/>
+        <modelFacet>
+          <metaClass
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/OutputPin"/>
+          <containmentMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkObjectAction/result"/>
+          <childMetaFeature
+              href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/CreateLinkObjectAction/result"/>
+          <modelElementInitializer
+              xsi:type="gmfgen:GenFeatureSeqInitializer">
+            <initializers
+                xsi:type="gmfgen:GenFeatureValueSpec"
+                value="/0/@expressionProviders/@providers.0/@expressions.0">
+              <feature
+                  href="../../../plugin/org.eclipse.uml2.uml/model/UML.genmodel#//uml/NamedElement/name"/>
+            </initializers>
+          </modelElementInitializer>
+        </modelFacet>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5416"
+            editPartClassName="OutputPinInCreateLinkObjectActionLabelEditPart"
+            itemSemanticEditPolicyClassName="OutputPinInCreateLinkObjectActionLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.SimpleLabel"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy.MASK_MANAGED_LABEL_EDIT_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.edit.policies.MaskManagedPinEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.6"/>
+        </labels>
+        <labels
+            xsi:type="gmfgen:GenExternalNodeLabel"
+            visualID="5417"
+            editPartClassName="OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart"
+            itemSemanticEditPolicyClassName="OutputPinInCreateLinkObjectActionAppliedStereotypeLabelItemSemanticEditPolicy">
+          <diagramRunTimeClass
+              href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
+          <viewmap
+              xsi:type="gmfgen:FigureViewmap"
+              figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.figure.node.AppliedStereotypeWrappingLabelFigure"/>
+          <behaviour
+              xsi:type="gmfgen:CustomBehaviour"
+              key="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy.STEREOTYPE_LABEL_POLICY"
+              editPolicyQualifiedClassName="org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeExternalNodeEditPolicy"/>
+          <modelFacet
+              parser="/0/@labelParsers/@implementations.1"/>
+        </labels>
+      </childNodes>
       <topLevelNodes
           visualID="2001"
           editPartClassName="ActivityEditPart"
@@ -17710,7 +18229,8 @@
             visualID="5001"
             editPartClassName="ActivityNameEditPart"
             itemSemanticEditPolicyClassName="ActivityNameItemSemanticEditPolicy"
-            notationViewFactoryClassName="ActivityNameViewFactory">
+            notationViewFactoryClassName="ActivityNameViewFactory"
+            elementIcon="true">
           <diagramRunTimeClass
               href="../../../plugin/org.eclipse.gmf.runtime.notation/model/notation.genmodel#//notation/Node"/>
           <viewmap
@@ -18323,7 +18843,7 @@
           itemSemanticEditPolicyClassName="ActivityActivityContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityActivityContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="ActivityFigureContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18358,7 +18878,7 @@
           itemSemanticEditPolicyClassName="ConditionalNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ConditionalNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ConditionalNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.173"
           title="StructuredActivityNodeContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18385,7 +18905,7 @@
           itemSemanticEditPolicyClassName="ExpansionRegionStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ExpansionRegionStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ExpansionRegionStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="StructuredActivityNodeContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18412,7 +18932,7 @@
           itemSemanticEditPolicyClassName="LoopNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="LoopNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="LoopNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="StructuredActivityNodeContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18439,7 +18959,7 @@
           itemSemanticEditPolicyClassName="SequenceNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="SequenceNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="SequenceNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="StructuredActivityNodeContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18466,7 +18986,7 @@
           itemSemanticEditPolicyClassName="StructuredActivityNodeStructuredActivityNodeContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="StructuredActivityNodeStructuredActivityNodeContentCompartmentViewFactory"
           canonicalEditPolicyClassName="StructuredActivityNodeStructuredActivityNodeContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="StructuredActivityNodeContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18493,7 +19013,7 @@
           itemSemanticEditPolicyClassName="ActivityPartitionActivityPartitionContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityPartitionActivityPartitionContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityPartitionActivityPartitionContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="ActivityPartitionContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18524,7 +19044,7 @@
           itemSemanticEditPolicyClassName="InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentViewFactory"
           canonicalEditPolicyClassName="InterruptibleActivityRegionInterruptibleActivityRegionContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.114 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="InterruptibleActivityRegionContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18624,7 +19144,7 @@
           itemSemanticEditPolicyClassName="ActivityCNContentCompartmentItemSemanticEditPolicy"
           notationViewFactoryClassName="ActivityActivityContentCompartmentViewFactory"
           canonicalEditPolicyClassName="ActivityCNContentCompartmentCanonicalEditPolicy"
-          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+          childNodes="/0/@diagram/@childNodes.3 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.24 /0/@diagram/@childNodes.25 /0/@diagram/@childNodes.26 /0/@diagram/@childNodes.27 /0/@diagram/@childNodes.28 /0/@diagram/@childNodes.29 /0/@diagram/@childNodes.30 /0/@diagram/@childNodes.31 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.75 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.78 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.102 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.51 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
           title="ActivityFigureContentCompartment"
           canCollapse="false"
           needsTitle="false"
@@ -18861,7 +19381,7 @@
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
                 id="&quot;activity.nodes.pins.outputpin&quot;"
-                genNodes="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.72"/>
+                genNodes="/0/@diagram/@childNodes.10 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.72 /0/@diagram/@childNodes.177"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
                 title="Input Pin"
@@ -18869,7 +19389,7 @@
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
                 id="&quot;activity.nodes.pins.inputpin&quot;"
-                genNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.69"/>
+                genNodes="/0/@diagram/@childNodes.9 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.69 /0/@diagram/@childNodes.174"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
                 title="Action Input Pin"
@@ -18877,7 +19397,7 @@
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
                 id="&quot;activity.nodes.pins.actioninputpin&quot;"
-                genNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.71"/>
+                genNodes="/0/@diagram/@childNodes.8 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.71 /0/@diagram/@childNodes.176"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
                 title="Value Pin"
@@ -18885,7 +19405,7 @@
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
                 id="&quot;activity.nodes.pins.valuepin&quot;"
-                genNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.70"/>
+                genNodes="/0/@diagram/@childNodes.7 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.175"/>
           </entries>
           <entries
               xsi:type="gmfgen:ToolGroup"
@@ -19248,6 +19768,14 @@
                 smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif"
                 id="&quot;activity.nodes.linkactions.destroylinkaction&quot;"
                 genNodes="/0/@diagram/@childNodes.145"/>
+            <entries
+                xsi:type="gmfgen:ToolEntry"
+                title="Create Link Object Action"
+                description="Create a Create Link Object Action"
+                largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif"
+                smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif"
+                id="&quot;activity.nodes.linkactions.createlinkobjectaction&quot;"
+                genNodes="/0/@diagram/@childNodes.173"/>
           </entries>
           <entries
               xsi:type="gmfgen:ToolGroup"
@@ -20145,16 +20673,22 @@
         <expressions
             xsi:type="gmfgen:GenConstraint"
             body="if self.owner.oclIsKindOf(LoopNode) and self.oclIsTypeOf(InputPin)&#xA;then self.owner.oclAsType(LoopNode).loopVariableInput->includes(self) &#xA;else false endif"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsTypeOf(CreateLinkAction)"/>
+        <expressions
+            xsi:type="gmfgen:GenConstraint"
+            body="self.oclIsTypeOf(CreateLinkObjectAction)"/>
       </providers>
     </expressionProviders>
     <labelParsers
         extensibleViaService="true">
       <implementations
           xsi:type="gmfgen:PredefinedParser"
-          uses="/0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.0/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.79/@labels.0/@modelFacet /0/@diagram/@childNodes.82/@labels.0/@modelFacet /0/@diagram/@childNodes.85/@labels.0/@modelFacet /0/@diagram/@childNodes.96/@labels.0/@modelFacet /0/@diagram/@childNodes.100/@labels.0/@modelFacet /0/@diagram/@childNodes.102/@labels.0/@modelFacet /0/@diagram/@childNodes.109/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.114/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.1/@modelFacet /0/@diagram/@childNodes.109/@labels.1/@modelFacet /0/@diagram/@childNodes.102/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@childNodes.85/@labels.1/@modelFacet /0/@diagram/@childNodes.100/@labels.1/@modelFacet /0/@diagram/@childNodes.96/@labels.1/@modelFacet /0/@diagram/@childNodes.82/@labels.1/@modelFacet /0/@diagram/@childNodes.79/@labels.1/@modelFacet /0/@diagram/@childNodes.76/@labels.1/@modelFacet /0/@diagram/@childNodes.54/@labels.1/@modelFacet /0/@diagram/@childNodes.37/@labels.1/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.113/@labels.2/@modelFacet /0/@diagram/@childNodes.36/@labels.2/@modelFacet /0/@diagram/@childNodes.44/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.52/@labels.3/@modelFacet /0/@diagram/@childNodes.115/@labels.0/@modelFacet /0/@diagram/@childNodes.115/@labels.1/@modelFacet /0/@diagram/@childNodes.123/@labels.0/@modelFacet /0/@diagram/@childNodes.123/@labels.1/@modelFacet /0/@diagram/@childNodes.131/@labels.0/@modelFacet /0/@diagram/@childNodes.131/@labels.1/@modelFacet /0/@diagram/@childNodes.136/@labels.0/@modelFacet /0/@diagram/@childNodes.136/@labels.1/@modelFacet /0/@diagram/@childNodes.140/@labels.0/@modelFacet /0/@diagram/@childNodes.140/@labels.1/@modelFacet /0/@diagram/@childNodes.145/@labels.1/@modelFacet /0/@diagram/@childNodes.145/@labels.0/@modelFacet /0/@diagram/@childNodes.149/@labels.0/@modelFacet /0/@diagram/@childNodes.149/@labels.1/@modelFacet /0/@diagram/@childNodes.153/@labels.0/@modelFacet /0/@diagram/@childNodes.153/@labels.1/@modelFacet /0/@diagram/@childNodes.155/@labels.0/@modelFacet /0/@diagram/@childNodes.155/@labels.1/@modelFacet /0/@diagram/@childNodes.159/@labels.0/@modelFacet /0/@diagram/@childNodes.159/@labels.1/@modelFacet /0/@diagram/@childNodes.164/@labels.0/@modelFacet /0/@diagram/@childNodes.164/@labels.1/@modelFacet /0/@diagram/@childNodes.169/@labels.0/@modelFacet /0/@diagram/@childNodes.169/@labels.1/@modelFacet"/>
+          uses="/0/@diagram/@childNodes.6/@labels.0/@modelFacet /0/@diagram/@childNodes.24/@labels.0/@modelFacet /0/@diagram/@childNodes.25/@labels.0/@modelFacet /0/@diagram/@childNodes.26/@labels.0/@modelFacet /0/@diagram/@childNodes.27/@labels.0/@modelFacet /0/@diagram/@childNodes.28/@labels.0/@modelFacet /0/@diagram/@childNodes.29/@labels.0/@modelFacet /0/@diagram/@childNodes.30/@labels.0/@modelFacet /0/@diagram/@childNodes.31/@labels.0/@modelFacet /0/@diagram/@childNodes.37/@labels.0/@modelFacet /0/@diagram/@childNodes.44/@labels.0/@modelFacet /0/@diagram/@childNodes.54/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.0/@modelFacet /0/@diagram/@childNodes.76/@labels.0/@modelFacet /0/@diagram/@childNodes.79/@labels.0/@modelFacet /0/@diagram/@childNodes.82/@labels.0/@modelFacet /0/@diagram/@childNodes.85/@labels.0/@modelFacet /0/@diagram/@childNodes.96/@labels.0/@modelFacet /0/@diagram/@childNodes.100/@labels.0/@modelFacet /0/@diagram/@childNodes.102/@labels.0/@modelFacet /0/@diagram/@childNodes.109/@labels.0/@modelFacet /0/@diagram/@childNodes.78/@labels.0/@modelFacet /0/@diagram/@topLevelNodes.0/@labels.0/@modelFacet /0/@diagram/@links.2/@labels.0/@modelFacet /0/@diagram/@links.3/@labels.0/@modelFacet /0/@diagram/@childNodes.114/@labels.0/@modelFacet /0/@diagram/@childNodes.73/@labels.1/@modelFacet /0/@diagram/@childNodes.109/@labels.1/@modelFacet /0/@diagram/@childNodes.102/@labels.1/@modelFacet /0/@diagram/@childNodes.16/@labels.1/@modelFacet /0/@diagram/@childNodes.85/@labels.1/@modelFacet /0/@diagram/@childNodes.100/@labels.1/@modelFacet /0/@diagram/@childNodes.96/@labels.1/@modelFacet /0/@diagram/@childNodes.82/@labels.1/@modelFacet /0/@diagram/@childNodes.79/@labels.1/@modelFacet /0/@diagram/@childNodes.76/@labels.1/@modelFacet /0/@diagram/@childNodes.54/@labels.1/@modelFacet /0/@diagram/@childNodes.37/@labels.1/@modelFacet /0/@diagram/@childNodes.6/@labels.1/@modelFacet /0/@diagram/@childNodes.11/@labels.1/@modelFacet /0/@diagram/@childNodes.113/@labels.2/@modelFacet /0/@diagram/@childNodes.36/@labels.2/@modelFacet /0/@diagram/@childNodes.44/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.0/@modelFacet /0/@diagram/@childNodes.3/@labels.0/@modelFacet /0/@diagram/@childNodes.5/@labels.0/@modelFacet /0/@diagram/@childNodes.32/@labels.0/@modelFacet /0/@diagram/@childNodes.33/@labels.0/@modelFacet /0/@diagram/@childNodes.34/@labels.0/@modelFacet /0/@diagram/@childNodes.35/@labels.0/@modelFacet /0/@diagram/@childNodes.52/@labels.3/@modelFacet /0/@diagram/@childNodes.115/@labels.0/@modelFacet /0/@diagram/@childNodes.115/@labels.1/@modelFacet /0/@diagram/@childNodes.123/@labels.0/@modelFacet /0/@diagram/@childNodes.123/@labels.1/@modelFacet /0/@diagram/@childNodes.131/@labels.0/@modelFacet /0/@diagram/@childNodes.131/@labels.1/@modelFacet /0/@diagram/@childNodes.136/@labels.0/@modelFacet /0/@diagram/@childNodes.136/@labels.1/@modelFacet /0/@diagram/@childNodes.140/@labels.0/@modelFacet /0/@diagram/@childNodes.140/@labels.1/@modelFacet /0/@diagram/@childNodes.145/@labels.1/@modelFacet /0/@diagram/@childNodes.145/@labels.0/@modelFacet /0/@diagram/@childNodes.149/@labels.0/@modelFacet /0/@diagram/@childNodes.149/@labels.1/@modelFacet /0/@diagram/@childNodes.153/@labels.0/@modelFacet /0/@diagram/@childNodes.153/@labels.1/@modelFacet /0/@diagram/@childNodes.155/@labels.0/@modelFacet /0/@diagram/@childNodes.155/@labels.1/@modelFacet /0/@diagram/@childNodes.159/@labels.0/@modelFacet /0/@diagram/@childNodes.159/@labels.1/@modelFacet /0/@diagram/@childNodes.164/@labels.0/@modelFacet /0/@diagram/@childNodes.164/@labels.1/@modelFacet /0/@diagram/@childNodes.169/@labels.0/@modelFacet /0/@diagram/@childNodes.169/@labels.1/@modelFacet /0/@diagram/@childNodes.173/@labels.0/@modelFacet /0/@diagram/@childNodes.173/@labels.1/@modelFacet"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.45/@labels.2/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.35/@labels.2/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.33/@labels.1/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.52/@labels.2/@modelFacet /0/@diagram/@childNodes.41/@labels.2/@modelFacet /0/@diagram/@childNodes.32/@labels.2/@modelFacet /0/@diagram/@childNodes.83/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.34/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.80/@labels.1/@modelFacet /0/@diagram/@childNodes.101/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.84/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.55/@labels.1/@modelFacet /0/@diagram/@childNodes.77/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.48/@labels.2/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.38/@labels.2/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.116/@labels.1/@modelFacet /0/@diagram/@childNodes.117/@labels.1/@modelFacet /0/@diagram/@childNodes.118/@labels.2/@modelFacet /0/@diagram/@childNodes.119/@labels.2/@modelFacet /0/@diagram/@childNodes.121/@labels.2/@modelFacet /0/@diagram/@childNodes.122/@labels.2/@modelFacet /0/@diagram/@childNodes.124/@labels.1/@modelFacet /0/@diagram/@childNodes.125/@labels.1/@modelFacet /0/@diagram/@childNodes.126/@labels.1/@modelFacet /0/@diagram/@childNodes.127/@labels.2/@modelFacet /0/@diagram/@childNodes.128/@labels.2/@modelFacet /0/@diagram/@childNodes.129/@labels.2/@modelFacet /0/@diagram/@childNodes.130/@labels.2/@modelFacet /0/@diagram/@childNodes.132/@labels.1/@modelFacet /0/@diagram/@childNodes.133/@labels.1/@modelFacet /0/@diagram/@childNodes.134/@labels.2/@modelFacet /0/@diagram/@childNodes.135/@labels.2/@modelFacet /0/@diagram/@childNodes.137/@labels.1/@modelFacet /0/@diagram/@childNodes.138/@labels.2/@modelFacet /0/@diagram/@childNodes.139/@labels.2/@modelFacet /0/@diagram/@childNodes.141/@labels.1/@modelFacet /0/@diagram/@childNodes.142/@labels.1/@modelFacet /0/@diagram/@childNodes.143/@labels.2/@modelFacet /0/@diagram/@childNodes.144/@labels.2/@modelFacet /0/@diagram/@childNodes.146/@labels.1/@modelFacet /0/@diagram/@childNodes.147/@labels.2/@modelFacet /0/@diagram/@childNodes.148/@labels.2/@modelFacet /0/@diagram/@childNodes.150/@labels.1/@modelFacet /0/@diagram/@childNodes.151/@labels.2/@modelFacet /0/@diagram/@childNodes.152/@labels.2/@modelFacet /0/@diagram/@childNodes.154/@labels.1/@modelFacet /0/@diagram/@childNodes.156/@labels.1/@modelFacet /0/@diagram/@childNodes.157/@labels.2/@modelFacet /0/@diagram/@childNodes.158/@labels.2/@modelFacet /0/@diagram/@childNodes.160/@labels.1/@modelFacet /0/@diagram/@childNodes.163/@labels.2/@modelFacet /0/@diagram/@childNodes.162/@labels.2/@modelFacet /0/@diagram/@childNodes.161/@labels.1/@modelFacet /0/@diagram/@childNodes.165/@labels.1/@modelFacet /0/@diagram/@childNodes.166/@labels.1/@modelFacet /0/@diagram/@childNodes.167/@labels.2/@modelFacet /0/@diagram/@childNodes.168/@labels.2/@modelFacet /0/@diagram/@childNodes.170/@labels.1/@modelFacet /0/@diagram/@childNodes.171/@labels.2/@modelFacet /0/@diagram/@childNodes.172/@labels.2/@modelFacet /0/@diagram/@childNodes.97/@labels.1/@modelFacet /0/@diagram/@childNodes.98/@labels.2/@modelFacet /0/@diagram/@childNodes.99/@labels.2/@modelFacet /0/@diagram/@childNodes.103/@labels.1/@modelFacet /0/@diagram/@childNodes.104/@labels.1/@modelFacet /0/@diagram/@childNodes.105/@labels.2/@modelFacet /0/@diagram/@childNodes.106/@labels.2/@modelFacet /0/@diagram/@childNodes.107/@labels.2/@modelFacet /0/@diagram/@childNodes.108/@labels.2/@modelFacet /0/@diagram/@childNodes.110/@labels.2/@modelFacet /0/@diagram/@childNodes.111/@labels.2/@modelFacet /0/@diagram/@childNodes.112/@labels.2/@modelFacet /0/@diagram/@childNodes.86/@labels.1/@modelFacet /0/@diagram/@childNodes.87/@labels.1/@modelFacet /0/@diagram/@childNodes.88/@labels.1/@modelFacet /0/@diagram/@childNodes.89/@labels.2/@modelFacet /0/@diagram/@childNodes.90/@labels.2/@modelFacet /0/@diagram/@childNodes.91/@labels.2/@modelFacet /0/@diagram/@childNodes.92/@labels.2/@modelFacet /0/@diagram/@childNodes.93/@labels.2/@modelFacet /0/@diagram/@childNodes.94/@labels.2/@modelFacet /0/@diagram/@childNodes.95/@labels.1/@modelFacet /0/@diagram/@childNodes.61/@labels.1/@modelFacet /0/@diagram/@childNodes.62/@labels.2/@modelFacet /0/@diagram/@childNodes.63/@labels.2/@modelFacet /0/@diagram/@childNodes.64/@labels.1/@modelFacet /0/@diagram/@childNodes.65/@labels.1/@modelFacet /0/@diagram/@childNodes.66/@labels.1/@modelFacet /0/@diagram/@childNodes.70/@labels.2/@modelFacet /0/@diagram/@childNodes.71/@labels.2/@modelFacet /0/@diagram/@childNodes.72/@labels.1/@modelFacet /0/@diagram/@childNodes.69/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.49/@labels.2/@modelFacet /0/@diagram/@childNodes.53/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.2/@modelFacet /0/@diagram/@childNodes.22/@labels.2/@modelFacet /0/@diagram/@childNodes.45/@labels.2/@modelFacet /0/@diagram/@childNodes.47/@labels.1/@modelFacet /0/@diagram/@childNodes.23/@labels.1/@modelFacet /0/@diagram/@links.2/@labels.6/@modelFacet /0/@diagram/@childNodes.19/@labels.1/@modelFacet /0/@diagram/@childNodes.4/@labels.1/@modelFacet /0/@diagram/@childNodes.15/@labels.1/@modelFacet /0/@diagram/@childNodes.43/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.2/@modelFacet /0/@diagram/@childNodes.35/@labels.2/@modelFacet /0/@diagram/@childNodes.9/@labels.1/@modelFacet /0/@diagram/@childNodes.33/@labels.1/@modelFacet /0/@diagram/@childNodes.20/@labels.1/@modelFacet /0/@diagram/@childNodes.52/@labels.2/@modelFacet /0/@diagram/@childNodes.41/@labels.2/@modelFacet /0/@diagram/@childNodes.32/@labels.2/@modelFacet /0/@diagram/@childNodes.83/@labels.1/@modelFacet /0/@diagram/@childNodes.8/@labels.2/@modelFacet /0/@diagram/@childNodes.34/@labels.1/@modelFacet /0/@diagram/@links.3/@labels.3/@modelFacet /0/@diagram/@childNodes.80/@labels.1/@modelFacet /0/@diagram/@childNodes.101/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.2/@modelFacet /0/@diagram/@childNodes.50/@labels.1/@modelFacet /0/@diagram/@childNodes.84/@labels.1/@modelFacet /0/@diagram/@childNodes.10/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.2/@modelFacet /0/@diagram/@childNodes.14/@labels.1/@modelFacet /0/@diagram/@childNodes.55/@labels.1/@modelFacet /0/@diagram/@childNodes.77/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.2/@modelFacet /0/@diagram/@childNodes.18/@labels.2/@modelFacet /0/@diagram/@childNodes.42/@labels.2/@modelFacet /0/@diagram/@childNodes.3/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.2/@modelFacet /0/@diagram/@childNodes.48/@labels.2/@modelFacet /0/@diagram/@childNodes.7/@labels.2/@modelFacet /0/@diagram/@childNodes.38/@labels.2/@modelFacet /0/@diagram/@childNodes.5/@labels.1/@modelFacet /0/@diagram/@childNodes.40/@labels.1/@modelFacet /0/@diagram/@childNodes.116/@labels.1/@modelFacet /0/@diagram/@childNodes.117/@labels.1/@modelFacet /0/@diagram/@childNodes.118/@labels.2/@modelFacet /0/@diagram/@childNodes.119/@labels.2/@modelFacet /0/@diagram/@childNodes.121/@labels.2/@modelFacet /0/@diagram/@childNodes.122/@labels.2/@modelFacet /0/@diagram/@childNodes.124/@labels.1/@modelFacet /0/@diagram/@childNodes.125/@labels.1/@modelFacet /0/@diagram/@childNodes.126/@labels.1/@modelFacet /0/@diagram/@childNodes.127/@labels.2/@modelFacet /0/@diagram/@childNodes.128/@labels.2/@modelFacet /0/@diagram/@childNodes.129/@labels.2/@modelFacet /0/@diagram/@childNodes.130/@labels.2/@modelFacet /0/@diagram/@childNodes.132/@labels.1/@modelFacet /0/@diagram/@childNodes.133/@labels.1/@modelFacet /0/@diagram/@childNodes.134/@labels.2/@modelFacet /0/@diagram/@childNodes.135/@labels.2/@modelFacet /0/@diagram/@childNodes.137/@labels.1/@modelFacet /0/@diagram/@childNodes.138/@labels.2/@modelFacet /0/@diagram/@childNodes.139/@labels.2/@modelFacet /0/@diagram/@childNodes.141/@labels.1/@modelFacet /0/@diagram/@childNodes.142/@labels.1/@modelFacet /0/@diagram/@childNodes.143/@labels.2/@modelFacet /0/@diagram/@childNodes.144/@labels.2/@modelFacet /0/@diagram/@childNodes.146/@labels.1/@modelFacet /0/@diagram/@childNodes.147/@labels.2/@modelFacet /0/@diagram/@childNodes.148/@labels.2/@modelFacet /0/@diagram/@childNodes.150/@labels.1/@modelFacet /0/@diagram/@childNodes.151/@labels.2/@modelFacet /0/@diagram/@childNodes.152/@labels.2/@modelFacet /0/@diagram/@childNodes.154/@labels.1/@modelFacet /0/@diagram/@childNodes.156/@labels.1/@modelFacet /0/@diagram/@childNodes.157/@labels.2/@modelFacet /0/@diagram/@childNodes.158/@labels.2/@modelFacet /0/@diagram/@childNodes.160/@labels.1/@modelFacet /0/@diagram/@childNodes.163/@labels.2/@modelFacet /0/@diagram/@childNodes.162/@labels.2/@modelFacet /0/@diagram/@childNodes.161/@labels.1/@modelFacet /0/@diagram/@childNodes.165/@labels.1/@modelFacet /0/@diagram/@childNodes.166/@labels.1/@modelFacet /0/@diagram/@childNodes.167/@labels.2/@modelFacet /0/@diagram/@childNodes.168/@labels.2/@modelFacet /0/@diagram/@childNodes.170/@labels.1/@modelFacet /0/@diagram/@childNodes.171/@labels.2/@modelFacet /0/@diagram/@childNodes.172/@labels.2/@modelFacet /0/@diagram/@childNodes.97/@labels.1/@modelFacet /0/@diagram/@childNodes.98/@labels.2/@modelFacet /0/@diagram/@childNodes.99/@labels.2/@modelFacet /0/@diagram/@childNodes.103/@labels.1/@modelFacet /0/@diagram/@childNodes.104/@labels.1/@modelFacet /0/@diagram/@childNodes.105/@labels.2/@modelFacet /0/@diagram/@childNodes.106/@labels.2/@modelFacet /0/@diagram/@childNodes.107/@labels.2/@modelFacet /0/@diagram/@childNodes.108/@labels.2/@modelFacet /0/@diagram/@childNodes.110/@labels.2/@modelFacet /0/@diagram/@childNodes.111/@labels.2/@modelFacet /0/@diagram/@childNodes.112/@labels.2/@modelFacet /0/@diagram/@childNodes.86/@labels.1/@modelFacet /0/@diagram/@childNodes.87/@labels.1/@modelFacet /0/@diagram/@childNodes.88/@labels.1/@modelFacet /0/@diagram/@childNodes.89/@labels.2/@modelFacet /0/@diagram/@childNodes.90/@labels.2/@modelFacet /0/@diagram/@childNodes.91/@labels.2/@modelFacet /0/@diagram/@childNodes.92/@labels.2/@modelFacet /0/@diagram/@childNodes.93/@labels.2/@modelFacet /0/@diagram/@childNodes.94/@labels.2/@modelFacet /0/@diagram/@childNodes.95/@labels.1/@modelFacet /0/@diagram/@childNodes.61/@labels.1/@modelFacet /0/@diagram/@childNodes.62/@labels.2/@modelFacet /0/@diagram/@childNodes.63/@labels.2/@modelFacet /0/@diagram/@childNodes.64/@labels.1/@modelFacet /0/@diagram/@childNodes.65/@labels.1/@modelFacet /0/@diagram/@childNodes.66/@labels.1/@modelFacet /0/@diagram/@childNodes.70/@labels.2/@modelFacet /0/@diagram/@childNodes.71/@labels.2/@modelFacet /0/@diagram/@childNodes.72/@labels.1/@modelFacet /0/@diagram/@childNodes.69/@labels.1/@modelFacet /0/@diagram/@childNodes.174/@labels.1/@modelFacet /0/@diagram/@childNodes.175/@labels.2/@modelFacet /0/@diagram/@childNodes.176/@labels.2/@modelFacet /0/@diagram/@childNodes.177/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.common.parser.stereotype.AppliedStereotypeParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -20174,11 +20708,11 @@
           qualifiedName="org.eclipse.papyrus.uml.diagram.activity.parser.custom.CallBehaviorActionParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.101/@labels.0/@modelFacet /0/@diagram/@childNodes.84/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.38/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.0/@modelFacet /0/@diagram/@childNodes.83/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.80/@labels.0/@modelFacet /0/@diagram/@childNodes.53/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.116/@labels.0/@modelFacet /0/@diagram/@childNodes.117/@labels.0/@modelFacet /0/@diagram/@childNodes.118/@labels.0/@modelFacet /0/@diagram/@childNodes.119/@labels.0/@modelFacet /0/@diagram/@childNodes.120/@labels.0/@modelFacet /0/@diagram/@childNodes.121/@labels.0/@modelFacet /0/@diagram/@childNodes.122/@labels.0/@modelFacet /0/@diagram/@childNodes.124/@labels.0/@modelFacet /0/@diagram/@childNodes.125/@labels.0/@modelFacet /0/@diagram/@childNodes.126/@labels.0/@modelFacet /0/@diagram/@childNodes.127/@labels.0/@modelFacet /0/@diagram/@childNodes.128/@labels.0/@modelFacet /0/@diagram/@childNodes.129/@labels.0/@modelFacet /0/@diagram/@childNodes.130/@labels.0/@modelFacet /0/@diagram/@childNodes.132/@labels.0/@modelFacet /0/@diagram/@childNodes.133/@labels.0/@modelFacet /0/@diagram/@childNodes.134/@labels.0/@modelFacet /0/@diagram/@childNodes.135/@labels.0/@modelFacet /0/@diagram/@childNodes.137/@labels.0/@modelFacet /0/@diagram/@childNodes.138/@labels.0/@modelFacet /0/@diagram/@childNodes.139/@labels.0/@modelFacet /0/@diagram/@childNodes.141/@labels.0/@modelFacet /0/@diagram/@childNodes.142/@labels.0/@modelFacet /0/@diagram/@childNodes.143/@labels.0/@modelFacet /0/@diagram/@childNodes.144/@labels.0/@modelFacet /0/@diagram/@childNodes.146/@labels.0/@modelFacet /0/@diagram/@childNodes.147/@labels.0/@modelFacet /0/@diagram/@childNodes.148/@labels.0/@modelFacet /0/@diagram/@childNodes.150/@labels.0/@modelFacet /0/@diagram/@childNodes.151/@labels.0/@modelFacet /0/@diagram/@childNodes.152/@labels.0/@modelFacet /0/@diagram/@childNodes.154/@labels.0/@modelFacet /0/@diagram/@childNodes.156/@labels.0/@modelFacet /0/@diagram/@childNodes.157/@labels.0/@modelFacet /0/@diagram/@childNodes.158/@labels.0/@modelFacet /0/@diagram/@childNodes.160/@labels.0/@modelFacet /0/@diagram/@childNodes.163/@labels.0/@modelFacet /0/@diagram/@childNodes.162/@labels.0/@modelFacet /0/@diagram/@childNodes.161/@labels.0/@modelFacet /0/@diagram/@childNodes.165/@labels.0/@modelFacet /0/@diagram/@childNodes.166/@labels.0/@modelFacet /0/@diagram/@childNodes.167/@labels.0/@modelFacet /0/@diagram/@childNodes.168/@labels.0/@modelFacet /0/@diagram/@childNodes.170/@labels.0/@modelFacet /0/@diagram/@childNodes.171/@labels.0/@modelFacet /0/@diagram/@childNodes.172/@labels.0/@modelFacet /0/@diagram/@childNodes.97/@labels.0/@modelFacet /0/@diagram/@childNodes.98/@labels.0/@modelFacet /0/@diagram/@childNodes.99/@labels.0/@modelFacet /0/@diagram/@childNodes.103/@labels.0/@modelFacet /0/@diagram/@childNodes.104/@labels.0/@modelFacet /0/@diagram/@childNodes.105/@labels.0/@modelFacet /0/@diagram/@childNodes.106/@labels.0/@modelFacet /0/@diagram/@childNodes.107/@labels.0/@modelFacet /0/@diagram/@childNodes.108/@labels.0/@modelFacet /0/@diagram/@childNodes.110/@labels.0/@modelFacet /0/@diagram/@childNodes.111/@labels.0/@modelFacet /0/@diagram/@childNodes.112/@labels.0/@modelFacet /0/@diagram/@childNodes.86/@labels.0/@modelFacet /0/@diagram/@childNodes.87/@labels.0/@modelFacet /0/@diagram/@childNodes.88/@labels.0/@modelFacet /0/@diagram/@childNodes.89/@labels.0/@modelFacet /0/@diagram/@childNodes.90/@labels.0/@modelFacet /0/@diagram/@childNodes.91/@labels.0/@modelFacet /0/@diagram/@childNodes.92/@labels.0/@modelFacet /0/@diagram/@childNodes.93/@labels.0/@modelFacet /0/@diagram/@childNodes.94/@labels.0/@modelFacet /0/@diagram/@childNodes.95/@labels.0/@modelFacet /0/@diagram/@childNodes.61/@labels.0/@modelFacet /0/@diagram/@childNodes.62/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@childNodes.64/@labels.0/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.71/@labels.0/@modelFacet /0/@diagram/@childNodes.72/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet /0/@diagram/@childNodes.70/@labels.0/@modelFacet"
+          uses="/0/@diagram/@childNodes.15/@labels.0/@modelFacet /0/@diagram/@childNodes.77/@labels.0/@modelFacet /0/@diagram/@childNodes.10/@labels.0/@modelFacet /0/@diagram/@childNodes.42/@labels.0/@modelFacet /0/@diagram/@childNodes.14/@labels.0/@modelFacet /0/@diagram/@childNodes.21/@labels.0/@modelFacet /0/@diagram/@childNodes.8/@labels.0/@modelFacet /0/@diagram/@childNodes.47/@labels.0/@modelFacet /0/@diagram/@childNodes.50/@labels.0/@modelFacet /0/@diagram/@childNodes.101/@labels.0/@modelFacet /0/@diagram/@childNodes.84/@labels.0/@modelFacet /0/@diagram/@childNodes.12/@labels.0/@modelFacet /0/@diagram/@childNodes.38/@labels.0/@modelFacet /0/@diagram/@childNodes.22/@labels.0/@modelFacet /0/@diagram/@childNodes.7/@labels.0/@modelFacet /0/@diagram/@childNodes.17/@labels.0/@modelFacet /0/@diagram/@childNodes.39/@labels.0/@modelFacet /0/@diagram/@childNodes.48/@labels.0/@modelFacet /0/@diagram/@childNodes.49/@labels.0/@modelFacet /0/@diagram/@childNodes.45/@labels.0/@modelFacet /0/@diagram/@childNodes.83/@labels.0/@modelFacet /0/@diagram/@childNodes.20/@labels.0/@modelFacet /0/@diagram/@childNodes.40/@labels.0/@modelFacet /0/@diagram/@childNodes.23/@labels.0/@modelFacet /0/@diagram/@childNodes.80/@labels.0/@modelFacet /0/@diagram/@childNodes.53/@labels.0/@modelFacet /0/@diagram/@childNodes.13/@labels.0/@modelFacet /0/@diagram/@childNodes.9/@labels.0/@modelFacet /0/@diagram/@childNodes.19/@labels.0/@modelFacet /0/@diagram/@childNodes.41/@labels.0/@modelFacet /0/@diagram/@childNodes.18/@labels.0/@modelFacet /0/@diagram/@childNodes.43/@labels.0/@modelFacet /0/@diagram/@childNodes.55/@labels.0/@modelFacet /0/@diagram/@childNodes.46/@labels.0/@modelFacet /0/@diagram/@childNodes.116/@labels.0/@modelFacet /0/@diagram/@childNodes.117/@labels.0/@modelFacet /0/@diagram/@childNodes.118/@labels.0/@modelFacet /0/@diagram/@childNodes.119/@labels.0/@modelFacet /0/@diagram/@childNodes.120/@labels.0/@modelFacet /0/@diagram/@childNodes.121/@labels.0/@modelFacet /0/@diagram/@childNodes.122/@labels.0/@modelFacet /0/@diagram/@childNodes.124/@labels.0/@modelFacet /0/@diagram/@childNodes.125/@labels.0/@modelFacet /0/@diagram/@childNodes.126/@labels.0/@modelFacet /0/@diagram/@childNodes.127/@labels.0/@modelFacet /0/@diagram/@childNodes.128/@labels.0/@modelFacet /0/@diagram/@childNodes.129/@labels.0/@modelFacet /0/@diagram/@childNodes.130/@labels.0/@modelFacet /0/@diagram/@childNodes.132/@labels.0/@modelFacet /0/@diagram/@childNodes.133/@labels.0/@modelFacet /0/@diagram/@childNodes.134/@labels.0/@modelFacet /0/@diagram/@childNodes.135/@labels.0/@modelFacet /0/@diagram/@childNodes.137/@labels.0/@modelFacet /0/@diagram/@childNodes.138/@labels.0/@modelFacet /0/@diagram/@childNodes.139/@labels.0/@modelFacet /0/@diagram/@childNodes.141/@labels.0/@modelFacet /0/@diagram/@childNodes.142/@labels.0/@modelFacet /0/@diagram/@childNodes.143/@labels.0/@modelFacet /0/@diagram/@childNodes.144/@labels.0/@modelFacet /0/@diagram/@childNodes.146/@labels.0/@modelFacet /0/@diagram/@childNodes.147/@labels.0/@modelFacet /0/@diagram/@childNodes.148/@labels.0/@modelFacet /0/@diagram/@childNodes.150/@labels.0/@modelFacet /0/@diagram/@childNodes.151/@labels.0/@modelFacet /0/@diagram/@childNodes.152/@labels.0/@modelFacet /0/@diagram/@childNodes.154/@labels.0/@modelFacet /0/@diagram/@childNodes.156/@labels.0/@modelFacet /0/@diagram/@childNodes.157/@labels.0/@modelFacet /0/@diagram/@childNodes.158/@labels.0/@modelFacet /0/@diagram/@childNodes.160/@labels.0/@modelFacet /0/@diagram/@childNodes.163/@labels.0/@modelFacet /0/@diagram/@childNodes.162/@labels.0/@modelFacet /0/@diagram/@childNodes.161/@labels.0/@modelFacet /0/@diagram/@childNodes.165/@labels.0/@modelFacet /0/@diagram/@childNodes.166/@labels.0/@modelFacet /0/@diagram/@childNodes.167/@labels.0/@modelFacet /0/@diagram/@childNodes.168/@labels.0/@modelFacet /0/@diagram/@childNodes.170/@labels.0/@modelFacet /0/@diagram/@childNodes.171/@labels.0/@modelFacet /0/@diagram/@childNodes.172/@labels.0/@modelFacet /0/@diagram/@childNodes.97/@labels.0/@modelFacet /0/@diagram/@childNodes.98/@labels.0/@modelFacet /0/@diagram/@childNodes.99/@labels.0/@modelFacet /0/@diagram/@childNodes.103/@labels.0/@modelFacet /0/@diagram/@childNodes.104/@labels.0/@modelFacet /0/@diagram/@childNodes.105/@labels.0/@modelFacet /0/@diagram/@childNodes.106/@labels.0/@modelFacet /0/@diagram/@childNodes.107/@labels.0/@modelFacet /0/@diagram/@childNodes.108/@labels.0/@modelFacet /0/@diagram/@childNodes.110/@labels.0/@modelFacet /0/@diagram/@childNodes.111/@labels.0/@modelFacet /0/@diagram/@childNodes.112/@labels.0/@modelFacet /0/@diagram/@childNodes.86/@labels.0/@modelFacet /0/@diagram/@childNodes.87/@labels.0/@modelFacet /0/@diagram/@childNodes.88/@labels.0/@modelFacet /0/@diagram/@childNodes.89/@labels.0/@modelFacet /0/@diagram/@childNodes.90/@labels.0/@modelFacet /0/@diagram/@childNodes.91/@labels.0/@modelFacet /0/@diagram/@childNodes.92/@labels.0/@modelFacet /0/@diagram/@childNodes.93/@labels.0/@modelFacet /0/@diagram/@childNodes.94/@labels.0/@modelFacet /0/@diagram/@childNodes.95/@labels.0/@modelFacet /0/@diagram/@childNodes.61/@labels.0/@modelFacet /0/@diagram/@childNodes.62/@labels.0/@modelFacet /0/@diagram/@childNodes.63/@labels.0/@modelFacet /0/@diagram/@childNodes.64/@labels.0/@modelFacet /0/@diagram/@childNodes.65/@labels.0/@modelFacet /0/@diagram/@childNodes.66/@labels.0/@modelFacet /0/@diagram/@childNodes.71/@labels.0/@modelFacet /0/@diagram/@childNodes.72/@labels.0/@modelFacet /0/@diagram/@childNodes.69/@labels.0/@modelFacet /0/@diagram/@childNodes.70/@labels.0/@modelFacet /0/@diagram/@childNodes.174/@labels.0/@modelFacet /0/@diagram/@childNodes.175/@labels.0/@modelFacet /0/@diagram/@childNodes.176/@labels.0/@modelFacet /0/@diagram/@childNodes.177/@labels.0/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.activity.parser.custom.PinParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
-          uses="/0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@childNodes.45/@labels.1/@modelFacet /0/@diagram/@childNodes.118/@labels.1/@modelFacet /0/@diagram/@childNodes.119/@labels.1/@modelFacet /0/@diagram/@childNodes.120/@labels.1/@modelFacet /0/@diagram/@childNodes.121/@labels.1/@modelFacet /0/@diagram/@childNodes.122/@labels.1/@modelFacet /0/@diagram/@childNodes.127/@labels.1/@modelFacet /0/@diagram/@childNodes.128/@labels.1/@modelFacet /0/@diagram/@childNodes.129/@labels.1/@modelFacet /0/@diagram/@childNodes.130/@labels.1/@modelFacet /0/@diagram/@childNodes.134/@labels.1/@modelFacet /0/@diagram/@childNodes.135/@labels.1/@modelFacet /0/@diagram/@childNodes.138/@labels.1/@modelFacet /0/@diagram/@childNodes.139/@labels.1/@modelFacet /0/@diagram/@childNodes.143/@labels.1/@modelFacet /0/@diagram/@childNodes.144/@labels.1/@modelFacet /0/@diagram/@childNodes.147/@labels.1/@modelFacet /0/@diagram/@childNodes.148/@labels.1/@modelFacet /0/@diagram/@childNodes.151/@labels.1/@modelFacet /0/@diagram/@childNodes.152/@labels.1/@modelFacet /0/@diagram/@childNodes.157/@labels.1/@modelFacet /0/@diagram/@childNodes.158/@labels.1/@modelFacet /0/@diagram/@childNodes.163/@labels.1/@modelFacet /0/@diagram/@childNodes.162/@labels.1/@modelFacet /0/@diagram/@childNodes.167/@labels.1/@modelFacet /0/@diagram/@childNodes.168/@labels.1/@modelFacet /0/@diagram/@childNodes.171/@labels.1/@modelFacet /0/@diagram/@childNodes.172/@labels.1/@modelFacet /0/@diagram/@childNodes.98/@labels.1/@modelFacet /0/@diagram/@childNodes.99/@labels.1/@modelFacet /0/@diagram/@childNodes.105/@labels.1/@modelFacet /0/@diagram/@childNodes.106/@labels.1/@modelFacet /0/@diagram/@childNodes.107/@labels.1/@modelFacet /0/@diagram/@childNodes.108/@labels.1/@modelFacet /0/@diagram/@childNodes.110/@labels.1/@modelFacet /0/@diagram/@childNodes.111/@labels.1/@modelFacet /0/@diagram/@childNodes.112/@labels.1/@modelFacet /0/@diagram/@childNodes.89/@labels.1/@modelFacet /0/@diagram/@childNodes.90/@labels.1/@modelFacet /0/@diagram/@childNodes.91/@labels.1/@modelFacet /0/@diagram/@childNodes.92/@labels.1/@modelFacet /0/@diagram/@childNodes.93/@labels.1/@modelFacet /0/@diagram/@childNodes.94/@labels.1/@modelFacet /0/@diagram/@childNodes.62/@labels.1/@modelFacet /0/@diagram/@childNodes.63/@labels.1/@modelFacet /0/@diagram/@childNodes.70/@labels.1/@modelFacet /0/@diagram/@childNodes.71/@labels.1/@modelFacet"
+          uses="/0/@diagram/@childNodes.8/@labels.1/@modelFacet /0/@diagram/@childNodes.21/@labels.1/@modelFacet /0/@diagram/@childNodes.42/@labels.1/@modelFacet /0/@diagram/@childNodes.38/@labels.1/@modelFacet /0/@diagram/@childNodes.39/@labels.1/@modelFacet /0/@diagram/@childNodes.22/@labels.1/@modelFacet /0/@diagram/@childNodes.13/@labels.1/@modelFacet /0/@diagram/@childNodes.17/@labels.1/@modelFacet /0/@diagram/@childNodes.12/@labels.1/@modelFacet /0/@diagram/@childNodes.49/@labels.1/@modelFacet /0/@diagram/@childNodes.46/@labels.1/@modelFacet /0/@diagram/@childNodes.41/@labels.1/@modelFacet /0/@diagram/@childNodes.18/@labels.1/@modelFacet /0/@diagram/@childNodes.7/@labels.1/@modelFacet /0/@diagram/@childNodes.48/@labels.1/@modelFacet /0/@diagram/@childNodes.45/@labels.1/@modelFacet /0/@diagram/@childNodes.118/@labels.1/@modelFacet /0/@diagram/@childNodes.119/@labels.1/@modelFacet /0/@diagram/@childNodes.120/@labels.1/@modelFacet /0/@diagram/@childNodes.121/@labels.1/@modelFacet /0/@diagram/@childNodes.122/@labels.1/@modelFacet /0/@diagram/@childNodes.127/@labels.1/@modelFacet /0/@diagram/@childNodes.128/@labels.1/@modelFacet /0/@diagram/@childNodes.129/@labels.1/@modelFacet /0/@diagram/@childNodes.130/@labels.1/@modelFacet /0/@diagram/@childNodes.134/@labels.1/@modelFacet /0/@diagram/@childNodes.135/@labels.1/@modelFacet /0/@diagram/@childNodes.138/@labels.1/@modelFacet /0/@diagram/@childNodes.139/@labels.1/@modelFacet /0/@diagram/@childNodes.143/@labels.1/@modelFacet /0/@diagram/@childNodes.144/@labels.1/@modelFacet /0/@diagram/@childNodes.147/@labels.1/@modelFacet /0/@diagram/@childNodes.148/@labels.1/@modelFacet /0/@diagram/@childNodes.151/@labels.1/@modelFacet /0/@diagram/@childNodes.152/@labels.1/@modelFacet /0/@diagram/@childNodes.157/@labels.1/@modelFacet /0/@diagram/@childNodes.158/@labels.1/@modelFacet /0/@diagram/@childNodes.163/@labels.1/@modelFacet /0/@diagram/@childNodes.162/@labels.1/@modelFacet /0/@diagram/@childNodes.167/@labels.1/@modelFacet /0/@diagram/@childNodes.168/@labels.1/@modelFacet /0/@diagram/@childNodes.171/@labels.1/@modelFacet /0/@diagram/@childNodes.172/@labels.1/@modelFacet /0/@diagram/@childNodes.98/@labels.1/@modelFacet /0/@diagram/@childNodes.99/@labels.1/@modelFacet /0/@diagram/@childNodes.105/@labels.1/@modelFacet /0/@diagram/@childNodes.106/@labels.1/@modelFacet /0/@diagram/@childNodes.107/@labels.1/@modelFacet /0/@diagram/@childNodes.108/@labels.1/@modelFacet /0/@diagram/@childNodes.110/@labels.1/@modelFacet /0/@diagram/@childNodes.111/@labels.1/@modelFacet /0/@diagram/@childNodes.112/@labels.1/@modelFacet /0/@diagram/@childNodes.89/@labels.1/@modelFacet /0/@diagram/@childNodes.90/@labels.1/@modelFacet /0/@diagram/@childNodes.91/@labels.1/@modelFacet /0/@diagram/@childNodes.92/@labels.1/@modelFacet /0/@diagram/@childNodes.93/@labels.1/@modelFacet /0/@diagram/@childNodes.94/@labels.1/@modelFacet /0/@diagram/@childNodes.62/@labels.1/@modelFacet /0/@diagram/@childNodes.63/@labels.1/@modelFacet /0/@diagram/@childNodes.70/@labels.1/@modelFacet /0/@diagram/@childNodes.71/@labels.1/@modelFacet /0/@diagram/@childNodes.175/@labels.1/@modelFacet /0/@diagram/@childNodes.176/@labels.1/@modelFacet"
           qualifiedName="org.eclipse.papyrus.uml.diagram.activity.parser.custom.PinValueParser"/>
       <implementations
           xsi:type="gmfgen:CustomParser"
@@ -20265,13 +20799,13 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="add superclass for floating Label"
-        genView="/0/@diagram/@childNodes.73/@labels.1 /0/@diagram/@childNodes.102/@labels.1 /0/@diagram/@childNodes.109/@labels.1 /0/@diagram/@childNodes.16/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.37/@labels.1 /0/@diagram/@childNodes.54/@labels.1 /0/@diagram/@childNodes.76/@labels.1 /0/@diagram/@childNodes.79/@labels.1 /0/@diagram/@childNodes.82/@labels.1 /0/@diagram/@childNodes.85/@labels.1 /0/@diagram/@childNodes.96/@labels.1 /0/@diagram/@childNodes.100/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.113/@labels.2 /0/@diagram/@childNodes.36/@labels.2 /0/@diagram/@childNodes.44/@labels.1 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.32/@labels.0 /0/@diagram/@childNodes.33/@labels.0 /0/@diagram/@childNodes.34/@labels.0 /0/@diagram/@childNodes.35/@labels.0 /0/@diagram/@childNodes.52/@labels.3 /0/@diagram/@childNodes.115/@labels.1 /0/@diagram/@childNodes.123/@labels.1 /0/@diagram/@childNodes.131/@labels.1 /0/@diagram/@childNodes.136/@labels.1 /0/@diagram/@childNodes.140/@labels.1 /0/@diagram/@childNodes.145/@labels.1 /0/@diagram/@childNodes.149/@labels.1 /0/@diagram/@childNodes.153/@labels.1 /0/@diagram/@childNodes.155/@labels.1 /0/@diagram/@childNodes.159/@labels.1 /0/@diagram/@childNodes.164/@labels.1 /0/@diagram/@childNodes.169/@labels.1"
+        genView="/0/@diagram/@childNodes.73/@labels.1 /0/@diagram/@childNodes.102/@labels.1 /0/@diagram/@childNodes.109/@labels.1 /0/@diagram/@childNodes.16/@labels.1 /0/@diagram/@childNodes.6/@labels.1 /0/@diagram/@childNodes.37/@labels.1 /0/@diagram/@childNodes.54/@labels.1 /0/@diagram/@childNodes.76/@labels.1 /0/@diagram/@childNodes.79/@labels.1 /0/@diagram/@childNodes.82/@labels.1 /0/@diagram/@childNodes.85/@labels.1 /0/@diagram/@childNodes.96/@labels.1 /0/@diagram/@childNodes.100/@labels.1 /0/@diagram/@childNodes.11/@labels.1 /0/@diagram/@childNodes.113/@labels.2 /0/@diagram/@childNodes.36/@labels.2 /0/@diagram/@childNodes.44/@labels.1 /0/@diagram/@childNodes.3/@labels.0 /0/@diagram/@childNodes.4/@labels.0 /0/@diagram/@childNodes.5/@labels.0 /0/@diagram/@childNodes.32/@labels.0 /0/@diagram/@childNodes.33/@labels.0 /0/@diagram/@childNodes.34/@labels.0 /0/@diagram/@childNodes.35/@labels.0 /0/@diagram/@childNodes.52/@labels.3 /0/@diagram/@childNodes.115/@labels.1 /0/@diagram/@childNodes.123/@labels.1 /0/@diagram/@childNodes.131/@labels.1 /0/@diagram/@childNodes.136/@labels.1 /0/@diagram/@childNodes.140/@labels.1 /0/@diagram/@childNodes.145/@labels.1 /0/@diagram/@childNodes.149/@labels.1 /0/@diagram/@childNodes.153/@labels.1 /0/@diagram/@childNodes.155/@labels.1 /0/@diagram/@childNodes.159/@labels.1 /0/@diagram/@childNodes.164/@labels.1 /0/@diagram/@childNodes.169/@labels.1 /0/@diagram/@childNodes.173/@labels.1"
         name="FloatingLabelEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.FloatingLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="Elements that inherits RoundedCompartmentEditPart"
-        genView="/0/@diagram/@childNodes.102 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.78 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169"
+        genView="/0/@diagram/@childNodes.102 /0/@diagram/@childNodes.73 /0/@diagram/@childNodes.109 /0/@diagram/@childNodes.74 /0/@diagram/@childNodes.57 /0/@diagram/@childNodes.56 /0/@diagram/@childNodes.60 /0/@diagram/@childNodes.67 /0/@diagram/@childNodes.68 /0/@diagram/@childNodes.11 /0/@diagram/@childNodes.16 /0/@diagram/@childNodes.85 /0/@diagram/@childNodes.79 /0/@diagram/@childNodes.96 /0/@diagram/@childNodes.6 /0/@diagram/@childNodes.76 /0/@diagram/@childNodes.82 /0/@diagram/@childNodes.100 /0/@diagram/@childNodes.37 /0/@diagram/@childNodes.54 /0/@diagram/@childNodes.113 /0/@diagram/@childNodes.36 /0/@diagram/@childNodes.44 /0/@diagram/@childNodes.4 /0/@diagram/@childNodes.3 /0/@diagram/@childNodes.5 /0/@diagram/@childNodes.32 /0/@diagram/@childNodes.33 /0/@diagram/@childNodes.34 /0/@diagram/@childNodes.35 /0/@diagram/@childNodes.52 /0/@diagram/@childNodes.78 /0/@diagram/@topLevelNodes.0 /0/@diagram/@childNodes.115 /0/@diagram/@childNodes.123 /0/@diagram/@childNodes.131 /0/@diagram/@childNodes.136 /0/@diagram/@childNodes.140 /0/@diagram/@childNodes.145 /0/@diagram/@childNodes.149 /0/@diagram/@childNodes.153 /0/@diagram/@childNodes.155 /0/@diagram/@childNodes.159 /0/@diagram/@childNodes.164 /0/@diagram/@childNodes.169 /0/@diagram/@childNodes.173"
         name="Rounded Compartment EP inheritance"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedCompartmentEditPart"/>
     <extensionNodes
@@ -20295,7 +20829,7 @@
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Pin locator for Actions"
         classpath="org.eclipse.papyrus.uml.diagram.activity.locator.PinPositionLocator"
-        genChildSideAffixedNode="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.101 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.150 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.71 /0/@diagram/@childNodes.72 /0/@diagram/@childNodes.69"/>
+        genChildSideAffixedNode="/0/@diagram/@childNodes.38 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.13 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.101 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.150 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.71 /0/@diagram/@childNodes.72 /0/@diagram/@childNodes.69 /0/@diagram/@childNodes.174 /0/@diagram/@childNodes.175 /0/@diagram/@childNodes.176 /0/@diagram/@childNodes.177"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocator"
         comment="Affixed Activity Parameter Node locator for Activity"
@@ -20391,20 +20925,20 @@
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="set the super class as AbstractLabelEditPart"
-        genView="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.2 /0/@diagram/@childNodes.33/@labels.1 /0/@diagram/@childNodes.34/@labels.1 /0/@diagram/@childNodes.35/@labels.2 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.83/@labels.1 /0/@diagram/@childNodes.101/@labels.1 /0/@diagram/@childNodes.124/@labels.1 /0/@diagram/@childNodes.125/@labels.1 /0/@diagram/@childNodes.126/@labels.1 /0/@diagram/@childNodes.127/@labels.2 /0/@diagram/@childNodes.128/@labels.2 /0/@diagram/@childNodes.129/@labels.2 /0/@diagram/@childNodes.130/@labels.2 /0/@diagram/@childNodes.132/@labels.1 /0/@diagram/@childNodes.133/@labels.1 /0/@diagram/@childNodes.134/@labels.2 /0/@diagram/@childNodes.135/@labels.2 /0/@diagram/@childNodes.137/@labels.1 /0/@diagram/@childNodes.138/@labels.2 /0/@diagram/@childNodes.139/@labels.2 /0/@diagram/@childNodes.141/@labels.1 /0/@diagram/@childNodes.142/@labels.1 /0/@diagram/@childNodes.143/@labels.2 /0/@diagram/@childNodes.144/@labels.2 /0/@diagram/@childNodes.146/@labels.1 /0/@diagram/@childNodes.147/@labels.2 /0/@diagram/@childNodes.148/@labels.2 /0/@diagram/@childNodes.150/@labels.1 /0/@diagram/@childNodes.151/@labels.2 /0/@diagram/@childNodes.152/@labels.2 /0/@diagram/@childNodes.154/@labels.0 /0/@diagram/@childNodes.154/@labels.1 /0/@diagram/@childNodes.156/@labels.1 /0/@diagram/@childNodes.157/@labels.2 /0/@diagram/@childNodes.158/@labels.2 /0/@diagram/@childNodes.160/@labels.1 /0/@diagram/@childNodes.161/@labels.1 /0/@diagram/@childNodes.162/@labels.2 /0/@diagram/@childNodes.163/@labels.2 /0/@diagram/@childNodes.165/@labels.1 /0/@diagram/@childNodes.166/@labels.1 /0/@diagram/@childNodes.167/@labels.2 /0/@diagram/@childNodes.168/@labels.2 /0/@diagram/@childNodes.170/@labels.1 /0/@diagram/@childNodes.171/@labels.2 /0/@diagram/@childNodes.172/@labels.2 /0/@diagram/@childNodes.116/@labels.1 /0/@diagram/@childNodes.117/@labels.1 /0/@diagram/@childNodes.118/@labels.2 /0/@diagram/@childNodes.119/@labels.2 /0/@diagram/@childNodes.120/@labels.1 /0/@diagram/@childNodes.121/@labels.2 /0/@diagram/@childNodes.122/@labels.2 /0/@diagram/@childNodes.97/@labels.1 /0/@diagram/@childNodes.98/@labels.2 /0/@diagram/@childNodes.99/@labels.2 /0/@diagram/@childNodes.103/@labels.1 /0/@diagram/@childNodes.104/@labels.1 /0/@diagram/@childNodes.105/@labels.2 /0/@diagram/@childNodes.106/@labels.2 /0/@diagram/@childNodes.107/@labels.2 /0/@diagram/@childNodes.108/@labels.2 /0/@diagram/@childNodes.110/@labels.2 /0/@diagram/@childNodes.111/@labels.2 /0/@diagram/@childNodes.112/@labels.2 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.87/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.2 /0/@diagram/@childNodes.90/@labels.2 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.92/@labels.2 /0/@diagram/@childNodes.93/@labels.2 /0/@diagram/@childNodes.94/@labels.2 /0/@diagram/@childNodes.95/@labels.1 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.2 /0/@diagram/@childNodes.63/@labels.2 /0/@diagram/@childNodes.64/@labels.1 /0/@diagram/@childNodes.65/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.70/@labels.2 /0/@diagram/@childNodes.71/@labels.2 /0/@diagram/@childNodes.72/@labels.1 /0/@diagram/@childNodes.69/@labels.1"
+        genView="/0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.2 /0/@diagram/@childNodes.33/@labels.1 /0/@diagram/@childNodes.34/@labels.1 /0/@diagram/@childNodes.35/@labels.2 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.83/@labels.1 /0/@diagram/@childNodes.101/@labels.1 /0/@diagram/@childNodes.124/@labels.1 /0/@diagram/@childNodes.125/@labels.1 /0/@diagram/@childNodes.126/@labels.1 /0/@diagram/@childNodes.127/@labels.2 /0/@diagram/@childNodes.128/@labels.2 /0/@diagram/@childNodes.129/@labels.2 /0/@diagram/@childNodes.130/@labels.2 /0/@diagram/@childNodes.132/@labels.1 /0/@diagram/@childNodes.133/@labels.1 /0/@diagram/@childNodes.134/@labels.2 /0/@diagram/@childNodes.135/@labels.2 /0/@diagram/@childNodes.137/@labels.1 /0/@diagram/@childNodes.138/@labels.2 /0/@diagram/@childNodes.139/@labels.2 /0/@diagram/@childNodes.141/@labels.1 /0/@diagram/@childNodes.142/@labels.1 /0/@diagram/@childNodes.143/@labels.2 /0/@diagram/@childNodes.144/@labels.2 /0/@diagram/@childNodes.146/@labels.1 /0/@diagram/@childNodes.147/@labels.2 /0/@diagram/@childNodes.148/@labels.2 /0/@diagram/@childNodes.150/@labels.1 /0/@diagram/@childNodes.151/@labels.2 /0/@diagram/@childNodes.152/@labels.2 /0/@diagram/@childNodes.154/@labels.0 /0/@diagram/@childNodes.154/@labels.1 /0/@diagram/@childNodes.156/@labels.1 /0/@diagram/@childNodes.157/@labels.2 /0/@diagram/@childNodes.158/@labels.2 /0/@diagram/@childNodes.160/@labels.1 /0/@diagram/@childNodes.161/@labels.1 /0/@diagram/@childNodes.162/@labels.2 /0/@diagram/@childNodes.163/@labels.2 /0/@diagram/@childNodes.165/@labels.1 /0/@diagram/@childNodes.166/@labels.1 /0/@diagram/@childNodes.167/@labels.2 /0/@diagram/@childNodes.168/@labels.2 /0/@diagram/@childNodes.170/@labels.1 /0/@diagram/@childNodes.171/@labels.2 /0/@diagram/@childNodes.172/@labels.2 /0/@diagram/@childNodes.116/@labels.1 /0/@diagram/@childNodes.117/@labels.1 /0/@diagram/@childNodes.118/@labels.2 /0/@diagram/@childNodes.119/@labels.2 /0/@diagram/@childNodes.120/@labels.1 /0/@diagram/@childNodes.121/@labels.2 /0/@diagram/@childNodes.122/@labels.2 /0/@diagram/@childNodes.97/@labels.1 /0/@diagram/@childNodes.98/@labels.2 /0/@diagram/@childNodes.99/@labels.2 /0/@diagram/@childNodes.103/@labels.1 /0/@diagram/@childNodes.104/@labels.1 /0/@diagram/@childNodes.105/@labels.2 /0/@diagram/@childNodes.106/@labels.2 /0/@diagram/@childNodes.107/@labels.2 /0/@diagram/@childNodes.108/@labels.2 /0/@diagram/@childNodes.110/@labels.2 /0/@diagram/@childNodes.111/@labels.2 /0/@diagram/@childNodes.112/@labels.2 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.87/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.2 /0/@diagram/@childNodes.90/@labels.2 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.92/@labels.2 /0/@diagram/@childNodes.93/@labels.2 /0/@diagram/@childNodes.94/@labels.2 /0/@diagram/@childNodes.95/@labels.1 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.2 /0/@diagram/@childNodes.63/@labels.2 /0/@diagram/@childNodes.64/@labels.1 /0/@diagram/@childNodes.65/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.70/@labels.2 /0/@diagram/@childNodes.71/@labels.2 /0/@diagram/@childNodes.72/@labels.1 /0/@diagram/@childNodes.69/@labels.1 /0/@diagram/@childNodes.174/@labels.1 /0/@diagram/@childNodes.175/@labels.2 /0/@diagram/@childNodes.176/@labels.2 /0/@diagram/@childNodes.177/@labels.1"
         name="AbstractLabelEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.AbstractLabelEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:ExtendedGenView"
         comment="contains methods to display arrows"
-        genView="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.101 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.150 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.71 /0/@diagram/@childNodes.72 /0/@diagram/@childNodes.69"
+        genView="/0/@diagram/@childNodes.13 /0/@diagram/@childNodes.22 /0/@diagram/@childNodes.17 /0/@diagram/@childNodes.8 /0/@diagram/@childNodes.39 /0/@diagram/@childNodes.42 /0/@diagram/@childNodes.49 /0/@diagram/@childNodes.45 /0/@diagram/@childNodes.14 /0/@diagram/@childNodes.23 /0/@diagram/@childNodes.19 /0/@diagram/@childNodes.9 /0/@diagram/@childNodes.83 /0/@diagram/@childNodes.40 /0/@diagram/@childNodes.43 /0/@diagram/@childNodes.50 /0/@diagram/@childNodes.47 /0/@diagram/@childNodes.53 /0/@diagram/@childNodes.15 /0/@diagram/@childNodes.20 /0/@diagram/@childNodes.80 /0/@diagram/@childNodes.10 /0/@diagram/@childNodes.84 /0/@diagram/@childNodes.101 /0/@diagram/@childNodes.55 /0/@diagram/@childNodes.12 /0/@diagram/@childNodes.21 /0/@diagram/@childNodes.18 /0/@diagram/@childNodes.7 /0/@diagram/@childNodes.38 /0/@diagram/@childNodes.41 /0/@diagram/@childNodes.48 /0/@diagram/@childNodes.46 /0/@diagram/@childNodes.77 /0/@diagram/@childNodes.116 /0/@diagram/@childNodes.117 /0/@diagram/@childNodes.118 /0/@diagram/@childNodes.119 /0/@diagram/@childNodes.120 /0/@diagram/@childNodes.121 /0/@diagram/@childNodes.122 /0/@diagram/@childNodes.124 /0/@diagram/@childNodes.125 /0/@diagram/@childNodes.126 /0/@diagram/@childNodes.127 /0/@diagram/@childNodes.128 /0/@diagram/@childNodes.129 /0/@diagram/@childNodes.130 /0/@diagram/@childNodes.132 /0/@diagram/@childNodes.133 /0/@diagram/@childNodes.134 /0/@diagram/@childNodes.135 /0/@diagram/@childNodes.137 /0/@diagram/@childNodes.138 /0/@diagram/@childNodes.139 /0/@diagram/@childNodes.141 /0/@diagram/@childNodes.142 /0/@diagram/@childNodes.143 /0/@diagram/@childNodes.144 /0/@diagram/@childNodes.146 /0/@diagram/@childNodes.147 /0/@diagram/@childNodes.148 /0/@diagram/@childNodes.150 /0/@diagram/@childNodes.151 /0/@diagram/@childNodes.152 /0/@diagram/@childNodes.154 /0/@diagram/@childNodes.156 /0/@diagram/@childNodes.157 /0/@diagram/@childNodes.158 /0/@diagram/@childNodes.160 /0/@diagram/@childNodes.161 /0/@diagram/@childNodes.162 /0/@diagram/@childNodes.163 /0/@diagram/@childNodes.165 /0/@diagram/@childNodes.166 /0/@diagram/@childNodes.167 /0/@diagram/@childNodes.168 /0/@diagram/@childNodes.170 /0/@diagram/@childNodes.171 /0/@diagram/@childNodes.172 /0/@diagram/@childNodes.97 /0/@diagram/@childNodes.98 /0/@diagram/@childNodes.99 /0/@diagram/@childNodes.103 /0/@diagram/@childNodes.104 /0/@diagram/@childNodes.105 /0/@diagram/@childNodes.106 /0/@diagram/@childNodes.107 /0/@diagram/@childNodes.108 /0/@diagram/@childNodes.110 /0/@diagram/@childNodes.111 /0/@diagram/@childNodes.112 /0/@diagram/@childNodes.86 /0/@diagram/@childNodes.87 /0/@diagram/@childNodes.88 /0/@diagram/@childNodes.89 /0/@diagram/@childNodes.90 /0/@diagram/@childNodes.91 /0/@diagram/@childNodes.92 /0/@diagram/@childNodes.93 /0/@diagram/@childNodes.94 /0/@diagram/@childNodes.95 /0/@diagram/@childNodes.61 /0/@diagram/@childNodes.62 /0/@diagram/@childNodes.63 /0/@diagram/@childNodes.64 /0/@diagram/@childNodes.65 /0/@diagram/@childNodes.66 /0/@diagram/@childNodes.70 /0/@diagram/@childNodes.71 /0/@diagram/@childNodes.72 /0/@diagram/@childNodes.69 /0/@diagram/@childNodes.174 /0/@diagram/@childNodes.175 /0/@diagram/@childNodes.176 /0/@diagram/@childNodes.177"
         name="AbstractPinEditPart"
         superOwnedEditPart="org.eclipse.papyrus.uml.diagram.activity.edit.part.AbstractPinEditPart"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:SpecificLocatorExternalLabel"
         comment="locator for external label of pins"
         classpath="org.eclipse.papyrus.uml.diagram.common.locator.ExternalLabelPositionLocator"
-        genExternalNodeLabel="/0/@diagram/@childNodes.81/@labels.0 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.2 /0/@diagram/@childNodes.33/@labels.1 /0/@diagram/@childNodes.34/@labels.1 /0/@diagram/@childNodes.35/@labels.2 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.83/@labels.1 /0/@diagram/@childNodes.101/@labels.1 /0/@diagram/@childNodes.53/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.13/@labels.1 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.17/@labels.1 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.18/@labels.1 /0/@diagram/@childNodes.19/@labels.0 /0/@diagram/@childNodes.20/@labels.0 /0/@diagram/@childNodes.21/@labels.0 /0/@diagram/@childNodes.21/@labels.1 /0/@diagram/@childNodes.22/@labels.0 /0/@diagram/@childNodes.22/@labels.1 /0/@diagram/@childNodes.23/@labels.0 /0/@diagram/@childNodes.32/@labels.1 /0/@diagram/@childNodes.35/@labels.1 /0/@diagram/@childNodes.36/@labels.1 /0/@diagram/@childNodes.38/@labels.0 /0/@diagram/@childNodes.38/@labels.1 /0/@diagram/@childNodes.39/@labels.0 /0/@diagram/@childNodes.39/@labels.1 /0/@diagram/@childNodes.40/@labels.0 /0/@diagram/@childNodes.41/@labels.0 /0/@diagram/@childNodes.41/@labels.1 /0/@diagram/@childNodes.42/@labels.0 /0/@diagram/@childNodes.42/@labels.1 /0/@diagram/@childNodes.43/@labels.0 /0/@diagram/@childNodes.45/@labels.0 /0/@diagram/@childNodes.45/@labels.1 /0/@diagram/@childNodes.46/@labels.0 /0/@diagram/@childNodes.46/@labels.1 /0/@diagram/@childNodes.47/@labels.0 /0/@diagram/@childNodes.48/@labels.0 /0/@diagram/@childNodes.48/@labels.1 /0/@diagram/@childNodes.49/@labels.0 /0/@diagram/@childNodes.49/@labels.1 /0/@diagram/@childNodes.50/@labels.0 /0/@diagram/@childNodes.52/@labels.1 /0/@diagram/@childNodes.55/@labels.0 /0/@diagram/@childNodes.77/@labels.0 /0/@diagram/@childNodes.80/@labels.0 /0/@diagram/@childNodes.83/@labels.0 /0/@diagram/@childNodes.84/@labels.0 /0/@diagram/@childNodes.84/@labels.1 /0/@diagram/@childNodes.101/@labels.0 /0/@diagram/@childNodes.113/@labels.1 /0/@diagram/@childNodes.116/@labels.0 /0/@diagram/@childNodes.116/@labels.1 /0/@diagram/@childNodes.117/@labels.0 /0/@diagram/@childNodes.117/@labels.1 /0/@diagram/@childNodes.118/@labels.0 /0/@diagram/@childNodes.118/@labels.1 /0/@diagram/@childNodes.118/@labels.2 /0/@diagram/@childNodes.119/@labels.0 /0/@diagram/@childNodes.119/@labels.1 /0/@diagram/@childNodes.119/@labels.2 /0/@diagram/@childNodes.120/@labels.0 /0/@diagram/@childNodes.120/@labels.1 /0/@diagram/@childNodes.121/@labels.0 /0/@diagram/@childNodes.121/@labels.1 /0/@diagram/@childNodes.121/@labels.2 /0/@diagram/@childNodes.122/@labels.0 /0/@diagram/@childNodes.122/@labels.1 /0/@diagram/@childNodes.122/@labels.2 /0/@diagram/@childNodes.124/@labels.1 /0/@diagram/@childNodes.125/@labels.1 /0/@diagram/@childNodes.126/@labels.1 /0/@diagram/@childNodes.127/@labels.2 /0/@diagram/@childNodes.128/@labels.2 /0/@diagram/@childNodes.129/@labels.2 /0/@diagram/@childNodes.130/@labels.2 /0/@diagram/@childNodes.124/@labels.0 /0/@diagram/@childNodes.125/@labels.0 /0/@diagram/@childNodes.126/@labels.0 /0/@diagram/@childNodes.127/@labels.0 /0/@diagram/@childNodes.127/@labels.1 /0/@diagram/@childNodes.128/@labels.0 /0/@diagram/@childNodes.128/@labels.1 /0/@diagram/@childNodes.129/@labels.0 /0/@diagram/@childNodes.129/@labels.1 /0/@diagram/@childNodes.130/@labels.0 /0/@diagram/@childNodes.130/@labels.1 /0/@diagram/@childNodes.132/@labels.1 /0/@diagram/@childNodes.133/@labels.1 /0/@diagram/@childNodes.134/@labels.2 /0/@diagram/@childNodes.135/@labels.2 /0/@diagram/@childNodes.132/@labels.0 /0/@diagram/@childNodes.133/@labels.0 /0/@diagram/@childNodes.134/@labels.0 /0/@diagram/@childNodes.134/@labels.1 /0/@diagram/@childNodes.135/@labels.0 /0/@diagram/@childNodes.135/@labels.1 /0/@diagram/@childNodes.137/@labels.1 /0/@diagram/@childNodes.138/@labels.2 /0/@diagram/@childNodes.139/@labels.2 /0/@diagram/@childNodes.141/@labels.1 /0/@diagram/@childNodes.142/@labels.1 /0/@diagram/@childNodes.143/@labels.2 /0/@diagram/@childNodes.144/@labels.2 /0/@diagram/@childNodes.146/@labels.1 /0/@diagram/@childNodes.147/@labels.2 /0/@diagram/@childNodes.148/@labels.2 /0/@diagram/@childNodes.137/@labels.0 /0/@diagram/@childNodes.138/@labels.0 /0/@diagram/@childNodes.138/@labels.1 /0/@diagram/@childNodes.139/@labels.0 /0/@diagram/@childNodes.139/@labels.1 /0/@diagram/@childNodes.141/@labels.0 /0/@diagram/@childNodes.142/@labels.0 /0/@diagram/@childNodes.143/@labels.0 /0/@diagram/@childNodes.143/@labels.1 /0/@diagram/@childNodes.144/@labels.0 /0/@diagram/@childNodes.144/@labels.1 /0/@diagram/@childNodes.146/@labels.0 /0/@diagram/@childNodes.147/@labels.0 /0/@diagram/@childNodes.147/@labels.1 /0/@diagram/@childNodes.148/@labels.0 /0/@diagram/@childNodes.148/@labels.1 /0/@diagram/@childNodes.150/@labels.1 /0/@diagram/@childNodes.151/@labels.2 /0/@diagram/@childNodes.152/@labels.2 /0/@diagram/@childNodes.150/@labels.0 /0/@diagram/@childNodes.151/@labels.0 /0/@diagram/@childNodes.151/@labels.1 /0/@diagram/@childNodes.152/@labels.0 /0/@diagram/@childNodes.152/@labels.1 /0/@diagram/@childNodes.154/@labels.0 /0/@diagram/@childNodes.154/@labels.1 /0/@diagram/@childNodes.156/@labels.1 /0/@diagram/@childNodes.157/@labels.2 /0/@diagram/@childNodes.158/@labels.2 /0/@diagram/@childNodes.160/@labels.1 /0/@diagram/@childNodes.161/@labels.1 /0/@diagram/@childNodes.162/@labels.2 /0/@diagram/@childNodes.163/@labels.2 /0/@diagram/@childNodes.156/@labels.0 /0/@diagram/@childNodes.157/@labels.0 /0/@diagram/@childNodes.157/@labels.1 /0/@diagram/@childNodes.158/@labels.0 /0/@diagram/@childNodes.158/@labels.1 /0/@diagram/@childNodes.160/@labels.0 /0/@diagram/@childNodes.161/@labels.0 /0/@diagram/@childNodes.162/@labels.0 /0/@diagram/@childNodes.162/@labels.1 /0/@diagram/@childNodes.163/@labels.0 /0/@diagram/@childNodes.163/@labels.1 /0/@diagram/@childNodes.165/@labels.1 /0/@diagram/@childNodes.166/@labels.1 /0/@diagram/@childNodes.167/@labels.2 /0/@diagram/@childNodes.168/@labels.2 /0/@diagram/@childNodes.165/@labels.0 /0/@diagram/@childNodes.166/@labels.0 /0/@diagram/@childNodes.167/@labels.0 /0/@diagram/@childNodes.167/@labels.1 /0/@diagram/@childNodes.168/@labels.0 /0/@diagram/@childNodes.168/@labels.1 /0/@diagram/@childNodes.169/@labels.1 /0/@diagram/@childNodes.170/@labels.1 /0/@diagram/@childNodes.171/@labels.2 /0/@diagram/@childNodes.172/@labels.2 /0/@diagram/@childNodes.170/@labels.0 /0/@diagram/@childNodes.171/@labels.0 /0/@diagram/@childNodes.171/@labels.1 /0/@diagram/@childNodes.172/@labels.0 /0/@diagram/@childNodes.172/@labels.1 /0/@diagram/@childNodes.97/@labels.1 /0/@diagram/@childNodes.98/@labels.2 /0/@diagram/@childNodes.99/@labels.2 /0/@diagram/@childNodes.103/@labels.1 /0/@diagram/@childNodes.104/@labels.1 /0/@diagram/@childNodes.105/@labels.2 /0/@diagram/@childNodes.106/@labels.2 /0/@diagram/@childNodes.107/@labels.2 /0/@diagram/@childNodes.108/@labels.2 /0/@diagram/@childNodes.110/@labels.2 /0/@diagram/@childNodes.111/@labels.2 /0/@diagram/@childNodes.112/@labels.2 /0/@diagram/@childNodes.97/@labels.0 /0/@diagram/@childNodes.98/@labels.0 /0/@diagram/@childNodes.98/@labels.1 /0/@diagram/@childNodes.99/@labels.0 /0/@diagram/@childNodes.99/@labels.1 /0/@diagram/@childNodes.103/@labels.0 /0/@diagram/@childNodes.104/@labels.0 /0/@diagram/@childNodes.105/@labels.0 /0/@diagram/@childNodes.105/@labels.1 /0/@diagram/@childNodes.106/@labels.0 /0/@diagram/@childNodes.106/@labels.1 /0/@diagram/@childNodes.107/@labels.0 /0/@diagram/@childNodes.107/@labels.1 /0/@diagram/@childNodes.108/@labels.0 /0/@diagram/@childNodes.108/@labels.1 /0/@diagram/@childNodes.110/@labels.0 /0/@diagram/@childNodes.110/@labels.1 /0/@diagram/@childNodes.111/@labels.0 /0/@diagram/@childNodes.111/@labels.1 /0/@diagram/@childNodes.112/@labels.0 /0/@diagram/@childNodes.112/@labels.1 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.87/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.2 /0/@diagram/@childNodes.90/@labels.2 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.92/@labels.2 /0/@diagram/@childNodes.93/@labels.2 /0/@diagram/@childNodes.94/@labels.2 /0/@diagram/@childNodes.95/@labels.1 /0/@diagram/@childNodes.86/@labels.0 /0/@diagram/@childNodes.87/@labels.0 /0/@diagram/@childNodes.88/@labels.0 /0/@diagram/@childNodes.89/@labels.0 /0/@diagram/@childNodes.89/@labels.1 /0/@diagram/@childNodes.90/@labels.0 /0/@diagram/@childNodes.90/@labels.1 /0/@diagram/@childNodes.91/@labels.0 /0/@diagram/@childNodes.91/@labels.1 /0/@diagram/@childNodes.92/@labels.0 /0/@diagram/@childNodes.92/@labels.1 /0/@diagram/@childNodes.93/@labels.0 /0/@diagram/@childNodes.93/@labels.1 /0/@diagram/@childNodes.94/@labels.0 /0/@diagram/@childNodes.94/@labels.1 /0/@diagram/@childNodes.95/@labels.0 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.2 /0/@diagram/@childNodes.63/@labels.2 /0/@diagram/@childNodes.64/@labels.1 /0/@diagram/@childNodes.65/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.70/@labels.2 /0/@diagram/@childNodes.71/@labels.2 /0/@diagram/@childNodes.72/@labels.1 /0/@diagram/@childNodes.61/@labels.0 /0/@diagram/@childNodes.62/@labels.0 /0/@diagram/@childNodes.62/@labels.1 /0/@diagram/@childNodes.63/@labels.0 /0/@diagram/@childNodes.63/@labels.1 /0/@diagram/@childNodes.64/@labels.0 /0/@diagram/@childNodes.65/@labels.0 /0/@diagram/@childNodes.66/@labels.0 /0/@diagram/@childNodes.70/@labels.0 /0/@diagram/@childNodes.70/@labels.1 /0/@diagram/@childNodes.71/@labels.0 /0/@diagram/@childNodes.71/@labels.1 /0/@diagram/@childNodes.72/@labels.0 /0/@diagram/@childNodes.69/@labels.1 /0/@diagram/@childNodes.69/@labels.0"/>
+        genExternalNodeLabel="/0/@diagram/@childNodes.81/@labels.0 /0/@diagram/@childNodes.3/@labels.1 /0/@diagram/@childNodes.4/@labels.1 /0/@diagram/@childNodes.5/@labels.1 /0/@diagram/@childNodes.7/@labels.2 /0/@diagram/@childNodes.8/@labels.2 /0/@diagram/@childNodes.9/@labels.1 /0/@diagram/@childNodes.10/@labels.1 /0/@diagram/@childNodes.12/@labels.2 /0/@diagram/@childNodes.13/@labels.2 /0/@diagram/@childNodes.14/@labels.1 /0/@diagram/@childNodes.15/@labels.1 /0/@diagram/@childNodes.17/@labels.2 /0/@diagram/@childNodes.18/@labels.2 /0/@diagram/@childNodes.19/@labels.1 /0/@diagram/@childNodes.20/@labels.1 /0/@diagram/@childNodes.21/@labels.2 /0/@diagram/@childNodes.22/@labels.2 /0/@diagram/@childNodes.23/@labels.1 /0/@diagram/@childNodes.32/@labels.2 /0/@diagram/@childNodes.33/@labels.1 /0/@diagram/@childNodes.34/@labels.1 /0/@diagram/@childNodes.35/@labels.2 /0/@diagram/@childNodes.38/@labels.2 /0/@diagram/@childNodes.39/@labels.2 /0/@diagram/@childNodes.40/@labels.1 /0/@diagram/@childNodes.41/@labels.2 /0/@diagram/@childNodes.42/@labels.2 /0/@diagram/@childNodes.43/@labels.1 /0/@diagram/@childNodes.45/@labels.2 /0/@diagram/@childNodes.46/@labels.2 /0/@diagram/@childNodes.47/@labels.1 /0/@diagram/@childNodes.48/@labels.2 /0/@diagram/@childNodes.49/@labels.2 /0/@diagram/@childNodes.50/@labels.1 /0/@diagram/@childNodes.52/@labels.2 /0/@diagram/@childNodes.53/@labels.1 /0/@diagram/@childNodes.55/@labels.1 /0/@diagram/@childNodes.77/@labels.1 /0/@diagram/@childNodes.80/@labels.1 /0/@diagram/@childNodes.83/@labels.1 /0/@diagram/@childNodes.101/@labels.1 /0/@diagram/@childNodes.53/@labels.0 /0/@diagram/@childNodes.7/@labels.0 /0/@diagram/@childNodes.7/@labels.1 /0/@diagram/@childNodes.8/@labels.0 /0/@diagram/@childNodes.8/@labels.1 /0/@diagram/@childNodes.9/@labels.0 /0/@diagram/@childNodes.10/@labels.0 /0/@diagram/@childNodes.12/@labels.0 /0/@diagram/@childNodes.12/@labels.1 /0/@diagram/@childNodes.13/@labels.0 /0/@diagram/@childNodes.13/@labels.1 /0/@diagram/@childNodes.14/@labels.0 /0/@diagram/@childNodes.15/@labels.0 /0/@diagram/@childNodes.17/@labels.0 /0/@diagram/@childNodes.17/@labels.1 /0/@diagram/@childNodes.18/@labels.0 /0/@diagram/@childNodes.18/@labels.1 /0/@diagram/@childNodes.19/@labels.0 /0/@diagram/@childNodes.20/@labels.0 /0/@diagram/@childNodes.21/@labels.0 /0/@diagram/@childNodes.21/@labels.1 /0/@diagram/@childNodes.22/@labels.0 /0/@diagram/@childNodes.22/@labels.1 /0/@diagram/@childNodes.23/@labels.0 /0/@diagram/@childNodes.32/@labels.1 /0/@diagram/@childNodes.35/@labels.1 /0/@diagram/@childNodes.36/@labels.1 /0/@diagram/@childNodes.38/@labels.0 /0/@diagram/@childNodes.38/@labels.1 /0/@diagram/@childNodes.39/@labels.0 /0/@diagram/@childNodes.39/@labels.1 /0/@diagram/@childNodes.40/@labels.0 /0/@diagram/@childNodes.41/@labels.0 /0/@diagram/@childNodes.41/@labels.1 /0/@diagram/@childNodes.42/@labels.0 /0/@diagram/@childNodes.42/@labels.1 /0/@diagram/@childNodes.43/@labels.0 /0/@diagram/@childNodes.45/@labels.0 /0/@diagram/@childNodes.45/@labels.1 /0/@diagram/@childNodes.46/@labels.0 /0/@diagram/@childNodes.46/@labels.1 /0/@diagram/@childNodes.47/@labels.0 /0/@diagram/@childNodes.48/@labels.0 /0/@diagram/@childNodes.48/@labels.1 /0/@diagram/@childNodes.49/@labels.0 /0/@diagram/@childNodes.49/@labels.1 /0/@diagram/@childNodes.50/@labels.0 /0/@diagram/@childNodes.52/@labels.1 /0/@diagram/@childNodes.55/@labels.0 /0/@diagram/@childNodes.77/@labels.0 /0/@diagram/@childNodes.80/@labels.0 /0/@diagram/@childNodes.83/@labels.0 /0/@diagram/@childNodes.84/@labels.0 /0/@diagram/@childNodes.84/@labels.1 /0/@diagram/@childNodes.101/@labels.0 /0/@diagram/@childNodes.113/@labels.1 /0/@diagram/@childNodes.116/@labels.0 /0/@diagram/@childNodes.116/@labels.1 /0/@diagram/@childNodes.117/@labels.0 /0/@diagram/@childNodes.117/@labels.1 /0/@diagram/@childNodes.118/@labels.0 /0/@diagram/@childNodes.118/@labels.1 /0/@diagram/@childNodes.118/@labels.2 /0/@diagram/@childNodes.119/@labels.0 /0/@diagram/@childNodes.119/@labels.1 /0/@diagram/@childNodes.119/@labels.2 /0/@diagram/@childNodes.120/@labels.0 /0/@diagram/@childNodes.120/@labels.1 /0/@diagram/@childNodes.121/@labels.0 /0/@diagram/@childNodes.121/@labels.1 /0/@diagram/@childNodes.121/@labels.2 /0/@diagram/@childNodes.122/@labels.0 /0/@diagram/@childNodes.122/@labels.1 /0/@diagram/@childNodes.122/@labels.2 /0/@diagram/@childNodes.124/@labels.1 /0/@diagram/@childNodes.125/@labels.1 /0/@diagram/@childNodes.126/@labels.1 /0/@diagram/@childNodes.127/@labels.2 /0/@diagram/@childNodes.128/@labels.2 /0/@diagram/@childNodes.129/@labels.2 /0/@diagram/@childNodes.130/@labels.2 /0/@diagram/@childNodes.124/@labels.0 /0/@diagram/@childNodes.125/@labels.0 /0/@diagram/@childNodes.126/@labels.0 /0/@diagram/@childNodes.127/@labels.0 /0/@diagram/@childNodes.127/@labels.1 /0/@diagram/@childNodes.128/@labels.0 /0/@diagram/@childNodes.128/@labels.1 /0/@diagram/@childNodes.129/@labels.0 /0/@diagram/@childNodes.129/@labels.1 /0/@diagram/@childNodes.130/@labels.0 /0/@diagram/@childNodes.130/@labels.1 /0/@diagram/@childNodes.132/@labels.1 /0/@diagram/@childNodes.133/@labels.1 /0/@diagram/@childNodes.134/@labels.2 /0/@diagram/@childNodes.135/@labels.2 /0/@diagram/@childNodes.132/@labels.0 /0/@diagram/@childNodes.133/@labels.0 /0/@diagram/@childNodes.134/@labels.0 /0/@diagram/@childNodes.134/@labels.1 /0/@diagram/@childNodes.135/@labels.0 /0/@diagram/@childNodes.135/@labels.1 /0/@diagram/@childNodes.137/@labels.1 /0/@diagram/@childNodes.138/@labels.2 /0/@diagram/@childNodes.139/@labels.2 /0/@diagram/@childNodes.141/@labels.1 /0/@diagram/@childNodes.142/@labels.1 /0/@diagram/@childNodes.143/@labels.2 /0/@diagram/@childNodes.144/@labels.2 /0/@diagram/@childNodes.146/@labels.1 /0/@diagram/@childNodes.147/@labels.2 /0/@diagram/@childNodes.148/@labels.2 /0/@diagram/@childNodes.137/@labels.0 /0/@diagram/@childNodes.138/@labels.0 /0/@diagram/@childNodes.138/@labels.1 /0/@diagram/@childNodes.139/@labels.0 /0/@diagram/@childNodes.139/@labels.1 /0/@diagram/@childNodes.141/@labels.0 /0/@diagram/@childNodes.142/@labels.0 /0/@diagram/@childNodes.143/@labels.0 /0/@diagram/@childNodes.143/@labels.1 /0/@diagram/@childNodes.144/@labels.0 /0/@diagram/@childNodes.144/@labels.1 /0/@diagram/@childNodes.146/@labels.0 /0/@diagram/@childNodes.147/@labels.0 /0/@diagram/@childNodes.147/@labels.1 /0/@diagram/@childNodes.148/@labels.0 /0/@diagram/@childNodes.148/@labels.1 /0/@diagram/@childNodes.150/@labels.1 /0/@diagram/@childNodes.151/@labels.2 /0/@diagram/@childNodes.152/@labels.2 /0/@diagram/@childNodes.150/@labels.0 /0/@diagram/@childNodes.151/@labels.0 /0/@diagram/@childNodes.151/@labels.1 /0/@diagram/@childNodes.152/@labels.0 /0/@diagram/@childNodes.152/@labels.1 /0/@diagram/@childNodes.154/@labels.0 /0/@diagram/@childNodes.154/@labels.1 /0/@diagram/@childNodes.156/@labels.1 /0/@diagram/@childNodes.157/@labels.2 /0/@diagram/@childNodes.158/@labels.2 /0/@diagram/@childNodes.160/@labels.1 /0/@diagram/@childNodes.161/@labels.1 /0/@diagram/@childNodes.162/@labels.2 /0/@diagram/@childNodes.163/@labels.2 /0/@diagram/@childNodes.156/@labels.0 /0/@diagram/@childNodes.157/@labels.0 /0/@diagram/@childNodes.157/@labels.1 /0/@diagram/@childNodes.158/@labels.0 /0/@diagram/@childNodes.158/@labels.1 /0/@diagram/@childNodes.160/@labels.0 /0/@diagram/@childNodes.161/@labels.0 /0/@diagram/@childNodes.162/@labels.0 /0/@diagram/@childNodes.162/@labels.1 /0/@diagram/@childNodes.163/@labels.0 /0/@diagram/@childNodes.163/@labels.1 /0/@diagram/@childNodes.165/@labels.1 /0/@diagram/@childNodes.166/@labels.1 /0/@diagram/@childNodes.167/@labels.2 /0/@diagram/@childNodes.168/@labels.2 /0/@diagram/@childNodes.165/@labels.0 /0/@diagram/@childNodes.166/@labels.0 /0/@diagram/@childNodes.167/@labels.0 /0/@diagram/@childNodes.167/@labels.1 /0/@diagram/@childNodes.168/@labels.0 /0/@diagram/@childNodes.168/@labels.1 /0/@diagram/@childNodes.169/@labels.1 /0/@diagram/@childNodes.170/@labels.1 /0/@diagram/@childNodes.171/@labels.2 /0/@diagram/@childNodes.172/@labels.2 /0/@diagram/@childNodes.170/@labels.0 /0/@diagram/@childNodes.171/@labels.0 /0/@diagram/@childNodes.171/@labels.1 /0/@diagram/@childNodes.172/@labels.0 /0/@diagram/@childNodes.172/@labels.1 /0/@diagram/@childNodes.97/@labels.1 /0/@diagram/@childNodes.98/@labels.2 /0/@diagram/@childNodes.99/@labels.2 /0/@diagram/@childNodes.103/@labels.1 /0/@diagram/@childNodes.104/@labels.1 /0/@diagram/@childNodes.105/@labels.2 /0/@diagram/@childNodes.106/@labels.2 /0/@diagram/@childNodes.107/@labels.2 /0/@diagram/@childNodes.108/@labels.2 /0/@diagram/@childNodes.110/@labels.2 /0/@diagram/@childNodes.111/@labels.2 /0/@diagram/@childNodes.112/@labels.2 /0/@diagram/@childNodes.97/@labels.0 /0/@diagram/@childNodes.98/@labels.0 /0/@diagram/@childNodes.98/@labels.1 /0/@diagram/@childNodes.99/@labels.0 /0/@diagram/@childNodes.99/@labels.1 /0/@diagram/@childNodes.103/@labels.0 /0/@diagram/@childNodes.104/@labels.0 /0/@diagram/@childNodes.105/@labels.0 /0/@diagram/@childNodes.105/@labels.1 /0/@diagram/@childNodes.106/@labels.0 /0/@diagram/@childNodes.106/@labels.1 /0/@diagram/@childNodes.107/@labels.0 /0/@diagram/@childNodes.107/@labels.1 /0/@diagram/@childNodes.108/@labels.0 /0/@diagram/@childNodes.108/@labels.1 /0/@diagram/@childNodes.110/@labels.0 /0/@diagram/@childNodes.110/@labels.1 /0/@diagram/@childNodes.111/@labels.0 /0/@diagram/@childNodes.111/@labels.1 /0/@diagram/@childNodes.112/@labels.0 /0/@diagram/@childNodes.112/@labels.1 /0/@diagram/@childNodes.86/@labels.1 /0/@diagram/@childNodes.87/@labels.1 /0/@diagram/@childNodes.88/@labels.1 /0/@diagram/@childNodes.89/@labels.2 /0/@diagram/@childNodes.90/@labels.2 /0/@diagram/@childNodes.91/@labels.2 /0/@diagram/@childNodes.92/@labels.2 /0/@diagram/@childNodes.93/@labels.2 /0/@diagram/@childNodes.94/@labels.2 /0/@diagram/@childNodes.95/@labels.1 /0/@diagram/@childNodes.86/@labels.0 /0/@diagram/@childNodes.87/@labels.0 /0/@diagram/@childNodes.88/@labels.0 /0/@diagram/@childNodes.89/@labels.0 /0/@diagram/@childNodes.89/@labels.1 /0/@diagram/@childNodes.90/@labels.0 /0/@diagram/@childNodes.90/@labels.1 /0/@diagram/@childNodes.91/@labels.0 /0/@diagram/@childNodes.91/@labels.1 /0/@diagram/@childNodes.92/@labels.0 /0/@diagram/@childNodes.92/@labels.1 /0/@diagram/@childNodes.93/@labels.0 /0/@diagram/@childNodes.93/@labels.1 /0/@diagram/@childNodes.94/@labels.0 /0/@diagram/@childNodes.94/@labels.1 /0/@diagram/@childNodes.95/@labels.0 /0/@diagram/@childNodes.61/@labels.1 /0/@diagram/@childNodes.62/@labels.2 /0/@diagram/@childNodes.63/@labels.2 /0/@diagram/@childNodes.64/@labels.1 /0/@diagram/@childNodes.65/@labels.1 /0/@diagram/@childNodes.66/@labels.1 /0/@diagram/@childNodes.70/@labels.2 /0/@diagram/@childNodes.71/@labels.2 /0/@diagram/@childNodes.72/@labels.1 /0/@diagram/@childNodes.61/@labels.0 /0/@diagram/@childNodes.62/@labels.0 /0/@diagram/@childNodes.62/@labels.1 /0/@diagram/@childNodes.63/@labels.0 /0/@diagram/@childNodes.63/@labels.1 /0/@diagram/@childNodes.64/@labels.0 /0/@diagram/@childNodes.65/@labels.0 /0/@diagram/@childNodes.66/@labels.0 /0/@diagram/@childNodes.70/@labels.0 /0/@diagram/@childNodes.70/@labels.1 /0/@diagram/@childNodes.71/@labels.0 /0/@diagram/@childNodes.71/@labels.1 /0/@diagram/@childNodes.72/@labels.0 /0/@diagram/@childNodes.69/@labels.1 /0/@diagram/@childNodes.69/@labels.0 /0/@diagram/@childNodes.174/@labels.1 /0/@diagram/@childNodes.175/@labels.2 /0/@diagram/@childNodes.176/@labels.2 /0/@diagram/@childNodes.177/@labels.1 /0/@diagram/@childNodes.174/@labels.0 /0/@diagram/@childNodes.175/@labels.0 /0/@diagram/@childNodes.175/@labels.1 /0/@diagram/@childNodes.176/@labels.0 /0/@diagram/@childNodes.176/@labels.1 /0/@diagram/@childNodes.177/@labels.0"/>
     <extensionNodes
         xsi:type="papyrusgmfgenextension:GenerateUsingElementTypeCreationCommand"/>
   </papyrusgmfgenextension:PapyrusExtensionRootNode>

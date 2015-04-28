@@ -39,6 +39,7 @@ import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IStaticContentProvider;
+import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseEvent;
 import org.eclipse.swt.events.MouseListener;
@@ -59,10 +60,10 @@ import org.eclipse.swt.widgets.Widget;
  *
  * @author Vincent Lorenzo
  * 
- * Duplicated code from {@link ReferenceDialog}, replacing CLabel by {@link StyledTextStringEditor}
+ *         Duplicated code from {@link ReferenceDialog}, replacing CLabel by {@link StyledTextStringEditor}
  *
  */
-public class StyledTextReferenceDialog extends AbstractValueEditor implements SelectionListener {
+public class StyledTextReferenceDialog extends AbstractReferenceDialog implements SelectionListener {
 
 	/**
 	 * The styled text displaying the current value
@@ -167,7 +168,22 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	 *            The style of the styled text.
 	 */
 	public StyledTextReferenceDialog(final Composite parent, final int style) {
+		this(parent, style, null);
+	}
+
+	/**
+	 * Constructs a new ReferenceDialog in the given parent Composite. The style will be applied to the styled text displaying the current value. This constructor manage the value validator.
+	 *
+	 * @param parent
+	 *            The parent composite.
+	 * @param style
+	 *            The style of the styled text.
+	 * @param targetValidator
+	 *            The validator used for the styled text.
+	 */
+	public StyledTextReferenceDialog(final Composite parent, final int style, final AbstractValidator targetValidator) {
 		super(parent, style);
+		this.targetValidator = targetValidator;
 		GridData gridData = getDefaultLayoutData();
 
 		styledTextStringEditor = createStyledTextStringEditor(this, null, factory.getBorderStyle() | style);
@@ -215,7 +231,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	 * @return The created {@link StyledTextStringEditor}.
 	 */
 	protected StyledTextStringEditor createStyledTextStringEditor(final Composite parent, final String initialValue, final int style) {
-		StyledTextStringEditor editor = new StyledTextStringEditor(parent, style);
+		StyledTextStringEditor editor = new StyledTextStringEditor(parent, style, targetValidator);
 		editor.setValue(initialValue);
 		return editor;
 	}
@@ -351,12 +367,13 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	/**
 	 * Updates the displayed label for the current value
 	 */
-	protected void updateLabel() {
+	public void updateLabel() {
 		if (binding != null) {
 			binding.updateModelToTarget();
-
 		} else {
-			styledTextStringEditor.setValue(labelProvider.getText(getValue()));
+			if (null != labelProvider) {
+				styledTextStringEditor.setValue(labelProvider.getText(getValue()));
+			}
 		}
 	}
 
@@ -414,10 +431,10 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	public Object getValue() {
 		if (modelProperty != null) {
 			Object modelPropertyValue = modelProperty.getValue();
-			if(modelPropertyValue == null){
+			if (modelPropertyValue == null) {
 				EObject contextElement = getContextElement() != null && getContextElement() instanceof EObject ? (EObject) getContextElement() : null;
-				if(modelProperty.getValueType() instanceof EStructuralFeature){
-					return contextElement.eGet((EStructuralFeature)modelProperty.getValueType());					
+				if (modelProperty.getValueType() instanceof EStructuralFeature) {
+					return contextElement.eGet((EStructuralFeature) modelProperty.getValueType());
 				}
 			}
 			return modelPropertyValue;
@@ -451,14 +468,6 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	}
 
 	/**
-	 * {@inheritDoc}
-	 */
-	@Override
-	protected void doBinding() {
-		super.doBinding();
-	}
-
-	/**
 	 * Set the initial selection.
 	 * 
 	 * @param initialValues
@@ -478,7 +487,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 		setWidgetObservable(createWidgetObservable(modelProperty));
 		super.setModelObservable(modelProperty);
 		this.styledTextStringEditor.setModelObservable(modelProperty);
-		
+
 		updateControls();
 	}
 
@@ -547,7 +556,7 @@ public class StyledTextReferenceDialog extends AbstractValueEditor implements Se
 	/**
 	 * Updates the buttons' status
 	 */
-	protected void updateControls() {
+	public void updateControls() {
 		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
 		setExclusion(editInstanceButton, exclude);

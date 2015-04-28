@@ -45,12 +45,12 @@ public class ValueSpecificationXtextDirectEditorConfiguration extends DefaultXte
 	/**
 	 * The xtext string value.
 	 */
-	private String xtextStringValue = ""; //$NON-NLS-1$
+	protected String xtextStringValue = ""; //$NON-NLS-1$
 
 	/**
 	 * The structural feature to edit.
 	 */
-	private EStructuralFeature structuralFeature = null;
+	protected EStructuralFeature structuralFeature = null;
 
 	/**
 	 * {@inheritDoc}

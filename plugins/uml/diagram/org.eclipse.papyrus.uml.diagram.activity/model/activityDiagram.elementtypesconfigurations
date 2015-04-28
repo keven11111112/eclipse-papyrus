@@ -112,6 +112,10 @@
     <iconEntry xmi:id="_x8Hbw2aNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/ControlFlow.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ControlFlow</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_Wjfh8OGmEeSvI9YIOwR8Lw" name="Create Link Object Action" identifier="org.eclipse.papyrus.uml.diagram.activity.CreateLinkObjectAction_3198" hint="3198">
+    <iconEntry xmi:id="_Wjfh8eGmEeSvI9YIOwR8Lw" iconPath="/icons/full/obj16/CreateLinkObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.CreateLinkObjectAction</specializedTypesID>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_x8HblGaNEeSyJIsxLao1Pw" name="Create Object Action" identifier="org.eclipse.papyrus.uml.diagram.activity.CreateObjectAction_3086" hint="3086">
     <iconEntry xmi:id="_x8HblWaNEeSyJIsxLao1Pw" iconPath="/icons/full/obj16/CreateObjectAction.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.CreateObjectAction</specializedTypesID>
@@ -684,6 +688,10 @@
     <iconEntry xmi:id="_rB1DAb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_gx2kouGsEeSijulVpZaadA" name="Output Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.OutputPin_3202" hint="3202">
+    <iconEntry xmi:id="_gx2ko-GsEeSijulVpZaadA" iconPath="/icons/full/obj16/OutputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.OutputPin</specializedTypesID>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB2RIL02EeSUmeqld4lnBQ" name="Input Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3143" hint="3143">
     <iconEntry xmi:id="_rB2RIb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
@@ -704,12 +712,24 @@
     <iconEntry xmi:id="_rB57gb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_gx19kOGsEeSijulVpZaadA" name="Input Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.InputPin_3199" hint="3199">
+    <iconEntry xmi:id="_gx19keGsEeSijulVpZaadA" iconPath="/icons/full/obj16/InputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.InputPin</specializedTypesID>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB6ikL02EeSUmeqld4lnBQ" name="Value Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3157" hint="3157">
     <iconEntry xmi:id="_rB6ikb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
   </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_gx19kuGsEeSijulVpZaadA" name="Value Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ValuePin_3200" hint="3200">
+    <iconEntry xmi:id="_gx19k-GsEeSijulVpZaadA" iconPath="/icons/full/obj16/ValuePin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ValuePin</specializedTypesID>
+  </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB7wsL02EeSUmeqld4lnBQ" name="Action Input Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3170" hint="3170">
     <iconEntry xmi:id="_rB7wsb02EeSUmeqld4lnBQ" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
+    <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
+  </elementTypeConfigurations>
+  <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_gx2koOGsEeSijulVpZaadA" name="Action Input Pin" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3201" hint="3201">
+    <iconEntry xmi:id="_gx2koeGsEeSijulVpZaadA" iconPath="/icons/full/obj16/ActionInputPin.gif" bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.ActionInputPin</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_rB8-0L02EeSUmeqld4lnBQ" name="Action Local Precondition" identifier="org.eclipse.papyrus.uml.diagram.activity.ActionLocalPrecondition_4001" hint="4001">

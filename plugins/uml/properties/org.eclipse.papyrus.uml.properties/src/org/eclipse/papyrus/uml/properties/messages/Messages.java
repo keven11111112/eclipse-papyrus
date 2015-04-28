@@ -40,6 +40,18 @@ public class Messages extends NLS {
 	public static String ProfileApplicationEditor_WaitMessage;
 
 	public static String ProfileApplicationEditor_WaitMessageTitle;
+	
+	/** The multiplicity Editor string text label. */
+	public static String MultiplicityPreference_MultiplicityEditor;
+	
+	/** The simple mode description. */
+	public static String MultiplicityPreference_SimpleModeDescription;
+	
+	/** The advanced mode description. */
+	public static String MultiplicityPreference_AdvancedModeDescription;
+	
+	/** The multiplicity Editor string text label. */
+	public static String MultiplicityPreference_fieldEditorMode;
 
 	static {
 		// initialize resource bundle

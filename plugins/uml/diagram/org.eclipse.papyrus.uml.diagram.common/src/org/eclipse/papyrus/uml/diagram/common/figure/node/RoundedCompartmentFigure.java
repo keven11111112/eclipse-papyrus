@@ -307,7 +307,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 			// Draw shadow
 			if (isShadow()) {
-
 				// Set the transparency for shadow
 				setShadowTransparency(graphics, true);
 
@@ -479,15 +478,12 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			if (transparency > 100) {
 				transparency = 100;
 			}
-			setTransparency((int) (transparency));
-			applyTransparency(graphics);
+			graphics.setAlpha(255 - transparency * 255 / 100);
 		} else {
 			// Reset Shadow transparency
-			setTransparency(cachedTransparency);
-			applyTransparency(graphics);
+			graphics.setAlpha(255 - cachedTransparency * 255 / 100);
 		}
 	}
-
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#setShadow(boolean)

@@ -33,8 +33,8 @@ import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.uml.diagram.wizards.AbstractNewModelStorageProvider;
-import org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard;
-import org.eclipse.papyrus.uml.diagram.wizards.InitModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.InitModelWizard;
 import org.eclipse.swt.widgets.Composite;
 
 import com.google.common.base.Supplier;

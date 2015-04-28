@@ -14,7 +14,7 @@
          point="org.eclipse.ui.navigator.navigatorContent">
       <commonWizard
             type="new"
-            wizardId="org.eclipse.papyrus.uml.diagram.wizards.1createproject">
+            wizardId="org.eclipse.papyrus.uml.diagram.wizards.createproject">
          <enablement>
             <with
                   variable="activeWorkbenchWindow.activePerspective">

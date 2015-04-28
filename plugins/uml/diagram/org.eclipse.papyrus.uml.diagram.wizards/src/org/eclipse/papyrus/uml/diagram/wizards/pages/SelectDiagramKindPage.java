@@ -13,39 +13,29 @@
 package org.eclipse.papyrus.uml.diagram.wizards.pages;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
-import org.eclipse.jface.viewers.CheckboxTableViewer;
 import org.eclipse.jface.viewers.IBaseLabelProvider;
-import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.WizardPage;
-import org.eclipse.papyrus.commands.CreationCommandDescriptor;
 import org.eclipse.papyrus.commands.CreationCommandRegistry;
 import org.eclipse.papyrus.commands.ICreationCommandRegistry;
 import org.eclipse.papyrus.infra.viewpoints.configuration.Category;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
-import org.eclipse.papyrus.uml.diagram.wizards.Messages;
-import org.eclipse.papyrus.uml.diagram.wizards.SettingsHelper;
-import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindContentProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindComposite;
 import org.eclipse.papyrus.uml.diagram.wizards.kind.DiagramKindLabelProvider;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.papyrus.uml.diagram.wizards.template.ModelTemplateDescription;
 import org.eclipse.papyrus.uml.diagram.wizards.template.SelectModelTemplateComposite;
+import org.eclipse.papyrus.uml.diagram.wizards.widget.FileChooser;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.ModifyEvent;
 import org.eclipse.swt.events.ModifyListener;
-import org.eclipse.swt.events.SelectionEvent;
-import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.layout.GridData;
 import org.eclipse.swt.layout.GridLayout;
-import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.Composite;
 import org.eclipse.swt.widgets.Group;
-import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.Text;
+import org.eclipse.ui.PlatformUI;
 
 /**
  * This WizardPage to select the kind of Papyrus Diagram. List all kind of diagrams registered with
@@ -62,17 +52,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	/** The diagram name text field. */
 	private Text nameText;
 
-	/** The diagram kind table viewer. */
-	private CheckboxTableViewer diagramKindTableViewer;
-
-	/** The my settings helper. */
-	private SettingsHelper mySettingsHelper;
-
 	/** The select template composite. */
 	private SelectModelTemplateComposite selectTemplateComposite;
 
-	/** The remember current selection. */
-	private Button rememberCurrentSelection;
+	/** the select diagram Kind composite */
+	private DiagramKindComposite diagramKindComposite;
 
 	/** The my category provider. */
 	private final CategoryProvider myCategoryProvider;
@@ -82,6 +66,8 @@ public class SelectDiagramKindPage extends WizardPage {
 
 	/** The my creation command registry. */
 	private final ICreationCommandRegistry myCreationCommandRegistry;
+
+	private FileChooser filechooser;
 
 	/** The Constant DEFAULT_CREATION_COMMAND_REGISTRY. */
 	public static final ICreationCommandRegistry DEFAULT_CREATION_COMMAND_REGISTRY = CreationCommandRegistry.getInstance(org.eclipse.papyrus.infra.core.Activator.PLUGIN_ID);
@@ -121,48 +107,52 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @param parent
 	 *            the parent {@inheritDoc}
 	 */
+	@Override
 	public void createControl(Composite parent) {
-		Composite plate = new Composite(parent, SWT.NONE);
-		plate.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
-		GridLayout gridLayout = new GridLayout(1, false);
-		gridLayout.marginWidth = 10;
-		plate.setLayout(gridLayout);
-		setControl(plate);
-
+		Composite pageComposite = new Composite(parent, SWT.NONE);
+		pageComposite.setLayout(new GridLayout());
+		pageComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
 		String[] categories = getDiagramCategories();
 
-		createNameForm(plate);
+		Composite nameFormComposite = new Composite(pageComposite, SWT.NONE);
+		nameFormComposite.setLayout(new GridLayout());
+		nameFormComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		createNameForm(nameFormComposite);
 
-		createDiagramKindForm(plate);
-		diagramKindTableViewer.setInput(categories);
+		Composite diagramKindComposite = new Composite(pageComposite, SWT.NONE);
+		diagramKindComposite.setLayout(new GridLayout());
+		diagramKindComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true));
+		createDiagramKindForm(diagramKindComposite);
+		this.diagramKindComposite.setInput(categories);
 
-		createModelTemplateComposite(plate);
-
-		createRememberCurrentSelectionForm(plate);
-
+		Composite modelTemplateComposite = new Composite(pageComposite, SWT.NONE);
+		modelTemplateComposite.setLayout(new GridLayout());
+		modelTemplateComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		createModelTemplateComposite(modelTemplateComposite);
 		fillInTables(categories);
 
-	}
+		Composite profileChooserComposite = new Composite(pageComposite, SWT.NONE);
+		profileChooserComposite.setLayout(new GridLayout());
+		profileChooserComposite.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
+		createProfileFileChooser(profileChooserComposite);
 
-	/*
-	 * (non-Javadoc)
-	 *
-	 * @see org.eclipse.jface.wizard.WizardPage#setWizard(org.eclipse.jface.wizard.IWizard)
-	 */
-	@Override
-	public void setWizard(IWizard newWizard) {
-		super.setWizard(newWizard);
-		setSettingsHelper(new SettingsHelper(getDialogSettings()));
+		setControl(pageComposite);
 	}
 
 	/**
-	 * Sets the settings helper.
-	 *
-	 * @param helper
-	 *            the new settings helper
+	 * Create the filechooser composite
+	 * 
+	 * @param parent
 	 */
-	protected void setSettingsHelper(SettingsHelper helper) {
-		mySettingsHelper = helper;
+	private void createProfileFileChooser(Composite parent) {
+		Group group = createGroup(parent, Messages.SelectDiagramKindPage_0);
+		filechooser = new FileChooser(group, false);
+		String[] filter = { "profile.uml" }; //$NON-NLS-1$
+		filechooser.setFilterExtensions(filter);
+	}
+
+	public String getProfileURI() {
+		return filechooser.getFilePath();
 	}
 
 	/**
@@ -194,10 +184,8 @@ public class SelectDiagramKindPage extends WizardPage {
 		if (categories == null || categories.length == 0) {
 			return;
 		}
-		diagramKindTableViewer.setInput(categories);
+		diagramKindComposite.setInput(categories);
 		selectTemplateComposite.setInput(categories);
-		selectDefaultDiagramKinds(categories);
-		selectDefaultDiagramTemplates(categories);
 	}
 
 
@@ -252,7 +240,11 @@ public class SelectDiagramKindPage extends WizardPage {
 	 *
 	 * @return the new diagram name
 	 */
-	public String getDiagramName() {
+	public List<String> getDiagramName() {
+		return diagramKindComposite.getDiagramName();
+	}
+
+	public String getRootElementName() {
 		return nameText.getText();
 	}
 
@@ -305,42 +297,7 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private void createDiagramKindForm(Composite composite) {
 		Group group = createGroup(composite, Messages.SelectDiagramKindPage_select_kind_group);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		group.setData(data);
-
-		final Table diagramKindTable = new Table(group, SWT.NO_BACKGROUND | SWT.CHECK);
-		diagramKindTable.setFont(group.getFont());
-		diagramKindTable.setBackground(group.getBackground());
-
-		GridLayout layout = new GridLayout(1, false);
-		layout.marginHeight = 5;
-		layout.marginWidth = 5;
-		diagramKindTable.setLayout(layout);
-
-		GridData data2 = new GridData(SWT.FILL, SWT.FILL, true, true);
-		diagramKindTable.setLayoutData(data2);
-
-		diagramKindTable.addSelectionListener(new SelectionListener() {
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void widgetSelected(SelectionEvent e) {
-				if (e.detail == SWT.CHECK) {
-					validatePage();
-				}
-			}
-
-			/**
-			 * {@inheritDoc}
-			 */
-			public void widgetDefaultSelected(SelectionEvent e) {
-				// does nothing
-			}
-		});
-		diagramKindTableViewer = new CheckboxTableViewer(diagramKindTable);
-		diagramKindTableViewer.setContentProvider(new DiagramKindContentProvider());
-		diagramKindTableViewer.setLabelProvider(createDiagramKindLabelProvider());
+		diagramKindComposite = new DiagramKindComposite(group);
 	}
 
 	/**
@@ -365,9 +322,9 @@ public class SelectDiagramKindPage extends WizardPage {
 	private static Group createGroup(Composite parent, String name) {
 		Group group = new Group(parent, SWT.NONE);
 		group.setText(name);
-		GridLayout layout = new GridLayout(1, false);
-		layout.marginHeight = 5;
-		layout.marginWidth = 5;
+		GridLayout layout = new GridLayout(1, true);
+		// layout.marginHeight = 5;
+		// layout.marginWidth = 5;
 		group.setLayout(layout);
 		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
 		group.setLayoutData(data);
@@ -382,40 +339,18 @@ public class SelectDiagramKindPage extends WizardPage {
 	 */
 	private void createNameForm(Composite composite) {
 		Group group = createGroup(composite, Messages.SelectDiagramKindPage_diagram_name_group);
-
 		nameText = new Text(group, SWT.BORDER);
-		GridData data = new GridData(GridData.FILL_HORIZONTAL);
-		nameText.setLayoutData(data);
+		nameText.setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, false));
 		nameText.setText(Messages.SelectDiagramKindPage_default_diagram_name);
 		nameText.addModifyListener(new ModifyListener() {
 
+			@Override
 			public void modifyText(ModifyEvent e) {
 				validatePage();
 			}
 		});
 	}
 
-	/**
-	 * Creates the remember current selection form.
-	 *
-	 * @param composite
-	 *            the composite
-	 */
-	private void createRememberCurrentSelectionForm(Composite composite) {
-		Composite plate = new Composite(composite, SWT.NONE);
-		GridLayout layout = new GridLayout(1, false);
-		layout.marginHeight = 5;
-		layout.marginWidth = 5;
-		plate.setLayout(layout);
-		GridData data = new GridData(SWT.FILL, SWT.FILL, true, true);
-		plate.setLayoutData(data);
-
-		rememberCurrentSelection = new Button(plate, SWT.CHECK);
-		rememberCurrentSelection.setText(Messages.SelectDiagramKindPage_remember_current_selection_text);
-		rememberCurrentSelection.setToolTipText(Messages.SelectDiagramKindPage_remember_current_selection_tooltip);
-
-		rememberCurrentSelection.setSelection(mySettingsHelper.rememberCurrentSelection(getDialogSettings()));
-	}
 
 	/**
 	 * Validate page.
@@ -423,36 +358,10 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return true, if successful
 	 */
 	private boolean validatePage() {
-		if (getDiagramName() == null || getDiagramName().length() == 0) {
-			updateStatus(Messages.SelectDiagramKindPage_diagram_name_is_empty);
+		if (diagramKindComposite.getDiagramName().size() == 0) {
 			return false;
 		}
-		// if(getCreationCommands().isEmpty()) {
-		// updateStatus("At least one diagram kind should be selected.");
-		// return false;
-		// }
-		updateStatus(null);
 		return true;
-	}
-
-	/**
-	 * Update page status.
-	 *
-	 * @param message
-	 *            is the error message.
-	 */
-	private void updateStatus(String message) {
-		setErrorMessage(message);
-		setPageComplete(message == null);
-	}
-
-	/**
-	 * Checks if is remember current selection.
-	 *
-	 * @return true, if is remember current selection
-	 */
-	public boolean isRememberCurrentSelection() {
-		return rememberCurrentSelection.getSelection();
 	}
 
 	/**
@@ -472,67 +381,9 @@ public class SelectDiagramKindPage extends WizardPage {
 	 * @return the selected diagram kind descriptors
 	 */
 	protected ViewPrototype[] getSelectedPrototypes() {
-		Object[] checked = diagramKindTableViewer.getCheckedElements();
-		ViewPrototype[] result = Arrays.asList(checked).toArray(new ViewPrototype[checked.length]);
+		List<ViewPrototype> checked = diagramKindComposite.getCheckElement();
+		ViewPrototype[] result = checked.toArray(new ViewPrototype[checked.size()]);
 		return result;
-	}
-
-	/**
-	 * Select default diagram kinds.
-	 *
-	 * @param categories
-	 *            the categories
-	 */
-	private void selectDefaultDiagramKinds(String[] categories) {
-		Set<String> kinds = new HashSet<String>();
-		for (String category : categories) {
-			kinds.addAll(mySettingsHelper.getDefaultDiagramKinds(category));
-		}
-		CreationCommandDescriptor[] elementsToCheck = findCreationCommandDescriptorsFor(kinds);
-		diagramKindTableViewer.setCheckedElements(elementsToCheck);
-	}
-
-	/**
-	 * Find creation command descriptors for.
-	 *
-	 * @param kinds
-	 *            the kinds
-	 * @return the creation command descriptor[]
-	 */
-	protected CreationCommandDescriptor[] findCreationCommandDescriptorsFor(Collection<String> kinds) {
-		List<CreationCommandDescriptor> result = new ArrayList<CreationCommandDescriptor>();
-		Collection<CreationCommandDescriptor> availableDescriptors = getCreationCommandRegistry().getCommandDescriptors();
-		for (CreationCommandDescriptor desc : availableDescriptors) {
-			if (kinds.contains(desc.getCommandId())) {
-				result.add(desc);
-			}
-		}
-		return result.toArray(new CreationCommandDescriptor[result.size()]);
-	}
-
-	/**
-	 * Select default diagram templates.
-	 *
-	 * @param categories
-	 *            the categories
-	 */
-	private void selectDefaultDiagramTemplates(String[] categories) {
-		List<String> defaultTemplates = new ArrayList<String>();
-		List<Object> availableTemplates = new ArrayList<Object>();
-		for (String category : categories) {
-			defaultTemplates.addAll(mySettingsHelper.getDefaultTemplates(category));
-		}
-
-		availableTemplates.addAll(Arrays.asList(selectTemplateComposite.getContentProvider().getElements(categories)));
-
-		for (Object next : availableTemplates) {
-			ModelTemplateDescription desc = (ModelTemplateDescription) next;
-
-			if (defaultTemplates.contains(desc.getUml_path())) {
-				selectTemplateComposite.selectElement(desc);
-				return;
-			}
-		}
 	}
 
 
@@ -556,6 +407,16 @@ public class SelectDiagramKindPage extends WizardPage {
 		 * @return the current categories
 		 */
 		String[] getCurrentCategories();
+	}
+
+	public List<ModelTemplateDescription> getTemplateTransfo() {
+		return selectTemplateComposite.getTemplateTransfoPath();
+	}
+
+	@Override
+	public void performHelp() {
+		PlatformUI.getWorkbench().getHelpSystem().displayHelp("org.eclipse.papyrus.uml.diagram.wizards.Kind"); //$NON-NLS-1$
+
 	}
 
 }

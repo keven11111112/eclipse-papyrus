@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8' ?>
 <toc label="Search" link_to="../org.eclipse.papyrus.infra.doc/toc.xml#PapyrusDocUser">
-   <topic href="target/generated-eclipse-help/properties-view.html" label="Properties view customization">
+   <topic href="target/generated-eclipse-help/properties-view.html" label="Properties view">
       <link toc="target/generated-eclipse-help/properties-view-toc.xml"/>
       <anchor id="properties-view"/>
    </topic>	

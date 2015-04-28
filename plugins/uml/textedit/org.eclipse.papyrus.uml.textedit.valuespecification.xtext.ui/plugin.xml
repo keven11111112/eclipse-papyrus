@@ -354,6 +354,32 @@
                name="Lowest">
          </Priority>          
        </DirectEditor>
+       <DirectEditor
+             additionalConstraint="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint.MultiplicityLowerValueDirectEditorConstraint"
+             contributor="CEA LIST"
+             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif"
+             language="Advanced Value Specification Textual Editor"
+             objectToEdit="org.eclipse.uml2.uml.ValueSpecification">
+          <popupeditor
+                editorConfiguration="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.MultiplicityLowerValueSpecificationXtextDirectEditorConfiguration">
+          </popupeditor>
+         <Priority
+               name="Low">
+         </Priority>          
+       </DirectEditor>
+       <DirectEditor
+             additionalConstraint="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.constraint.MultiplicityUpperValueDirectEditorConstraint"
+             contributor="CEA LIST"
+             icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecification.gif"
+             language="Advanced Value Specification Textual Editor"
+             objectToEdit="org.eclipse.uml2.uml.ValueSpecification">
+          <popupeditor
+                editorConfiguration="org.eclipse.papyrus.uml.textedit.valuespecification.xtext.ui.contribution.MultiplicityUpperValueSpecificationXtextDirectEditorConfiguration">
+          </popupeditor>
+         <Priority
+               name="Low">
+         </Priority>          
+       </DirectEditor>
     </extension>
 
 </plugin>

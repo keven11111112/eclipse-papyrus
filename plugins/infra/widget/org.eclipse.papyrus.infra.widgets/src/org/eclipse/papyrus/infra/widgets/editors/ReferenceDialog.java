@@ -35,6 +35,7 @@ import org.eclipse.papyrus.infra.widgets.Activator;
 import org.eclipse.papyrus.infra.widgets.creation.ReferenceValueFactory;
 import org.eclipse.papyrus.infra.widgets.databinding.CLabelObservableValue;
 import org.eclipse.papyrus.infra.widgets.databinding.ReferenceDialogObservableValue;
+import org.eclipse.papyrus.infra.widgets.databinding.StyledTextReferenceDialogObservableValue;
 import org.eclipse.papyrus.infra.widgets.messages.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.EncapsulatedContentProvider;
 import org.eclipse.papyrus.infra.widgets.providers.IAdaptableContentProvider;
@@ -61,7 +62,7 @@ import org.eclipse.swt.widgets.Widget;
  * @author Camille Letavernier
  *
  */
-public class ReferenceDialog extends AbstractValueEditor implements SelectionListener {
+public class ReferenceDialog extends AbstractReferenceDialog implements SelectionListener {
 
 	/**
 	 * The CLabel displaying the current value
@@ -301,13 +302,15 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	/**
 	 * Updates the displayed label for the current value
 	 */
-	protected void updateLabel() {
+	public void updateLabel() {
 		if (binding != null) {
 			binding.updateModelToTarget();
 
 		} else {
-			currentValueLabel.setImage(labelProvider.getImage(getValue()));
-			currentValueLabel.setText(labelProvider.getText(getValue()));
+			if(null != labelProvider){
+				currentValueLabel.setImage(labelProvider.getImage(getValue()));
+				currentValueLabel.setText(labelProvider.getText(getValue()));
+			}
 		}
 	}
 
@@ -408,9 +411,20 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 
 	@Override
 	public void setModelObservable(IObservableValue modelProperty) {
-		setWidgetObservable(new ReferenceDialogObservableValue(this, this.currentValueLabel, modelProperty, labelProvider));
+		setWidgetObservable(createWidgetObservable(modelProperty));
 		super.setModelObservable(modelProperty);
 		updateControls();
+	}
+
+	/**
+	 * This allow to create the widget observable value.
+	 * 
+	 * @param modelProperty
+	 *            The current observable value.
+	 * @return The created {@link StyledTextReferenceDialogObservableValue}.
+	 */
+	protected IObservableValue createWidgetObservable(final IObservableValue modelProperty) {
+		return new ReferenceDialogObservableValue(this, this.currentValueLabel, modelProperty, labelProvider);
 	}
 
 	@Override
@@ -446,7 +460,7 @@ public class ReferenceDialog extends AbstractValueEditor implements SelectionLis
 	/**
 	 * Updates the buttons' status
 	 */
-	protected void updateControls() {
+	public void updateControls() {
 		// Check if the edit & create buttons should be displayed
 		boolean exclude = valueFactory == null || !valueFactory.canCreateObject();
 		setExclusion(editInstanceButton, exclude);

@@ -21,9 +21,9 @@ import org.eclipse.core.runtime.Path;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.uml.diagram.wizards.Activator;
-import org.eclipse.papyrus.uml.diagram.wizards.Messages;
+import org.eclipse.papyrus.uml.diagram.wizards.messages.Messages;
 import org.eclipse.swt.widgets.Composite;
+import org.eclipse.ui.PlatformUI;
 import org.eclipse.ui.dialogs.WizardNewFileCreationPage;
 
 /**
@@ -80,8 +80,14 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	public void createControl(Composite parent) {
 		super.createControl(parent);
-		setFileName(getUniqueFileName(getContainerFullPath(), getFileName(), getFileExtension()));
+		String filename = getFileName();
+		if(filename.contains("%20")) {
+			filename = filename.replaceAll("%20", " ");
+		}
+		setFileName(getUniqueFileName(getContainerFullPath(), filename, getFileExtension()));
 		setPageComplete(validatePage());
+
+
 	}
 
 	/**
@@ -95,26 +101,27 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 		String currentExtension = getFileExtension();
 		if (!currentExtension.equals(newExtension)) {
 
-			String oldFileName = getFileName();
-			String newFileName = NewModelFilePage.getUniqueFileName(getContainerFullPath(), getFileName(), newExtension);
+			//			String oldFileName = getFileName();
+			String newFileName = NewModelFilePage.getUniqueFileName(getContainerFullPath(), getFileName().replace(currentExtension, ""), newExtension);
 
 			setFileName(newFileName);
 			setFileExtension(newExtension);
 
-			String message1 = Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
-			String message2 = NLS.bind(Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
-			String message = message1 + message2;
-			Status resultStatus = new Status(IStatus.INFO, Activator.PLUGIN_ID, message);
-
-			String errorMessage = getErrorMessage();
-			if (errorMessage != null) {
-				resultStatus = new Status(IStatus.ERROR, Activator.PLUGIN_ID, errorMessage);
-			}
-			return resultStatus;
+			//			String message1 = Messages.NewModelFilePage_new_diagram_category_needs_specific_extension;
+			//			String message2 = Messages.bind(Messages.NewModelFilePage_diagram_file_was_renamed, oldFileName, newFileName);
+			//			String message = message1 + message2;
+			//			Status resultStatus = new Status(Status.INFO, Activator.PLUGIN_ID, message);
+			//
+			//			String errorMessage = getErrorMessage();
+			//			if(errorMessage != null) {
+			//				resultStatus = new Status(Status.ERROR, Activator.PLUGIN_ID, errorMessage);
+			//			}
+			//			return resultStatus;
 		}
 		return Status.OK_STATUS;
 	}
 
+	@Deprecated
 	public IFile createFileHandle() {
 		IPath containerFullPath = getContainerFullPath();
 		String fileName = getFileName();
@@ -145,8 +152,8 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 			fileName = DEFAULT_NAME;
 		}
 
-		if (fileName.contains(".")) { //$NON-NLS-1$
-			fileName = fileName.substring(0, fileName.indexOf(".")); //$NON-NLS-1$
+		if(fileName.contains(".")) { //$NON-NLS-1$
+			fileName = fileName.substring(0, fileName.lastIndexOf(".")); //$NON-NLS-1$
 		}
 
 		IPath filePath = containerFullPath.append(fileName);
@@ -178,6 +185,12 @@ public class NewModelFilePage extends WizardNewFileCreationPage {
 	@Override
 	protected void createLinkTarget() {
 		// Disable this method to avoid NPE (Because we override #createAdvancedControls)
+	}
+
+	@Override
+	public void performHelp() {
+		PlatformUI.getWorkbench().getHelpSystem().displayHelp("org.eclipse.papyrus.uml.diagram.wizards.FileChooser"); //$NON-NLS-1$
+
 	}
 
 }

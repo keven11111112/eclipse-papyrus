@@ -42,6 +42,11 @@ public class NewUMLRTModelWizard extends CreateModelWizard {
 		return new String[] { CreateUMLRTModelCommand.COMMAND_ID };
 	}
 
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
+	}
+
 	/**
 	 * {@inheritDoc}
 	 */
