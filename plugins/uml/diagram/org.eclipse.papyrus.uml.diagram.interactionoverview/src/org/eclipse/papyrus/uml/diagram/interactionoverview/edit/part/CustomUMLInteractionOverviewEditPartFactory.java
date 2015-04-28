@@ -13,9 +13,7 @@ package org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.uml.diagram.activity.edit.part.CustomUMLEditPartFactory;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActivityEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
-import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionNameEditPart;
 
 public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPartFactory {
 
@@ -26,11 +24,12 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 			int visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
 			if (visualID != -1) {
 				switch (visualID) {
-				case ActivityEditPart.VISUAL_ID:// 2001
+				case CustomActivityEditPartTN.VISUAL_ID:// 2001
 					return new CustomActivityEditPartTN(view);
-				case CallBehaviorActionEditPart.VISUAL_ID:// 3008
+				case CallBehaviorActionEditPart.VISUAL_ID: // 3008
+				case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:// 5005
 					return new CustomInteractionUseEditPartCN(view);
-				case CallBehaviorActionNameEditPart.VISUAL_ID:
+				case CustomInteractionUseNameEditPart.VISUAL_ID:
 					return new CustomInteractionUseNameEditPart(view);// 5004
 				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
 					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
@@ -44,6 +43,9 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 				switch (visualID) {
 				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
 					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
+				case CallBehaviorActionEditPart.VISUAL_ID: // 3008
+				case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:// 5005
+					return new CustomInteractionUseEditPartCN(view);
 				default:
 				}
 			}
