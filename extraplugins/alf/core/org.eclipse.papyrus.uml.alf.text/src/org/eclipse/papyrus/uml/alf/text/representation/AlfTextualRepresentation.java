@@ -168,7 +168,7 @@ public class AlfTextualRepresentation extends TextualRepresentation
 	 * @return this - the current textual representation
 	 */
 	public AlfTextualRepresentation rebase(AlfTextualRepresentation representation) {
-		if (this.getOwner() == representation.getOwner()) {
+		if (representation!= null && this.getOwner() == representation.getOwner()) {
 			BackupState state = new BackupState();
 			state.status = representation.getStatus();
 			state.timestamp = new Timestamp(representation.getModificationDate());
