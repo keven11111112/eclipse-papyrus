@@ -22,6 +22,7 @@ import org.eclipse.gef.tools.CellEditorLocator;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITextAwareEditPart;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.gmf.tooling.runtime.directedit.locator.CellEditorLocatorAccess;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.LabelCellEditorLocator;
 import org.eclipse.gmf.tooling.runtime.directedit.locator.TextCellEditorLocator;
 import org.eclipse.jface.viewers.CellEditor;
@@ -40,9 +41,9 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 */
 	@Override
 	public EditPart createEditPart(EditPart context, Object model) {
-		if (model instanceof View) {
-			View view = (View) model;
-			switch (UMLVisualIDRegistry.getVisualID(view)) {
+		if(model instanceof View) {
+			View view = (View)model;
+			switch(UMLVisualIDRegistry.getVisualID(view)) {
 			case ActivityDiagramEditPart.VISUAL_ID:
 				return new ActivityDiagramEditPart(view);
 			case ActivityEditPart.VISUAL_ID:
@@ -1183,6 +1184,40 @@ public class UMLEditPartFactory implements EditPartFactory {
 				return new ActionPinInStartClassifierBehaviorActionAsObjectValueEditPart(view);
 			case ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart.VISUAL_ID:
 				return new ActionPinInStartClassifierBehaviorActionAsObjectAppliedStereotypeLabelEditPart(view);
+			case CreateLinkObjectActionEditPart.VISUAL_ID:
+				return new CreateLinkObjectActionEditPart(view);
+			case CreateLinkObjectActionNameEditPart.VISUAL_ID:
+				return new CreateLinkObjectActionNameEditPart(view);
+			case CreateLinkObjectActionFloatingNameEditPart.VISUAL_ID:
+				return new CreateLinkObjectActionFloatingNameEditPart(view);
+			case InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+				return new InputPinInCreateLinkObjectActionAsInputValueEditPart(view);
+			case InputPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
+				return new InputPinInCreateLinkObjectActionAsInputValueLabelEditPart(view);
+			case InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new InputPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart(view);
+			case ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+				return new ValuePinInCreateLinkObjectActionAsInputValueEditPart(view);
+			case ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
+				return new ValuePinInCreateLinkObjectActionAsInputValueLabelEditPart(view);
+			case ValuePinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
+				return new ValuePinInCreateLinkObjectActionAsInputValueValueEditPart(view);
+			case ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ValuePinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart(view);
+			case ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+				return new ActionPinInCreateLinkObjectActionAsInputValueEditPart(view);
+			case ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart.VISUAL_ID:
+				return new ActionPinInCreateLinkObjectActionAsInputValueLabelEditPart(view);
+			case ActionPinInCreateLinkObjectActionAsInputValueValueEditPart.VISUAL_ID:
+				return new ActionPinInCreateLinkObjectActionAsInputValueValueEditPart(view);
+			case ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new ActionPinInCreateLinkObjectActionAsInputValueAppliedStereotypeLabelEditPart(view);
+			case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
+				return new OutputPinInCreateLinkObjectActionEditPart(view);
+			case OutputPinInCreateLinkObjectActionLabelEditPart.VISUAL_ID:
+				return new OutputPinInCreateLinkObjectActionLabelEditPart(view);
+			case OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart.VISUAL_ID:
+				return new OutputPinInCreateLinkObjectActionAppliedStereotypeLabelEditPart(view);
 			case ActivityActivityParametersCompartmentEditPart.VISUAL_ID:
 				return new ActivityActivityParametersCompartmentEditPart(view);
 			case ActivityActivityPreConditionsCompartmentEditPart.VISUAL_ID:
@@ -1274,18 +1309,18 @@ public class UMLEditPartFactory implements EditPartFactory {
 	 * @generated NOT handle LinkAndCornerBentWithTextFigure
 	 */
 	public static CellEditorLocator getTextCellEditorLocator(ITextAwareEditPart source) {
-		if (source.getFigure() instanceof IMultilineEditableFigure) {
-			return new MultilineCellEditorLocator((IMultilineEditableFigure) source.getFigure());
-		} else if (source.getFigure() instanceof WrappingLabel) {
-			return new TextCellEditorLocator((WrappingLabel) source.getFigure());
-		} else if (source.getFigure() instanceof DecisionInputEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((DecisionInputEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
-		} else if (source.getFigure() instanceof ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
-		} else if (source.getFigure() instanceof ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) {
-			return new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) source.getFigure()).getCornerBentContent());
+		if(source.getFigure() instanceof IMultilineEditableFigure) {
+			return new MultilineCellEditorLocator((IMultilineEditableFigure)source.getFigure());
+		} else if(source.getFigure() instanceof WrappingLabel) {
+			return new TextCellEditorLocator((WrappingLabel)source.getFigure());
+		} else if(source.getFigure() instanceof DecisionInputEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((DecisionInputEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
+		} else if(source.getFigure() instanceof ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((ObjectFlowSelectionEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
+		} else if(source.getFigure() instanceof ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure) {
+			return new TextCellEditorLocator(((ObjectFlowTransformationEditPart.LinkAndCornerBentWithTextFigure)source.getFigure()).getCornerBentContent());
 		} else {
-			return new LabelCellEditorLocator((Label) source.getFigure());
+			return new LabelCellEditorLocator((Label)source.getFigure());
 		}
 	}
 
@@ -1318,15 +1353,15 @@ public class UMLEditPartFactory implements EditPartFactory {
 		 */
 		@Override
 		public void relocate(CellEditor celleditor) {
-			Text text = (Text) celleditor.getControl();
+			Text text = (Text)celleditor.getControl();
 			Rectangle rect = getMultilineEditableFigure().getBounds().getCopy();
 			rect.x = getMultilineEditableFigure().getEditionLocation().x;
 			rect.y = getMultilineEditableFigure().getEditionLocation().y;
 			getMultilineEditableFigure().translateToAbsolute(rect);
-			if (getMultilineEditableFigure().getText().length() > 0) {
+			if(getMultilineEditableFigure().getText().length() > 0) {
 				rect.setSize(new Dimension(text.computeSize(rect.width, SWT.DEFAULT)));
 			}
-			if (!rect.equals(new Rectangle(text.getBounds()))) {
+			if(!rect.equals(new Rectangle(text.getBounds()))) {
 				text.setBounds(rect.x, rect.y, rect.width, rect.height);
 			}
 		}

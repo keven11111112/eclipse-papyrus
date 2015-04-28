@@ -844,6 +844,31 @@ public class UMLElementTypes {
 	/**
 	 * @generated
 	 */
+	public static final IElementType CreateLinkObjectAction_3198 = getElementType("org.eclipse.papyrus.uml.diagram.activity.CreateLinkObjectAction_3198"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType InputPin_3199 = getElementType("org.eclipse.papyrus.uml.diagram.activity.InputPin_3199"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ValuePin_3200 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValuePin_3200"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType ActionInputPin_3201 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ActionInputPin_3201"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
+	public static final IElementType OutputPin_3202 = getElementType("org.eclipse.papyrus.uml.diagram.activity.OutputPin_3202"); //$NON-NLS-1$
+
+	/**
+	 * @generated
+	 */
 	public static final IElementType ValueSpecificationAction_3076 = getElementType("org.eclipse.papyrus.uml.diagram.activity.ValueSpecificationAction_3076"); //$NON-NLS-1$
 
 	/**
@@ -1178,6 +1203,11 @@ public class UMLElementTypes {
 			elements.put(InputPin_3144, UMLPackage.eINSTANCE.getInputPin());
 			elements.put(ValuePin_3157, UMLPackage.eINSTANCE.getValuePin());
 			elements.put(ActionInputPin_3170, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(CreateLinkObjectAction_3198, UMLPackage.eINSTANCE.getCreateLinkObjectAction());
+			elements.put(InputPin_3199, UMLPackage.eINSTANCE.getInputPin());
+			elements.put(ValuePin_3200, UMLPackage.eINSTANCE.getValuePin());
+			elements.put(ActionInputPin_3201, UMLPackage.eINSTANCE.getActionInputPin());
+			elements.put(OutputPin_3202, UMLPackage.eINSTANCE.getOutputPin());
 			elements.put(ActionLocalPrecondition_4001, UMLPackage.eINSTANCE.getAction_LocalPrecondition());
 			elements.put(ActionLocalPostcondition_4002, UMLPackage.eINSTANCE.getAction_LocalPostcondition());
 			elements.put(ObjectFlow_4003, UMLPackage.eINSTANCE.getObjectFlow());
@@ -1377,6 +1407,11 @@ public class UMLElementTypes {
 			KNOWN_ELEMENT_TYPES.add(InputPin_3144);
 			KNOWN_ELEMENT_TYPES.add(ValuePin_3157);
 			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3170);
+			KNOWN_ELEMENT_TYPES.add(CreateLinkObjectAction_3198);
+			KNOWN_ELEMENT_TYPES.add(InputPin_3199);
+			KNOWN_ELEMENT_TYPES.add(ValuePin_3200);
+			KNOWN_ELEMENT_TYPES.add(ActionInputPin_3201);
+			KNOWN_ELEMENT_TYPES.add(OutputPin_3202);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPrecondition_4001);
 			KNOWN_ELEMENT_TYPES.add(ActionLocalPostcondition_4002);
 			KNOWN_ELEMENT_TYPES.add(ObjectFlow_4003);
@@ -1750,6 +1785,16 @@ public class UMLElementTypes {
 			return ValuePin_3157;
 		case ActionPinInStartClassifierBehaviorActionAsObjectEditPart.VISUAL_ID:
 			return ActionInputPin_3170;
+		case CreateLinkObjectActionEditPart.VISUAL_ID:
+			return CreateLinkObjectAction_3198;
+		case InputPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+			return InputPin_3199;
+		case ValuePinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+			return ValuePin_3200;
+		case ActionPinInCreateLinkObjectActionAsInputValueEditPart.VISUAL_ID:
+			return ActionInputPin_3201;
+		case OutputPinInCreateLinkObjectActionEditPart.VISUAL_ID:
+			return OutputPin_3202;
 		case ActionLocalPreconditionEditPart.VISUAL_ID:
 			return ActionLocalPrecondition_4001;
 		case ActionLocalPostconditionEditPart.VISUAL_ID:
