@@ -2247,17 +2247,17 @@
   <eClassifiers xsi:type="ecore:EClass" name="ExpressionReference" eSuperTypes="#//Expression">
     <eOperations name="type" eType="#//ElementReference">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.expression.type()"/>
+        <details key="body" value="self.expression.type"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="lower" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.expression.lower()"/>
+        <details key="body" value="self.expression.lower"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="upper" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBigInteger">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="self.expression.upper()"/>
+        <details key="body" value="self.expression.upper"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="isAddTarget" lowerBound="1" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -4613,7 +4613,7 @@
         eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean" volatile="true"
         transient="true" derived="true">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let lhsType = self.leftHandSide.type in&#xA;        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.&#xA;          rhsType &lt;> null and lhsType &lt;> null and&#xA;          (self.isIntegerType(rhsType) or&#xA;            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)&#xA;          )"/>
+        <details key="derivation" value="&#xA;        let lhsType = self.leftHandSide.type in&#xA;        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.&#xA;          rhsType &lt;> null and lhsType &lt;> null and self.isBitStringType(lhsType) and&#xA;          (self.isIntegerType(rhsType) or&#xA;            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)&#xA;          )"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>

@@ -473,7 +473,7 @@ public interface AssignmentExpression extends Expression {
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getAssignmentExpression_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.\n          rhsType <> null and lhsType <> null and\n          (self.isIntegerType(rhsType) or\n            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)\n          )'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let lhsType = self.leftHandSide.type in\n        let rhsType = self.type in -- Note: This works for both simple and compound assignments.assignment.\n          rhsType <> null and lhsType <> null and self.isBitStringType(lhsType) and\n          (self.isIntegerType(rhsType) or\n            self.isCollectionConversion and self.isIntegerCollectionClass(rhsType)\n          )'"
 	 * @generated
 	 */
 	boolean isIsBitStringConversion();
