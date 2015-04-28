@@ -33,7 +33,7 @@ public class DiagramVersioningUtils {
 	 * Returns the "current" diagram version. Diagrams with this version don't require the reconciliation until the Papyrus version updates in such a
 	 * way that some diagram needs reconciliation.
 	 * <p/>
-	 * The current value returned by this method is "1.0.0".
+	 * The current value returned by this method is "1.1.0".
 	 * <p/>
 	 * The value itself, howewer, should NOT be used outside of this package to avoid weird dependency issues. Instead, external code should use {@link DiagramVersioningUtils#stampCurrentVersion(Diagram)} and
 	 * {@link DiagramVersioningUtils#createStampCurrentVersionCommand(Diagram)}.
@@ -41,7 +41,7 @@ public class DiagramVersioningUtils {
 	 * This method is intentinally NOT a constant but indeed the method. This method is intentionally private and should NOT be made public.
 	 */
 	private static String CURRENT_DIAGRAM_VERSION() {
-		return "1.0.0";
+		return "1.1.0";
 	}
 
 	/**
