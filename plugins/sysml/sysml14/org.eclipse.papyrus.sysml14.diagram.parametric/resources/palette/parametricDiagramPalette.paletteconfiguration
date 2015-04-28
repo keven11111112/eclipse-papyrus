@@ -34,6 +34,19 @@
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.uml.diagram.composite.Constraint_2114"/>
     </ownedConfigurations>
+    <ownedConfigurations
+        xsi:type="paletteconfiguration:ToolConfiguration"
+        id="palettemodel.ConstraintProperty"
+        label="ConstraintProperty"
+        description="Create a ConstraintProperty">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Property.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.ConstraintProperty_3070"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.SysML14.ConstraintProperty_3101"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="palette.sysml.parametric.edges"

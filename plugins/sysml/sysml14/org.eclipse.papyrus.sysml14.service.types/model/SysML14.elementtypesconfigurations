@@ -1321,6 +1321,21 @@
         identifier="org.eclipse.papyrus.sysml14.service.types.advice.SharedAssociationEditHelperAdvice"
         editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.SharedAssociationEditHelperAdvice"/>
   </elementTypeConfigurations>
+  <elementTypeConfigurations
+      xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration"
+      xmi:id="_IEEsMPe5EeSxkueHcFw1lw"
+      name="ConstraintProperty"
+      description="Create a constraint Property"
+      identifier="org.eclipse.papyrus.SysML14.ConstraintProperty"
+      hint="UML::Property">
+    <specializedTypesID>org.eclipse.papyrus.uml.Property</specializedTypesID>
+    <editHelperAdviceConfiguration
+        xmi:id="_9KeL8PflEeSxkueHcFw1lw"
+        name="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"
+        description=""
+        identifier="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"
+        editHelperAdviceClassName="org.eclipse.papyrus.sysml14.service.types.advice.ConstraintPropertyEditHelperAdvice"/>
+  </elementTypeConfigurations>
   <adviceBindingsConfigurations
       xsi:type="applystereotypeadviceconfiguration:ApplyStereotypeAdviceConfiguration"
       xmi:id="_k4SncbwFEeSwNLK2W02HwA"
@@ -1979,8 +1994,7 @@
       target="_k4SnF7wFEeSwNLK2W02HwA">
     <stereotypesToApply
         xmi:id="_k4Sn1rwFEeSwNLK2W02HwA"
-        stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock"
-        updateName="true">
+        stereotypeQualifiedName="SysML::ConstraintBlocks::ConstraintBlock">
       <requiredProfiles>SysML</requiredProfiles>
     </stereotypesToApply>
   </adviceBindingsConfigurations>
