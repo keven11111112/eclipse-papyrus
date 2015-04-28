@@ -82,7 +82,7 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 			visualID = UMLVisualIDRegistry.getVisualID(semanticHint);
 		}
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 			return createCallBehaviorAction_5000(domainElement, containerView, index, persisted, preferencesHint);
 		case CallBehaviorActionEditPart.VISUAL_ID:
 		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
@@ -96,7 +96,7 @@ public class CustomViewProvider extends org.eclipse.papyrus.gmf.diagram.common.p
 	public Node createCallBehaviorAction_5000(final EObject domainElement, final View containerView, final int index, final boolean persisted, final PreferencesHint preferencesHint) {
 		final Shape node = NotationFactory.eINSTANCE.createShape();
 		node.setLayoutConstraint(NotationFactory.eINSTANCE.createBounds());
-		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.VISUAL_ID));
+		node.setType(UMLVisualIDRegistry.getType(CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID));
 		ViewUtil.insertChildView(containerView, node, index, persisted);
 		node.setElement(domainElement);
 		CallBehaviorUtil.setCallBehaviorActionType((CallBehaviorAction) domainElement, CallBehaviorActionType.snapshot);

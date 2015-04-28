@@ -177,7 +177,7 @@ public class UMLElementTypes {
 	 */
 	public static IElementType getElementType(final int visualID) {
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 			return CallBehaviorAction_5000;
 		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
 			return CallBehaviorAction_As_InteractionUse_5005;

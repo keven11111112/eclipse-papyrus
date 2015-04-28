@@ -134,7 +134,7 @@ public class UMLVisualIDRegistry extends org.eclipse.papyrus.uml.diagram.activit
 				return CallBehaviorActionEditPart.VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getCallBehaviorAction().isSuperTypeOf(domainElement.eClass()) && isInteraction_5000(containerView, (CallBehaviorAction) domainElement)) {
-				return CallBehaviorActionAsInteractionEditPart.VISUAL_ID;
+				return CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID;
 			}
 			if (UMLPackage.eINSTANCE.getDecisionNode().isSuperTypeOf(domainElement.eClass())) {
 				return DecisionNodeEditPart.VISUAL_ID;

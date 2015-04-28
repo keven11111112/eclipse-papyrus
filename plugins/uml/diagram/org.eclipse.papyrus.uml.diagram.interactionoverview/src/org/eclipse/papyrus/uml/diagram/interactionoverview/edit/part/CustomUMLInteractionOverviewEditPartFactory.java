@@ -31,7 +31,7 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 					return new CustomInteractionUseEditPartCN(view);
 				case CustomInteractionUseNameEditPart.VISUAL_ID:
 					return new CustomInteractionUseNameEditPart(view);// 5004
-				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+				case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
 				default:
 					// when adding cases to this switch, also add the corresponding
@@ -41,7 +41,7 @@ public class CustomUMLInteractionOverviewEditPartFactory extends CustomUMLEditPa
 			} else {
 				visualID = org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry.getVisualID(view);
 				switch (visualID) {
-				case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+				case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 					return new CallBehaviorActionAsInteractionEditPart(view);// 5000
 				case CallBehaviorActionEditPart.VISUAL_ID: // 3008
 				case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:// 5005
