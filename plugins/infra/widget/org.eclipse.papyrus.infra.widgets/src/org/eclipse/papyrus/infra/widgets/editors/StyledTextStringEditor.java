@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Vincent Lorenzo (CEA LIST) vincent.lorenzo@cea.fr - Initial API and implementation
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net - Bug 446865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -526,27 +527,35 @@ public class StyledTextStringEditor extends AbstractValueEditor implements KeyLi
 
 						@Override
 						public void run() {
-							text.setBackground(DEFAULT);
-							text.update();
+							if(!text.isDisposed()){
+								text.setBackground(DEFAULT);
+								text.update();
+							}
 						}
 					});
 				}
 			};
 			if (errorBinding) {
-				text.setBackground(ERROR);
-				text.update();
+				if(!text.isDisposed()){
+					text.setBackground(ERROR);
+					text.update();
+				}
 			} else {
 				IStatus status = (IStatus) binding.getValidationStatus().getValue();
 				switch (status.getSeverity()) {
 				case IStatus.OK:
 				case IStatus.WARNING:
 					timer.schedule(changeColorTask, 600);
-					text.setBackground(VALID);
-					text.update();
+					if(!text.isDisposed()){
+						text.setBackground(VALID);
+						text.update();
+					}
 					break;
 				case IStatus.ERROR:
-					text.setBackground(ERROR);
-					text.update();
+					if(!text.isDisposed()){
+						text.setBackground(ERROR);
+						text.update();
+					}
 					break;
 
 				}
