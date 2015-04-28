@@ -56,7 +56,7 @@ public interface ExpressionReference extends Expression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.type()'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.type'"
 	 * @generated
 	 */
 	ElementReference type();
@@ -65,7 +65,7 @@ public interface ExpressionReference extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.lower()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.lower'"
 	 * @generated
 	 */
 	BigInteger lower();
@@ -74,7 +74,7 @@ public interface ExpressionReference extends Expression {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.upper()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression.upper'"
 	 * @generated
 	 */
 	BigInteger upper();
