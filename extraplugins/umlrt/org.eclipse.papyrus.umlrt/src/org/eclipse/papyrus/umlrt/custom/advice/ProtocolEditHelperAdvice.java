@@ -129,7 +129,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			// type should only be compatible with UMLRT::OperationAsMessages
 			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
 			// should not be null, otherwise, element type model is not loaded correctly. abort.
-			if (umlRTMessageType == null) {
+			if (umlRTMessageType == null || type == null) {
 				Activator.log.debug("RTMessage element type is not accessible");
 				return super.getBeforeEditContextCommand(request);
 			}
