@@ -58,7 +58,7 @@ public interface NamedTuple extends Tuple {
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @model ordered="false" parametersMany="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        parameters->select(\n          let direction = direction() in\n            direction = \'in\' or direction = \'inout\' \n        )->collect(parameter |\n          let parameterName = parameter.name() in\n          let arguments = self.namedExpression->select(actualName() = parameterName) in\n            if arguments->isEmpty() then\n              InputNamedExpression{\n                name = parameterName,\n                expression = SequenceConstructionExpression{\n                  hasMultiplicity = true\n                },\n                owner = self\n              }\n            else\n              let argument : NamedExpression = arguments->any(true) in\n                InputNamedExpression{\n                  name = parameterName,\n                  expression = argument.expression,\n                  index = argument.index\n                }\n            endif\n        )->asSet()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        parameters->select(\n          let direction = direction() in\n            direction = \'in\' or direction = \'inout\' \n        )->collect(parameter |\n          let parameterName = parameter.name() in\n          let arguments = self.namedExpression->select(actualName() = parameterName) in\n            if arguments->isEmpty() then\n              InputNamedExpression{\n                name = parameterName,\n                expression = SequenceConstructionExpression{\n                  hasMultiplicity = true\n                },\n                owner = self\n              }\n            else\n              let argument : NamedExpression = arguments->any(true) in\n                InputNamedExpression{\n                  name = parameterName,\n                  expression = argument.expression,\n                  index = argument.index,\n                  owner = self\n                }\n            endif\n        )->asSet()'"
 	 * @generated
 	 */
 	EList<InputNamedExpression> inputFor(EList<ElementReference> parameters);
@@ -75,8 +75,16 @@ public interface NamedTuple extends Tuple {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model expressionRequired="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet arguments = self.namedExpression->select(a | a.expression = expression) in\n\t\t\t\t\tif arguments->isEmpty() then null\n\t\t\t\t\telse\n\t\t\t\t\t\tlet argument = arguments->any(true) in\n\t\t\t\t\t\t\tOutputNamedExpression{\n\t\t\t\t\t\t\t\tname = argument.name,\n\t\t\t\t\t\t\t\tindex = argument.index,\n\t\t\t\t\t\t\t\texpression = expression,\n\t\t\t\t\t\t\t\towner = self\n\t\t\t\t\t\t\t}\n\t\t\t\t\tendif'"
+	 * @generated
+	 */
+	OutputNamedExpression outputForExpression(Expression expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * <!-- begin-model-doc -->
-	 * /*
 	 * The name of a named expression of a named tuple must be the name of a
 	 * parameter of the invocation the tuple is for. No two named expressions
 	 * may have the same name.

@@ -60,7 +60,7 @@ class SingleTest extends ParserTest {
   }
   
   @Test
-  @Ignore("Doesn't run on Maven - Bug 464026")
+  // @Ignore("Doesn't run on Maven - Bug 464026")
   def void testOneFile() {
   	System.out.print("[SingleTest] ");
     val failures = parseFile(resourceSet, new File(testDirectory + "/" + testFile), true);

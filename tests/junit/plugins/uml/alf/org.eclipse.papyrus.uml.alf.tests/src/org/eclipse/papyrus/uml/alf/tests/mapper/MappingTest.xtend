@@ -49,7 +49,7 @@ class MappingTest extends ParserTest {
   }
 
   @Test
-  @Ignore("Doesn't run on Maven - Bug 464026")
+  //@Ignore("Doesn't run on Maven - Bug 464026")
   def void testMapping() {
     var failures = 0
     var File[] files

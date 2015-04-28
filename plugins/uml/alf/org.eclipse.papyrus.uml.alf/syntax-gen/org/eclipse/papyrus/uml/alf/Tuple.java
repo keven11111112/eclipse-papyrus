@@ -157,8 +157,16 @@ public interface Tuple extends SyntaxElement {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model expressionRequired="true"
+	 * @generated
+	 */
+	OutputNamedExpression outputForExpression(Expression expression);
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model ordered="false" elementRequired="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let assignmentsBefore = self.assignmentsBefore() in\n--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore\n--          else\n--            let outputs : Set = self.output->select(expression = element) in\n--              if outputs->isEmpty() then assignmentsBefore\n--              else self.updateFor(assignmentsBefore, \n--                outputs->any(true).oclAsType(OutputNamedExpression)\n--              )\n--              endif\n--          endif\n          self.assignmentsBefore()'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n--        let assignmentsBefore = self.assignmentsBefore() in\n--          if not element.oclIsKindOf(NameExpression) then assignmentsBefore\n--          else\n--            let output = self.outputForExpression(element.oclAsType(NameExpression)) in\n--              if output = null then assignmentsBefore\n--              else self.updateFor(assignmentsBefore, output)\n--              endif\n--          endif;\n        self.assignmentsBefore()'"
 	 * @generated
 	 */
 	EList<AssignedSource> assignmentsBefore(SyntaxElement element);

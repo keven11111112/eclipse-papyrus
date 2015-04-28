@@ -123,6 +123,13 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	private EClass expressionReferenceEClass = null;
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	private EClass extentOrExpressionEClass = null;
 
 	/**
@@ -5387,7 +5394,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__NewAssignments() {
+	public EOperation getExpression__Reference() {
         return getExpression().getEOperations().get(0);
 	}
 
@@ -5396,25 +5403,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__ExpressionAssignmentAfterDerivation__DiagnosticChain_Map() {
-        return getExpression().getEOperations().get(6);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExpression__ExpressionUniqueAssignments__DiagnosticChain_Map() {
-        return getExpression().getEOperations().get(7);
-	}
-
-	/**
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 */
-	public EOperation getExpression__UpdateAssignments() {
+	public EOperation getExpression__NewAssignments() {
         return getExpression().getEOperations().get(1);
 	}
 
@@ -5423,7 +5412,100 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__Expression_updateAssignments() {
+	public EOperation getExpression__ExpressionAssignmentAfterDerivation__DiagnosticChain_Map() {
+        return getExpression().getEOperations().get(7);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpression__ExpressionUniqueAssignments__DiagnosticChain_Map() {
+        return getExpression().getEOperations().get(8);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EClass getExpressionReference() {
+		if (expressionReferenceEClass == null) {
+			expressionReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(12);
+		}
+		return expressionReferenceEClass;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EReference getExpressionReference_Expression() {
+        return (EReference)getExpressionReference().getEStructuralFeatures().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__Type() {
+        return getExpressionReference().getEOperations().get(0);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__Lower() {
+        return getExpressionReference().getEOperations().get(1);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__Upper() {
+        return getExpressionReference().getEOperations().get(2);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__IsAddTarget__Expression() {
+        return getExpressionReference().getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__AssignmentsBefore() {
+        return getExpressionReference().getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpressionReference__UpdateAssignments() {
+        return getExpressionReference().getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpression__UpdateAssignments() {
         return getExpression().getEOperations().get(2);
 	}
 
@@ -5432,7 +5514,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__UpdateAssignmentsCached() {
+	public EOperation getExpression__Expression_updateAssignments() {
         return getExpression().getEOperations().get(3);
 	}
 
@@ -5441,7 +5523,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__Resolve__String() {
+	public EOperation getExpression__UpdateAssignmentsCached() {
         return getExpression().getEOperations().get(4);
 	}
 
@@ -5450,8 +5532,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getExpression__IsAddTarget__Expression() {
+	public EOperation getExpression__Resolve__String() {
         return getExpression().getEOperations().get(5);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getExpression__IsAddTarget__Expression() {
+        return getExpression().getEOperations().get(6);
 	}
 
 	/**
@@ -5461,7 +5552,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getExtentOrExpression() {
 		if (extentOrExpressionEClass == null) {
-			extentOrExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(12);
+			extentOrExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(13);
 		}
 		return extentOrExpressionEClass;
 	}
@@ -5536,7 +5627,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getQualifiedName() {
 		if (qualifiedNameEClass == null) {
-			qualifiedNameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(13);
+			qualifiedNameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(14);
 		}
 		return qualifiedNameEClass;
 	}
@@ -5800,7 +5891,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getFeatureReference() {
 		if (featureReferenceEClass == null) {
-			featureReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(14);
+			featureReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(15);
 		}
 		return featureReferenceEClass;
 	}
@@ -5902,7 +5993,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNameBinding() {
 		if (nameBindingEClass == null) {
-			nameBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(15);
+			nameBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(16);
 		}
 		return nameBindingEClass;
 	}
@@ -5995,7 +6086,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTemplateBinding() {
 		if (templateBindingEClass == null) {
-			templateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(16);
+			templateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(17);
 		}
 		return templateBindingEClass;
 	}
@@ -6043,7 +6134,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNamedTemplateBinding() {
 		if (namedTemplateBindingEClass == null) {
-			namedTemplateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(17);
+			namedTemplateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(18);
 		}
 		return namedTemplateBindingEClass;
 	}
@@ -6109,7 +6200,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTemplateParameterSubstitution() {
 		if (templateParameterSubstitutionEClass == null) {
-			templateParameterSubstitutionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(18);
+			templateParameterSubstitutionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(19);
 		}
 		return templateParameterSubstitutionEClass;
 	}
@@ -6175,7 +6266,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNumericUnaryExpression() {
 		if (numericUnaryExpressionEClass == null) {
-			numericUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(19);
+			numericUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(20);
 		}
 		return numericUnaryExpressionEClass;
 	}
@@ -6250,7 +6341,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getUnaryExpression() {
 		if (unaryExpressionEClass == null) {
-			unaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(20);
+			unaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(21);
 		}
 		return unaryExpressionEClass;
 	}
@@ -6298,7 +6389,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getForAllOrExistsOrOneExpression() {
 		if (forAllOrExistsOrOneExpressionEClass == null) {
-			forAllOrExistsOrOneExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(21);
+			forAllOrExistsOrOneExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(22);
 		}
 		return forAllOrExistsOrOneExpressionEClass;
 	}
@@ -6346,7 +6437,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getIsolationExpression() {
 		if (isolationExpressionEClass == null) {
-			isolationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(22);
+			isolationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(23);
 		}
 		return isolationExpressionEClass;
 	}
@@ -6412,7 +6503,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBinaryExpression() {
 		if (binaryExpressionEClass == null) {
-			binaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(23);
+			binaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(24);
 		}
 		return binaryExpressionEClass;
 	}
@@ -6496,7 +6587,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBooleanUnaryExpression() {
 		if (booleanUnaryExpressionEClass == null) {
-			booleanUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(24);
+			booleanUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(25);
 		}
 		return booleanUnaryExpressionEClass;
 	}
@@ -6571,7 +6662,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getCastExpression() {
 		if (castExpressionEClass == null) {
-			castExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(25);
+			castExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(26);
 		}
 		return castExpressionEClass;
 	}
@@ -6691,7 +6782,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPositionalTuple() {
 		if (positionalTupleEClass == null) {
-			positionalTupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(26);
+			positionalTupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(27);
 		}
 		return positionalTupleEClass;
 	}
@@ -6737,8 +6828,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getPositionalTuple__PositionalTupleArguments__DiagnosticChain_Map() {
+	public EOperation getPositionalTuple__OutputForExpression__Expression() {
         return getPositionalTuple().getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getPositionalTuple__PositionalTupleArguments__DiagnosticChain_Map() {
+        return getPositionalTuple().getEOperations().get(4);
 	}
 
 	/**
@@ -6748,7 +6848,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTuple() {
 		if (tupleEClass == null) {
-			tupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(27);
+			tupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(28);
 		}
 		return tupleEClass;
 	}
@@ -6848,7 +6948,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__AssignmentsBefore__SyntaxElement() {
+	public EOperation getTuple__OutputForExpression__Expression() {
         return getTuple().getEOperations().get(7);
 	}
 
@@ -6857,7 +6957,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__AssignmentsAfter() {
+	public EOperation getTuple__AssignmentsBefore__SyntaxElement() {
         return getTuple().getEOperations().get(8);
 	}
 
@@ -6866,7 +6966,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__NewAssignments() {
+	public EOperation getTuple__AssignmentsAfter() {
         return getTuple().getEOperations().get(9);
 	}
 
@@ -6875,7 +6975,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__UpdateFor__EList_OutputNamedExpression() {
+	public EOperation getTuple__NewAssignments() {
         return getTuple().getEOperations().get(10);
 	}
 
@@ -6884,7 +6984,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleInputDerivation__DiagnosticChain_Map() {
+	public EOperation getTuple__UpdateFor__EList_OutputNamedExpression() {
         return getTuple().getEOperations().get(11);
 	}
 
@@ -6893,7 +6993,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleOutputDerivation__DiagnosticChain_Map() {
+	public EOperation getTuple__TupleInputDerivation__DiagnosticChain_Map() {
         return getTuple().getEOperations().get(12);
 	}
 
@@ -6902,7 +7002,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleNullInputs__DiagnosticChain_Map() {
+	public EOperation getTuple__TupleOutputDerivation__DiagnosticChain_Map() {
         return getTuple().getEOperations().get(13);
 	}
 
@@ -6911,7 +7011,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleOutputs__DiagnosticChain_Map() {
+	public EOperation getTuple__TupleNullInputs__DiagnosticChain_Map() {
         return getTuple().getEOperations().get(14);
 	}
 
@@ -6920,7 +7020,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleAssignmentsBefore__DiagnosticChain_Map() {
+	public EOperation getTuple__TupleOutputs__DiagnosticChain_Map() {
         return getTuple().getEOperations().get(15);
 	}
 
@@ -6929,8 +7029,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getTuple__TupleAssignmentsAfter__DiagnosticChain_Map() {
+	public EOperation getTuple__TupleAssignmentsBefore__DiagnosticChain_Map() {
         return getTuple().getEOperations().get(16);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getTuple__TupleAssignmentsAfter__DiagnosticChain_Map() {
+        return getTuple().getEOperations().get(17);
 	}
 
 	/**
@@ -6940,7 +7049,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNamedExpression() {
 		if (namedExpressionEClass == null) {
-			namedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(28);
+			namedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(29);
 		}
 		return namedExpressionEClass;
 	}
@@ -6988,7 +7097,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getInputNamedExpression() {
 		if (inputNamedExpressionEClass == null) {
-			inputNamedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(29);
+			inputNamedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(30);
 		}
 		return inputNamedExpressionEClass;
 	}
@@ -7072,7 +7181,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getInvocationExpression() {
 		if (invocationExpressionEClass == null) {
-			invocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(30);
+			invocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(31);
 		}
 		return invocationExpressionEClass;
 	}
@@ -7489,7 +7598,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getOutputNamedExpression() {
 		if (outputNamedExpressionEClass == null) {
-			outputNamedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(31);
+			outputNamedExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(32);
 		}
 		return outputNamedExpressionEClass;
 	}
@@ -7537,7 +7646,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLeftHandSide() {
 		if (leftHandSideEClass == null) {
-			leftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(32);
+			leftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(33);
 		}
 		return leftHandSideEClass;
 	}
@@ -7720,7 +7829,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceAccessExpression() {
 		if (sequenceAccessExpressionEClass == null) {
-			sequenceAccessExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(33);
+			sequenceAccessExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(34);
 		}
 		return sequenceAccessExpressionEClass;
 	}
@@ -7831,7 +7940,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getStringLiteralExpression() {
 		if (stringLiteralExpressionEClass == null) {
-			stringLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(34);
+			stringLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(35);
 		}
 		return stringLiteralExpressionEClass;
 	}
@@ -7870,7 +7979,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLiteralExpression() {
 		if (literalExpressionEClass == null) {
-			literalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(35);
+			literalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(36);
 		}
 		return literalExpressionEClass;
 	}
@@ -7918,7 +8027,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceOperationExpression() {
 		if (sequenceOperationExpressionEClass == null) {
-			sequenceOperationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(36);
+			sequenceOperationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(37);
 		}
 		return sequenceOperationExpressionEClass;
 	}
@@ -8128,7 +8237,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSelectOrRejectExpression() {
 		if (selectOrRejectExpressionEClass == null) {
-			selectOrRejectExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(37);
+			selectOrRejectExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(38);
 		}
 		return selectOrRejectExpressionEClass;
 	}
@@ -8176,7 +8285,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassExtentExpression() {
 		if (classExtentExpressionEClass == null) {
-			classExtentExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(38);
+			classExtentExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(39);
 		}
 		return classExtentExpressionEClass;
 	}
@@ -8269,7 +8378,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPositionalTemplateBinding() {
 		if (positionalTemplateBindingEClass == null) {
-			positionalTemplateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(39);
+			positionalTemplateBindingEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(40);
 		}
 		return positionalTemplateBindingEClass;
 	}
@@ -8335,7 +8444,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getConditionalLogicalExpression() {
 		if (conditionalLogicalExpressionEClass == null) {
-			conditionalLogicalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(40);
+			conditionalLogicalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(41);
 		}
 		return conditionalLogicalExpressionEClass;
 	}
@@ -8437,7 +8546,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLinkOperationExpression() {
 		if (linkOperationExpressionEClass == null) {
-			linkOperationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(41);
+			linkOperationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(42);
 		}
 		return linkOperationExpressionEClass;
 	}
@@ -8566,7 +8675,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getEqualityExpression() {
 		if (equalityExpressionEClass == null) {
-			equalityExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(42);
+			equalityExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(43);
 		}
 		return equalityExpressionEClass;
 	}
@@ -8659,7 +8768,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAssignmentExpression() {
 		if (assignmentExpressionEClass == null) {
-			assignmentExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(43);
+			assignmentExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(44);
 		}
 		return assignmentExpressionEClass;
 	}
@@ -9049,7 +9158,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLogicalExpression() {
 		if (logicalExpressionEClass == null) {
-			logicalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(44);
+			logicalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(45);
 		}
 		return logicalExpressionEClass;
 	}
@@ -9178,7 +9287,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceConstructionExpression() {
 		if (sequenceConstructionExpressionEClass == null) {
-			sequenceConstructionExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(45);
+			sequenceConstructionExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(46);
 		}
 		return sequenceConstructionExpressionEClass;
 	}
@@ -9325,7 +9434,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceElements() {
 		if (sequenceElementsEClass == null) {
-			sequenceElementsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(46);
+			sequenceElementsEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(47);
 		}
 		return sequenceElementsEClass;
 	}
@@ -9391,7 +9500,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getCollectOrIterateExpression() {
 		if (collectOrIterateExpressionEClass == null) {
-			collectOrIterateExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(47);
+			collectOrIterateExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(48);
 		}
 		return collectOrIterateExpressionEClass;
 	}
@@ -9430,7 +9539,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getIsUniqueExpression() {
 		if (isUniqueExpressionEClass == null) {
-			isUniqueExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(48);
+			isUniqueExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(49);
 		}
 		return isUniqueExpressionEClass;
 	}
@@ -9478,7 +9587,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getArithmeticExpression() {
 		if (arithmeticExpressionEClass == null) {
-			arithmeticExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(49);
+			arithmeticExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(50);
 		}
 		return arithmeticExpressionEClass;
 	}
@@ -9571,7 +9680,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getFeatureLeftHandSide() {
 		if (featureLeftHandSideEClass == null) {
-			featureLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(50);
+			featureLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(51);
 		}
 		return featureLeftHandSideEClass;
 	}
@@ -9608,7 +9717,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__Index() {
+	public EOperation getFeatureLeftHandSide__Primary() {
         return getFeatureLeftHandSide().getEOperations().get(2);
 	}
 
@@ -9617,7 +9726,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__LocalName() {
+	public EOperation getFeatureLeftHandSide__Index() {
         return getFeatureLeftHandSide().getEOperations().get(3);
 	}
 
@@ -9626,7 +9735,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentBeforeDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__LocalName() {
         return getFeatureLeftHandSide().getEOperations().get(4);
 	}
 
@@ -9635,7 +9744,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentAfterDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentBeforeDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(5);
 	}
 
@@ -9644,7 +9753,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideFeatureExpression__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentAfterDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(6);
 	}
 
@@ -9653,7 +9762,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentsBefore__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideFeatureExpression__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(7);
 	}
 
@@ -9662,7 +9771,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideReferentDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideAssignmentsBefore__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(8);
 	}
 
@@ -9671,7 +9780,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideTypeDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideReferentDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(9);
 	}
 
@@ -9680,7 +9789,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideLowerDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideTypeDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(10);
 	}
 
@@ -9689,7 +9798,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideUpperDerivation__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideLowerDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(11);
 	}
 
@@ -9698,7 +9807,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideReferentConstraint__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideUpperDerivation__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(12);
 	}
 
@@ -9707,8 +9816,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideIndexedFeature__DiagnosticChain_Map() {
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideReferentConstraint__DiagnosticChain_Map() {
         return getFeatureLeftHandSide().getEOperations().get(13);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getFeatureLeftHandSide__FeatureLeftHandSideIndexedFeature__DiagnosticChain_Map() {
+        return getFeatureLeftHandSide().getEOperations().get(14);
 	}
 
 	/**
@@ -9718,7 +9836,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getConditionalTestExpression() {
 		if (conditionalTestExpressionEClass == null) {
-			conditionalTestExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(51);
+			conditionalTestExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(52);
 		}
 		return conditionalTestExpressionEClass;
 	}
@@ -9856,7 +9974,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getInstanceCreationExpression() {
 		if (instanceCreationExpressionEClass == null) {
-			instanceCreationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(52);
+			instanceCreationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(53);
 		}
 		return instanceCreationExpressionEClass;
 	}
@@ -10021,7 +10139,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPropertyAccessExpression() {
 		if (propertyAccessExpressionEClass == null) {
-			propertyAccessExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(53);
+			propertyAccessExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(54);
 		}
 		return propertyAccessExpressionEClass;
 	}
@@ -10141,7 +10259,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNameExpression() {
 		if (nameExpressionEClass == null) {
-			nameExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(54);
+			nameExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(55);
 		}
 		return nameExpressionEClass;
 	}
@@ -10241,7 +10359,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameExpression__IsAddTarget() {
+	public EOperation getNameExpression__IsAddTargetName() {
         return getNameExpression().getEOperations().get(6);
 	}
 
@@ -10333,7 +10451,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBitStringUnaryExpression() {
 		if (bitStringUnaryExpressionEClass == null) {
-			bitStringUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(55);
+			bitStringUnaryExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(56);
 		}
 		return bitStringUnaryExpressionEClass;
 	}
@@ -10426,7 +10544,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getFeatureInvocationExpression() {
 		if (featureInvocationExpressionEClass == null) {
-			featureInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(56);
+			featureInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(57);
 		}
 		return featureInvocationExpressionEClass;
 	}
@@ -10510,7 +10628,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBehaviorInvocationExpression() {
 		if (behaviorInvocationExpressionEClass == null) {
-			behaviorInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(57);
+			behaviorInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(58);
 		}
 		return behaviorInvocationExpressionEClass;
 	}
@@ -10621,7 +10739,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getShiftExpression() {
 		if (shiftExpressionEClass == null) {
-			shiftExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(58);
+			shiftExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(59);
 		}
 		return shiftExpressionEClass;
 	}
@@ -10714,7 +10832,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getUnboundedLiteralExpression() {
 		if (unboundedLiteralExpressionEClass == null) {
-			unboundedLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(59);
+			unboundedLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(60);
 		}
 		return unboundedLiteralExpressionEClass;
 	}
@@ -10744,7 +10862,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getThisExpression() {
 		if (thisExpressionEClass == null) {
-			thisExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(60);
+			thisExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(61);
 		}
 		return thisExpressionEClass;
 	}
@@ -10810,7 +10928,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassificationExpression() {
 		if (classificationExpressionEClass == null) {
-			classificationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(61);
+			classificationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(62);
 		}
 		return classificationExpressionEClass;
 	}
@@ -10939,7 +11057,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSuperInvocationExpression() {
 		if (superInvocationExpressionEClass == null) {
-			superInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(62);
+			superInvocationExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(63);
 		}
 		return superInvocationExpressionEClass;
 	}
@@ -11050,7 +11168,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getIncrementOrDecrementExpression() {
 		if (incrementOrDecrementExpressionEClass == null) {
-			incrementOrDecrementExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(63);
+			incrementOrDecrementExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(64);
 		}
 		return incrementOrDecrementExpressionEClass;
 	}
@@ -11278,7 +11396,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBooleanLiteralExpression() {
 		if (booleanLiteralExpressionEClass == null) {
-			booleanLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(64);
+			booleanLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(65);
 		}
 		return booleanLiteralExpressionEClass;
 	}
@@ -11317,7 +11435,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNamedTuple() {
 		if (namedTupleEClass == null) {
-			namedTupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(65);
+			namedTupleEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(66);
 		}
 		return namedTupleEClass;
 	}
@@ -11363,8 +11481,17 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNamedTuple__NamedTupleArgumentNames__DiagnosticChain_Map() {
+	public EOperation getNamedTuple__OutputForExpression__Expression() {
         return getNamedTuple().getEOperations().get(3);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNamedTuple__NamedTupleArgumentNames__DiagnosticChain_Map() {
+        return getNamedTuple().getEOperations().get(4);
 	}
 
 	/**
@@ -11374,7 +11501,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNaturalLiteralExpression() {
 		if (naturalLiteralExpressionEClass == null) {
-			naturalLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(66);
+			naturalLiteralExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(67);
 		}
 		return naturalLiteralExpressionEClass;
 	}
@@ -11413,7 +11540,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceRange() {
 		if (sequenceRangeEClass == null) {
-			sequenceRangeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(67);
+			sequenceRangeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(68);
 		}
 		return sequenceRangeEClass;
 	}
@@ -11515,7 +11642,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNameLeftHandSide() {
 		if (nameLeftHandSideEClass == null) {
-			nameLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(68);
+			nameLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(69);
 		}
 		return nameLeftHandSideEClass;
 	}
@@ -11624,7 +11751,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__LocalName() {
+	public EOperation getNameLeftHandSide__Expression() {
         return getNameLeftHandSide().getEOperations().get(9);
 	}
 
@@ -11633,7 +11760,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideAssignmentAfterDerivation__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__Primary() {
         return getNameLeftHandSide().getEOperations().get(10);
 	}
 
@@ -11642,7 +11769,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideTargetAssignment__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__LocalName() {
         return getNameLeftHandSide().getEOperations().get(11);
 	}
 
@@ -11651,7 +11778,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideAssignmentsBefore__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideAssignmentAfterDerivation__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(12);
 	}
 
@@ -11660,7 +11787,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideReferentDerivation__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideTargetAssignment__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(13);
 	}
 
@@ -11669,7 +11796,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideLowerDerivation__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideAssignmentsBefore__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(14);
 	}
 
@@ -11678,7 +11805,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideUpperDerivation__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideReferentDerivation__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(15);
 	}
 
@@ -11687,7 +11814,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideTypeDerivation__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideLowerDerivation__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(16);
 	}
 
@@ -11696,7 +11823,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideTargetResolution__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideUpperDerivation__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(17);
 	}
 
@@ -11705,7 +11832,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideIndexedFeature__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideTypeDerivation__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(18);
 	}
 
@@ -11714,8 +11841,26 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getNameLeftHandSide__NameLeftHandSideNontemplateTarget__DiagnosticChain_Map() {
+	public EOperation getNameLeftHandSide__NameLeftHandSideTargetResolution__DiagnosticChain_Map() {
         return getNameLeftHandSide().getEOperations().get(19);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNameLeftHandSide__NameLeftHandSideIndexedFeature__DiagnosticChain_Map() {
+        return getNameLeftHandSide().getEOperations().get(20);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public EOperation getNameLeftHandSide__NameLeftHandSideNontemplateTarget__DiagnosticChain_Map() {
+        return getNameLeftHandSide().getEOperations().get(21);
 	}
 
 	/**
@@ -11725,7 +11870,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getEffectiveLeftHandSide() {
 		if (effectiveLeftHandSideEClass == null) {
-			effectiveLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(69);
+			effectiveLeftHandSideEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(70);
 		}
 		return effectiveLeftHandSideEClass;
 	}
@@ -11780,9 +11925,18 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public EOperation getEffectiveLeftHandSide__Expression() {
+        return getEffectiveLeftHandSide().getEOperations().get(4);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public EClass getSequenceReductionExpression() {
 		if (sequenceReductionExpressionEClass == null) {
-			sequenceReductionExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(70);
+			sequenceReductionExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(71);
 		}
 		return sequenceReductionExpressionEClass;
 	}
@@ -11929,7 +12083,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSequenceExpressionList() {
 		if (sequenceExpressionListEClass == null) {
-			sequenceExpressionListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(71);
+			sequenceExpressionListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(72);
 		}
 		return sequenceExpressionListEClass;
 	}
@@ -12013,7 +12167,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getRelationalExpression() {
 		if (relationalExpressionEClass == null) {
-			relationalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(72);
+			relationalExpressionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(73);
 		}
 		return relationalExpressionEClass;
 	}
@@ -12106,7 +12260,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLocalNameDeclarationStatement() {
 		if (localNameDeclarationStatementEClass == null) {
-			localNameDeclarationStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(73);
+			localNameDeclarationStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(74);
 		}
 		return localNameDeclarationStatementEClass;
 	}
@@ -12262,7 +12416,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAssignableLocalNameDeclaration() {
 		if (assignableLocalNameDeclarationEClass == null) {
-			assignableLocalNameDeclarationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(74);
+			assignableLocalNameDeclarationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(75);
 		}
 		return assignableLocalNameDeclarationEClass;
 	}
@@ -12310,7 +12464,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getStatement() {
 		if (statementEClass == null) {
-			statementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(75);
+			statementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(76);
 		}
 		return statementEClass;
 	}
@@ -12493,7 +12647,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAnnotation() {
 		if (annotationEClass == null) {
-			annotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(76);
+			annotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(77);
 		}
 		return annotationEClass;
 	}
@@ -12550,7 +12704,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getQualifiedNameList() {
 		if (qualifiedNameListEClass == null) {
-			qualifiedNameListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(77);
+			qualifiedNameListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(78);
 		}
 		return qualifiedNameListEClass;
 	}
@@ -12580,7 +12734,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNonFinalClause() {
 		if (nonFinalClauseEClass == null) {
-			nonFinalClauseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(78);
+			nonFinalClauseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(79);
 		}
 		return nonFinalClauseEClass;
 	}
@@ -12664,7 +12818,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBlock() {
 		if (blockEClass == null) {
-			blockEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(79);
+			blockEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(80);
 		}
 		return blockEClass;
 	}
@@ -12748,7 +12902,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBlockStatement() {
 		if (blockStatementEClass == null) {
-			blockStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(80);
+			blockStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(81);
 		}
 		return blockStatementEClass;
 	}
@@ -12841,7 +12995,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getDoStatement() {
 		if (doStatementEClass == null) {
-			doStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(81);
+			doStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(82);
 		}
 		return doStatementEClass;
 	}
@@ -12934,7 +13088,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getConcurrentClauses() {
 		if (concurrentClausesEClass == null) {
-			concurrentClausesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(82);
+			concurrentClausesEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(83);
 		}
 		return concurrentClausesEClass;
 	}
@@ -12973,7 +13127,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBreakStatement() {
 		if (breakStatementEClass == null) {
-			breakStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(83);
+			breakStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(84);
 		}
 		return breakStatementEClass;
 	}
@@ -13021,7 +13175,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getExpressionStatement() {
 		if (expressionStatementEClass == null) {
-			expressionStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(84);
+			expressionStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(85);
 		}
 		return expressionStatementEClass;
 	}
@@ -13069,7 +13223,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassifyStatement() {
 		if (classifyStatementEClass == null) {
-			classifyStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(85);
+			classifyStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(86);
 		}
 		return classifyStatementEClass;
 	}
@@ -13207,7 +13361,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getForStatement() {
 		if (forStatementEClass == null) {
-			forStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(86);
+			forStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(87);
 		}
 		return forStatementEClass;
 	}
@@ -13372,7 +13526,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getLoopVariableDefinition() {
 		if (loopVariableDefinitionEClass == null) {
-			loopVariableDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(87);
+			loopVariableDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(88);
 		}
 		return loopVariableDefinitionEClass;
 	}
@@ -13573,7 +13727,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getIfStatement() {
 		if (ifStatementEClass == null) {
-			ifStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(88);
+			ifStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(89);
 		}
 		return ifStatementEClass;
 	}
@@ -13684,7 +13838,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSwitchStatement() {
 		if (switchStatementEClass == null) {
-			switchStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(89);
+			switchStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(90);
 		}
 		return switchStatementEClass;
 	}
@@ -13840,7 +13994,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSwitchClause() {
 		if (switchClauseEClass == null) {
-			switchClauseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(90);
+			switchClauseEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(91);
 		}
 		return switchClauseEClass;
 	}
@@ -13924,7 +14078,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getWhileStatement() {
 		if (whileStatementEClass == null) {
-			whileStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(91);
+			whileStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(92);
 		}
 		return whileStatementEClass;
 	}
@@ -14017,7 +14171,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getReturnStatement() {
 		if (returnStatementEClass == null) {
-			returnStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(92);
+			returnStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(93);
 		}
 		return returnStatementEClass;
 	}
@@ -14083,7 +14237,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getInLineStatement() {
 		if (inLineStatementEClass == null) {
-			inLineStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(93);
+			inLineStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(94);
 		}
 		return inLineStatementEClass;
 	}
@@ -14122,7 +14276,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAcceptStatement() {
 		if (acceptStatementEClass == null) {
-			acceptStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(94);
+			acceptStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(95);
 		}
 		return acceptStatementEClass;
 	}
@@ -14296,7 +14450,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAcceptBlock() {
 		if (acceptBlockEClass == null) {
-			acceptBlockEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(95);
+			acceptBlockEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(96);
 		}
 		return acceptBlockEClass;
 	}
@@ -14380,7 +14534,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getEmptyStatement() {
 		if (emptyStatementEClass == null) {
-			emptyStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(96);
+			emptyStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(97);
 		}
 		return emptyStatementEClass;
 	}
@@ -14401,7 +14555,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getModelNamespace() {
 		if (modelNamespaceEClass == null) {
-			modelNamespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(97);
+			modelNamespaceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(98);
 		}
 		return modelNamespaceEClass;
 	}
@@ -14512,7 +14666,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNamespaceDefinition() {
 		if (namespaceDefinitionEClass == null) {
-			namespaceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(98);
+			namespaceDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(99);
 		}
 		return namespaceDefinitionEClass;
 	}
@@ -14803,7 +14957,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getMemberDefinition() {
 		if (memberDefinitionEClass == null) {
-			memberDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(99);
+			memberDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(100);
 		}
 		return memberDefinitionEClass;
 	}
@@ -15085,7 +15239,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getStereotypeAnnotation() {
 		if (stereotypeAnnotationEClass == null) {
-			stereotypeAnnotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(100);
+			stereotypeAnnotationEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(101);
 		}
 		return stereotypeAnnotationEClass;
 	}
@@ -15205,7 +15359,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTaggedValueList() {
 		if (taggedValueListEClass == null) {
-			taggedValueListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(101);
+			taggedValueListEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(102);
 		}
 		return taggedValueListEClass;
 	}
@@ -15226,7 +15380,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTaggedValue() {
 		if (taggedValueEClass == null) {
-			taggedValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(102);
+			taggedValueEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(103);
 		}
 		return taggedValueEClass;
 	}
@@ -15265,7 +15419,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getUnitDefinition() {
 		if (unitDefinitionEClass == null) {
-			unitDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(103);
+			unitDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(104);
 		}
 		return unitDefinitionEClass;
 	}
@@ -15412,7 +15566,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getImportReference() {
 		if (importReferenceEClass == null) {
-			importReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(104);
+			importReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(105);
 		}
 		return importReferenceEClass;
 	}
@@ -15487,7 +15641,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getImportedMember() {
 		if (importedMemberEClass == null) {
-			importedMemberEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(105);
+			importedMemberEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(106);
 		}
 		return importedMemberEClass;
 	}
@@ -15571,7 +15725,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getEnumerationLiteralName() {
 		if (enumerationLiteralNameEClass == null) {
-			enumerationLiteralNameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(106);
+			enumerationLiteralNameEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(107);
 		}
 		return enumerationLiteralNameEClass;
 	}
@@ -15592,7 +15746,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getOperationDefinition() {
 		if (operationDefinitionEClass == null) {
-			operationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(107);
+			operationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(108);
 		}
 		return operationDefinitionEClass;
 	}
@@ -15820,7 +15974,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAssociationDefinition() {
 		if (associationDefinitionEClass == null) {
-			associationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(108);
+			associationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(109);
 		}
 		return associationDefinitionEClass;
 	}
@@ -15868,7 +16022,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassifierDefinition() {
 		if (classifierDefinitionEClass == null) {
-			classifierDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(109);
+			classifierDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(110);
 		}
 		return classifierDefinitionEClass;
 	}
@@ -15988,7 +16142,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassDefinition() {
 		if (classDefinitionEClass == null) {
-			classDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(110);
+			classDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(111);
 		}
 		return classDefinitionEClass;
 	}
@@ -16090,7 +16244,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getTypedElementDefinition() {
 		if (typedElementDefinitionEClass == null) {
-			typedElementDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(111);
+			typedElementDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(112);
 		}
 		return typedElementDefinitionEClass;
 	}
@@ -16264,7 +16418,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getDataTypeDefinition() {
 		if (dataTypeDefinitionEClass == null) {
-			dataTypeDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(112);
+			dataTypeDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(113);
 		}
 		return dataTypeDefinitionEClass;
 	}
@@ -16321,7 +16475,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPackageDefinition() {
 		if (packageDefinitionEClass == null) {
-			packageDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(113);
+			packageDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(114);
 		}
 		return packageDefinitionEClass;
 	}
@@ -16396,7 +16550,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPropertyDefinition() {
 		if (propertyDefinitionEClass == null) {
-			propertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(114);
+			propertyDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(115);
 		}
 		return propertyDefinitionEClass;
 	}
@@ -16525,7 +16679,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSignalDefinition() {
 		if (signalDefinitionEClass == null) {
-			signalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(115);
+			signalDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(116);
 		}
 		return signalDefinitionEClass;
 	}
@@ -16573,7 +16727,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getActiveClassDefinition() {
 		if (activeClassDefinitionEClass == null) {
-			activeClassDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(116);
+			activeClassDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(117);
 		}
 		return activeClassDefinitionEClass;
 	}
@@ -16612,7 +16766,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getActivityDefinition() {
 		if (activityDefinitionEClass == null) {
-			activityDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(117);
+			activityDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(118);
 		}
 		return activityDefinitionEClass;
 	}
@@ -16696,7 +16850,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getElementImportReference() {
 		if (elementImportReferenceEClass == null) {
-			elementImportReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(118);
+			elementImportReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(119);
 		}
 		return elementImportReferenceEClass;
 	}
@@ -16735,7 +16889,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getSignalReceptionDefinition() {
 		if (signalReceptionDefinitionEClass == null) {
-			signalReceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(119);
+			signalReceptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(120);
 		}
 		return signalReceptionDefinitionEClass;
 	}
@@ -16765,7 +16919,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getEnumerationDefinition() {
 		if (enumerationDefinitionEClass == null) {
-			enumerationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(120);
+			enumerationDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(121);
 		}
 		return enumerationDefinitionEClass;
 	}
@@ -16813,7 +16967,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getPackageImportReference() {
 		if (packageImportReferenceEClass == null) {
-			packageImportReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(121);
+			packageImportReferenceEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(122);
 		}
 		return packageImportReferenceEClass;
 	}
@@ -16843,7 +16997,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getClassifierTemplateParameter() {
 		if (classifierTemplateParameterEClass == null) {
-			classifierTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(122);
+			classifierTemplateParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(123);
 		}
 		return classifierTemplateParameterEClass;
 	}
@@ -16891,7 +17045,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getFormalParameter() {
 		if (formalParameterEClass == null) {
-			formalParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(123);
+			formalParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(124);
 		}
 		return formalParameterEClass;
 	}
@@ -16984,7 +17138,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getReceptionDefinition() {
 		if (receptionDefinitionEClass == null) {
-			receptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(124);
+			receptionDefinitionEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(125);
 		}
 		return receptionDefinitionEClass;
 	}
@@ -17077,7 +17231,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getMember() {
 		if (memberEClass == null) {
-			memberEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(125);
+			memberEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(126);
 		}
 		return memberEClass;
 	}
@@ -17143,7 +17297,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAnnotatedStatement() {
 		if (annotatedStatementEClass == null) {
-			annotatedStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(126);
+			annotatedStatementEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(127);
 		}
 		return annotatedStatementEClass;
 	}
@@ -17182,7 +17336,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getBoundClassifier() {
 		if (boundClassifierEClass == null) {
-			boundClassifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(127);
+			boundClassifierEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(128);
 		}
 		return boundClassifierEClass;
 	}
@@ -17221,7 +17375,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getReturnParameter() {
 		if (returnParameterEClass == null) {
-			returnParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(128);
+			returnParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(129);
 		}
 		return returnParameterEClass;
 	}
@@ -17233,7 +17387,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getNonReturnParameter() {
 		if (nonReturnParameterEClass == null) {
-			nonReturnParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(129);
+			nonReturnParameterEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(130);
 		}
 		return nonReturnParameterEClass;
 	}
@@ -17245,7 +17399,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 */
 	public EClass getAnyType() {
 		if (anyTypeEClass == null) {
-			anyTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(130);
+			anyTypeEClass = (EClass)EPackage.Registry.INSTANCE.getEPackage(AlfPackage.eNS_URI).getEClassifiers().get(131);
 		}
 		return anyTypeEClass;
 	}

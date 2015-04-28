@@ -157,6 +157,24 @@ public interface NameLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet expression = self.primary() in\n\t\t\t\t\tif self.index = null then expression\n\t\t\t\t\telse\n\t\t\t\t\t\tSequenceAccessExpression{\n\t\t\t\t\t\t\tprimary = expression,\n\t\t\t\t\t\t\tindex = index.reference(),\n\t\t\t\t\t\t\towner = self\n\t\t\t\t\t\t}\n\t\t\t\t\tendif'"
+	 * @generated
+	 */
+	Expression expression();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @model required="true"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet feature = self.feature() in\n\t\t\t\tif feature = null then\n\t\t\t\t\tNameExpression{\n\t\t\t\t\t\tname = self.target.copy(),\n\t\t\t\t\t\towner = self\n\t\t\t\t\t}\n\t\t\t\telse\n\t\t\t\t\tPropertyAccessExpression{\n\t\t\t\t\t\tfeature = feature,\n\t\t\t\t\t\towner = self\n\t\t\t\t\t}\n\t\t\t\tendif'"
+	 * @generated
+	 */
+	Expression primary();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
 	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n        if self.feature() <> null then null\n        else self.target().unqualifiedName.toName()\n        endif'"
 	 * @generated
 	 */

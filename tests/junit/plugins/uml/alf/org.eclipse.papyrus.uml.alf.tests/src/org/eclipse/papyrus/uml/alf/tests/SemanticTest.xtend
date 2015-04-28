@@ -61,7 +61,7 @@ class SemanticTest extends ParserTest {
   }
   
   @Test
-  @Ignore("Doesn't run on Maven - Bug 464026")
+  // @Ignore("Doesn't run on Maven - Bug 464026")
   def void testStaticSemantics() {
   	System.out.print("[SemanticTest] ")
     val failures = parseDirectory(resourceSet, testDirectory, true);

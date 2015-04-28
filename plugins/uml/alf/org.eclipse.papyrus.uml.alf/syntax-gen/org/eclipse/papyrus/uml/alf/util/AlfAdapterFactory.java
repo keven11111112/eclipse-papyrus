@@ -116,6 +116,10 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 				return createExpressionAdapter();
 			}
 			@Override
+			public Adapter caseExpressionReference(ExpressionReference object) {
+				return createExpressionReferenceAdapter();
+			}
+			@Override
 			public Adapter caseExtentOrExpression(ExtentOrExpression object) {
 				return createExtentOrExpressionAdapter();
 			}
@@ -776,6 +780,20 @@ public class AlfAdapterFactory extends AdapterFactoryImpl {
 	 * @generated
 	 */
 	public Adapter createExpressionAdapter() {
+		return null;
+	}
+
+	/**
+	 * Creates a new adapter for an object of class '{@link org.eclipse.papyrus.uml.alf.ExpressionReference <em>Expression Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * This default implementation returns null so that we can easily ignore cases;
+	 * it's useful to ignore a case when inheritance will catch all the cases anyway.
+	 * <!-- end-user-doc -->
+	 * @return the new adapter.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference
+	 * @generated
+	 */
+	public Adapter createExpressionReferenceAdapter() {
 		return null;
 	}
 

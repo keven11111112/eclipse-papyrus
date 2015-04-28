@@ -63,6 +63,7 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 			case AlfPackage.BOUND_ELEMENT_REFERENCE: return createBoundElementReference();
 			case AlfPackage.SEQUENCE_EXPANSION_EXPRESSION: return createSequenceExpansionExpression();
 			case AlfPackage.ASSIGNABLE_ELEMENT_REFERENCE: return createAssignableElementReference();
+			case AlfPackage.EXPRESSION_REFERENCE: return createExpressionReference();
 			case AlfPackage.EXTENT_OR_EXPRESSION: return createExtentOrExpression();
 			case AlfPackage.QUALIFIED_NAME: return createQualifiedName();
 			case AlfPackage.FEATURE_REFERENCE: return createFeatureReference();
@@ -243,6 +244,16 @@ public class AlfFactoryImpl extends EFactoryImpl implements AlfFactory {
 	public AssignableElementReference createAssignableElementReference() {
 		AssignableElementReferenceImpl assignableElementReference = new AssignableElementReferenceImpl();
 		return assignableElementReference;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionReference createExpressionReference() {
+		ExpressionReferenceImpl expressionReference = new ExpressionReferenceImpl();
+		return expressionReference;
 	}
 
 	/**

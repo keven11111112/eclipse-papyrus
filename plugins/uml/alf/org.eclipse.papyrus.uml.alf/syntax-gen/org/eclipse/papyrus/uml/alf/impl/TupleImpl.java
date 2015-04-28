@@ -18,6 +18,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignedSource;
 import org.eclipse.papyrus.uml.alf.ElementReference;
+import org.eclipse.papyrus.uml.alf.Expression;
 import org.eclipse.papyrus.uml.alf.InputNamedExpression;
 import org.eclipse.papyrus.uml.alf.InvocationExpression;
 import org.eclipse.papyrus.uml.alf.OutputNamedExpression;
@@ -215,6 +216,17 @@ public abstract class TupleImpl extends SyntaxElementImpl implements Tuple {
 	 * @generated
 	 */
 	public EList<OutputNamedExpression> outputFor(EList<ElementReference> parameters) {
+		// TODO: implement this method
+		// Ensure that you remove @generated or mark it @generated NOT
+		throw new UnsupportedOperationException();
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public OutputNamedExpression outputForExpression(Expression expression) {
 		// TODO: implement this method
 		// Ensure that you remove @generated or mark it @generated NOT
 		throw new UnsupportedOperationException();
@@ -534,6 +546,8 @@ public abstract class TupleImpl extends SyntaxElementImpl implements Tuple {
 				return output();
 			case AlfPackage.TUPLE___OUTPUT_FOR__ELIST:
 				return outputFor((EList<ElementReference>)arguments.get(0));
+			case AlfPackage.TUPLE___OUTPUT_FOR_EXPRESSION__EXPRESSION:
+				return outputForExpression((Expression)arguments.get(0));
 			case AlfPackage.TUPLE___ASSIGNMENTS_BEFORE__SYNTAXELEMENT:
 				return assignmentsBefore((SyntaxElement)arguments.get(0));
 			case AlfPackage.TUPLE___ASSIGNMENTS_AFTER:

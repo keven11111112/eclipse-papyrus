@@ -6892,13 +6892,22 @@ public interface AlfPackage extends EPackage {
 	int EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = ASSIGNABLE_ELEMENT___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION___REFERENCE = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 0;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___NEW_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 0;
+	int EXPRESSION___NEW_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 1;
 
 	/**
 	 * The operation id for the '<em>Update Assignments</em>' operation.
@@ -6907,7 +6916,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___UPDATE_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 1;
+	int EXPRESSION___UPDATE_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Expression update Assignments</em>' operation.
@@ -6916,7 +6925,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___EXPRESSION_UPDATE_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 2;
+	int EXPRESSION___EXPRESSION_UPDATE_ASSIGNMENTS = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Update Assignments Cached</em>' operation.
@@ -6925,7 +6934,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___UPDATE_ASSIGNMENTS_CACHED = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 3;
+	int EXPRESSION___UPDATE_ASSIGNMENTS_CACHED = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Resolve</em>' operation.
@@ -6934,7 +6943,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___RESOLVE__STRING = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 4;
+	int EXPRESSION___RESOLVE__STRING = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Is Add Target</em>' operation.
@@ -6943,7 +6952,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___IS_ADD_TARGET__EXPRESSION = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 5;
+	int EXPRESSION___IS_ADD_TARGET__EXPRESSION = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Expression Assignment After Derivation</em>' operation.
@@ -6952,7 +6961,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 6;
+	int EXPRESSION___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Expression Unique Assignments</em>' operation.
@@ -6961,7 +6970,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 7;
+	int EXPRESSION___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The number of operations of the '<em>Expression</em>' class.
@@ -6970,7 +6979,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int EXPRESSION_OPERATION_COUNT = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 8;
+	int EXPRESSION_OPERATION_COUNT = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.SequenceExpansionExpressionImpl <em>Sequence Expansion Expression</em>}' class.
@@ -7494,6 +7503,15 @@ public interface AlfPackage extends EPackage {
 	 * @ordered
 	 */
 	int SEQUENCE_EXPANSION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_EXPANSION_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
 
 	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
@@ -8289,6 +8307,583 @@ public interface AlfPackage extends EPackage {
 	int ASSIGNABLE_ELEMENT_REFERENCE_OPERATION_COUNT = ASSIGNABLE_ELEMENT_OPERATION_COUNT + 3;
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.ExpressionReferenceImpl <em>Expression Reference</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.uml.alf.impl.ExpressionReferenceImpl
+	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getExpressionReference()
+	 * @generated
+	 */
+	int EXPRESSION_REFERENCE = 12;
+
+	/**
+	 * The feature id for the '<em><b>Owner</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__OWNER = EXPRESSION__OWNER;
+
+	/**
+	 * The feature id for the '<em><b>Upper</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__UPPER = EXPRESSION__UPPER;
+
+	/**
+	 * The feature id for the '<em><b>Lower</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__LOWER = EXPRESSION__LOWER;
+
+	/**
+	 * The feature id for the '<em><b>Type</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__TYPE = EXPRESSION__TYPE;
+
+	/**
+	 * The feature id for the '<em><b>Assignment Before</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__ASSIGNMENT_BEFORE = EXPRESSION__ASSIGNMENT_BEFORE;
+
+	/**
+	 * The feature id for the '<em><b>Assignment After</b></em>' reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__ASSIGNMENT_AFTER = EXPRESSION__ASSIGNMENT_AFTER;
+
+	/**
+	 * The feature id for the '<em><b>Expression</b></em>' reference.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE__EXPRESSION = EXPRESSION_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Expression Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE_FEATURE_COUNT = EXPRESSION_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>To Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___TO_REFERENCE = EXPRESSION___TO_REFERENCE;
+
+	/**
+	 * The operation id for the '<em>Owner</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___OWNER = EXPRESSION___OWNER;
+
+	/**
+	 * The operation id for the '<em>Syntax Element owner</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___SYNTAX_ELEMENT_OWNER = EXPRESSION___SYNTAX_ELEMENT_OWNER;
+
+	/**
+	 * The operation id for the '<em>Current Scope</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___CURRENT_SCOPE = EXPRESSION___CURRENT_SCOPE;
+
+	/**
+	 * The operation id for the '<em>Syntax Element current Scope</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___SYNTAX_ELEMENT_CURRENT_SCOPE = EXPRESSION___SYNTAX_ELEMENT_CURRENT_SCOPE;
+
+	/**
+	 * The operation id for the '<em>Enclosing Statement</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___ENCLOSING_STATEMENT = EXPRESSION___ENCLOSING_STATEMENT;
+
+	/**
+	 * The operation id for the '<em>Enclosing Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___ENCLOSING_EXPRESSION = EXPRESSION___ENCLOSING_EXPRESSION;
+
+	/**
+	 * The operation id for the '<em>Syntax Element assignments Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___SYNTAX_ELEMENT_ASSIGNMENTS_BEFORE = EXPRESSION___SYNTAX_ELEMENT_ASSIGNMENTS_BEFORE;
+
+	/**
+	 * The operation id for the '<em>Syntax Element assignments Before base</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___SYNTAX_ELEMENT_ASSIGNMENTS_BEFORE_BASE = EXPRESSION___SYNTAX_ELEMENT_ASSIGNMENTS_BEFORE_BASE;
+
+	/**
+	 * The operation id for the '<em>Assignments Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___ASSIGNMENTS_BEFORE__SYNTAXELEMENT = EXPRESSION___ASSIGNMENTS_BEFORE__SYNTAXELEMENT;
+
+	/**
+	 * The operation id for the '<em>Update All</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___UPDATE_ALL__ELIST_ELIST = EXPRESSION___UPDATE_ALL__ELIST_ELIST;
+
+	/**
+	 * The operation id for the '<em>Common Ancestor</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___COMMON_ANCESTOR__ELIST = EXPRESSION___COMMON_ANCESTOR__ELIST;
+
+	/**
+	 * The operation id for the '<em>Common Ancestors</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___COMMON_ANCESTORS__ELIST = EXPRESSION___COMMON_ANCESTORS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Remove Duplicate Elements</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___REMOVE_DUPLICATE_ELEMENTS__ELIST = EXPRESSION___REMOVE_DUPLICATE_ELEMENTS__ELIST;
+
+	/**
+	 * The operation id for the '<em>Resolve In Library</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___RESOLVE_IN_LIBRARY__STRING = EXPRESSION___RESOLVE_IN_LIBRARY__STRING;
+
+	/**
+	 * The operation id for the '<em>Primitive Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___PRIMITIVE_TYPE__STRING = EXPRESSION___PRIMITIVE_TYPE__STRING;
+
+	/**
+	 * The operation id for the '<em>Primitive Type </em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___PRIMITIVE_TYPE____STRING = EXPRESSION___PRIMITIVE_TYPE____STRING;
+
+	/**
+	 * The operation id for the '<em>Boolean Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___BOOLEAN_TYPE = EXPRESSION___BOOLEAN_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Boolean Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_BOOLEAN_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_BOOLEAN_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Integer Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___INTEGER_TYPE = EXPRESSION___INTEGER_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Integer Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_INTEGER_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_INTEGER_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>String Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___STRING_TYPE = EXPRESSION___STRING_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is String Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_STRING_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_STRING_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Unlimited Natural Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___UNLIMITED_NATURAL_TYPE = EXPRESSION___UNLIMITED_NATURAL_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Unlimited Natural Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_UNLIMITED_NATURAL_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_UNLIMITED_NATURAL_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Bit String Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___BIT_STRING_TYPE = EXPRESSION___BIT_STRING_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Bit String Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_BIT_STRING_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_BIT_STRING_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Natural Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___NATURAL_TYPE = EXPRESSION___NATURAL_TYPE;
+
+	/**
+	 * The operation id for the '<em>Is Natural Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_NATURAL_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_NATURAL_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Is Numeric Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_NUMERIC_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_NUMERIC_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Collection Function Add</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___COLLECTION_FUNCTION_ADD = EXPRESSION___COLLECTION_FUNCTION_ADD;
+
+	/**
+	 * The operation id for the '<em>Is Collection Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_COLLECTION_CLASS__ELEMENTREFERENCE = EXPRESSION___IS_COLLECTION_CLASS__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Is Integer Collection Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_INTEGER_COLLECTION_CLASS__ELEMENTREFERENCE = EXPRESSION___IS_INTEGER_COLLECTION_CLASS__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Is Bit String Collection Class</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_BIT_STRING_COLLECTION_CLASS__ELEMENTREFERENCE = EXPRESSION___IS_BIT_STRING_COLLECTION_CLASS__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Type Cached</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___TYPE_CACHED = EXPRESSION___TYPE_CACHED;
+
+	/**
+	 * The operation id for the '<em>Is Null</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_NULL = EXPRESSION___IS_NULL;
+
+	/**
+	 * The operation id for the '<em>Is Assignable From Element</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_ASSIGNABLE_FROM_ELEMENT__ELEMENTREFERENCE = EXPRESSION___IS_ASSIGNABLE_FROM_ELEMENT__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Is Assignable From</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_ASSIGNABLE_FROM__ASSIGNABLEELEMENT = EXPRESSION___IS_ASSIGNABLE_FROM__ASSIGNABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Type Conformant With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_TYPE_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_TYPE_CONFORMANT_WITH__ASSIGNABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Is Conformant With Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_CONFORMANT_WITH_TYPE__ELEMENTREFERENCE = EXPRESSION___IS_CONFORMANT_WITH_TYPE__ELEMENTREFERENCE;
+
+	/**
+	 * The operation id for the '<em>Is Multiplicity Conformant With</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
+
+	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
+	 * The operation id for the '<em>New Assignments</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___NEW_ASSIGNMENTS = EXPRESSION___NEW_ASSIGNMENTS;
+
+	/**
+	 * The operation id for the '<em>Expression update Assignments</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___EXPRESSION_UPDATE_ASSIGNMENTS = EXPRESSION___EXPRESSION_UPDATE_ASSIGNMENTS;
+
+	/**
+	 * The operation id for the '<em>Update Assignments Cached</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___UPDATE_ASSIGNMENTS_CACHED = EXPRESSION___UPDATE_ASSIGNMENTS_CACHED;
+
+	/**
+	 * The operation id for the '<em>Resolve</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___RESOLVE__STRING = EXPRESSION___RESOLVE__STRING;
+
+	/**
+	 * The operation id for the '<em>Expression Assignment After Derivation</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = EXPRESSION___EXPRESSION_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Expression Unique Assignments</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP = EXPRESSION___EXPRESSION_UNIQUE_ASSIGNMENTS__DIAGNOSTICCHAIN_MAP;
+
+	/**
+	 * The operation id for the '<em>Type</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___TYPE = EXPRESSION_OPERATION_COUNT + 0;
+
+	/**
+	 * The operation id for the '<em>Lower</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___LOWER = EXPRESSION_OPERATION_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Upper</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___UPPER = EXPRESSION_OPERATION_COUNT + 2;
+
+	/**
+	 * The operation id for the '<em>Is Add Target</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___IS_ADD_TARGET__EXPRESSION = EXPRESSION_OPERATION_COUNT + 3;
+
+	/**
+	 * The operation id for the '<em>Assignments Before</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___ASSIGNMENTS_BEFORE = EXPRESSION_OPERATION_COUNT + 4;
+
+	/**
+	 * The operation id for the '<em>Update Assignments</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE___UPDATE_ASSIGNMENTS = EXPRESSION_OPERATION_COUNT + 5;
+
+	/**
+	 * The number of operations of the '<em>Expression Reference</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXPRESSION_REFERENCE_OPERATION_COUNT = EXPRESSION_OPERATION_COUNT + 6;
+
+	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.ExtentOrExpressionImpl <em>Extent Or Expression</em>}' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8296,7 +8891,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getExtentOrExpression()
 	 * @generated
 	 */
-	int EXTENT_OR_EXPRESSION = 12;
+	int EXTENT_OR_EXPRESSION = 13;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -8794,6 +9389,15 @@ public interface AlfPackage extends EPackage {
 	int EXTENT_OR_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EXTENT_OR_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -8909,7 +9513,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getQualifiedName()
 	 * @generated
 	 */
-	int QUALIFIED_NAME = 13;
+	int QUALIFIED_NAME = 14;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -9513,7 +10117,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getFeatureReference()
 	 * @generated
 	 */
-	int FEATURE_REFERENCE = 14;
+	int FEATURE_REFERENCE = 15;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -10011,6 +10615,15 @@ public interface AlfPackage extends EPackage {
 	int FEATURE_REFERENCE___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_REFERENCE___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -10153,7 +10766,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNameBinding()
 	 * @generated
 	 */
-	int NAME_BINDING = 15;
+	int NAME_BINDING = 16;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -10586,7 +11199,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTemplateBinding()
 	 * @generated
 	 */
-	int TEMPLATE_BINDING = 16;
+	int TEMPLATE_BINDING = 17;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -10974,7 +11587,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNamedTemplateBinding()
 	 * @generated
 	 */
-	int NAMED_TEMPLATE_BINDING = 17;
+	int NAMED_TEMPLATE_BINDING = 18;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -11380,7 +11993,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTemplateParameterSubstitution()
 	 * @generated
 	 */
-	int TEMPLATE_PARAMETER_SUBSTITUTION = 18;
+	int TEMPLATE_PARAMETER_SUBSTITUTION = 19;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -11786,7 +12399,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getUnaryExpression()
 	 * @generated
 	 */
-	int UNARY_EXPRESSION = 20;
+	int UNARY_EXPRESSION = 21;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -12275,6 +12888,15 @@ public interface AlfPackage extends EPackage {
 	int UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNARY_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12372,7 +12994,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNumericUnaryExpression()
 	 * @generated
 	 */
-	int NUMERIC_UNARY_EXPRESSION = 19;
+	int NUMERIC_UNARY_EXPRESSION = 20;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -12834,6 +13456,15 @@ public interface AlfPackage extends EPackage {
 	int NUMERIC_UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NUMERIC_UNARY_EXPRESSION___REFERENCE = UNARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -12994,7 +13625,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getForAllOrExistsOrOneExpression()
 	 * @generated
 	 */
-	int FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION = 21;
+	int FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION = 22;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -13510,6 +14141,15 @@ public interface AlfPackage extends EPackage {
 	int FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = SEQUENCE_EXPANSION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FOR_ALL_OR_EXISTS_OR_ONE_EXPRESSION___REFERENCE = SEQUENCE_EXPANSION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -13832,7 +14472,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getIsolationExpression()
 	 * @generated
 	 */
-	int ISOLATION_EXPRESSION = 22;
+	int ISOLATION_EXPRESSION = 23;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -14294,6 +14934,15 @@ public interface AlfPackage extends EPackage {
 	int ISOLATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ISOLATION_EXPRESSION___REFERENCE = UNARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -14445,7 +15094,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBinaryExpression()
 	 * @generated
 	 */
-	int BINARY_EXPRESSION = 23;
+	int BINARY_EXPRESSION = 24;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -14943,6 +15592,15 @@ public interface AlfPackage extends EPackage {
 	int BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BINARY_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15067,7 +15725,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBooleanUnaryExpression()
 	 * @generated
 	 */
-	int BOOLEAN_UNARY_EXPRESSION = 24;
+	int BOOLEAN_UNARY_EXPRESSION = 25;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -15529,6 +16187,15 @@ public interface AlfPackage extends EPackage {
 	int BOOLEAN_UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_UNARY_EXPRESSION___REFERENCE = UNARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -15689,7 +16356,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getCastExpression()
 	 * @generated
 	 */
-	int CAST_EXPRESSION = 25;
+	int CAST_EXPRESSION = 26;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -16160,6 +16827,15 @@ public interface AlfPackage extends EPackage {
 	int CAST_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CAST_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -16320,7 +16996,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTuple()
 	 * @generated
 	 */
-	int TUPLE = 27;
+	int TUPLE = 28;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -16737,13 +17413,22 @@ public interface AlfPackage extends EPackage {
 	int TUPLE___OUTPUT_FOR__ELIST = SYNTAX_ELEMENT_OPERATION_COUNT + 6;
 
 	/**
+	 * The operation id for the '<em>Output For Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int TUPLE___OUTPUT_FOR_EXPRESSION__EXPRESSION = SYNTAX_ELEMENT_OPERATION_COUNT + 7;
+
+	/**
 	 * The operation id for the '<em>Assignments Before</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___ASSIGNMENTS_BEFORE__SYNTAXELEMENT = SYNTAX_ELEMENT_OPERATION_COUNT + 7;
+	int TUPLE___ASSIGNMENTS_BEFORE__SYNTAXELEMENT = SYNTAX_ELEMENT_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Assignments After</em>' operation.
@@ -16752,7 +17437,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___ASSIGNMENTS_AFTER = SYNTAX_ELEMENT_OPERATION_COUNT + 8;
+	int TUPLE___ASSIGNMENTS_AFTER = SYNTAX_ELEMENT_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
@@ -16761,7 +17446,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___NEW_ASSIGNMENTS = SYNTAX_ELEMENT_OPERATION_COUNT + 9;
+	int TUPLE___NEW_ASSIGNMENTS = SYNTAX_ELEMENT_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Update For</em>' operation.
@@ -16770,7 +17455,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___UPDATE_FOR__ELIST_OUTPUTNAMEDEXPRESSION = SYNTAX_ELEMENT_OPERATION_COUNT + 10;
+	int TUPLE___UPDATE_FOR__ELIST_OUTPUTNAMEDEXPRESSION = SYNTAX_ELEMENT_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Tuple Input Derivation</em>' operation.
@@ -16779,7 +17464,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_INPUT_DERIVATION__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 11;
+	int TUPLE___TUPLE_INPUT_DERIVATION__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Tuple Output Derivation</em>' operation.
@@ -16788,7 +17473,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_OUTPUT_DERIVATION__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 12;
+	int TUPLE___TUPLE_OUTPUT_DERIVATION__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Tuple Null Inputs</em>' operation.
@@ -16797,7 +17482,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_NULL_INPUTS__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 13;
+	int TUPLE___TUPLE_NULL_INPUTS__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Tuple Outputs</em>' operation.
@@ -16806,7 +17491,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_OUTPUTS__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 14;
+	int TUPLE___TUPLE_OUTPUTS__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Tuple Assignments Before</em>' operation.
@@ -16815,7 +17500,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 15;
+	int TUPLE___TUPLE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Tuple Assignments After</em>' operation.
@@ -16824,7 +17509,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE___TUPLE_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 16;
+	int TUPLE___TUPLE_ASSIGNMENTS_AFTER__DIAGNOSTICCHAIN_MAP = SYNTAX_ELEMENT_OPERATION_COUNT + 17;
 
 	/**
 	 * The number of operations of the '<em>Tuple</em>' class.
@@ -16833,7 +17518,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int TUPLE_OPERATION_COUNT = SYNTAX_ELEMENT_OPERATION_COUNT + 17;
+	int TUPLE_OPERATION_COUNT = SYNTAX_ELEMENT_OPERATION_COUNT + 18;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.PositionalTupleImpl <em>Positional Tuple</em>}' class.
@@ -16843,7 +17528,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPositionalTuple()
 	 * @generated
 	 */
-	int POSITIONAL_TUPLE = 26;
+	int POSITIONAL_TUPLE = 27;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -17359,13 +18044,22 @@ public interface AlfPackage extends EPackage {
 	int POSITIONAL_TUPLE___OUTPUT_FOR__ELIST = TUPLE_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Output For Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int POSITIONAL_TUPLE___OUTPUT_FOR_EXPRESSION__EXPRESSION = TUPLE_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Positional Tuple Arguments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int POSITIONAL_TUPLE___POSITIONAL_TUPLE_ARGUMENTS__DIAGNOSTICCHAIN_MAP = TUPLE_OPERATION_COUNT + 3;
+	int POSITIONAL_TUPLE___POSITIONAL_TUPLE_ARGUMENTS__DIAGNOSTICCHAIN_MAP = TUPLE_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Positional Tuple</em>' class.
@@ -17374,7 +18068,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int POSITIONAL_TUPLE_OPERATION_COUNT = TUPLE_OPERATION_COUNT + 4;
+	int POSITIONAL_TUPLE_OPERATION_COUNT = TUPLE_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.NamedExpressionImpl <em>Named Expression</em>}' class.
@@ -17384,7 +18078,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNamedExpression()
 	 * @generated
 	 */
-	int NAMED_EXPRESSION = 28;
+	int NAMED_EXPRESSION = 29;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -17772,7 +18466,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getInputNamedExpression()
 	 * @generated
 	 */
-	int INPUT_NAMED_EXPRESSION = 29;
+	int INPUT_NAMED_EXPRESSION = 30;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -18196,7 +18890,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getInvocationExpression()
 	 * @generated
 	 */
-	int INVOCATION_EXPRESSION = 30;
+	int INVOCATION_EXPRESSION = 31;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -18721,6 +19415,15 @@ public interface AlfPackage extends EPackage {
 	int INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INVOCATION_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -19115,7 +19818,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getOutputNamedExpression()
 	 * @generated
 	 */
-	int OUTPUT_NAMED_EXPRESSION = 31;
+	int OUTPUT_NAMED_EXPRESSION = 32;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -19575,7 +20278,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLeftHandSide()
 	 * @generated
 	 */
-	int LEFT_HAND_SIDE = 32;
+	int LEFT_HAND_SIDE = 33;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -20179,7 +20882,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceAccessExpression()
 	 * @generated
 	 */
-	int SEQUENCE_ACCESS_EXPRESSION = 33;
+	int SEQUENCE_ACCESS_EXPRESSION = 34;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -20641,6 +21344,15 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_ACCESS_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_ACCESS_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -20801,7 +21513,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLiteralExpression()
 	 * @generated
 	 */
-	int LITERAL_EXPRESSION = 35;
+	int LITERAL_EXPRESSION = 36;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -21254,6 +21966,15 @@ public interface AlfPackage extends EPackage {
 	int LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LITERAL_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21378,7 +22099,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getStringLiteralExpression()
 	 * @generated
 	 */
-	int STRING_LITERAL_EXPRESSION = 34;
+	int STRING_LITERAL_EXPRESSION = 35;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -21831,6 +22552,15 @@ public interface AlfPackage extends EPackage {
 	int STRING_LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int STRING_LITERAL_EXPRESSION___REFERENCE = LITERAL_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -21973,7 +22703,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceOperationExpression()
 	 * @generated
 	 */
-	int SEQUENCE_OPERATION_EXPRESSION = 36;
+	int SEQUENCE_OPERATION_EXPRESSION = 37;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -22543,6 +23273,15 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_OPERATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_OPERATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23045,7 +23784,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSelectOrRejectExpression()
 	 * @generated
 	 */
-	int SELECT_OR_REJECT_EXPRESSION = 37;
+	int SELECT_OR_REJECT_EXPRESSION = 38;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -23561,6 +24300,15 @@ public interface AlfPackage extends EPackage {
 	int SELECT_OR_REJECT_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = SEQUENCE_EXPANSION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SELECT_OR_REJECT_EXPRESSION___REFERENCE = SEQUENCE_EXPANSION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -23883,7 +24631,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassExtentExpression()
 	 * @generated
 	 */
-	int CLASS_EXTENT_EXPRESSION = 38;
+	int CLASS_EXTENT_EXPRESSION = 39;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -24336,6 +25084,15 @@ public interface AlfPackage extends EPackage {
 	int CLASS_EXTENT_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASS_EXTENT_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -24496,7 +25253,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPositionalTemplateBinding()
 	 * @generated
 	 */
-	int POSITIONAL_TEMPLATE_BINDING = 39;
+	int POSITIONAL_TEMPLATE_BINDING = 40;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -24902,7 +25659,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getConditionalLogicalExpression()
 	 * @generated
 	 */
-	int CONDITIONAL_LOGICAL_EXPRESSION = 40;
+	int CONDITIONAL_LOGICAL_EXPRESSION = 41;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -25364,6 +26121,15 @@ public interface AlfPackage extends EPackage {
 	int CONDITIONAL_LOGICAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_LOGICAL_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -25560,7 +26326,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLinkOperationExpression()
 	 * @generated
 	 */
-	int LINK_OPERATION_EXPRESSION = 41;
+	int LINK_OPERATION_EXPRESSION = 42;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -26121,6 +26887,15 @@ public interface AlfPackage extends EPackage {
 	int LINK_OPERATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LINK_OPERATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -26569,7 +27344,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getEqualityExpression()
 	 * @generated
 	 */
-	int EQUALITY_EXPRESSION = 42;
+	int EQUALITY_EXPRESSION = 43;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -27049,6 +27824,15 @@ public interface AlfPackage extends EPackage {
 	int EQUALITY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EQUALITY_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -27236,7 +28020,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAssignmentExpression()
 	 * @generated
 	 */
-	int ASSIGNMENT_EXPRESSION = 43;
+	int ASSIGNMENT_EXPRESSION = 44;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -27824,6 +28608,15 @@ public interface AlfPackage extends EPackage {
 	int ASSIGNMENT_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSIGNMENT_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28128,7 +28921,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLogicalExpression()
 	 * @generated
 	 */
-	int LOGICAL_EXPRESSION = 44;
+	int LOGICAL_EXPRESSION = 45;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -28626,6 +29419,15 @@ public interface AlfPackage extends EPackage {
 	int LOGICAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int LOGICAL_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -28840,7 +29642,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceConstructionExpression()
 	 * @generated
 	 */
-	int SEQUENCE_CONSTRUCTION_EXPRESSION = 45;
+	int SEQUENCE_CONSTRUCTION_EXPRESSION = 46;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -29320,6 +30122,15 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_CONSTRUCTION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_CONSTRUCTION_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -29498,7 +30309,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceElements()
 	 * @generated
 	 */
-	int SEQUENCE_ELEMENTS = 46;
+	int SEQUENCE_ELEMENTS = 47;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -29904,7 +30715,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getCollectOrIterateExpression()
 	 * @generated
 	 */
-	int COLLECT_OR_ITERATE_EXPRESSION = 47;
+	int COLLECT_OR_ITERATE_EXPRESSION = 48;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -30420,6 +31231,15 @@ public interface AlfPackage extends EPackage {
 	int COLLECT_OR_ITERATE_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = SEQUENCE_EXPANSION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int COLLECT_OR_ITERATE_EXPRESSION___REFERENCE = SEQUENCE_EXPANSION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -30742,7 +31562,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getIsUniqueExpression()
 	 * @generated
 	 */
-	int IS_UNIQUE_EXPRESSION = 48;
+	int IS_UNIQUE_EXPRESSION = 49;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -31258,6 +32078,15 @@ public interface AlfPackage extends EPackage {
 	int IS_UNIQUE_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = SEQUENCE_EXPANSION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int IS_UNIQUE_EXPRESSION___REFERENCE = SEQUENCE_EXPANSION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -31580,7 +32409,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getArithmeticExpression()
 	 * @generated
 	 */
-	int ARITHMETIC_EXPRESSION = 49;
+	int ARITHMETIC_EXPRESSION = 50;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -32060,6 +32889,15 @@ public interface AlfPackage extends EPackage {
 	int ARITHMETIC_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ARITHMETIC_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -32256,7 +33094,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getFeatureLeftHandSide()
 	 * @generated
 	 */
-	int FEATURE_LEFT_HAND_SIDE = 50;
+	int FEATURE_LEFT_HAND_SIDE = 51;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -32835,13 +33673,22 @@ public interface AlfPackage extends EPackage {
 	int FEATURE_LEFT_HAND_SIDE___FEATURE = LEFT_HAND_SIDE_OPERATION_COUNT + 1;
 
 	/**
+	 * The operation id for the '<em>Primary</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_LEFT_HAND_SIDE___PRIMARY = LEFT_HAND_SIDE_OPERATION_COUNT + 2;
+
+	/**
 	 * The operation id for the '<em>Index</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___INDEX = LEFT_HAND_SIDE_OPERATION_COUNT + 2;
+	int FEATURE_LEFT_HAND_SIDE___INDEX = LEFT_HAND_SIDE_OPERATION_COUNT + 3;
 
 	/**
 	 * The operation id for the '<em>Local Name</em>' operation.
@@ -32850,7 +33697,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___LOCAL_NAME = LEFT_HAND_SIDE_OPERATION_COUNT + 3;
+	int FEATURE_LEFT_HAND_SIDE___LOCAL_NAME = LEFT_HAND_SIDE_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Assignment Before Derivation</em>' operation.
@@ -32859,7 +33706,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENT_BEFORE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 4;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENT_BEFORE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 5;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Assignment After Derivation</em>' operation.
@@ -32868,7 +33715,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 5;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Feature Expression</em>' operation.
@@ -32877,7 +33724,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_FEATURE_EXPRESSION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 6;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_FEATURE_EXPRESSION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 7;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Assignments Before</em>' operation.
@@ -32886,7 +33733,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 7;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 8;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Referent Derivation</em>' operation.
@@ -32895,7 +33742,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 8;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 9;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Type Derivation</em>' operation.
@@ -32904,7 +33751,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 9;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 10;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Lower Derivation</em>' operation.
@@ -32913,7 +33760,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 10;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Upper Derivation</em>' operation.
@@ -32922,7 +33769,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 11;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Referent Constraint</em>' operation.
@@ -32931,7 +33778,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_REFERENT_CONSTRAINT__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 12;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_REFERENT_CONSTRAINT__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Feature Left Hand Side Indexed Feature</em>' operation.
@@ -32940,7 +33787,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_INDEXED_FEATURE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 13;
+	int FEATURE_LEFT_HAND_SIDE___FEATURE_LEFT_HAND_SIDE_INDEXED_FEATURE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 14;
 
 	/**
 	 * The number of operations of the '<em>Feature Left Hand Side</em>' class.
@@ -32949,7 +33796,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE_OPERATION_COUNT = LEFT_HAND_SIDE_OPERATION_COUNT + 14;
+	int FEATURE_LEFT_HAND_SIDE_OPERATION_COUNT = LEFT_HAND_SIDE_OPERATION_COUNT + 15;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.ConditionalTestExpressionImpl <em>Conditional Test Expression</em>}' class.
@@ -32959,7 +33806,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getConditionalTestExpression()
 	 * @generated
 	 */
-	int CONDITIONAL_TEST_EXPRESSION = 51;
+	int CONDITIONAL_TEST_EXPRESSION = 52;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -33421,6 +34268,15 @@ public interface AlfPackage extends EPackage {
 	int CONDITIONAL_TEST_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CONDITIONAL_TEST_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33599,7 +34455,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getInstanceCreationExpression()
 	 * @generated
 	 */
-	int INSTANCE_CREATION_EXPRESSION = 52;
+	int INSTANCE_CREATION_EXPRESSION = 53;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -34151,6 +35007,15 @@ public interface AlfPackage extends EPackage {
 	int INSTANCE_CREATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INSTANCE_CREATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -34617,7 +35482,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPropertyAccessExpression()
 	 * @generated
 	 */
-	int PROPERTY_ACCESS_EXPRESSION = 53;
+	int PROPERTY_ACCESS_EXPRESSION = 54;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -35079,6 +35944,15 @@ public interface AlfPackage extends EPackage {
 	int PROPERTY_ACCESS_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PROPERTY_ACCESS_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35248,7 +36122,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNameExpression()
 	 * @generated
 	 */
-	int NAME_EXPRESSION = 54;
+	int NAME_EXPRESSION = 55;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -35728,6 +36602,15 @@ public interface AlfPackage extends EPackage {
 	int NAME_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -35845,13 +36728,13 @@ public interface AlfPackage extends EPackage {
 	int NAME_EXPRESSION___ASSIGNMENT_FOR____STRING = EXPRESSION_OPERATION_COUNT + 5;
 
 	/**
-	 * The operation id for the '<em>Is Add Target</em>' operation.
+	 * The operation id for the '<em>Is Add Target Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_EXPRESSION___IS_ADD_TARGET = EXPRESSION_OPERATION_COUNT + 6;
+	int NAME_EXPRESSION___IS_ADD_TARGET_NAME = EXPRESSION_OPERATION_COUNT + 6;
 
 	/**
 	 * The operation id for the '<em>Name Expression Assignment Derivation</em>' operation.
@@ -35951,7 +36834,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBitStringUnaryExpression()
 	 * @generated
 	 */
-	int BIT_STRING_UNARY_EXPRESSION = 55;
+	int BIT_STRING_UNARY_EXPRESSION = 56;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -36422,6 +37305,15 @@ public interface AlfPackage extends EPackage {
 	int BIT_STRING_UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BIT_STRING_UNARY_EXPRESSION___REFERENCE = UNARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -36591,7 +37483,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getFeatureInvocationExpression()
 	 * @generated
 	 */
-	int FEATURE_INVOCATION_EXPRESSION = 56;
+	int FEATURE_INVOCATION_EXPRESSION = 57;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -37125,6 +38017,15 @@ public interface AlfPackage extends EPackage {
 	int FEATURE_INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int FEATURE_INVOCATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -37564,7 +38465,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBehaviorInvocationExpression()
 	 * @generated
 	 */
-	int BEHAVIOR_INVOCATION_EXPRESSION = 57;
+	int BEHAVIOR_INVOCATION_EXPRESSION = 58;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -38098,6 +38999,15 @@ public interface AlfPackage extends EPackage {
 	int BEHAVIOR_INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BEHAVIOR_INVOCATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -38555,7 +39465,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getShiftExpression()
 	 * @generated
 	 */
-	int SHIFT_EXPRESSION = 58;
+	int SHIFT_EXPRESSION = 59;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -39035,6 +39945,15 @@ public interface AlfPackage extends EPackage {
 	int SHIFT_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SHIFT_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39231,7 +40150,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getUnboundedLiteralExpression()
 	 * @generated
 	 */
-	int UNBOUNDED_LITERAL_EXPRESSION = 59;
+	int UNBOUNDED_LITERAL_EXPRESSION = 60;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -39675,6 +40594,15 @@ public interface AlfPackage extends EPackage {
 	int UNBOUNDED_LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int UNBOUNDED_LITERAL_EXPRESSION___REFERENCE = LITERAL_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -39817,7 +40745,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getThisExpression()
 	 * @generated
 	 */
-	int THIS_EXPRESSION = 60;
+	int THIS_EXPRESSION = 61;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -40261,6 +41189,15 @@ public interface AlfPackage extends EPackage {
 	int THIS_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int THIS_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -40403,7 +41340,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassificationExpression()
 	 * @generated
 	 */
-	int CLASSIFICATION_EXPRESSION = 61;
+	int CLASSIFICATION_EXPRESSION = 62;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -40892,6 +41829,15 @@ public interface AlfPackage extends EPackage {
 	int CLASSIFICATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = UNARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int CLASSIFICATION_EXPRESSION___REFERENCE = UNARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -41079,7 +42025,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSuperInvocationExpression()
 	 * @generated
 	 */
-	int SUPER_INVOCATION_EXPRESSION = 62;
+	int SUPER_INVOCATION_EXPRESSION = 63;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -41613,6 +42559,15 @@ public interface AlfPackage extends EPackage {
 	int SUPER_INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = INVOCATION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SUPER_INVOCATION_EXPRESSION___REFERENCE = INVOCATION_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42079,7 +43034,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getIncrementOrDecrementExpression()
 	 * @generated
 	 */
-	int INCREMENT_OR_DECREMENT_EXPRESSION = 63;
+	int INCREMENT_OR_DECREMENT_EXPRESSION = 64;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -42604,6 +43559,15 @@ public interface AlfPackage extends EPackage {
 	int INCREMENT_OR_DECREMENT_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int INCREMENT_OR_DECREMENT_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -42818,7 +43782,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBooleanLiteralExpression()
 	 * @generated
 	 */
-	int BOOLEAN_LITERAL_EXPRESSION = 64;
+	int BOOLEAN_LITERAL_EXPRESSION = 65;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -43271,6 +44235,15 @@ public interface AlfPackage extends EPackage {
 	int BOOLEAN_LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int BOOLEAN_LITERAL_EXPRESSION___REFERENCE = LITERAL_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -43413,7 +44386,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNamedTuple()
 	 * @generated
 	 */
-	int NAMED_TUPLE = 65;
+	int NAMED_TUPLE = 66;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -43929,13 +44902,22 @@ public interface AlfPackage extends EPackage {
 	int NAMED_TUPLE___OUTPUT_FOR__ELIST = TUPLE_OPERATION_COUNT + 2;
 
 	/**
+	 * The operation id for the '<em>Output For Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAMED_TUPLE___OUTPUT_FOR_EXPRESSION__EXPRESSION = TUPLE_OPERATION_COUNT + 3;
+
+	/**
 	 * The operation id for the '<em>Named Tuple Argument Names</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_TUPLE___NAMED_TUPLE_ARGUMENT_NAMES__DIAGNOSTICCHAIN_MAP = TUPLE_OPERATION_COUNT + 3;
+	int NAMED_TUPLE___NAMED_TUPLE_ARGUMENT_NAMES__DIAGNOSTICCHAIN_MAP = TUPLE_OPERATION_COUNT + 4;
 
 	/**
 	 * The number of operations of the '<em>Named Tuple</em>' class.
@@ -43944,7 +44926,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAMED_TUPLE_OPERATION_COUNT = TUPLE_OPERATION_COUNT + 4;
+	int NAMED_TUPLE_OPERATION_COUNT = TUPLE_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.NaturalLiteralExpressionImpl <em>Natural Literal Expression</em>}' class.
@@ -43954,7 +44936,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNaturalLiteralExpression()
 	 * @generated
 	 */
-	int NATURAL_LITERAL_EXPRESSION = 66;
+	int NATURAL_LITERAL_EXPRESSION = 67;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -44407,6 +45389,15 @@ public interface AlfPackage extends EPackage {
 	int NATURAL_LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = LITERAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NATURAL_LITERAL_EXPRESSION___REFERENCE = LITERAL_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -44549,7 +45540,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceRange()
 	 * @generated
 	 */
-	int SEQUENCE_RANGE = 67;
+	int SEQUENCE_RANGE = 68;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -45009,7 +46000,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNameLeftHandSide()
 	 * @generated
 	 */
-	int NAME_LEFT_HAND_SIDE = 68;
+	int NAME_LEFT_HAND_SIDE = 69;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -45525,15 +46516,6 @@ public interface AlfPackage extends EPackage {
 	int NAME_LEFT_HAND_SIDE___ASSIGNED_NAME = LEFT_HAND_SIDE___ASSIGNED_NAME;
 
 	/**
-	 * The operation id for the '<em>Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int NAME_LEFT_HAND_SIDE___EXPRESSION = LEFT_HAND_SIDE___EXPRESSION;
-
-	/**
 	 * The operation id for the '<em>Is Data Value Update</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -45633,13 +46615,31 @@ public interface AlfPackage extends EPackage {
 	int NAME_LEFT_HAND_SIDE___FEATURE = LEFT_HAND_SIDE_OPERATION_COUNT + 8;
 
 	/**
+	 * The operation id for the '<em>Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_LEFT_HAND_SIDE___EXPRESSION = LEFT_HAND_SIDE_OPERATION_COUNT + 9;
+
+	/**
+	 * The operation id for the '<em>Primary</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int NAME_LEFT_HAND_SIDE___PRIMARY = LEFT_HAND_SIDE_OPERATION_COUNT + 10;
+
+	/**
 	 * The operation id for the '<em>Local Name</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___LOCAL_NAME = LEFT_HAND_SIDE_OPERATION_COUNT + 9;
+	int NAME_LEFT_HAND_SIDE___LOCAL_NAME = LEFT_HAND_SIDE_OPERATION_COUNT + 11;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Assignment After Derivation</em>' operation.
@@ -45648,7 +46648,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 10;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_ASSIGNMENT_AFTER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 12;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Target Assignment</em>' operation.
@@ -45657,7 +46657,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TARGET_ASSIGNMENT__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 11;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TARGET_ASSIGNMENT__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 13;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Assignments Before</em>' operation.
@@ -45666,7 +46666,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 12;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_ASSIGNMENTS_BEFORE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 14;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Referent Derivation</em>' operation.
@@ -45675,7 +46675,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 13;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 15;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Lower Derivation</em>' operation.
@@ -45684,7 +46684,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 14;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_LOWER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 16;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Upper Derivation</em>' operation.
@@ -45693,7 +46693,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 15;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_UPPER_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 17;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Type Derivation</em>' operation.
@@ -45702,7 +46702,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 16;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TYPE_DERIVATION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 18;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Target Resolution</em>' operation.
@@ -45711,7 +46711,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TARGET_RESOLUTION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 17;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_TARGET_RESOLUTION__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 19;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Indexed Feature</em>' operation.
@@ -45720,7 +46720,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_INDEXED_FEATURE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 18;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_INDEXED_FEATURE__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 20;
 
 	/**
 	 * The operation id for the '<em>Name Left Hand Side Nontemplate Target</em>' operation.
@@ -45729,7 +46729,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_NONTEMPLATE_TARGET__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 19;
+	int NAME_LEFT_HAND_SIDE___NAME_LEFT_HAND_SIDE_NONTEMPLATE_TARGET__DIAGNOSTICCHAIN_MAP = LEFT_HAND_SIDE_OPERATION_COUNT + 21;
 
 	/**
 	 * The number of operations of the '<em>Name Left Hand Side</em>' class.
@@ -45738,7 +46738,7 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 * @ordered
 	 */
-	int NAME_LEFT_HAND_SIDE_OPERATION_COUNT = LEFT_HAND_SIDE_OPERATION_COUNT + 20;
+	int NAME_LEFT_HAND_SIDE_OPERATION_COUNT = LEFT_HAND_SIDE_OPERATION_COUNT + 22;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.EffectiveLeftHandSideImpl <em>Effective Left Hand Side</em>}' class.
@@ -45748,7 +46748,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getEffectiveLeftHandSide()
 	 * @generated
 	 */
-	int EFFECTIVE_LEFT_HAND_SIDE = 69;
+	int EFFECTIVE_LEFT_HAND_SIDE = 70;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -46273,15 +47273,6 @@ public interface AlfPackage extends EPackage {
 	int EFFECTIVE_LEFT_HAND_SIDE___ASSIGNED_NAME = NAME_LEFT_HAND_SIDE___ASSIGNED_NAME;
 
 	/**
-	 * The operation id for the '<em>Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int EFFECTIVE_LEFT_HAND_SIDE___EXPRESSION = NAME_LEFT_HAND_SIDE___EXPRESSION;
-
-	/**
 	 * The operation id for the '<em>Is Data Value Update</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -46489,13 +47480,22 @@ public interface AlfPackage extends EPackage {
 	int EFFECTIVE_LEFT_HAND_SIDE___PRIMARY = NAME_LEFT_HAND_SIDE_OPERATION_COUNT + 3;
 
 	/**
+	 * The operation id for the '<em>Expression</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int EFFECTIVE_LEFT_HAND_SIDE___EXPRESSION = NAME_LEFT_HAND_SIDE_OPERATION_COUNT + 4;
+
+	/**
 	 * The number of operations of the '<em>Effective Left Hand Side</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int EFFECTIVE_LEFT_HAND_SIDE_OPERATION_COUNT = NAME_LEFT_HAND_SIDE_OPERATION_COUNT + 4;
+	int EFFECTIVE_LEFT_HAND_SIDE_OPERATION_COUNT = NAME_LEFT_HAND_SIDE_OPERATION_COUNT + 5;
 
 	/**
 	 * The meta object id for the '{@link org.eclipse.papyrus.uml.alf.impl.SequenceReductionExpressionImpl <em>Sequence Reduction Expression</em>}' class.
@@ -46505,7 +47505,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceReductionExpression()
 	 * @generated
 	 */
-	int SEQUENCE_REDUCTION_EXPRESSION = 70;
+	int SEQUENCE_REDUCTION_EXPRESSION = 71;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -46985,6 +47985,15 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_REDUCTION_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int SEQUENCE_REDUCTION_EXPRESSION___REFERENCE = EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -47163,7 +48172,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSequenceExpressionList()
 	 * @generated
 	 */
-	int SEQUENCE_EXPRESSION_LIST = 71;
+	int SEQUENCE_EXPRESSION_LIST = 72;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -47596,7 +48605,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getRelationalExpression()
 	 * @generated
 	 */
-	int RELATIONAL_EXPRESSION = 72;
+	int RELATIONAL_EXPRESSION = 73;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -48076,6 +49085,15 @@ public interface AlfPackage extends EPackage {
 	int RELATIONAL_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT = BINARY_EXPRESSION___IS_MULTIPLICITY_CONFORMANT_WITH__ASSIGNABLEELEMENT;
 
 	/**
+	 * The operation id for the '<em>Reference</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int RELATIONAL_EXPRESSION___REFERENCE = BINARY_EXPRESSION___REFERENCE;
+
+	/**
 	 * The operation id for the '<em>New Assignments</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -48272,7 +49290,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getStatement()
 	 * @generated
 	 */
-	int STATEMENT = 75;
+	int STATEMENT = 76;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -48795,7 +49813,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLocalNameDeclarationStatement()
 	 * @generated
 	 */
-	int LOCAL_NAME_DECLARATION_STATEMENT = 73;
+	int LOCAL_NAME_DECLARATION_STATEMENT = 74;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -49453,7 +50471,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAssignableLocalNameDeclaration()
 	 * @generated
 	 */
-	int ASSIGNABLE_LOCAL_NAME_DECLARATION = 74;
+	int ASSIGNABLE_LOCAL_NAME_DECLARATION = 75;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -49931,7 +50949,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAnnotation()
 	 * @generated
 	 */
-	int ANNOTATION = 76;
+	int ANNOTATION = 77;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -50328,7 +51346,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getQualifiedNameList()
 	 * @generated
 	 */
-	int QUALIFIED_NAME_LIST = 77;
+	int QUALIFIED_NAME_LIST = 78;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -50689,7 +51707,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNonFinalClause()
 	 * @generated
 	 */
-	int NON_FINAL_CLAUSE = 78;
+	int NON_FINAL_CLAUSE = 79;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -51095,7 +52113,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBlock()
 	 * @generated
 	 */
-	int BLOCK = 79;
+	int BLOCK = 80;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -51510,7 +52528,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBlockStatement()
 	 * @generated
 	 */
-	int BLOCK_STATEMENT = 80;
+	int BLOCK_STATEMENT = 81;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -52096,7 +53114,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getDoStatement()
 	 * @generated
 	 */
-	int DO_STATEMENT = 81;
+	int DO_STATEMENT = 82;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -52673,7 +53691,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getConcurrentClauses()
 	 * @generated
 	 */
-	int CONCURRENT_CLAUSES = 82;
+	int CONCURRENT_CLAUSES = 83;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -53052,7 +54070,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBreakStatement()
 	 * @generated
 	 */
-	int BREAK_STATEMENT = 83;
+	int BREAK_STATEMENT = 84;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -53602,7 +54620,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getExpressionStatement()
 	 * @generated
 	 */
-	int EXPRESSION_STATEMENT = 84;
+	int EXPRESSION_STATEMENT = 85;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -54152,7 +55170,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassifyStatement()
 	 * @generated
 	 */
-	int CLASSIFY_STATEMENT = 85;
+	int CLASSIFY_STATEMENT = 86;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -54801,7 +55819,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getForStatement()
 	 * @generated
 	 */
-	int FOR_STATEMENT = 86;
+	int FOR_STATEMENT = 87;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -55441,7 +56459,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getLoopVariableDefinition()
 	 * @generated
 	 */
-	int LOOP_VARIABLE_DEFINITION = 87;
+	int LOOP_VARIABLE_DEFINITION = 88;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -55982,7 +57000,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getIfStatement()
 	 * @generated
 	 */
-	int IF_STATEMENT = 88;
+	int IF_STATEMENT = 89;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -56586,7 +57604,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSwitchStatement()
 	 * @generated
 	 */
-	int SWITCH_STATEMENT = 89;
+	int SWITCH_STATEMENT = 90;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -57226,7 +58244,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSwitchClause()
 	 * @generated
 	 */
-	int SWITCH_CLAUSE = 90;
+	int SWITCH_CLAUSE = 91;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -57632,7 +58650,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getWhileStatement()
 	 * @generated
 	 */
-	int WHILE_STATEMENT = 91;
+	int WHILE_STATEMENT = 92;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -58209,7 +59227,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getReturnStatement()
 	 * @generated
 	 */
-	int RETURN_STATEMENT = 92;
+	int RETURN_STATEMENT = 93;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -58777,7 +59795,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getInLineStatement()
 	 * @generated
 	 */
-	int IN_LINE_STATEMENT = 93;
+	int IN_LINE_STATEMENT = 94;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -59327,7 +60345,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAcceptStatement()
 	 * @generated
 	 */
-	int ACCEPT_STATEMENT = 94;
+	int ACCEPT_STATEMENT = 95;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -60003,7 +61021,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAcceptBlock()
 	 * @generated
 	 */
-	int ACCEPT_BLOCK = 95;
+	int ACCEPT_BLOCK = 96;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -60418,7 +61436,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getEmptyStatement()
 	 * @generated
 	 */
-	int EMPTY_STATEMENT = 96;
+	int EMPTY_STATEMENT = 97;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -60950,7 +61968,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getMemberDefinition()
 	 * @generated
 	 */
-	int MEMBER_DEFINITION = 99;
+	int MEMBER_DEFINITION = 100;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -61572,7 +62590,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNamespaceDefinition()
 	 * @generated
 	 */
-	int NAMESPACE_DEFINITION = 98;
+	int NAMESPACE_DEFINITION = 99;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -62437,7 +63455,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPackageDefinition()
 	 * @generated
 	 */
-	int PACKAGE_DEFINITION = 113;
+	int PACKAGE_DEFINITION = 114;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -63329,7 +64347,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getModelNamespace()
 	 * @generated
 	 */
-	int MODEL_NAMESPACE = 97;
+	int MODEL_NAMESPACE = 98;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -64266,7 +65284,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getStereotypeAnnotation()
 	 * @generated
 	 */
-	int STEREOTYPE_ANNOTATION = 100;
+	int STEREOTYPE_ANNOTATION = 101;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -64726,7 +65744,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTaggedValueList()
 	 * @generated
 	 */
-	int TAGGED_VALUE_LIST = 101;
+	int TAGGED_VALUE_LIST = 102;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -65087,7 +66105,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTaggedValue()
 	 * @generated
 	 */
-	int TAGGED_VALUE = 102;
+	int TAGGED_VALUE = 103;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -65466,7 +66484,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getUnitDefinition()
 	 * @generated
 	 */
-	int UNIT_DEFINITION = 103;
+	int UNIT_DEFINITION = 104;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -65962,7 +66980,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getImportReference()
 	 * @generated
 	 */
-	int IMPORT_REFERENCE = 104;
+	int IMPORT_REFERENCE = 105;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -66377,7 +67395,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getImportedMember()
 	 * @generated
 	 */
-	int IMPORTED_MEMBER = 105;
+	int IMPORTED_MEMBER = 106;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -67026,7 +68044,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getEnumerationLiteralName()
 	 * @generated
 	 */
-	int ENUMERATION_LITERAL_NAME = 106;
+	int ENUMERATION_LITERAL_NAME = 107;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -67648,7 +68666,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getOperationDefinition()
 	 * @generated
 	 */
-	int OPERATION_DEFINITION = 107;
+	int OPERATION_DEFINITION = 108;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -68684,7 +69702,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassifierDefinition()
 	 * @generated
 	 */
-	int CLASSIFIER_DEFINITION = 109;
+	int CLASSIFIER_DEFINITION = 110;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -69639,7 +70657,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAssociationDefinition()
 	 * @generated
 	 */
-	int ASSOCIATION_DEFINITION = 108;
+	int ASSOCIATION_DEFINITION = 109;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -70603,7 +71621,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassDefinition()
 	 * @generated
 	 */
-	int CLASS_DEFINITION = 110;
+	int CLASS_DEFINITION = 111;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -71612,7 +72630,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getTypedElementDefinition()
 	 * @generated
 	 */
-	int TYPED_ELEMENT_DEFINITION = 111;
+	int TYPED_ELEMENT_DEFINITION = 112;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -72216,7 +73234,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getDataTypeDefinition()
 	 * @generated
 	 */
-	int DATA_TYPE_DEFINITION = 112;
+	int DATA_TYPE_DEFINITION = 113;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -73189,7 +74207,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPropertyDefinition()
 	 * @generated
 	 */
-	int PROPERTY_DEFINITION = 114;
+	int PROPERTY_DEFINITION = 115;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -73892,7 +74910,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSignalDefinition()
 	 * @generated
 	 */
-	int SIGNAL_DEFINITION = 115;
+	int SIGNAL_DEFINITION = 116;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -74856,7 +75874,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getActiveClassDefinition()
 	 * @generated
 	 */
-	int ACTIVE_CLASS_DEFINITION = 116;
+	int ACTIVE_CLASS_DEFINITION = 117;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -75883,7 +76901,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getActivityDefinition()
 	 * @generated
 	 */
-	int ACTIVITY_DEFINITION = 117;
+	int ACTIVITY_DEFINITION = 118;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -76865,7 +77883,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getElementImportReference()
 	 * @generated
 	 */
-	int ELEMENT_IMPORT_REFERENCE = 118;
+	int ELEMENT_IMPORT_REFERENCE = 119;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -77298,7 +78316,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getSignalReceptionDefinition()
 	 * @generated
 	 */
-	int SIGNAL_RECEPTION_DEFINITION = 119;
+	int SIGNAL_RECEPTION_DEFINITION = 120;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -78271,7 +79289,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getEnumerationDefinition()
 	 * @generated
 	 */
-	int ENUMERATION_DEFINITION = 120;
+	int ENUMERATION_DEFINITION = 121;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -79235,7 +80253,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getPackageImportReference()
 	 * @generated
 	 */
-	int PACKAGE_IMPORT_REFERENCE = 121;
+	int PACKAGE_IMPORT_REFERENCE = 122;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -79659,7 +80677,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getClassifierTemplateParameter()
 	 * @generated
 	 */
-	int CLASSIFIER_TEMPLATE_PARAMETER = 122;
+	int CLASSIFIER_TEMPLATE_PARAMETER = 123;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -80623,7 +81641,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getFormalParameter()
 	 * @generated
 	 */
-	int FORMAL_PARAMETER = 123;
+	int FORMAL_PARAMETER = 124;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -81299,7 +82317,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getReceptionDefinition()
 	 * @generated
 	 */
-	int RECEPTION_DEFINITION = 124;
+	int RECEPTION_DEFINITION = 125;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -81966,7 +82984,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getMember()
 	 * @generated
 	 */
-	int MEMBER = 125;
+	int MEMBER = 126;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -82372,7 +83390,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAnnotatedStatement()
 	 * @generated
 	 */
-	int ANNOTATED_STATEMENT = 126;
+	int ANNOTATED_STATEMENT = 127;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -82760,7 +83778,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getBoundClassifier()
 	 * @generated
 	 */
-	int BOUND_CLASSIFIER = 127;
+	int BOUND_CLASSIFIER = 128;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -83733,7 +84751,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getReturnParameter()
 	 * @generated
 	 */
-	int RETURN_PARAMETER = 128;
+	int RETURN_PARAMETER = 129;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -84409,7 +85427,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getNonReturnParameter()
 	 * @generated
 	 */
-	int NON_RETURN_PARAMETER = 129;
+	int NON_RETURN_PARAMETER = 130;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -85086,7 +86104,7 @@ public interface AlfPackage extends EPackage {
 	 * @see org.eclipse.papyrus.uml.alf.impl.AlfPackageImpl#getAnyType()
 	 * @generated
 	 */
-	int ANY_TYPE = 130;
+	int ANY_TYPE = 131;
 
 	/**
 	 * The feature id for the '<em><b>Owner</b></em>' reference.
@@ -90874,6 +91892,16 @@ public interface AlfPackage extends EPackage {
 	EReference getExpression_AssignmentAfter();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.Expression#reference() <em>Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Reference</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.Expression#reference()
+	 * @generated
+	 */
+	EOperation getExpression__Reference();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.Expression#newAssignments() <em>New Assignments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -90952,6 +91980,87 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getExpression__ExpressionUniqueAssignments__DiagnosticChain_Map();
+
+	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.ExpressionReference <em>Expression Reference</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Expression Reference</em>'.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference
+	 * @generated
+	 */
+	EClass getExpressionReference();
+
+	/**
+	 * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#getExpression <em>Expression</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the reference '<em>Expression</em>'.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#getExpression()
+	 * @see #getExpressionReference()
+	 * @generated
+	 */
+	EReference getExpressionReference_Expression();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#type() <em>Type</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Type</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#type()
+	 * @generated
+	 */
+	EOperation getExpressionReference__Type();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#lower() <em>Lower</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Lower</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#lower()
+	 * @generated
+	 */
+	EOperation getExpressionReference__Lower();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#upper() <em>Upper</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Upper</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#upper()
+	 * @generated
+	 */
+	EOperation getExpressionReference__Upper();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#isAddTarget(org.eclipse.papyrus.uml.alf.Expression) <em>Is Add Target</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Is Add Target</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#isAddTarget(org.eclipse.papyrus.uml.alf.Expression)
+	 * @generated
+	 */
+	EOperation getExpressionReference__IsAddTarget__Expression();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#assignmentsBefore() <em>Assignments Before</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Assignments Before</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#assignmentsBefore()
+	 * @generated
+	 */
+	EOperation getExpressionReference__AssignmentsBefore();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.ExpressionReference#updateAssignments() <em>Update Assignments</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Update Assignments</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.ExpressionReference#updateAssignments()
+	 * @generated
+	 */
+	EOperation getExpressionReference__UpdateAssignments();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.ExtentOrExpression <em>Extent Or Expression</em>}'.
@@ -92354,6 +93463,16 @@ public interface AlfPackage extends EPackage {
 	EOperation getPositionalTuple__OutputFor__EList();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.PositionalTuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression) <em>Output For Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Output For Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.PositionalTuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression)
+	 * @generated
+	 */
+	EOperation getPositionalTuple__OutputForExpression__Expression();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.PositionalTuple#positionalTupleArguments(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Positional Tuple Arguments</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -92475,6 +93594,16 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getTuple__OutputFor__EList();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.Tuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression) <em>Output For Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Output For Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.Tuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression)
+	 * @generated
+	 */
+	EOperation getTuple__OutputForExpression__Expression();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.Tuple#assignmentsBefore(org.eclipse.papyrus.uml.alf.SyntaxElement) <em>Assignments Before</em>}' operation.
@@ -95532,6 +96661,16 @@ public interface AlfPackage extends EPackage {
 	EOperation getFeatureLeftHandSide__Feature();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#primary() <em>Primary</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Primary</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#primary()
+	 * @generated
+	 */
+	EOperation getFeatureLeftHandSide__Primary();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#index() <em>Index</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -96234,14 +97373,14 @@ public interface AlfPackage extends EPackage {
 	EOperation getNameExpression__AssignmentFor___String();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameExpression#isAddTarget() <em>Is Add Target</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameExpression#isAddTargetName() <em>Is Add Target Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Is Add Target</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.NameExpression#isAddTarget()
+	 * @return the meta object for the '<em>Is Add Target Name</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.NameExpression#isAddTargetName()
 	 * @generated
 	 */
-	EOperation getNameExpression__IsAddTarget();
+	EOperation getNameExpression__IsAddTargetName();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameExpression#nameExpressionAssignmentDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Name Expression Assignment Derivation</em>}' operation.
@@ -97463,6 +98602,16 @@ public interface AlfPackage extends EPackage {
 	EOperation getNamedTuple__OutputFor__EList();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NamedTuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression) <em>Output For Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Output For Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.NamedTuple#outputForExpression(org.eclipse.papyrus.uml.alf.Expression)
+	 * @generated
+	 */
+	EOperation getNamedTuple__OutputForExpression__Expression();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NamedTuple#namedTupleArgumentNames(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Named Tuple Argument Names</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97748,6 +98897,26 @@ public interface AlfPackage extends EPackage {
 	EOperation getNameLeftHandSide__Feature();
 
 	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameLeftHandSide#expression() <em>Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.NameLeftHandSide#expression()
+	 * @generated
+	 */
+	EOperation getNameLeftHandSide__Expression();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameLeftHandSide#primary() <em>Primary</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Primary</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.NameLeftHandSide#primary()
+	 * @generated
+	 */
+	EOperation getNameLeftHandSide__Primary();
+
+	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.NameLeftHandSide#localName() <em>Local Name</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -97917,6 +99086,16 @@ public interface AlfPackage extends EPackage {
 	 * @generated
 	 */
 	EOperation getEffectiveLeftHandSide__Primary();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide#expression() <em>Expression</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.EffectiveLeftHandSide#expression()
+	 * @generated
+	 */
+	EOperation getEffectiveLeftHandSide__Expression();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.uml.alf.SequenceReductionExpression <em>Sequence Reduction Expression</em>}'.

@@ -17,6 +17,7 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignedSource;
 import org.eclipse.papyrus.uml.alf.Expression;
+import org.eclipse.papyrus.uml.alf.ExpressionReference;
 import org.eclipse.papyrus.uml.alf.SyntaxElement;
 import org.eclipse.papyrus.uml.alf.util.AlfValidator;
 
@@ -78,6 +79,30 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	@SuppressWarnings("unchecked")
 	public EList<AssignedSource> getAssignmentAfter() {
 		return (EList<AssignedSource>)eGet(AlfPackage.eINSTANCE.getExpression_AssignmentAfter(), true);
+	}
+
+	/**
+	 * The cached invocation delegate for the '{@link #reference() <em>Reference</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see #reference()
+	 * @generated
+	 * @ordered
+	 */
+	protected static final EOperation.Internal.InvocationDelegate REFERENCE__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getExpression__Reference()).getInvocationDelegate();
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public ExpressionReference reference() {
+		try {
+			return (ExpressionReference)REFERENCE__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+		}
+		catch (InvocationTargetException ite) {
+			throw new WrappedException(ite);
+		}
 	}
 
 	/**
@@ -281,6 +306,8 @@ public abstract class ExpressionImpl extends AssignableElementImpl implements Ex
 	@SuppressWarnings("unchecked")
 	public Object eInvoke(int operationID, EList<?> arguments) throws InvocationTargetException {
 		switch (operationID) {
+			case AlfPackage.EXPRESSION___REFERENCE:
+				return reference();
 			case AlfPackage.EXPRESSION___NEW_ASSIGNMENTS:
 				return newAssignments();
 			case AlfPackage.EXPRESSION___UPDATE_ASSIGNMENTS:
