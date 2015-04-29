@@ -823,16 +823,6 @@ public class DGToSVGConverter extends DGSwitch<Object> implements SVGSyntax {
 		} catch (IOException e) {
 			DDEditorPlugin.getPlugin().log(e);
 		}
-		for(String s : object.getScripts()) {
-			try {
-				URL url = FileLocator.toFileURL(new URL(s));
-				Element script = svgDocument.createElementNS(SVG_NAMESPACE_URI, SVG_SCRIPT_TAG);
-				script.setAttributeNS(XLINK_NAMESPACE_URI, XLINK_HREF_QNAME, url.toString());
-				svg.appendChild(script);
-			} catch (IOException e) {
-				DDEditorPlugin.getPlugin().log(e);
-			}
-		}
 		if(object.getDefinitions() != null) {
 			doSwitch(object.getDefinitions());
 		}
@@ -929,10 +919,6 @@ public class DGToSVGConverter extends DGSwitch<Object> implements SVGSyntax {
 		if(object.eIsSet(DGPackage.Literals.STYLE__FONT_ITALIC)) {
 			String value = object.isFontItalic() ? "italic" : "normal";
 			sb.append(SVG_FONT_STYLE_ATTRIBUTE + ": " + value + "; ");
-		}
-		if(object.eIsSet(DGPackage.Literals.STYLE__FONT_BOLD)) {
-			String value = object.isFontBold() ? "bold" : "normal";
-			sb.append(SVG_FONT_WEIGHT_ATTRIBUTE + ": " + value + "; ");
 		}
 		if(object.eIsSet(DGPackage.Literals.STYLE__FONT_DECORATION)) {
 			FontDecoration fd = object.getFontDecoration();
@@ -1043,7 +1029,7 @@ public class DGToSVGConverter extends DGSwitch<Object> implements SVGSyntax {
 		Element text = (Element)map(object, svgDocument.createElementNS(SVG_NAMESPACE_URI, SVG_TEXT_TAG));
 		getParentElement(object).appendChild(text);
 		if(object.getData() != null) {
-			text.setTextContent(object.getData());
+			text.setTextContent(object.getData().replaceAll("\n", "\\\\n"));
 		}
 		if(object.getBounds() != null) {
 			Bounds bounds = object.getBounds();

@@ -16,10 +16,9 @@ import org.eclipse.emf.common.util.ResourceLocator;
 import org.eclipse.emf.ecore.provider.EcoreEditPlugin;
 
 /**
- * This is the central singleton for the DI edit plugin.
+ * This is the central singleton for the DG edit plugin.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public final class DDEditPlugin extends EMFPlugin {
@@ -28,7 +27,6 @@ public final class DDEditPlugin extends EMFPlugin {
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static final DDEditPlugin INSTANCE = new DDEditPlugin();
@@ -37,7 +35,6 @@ public final class DDEditPlugin extends EMFPlugin {
 	 * Keep track of the singleton.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	private static Implementation plugin;
@@ -46,18 +43,19 @@ public final class DDEditPlugin extends EMFPlugin {
 	 * Create the instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated NOT
 	 */
 	public DDEditPlugin() {
-		super(new ResourceLocator[]{ DDEditPlugin.INSTANCE, EcoreEditPlugin.INSTANCE, });
+		super
+		  (new ResourceLocator [] {
+			  EcoreEditPlugin.INSTANCE,
+		   });
 	}
 
 	/**
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -70,7 +68,6 @@ public final class DDEditPlugin extends EMFPlugin {
 	 * Returns the singleton instance of the Eclipse plugin.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @return the singleton instance.
 	 * @generated
 	 */
@@ -82,7 +79,6 @@ public final class DDEditPlugin extends EMFPlugin {
 	 * The actual implementation of the Eclipse <b>Plugin</b>.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public static class Implementation extends EclipsePlugin {
@@ -91,11 +87,11 @@ public final class DDEditPlugin extends EMFPlugin {
 		 * Creates an instance.
 		 * <!-- begin-user-doc -->
 		 * <!-- end-user-doc -->
-		 * 
 		 * @generated
 		 */
 		public Implementation() {
 			super();
+
 			// Remember the static instance.
 			//
 			plugin = this;

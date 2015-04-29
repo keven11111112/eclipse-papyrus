@@ -307,7 +307,6 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 
 			// Draw shadow
 			if (isShadow()) {
-
 				// Set the transparency for shadow
 				setShadowTransparency(graphics, true);
 
@@ -479,15 +478,12 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 			if (transparency > 100) {
 				transparency = 100;
 			}
-			setTransparency((int) (transparency));
-			applyTransparency(graphics);
+			graphics.setAlpha(255 - transparency * 255 / 100);
 		} else {
 			// Reset Shadow transparency
-			setTransparency(cachedTransparency);
-			applyTransparency(graphics);
+			graphics.setAlpha(255 - cachedTransparency * 255 / 100);
 		}
 	}
-
 
 	/**
 	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.PapyrusNodeFigure#setShadow(boolean)
@@ -717,4 +713,25 @@ public class RoundedCompartmentFigure extends NodeNamedElementFigure implements 
 		return hasHeader;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.figure.node.NodeNamedElementFigure#add(org.eclipse.draw2d.IFigure, java.lang.Object, int)
+	 *
+	 * @param figure
+	 * @param constraint
+	 * @param index
+	 */
+	@Override
+	public void add(IFigure figure, Object constraint, int index) {
+		// TODO Auto-generated method stub
+//		if(figure instanceof ResizableCompartmentFigure){
+//			System.err.println("Detection d'ajout de Compartiment dans Compartiment");
+//			RectangleFigure rectFigure= new RectangleFigure();
+//			rectFigure.add(figure);
+//			rectFigure.setLayoutManager(new SubCompartmentLayoutManager());
+//			super.add(rectFigure, constraint, index);
+//		}else{
+		
+			super.add(figure, constraint, index);
+//		}
+	}
 }

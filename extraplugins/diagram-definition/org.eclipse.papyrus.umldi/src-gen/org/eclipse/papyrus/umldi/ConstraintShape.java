@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Constraint Shape</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getConstraintShape()
  * @model
  * @generated
  */
-public interface ConstraintShape extends BodyShape, NamedShape {
+public interface ConstraintShape extends ElementWithBodyShape {
 } // ConstraintShape

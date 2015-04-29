@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Céline Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 440230 : Label Margin
+ *  Mickael ADAM (ALL@TEC) mickael.adam@all4tec.net - bug 462448
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.figure.node;
@@ -35,7 +36,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 
 	protected static final String LEFT_BRACE = "{";
 
-	private Label taggedLabel;
+	private WrappingLabel taggedLabel;
 
 	protected static final String RIGHT_BRACE = "}";
 
@@ -161,7 +162,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 * @return
 	 */
 	@Override
-	public Label getTaggedLabel() {
+	public WrappingLabel getTaggedLabel() {
 		return taggedLabel;
 	}
 
@@ -174,7 +175,7 @@ public class ConstraintFigure extends CornerBentFigure implements IPapyrusNodeNa
 	 */
 	protected void initTagLabel(String value) {
 		if (value != null && value.length() > 0) {
-			taggedLabel = new Label();
+			taggedLabel = new WrappingLabel();
 			String textToDisplay = new StringBuffer(CHEVRON).insert(1, value).toString();
 			taggedLabel.setText(textToDisplay);
 			taggedLabel.setOpaque(false);

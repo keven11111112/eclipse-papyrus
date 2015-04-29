@@ -17,5 +17,6 @@ public class SysmlResource {
 
 	public static final String PROFILE_URI = "http://www.omg.org/spec/SysML/20131201/SysML"; //$NON-NLS-1$
 
-	
+	public static final String LIBRARY_PATH = "platform:/plugin/org.eclipse.papyrus.sysml14/model/SyMLLibraries.uml"; //$NON-NLS-1$
+
 }

@@ -85,22 +85,22 @@ public interface UmlValueSpecificationPackage extends EPackage
   int ABSTRACT_RULE__NAME = 1;
 
   /**
-   * The feature id for the '<em><b>Value</b></em>' containment reference.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @generated
-   * @ordered
-   */
-  int ABSTRACT_RULE__VALUE = 2;
-
-  /**
    * The feature id for the '<em><b>Instance Specification</b></em>' reference.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int ABSTRACT_RULE__INSTANCE_SPECIFICATION = 3;
+  int ABSTRACT_RULE__INSTANCE_SPECIFICATION = 2;
+
+  /**
+   * The feature id for the '<em><b>Value</b></em>' containment reference.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int ABSTRACT_RULE__VALUE = 3;
 
   /**
    * The feature id for the '<em><b>Undefined</b></em>' containment reference.
@@ -168,13 +168,22 @@ public interface UmlValueSpecificationPackage extends EPackage
   int LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE = 0;
 
   /**
+   * The feature id for the '<em><b>Unlimited</b></em>' attribute.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @generated
+   * @ordered
+   */
+  int LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED = 1;
+
+  /**
    * The number of structural features of the '<em>Literal Integer Or Unlimited Natural Rule</em>' class.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
    * @generated
    * @ordered
    */
-  int LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE_FEATURE_COUNT = 1;
+  int LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE_FEATURE_COUNT = 2;
 
   /**
    * The meta object id for the '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.LiteralRealRuleImpl <em>Literal Real Rule</em>}' class.
@@ -377,17 +386,6 @@ public interface UmlValueSpecificationPackage extends EPackage
   EAttribute getAbstractRule_Name();
 
   /**
-   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getValue <em>Value</em>}'.
-   * <!-- begin-user-doc -->
-   * <!-- end-user-doc -->
-   * @return the meta object for the containment reference '<em>Value</em>'.
-   * @see org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getValue()
-   * @see #getAbstractRule()
-   * @generated
-   */
-  EReference getAbstractRule_Value();
-
-  /**
    * Returns the meta object for the reference '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getInstanceSpecification <em>Instance Specification</em>}'.
    * <!-- begin-user-doc -->
    * <!-- end-user-doc -->
@@ -397,6 +395,17 @@ public interface UmlValueSpecificationPackage extends EPackage
    * @generated
    */
   EReference getAbstractRule_InstanceSpecification();
+
+  /**
+   * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getValue <em>Value</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the containment reference '<em>Value</em>'.
+   * @see org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getValue()
+   * @see #getAbstractRule()
+   * @generated
+   */
+  EReference getAbstractRule_Value();
 
   /**
    * Returns the meta object for the containment reference '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.AbstractRule#getUndefined <em>Undefined</em>}'.
@@ -450,6 +459,17 @@ public interface UmlValueSpecificationPackage extends EPackage
    * @generated
    */
   EAttribute getLiteralIntegerOrUnlimitedNaturalRule_Value();
+
+  /**
+   * Returns the meta object for the attribute '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule#getUnlimited <em>Unlimited</em>}'.
+   * <!-- begin-user-doc -->
+   * <!-- end-user-doc -->
+   * @return the meta object for the attribute '<em>Unlimited</em>'.
+   * @see org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralIntegerOrUnlimitedNaturalRule#getUnlimited()
+   * @see #getLiteralIntegerOrUnlimitedNaturalRule()
+   * @generated
+   */
+  EAttribute getLiteralIntegerOrUnlimitedNaturalRule_Unlimited();
 
   /**
    * Returns the meta object for class '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.LiteralRealRule <em>Literal Real Rule</em>}'.
@@ -639,20 +659,20 @@ public interface UmlValueSpecificationPackage extends EPackage
     EAttribute ABSTRACT_RULE__NAME = eINSTANCE.getAbstractRule_Name();
 
     /**
-     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
-     * <!-- begin-user-doc -->
-     * <!-- end-user-doc -->
-     * @generated
-     */
-    EReference ABSTRACT_RULE__VALUE = eINSTANCE.getAbstractRule_Value();
-
-    /**
      * The meta object literal for the '<em><b>Instance Specification</b></em>' reference feature.
      * <!-- begin-user-doc -->
      * <!-- end-user-doc -->
      * @generated
      */
     EReference ABSTRACT_RULE__INSTANCE_SPECIFICATION = eINSTANCE.getAbstractRule_InstanceSpecification();
+
+    /**
+     * The meta object literal for the '<em><b>Value</b></em>' containment reference feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EReference ABSTRACT_RULE__VALUE = eINSTANCE.getAbstractRule_Value();
 
     /**
      * The meta object literal for the '<em><b>Undefined</b></em>' containment reference feature.
@@ -697,6 +717,14 @@ public interface UmlValueSpecificationPackage extends EPackage
      * @generated
      */
     EAttribute LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__VALUE = eINSTANCE.getLiteralIntegerOrUnlimitedNaturalRule_Value();
+
+    /**
+     * The meta object literal for the '<em><b>Unlimited</b></em>' attribute feature.
+     * <!-- begin-user-doc -->
+     * <!-- end-user-doc -->
+     * @generated
+     */
+    EAttribute LITERAL_INTEGER_OR_UNLIMITED_NATURAL_RULE__UNLIMITED = eINSTANCE.getLiteralIntegerOrUnlimitedNaturalRule_Unlimited();
 
     /**
      * The meta object literal for the '{@link org.eclipse.papyrus.uml.textedit.valuespecification.xtext.umlValueSpecification.impl.LiteralRealRuleImpl <em>Literal Real Rule</em>}' class.

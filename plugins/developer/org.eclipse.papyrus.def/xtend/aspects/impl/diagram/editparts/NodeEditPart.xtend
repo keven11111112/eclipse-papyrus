@@ -397,7 +397,9 @@ def specificHandleNotificationEvent (GenNode it) '''
 			if(org.eclipse.gmf.runtime.notation.NotationPackage.eINSTANCE.getView_Visible().equals(event.getFeature())) {
 				Object notifier = event.getNotifier();
 				java.util.List<?> modelChildren = ((org.eclipse.gmf.runtime.notation.View)getModel()).getChildren();
-				if(!(notifier instanceof org.eclipse.gmf.runtime.notation.Edge)) {
+				if (false == notifier instanceof org.eclipse.gmf.runtime.notation.Edge
+					ллл see Bug 463769
+					&& false == notifier instanceof org.eclipse.gmf.runtime.notation.BasicCompartment) {
 					if(modelChildren.contains(event.getNotifier())) {
 						return;
 					}

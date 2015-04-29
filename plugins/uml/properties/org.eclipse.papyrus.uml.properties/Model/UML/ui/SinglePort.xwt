@@ -40,7 +40,7 @@
 		</Composite.layout>
 		<ppe:ReferenceDialog input="{Binding}"
 			property="UML:Property:defaultValue"></ppe:ReferenceDialog>
-		<ppe:StringCombo input="{Binding}" property="Multiplicity:multiplicity"></ppe:StringCombo>
+		<uml:MultiplicityDialog input="{Binding}" property="Multiplicity:multiplicity"></uml:MultiplicityDialog>
 		<ppe:ReferenceDialog input="{Binding}" property="UML:TypedElement:type"></ppe:ReferenceDialog>
 	</Composite>
 	<Composite>

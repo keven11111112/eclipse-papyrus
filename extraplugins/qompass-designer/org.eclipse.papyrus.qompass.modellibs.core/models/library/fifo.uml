@@ -203,16 +203,7 @@ if (m_filled &lt; m_size) {
           </ownedBehavior>
           <ownedBehavior xmi:type="uml:OpaqueBehavior" xmi:id="_QzOqwK8yEeCXIcykFPsB8Q" name="activate" specification="_5IpEwK8xEeCXIcykFPsB8Q">
             <language>C/C++</language>
-            <body>[import org::eclipse::papyrus::qompass::designer::core::acceleo::UMLTool/]
-[import org::eclipse::papyrus::qompass::designer::core::acceleo::TransformationContext/]
-
-[template public activate(dataType : DataType)]
-
-if (m_size == 0) {
-	cerr &lt;&lt; &quot;Warning: size of FIFO is not properly configured (=0!)&quot; &lt;&lt; endl;
-}
-m_fifo = new [pkgTemplateParameter('T')+'[m_size]'/];
-[/template]</body>
+            <body>!xtend FIFO.activate</body>
           </ownedBehavior>
           <ownedOperation xmi:id="_EYsdUP68Ed6Zw96O-tCw7A" name="push" method="_IwXLsP69Ed6Zw96O-tCw7A">
             <ownedParameter xmi:id="_EYtEYP68Ed6Zw96O-tCw7A" name="data" type="_j_050HLoEd6R5tffIPrlPg">

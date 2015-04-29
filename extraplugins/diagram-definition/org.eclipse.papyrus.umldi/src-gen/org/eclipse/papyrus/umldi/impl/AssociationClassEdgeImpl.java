@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Association Class Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class AssociationClassEdgeImpl extends AssociationEdgeImpl implements AssociationClassEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationClassEdgeImpl() {
@@ -40,11 +36,11 @@ public class AssociationClassEdgeImpl extends AssociationEdgeImpl implements Ass
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ASSOCIATION_CLASS_EDGE;
 	}
+
 } //AssociationClassEdgeImpl

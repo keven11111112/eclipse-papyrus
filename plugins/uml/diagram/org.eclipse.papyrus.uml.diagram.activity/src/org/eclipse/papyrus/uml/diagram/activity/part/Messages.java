@@ -456,12 +456,22 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String Comment20CreationTool_title;
+	public static String Constraint20CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String Comment20CreationTool_desc;
+	public static String Constraint20CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String Comment21CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String Comment21CreationTool_desc;
 
 	/**
 	 * @generated
@@ -1052,6 +1062,16 @@ public class Messages extends NLS {
 	 * @generated
 	 */
 	public static String DestroyLinkAction3CreationTool_desc;
+
+	/**
+	 * @generated
+	 */
+	public static String CreateLinkObjectAction4CreationTool_title;
+
+	/**
+	 * @generated
+	 */
+	public static String CreateLinkObjectAction4CreationTool_desc;
 
 	/**
 	 * @generated

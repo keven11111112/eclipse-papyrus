@@ -53,7 +53,7 @@ public class InteractionStereotypesTest extends BaseStereotypesTest {
 		LifelineEditPart lifeline = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(150, 100), null);
 		Rectangle lifelineBounds = getAbsoluteBounds(lifeline);
 		//1. messageWithGate
-		Point endLocation = lifelineBounds.getCenter();
+		Point endLocation = lifelineBounds.getTop().translate(0, 100);
 		Point startLocation = new Point(0, endLocation.y);
 		messageWithGate = (ConnectionNodeEditPart)createLink(UMLElementTypes.Message_4004, interaction.getViewer(), startLocation, interaction, endLocation, lifeline);
 		assertNotNull("messageWithGate", messageWithGate);

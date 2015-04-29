@@ -23,6 +23,7 @@ import org.eclipse.core.runtime.CoreException;
 import org.eclipse.core.runtime.IConfigurationElement;
 import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.emf.Activator;
+import org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 
 
@@ -42,7 +43,7 @@ public class CellAxisConfigurationRegistry {
 
 	public static final CellAxisConfigurationRegistry INSTANCE = new CellAxisConfigurationRegistry();
 
-//	public static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.infra.nattable.celleditor";
+	// public static final String EXTENSION_POINT_NAMESPACE = "org.eclipse.papyrus.infra.nattable.celleditor";
 
 	public static final String CONFIGURATION_EXT_NEW = "cellAxisConfiguration";
 
@@ -79,7 +80,7 @@ public class CellAxisConfigurationRegistry {
 	 * @param configurationId
 	 *            the id of the factory
 	 * @return
-	 *         the cellEditorFactory declared on this id or <code>null</code> if not found
+	 * 		the cellEditorFactory declared on this id or <code>null</code> if not found
 	 * 
 	 * 
 	 */
@@ -101,7 +102,7 @@ public class CellAxisConfigurationRegistry {
 	 * @param obj
 	 *            the object for which we are looking for a cell editor factory
 	 * @return
-	 *         the first cell editor configuration factory which is able to manage this object
+	 * 		the first cell editor configuration factory which is able to manage this object
 	 */
 	public ICellAxisConfiguration getFirstCellEditorConfiguration(final Table table, final Object obj) {
 		final List<ICellAxisConfiguration> configurations = getCellEditorConfigurationFactories(table, obj);
@@ -111,6 +112,20 @@ public class CellAxisConfigurationRegistry {
 		return null;
 	}
 
+
+	/**
+	 *
+	 * @param tableManager
+	 *            the table manager for which we are looking for a cell editor factory
+	 * @param obj
+	 *            the object for which we are looking for a cell editor factory
+	 * @return
+	 * 		the first cell editor configuration factory which is able to manage this object
+	 */
+	public ICellAxisConfiguration getFirstCellEditorConfiguration(final INattableModelManager tableManager, final Object obj) {
+		return getFirstCellEditorConfiguration(tableManager.getTable(), obj);
+	}
+
 	/**
 	 *
 	 * @param table
@@ -118,7 +133,7 @@ public class CellAxisConfigurationRegistry {
 	 * @param obj
 	 *            the object for which we are looking for a cell editor factory
 	 * @return
-	 *         the list of the cell editor configuration which are able to manage this object
+	 * 		the list of the cell editor configuration which are able to manage this object
 	 */
 	public List<ICellAxisConfiguration> getCellEditorConfigurationFactories(final Table table, final Object obj) {
 		final List<ICellAxisConfiguration> factories = new ArrayList<ICellAxisConfiguration>();

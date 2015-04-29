@@ -8260,5 +8260,42 @@
 			comment="extend view for affixed node" genView="/0/@diagram/@childNodes.1 /0/@diagram/@childNodes.2"
 			name="RoundedBorderNamedElementEditPart"
 			superOwnedEditPart="org.eclipse.papyrus.uml.diagram.common.editparts.RoundedBorderNamedElementEditPart" />
+		 <extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="Stereotype"
+        	role="Stereotype"
+        	iconPathRole="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Stereotype.gif"
+        	linkLabels="/0/@diagram/@links.4/@labels.1 /0/@diagram/@links.5/@labels.1 /0/@diagram/@links.6/@labels.1 /0/@diagram/@links.7/@labels.1 /0/@diagram/@links.8/@labels.1 /0/@diagram/@links.9/@labels.1 /0/@diagram/@links.10/@labels.1 /0/@diagram/@links.11/@labels.1 /0/@diagram/@links.12/@labels.1 /0/@diagram/@links.13/@labels.1 /0/@diagram/@links.14/@labels.0 /0/@diagram/@links.15/@labels.0 /0/@diagram/@links.19/@labels.1"
+        	externalNodeLabels="/0/@diagram/@topLevelNodes.28/@labels.1 /0/@diagram/@topLevelNodes.27/@labels.1 /0/@diagram/@childNodes.1/@labels.1 /0/@diagram/@childNodes.2/@labels.1"/>
+    	<extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="Name"
+        	role="Name"
+        	iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/name.png"
+        	linkLabels="/0/@diagram/@links.4/@labels.0 /0/@diagram/@links.5/@labels.0 /0/@diagram/@links.6/@labels.0 /0/@diagram/@links.7/@labels.0 /0/@diagram/@links.8/@labels.0 /0/@diagram/@links.9/@labels.0 /0/@diagram/@links.10/@labels.0 /0/@diagram/@links.11/@labels.0 /0/@diagram/@links.12/@labels.0 /0/@diagram/@links.13/@labels.0 /0/@diagram/@links.14/@labels.1"
+        	externalNodeLabels="/0/@diagram/@childNodes.1/@labels.0 /0/@diagram/@childNodes.2/@labels.0 /0/@diagram/@topLevelNodes.27/@labels.0 /0/@diagram/@topLevelNodes.28/@labels.0"/>
+    	<extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="Tag"
+        	role="Tag"
+        	linkLabels="/0/@diagram/@links.18/@labels.0"/>
+    	<extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="ConveyedElements"
+        	role="ConveyedElements"
+        	iconPathRole=""
+        	linkLabels="/0/@diagram/@links.19/@labels.0"/>
+    	<extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="TargetMultiplicity"
+        	role="TargetMultiplicity"
+        	iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/MultiplicityHandler.gif"
+        	linkLabels="/0/@diagram/@links.14/@labels.3"/>
+    	<extensionNodes
+        	xsi:type="papyrusgmfgenextension:LabelVisibilityPreference"
+        	comment="SourceMultiplicity"
+        	role="SourceMultiplicity"
+        	iconPathRole="platform:/plugin/org.eclipse.papyrus.uml.diagram.common/icons/label_role/MultiplicityHandler.gif"
+        	linkLabels="/0/@diagram/@links.14/@labels.2"/>
 	</papyrusgmfgenextension:PapyrusExtensionRootNode>
 </xmi:XMI>

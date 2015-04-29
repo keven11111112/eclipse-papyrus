@@ -31,4 +31,21 @@ public class DDUtilities {
 				DCPackage.eINSTANCE.getColor(), colorStr);
 	}
 
+	public double getAngle(double x1, double y1, double x2, double y2) {
+		double a = Math.atan2(y2-y1, x2-x1);
+		return a * 180 / Math.PI;
+	}
+
+	public double sin(double angle) {
+		return Math.sin(angle * Math.PI / 180);
+	}
+
+	public double cos(double angle) {
+		return Math.cos(angle * Math.PI / 180);
+	}
+
+	public double tan(double angle) {
+		return Math.tan(angle * Math.PI / 180);
+	}
+
 }

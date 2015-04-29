@@ -13,10 +13,10 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.util;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
+import java.util.LinkedHashSet;
 import java.util.Map;
+import java.util.Set;
 
 import org.eclipse.draw2d.IFigure;
 import org.eclipse.draw2d.PositionConstants;
@@ -59,14 +59,8 @@ public class LifelineCoveredByUpdater {
 
 	protected HashMap<GraphicalEditPart, Rectangle> interactionFragments = new HashMap<GraphicalEditPart, Rectangle>();
 
-	protected List<InteractionFragment> coveredByLifelinesToAdd = new ArrayList<InteractionFragment>();
-
-	protected List<InteractionFragment> coveredByLifelinesToRemove = new ArrayList<InteractionFragment>();
-
 	protected TransactionalEditingDomain editingDomain;
 
-	public LifelineCoveredByUpdater() {
-	}
 
 	protected void init() {
 		editingDomain = this.context.getEditingDomain();
@@ -123,8 +117,8 @@ public class LifelineCoveredByUpdater {
 			return;
 		}
 		EList<InteractionFragment> coveredByLifelines = lifeline.getCoveredBys();
-		coveredByLifelinesToAdd.clear();
-		coveredByLifelinesToRemove.clear();
+		Set<InteractionFragment> coveredByLifelinesToAdd = new LinkedHashSet<InteractionFragment>();
+		Set<InteractionFragment> coveredByLifelinesToRemove = new LinkedHashSet<InteractionFragment>();
 		// Update height of Lifeline when coveredBy some InteractionFragments.
 		int bottom = 0;
 		for (Map.Entry<GraphicalEditPart, Rectangle> entry : interactionFragments.entrySet()) {
@@ -132,14 +126,16 @@ public class LifelineCoveredByUpdater {
 			Rectangle childBounds = entry.getValue();
 			InteractionFragment interactionFragment = (InteractionFragment) editPart.resolveSemanticElement();
 			if (rect.intersects(childBounds)) {
-				if (!coveredByLifelines.contains(interactionFragment)) {
-					coveredByLifelinesToAdd.add(interactionFragment);
-					bottom = Math.max(childBounds.bottom(), bottom);
-				}
+				coveredByLifelinesToAdd.add(interactionFragment);
+				bottom = Math.max(childBounds.bottom(), bottom);
 			} else if (coveredByLifelines.contains(interactionFragment)) {
 				coveredByLifelinesToRemove.add(interactionFragment);
 			}
 		}
+		
+		coveredByLifelinesToRemove.removeAll(coveredByLifelinesToAdd);
+		coveredByLifelinesToAdd.removeAll(coveredByLifelines);
+		
 		if (!coveredByLifelinesToAdd.isEmpty()) {
 			CommandHelper.executeCommandWithoutHistory(editingDomain, AddCommand.create(editingDomain, lifeline, UMLPackage.eINSTANCE.getLifeline_CoveredBy(), coveredByLifelinesToAdd), true);
 			// Update Lifeline height.

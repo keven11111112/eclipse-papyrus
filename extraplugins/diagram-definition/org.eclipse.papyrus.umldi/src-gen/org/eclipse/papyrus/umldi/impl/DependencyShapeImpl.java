@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Dependency Shape</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class DependencyShapeImpl extends NamedShapeImpl implements DependencyShape {
-
+public class DependencyShapeImpl extends ElementShapeImpl implements DependencyShape {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DependencyShapeImpl() {
@@ -40,11 +36,11 @@ public class DependencyShapeImpl extends NamedShapeImpl implements DependencySha
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.DEPENDENCY_SHAPE;
 	}
+
 } //DependencyShapeImpl

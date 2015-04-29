@@ -17,6 +17,7 @@ import java.util.Collection;
 
 import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLMultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.Parameter;
@@ -96,10 +97,9 @@ public class ParameterLabelUtil {
 			}
 
 			// manage multiplicity
-			String lower = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getLowerValue()) : "1";
-			String upper = (parameter.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(parameter.getUpperValue()) : "1";
-			if ((displayValue.contains(ICustomAppearance.DISP_PARAMETER_MULTIPLICITY) || displayValue.contains(ICustomAppearance.DISP_MULTIPLICITY)) && !("1".equals(lower) && "1".equals(upper))) {
-				result = String.format(MULTIPLICITY_FORMAT, result, lower, upper);
+			String multiplicity = SysMLMultiplicityElementUtil.formatMultiplicity(parameter, displayValue);
+			if (multiplicity != null && !multiplicity.isEmpty()) {
+				result += " " + multiplicity;
 			}
 
 			// manage default value

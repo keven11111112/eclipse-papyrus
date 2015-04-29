@@ -24,8 +24,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.SortedSet;
 
-import org.eclipse.core.internal.resources.Project;
 import org.eclipse.core.resources.IContainer;
+import org.eclipse.core.resources.IFile;
 import org.eclipse.core.resources.IProject;
 import org.eclipse.core.resources.IResource;
 import org.eclipse.core.resources.IWorkspaceRoot;
@@ -145,16 +145,16 @@ public class ScopeCollector implements IScopeCollector {
 		while (it.hasNext()) {
 			Object next = it.next();
 
-			if (!(next instanceof IPapyrusFile) && !(next instanceof IPapyrusFile)) {
-				if (next instanceof Project) {
-					Project project = (Project) next;
+			if (!(next instanceof IPapyrusFile)) {
+				if (next instanceof IContainer) { // Folder, project, etc...
+					IContainer project = (IContainer) next;
 					ArrayList<URI> diFiles = new ArrayList<URI>();
 					IPath path = project.getLocation();
 					IWorkspaceRoot workspaceRoot = ResourcesPlugin.getWorkspace().getRoot();
-					
+
 					recursiveFindDiFiles(diFiles, path, workspaceRoot);
 					results.addAll(diFiles);
-				} else {
+				} else { // Not a container, so it is some other kind of resource (e.g. file, graphical element)
 					Object element = BusinessModelResolver.getInstance().getBusinessModel(next);
 					if (element instanceof EObject) {
 						// CDO resource *are* EObjects
@@ -202,18 +202,21 @@ public class ScopeCollector implements IScopeCollector {
 	}
 	
 	protected void recursiveFindDiFiles(ArrayList<URI> diFiles, IPath path, IWorkspaceRoot workspaceRoot) {
-		IContainer  container =  workspaceRoot.getContainerForLocation(path);
+		IContainer container =  workspaceRoot.getContainerForLocation(path);
 
 		try {
 			IResource[] iResources;
 			iResources = container.members();
-			for (IResource iResource : iResources){
-				// for c files
-				if ("di".equalsIgnoreCase(iResource.getFileExtension())) {
-					//diFiles.add(iResource.getLocationURI());
-					URI theURI = URI.createPlatformResourceURI(iResource.getFullPath().toString(), true);
-					diFiles.add(theURI);
-				} else if (iResource.getType() == IResource.FOLDER) {
+			
+			for (IResource iResource : iResources) {
+				IFile iFile = (IFile) iResource.getAdapter(IFile.class);
+
+				if (iFile != null) {
+					if ("di".equalsIgnoreCase(iResource.getFileExtension())) {
+						URI theURI = URI.createPlatformResourceURI(iResource.getFullPath().toString(), true);
+						diFiles.add(theURI);
+					}
+				} else {
 					IPath tmpPath = iResource.getLocation();
 					recursiveFindDiFiles(diFiles, tmpPath, workspaceRoot);
 				}

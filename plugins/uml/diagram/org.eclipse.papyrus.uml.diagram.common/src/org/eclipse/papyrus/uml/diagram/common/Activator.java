@@ -21,10 +21,16 @@ import java.util.List;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.common.notify.AdapterFactory;
+import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EClassifier;
+import org.eclipse.emf.ecore.ENamedElement;
+import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.ecore.provider.EcoreItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.ComposedAdapterFactory;
+import org.eclipse.emf.edit.provider.IItemLabelProvider;
 import org.eclipse.emf.edit.provider.ReflectiveItemProviderAdapterFactory;
 import org.eclipse.emf.edit.provider.resource.ResourceItemProviderAdapterFactory;
+import org.eclipse.emf.edit.ui.provider.ExtendedImageRegistry;
 import org.eclipse.gmf.runtime.diagram.core.preferences.PreferencesHint;
 import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
@@ -92,6 +98,63 @@ public class Activator extends AbstractUIPlugin {
 		return plugin;
 	}
 
+	/**
+	 * Get an image for a ENamedElement in plug-in image registry.
+	 *
+	 * @param element
+	 *            the element.
+	 * @return the image.
+	 */
+	public Image getImage(ENamedElement element) {
+
+		String imageKey = element.getName();
+
+		Image image = getImageRegistry().get(imageKey);
+		if (image == null) {
+			ImageDescriptor imageDescriptor = getProvidedImageDescriptor(element);
+			if (imageDescriptor == null) {
+				imageDescriptor = ImageDescriptor.getMissingImageDescriptor();
+			}
+			getImageRegistry().put(imageKey, imageDescriptor);
+			image = getImageRegistry().get(imageKey);
+		}
+		return image;
+	}
+	
+	private ImageDescriptor getProvidedImageDescriptor(ENamedElement element) {
+		if (element instanceof EStructuralFeature) {
+			EStructuralFeature feature = ((EStructuralFeature) element);
+			EClass eContainingClass = feature.getEContainingClass();
+			EClassifier eType = feature.getEType();
+			if (eContainingClass != null && !eContainingClass.isAbstract()) {
+				element = eContainingClass;
+			} else if (eType instanceof EClass && !((EClass) eType).isAbstract()) {
+				element = eType;
+			}
+		}
+		if (element instanceof EClass) {
+			EClass eClass = (EClass) element;
+			if (!eClass.isAbstract()) {
+				return getItemImageDescriptor(eClass.getEPackage().getEFactoryInstance().create(eClass));
+			}
+		}
+		// TODO : support structural features
+		return null;
+	}
+	/**
+	 * Get an image descriptor for current item.
+	 *
+	 * @param item
+	 *            the item for which an image descriptor searched.
+	 * @return the image descriptor.
+	 */
+	public ImageDescriptor getItemImageDescriptor(Object item) {
+		IItemLabelProvider labelProvider = (IItemLabelProvider) adapterFactory.adapt(item, IItemLabelProvider.class);
+		if (labelProvider != null) {
+			return ExtendedImageRegistry.getInstance().getImageDescriptor(labelProvider.getImage(item));
+		}
+		return null;
+	}
 	/**
 	 * Return the color manager. Initialize it if required.
 	 *

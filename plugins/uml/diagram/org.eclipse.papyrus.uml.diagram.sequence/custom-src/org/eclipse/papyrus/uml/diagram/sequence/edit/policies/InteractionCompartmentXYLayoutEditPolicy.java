@@ -70,6 +70,7 @@ import org.eclipse.papyrus.uml.diagram.common.commands.PreserveAnchorsPositionCo
 import org.eclipse.papyrus.uml.diagram.common.service.AspectUnspecifiedTypeCreationTool.CreateAspectUnspecifiedTypeRequest;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentCombinedFragmentCompartmentEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CombinedFragmentEditPart;
+import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomInteractionEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.DurationConstraintEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.InteractionOperandEditPart;
@@ -77,6 +78,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.LifelineEditPart;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineDotLineCustomFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.figures.LifelineFigure;
 import org.eclipse.papyrus.uml.diagram.sequence.providers.UMLElementTypes;
+import org.eclipse.papyrus.uml.diagram.sequence.util.CombinedFragmentMoveHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.HighlightUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineEditPartUtil;
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineHeadUtil;
@@ -127,6 +129,17 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		Rectangle hostBounds = figure.getBounds();
 		for (Object o : request.getEditParts()) {
 			GraphicalEditPart child = (GraphicalEditPart) o;
+			boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
+			// Adjust excessive vertical resizing 
+			if (child instanceof LifelineEditPart && hasCreateLink && request.getMoveDelta().y > 0) {
+				int oldHeight = child.getFigure().getBounds().height;
+				int oldMinimumHeight = ((CustomLifelineEditPart)child).getMinimumHeight(-1);
+				int requestHeight = oldHeight + request.getMoveDelta().y;
+				int newMinimumHeight = oldMinimumHeight + request.getMoveDelta().y;
+				int newHeight = Math.max(oldHeight, newMinimumHeight);
+				request.setSizeDelta(new Dimension(request.getSizeDelta().width, newHeight - requestHeight));
+				request.setResizeDirection(PositionConstants.SOUTH);
+			}
 			Object constraintFor = getConstraintFor(request, child);
 			if (constraintFor instanceof Rectangle) {
 				Rectangle childBounds = (Rectangle) constraintFor;
@@ -146,11 +159,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					if (resizeChildrenCommand != null && resizeChildrenCommand.canExecute()) {
 						compoundCmd.add(resizeChildrenCommand);
 					}
-					// else if(resizeChildrenCommand != null) {
-					// return UnexecutableCommand.INSTANCE;
-					// }
 				}
-				boolean hasCreateLink = LifelineMessageCreateHelper.hasIncomingMessageCreate(child);
 				if (hasCreateLink && !LifelineMessageCreateHelper.canMoveLifelineVertical((LifelineEditPart) child, (Rectangle) translateToModelConstraint(constraintFor))) {
 					return UnexecutableCommand.INSTANCE;
 				}
@@ -161,6 +170,12 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 						compoundCmd.add(new ICommandProxy(LifelineResizeHelper.createManualLabelSizeCommand((LifelineEditPart) child)));
 					}
 					compoundCmd.add(changeConstraintCommand);
+					// Update heights of all the lifelines
+					if (child instanceof LifelineEditPart && changeConstraintCommand != null && request.getMoveDelta().y != 0) {
+						CustomInteractionEditPart hostParent = (CustomInteractionEditPart)getHost().getParent();
+						Command commandUpdateLifelines = hostParent.getUpdateLifelinesHeightsCommand(null);
+						compoundCmd.add(commandUpdateLifelines);
+					}
 				}
 				if (child instanceof CombinedFragmentEditPart) {
 					OperandBoundsComputeHelper.createUpdateIOBoundsForCFResizeCommand(compoundCmd, request, (CombinedFragmentEditPart) child);
@@ -470,6 +485,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 				for (InteractionOperandEditPart ioEP : interactionOperandEditParts) {
 					InteractionOperand io = (InteractionOperand) ioEP.resolveSemanticElement();
 					Rectangle newBoundsIO = SequenceUtil.getAbsoluteBounds(ioEP);
+					Rectangle oldBoundsIO = newBoundsIO.getCopy(); 
 					// apply the move delta which will impact all operands
 					newBoundsIO.translate(moveDelta);
 					// calculate the new bounds of the interaction operand
@@ -479,7 +495,9 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					if (firstOperand.equals(io)) {
 						// used to compensate the height of the "header" where the OperandKind is stored
 						newBoundsIO.y -= headerHeight;
+						oldBoundsIO.y -= headerHeight;
 						newBoundsIO.height += headerHeight;
+						oldBoundsIO.height += headerHeight;
 					}
 					// ignore current CF and enclosed IO
 					Set<InteractionFragment> ignoreSet = new HashSet<InteractionFragment>();
@@ -496,15 +514,32 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 					// => the interaction fragment that are inside an other container (like an enclosed CF) are not modified
 					for (InteractionFragment ift : coveredInteractionFragments) {
 						if (!cf.equals(ift)) {
+							if (ift instanceof CombinedFragment) {
+								// don't change CF hierarchy during resizing at all
+								continue;
+							}
 							Interaction interactionOwner = ift.getEnclosingInteraction();
 							InteractionOperand ioOwner = ift.getEnclosingOperand();
-							if ((ioOwner != null && (ioOwner.equals(cf.getEnclosingOperand()) || cf.equals(ioOwner.getOwner()))) || (interactionOwner != null && (interactionOwner.equals(cf.getEnclosingInteraction()) || cf.equals(interactionOwner.getOwner())))) {
+							if ((ioOwner != null && (ioOwner.equals(cf.getEnclosingOperand()) || cf.equals(ioOwner.getOwner()))) 
+									|| (interactionOwner != null && (interactionOwner.equals(cf.getEnclosingInteraction()) || cf.equals(interactionOwner.getOwner())))) {
 								compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(ioEP.getEditingDomain(), ift, io)));
 							}
 						}
 					}
+					Point offsetInnerCFs = new Point(oldBoundsIO.x - newBoundsIO.x, 0);
+					if (firstOperand.equals(io)) {
+						offsetInnerCFs.y = oldBoundsIO.y - newBoundsIO.y; // no need to adjust other IOs
+					}
+					Command adjustInnerCFsCommand = CombinedFragmentMoveHelper.getShiftEnclosedCFsCommand(ioEP, offsetInnerCFs); 
+					if (adjustInnerCFsCommand != null) {
+						compoundCmd.add(adjustInnerCFsCommand);
+					}
 				}
 				for (InteractionFragment ift : notCoveredAnymoreInteractionFragments) {
+					if (ift instanceof CombinedFragment) {
+						// don't change CF hierarchy during resizing at all
+						continue;
+					}
 					if (cf.getEnclosingOperand() != null) {
 						compoundCmd.add(new ICommandProxy(SequenceUtil.getSetEnclosingInteractionCommand(combinedFragmentEditPart.getEditingDomain(), ift, cf.getEnclosingOperand())));
 					} else {
@@ -645,7 +680,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 			minimunSize.union(getMinimumSizeFor(lifelineEP));
 		}
 		for (ShapeNodeEditPart executionSpecificationEP : LifelineEditPartUtil.getChildShapeNodeEditPart(lifelineEditPart)) {
-			int minimunHeight = executionSpecificationEP.getFigure().getBounds().bottom();
+			int minimunHeight = executionSpecificationEP.getFigure().getBounds().height;
 			minimunSize.setSize(new Dimension(minimunSize.width, Math.max(minimunSize.height, minimunHeight)));
 		}
 		return minimunSize;

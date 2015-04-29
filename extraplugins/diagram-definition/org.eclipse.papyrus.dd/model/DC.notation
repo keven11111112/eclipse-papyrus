@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/4.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA" xmi:id="_KTj3kPpKEeOw_Nx9vOEGaA" type="PapyrusUMLClassDiagram" name="DC Package" measurementUnit="Pixel">
+<notation:Diagram xmi:version="2.0" xmlns:xmi="http://www.omg.org/XMI" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:Ecore="http://www.eclipse.org/uml2/schemas/Ecore/5" xmlns:ecore="http://www.eclipse.org/emf/2002/Ecore" xmlns:notation="http://www.eclipse.org/gmf/runtime/1.0.2/notation" xmlns:uml="http://www.eclipse.org/uml2/5.0.0/UML" xsi:schemaLocation="http://www.eclipse.org/uml2/schemas/Ecore/5 pathmap://UML_PROFILES/Ecore.profile.uml#_z1OFcHjqEdy8S4Cr8Rc_NA" xmi:id="_KTj3kPpKEeOw_Nx9vOEGaA" type="PapyrusUMLClassDiagram" name="DC Package" measurementUnit="Pixel">
   <children xmi:type="notation:Shape" xmi:id="_MAvyIPpKEeOw_Nx9vOEGaA" type="2009" fontName="Lucida Grande" fontHeight="11" lineColor="0">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_MA3G4PpKEeOw_Nx9vOEGaA" source="ShadowFigure">
       <details xmi:type="ecore:EStringToStringMapEntry" xmi:id="_MA3G4fpKEeOw_Nx9vOEGaA" key="ShadowFigure_Value" value="false"/>
@@ -387,7 +387,7 @@
       <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5gnCUvpKEeOw_Nx9vOEGaA"/>
     </children>
     <element xmi:type="uml:DataType" href="DC.uml#Bounds"/>
-    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5ghiwfpKEeOw_Nx9vOEGaA" x="280" y="100" height="101"/>
+    <layoutConstraint xmi:type="notation:Bounds" xmi:id="_5ghiwfpKEeOw_Nx9vOEGaA" x="299" y="100" height="101"/>
   </children>
   <styles xmi:type="notation:DiagramStyle" xmi:id="_KTj3kfpKEeOw_Nx9vOEGaA"/>
   <element xmi:type="uml:Package" href="DC.uml#_0"/>

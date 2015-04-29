@@ -20,4 +20,18 @@
             original="platform:/plugin/org.eclipse.papyrus.infra.viewpoints.policy/builtin/default.configuration">
       </contribution>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.common.diagramExpansion">
+      <diagramexpansion
+            model="resources/configuration/BDDconfig.xmi">
+      </diagramexpansion>
+   </extension>
+   
+   
+   <!-- Parser provider declaration -->
+<extension point="org.eclipse.gmf.runtime.common.ui.services.parserProviders">
+	<ParserProvider class="org.eclipse.papyrus.sysml14.diagram.blockdefinition.provider.ParserProvider">
+		<Priority name="Low"/>
+	</ParserProvider>
+</extension>
 </plugin>

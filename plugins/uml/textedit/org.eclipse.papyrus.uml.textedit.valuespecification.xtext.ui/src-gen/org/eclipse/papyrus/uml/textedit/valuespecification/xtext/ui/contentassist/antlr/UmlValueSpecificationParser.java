@@ -37,20 +37,21 @@ public class UmlValueSpecificationParser extends AbstractContentAssistParser {
 			nameMappings = new HashMap<AbstractElement, String>() {
 				private static final long serialVersionUID = 1L;
 				{
-					put(grammarAccess.getAbstractRuleAccess().getAlternatives(), "rule__AbstractRule__Alternatives");
-					put(grammarAccess.getAbstractRuleAccess().getAlternatives_0_2(), "rule__AbstractRule__Alternatives_0_2");
-					put(grammarAccess.getAbstractRuleAccess().getValueAlternatives_0_2_0_0(), "rule__AbstractRule__ValueAlternatives_0_2_0_0");
+					put(grammarAccess.getAbstractRuleAccess().getAlternatives_2(), "rule__AbstractRule__Alternatives_2");
+					put(grammarAccess.getAbstractRuleAccess().getValueAlternatives_2_1_0(), "rule__AbstractRule__ValueAlternatives_2_1_0");
 					put(grammarAccess.getLiteralBooleanRuleAccess().getValueAlternatives_0(), "rule__LiteralBooleanRule__ValueAlternatives_0");
+					put(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getAlternatives(), "rule__LiteralIntegerOrUnlimitedNaturalRule__Alternatives");
+					put(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueAlternatives_0_0(), "rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAlternatives_0_0");
 					put(grammarAccess.getVisibilityKindAccess().getAlternatives(), "rule__VisibilityKind__Alternatives");
-					put(grammarAccess.getAbstractRuleAccess().getGroup_0(), "rule__AbstractRule__Group_0__0");
-					put(grammarAccess.getAbstractRuleAccess().getGroup_0_1(), "rule__AbstractRule__Group_0_1__0");
-					put(grammarAccess.getAbstractRuleAccess().getVisibilityAssignment_0_0(), "rule__AbstractRule__VisibilityAssignment_0_0");
-					put(grammarAccess.getAbstractRuleAccess().getNameAssignment_0_1_0(), "rule__AbstractRule__NameAssignment_0_1_0");
-					put(grammarAccess.getAbstractRuleAccess().getValueAssignment_0_2_0(), "rule__AbstractRule__ValueAssignment_0_2_0");
-					put(grammarAccess.getAbstractRuleAccess().getInstanceSpecificationAssignment_0_2_1(), "rule__AbstractRule__InstanceSpecificationAssignment_0_2_1");
-					put(grammarAccess.getAbstractRuleAccess().getUndefinedAssignment_1(), "rule__AbstractRule__UndefinedAssignment_1");
+					put(grammarAccess.getAbstractRuleAccess().getGroup(), "rule__AbstractRule__Group__0");
+					put(grammarAccess.getAbstractRuleAccess().getVisibilityAssignment_0(), "rule__AbstractRule__VisibilityAssignment_0");
+					put(grammarAccess.getAbstractRuleAccess().getNameAssignment_1(), "rule__AbstractRule__NameAssignment_1");
+					put(grammarAccess.getAbstractRuleAccess().getInstanceSpecificationAssignment_2_0(), "rule__AbstractRule__InstanceSpecificationAssignment_2_0");
+					put(grammarAccess.getAbstractRuleAccess().getValueAssignment_2_1(), "rule__AbstractRule__ValueAssignment_2_1");
+					put(grammarAccess.getAbstractRuleAccess().getUndefinedAssignment_2_2(), "rule__AbstractRule__UndefinedAssignment_2_2");
 					put(grammarAccess.getLiteralBooleanRuleAccess().getValueAssignment(), "rule__LiteralBooleanRule__ValueAssignment");
-					put(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueAssignment(), "rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment");
+					put(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getValueAssignment_0(), "rule__LiteralIntegerOrUnlimitedNaturalRule__ValueAssignment_0");
+					put(grammarAccess.getLiteralIntegerOrUnlimitedNaturalRuleAccess().getUnlimitedAssignment_1(), "rule__LiteralIntegerOrUnlimitedNaturalRule__UnlimitedAssignment_1");
 					put(grammarAccess.getLiteralRealRuleAccess().getValueAssignment(), "rule__LiteralRealRule__ValueAssignment");
 					put(grammarAccess.getLiteralNullRuleAccess().getValueAssignment(), "rule__LiteralNullRule__ValueAssignment");
 					put(grammarAccess.getLiteralStringRuleAccess().getValueAssignment(), "rule__LiteralStringRule__ValueAssignment");

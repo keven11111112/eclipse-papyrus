@@ -7,6 +7,11 @@
       label="Xtext Reference Editor"
       widgetClass="UMLStyledTextReferenceDialog"
       namespace="//@namespaces.0"/>
+  <propertyEditorTypes
+      label="Multiplicity Xtext Reference Editor"
+      widgetClass="MultiplicityXTextDialog"
+      namespace="//@namespaces.0"
+      type="Reference"/>
   <namespaces
       name="xtexteditor"
       value="org.eclipse.papyrus.uml.properties.xtext.widget.property"/>

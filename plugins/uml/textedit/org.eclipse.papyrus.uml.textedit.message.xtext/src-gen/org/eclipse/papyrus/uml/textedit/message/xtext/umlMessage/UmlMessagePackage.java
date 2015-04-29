@@ -23,8 +23,7 @@ import org.eclipse.emf.ecore.EReference;
  * @model kind="package"
  * @generated
  */
-public interface UmlMessagePackage extends EPackage
-{
+public interface UmlMessagePackage extends EPackage {
 	/**
 	 * The package name.
 	 * <!-- begin-user-doc -->
@@ -259,8 +258,7 @@ public interface UmlMessagePackage extends EPackage
 	 *
 	 * @generated
 	 */
-	interface Literals
-	{
+	interface Literals {
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.impl.MessageRuleImpl <em>Message Rule</em>}' class.
 		 * <!-- begin-user-doc -->

@@ -326,6 +326,10 @@ public class HTMLCornerBentFigure extends CornerBentFigure implements ILabelFigu
 		List<TextFlow> textFlowList = findTextFlowChildList(page);
 		int i = 0;
 		for (TextFlow nextTextFlow : textFlowList) {
+			if (i == myStyles.size()) {
+				// make code more robust
+				break;
+			}
 			nextTextFlow.setFont(calculateCurrentFont(myStyles.get(i)));
 			i++;
 		}

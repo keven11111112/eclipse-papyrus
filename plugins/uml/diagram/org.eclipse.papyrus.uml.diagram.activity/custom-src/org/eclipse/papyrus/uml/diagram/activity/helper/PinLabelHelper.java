@@ -65,7 +65,7 @@ public class PinLabelHelper extends StereotypedElementLabelHelper {
 		StringBuffer buffer = new StringBuffer();
 		if (maskValues.contains(ICustomAppearance.DISP_NAME)) {
 			buffer.append(" ");
-			buffer.append(namedElement.getName());
+			buffer.append(namedElement.getName()== null ? "" : namedElement.getName());
 		}
 		if (namedElement instanceof TypedElement) {
 			if (maskValues.contains(ICustomAppearance.DISP_TYPE)) {
@@ -76,7 +76,7 @@ public class PinLabelHelper extends StereotypedElementLabelHelper {
 				}
 			}
 		}
-		return buffer.toString();
+		return buffer.toString().trim();
 	}
 
 	/**

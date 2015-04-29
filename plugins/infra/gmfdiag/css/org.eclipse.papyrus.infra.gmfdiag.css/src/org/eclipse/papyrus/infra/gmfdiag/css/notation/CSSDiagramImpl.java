@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - support adapter instead of custom resource impl for CSS (CDO)
  *  Christian W. Damus - bug 433206
+ *  Christian W. Damus - bug 464443
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.css.notation;
@@ -17,13 +18,18 @@ package org.eclipse.papyrus.infra.gmfdiag.css.notation;
 import java.util.LinkedList;
 import java.util.List;
 
+import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.gmf.runtime.notation.EObjectListValueStyle;
 import org.eclipse.gmf.runtime.notation.NamedStyle;
+import org.eclipse.gmf.runtime.notation.NotationPackage;
+import org.eclipse.gmf.runtime.notation.Style;
 import org.eclipse.gmf.runtime.notation.impl.DiagramImpl;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.DiagramCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.engine.ExtendedCSSEngine;
 import org.eclipse.papyrus.infra.gmfdiag.css.resource.CSSNotationResource;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.CSSView;
+import org.eclipse.papyrus.infra.gmfdiag.css.style.impl.CSSViewDelegate;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheet;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StyleSheetReference;
 import org.eclipse.papyrus.infra.gmfdiag.css.stylesheets.StylesheetsFactory;
@@ -40,6 +46,8 @@ import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 
 	protected ExtendedCSSEngine engine;
+
+	private CSSView cssView;
 
 	@Override
 	public ExtendedCSSEngine getEngine() {
@@ -122,6 +130,72 @@ public class CSSDiagramImpl extends DiagramImpl implements CSSDiagram {
 		StyleSheetReference ref = StylesheetsFactory.eINSTANCE.createStyleSheetReference();
 		ref.setPath(path);
 		return ref;
+	}
+
+	protected CSSView getCSSView() {
+		if (cssView == null) {
+			cssView = new CSSViewDelegate(this, getEngine());
+		}
+		return cssView;
+	}
+
+	// //////////////////////////////////
+	// Implements the isVisible method //
+	// //////////////////////////////////
+
+	@Override
+	public boolean isVisible() {
+		// return super.isVisible();
+		return isCSSVisible();
+	}
+
+	@Override
+	public boolean isCSSVisible() {
+		boolean value = super.isVisible();
+
+		if (ForceValueHelper.isSet(this, NotationPackage.eINSTANCE.getView_Visible(), value)) {
+			return value;
+		} else {
+			return getCSSView().isCSSVisible();
+		}
+	}
+
+	// //////////////////////////////////////
+	// Implements the getNamedStyle method //
+	// //////////////////////////////////////
+
+	@Override
+	public NamedStyle getNamedStyle(EClass eClass, String name) {
+		return getCSSNamedStyle(eClass, name);
+	}
+
+	@Override
+	public NamedStyle getCSSNamedStyle(EClass eClass, String name) {
+		NamedStyle userStyle = super.getNamedStyle(eClass, name);
+		if (userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSNamedStyle(eClass, name);
+	}
+
+	// /////////////////////////////////
+	// Implements the getStyle method //
+	// /////////////////////////////////
+
+	@Override
+	public Style getStyle(EClass eClass) {
+		return getCSSStyle(eClass);
+	}
+
+	@Override
+	public Style getCSSStyle(EClass eClass) {
+		Style userStyle = super.getStyle(eClass);
+		if (userStyle != null) {
+			return userStyle;
+		}
+
+		return getCSSView().getCSSStyle(eClass);
 	}
 
 }

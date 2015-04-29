@@ -454,14 +454,12 @@ public class UMLBaseItemSemanticEditPolicy extends SemanticEditPolicy {
 		 */
 		public boolean canCreateConstraintContext_8500(Constraint source, Namespace target) {
 			if (source != null) {
-				if (source.getContext()
-					!= null) {
+				if (source.getContext() != null) {
 					return false;
 				}
 			}
 			if (target != null && (target.getOwnedRules()
-					.contains(target)
-					)) {
+					.contains(target))) {
 				return false;
 			}
 

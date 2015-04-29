@@ -24,7 +24,10 @@ import org.eclipse.papyrus.uml.search.ui.Activator;
 import org.eclipse.papyrus.uml.search.ui.Messages;
 import org.eclipse.papyrus.uml.tools.utils.ImageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
+import org.eclipse.swt.SWT;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.graphics.Image;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Stereotype;
 
 import com.swtdesigner.ResourceManager;
@@ -61,6 +64,10 @@ public class ParticipantTypeLabelProvider extends LabelProvider {
 						image = ImageUtil.getImageFromLocation(icon);
 					}
 					
+					if (image.getBounds().width != 16 || image.getBounds().height != 16) {
+						return resize(image, 16, 16);
+					}
+					
 					return image;
 				} else {
 					LabelProviderService service = new LabelProviderServiceImpl();
@@ -88,5 +95,24 @@ public class ParticipantTypeLabelProvider extends LabelProvider {
 		return ""; //$NON-NLS-1$
 		//
 	}
-
+	
+	private Image resize(Image image, int width, int height) {
+		double dpi = Display.getDefault().getDPI().x;
+		double scale = dpi/96;
+		int scaledWidth = (int) (width * scale);
+		int scaledHeight = (int) (height * scale);
+		
+		Image scaled = new Image(Display.getDefault(), scaledWidth, scaledHeight);
+		GC gc = new GC(scaled);
+		gc.setAntialias(SWT.ON);
+		gc.setInterpolation(SWT.HIGH);
+		gc.drawImage(image, 0, 0,
+				image.getBounds().width, image.getBounds().height,
+				0, 0, scaledWidth, scaledHeight);
+		gc.dispose();
+		
+		image.dispose();
+		
+		return scaled;
+	}
 }

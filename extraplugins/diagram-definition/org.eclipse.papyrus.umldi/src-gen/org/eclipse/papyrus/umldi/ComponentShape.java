@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Component Shape</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getComponentShape()
  * @model
  * @generated
  */
-public interface ComponentShape extends ClassShape {
+public interface ComponentShape extends ClassShape, ElementWithPackagedElementsShape {
 } // ComponentShape

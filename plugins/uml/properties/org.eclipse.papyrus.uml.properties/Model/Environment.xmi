@@ -89,6 +89,11 @@
       widgetClass="GenericUMLDatatypeEditor"
       namespace="//@namespaces.0"
       type="Reference"/>
+  <propertyEditorTypes
+      label="Multiplicity Editor"
+      widgetClass="MultiplicityDialog"
+      namespace="//@namespaces.0"
+      type="Reference"/>
   <namespaces
       name="uml"
       value="org.eclipse.papyrus.uml.properties.widgets"/>

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2014 CEA LIST.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -7,48 +7,24 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *   CEA LIST - Initial API and implementation
+ * Thibault Le Ouay (Sherpa Engineering) t.leouay@sherpa-eng.com  - Initial API and implementation
  *****************************************************************************/
+
 package org.eclipse.papyrus.uml.diagram.wizards;
 
-import org.eclipse.core.resources.ResourcesPlugin;
-import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.Path;
-import org.eclipse.core.runtime.Status;
-import org.eclipse.emf.common.ui.URIEditorInput;
-import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.ui.IEditorInput;
-import org.eclipse.ui.IFileEditorInput;
-import org.eclipse.ui.part.FileEditorInput;
 
 /**
- * Partial implementation of the {@link INewModelStorageProvider} protocol.
+ * 
+ * @deprecated use {@link org.eclipse.papyrus.uml.diagram.wizards.providers.AbstractNewModelStorageProvider}
+ *
  */
-public abstract class AbstractNewModelStorageProvider
-		implements INewModelStorageProvider {
+@Deprecated
+public abstract class AbstractNewModelStorageProvider extends org.eclipse.papyrus.uml.diagram.wizards.providers.AbstractNewModelStorageProvider {
 
-	public void init(CreateModelWizard wizard, IStructuredSelection selection) {
-		// pass
+	@Deprecated
+	public void init(org.eclipse.papyrus.uml.diagram.wizards.CreateModelWizard wizard, IStructuredSelection selection) {
+		super.init(wizard, selection);
 	}
 
-	public IStatus validateDiagramCategories(String... newCategories) {
-		return Status.OK_STATUS;
-	}
-
-	/**
-	 * Creates an {@link IFileEditorInput} for workspace resource URIs, or an {@link URIEditorInput} otherwise.
-	 */
-	public IEditorInput createEditorInput(URI uri) {
-		if (uri.isPlatformResource()) {
-			return new FileEditorInput(ResourcesPlugin.getWorkspace().getRoot()
-					.getFile(new Path(uri.toPlatformString(true))));
-		} else {
-			return new URIEditorInput(uri);
-		}
-	}
-
-	public ISelectProviderPart createSelectProviderPart() {
-		return null;
-	}
 }

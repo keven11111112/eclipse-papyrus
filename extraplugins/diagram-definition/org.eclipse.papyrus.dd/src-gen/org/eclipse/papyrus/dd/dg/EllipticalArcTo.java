@@ -16,18 +16,18 @@ import org.eclipse.papyrus.dd.dc.Point;
 
 /**
  * <!-- begin-user-doc --> A representation of the model object ' <em><b>Elliptical Arc To</b></em>'. <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getRadii <em>Radii</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getRotation <em>Rotation</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#isLargeArc <em>Is Large Arc</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#isSweep <em>Is Sweep</em>}</li>
- * <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getPoint <em>Point</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getRadii <em>Radii</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getRotation <em>Rotation</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#isLargeArc <em>Is Large Arc</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#isSweep <em>Is Sweep</em>}</li>
+ *   <li>{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getPoint <em>Point</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.dd.dg.DGPackage#getEllipticalArcTo()
  * @model
  * @generated
@@ -51,9 +51,7 @@ public interface EllipticalArcTo extends PathCommand {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getRadii <em>Radii</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Radii</em>' containment reference.
+	 * @param value the new value of the '<em>Radii</em>' containment reference.
 	 * @see #getRadii()
 	 * @generated
 	 */
@@ -105,9 +103,7 @@ public interface EllipticalArcTo extends PathCommand {
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#isLargeArc <em>Is Large Arc</em>}' attribute.
 	 * <!-- begin-user-doc --> <!--
 	 * end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Is Large Arc</em>' attribute.
+	 * @param value the new value of the '<em>Is Large Arc</em>' attribute.
 	 * @see #isLargeArc()
 	 * @generated
 	 */
@@ -156,9 +152,7 @@ public interface EllipticalArcTo extends PathCommand {
 	/**
 	 * Sets the value of the '{@link org.eclipse.papyrus.dd.dg.EllipticalArcTo#getPoint <em>Point</em>}' containment reference.
 	 * <!-- begin-user-doc --> <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Point</em>' containment reference.
+	 * @param value the new value of the '<em>Point</em>' containment reference.
 	 * @see #getPoint()
 	 * @generated
 	 */

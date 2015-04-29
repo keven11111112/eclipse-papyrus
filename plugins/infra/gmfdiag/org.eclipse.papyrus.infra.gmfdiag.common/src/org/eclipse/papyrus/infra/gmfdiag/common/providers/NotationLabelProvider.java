@@ -11,8 +11,6 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common.providers;
 
-import javax.swing.text.Element;
-
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ResizableCompartmentEditPart;
@@ -27,7 +25,6 @@ import org.eclipse.papyrus.infra.gmfdiag.common.types.NotationTypesMap;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramUtils;
 import org.eclipse.papyrus.infra.viewpoints.policy.ViewPrototype;
 import org.eclipse.swt.graphics.Image;
-import org.eclipse.uml2.uml.NamedElement;
 
 /**
  * A Label Provider for GMF Notation model
@@ -65,7 +62,8 @@ public class NotationLabelProvider extends EMFLabelProvider {
 	 * @see org.eclipse.jface.viewers.ILabelProvider#getText(java.lang.Object)
 	 *
 	 * @param element
-	 * @return <ul>
+	 * @return
+	 * 		<ul>
 	 *         <li>if element is a {@link NamedElement}, we return its name</li>
 	 *         <li>else if element is a {@link Element}, we return its type + a index</li>
 	 *         <li>else return Messages#EditorLabelProvider_No_name</li>

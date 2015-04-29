@@ -21,7 +21,7 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.AbstractOverrider;
 
 /**
  *
- * Tghis accumulator is used to register CellEditor on rows
+ * This accumulator is used to register CellEditor on rows
  *
  */
 public class CustomRowOverrideLabelAccumulator extends AbstractOverrider {

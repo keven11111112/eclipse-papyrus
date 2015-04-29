@@ -11,57 +11,56 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Body Label</b></em>'.
  * <!-- end-user-doc -->
- * 
+ *
  * <p>
  * The following features are supported:
- * <ul>
- * <li>{@link org.eclipse.papyrus.umldi.BodyLabel#getConstraintShape <em>Constraint Shape</em>}</li>
- * </ul>
  * </p>
- * 
+ * <ul>
+ *   <li>{@link org.eclipse.papyrus.umldi.BodyLabel#getElementWithBodyShape <em>Element With Body Shape</em>}</li>
+ * </ul>
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBodyLabel()
  * @model
  * @generated
  */
 public interface BodyLabel extends UmlLabel {
-
 	/**
-	 * Returns the value of the '<em><b>Constraint Shape</b></em>' container reference.
-	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.BodyShape#getBodyLabel <em>Body Label</em>}'.
+	 * Returns the value of the '<em><b>Element With Body Shape</b></em>' container reference.
+	 * It is bidirectional and its opposite is '{@link org.eclipse.papyrus.umldi.ElementWithBodyShape#getBodyLabel <em>Body Label</em>}'.
 	 * <p>
 	 * This feature subsets the following features:
-	 * <ul>
-	 * <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
-	 * </ul>
 	 * </p>
+	 * <ul>
+	 *   <li>'{@link org.eclipse.papyrus.umldi.UmlDiagramElement#getOwningUmlDiagramElement() <em>Owning Uml Diagram Element</em>}'</li>
+	 * </ul>
 	 * <!-- begin-user-doc -->
 	 * <p>
-	 * If the meaning of the '<em>Constraint Shape</em>' container reference isn't clear, there really should be more of a description here...
+	 * If the meaning of the '<em>Element With Body Shape</em>' container reference isn't clear,
+	 * there really should be more of a description here...
 	 * </p>
 	 * <!-- end-user-doc -->
-	 * 
-	 * @return the value of the '<em>Constraint Shape</em>' container reference.
-	 * @see #setConstraintShape(BodyShape)
-	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBodyLabel_ConstraintShape()
-	 * @see org.eclipse.papyrus.umldi.BodyShape#getBodyLabel
+	 * @return the value of the '<em>Element With Body Shape</em>' container reference.
+	 * @see #setElementWithBodyShape(ElementWithBodyShape)
+	 * @see org.eclipse.papyrus.umldi.UMLDIPackage#getBodyLabel_ElementWithBodyShape()
+	 * @see org.eclipse.papyrus.umldi.ElementWithBodyShape#getBodyLabel
 	 * @model opposite="bodyLabel" transient="false" ordered="false"
 	 * @generated
 	 */
-	BodyShape getConstraintShape();
+	ElementWithBodyShape getElementWithBodyShape();
 
 	/**
-	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.BodyLabel#getConstraintShape <em>Constraint Shape</em>}' container reference.
+	 * Sets the value of the '{@link org.eclipse.papyrus.umldi.BodyLabel#getElementWithBodyShape <em>Element With Body Shape</em>}' container reference.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
-	 * @param value
-	 *        the new value of the '<em>Constraint Shape</em>' container reference.
-	 * @see #getConstraintShape()
+	 * @param value the new value of the '<em>Element With Body Shape</em>' container reference.
+	 * @see #getElementWithBodyShape()
 	 * @generated
 	 */
-	void setConstraintShape(BodyShape value);
+	void setElementWithBodyShape(ElementWithBodyShape value);
+
 } // BodyLabel

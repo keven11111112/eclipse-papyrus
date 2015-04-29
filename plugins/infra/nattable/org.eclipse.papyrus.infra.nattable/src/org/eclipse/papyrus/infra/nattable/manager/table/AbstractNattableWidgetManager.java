@@ -44,14 +44,10 @@ import org.eclipse.jface.action.MenuManager;
 import org.eclipse.jface.util.LocalSelectionTransfer;
 import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.nebula.widgets.nattable.NatTable;
-import org.eclipse.nebula.widgets.nattable.config.AbstractRegistryConfiguration;
-import org.eclipse.nebula.widgets.nattable.config.ConfigRegistry;
-import org.eclipse.nebula.widgets.nattable.config.EditableRule;
 import org.eclipse.nebula.widgets.nattable.config.IConfigRegistry;
 import org.eclipse.nebula.widgets.nattable.coordinate.Range;
 import org.eclipse.nebula.widgets.nattable.copy.command.CopyDataToClipboardCommand;
 import org.eclipse.nebula.widgets.nattable.data.IDataProvider;
-import org.eclipse.nebula.widgets.nattable.edit.EditConfigAttributes;
 import org.eclipse.nebula.widgets.nattable.export.command.ExportCommand;
 //import org.eclipse.nebula.widgets.nattable.filterrow.FilterRowHeaderComposite;
 import org.eclipse.nebula.widgets.nattable.filterrow.IFilterStrategy;
@@ -86,7 +82,9 @@ import org.eclipse.papyrus.infra.nattable.Activator;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
 import org.eclipse.papyrus.infra.nattable.command.UpdateFilterMapCommand;
 import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
+import org.eclipse.papyrus.infra.nattable.configuration.CellEditorAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.CornerConfiguration;
+import org.eclipse.papyrus.infra.nattable.configuration.FilterRowAxisConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.FilterRowCustomConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.configuration.PapyrusHeaderMenuConfiguration;
@@ -104,7 +102,6 @@ import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.ColumnHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
 import org.eclipse.papyrus.infra.nattable.listener.NatTableDropListener;
-import org.eclipse.papyrus.infra.nattable.manager.cell.CellManagerFactory;
 import org.eclipse.papyrus.infra.nattable.model.nattable.NattablePackage;
 import org.eclipse.papyrus.infra.nattable.model.nattable.Table;
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxis.EObjectAxis;
@@ -164,14 +161,14 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
-	 * 
+	 *
 	 * The editing domain to use to edit context element
 	 */
 	protected TransactionalEditingDomain contextEditingDomain;
 
 	/**
 	 * we need to keep it to be able to remove listener (required when we destroy the context of the table)
-	 * 
+	 *
 	 * The editing domain to use to edit table elements
 	 */
 	protected TransactionalEditingDomain tableEditingDomain;
@@ -253,6 +250,16 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * this listener is used to update value in nattable layer
 	 */
 	private ResourceSetListener resourceSetListener;
+
+	/**
+	 * the filter configuration
+	 */
+	private FilterRowAxisConfiguration filterConfiguration;
+
+	/**
+	 * the cell editor axis configuration
+	 */
+	private CellEditorAxisConfiguration cellAxisConfiguration;
 
 	/**
 	 *
@@ -339,13 +346,37 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 		this.gridLayer.addConfiguration(new DefaultPrintBindings());
 		this.natTable = new NatTable(parent, this.gridLayer, false);
 
+
+		// we register nattable configuration
 		this.natTable.addConfiguration(new PapyrusHeaderMenuConfiguration());
-
-		this.natTable.addConfiguration(new CellEditionConfiguration());
 		this.natTable.addConfiguration(new PapyrusClickSortConfiguration());
-
 		this.natTable.addConfiguration(new FilterRowCustomConfiguration());
-		configureNatTable();
+
+
+		// we register some information in the config registry of the nattable widget
+		IConfigRegistry configRegistry = this.natTable.getConfigRegistry();
+
+		// could be done by config file!
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getContextLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
+		// commented because seems generate several bugs with edition
+		// newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, GridRegion.BODY);
+
+		// configuration used by filter
+		ObjectNameAndPathDisplayConverter converter = new ObjectNameAndPathDisplayConverter(getContextLabelProviderService());
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
+		configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
+
+		this.natTable.setConfigRegistry(configRegistry);
+		this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
+		this.natTable.configure();
+
+		// we create editors and filter configuration, we can not add it to a layer, because the configuration must be updated after add/move axis and invert axis
+		this.filterConfiguration = new FilterRowAxisConfiguration();
+		this.cellAxisConfiguration = new CellEditorAxisConfiguration();
+		configureFilters();
+		configureCellAxisEditor();
+
 
 		// initialize the table by checking all its applied styles
 		initTableAxis();
@@ -378,7 +409,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 
 	/**
 	 * @return
-	 *         the filter strategy to use
+	 * 		the filter strategy to use
 	 */
 	protected abstract IFilterStrategy<Object> createFilterStrategy();
 
@@ -446,18 +477,18 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 											refreshFilter = true;
 										}
 									}
-									if(refreshFilter && axisToRefresh!=null){
-										//we need to update the filter map value (manage Undo/Redo for example)
+									if (refreshFilter && axisToRefresh != null) {
+										// we need to update the filter map value (manage Undo/Redo for example)
 										int index = -1;
-										if(table.isInvertAxis() && getRowElementsList().contains(axisToRefresh)){
+										if (table.isInvertAxis() && getRowElementsList().contains(axisToRefresh)) {
 											index = getRowElementsList().indexOf(axisToRefresh);
-										}else if(!table.isInvertAxis() && getColumnElementsList().contains(axisToRefresh)){
+										} else if (!table.isInvertAxis() && getColumnElementsList().contains(axisToRefresh)) {
 											index = getColumnElementsList().indexOf(axisToRefresh);
 										}
-										if(index!=-1){
+										if (index != -1) {
 											filterColumnHeaderComposite.doCommand(new UpdateFilterMapCommand(index));
 										}
-										
+
 									}
 								}
 							}
@@ -489,32 +520,33 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				return ((NotificationFilter.createEventTypeFilter(Notification.SET))
 						.or(NotificationFilter.createEventTypeFilter(Notification.ADD))
 						.or(NotificationFilter.createEventTypeFilter(Notification.REMOVE)))
-						.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Style.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
-								.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
-								.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
+								.and((NotificationFilter.createNotifierTypeFilter(BooleanValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(IntValueStyle.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Style.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EObjectAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(FeatureIdAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(EStructuralFeatureAxis.class))
+										.or(NotificationFilter.createNotifierTypeFilter(LocalTableHeaderAxisConfiguration.class))
+										.or(NotificationFilter.createNotifierTypeFilter(Table.class)));
 				// return NotificationFilter.createNotifierTypeFilter(EObject.class);
 			}
 		};
 
-		this.tableEditingDomain.addResourceSetListener(resourceSetListener);
+		if (this.tableEditingDomain != null) {
+			this.tableEditingDomain.addResourceSetListener(resourceSetListener);
+		}
 	}
 
 	/**
 	 *
 	 * @param notification
 	 * @return
-	 *         The nearest table containing the style in order to verify the table's styled event's source
+	 * 		The nearest table containing the style in order to verify the table's styled event's source
 	 */
 	protected static Table findTable(Notification notification) {
 		if (notification.getNotifier() instanceof Table) {
 			return (Table) notification.getNotifier();
-		}
-		else {
+		} else {
 			Object notifier = notification.getNotifier();
 			if (notifier instanceof EObject) {
 				EObject container = ((EObject) notifier).eContainer();
@@ -528,41 +560,37 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @param bodyLayerStack
 	 *            the body layer stack to use
-	 * 
+	 *
 	 * @return
-	 *         the row header layer stack to use
+	 * 		the row header layer stack to use
 	 */
 	protected RowHeaderLayerStack createRowHeaderLayerStack(BodyLayerStack bodyLayerStack) {
 		return new RowHeaderLayerStack(bodyLayerStack, this);
 	}
 
-	protected void configureNatTable() {
-
-		if (this.natTable != null && !this.natTable.isDisposed()) {
-			ConfigRegistry configRegistry = new ConfigRegistry();
-
-			// could be done by config file!
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.NATTABLE_MODEL_MANAGER_CONFIG_ATTRIBUTE, AbstractNattableWidgetManager.this, DisplayMode.NORMAL, NattableConfigAttributes.NATTABLE_MODEL_MANAGER_ID);
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, getLabelProviderService(), DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-			// commented because seems generate several bugs with edition
-			// newRegistry.registerConfigAttribute( CellConfigAttributes.DISPLAY_CONVERTER, new GenericDisplayConverter(), DisplayMode.NORMAL, GridRegion.BODY);
-
-			// configuration used by filter
-			ObjectNameAndPathDisplayConverter converter = new ObjectNameAndPathDisplayConverter(getLabelProviderService());
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER, converter, DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_DISPLAY_CONVERTER_ID);
-			configRegistry.registerConfigAttribute(NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR, new ObjectNameAndPathComparator(converter), DisplayMode.NORMAL, NattableConfigAttributes.OBJECT_NAME_AND_PATH_COMPARATOR_ID);
-
-			this.natTable.setConfigRegistry(configRegistry);
-			this.natTable.setUiBindingRegistry(new UiBindingRegistry(this.natTable));
-			this.natTable.configure();
-		}
+	/**
+	 * configure the cell editor used in the table
+	 */
+	protected final void configureCellAxisEditor() {
+		this.cellAxisConfiguration.configureRegistry(this.natTable.getConfigRegistry());
 	}
 
+	/**
+	 * configure the filters
+	 */
+	protected final void configureFilters() {
+		this.filterConfiguration.configureRegistry(this.natTable.getConfigRegistry());
+	}
 
-	private LabelProviderService getLabelProviderService() {
+	/**
+	 * 
+	 * @return
+	 * 		the label provider serviceS
+	 */
+	private LabelProviderService getContextLabelProviderService() {
 		try {
 			ServicesRegistry serviceRegistry = ServiceUtilsForEObject.getInstance().getServiceRegistry(this.table.getContext());// get context and NOT get table for the usecase where the table is not in a resource
 			return serviceRegistry.getService(LabelProviderService.class);
@@ -673,6 +701,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 				if (event instanceof ColumnResizeEvent || event instanceof RowResizeEvent) {
 					final CompositeCommand resizeCommand = new CompositeCommand("resize IAxis' width or height"); //$NON-NLS-1$
 					TransactionalEditingDomain tableDomain = TableEditingDomainUtils.getTableEditingDomain(table);
+					if (tableDomain == null) {
+						return;
+					}
 
 					if (event instanceof ColumnResizeEvent) {
 						// get the index of the first column modified by the user
@@ -907,6 +938,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 					if (resizedHeaderPosition != -1) {
 						final CompositeCommand resizeRowHeaderCommand = new CompositeCommand("resize RowHeader's width"); //$NON-NLS-1$
 						TransactionalEditingDomain tableDomain = TableEditingDomainUtils.getTableEditingDomain(table);
+						if (tableDomain == null) {
+							return;
+						}
 						LocalTableHeaderAxisConfiguration localRowHeaderAxis = null;
 
 
@@ -994,7 +1028,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	 * @param event
 	 *            an event
 	 * @return
-	 *         a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
+	 * 		a LocationValue for the point, which contains informations about this location (TableGridRegion, row and column index, row and column
 	 *         elements, the cell, the point and its translation).
 	 *         Some of these values can be <code>null</code> or not depending of the region of the table
 	 */
@@ -1127,42 +1161,13 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         the created sort model to use for
+	 * 		the created sort model to use for
 	 */
 	protected IPapyrusSortModel getRowSortModel() {
 		if (this.rowSortModel == null) {
 			this.rowSortModel = new ColumnSortModel(this);
 		}
 		return this.rowSortModel;
-	}
-
-	/**
-	 *
-	 *
-	 * Configuration used for cell edition in the table
-	 */
-	private class CellEditionConfiguration extends AbstractRegistryConfiguration {
-
-		/**
-		 *
-		 * @see org.eclipse.nebula.widgets.nattable.config.IConfiguration#configureRegistry(org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
-		 *
-		 * @param configRegistry
-		 */
-		@Override
-		public void configureRegistry(IConfigRegistry configRegistry) {
-			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITABLE_RULE, new EditableRule() {
-
-				@Override
-				public boolean isEditable(final int columnIndex, final int rowIndex) {
-					final Object rowElement = getRowElement(rowIndex);
-					final Object columnElement = getColumnElement(columnIndex);
-					return CellManagerFactory.INSTANCE.isCellEditable(columnElement, rowElement);
-				}
-			});
-
-			configRegistry.registerConfigAttribute(EditConfigAttributes.CELL_EDITOR, null, DisplayMode.EDIT, ""); //$NON-NLS-1$
-		}
 	}
 
 	/**
@@ -1455,7 +1460,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating that some row axis are to be merged in the selection
+	 * 		The boolean indicating that some row axis are to be merged in the selection
 	 */
 	protected boolean getToMergeRowBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentRowAxisProvider().getAxis()) {
@@ -1476,7 +1481,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating that some column axis are to be merged in the selection
+	 * 		The boolean indicating that some column axis are to be merged in the selection
 	 */
 	protected boolean getToMergeColumnBoolean() {
 		// for(IAxis currentAxis : getTable().getCurrentColumnAxisProvider().getAxis()) {
@@ -1497,7 +1502,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedRows() {
@@ -1526,7 +1531,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateSelectedColumns() {
@@ -1555,7 +1560,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllRows() {
@@ -1585,7 +1590,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	/**
 	 *
 	 * @return
-	 *         The boolean indicating if the toggle of the currently used menu is to be set to true or not.
+	 * 		The boolean indicating if the toggle of the currently used menu is to be set to true or not.
 	 *         i.e. if the current selection is the same that the previously merged selection
 	 */
 	protected boolean getToggleStateAllColumns() {
@@ -1599,7 +1604,7 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @see org.eclipse.core.runtime.IAdaptable#getAdapter(java.lang.Class)
 	 *
 	 * @param adapter
@@ -1628,9 +1633,9 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
+	 * 		a {@link TableStructuredSelection} representing the current selection of the table or <code>null</code> when there is no selection
 	 */
 	protected final TableStructuredSelection getSelectionInTable() {
 		ISelection selection = this.selectionProvider.getSelection();
@@ -1641,10 +1646,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a map representing index of fully selected rows linked to the associated element
-	 * 
+	 * 		a map representing index of fully selected rows linked to the associated element
+	 *
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedRows() {
@@ -1659,10 +1664,10 @@ public abstract class AbstractNattableWidgetManager implements INattableModelMan
 	}
 
 	/**
-	 * 
+	 *
 	 * @return
-	 *         a map representing index of fully selected columns linked to the associated element
-	 * 
+	 * 		a map representing index of fully selected columns linked to the associated element
+	 *
 	 *         The returned value can't be <code>null</code>
 	 */
 	protected final Map<Integer, Object> getFullySelectedColumns() {

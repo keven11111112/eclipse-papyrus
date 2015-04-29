@@ -1345,6 +1345,24 @@
                         humanReadableType="slots"
                         type="7035">
                   </mapping>
+			
+			<mapping
+				humanReadableType="packagedElements"
+				type="7030">
+			</mapping>
+			<mapping
+				humanReadableType="packagedElements"
+				type="7010">
+			</mapping>
+			
+			<mapping
+				humanReadableType="packagedElements"
+				type="7009">
+			</mapping>
+			<mapping
+				humanReadableType="packagedElements"
+				type="7016">
+			</mapping>
    
           </diagramMappings>
    </extension>

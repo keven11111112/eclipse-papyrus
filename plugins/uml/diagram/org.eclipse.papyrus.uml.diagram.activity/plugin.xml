@@ -167,7 +167,7 @@
       <viewProvider class="org.eclipse.papyrus.uml.diagram.activity.providers.UMLViewProvider">
          <Priority name="Lowest"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Diagram" semanticHints="PapyrusUMLActivityDiagram"/>
-         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3105,3192,3193,3109,3110,3111,3073,3065,3188,3189,3190,3191,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3181,3182,3183,3184,3185,3186,3187,3094,3095,3096,3173,3174,3097,3098,3099,3100,3101,3175,3176,3177,3178,3102,3103,3179,3180,3104,3112,3113,3125,3132,3145,3158,3133,3146,3159,3114,3126,3134,3135,3147,3148,3160,3161,3115,3127,3136,3149,3162,3117,3137,3151,3163,3116,3128,3138,3150,3164,3118,3139,3152,3165,3119,3140,3153,3166,3120,3129,3121,3141,3154,3167,3122,3130,3142,3155,3168,3123,3131,3143,3156,3169,3124,3144,3157,3170"/>
+         <context viewClass="org.eclipse.gmf.runtime.notation.Node" semanticHints="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3105,3192,3193,3109,3110,3111,3073,3065,3188,3189,3190,3191,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3181,3182,3183,3184,3185,3186,3187,3094,3095,3096,3173,3174,3097,3098,3099,3100,3101,3175,3176,3177,3178,3102,3103,3179,3180,3104,3112,3113,3125,3132,3145,3158,3133,3146,3159,3114,3126,3134,3135,3147,3148,3160,3161,3115,3127,3136,3149,3162,3117,3137,3151,3163,3116,3128,3138,3150,3164,3118,3139,3152,3165,3119,3140,3153,3166,3120,3129,3121,3141,3154,3167,3122,3130,3142,3155,3168,3123,3131,3143,3156,3169,3124,3144,3157,3170,3198,3199,3200,3201,3202"/>
          <context viewClass="org.eclipse.gmf.runtime.notation.Edge" semanticHints="4001,4002,4003,4004,4005,4006,4007"/>
       </viewProvider>
    </extension>
@@ -180,13 +180,13 @@
             <method name="getType()" value="PapyrusUMLActivityDiagram"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-nodes">
-            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3105,3192,3193,3109,3110,3111,3073,3065,3188,3189,3190,3191,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3181,3182,3183,3184,3185,3186,3187,3094,3095,3096,3173,3174,3097,3098,3099,3100,3101,3175,3176,3177,3178,3102,3103,3179,3180,3104,3112,3113,3125,3132,3145,3158,3133,3146,3159,3114,3126,3134,3135,3147,3148,3160,3161,3115,3127,3136,3149,3162,3117,3137,3151,3163,3116,3128,3138,3150,3164,3118,3139,3152,3165,3119,3140,3153,3166,3120,3129,3121,3141,3154,3167,3122,3130,3142,3155,3168,3123,3131,3143,3156,3169,3124,3144,3157,3170"/>
+            <method name="getType()" value="2001,3001,3002,3003,3004,3005,3006,3007,3015,3016,3013,3014,3008,3017,3018,3019,3020,3010,3021,3022,3023,3024,3025,3026,3027,3034,3035,3036,3037,3032,3033,3011,3012,3038,3039,3040,3041,3078,3042,3046,3047,3048,3049,3050,3051,3052,3053,3054,3055,3060,3061,3062,3059,3063,3064,3076,3077,3069,3070,3074,3075,3071,3105,3192,3193,3109,3110,3111,3073,3065,3188,3189,3190,3191,3067,3068,3080,3081,3084,3083,3086,3087,3085,3088,3089,3090,3091,3092,3093,3181,3182,3183,3184,3185,3186,3187,3094,3095,3096,3173,3174,3097,3098,3099,3100,3101,3175,3176,3177,3178,3102,3103,3179,3180,3104,3112,3113,3125,3132,3145,3158,3133,3146,3159,3114,3126,3134,3135,3147,3148,3160,3161,3115,3127,3136,3149,3162,3117,3137,3151,3163,3116,3128,3138,3150,3164,3118,3139,3152,3165,3119,3140,3153,3166,3120,3129,3121,3141,3154,3167,3122,3130,3142,3155,3168,3123,3131,3143,3156,3169,3124,3144,3157,3170,3198,3199,3200,3201,3202"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Edge" id="generated-links">
             <method name="getType()" value="4001,4002,4003,4004,4005,4006,4007"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-labels">
-            <method name="getType()" value="5001,5002,6034,5080,6033,5081,6035,5082,5003,6028,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,6029,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,6020,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,6036,5043,5098,6037,5099,6038,5100,6039,5042,5101,5127,5128,6031,5059,6027,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,6032,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,6040,5077,5114,5126,6026,5124,5125,5119,5120,5121,5178,5179,5388,5389,5390,5391,5392,5393,5184,5185,5186,5183,5187,5188,5123,5117,5377,5378,5379,5380,5381,5382,5383,5384,5385,5386,5118,6016,5138,5139,6025,5144,5145,5142,5143,5148,6024,5146,5147,5129,5153,6023,5149,5150,5151,5152,5160,6019,5154,5155,5156,5157,5357,5358,5359,5360,5361,5362,5363,5364,5365,5366,5367,5368,5369,5370,5371,5372,5373,5374,5375,5376,5158,5159,5163,6022,5161,5162,5332,5333,5334,5335,5336,5337,5166,6021,5164,5165,5171,6018,5167,5168,5169,5170,5350,5339,5340,5341,5342,5343,5344,5345,5346,5347,5348,5349,5175,6017,5172,5173,5174,5351,5352,5353,5354,5355,5356,5176,5177,6030,5189,5190,5191,5394,5203,5204,5217,5218,5245,5246,5247,5263,5264,5265,5219,5220,5248,5249,5250,5266,5267,5268,5192,5395,5205,5206,5221,5222,5223,5224,5251,5252,5253,5254,5255,5256,5269,5270,5271,5272,5273,5274,5193,5396,5207,5208,5225,5226,5260,5261,5262,5275,5276,5277,5195,5397,5227,5228,5281,5282,5283,5278,5279,5280,5194,5398,5209,5210,5229,5230,5287,5288,5289,5284,5285,5286,5196,5399,5231,5232,5290,5291,5292,5293,5294,5295,5197,5400,5235,5236,5296,5297,5298,5299,5300,5301,5198,5402,5211,5212,5199,5401,5237,5238,5302,5303,5304,5305,5306,5307,5200,5403,5213,5214,5239,5240,5308,5309,5310,5311,5312,5313,5201,5404,5215,5216,5241,5242,5314,5315,5316,5317,5318,5319,5202,5405,5243,5244,5320,5321,5322,5323,5324,5325"/>
+            <method name="getType()" value="5001,5002,6034,5080,6033,5081,6035,5082,5003,6028,5011,5024,5083,5012,5025,5084,5009,5085,5010,5086,5004,6029,5013,5026,5087,5014,5027,5088,5015,5089,5016,5090,5006,6020,5017,5028,5091,5018,5029,5092,5019,5093,5020,5094,5021,5030,5095,5022,5031,5096,5023,5097,5038,5130,5039,5131,5040,5132,5041,5133,5036,5134,5037,5135,5007,5136,5008,5137,6036,5043,5098,6037,5099,6038,5100,6039,5042,5101,5127,5128,6031,5059,6027,5049,5050,5102,5051,5052,5103,5053,5104,5054,5055,5105,5056,5057,5106,5058,5107,5060,6032,5061,5062,5108,5063,5064,5109,5065,5110,5072,5073,5111,5074,5075,5112,5076,5113,5071,5078,5079,5115,6040,5077,5114,5126,6026,5124,5125,5119,5120,5121,5178,5179,5388,5389,5390,5391,5392,5393,5184,5185,5186,5183,5187,5188,5123,5117,5377,5378,5379,5380,5381,5382,5383,5384,5385,5386,5118,6016,5138,5139,6025,5144,5145,5142,5143,5148,6024,5146,5147,5129,5153,6023,5149,5150,5151,5152,5160,6019,5154,5155,5156,5157,5357,5358,5359,5360,5361,5362,5363,5364,5365,5366,5367,5368,5369,5370,5371,5372,5373,5374,5375,5376,5158,5159,5163,6022,5161,5162,5332,5333,5334,5335,5336,5337,5166,6021,5164,5165,5171,6018,5167,5168,5169,5170,5350,5339,5340,5341,5342,5343,5344,5345,5346,5347,5348,5349,5175,6017,5172,5173,5174,5351,5352,5353,5354,5355,5356,5176,5177,6030,5189,5190,5191,5394,5203,5204,5217,5218,5245,5246,5247,5263,5264,5265,5219,5220,5248,5249,5250,5266,5267,5268,5192,5395,5205,5206,5221,5222,5223,5224,5251,5252,5253,5254,5255,5256,5269,5270,5271,5272,5273,5274,5193,5396,5207,5208,5225,5226,5260,5261,5262,5275,5276,5277,5195,5397,5227,5228,5281,5282,5283,5278,5279,5280,5194,5398,5209,5210,5229,5230,5287,5288,5289,5284,5285,5286,5196,5399,5231,5232,5290,5291,5292,5293,5294,5295,5197,5400,5235,5236,5296,5297,5298,5299,5300,5301,5198,5402,5211,5212,5199,5401,5237,5238,5302,5303,5304,5305,5306,5307,5200,5403,5213,5214,5239,5240,5308,5309,5310,5311,5312,5313,5201,5404,5215,5216,5241,5242,5314,5315,5316,5317,5318,5319,5202,5405,5243,5244,5320,5321,5322,5323,5324,5325,5406,5407,5408,5409,5410,5411,5412,5413,5414,5415,5416,5417"/>
          </object>
          <object class="org.eclipse.gmf.runtime.notation.Node" id="generated-compartments">
             <method name="getType()" value="7001,7002,7003,7004,7008,7009,7010,7012,7005,7006,7007,7014,7015,7016,7013"/>
@@ -1516,7 +1516,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AcceptEventAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Test Identity Action node"
@@ -1526,7 +1526,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TestIdentityAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Activity"
@@ -1536,7 +1536,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Activity.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Activity Parameter Node"
@@ -1546,7 +1546,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityParameterNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Central Buffer Node"
@@ -1556,7 +1556,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Data Store Node"
@@ -1566,7 +1566,17 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DataStoreNode.gif">
-					</entry>
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Constraint"
+				      id="activity.nodes.constraint"
+				      kind="tool"
+				      label="Constraint"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Comment"
@@ -1576,7 +1586,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Comment.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Control Flow"
@@ -1586,7 +1596,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ControlFlow.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Exception Handler"
@@ -1596,7 +1606,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExceptionHandler.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Object Flow"
@@ -1606,7 +1616,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ObjectFlow.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create of a link for comment"
@@ -1616,7 +1626,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="icons/obj16/Link.gif"
 				      path=""
 				      small_icon="icons/obj16/Link.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Activity Partition"
@@ -1626,7 +1636,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityPartition.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Interruptible Activity Region"
@@ -1636,7 +1646,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InterruptibleActivityRegion.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Initial node"
@@ -1646,7 +1656,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InitialNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Activity final node"
@@ -1656,7 +1666,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActivityFinalNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Flow final node"
@@ -1666,7 +1676,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/FlowFinalNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Decision node"
@@ -1676,7 +1686,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DecisionNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Merge node"
@@ -1686,7 +1696,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/MergeNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Merge node"
@@ -1696,7 +1706,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/JoinNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Fork node"
@@ -1706,7 +1716,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ForkNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Constraint as Local Precondition for an Action"
@@ -1716,7 +1726,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Interval Constraint as Local Precondition for an Action"
@@ -1726,7 +1736,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Duration Constraint as Local Precondition for an Action"
@@ -1736,7 +1746,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Time Constraint as Local Precondition for an Action"
@@ -1746,7 +1756,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Constraint as Local Postcondition for an Action"
@@ -1756,7 +1766,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Constraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Interval Constraint as Local Postcondition for an Action"
@@ -1766,7 +1776,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/IntervalConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Duration Constraint as Local Postcondition for an Action"
@@ -1776,7 +1786,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DurationConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Time Constraint as Local Postcondition for an Action"
@@ -1786,7 +1796,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/TimeConstraint.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Output Pin"
@@ -1796,7 +1806,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OutputPin.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Input Pin"
@@ -1806,7 +1816,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InputPin.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Action Input Pin"
@@ -1816,7 +1826,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ActionInputPin.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Value Pin"
@@ -1826,7 +1836,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValuePin.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Expansion Region"
@@ -1836,7 +1846,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionRegion.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Expansion Node as Input of an Expansion Region"
@@ -1846,7 +1856,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Expansion Node as Output of an Expansion Region"
@@ -1856,7 +1866,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ExpansionNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Broadcast Signal Action"
@@ -1866,7 +1876,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/BroadcastSignalAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Call Behavior Action node"
@@ -1876,7 +1886,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallBehaviorAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Call Operation Action node"
@@ -1886,7 +1896,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CallOperationAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Send Object Action node"
@@ -1896,7 +1906,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendObjectAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Send Signal Action node"
@@ -1906,7 +1916,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SendSignalAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Start Object Behaviour Action"
@@ -1916,7 +1926,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartObjectBehaviorAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Create Object Action"
@@ -1926,7 +1936,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateObjectAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Destroy Object Action"
@@ -1936,7 +1946,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyObjectAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a ReadSelfAction"
@@ -1946,7 +1956,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadSelfAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a ReclassifyObjectAction"
@@ -1956,7 +1966,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReclassifyObjectAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Read Is Classified Object Action"
@@ -1966,7 +1976,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadIsClassifiedObjectAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Structured Activity Node"
@@ -1976,7 +1986,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StructuredActivityNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Loop Node"
@@ -1986,7 +1996,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/LoopNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Sequence Node"
@@ -1996,7 +2006,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/SequenceNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Conditional Node"
@@ -2006,7 +2016,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ConditionalNode.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Read Structural Feature Action"
@@ -2016,7 +2026,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Add Structural Feature Value Action"
@@ -2026,7 +2036,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Add Structural Feature Value Action"
@@ -2036,7 +2046,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Read Structural Feature Action"
@@ -2046,7 +2056,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Clear Structural Feature Action"
@@ -2056,7 +2066,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create Add Variable Value Action"
@@ -2066,7 +2076,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddVariableValueAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Read Variable Action"
@@ -2076,7 +2086,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadVariableAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create an Opaque Action node"
@@ -2086,7 +2096,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/OpaqueAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Value Specification Action node"
@@ -2096,7 +2106,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ValueSpecificationAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Clear Association Action"
@@ -2106,7 +2116,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearAssociationAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Read Extent Action"
@@ -2116,7 +2126,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadExtentAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Reduce Action node"
@@ -2126,7 +2136,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReduceAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Start Classifier Behavior"
@@ -2136,7 +2146,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/StartClassifierBehaviorAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Create Link Action node"
@@ -2146,7 +2156,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Read Link Action node"
@@ -2156,7 +2166,7 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadLinkAction.gif">
-					</entry>
+				</entry>
 				<entry
 				      defineOnly="true"
 				      description="Create a Destroy Link Action node"
@@ -2166,7 +2176,17 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif"
 				      path=""
 				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/DestroyLinkAction.gif">
-					</entry>
+				</entry>
+				<entry
+				      defineOnly="true"
+				      description="Create a Create Link Object Action"
+				      id="activity.nodes.linkactions.createlinkobjectaction"
+				      kind="tool"
+				      label="Create Link Object Action"
+				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif"
+				      path=""
+				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/CreateLinkObjectAction.gif">
+				</entry>
 				
 				</contribution>
 			</paletteProvider>	
@@ -2447,6 +2467,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="activity.nodes.datastorenode"
+				path="/activity.nodes">
+		  </predefinedEntry>
+		<predefinedEntry
+		        id="activity.nodes.constraint"
 				path="/activity.nodes">
 		  </predefinedEntry>
 		<predefinedEntry
@@ -2825,6 +2849,10 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		        id="activity.nodes.linkactions.destroylinkaction"
 				path="/activity.nodes/activity.nodes.linkactions">
 		  </predefinedEntry>
+		<predefinedEntry
+		        id="activity.nodes.linkactions.createlinkobjectaction"
+				path="/activity.nodes/activity.nodes.linkactions">
+		  </predefinedEntry>
 		<entry
 		      description="AcceptEventActions"
 		      id="activity.nodes.accepteventactions"
@@ -2875,157 +2903,268 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 	<!-- Diagram specific advices -->
 
 <!-- UML ElementType bindings to Papyrus shared IClientContext -->
-<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
-		<diagramMappings diagramID="PapyrusUMLActivityDiagram">
-			<mapping type="PapyrusUMLActivityDiagram" humanReadableType="ActivityDiagram"/>
-			
-	<mapping
-		humanReadableType="ActivityFigureParameter"
-		type="7001">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigurePrecondition"
-		type="7002">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigurePostCondtion"
-		type="7003">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigureContent"
-		type="7004">
-	</mapping>
-
-	<mapping
-		humanReadableType="StructuredActivityNodeContent"
-		type="7008">
-	</mapping>
-
-	<mapping
-		humanReadableType="StructuredActivityNodeContent"
-		type="7009">
-	</mapping>
-
-	<mapping
-		humanReadableType="StructuredActivityNodeContent"
-		type="7010">
-	</mapping>
-
-	<mapping
-		humanReadableType="StructuredActivityNodeContent"
-		type="7012">
-	</mapping>
-
-	<mapping
-		humanReadableType="StructuredActivityNodeContent"
-		type="7005">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityPartitionContent"
-		type="7006">
-	</mapping>
-
-	<mapping
-		humanReadableType="InterruptibleActivityRegionContent"
-		type="7007">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigureParameter"
-		type="7014">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigurePrecondition"
-		type="7015">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigurePostCondtion"
-		type="7016">
-	</mapping>
-
-	<mapping
-		humanReadableType="ActivityFigureContent"
-		type="7013">
-	</mapping>
-
-			
-	
-
-	
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6001">
-	</mapping>
-
-	<mapping
-		humanReadableType="Weight"
-		type="6002">
-	</mapping>
-
-	<mapping
-		humanReadableType="Selection"
-		type="6005">
-	</mapping>
-
-	<mapping
-		humanReadableType="Transformation"
-		type="6006">
-	</mapping>
-
-	<mapping
-		humanReadableType="DecisionInputFlow"
-		type="6007">
-	</mapping>
-
-	<mapping
-		humanReadableType="Guard"
-		type="6008">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6010">
-	</mapping>
-
-
-	
-	<mapping
-		humanReadableType="Name"
-		type="6003">
-	</mapping>
-
-	<mapping
-		humanReadableType="Weight"
-		type="6004">
-	</mapping>
-
-	<mapping
-		humanReadableType="Guard"
-		type="6009">
-	</mapping>
-
-	<mapping
-		humanReadableType="Stereotype"
-		type="6011">
-	</mapping>
-
-
-	
-
-	
-
-	
-
-		</diagramMappings>
-	</extension>
+<extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping"> 
+   <?gmfgen generated="true"?>
+   <diagramMappings diagramID="PapyrusUMLActivityDiagram">
+   	<mapping type="PapyrusUMLActivityDiagram" humanReadableType="ActivityDiagram"/>
+			<mapping
+				humanReadableType="ActivityFigureParameter"
+				type="7001">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigurePrecondition"
+				type="7002">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigurePostCondtion"
+				type="7003">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigureContent"
+				type="7004">
+			</mapping>
+			<mapping
+				humanReadableType="StructuredActivityNodeContent"
+				type="7008">
+			</mapping>
+			<mapping
+				humanReadableType="StructuredActivityNodeContent"
+				type="7009">
+			</mapping>
+			<mapping
+				humanReadableType="StructuredActivityNodeContent"
+				type="7010">
+			</mapping>
+			<mapping
+				humanReadableType="StructuredActivityNodeContent"
+				type="7012">
+			</mapping>
+			<mapping
+				humanReadableType="StructuredActivityNodeContent"
+				type="7005">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityPartitionContent"
+				type="7006">
+			</mapping>
+			<mapping
+				humanReadableType="InterruptibleActivityRegionContent"
+				type="7007">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigureParameter"
+				type="7014">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigurePrecondition"
+				type="7015">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigurePostCondtion"
+				type="7016">
+			</mapping>
+			<mapping
+				humanReadableType="ActivityFigureContent"
+				type="7013">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6001">
+			</mapping>
+			<mapping
+				humanReadableType="Weight"
+				type="6002">
+			</mapping>
+			<mapping
+				humanReadableType="Selection"
+				type="6005">
+			</mapping>
+			<mapping
+				humanReadableType="Transformation"
+				type="6006">
+			</mapping>
+			<mapping
+				humanReadableType="DecisionInputFlow"
+				type="6007">
+			</mapping>
+			<mapping
+				humanReadableType="Guard"
+				type="6008">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6010">
+			</mapping>
+			<mapping
+				humanReadableType="Name"
+				type="6003">
+			</mapping>
+			<mapping
+				humanReadableType="Weight"
+				type="6004">
+			</mapping>
+			<mapping
+				humanReadableType="Guard"
+				type="6009">
+			</mapping>
+			<mapping
+				humanReadableType="Stereotype"
+				type="6011">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6034">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6033">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6035">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6028">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6029">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6020">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6036">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6037">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6038">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6039">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6031">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6027">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6032">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6040">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6026">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6016">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6025">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6024">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6023">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6019">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6022">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6021">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6018">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6017">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6030">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5394">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5395">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5396">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5397">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5398">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5399">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5400">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5402">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5401">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5403">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5404">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5405">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="5407">
+			</mapping>
+   </diagramMappings>
+</extension>
 <extension
       point="org.eclipse.papyrus.infra.elementtypesconfigurations.elementTypeSetConfiguration">
    <elementTypeSet
@@ -3052,4 +3191,12 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
       </enablement>
    </creationTargetStrategy>
 </extension>
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypes" id="element-types">
+      <?gmfgen generated="false"?>
+   </extension>
+
+<extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
+      <?gmfgen generated="false"?>
+   </extension>
+
 </plugin>

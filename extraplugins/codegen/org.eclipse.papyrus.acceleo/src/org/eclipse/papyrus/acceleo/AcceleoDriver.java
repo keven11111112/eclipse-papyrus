@@ -42,6 +42,14 @@ import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 
+/**
+ * This class enables the binding of an Acceleo template with a UML element while returning a String
+ *  
+ * @author ansgar
+ *
+ * @deprecated Since this class is no longer used by Qompass, it will eventually be removed
+ */
+@Deprecated
 public class AcceleoDriver {
 
 	public final static String UML_URI = "http://www.eclipse.org/uml2/5.0.0/UML"; //$NON-NLS-1$

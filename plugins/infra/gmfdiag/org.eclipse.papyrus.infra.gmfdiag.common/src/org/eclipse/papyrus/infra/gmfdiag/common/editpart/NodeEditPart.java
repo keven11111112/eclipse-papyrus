@@ -24,7 +24,9 @@ import org.eclipse.gef.DragTracker;
 import org.eclipse.gef.EditPolicy;
 import org.eclipse.gef.Request;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.AbstractBorderedShapeEditPart;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.IBorderItemEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
+import org.eclipse.gmf.runtime.diagram.ui.figures.BorderItemLocator;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.BooleanValueStyle;
 import org.eclipse.gmf.runtime.notation.FillStyle;
@@ -71,6 +73,25 @@ public abstract class NodeEditPart extends AbstractBorderedShapeEditPart impleme
 		return createNodeFigure();
 	}
 
+	/**
+	 * Adds the border item figure to the border item container with a locator.
+	 * 
+	 * @param borderItemContainer
+	 *            the figure to which the border item figure is added
+	 * @param borderItemEditPart
+	 *            the border item editpart from which to retrieve the border
+	 *            item figure and determine which locator to create
+	 */
+	protected void addBorderItem(IFigure borderItemContainer,
+			IBorderItemEditPart borderItemEditPart) {
+		if( borderItemEditPart instanceof IBorderItemWithLocator){
+			borderItemContainer.add(borderItemEditPart.getFigure(), ((IBorderItemWithLocator)borderItemEditPart).getNewBorderItemLocator(getMainFigure()));
+			//super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+		else{
+			super.addBorderItem(borderItemContainer, borderItemEditPart);
+		}
+	}
 	/**
 	 * Refresh the SVG Path for anchorable elements
 	 */

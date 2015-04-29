@@ -31,6 +31,7 @@ import org.eclipse.papyrus.uml.tools.Activator;
 import org.eclipse.papyrus.uml.tools.commands.SetMultiplicityCommand;
 import org.eclipse.papyrus.uml.tools.helper.UMLDatabindingHelper;
 import org.eclipse.papyrus.uml.tools.util.MultiplicityParser;
+import org.eclipse.papyrus.uml.tools.utils.MultiplicityElementUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -171,15 +172,21 @@ public class MultiplicityObservableValue extends ReferenceCountedObservable.Valu
 
 	@Override
 	protected String doGetValue() {
-		int upper, lower;
-		upper = lower = 0;
+		String result = null;
+		if (eObject instanceof MultiplicityElement) {
+			result = MultiplicityElementUtil.formatMultiplicityNoBrackets((MultiplicityElement) eObject);
+		} else {
+			int upper, lower;
+			upper = lower = 0;
 
-		Object lowerValue = lowerBound.getValue();
-		Object upperValue = upperBound.getValue();
-		lower = (Integer) lowerValue;
-		upper = (Integer) upperValue;
+			Object lowerValue = lowerBound.getValue();
+			Object upperValue = upperBound.getValue();
+			lower = (Integer) lowerValue;
+			upper = (Integer) upperValue;
 
-		return MultiplicityParser.getMultiplicity(lower, upper);
+			result = MultiplicityParser.getMultiplicity(lower, upper);
+		}
+		return result;
 	}
 
 	@Override

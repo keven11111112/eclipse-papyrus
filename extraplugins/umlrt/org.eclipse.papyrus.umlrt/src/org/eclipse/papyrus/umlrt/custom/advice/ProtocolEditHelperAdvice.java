@@ -24,17 +24,25 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.emf.common.util.EList;
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.gmf.runtime.common.core.command.CommandResult;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.ConfigureElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
+import org.eclipse.gmf.runtime.emf.type.core.commands.DestroyElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.SetRequest;
+import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.tools.utils.NamedElementUtil;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageKind;
 import org.eclipse.papyrus.umlrt.UMLRealTime.RTMessageSet;
+import org.eclipse.papyrus.umlrt.custom.utils.MessageSetUtils;
+import org.eclipse.papyrus.umlrt.custom.utils.ProtocolContainerUtils;
+import org.eclipse.papyrus.umlrt.custom.utils.ProtocolUtils;
 import org.eclipse.uml2.uml.Collaboration;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.InterfaceRealization;
@@ -42,6 +50,7 @@ import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
 import org.eclipse.uml2.uml.Type;
+import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.Usage;
 import org.eclipse.uml2.uml.util.UMLUtil;
 
@@ -59,6 +68,62 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 	}
 
 	/**
+	 * {@inheritDoc}
+	 */
+	@Override
+	protected ICommand getAfterSetCommand(SetRequest request) {
+		if(UMLPackage.eINSTANCE.getNamedElement_Name().equals(request.getFeature() ) ){
+
+			final EObject elementToEdit = request.getElementToEdit();
+			if (!(elementToEdit instanceof Collaboration)) {
+				return super.getAfterSetCommand(request);
+			}
+			final Collaboration protocol = (Collaboration) elementToEdit;
+			
+			final String newName = (request.getValue() != null) ? request.getValue().toString() : "Protocol";
+		
+			RecordingCommand command = new RecordingCommand(request.getEditingDomain(), "Change Dependents", "Change the names of the dependents of the Protocol") {
+
+				@Override
+				protected void doExecute() {
+					Package protocolContainer = ProtocolUtils.getPackageContainer(protocol);
+					if(protocolContainer ==null) {
+						return;
+					}
+					
+					protocolContainer.setName(newName);
+					
+					// rename protocol, avoid dependency to avoid circular dependencies towards advices
+					Interface interfaceIn = ProtocolContainerUtils.getMessageSetIn(protocolContainer);
+					if (interfaceIn != null) {
+						interfaceIn.setName(MessageSetUtils.computeInterfaceInName(newName));
+					}
+
+					Interface interfaceOut = ProtocolContainerUtils.getMessageSetOut(protocolContainer);
+					if (interfaceOut != null) {
+						interfaceOut.setName(MessageSetUtils.computeInterfaceOutName(newName));
+					}
+
+					Interface interfaceInOut = ProtocolContainerUtils.getMessageSetInOut(protocolContainer);
+					if (interfaceInOut != null) {
+						interfaceInOut.setName(MessageSetUtils.computeInterfaceInOutName(newName));
+					}
+
+				}
+			};
+			// check the super in case of more commands
+			ICommand superCommand = super.getAfterSetCommand(request);
+			if (superCommand != null) {
+				return superCommand.compose(new EMFtoGMFCommandWrapper(command));
+			}
+			return new EMFtoGMFCommandWrapper(command);
+		}
+		return super.getAfterSetCommand(request);
+	}
+
+
+
+	/**
 	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeConfigureCommand(org.eclipse.gmf.runtime.emf.type.core.requests.ConfigureRequest)
 	 *
 	 * @param request
@@ -67,7 +132,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 	@Override
 	protected ICommand getBeforeConfigureCommand(ConfigureRequest request) {
 		final Collaboration protocol = (Collaboration) request.getElementToConfigure();
-		final String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("EmptyProtocol", protocol.eContainer().eContents());
+		final String name = NamedElementUtil.getDefaultNameWithIncrementFromBase("Protocol", protocol.eContainer().eContents());
 
 		return new ConfigureElementCommand(request) {
 			private IProgressMonitor progressMonitor;
@@ -82,13 +147,13 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				createElement(protocol, name, PROTOCOL_CONTAINER, Relation.PARENT); 
 
 				// Create the incoming UMLRealTime::RTMessageSet interface
-				String nameIn = name;
+				String nameIn = MessageSetUtils.computeInterfaceInName(name);
 				Interface rtMessageSetInt = (Interface) createElement(protocol, nameIn, RT_MESSAGE_SET, Relation.SIBLING); 
 				setRtMsgKind(rtMessageSetInt, RTMessageKind.IN);
 				createInterfaceRealization(protocol, nameIn, rtMessageSetInt);
 
 				// Create the outgoing UMLRealTime::RTMessageSet interface
-				String nameOut = name + "~";
+				String nameOut = MessageSetUtils.computeInterfaceOutName(name);
 				Interface rtMessageSetOutInt = (Interface) createElement(protocol, nameOut, RT_MESSAGE_SET, Relation.SIBLING); 
 				setRtMsgKind(rtMessageSetOutInt, RTMessageKind.OUT);
 				createUsage(protocol, nameOut, rtMessageSetOutInt);
@@ -96,7 +161,7 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				createElement(protocol, "*", ANY_RECEIVE_EVENT, Relation.SIBLING); //$NON-NLS-1$
 
 				// Create the in-out UMLRealTime::RTMessageSet interface
-				String nameInOut = name + "IO";
+				String nameInOut = MessageSetUtils.computeInterfaceInOutName(name);
 				Interface rtMessageSetInOutInt = (Interface) createElement(protocol, nameInOut, RT_MESSAGE_SET, Relation.SIBLING); 
 				setRtMsgKind(rtMessageSetInOutInt, RTMessageKind.IN_OUT);
 				createInterfaceRealization(protocol, nameInOut, rtMessageSetInOutInt);
@@ -129,8 +194,8 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 			 */
 			private void createInterfaceRealization(final Collaboration protocol, final String name, Interface rtMessageSetInt) throws ExecutionException {
 				InterfaceRealization realization = (InterfaceRealization) createElement(protocol, name, INTERFACE_REALIZATION, Relation.CHILD); 
-				realization.getClients().add(protocol);
-				realization.getSuppliers().add(rtMessageSetInt);
+				realization.setContract(rtMessageSetInt);
+				realization.setImplementingClassifier(protocol);
 			}
 
 			/**
@@ -183,5 +248,21 @@ public class ProtocolEditHelperAdvice extends AbstractEditHelperAdvice {
 				rtMessageSet.setRtMsgKind(kind);
 			}
 		};
+	}
+	
+	/**
+	 * @see org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice#getBeforeDestroyElementCommand(org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest)
+	 *
+	 * @param request
+	 * @return
+	 */
+	@Override
+	protected ICommand getAfterDestroyElementCommand(DestroyElementRequest request) {
+		PackageableElement protocolToDestroy = (PackageableElement) request.getElementToDestroy();
+		Package protocolContainerToDestroy = protocolToDestroy.getNearestPackage();
+		
+		request = new DestroyElementRequest(protocolContainerToDestroy, false);
+		
+		return new DestroyElementCommand(request);
 	}
 }

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *
  */
@@ -67,19 +68,17 @@ public class PapyrusTableItemProvider
 	 * @generated
 	 */
 	protected void addConfigurationPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusTable_configuration_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_configuration_feature", "_UI_PapyrusTable_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_TABLE__CONFIGURATION,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusTable_configuration_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusTable_configuration_feature", "_UI_PapyrusTable_type"),
+				ConfigurationPackage.Literals.PAPYRUS_TABLE__CONFIGURATION,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -92,6 +91,16 @@ public class PapyrusTableItemProvider
 	@Override
 	public Object getImage(Object object) {
 		return overlayImage(object, getResourceLocator().getImage("full/obj16/PapyrusTable.png"));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -116,9 +125,9 @@ public class PapyrusTableItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusTable.class)) {
-			case ConfigurationPackage.PAPYRUS_TABLE__CONFIGURATION:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ConfigurationPackage.PAPYRUS_TABLE__CONFIGURATION:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}

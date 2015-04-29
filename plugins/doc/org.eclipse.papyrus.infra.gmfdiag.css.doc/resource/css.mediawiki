@@ -344,6 +344,16 @@ The following properties can be used to bypass the standard UML notation. They c
 |-
 |}
 
+Other properties address presentation aspects that relate not so much to visual style as to content of the diagram:
+
+{| class="wikitable"
+|-
+! Property&nbsp;name !! Value&nbsp;type !! Initial&nbsp;Value !! Applies&nbsp;to !! Comment
+|-
+| canonical || boolean || false || Shapes, diagrams || Whether visually-contained elements (for shapes, diagrams) and connections (for shapes) are synchronized with the model.  For example, a canonical class shape always shows all of the class's owned operations, attributes, and nested classifiers as well as relationships such as generalizations and associations to other elements that are also shown in the diagram (although compartments may still be collapsed to hide their contents).
+|-
+|}
+
 ===Value types===
 
 '''String:''' Simple (Ascii) strings can be written without quotes: ''property:value''. Complex strings must be written with quotes: ''property:&nbsp;"my value"''; ''path:&nbsp;"platform:/plugin/my.example.plugin/resources/myFile.ext";''<br/>

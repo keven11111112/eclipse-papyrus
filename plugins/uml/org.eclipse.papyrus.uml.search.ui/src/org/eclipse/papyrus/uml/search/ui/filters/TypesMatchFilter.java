@@ -16,11 +16,14 @@ package org.eclipse.papyrus.uml.search.ui.filters;
 import java.util.Arrays;
 import java.util.List;
 
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.papyrus.uml.search.ui.Messages;
+import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.papyrus.views.search.results.AbstractResultEntry;
 import org.eclipse.search.ui.text.Match;
 import org.eclipse.search.ui.text.MatchFilter;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.Stereotype;
 
 /**
  *
@@ -70,15 +73,20 @@ public class TypesMatchFilter extends MatchFilter {
 			Object elementToValidate = ((AbstractResultEntry) match).elementToCheckFilterFor();
 
 			if (elementToValidate instanceof Element) {
-
 				if (selectedTypesList.contains(((Element) elementToValidate).eClass())) {
 					return false;
 				}
-				for (Object object : selectedTypesList) {
-					if (((Element) elementToValidate).getAppliedStereotypes().contains(object)) {
-						return false;
+				
+				for (Object selectedType : selectedTypesList) {
+					if (selectedType instanceof Stereotype) {
+						for (Stereotype appliedStereotype : ((Element) elementToValidate).getAppliedStereotypes()) {
+							if (EcoreUtil.getURI(appliedStereotype).equals(EcoreUtil.getURI((Stereotype) selectedType))) {
+								return false;
+							}
+						}
 					}
 				}
+				
 				return true;
 			}
 		}

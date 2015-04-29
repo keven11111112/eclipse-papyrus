@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Attachment Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
 public class AttachmentEdgeImpl extends UmlEdgeImpl implements AttachmentEdge {
-
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttachmentEdgeImpl() {
@@ -40,11 +36,11 @@ public class AttachmentEdgeImpl extends UmlEdgeImpl implements AttachmentEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.ATTACHMENT_EDGE;
 	}
+
 } //AttachmentEdgeImpl

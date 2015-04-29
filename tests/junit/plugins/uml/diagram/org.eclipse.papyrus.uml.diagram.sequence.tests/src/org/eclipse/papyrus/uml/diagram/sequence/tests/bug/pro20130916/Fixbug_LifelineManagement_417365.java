@@ -136,7 +136,7 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 
 		//Create Message from execution2 to Lifeline3
 		y = SequenceUtil.getAbsoluteBounds(execution2).getCenter().y;
-		message4 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().translate(0, 1), lifeline3);
+		message4 = (AbstractMessageEditPart)createLink(UMLElementTypes.Message_4004, lifeline1.getViewer(), SequenceUtil.getAbsoluteBounds(execution2).getCenter(), execution2, SequenceUtil.getAbsoluteBounds(lifeline3).getCenter().setY(y + 1), lifeline3);
 
 		lifeline4 = (LifelineEditPart)createNode(UMLElementTypes.Lifeline_3001, getRootEditPart(), new Point(650, 100), new Dimension(70, 100));
 		//Create Message Create from lifeline3 to lifeline4
@@ -335,9 +335,11 @@ public class Fixbug_LifelineManagement_417365 extends BaseStereotypesTest {
 	public void testResizeLifelineAfterStereotypeApplied() {
 		//Applied stereotype on lifeline1
 		doTestDisplayStereotypeInCompartment(lifeline4, lifeline4);
+		// Lifeline is not vertically resizable
+		// TODO: add moving of DestructionOccurenceSpecification instead
 		//resize down/up from bottom
-		resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.SOUTH, new Dimension(0, 30));
-		resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.NORTH, new Dimension(0, 30));
+		//resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.SOUTH, new Dimension(0, 30));
+		//resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.NORTH, new Dimension(0, 30));
 
 		//resize west
 		resize(lifeline4, SequenceUtil.getAbsoluteBounds(lifeline4).getLocation(), PositionConstants.WEST, new Dimension(30, 0));

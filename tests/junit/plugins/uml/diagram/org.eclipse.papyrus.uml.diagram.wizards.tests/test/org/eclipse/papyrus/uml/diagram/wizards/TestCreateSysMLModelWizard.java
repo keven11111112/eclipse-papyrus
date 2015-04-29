@@ -19,6 +19,7 @@ import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLModelWizard;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.NewModelFilePage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
 import org.eclipse.ui.IWorkbenchWizard;
 import org.junit.Test;
 
@@ -32,7 +33,9 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 
 	@Test
 	public void testOrderOfPages() {
-		Class<?>[] expectedPages = new Class[]{ NewModelFilePage.class, SelectDiagramKindPage.class, };
+		// actual pages: [SelectStorageProvider -> SelectStorageProviderPage,
+		// NewPapyrusModel -> NewModelFilePage, NewCDOModel -> NewModelPage, SelectDiagramKind -> SelectDiagramKindPage]
+		Class<?>[] expectedPages = new Class[] { SelectStorageProviderPage.class, NewModelFilePage.class, SelectDiagramKindPage.class };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -62,7 +65,7 @@ public class TestCreateSysMLModelWizard extends TestNewModelWizardBase {
 
 			@Override
 			protected String[] getDiagramCategoryIds() {
-				return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
+				return new String[] { CreateSysMLModelCommand.COMMAND_ID };
 			}
 
 		};

@@ -12,7 +12,8 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
 /**
  * <!-- begin-user-doc -->
  * The <b>Switch</b> for the model's inheritance hierarchy.
- * It supports the call {@link #doSwitch(EObject) doSwitch(object)} to invoke the <code>caseXXX</code> method for each class of the model,
+ * It supports the call {@link #doSwitch(EObject) doSwitch(object)}
+ * to invoke the <code>caseXXX</code> method for each class of the model,
  * starting with the actual class of the object
  * and proceeding up the inheritance hierarchy
  * until a non-null result is returned,
@@ -22,8 +23,7 @@ import org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePacka
  * @see org.eclipse.papyrus.uml.textedit.message.xtext.umlMessage.UmlMessagePackage
  * @generated
  */
-public class UmlMessageSwitch<T> extends Switch<T>
-{
+public class UmlMessageSwitch<T> extends Switch<T> {
 	/**
 	 * The cached model package
 	 * <!-- begin-user-doc -->
@@ -40,10 +40,8 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 *
 	 * @generated
 	 */
-	public UmlMessageSwitch()
-	{
-		if (modelPackage == null)
-		{
+	public UmlMessageSwitch() {
+		if (modelPackage == null) {
 			modelPackage = UmlMessagePackage.eINSTANCE;
 		}
 	}
@@ -53,13 +51,13 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 *
-	 * @parameter ePackage the package in question.
+	 * @param ePackage
+	 *            the package in question.
 	 * @return whether this is a switch for the given package.
 	 * @generated
 	 */
 	@Override
-	protected boolean isSwitchFor(EPackage ePackage)
-	{
+	protected boolean isSwitchFor(EPackage ePackage) {
 		return ePackage == modelPackage;
 	}
 
@@ -72,10 +70,8 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	protected T doSwitch(int classifierID, EObject theEObject)
-	{
-		switch (classifierID)
-		{
+	protected T doSwitch(int classifierID, EObject theEObject) {
+		switch (classifierID) {
 		case UmlMessagePackage.MESSAGE_RULE: {
 			MessageRule messageRule = (MessageRule) theEObject;
 			T result = caseMessageRule(messageRule);
@@ -110,8 +106,7 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseMessageRule(MessageRule object)
-	{
+	public T caseMessageRule(MessageRule object) {
 		return null;
 	}
 
@@ -128,8 +123,7 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 * @see #doSwitch(org.eclipse.emf.ecore.EObject) doSwitch(EObject)
 	 * @generated
 	 */
-	public T caseSequenceTermRule(SequenceTermRule object)
-	{
+	public T caseSequenceTermRule(SequenceTermRule object) {
 		return null;
 	}
 
@@ -147,8 +141,7 @@ public class UmlMessageSwitch<T> extends Switch<T>
 	 * @generated
 	 */
 	@Override
-	public T defaultCase(EObject object)
-	{
+	public T defaultCase(EObject object) {
 		return null;
 	}
 

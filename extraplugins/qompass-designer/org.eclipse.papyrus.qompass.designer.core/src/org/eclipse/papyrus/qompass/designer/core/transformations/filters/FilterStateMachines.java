@@ -31,6 +31,8 @@ import org.eclipse.uml2.uml.Transition;
 
 public class FilterStateMachines implements PreCopyListener {
 
+	private static final String UML_PRIMITIVE_TYPES_BOOLEAN = "PrimitiveTypes::Boolean"; //$NON-NLS-1$
+
 	public static FilterStateMachines getInstance() {
 		if (instance == null) {
 			instance = new FilterStateMachines();
@@ -50,9 +52,9 @@ public class FilterStateMachines implements PreCopyListener {
 					Behavior effect = transition.getEffect();
 					if (effect != null) {
 						if (tmClass != null) {
-							String newName = sm.getName() + "_" + transition.getName() //$NON-NLS-1$
-									+ "_" + effect.getName(); //$NON-NLS-1$
-							moveBehavior(newName, tmClass, effect);
+							// String newName = sm.getName() + "_" + transition.getName() //$NON-NLS-1$
+							// 		+ "_" + effect.getName(); //$NON-NLS-1$
+							moveBehavior(effect.getName(), tmClass, effect);
 						}
 					}
 				}
@@ -87,8 +89,7 @@ public class FilterStateMachines implements PreCopyListener {
 		copiedEffect.setSpecification(operation);
 		copiedEffect.setName(newName);
 		tmClass.getOwnedBehaviors().add(copiedEffect);
-
 	}
-
+	
 	private static FilterStateMachines instance = null;
 }

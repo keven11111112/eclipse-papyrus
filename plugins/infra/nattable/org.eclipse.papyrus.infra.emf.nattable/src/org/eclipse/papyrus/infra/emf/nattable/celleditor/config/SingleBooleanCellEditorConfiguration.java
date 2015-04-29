@@ -74,7 +74,6 @@ public class SingleBooleanCellEditorConfiguration implements ICellAxisConfigurat
 			EClassifier etype = feature.getEType();
 			if (etype instanceof EDataType) {
 				EDataType datatype = (EDataType) etype;
-				
 				return TypesConstants.BOOLEAN.equals(datatype.getName());
 			}
 		}

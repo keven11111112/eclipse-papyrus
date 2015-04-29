@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -48,11 +49,9 @@ public final class ConfigurationEditPlugin extends EMFPlugin {
 	 * @generated
 	 */
 	public ConfigurationEditPlugin() {
-		super
-		  (new ResourceLocator [] {
-		     ConstraintsEditPlugin.INSTANCE,
-		     Iso42010EditPlugin.INSTANCE,
-		   });
+		super(new ResourceLocator[] {
+				ConstraintsEditPlugin.INSTANCE,
+				Iso42010EditPlugin.INSTANCE, });
 	}
 
 	/**

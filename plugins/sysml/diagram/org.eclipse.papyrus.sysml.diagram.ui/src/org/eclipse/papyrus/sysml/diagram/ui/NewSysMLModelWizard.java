@@ -1,5 +1,5 @@
 /*****************************************************************************
-on * Copyright (c) 2010, 2013 CEA LIST.
+ * Copyright (c) 2010, 2013 CEA LIST.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -52,7 +52,7 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	 */
 	@Override
 	protected String[] getDiagramCategoryIds() {
-		return new String[] { CreateSysMLModelCommand.COMMAND_ID };
+		return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
 	}
 
 	/**
@@ -70,6 +70,11 @@ public class NewSysMLModelWizard extends CreateModelWizard {
 	@Override
 	protected void saveDiagramCategorySettings() {
 		// here SysML is the only available category
+	}
+
+	@Override
+	public boolean isPapyrusRootWizard() {
+		return false;
 	}
 
 }

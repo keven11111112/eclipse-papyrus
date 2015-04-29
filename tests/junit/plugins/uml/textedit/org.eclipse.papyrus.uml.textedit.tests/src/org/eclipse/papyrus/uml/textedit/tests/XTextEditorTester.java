@@ -22,9 +22,22 @@ public class XTextEditorTester<T extends EObject> {
 
 		return initialElement;
 	}
+	
+	public T parseText(final EObject parentElement, final T initialElement, final String textToParse) throws Exception {
+		IParser parser = editor.createParser(parentElement);
+		ICommand parseCommand = parser.getParseCommand(new EObjectAdapter(initialElement), textToParse, 0);
+		if (null != parseCommand) {
+			parseCommand.execute(new NullProgressMonitor(), null);
+		}
+
+		return initialElement;
+	}
 
 	public String getInitialText(T element){
 		return editor.getTextToEdit(element);
 	}
 
+	public String getParentInitialText(final Object element) {
+		return editor.getTextToEdit(element);
+	}
 }

@@ -11,15 +11,16 @@
  */
 package org.eclipse.papyrus.umldi;
 
+
 /**
  * <!-- begin-user-doc -->
  * A representation of the model object '<em><b>Class Shape</b></em>'.
  * <!-- end-user-doc -->
- * 
- * 
+ *
+ *
  * @see org.eclipse.papyrus.umldi.UMLDIPackage#getClassShape()
  * @model
  * @generated
  */
-public interface ClassShape extends ClassifierWithReceptionsShape {
+public interface ClassShape extends ClassifierWithNestedClassifiersShape, BehavioredClassifierShape, ElementWithPortsShape {
 } // ClassShape

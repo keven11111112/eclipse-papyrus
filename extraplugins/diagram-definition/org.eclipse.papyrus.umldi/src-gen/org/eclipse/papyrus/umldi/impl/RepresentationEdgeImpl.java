@@ -20,17 +20,13 @@ import org.eclipse.papyrus.umldi.UMLDIPackage;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Representation Edge</b></em>'.
  * <!-- end-user-doc -->
- * <p>
- * </p>
- * 
+ *
  * @generated
  */
-public class RepresentationEdgeImpl extends NamedEdgeImpl implements RepresentationEdge {
-
+public class RepresentationEdgeImpl extends UmlEdgeImpl implements RepresentationEdge {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RepresentationEdgeImpl() {
@@ -40,11 +36,11 @@ public class RepresentationEdgeImpl extends NamedEdgeImpl implements Representat
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	protected EClass eStaticClass() {
 		return UMLDIPackage.Literals.REPRESENTATION_EDGE;
 	}
+
 } //RepresentationEdgeImpl

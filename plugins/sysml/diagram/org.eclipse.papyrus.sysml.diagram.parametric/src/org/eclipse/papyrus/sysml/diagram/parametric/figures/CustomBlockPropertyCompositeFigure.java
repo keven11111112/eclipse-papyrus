@@ -7,7 +7,7 @@
  * http://www.eclipse.org/legal/epl-v10.html
  *
  * Contributors:
- *		Régis CHEVREL: chevrel.regis <at> gmail.com
+ *		Rï¿½gis CHEVREL: chevrel.regis <at> gmail.com
  *		CEA LIST - Initial API and implementation
  *
  *****************************************************************************/
@@ -15,6 +15,7 @@ package org.eclipse.papyrus.sysml.diagram.parametric.figures;
 
 import org.eclipse.draw2d.Label;
 import org.eclipse.papyrus.sysml.diagram.common.figure.BlockPropertyCompositeFigure;
+import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.PapyrusWrappingLabel;
 
 public class CustomBlockPropertyCompositeFigure extends
 		BlockPropertyCompositeFigure {
@@ -25,9 +26,9 @@ public class CustomBlockPropertyCompositeFigure extends
 	}
 
 	@Override
-	public Label getTaggedLabel() {
+	public PapyrusWrappingLabel getTaggedLabel() {
 		// return a mock Label
-		return new Label();
+		return new PapyrusWrappingLabel();
 	}
 
 	@Override

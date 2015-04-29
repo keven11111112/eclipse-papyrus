@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -73,19 +74,17 @@ public class OwningRuleItemProvider
 	 * @generated NOT
 	 */
 	protected void addElementPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new EClassPropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_OwningRule_element_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_element_feature", "_UI_OwningRule_type"),
-								ConfigurationPackage.Literals.OWNING_RULE__ELEMENT,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new EClassPropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OwningRule_element_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_element_feature", "_UI_OwningRule_type"),
+				ConfigurationPackage.Literals.OWNING_RULE__ELEMENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -96,19 +95,17 @@ public class OwningRuleItemProvider
 	 * @generated NOT
 	 */
 	protected void addStereotypesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new StereotypePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_OwningRule_stereotypes_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_stereotypes_feature", "_UI_OwningRule_type"),
-								ConfigurationPackage.Literals.OWNING_RULE__STEREOTYPES,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new StereotypePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OwningRule_stereotypes_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_stereotypes_feature", "_UI_OwningRule_type"),
+				ConfigurationPackage.Literals.OWNING_RULE__STEREOTYPES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -118,19 +115,17 @@ public class OwningRuleItemProvider
 	 * @generated
 	 */
 	protected void addMultiplicityPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_OwningRule_multiplicity_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_multiplicity_feature", "_UI_OwningRule_type"),
-				 ConfigurationPackage.Literals.OWNING_RULE__MULTIPLICITY,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_OwningRule_multiplicity_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_OwningRule_multiplicity_feature", "_UI_OwningRule_type"),
+				ConfigurationPackage.Literals.OWNING_RULE__MULTIPLICITY,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.INTEGRAL_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -177,6 +172,16 @@ public class OwningRuleItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -215,13 +220,13 @@ public class OwningRuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(OwningRule.class)) {
-			case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
-			case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ConfigurationPackage.OWNING_RULE__MULTIPLICITY:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ConfigurationPackage.OWNING_RULE__NEW_MODEL_PATH:
+		case ConfigurationPackage.OWNING_RULE__SELECT_DIAGRAM_ROOT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -237,15 +242,11 @@ public class OwningRuleItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.OWNING_RULE__NEW_MODEL_PATH,
-				 ConfigurationFactory.eINSTANCE.createModelAutoCreate()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.OWNING_RULE__NEW_MODEL_PATH,
+				ConfigurationFactory.eINSTANCE.createModelAutoCreate()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.OWNING_RULE__SELECT_DIAGRAM_ROOT,
-				 ConfigurationFactory.eINSTANCE.createRootAutoSelect()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.OWNING_RULE__SELECT_DIAGRAM_ROOT,
+				ConfigurationFactory.eINSTANCE.createRootAutoSelect()));
 	}
 
 }

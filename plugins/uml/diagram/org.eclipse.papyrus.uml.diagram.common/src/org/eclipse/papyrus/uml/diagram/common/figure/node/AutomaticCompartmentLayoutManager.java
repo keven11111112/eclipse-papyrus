@@ -23,6 +23,7 @@ import org.eclipse.draw2d.PositionConstants;
 import org.eclipse.draw2d.geometry.Dimension;
 import org.eclipse.draw2d.geometry.Rectangle;
 import org.eclipse.gmf.runtime.diagram.ui.figures.ResizableCompartmentFigure;
+import org.eclipse.gmf.runtime.diagram.ui.figures.ShapeCompartmentFigure;
 import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SVGNodePlateFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.ScalableCompartmentFigure;
@@ -423,7 +424,7 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 				visibleCompartments.add(child);
 			} else if (child instanceof Label || child instanceof WrappingLabel || child instanceof StereotypePropertiesCompartment) {
 				visibleOthers.add(child);
-			} else if (child instanceof ScalableCompartmentFigure) {
+			} else if ((child instanceof ScalableCompartmentFigure)|| (child instanceof ShapeCompartmentFigure)) {
 				visibleCompartments.add(child);
 			} else {
 				invisibles.add(child);
@@ -439,6 +440,9 @@ public class AutomaticCompartmentLayoutManager extends AbstractLayout {
 	 * @return <code>true</code> if the figure contains a GMF compartment
 	 */
 	private boolean isGMFContainer(IFigure figure) {
+		if (figure instanceof ResizableCompartmentFigure){
+			return true;
+		}
 		if (figure instanceof StereotypePropertiesCompartment) {
 			return false;
 		}

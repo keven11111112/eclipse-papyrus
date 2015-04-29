@@ -1030,7 +1030,7 @@ public class SequenceUtil {
 	 * @param ignoreSet
 	 *            a set of ift to ignore.
 	 * @return
-	 *         a set containing the covered ift or null if an ift not ignored is not fully covered.
+	 *         a set containing ift at least partially covered by the rectangle.
 	 */
 	@SuppressWarnings("unchecked")
 	public static Set<InteractionFragment> getCoveredInteractionFragments(Rectangle selectionRect, EditPart hostEditPart, Set<InteractionFragment> ignoreSet) {
@@ -1047,21 +1047,16 @@ public class SequenceUtil {
 				EObject elem = sep.getNotationView().getElement();
 				if (elem instanceof InteractionFragment && !ignoreSet.contains(elem)) {
 					Rectangle figureBounds = getAbsoluteBounds(sep);
-					// keep the fragment if its figure is completely in the selection
-					// if it is inside but not completely this method return null
-					if (selectionRect.contains(figureBounds)) {
+					Rectangle intersection = selectionRect.getIntersection(figureBounds);
+					// keep the fragment if its figure is at least partially in the selection
+					if (!intersection.isEmpty()) {
 						coveredInteractionFragments.add((InteractionFragment) elem);
 						if (elem instanceof ExecutionSpecification) {
 							ExecutionSpecification es = (ExecutionSpecification) elem;
 							coveredInteractionFragments.add(es.getStart());
 							coveredInteractionFragments.add(es.getFinish());
 						}
-					} else {
-						Rectangle intersection = selectionRect.getIntersection(figureBounds);
-						if (!intersection.equals(new Rectangle()) && !intersection.equals(selectionRect)) {
-							return null;
-						}
-					}
+					} 
 				}
 			} else if (ep instanceof ConnectionEditPart) {
 				ConnectionEditPart cep = (ConnectionEditPart) ep;

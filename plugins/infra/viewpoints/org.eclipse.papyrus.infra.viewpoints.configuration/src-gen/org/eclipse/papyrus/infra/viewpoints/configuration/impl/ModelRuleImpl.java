@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -40,7 +41,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.ModelRule;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Model Rule</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -173,8 +173,9 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	public void setElementMultiplicity(int newElementMultiplicity) {
 		int oldElementMultiplicity = elementMultiplicity;
 		elementMultiplicity = newElementMultiplicity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY, oldElementMultiplicity, elementMultiplicity));
+		}
 	}
 
 	/**
@@ -184,11 +185,12 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 */
 	public EClass getElement() {
 		if (element != null && element.eIsProxy()) {
-			InternalEObject oldElement = (InternalEObject)element;
-			element = (EClass)eResolveProxy(oldElement);
+			InternalEObject oldElement = (InternalEObject) element;
+			element = (EClass) eResolveProxy(oldElement);
 			if (element != oldElement) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.MODEL_RULE__ELEMENT, oldElement, element));
+				}
 			}
 		}
 		return element;
@@ -211,8 +213,9 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	public void setElement(EClass newElement) {
 		EClass oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.MODEL_RULE__ELEMENT, oldElement, element));
+		}
 	}
 
 	/**
@@ -244,8 +247,9 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	public void setMultiplicity(int newMultiplicity) {
 		int oldMultiplicity = multiplicity;
 		multiplicity = newMultiplicity;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.MODEL_RULE__MULTIPLICITY, oldMultiplicity, multiplicity));
+		}
 	}
 
 	/**
@@ -257,8 +261,8 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public NotificationChain eInverseAdd(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				return ((InternalEList<InternalEObject>)(InternalEList<?>)getConstraints()).basicAdd(otherEnd, msgs);
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			return ((InternalEList<InternalEObject>) (InternalEList<?>) getConstraints()).basicAdd(otherEnd, msgs);
 		}
 		return super.eInverseAdd(otherEnd, featureID, msgs);
 	}
@@ -271,8 +275,8 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public NotificationChain eInverseRemove(InternalEObject otherEnd, int featureID, NotificationChain msgs) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				return ((InternalEList<?>)getConstraints()).basicRemove(otherEnd, msgs);
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			return ((InternalEList<?>) getConstraints()).basicRemove(otherEnd, msgs);
 		}
 		return super.eInverseRemove(otherEnd, featureID, msgs);
 	}
@@ -285,17 +289,19 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				return getConstraints();
-			case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
-				return getElementMultiplicity();
-			case ConfigurationPackage.MODEL_RULE__ELEMENT:
-				if (resolve) return getElement();
-				return basicGetElement();
-			case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
-				return getStereotypes();
-			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
-				return getMultiplicity();
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			return getConstraints();
+		case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
+			return getElementMultiplicity();
+		case ConfigurationPackage.MODEL_RULE__ELEMENT:
+			if (resolve) {
+				return getElement();
+			}
+			return basicGetElement();
+		case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
+			return getStereotypes();
+		case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
+			return getMultiplicity();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -309,23 +315,23 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				getConstraints().clear();
-				getConstraints().addAll((Collection<? extends ConstraintDescriptor>)newValue);
-				return;
-			case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
-				setElementMultiplicity((Integer)newValue);
-				return;
-			case ConfigurationPackage.MODEL_RULE__ELEMENT:
-				setElement((EClass)newValue);
-				return;
-			case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				getStereotypes().addAll((Collection<? extends EClass>)newValue);
-				return;
-			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
-				setMultiplicity((Integer)newValue);
-				return;
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			getConstraints().clear();
+			getConstraints().addAll((Collection<? extends ConstraintDescriptor>) newValue);
+			return;
+		case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
+			setElementMultiplicity((Integer) newValue);
+			return;
+		case ConfigurationPackage.MODEL_RULE__ELEMENT:
+			setElement((EClass) newValue);
+			return;
+		case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			getStereotypes().addAll((Collection<? extends EClass>) newValue);
+			return;
+		case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
+			setMultiplicity((Integer) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -338,21 +344,21 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				getConstraints().clear();
-				return;
-			case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
-				setElementMultiplicity(ELEMENT_MULTIPLICITY_EDEFAULT);
-				return;
-			case ConfigurationPackage.MODEL_RULE__ELEMENT:
-				setElement((EClass)null);
-				return;
-			case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
-				getStereotypes().clear();
-				return;
-			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
-				setMultiplicity(MULTIPLICITY_EDEFAULT);
-				return;
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			getConstraints().clear();
+			return;
+		case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
+			setElementMultiplicity(ELEMENT_MULTIPLICITY_EDEFAULT);
+			return;
+		case ConfigurationPackage.MODEL_RULE__ELEMENT:
+			setElement((EClass) null);
+			return;
+		case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
+			getStereotypes().clear();
+			return;
+		case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
+			setMultiplicity(MULTIPLICITY_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -365,16 +371,16 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
-				return constraints != null && !constraints.isEmpty();
-			case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
-				return elementMultiplicity != ELEMENT_MULTIPLICITY_EDEFAULT;
-			case ConfigurationPackage.MODEL_RULE__ELEMENT:
-				return element != null;
-			case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
-				return stereotypes != null && !stereotypes.isEmpty();
-			case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
-				return multiplicity != MULTIPLICITY_EDEFAULT;
+		case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+			return constraints != null && !constraints.isEmpty();
+		case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
+			return elementMultiplicity != ELEMENT_MULTIPLICITY_EDEFAULT;
+		case ConfigurationPackage.MODEL_RULE__ELEMENT:
+			return element != null;
+		case ConfigurationPackage.MODEL_RULE__STEREOTYPES:
+			return stereotypes != null && !stereotypes.isEmpty();
+		case ConfigurationPackage.MODEL_RULE__MULTIPLICITY:
+			return multiplicity != MULTIPLICITY_EDEFAULT;
 		}
 		return super.eIsSet(featureID);
 	}
@@ -388,9 +394,12 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	public int eBaseStructuralFeatureID(int derivedFeatureID, Class<?> baseClass) {
 		if (baseClass == DisplayUnit.class) {
 			switch (derivedFeatureID) {
-				case ConfigurationPackage.MODEL_RULE__CONSTRAINTS: return ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
-				case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY: return ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
-				default: return -1;
+			case ConfigurationPackage.MODEL_RULE__CONSTRAINTS:
+				return ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS;
+			case ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY:
+				return ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY;
+			default:
+				return -1;
 			}
 		}
 		return super.eBaseStructuralFeatureID(derivedFeatureID, baseClass);
@@ -405,9 +414,12 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	public int eDerivedStructuralFeatureID(int baseFeatureID, Class<?> baseClass) {
 		if (baseClass == DisplayUnit.class) {
 			switch (baseFeatureID) {
-				case ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS: return ConfigurationPackage.MODEL_RULE__CONSTRAINTS;
-				case ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY: return ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY;
-				default: return -1;
+			case ConstraintsPackage.DISPLAY_UNIT__CONSTRAINTS:
+				return ConfigurationPackage.MODEL_RULE__CONSTRAINTS;
+			case ConstraintsPackage.DISPLAY_UNIT__ELEMENT_MULTIPLICITY:
+				return ConfigurationPackage.MODEL_RULE__ELEMENT_MULTIPLICITY;
+			default:
+				return -1;
 			}
 		}
 		return super.eDerivedStructuralFeatureID(baseFeatureID, baseClass);
@@ -420,7 +432,9 @@ public class ModelRuleImpl extends RuleImpl implements ModelRule {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (elementMultiplicity: ");

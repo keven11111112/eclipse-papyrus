@@ -33,7 +33,8 @@ import org.eclipse.jface.wizard.IWizard;
 import org.eclipse.jface.wizard.IWizardPage;
 import org.eclipse.jface.wizard.WizardDialog;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
-import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectStorageProviderPage;
+import org.eclipse.papyrus.uml.diagram.wizards.utils.SettingsHelper;
+import org.eclipse.papyrus.uml.diagram.wizards.wizards.CreateModelWizard;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.ui.IWorkbench;
@@ -106,20 +107,32 @@ public abstract class TestNewModelWizardBase extends AbstractPapyrusTest {
 	}
 
 	protected void testOrderOfPages(IWorkbenchWizard wizard, Class<?>[] expectedPages) {
-		Class<?> optionalInitialPage = SelectStorageProviderPage.class;
+		// Class<?> optionalInitialPage = SelectStorageProviderPage.class;
+		//
+		// IWizardPage next = wizard.getPages()[0];
+		// for (int i = 0; i < expectedPages.length; i++) {
+		// String isNullMessageFormat = "page %s expected, but actual is: null";
+		// assertNotNull(String.format(isNullMessageFormat, i), next);
+		//
+		// if ((optionalInitialPage != null) && (i == 0) && optionalInitialPage.isInstance(next)) {
+		// // we have tested the optional initial page; don't do it again
+		// optionalInitialPage = null;
+		// i--;
+		// } else {
+		// testPageInstanceOf(next, expectedPages[i], i);
+		// }
+		//
+		// next = next.getNextPage();
+		// }
+		// String noMorePagesExpectedMessageFormat = "page %s is not expected";
+		// assertNull(String.format(noMorePagesExpectedMessageFormat, next), next);
 
 		IWizardPage next = wizard.getPages()[0];
-		for(int i = 0; i < expectedPages.length; i++) {
+		for (int i = 0; i < expectedPages.length; i++) {
 			String isNullMessageFormat = "page %s expected, but actual is: null";
 			assertNotNull(String.format(isNullMessageFormat, i), next);
 
-			if((optionalInitialPage != null) && (i == 0) && optionalInitialPage.isInstance(next)) {
-				// we have tested the optional initial page; don't do it again
-				optionalInitialPage = null;
-				i--;
-			} else {
-				testPageInstanceOf(next, expectedPages[i], i);
-			}
+			testPageInstanceOf(next, expectedPages[i], i);
 
 			next = next.getNextPage();
 		}
@@ -136,7 +149,7 @@ public abstract class TestNewModelWizardBase extends AbstractPapyrusTest {
 	private void initSettingsHelper() {
 		IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
 		IDialogSettings settings = workbenchSettings.getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
-		if(settings == null) {
+		if (settings == null) {
 			settings = workbenchSettings.addNewSection(CreateModelWizard.NEW_MODEL_SETTINGS);
 		}
 		this.settings = new SettingsHelper(settings);
@@ -152,11 +165,11 @@ public abstract class TestNewModelWizardBase extends AbstractPapyrusTest {
 	}
 
 	private void restoreDialogSettings() {
-		if(settingsBackup != null) {
+		if (settingsBackup != null) {
 			IDialogSettings workbenchSettings = Activator.getDefault().getDialogSettings();
 			IDialogSettings settings = workbenchSettings.getSection(CreateModelWizard.NEW_MODEL_SETTINGS);
-			if(settings != null) {
-				((DialogSettings)workbenchSettings).removeSection(settings);
+			if (settings != null) {
+				((DialogSettings) workbenchSettings).removeSection(settings);
 				settings = workbenchSettings.addNewSection(settings.getName());
 
 				try {

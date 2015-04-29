@@ -35,8 +35,8 @@ import org.eclipse.papyrus.gmf.diagram.common.parser.IMaskManagedSemanticParser;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.helper.MaskLabelHelper;
 import org.eclipse.papyrus.sysml.diagram.common.preferences.ILabelPreferenceConstants;
+import org.eclipse.papyrus.sysml.diagram.common.utils.SysMLMultiplicityElementUtil;
 import org.eclipse.papyrus.uml.tools.utils.ICustomAppearance;
-import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.Property;
 import org.eclipse.uml2.uml.UMLPackage;
@@ -98,17 +98,10 @@ public class MultiplicityElementLabelParser implements IMaskManagedSemanticParse
 			// manage multiplicity
 			if ((maskValues.contains(ICustomAppearance.DISP_MULTIPLICITY))) {
 
-				// If multiplicity is [1] (SysML default), only show when explicitly asked.
 				// TODO : add a case for default with multiplicity not set.
-				String lower = (multElt.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(multElt.getLowerValue()) : "1";
-				String upper = (multElt.getLowerValue() != null) ? ValueSpecificationUtil.getSpecificationValue(multElt.getUpperValue()) : "1";
-				if (maskValues.contains(ILabelPreferenceConstants.DISP_DEFAULT_MULTIPLICITY) || !("1".equals(lower) && "1".equals(upper))) {
-
-					if (lower.equals(upper)) {
-						result = String.format(MULTIPLICITY_FORMAT_ALT, lower, upper);
-					} else {
-						result = String.format(MULTIPLICITY_FORMAT, lower, upper);
-					}
+				String multiplicity = SysMLMultiplicityElementUtil.formatMultiplicity(multElt, maskValues);
+				if (multiplicity != null && !multiplicity.isEmpty()) {
+					result += " " + multiplicity;
 				}
 			}
 		}

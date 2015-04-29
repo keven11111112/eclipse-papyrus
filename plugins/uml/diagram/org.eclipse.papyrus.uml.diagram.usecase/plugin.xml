@@ -802,6 +802,7 @@
 <!-- Custom extension point editpart provider for editing properties of stereotype-->
   
  <extension point="org.eclipse.papyrus.infra.gmfdiag.common.notationTypesMapping">
+   <?gmfgen generated="true"?>
 		<diagramMappings diagramID="UseCase">
 			<mapping type="UseCase" humanReadableType="UseCaseDiagram"/>
 			
@@ -948,8 +949,38 @@
 		humanReadableType="Stereotype"
 		type="6036">
 	</mapping>
-
-
+			<mapping
+				humanReadableType="Floating Label"
+				type="6045">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6050">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6049">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6046">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6051">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6048">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6038">
+			</mapping>
+			<mapping
+				humanReadableType="Floating Label"
+				type="6047">
+			</mapping>
 		</diagramMappings>
 	</extension>
 <extension point="org.eclipse.gmf.runtime.diagram.core.viewProviders" id="view-provider">

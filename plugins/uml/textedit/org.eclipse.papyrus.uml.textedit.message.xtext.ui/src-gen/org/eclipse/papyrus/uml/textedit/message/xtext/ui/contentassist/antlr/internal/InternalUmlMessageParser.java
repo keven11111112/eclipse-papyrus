@@ -12,9 +12,7 @@ import org.eclipse.xtext.ui.editor.contentassist.antlr.internal.AbstractInternal
 @SuppressWarnings("all")
 public class InternalUmlMessageParser extends AbstractInternalContentAssistParser {
 	public static final String[] tokenNames = new String[] {
-			"<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_NAMERULE", "RULE_INT", "RULE_ID", "RULE_INTEGER_VALUE", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_WS", "RULE_ANY_OTHER", "':'", "'.'", "'*'", "'['", "']'"
-	};
-	public static final int RULE_NAMERULE = 5;
+			"<invalid>", "<EOR>", "<DOWN>", "<UP>", "RULE_STRING", "RULE_NAME_RULE", "RULE_INT", "RULE_ID", "RULE_ML_COMMENT", "RULE_SL_COMMENT", "RULE_INTEGER_VALUE", "RULE_WS", "RULE_ANY_OTHER", "':'", "'.'", "'*'", "'['", "']'" };
 	public static final int RULE_ID = 7;
 	public static final int RULE_STRING = 4;
 	public static final int T__16 = 16;
@@ -24,11 +22,12 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 	public static final int T__13 = 13;
 	public static final int RULE_ANY_OTHER = 12;
 	public static final int RULE_INT = 6;
-	public static final int RULE_INTEGER_VALUE = 8;
+	public static final int RULE_INTEGER_VALUE = 10;
 	public static final int RULE_WS = 11;
-	public static final int RULE_SL_COMMENT = 10;
+	public static final int RULE_SL_COMMENT = 9;
 	public static final int EOF = -1;
-	public static final int RULE_ML_COMMENT = 9;
+	public static final int RULE_NAME_RULE = 5;
+	public static final int RULE_ML_COMMENT = 8;
 
 	// delegates
 	// delegators
@@ -100,7 +99,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "entryRuleMessageRule"
 
 
@@ -146,7 +144,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "ruleMessageRule"
 
 
@@ -175,7 +172,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "entryRuleSequenceTermRule"
 
 
@@ -221,7 +217,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "ruleSequenceTermRule"
 
 
@@ -250,7 +245,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "entryRuleRecurrenceRule"
 
 
@@ -296,7 +290,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "ruleRecurrenceRule"
 
 
@@ -315,19 +308,16 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 
 			if ((LA1_0 == 15)) {
 				alt1 = 1;
-			}
-			else if ((LA1_0 == 16)) {
+			} else if ((LA1_0 == 16)) {
 				alt1 = 2;
-			}
-			else {
-				NoViableAltException nvae =
-						new NoViableAltException("", 1, 0, input);
+			} else {
+				NoViableAltException nvae = new NoViableAltException("", 1, 0, input);
 
 				throw nvae;
 			}
 			switch (alt1) {
 			case 1:
-			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:149:1: ( ( rule__RecurrenceRule__Group_0__0 ) )
+				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:149:1: ( ( rule__RecurrenceRule__Group_0__0 ) )
 			{
 				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:149:1: ( ( rule__RecurrenceRule__Group_0__0 ) )
 				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:150:1: ( rule__RecurrenceRule__Group_0__0 )
@@ -352,7 +342,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 			}
 				break;
 			case 2:
-			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:155:6: ( ( rule__RecurrenceRule__Group_1__0 ) )
+				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:155:6: ( ( rule__RecurrenceRule__Group_1__0 ) )
 			{
 				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:155:6: ( ( rule__RecurrenceRule__Group_1__0 ) )
 				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:156:1: ( rule__RecurrenceRule__Group_1__0 )
@@ -388,7 +378,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Alternatives"
 
 
@@ -426,7 +415,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__0"
 
 
@@ -473,7 +461,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__0__Impl"
 
 
@@ -511,7 +498,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__1"
 
 
@@ -541,7 +527,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 
 						switch (alt2) {
 						case 1:
-						// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:216:2: rule__MessageRule__Group_1__0
+							// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:216:2: rule__MessageRule__Group_1__0
 						{
 							pushFollow(FOLLOW_rule__MessageRule__Group_1__0_in_rule__MessageRule__Group__1__Impl389);
 							rule__MessageRule__Group_1__0();
@@ -574,7 +560,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__1__Impl"
 
 
@@ -612,7 +597,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__2"
 
 
@@ -648,7 +632,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__2__Impl"
 
 
@@ -680,7 +663,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__3"
 
 
@@ -726,7 +708,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group__3__Impl"
 
 
@@ -764,7 +745,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group_1__0"
 
 
@@ -800,7 +780,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group_1__0__Impl"
 
 
@@ -832,7 +811,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group_1__1"
 
 
@@ -879,7 +857,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__Group_1__1__Impl"
 
 
@@ -917,7 +894,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__0"
 
 
@@ -964,7 +940,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__0__Impl"
 
 
@@ -1002,7 +977,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__1"
 
 
@@ -1030,7 +1004,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 					}
 					switch (alt3) {
 					case 1:
-					// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:404:2: rule__SequenceTermRule__SequenceNameAssignment_1
+						// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:404:2: rule__SequenceTermRule__SequenceNameAssignment_1
 					{
 						pushFollow(FOLLOW_rule__SequenceTermRule__SequenceNameAssignment_1_in_rule__SequenceTermRule__Group__1__Impl760);
 						rule__SequenceTermRule__SequenceNameAssignment_1();
@@ -1060,7 +1034,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__1__Impl"
 
 
@@ -1092,7 +1065,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__2"
 
 
@@ -1120,7 +1092,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 					}
 					switch (alt4) {
 					case 1:
-					// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:432:2: rule__SequenceTermRule__RecurrenceAssignment_2
+						// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:432:2: rule__SequenceTermRule__RecurrenceAssignment_2
 					{
 						pushFollow(FOLLOW_rule__SequenceTermRule__RecurrenceAssignment_2_in_rule__SequenceTermRule__Group__2__Impl818);
 						rule__SequenceTermRule__RecurrenceAssignment_2();
@@ -1150,7 +1122,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__Group__2__Impl"
 
 
@@ -1188,7 +1159,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__0"
 
 
@@ -1224,7 +1194,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__0__Impl"
 
 
@@ -1262,7 +1231,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__1"
 
 
@@ -1298,7 +1266,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__1__Impl"
 
 
@@ -1336,7 +1303,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__2"
 
 
@@ -1372,7 +1338,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__2__Impl"
 
 
@@ -1404,7 +1369,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__3"
 
 
@@ -1440,7 +1404,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_0__3__Impl"
 
 
@@ -1478,7 +1441,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__0"
 
 
@@ -1514,7 +1476,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__0__Impl"
 
 
@@ -1552,7 +1513,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__1"
 
 
@@ -1588,7 +1548,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__1__Impl"
 
 
@@ -1620,7 +1579,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__2"
 
 
@@ -1656,7 +1614,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__RecurrenceRule__Group_1__2__Impl"
 
 
@@ -1696,7 +1653,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__SequenceTermAssignment_0"
 
 
@@ -1736,26 +1692,25 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__SequenceTermAssignment_1_1"
 
 
 	// $ANTLR start "rule__MessageRule__NameAssignment_3"
-	// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:704:1: rule__MessageRule__NameAssignment_3 : ( RULE_NAMERULE ) ;
+	// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:704:1: rule__MessageRule__NameAssignment_3 : ( RULE_NAME_RULE ) ;
 	public final void rule__MessageRule__NameAssignment_3() throws RecognitionException {
 
 		int stackSize = keepStackSize();
 
 		try {
-			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:708:1: ( ( RULE_NAMERULE ) )
-			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:709:1: ( RULE_NAMERULE )
+			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:708:1: ( ( RULE_NAME_RULE ) )
+			// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:709:1: ( RULE_NAME_RULE )
 			{
-				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:709:1: ( RULE_NAMERULE )
-				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:710:1: RULE_NAMERULE
+				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:709:1: ( RULE_NAME_RULE )
+				// ../org.eclipse.papyrus.uml.textedit.message.xtext.ui/src-gen/org/eclipse/papyrus/uml/textedit/message/xtext/ui/contentassist/antlr/internal/InternalUmlMessage.g:710:1: RULE_NAME_RULE
 				{
-					before(grammarAccess.getMessageRuleAccess().getNameNameRuleTerminalRuleCall_3_0());
-					match(input, RULE_NAMERULE, FOLLOW_RULE_NAMERULE_in_rule__MessageRule__NameAssignment_31358);
-					after(grammarAccess.getMessageRuleAccess().getNameNameRuleTerminalRuleCall_3_0());
+					before(grammarAccess.getMessageRuleAccess().getNameNAME_RULETerminalRuleCall_3_0());
+					match(input, RULE_NAME_RULE, FOLLOW_RULE_NAME_RULE_in_rule__MessageRule__NameAssignment_31358);
+					after(grammarAccess.getMessageRuleAccess().getNameNAME_RULETerminalRuleCall_3_0());
 
 				}
 
@@ -1772,7 +1727,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__MessageRule__NameAssignment_3"
 
 
@@ -1808,7 +1762,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__SequencialOrderAssignment_0"
 
 
@@ -1844,7 +1797,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__SequenceNameAssignment_1"
 
 
@@ -1884,7 +1836,6 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 		}
 		return;
 	}
-
 	// $ANTLR end "rule__SequenceTermRule__RecurrenceAssignment_2"
 
 	// Delegated rules
@@ -1948,7 +1899,7 @@ public class InternalUmlMessageParser extends AbstractInternalContentAssistParse
 	public static final BitSet FOLLOW_17_in_rule__RecurrenceRule__Group_1__2__Impl1254 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_ruleSequenceTermRule_in_rule__MessageRule__SequenceTermAssignment_01296 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_ruleSequenceTermRule_in_rule__MessageRule__SequenceTermAssignment_1_11327 = new BitSet(new long[] { 0x0000000000000002L });
-	public static final BitSet FOLLOW_RULE_NAMERULE_in_rule__MessageRule__NameAssignment_31358 = new BitSet(new long[] { 0x0000000000000002L });
+	public static final BitSet FOLLOW_RULE_NAME_RULE_in_rule__MessageRule__NameAssignment_31358 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_RULE_INT_in_rule__SequenceTermRule__SequencialOrderAssignment_01389 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_RULE_ID_in_rule__SequenceTermRule__SequenceNameAssignment_11420 = new BitSet(new long[] { 0x0000000000000002L });
 	public static final BitSet FOLLOW_ruleRecurrenceRule_in_rule__SequenceTermRule__RecurrenceAssignment_21451 = new BitSet(new long[] { 0x0000000000000002L });

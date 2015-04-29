@@ -41,7 +41,6 @@ import org.eclipse.papyrus.umldi.util.UMLDIAdapterFactory;
  * Note that most of the adapters are shared among multiple instances.
  * <!-- begin-user-doc -->
  * <!-- end-user-doc -->
- * 
  * @generated
  */
 public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory implements ComposeableAdapterFactory, IChangeNotifier, IDisposable {
@@ -50,7 +49,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the root adapter factory that delegates to this adapter factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComposedAdapterFactory parentAdapterFactory;
@@ -59,7 +57,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This is used to implement {@link org.eclipse.emf.edit.provider.IChangeNotifier}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected IChangeNotifier changeNotifier = new ChangeNotifier();
@@ -68,7 +65,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of all the supported types checked by {@link #isFactoryForType isFactoryForType}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected Collection<Object> supportedTypes = new ArrayList<Object>();
@@ -77,7 +73,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This constructs an instance.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public UMLDIItemProviderAdapterFactory() {
@@ -94,7 +89,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.UmlStyle} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UmlStyleItemProvider umlStyleItemProvider;
@@ -103,14 +97,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.UmlStyle}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createUmlStyleAdapter() {
-		if(umlStyleItemProvider == null) {
+		if (umlStyleItemProvider == null) {
 			umlStyleItemProvider = new UmlStyleItemProvider(this);
 		}
+
 		return umlStyleItemProvider;
 	}
 
@@ -118,7 +112,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ClassDiagram} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClassDiagramItemProvider classDiagramItemProvider;
@@ -127,14 +120,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ClassDiagram}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createClassDiagramAdapter() {
-		if(classDiagramItemProvider == null) {
+		if (classDiagramItemProvider == null) {
 			classDiagramItemProvider = new ClassDiagramItemProvider(this);
 		}
+
 		return classDiagramItemProvider;
 	}
 
@@ -142,7 +135,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PackageShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageShapeItemProvider packageShapeItemProvider;
@@ -151,22 +143,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PackageShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPackageShapeAdapter() {
-		if(packageShapeItemProvider == null) {
+		if (packageShapeItemProvider == null) {
 			packageShapeItemProvider = new PackageShapeItemProvider(this);
 		}
+
 		return packageShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InternalStructureCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InternalStructureCompartmentItemProvider internalStructureCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InternalStructureCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInternalStructureCompartmentAdapter() {
+		if (internalStructureCompartmentItemProvider == null) {
+			internalStructureCompartmentItemProvider = new InternalStructureCompartmentItemProvider(this);
+		}
+
+		return internalStructureCompartmentItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ConstraintShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ConstraintShapeItemProvider constraintShapeItemProvider;
@@ -175,14 +189,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ConstraintShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createConstraintShapeAdapter() {
-		if(constraintShapeItemProvider == null) {
+		if (constraintShapeItemProvider == null) {
 			constraintShapeItemProvider = new ConstraintShapeItemProvider(this);
 		}
+
 		return constraintShapeItemProvider;
 	}
 
@@ -190,7 +204,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AttributeCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttributeCompartmentItemProvider attributeCompartmentItemProvider;
@@ -199,46 +212,21 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AttributeCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAttributeCompartmentAdapter() {
-		if(attributeCompartmentItemProvider == null) {
+		if (attributeCompartmentItemProvider == null) {
 			attributeCompartmentItemProvider = new AttributeCompartmentItemProvider(this);
 		}
+
 		return attributeCompartmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PropertyLabel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected PropertyLabelItemProvider propertyLabelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PropertyLabel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createPropertyLabelAdapter() {
-		if(propertyLabelItemProvider == null) {
-			propertyLabelItemProvider = new PropertyLabelItemProvider(this);
-		}
-		return propertyLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.OperationCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected OperationCompartmentItemProvider operationCompartmentItemProvider;
@@ -247,46 +235,21 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.OperationCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createOperationCompartmentAdapter() {
-		if(operationCompartmentItemProvider == null) {
+		if (operationCompartmentItemProvider == null) {
 			operationCompartmentItemProvider = new OperationCompartmentItemProvider(this);
 		}
+
 		return operationCompartmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.OperationLabel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected OperationLabelItemProvider operationLabelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.OperationLabel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createOperationLabelAdapter() {
-		if(operationLabelItemProvider == null) {
-			operationLabelItemProvider = new OperationLabelItemProvider(this);
-		}
-		return operationLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ReceptionCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ReceptionCompartmentItemProvider receptionCompartmentItemProvider;
@@ -295,46 +258,21 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ReceptionCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createReceptionCompartmentAdapter() {
-		if(receptionCompartmentItemProvider == null) {
+		if (receptionCompartmentItemProvider == null) {
 			receptionCompartmentItemProvider = new ReceptionCompartmentItemProvider(this);
 		}
+
 		return receptionCompartmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ReceptionLabel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected ReceptionLabelItemProvider receptionLabelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ReceptionLabel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createReceptionLabelAdapter() {
-		if(receptionLabelItemProvider == null) {
-			receptionLabelItemProvider = new ReceptionLabelItemProvider(this);
-		}
-		return receptionLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.LiteralCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected LiteralCompartmentItemProvider literalCompartmentItemProvider;
@@ -343,14 +281,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.LiteralCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createLiteralCompartmentAdapter() {
-		if(literalCompartmentItemProvider == null) {
+		if (literalCompartmentItemProvider == null) {
 			literalCompartmentItemProvider = new LiteralCompartmentItemProvider(this);
 		}
+
 		return literalCompartmentItemProvider;
 	}
 
@@ -358,7 +296,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PackagedElementCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackagedElementCompartmentItemProvider packagedElementCompartmentItemProvider;
@@ -367,46 +304,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PackagedElementCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPackagedElementCompartmentAdapter() {
-		if(packagedElementCompartmentItemProvider == null) {
+		if (packagedElementCompartmentItemProvider == null) {
 			packagedElementCompartmentItemProvider = new PackagedElementCompartmentItemProvider(this);
 		}
+
 		return packagedElementCompartmentItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.NameLabel} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.MainLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected NameLabelItemProvider nameLabelItemProvider;
+	protected MainLabelItemProvider mainLabelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.NameLabel}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.MainLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createNameLabelAdapter() {
-		if(nameLabelItemProvider == null) {
-			nameLabelItemProvider = new NameLabelItemProvider(this);
+	public Adapter createMainLabelAdapter() {
+		if (mainLabelItemProvider == null) {
+			mainLabelItemProvider = new MainLabelItemProvider(this);
 		}
-		return nameLabelItemProvider;
+
+		return mainLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PropertyEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PropertyEdgeItemProvider propertyEdgeItemProvider;
@@ -415,46 +350,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PropertyEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPropertyEdgeAdapter() {
-		if(propertyEdgeItemProvider == null) {
+		if (propertyEdgeItemProvider == null) {
 			propertyEdgeItemProvider = new PropertyEdgeItemProvider(this);
 		}
+
 		return propertyEdgeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ModifierLabel} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ConstraintLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected ModifierLabelItemProvider modifierLabelItemProvider;
+	protected ConstraintLabelItemProvider constraintLabelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ModifierLabel}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ConstraintLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createModifierLabelAdapter() {
-		if(modifierLabelItemProvider == null) {
-			modifierLabelItemProvider = new ModifierLabelItemProvider(this);
+	public Adapter createConstraintLabelAdapter() {
+		if (constraintLabelItemProvider == null) {
+			constraintLabelItemProvider = new ConstraintLabelItemProvider(this);
 		}
-		return modifierLabelItemProvider;
+
+		return constraintLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InstanceSpecificationEdgeItemProvider instanceSpecificationEdgeItemProvider;
@@ -463,14 +396,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InstanceSpecificationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInstanceSpecificationEdgeAdapter() {
-		if(instanceSpecificationEdgeItemProvider == null) {
+		if (instanceSpecificationEdgeItemProvider == null) {
 			instanceSpecificationEdgeItemProvider = new InstanceSpecificationEdgeItemProvider(this);
 		}
+
 		return instanceSpecificationEdgeItemProvider;
 	}
 
@@ -478,7 +411,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.BodyLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected BodyLabelItemProvider bodyLabelItemProvider;
@@ -487,14 +419,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.BodyLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createBodyLabelAdapter() {
-		if(bodyLabelItemProvider == null) {
+		if (bodyLabelItemProvider == null) {
 			bodyLabelItemProvider = new BodyLabelItemProvider(this);
 		}
+
 		return bodyLabelItemProvider;
 	}
 
@@ -502,7 +434,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InstanceSpecificationShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InstanceSpecificationShapeItemProvider instanceSpecificationShapeItemProvider;
@@ -511,22 +442,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InstanceSpecificationShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInstanceSpecificationShapeAdapter() {
-		if(instanceSpecificationShapeItemProvider == null) {
+		if (instanceSpecificationShapeItemProvider == null) {
 			instanceSpecificationShapeItemProvider = new InstanceSpecificationShapeItemProvider(this);
 		}
+
 		return instanceSpecificationShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeployedArtifactCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeployedArtifactCompartmentItemProvider deployedArtifactCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeployedArtifactCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeployedArtifactCompartmentAdapter() {
+		if (deployedArtifactCompartmentItemProvider == null) {
+			deployedArtifactCompartmentItemProvider = new DeployedArtifactCompartmentItemProvider(this);
+		}
+
+		return deployedArtifactCompartmentItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SlotCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SlotCompartmentItemProvider slotCompartmentItemProvider;
@@ -535,46 +488,21 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SlotCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createSlotCompartmentAdapter() {
-		if(slotCompartmentItemProvider == null) {
+		if (slotCompartmentItemProvider == null) {
 			slotCompartmentItemProvider = new SlotCompartmentItemProvider(this);
 		}
+
 		return slotCompartmentItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SlotLabel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected SlotLabelItemProvider slotLabelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SlotLabel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createSlotLabelAdapter() {
-		if(slotLabelItemProvider == null) {
-			slotLabelItemProvider = new SlotLabelItemProvider(this);
-		}
-		return slotLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ClassShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ClassShapeItemProvider classShapeItemProvider;
@@ -583,22 +511,90 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ClassShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createClassShapeAdapter() {
-		if(classShapeItemProvider == null) {
+		if (classShapeItemProvider == null) {
 			classShapeItemProvider = new ClassShapeItemProvider(this);
 		}
+
 		return classShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PortShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PortShapeItemProvider portShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PortShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPortShapeAdapter() {
+		if (portShapeItemProvider == null) {
+			portShapeItemProvider = new PortShapeItemProvider(this);
+		}
+
+		return portShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.NestedClassifierCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestedClassifierCompartmentItemProvider nestedClassifierCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.NestedClassifierCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestedClassifierCompartmentAdapter() {
+		if (nestedClassifierCompartmentItemProvider == null) {
+			nestedClassifierCompartmentItemProvider = new NestedClassifierCompartmentItemProvider(this);
+		}
+
+		return nestedClassifierCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.OwnedBehaviorCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OwnedBehaviorCompartmentItemProvider ownedBehaviorCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.OwnedBehaviorCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOwnedBehaviorCompartmentAdapter() {
+		if (ownedBehaviorCompartmentItemProvider == null) {
+			ownedBehaviorCompartmentItemProvider = new OwnedBehaviorCompartmentItemProvider(this);
+		}
+
+		return ownedBehaviorCompartmentItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InterfaceShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InterfaceShapeItemProvider interfaceShapeItemProvider;
@@ -607,14 +603,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InterfaceShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInterfaceShapeAdapter() {
-		if(interfaceShapeItemProvider == null) {
+		if (interfaceShapeItemProvider == null) {
 			interfaceShapeItemProvider = new InterfaceShapeItemProvider(this);
 		}
+
 		return interfaceShapeItemProvider;
 	}
 
@@ -622,7 +618,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DataTypeShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DataTypeShapeItemProvider dataTypeShapeItemProvider;
@@ -631,14 +626,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DataTypeShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDataTypeShapeAdapter() {
-		if(dataTypeShapeItemProvider == null) {
+		if (dataTypeShapeItemProvider == null) {
 			dataTypeShapeItemProvider = new DataTypeShapeItemProvider(this);
 		}
+
 		return dataTypeShapeItemProvider;
 	}
 
@@ -646,7 +641,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PrimitiveTypeShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PrimitiveTypeShapeItemProvider primitiveTypeShapeItemProvider;
@@ -655,14 +649,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PrimitiveTypeShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPrimitiveTypeShapeAdapter() {
-		if(primitiveTypeShapeItemProvider == null) {
+		if (primitiveTypeShapeItemProvider == null) {
 			primitiveTypeShapeItemProvider = new PrimitiveTypeShapeItemProvider(this);
 		}
+
 		return primitiveTypeShapeItemProvider;
 	}
 
@@ -670,7 +664,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.EnumerationShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected EnumerationShapeItemProvider enumerationShapeItemProvider;
@@ -679,46 +672,21 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.EnumerationShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createEnumerationShapeAdapter() {
-		if(enumerationShapeItemProvider == null) {
+		if (enumerationShapeItemProvider == null) {
 			enumerationShapeItemProvider = new EnumerationShapeItemProvider(this);
 		}
+
 		return enumerationShapeItemProvider;
-	}
-
-	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.LiteralLabel} instances.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	protected LiteralLabelItemProvider literalLabelItemProvider;
-
-	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.LiteralLabel}.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * 
-	 * @generated
-	 */
-	@Override
-	public Adapter createLiteralLabelAdapter() {
-		if(literalLabelItemProvider == null) {
-			literalLabelItemProvider = new LiteralLabelItemProvider(this);
-		}
-		return literalLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.RoleLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RoleLabelItemProvider roleLabelItemProvider;
@@ -727,14 +695,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.RoleLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createRoleLabelAdapter() {
-		if(roleLabelItemProvider == null) {
+		if (roleLabelItemProvider == null) {
 			roleLabelItemProvider = new RoleLabelItemProvider(this);
 		}
+
 		return roleLabelItemProvider;
 	}
 
@@ -742,7 +710,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SignalShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SignalShapeItemProvider signalShapeItemProvider;
@@ -751,14 +718,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SignalShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createSignalShapeAdapter() {
-		if(signalShapeItemProvider == null) {
+		if (signalShapeItemProvider == null) {
 			signalShapeItemProvider = new SignalShapeItemProvider(this);
 		}
+
 		return signalShapeItemProvider;
 	}
 
@@ -766,7 +733,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ModelShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ModelShapeItemProvider modelShapeItemProvider;
@@ -775,14 +741,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ModelShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createModelShapeAdapter() {
-		if(modelShapeItemProvider == null) {
+		if (modelShapeItemProvider == null) {
 			modelShapeItemProvider = new ModelShapeItemProvider(this);
 		}
+
 		return modelShapeItemProvider;
 	}
 
@@ -790,7 +756,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ContainmentEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ContainmentEdgeItemProvider containmentEdgeItemProvider;
@@ -799,14 +764,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ContainmentEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createContainmentEdgeAdapter() {
-		if(containmentEdgeItemProvider == null) {
+		if (containmentEdgeItemProvider == null) {
 			containmentEdgeItemProvider = new ContainmentEdgeItemProvider(this);
 		}
+
 		return containmentEdgeItemProvider;
 	}
 
@@ -814,7 +779,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.GeneralizationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GeneralizationEdgeItemProvider generalizationEdgeItemProvider;
@@ -823,14 +787,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.GeneralizationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGeneralizationEdgeAdapter() {
-		if(generalizationEdgeItemProvider == null) {
+		if (generalizationEdgeItemProvider == null) {
 			generalizationEdgeItemProvider = new GeneralizationEdgeItemProvider(this);
 		}
+
 		return generalizationEdgeItemProvider;
 	}
 
@@ -838,7 +802,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AssociationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationEdgeItemProvider associationEdgeItemProvider;
@@ -847,14 +810,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AssociationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAssociationEdgeAdapter() {
-		if(associationEdgeItemProvider == null) {
+		if (associationEdgeItemProvider == null) {
 			associationEdgeItemProvider = new AssociationEdgeItemProvider(this);
 		}
+
 		return associationEdgeItemProvider;
 	}
 
@@ -862,7 +825,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.MultiplicityLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected MultiplicityLabelItemProvider multiplicityLabelItemProvider;
@@ -871,14 +833,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.MultiplicityLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createMultiplicityLabelAdapter() {
-		if(multiplicityLabelItemProvider == null) {
+		if (multiplicityLabelItemProvider == null) {
 			multiplicityLabelItemProvider = new MultiplicityLabelItemProvider(this);
 		}
+
 		return multiplicityLabelItemProvider;
 	}
 
@@ -886,7 +848,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.RealizationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RealizationEdgeItemProvider realizationEdgeItemProvider;
@@ -895,14 +856,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.RealizationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createRealizationEdgeAdapter() {
-		if(realizationEdgeItemProvider == null) {
+		if (realizationEdgeItemProvider == null) {
 			realizationEdgeItemProvider = new RealizationEdgeItemProvider(this);
 		}
+
 		return realizationEdgeItemProvider;
 	}
 
@@ -910,7 +871,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AbstractionEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AbstractionEdgeItemProvider abstractionEdgeItemProvider;
@@ -919,14 +879,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AbstractionEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAbstractionEdgeAdapter() {
-		if(abstractionEdgeItemProvider == null) {
+		if (abstractionEdgeItemProvider == null) {
 			abstractionEdgeItemProvider = new AbstractionEdgeItemProvider(this);
 		}
+
 		return abstractionEdgeItemProvider;
 	}
 
@@ -934,7 +894,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DependencyEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DependencyEdgeItemProvider dependencyEdgeItemProvider;
@@ -943,14 +902,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DependencyEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDependencyEdgeAdapter() {
-		if(dependencyEdgeItemProvider == null) {
+		if (dependencyEdgeItemProvider == null) {
 			dependencyEdgeItemProvider = new DependencyEdgeItemProvider(this);
 		}
+
 		return dependencyEdgeItemProvider;
 	}
 
@@ -958,7 +917,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InterfaceRealizationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InterfaceRealizationEdgeItemProvider interfaceRealizationEdgeItemProvider;
@@ -967,14 +925,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InterfaceRealizationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInterfaceRealizationEdgeAdapter() {
-		if(interfaceRealizationEdgeItemProvider == null) {
+		if (interfaceRealizationEdgeItemProvider == null) {
 			interfaceRealizationEdgeItemProvider = new InterfaceRealizationEdgeItemProvider(this);
 		}
+
 		return interfaceRealizationEdgeItemProvider;
 	}
 
@@ -982,7 +940,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.UsageEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected UsageEdgeItemProvider usageEdgeItemProvider;
@@ -991,14 +948,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.UsageEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createUsageEdgeAdapter() {
-		if(usageEdgeItemProvider == null) {
+		if (usageEdgeItemProvider == null) {
 			usageEdgeItemProvider = new UsageEdgeItemProvider(this);
 		}
+
 		return usageEdgeItemProvider;
 	}
 
@@ -1006,7 +963,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ElementImportEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ElementImportEdgeItemProvider elementImportEdgeItemProvider;
@@ -1015,14 +971,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ElementImportEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createElementImportEdgeAdapter() {
-		if(elementImportEdgeItemProvider == null) {
+		if (elementImportEdgeItemProvider == null) {
 			elementImportEdgeItemProvider = new ElementImportEdgeItemProvider(this);
 		}
+
 		return elementImportEdgeItemProvider;
 	}
 
@@ -1030,7 +986,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PackageImportEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageImportEdgeItemProvider packageImportEdgeItemProvider;
@@ -1039,14 +994,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PackageImportEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPackageImportEdgeAdapter() {
-		if(packageImportEdgeItemProvider == null) {
+		if (packageImportEdgeItemProvider == null) {
 			packageImportEdgeItemProvider = new PackageImportEdgeItemProvider(this);
 		}
+
 		return packageImportEdgeItemProvider;
 	}
 
@@ -1054,7 +1009,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PackageMergeEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PackageMergeEdgeItemProvider packageMergeEdgeItemProvider;
@@ -1063,14 +1017,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PackageMergeEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPackageMergeEdgeAdapter() {
-		if(packageMergeEdgeItemProvider == null) {
+		if (packageMergeEdgeItemProvider == null) {
 			packageMergeEdgeItemProvider = new PackageMergeEdgeItemProvider(this);
 		}
+
 		return packageMergeEdgeItemProvider;
 	}
 
@@ -1078,7 +1032,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SubstitutionEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected SubstitutionEdgeItemProvider substitutionEdgeItemProvider;
@@ -1087,14 +1040,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SubstitutionEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createSubstitutionEdgeAdapter() {
-		if(substitutionEdgeItemProvider == null) {
+		if (substitutionEdgeItemProvider == null) {
 			substitutionEdgeItemProvider = new SubstitutionEdgeItemProvider(this);
 		}
+
 		return substitutionEdgeItemProvider;
 	}
 
@@ -1102,7 +1055,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InformationFlowEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InformationFlowEdgeItemProvider informationFlowEdgeItemProvider;
@@ -1111,46 +1063,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InformationFlowEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInformationFlowEdgeAdapter() {
-		if(informationFlowEdgeItemProvider == null) {
+		if (informationFlowEdgeItemProvider == null) {
 			informationFlowEdgeItemProvider = new InformationFlowEdgeItemProvider(this);
 		}
+
 		return informationFlowEdgeItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ItemLabel} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ConveyedLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected ItemLabelItemProvider itemLabelItemProvider;
+	protected ConveyedLabelItemProvider conveyedLabelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ItemLabel}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ConveyedLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createItemLabelAdapter() {
-		if(itemLabelItemProvider == null) {
-			itemLabelItemProvider = new ItemLabelItemProvider(this);
+	public Adapter createConveyedLabelAdapter() {
+		if (conveyedLabelItemProvider == null) {
+			conveyedLabelItemProvider = new ConveyedLabelItemProvider(this);
 		}
-		return itemLabelItemProvider;
+
+		return conveyedLabelItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AssociationClassEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationClassEdgeItemProvider associationClassEdgeItemProvider;
@@ -1159,14 +1109,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AssociationClassEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAssociationClassEdgeAdapter() {
-		if(associationClassEdgeItemProvider == null) {
+		if (associationClassEdgeItemProvider == null) {
 			associationClassEdgeItemProvider = new AssociationClassEdgeItemProvider(this);
 		}
+
 		return associationClassEdgeItemProvider;
 	}
 
@@ -1174,7 +1124,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.GeneralizationSetEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected GeneralizationSetEdgeItemProvider generalizationSetEdgeItemProvider;
@@ -1183,14 +1132,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.GeneralizationSetEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createGeneralizationSetEdgeAdapter() {
-		if(generalizationSetEdgeItemProvider == null) {
+		if (generalizationSetEdgeItemProvider == null) {
 			generalizationSetEdgeItemProvider = new GeneralizationSetEdgeItemProvider(this);
 		}
+
 		return generalizationSetEdgeItemProvider;
 	}
 
@@ -1198,7 +1147,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PowerLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected PowerLabelItemProvider powerLabelItemProvider;
@@ -1207,22 +1155,44 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PowerLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createPowerLabelAdapter() {
-		if(powerLabelItemProvider == null) {
+		if (powerLabelItemProvider == null) {
 			powerLabelItemProvider = new PowerLabelItemProvider(this);
 		}
+
 		return powerLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ConnectorEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConnectorEdgeItemProvider connectorEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ConnectorEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConnectorEdgeAdapter() {
+		if (connectorEdgeItemProvider == null) {
+			connectorEdgeItemProvider = new ConnectorEdgeItemProvider(this);
+		}
+
+		return connectorEdgeItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CommentShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected CommentShapeItemProvider commentShapeItemProvider;
@@ -1231,14 +1201,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CommentShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createCommentShapeAdapter() {
-		if(commentShapeItemProvider == null) {
+		if (commentShapeItemProvider == null) {
 			commentShapeItemProvider = new CommentShapeItemProvider(this);
 		}
+
 		return commentShapeItemProvider;
 	}
 
@@ -1246,7 +1216,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AttachmentEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AttachmentEdgeItemProvider attachmentEdgeItemProvider;
@@ -1255,14 +1224,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AttachmentEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAttachmentEdgeAdapter() {
-		if(attachmentEdgeItemProvider == null) {
+		if (attachmentEdgeItemProvider == null) {
 			attachmentEdgeItemProvider = new AttachmentEdgeItemProvider(this);
 		}
+
 		return attachmentEdgeItemProvider;
 	}
 
@@ -1270,7 +1239,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AssociationClassShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationClassShapeItemProvider associationClassShapeItemProvider;
@@ -1279,14 +1247,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AssociationClassShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAssociationClassShapeAdapter() {
-		if(associationClassShapeItemProvider == null) {
+		if (associationClassShapeItemProvider == null) {
 			associationClassShapeItemProvider = new AssociationClassShapeItemProvider(this);
 		}
+
 		return associationClassShapeItemProvider;
 	}
 
@@ -1294,7 +1262,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ComponentShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected ComponentShapeItemProvider componentShapeItemProvider;
@@ -1303,14 +1270,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ComponentShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createComponentShapeAdapter() {
-		if(componentShapeItemProvider == null) {
+		if (componentShapeItemProvider == null) {
 			componentShapeItemProvider = new ComponentShapeItemProvider(this);
 		}
+
 		return componentShapeItemProvider;
 	}
 
@@ -1318,7 +1285,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InformationItemShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected InformationItemShapeItemProvider informationItemShapeItemProvider;
@@ -1327,14 +1293,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InformationItemShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createInformationItemShapeAdapter() {
-		if(informationItemShapeItemProvider == null) {
+		if (informationItemShapeItemProvider == null) {
 			informationItemShapeItemProvider = new InformationItemShapeItemProvider(this);
 		}
+
 		return informationItemShapeItemProvider;
 	}
 
@@ -1342,7 +1308,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.RepresentationEdge} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected RepresentationEdgeItemProvider representationEdgeItemProvider;
@@ -1351,14 +1316,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.RepresentationEdge}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createRepresentationEdgeAdapter() {
-		if(representationEdgeItemProvider == null) {
+		if (representationEdgeItemProvider == null) {
 			representationEdgeItemProvider = new RepresentationEdgeItemProvider(this);
 		}
+
 		return representationEdgeItemProvider;
 	}
 
@@ -1366,7 +1331,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.AssociationShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected AssociationShapeItemProvider associationShapeItemProvider;
@@ -1375,14 +1339,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.AssociationShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createAssociationShapeAdapter() {
-		if(associationShapeItemProvider == null) {
+		if (associationShapeItemProvider == null) {
 			associationShapeItemProvider = new AssociationShapeItemProvider(this);
 		}
+
 		return associationShapeItemProvider;
 	}
 
@@ -1390,7 +1354,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DependencyShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DependencyShapeItemProvider dependencyShapeItemProvider;
@@ -1399,14 +1362,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DependencyShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDependencyShapeAdapter() {
-		if(dependencyShapeItemProvider == null) {
+		if (dependencyShapeItemProvider == null) {
 			dependencyShapeItemProvider = new DependencyShapeItemProvider(this);
 		}
+
 		return dependencyShapeItemProvider;
 	}
 
@@ -1414,7 +1377,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TimeObservationShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TimeObservationShapeItemProvider timeObservationShapeItemProvider;
@@ -1423,14 +1385,14 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TimeObservationShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createTimeObservationShapeAdapter() {
-		if(timeObservationShapeItemProvider == null) {
+		if (timeObservationShapeItemProvider == null) {
 			timeObservationShapeItemProvider = new TimeObservationShapeItemProvider(this);
 		}
+
 		return timeObservationShapeItemProvider;
 	}
 
@@ -1438,7 +1400,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DurationObservationShape} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected DurationObservationShapeItemProvider durationObservationShapeItemProvider;
@@ -1447,22 +1408,1792 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DurationObservationShape}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createDurationObservationShapeAdapter() {
-		if(durationObservationShapeItemProvider == null) {
+		if (durationObservationShapeItemProvider == null) {
 			durationObservationShapeItemProvider = new DurationObservationShapeItemProvider(this);
 		}
+
 		return durationObservationShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PackageDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PackageDiagramItemProvider packageDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PackageDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPackageDiagramAdapter() {
+		if (packageDiagramItemProvider == null) {
+			packageDiagramItemProvider = new PackageDiagramItemProvider(this);
+		}
+
+		return packageDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ProfileDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProfileDiagramItemProvider profileDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ProfileDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProfileDiagramAdapter() {
+		if (profileDiagramItemProvider == null) {
+			profileDiagramItemProvider = new ProfileDiagramItemProvider(this);
+		}
+
+		return profileDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CompositeStructureDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CompositeStructureDiagramItemProvider compositeStructureDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CompositeStructureDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCompositeStructureDiagramAdapter() {
+		if (compositeStructureDiagramItemProvider == null) {
+			compositeStructureDiagramItemProvider = new CompositeStructureDiagramItemProvider(this);
+		}
+
+		return compositeStructureDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeploymentDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeploymentDiagramItemProvider deploymentDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeploymentDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeploymentDiagramAdapter() {
+		if (deploymentDiagramItemProvider == null) {
+			deploymentDiagramItemProvider = new DeploymentDiagramItemProvider(this);
+		}
+
+		return deploymentDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ComponentDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComponentDiagramItemProvider componentDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ComponentDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComponentDiagramAdapter() {
+		if (componentDiagramItemProvider == null) {
+			componentDiagramItemProvider = new ComponentDiagramItemProvider(this);
+		}
+
+		return componentDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ObjectDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectDiagramItemProvider objectDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ObjectDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectDiagramAdapter() {
+		if (objectDiagramItemProvider == null) {
+			objectDiagramItemProvider = new ObjectDiagramItemProvider(this);
+		}
+
+		return objectDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ProfileShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProfileShapeItemProvider profileShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ProfileShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProfileShapeAdapter() {
+		if (profileShapeItemProvider == null) {
+			profileShapeItemProvider = new ProfileShapeItemProvider(this);
+		}
+
+		return profileShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ProfileApplicationEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProfileApplicationEdgeItemProvider profileApplicationEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ProfileApplicationEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProfileApplicationEdgeAdapter() {
+		if (profileApplicationEdgeItemProvider == null) {
+			profileApplicationEdgeItemProvider = new ProfileApplicationEdgeItemProvider(this);
+		}
+
+		return profileApplicationEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExtensionEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtensionEdgeItemProvider extensionEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExtensionEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtensionEdgeAdapter() {
+		if (extensionEdgeItemProvider == null) {
+			extensionEdgeItemProvider = new ExtensionEdgeItemProvider(this);
+		}
+
+		return extensionEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.UseCaseDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UseCaseDiagramItemProvider useCaseDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.UseCaseDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUseCaseDiagramAdapter() {
+		if (useCaseDiagramItemProvider == null) {
+			useCaseDiagramItemProvider = new UseCaseDiagramItemProvider(this);
+		}
+
+		return useCaseDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ArtifactShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ArtifactShapeItemProvider artifactShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ArtifactShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createArtifactShapeAdapter() {
+		if (artifactShapeItemProvider == null) {
+			artifactShapeItemProvider = new ArtifactShapeItemProvider(this);
+		}
+
+		return artifactShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.NestedArtifactCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestedArtifactCompartmentItemProvider nestedArtifactCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.NestedArtifactCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestedArtifactCompartmentAdapter() {
+		if (nestedArtifactCompartmentItemProvider == null) {
+			nestedArtifactCompartmentItemProvider = new NestedArtifactCompartmentItemProvider(this);
+		}
+
+		return nestedArtifactCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ComponentRealizationEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ComponentRealizationEdgeItemProvider componentRealizationEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ComponentRealizationEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createComponentRealizationEdgeAdapter() {
+		if (componentRealizationEdgeItemProvider == null) {
+			componentRealizationEdgeItemProvider = new ComponentRealizationEdgeItemProvider(this);
+		}
+
+		return componentRealizationEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ManifestationEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ManifestationEdgeItemProvider manifestationEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ManifestationEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createManifestationEdgeAdapter() {
+		if (manifestationEdgeItemProvider == null) {
+			manifestationEdgeItemProvider = new ManifestationEdgeItemProvider(this);
+		}
+
+		return manifestationEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PropertyShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PropertyShapeItemProvider propertyShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PropertyShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPropertyShapeAdapter() {
+		if (propertyShapeItemProvider == null) {
+			propertyShapeItemProvider = new PropertyShapeItemProvider(this);
+		}
+
+		return propertyShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CollaborationShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CollaborationShapeItemProvider collaborationShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CollaborationShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCollaborationShapeAdapter() {
+		if (collaborationShapeItemProvider == null) {
+			collaborationShapeItemProvider = new CollaborationShapeItemProvider(this);
+		}
+
+		return collaborationShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CollaborationUseShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CollaborationUseShapeItemProvider collaborationUseShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CollaborationUseShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCollaborationUseShapeAdapter() {
+		if (collaborationUseShapeItemProvider == null) {
+			collaborationUseShapeItemProvider = new CollaborationUseShapeItemProvider(this);
+		}
+
+		return collaborationUseShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TemplateBindingEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TemplateBindingEdgeItemProvider templateBindingEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TemplateBindingEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTemplateBindingEdgeAdapter() {
+		if (templateBindingEdgeItemProvider == null) {
+			templateBindingEdgeItemProvider = new TemplateBindingEdgeItemProvider(this);
+		}
+
+		return templateBindingEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.StereotypeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StereotypeShapeItemProvider stereotypeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.StereotypeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStereotypeShapeAdapter() {
+		if (stereotypeShapeItemProvider == null) {
+			stereotypeShapeItemProvider = new StereotypeShapeItemProvider(this);
+		}
+
+		return stereotypeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.NodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NodeShapeItemProvider nodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.NodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNodeShapeAdapter() {
+		if (nodeShapeItemProvider == null) {
+			nodeShapeItemProvider = new NodeShapeItemProvider(this);
+		}
+
+		return nodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.NestedNodeCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected NestedNodeCompartmentItemProvider nestedNodeCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.NestedNodeCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createNestedNodeCompartmentAdapter() {
+		if (nestedNodeCompartmentItemProvider == null) {
+			nestedNodeCompartmentItemProvider = new NestedNodeCompartmentItemProvider(this);
+		}
+
+		return nestedNodeCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeviceShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeviceShapeItemProvider deviceShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeviceShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeviceShapeAdapter() {
+		if (deviceShapeItemProvider == null) {
+			deviceShapeItemProvider = new DeviceShapeItemProvider(this);
+		}
+
+		return deviceShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExecutionEnvironmentShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExecutionEnvironmentShapeItemProvider executionEnvironmentShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExecutionEnvironmentShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExecutionEnvironmentShapeAdapter() {
+		if (executionEnvironmentShapeItemProvider == null) {
+			executionEnvironmentShapeItemProvider = new ExecutionEnvironmentShapeItemProvider(this);
+		}
+
+		return executionEnvironmentShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityShapeItemProvider activityShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityShapeAdapter() {
+		if (activityShapeItemProvider == null) {
+			activityShapeItemProvider = new ActivityShapeItemProvider(this);
+		}
+
+		return activityShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ParameterCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ParameterCompartmentItemProvider parameterCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ParameterCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createParameterCompartmentAdapter() {
+		if (parameterCompartmentItemProvider == null) {
+			parameterCompartmentItemProvider = new ParameterCompartmentItemProvider(this);
+		}
+
+		return parameterCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PostConditionCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PostConditionCompartmentItemProvider postConditionCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PostConditionCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPostConditionCompartmentAdapter() {
+		if (postConditionCompartmentItemProvider == null) {
+			postConditionCompartmentItemProvider = new PostConditionCompartmentItemProvider(this);
+		}
+
+		return postConditionCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PreConditionCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PreConditionCompartmentItemProvider preConditionCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PreConditionCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPreConditionCompartmentAdapter() {
+		if (preConditionCompartmentItemProvider == null) {
+			preConditionCompartmentItemProvider = new PreConditionCompartmentItemProvider(this);
+		}
+
+		return preConditionCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ContentCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ContentCompartmentItemProvider contentCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ContentCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createContentCompartmentAdapter() {
+		if (contentCompartmentItemProvider == null) {
+			contentCompartmentItemProvider = new ContentCompartmentItemProvider(this);
+		}
+
+		return contentCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.StructuredActivityNodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StructuredActivityNodeShapeItemProvider structuredActivityNodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.StructuredActivityNodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStructuredActivityNodeShapeAdapter() {
+		if (structuredActivityNodeShapeItemProvider == null) {
+			structuredActivityNodeShapeItemProvider = new StructuredActivityNodeShapeItemProvider(this);
+		}
+
+		return structuredActivityNodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityParameterNodeShapeItemProvider activityParameterNodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityParameterNodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityParameterNodeShapeAdapter() {
+		if (activityParameterNodeShapeItemProvider == null) {
+			activityParameterNodeShapeItemProvider = new ActivityParameterNodeShapeItemProvider(this);
+		}
+
+		return activityParameterNodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InteractionShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InteractionShapeItemProvider interactionShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InteractionShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInteractionShapeAdapter() {
+		if (interactionShapeItemProvider == null) {
+			interactionShapeItemProvider = new InteractionShapeItemProvider(this);
+		}
+
+		return interactionShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.OpaqueBehaviorShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OpaqueBehaviorShapeItemProvider opaqueBehaviorShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.OpaqueBehaviorShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOpaqueBehaviorShapeAdapter() {
+		if (opaqueBehaviorShapeItemProvider == null) {
+			opaqueBehaviorShapeItemProvider = new OpaqueBehaviorShapeItemProvider(this);
+		}
+
+		return opaqueBehaviorShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.FunctionBehaviorShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected FunctionBehaviorShapeItemProvider functionBehaviorShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.FunctionBehaviorShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createFunctionBehaviorShapeAdapter() {
+		if (functionBehaviorShapeItemProvider == null) {
+			functionBehaviorShapeItemProvider = new FunctionBehaviorShapeItemProvider(this);
+		}
+
+		return functionBehaviorShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.StateMachineShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateMachineShapeItemProvider stateMachineShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.StateMachineShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateMachineShapeAdapter() {
+		if (stateMachineShapeItemProvider == null) {
+			stateMachineShapeItemProvider = new StateMachineShapeItemProvider(this);
+		}
+
+		return stateMachineShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PseudostateShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PseudostateShapeItemProvider pseudostateShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PseudostateShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPseudostateShapeAdapter() {
+		if (pseudostateShapeItemProvider == null) {
+			pseudostateShapeItemProvider = new PseudostateShapeItemProvider(this);
+		}
+
+		return pseudostateShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.RegionCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RegionCompartmentItemProvider regionCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.RegionCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRegionCompartmentAdapter() {
+		if (regionCompartmentItemProvider == null) {
+			regionCompartmentItemProvider = new RegionCompartmentItemProvider(this);
+		}
+
+		return regionCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ProtocolStateMachineShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ProtocolStateMachineShapeItemProvider protocolStateMachineShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ProtocolStateMachineShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createProtocolStateMachineShapeAdapter() {
+		if (protocolStateMachineShapeItemProvider == null) {
+			protocolStateMachineShapeItemProvider = new ProtocolStateMachineShapeItemProvider(this);
+		}
+
+		return protocolStateMachineShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeploymentSpecificationShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeploymentSpecificationShapeItemProvider deploymentSpecificationShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeploymentSpecificationShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeploymentSpecificationShapeAdapter() {
+		if (deploymentSpecificationShapeItemProvider == null) {
+			deploymentSpecificationShapeItemProvider = new DeploymentSpecificationShapeItemProvider(this);
+		}
+
+		return deploymentSpecificationShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CommunicationPathEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommunicationPathEdgeItemProvider communicationPathEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CommunicationPathEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommunicationPathEdgeAdapter() {
+		if (communicationPathEdgeItemProvider == null) {
+			communicationPathEdgeItemProvider = new CommunicationPathEdgeItemProvider(this);
+		}
+
+		return communicationPathEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeploymentEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeploymentEdgeItemProvider deploymentEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeploymentEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeploymentEdgeAdapter() {
+		if (deploymentEdgeItemProvider == null) {
+			deploymentEdgeItemProvider = new DeploymentEdgeItemProvider(this);
+		}
+
+		return deploymentEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActorShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActorShapeItemProvider actorShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActorShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActorShapeAdapter() {
+		if (actorShapeItemProvider == null) {
+			actorShapeItemProvider = new ActorShapeItemProvider(this);
+		}
+
+		return actorShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExtensionPointCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtensionPointCompartmentItemProvider extensionPointCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExtensionPointCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtensionPointCompartmentAdapter() {
+		if (extensionPointCompartmentItemProvider == null) {
+			extensionPointCompartmentItemProvider = new ExtensionPointCompartmentItemProvider(this);
+		}
+
+		return extensionPointCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.UseCaseShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UseCaseShapeItemProvider useCaseShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.UseCaseShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUseCaseShapeAdapter() {
+		if (useCaseShapeItemProvider == null) {
+			useCaseShapeItemProvider = new UseCaseShapeItemProvider(this);
+		}
+
+		return useCaseShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.IncludeEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IncludeEdgeItemProvider includeEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.IncludeEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIncludeEdgeAdapter() {
+		if (includeEdgeItemProvider == null) {
+			includeEdgeItemProvider = new IncludeEdgeItemProvider(this);
+		}
+
+		return includeEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExtendEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExtendEdgeItemProvider extendEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExtendEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExtendEdgeAdapter() {
+		if (extendEdgeItemProvider == null) {
+			extendEdgeItemProvider = new ExtendEdgeItemProvider(this);
+		}
+
+		return extendEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.StateMachineDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateMachineDiagramItemProvider stateMachineDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.StateMachineDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateMachineDiagramAdapter() {
+		if (stateMachineDiagramItemProvider == null) {
+			stateMachineDiagramItemProvider = new StateMachineDiagramItemProvider(this);
+		}
+
+		return stateMachineDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityDiagramItemProvider activityDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityDiagramAdapter() {
+		if (activityDiagramItemProvider == null) {
+			activityDiagramItemProvider = new ActivityDiagramItemProvider(this);
+		}
+
+		return activityDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SequenceDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SequenceDiagramItemProvider sequenceDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SequenceDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSequenceDiagramAdapter() {
+		if (sequenceDiagramItemProvider == null) {
+			sequenceDiagramItemProvider = new SequenceDiagramItemProvider(this);
+		}
+
+		return sequenceDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.CommunicationDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected CommunicationDiagramItemProvider communicationDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.CommunicationDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createCommunicationDiagramAdapter() {
+		if (communicationDiagramItemProvider == null) {
+			communicationDiagramItemProvider = new CommunicationDiagramItemProvider(this);
+		}
+
+		return communicationDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TimingDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TimingDiagramItemProvider timingDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TimingDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTimingDiagramAdapter() {
+		if (timingDiagramItemProvider == null) {
+			timingDiagramItemProvider = new TimingDiagramItemProvider(this);
+		}
+
+		return timingDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InteractionOverviewDiagram} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InteractionOverviewDiagramItemProvider interactionOverviewDiagramItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InteractionOverviewDiagram}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInteractionOverviewDiagramAdapter() {
+		if (interactionOverviewDiagramItemProvider == null) {
+			interactionOverviewDiagramItemProvider = new InteractionOverviewDiagramItemProvider(this);
+		}
+
+		return interactionOverviewDiagramItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InternalBehaviorCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InternalBehaviorCompartmentItemProvider internalBehaviorCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InternalBehaviorCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInternalBehaviorCompartmentAdapter() {
+		if (internalBehaviorCompartmentItemProvider == null) {
+			internalBehaviorCompartmentItemProvider = new InternalBehaviorCompartmentItemProvider(this);
+		}
+
+		return internalBehaviorCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.StateShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected StateShapeItemProvider stateShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.StateShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createStateShapeAdapter() {
+		if (stateShapeItemProvider == null) {
+			stateShapeItemProvider = new StateShapeItemProvider(this);
+		}
+
+		return stateShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ConnectionPointReferenceShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ConnectionPointReferenceShapeItemProvider connectionPointReferenceShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ConnectionPointReferenceShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createConnectionPointReferenceShapeAdapter() {
+		if (connectionPointReferenceShapeItemProvider == null) {
+			connectionPointReferenceShapeItemProvider = new ConnectionPointReferenceShapeItemProvider(this);
+		}
+
+		return connectionPointReferenceShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.InternalTransitionCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected InternalTransitionCompartmentItemProvider internalTransitionCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.InternalTransitionCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createInternalTransitionCompartmentAdapter() {
+		if (internalTransitionCompartmentItemProvider == null) {
+			internalTransitionCompartmentItemProvider = new InternalTransitionCompartmentItemProvider(this);
+		}
+
+		return internalTransitionCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.DeferrableTriggerCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected DeferrableTriggerCompartmentItemProvider deferrableTriggerCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.DeferrableTriggerCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createDeferrableTriggerCompartmentAdapter() {
+		if (deferrableTriggerCompartmentItemProvider == null) {
+			deferrableTriggerCompartmentItemProvider = new DeferrableTriggerCompartmentItemProvider(this);
+		}
+
+		return deferrableTriggerCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.RegionShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected RegionShapeItemProvider regionShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.RegionShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createRegionShapeAdapter() {
+		if (regionShapeItemProvider == null) {
+			regionShapeItemProvider = new RegionShapeItemProvider(this);
+		}
+
+		return regionShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TransitionEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TransitionEdgeItemProvider transitionEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TransitionEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTransitionEdgeAdapter() {
+		if (transitionEdgeItemProvider == null) {
+			transitionEdgeItemProvider = new TransitionEdgeItemProvider(this);
+		}
+
+		return transitionEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.WeightLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected WeightLabelItemProvider weightLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.WeightLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createWeightLabelAdapter() {
+		if (weightLabelItemProvider == null) {
+			weightLabelItemProvider = new WeightLabelItemProvider(this);
+		}
+
+		return weightLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ControlFlowEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ControlFlowEdgeItemProvider controlFlowEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ControlFlowEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createControlFlowEdgeAdapter() {
+		if (controlFlowEdgeItemProvider == null) {
+			controlFlowEdgeItemProvider = new ControlFlowEdgeItemProvider(this);
+		}
+
+		return controlFlowEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ObjectFlowEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectFlowEdgeItemProvider objectFlowEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ObjectFlowEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectFlowEdgeAdapter() {
+		if (objectFlowEdgeItemProvider == null) {
+			objectFlowEdgeItemProvider = new ObjectFlowEdgeItemProvider(this);
+		}
+
+		return objectFlowEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityGroupShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityGroupShapeItemProvider activityGroupShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityGroupShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityGroupShapeAdapter() {
+		if (activityGroupShapeItemProvider == null) {
+			activityGroupShapeItemProvider = new ActivityGroupShapeItemProvider(this);
+		}
+
+		return activityGroupShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExceptionHandlerEdgeItemProvider exceptionHandlerEdgeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExceptionHandlerEdge}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExceptionHandlerEdgeAdapter() {
+		if (exceptionHandlerEdgeItemProvider == null) {
+			exceptionHandlerEdgeItemProvider = new ExceptionHandlerEdgeItemProvider(this);
+		}
+
+		return exceptionHandlerEdgeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TypeLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TypeLabelItemProvider typeLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TypeLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTypeLabelAdapter() {
+		if (typeLabelItemProvider == null) {
+			typeLabelItemProvider = new TypeLabelItemProvider(this);
+		}
+
+		return typeLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.IconLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected IconLabelItemProvider iconLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.IconLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createIconLabelAdapter() {
+		if (iconLabelItemProvider == null) {
+			iconLabelItemProvider = new IconLabelItemProvider(this);
+		}
+
+		return iconLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SubPartitionCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubPartitionCompartmentItemProvider subPartitionCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SubPartitionCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubPartitionCompartmentAdapter() {
+		if (subPartitionCompartmentItemProvider == null) {
+			subPartitionCompartmentItemProvider = new SubPartitionCompartmentItemProvider(this);
+		}
+
+		return subPartitionCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityPartitionShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityPartitionShapeItemProvider activityPartitionShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityPartitionShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityPartitionShapeAdapter() {
+		if (activityPartitionShapeItemProvider == null) {
+			activityPartitionShapeItemProvider = new ActivityPartitionShapeItemProvider(this);
+		}
+
+		return activityPartitionShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExpansionRegionShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpansionRegionShapeItemProvider expansionRegionShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExpansionRegionShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpansionRegionShapeAdapter() {
+		if (expansionRegionShapeItemProvider == null) {
+			expansionRegionShapeItemProvider = new ExpansionRegionShapeItemProvider(this);
+		}
+
+		return expansionRegionShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ExpansionNodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ExpansionNodeShapeItemProvider expansionNodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ExpansionNodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createExpansionNodeShapeAdapter() {
+		if (expansionNodeShapeItemProvider == null) {
+			expansionNodeShapeItemProvider = new ExpansionNodeShapeItemProvider(this);
+		}
+
+		return expansionNodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActionShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActionShapeItemProvider actionShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActionShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActionShapeAdapter() {
+		if (actionShapeItemProvider == null) {
+			actionShapeItemProvider = new ActionShapeItemProvider(this);
+		}
+
+		return actionShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.PinShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected PinShapeItemProvider pinShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.PinShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createPinShapeAdapter() {
+		if (pinShapeItemProvider == null) {
+			pinShapeItemProvider = new PinShapeItemProvider(this);
+		}
+
+		return pinShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ObjectNodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ObjectNodeShapeItemProvider objectNodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ObjectNodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createObjectNodeShapeAdapter() {
+		if (objectNodeShapeItemProvider == null) {
+			objectNodeShapeItemProvider = new ObjectNodeShapeItemProvider(this);
+		}
+
+		return objectNodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SelectionLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SelectionLabelItemProvider selectionLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SelectionLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSelectionLabelAdapter() {
+		if (selectionLabelItemProvider == null) {
+			selectionLabelItemProvider = new SelectionLabelItemProvider(this);
+		}
+
+		return selectionLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TransformationLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected TransformationLabelItemProvider transformationLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TransformationLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createTransformationLabelAdapter() {
+		if (transformationLabelItemProvider == null) {
+			transformationLabelItemProvider = new TransformationLabelItemProvider(this);
+		}
+
+		return transformationLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.GuardLabel} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected GuardLabelItemProvider guardLabelItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.GuardLabel}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createGuardLabelAdapter() {
+		if (guardLabelItemProvider == null) {
+			guardLabelItemProvider = new GuardLabelItemProvider(this);
+		}
+
+		return guardLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ActivityNodeShape} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected ActivityNodeShapeItemProvider activityNodeShapeItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ActivityNodeShape}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createActivityNodeShapeAdapter() {
+		if (activityNodeShapeItemProvider == null) {
+			activityNodeShapeItemProvider = new ActivityNodeShapeItemProvider(this);
+		}
+
+		return activityNodeShapeItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.SubvertexCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected SubvertexCompartmentItemProvider subvertexCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.SubvertexCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createSubvertexCompartmentAdapter() {
+		if (subvertexCompartmentItemProvider == null) {
+			subvertexCompartmentItemProvider = new SubvertexCompartmentItemProvider(this);
+		}
+
+		return subvertexCompartmentItemProvider;
 	}
 
 	/**
 	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TemplateParameterCompartment} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	protected TemplateParameterCompartmentItemProvider templateParameterCompartmentItemProvider;
@@ -1471,46 +3202,90 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TemplateParameterCompartment}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Adapter createTemplateParameterCompartmentAdapter() {
-		if(templateParameterCompartmentItemProvider == null) {
+		if (templateParameterCompartmentItemProvider == null) {
 			templateParameterCompartmentItemProvider = new TemplateParameterCompartmentItemProvider(this);
 		}
+
 		return templateParameterCompartmentItemProvider;
 	}
 
 	/**
-	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.TemplateParameterLabel} instances.
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.ListItemLabel} instances.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
-	protected TemplateParameterLabelItemProvider templateParameterLabelItemProvider;
+	protected ListItemLabelItemProvider listItemLabelItemProvider;
 
 	/**
-	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.TemplateParameterLabel}.
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.ListItemLabel}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
-	public Adapter createTemplateParameterLabelAdapter() {
-		if(templateParameterLabelItemProvider == null) {
-			templateParameterLabelItemProvider = new TemplateParameterLabelItemProvider(this);
+	public Adapter createListItemLabelAdapter() {
+		if (listItemLabelItemProvider == null) {
+			listItemLabelItemProvider = new ListItemLabelItemProvider(this);
 		}
-		return templateParameterLabelItemProvider;
+
+		return listItemLabelItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.OwnedUseCaseCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected OwnedUseCaseCompartmentItemProvider ownedUseCaseCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.OwnedUseCaseCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createOwnedUseCaseCompartmentAdapter() {
+		if (ownedUseCaseCompartmentItemProvider == null) {
+			ownedUseCaseCompartmentItemProvider = new OwnedUseCaseCompartmentItemProvider(this);
+		}
+
+		return ownedUseCaseCompartmentItemProvider;
+	}
+
+	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.umldi.UseCaseCompartment} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected UseCaseCompartmentItemProvider useCaseCompartmentItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.umldi.UseCaseCompartment}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createUseCaseCompartmentAdapter() {
+		if (useCaseCompartmentItemProvider == null) {
+			useCaseCompartmentItemProvider = new UseCaseCompartmentItemProvider(this);
+		}
+
+		return useCaseCompartmentItemProvider;
 	}
 
 	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public ComposeableAdapterFactory getRootAdapterFactory() {
@@ -1521,7 +3296,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This sets the composed adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void setParentAdapterFactory(ComposedAdapterFactory parentAdapterFactory) {
@@ -1531,7 +3305,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1543,7 +3316,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This implementation substitutes the factory itself as the key for the adapter.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
@@ -1554,17 +3326,17 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	@Override
 	public Object adapt(Object object, Object type) {
-		if(isFactoryForType(type)) {
+		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if(!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
+
 		return null;
 	}
 
@@ -1572,7 +3344,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This adds a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void addListener(INotifyChangedListener notifyChangedListener) {
@@ -1583,7 +3354,6 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This removes a listener.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void removeListener(INotifyChangedListener notifyChangedListener) {
@@ -1594,141 +3364,161 @@ public class UMLDIItemProviderAdapterFactory extends UMLDIAdapterFactory impleme
 	 * This delegates to {@link #changeNotifier} and to {@link #parentAdapterFactory}.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void fireNotifyChanged(Notification notification) {
 		changeNotifier.fireNotifyChanged(notification);
-		if(parentAdapterFactory != null) {
+
+		if (parentAdapterFactory != null) {
 			parentAdapterFactory.fireNotifyChanged(notification);
 		}
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory.
+	 * This disposes all of the item providers created by this factory. 
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * 
 	 * @generated
 	 */
 	public void dispose() {
-		if(umlStyleItemProvider != null)
-			umlStyleItemProvider.dispose();
-		if(packagedElementCompartmentItemProvider != null)
-			packagedElementCompartmentItemProvider.dispose();
-		if(packageShapeItemProvider != null)
-			packageShapeItemProvider.dispose();
-		if(nameLabelItemProvider != null)
-			nameLabelItemProvider.dispose();
-		if(templateParameterCompartmentItemProvider != null)
-			templateParameterCompartmentItemProvider.dispose();
-		if(templateParameterLabelItemProvider != null)
-			templateParameterLabelItemProvider.dispose();
-		if(classDiagramItemProvider != null)
-			classDiagramItemProvider.dispose();
-		if(constraintShapeItemProvider != null)
-			constraintShapeItemProvider.dispose();
-		if(bodyLabelItemProvider != null)
-			bodyLabelItemProvider.dispose();
-		if(attributeCompartmentItemProvider != null)
-			attributeCompartmentItemProvider.dispose();
-		if(propertyLabelItemProvider != null)
-			propertyLabelItemProvider.dispose();
-		if(operationCompartmentItemProvider != null)
-			operationCompartmentItemProvider.dispose();
-		if(operationLabelItemProvider != null)
-			operationLabelItemProvider.dispose();
-		if(receptionCompartmentItemProvider != null)
-			receptionCompartmentItemProvider.dispose();
-		if(receptionLabelItemProvider != null)
-			receptionLabelItemProvider.dispose();
-		if(literalCompartmentItemProvider != null)
-			literalCompartmentItemProvider.dispose();
-		if(enumerationShapeItemProvider != null)
-			enumerationShapeItemProvider.dispose();
-		if(literalLabelItemProvider != null)
-			literalLabelItemProvider.dispose();
-		if(roleLabelItemProvider != null)
-			roleLabelItemProvider.dispose();
-		if(associationEdgeItemProvider != null)
-			associationEdgeItemProvider.dispose();
-		if(multiplicityLabelItemProvider != null)
-			multiplicityLabelItemProvider.dispose();
-		if(propertyEdgeItemProvider != null)
-			propertyEdgeItemProvider.dispose();
-		if(modifierLabelItemProvider != null)
-			modifierLabelItemProvider.dispose();
-		if(generalizationSetEdgeItemProvider != null)
-			generalizationSetEdgeItemProvider.dispose();
-		if(powerLabelItemProvider != null)
-			powerLabelItemProvider.dispose();
-		if(instanceSpecificationEdgeItemProvider != null)
-			instanceSpecificationEdgeItemProvider.dispose();
-		if(instanceSpecificationShapeItemProvider != null)
-			instanceSpecificationShapeItemProvider.dispose();
-		if(slotCompartmentItemProvider != null)
-			slotCompartmentItemProvider.dispose();
-		if(slotLabelItemProvider != null)
-			slotLabelItemProvider.dispose();
-		if(classShapeItemProvider != null)
-			classShapeItemProvider.dispose();
-		if(interfaceShapeItemProvider != null)
-			interfaceShapeItemProvider.dispose();
-		if(dataTypeShapeItemProvider != null)
-			dataTypeShapeItemProvider.dispose();
-		if(primitiveTypeShapeItemProvider != null)
-			primitiveTypeShapeItemProvider.dispose();
-		if(signalShapeItemProvider != null)
-			signalShapeItemProvider.dispose();
-		if(modelShapeItemProvider != null)
-			modelShapeItemProvider.dispose();
-		if(containmentEdgeItemProvider != null)
-			containmentEdgeItemProvider.dispose();
-		if(generalizationEdgeItemProvider != null)
-			generalizationEdgeItemProvider.dispose();
-		if(realizationEdgeItemProvider != null)
-			realizationEdgeItemProvider.dispose();
-		if(abstractionEdgeItemProvider != null)
-			abstractionEdgeItemProvider.dispose();
-		if(dependencyEdgeItemProvider != null)
-			dependencyEdgeItemProvider.dispose();
-		if(interfaceRealizationEdgeItemProvider != null)
-			interfaceRealizationEdgeItemProvider.dispose();
-		if(usageEdgeItemProvider != null)
-			usageEdgeItemProvider.dispose();
-		if(elementImportEdgeItemProvider != null)
-			elementImportEdgeItemProvider.dispose();
-		if(packageImportEdgeItemProvider != null)
-			packageImportEdgeItemProvider.dispose();
-		if(packageMergeEdgeItemProvider != null)
-			packageMergeEdgeItemProvider.dispose();
-		if(substitutionEdgeItemProvider != null)
-			substitutionEdgeItemProvider.dispose();
-		if(informationFlowEdgeItemProvider != null)
-			informationFlowEdgeItemProvider.dispose();
-		if(itemLabelItemProvider != null)
-			itemLabelItemProvider.dispose();
-		if(associationClassEdgeItemProvider != null)
-			associationClassEdgeItemProvider.dispose();
-		if(commentShapeItemProvider != null)
-			commentShapeItemProvider.dispose();
-		if(attachmentEdgeItemProvider != null)
-			attachmentEdgeItemProvider.dispose();
-		if(associationClassShapeItemProvider != null)
-			associationClassShapeItemProvider.dispose();
-		if(componentShapeItemProvider != null)
-			componentShapeItemProvider.dispose();
-		if(informationItemShapeItemProvider != null)
-			informationItemShapeItemProvider.dispose();
-		if(representationEdgeItemProvider != null)
-			representationEdgeItemProvider.dispose();
-		if(associationShapeItemProvider != null)
-			associationShapeItemProvider.dispose();
-		if(dependencyShapeItemProvider != null)
-			dependencyShapeItemProvider.dispose();
-		if(timeObservationShapeItemProvider != null)
-			timeObservationShapeItemProvider.dispose();
-		if(durationObservationShapeItemProvider != null)
-			durationObservationShapeItemProvider.dispose();
+		if (umlStyleItemProvider != null) umlStyleItemProvider.dispose();
+		if (mainLabelItemProvider != null) mainLabelItemProvider.dispose();
+		if (classDiagramItemProvider != null) classDiagramItemProvider.dispose();
+		if (templateParameterCompartmentItemProvider != null) templateParameterCompartmentItemProvider.dispose();
+		if (listItemLabelItemProvider != null) listItemLabelItemProvider.dispose();
+		if (ownedUseCaseCompartmentItemProvider != null) ownedUseCaseCompartmentItemProvider.dispose();
+		if (useCaseCompartmentItemProvider != null) useCaseCompartmentItemProvider.dispose();
+		if (packageShapeItemProvider != null) packageShapeItemProvider.dispose();
+		if (packagedElementCompartmentItemProvider != null) packagedElementCompartmentItemProvider.dispose();
+		if (constraintShapeItemProvider != null) constraintShapeItemProvider.dispose();
+		if (bodyLabelItemProvider != null) bodyLabelItemProvider.dispose();
+		if (attributeCompartmentItemProvider != null) attributeCompartmentItemProvider.dispose();
+		if (operationCompartmentItemProvider != null) operationCompartmentItemProvider.dispose();
+		if (receptionCompartmentItemProvider != null) receptionCompartmentItemProvider.dispose();
+		if (literalCompartmentItemProvider != null) literalCompartmentItemProvider.dispose();
+		if (enumerationShapeItemProvider != null) enumerationShapeItemProvider.dispose();
+		if (roleLabelItemProvider != null) roleLabelItemProvider.dispose();
+		if (associationEdgeItemProvider != null) associationEdgeItemProvider.dispose();
+		if (multiplicityLabelItemProvider != null) multiplicityLabelItemProvider.dispose();
+		if (propertyEdgeItemProvider != null) propertyEdgeItemProvider.dispose();
+		if (constraintLabelItemProvider != null) constraintLabelItemProvider.dispose();
+		if (generalizationSetEdgeItemProvider != null) generalizationSetEdgeItemProvider.dispose();
+		if (powerLabelItemProvider != null) powerLabelItemProvider.dispose();
+		if (objectNodeShapeItemProvider != null) objectNodeShapeItemProvider.dispose();
+		if (activityNodeShapeItemProvider != null) activityNodeShapeItemProvider.dispose();
+		if (selectionLabelItemProvider != null) selectionLabelItemProvider.dispose();
+		if (objectFlowEdgeItemProvider != null) objectFlowEdgeItemProvider.dispose();
+		if (guardLabelItemProvider != null) guardLabelItemProvider.dispose();
+		if (weightLabelItemProvider != null) weightLabelItemProvider.dispose();
+		if (transformationLabelItemProvider != null) transformationLabelItemProvider.dispose();
+		if (connectorEdgeItemProvider != null) connectorEdgeItemProvider.dispose();
+		if (instanceSpecificationEdgeItemProvider != null) instanceSpecificationEdgeItemProvider.dispose();
+		if (dependencyEdgeItemProvider != null) dependencyEdgeItemProvider.dispose();
+		if (instanceSpecificationShapeItemProvider != null) instanceSpecificationShapeItemProvider.dispose();
+		if (deployedArtifactCompartmentItemProvider != null) deployedArtifactCompartmentItemProvider.dispose();
+		if (slotCompartmentItemProvider != null) slotCompartmentItemProvider.dispose();
+		if (classShapeItemProvider != null) classShapeItemProvider.dispose();
+		if (internalStructureCompartmentItemProvider != null) internalStructureCompartmentItemProvider.dispose();
+		if (portShapeItemProvider != null) portShapeItemProvider.dispose();
+		if (nestedClassifierCompartmentItemProvider != null) nestedClassifierCompartmentItemProvider.dispose();
+		if (ownedBehaviorCompartmentItemProvider != null) ownedBehaviorCompartmentItemProvider.dispose();
+		if (interfaceShapeItemProvider != null) interfaceShapeItemProvider.dispose();
+		if (dataTypeShapeItemProvider != null) dataTypeShapeItemProvider.dispose();
+		if (primitiveTypeShapeItemProvider != null) primitiveTypeShapeItemProvider.dispose();
+		if (signalShapeItemProvider != null) signalShapeItemProvider.dispose();
+		if (modelShapeItemProvider != null) modelShapeItemProvider.dispose();
+		if (containmentEdgeItemProvider != null) containmentEdgeItemProvider.dispose();
+		if (generalizationEdgeItemProvider != null) generalizationEdgeItemProvider.dispose();
+		if (realizationEdgeItemProvider != null) realizationEdgeItemProvider.dispose();
+		if (abstractionEdgeItemProvider != null) abstractionEdgeItemProvider.dispose();
+		if (interfaceRealizationEdgeItemProvider != null) interfaceRealizationEdgeItemProvider.dispose();
+		if (usageEdgeItemProvider != null) usageEdgeItemProvider.dispose();
+		if (elementImportEdgeItemProvider != null) elementImportEdgeItemProvider.dispose();
+		if (packageImportEdgeItemProvider != null) packageImportEdgeItemProvider.dispose();
+		if (packageMergeEdgeItemProvider != null) packageMergeEdgeItemProvider.dispose();
+		if (substitutionEdgeItemProvider != null) substitutionEdgeItemProvider.dispose();
+		if (informationFlowEdgeItemProvider != null) informationFlowEdgeItemProvider.dispose();
+		if (conveyedLabelItemProvider != null) conveyedLabelItemProvider.dispose();
+		if (associationClassEdgeItemProvider != null) associationClassEdgeItemProvider.dispose();
+		if (commentShapeItemProvider != null) commentShapeItemProvider.dispose();
+		if (attachmentEdgeItemProvider != null) attachmentEdgeItemProvider.dispose();
+		if (associationClassShapeItemProvider != null) associationClassShapeItemProvider.dispose();
+		if (componentShapeItemProvider != null) componentShapeItemProvider.dispose();
+		if (informationItemShapeItemProvider != null) informationItemShapeItemProvider.dispose();
+		if (representationEdgeItemProvider != null) representationEdgeItemProvider.dispose();
+		if (associationShapeItemProvider != null) associationShapeItemProvider.dispose();
+		if (dependencyShapeItemProvider != null) dependencyShapeItemProvider.dispose();
+		if (timeObservationShapeItemProvider != null) timeObservationShapeItemProvider.dispose();
+		if (durationObservationShapeItemProvider != null) durationObservationShapeItemProvider.dispose();
+		if (packageDiagramItemProvider != null) packageDiagramItemProvider.dispose();
+		if (profileDiagramItemProvider != null) profileDiagramItemProvider.dispose();
+		if (compositeStructureDiagramItemProvider != null) compositeStructureDiagramItemProvider.dispose();
+		if (deploymentDiagramItemProvider != null) deploymentDiagramItemProvider.dispose();
+		if (componentDiagramItemProvider != null) componentDiagramItemProvider.dispose();
+		if (objectDiagramItemProvider != null) objectDiagramItemProvider.dispose();
+		if (profileShapeItemProvider != null) profileShapeItemProvider.dispose();
+		if (profileApplicationEdgeItemProvider != null) profileApplicationEdgeItemProvider.dispose();
+		if (extensionEdgeItemProvider != null) extensionEdgeItemProvider.dispose();
+		if (useCaseDiagramItemProvider != null) useCaseDiagramItemProvider.dispose();
+		if (artifactShapeItemProvider != null) artifactShapeItemProvider.dispose();
+		if (nestedArtifactCompartmentItemProvider != null) nestedArtifactCompartmentItemProvider.dispose();
+		if (componentRealizationEdgeItemProvider != null) componentRealizationEdgeItemProvider.dispose();
+		if (manifestationEdgeItemProvider != null) manifestationEdgeItemProvider.dispose();
+		if (propertyShapeItemProvider != null) propertyShapeItemProvider.dispose();
+		if (collaborationShapeItemProvider != null) collaborationShapeItemProvider.dispose();
+		if (collaborationUseShapeItemProvider != null) collaborationUseShapeItemProvider.dispose();
+		if (templateBindingEdgeItemProvider != null) templateBindingEdgeItemProvider.dispose();
+		if (stereotypeShapeItemProvider != null) stereotypeShapeItemProvider.dispose();
+		if (nodeShapeItemProvider != null) nodeShapeItemProvider.dispose();
+		if (nestedNodeCompartmentItemProvider != null) nestedNodeCompartmentItemProvider.dispose();
+		if (deviceShapeItemProvider != null) deviceShapeItemProvider.dispose();
+		if (executionEnvironmentShapeItemProvider != null) executionEnvironmentShapeItemProvider.dispose();
+		if (activityShapeItemProvider != null) activityShapeItemProvider.dispose();
+		if (parameterCompartmentItemProvider != null) parameterCompartmentItemProvider.dispose();
+		if (postConditionCompartmentItemProvider != null) postConditionCompartmentItemProvider.dispose();
+		if (preConditionCompartmentItemProvider != null) preConditionCompartmentItemProvider.dispose();
+		if (contentCompartmentItemProvider != null) contentCompartmentItemProvider.dispose();
+		if (structuredActivityNodeShapeItemProvider != null) structuredActivityNodeShapeItemProvider.dispose();
+		if (actionShapeItemProvider != null) actionShapeItemProvider.dispose();
+		if (pinShapeItemProvider != null) pinShapeItemProvider.dispose();
+		if (activityGroupShapeItemProvider != null) activityGroupShapeItemProvider.dispose();
+		if (activityParameterNodeShapeItemProvider != null) activityParameterNodeShapeItemProvider.dispose();
+		if (interactionShapeItemProvider != null) interactionShapeItemProvider.dispose();
+		if (opaqueBehaviorShapeItemProvider != null) opaqueBehaviorShapeItemProvider.dispose();
+		if (functionBehaviorShapeItemProvider != null) functionBehaviorShapeItemProvider.dispose();
+		if (stateMachineShapeItemProvider != null) stateMachineShapeItemProvider.dispose();
+		if (pseudostateShapeItemProvider != null) pseudostateShapeItemProvider.dispose();
+		if (regionCompartmentItemProvider != null) regionCompartmentItemProvider.dispose();
+		if (protocolStateMachineShapeItemProvider != null) protocolStateMachineShapeItemProvider.dispose();
+		if (deploymentSpecificationShapeItemProvider != null) deploymentSpecificationShapeItemProvider.dispose();
+		if (communicationPathEdgeItemProvider != null) communicationPathEdgeItemProvider.dispose();
+		if (deploymentEdgeItemProvider != null) deploymentEdgeItemProvider.dispose();
+		if (actorShapeItemProvider != null) actorShapeItemProvider.dispose();
+		if (extensionPointCompartmentItemProvider != null) extensionPointCompartmentItemProvider.dispose();
+		if (useCaseShapeItemProvider != null) useCaseShapeItemProvider.dispose();
+		if (includeEdgeItemProvider != null) includeEdgeItemProvider.dispose();
+		if (extendEdgeItemProvider != null) extendEdgeItemProvider.dispose();
+		if (stateMachineDiagramItemProvider != null) stateMachineDiagramItemProvider.dispose();
+		if (activityDiagramItemProvider != null) activityDiagramItemProvider.dispose();
+		if (sequenceDiagramItemProvider != null) sequenceDiagramItemProvider.dispose();
+		if (communicationDiagramItemProvider != null) communicationDiagramItemProvider.dispose();
+		if (timingDiagramItemProvider != null) timingDiagramItemProvider.dispose();
+		if (interactionOverviewDiagramItemProvider != null) interactionOverviewDiagramItemProvider.dispose();
+		if (internalBehaviorCompartmentItemProvider != null) internalBehaviorCompartmentItemProvider.dispose();
+		if (stateShapeItemProvider != null) stateShapeItemProvider.dispose();
+		if (connectionPointReferenceShapeItemProvider != null) connectionPointReferenceShapeItemProvider.dispose();
+		if (internalTransitionCompartmentItemProvider != null) internalTransitionCompartmentItemProvider.dispose();
+		if (deferrableTriggerCompartmentItemProvider != null) deferrableTriggerCompartmentItemProvider.dispose();
+		if (regionShapeItemProvider != null) regionShapeItemProvider.dispose();
+		if (subvertexCompartmentItemProvider != null) subvertexCompartmentItemProvider.dispose();
+		if (transitionEdgeItemProvider != null) transitionEdgeItemProvider.dispose();
+		if (controlFlowEdgeItemProvider != null) controlFlowEdgeItemProvider.dispose();
+		if (exceptionHandlerEdgeItemProvider != null) exceptionHandlerEdgeItemProvider.dispose();
+		if (typeLabelItemProvider != null) typeLabelItemProvider.dispose();
+		if (iconLabelItemProvider != null) iconLabelItemProvider.dispose();
+		if (subPartitionCompartmentItemProvider != null) subPartitionCompartmentItemProvider.dispose();
+		if (activityPartitionShapeItemProvider != null) activityPartitionShapeItemProvider.dispose();
+		if (expansionRegionShapeItemProvider != null) expansionRegionShapeItemProvider.dispose();
+		if (expansionNodeShapeItemProvider != null) expansionNodeShapeItemProvider.dispose();
 	}
 }

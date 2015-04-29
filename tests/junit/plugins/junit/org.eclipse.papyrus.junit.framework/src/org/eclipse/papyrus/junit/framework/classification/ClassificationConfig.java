@@ -27,6 +27,7 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Set;
 
+import org.eclipse.core.runtime.Platform;
 import org.eclipse.papyrus.infra.tools.util.ListHelper;
 
 import com.google.common.collect.ImmutableSet;
@@ -40,14 +41,14 @@ import com.google.common.collect.Sets;
  * <p>
  * Usage:
  * </p>
- * 
+ *
  * <pre>
  * ClassificationConfig.setExcludedTestCategories(TestCategory.InvalidTest, TestCategory.NotImplemented);
- * 
+ *
  * // or
- * 
+ *
  * ClassificationConfig.setIncludedTestCategories(TestCategory.Standard, TestCategory.NotImplemented);
- * 
+ *
  * // or
  * 
  * ClassificationConfig.setExcludedTestCategories(ClassificationConfig.FAILING_TESTS_CONFIG);
@@ -113,6 +114,17 @@ public enum ClassificationConfig implements Set<TestCategory> {
 
 		// Check whether identified regressions are still failing
 		// setIncludedTestCategories(FailingTest);
+
+		for (String arg : Platform.getApplicationArgs()) {
+			if (arg.contains("-testConfig=")) {
+				String configName = arg.substring("-testConfig=".length());
+				Set<TestCategory> testsConfig = ClassificationConfig.valueOf(configName);
+				if (testsConfig != null) {
+					setTestsConfiguration(testsConfig);
+				}
+				break;
+			}
+		}
 	}
 
 	private ClassificationConfig(TestCategory... exclusions) {
@@ -170,7 +182,7 @@ public enum ClassificationConfig implements Set<TestCategory> {
 	 * Tests whether a method containing the given set of Annotations should be executed
 	 *
 	 * @param annotations
-	 *            The annotations applied to the Method
+	 *        The annotations applied to the Method
 	 * @return
 	 *         True if the test method should be executed, false if it should be ignored
 	 */

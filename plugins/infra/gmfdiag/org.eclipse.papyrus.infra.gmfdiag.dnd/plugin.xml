@@ -23,5 +23,11 @@
             name="Drag and drop">
       </page>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.gmfdiag.dnd.dropStrategy">
+      <strategy
+            strategy="org.eclipse.papyrus.infra.gmfdiag.dnd.strategy.ExpansionElementDropStrategy">
+      </strategy>
+   </extension>
 
 </plugin>
