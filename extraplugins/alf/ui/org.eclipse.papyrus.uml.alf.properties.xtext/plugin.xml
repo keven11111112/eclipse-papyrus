@@ -6,8 +6,9 @@
       <propertySections
             contributorId="TreeOutlinePage">
          <propertySection
-               class="org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AdvancedEditingPropertySection"
-               filter="org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AdvancedEditingPropertySectionFilter"
+               class="org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AlfEditionPropertySection"
+               enablesFor="1"
+               filter="org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AlfEditorPropertySectionFilter"
                id="alf.property.section.AdvancedEditingPropertySection"
                tab="alf_editing">
             <input
@@ -32,67 +33,4 @@
          </propertyTab>
       </propertyTabs>
    </extension>
-   <extension
-          point="org.eclipse.papyrus.extensionpoints.editors.DirectEditor">
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.Class">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.Enumeration">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.Signal">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.DataType">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.Package">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-       <DirectEditor
-             language="Alf"
-             objectToEdit="org.eclipse.uml2.uml.Association">
-          <popupeditor
-                editorConfiguration="org.eclipse.papyrus.uml.alf.properties.xtext.configuration.DefaultAlfXtextEditorConfiguration">
-          </popupeditor>
-          <Priority
-                name="Highest">
-          </Priority>
-       </DirectEditor>
-    </extension> 
 </plugin>

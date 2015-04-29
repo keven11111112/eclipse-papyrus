@@ -15,7 +15,7 @@
 package org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners;
 
 import org.eclipse.papyrus.uml.alf.transaction.commit.ScenarioFactory;
-import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AdvancedEditingPropertySection;
+import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.AlfEditionPropertySection;
 import org.eclipse.swt.custom.StyledText;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -24,9 +24,9 @@ import org.eclipse.uml2.uml.NamedElement;
 public class CommitButtonSelectionListener extends SelectionAdapter {
 
 
-	private AdvancedEditingPropertySection propertySection;
+	private AlfEditionPropertySection propertySection;
 
-	public CommitButtonSelectionListener(AdvancedEditingPropertySection propertySection) {
+	public CommitButtonSelectionListener(AlfEditionPropertySection propertySection) {
 		this.propertySection = propertySection;
 	}
 

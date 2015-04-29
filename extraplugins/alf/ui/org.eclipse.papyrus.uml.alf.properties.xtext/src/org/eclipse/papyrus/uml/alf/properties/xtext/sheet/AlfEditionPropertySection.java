@@ -15,29 +15,20 @@
 
 package org.eclipse.papyrus.uml.alf.properties.xtext.sheet;
 
-import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.jobs.Job;
 import org.eclipse.emf.ecore.EObject;
-import org.eclipse.gmf.runtime.common.ui.services.parser.IParser;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.properties.sections.AbstractModelerPropertySection;
-import org.eclipse.gmf.runtime.emf.core.util.EObjectAdapter;
 import org.eclipse.jface.layout.GridDataFactory;
-import org.eclipse.jface.preference.IPreferenceStore;
-import org.eclipse.papyrus.extensionpoints.editors.Activator;
-import org.eclipse.papyrus.extensionpoints.editors.configuration.IDirectEditorConfiguration;
-import org.eclipse.papyrus.extensionpoints.editors.utils.DirectEditorsUtil;
-import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
-import org.eclipse.papyrus.uml.alf.transaction.job.AlfJobObserver;
 import org.eclipse.papyrus.uml.alf.properties.xtext.UndoRedoStack;
 import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners.CommitButtonSelectionListener;
 import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners.EditorFocusListener;
-import org.eclipse.papyrus.uml.xtext.integration.DefaultXtextDirectEditorConfiguration;
+import org.eclipse.papyrus.uml.alf.text.generation.DefaultEditStringRetrievalStrategy;
+import org.eclipse.papyrus.uml.alf.transaction.job.AlfJobObserver;
+import org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
-import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProviderWithInit;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.custom.ExtendedModifyEvent;
 import org.eclipse.swt.custom.ExtendedModifyListener;
@@ -55,12 +46,15 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
+import org.eclipse.uml2.uml.Element;
+
+import com.google.inject.Injector;
 
 /**
  * Attention: class has been deactivated, since the additional tab is redundant with the
  * body editor in the standard UML property tab.
  */
-public class AdvancedEditingPropertySection extends
+public class AlfEditionPropertySection extends
 		AbstractModelerPropertySection implements IContextElementProvider {
 
 	private FormToolkit toolkit;
@@ -71,23 +65,24 @@ public class AdvancedEditingPropertySection extends
 
 	private Button commitButton;
 
-	private DefaultXtextDirectEditorConfiguration configuration;
+	private StyledTextXtextAdapter styledTextAdapter;
 
-	private StyledTextXtextAdapter xtextAdapter;
+	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(this);
 
-	final private ContextElementAdapter contextElementAdapter = new ContextElementAdapter(
-			this);
-
-	UndoRedoStack<ExtendedModifyEvent> undoRedoStack;
+	private UndoRedoStack<ExtendedModifyEvent> undoRedoStack;
 
 	protected boolean isUndo;
 
 	protected boolean isRedo;
 
-	protected EObject currentEObj;
-
-	public AdvancedEditingPropertySection() {
-		undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
+	private DefaultEditStringRetrievalStrategy alfSerialization;
+	
+	private Injector alfToolingInjector;
+	
+	public AlfEditionPropertySection() {
+		this.undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
+		this.alfSerialization = new DefaultEditStringRetrievalStrategy();
+		this.alfToolingInjector = AlfActivator.getInstance().getInjector(AlfActivator.ORG_ECLIPSE_PAPYRUS_UML_ALF_ALF);
 	}
 
 	public StyledText getEditor() {
@@ -96,22 +91,25 @@ public class AdvancedEditingPropertySection extends
 
 	@Override
 	public void refresh() {
-		updateXtextAdapters(this.textControl);
-		IParser parser = getParser();
-		if (parser != null) {
-			this.textControl.setText(parser.getEditString(new EObjectAdapter(eObject), 0));
+		/*1. Update adapters placed over the xtext resource*/
+		this.updateXtextAdapters(this.textControl);
+		/*2. Compute edit string*/
+		String serialization = "/*Error: serialization could not be computed*/";
+		if(this.eObject!=null){
+			serialization = this.alfSerialization.getEditString((Element)this.eObject);
 		}
-
-		if (textControl != null) {
-			textControl.setEnabled(!isReadOnly());
+		/*3. Set up editor content (textControl)*/
+		this.textControl.setText(serialization);
+		if (this.textControl != null) {
+			this.textControl.setEnabled(!isReadOnly());
 		}
 	}
 
 	@Override
 	public void aboutToBeHidden() {
 		super.aboutToBeHidden();
-		if (xtextAdapter != null) {
-			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
+		if (styledTextAdapter != null) {
+			styledTextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
 					.remove(contextElementAdapter);
 		}
 	}
@@ -232,90 +230,13 @@ public class AdvancedEditingPropertySection extends
 		textControl.setSelectionRange(event.start, event.replacedText.length());
 	}
 
-
-	protected DefaultXtextDirectEditorConfiguration getConfigurationFromSelection() {
-		EObject semanticElement = getSemanticObjectFromSelection();
-		if (semanticElement != null) {
-			IPreferenceStore store = Activator.getDefault()
-					.getPreferenceStore();
-			String semanticClassName = semanticElement.eClass()
-					.getInstanceClassName();
-			String key = IDirectEditorsIds.EDITOR_FOR_ELEMENT
-					+ semanticClassName;
-			String languagePreferred = store.getString(key);
-
-			if (languagePreferred != null && !languagePreferred.equals("")) { //$NON-NLS-1$
-				IDirectEditorConfiguration configuration = DirectEditorsUtil
-						.findEditorConfiguration(languagePreferred,
-								semanticClassName);
-				if (configuration instanceof DefaultXtextDirectEditorConfiguration) {
-
-					DefaultXtextDirectEditorConfiguration xtextConfiguration = (DefaultXtextDirectEditorConfiguration) configuration;
-					xtextConfiguration.preEditAction(semanticElement);
-					return xtextConfiguration;
-				}
-			}
-		}
-		return null;
-	}
-
-	protected EObject getSemanticObjectFromSelection() {
-		Object selection = getPrimarySelection();
-		if (selection instanceof IGraphicalEditPart) {
-			return ((IGraphicalEditPart) selection).resolveSemanticElement();
-		}
-		else if (selection instanceof IAdaptable) {
-			return (EObject) ((IAdaptable) selection).getAdapter(EObject.class);
-		}
-		return null;
-	}
-
-	public IParser getParser() {
-		final EObject semanticElement = getSemanticObjectFromSelection();
-		if (configuration != null && semanticElement != null) {
-			return configuration.createParser(semanticElement);
-		}
-		return null;
-	}
-
 	protected void updateXtextAdapters(Control styledText) {
-		final Object oldObjectToEdit = configuration != null ? configuration.getObjectToEdit() : null;
-
-		final DefaultXtextDirectEditorConfiguration newConfiguration = getConfigurationFromSelection();
-		// Check if configuration has changed and update adapters
-		if (newConfiguration != null && newConfiguration != configuration) {
-			if (xtextAdapter != null) {
-				xtextAdapter.getFakeResourceContext().getFakeResource()
-						.eAdapters().remove(contextElementAdapter);
-			}
-			configuration = newConfiguration;
-			xtextAdapter = new StyledTextXtextAdapter(
-					configuration.getInjector());
-
-			EObject semanticElement = getSemanticObjectFromSelection();
-			if (semanticElement != null) {
-				newConfiguration.preEditAction(semanticElement);
-			}
-
-			xtextAdapter.getFakeResourceContext().getFakeResource().eAdapters()
-					.add(contextElementAdapter);
-			xtextAdapter.adapt((StyledText) styledText);
+		if (styledTextAdapter != null) {
+			styledTextAdapter.getFakeResourceContext().getFakeResource().eAdapters().remove(contextElementAdapter);
 		}
-
-		if (configuration.getObjectToEdit() != oldObjectToEdit) {
-			IContextElementProvider provider = configuration.getContextProvider();
-			if (provider instanceof IContextElementProviderWithInit) {
-				// update resource, if required by text editor
-				if (xtextAdapter != null) {
-					((IContextElementProviderWithInit) provider).initResource(
-							xtextAdapter.getFakeResourceContext().getFakeResource());
-				}
-			}
-			Object semanticObject = configuration.getObjectToEdit();
-			if (semanticObject instanceof EObject) {
-				currentEObj = (EObject) semanticObject;
-			}
-		}
+		styledTextAdapter = new StyledTextXtextAdapter(this.alfToolingInjector);
+		styledTextAdapter.getFakeResourceContext().getFakeResource().eAdapters().add(contextElementAdapter);
+		styledTextAdapter.adapt((StyledText) styledText);
 	}
 
 	public EObject getContextObject() {

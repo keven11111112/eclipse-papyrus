@@ -16,32 +16,7 @@ import org.eclipse.emf.common.notify.Notification;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.emf.transaction.NotificationFilter;
-import org.eclipse.uml2.uml.Association;
-import org.eclipse.uml2.uml.AssociationClass;
-import org.eclipse.uml2.uml.Behavior;
-import org.eclipse.uml2.uml.CommunicationPath;
-import org.eclipse.uml2.uml.Component;
-import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
-import org.eclipse.uml2.uml.ElementImport;
-import org.eclipse.uml2.uml.Enumeration;
-import org.eclipse.uml2.uml.EnumerationLiteral;
-import org.eclipse.uml2.uml.Extension;
-import org.eclipse.uml2.uml.ExtensionEnd;
-import org.eclipse.uml2.uml.Generalization;
-import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
-import org.eclipse.uml2.uml.Model;
-import org.eclipse.uml2.uml.Node;
-import org.eclipse.uml2.uml.Operation;
-import org.eclipse.uml2.uml.Profile;
-import org.eclipse.uml2.uml.Property;
-import org.eclipse.uml2.uml.Reception;
-import org.eclipse.uml2.uml.Signal;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Stereotype;
-import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.PackageImport;
-import org.eclipse.uml2.uml.Port;
 import org.eclipse.uml2.uml.UMLPackage;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -60,33 +35,33 @@ public class FUMLFilter extends NotificationFilter.Custom {
 		}
 		Object feature = notification.getFeature();
 		if (notifier != null && feature != null) {
-			if (this.isEnumeration(notifier)) {
+			if (FUMLScopeUtil.isEnumeration(notifier)) {
 				return this.isEnumerationFeatureListened((EStructuralFeature) feature);
-			} else if (this.isDataType(notifier)) {
+			} else if (FUMLScopeUtil.isDataType(notifier)) {
 				return this.isDatatypeFeatureListened((EStructuralFeature) feature);
-			} else if (this.isPackage(notifier)) {
+			} else if (FUMLScopeUtil.isPackage(notifier)) {
 				return this.isPackageFeatureListened((EStructuralFeature) feature);
 			}/* else if (this.isAssociation(notifier)) {
 				return this.isAssociationFeatureListener((EStructuralFeature) feature);
-			}*/ else if (this.isSignal(notifier)) {
+			}*/ else if (FUMLScopeUtil.isSignal(notifier)) {
 				return this.isSignalFeatureListened((EStructuralFeature) feature);
-			} else if (this.isClass(notifier)) {
+			} else if (FUMLScopeUtil.isClass(notifier)) {
 				return this.isClassFeatureListened((EStructuralFeature) feature);
-			} else if (this.isGeneralization(notifier)) {
+			} else if (FUMLScopeUtil.isGeneralization(notifier)) {
 				return this.isGeneralizationtFeatureListened((EStructuralFeature) feature);
-			}else if(this.isProperty(notifier)){
+			}else if(FUMLScopeUtil.isProperty(notifier)){
 				return this.isPropertyFeatureListened((EStructuralFeature)feature);
-			}else if(this.isOperation(notifier)){
+			}else if(FUMLScopeUtil.isOperation(notifier)){
 				return this.isOperationFeatureListened((EStructuralFeature)feature);
-			}else if(this.isReception(notifier)){
+			}else if(FUMLScopeUtil.isReception(notifier)){
 				return this.isReceptionFeatureListened((EStructuralFeature)feature);
-			}else if(this.isLiteralUnlimitedNatural(notifier)){
+			}else if(FUMLScopeUtil.isLiteralUnlimitedNatural(notifier)){
 				return this.isLiteralUnlimitedNaturalFeatureListened((EStructuralFeature)feature);
-			}else if(this.isEnumerationLiteral(notifier)){
+			}else if(FUMLScopeUtil.isEnumerationLiteral(notifier)){
 				return this.isEnumerationLiteralFeatureListened((EStructuralFeature)feature);
-			}else if(this.isPackageImport(notifier)){
+			}else if(FUMLScopeUtil.isPackageImport(notifier)){
 				return this.isPackageImportFeatureListened((EStructuralFeature)feature);
-			}else if(this.isElementImport(notifier)){
+			}else if(FUMLScopeUtil.isElementImport(notifier)){
 				return this.isElementImportFeatureListened((EStructuralFeature)feature);
 			}
 		}
@@ -103,188 +78,7 @@ public class FUMLFilter extends NotificationFilter.Custom {
 		}
 		return allowed;
 	}
-
-	/*----------------------------------------------------------------------------*/
-	/* Enforce the filter to respect the fUML subset */
-	/*----------------------------------------------------------------------------*/
-	/**
-	 * Check if the given notifier is strictly a Class
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isClass(Object notifier) {
-		if (notifier instanceof Class &&
-				(!(notifier instanceof AssociationClass) &&
-						!(notifier instanceof Component) &&
-						!(notifier instanceof Node) &&
-						!(notifier instanceof Stereotype) &&
-				!(notifier instanceof Behavior))) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Check if the given notifier is strictly a Signal
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isSignal(Object notifier) {
-		return notifier instanceof Signal;
-	}
-
-	/**
-	 * Check if the given notifier is strictly a DataType
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isDataType(Object notifier) {
-		if (notifier instanceof DataType
-				&& !(notifier instanceof Enumeration)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Check if the given notifier is strictly a Package
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isPackage(Object notifier) {
-		if (notifier != null
-				&& notifier instanceof Package
-				&& !(notifier instanceof Model)
-				&& !(notifier instanceof Profile)) {
-			return true;
-		}
-		return false;
-	}
-
-	/**
-	 * Check if the given notifier is strictly an Enumeration
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise 
-	 */
-	private boolean isEnumeration(Object notifier) {
-		return notifier instanceof Enumeration;
-	}
-
-	/**
-	 * Check if the given notifier is strictly an Association
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	@SuppressWarnings("unused")
-	private boolean isAssociation(Object notifier) {
-		if (notifier instanceof Association
-				&& !(notifier instanceof AssociationClass)
-				&& !(notifier instanceof Extension)
-				&& !(notifier instanceof CommunicationPath)) {
-			return true;
-		}
-		return false;
-	}
 	
-	/**
-	 * Check if the given notifier is strictly a Generalization
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isGeneralization(Object notifier) {
-		return notifier instanceof Generalization;
-	}
-	
-	/**
-	 * Check if the given notifier is strictly a property
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isProperty(Object notifier){
-		if(notifier instanceof Property
-				&& !(notifier instanceof Port)
-				&& !(notifier instanceof ExtensionEnd) ){
-			return true;
-		}
-		return false;
-	}
-	
-	private boolean isLiteralUnlimitedNatural(Object notifier){
-		return notifier instanceof LiteralUnlimitedNatural;
-	}
-	
-	/**
-	 * Check if the given notifier is strictly an Operation
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isOperation(Object notifier){
-		return notifier instanceof Operation;
-	}
-	
-	
-	/**
-	 * Check if the given notifier is strictly a Reception
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isReception(Object notifier){
-		return notifier instanceof Reception;
-	}
-	
-	/**
-	 * Check if the given notifier is strictly an Enumeration literal
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isEnumerationLiteral(Object notifier){
-		return notifier instanceof EnumerationLiteral;
-	}
-	
-	/**
-	 * Check if the given notifier is strictly a PackageImport
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isPackageImport(Object notifier){
-		return notifier instanceof PackageImport;
-	}
-	
-	/**
-	 * Check if the given notifier is strictly an ElementImport
-	 * 
-	 * @param notifier
-	 * 
-	 * @return true if constraint is verified false otherwise
-	 */
-	private boolean isElementImport(Object notifier){
-		return notifier instanceof ElementImport;
-	}
-
 	/*----------------------------------------------------------------------------*/
 	/* Low level checks encoding the UML meta-model hierarchy */
 	/*----------------------------------------------------------------------------*/
