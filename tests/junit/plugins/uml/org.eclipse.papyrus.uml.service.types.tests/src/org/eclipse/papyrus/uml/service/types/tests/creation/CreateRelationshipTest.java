@@ -48,17 +48,24 @@ import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusT
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.papyrus.uml.service.types.tests.creation.auxtests.AuxTransitionTests;
+import org.eclipse.papyrus.uml.service.types.tests.creation.auxtests.IAuxTest;
 import org.eclipse.papyrus.uml.tools.model.UmlModel;
 import org.eclipse.papyrus.uml.tools.model.UmlUtils;
 import org.eclipse.uml2.uml.Actor;
 import org.eclipse.uml2.uml.Artifact;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Component;
+import org.eclipse.uml2.uml.FinalState;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Model;
 import org.eclipse.uml2.uml.Node;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.ProtocolStateMachine;
+import org.eclipse.uml2.uml.Pseudostate;
+import org.eclipse.uml2.uml.Region;
+import org.eclipse.uml2.uml.State;
+import org.eclipse.uml2.uml.StateMachine;
 import org.eclipse.uml2.uml.UseCase;
 import org.junit.Assert;
 import org.junit.BeforeClass;
@@ -112,7 +119,12 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 	private static ProtocolStateMachine protocolStateMachine1;
 	private static ProtocolStateMachine protocolStateMachine2;
 	private static Interface testInterface1;
-
+	private static StateMachine stateMachine;
+	private static Region region;
+	private static Pseudostate initialState;
+	private static State state1;
+	private static State state2;
+	private static FinalState finalState;
 
 	/**
 	 * Init test class
@@ -202,164 +214,183 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 
 		testInterface1 = (Interface)rootModel.getOwnedMember("TestInterface1");
 		Assert.assertNotNull("Impossible to find TestInterface1", testInterface1);
+
+		stateMachine = (StateMachine)rootModel.getOwnedMember("StateMachine");
+		Assert.assertNotNull("Impossible to find StateMachine", stateMachine);
+
+		region = (Region)stateMachine.getOwnedMember("Region");
+		Assert.assertNotNull("Impossible to find Region", region);
+
+		initialState = (Pseudostate)region.getOwnedMember("InitialState");
+		Assert.assertNotNull("Impossible to find InitialState", initialState);
+
+		state1 = (State)region.getOwnedMember("State1");
+		Assert.assertNotNull("Impossible to find State1", state1);
+
+		state2 = (State)region.getOwnedMember("State2");
+		Assert.assertNotNull("Impossible to find State2", state2);
+
+		finalState = (FinalState)region.getOwnedMember("FinalState");
+		Assert.assertNotNull("Impossible to find FinalState", finalState);
+
 	}
 
 	/* ABSTRACTION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAbstractionBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.ABSTRACTION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.ABSTRACTION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAbstractionBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAbstractionBetweenPackageAndClassesInModel() throws Exception {
-		runCreationRelationshipTest(rootModel, testPackage1, testClass2, UMLElementTypes.ABSTRACTION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(rootModel, testPackage1, testClass2, UMLElementTypes.ABSTRACTION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAbstractionBetweenClassAndPackageInModel() throws Exception {
-		runCreationRelationshipTest(rootModel, testClass1, testPackage1 , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(rootModel, testClass1, testPackage1 , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAbstractionBetweenClassAndClassInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2 , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2 , UMLElementTypes.ABSTRACTION, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 
 	/* COMPONENT_REALIZATION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateComponentRealizationBetweenClassAndComponentInComponent() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testComponent1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testComponent1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateComponentRealizationBetweenClassAndComponentInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testComponent1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testComponent1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test  @Ignore//NOTE: Since the canceling of a command left the editor in a dirty state this test will fail.
+	@Test 
 	public void testCreateComponentRealizationBetweenComponentAndClass() throws Exception {
-		runCreationRelationshipTest(testPackage1, testComponent1,testClass1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testComponent1,testClass1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
-	@Test  @Ignore//NOTE: Since the canceling of a command left the editor in a dirty state this test will fail. 
+	@Test
 	public void testCreateComponentRealizationBetweenComponentAndClassInComponent() throws Exception {
-		runCreationRelationshipTest(testComponent1, testComponent1,testClass1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testComponent1, testComponent1,testClass1, UMLElementTypes.COMPONENT_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 
 	/* DEPENDENCY test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateDependencyBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.DEPENDENCY, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.DEPENDENCY, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateDependencyBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.DEPENDENCY, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.DEPENDENCY, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* DEPLOYMENT test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateDeploymentBetweenNodeAndArtifactInNode() throws Exception {
-		runCreationRelationshipTest(testNode1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testNode1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateDeploymentBetweenNodeAndArtifactInArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testArtifact1, testNode1, testArtifact1, UMLElementTypes.DEPLOYMENT, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateDeploymentBetweenArtifactAndNodeInArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testArtifact1,testNode1, UMLElementTypes.DEPLOYMENT, CAN_NOT_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testArtifact1, testArtifact1,testNode1, UMLElementTypes.DEPLOYMENT, CAN_NOT_CREATE, RESULT_EXPECTED,null);
 	}
 
 
 	/* ELEMENT_IMPORT test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateElementImportBetweenPackageAndPackageInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.ELEMENT_IMPORT, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.ELEMENT_IMPORT, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateElementImportBetweenPackageAndPackageInPackage2() throws Exception {
-		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.ELEMENT_IMPORT, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.ELEMENT_IMPORT, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
 
 	/* EXTEND test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateExtendBetweenUseCases2InUseCase() throws Exception {
-		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.EXTEND, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.EXTEND, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateExtendBetweenClasses2InPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.EXTEND, CAN_NOT_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.EXTEND, CAN_NOT_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* GENERALIZATION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateGeneralizationBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.GENERALIZATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.GENERALIZATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateGeneralizationBetweenClassesInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.GENERALIZATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.GENERALIZATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateGeneralizationBetweenClassAndNullInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, null , UMLElementTypes.GENERALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, null , UMLElementTypes.GENERALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* INCLUDE test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateIncludeBetweenUseCases2InUseCase() throws Exception {
-		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INCLUDE, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INCLUDE, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateIncludeBetweenClasses2InPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.INCLUDE, CAN_NOT_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.INCLUDE, CAN_NOT_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 
 	/* INFORMATION_FLOW test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateInformationfloweBetweenUseCases2InUseCase() throws Exception {
-		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INFORMATION_FLOW, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INFORMATION_FLOW, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateInformationfloweBetweenClasses2InPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.INFORMATION_FLOW, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.INFORMATION_FLOW, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 
 	/* INTERFACE_REALIZATION test cases */
-	@Test  @Ignore//NOTE: Since the canceling of a command left the editor in a dirty state this test will fail.
+	@Test
 	public void testCreateInterfaceRealizationBetweenUseCases2InUseCase() throws Exception {
-		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INTERFACE_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testUseCase1, testUseCase1, testUseCase2, UMLElementTypes.INTERFACE_REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateInterfaceRealizationBetweenClassAndInterfaceInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testInterface1, UMLElementTypes.INTERFACE_REALIZATION, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testInterface1, UMLElementTypes.INTERFACE_REALIZATION, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 
@@ -367,154 +398,170 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 	/* MANIFESTATION test cases */
 	@Test // OK
 	public void testCreateManifestationBetweenArtifactAndPackage2InArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testArtifact1, testPackage1, UMLElementTypes.MANIFESTATION, CAN_CREATE, RESULT_EXPECTED);
+		runCreationRelationshipTest(testArtifact1, testArtifact1, testPackage1, UMLElementTypes.MANIFESTATION, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
-	@Test //TODO: Shouln't the src be an Artifact? [ManifestationEditHelper.canCreate() -> src = NamedElement tgt= PackableElement]
+	@Test // OK
 	public void testCreateManifestationBetweenClassAndPackage2InArtifact() throws Exception {
-		runCreationRelationshipTest(testArtifact1, testClass1, testPackage1, UMLElementTypes.MANIFESTATION, CAN_NOT_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testArtifact1, testClass1, testPackage1, UMLElementTypes.MANIFESTATION, CAN_CREATE, RESULT_EXPECTED,null);
 	}
 
 
 	/* PACKAGE_IMPORT test cases */	
-	@Test   //Ignore // OK
+	@Test
 	public void testCreatePackageImportBetweenPackageAndPackageInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_IMPORT, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_IMPORT, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreatePackageImportBetweenPackageAndPackageInPackage2() throws Exception {
-		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_IMPORT, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_IMPORT, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
 
 
 	/* PACKAGE_MERGE test cases */	
-	@Test   //Ignore // OK
+	@Test
 	public void testCreatePackageMergeBetweenPackageAndPackageInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_MERGE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_MERGE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreatePackageMergeBetweenPackageAndPackageInPackage2() throws Exception {
-		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_MERGE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PACKAGE_MERGE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
 
 	/* PROTOCOL_CONFORMANCE test cases */		
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateProtocolConformanceBetweenPackageAndPackageInPackage() throws Exception {
-		runCreationRelationshipTest(protocolStateMachine1, protocolStateMachine1, protocolStateMachine2, UMLElementTypes.PROTOCOL_CONFORMANCE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(protocolStateMachine1, protocolStateMachine1, protocolStateMachine2, UMLElementTypes.PROTOCOL_CONFORMANCE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateProtocolConformanceBetweenPackageAndPackageInPackage2() throws Exception {
-		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PROTOCOL_CONFORMANCE, CAN_NOT_CREATE,RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testPackage1, testPackage2, UMLElementTypes.PROTOCOL_CONFORMANCE, CAN_NOT_CREATE,RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* REALIZATION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateRealizationBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.REALIZATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.REALIZATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateRealizationBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.REALIZATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 
 	/* REFINE test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateRefineBetweenClassesInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.REFINE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.REFINE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateRefineBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.REFINE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.REFINE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateRefineBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.REFINE, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.REFINE, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* TRACE test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateTraceBetweenClassesInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.TRACE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.TRACE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateTraceBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.TRACE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.TRACE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateTraceBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.TRACE, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.TRACE, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* SUBSTITUTION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateSubstitutionBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.SUBSTITUTION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.SUBSTITUTION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateSubstitutionBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.SUBSTITUTION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.SUBSTITUTION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 
 	/* USAGE test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateUsageBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.USAGE, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, testClass2, UMLElementTypes.USAGE, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateUsageBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.USAGE, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.USAGE, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 
 
 	/* ASSOCIATION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAssociationBetweenClassesInPackage() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.ASSOCIATION, CAN_CREATE,RESULT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, testClass2, UMLElementTypes.ASSOCIATION, CAN_CREATE,RESULT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateAssociationBetweenClassAndNullInPackage() throws Exception {
-		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.ASSOCIATION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testPackage1, testClass1, null , UMLElementTypes.ASSOCIATION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
 
 	/* EXTENSION test cases */
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateExtensionBetweenClassAndNullInNull() throws Exception {
-		runCreationRelationshipTest(null, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(null, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
-	@Test   //Ignore // OK
+	@Test
 	public void testCreateExtensionBetweenClassAndNullInClass() throws Exception {
-		runCreationRelationshipTest(testClass1, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED);
+		runCreationRelationshipTest(testClass1, testClass1, null , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_NOT_EXPECTED,null);
 	}
 
-	//	@Test
-	//	public void testCreateExtensionBetweenStereotypeAndMetaClassInPackage() throws Exception {
-	//		runCreationRelationshipTest(profilePackage, stereotype, metaclass , UMLElementTypes.EXTENSION, CAN_CREATE, RESULT_EXPECTED);
-	//	}
+	/* TRANSITION test cases */
+	@Test @Ignore //TODO - enable when the issue is fixed
+	public void testCreateTransitionBetweenInitialAndState() throws Exception {
+		runCreationRelationshipTest(null, initialState, state1 , UMLElementTypes.TRANSITION, CAN_CREATE, RESULT_EXPECTED,new AuxTransitionTests());
+	}
+
+	@Test @Ignore //TODO - enable when the issue is fixed
+	public void testCreateTransitionBetweenStateAndInitial() throws Exception {
+		runCreationRelationshipTest(null, state1, initialState , UMLElementTypes.TRANSITION, CAN_CREATE, RESULT_NOT_EXPECTED,new AuxTransitionTests());
+	}
+
+	@Test @Ignore //TODO - enable when the issue is fixed
+	public void testCreateTransitionBetweenStateAndFinal() throws Exception {
+		runCreationRelationshipTest(null, state1, finalState , UMLElementTypes.TRANSITION, CAN_CREATE, RESULT_EXPECTED,new AuxTransitionTests());
+	}
+
+	@Test @Ignore //TODO - enable when the issue is fixed
+	public void testCreateTransitionBetweenFinalAndState() throws Exception {
+		runCreationRelationshipTest(null, finalState, state1 , UMLElementTypes.TRANSITION, CAN_CREATE, RESULT_NOT_EXPECTED,new AuxTransitionTests());
+	}
 
 
 	/* CONNECTOR test cases */
@@ -529,13 +576,13 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 	// TBD
 
 
-	protected void runCreationRelationshipTest(EObject container, EObject source, EObject target, IHintedType hintedType, boolean canCreate, boolean resultExpected) throws Exception {
+	protected void runCreationRelationshipTest(EObject container, EObject source, EObject target, IHintedType hintedType, boolean canCreate, boolean resultExpected,IAuxTest aux) throws Exception {
 		Assert.assertTrue("Editor should not be dirty before test", !openPapyrusEditor.isDirty());
 		Command command = getCreateRelationshipCommand(container, source, target, hintedType, canCreate);
 
 		// command has been tested when created. Runs the test if it is possible
 		if(canCreate) {
-			transactionalEditingDomain.getCommandStack().execute(command);
+			transactionalEditingDomain.getCommandStack().execute(command);			
 			Collection<?> commandResult = command.getResult();
 
 			if (commandResult.isEmpty() && resultExpected) {
@@ -546,13 +593,24 @@ public class CreateRelationshipTest extends AbstractPapyrusTest {
 				Assert.fail("Command should have a empty result");
 			}	
 
-			Assert.assertTrue("Editor should be dirty after executed command", openPapyrusEditor.isDirty());
-			transactionalEditingDomain.getCommandStack().undo();
-			Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
-			transactionalEditingDomain.getCommandStack().redo();
-			transactionalEditingDomain.getCommandStack().undo();
-			// assert editor is not dirty
-			Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
+			if (aux != null && !commandResult.isEmpty()) {
+				aux.test(container,source,target,hintedType,commandResult);
+			}
+
+			if (resultExpected) {
+				Assert.assertTrue("Editor should be dirty after executed command", openPapyrusEditor.isDirty());
+				transactionalEditingDomain.getCommandStack().undo();
+				Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
+				transactionalEditingDomain.getCommandStack().redo();
+				transactionalEditingDomain.getCommandStack().undo();
+				// assert editor is not dirty
+				Assert.assertTrue("Editor should not be dirty after undo", !openPapyrusEditor.isDirty());
+			}
+
+			if (openPapyrusEditor.isDirty()) {
+				transactionalEditingDomain.getCommandStack().undo();
+			}			
+			Assert.assertTrue("Editor should not be dirty after test", !openPapyrusEditor.isDirty());
 		} 
 	}
 

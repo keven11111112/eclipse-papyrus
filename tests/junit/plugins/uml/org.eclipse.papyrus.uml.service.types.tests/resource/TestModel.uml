@@ -19,6 +19,14 @@
   <packagedElement xmi:type="uml:Interface" xmi:id="_TG8acMirEeSUcNQ8eZKXjQ" name="TestInterface1"/>
   <packagedElement xmi:type="uml:ProtocolStateMachine" xmi:id="_0OMvMMirEeSUcNQ8eZKXjQ" name="ProtocolStateMachine1"/>
   <packagedElement xmi:type="uml:ProtocolStateMachine" xmi:id="_1_g70MirEeSUcNQ8eZKXjQ" name="ProtocolStateMachine2"/>
+  <packagedElement xmi:type="uml:StateMachine" xmi:id="_FF6X0OpZEeSGa62IXGv3GA" name="StateMachine">
+    <region xmi:type="uml:Region" xmi:id="_HOtQUOpZEeSGa62IXGv3GA" name="Region">
+      <subvertex xmi:type="uml:Pseudostate" xmi:id="_IshSIOpZEeSGa62IXGv3GA" name="InitialState"/>
+      <subvertex xmi:type="uml:State" xmi:id="_Jsm2IOpZEeSGa62IXGv3GA" name="State1"/>
+      <subvertex xmi:type="uml:State" xmi:id="_QUhlUOpZEeSGa62IXGv3GA" name="State2"/>
+      <subvertex xmi:type="uml:FinalState" xmi:id="_LGv44OpZEeSGa62IXGv3GA" name="FinalState"/>
+    </region>
+  </packagedElement>
   <profileApplication xmi:type="uml:ProfileApplication" xmi:id="_0-WXUJLTEeK-Fomwlc5mQg">
     <eAnnotations xmi:type="ecore:EAnnotation" xmi:id="_0-YMgJLTEeK-Fomwlc5mQg" source="http://www.eclipse.org/uml2/2.0.0/UML">
       <references xmi:type="ecore:EPackage" href="http://www.eclipse.org/papyrus/0.7.0/SysML#/"/>

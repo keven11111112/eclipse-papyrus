@@ -8,7 +8,7 @@
  *
  * Contributors:
  *   Patrik Nandorf (Ericsson AB) - Initial API and implementation
- *   
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.infra.newchild;
@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.newchild;
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IProgressMonitor;
+import org.eclipse.core.runtime.OperationCanceledException;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
@@ -46,7 +47,7 @@ public class SetTargetAndRelationshipCommand extends AbstractCommand {
 	 * @param label
 	 * @param creationMenuFactory 
 	 */
-	public SetTargetAndRelationshipCommand(TransactionalEditingDomain ted, String label, IElementEditService provider, EReference reference, EObject source, IElementType et,ITreeSelectorDialog dialog) { //CreationMenu creationMenu){
+	public SetTargetAndRelationshipCommand(TransactionalEditingDomain ted, String label, IElementEditService provider, EReference reference, EObject source, IElementType et, ITreeSelectorDialog dialog) {
 		super(label);
 		this.provider = provider;
 		this.reference = reference;
@@ -63,7 +64,7 @@ public class SetTargetAndRelationshipCommand extends AbstractCommand {
 	 */
 	@Override
 	public boolean canExecute() {
-		CreateElementRequest buildRequest = buildRequest(null); //this.creationMenuFactory.buildRequest(reference, container, creationMenu);		
+		CreateElementRequest buildRequest = buildRequest(null);
 		ICommand createGMFCommand = provider.getEditCommand(buildRequest);
 		if (createGMFCommand == null) {
 			return false;
@@ -91,16 +92,15 @@ public class SetTargetAndRelationshipCommand extends AbstractCommand {
 
 			ICommand createGMFCommand = provider.getEditCommand(buildRequest);
 			if (createGMFCommand == null || createGMFCommand instanceof UnexecutableCommand) {
-				return CommandResult.newCancelledCommandResult();
+				throw new OperationCanceledException();
 			}
 
 			emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
 			emfCommand.execute();
-//			ted.getCommandStack().execute(emfCommand);
 			CommandResult commandResult = createGMFCommand.getCommandResult();
 			return commandResult;
 		} 
-		return CommandResult.newCancelledCommandResult();
+		throw new OperationCanceledException();
 	}
 
 	/**
@@ -108,12 +108,11 @@ public class SetTargetAndRelationshipCommand extends AbstractCommand {
 	 * @return
 	 */
 	private CreateElementRequest buildRequest(EObject element) {
-		//Build request
 		CreateElementRequest buildRequest = null;
 		if (reference == null) {
-			buildRequest = new CreateRelationshipRequest(ted, null,source,element,elementType);
+			buildRequest = new CreateRelationshipRequest(ted, null, source, element, elementType);
 		} else {
-			buildRequest = new CreateRelationshipRequest(ted, null,source,element,elementType,reference);
+			buildRequest = new CreateRelationshipRequest(ted, null, source, element, elementType, reference);
 		}
 		return buildRequest;
 	}
