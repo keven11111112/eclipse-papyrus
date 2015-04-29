@@ -299,16 +299,6 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION2 = "activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2";//$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
-	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION2 = "activity.nodes.structuralfeatureactions.readstructuralfeatureaction2";//$NON-NLS-1$
-
-	/**
-	 * @generated
-	 */
 	private final static String ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE = "activity.nodes.structuralfeatureactions.clearstructuralfeature";//$NON-NLS-1$
 
 	/**
@@ -540,14 +530,8 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION)) {
 			return createAddStructuralFeatureValueAction2CreationTool();
 		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_ADDSTRUCTURALFEATUREVALUEACTION2)) {
-			return createAddStructuralFeatureValueAction3CreationTool();
-		}
-		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_READSTRUCTURALFEATUREACTION2)) {
-			return createReadStructuralFeatureAction4CreationTool();
-		}
 		if (toolId.equals(ACTIVITY_NODES_STRUCTURALFEATUREACTIONS_CLEARSTRUCTURALFEATURE)) {
-			return createClearStructuralFeature5CreationTool();
+			return createClearStructuralFeature3CreationTool();
 		}
 		if (toolId.equals(ACTIVITY_NODES_VARIABLEACTIONS_ADDVARIABLEVALUEACTION)) {
 			return createAddVariableValueAction1CreationTool();
@@ -1228,27 +1212,7 @@ public class UMLPaletteFactory extends PaletteFactory.Adapter {
 	/**
 	 * @generated
 	 */
-	private Tool createAddStructuralFeatureValueAction3CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.AddStructuralFeatureValueAction_3091);
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createReadStructuralFeatureAction4CreationTool() {
-		List<IElementType> types = new ArrayList<IElementType>(1);
-		types.add(UMLElementTypes.ReadStructuralFeatureAction_3088);
-		Tool tool = new AspectUnspecifiedTypeCreationTool(types);
-		return tool;
-	}
-
-	/**
-	 * @generated
-	 */
-	private Tool createClearStructuralFeature5CreationTool() {
+	private Tool createClearStructuralFeature3CreationTool() {
 		List<IElementType> types = new ArrayList<IElementType>(1);
 		types.add(UMLElementTypes.ClearStructuralFeatureAction_3115);
 		Tool tool = new AspectUnspecifiedTypeCreationTool(types);

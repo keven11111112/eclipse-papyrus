@@ -926,32 +926,12 @@ public class Messages extends NLS {
 	/**
 	 * @generated
 	 */
-	public static String AddStructuralFeatureValueAction3CreationTool_title;
+	public static String ClearStructuralFeature3CreationTool_title;
 
 	/**
 	 * @generated
 	 */
-	public static String AddStructuralFeatureValueAction3CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ReadStructuralFeatureAction4CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ReadStructuralFeatureAction4CreationTool_desc;
-
-	/**
-	 * @generated
-	 */
-	public static String ClearStructuralFeature5CreationTool_title;
-
-	/**
-	 * @generated
-	 */
-	public static String ClearStructuralFeature5CreationTool_desc;
+	public static String ClearStructuralFeature3CreationTool_desc;
 
 	/**
 	 * @generated
