@@ -4,9 +4,9 @@ import static org.junit.Assert.assertEquals;
 
 import org.eclipse.papyrus.sysml.diagram.common.commands.CreateSysMLModelCommand;
 import org.eclipse.papyrus.sysml.diagram.ui.NewSysMLProjectWizard;
+import org.eclipse.papyrus.uml.diagram.wizards.pages.PapyrusProjectCreationPage;
 import org.eclipse.papyrus.uml.diagram.wizards.pages.SelectDiagramKindPage;
 import org.eclipse.ui.IWorkbenchWizard;
-import org.eclipse.ui.dialogs.WizardNewProjectCreationPage;
 import org.junit.Test;
 
 
@@ -22,7 +22,8 @@ public class TestNewSysMLProjectWizard extends TestNewModelWizardBase {
 	@Test
 	public void testOrderOfPages() {
 
-		Class<?>[] expectedPages = new Class[]{ WizardNewProjectCreationPage.class, SelectDiagramKindPage.class, };
+		// actual pages: [PapyrusNewProjectPage -> PapyrusProjectCreationPage, SelectDiagramKind -> SelectDiagramKindPage]
+		Class<?>[] expectedPages = new Class[] { PapyrusProjectCreationPage.class, SelectDiagramKindPage.class };
 
 		IWorkbenchWizard wizard = initWizardDialog();
 		testOrderOfPages(wizard, expectedPages);
@@ -36,7 +37,7 @@ public class TestNewSysMLProjectWizard extends TestNewModelWizardBase {
 			// open access to protected method
 			@Override
 			public String[] getDiagramCategoryIds() {
-				return new String[]{ CreateSysMLModelCommand.COMMAND_ID };
+				return new String[] { CreateSysMLModelCommand.COMMAND_ID };
 			}
 		}
 
