@@ -1572,6 +1572,15 @@
 			</mapping>
    </diagramMappings>
 </extension>
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="CompositeStructure"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.composite.custom.migration.CompositeReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+</extension>
 
 
 

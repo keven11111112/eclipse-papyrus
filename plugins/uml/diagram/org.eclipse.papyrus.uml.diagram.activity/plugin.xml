@@ -3170,5 +3170,15 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 <extension point="org.eclipse.gmf.runtime.emf.type.core.elementTypeBindings" id="element-types-bindings">
       <?gmfgen generated="false"?>
    </extension>
+   
+   <extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLActivityDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+</extension>
 
 </plugin>

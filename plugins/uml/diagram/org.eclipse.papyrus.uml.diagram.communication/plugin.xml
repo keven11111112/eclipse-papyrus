@@ -732,6 +732,17 @@
                 class="org.eclipse.papyrus.uml.diagram.communication.custom.canonical.LifelineVisualChildrenStrategy">
         </visualChildrenStrategy>
     </extension>
+    
+     
+   <extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+       <diagramReconciler
+         diagramType="PapyrusUMLCommunicationDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.communication.custom.migration.CommunicationReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+</extension>
 
 
 </plugin>
