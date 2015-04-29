@@ -9,12 +9,12 @@
     xmlns:javaQuery="http://www.eclipse.org/papyrus/emf/facet/query/java/0.2.incubation/javaquery"
     name="simpleUMLRT"
     documentation="Display structure of a UML-RT model"
-    rank="1500">
+    rank="-50">
   <eClassifiers
       xsi:type="custom:EClassCustomization"
-      name="Element">
+      name="NamedElement">
     <extendedMetaclass
-        href="http://www.eclipse.org/uml2/5.0.0/UML#//Element"/>
+        href="http://www.eclipse.org/uml2/5.0.0/UML#//NamedElement"/>
     <facetOperations
         name="GetLabel">
       <eType

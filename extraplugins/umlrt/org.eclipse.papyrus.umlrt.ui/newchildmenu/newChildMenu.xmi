@@ -30,10 +30,6 @@
       label="RTMessageSet"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageSet"/>
   <menu xsi:type="ElementCreationMenuModel:CreationMenu"
-      label="RTMessage IN"
-      icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_in.gif"
-      elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageIn"/>
-  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
       label="RTMessage OUT"
       icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_out.gif"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageOut"/>
@@ -41,4 +37,8 @@
       label="RTMessage INOUT"
       icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_inout.gif"
       elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageInOut"/>
+  <menu xsi:type="ElementCreationMenuModel:CreationMenu"
+      label="RTMessage IN"
+      icon="platform:/plugin/org.eclipse.papyrus.umlrt.ui/icons/rt_message_in.gif"
+      elementTypeIdRef="org.eclipse.papyrus.umlrt.RTMessageIn"/>
 </ElementCreationMenuModel:Folder>
