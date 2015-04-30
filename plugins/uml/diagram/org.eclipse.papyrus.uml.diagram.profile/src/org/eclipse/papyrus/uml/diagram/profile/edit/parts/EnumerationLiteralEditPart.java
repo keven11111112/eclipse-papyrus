@@ -67,13 +67,13 @@ import org.eclipse.papyrus.extensionpoints.editors.utils.IDirectEditorsIds;
 import org.eclipse.papyrus.infra.emf.appearance.helper.AppearanceHelper;
 import org.eclipse.papyrus.infra.emf.appearance.helper.VisualInformationPapyrusConstants;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IControlParserForDirectEdit;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IMaskManagedLabelEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.IndirectMaskLabelEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.directedit.MultilineLabelDirectEditManager;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.IDirectEdition;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.ILabelFigure;
 import org.eclipse.papyrus.uml.diagram.common.util.DiagramEditPartsUtil;
-import org.eclipse.papyrus.uml.diagram.profile.edit.policies.EnumerationLiteralItemSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.UMLTextNonResizableEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.edit.policies.UMLTextSelectionEditPolicy;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry;
@@ -158,7 +158,7 @@ public class EnumerationLiteralEditPart extends CompartmentEditPart implements I
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new EnumerationLiteralItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(EditPolicy.PRIMARY_DRAG_ROLE, new UMLTextNonResizableEditPolicy());
 		installEditPolicy(EditPolicy.COMPONENT_ROLE, new ListItemComponentEditPolicy());
 		installEditPolicy(EditPolicy.DIRECT_EDIT_ROLE, new LabelDirectEditPolicy());

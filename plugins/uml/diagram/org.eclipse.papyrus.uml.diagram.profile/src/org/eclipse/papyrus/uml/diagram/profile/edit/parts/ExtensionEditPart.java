@@ -15,11 +15,10 @@ import org.eclipse.draw2d.Connection;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.ITreeBranchEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editparts.UMLConnectionNodeEditPart;
 import org.eclipse.papyrus.uml.diagram.profile.custom.figure.ExtensionFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.ExtensionCustomNameEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.itemsemantic.CustomExtensionItemSemanticEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.edit.policies.ExtensionItemSemanticEditPolicy;
 
 /**
  * @generated
@@ -44,9 +43,8 @@ public class ExtensionEditPart extends UMLConnectionNodeEditPart implements ITre
 	@Override
 	protected void createDefaultEditPolicies() {
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new ExtensionItemSemanticEditPolicy());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
 		installEditPolicy(ExtensionCustomNameEditPolicy.SPECIFIC_EXTENSION_NAME_POLICY, new ExtensionCustomNameEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomExtensionItemSemanticEditPolicy());
 	}
 
 	/**

@@ -29,17 +29,17 @@ import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.gef.ui.figures.DefaultSizeNodeFigure;
 import org.eclipse.gmf.runtime.gef.ui.figures.NodeFigure;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultCreationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultGraphicalNodeEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpolicies.DefaultSemanticEditPolicy;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.IPapyrusNodeFigure;
 import org.eclipse.papyrus.infra.gmfdiag.common.figure.node.SelectableBorderedNodeFigure;
 import org.eclipse.papyrus.uml.diagram.common.editparts.ClassifierEditPart;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ConstrainedItemBorderLayoutEditPolicy;
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.PapyrusCreationEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.QualifiedNameDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.ShowHideCompartmentEditPolicy;
 import org.eclipse.papyrus.uml.diagram.common.figure.node.DataTypeFigure;
 import org.eclipse.papyrus.uml.diagram.profile.custom.policies.CustomGraphicalNodeEditPolicy;
-import org.eclipse.papyrus.uml.diagram.profile.custom.policies.itemsemantic.CustomDataTypeItemSemanticEditPolicyCN;
-import org.eclipse.papyrus.uml.diagram.profile.edit.policies.DataTypeItemSemanticEditPolicyCN;
 import org.eclipse.papyrus.uml.diagram.profile.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.profile.providers.UMLElementTypes;
 import org.eclipse.swt.graphics.Color;
@@ -76,13 +76,15 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 	 */
 	@Override
 	protected void createDefaultEditPolicies() {
-		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new PapyrusCreationEditPolicy());
+		installEditPolicy(EditPolicyRoles.CREATION_ROLE, new DefaultCreationEditPolicy());
 		super.createDefaultEditPolicies();
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DataTypeItemSemanticEditPolicyCN());
+		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new DefaultSemanticEditPolicy());
+
+		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new DefaultGraphicalNodeEditPolicy());
+
 		installEditPolicy(EditPolicy.LAYOUT_ROLE, createLayoutEditPolicy());
 		installEditPolicy("RESIZE_BORDER_ITEMS", new ConstrainedItemBorderLayoutEditPolicy()); //$NON-NLS-1$
 		installEditPolicy(EditPolicy.GRAPHICAL_NODE_ROLE, new CustomGraphicalNodeEditPolicy());
-		installEditPolicy(EditPolicyRoles.SEMANTIC_ROLE, new CustomDataTypeItemSemanticEditPolicyCN());
 		installEditPolicy(QualifiedNameDisplayEditPolicy.QUALIFIED_NAME_POLICY, new QualifiedNameDisplayEditPolicy());
 		installEditPolicy(ShowHideCompartmentEditPolicy.SHOW_HIDE_COMPARTMENT_POLICY, new ShowHideCompartmentEditPolicy());
 		// XXX need an SCR to runtime to have another abstract superclass that would let children add reasonable editpolicies
@@ -325,10 +327,10 @@ public class DataTypeEditPartCN extends ClassifierEditPart {
 		if (request instanceof CreateViewAndElementRequest) {
 			CreateElementRequestAdapter adapter = ((CreateViewAndElementRequest) request).getViewAndElementDescriptor().getCreateElementRequestAdapter();
 			IElementType type = (IElementType) adapter.getAdapter(IElementType.class);
-			if (type == UMLElementTypes.Property_3018) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Property_3018)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeAttributeCompartmentEditPartCN.VISUAL_ID));
 			}
-			if (type == UMLElementTypes.Operation_3019) {
+			if (UMLElementTypes.isKindOf(type, UMLElementTypes.Operation_3019)) {
 				return getChildBySemanticHint(UMLVisualIDRegistry.getType(DataTypeOperationCompartmentEditPartCN.VISUAL_ID));
 			}
 		}
