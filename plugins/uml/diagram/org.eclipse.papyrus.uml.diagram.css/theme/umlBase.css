@@ -121,6 +121,11 @@ ActivityDiagram AcceptEventAction
 	fillColor:white;
 }
 
+ActivityDiagram MergeNode, 
+ActivityDiagram DecisionNode{
+	maintainSymbolRatio:false;
+}
+
 ActivityDiagram InitialNode{
 	fillColor: black;
 }
@@ -270,6 +275,7 @@ StateMachineDiagram FinalState
 	fillColor:white;
 }
 
+
 StateMachineDiagram Pseudostate[kind="initial"],
 StateMachineDiagram Pseudostate[kind="junction"]
 {
@@ -348,6 +354,11 @@ InteractionOverviewDiagram DecisionNode
 	useOriginalColors:false;
 	gradient:none;
 	fillColor:white;
+}
+
+InteractionOverviewDiagram MergeNode, 
+InteractionOverviewDiagram DecisionNode{
+	maintainSymbolRatio:false;
 }
 
 InteractionOverviewDiagram InitialNode{
