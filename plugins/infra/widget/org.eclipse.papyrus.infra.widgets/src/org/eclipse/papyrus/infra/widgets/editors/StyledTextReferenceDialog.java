@@ -23,8 +23,6 @@ import java.util.TimerTask;
 import org.eclipse.core.databinding.observable.value.IObservableValue;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.OperationCanceledException;
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.emf.ecore.EStructuralFeature;
 import org.eclipse.jface.fieldassist.ControlDecoration;
 import org.eclipse.jface.fieldassist.FieldDecoration;
 import org.eclipse.jface.fieldassist.FieldDecorationRegistry;
@@ -430,14 +428,7 @@ public class StyledTextReferenceDialog extends AbstractReferenceDialog implement
 	@Override
 	public Object getValue() {
 		if (modelProperty != null) {
-			Object modelPropertyValue = modelProperty.getValue();
-			if (modelPropertyValue == null) {
-				EObject contextElement = getContextElement() != null && getContextElement() instanceof EObject ? (EObject) getContextElement() : null;
-				if (modelProperty.getValueType() instanceof EStructuralFeature) {
-					return contextElement.eGet((EStructuralFeature) modelProperty.getValueType());
-				}
-			}
-			return modelPropertyValue;
+			return modelProperty.getValue();
 		}
 		return value;
 	}
