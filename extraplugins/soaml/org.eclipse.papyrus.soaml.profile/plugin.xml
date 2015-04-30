@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<?eclipse version="3.0"?><!--
+--><plugin>
+
+   <extension point="org.eclipse.emf.ecore.generated_package">
+      <!-- @generated SoaML -->
+      <package
+            uri="http://Papyrus/SoaML/1"
+            class="SoaML.SoaMLPackage"
+            genModel="model/SoaML.genmodel"/>
+   </extension>
+
+   <extension point="org.eclipse.uml2.uml.generated_package">
+      <profile location="pathmap://SoaML_PROFILES/SoaMLProfile.profile.uml#SoaML" uri="http://Papyrus/SoaML/1">
+      </profile>
+   </extension>
+   <extension point="org.eclipse.emf.ecore.uri_mapping">
+      <mapping source="pathmap://SoaML_PROFILES/" target="platform:/plugin/org.eclipse.papyrus.soaml.profile/model/">
+      </mapping>
+   </extension>
+   <extension point="org.eclipse.papyrus.uml.extensionpoints.UMLProfile">
+      <profile description="UML profile for SOA" iconpath="icons/SoaML_new_Project32x32.gif" name="SoaML" path="pathmap://SoaML_PROFILES/SoaMLProfile.profile.uml" provider="CEA List">
+      </profile>
+   </extension>
+   <extension id="PD_class" point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition ID="Palette_Class_SoaML" class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" name="Palette_Class_SoaML" path="palettes/Palette_classDiag.xml" provider="CEA LIST">
+         <Priority name="Medium">
+         </Priority>
+         <editor id="org.eclipse.papyrus.uml.diagram.clazz">
+         </editor>
+      </paletteDefinition>
+   </extension>
+   <extension id="PD_composite" point="org.eclipse.papyrus.uml.diagram.common.paletteDefinition">
+      <paletteDefinition ID="org.eclipse.papyrus.soaml.profile.Palette_compositeDiag_SoaML" class="org.eclipse.papyrus.uml.diagram.common.service.PluginPaletteProvider" icon="platform:/plugin/org.eclipse.gmf.runtime.diagram.ui/icons/group.gif" name="org.eclipse.papyrus.soaml.profile.Palette_compositeDiag_SoaML" path="palettes/Palette_compositeDiag.xml" provider="CEA LIST">
+         <Priority name="Medium">
+         </Priority>
+         <editor id="org.eclipse.papyrus.diagram.composite">
+         </editor>
+      </paletteDefinition>
+   </extension>
+
+
+</plugin>

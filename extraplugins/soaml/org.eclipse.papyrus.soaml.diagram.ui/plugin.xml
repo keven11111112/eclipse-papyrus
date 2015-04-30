@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?eclipse version="3.4"?>
+<plugin>
+   <extension
+         point="org.eclipse.ui.newWizards">
+      <wizard
+            canFinishEarly="false"
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.soaml.diagram.ui.NewSoamlModelWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="icons/SoaML_new_Project32x32.gif"
+            id="org.eclipse.papyrus.wizards.createsoamlmodel"
+            name="SoaML Model">
+         <description>
+            New SoaML Project
+         </description>
+      </wizard>
+      <wizard
+            category="org.eclipse.papyrus.wizards.category"
+            class="org.eclipse.papyrus.soaml.diagram.ui.NewSoamlProjectWizard"
+            finalPerspective="org.eclipse.papyrus.infra.core.perspective"
+            icon="icons/SoaML_new_Project.gif"
+            id="org.eclipse.papyrus.soaml.diagram.ui.createsoamlwizard"
+            name="SoaML Project"
+            project="true">
+         <description>
+            New SoaML Project
+         </description>
+      </wizard>
+   </extension>
+
+</plugin>
