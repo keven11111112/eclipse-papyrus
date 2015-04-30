@@ -31,7 +31,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
-	
+
 	@Override
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
@@ -39,7 +39,7 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 
 	@Override
 	protected ICreationCommand getDiagramCommandCreation() {
-		return (ICreationCommand)new CreateProfileDiagramCommand();
+		return (ICreationCommand) new CreateProfileDiagramCommand();
 	}
 
 	@Override
@@ -52,19 +52,16 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 		return "ProfileDiagramTest.profile.di";
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageClass() {
 		testToManageNode(UMLElementTypes.Class_2008, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManagePackage() {
 		testToManageNode(UMLElementTypes.Package_2007, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageDataType() {
 		testToManageNode(UMLElementTypes.DataType_2010, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, false);
@@ -76,7 +73,6 @@ public class TestProfileDiagramTopNode extends TestTopNode {
 		testToManageNode(UMLElementTypes.Stereotype_1026, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageProfile() {
 		testToManageNode(UMLElementTypes.Profile_1030, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_2007, false);

@@ -33,17 +33,17 @@
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_MRGIcORAEeSg9_CuHKArkw" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.profile.Constraint_1028" hint="1028">
     <iconEntry xmi:id="_MRGIceRAEeSg9_CuHKArkw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint_As_UML::Package::packagedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_MRPSYORAEeSg9_CuHKArkw" name="Constraint" identifier="org.eclipse.papyrus.uml.diagram.profile.Constraint_1014" hint="1014">
     <iconEntry xmi:id="_MRPSYeRAEeSg9_CuHKArkw" iconPath="/icons/full/obj16/Constraint.gif" bundleId="org.eclipse.uml2.uml.edit"/>
-    <specializedTypesID>org.eclipse.papyrus.uml.Constraint</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint_As_UML::Package::packagedElement</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_MSWssORAEeSg9_CuHKArkw" name="Constraint Constrained Element" identifier="org.eclipse.papyrus.uml.diagram.profile.ConstraintConstrainedElement_4014" hint="4014">
-    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint.ConstrainedElements</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_MSWsseRAEeSg9_CuHKArkw" name="Constraint Context" identifier="org.eclipse.papyrus.uml.diagram.profile.ConstraintContext_8500" hint="8500">
-    <specializedTypesID>org.eclipse.gmf.runtime.emf.type.core.null</specializedTypesID>
+    <specializedTypesID>org.eclipse.papyrus.uml.Constraint.Context</specializedTypesID>
   </elementTypeConfigurations>
   <elementTypeConfigurations xsi:type="elementtypesconfigurations:SpecializationTypeConfiguration" xmi:id="_MRIksORAEeSg9_CuHKArkw" name="Data Type" identifier="org.eclipse.papyrus.uml.diagram.profile.DataType_3027" hint="3027">
     <iconEntry xmi:id="_MRIkseRAEeSg9_CuHKArkw" iconPath="/icons/full/obj16/DataType.gif" bundleId="org.eclipse.uml2.uml.edit"/>

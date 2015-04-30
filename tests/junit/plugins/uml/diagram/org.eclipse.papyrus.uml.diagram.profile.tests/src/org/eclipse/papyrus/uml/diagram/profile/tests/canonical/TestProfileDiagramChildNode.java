@@ -34,6 +34,7 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 	public DiagramUpdater getDiagramUpdater() {
 		return UMLDiagramUpdater.INSTANCE;
 	}
+
 	protected CreateViewRequest createViewRequestShapeContainer() {
 		return CreateViewRequestFactory.getCreateShapeRequest(UMLElementTypes.Package_2007, getDiagramEditPart().getDiagramPreferencesHint());
 	}
@@ -56,13 +57,11 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageDatatypeInPackage() {
 		testToManageNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManagePackageInPackage() {
 		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Package_2007, false);
@@ -74,25 +73,21 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageProfileInPackage() {
 		testToManageNode(UMLElementTypes.Profile_1024, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Package_2007, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageClassInProfile() {
 		testToManageNode(UMLElementTypes.Class_3010, UMLPackage.eINSTANCE.getClass_(), UMLElementTypes.Profile_1030, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageDatatypeInProfile() {
 		testToManageNode(UMLElementTypes.DataType_3027, UMLPackage.eINSTANCE.getDataType(), UMLElementTypes.Profile_1030, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManagePackageInProfile() {
 		testToManageNode(UMLElementTypes.Package_1012, UMLPackage.eINSTANCE.getPackage(), UMLElementTypes.Profile_1030, false);
@@ -104,7 +99,6 @@ public class TestProfileDiagramChildNode extends TestChildNode {
 		testToManageNode(UMLElementTypes.Stereotype_1023, UMLPackage.eINSTANCE.getStereotype(), UMLElementTypes.Profile_1030, false);
 	}
 
-	@FailingTest
 	@Test
 	public void testToManageProfileInProfile() {
 		testToManageNode(UMLElementTypes.Profile_1024, UMLPackage.eINSTANCE.getProfile(), UMLElementTypes.Profile_1030, false);
