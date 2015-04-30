@@ -27,17 +27,7 @@ public class Activator extends AbstractUIPlugin {
 	/** The Constant PLUGIN_ID. */
 	public static final String PLUGIN_ID = "org.eclipse.papyrus.moka.fuml"; //$NON-NLS-1$
 
-	// The shared instance
-	/** The plugin. */
-	private static Activator plugin;
-
-	public static LogHelper log;
-
-	/**
-	 * The constructor.
-	 */
-	public Activator() {
-	}
+	public static LogHelper logger;
 
 	/*
 	 * (non-Javadoc)
@@ -49,8 +39,7 @@ public class Activator extends AbstractUIPlugin {
 	@Override
 	public void start(BundleContext context) throws Exception {
 		super.start(context);
-		plugin = this;
-		log = new LogHelper(this);
+		logger = new LogHelper(this);
 	}
 
 	/*
@@ -62,16 +51,6 @@ public class Activator extends AbstractUIPlugin {
 	 */
 	@Override
 	public void stop(BundleContext context) throws Exception {
-		plugin = null;
 		super.stop(context);
-	}
-
-	/**
-	 * Returns the shared instance.
-	 *
-	 * @return the shared instance
-	 */
-	public static Activator getDefault() {
-		return plugin;
 	}
 }

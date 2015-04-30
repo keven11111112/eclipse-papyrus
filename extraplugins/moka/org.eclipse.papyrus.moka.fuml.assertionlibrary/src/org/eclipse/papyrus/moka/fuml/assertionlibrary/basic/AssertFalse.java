@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.assertionlibrary.basic;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.BooleanValue;
@@ -22,6 +23,7 @@ import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.Reporter;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.TestDecision;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.TestReport;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.utils.AssertionExecutionContextHelper;
+import org.eclipse.papyrus.moka.fuml.standardlibrary.library.io.StandardOutputChannelImpl;
 import org.eclipse.uml2.uml.Classifier;
 
 
@@ -32,7 +34,13 @@ public class AssertFalse extends OpaqueBehaviorExecution {
 		Classifier executionContext = AssertionExecutionContextHelper.getExecutionContext(this);
 		StringValue label = (StringValue) inputParameters.get(0).values.get(0);
 		BooleanValue assertionResult = (BooleanValue) inputParameters.get(1).values.get(0);
-		Reporter.INSTANCE.add(new TestReport(executionContext != null ? executionContext : null, label.value, assertionResult.value == false ? TestDecision.SUCCESS : TestDecision.FAILED, getClass()));
+		TestReport testReport = new TestReport(executionContext != null ? executionContext : null, label.value, !assertionResult.value ? TestDecision.SUCCESS : TestDecision.FAILED, getClass());
+		Reporter.INSTANCE.add(testReport);
+		try {
+			StandardOutputChannelImpl.getConsole().newOutputStream().write("\n"+testReport+"\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		};
 	}
 
 	@Override

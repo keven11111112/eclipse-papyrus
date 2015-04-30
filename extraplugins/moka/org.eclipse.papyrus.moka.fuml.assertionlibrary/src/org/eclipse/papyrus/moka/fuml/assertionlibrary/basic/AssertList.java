@@ -11,6 +11,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.assertionlibrary.basic;
 
+import java.io.IOException;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.StringValue;
@@ -21,6 +22,7 @@ import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.Reporter;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.TestDecision;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting.TestReport;
 import org.eclipse.papyrus.moka.fuml.assertionlibrary.utils.AssertionExecutionContextHelper;
+import org.eclipse.papyrus.moka.fuml.standardlibrary.library.io.StandardOutputChannelImpl;
 import org.eclipse.uml2.uml.Classifier;
 
 
@@ -40,7 +42,15 @@ public class AssertList extends OpaqueBehaviorExecution {
 		} else {
 			equal = false;
 		}
-		Reporter.INSTANCE.add(new TestReport(executionContext != null ? executionContext : null, label.value, equal ? TestDecision.SUCCESS : TestDecision.FAILED, getClass()));
+		TestReport testReport = new TestReport(executionContext != null ? executionContext : null,
+				label.value, equal ? TestDecision.SUCCESS : TestDecision.FAILED, getClass(), 
+						inputParameters.get(1).values, inputParameters.get(2).values);
+		Reporter.INSTANCE.add(testReport);
+		try {
+			StandardOutputChannelImpl.getConsole().newOutputStream().write("\n"+testReport+"\n");
+		} catch (IOException e) {
+			e.printStackTrace();
+		};	
 	}
 
 	@Override

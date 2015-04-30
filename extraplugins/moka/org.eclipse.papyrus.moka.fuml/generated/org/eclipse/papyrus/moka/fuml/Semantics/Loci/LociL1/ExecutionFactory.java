@@ -16,7 +16,6 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Activator;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Evaluation;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
@@ -28,7 +27,7 @@ import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.Type;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-public abstract class ExecutionFactory implements Cloneable {
+public abstract class ExecutionFactory{
 
 	/*
 	 * The locus at which this factory resides.
@@ -211,16 +210,5 @@ public abstract class ExecutionFactory implements Cloneable {
 			}
 		}
 		return i;
-	}
-
-	@Override
-	public ExecutionFactory clone() {
-		ExecutionFactory clone = null;
-		try {
-			clone = (ExecutionFactory) super.clone();
-		} catch (CloneNotSupportedException e) {
-			Activator.log.error(e);
-		}
-		return clone;
 	}
 }

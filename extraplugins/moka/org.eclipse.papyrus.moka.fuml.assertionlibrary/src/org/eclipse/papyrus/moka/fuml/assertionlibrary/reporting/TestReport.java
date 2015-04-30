@@ -11,6 +11,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.assertionlibrary.reporting;
 
+import java.util.List;
+
+import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.uml2.uml.Classifier;
 
 public class TestReport {
@@ -22,12 +25,25 @@ public class TestReport {
 	protected TestDecision verdict;
 
 	protected Class<?> assertionType;
+	
+	protected List<Value> left;
+	
+	protected List<Value> right;
 
-	public TestReport(Classifier context, String label, TestDecision verdict, Class<?> assertionType) {
+	public TestReport(Classifier context, String label, TestDecision verdict, Class<?> assertionType){
 		this.context = context;
 		this.label = label;
 		this.verdict = verdict;
 		this.assertionType = assertionType;
+	}
+	
+	public TestReport(Classifier context, String label, TestDecision verdict, Class<?> assertionType, List<Value> left, List<Value> right) {
+		this.context = context;
+		this.label = label;
+		this.verdict = verdict;
+		this.assertionType = assertionType;
+		this.left = left;
+		this.right = right;
 	}
 
 	public String getLabel() {
@@ -50,6 +66,9 @@ public class TestReport {
 	public String toString() {
 		String contextName = context == null ? "NULL" : (context.getQualifiedName() == null ? "NULL" : context.getQualifiedName());
 		String s = "[TEST] " + this.label + " in " + contextName + " => " + verdict.toString();
+		if(this.left!=null && this.right!=null && verdict == TestDecision.FAILED){
+			s += " ("+this.left + " != " + this.right+")";
+		}
 		return s;
 	}
 

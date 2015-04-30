@@ -9,15 +9,21 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Jeremie Tatibouet (CEA LIST)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Activities.IntermediateActivities;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.Execution;
 import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.BasicBehaviors.ParameterValue;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.EventAccepter;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.ObjectActivation;
+import org.eclipse.papyrus.moka.fuml.Semantics.CommonBehaviors.Communications.SignalInstance;
+import org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1.ChoiceStrategy;
 import org.eclipse.papyrus.moka.fuml.debug.Debug;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityParameterNode;
@@ -86,5 +92,29 @@ public class ActivityExecution extends Execution {
 		if (this.activationGroup != null) {
 			this.activationGroup.terminateAll();
 		}
+	}
+
+	@Override
+	public boolean dispatchEvent(SignalInstance signal) {
+		boolean dispatched = false;
+		ObjectActivation objectActivation = this.context.objectActivation;
+		List<Integer> matchingEventAccepterIndexes = new ArrayList<Integer>();
+		List<EventAccepter> waitingEventAccepters = objectActivation.waitingEventAccepters;
+		for (int i = 0; i < waitingEventAccepters.size(); i++) {
+			EventAccepter eventAccepter = waitingEventAccepters.get(i);
+			if (eventAccepter.registrationContext==this && eventAccepter.match(signal)) {
+				matchingEventAccepterIndexes.add(i);
+			}
+		}
+		if (matchingEventAccepterIndexes.size() > 0) {
+			// *** Choose one matching event accepter non-deterministically.
+			// ***
+			int j = ((ChoiceStrategy) this.context.locus.factory.getStrategy("choice")).choose(matchingEventAccepterIndexes.size());
+			EventAccepter selectedEventAccepter = objectActivation.waitingEventAccepters.get(matchingEventAccepterIndexes.get(j - 1));
+			objectActivation.waitingEventAccepters.remove(j - 1);
+			selectedEventAccepter.accept(signal);
+			dispatched = true;
+		}
+		return dispatched;
 	}
 }

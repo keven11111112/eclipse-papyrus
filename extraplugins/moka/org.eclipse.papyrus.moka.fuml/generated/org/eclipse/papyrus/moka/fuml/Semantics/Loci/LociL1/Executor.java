@@ -15,7 +15,6 @@ package org.eclipse.papyrus.moka.fuml.Semantics.Loci.LociL1;
 
 import java.util.List;
 
-import org.eclipse.papyrus.moka.fuml.Activator;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Object_;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Reference;
 import org.eclipse.papyrus.moka.fuml.Semantics.Classes.Kernel.Value;
@@ -26,7 +25,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.ValueSpecification;
 
-public class Executor implements Cloneable {
+public class Executor{
 
 	/*
 	 * The locus at which this executor resides.
@@ -71,17 +70,5 @@ public class Executor implements Cloneable {
 		Reference reference = new Reference();
 		reference.referent = object;
 		return reference;
-	}
-
-	@Override
-	public Executor clone() {
-		Executor clone = null;
-		try {
-			clone = (Executor) super.clone();
-		} catch (CloneNotSupportedException e) {
-			// TODO Auto-generated catch block
-			Activator.log.error(e);
-		}
-		return clone;
 	}
 }

@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  CEA LIST - Initial API and implementation
+ *  Jeremie Tatibouet (CEA LIST)
  *
  *****************************************************************************/
 package org.eclipse.papyrus.moka.fuml.Semantics.Actions.CompleteActions;
@@ -44,7 +45,7 @@ public class AcceptEventActionActivation extends ActionActivation {
 		super.run();
 		this.eventAccepter = new AcceptEventActionEventAccepter();
 		this.eventAccepter.actionActivation = this;
-		this.waiting = false;
+		this.eventAccepter.registrationContext = this.getActivityExecution();
 	}
 
 	@Override
