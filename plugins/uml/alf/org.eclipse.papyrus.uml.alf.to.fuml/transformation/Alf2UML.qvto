@@ -337,7 +337,7 @@ query toVisibilityKind(visibility : String) : VisibilityKind {
 
 mapping Member::toNamedElement() : NamedElement
   inherits DocumentedElement::toElement
-  when { not self.definition.oclIsKindOf(ClassifierTemplateParameter) and not self.definition.isStub } {
+  when { not self.definition.oclIsKindOf(ClassifierTemplateParameter) } {
 init {
   result := self.definition.map memberToNamedElement();
 }
@@ -370,9 +370,12 @@ mapping NamespaceDefinition::toNamespace() : Namespace
 // Package Definitions
 
 mapping PackageDefinition::toPackage() : Package
-  inherits MemberDefinition::toNamedElement
-  when { not self.isStub } {
-  packagedElement := self.ownedMember->map toNamedElement()[PackageableElement];
+  inherits MemberDefinition::toNamedElement {
+  if self.isStub then {
+  	name := name + "$stub";
+  } else {
+  	packagedElement := self.ownedMember->map toNamedElement()[PackageableElement];
+  } endif;
 }
 
 // Classifier Definitions
@@ -381,6 +384,9 @@ abstract mapping ClassifierDefinition::toClassifier() : Classifier
   inherits MemberDefinition::toNamedElement
   when { not self.isPrimitive and not self.isExternal } {
 //  log("[toClassifier] classifier=" + self.name.toString());
+  if self.isStub then {
+  	name := name + "$stub";
+  } endif;
   isAbstract := self.isAbstract;
 	generalization := self.specializationReferent->map toGeneralization();
 	var templateParameters := self.ownedMember.definition[ClassifierTemplateParameter];
@@ -465,7 +471,7 @@ init {
           }
       );
     }
-  endif
+  endif;
 }
 
 abstract helper Classifier::newInstance() : Classifier;
@@ -479,94 +485,97 @@ helper Activity::newInstance() : Classifier { return object Activity {} }
 // Class Definitions
 
 mapping ClassDefinition::toClass() : Class
-  inherits ClassifierDefinition::toClassifier 
-  when { not self.isStub } {
-  var members = self.ownedMember->map toNamedElement();
-  
-  ownedAttribute := members[Property];
-  ownedOperation := members[Operation];
-  ownedBehavior := result.ownedOperation.method;
-  nestedClassifier := members[Classifier];
-  
-  ownedAttribute[defaultValue <> null]->forEach(p) {
-    var behavior := p.defaultValue.oclAsType(OpaqueExpression).behavior;
-    behavior.name := uniqueName(p.name + "$defaultValue", result);
-    ownedBehavior += behavior;
-  };
-  ownedOperation.method->forEach(m) {
-		m.name := uniqueName(m.specification.name + "$method", result);
-  };
-  
-  // Create initialization flag.
-  var initializationFlagName := uniqueName(self.actualName() + "$initializationFlag", result);
-  var initializationFlag := object Property {
-  	name := initializationFlagName;
-  	lower := 0;
-  	upper := 1;
-  	visibility := VisibilityKind::protected;
-  };
-  ownedAttribute += initializationFlag;
-  
-  // Create initialization operation.
-  var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
-  var initializationMethod := self.createInitializationMethod(result, initializationFlag, initializationOperationName);
-  var initializationOperation := object Operation {
-  	name := initializationOperationName;
-  	visibility := VisibilityKind::protected;
-  	method := initializationMethod;
-  };
-  ownedOperation += initializationOperation;
-  ownedBehavior += initializationMethod;
-  
-  self.ownedMember.definition[OperationDefinition]->select(not isAbstract and isConstructor)->
-    mapConstructor(initializationFlag, initializationOperation);
-    
-  if not self.ownedMember.definition[OperationDefinition]->exists(isConstructor) then {
-  
-    // Add default constructor.
-  	var activity = object Activity {
-  		name := uniqueName(self.actualName() + "$method", result);
-      ownedParameter := object Parameter {
-        type := result;
-        lower := 1;
-        upper := 1;
-        direction := ParameterDirectionKind::_'return';
-      };
-  	};
-    ownedBehavior += activity;
-    var operation := object Operation {
-      name := self.actualName();
-      method := activity;
-      ownedParameter := object Parameter {
-      	type := result;
-      	lower := 1;
-      	upper := 1;
-      	direction := ParameterDirectionKind::_return;
-      };
-    };
-  	ownedOperation += operation;
-  	addAsStereotyped(operation, Set{"Create"});
-  	mapDefaultConstructor(activity, result, initializationOperation);
-  	
-	} endif;
-	
-  if not self.ownedMember.definition[OperationDefinition]->exists(isDestructor) then {
-  
-    // Add default destructor.
-    var activity = object Activity {
-      name := uniqueName("destroy$method", result);
-    };
-    ownedBehavior += activity;
-    var operation := object Operation {
-      name := "destroy";
-      method := activity;
-    };
-    ownedOperation += operation;
-    addAsStereotyped(operation, Set{"Destroy"});
-    self.mapDefaultDestructor(activity, result);
-    
-  } endif;    
-  
+  inherits ClassifierDefinition::toClassifier {
+	  if not self.isStub then {
+		  var members = self.ownedMember->map toNamedElement();
+		  
+		  ownedAttribute := members[Property];
+		  ownedOperation := members[Operation];
+		  ownedBehavior := result.ownedOperation.method;
+		  nestedClassifier := members[Classifier];
+		  
+		  ownedAttribute[defaultValue <> null]->forEach(p) {
+		    var behavior := p.defaultValue.oclAsType(OpaqueExpression).behavior;
+		    behavior.name := uniqueName(p.name + "$defaultValue", result);
+		    ownedBehavior += behavior;
+		  };
+		  ownedOperation.method->forEach(m) {
+				m.name := uniqueName(m.specification.name + "$method", result);
+				if m.specification.invresolveone(OperationDefinition).isStub then {
+					m.name := m.name + "$stub";
+				} endif;
+		  };
+		  
+		  // Create initialization flag.
+		  var initializationFlagName := uniqueName(self.actualName() + "$initializationFlag", result);
+		  var initializationFlag := object Property {
+		  	name := initializationFlagName;
+		  	lower := 0;
+		  	upper := 1;
+		  	visibility := VisibilityKind::protected;
+		  };
+		  ownedAttribute += initializationFlag;
+		  
+		  // Create initialization operation.
+		  var initializationOperationName := uniqueName(self.actualName() + "$initialization", result);
+		  var initializationMethod := self.createInitializationMethod(result, initializationFlag, initializationOperationName);
+		  var initializationOperation := object Operation {
+		  	name := initializationOperationName;
+		  	visibility := VisibilityKind::protected;
+		  	method := initializationMethod;
+		  };
+		  ownedOperation += initializationOperation;
+		  ownedBehavior += initializationMethod;
+		  
+		  self.ownedMember.definition[OperationDefinition]->select(not isAbstract and isConstructor)->
+		    mapConstructor(initializationFlag, initializationOperation);
+		    
+		  if not self.ownedMember.definition[OperationDefinition]->exists(isConstructor) then {
+		  
+		    // Add default constructor.
+		  	var activity = object Activity {
+		  		name := uniqueName(self.actualName() + "$method", result);
+		      ownedParameter := object Parameter {
+		        type := result;
+		        lower := 1;
+		        upper := 1;
+		        direction := ParameterDirectionKind::_'return';
+		      };
+		  	};
+		    ownedBehavior += activity;
+		    var operation := object Operation {
+		      name := self.actualName();
+		      method := activity;
+		      ownedParameter := object Parameter {
+		      	type := result;
+		      	lower := 1;
+		      	upper := 1;
+		      	direction := ParameterDirectionKind::_return;
+		      };
+		    };
+		  	ownedOperation += operation;
+		  	addAsStereotyped(operation, Set{"Create"});
+		  	mapDefaultConstructor(activity, result, initializationOperation);
+		  	
+			} endif;
+			
+		  if not self.ownedMember.definition[OperationDefinition]->exists(isDestructor) then {
+		  
+		    // Add default destructor.
+		    var activity = object Activity {
+		      name := uniqueName("destroy$method", result);
+		    };
+		    ownedBehavior += activity;
+		    var operation := object Operation {
+		      name := "destroy";
+		      method := activity;
+		    };
+		    ownedOperation += operation;
+		    addAsStereotyped(operation, Set{"Destroy"});
+		    self.mapDefaultDestructor(activity, result);
+		    
+	  } endif;    
+  } endif;
 }
 
 query uniqueName(name : String, namespace : Namespace) : String {
@@ -866,24 +875,27 @@ query Class::initializationOperation() : Operation {
 // Active Class Definitions
 
 mapping ActiveClassDefinition::toClass() : Class
-  inherits ClassDefinition::toClass
-  when { not self.isStub } {
+  inherits ClassDefinition::toClass {
   isActive := true;
-  ownedReception := self.ownedMember->map toNamedElement()[Reception];
-  ownedReception += self.ownedMember[definition.oclIsKindOf(SignalReceptionDefinition)]->map toReception();
-  classifierBehavior := self.classifierBehavior.map toActivity();
-  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
-  classifierBehavior.visibility := VisibilityKind::private;
-  ownedBehavior += classifierBehavior; // Eclipse implmentation only
-  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+  if not self.isStub then {
+	  ownedReception := self.ownedMember->map toNamedElement()[Reception];
+	  ownedReception += self.ownedMember[definition.oclIsKindOf(SignalReceptionDefinition)]->map toReception();
+	  classifierBehavior := self.classifierBehavior.map toActivity();
+	  classifierBehavior.name := uniqueName(result.name + "$behavior", result);
+	  classifierBehavior.visibility := VisibilityKind::private;
+	  ownedBehavior += classifierBehavior; // Eclipse implmentation only
+	  // addDefinition(classifierBehavior.oclAsType(Activity), self.classifierBehavior.body);
+  } endif;
 }
 
 // Data Type Definitions
 
 mapping DataTypeDefinition::toDataType() : DataType
   inherits ClassifierDefinition::toClassifier
-  when { not self.isStub and not self.isPrimitive } {
-  ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+  when { not self.isPrimitive } {
+  if not self.isStub then {
+  	ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+  } endif;
 }
 
 mapping DataTypeDefinition::toPrimitive() : PrimitiveType
@@ -894,17 +906,19 @@ mapping DataTypeDefinition::toPrimitive() : PrimitiveType
 // Association Definitions
 
 mapping AssociationDefinition::toAssociation() : Association
-  inherits ClassifierDefinition::toClassifier
-  when { not self.isStub } {
-  ownedEnd := self.ownedMember->map toNamedElement()[Property];
+  inherits ClassifierDefinition::toClassifier {
+  if not self.isStub then {
+		ownedEnd := self.ownedMember->map toNamedElement()[Property];
+  } endif;
 }
 
 // Enumeration Definitions
 
 mapping EnumerationDefinition::toEnumeration() : Enumeration
-  inherits ClassifierDefinition::toClassifier 
-  when { not self.isStub } {
-  ownedLiteral := self.ownedMember->map toNamedElement()[EnumerationLiteral];
+  inherits ClassifierDefinition::toClassifier {
+  if not self.isStub then {
+  	ownedLiteral := self.ownedMember->map toNamedElement()[EnumerationLiteral];
+  } endif;
 }
 
 mapping EnumerationLiteralName::toEnumerationLiteral() : EnumerationLiteral
@@ -913,14 +927,14 @@ mapping EnumerationLiteralName::toEnumerationLiteral() : EnumerationLiteral
 // Signal Definitions and Signal Reception Definitions
 
 mapping SignalDefinition::toSignal() : Signal
-  inherits ClassifierDefinition::toClassifier 
-  when { not self.isStub } {
-  ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+  inherits ClassifierDefinition::toClassifier {
+  if not self.isStub then {
+  	ownedAttribute := self.ownedMember->map toNamedElement()[Property];
+  } endif;
 }
 
 mapping Member::toReception() : Reception
-  when { self.definition.oclIsKindOf(SignalReceptionDefinition) and 
-         not self.definition.isStub } {
+  when { self.definition.oclIsKindOf(SignalReceptionDefinition) } {
   visibility := toVisibilityKind(self.visibility);
   signal := self.definition.resolveone(Signal);
   name := result.signal.name;
@@ -929,8 +943,7 @@ mapping Member::toReception() : Reception
 // Activity Definitions
 
 mapping ActivityDefinition::toActivity() : Activity
-  inherits ClassifierDefinition::toClassifier
-  when { not self.isStub } {
+  inherits ClassifierDefinition::toClassifier {
 init {
   var parameters := self.parameters();
   var returnParameter := self.returnParameter();
@@ -940,9 +953,11 @@ init {
   result := new Activity(parameters->map toParameter());
 }
 	isActive := self.toReference().isActiveBehavior();
-	self.body.map toActivity(result);
-  if self.unit->isEmpty() then {
-  	addDefinition(result, self.body);	
+	if not self.isStub then {
+		self.body.map toActivity(result);
+	  if self.unit->isEmpty() then {
+	  	addDefinition(result, self.body);	
+	  } endif;
   } endif;
 }
 
@@ -1070,8 +1085,7 @@ mapping Expression::toOpaqueExpression() : OpaqueExpression {
 // Operation Definitions
 
 mapping OperationDefinition::toOperation() : Operation
-  inherits MemberDefinition::toNamedElement
-  when { not self.isStub } {
+  inherits MemberDefinition::toNamedElement {
   isAbstract := self.isAbstract;
   ownedParameter := self.parameters()->map toParameter();
   var returnParameter := self.returnParameter();
@@ -1081,20 +1095,22 @@ mapping OperationDefinition::toOperation() : Operation
   if not self.isAbstract then {
   	var activity := new Activity(result.ownedParameter->deepclone()->oclAsType(Parameter));
   	method += activity;
-  	self.body.map toActivity(activity);
-  	addDefinition(activity, self.body);
-  /*
-    if self.isConstructor then
-    	// Defer mapping of constructor body until later, after the initialization infrastructure
-    	// is set up for the owning class.
-      method := object Activity {
-      	ownedParameter := result.ownedParameter->deepclone()->oclAsType(Parameter);
-      	visibility := VisibilityKind::protected;
-      }
-    else
-      method := self.body.map toActivity(result.ownedParameter->deepclone()->oclAsType(Parameter))
-    endif
-  */
+  	if not self.isStub then {
+	  	self.body.map toActivity(activity);
+	  	addDefinition(activity, self.body);
+	  /*
+	    if self.isConstructor then
+	    	// Defer mapping of constructor body until later, after the initialization infrastructure
+	    	// is set up for the owning class.
+	      method := object Activity {
+	      	ownedParameter := result.ownedParameter->deepclone()->oclAsType(Parameter);
+	      	visibility := VisibilityKind::protected;
+	      }
+	    else
+	      method := self.body.map toActivity(result.ownedParameter->deepclone()->oclAsType(Parameter))
+	    endif
+	  */
+  	} endif;
   } endif;
 }
 

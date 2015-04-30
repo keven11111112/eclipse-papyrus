@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST.
+ * Copyright (c) 2014-2015 CEA LIST.
  *
  *    
  * All rights reserved. This program and the accompanying materials
@@ -19,6 +19,7 @@ import static org.junit.Assert.*;
 
 import java.util.List;
 
+import org.eclipse.emf.common.util.EList;
 import org.eclipse.papyrus.uml.alf.MappingError;
 import org.eclipse.papyrus.uml.alf.ParsingError;
 import org.eclipse.papyrus.uml.alf.impl.ModelNamespaceImpl;
@@ -26,6 +27,7 @@ import org.eclipse.papyrus.uml.alf.tests.mapper.AlfCompiler;
 import org.eclipse.papyrus.uml.alf.tests.utils.ContextModelArea;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Association;
+import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.CallOperationAction;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.DataType;
@@ -92,7 +94,7 @@ public class CompilerTests {
 		if (type == null) {
 			assertNull(typeName);
 		} else {
-			assertEquals(typeName, element.getType().getName());
+			assertEquals(typeName, type.getName());
 		}
 	}
 
@@ -116,6 +118,14 @@ public class CompilerTests {
 		assertMultiplicityElement(parameter, lower, upper, isOrdered, isUnique);
 	}
 
+	public static void assertParameter(Parameter actual, Parameter expected) {
+		Type type = expected.getType();
+		assertParameter(actual, 
+				expected.getName(), expected.getDirection(), 
+				expected.getLower(), expected.getUpper(), expected.isOrdered(), expected.isUnique(), 
+				type == null? null: type.getName());
+	}
+
 	public static void assertOperation(Operation operation,
 			VisibilityKind visibility,
 			String name, int lower, int upper, boolean isOrdered, boolean isUnique,
@@ -125,6 +135,22 @@ public class CompilerTests {
 		assertParameter(operation.getReturnResult(), null,
 				ParameterDirectionKind.RETURN_LITERAL,
 				lower, upper, isOrdered, isUnique, type);
+	}
+	
+	public static void assertMethod(Operation operation) {
+		EList<Behavior> methods = operation.getMethods();
+		assertEquals(1, methods.size());
+		assertTrue(methods.get(0) instanceof Activity);
+		
+		Activity method = (Activity)methods.get(0);
+		assertEquals(operation.getName() + "$method$1", method.getName());
+		
+		EList<Parameter> operationParameters = operation.getOwnedParameters();
+		EList<Parameter> methodParameters = method.getOwnedParameters();
+		assertEquals(operationParameters.size(), methodParameters.size());
+		for (int i = 0; i < operationParameters.size(); i++) {
+			assertParameter(operationParameters.get(i), methodParameters.get(i));
+		}
 	}
 
 	public static <T extends PackageableElement> T setupContextElement(
@@ -165,6 +191,8 @@ public class CompilerTests {
 				VisibilityKind.PACKAGE_LITERAL, "p", 1, 1, false, true, "Integer");
 		assertOperation(testClass.getOwnedOperations().get(0),
 				VisibilityKind.PUBLIC_LITERAL, "q", 1, 1, false, true, "Boolean");
+		assertMethod(testClass.getOwnedOperations().get(0));
+		 
 	}
 
 	public static String ATTRIBUTE_UPDATE_TEXT = "class Test { private p : Boolean[*] ordered nonunique; public q() : Boolean { } }";
@@ -187,6 +215,7 @@ public class CompilerTests {
 				VisibilityKind.PRIVATE_LITERAL, "p", 0, -1, true, false, "Boolean");
 		assertOperation(testClass.getOwnedOperations().get(0),
 				VisibilityKind.PUBLIC_LITERAL, "q", 1, 1, false, true, "Boolean");
+		assertMethod(testClass.getOwnedOperations().get(0));
 		assertEquals(attribute, action.getStructuralFeature());
 	}
 
@@ -217,7 +246,25 @@ public class CompilerTests {
 		assertParameter(operation.getOwnedParameters().get(1),
 				"a", ParameterDirectionKind.IN_LITERAL, 1, 1, false, true, "Integer");
 		assertEquals(operation, action.getOperation());
+		assertMethod(operation);
 		assertTextualRepresentation(testClass.getOwnedBehavior("q$method$1"), Q_METHOD_TEXT);
+	}
+	
+	public static String STUB_OPERATION_UPDATE_TEXT ="class Test { p : Integer; public q(in a : Integer) : Boolean; }";
+	
+	@Test
+	public void testStubOperationMerging() throws ParsingError, MappingError {
+		Class testClass = compileTestClass();
+		Operation operation = testClass.getOwnedOperation("q", null, null);
+		
+		compiler.compile(testClass, STUB_OPERATION_UPDATE_TEXT);
+		
+		assertTextualRepresentation(testClass, STUB_OPERATION_UPDATE_TEXT);
+		assertOperation(operation,
+				VisibilityKind.PUBLIC_LITERAL, "q", 1, 1, false, true, "Boolean");
+		assertParameter(operation.getOwnedParameters().get(1),
+				"a", ParameterDirectionKind.IN_LITERAL, 1, 1, false, true, "Integer");
+		assertMethod(operation);
 	}
 
 	public static String SELF_REFERENCE_TEXT = "class Test { self : Test; }";
