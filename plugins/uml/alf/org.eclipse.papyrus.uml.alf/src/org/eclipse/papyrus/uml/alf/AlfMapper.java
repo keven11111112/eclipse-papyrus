@@ -183,7 +183,7 @@ public class AlfMapper {
 				new BasicEList<PackageableElement>(model.getPackagedElements());
 		for (PackageableElement member : elements) {
 			String name = member.getName();
-			if (name.length() < 3 || !name.substring(0, 2).equals("$$")) {
+			if (name != null && (name.length() < 3 || !name.substring(0, 2).equals("$$"))) {
 				merge.update(contextElement, member);
 				elements.remove(member);
 				break;

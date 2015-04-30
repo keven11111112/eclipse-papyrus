@@ -60,8 +60,10 @@ public class ModelMerge {
 			updateStereotypes(targetPackage, sourcePackage);
 			setList(targetPackage.getOwnedComments(), sourcePackage.getOwnedComments());
 			targetPackage.setVisibility(sourcePackage.getVisibility());
-			targetPackage.setName(sourcePackage.getName());
-			this.updateCollection(targetPackage.getPackagedElements(), sourcePackage.getPackagedElements());
+			targetPackage.setName(nameOf(sourcePackage));
+			if (notStub(sourcePackage)) {
+				this.updateCollection(targetPackage.getPackagedElements(), sourcePackage.getPackagedElements());
+			}
 		} else if (source instanceof Activity && target instanceof Activity) {
 			// NOTE: Need to check for Activity before Class, since an Activity is a kind of Class.
 			Activity sourceActivity = (Activity) source;
@@ -76,49 +78,58 @@ public class ModelMerge {
 		} else if (source instanceof Class && target instanceof Class) {
 			Class sourceClass = (Class) source;
 			Class targetClass = (Class) target;
-			// NOTE: Save this in case it is moved as an owned behavior from the source.
-			Behavior sourceClassifierBehavior = sourceClass.getClassifierBehavior();
 			this.updateClassifier(targetClass, sourceClass);
-			this.updateCollection(targetClass.getOwnedAttributes(), sourceClass.getOwnedAttributes());
-			this.updateCollection(targetClass.getOwnedOperations(), sourceClass.getOwnedOperations());
-			this.updateCollection(targetClass.getOwnedReceptions(), sourceClass.getOwnedReceptions());
-			this.updateCollection(targetClass.getOwnedBehaviors(), sourceClass.getOwnedBehaviors());
-			this.updateCollection(targetClass.getNestedClassifiers(), sourceClass.getNestedClassifiers());
-			if (sourceClass.isActive()) {
-				targetClass.setIsActive(true);
-				// NOTE: Must use replacement, if any, or source classifier
-				// behavior will be moved to the target owned behaviors.
-				Behavior targetClassifierBehavior =
-						(Behavior) this.getReplacement(sourceClassifierBehavior);
-				if (targetClassifierBehavior == null) {
-					targetClassifierBehavior = sourceClassifierBehavior;
+		    targetClass.setIsActive(sourceClass.isActive());
+		    if (notStub(sourceClass)) {
+		    	// NOTE: Save this in case it is moved as an owned behavior from the source.
+				Behavior sourceClassifierBehavior = sourceClass.getClassifierBehavior();
+				this.updateCollection(targetClass.getOwnedAttributes(), sourceClass.getOwnedAttributes());
+				this.updateCollection(targetClass.getOwnedOperations(), sourceClass.getOwnedOperations());
+				this.updateCollection(targetClass.getOwnedReceptions(), sourceClass.getOwnedReceptions());
+				this.updateCollection(targetClass.getOwnedBehaviors(), sourceClass.getOwnedBehaviors());
+				this.updateCollection(targetClass.getNestedClassifiers(), sourceClass.getNestedClassifiers());
+				if (sourceClass.isActive()) {
+					// NOTE: Must use replacement, if any, or source classifier
+					// behavior will be moved to the target owned behaviors.
+					Behavior targetClassifierBehavior =
+							(Behavior) this.getReplacement(sourceClassifierBehavior);
+					if (targetClassifierBehavior == null) {
+						targetClassifierBehavior = sourceClassifierBehavior;
+					}
+					targetClass.setClassifierBehavior(targetClassifierBehavior);
+				} else {
+					targetClass.setClassifierBehavior(null);
 				}
-				targetClass.setClassifierBehavior(targetClassifierBehavior);
-			} else {
-				targetClass.setIsActive(false);
-				targetClass.setClassifierBehavior(null);
-			}
+		    }
 		} else if (source instanceof Enumeration && target instanceof Enumeration) {
 			// NOTE: Need to check for Enumeration before DataType, since an Enumeration is a kind of DataType.
 			Enumeration sourceEnumeration = (Enumeration) source;
 			Enumeration targetEnumeration = (Enumeration) target;
 			this.updateClassifier(targetEnumeration, sourceEnumeration);
-			this.updateCollection(targetEnumeration.getOwnedLiterals(), sourceEnumeration.getOwnedLiterals());
+			if (notStub(sourceEnumeration)) {
+				this.updateCollection(targetEnumeration.getOwnedLiterals(), sourceEnumeration.getOwnedLiterals());
+			}
 		} else if (source instanceof DataType && target instanceof DataType) {
 			DataType sourceType = (DataType) source;
 			DataType targetType = (DataType) target;
 			this.updateClassifier(targetType, sourceType);
-			this.updateCollection(targetType.getOwnedAttributes(), sourceType.getOwnedAttributes());
+			if (notStub(sourceType)) {
+				this.updateCollection(targetType.getOwnedAttributes(), sourceType.getOwnedAttributes());
+			}
 		} else if (source instanceof Signal && target instanceof Signal) {
 			Signal sourceSignal = (Signal) source;
 			Signal targetSignal = (Signal) target;
 			this.updateClassifier(targetSignal, sourceSignal);
-			this.updateCollection(targetSignal.getOwnedAttributes(), sourceSignal.getOwnedAttributes());
+			if (notStub(sourceSignal)) {
+				this.updateCollection(targetSignal.getOwnedAttributes(), sourceSignal.getOwnedAttributes());
+			}
 		} else if (source instanceof Association && target instanceof Association) {
 			Association sourceAssociation = (Association) source;
 			Association targetAssociation = (Association) target;
 			this.updateClassifier(targetAssociation, sourceAssociation);
-			this.updateCollection(targetAssociation.getOwnedEnds(), sourceAssociation.getOwnedEnds());
+			if (notStub(sourceAssociation)) {
+				this.updateCollection(targetAssociation.getOwnedEnds(), sourceAssociation.getOwnedEnds());
+			}
 		} else if (source instanceof Property && target instanceof Property) {
 			this.addReplacement(source, target);
 			Property sourceProperty = (Property) source;
@@ -153,7 +164,7 @@ public class ModelMerge {
 			updateStereotypes(targetReception, sourceReception);
 			targetReception.setVisibility(sourceReception.getVisibility());
 			targetReception.setIsAbstract(sourceReception.isAbstract());
-			targetReception.setName(sourceReception.getName());
+			targetReception.setName(nameOf(sourceReception)); // nameOf used in case the reception was mapped from a stub SignalReceptionDefinition.
 			targetReception.setSignal(sourceReception.getSignal());
 		}
 	}
@@ -215,7 +226,7 @@ public class ModelMerge {
 		setList(target.getOwnedComments(), source.getOwnedComments());
 		setList(target.getGeneralizations(), source.getGeneralizations());
 		setList(target.getTemplateBindings(), source.getTemplateBindings());
-		target.setName(source.getName());
+		target.setName(nameOf(source));
 		target.setVisibility(source.getVisibility());
 		target.setIsAbstract(source.isAbstract());
 		target.setOwnedTemplateSignature(source.getOwnedTemplateSignature());
@@ -248,6 +259,7 @@ public class ModelMerge {
 				// System.out.println("[updateAll] targetElement=" + targetElement);
 				this.update(targetElement, sourceElement);
 			} else {
+				sourceElement.setName(nameOf(sourceElement));
 				targetCollection.add(sourceElement);
 				updateAllStereotypes(sourceElement);
 			}
@@ -258,7 +270,7 @@ public class ModelMerge {
 	protected static <T extends NamedElement> T findTargetElement(
 			List<T> collection, T sourceElement) {
 		java.lang.Class<? extends NamedElement> kind = sourceElement.getClass();
-		String name = sourceElement.getName();
+		String name = nameOf(sourceElement);
 		// System.out.println("[findTargetElement] kind=" + kind.getSimpleName() + " name=" + name + " count=" + count);
 		for (T targetElement : collection) {
 			// System.out.println("[findTargetElement] n= " + n + " targetElement=" + targetElement);
@@ -271,6 +283,19 @@ public class ModelMerge {
 			}
 		}
 		return null;
+	}
+
+	protected static String nameOf(NamedElement element) {
+		String name = element.getName();
+		return isStubName(name)? name.substring(0, name.length() - 5): name;
+	}
+	
+	protected static boolean notStub(NamedElement element) {
+		return !isStubName(element.getName());
+	}
+	
+	protected static boolean isStubName(String name) {
+		return name != null && name.endsWith("$stub");
 	}
 
 	protected void clearReplacements() {
