@@ -13,6 +13,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.views.modelexplorer.handler;
 
+import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
@@ -37,7 +38,11 @@ public class CopyHandler extends AbstractCommandHandler {
 	 * @return
 	 */
 	public static boolean isCopyEnabled(Collection<EObject> selectedElements) {
-		return !selectedElements.isEmpty();
+		return !getElementsToPutInClipboard(selectedElements).isEmpty();
+	}
+
+	protected static List<EObject> getElementsToPutInClipboard(Collection<EObject> selectedElements) {
+		return new ArrayList<EObject>(selectedElements);
 	}
 
 	/**
@@ -49,7 +54,7 @@ public class CopyHandler extends AbstractCommandHandler {
 	 */
 	public static Command buildCopyCommand(TransactionalEditingDomain editingDomain, Collection<EObject> selectedElements) {
 		PapyrusClipboard<Object> papyrusClipboard = PapyrusClipboard.getNewInstance();
-		DefaultCopyCommand defaultCopyCommand = new DefaultCopyCommand(editingDomain, papyrusClipboard, selectedElements);
+		DefaultCopyCommand defaultCopyCommand = new DefaultCopyCommand(editingDomain, papyrusClipboard, getElementsToPutInClipboard(selectedElements));
 		List<IStrategy> allStrategies = PasteStrategyManager.getInstance().getAllStrategies();
 		for (IStrategy iStrategy : allStrategies) {
 			IPasteStrategy iPasteStrategy = (IPasteStrategy) iStrategy;
