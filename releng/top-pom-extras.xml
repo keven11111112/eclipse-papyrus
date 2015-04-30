@@ -30,6 +30,7 @@
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.export.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.migration.rsa.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.uml.alf.extra.feature</module>
+		<module>../features/papyrus-extra-features/org.eclipse.papyrus.extra.soaml.feature</module>
 		<module>../features/papyrus-extra-features/org.eclipse.papyrus.sysml14.feature</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo</module>
 		<module>../extraplugins/codegen/org.eclipse.papyrus.acceleo.debug</module>
@@ -131,6 +132,12 @@
 		<module>../extraplugins/codegen/org.eclipse.papyrus.texteditor.modelexplorer</module>
 		<module>../extraplugins/uml/compare/org.eclipse.papyrus.uml.compare</module>
 		<module>../extraplugins/uml/org.eclipse.papyrus.uml.export</module>
+		
+		<!-- Papyrus SoaML   -->
+		<module>../extraplugins/soaml/org.eclipse.papyrus.soaml.profile</module>
+		<module>../extraplugins/soaml/org.eclipse.papyrus.soaml.profile.validation</module>
+		<module>../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.ui</module>
+		<module>../extraplugins/soaml/org.eclipse.papyrus.soaml.diagram.common</module>
 		
 		<!-- ALF -->
 		<module>../extraplugins/alf/core/org.eclipse.papyrus.uml.alf.text</module>
