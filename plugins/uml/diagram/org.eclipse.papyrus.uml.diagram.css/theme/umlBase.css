@@ -11,57 +11,10 @@
  *
  *****************************************************************************/
 
-/* Hide the name label for most links */
-
-Dependency > Label:name,
-Usage > Label:name,
-Realization > Label:name,
-InterfaceRealization > Label:name,
-Abstraction > Label:name,
-Substitution > Label:name,
-Connector > Label:name,
-InformationFlow > Label:name
-{
-	visible: false;
-}
-
-/* Display name in italic when isAbstract=true for Classifier (bug 464129)*/
-Artifact[isAbstract=true],
-DeploymentSpecification[isAbstract=true],
-Association[isAbstract=true],
-CommunicationPath[isAbstract=true],
-Extension[isAbstract=true],
-BehavioredClassifier[isAbstract=true],
-Actor[isAbstract=true], 
-Usecase[isAbstract=true],
-DataType[isAbstract=true],
-Enumeration[isAbstract=true],
-PrimitiveType[isAbstract=true],
-InformationItem[isAbstract=true], 
-Interface[isAbstract=true],
-Signal[isAbstract=true], 
-Collaboration[isAbstract=true],
-Class[isAbstract=true], 
-AssociationClass[isAbstract=true], 
-Activity[isAbstract=true],
-Interaction[isAbstract=true], 
-OpaqueBehavior[isAbstract=true],
-FunctionBehavior[isAbstract=true],
-StateMachine[isAbstract=true], 
-ProtocolStateMachine[isAbstract=true],
-Component[isAbstract=true],
-Node[isAbstract=true],
-Device[isAbstract=true],
-ExecutionEnvironment[isAbstract=true], 
-Stereotype[isAbstract=true] {
+/* Display name in italic when isAbstract=true (bug 464129)*/
+[isAbstract=true] {
 	italic:true;
 }
-
-/* Display name in italic when isAbstract=true for BehavioralFeature (bug 464129)*/
-Operation[isAbstract=true],Reception[isAbstract=true]{
-	italic:true;
-}
-
 
 /*
  * The Actor element icon is not useful either
