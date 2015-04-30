@@ -143,8 +143,7 @@ ActivityDiagram MergeNode > Label,
 ActivityDiagram InitialNode > Label, 
 ActivityDiagram ActivityFinalNode > Label, 
 ActivityDiagram FlowFinalNode > Label, 
-ActivityDiagram DecisionNode > Label, 
-ActivityDiagram SendSignalAction > Label,
+ActivityDiagram DecisionNode > Label,
 ActivityDiagram ForkNode > Label,
 ActivityDiagram JoinNode > Label
 {
