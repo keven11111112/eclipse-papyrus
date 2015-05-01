@@ -29,6 +29,7 @@ import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.BehavioralFeature;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
+import org.eclipse.uml2.uml.Comment;
 import org.eclipse.uml2.uml.DataType;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Enumeration;
@@ -44,6 +45,8 @@ import org.eclipse.uml2.uml.Signal;
 import org.eclipse.uml2.uml.Stereotype;
 
 public class ModelMerge {
+	
+	private static final String TEXTUAL_REPRESENTATION_STEREOTYPE_NAME = "ActionLanguage::TextualRepresentation";
 
 	protected List<EObject> originalElements = new BasicEList<EObject>();
 	protected List<EObject> replacementElements = new BasicEList<EObject>();
@@ -223,13 +226,43 @@ public class ModelMerge {
 	protected void updateClassifier(Classifier target, Classifier source) {
 		this.addReplacement(source, target);
 		updateStereotypes(target, source);
-		setList(target.getOwnedComments(), source.getOwnedComments());
 		setList(target.getGeneralizations(), source.getGeneralizations());
 		setList(target.getTemplateBindings(), source.getTemplateBindings());
 		target.setName(nameOf(source));
 		target.setVisibility(source.getVisibility());
 		target.setIsAbstract(source.isAbstract());
 		target.setOwnedTemplateSignature(source.getOwnedTemplateSignature());
+		if (notStub(source)) {
+			setList(target.getOwnedComments(), source.getOwnedComments());
+		} else {
+			List<Comment> targetComments = target.getOwnedComments();
+			List<Comment> sourceComments = source.getOwnedComments();
+			
+			Comment targetTextualRepresentation = getTextualRepresentation(targetComments);
+			if (targetTextualRepresentation != null) {
+				targetComments.remove(targetTextualRepresentation);
+			}
+			
+			Comment sourceTextualRepresentation = getTextualRepresentation(sourceComments);
+			if (sourceTextualRepresentation != null) {
+				sourceComments.remove(sourceTextualRepresentation);
+			}
+			
+			setList(targetComments, sourceComments);
+			
+			if (targetTextualRepresentation != null) {
+				targetComments.add(targetTextualRepresentation);
+			}
+		}
+	}
+	
+	protected static Comment getTextualRepresentation(List<Comment> comments) {
+		for (Comment comment: comments) {
+			if (comment.getAppliedStereotype(TEXTUAL_REPRESENTATION_STEREOTYPE_NAME) != null) {
+				return comment;
+			}
+		}
+		return null;
 	}
 
 	protected void updateMultiplicityElement(MultiplicityElement target, MultiplicityElement source) {
