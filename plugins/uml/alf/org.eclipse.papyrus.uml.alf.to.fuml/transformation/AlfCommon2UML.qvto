@@ -603,7 +603,7 @@ constructor TestIdentityAction::TestIdentityAction(testName : String, booleanTyp
 }
 
 constructor ValueSpecificationAction::ValueSpecificationAction(valueSpecification : ValueSpecification) {
-	name := "Value(" + valueSpecification.name + ")";
+	name := "Value(" + nameOf(valueSpecification) + ")";
 	value := valueSpecification;
 	result.result := new OutputPin(name + ".result", valueSpecification.type, 1, 1);
 }
@@ -636,11 +636,13 @@ constructor LiteralNull::LiteralNull() {
 }
 
 constructor InstanceValue::InstanceValue(spec : InstanceSpecification) {
+	name := nameOf(spec);
 	instance := spec;
 	type := spec.classifier![true];
 }
 
 constructor InstanceValue::InstanceValue(type_ : Classifier) {
+	name := "Instance(" + nameOf(type_) + ")";
 	instance := object InstanceSpecification {
 		classifier += type_;
 	};

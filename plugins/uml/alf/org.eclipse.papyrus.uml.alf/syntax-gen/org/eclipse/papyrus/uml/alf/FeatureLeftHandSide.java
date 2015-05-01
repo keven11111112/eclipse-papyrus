@@ -74,10 +74,10 @@ public interface FeatureLeftHandSide extends LeftHandSide {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tPropertyAccessExpression{\n\t\t\t\t\tfeatureReference = self.feature(),\n\t\t\t\t\towner = self.owner()\n\t\t\t\t}'"
+	 * @model annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='self.expression'"
 	 * @generated
 	 */
-	Expression primary();
+	Expression expression();
 
 	/**
 	 * <!-- begin-user-doc -->

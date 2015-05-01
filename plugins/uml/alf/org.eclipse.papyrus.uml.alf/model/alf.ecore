@@ -3818,7 +3818,7 @@
         <details key="documentation" value="Whether the argument expression requires collection conversion."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in&#xA;          parameterType &lt;> null and self.expression.type &lt;> null and&#xA;          self.isCollectionClass(parameterType) and &#xA;            not self.isCollectionClass(self.expression.type)"/>
+        <details key="derivation" value="&#xA;        let parameter = self.tuple().invocation.parameterNamed(self.name) in&#xA;        &#x9;parameter &lt;> null and&#xA;        &#x9;let parameterType = parameter.type() in&#xA;&#x9;          parameterType &lt;> null and self.expression.type &lt;> null and&#xA;&#x9;          self.isCollectionClass(parameterType) and &#xA;&#x9;            not self.isCollectionClass(self.expression.type)"/>
       </eAnnotations>
     </eStructuralFeatures>
     <eStructuralFeatures xsi:type="ecore:EAttribute" name="isBitStringConversion"
@@ -3828,7 +3828,7 @@
         <details key="documentation" value="Whether the argument expression requires bit string conversion."/>
       </eAnnotations>
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="derivation" value="&#xA;        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in&#xA;          parameterType &lt;> null and self.expression &lt;> null and&#xA;          (self.isBitStringType(parameterType) or &#xA;            self.isBitStringCollectionClass(parameterType)) and &#xA;          not self.isBitStringType(self.expression.type)"/>
+        <details key="derivation" value="&#xA;        let parameter = self.tuple().invocation.parameterNamed(self.name) in&#xA;        &#x9;parameter &lt;> null and&#xA;        &#x9;let parameterType = parameter.type() in&#xA;&#x9;          parameterType &lt;> null and self.expression &lt;> null and&#xA;&#x9;          (self.isBitStringType(parameterType) or &#xA;&#x9;            self.isBitStringCollectionClass(parameterType)) and &#xA;&#x9;          not self.isBitStringType(self.expression.type)"/>
       </eAnnotations>
     </eStructuralFeatures>
   </eClassifiers>
@@ -4549,12 +4549,9 @@
         <details key="body" value="&#xA;        let referent = self.referent in&#xA;          if referent = null then null&#xA;          else&#xA;            let parameters = referent.parameters() in&#xA;              if parameters->isEmpty() then null&#xA;              else parameters->first()&#xA;              endif&#xA;          endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="invocation" lowerBound="1" eType="#//BehaviorInvocationExpression">
-      <eAnnotations source="http://www.eclipse.org/emf/2002/GenModel">
-        <details key="documentation" value="Return the behavior invocation expression that is equivalent to this&#xA;sequence operation expression."/>
-      </eAnnotations>
+    <eOperations name="firstArgument" lowerBound="1" eType="#//OutputNamedExpression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let firstParameter = self.firstParameter() in&#xA;&#x9;&#x9;&#x9;&#x9;let namedExpression = NamedExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;name = if firstParameter = null then null else firstParameter.name() endif,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;expression = self.primary.expression.reference()&#xA;&#x9;&#x9;&#x9;&#x9;} in&#xA;&#x9;&#x9;&#x9;&#x9;let namedTuple = NamedTuple{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;namedExpression = OrderedSet{namedExpression}->&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;includingAll(self.tuple.input)->includingAll(self.tuple.output)&#xA;&#x9;&#x9;&#x9;&#x9;} in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;BehaviorInvocationExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;target = self.operation.copy(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;referent = self.referent,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;tuple = namedTuple,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;let firstParameter = self.firstParameter() in&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;OutputNamedExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;name = if firstParameter = null then null else firstParameter.name() endif,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;expression = self.primary.expression,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;index = null,&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self.tuple&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;}"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="sequenceOperationExpressionReferentDerivation" eType="ecore:EDataType http://www.eclipse.org/emf/2002/Ecore#//EBoolean">
@@ -6178,9 +6175,9 @@
         <details key="body" value="&#xA;        if self.expression.oclIsKindOf(PropertyAccessExpression) then&#xA;          self.expression.oclAsType(PropertyAccessExpression).featureReference&#xA;        else if self.expression.oclIsKindOf(SequenceAccessExpression) then&#xA;          let primary = self.expression.oclAsType(SequenceAccessExpression).primary in&#xA;            if primary.oclIsKindOf(PropertyAccessExpression) then&#xA;              primary.oclAsType(PropertyAccessExpression).featureReference&#xA;            else&#xA;              null&#xA;            endif&#xA;        else&#xA;          null&#xA;        endif endif"/>
       </eAnnotations>
     </eOperations>
-    <eOperations name="primary" eType="#//Expression">
+    <eOperations name="expression" eType="#//Expression">
       <eAnnotations source="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot">
-        <details key="body" value="&#xA;&#x9;&#x9;&#x9;&#x9;PropertyAccessExpression{&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;featureReference = self.feature(),&#xA;&#x9;&#x9;&#x9;&#x9;&#x9;owner = self.owner()&#xA;&#x9;&#x9;&#x9;&#x9;}"/>
+        <details key="body" value="self.expression"/>
       </eAnnotations>
     </eOperations>
     <eOperations name="index" eType="#//Expression">

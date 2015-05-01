@@ -22,13 +22,13 @@ import org.eclipse.emf.ecore.util.EObjectValidator;
 
 import org.eclipse.papyrus.uml.alf.AlfPackage;
 import org.eclipse.papyrus.uml.alf.AssignedSource;
-import org.eclipse.papyrus.uml.alf.BehaviorInvocationExpression;
 import org.eclipse.papyrus.uml.alf.ElementReference;
 import org.eclipse.papyrus.uml.alf.Expression;
 import org.eclipse.papyrus.uml.alf.ExtentOrExpression;
 import org.eclipse.papyrus.uml.alf.FeatureReference;
 import org.eclipse.papyrus.uml.alf.InvocationExpression;
 import org.eclipse.papyrus.uml.alf.LeftHandSide;
+import org.eclipse.papyrus.uml.alf.OutputNamedExpression;
 import org.eclipse.papyrus.uml.alf.QualifiedName;
 import org.eclipse.papyrus.uml.alf.SequenceOperationExpression;
 
@@ -258,23 +258,23 @@ public class SequenceOperationExpressionImpl extends InvocationExpressionImpl im
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #invocation() <em>Invocation</em>}' operation.
+	 * The cached invocation delegate for the '{@link #firstArgument() <em>First Argument</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #invocation()
+	 * @see #firstArgument()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate INVOCATION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getSequenceOperationExpression__Invocation()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate FIRST_ARGUMENT__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getSequenceOperationExpression__FirstArgument()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public BehaviorInvocationExpression invocation() {
+	public OutputNamedExpression firstArgument() {
 		try {
-			return (BehaviorInvocationExpression)INVOCATION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (OutputNamedExpression)FIRST_ARGUMENT__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -673,8 +673,8 @@ public class SequenceOperationExpressionImpl extends InvocationExpressionImpl im
 				return isAddTarget((Expression)arguments.get(0));
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION___FIRST_PARAMETER:
 				return firstParameter();
-			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION___INVOCATION:
-				return invocation();
+			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION___FIRST_ARGUMENT:
+				return firstArgument();
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION___SEQUENCE_OPERATION_EXPRESSION_REFERENT_DERIVATION__DIAGNOSTICCHAIN_MAP:
 				return sequenceOperationExpressionReferentDerivation((DiagnosticChain)arguments.get(0), (Map<Object, Object>)arguments.get(1));
 			case AlfPackage.SEQUENCE_OPERATION_EXPRESSION___SEQUENCE_OPERATION_EXPRESSION_FEATURE_DERIVATION__DIAGNOSTICCHAIN_MAP:

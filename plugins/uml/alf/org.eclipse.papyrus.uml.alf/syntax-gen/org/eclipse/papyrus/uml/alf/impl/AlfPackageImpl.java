@@ -8118,7 +8118,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getSequenceOperationExpression__Invocation() {
+	public EOperation getSequenceOperationExpression__FirstArgument() {
         return getSequenceOperationExpression().getEOperations().get(4);
 	}
 
@@ -9717,7 +9717,7 @@ public class AlfPackageImpl extends EPackageImpl implements AlfPackage {
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public EOperation getFeatureLeftHandSide__Primary() {
+	public EOperation getFeatureLeftHandSide__Expression() {
         return getFeatureLeftHandSide().getEOperations().get(2);
 	}
 

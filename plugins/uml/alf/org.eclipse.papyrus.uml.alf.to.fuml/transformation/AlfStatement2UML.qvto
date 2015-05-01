@@ -257,20 +257,11 @@ helper Statement::mapAssignedValueSources(inout graph : StatementActivityGraph, 
 		var statementIsSource := assignment.source = self;
 		if (mapAll or statementIsSource) then {
 			assignedNames->add(assignment.name);
-			var type = 
-				if assignment.type = null then null
-				else assignment.type.map toUml().oclAsType(Type)
-				endif;
-		  var outputPin := self.mapAssignment(graph, 
-		  	assignment.name, type, assignment.lower, assignment.upper);
+		  var outputPin := self.mapAssignment(graph, assignment.name,
+		  	toType(assignment.type), assignment.lower, assignment. upper);
 		  if statementIsSource then {
-		  	graph.nodes += var forkNode ::= object ForkNode {
-		  		name := "Fork(" + assignment.name + ")";
-		  	};
-		  	graph.edges += object ObjectFlow {
-		  		source := outputPin;
-		  		target := forkNode;
-		  	};
+		  	graph.nodes += var forkNode ::= new ForkNode(assignment.name);
+		  	graph.edges += new ObjectFlow(outputPin, forkNode);
 		  	self.assignedValueSourceMap->put(assignment.name, forkNode);
 		  } endif;
 		} endif;
@@ -278,17 +269,12 @@ helper Statement::mapAssignedValueSources(inout graph : StatementActivityGraph, 
 	return assignedNames;
 }
 
+// NOTE: This function is overridden by some Statement subclasses.
 helper Statement::mapAssignment(inout graph : StatementActivityGraph, 
 	assignedName : String, assignedType : Type, lowerValue : Integer, upperValue : Integer) : OutputPin {
-	var node := graph.structuredNode;
-	var outputPin = object OutputPin {
-		name := node.name + ".output(" + assignedName + ")";
-		type := assignedType;
-		lower := lowerValue;
-		upper := upperValue;
-	};
-	node.structuredNodeOutput += outputPin;
-	return outputPin;
+	return new OutputPin(
+		graph.structuredNode, graph.structuredNode.name + ".output(" + assignedName + ")", 
+		assignedType, lowerValue, upperValue);
 }
 
 // General
@@ -620,22 +606,27 @@ mapping Statement::LoopStatement_toActivityGraph() : StatementActivityGraph
     	loopNode.bodyOutput += outputPin;
     };
     
-    var testGraph := self.condition().map toActivityGraph();
+    var testGraph := if loopNode.isTestedFirst then self.condition().map toActivityGraph() else null endif;
     var bodyGraph := self.body().map toActivityGraph(false);
     
     if loopNode.isTestedFirst then {
     	addToLoopNode(result, testGraph.nodes, testGraph.edges);
     	loopNode.test += testGraph.nodes[ExecutableNode];
-    } else if testGraph.nodes->notEmpty() then {
-    	// Ensure that the body is executed before the condition expression.    	
-    	createStructuredNode(bodyGraph, "Body(" + loopNode.name + ")");
-    	var conditionGraph := new StatementActivityGraph("Condition(" + loopNode.name + ")");
-    	addToStructuredNode(conditionGraph, testGraph.nodes, testGraph.edges);
-    	conditionGraph.addTo(bodyGraph);
-    	bodyGraph.edges += new ControlFlow(bodyGraph.structuredNode, conditionGraph.structuredNode);
-    	testGraph.nodes := Set{};
-    	testGraph.edges := Set{};
-    } endif endif;
+    } else {
+    	// In this case, make sure the body is mapped before the test, so assigned value sources
+    	// are set from the body.
+    	testGraph := self.condition().map toActivityGraph();
+    	if testGraph.nodes->notEmpty() then {
+	    	// Ensure that the body is executed before the condition expression.    	
+	    	createStructuredNode(bodyGraph, "Body(" + loopNode.name + ")");
+	    	var conditionGraph := new StatementActivityGraph("Condition(" + loopNode.name + ")");
+	    	addToStructuredNode(conditionGraph, testGraph.nodes, testGraph.edges);
+	    	conditionGraph.addTo(bodyGraph);
+	    	bodyGraph.edges += new ControlFlow(bodyGraph.structuredNode, conditionGraph.structuredNode);
+	    	testGraph.nodes := Set{};
+	    	testGraph.edges := Set{};
+	    } endif 
+    } endif;
     
     if testGraph.nodes->notEmpty() and testGraph.resultSource.oclIsKindOf(InputPin) then {
     	loopNode.decider := testGraph.resultSource.oclAsType(OutputPin);
@@ -1208,7 +1199,7 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 					edges += new ObjectFlow(source, parent.assignedValueSource(assignedName).incoming->any(true).source);
 				} else {
 					structuredNode.node += var passthruNode ::= 
-						createPassthruNode(assignedName, assignment.type.toType(), assignment.lower, assignment.upper);
+						createPassthruNode(assignedName, toType(assignment.type), assignment.lower, assignment.upper);
 					edges += new ObjectFlow(source, passthruNode.input->at(1));
 					edges += new ObjectFlow(passthruNode.output->at(1), 
 						parent.assignedValueSource(assignedName).incoming->any(true).source);
@@ -1219,7 +1210,7 @@ mapping AcceptBlock::toActivityGraph(parent : AcceptStatement, previousNode : Ac
 }
 
 query AcceptBlock::assignedValueSource(assignedName : String) : ActivityNode {
-	return self.owner.oclAsType(AcceptStatement).signalSourceNode;
+	return self.owner().oclAsType(AcceptStatement).signalSourceNode;
 }
 
 // classify Statements

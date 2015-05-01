@@ -23651,13 +23651,13 @@ public interface AlfPackage extends EPackage {
 	int SEQUENCE_OPERATION_EXPRESSION___FIRST_PARAMETER = INVOCATION_EXPRESSION_OPERATION_COUNT + 3;
 
 	/**
-	 * The operation id for the '<em>Invocation</em>' operation.
+	 * The operation id for the '<em>First Argument</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int SEQUENCE_OPERATION_EXPRESSION___INVOCATION = INVOCATION_EXPRESSION_OPERATION_COUNT + 4;
+	int SEQUENCE_OPERATION_EXPRESSION___FIRST_ARGUMENT = INVOCATION_EXPRESSION_OPERATION_COUNT + 4;
 
 	/**
 	 * The operation id for the '<em>Sequence Operation Expression Referent Derivation</em>' operation.
@@ -33628,15 +33628,6 @@ public interface AlfPackage extends EPackage {
 	int FEATURE_LEFT_HAND_SIDE___ASSIGNED_NAME = LEFT_HAND_SIDE___ASSIGNED_NAME;
 
 	/**
-	 * The operation id for the '<em>Expression</em>' operation.
-	 * <!-- begin-user-doc -->
-	 * <!-- end-user-doc -->
-	 * @generated
-	 * @ordered
-	 */
-	int FEATURE_LEFT_HAND_SIDE___EXPRESSION = LEFT_HAND_SIDE___EXPRESSION;
-
-	/**
 	 * The operation id for the '<em>Is Data Value Update</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -33673,13 +33664,13 @@ public interface AlfPackage extends EPackage {
 	int FEATURE_LEFT_HAND_SIDE___FEATURE = LEFT_HAND_SIDE_OPERATION_COUNT + 1;
 
 	/**
-	 * The operation id for the '<em>Primary</em>' operation.
+	 * The operation id for the '<em>Expression</em>' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int FEATURE_LEFT_HAND_SIDE___PRIMARY = LEFT_HAND_SIDE_OPERATION_COUNT + 2;
+	int FEATURE_LEFT_HAND_SIDE___EXPRESSION = LEFT_HAND_SIDE_OPERATION_COUNT + 2;
 
 	/**
 	 * The operation id for the '<em>Index</em>' operation.
@@ -94896,14 +94887,14 @@ public interface AlfPackage extends EPackage {
 	EOperation getSequenceOperationExpression__FirstParameter();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#invocation() <em>Invocation</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#firstArgument() <em>First Argument</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Invocation</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.SequenceOperationExpression#invocation()
+	 * @return the meta object for the '<em>First Argument</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.SequenceOperationExpression#firstArgument()
 	 * @generated
 	 */
-	EOperation getSequenceOperationExpression__Invocation();
+	EOperation getSequenceOperationExpression__FirstArgument();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.SequenceOperationExpression#sequenceOperationExpressionReferentDerivation(org.eclipse.emf.common.util.DiagnosticChain, java.util.Map) <em>Sequence Operation Expression Referent Derivation</em>}' operation.
@@ -96661,14 +96652,14 @@ public interface AlfPackage extends EPackage {
 	EOperation getFeatureLeftHandSide__Feature();
 
 	/**
-	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#primary() <em>Primary</em>}' operation.
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#expression() <em>Expression</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @return the meta object for the '<em>Primary</em>' operation.
-	 * @see org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#primary()
+	 * @return the meta object for the '<em>Expression</em>' operation.
+	 * @see org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#expression()
 	 * @generated
 	 */
-	EOperation getFeatureLeftHandSide__Primary();
+	EOperation getFeatureLeftHandSide__Expression();
 
 	/**
 	 * Returns the meta object for the '{@link org.eclipse.papyrus.uml.alf.FeatureLeftHandSide#index() <em>Index</em>}' operation.

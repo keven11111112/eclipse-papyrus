@@ -127,23 +127,23 @@ public class FeatureLeftHandSideImpl extends LeftHandSideImpl implements Feature
 	}
 
 	/**
-	 * The cached invocation delegate for the '{@link #primary() <em>Primary</em>}' operation.
+	 * The cached invocation delegate for the '{@link #expression() <em>Expression</em>}' operation.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * @see #primary()
+	 * @see #expression()
 	 * @generated
 	 * @ordered
 	 */
-	protected static final EOperation.Internal.InvocationDelegate PRIMARY__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureLeftHandSide__Primary()).getInvocationDelegate();
+	protected static final EOperation.Internal.InvocationDelegate EXPRESSION__EINVOCATION_DELEGATE = ((EOperation.Internal)AlfPackage.eINSTANCE.getFeatureLeftHandSide__Expression()).getInvocationDelegate();
 
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
-	public Expression primary() {
+	public Expression expression() {
 		try {
-			return (Expression)PRIMARY__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
+			return (Expression)EXPRESSION__EINVOCATION_DELEGATE.dynamicInvoke(this, null);
 		}
 		catch (InvocationTargetException ite) {
 			throw new WrappedException(ite);
@@ -485,8 +485,8 @@ public class FeatureLeftHandSideImpl extends LeftHandSideImpl implements Feature
 				return referent();
 			case AlfPackage.FEATURE_LEFT_HAND_SIDE___FEATURE:
 				return feature();
-			case AlfPackage.FEATURE_LEFT_HAND_SIDE___PRIMARY:
-				return primary();
+			case AlfPackage.FEATURE_LEFT_HAND_SIDE___EXPRESSION:
+				return expression();
 			case AlfPackage.FEATURE_LEFT_HAND_SIDE___INDEX:
 				return index();
 			case AlfPackage.FEATURE_LEFT_HAND_SIDE___LOCAL_NAME:

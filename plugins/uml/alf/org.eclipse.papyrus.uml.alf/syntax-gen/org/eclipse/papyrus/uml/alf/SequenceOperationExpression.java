@@ -199,15 +199,11 @@ public interface SequenceOperationExpression extends InvocationExpression {
 	/**
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
-	 * <!-- begin-model-doc -->
-	 * Return the behavior invocation expression that is equivalent to this
-	 * sequence operation expression.
-	 * <!-- end-model-doc -->
 	 * @model required="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet firstParameter = self.firstParameter() in\n\t\t\t\tlet namedExpression = NamedExpression{\n\t\t\t\t\tname = if firstParameter = null then null else firstParameter.name() endif,\n\t\t\t\t\texpression = self.primary.expression.reference()\n\t\t\t\t} in\n\t\t\t\tlet namedTuple = NamedTuple{\n\t\t\t\t\tnamedExpression = OrderedSet{namedExpression}->\n\t\t\t\t\t\tincludingAll(self.tuple.input)->includingAll(self.tuple.output)\n\t\t\t\t} in\n\t\t\t\t\tBehaviorInvocationExpression{\n\t\t\t\t\t\ttarget = self.operation.copy(),\n\t\t\t\t\t\treferent = self.referent,\n\t\t\t\t\t\ttuple = namedTuple,\n\t\t\t\t\t\towner = self\n\t\t\t\t\t}'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot body='\n\t\t\t\tlet firstParameter = self.firstParameter() in\n\t\t\t\t\tOutputNamedExpression{\n\t\t\t\t\t\tname = if firstParameter = null then null else firstParameter.name() endif,\n\t\t\t\t\t\texpression = self.primary.expression,\n\t\t\t\t\t\tindex = null,\n\t\t\t\t\t\towner = self.tuple\n\t\t\t\t\t}'"
 	 * @generated
 	 */
-	BehaviorInvocationExpression invocation();
+	OutputNamedExpression firstArgument();
 
 	/**
 	 * <!-- begin-user-doc -->
