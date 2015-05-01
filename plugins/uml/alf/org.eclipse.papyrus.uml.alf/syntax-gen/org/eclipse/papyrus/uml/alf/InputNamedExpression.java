@@ -118,7 +118,7 @@ public interface InputNamedExpression extends SyntaxElement {
 	 * @see #setIsCollectionConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInputNamedExpression_IsCollectionConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in\n          parameterType <> null and self.expression.type <> null and\n          self.isCollectionClass(parameterType) and \n            not self.isCollectionClass(self.expression.type)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let parameter = self.tuple().invocation.parameterNamed(self.name) in\n        \tparameter <> null and\n        \tlet parameterType = parameter.type() in\n\t          parameterType <> null and self.expression.type <> null and\n\t          self.isCollectionClass(parameterType) and \n\t            not self.isCollectionClass(self.expression.type)'"
 	 * @generated
 	 */
 	boolean isIsCollectionConversion();
@@ -144,7 +144,7 @@ public interface InputNamedExpression extends SyntaxElement {
 	 * @see #setIsBitStringConversion(boolean)
 	 * @see org.eclipse.papyrus.uml.alf.AlfPackage#getInputNamedExpression_IsBitStringConversion()
 	 * @model transient="true" volatile="true" derived="true"
-	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let parameterType = self.tuple().invocation.parameterNamed(self.name).type() in\n          parameterType <> null and self.expression <> null and\n          (self.isBitStringType(parameterType) or \n            self.isBitStringCollectionClass(parameterType)) and \n          not self.isBitStringType(self.expression.type)'"
+	 *        annotation="http://www.eclipse.org/emf/2002/Ecore/OCL/Pivot derivation='\n        let parameter = self.tuple().invocation.parameterNamed(self.name) in\n        \tparameter <> null and\n        \tlet parameterType = parameter.type() in\n\t          parameterType <> null and self.expression <> null and\n\t          (self.isBitStringType(parameterType) or \n\t            self.isBitStringCollectionClass(parameterType)) and \n\t          not self.isBitStringType(self.expression.type)'"
 	 * @generated
 	 */
 	boolean isIsBitStringConversion();
