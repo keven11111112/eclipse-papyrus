@@ -181,6 +181,23 @@ public class FUMLScopeUtil {
 		return notifier instanceof Operation;
 	}
 	
+	/**
+	 * This predictate is only valid if:
+	 * 1 - the notified is an Operation
+	 * 2 - the operation is not abstract
+	 * 3 - there is only one implementation for the operation
+	 * 4 - the implementation is given as an activity
+	 * 
+	 * @param notifier
+	 * 
+	 * @return true if constraint is verified false otherwise
+	 */
+	public static boolean isOperationWithImplementation(Object notifier){
+		return isOperation(notifier) 
+				&& !((Operation)notifier).isAbstract() 
+				&& ((Operation)notifier).getMethods().size()==1
+				&& ((Operation)notifier).getMethods().get(0) instanceof Activity;
+	}
 	
 	/**
 	 * Check if the given notifier is strictly a Reception

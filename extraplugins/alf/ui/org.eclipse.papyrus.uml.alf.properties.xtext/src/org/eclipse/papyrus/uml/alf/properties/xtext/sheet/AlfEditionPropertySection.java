@@ -50,6 +50,7 @@ import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.uml2.uml.Operation;
 import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Injector;
@@ -100,7 +101,7 @@ public class AlfEditionPropertySection extends
 		/* 2. Compute edit string */
 		String serialization = "/*Error: serialization could not be computed*/";
 		if (this.eObject != null) {
-			serialization = this.alfSerialization.getEditString((Element) this.eObject);
+			serialization = this.alfSerialization.getEditString(this.getEditableObject(this.eObject));
 		}
 		/* 3. Set up editor content (textControl) */
 		this.textControl.setText(serialization);
@@ -109,6 +110,23 @@ public class AlfEditionPropertySection extends
 		}
 	}
 	
+	/**
+	 * Provide the object that will be edited through the editor. The particular case is for an edited
+	 * that is an operation. In this situation we return the implementation (i.e. an activity) of this operation.
+	 * This way it is transparent for the user that when editing an operation it can modify both the signature and
+	 * its implementation.
+	 * 
+	 * @param edited
+	 * 		  the object that is currently edited
+	 * 
+	 * @return the real object that will be edited
+	 */
+	private Element getEditableObject(EObject edited){
+		if(edited instanceof Operation){
+			return ((Operation)edited).getMethods().get(0);
+		}
+		return (Element)edited;
+	}
 	
 	/**
 	 * Provide the namespace of the element that is given as parameter
@@ -120,7 +138,8 @@ public class AlfEditionPropertySection extends
 	 */
 	private Namespace getNamespace(Element element){
 		if(element!=null && element instanceof NamedElement){
-			return ((NamedElement)element).getNamespace();
+			Element edited = this.getEditableObject(element);
+			return ((NamedElement)edited).getNamespace();
 		}
 		return null;
 	}
@@ -275,7 +294,7 @@ public class AlfEditionPropertySection extends
 	}
 
 	public EObject getContextObject() {
-		return getEObject();
+		return this.getEditableObject(this.eObject);
 	}
 
 	@Override

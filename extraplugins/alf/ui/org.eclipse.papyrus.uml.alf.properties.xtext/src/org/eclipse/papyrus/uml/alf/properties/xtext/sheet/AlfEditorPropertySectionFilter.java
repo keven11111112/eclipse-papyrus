@@ -73,6 +73,8 @@ public class AlfEditorPropertySectionFilter implements IFilter {
 			return true;
 		}else if(FUMLScopeUtil.isActivity(element)){
 			return true;
+		}else if(FUMLScopeUtil.isOperationWithImplementation(element)){
+			return true;
 		}
 		return false;
 	}
