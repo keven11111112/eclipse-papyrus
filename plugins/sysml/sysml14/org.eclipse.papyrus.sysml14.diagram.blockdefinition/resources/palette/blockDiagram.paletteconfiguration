@@ -269,19 +269,24 @@
         label="PartAssociation"
         description="Create a Part Association"
         kind="ConnectionTool">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_2015"/>
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Association_composite.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4001"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4019"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.SysML14.SharedAssociation"
         label="SharedAssociation"
         description="Create a SharedAssociation"
-        kind="ConnectionTool"/>
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Association_shared.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.SharedAssociation_4001"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="Nodes"
