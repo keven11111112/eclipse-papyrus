@@ -1257,6 +1257,10 @@
       name="Unit"
       identifier="org.eclipse.papyrus.SysML14.Unit"
       hint="UML::InstanceSpecification">
+    <iconEntry
+        xmi:id="_Fh6LgPJVEeSpV8ZeWOq13Q"
+        iconPath="/icons/full/obj16/InstanceSpecification.gif"
+        bundleId="org.eclipse.uml2.uml.edit"/>
     <specializedTypesID>org.eclipse.papyrus.uml.InstanceSpecification</specializedTypesID>
     <editHelperAdviceConfiguration
         xmi:id="_o8jhkOjFEeSUQvXhEVQh8w"
