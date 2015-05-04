@@ -205,7 +205,13 @@ public class SyncScenario extends Scenario implements ISyncScenario {
 						targets.addAll(this.getParentPath((Element)notification.getNewValue()));
 					}
 				}else{
-					targets.addAll(this.getParentPath(element.getOwner()));
+					if(feature == UMLPackage.eINSTANCE.getPackageImport_ImportedPackage()){
+						if(element.getModel() != ((PackageImport)element).getImportingNamespace()){
+							targets.addAll(this.getParentPath(element.getOwner()));
+						}
+					}else{
+						targets.addAll(this.getParentPath(element.getOwner()));
+					}
 				}
 			}break;
 			}
