@@ -26,6 +26,7 @@ import org.eclipse.papyrus.uml.alf.properties.xtext.sheet.ui.listeners.EditorFoc
 import org.eclipse.papyrus.uml.alf.text.generation.DefaultEditStringRetrievalStrategy;
 import org.eclipse.papyrus.uml.alf.transaction.job.AlfJobObserver;
 import org.eclipse.papyrus.uml.alf.ui.internal.AlfActivator;
+import org.eclipse.papyrus.uml.alf.validation.ModelNamespaceFacade;
 import org.eclipse.papyrus.uml.xtext.integration.StyledTextXtextAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter;
 import org.eclipse.papyrus.uml.xtext.integration.core.ContextElementAdapter.IContextElementProvider;
@@ -47,6 +48,9 @@ import org.eclipse.ui.forms.widgets.Form;
 import org.eclipse.ui.forms.widgets.FormToolkit;
 import org.eclipse.ui.views.properties.tabbed.TabbedPropertySheetPage;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.NamedElement;
+import org.eclipse.uml2.uml.Namespace;
+import org.eclipse.xtext.resource.XtextResource;
 
 import com.google.inject.Injector;
 
@@ -76,9 +80,9 @@ public class AlfEditionPropertySection extends
 	protected boolean isRedo;
 
 	private DefaultEditStringRetrievalStrategy alfSerialization;
-	
+
 	private Injector alfToolingInjector;
-	
+
 	public AlfEditionPropertySection() {
 		this.undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
 		this.alfSerialization = new DefaultEditStringRetrievalStrategy();
@@ -91,17 +95,48 @@ public class AlfEditionPropertySection extends
 
 	@Override
 	public void refresh() {
-		/*1. Update adapters placed over the xtext resource*/
+		/* 1. Update adapters placed over the xtext resource */
 		this.updateXtextAdapters(this.textControl);
-		/*2. Compute edit string*/
+		/* 2. Compute edit string */
 		String serialization = "/*Error: serialization could not be computed*/";
-		if(this.eObject!=null){
-			serialization = this.alfSerialization.getEditString((Element)this.eObject);
+		if (this.eObject != null) {
+			serialization = this.alfSerialization.getEditString((Element) this.eObject);
 		}
-		/*3. Set up editor content (textControl)*/
+		/* 3. Set up editor content (textControl) */
 		this.textControl.setText(serialization);
 		if (this.textControl != null) {
 			this.textControl.setEnabled(!isReadOnly());
+		}
+	}
+	
+	
+	/**
+	 * Provide the namespace of the element that is given as parameter
+	 * 
+	 * @param element
+	 * 		  the element currently edited
+	 * 
+	 * @return a namespace
+	 */
+	private Namespace getNamespace(Element element){
+		if(element!=null && element instanceof NamedElement){
+			return ((NamedElement)element).getNamespace();
+		}
+		return null;
+	}
+
+	/**
+	 * Associate a context in which the xtext resource containing an ALF model will be validated
+	 * 
+	 * @param element
+	 *        the element currently edited
+	 */
+	private void installValidationContextFor(Element element) {
+		if (this.styledTextAdapter != null) {
+			XtextResource resource = this.styledTextAdapter.getFakeResourceContext().getFakeResource();
+			if (resource != null) {
+				ModelNamespaceFacade.getInstance().createValidationContext(resource, this.getNamespace(element));
+			}
 		}
 	}
 
@@ -189,8 +224,7 @@ public class AlfEditionPropertySection extends
 					if (e.keyCode == 'z') {
 						if (isShift) {
 							redo();
-						}
-						else {
+						} else {
 							undo();
 						}
 					}
@@ -236,6 +270,7 @@ public class AlfEditionPropertySection extends
 		}
 		styledTextAdapter = new StyledTextXtextAdapter(this.alfToolingInjector);
 		styledTextAdapter.getFakeResourceContext().getFakeResource().eAdapters().add(contextElementAdapter);
+		this.installValidationContextFor((Element)this.eObject);
 		styledTextAdapter.adapt((StyledText) styledText);
 	}
 
