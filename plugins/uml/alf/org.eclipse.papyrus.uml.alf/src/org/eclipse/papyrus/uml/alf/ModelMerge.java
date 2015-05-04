@@ -78,6 +78,13 @@ public class ModelMerge {
 			// NOTE: Removes the source activity as a method of its former specification.
 			sourceActivity.setSpecification(null);
 			targetActivity.setSpecification(specification);
+			// NOTE: the elements contained in the activity (i.e., nodes and edges) are not preserved between two compilations
+			/*1. Destroy elements*/
+			targetActivity.getNodes().clear();
+			targetActivity.getEdges().clear();
+			/*2. Create them from the mapped specification*/
+			this.updateCollection(targetActivity.getOwnedNodes(), sourceActivity.getNodes());
+			this.updateCollection(targetActivity.getEdges(), sourceActivity.getEdges());
 		} else if (source instanceof Class && target instanceof Class) {
 			Class sourceClass = (Class) source;
 			Class targetClass = (Class) target;
