@@ -175,35 +175,6 @@
     </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
-      id="Other SysML Elements"
-      label="Other SysML Elements"
-      description="Other SysML Elements">
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.View_Package_PapyrusUMLClassDi"
-        label="View"
-        description="Create a View">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.View_Package_PapyrusUMLClassDiagram"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Allocated"
-        label="Allocated"
-        description="Create a Allocated">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Allocated_2097"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.RequirementRelated"
-        label="RequirementRelated"
-        description="Create a RequirementRelated">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.RequirementRelated_2097"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations
       id="Nodes"
       label="Other Nodes"
       description="Other Nodes">
