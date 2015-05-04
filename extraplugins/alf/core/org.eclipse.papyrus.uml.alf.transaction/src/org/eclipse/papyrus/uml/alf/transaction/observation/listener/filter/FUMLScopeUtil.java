@@ -12,6 +12,7 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.transaction.observation.listener.filter;
 
+import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Association;
 import org.eclipse.uml2.uml.AssociationClass;
 import org.eclipse.uml2.uml.Behavior;
@@ -159,6 +160,10 @@ public class FUMLScopeUtil {
 			return true;
 		}
 		return false;
+	}
+	
+	public static boolean isActivity(Object notifier){
+		return notifier instanceof Activity;
 	}
 	
 	public static boolean isLiteralUnlimitedNatural(Object notifier){
