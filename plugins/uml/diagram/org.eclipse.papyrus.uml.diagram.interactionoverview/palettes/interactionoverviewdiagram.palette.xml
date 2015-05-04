@@ -8,12 +8,6 @@
                 name="Activity"
                 refToolId="activity.nodes.activity">
             </aspectTool>
-             <aspectTool
-                description="Create a new InteractionUse"
-                id="interactionoverviewdiagram.tool.callbehavioraction"
-                name="InteractionUse"
-                refToolId="activity.nodes.invocationactions.callbehavioraction">
-            </aspectTool>
             <aspectTool
                 description="Create a new InitialNode"
                 id="interactionoverviewdiagram.tool.initialnode"

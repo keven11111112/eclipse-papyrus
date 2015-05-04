@@ -241,8 +241,8 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 		if (!stackLayoutComposite.isDisposed()) {
 			stackLayoutComposite.layout();
 		}
-		setReadOnly(readOnly);
 		updateLabels();
+		setReadOnly(readOnly);
 	}
 
 	/**
@@ -598,7 +598,10 @@ public class MultiplicityDialog extends AbstractValueEditor implements Selection
 		Display.getDefault().asyncExec(new Runnable() {
 			@Override
 			public void run() {
+				// Only refresh the model observables and the read only value
 				setEditorsModelObservable(modelProperty);
+				setReadOnly(readOnly);
+				// The others variables (labelProviders, contentProviders, mandatory and directCreation) don't need to change
 			}
 		});
 	}

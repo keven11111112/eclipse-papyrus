@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -425,6 +426,29 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 	}
 
 	/**
+	 * This keeps track of the one adapter used for all {@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule} instances.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	protected AssistantRuleItemProvider assistantRuleItemProvider;
+
+	/**
+	 * This creates an adapter for a {@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule}.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Adapter createAssistantRuleAdapter() {
+		if (assistantRuleItemProvider == null) {
+			assistantRuleItemProvider = new AssistantRuleItemProvider(this);
+		}
+
+		return assistantRuleItemProvider;
+	}
+
+	/**
 	 * This returns the root adapter factory that contains this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -474,7 +498,7 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 	public Object adapt(Object object, Object type) {
 		if (isFactoryForType(type)) {
 			Object adapter = super.adapt(object, type);
-			if (!(type instanceof Class<?>) || (((Class<?>)type).isInstance(adapter))) {
+			if (!(type instanceof Class<?>) || (((Class<?>) type).isInstance(adapter))) {
 				return adapter;
 			}
 		}
@@ -544,26 +568,57 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 	}
 
 	/**
-	 * This disposes all of the item providers created by this factory. 
+	 * This disposes all of the item providers created by this factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
 	public void dispose() {
-		if (papyrusConfigurationItemProvider != null) papyrusConfigurationItemProvider.dispose();
-		if (papyrusViewpointItemProvider != null) papyrusViewpointItemProvider.dispose();
-		if (papyrusViewItemProvider != null) papyrusViewItemProvider.dispose();
-		if (papyrusDiagramItemProvider != null) papyrusDiagramItemProvider.dispose();
-		if (papyrusSyncTableItemProvider != null) papyrusSyncTableItemProvider.dispose();
-		if (papyrusTableItemProvider != null) papyrusTableItemProvider.dispose();
-		if (modelRuleItemProvider != null) modelRuleItemProvider.dispose();
-		if (owningRuleItemProvider != null) owningRuleItemProvider.dispose();
-		if (childRuleItemProvider != null) childRuleItemProvider.dispose();
-		if (paletteRuleItemProvider != null) paletteRuleItemProvider.dispose();
-		if (pathElementItemProvider != null) pathElementItemProvider.dispose();
-		if (categoryItemProvider != null) categoryItemProvider.dispose();
-		if (modelAutoCreateItemProvider != null) modelAutoCreateItemProvider.dispose();
-		if (rootAutoSelectItemProvider != null) rootAutoSelectItemProvider.dispose();
+		if (papyrusConfigurationItemProvider != null) {
+			papyrusConfigurationItemProvider.dispose();
+		}
+		if (papyrusViewpointItemProvider != null) {
+			papyrusViewpointItemProvider.dispose();
+		}
+		if (papyrusViewItemProvider != null) {
+			papyrusViewItemProvider.dispose();
+		}
+		if (papyrusDiagramItemProvider != null) {
+			papyrusDiagramItemProvider.dispose();
+		}
+		if (papyrusSyncTableItemProvider != null) {
+			papyrusSyncTableItemProvider.dispose();
+		}
+		if (papyrusTableItemProvider != null) {
+			papyrusTableItemProvider.dispose();
+		}
+		if (modelRuleItemProvider != null) {
+			modelRuleItemProvider.dispose();
+		}
+		if (owningRuleItemProvider != null) {
+			owningRuleItemProvider.dispose();
+		}
+		if (childRuleItemProvider != null) {
+			childRuleItemProvider.dispose();
+		}
+		if (paletteRuleItemProvider != null) {
+			paletteRuleItemProvider.dispose();
+		}
+		if (pathElementItemProvider != null) {
+			pathElementItemProvider.dispose();
+		}
+		if (categoryItemProvider != null) {
+			categoryItemProvider.dispose();
+		}
+		if (modelAutoCreateItemProvider != null) {
+			modelAutoCreateItemProvider.dispose();
+		}
+		if (rootAutoSelectItemProvider != null) {
+			rootAutoSelectItemProvider.dispose();
+		}
+		if (assistantRuleItemProvider != null) {
+			assistantRuleItemProvider.dispose();
+		}
 	}
 
 	/**
@@ -614,10 +669,8 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 			 */
 			@Override
 			public Object caseArchitectureDescription(ArchitectureDescription object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_DESCRIPTION__VIEWPOINTS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_DESCRIPTION__VIEWPOINTS,
+						ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
 
 				return null;
 			}
@@ -629,25 +682,17 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 			 */
 			@Override
 			public Object caseArchitectureViewpoint(ArchitectureViewpoint object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusView()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+						ConfigurationFactory.eINSTANCE.createPapyrusView()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusDiagram()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+						ConfigurationFactory.eINSTANCE.createPapyrusDiagram()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusSyncTable()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+						ConfigurationFactory.eINSTANCE.createPapyrusSyncTable()));
 
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusTable()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_VIEWPOINT__MODEL_KINDS,
+						ConfigurationFactory.eINSTANCE.createPapyrusTable()));
 
 				return null;
 			}
@@ -659,10 +704,8 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 			 */
 			@Override
 			public Object caseArchitectureFramework(ArchitectureFramework object) {
-				newChildDescriptors.add
-					(createChildParameter
-						(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__VIEWPOINTS,
-						 ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
+				newChildDescriptors.add(createChildParameter(Iso42010Package.Literals.ARCHITECTURE_FRAMEWORK__VIEWPOINTS,
+						ConfigurationFactory.eINSTANCE.createPapyrusViewpoint()));
 
 				return null;
 			}
@@ -685,7 +728,7 @@ public class ConfigurationItemProviderAdapterFactory extends ConfigurationAdapte
 		 */
 		public Collection<Object> getNewChildDescriptors(Object object, EditingDomain editingDomain) {
 			ArrayList<Object> result = new ArrayList<Object>();
-			new CreationSwitch(result, editingDomain).doSwitch((EObject)object);
+			new CreationSwitch(result, editingDomain).doSwitch((EObject) object);
 			return result;
 		}
 

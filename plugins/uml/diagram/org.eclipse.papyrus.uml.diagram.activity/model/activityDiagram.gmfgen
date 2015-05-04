@@ -19624,22 +19624,6 @@
                 genNodes="/0/@diagram/@childNodes.85"/>
             <entries
                 xsi:type="gmfgen:ToolEntry"
-                title="Add Structural Feature Value Action"
-                description="Create Add Structural Feature Value Action"
-                largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
-                smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
-                id="&quot;activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2&quot;"
-                genNodes="/0/@diagram/@childNodes.85"/>
-            <entries
-                xsi:type="gmfgen:ToolEntry"
-                title="Read Structural Feature Action"
-                description="Create Read Structural Feature Action"
-                largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
-                smallIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
-                id="&quot;activity.nodes.structuralfeatureactions.readstructuralfeatureaction2&quot;"
-                genNodes="/0/@diagram/@childNodes.82"/>
-            <entries
-                xsi:type="gmfgen:ToolEntry"
                 title="Clear Structural Feature"
                 description="Create a Clear Structural Feature Action"
                 largeIconPath="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ClearStructuralFeatureAction.gif"

@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -81,19 +82,27 @@ public class RuleItemProvider
 	 * @generated
 	 */
 	protected void addPermitPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_Rule_permit_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_Rule_permit_feature", "_UI_Rule_type"),
-				 ConfigurationPackage.Literals.RULE__PERMIT,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_Rule_permit_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_Rule_permit_feature", "_UI_Rule_type"),
+				ConfigurationPackage.Literals.RULE__PERMIT,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.BOOLEAN_VALUE_IMAGE,
+				null,
+				null));
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
 	}
 
 	/**
@@ -104,7 +113,7 @@ public class RuleItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		Rule rule = (Rule)object;
+		Rule rule = (Rule) object;
 		return getString("_UI_Rule_type") + " " + rule.isPermit();
 	}
 
@@ -120,9 +129,9 @@ public class RuleItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(Rule.class)) {
-			case ConfigurationPackage.RULE__PERMIT:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
+		case ConfigurationPackage.RULE__PERMIT:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -147,7 +156,7 @@ public class RuleItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

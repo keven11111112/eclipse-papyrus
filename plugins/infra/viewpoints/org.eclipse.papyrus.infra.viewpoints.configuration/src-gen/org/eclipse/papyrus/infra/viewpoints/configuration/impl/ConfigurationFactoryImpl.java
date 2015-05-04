@@ -1,19 +1,21 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EPackage;
 
@@ -21,6 +23,7 @@ import org.eclipse.emf.ecore.impl.EFactoryImpl;
 
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
 
+import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.papyrus.infra.viewpoints.configuration.*;
 
 /**
@@ -38,12 +41,11 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 */
 	public static ConfigurationFactory init() {
 		try {
-			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(ConfigurationPackage.eNS_URI);
+			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(ConfigurationPackage.eNS_URI);
 			if (theConfigurationFactory != null) {
 				return theConfigurationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ConfigurationFactoryImpl();
@@ -67,22 +69,68 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	@Override
 	public EObject create(EClass eClass) {
 		switch (eClass.getClassifierID()) {
-			case ConfigurationPackage.PAPYRUS_CONFIGURATION: return createPapyrusConfiguration();
-			case ConfigurationPackage.PAPYRUS_VIEWPOINT: return createPapyrusViewpoint();
-			case ConfigurationPackage.PAPYRUS_VIEW: return createPapyrusView();
-			case ConfigurationPackage.PAPYRUS_DIAGRAM: return createPapyrusDiagram();
-			case ConfigurationPackage.PAPYRUS_SYNC_TABLE: return createPapyrusSyncTable();
-			case ConfigurationPackage.PAPYRUS_TABLE: return createPapyrusTable();
-			case ConfigurationPackage.MODEL_RULE: return createModelRule();
-			case ConfigurationPackage.OWNING_RULE: return createOwningRule();
-			case ConfigurationPackage.CHILD_RULE: return createChildRule();
-			case ConfigurationPackage.PALETTE_RULE: return createPaletteRule();
-			case ConfigurationPackage.PATH_ELEMENT: return createPathElement();
-			case ConfigurationPackage.CATEGORY: return createCategory();
-			case ConfigurationPackage.MODEL_AUTO_CREATE: return createModelAutoCreate();
-			case ConfigurationPackage.ROOT_AUTO_SELECT: return createRootAutoSelect();
-			default:
-				throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		case ConfigurationPackage.PAPYRUS_CONFIGURATION:
+			return createPapyrusConfiguration();
+		case ConfigurationPackage.PAPYRUS_VIEWPOINT:
+			return createPapyrusViewpoint();
+		case ConfigurationPackage.PAPYRUS_VIEW:
+			return createPapyrusView();
+		case ConfigurationPackage.PAPYRUS_DIAGRAM:
+			return createPapyrusDiagram();
+		case ConfigurationPackage.PAPYRUS_SYNC_TABLE:
+			return createPapyrusSyncTable();
+		case ConfigurationPackage.PAPYRUS_TABLE:
+			return createPapyrusTable();
+		case ConfigurationPackage.MODEL_RULE:
+			return createModelRule();
+		case ConfigurationPackage.OWNING_RULE:
+			return createOwningRule();
+		case ConfigurationPackage.CHILD_RULE:
+			return createChildRule();
+		case ConfigurationPackage.PALETTE_RULE:
+			return createPaletteRule();
+		case ConfigurationPackage.PATH_ELEMENT:
+			return createPathElement();
+		case ConfigurationPackage.CATEGORY:
+			return createCategory();
+		case ConfigurationPackage.MODEL_AUTO_CREATE:
+			return createModelAutoCreate();
+		case ConfigurationPackage.ROOT_AUTO_SELECT:
+			return createRootAutoSelect();
+		case ConfigurationPackage.ASSISTANT_RULE:
+			return createAssistantRule();
+		default:
+			throw new IllegalArgumentException("The class '" + eClass.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public Object createFromString(EDataType eDataType, String initialValue) {
+		switch (eDataType.getClassifierID()) {
+		case ConfigurationPackage.ELEMENT_TYPE:
+			return createElementTypeFromString(eDataType, initialValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
+		}
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	public String convertToString(EDataType eDataType, Object instanceValue) {
+		switch (eDataType.getClassifierID()) {
+		case ConfigurationPackage.ELEMENT_TYPE:
+			return convertElementTypeToString(eDataType, instanceValue);
+		default:
+			throw new IllegalArgumentException("The datatype '" + eDataType.getName() + "' is not a valid classifier");
 		}
 	}
 
@@ -231,8 +279,36 @@ public class ConfigurationFactoryImpl extends EFactoryImpl implements Configurat
 	 * <!-- end-user-doc -->
 	 * @generated
 	 */
+	public AssistantRule createAssistantRule() {
+		AssistantRuleImpl assistantRule = new AssistantRuleImpl();
+		return assistantRule;
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public IElementType createElementTypeFromString(EDataType eDataType, String initialValue) {
+		return (IElementType) super.createFromString(eDataType, initialValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	public String convertElementTypeToString(EDataType eDataType, Object instanceValue) {
+		return super.convertToString(eDataType, instanceValue);
+	}
+
+	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
 	public ConfigurationPackage getConfigurationPackage() {
-		return (ConfigurationPackage)getEPackage();
+		return (ConfigurationPackage) getEPackage();
 	}
 
 	/**

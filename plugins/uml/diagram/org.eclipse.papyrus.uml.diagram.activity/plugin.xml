@@ -2039,26 +2039,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 				</entry>
 				<entry
 				      defineOnly="true"
-				      description="Create Add Structural Feature Value Action"
-				      id="activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2"
-				      kind="tool"
-				      label="Add Structural Feature Value Action"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/AddStructuralFeatureValueAction.gif">
-				</entry>
-				<entry
-				      defineOnly="true"
-				      description="Create Read Structural Feature Action"
-				      id="activity.nodes.structuralfeatureactions.readstructuralfeatureaction2"
-				      kind="tool"
-				      label="Read Structural Feature Action"
-				      large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif"
-				      path=""
-				      small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/ReadStructuralFeatureAction.gif">
-				</entry>
-				<entry
-				      defineOnly="true"
 				      description="Create a Clear Structural Feature Action"
 				      id="activity.nodes.structuralfeatureactions.clearstructuralfeature"
 				      kind="tool"
@@ -2755,14 +2735,6 @@ self.structuralFeature.oclAsType(Property).opposite.type = self.object.type]]>
 		  </predefinedEntry>
 		<predefinedEntry
 		        id="activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction"
-				path="/activity.nodes/activity.nodes.structuralfeatureactions">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="activity.nodes.structuralfeatureactions.addstructuralfeaturevalueaction2"
-				path="/activity.nodes/activity.nodes.structuralfeatureactions">
-		  </predefinedEntry>
-		<predefinedEntry
-		        id="activity.nodes.structuralfeatureactions.readstructuralfeatureaction2"
 				path="/activity.nodes/activity.nodes.structuralfeatureactions">
 		  </predefinedEntry>
 		<predefinedEntry

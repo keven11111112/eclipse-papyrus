@@ -1,20 +1,23 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration;
 
 import org.eclipse.emf.ecore.EAttribute;
 import org.eclipse.emf.ecore.EClass;
+import org.eclipse.emf.ecore.EDataType;
+import org.eclipse.emf.ecore.EOperation;
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.EReference;
 
@@ -515,13 +518,22 @@ public interface ConfigurationPackage extends EPackage {
 	int PAPYRUS_DIAGRAM__PALETTE_RULES = PAPYRUS_VIEW_FEATURE_COUNT + 3;
 
 	/**
+	 * The feature id for the '<em><b>Assistant Rules</b></em>' containment reference list.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int PAPYRUS_DIAGRAM__ASSISTANT_RULES = PAPYRUS_VIEW_FEATURE_COUNT + 4;
+
+	/**
 	 * The number of structural features of the '<em>Papyrus Diagram</em>' class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
 	 * @generated
 	 * @ordered
 	 */
-	int PAPYRUS_DIAGRAM_FEATURE_COUNT = PAPYRUS_VIEW_FEATURE_COUNT + 4;
+	int PAPYRUS_DIAGRAM_FEATURE_COUNT = PAPYRUS_VIEW_FEATURE_COUNT + 5;
 
 	/**
 	 * The number of operations of the '<em>Papyrus Diagram</em>' class.
@@ -1301,6 +1313,73 @@ public interface ConfigurationPackage extends EPackage {
 
 
 	/**
+	 * The meta object id for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.AssistantRuleImpl <em>Assistant Rule</em>}' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.AssistantRuleImpl
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getAssistantRule()
+	 * @generated
+	 */
+	int ASSISTANT_RULE = 15;
+
+	/**
+	 * The feature id for the '<em><b>Permit</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSISTANT_RULE__PERMIT = RULE__PERMIT;
+
+	/**
+	 * The feature id for the '<em><b>Element Type ID</b></em>' attribute.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSISTANT_RULE__ELEMENT_TYPE_ID = RULE_FEATURE_COUNT + 0;
+
+	/**
+	 * The number of structural features of the '<em>Assistant Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSISTANT_RULE_FEATURE_COUNT = RULE_FEATURE_COUNT + 1;
+
+	/**
+	 * The operation id for the '<em>Matches</em>' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSISTANT_RULE___MATCHES__IELEMENTTYPE = RULE_OPERATION_COUNT + 0;
+
+	/**
+	 * The number of operations of the '<em>Assistant Rule</em>' class.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 * @ordered
+	 */
+	int ASSISTANT_RULE_OPERATION_COUNT = RULE_OPERATION_COUNT + 1;
+
+
+	/**
+	 * The meta object id for the '<em>Element Type</em>' data type.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @see org.eclipse.gmf.runtime.emf.type.core.IElementType
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getElementType()
+	 * @generated
+	 */
+	int ELEMENT_TYPE = 16;
+
+
+	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusConfiguration <em>Papyrus Configuration</em>}'.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -1504,6 +1583,17 @@ public interface ConfigurationPackage extends EPackage {
 	 * @generated
 	 */
 	EReference getPapyrusDiagram_PaletteRules();
+
+	/**
+	 * Returns the meta object for the containment reference list '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getAssistantRules <em>Assistant Rules</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the containment reference list '<em>Assistant Rules</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusDiagram#getAssistantRules()
+	 * @see #getPapyrusDiagram()
+	 * @generated
+	 */
+	EReference getPapyrusDiagram_AssistantRules();
 
 	/**
 	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.PapyrusSyncTable <em>Papyrus Sync Table</em>}'.
@@ -1869,6 +1959,48 @@ public interface ConfigurationPackage extends EPackage {
 	EReference getRootAutoSelect_Feature();
 
 	/**
+	 * Returns the meta object for class '{@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule <em>Assistant Rule</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for class '<em>Assistant Rule</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule
+	 * @generated
+	 */
+	EClass getAssistantRule();
+
+	/**
+	 * Returns the meta object for the attribute '{@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule#getElementTypeID <em>Element Type ID</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the attribute '<em>Element Type ID</em>'.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule#getElementTypeID()
+	 * @see #getAssistantRule()
+	 * @generated
+	 */
+	EAttribute getAssistantRule_ElementTypeID();
+
+	/**
+	 * Returns the meta object for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule#matches(org.eclipse.gmf.runtime.emf.type.core.IElementType) <em>Matches</em>}' operation.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for the '<em>Matches</em>' operation.
+	 * @see org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule#matches(org.eclipse.gmf.runtime.emf.type.core.IElementType)
+	 * @generated
+	 */
+	EOperation getAssistantRule__Matches__IElementType();
+
+	/**
+	 * Returns the meta object for data type '{@link org.eclipse.gmf.runtime.emf.type.core.IElementType <em>Element Type</em>}'.
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @return the meta object for data type '<em>Element Type</em>'.
+	 * @see org.eclipse.gmf.runtime.emf.type.core.IElementType
+	 * @model instanceClass="org.eclipse.gmf.runtime.emf.type.core.IElementType"
+	 * @generated
+	 */
+	EDataType getElementType();
+
+	/**
 	 * Returns the factory that creates the instances of the model.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -2050,6 +2182,14 @@ public interface ConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference PAPYRUS_DIAGRAM__PALETTE_RULES = eINSTANCE.getPapyrusDiagram_PaletteRules();
+
+		/**
+		 * The meta object literal for the '<em><b>Assistant Rules</b></em>' containment reference list feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EReference PAPYRUS_DIAGRAM__ASSISTANT_RULES = eINSTANCE.getPapyrusDiagram_AssistantRules();
 
 		/**
 		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.PapyrusSyncTableImpl <em>Papyrus Sync Table</em>}' class.
@@ -2344,6 +2484,42 @@ public interface ConfigurationPackage extends EPackage {
 		 * @generated
 		 */
 		EReference ROOT_AUTO_SELECT__FEATURE = eINSTANCE.getRootAutoSelect_Feature();
+
+		/**
+		 * The meta object literal for the '{@link org.eclipse.papyrus.infra.viewpoints.configuration.impl.AssistantRuleImpl <em>Assistant Rule</em>}' class.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.AssistantRuleImpl
+		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getAssistantRule()
+		 * @generated
+		 */
+		EClass ASSISTANT_RULE = eINSTANCE.getAssistantRule();
+
+		/**
+		 * The meta object literal for the '<em><b>Element Type ID</b></em>' attribute feature.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EAttribute ASSISTANT_RULE__ELEMENT_TYPE_ID = eINSTANCE.getAssistantRule_ElementTypeID();
+
+		/**
+		 * The meta object literal for the '<em><b>Matches</b></em>' operation.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @generated
+		 */
+		EOperation ASSISTANT_RULE___MATCHES__IELEMENTTYPE = eINSTANCE.getAssistantRule__Matches__IElementType();
+
+		/**
+		 * The meta object literal for the '<em>Element Type</em>' data type.
+		 * <!-- begin-user-doc -->
+		 * <!-- end-user-doc -->
+		 * @see org.eclipse.gmf.runtime.emf.type.core.IElementType
+		 * @see org.eclipse.papyrus.infra.viewpoints.configuration.impl.ConfigurationPackageImpl#getElementType()
+		 * @generated
+		 */
+		EDataType ELEMENT_TYPE = eINSTANCE.getElementType();
 
 	}
 

@@ -1,5 +1,5 @@
 /**
- * Copyright (c) 2015 CEA LIST.
+ * Copyright (c) 2015 CEA LIST, Christian W. Damus, and others.
  *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
@@ -8,12 +8,14 @@
  *
  *  Contributors:
  *  Benoit Maggi benoit.maggi@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
 import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.emf.ecore.plugin.EcorePlugin;
+import org.eclipse.papyrus.infra.viewpoints.configuration.AssistantRule;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationFactory;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ConfigurationPackage;
 import org.eclipse.papyrus.infra.viewpoints.configuration.ModelAutoCreate;
@@ -24,12 +26,11 @@ public class ConfigurationFactoryCustomImpl extends ConfigurationFactoryImpl imp
 
 	public static ConfigurationFactory init() {
 		try {
-			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory)EPackage.Registry.INSTANCE.getEFactory(ConfigurationPackage.eNS_URI);
+			ConfigurationFactory theConfigurationFactory = (ConfigurationFactory) EPackage.Registry.INSTANCE.getEFactory(ConfigurationPackage.eNS_URI);
 			if (theConfigurationFactory != null) {
 				return theConfigurationFactory;
 			}
-		}
-		catch (Exception exception) {
+		} catch (Exception exception) {
 			EcorePlugin.INSTANCE.log(exception);
 		}
 		return new ConfigurationFactoryImpl();
@@ -39,6 +40,7 @@ public class ConfigurationFactoryCustomImpl extends ConfigurationFactoryImpl imp
 	 * Creates an instance of the factory.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
+	 * 
 	 * @generated
 	 */
 	public ConfigurationFactoryCustomImpl() {
@@ -56,6 +58,10 @@ public class ConfigurationFactoryCustomImpl extends ConfigurationFactoryImpl imp
 		PathElementImpl pathElement = new PathElementCustomImpl();
 		return pathElement;
 	}
-	
 
-} 
+	@Override
+	public AssistantRule createAssistantRule() {
+		AssistantRuleImpl assistantRule = new AssistantRuleCustomImpl();
+		return assistantRule;
+	}
+}

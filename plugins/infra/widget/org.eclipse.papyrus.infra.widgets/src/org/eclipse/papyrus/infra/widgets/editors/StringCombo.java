@@ -10,6 +10,7 @@
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Thibault Le Ouay t.leouay@sherpa-eng.com - Add binding implementation
  *  Christian W. Damus (CEA) - bug 436072
+ *  Nicolas FAUVERGUE (ALL4TEC) nicolas.fauvergue@all4tec.net- Bug 446865
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.widgets.editors;
@@ -38,15 +39,38 @@ import org.eclipse.swt.widgets.Composite;
  */
 public class StringCombo extends ReferenceCombo {
 
-	public StringCombo(Composite parent, int style) {
+	/**
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The parent composite.
+	 * @param style
+	 *            The style used.
+	 */
+	public StringCombo(final Composite parent, final int style) {
 		super(parent, style);
 		combo.setEditable(true);
 	}
 
-	public StringCombo(Composite parent, int style, String label) {
+	/**
+	 * Constructor.
+	 *
+	 * @param parent
+	 *            The parent composite.
+	 * @param style
+	 *            The style used.
+	 * @param label
+	 *            The initial label.
+	 */
+	public StringCombo(final Composite parent, final int style, final String label) {
 		super(parent, style, label);
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#getEditableType()
+	 */
 	@Override
 	public Object getEditableType() {
 		return String.class;
@@ -57,6 +81,7 @@ public class StringCombo extends ReferenceCombo {
 	 * specify the objects that can be referred by this property
 	 *
 	 * @param provider
+	 *            The provider.
 	 */
 	@Override
 	public void setContentProvider(IStaticContentProvider provider) {
@@ -67,11 +92,21 @@ public class StringCombo extends ReferenceCombo {
 		}
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#getObservableValue()
+	 */
 	@Override
 	protected IObservableValue getObservableValue() {
 		return new CComboObservableValue();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#getValue()
+	 */
 	@Override
 	public String getValue() {
 		// See Bug 359835 : The ComboViewer doesn't support custom values
@@ -79,6 +114,11 @@ public class StringCombo extends ReferenceCombo {
 		return combo.getText();
 	}
 
+	/**
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#setValue(java.lang.Object)
+	 */
 	@Override
 	public void setValue(Object value) {
 		// See Bug 359835 : The ComboViewer doesn't support custom values
@@ -91,7 +131,10 @@ public class StringCombo extends ReferenceCombo {
 	}
 
 	/**
-	 * Updates the controls display
+	 * Updates the controls display.
+	 * {@inheritDoc}
+	 *
+	 * @see org.eclipse.papyrus.infra.widgets.editors.ReferenceCombo#updateControls()
 	 */
 	@Override
 	protected void updateControls() {
@@ -193,7 +236,6 @@ public class StringCombo extends ReferenceCombo {
 		public void keyPressed(KeyEvent e) {
 			// Nothing
 		}
-
 	}
 
 }

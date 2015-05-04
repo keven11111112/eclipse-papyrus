@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -9,6 +9,7 @@
  *
  * Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
+ *  Christian W. Damus - bug 463156
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.viewpoints.configuration.provider;
@@ -78,19 +79,17 @@ public class PapyrusViewItemProvider
 	 * @generated
 	 */
 	protected void addIconPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusView_icon_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_icon_feature", "_UI_PapyrusView_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_VIEW__ICON,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusView_icon_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_icon_feature", "_UI_PapyrusView_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEW__ICON,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -100,19 +99,17 @@ public class PapyrusViewItemProvider
 	 * @generated
 	 */
 	protected void addParentPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusView_parent_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_parent_feature", "_UI_PapyrusView_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_VIEW__PARENT,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusView_parent_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_parent_feature", "_UI_PapyrusView_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEW__PARENT,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -123,19 +120,17 @@ public class PapyrusViewItemProvider
 	 * @generated NOT
 	 */
 	protected void addProfilesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-				(new ProfilePropertyDescriptor(createItemPropertyDescriptor
-						(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
-								getResourceLocator(),
-								getString("_UI_PapyrusView_profiles_feature"),
-								getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_profiles_feature", "_UI_PapyrusView_type"),
-								ConfigurationPackage.Literals.PAPYRUS_VIEW__PROFILES,
-								true,
-								false,
-								true,
-								null,
-								null,
-								null)));
+		itemPropertyDescriptors.add(new ProfilePropertyDescriptor(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusView_profiles_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_profiles_feature", "_UI_PapyrusView_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEW__PROFILES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null)));
 	}
 
 	/**
@@ -145,19 +140,17 @@ public class PapyrusViewItemProvider
 	 * @generated
 	 */
 	protected void addImplementationIDPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusView_implementationID_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_implementationID_feature", "_UI_PapyrusView_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_VIEW__IMPLEMENTATION_ID,
-				 true,
-				 false,
-				 false,
-				 ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusView_implementationID_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_implementationID_feature", "_UI_PapyrusView_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEW__IMPLEMENTATION_ID,
+				true,
+				false,
+				false,
+				ItemPropertyDescriptor.GENERIC_VALUE_IMAGE,
+				null,
+				null));
 	}
 
 	/**
@@ -167,19 +160,17 @@ public class PapyrusViewItemProvider
 	 * @generated
 	 */
 	protected void addCategoriesPropertyDescriptor(Object object) {
-		itemPropertyDescriptors.add
-			(createItemPropertyDescriptor
-				(((ComposeableAdapterFactory)adapterFactory).getRootAdapterFactory(),
-				 getResourceLocator(),
-				 getString("_UI_PapyrusView_categories_feature"),
-				 getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_categories_feature", "_UI_PapyrusView_type"),
-				 ConfigurationPackage.Literals.PAPYRUS_VIEW__CATEGORIES,
-				 true,
-				 false,
-				 true,
-				 null,
-				 null,
-				 null));
+		itemPropertyDescriptors.add(createItemPropertyDescriptor(((ComposeableAdapterFactory) adapterFactory).getRootAdapterFactory(),
+				getResourceLocator(),
+				getString("_UI_PapyrusView_categories_feature"),
+				getString("_UI_PropertyDescriptor_description", "_UI_PapyrusView_categories_feature", "_UI_PapyrusView_type"),
+				ConfigurationPackage.Literals.PAPYRUS_VIEW__CATEGORIES,
+				true,
+				false,
+				true,
+				null,
+				null,
+				null));
 	}
 
 	/**
@@ -226,6 +217,16 @@ public class PapyrusViewItemProvider
 	}
 
 	/**
+	 * <!-- begin-user-doc -->
+	 * <!-- end-user-doc -->
+	 * @generated
+	 */
+	@Override
+	protected boolean shouldComposeCreationImage() {
+		return true;
+	}
+
+	/**
 	 * This returns the label text for the adapted class.
 	 * <!-- begin-user-doc -->
 	 * <!-- end-user-doc -->
@@ -233,10 +234,8 @@ public class PapyrusViewItemProvider
 	 */
 	@Override
 	public String getText(Object object) {
-		String label = ((PapyrusView)object).getName();
-		return label == null || label.length() == 0 ?
-			getString("_UI_PapyrusView_type") :
-			getString("_UI_PapyrusView_type") + " " + label;
+		String label = ((PapyrusView) object).getName();
+		return label == null || label.length() == 0 ? getString("_UI_PapyrusView_type") : getString("_UI_PapyrusView_type") + " " + label;
 	}
 
 	/**
@@ -264,14 +263,14 @@ public class PapyrusViewItemProvider
 		updateChildren(notification);
 
 		switch (notification.getFeatureID(PapyrusView.class)) {
-			case ConfigurationPackage.PAPYRUS_VIEW__ICON:
-			case ConfigurationPackage.PAPYRUS_VIEW__IMPLEMENTATION_ID:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
-				return;
-			case ConfigurationPackage.PAPYRUS_VIEW__MODEL_RULES:
-			case ConfigurationPackage.PAPYRUS_VIEW__OWNING_RULES:
-				fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
-				return;
+		case ConfigurationPackage.PAPYRUS_VIEW__ICON:
+		case ConfigurationPackage.PAPYRUS_VIEW__IMPLEMENTATION_ID:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), false, true));
+			return;
+		case ConfigurationPackage.PAPYRUS_VIEW__MODEL_RULES:
+		case ConfigurationPackage.PAPYRUS_VIEW__OWNING_RULES:
+			fireNotifyChanged(new ViewerNotification(notification, notification.getNotifier(), true, false));
+			return;
 		}
 		super.notifyChanged(notification);
 	}
@@ -287,15 +286,11 @@ public class PapyrusViewItemProvider
 	protected void collectNewChildDescriptors(Collection<Object> newChildDescriptors, Object object) {
 		super.collectNewChildDescriptors(newChildDescriptors, object);
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_VIEW__MODEL_RULES,
-				 ConfigurationFactory.eINSTANCE.createModelRule()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_VIEW__MODEL_RULES,
+				ConfigurationFactory.eINSTANCE.createModelRule()));
 
-		newChildDescriptors.add
-			(createChildParameter
-				(ConfigurationPackage.Literals.PAPYRUS_VIEW__OWNING_RULES,
-				 ConfigurationFactory.eINSTANCE.createOwningRule()));
+		newChildDescriptors.add(createChildParameter(ConfigurationPackage.Literals.PAPYRUS_VIEW__OWNING_RULES,
+				ConfigurationFactory.eINSTANCE.createOwningRule()));
 	}
 
 	/**
@@ -306,7 +301,7 @@ public class PapyrusViewItemProvider
 	 */
 	@Override
 	public ResourceLocator getResourceLocator() {
-		return ((IChildCreationExtender)adapterFactory).getResourceLocator();
+		return ((IChildCreationExtender) adapterFactory).getResourceLocator();
 	}
 
 }

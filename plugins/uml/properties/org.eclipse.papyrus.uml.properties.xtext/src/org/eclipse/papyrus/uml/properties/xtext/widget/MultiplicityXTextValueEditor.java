@@ -12,10 +12,14 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.properties.xtext.widget;
 
+import org.eclipse.core.runtime.IStatus;
+import org.eclipse.core.runtime.Status;
 import org.eclipse.jface.preference.IPreferenceStore;
 import org.eclipse.papyrus.infra.widgets.editors.AbstractReferenceDialog;
 import org.eclipse.papyrus.infra.widgets.editors.StyledTextReferenceDialog;
-import org.eclipse.papyrus.infra.widgets.validator.UnlimitedNaturalValidator;
+import org.eclipse.papyrus.infra.widgets.messages.Messages;
+import org.eclipse.papyrus.infra.widgets.validator.AbstractValidator;
+import org.eclipse.papyrus.infra.widgets.validator.IntegerValidator;
 import org.eclipse.papyrus.uml.properties.widgets.ExtendedMultiplicityDialog;
 import org.eclipse.swt.events.SelectionListener;
 import org.eclipse.swt.widgets.Composite;
@@ -80,14 +84,14 @@ public class MultiplicityXTextValueEditor extends ExtendedMultiplicityDialog imp
 	 */
 	@Override
 	protected AbstractReferenceDialog createLowerValueSpecificationEditor(final Composite parent, final int style) {
-		final AbstractReferenceDialog lowerValueSpecificationEditor = super.createLowerValueSpecificationEditor(parent, style);
+		final AbstractReferenceDialog lowerValueSpecificationEditor = new UMLXtextReferenceValueEditor(parent, style);
 		if (null == lowerValueDirectEditorConfiguration) {
 			lowerValueDirectEditorConfiguration = DEFAULT_LOWER_VALUE_DIRECT_EDITOR_CONFIGURATION;
 		}
 		((UMLXtextReferenceValueEditor) lowerValueSpecificationEditor).setDirectEditorConfiguration(lowerValueDirectEditorConfiguration);
 		return lowerValueSpecificationEditor;
 	}
-
+	
 	/**
 	 * {@inheritDoc}
 	 * 
@@ -95,7 +99,7 @@ public class MultiplicityXTextValueEditor extends ExtendedMultiplicityDialog imp
 	 */
 	@Override
 	protected AbstractReferenceDialog createUpperValueSpecificationEditor(final Composite parent, final int style) {
-		final AbstractReferenceDialog upperValueSpecificationEditor = new UMLXtextReferenceValueEditor(parent, style, new UnlimitedNaturalValidator());
+		final AbstractReferenceDialog upperValueSpecificationEditor = super.createUpperValueSpecificationEditor(parent, style);
 		if (null == upperValueDirectEditorConfiguration) {
 			upperValueDirectEditorConfiguration = DEFAULT_UPPER_VALUE_DIRECT_EDITOR_CONFIGURATION;
 		}

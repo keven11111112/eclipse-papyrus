@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -26,7 +27,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.PaletteRule;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Palette Rule</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -93,8 +93,9 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	public void setElement(String newElement) {
 		String oldElement = element;
 		element = newElement;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.PALETTE_RULE__ELEMENT, oldElement, element));
+		}
 	}
 
 	/**
@@ -105,8 +106,8 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.PALETTE_RULE__ELEMENT:
-				return getElement();
+		case ConfigurationPackage.PALETTE_RULE__ELEMENT:
+			return getElement();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -119,9 +120,9 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.PALETTE_RULE__ELEMENT:
-				setElement((String)newValue);
-				return;
+		case ConfigurationPackage.PALETTE_RULE__ELEMENT:
+			setElement((String) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -134,9 +135,9 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.PALETTE_RULE__ELEMENT:
-				setElement(ELEMENT_EDEFAULT);
-				return;
+		case ConfigurationPackage.PALETTE_RULE__ELEMENT:
+			setElement(ELEMENT_EDEFAULT);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -149,8 +150,8 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.PALETTE_RULE__ELEMENT:
-				return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
+		case ConfigurationPackage.PALETTE_RULE__ELEMENT:
+			return ELEMENT_EDEFAULT == null ? element != null : !ELEMENT_EDEFAULT.equals(element);
 		}
 		return super.eIsSet(featureID);
 	}
@@ -162,7 +163,9 @@ public class PaletteRuleImpl extends RuleImpl implements PaletteRule {
 	 */
 	@Override
 	public String toString() {
-		if (eIsProxy()) return super.toString();
+		if (eIsProxy()) {
+			return super.toString();
+		}
 
 		StringBuffer result = new StringBuffer(super.toString());
 		result.append(" (element: ");

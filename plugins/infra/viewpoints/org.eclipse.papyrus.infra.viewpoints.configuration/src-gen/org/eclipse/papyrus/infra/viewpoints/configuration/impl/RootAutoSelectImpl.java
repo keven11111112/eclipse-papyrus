@@ -1,15 +1,16 @@
 /**
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
+ *
  *  All rights reserved. This program and the accompanying materials
  *  are made available under the terms of the Eclipse Public License v1.0
  *  which accompanies this distribution, and is available at
  *  http://www.eclipse.org/legal/epl-v10.html
- *  
+ *
  *  Contributors:
  *  Laurent Wouters laurent.wouters@cea.fr - Initial API and implementation
- *  
- * 
+ *  Christian W. Damus - bug 463156
+ *
+ *
  */
 package org.eclipse.papyrus.infra.viewpoints.configuration.impl;
 
@@ -29,7 +30,6 @@ import org.eclipse.papyrus.infra.viewpoints.configuration.RootAutoSelect;
  * <!-- begin-user-doc -->
  * An implementation of the model object '<em><b>Root Auto Select</b></em>'.
  * <!-- end-user-doc -->
- * <p>
  * <p>
  * The following features are implemented:
  * </p>
@@ -76,11 +76,12 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	 */
 	public EReference getFeature() {
 		if (feature != null && feature.eIsProxy()) {
-			InternalEObject oldFeature = (InternalEObject)feature;
-			feature = (EReference)eResolveProxy(oldFeature);
+			InternalEObject oldFeature = (InternalEObject) feature;
+			feature = (EReference) eResolveProxy(oldFeature);
 			if (feature != oldFeature) {
-				if (eNotificationRequired())
+				if (eNotificationRequired()) {
 					eNotify(new ENotificationImpl(this, Notification.RESOLVE, ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE, oldFeature, feature));
+				}
 			}
 		}
 		return feature;
@@ -103,8 +104,9 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	public void setFeature(EReference newFeature) {
 		EReference oldFeature = feature;
 		feature = newFeature;
-		if (eNotificationRequired())
+		if (eNotificationRequired()) {
 			eNotify(new ENotificationImpl(this, Notification.SET, ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE, oldFeature, feature));
+		}
 	}
 
 	/**
@@ -115,9 +117,11 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public Object eGet(int featureID, boolean resolve, boolean coreType) {
 		switch (featureID) {
-			case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
-				if (resolve) return getFeature();
-				return basicGetFeature();
+		case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
+			if (resolve) {
+				return getFeature();
+			}
+			return basicGetFeature();
 		}
 		return super.eGet(featureID, resolve, coreType);
 	}
@@ -130,9 +134,9 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eSet(int featureID, Object newValue) {
 		switch (featureID) {
-			case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
-				setFeature((EReference)newValue);
-				return;
+		case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
+			setFeature((EReference) newValue);
+			return;
 		}
 		super.eSet(featureID, newValue);
 	}
@@ -145,9 +149,9 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public void eUnset(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
-				setFeature((EReference)null);
-				return;
+		case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
+			setFeature((EReference) null);
+			return;
 		}
 		super.eUnset(featureID);
 	}
@@ -160,8 +164,8 @@ public class RootAutoSelectImpl extends MinimalEObjectImpl.Container implements 
 	@Override
 	public boolean eIsSet(int featureID) {
 		switch (featureID) {
-			case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
-				return feature != null;
+		case ConfigurationPackage.ROOT_AUTO_SELECT__FEATURE:
+			return feature != null;
 		}
 		return super.eIsSet(featureID);
 	}

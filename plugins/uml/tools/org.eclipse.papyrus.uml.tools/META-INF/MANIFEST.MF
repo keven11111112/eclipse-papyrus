@@ -2,6 +2,8 @@ Manifest-Version: 1.0
 Export-Package: org.eclipse.papyrus.uml.tools,
  org.eclipse.papyrus.uml.tools.adapters,
  org.eclipse.papyrus.uml.tools.commands,
+ org.eclipse.papyrus.uml.tools.constraints.providers,
+ org.eclipse.papyrus.uml.tools.contraints,
  org.eclipse.papyrus.uml.tools.databinding,
  org.eclipse.papyrus.uml.tools.helper,
  org.eclipse.papyrus.uml.tools.importsources,
