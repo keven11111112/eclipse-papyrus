@@ -86,7 +86,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 	private class WalkerPaletteContributionHelper implements IPapyrusPaletteConstant {
 
 		protected String field;
-		
+
 		/**
 		 * Init the Helper with the field you want to extract the values.
 		 *
@@ -94,8 +94,8 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 		public WalkerPaletteContributionHelper(String field) {
 			this.field = field;
 		}
-		
-		
+
+
 		/**
 		 * Retrieve all elements ID of the palette contributions
 		 *
@@ -146,9 +146,9 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 			for (int i = 0; i < nodes.getLength(); i++) {
 				Node node = nodes.item(i);
 				String name = node.getNodeName();
-				if (DRAWER.equals(name)|| STACK.equals(name) || SEPARATOR.equals(name) || TOOL.equals(name) || ASPECT_TOOL.equals(name)) {
+				if (DRAWER.equals(name) || STACK.equals(name) || SEPARATOR.equals(name) || TOOL.equals(name) || ASPECT_TOOL.equals(name)) {
 					Node namedItem = node.getAttributes().getNamedItem(field);
-					if (namedItem!= null){
+					if (namedItem != null) {
 						paletteNodesID.add(namedItem.getNodeValue());
 					}
 					if (node.getChildNodes().getLength() > 0) {
@@ -257,7 +257,12 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 		String paletteURI = getCustomPalette(diagram);
 		if (paletteURI != null && !paletteURI.isEmpty()) {
 			if (!paletteURI.endsWith(PaletteconfigurationPackage.eNAME)) {
-				Activator.log.warn("Old palette configuration, please consider using the new paletteconfiguration framework");
+
+				//
+				// Warning disabled in 1.1M7: the new palettes don't have an editor yet, don't throw warnings for migration
+				// Activator.log.warn("Old palette configuration, please consider using the new paletteconfiguration framework");
+				//
+
 				CustomPaletteProvider provider = new CustomPaletteProvider();
 				provider.setContributions(paletteURI);
 				contributions = provider.getContributions();
@@ -266,9 +271,9 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 				if (!isCustomPaletteContributed(predefinedEntries, nodesID)) {
 					// verify if the extended elements (refids) from the custom palette are already contributed
 					List<String> refToolsID = (new WalkerPaletteContributionHelper(IPapyrusPaletteConstant.REF_TOOL_ID)).getAllPaletteNodesID(contributions);
-					if (isCustomPaletteContributed(predefinedEntries, refToolsID)){
+					if (isCustomPaletteContributed(predefinedEntries, refToolsID)) {
 						provider.contributeToPalette(editor, content, root, predefinedEntries);
-					}	
+					}
 				}
 			} else {
 				ExtendedPluginPaletteProvider extendedPluginPaletteProvider = new ExtendedPluginPaletteProvider();
@@ -281,7 +286,7 @@ public class FilteringPaletteProvider implements IPaletteProvider {
 				}
 				extendedPluginPaletteProvider.contributeToPalette(editor, content, root, predefinedEntries);
 			}
-			
+
 		}
 	}
 
