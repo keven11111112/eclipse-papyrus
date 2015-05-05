@@ -34,10 +34,10 @@ import org.eclipse.papyrus.infra.widgets.editors.TreeSelectorDialog;
 import org.eclipse.papyrus.infra.widgets.toolbox.utils.DialogUtils;
 import org.eclipse.papyrus.qompass.designer.core.Description;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.ui.Messages;
 import org.eclipse.papyrus.uml.tools.providers.ServiceEditFilteredContentProvider;
 import org.eclipse.papyrus.uml.tools.providers.UMLLabelProvider;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionEvent;
@@ -107,7 +107,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 		// visitedPackages = new BasicEList<Package> ();
 		m_component = port.getClass_();
 		m_currentPort = port; // preselect port (don't call selectPort before initialization of dialog area);
-		m_model = Utils.getTop(m_component);
+		m_model = PackageUtil.getRootPackage(m_component);
 		m_ports = PortUtils.getAllPorts(m_component);
 		return true;
 	}
@@ -115,7 +115,7 @@ public class ConfigurePortDialog extends SelectionStatusDialog {
 	public boolean init(Class clazz) {
 		// visitedPackages = new BasicEList<Package> ();
 		m_component = clazz;
-		m_model = Utils.getTop(m_component);
+		m_model = PackageUtil.getRootPackage(m_component);
 		m_currentPort = null;
 		m_ports = PortUtils.getAllPorts(m_component);
 		return true;

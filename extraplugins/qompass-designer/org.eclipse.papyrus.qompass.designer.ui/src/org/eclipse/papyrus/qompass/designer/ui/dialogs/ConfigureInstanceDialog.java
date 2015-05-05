@@ -140,7 +140,7 @@ public class ConfigureInstanceDialog extends SelectionStatusDialog {
 		m_feature = feature;
 		m_model = PackageUtil.getUserModel(from);
 		if (m_model == null) {
-			m_model = Utils.getTop(feature);
+			m_model = PackageUtil.getRootPackage(feature);
 		}
 		m_instance = null;
 		if (feature instanceof Connector) {

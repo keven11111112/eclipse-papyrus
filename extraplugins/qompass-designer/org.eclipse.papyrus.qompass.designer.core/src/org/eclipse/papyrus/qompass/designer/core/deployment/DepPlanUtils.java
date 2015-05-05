@@ -23,6 +23,7 @@ import org.eclipse.emf.ecore.ENamedElement;
 import org.eclipse.papyrus.FCM.DeploymentPlan;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Classifier;
@@ -65,7 +66,7 @@ public class DepPlanUtils {
 	 * @return
 	 */
 	public static EList<Package> getAllDepPlans(Element element) {
-		Package root = Utils.getTop(element);
+		Package root = PackageUtil.getRootPackage(element);
 		Package depPlanRoot = root.getNestedPackage(DeployConstants.depPlanFolder);
 		EList<Package> depPlanList = new BasicEList<Package>();
 		if (depPlanRoot != null) {

@@ -25,6 +25,7 @@ import org.eclipse.papyrus.uml.profile.ui.dialogs.AlphabeticalViewerSorter;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.ChooseSetAssistedDialog;
 import org.eclipse.papyrus.uml.profile.ui.dialogs.IChooseDialog;
 import org.eclipse.papyrus.uml.properties.profile.ui.dialogs.StereotypeQualifiedLabelProvider;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
@@ -81,7 +82,7 @@ public class ChoosePorts extends ChooseSetAssistedDialog implements IChooseDialo
 		} else {
 			// global rule with intercept some policy
 			// choose all ports vs. ports of "standard components"
-			Package top = Utils.getTop(rule.getBase_Property());
+			Package top = PackageUtil.getRootPackage(rule.getBase_Property());
 			for (Feature current : Utils.getAllElementsOfType(top, Feature.class)) {
 				if (!selectedElementList.contains(current)) {
 					possibleElementList.addElement(current);
