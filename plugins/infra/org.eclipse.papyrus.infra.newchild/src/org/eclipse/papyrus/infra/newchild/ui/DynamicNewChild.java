@@ -110,6 +110,10 @@ public class DynamicNewChild extends ContributionItem {
 		ISelectionService selectionService = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getSelectionService();
 		ISelection selection = selectionService.getSelection();
 
+		if (selection.isEmpty()) {
+			return null;
+		}
+
 		if (selection instanceof IStructuredSelection) {
 			Object selectedobject = ((IStructuredSelection) selection).getFirstElement();
 			EObject selectedEObject = EMFHelper.getEObject(selectedobject);

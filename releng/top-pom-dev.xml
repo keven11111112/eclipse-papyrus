@@ -71,7 +71,7 @@
 			<id>ep</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Eclipse",0) -->
-			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M6-201503200800/</url>
+			<url>http://download.eclipse.org/eclipse/updates/4.5milestones/S-4.5M7-201504301445</url>
 		</repository>
 		<repository>
 			<id>gef</id>
@@ -107,7 +107,7 @@
 			<id>mdt-ocl</id>
 			<layout>p2</layout>
 			<!-- updateFrom("MDT OCL 6.0",0) -->
-			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201503240634</url>
+			<url>http://download.eclipse.org/modeling/mdt/ocl/updates/milestones/6.0.0/S201505041438</url>
 		</repository>
 		<repository>
 			<id>mdt-uml2</id>
@@ -140,13 +140,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.1/</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.2</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0M6-20150324000117/repository/</url>
+			<url>http://build.eclipse.org/webtools/committers/wtp-R3.7.0-I/20150430000109/I-3.7.0-20150430000109/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
@@ -164,7 +164,7 @@
 			<id>m2t-acceleo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T ACCELEO",0) -->
-			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201503131323</url>
+			<url>http://download.eclipse.org/acceleo/updates/milestones/3.6/S201505040910</url>
 		</repository>
 		<repository>
 			<id>b3</id>
@@ -176,7 +176,7 @@
 			<id>oomph</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Oomph",0) -->
-			<url>http://download.eclipse.org/oomph/drops/milestone/S20150325-115340-1.1.0-M6</url>
+			<url>http://download.eclipse.org/oomph/updates/latest</url>
 		</repository>		
 		<repository>
 			<id>papyrus-main</id>
