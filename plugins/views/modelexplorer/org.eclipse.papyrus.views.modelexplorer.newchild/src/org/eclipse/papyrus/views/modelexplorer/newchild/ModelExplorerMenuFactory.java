@@ -13,6 +13,8 @@
 
 package org.eclipse.papyrus.views.modelexplorer.newchild;
 
+import java.util.Map;
+
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -51,8 +53,8 @@ public class ModelExplorerMenuFactory extends CreationMenuFactory {
 	 * @return
 	 */
 	@Override
-	protected Command buildCommand(EReference reference, EObject container, String extendedType) {
-		Command buildCommand = super.buildCommand(reference, container, extendedType);
+	protected Command buildCommand(EReference reference, EObject container, String extendedType, Map<?, ?> advice) {
+		Command buildCommand = super.buildCommand(reference, container, extendedType, advice);
 
 		boolean defaultSelectionPreference = Activator.getDefault().getPreferenceStore().getBoolean(NewChildPreferences.DEFAULT_SELECTION);
 

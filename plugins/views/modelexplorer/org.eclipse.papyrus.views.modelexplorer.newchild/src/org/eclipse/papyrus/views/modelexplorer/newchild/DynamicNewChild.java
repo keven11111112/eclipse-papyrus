@@ -17,11 +17,15 @@ package org.eclipse.papyrus.views.modelexplorer.newchild;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.swt.widgets.Menu;
 
 /**
@@ -53,12 +57,22 @@ public class DynamicNewChild extends org.eclipse.papyrus.infra.newchild.ui.Dynam
 	public void fill(Menu menu, int index) {
 		EObject eObject = getSelection();
 		if (eObject != null) {
+
+			// caches the advices used by the selected EObject, to avoid finding them for each menu item
+			Map<?, ?> adviceCache = new HashMap<Object, Object>();
+			try {
+				RequestCacheEntries.initializeEObjCache(eObject, adviceCache);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+
+
 			CreationMenuFactory creationMenuFactory = new ModelExplorerMenuFactory(editingDomain);
 			ArrayList<Folder> folders = creationMenuRegistry.getRootFolder();
 			Iterator<Folder> iterFolder = folders.iterator();
 			while (iterFolder.hasNext()) {
 				Folder currentFolder = iterFolder.next();
-				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index);
+				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index, adviceCache);
 				if (hasbeenBuild) {
 					index++;
 				}

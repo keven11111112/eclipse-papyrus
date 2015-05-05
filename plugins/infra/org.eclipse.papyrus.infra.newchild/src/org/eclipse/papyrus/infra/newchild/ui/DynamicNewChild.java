@@ -16,7 +16,9 @@ package org.eclipse.papyrus.infra.newchild.ui;
 
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
@@ -28,11 +30,14 @@ import org.eclipse.jface.viewers.ISelection;
 import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.ITreeSelection;
 import org.eclipse.jface.viewers.TreePath;
+import org.eclipse.papyrus.commands.Activator;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.emf.utils.ServiceUtilsForEObject;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.newchild.CreationMenuRegistry;
 import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.ui.ISelectionService;
 import org.eclipse.ui.PlatformUI;
@@ -83,12 +88,21 @@ public class DynamicNewChild extends ContributionItem {
 	public void fill(Menu menu, int index) {
 		EObject eObject = getSelection();
 		if (eObject != null && editingDomain != null) {
+
+			// caches the advices used by the selected EObject, to avoid finding them for each menu item
+			Map<?, ?> adviceCache = new HashMap<Object, Object>();
+			try {
+				RequestCacheEntries.initializeEObjCache(eObject, adviceCache);
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+
 			CreationMenuFactory creationMenuFactory = new CreationMenuFactory(editingDomain);
 			ArrayList<Folder> folders = creationMenuRegistry.getRootFolder();
 			Iterator<Folder> iterFolder = folders.iterator();
 			while (iterFolder.hasNext()) {
 				Folder currentFolder = iterFolder.next();
-				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index);
+				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index, adviceCache);
 				if (hasbeenBuild) {
 					index++;
 				}

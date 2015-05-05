@@ -25,6 +25,7 @@ import org.eclipse.emf.ecore.EReference;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IContainerDescriptor;
+import org.eclipse.gmf.runtime.emf.type.core.IEditHelperContext;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
 import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
@@ -37,6 +38,7 @@ import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
 /**
  * <pre>
@@ -63,16 +65,19 @@ import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementC
 public class DefaultEditHelper extends AbstractEditHelper {
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Cache_Maps = "Cache_Maps";//$NON-NLS-1$
+	public static final String Cache_Maps = IRequestCacheEntries.Cache_Maps;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Element_Type = "Element_Type";//$NON-NLS-1$	
+	public static final String Element_Type = IRequestCacheEntries.Element_Type;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String Checked_Elements = "Checked_Elements";//$NON-NLS-1$	
+	public static final String Checked_Elements = IRequestCacheEntries.Checked_Elements;
 
 	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
-	public static final String EditHelper_Advice = "EditHelper_Advice";//$NON-NLS-1$
+	public static final String EditHelper_Advice = IRequestCacheEntries.EditHelper_Advice;
+
+	/** Defined in org.eclipse.gmf.runtime.emf.type.core.internal.requests.RequestCacheEntries (internal) */
+	public static final String Client_Context = IRequestCacheEntries.Client_Context;
 
 
 	/**
@@ -239,10 +244,18 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		Object editHelperContext = req.getEditHelperContext();
 		Map cacheMaps = (Map) req.getParameter(Cache_Maps);
 		if (cacheMaps != null) {
-			Map contextMap = (Map) cacheMaps.get(editHelperContext);
-			if (contextMap != null) {
-				advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+			if (editHelperContext instanceof IEditHelperContext) {
+				Map contextMap = (Map) cacheMaps.get(((IEditHelperContext) editHelperContext).getElementType());
+				if (contextMap != null) {
+					advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+				}
+			} else {
+				Map contextMap = (Map) cacheMaps.get(editHelperContext);
+				if (contextMap != null) {
+					advices = (IEditHelperAdvice[]) contextMap.get(EditHelper_Advice);
+				}
 			}
+
 		}
 
 		if (advices == null) {

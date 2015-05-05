@@ -17,6 +17,7 @@ import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
 import java.util.Iterator;
+import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
@@ -42,6 +43,8 @@ import org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Folder;
 import org.eclipse.papyrus.infra.services.edit.internal.context.TypeContext;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
+import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
+import org.eclipse.papyrus.infra.services.edit.utils.RequestCacheEntries;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.widgets.Menu;
 import org.eclipse.swt.widgets.MenuItem;
@@ -74,9 +77,10 @@ public class CreationMenuFactory {
 	 *            the folder
 	 * @param selectedObject
 	 *            the current selection
+	 * @param adviceCache
 	 * @return true if sub-menu has been added
 	 */
-	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject, int index) {
+	public boolean populateMenu(Menu menu, Folder folder, EObject selectedObject, int index, Map<?, ?> adviceCache) {
 		if (selectedObject != null && folder != null && folder.isVisible()) {
 			org.eclipse.swt.widgets.MenuItem topMenuItem = new MenuItem(menu, SWT.CASCADE, index);
 			topMenuItem.setText(folder.getLabel());
@@ -94,10 +98,11 @@ public class CreationMenuFactory {
 			Menu topMenu = new Menu(menu);
 			topMenuItem.setMenu(topMenu);
 			boolean oneDisplayedMenu = false;
+
 			for (org.eclipse.papyrus.infra.newchild.elementcreationmenumodel.Menu currentMenu : folder.getMenu()) {
 				boolean result = false;
 				if (currentMenu instanceof Folder) {
-					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount());
+					result = populateMenu(topMenu, (Folder) currentMenu, selectedObject, topMenu.getItemCount(), adviceCache);
 				}
 
 				if (currentMenu instanceof CreationMenu && ((CreationMenu) currentMenu).isVisible()) {
@@ -105,19 +110,19 @@ public class CreationMenuFactory {
 					EReference reference = null;
 					String role = currentCreationMenu.getRole();
 					// the role is precised
-					if (role != null) {
+					if (role != null && !role.isEmpty()) {
 						EStructuralFeature feature = selectedObject.eClass().getEStructuralFeature(role);
 						if (feature instanceof EReference) {
 							reference = (EReference) feature;
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
 						}
 					} else {// no precisison
 							// test if all roles must be displayed
 						if (currentCreationMenu.isDisplayAllRoles()) {
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu);
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu, adviceCache);
 						} else {
 
-							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference);
+							result = constructMenu(selectedObject, topMenu, currentCreationMenu, reference, adviceCache);
 						}
 					}
 				}
@@ -143,13 +148,16 @@ public class CreationMenuFactory {
 	 * @param menu
 	 *            the current menu in creation
 	 * @param currentCreationMenu
+	 * @param adviceCache
 	 * @return true if sub-menu has been created
 	 */
-	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu) {
+	protected boolean constructMenu(EObject selectedObject, Menu menu, CreationMenu currentCreationMenu, Map<?, ?> adviceCache) {
 		String menuType = currentCreationMenu.getElementTypeIdRef();
 
 		// find the destination owner
-		GetEditContextRequest editContextRequest = new GetEditContextRequest(editingDomain, buildRequest(null, selectedObject, menuType), selectedObject);
+		GetEditContextRequest editContextRequest = new GetEditContextRequest(editingDomain, buildRequest(null, selectedObject, menuType, adviceCache), selectedObject);
+
+		editContextRequest.setParameter(IRequestCacheEntries.Cache_Maps, adviceCache);
 		editContextRequest.setEditContext(selectedObject);
 		try {
 			editContextRequest.setClientContext(TypeContext.getContext());
@@ -186,7 +194,7 @@ public class CreationMenuFactory {
 		ArrayList<EStructuralFeature> possibleEFeatures = getEreferences(target, currentCreationMenu);
 
 		if (possibleEFeatures.size() == 1) {
-			Command cmd = buildCommand(null, target, currentCreationMenu.getElementTypeIdRef());
+			Command cmd = buildCommand(null, target, currentCreationMenu.getElementTypeIdRef(), adviceCache);
 			if (cmd.canExecute()) {
 				MenuItem item = new MenuItem(menu, SWT.NONE);
 				fillIcon(currentCreationMenu, item);
@@ -204,7 +212,7 @@ public class CreationMenuFactory {
 			topMenuItem.setMenu(topMenu);
 			for (EStructuralFeature eStructuralFeature : possibleEFeatures) {
 
-				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu.getElementTypeIdRef());
+				Command cmd = buildCommand((EReference) eStructuralFeature, target, currentCreationMenu.getElementTypeIdRef(), adviceCache);
 				if (cmd.canExecute()) {
 					MenuItem item = new MenuItem(topMenu, SWT.NONE);
 					fillIcon(currentCreationMenu, item);
@@ -318,11 +326,12 @@ public class CreationMenuFactory {
 	 * @param currentCreationMenu
 	 * @param reference
 	 *            the role of the new element
+	 * @param adviceCache
 	 * @return true if the menu can be created
 	 */
-	protected boolean constructMenu(EObject selectedObject, Menu topMenu, CreationMenu currentCreationMenu, EReference reference) {
+	protected boolean constructMenu(EObject selectedObject, Menu topMenu, CreationMenu currentCreationMenu, EReference reference, Map<?, ?> adviceCache) {
 		boolean oneDisplayedMenu = false;
-		Command cmd = buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef());
+		Command cmd = buildCommand(reference, selectedObject, currentCreationMenu.getElementTypeIdRef(), adviceCache);
 		if (cmd.canExecute()) {
 			oneDisplayedMenu = true;
 			MenuItem item = new MenuItem(topMenu, SWT.NONE);
@@ -356,13 +365,13 @@ public class CreationMenuFactory {
 	 *            the extended type of the created element
 	 * @return a command that can be executed by the domain
 	 */
-	protected Command buildCommand(EReference reference, EObject container, String extendedType) {
+	protected Command buildCommand(EReference reference, EObject container, String extendedType, Map<?, ?> adviceCache) {
 		IElementEditService provider = ElementEditServiceUtils.getCommandProvider(container);
 		if (provider == null) {
 			return UnexecutableCommand.INSTANCE;
 		}
 
-		CreateElementRequest createElementRequest = buildRequest(reference, container, extendedType);
+		CreateElementRequest createElementRequest = buildRequest(reference, container, extendedType, adviceCache);
 		ICommand createGMFCommand = provider.getEditCommand(createElementRequest);
 		if (createGMFCommand != null) {
 			Command emfCommand = new org.eclipse.papyrus.commands.wrappers.GMFtoEMFCommandWrapper(createGMFCommand);
@@ -373,13 +382,18 @@ public class CreationMenuFactory {
 
 	/**
 	 *
+	 * @param adviceCache
 	 * @return
 	 * 		the creation request to use in this handler
 	 */
-	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType) {
+	protected CreateElementRequest buildRequest(EReference reference, EObject container, String extendedType, Map<?, ?> adviceCache) {
+		CreateElementRequest request = null;
 		if (reference == null) {
-			return new CreateElementRequest(editingDomain, container, getElementType(extendedType));
+			request = new CreateElementRequest(editingDomain, container, getElementType(extendedType));
+		} else {
+			request = new CreateElementRequest(editingDomain, container, getElementType(extendedType), reference);
 		}
-		return new CreateElementRequest(editingDomain, container, getElementType(extendedType), reference);
+		request.setParameter(RequestCacheEntries.Cache_Maps, adviceCache);
+		return request;
 	}
 }
