@@ -3,6 +3,7 @@ target/
 *.java._trace
 *.pyc
 .DS_Store
+*.xtendbin
 
 # Workspace metadata folder created by Oomph when launching tests.
 tests/**/.metadata/
