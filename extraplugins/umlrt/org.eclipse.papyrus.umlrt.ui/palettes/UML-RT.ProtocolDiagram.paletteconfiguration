@@ -23,7 +23,7 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3037"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.RTMessageSet_3038"/>
     </ownedConfigurations>
-    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.Operation" label="Operation" description="Create an Operation">
+    <ownedConfigurations xsi:type="paletteconfiguration:ToolConfiguration" id="palettemodel.org.eclipse.papyrus.umlrt.ProtocolMessage" label="ProtocolMessage" description="Create a Protocol Message">
       <icon pluginID="org.eclipse.uml2.uml.edit" iconPath="icons/full/obj16/Operation.gif"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3003"/>
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3007"/>

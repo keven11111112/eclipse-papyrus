@@ -91,7 +91,7 @@ public class MessageSetEditHelperAdvice extends AbstractEditHelperAdvice {
 			IElementType type = createElementRequest.getElementType();
 
 			// type should only be compatible with UMLRT::OperationAsMessages
-			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.RT_MESSAGE_ID);
+			IElementType umlRTMessageType = ElementTypeRegistry.getInstance().getType(IUMLRTElementTypes.PROTOCOL_MESSAGE_ID);
 			// should not be null, otherwise, element type model is not loaded correctly. abort.
 			if (umlRTMessageType == null) {
 				Activator.log.debug("RTMessage element type is not accessible");
@@ -113,7 +113,7 @@ public class MessageSetEditHelperAdvice extends AbstractEditHelperAdvice {
 	 */
 	@Override
 	protected ICommand getAfterCreateCommand(CreateElementRequest request) {
-		if (request.getElementType().getId().equals(IUMLRTElementTypes.RT_MESSAGE_IN_ID)) {
+		if (request.getElementType().getId().equals(IUMLRTElementTypes.PROTOCOL_MESSAGE_IN_ID)) {
 			EObject container = request.getContainer();
 			Element element = (Element)container;
 			org.eclipse.uml2.uml.Package pack = element.getNearestPackage();

@@ -39,12 +39,15 @@ public class UMLRTElementTypesEnumerator extends AbstractElementTypeEnumerator i
 
 	public static final IHintedType RT_EXCLUDED_ELEMENT = (IHintedType) getElementType(RT_EXCLUDED_ELEMENT_ID);
 
-	public static final IHintedType RT_MESSAGE = (IHintedType) getElementType(RT_MESSAGE_ID);
-	public static final IHintedType RT_MESSAGE_IN = (IHintedType) getElementType(RT_MESSAGE_IN_ID);
-	public static final IHintedType RT_MESSAGE_OUT = (IHintedType) getElementType(RT_MESSAGE_OUT_ID);
-	public static final IHintedType RT_MESSAGE_INOUT = (IHintedType) getElementType(RT_MESSAGE_INOUT_ID);
+	public static final IHintedType PROTOCOL_MESSAGE = (IHintedType) getElementType(PROTOCOL_MESSAGE_ID);
+	
+	public static final IHintedType PROTOCOL_MESSAGE_IN = (IHintedType) getElementType(PROTOCOL_MESSAGE_IN_ID);
+	
+	public static final IHintedType PROTOCOL_MESSAGE_OUT = (IHintedType) getElementType(PROTOCOL_MESSAGE_OUT_ID);
+	
+	public static final IHintedType PROTOCOL_MESSAGE_INOUT = (IHintedType) getElementType(PROTOCOL_MESSAGE_INOUT_ID);
 
-	private static final List<IHintedType> rtTypes = Arrays.asList(RT_MESSAGE_SET, PROTOCOL_CONTAINER, PROTOCOL, CAPSULE, CAPSULE_PART, RT_PORT, RT_CONNECTOR, RT_EXCLUDED_ELEMENT, RT_MESSAGE_IN, RT_MESSAGE_OUT, RT_MESSAGE_INOUT, RT_MESSAGE);
+	private static final List<IHintedType> rtTypes = Arrays.asList(RT_MESSAGE_SET, PROTOCOL_CONTAINER, PROTOCOL, CAPSULE, CAPSULE_PART, RT_PORT, RT_CONNECTOR, RT_EXCLUDED_ELEMENT, PROTOCOL_MESSAGE_IN, PROTOCOL_MESSAGE_OUT, PROTOCOL_MESSAGE_INOUT, PROTOCOL_MESSAGE);
 
 	/**
 	 * Returns all the specific semantic element types for UML-RT

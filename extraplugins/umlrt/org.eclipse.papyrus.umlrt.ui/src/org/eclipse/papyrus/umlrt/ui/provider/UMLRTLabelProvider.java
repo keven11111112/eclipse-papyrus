@@ -59,10 +59,10 @@ public class UMLRTLabelProvider extends UMLFilteredLabelProvider {
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_EXCLUDED_ELEMENT_ID, ICON_PATH + "rt_excludedElement.gif");//$NON-NLS-1$
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_SET_ID, ICON_PATH + "rt_messageset.png");//$NON-NLS-1$
 		typeIdtoIconPath.put(IUMLRTElementTypes.RT_PORT_ID, ICON_PATH + "rt_port.png");//$NON-NLS-1$
-		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_IN_ID, RT_MESSAGE_IN_ICON);
-		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_INOUT_ID, RT_MESSAGE_IN_OUT_ICON);
-		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_OUT_ID, RT_MESSAGE_OUT_ICON);
-		typeIdtoIconPath.put(IUMLRTElementTypes.RT_MESSAGE_ID, RT_MESSAGE_UNDEFINED_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.PROTOCOL_MESSAGE_IN_ID, RT_MESSAGE_IN_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.PROTOCOL_MESSAGE_INOUT_ID, RT_MESSAGE_IN_OUT_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.PROTOCOL_MESSAGE_OUT_ID, RT_MESSAGE_OUT_ICON);
+		typeIdtoIconPath.put(IUMLRTElementTypes.PROTOCOL_MESSAGE_ID, RT_MESSAGE_UNDEFINED_ICON);
 	}
 
 	/**
@@ -90,13 +90,13 @@ public class UMLRTLabelProvider extends UMLFilteredLabelProvider {
 		Image image = null;
 		// a match was done. give a different icon given the value
 		switch (matchingTypeMatcher) {
-		case IUMLRTElementTypes.RT_MESSAGE_IN_ID:
+		case IUMLRTElementTypes.PROTOCOL_MESSAGE_IN_ID:
 			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_ICON);
 			break;
-		case IUMLRTElementTypes.RT_MESSAGE_OUT_ID:
+		case IUMLRTElementTypes.PROTOCOL_MESSAGE_OUT_ID:
 			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_OUT_ICON);
 			break;
-		case IUMLRTElementTypes.RT_MESSAGE_INOUT_ID:
+		case IUMLRTElementTypes.PROTOCOL_MESSAGE_INOUT_ID:
 			image = org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(Activator.PLUGIN_ID, RT_MESSAGE_IN_OUT_ICON);
 			break;
 		default:

@@ -68,9 +68,9 @@ public class UMLRTFilteredLabelProvider extends UMLRTLabelProvider implements IF
 		}
 
 		// specific for RT Message label
-		ISpecializationType inMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.RT_MESSAGE_IN;
-		ISpecializationType outMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.RT_MESSAGE_OUT;
-		ISpecializationType inOutMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.RT_MESSAGE_INOUT;
+		ISpecializationType inMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_IN;
+		ISpecializationType outMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_OUT;
+		ISpecializationType inOutMessageType = (ISpecializationType) UMLRTElementTypesEnumerator.PROTOCOL_MESSAGE_INOUT;
 
 		if (inMessageType != null && inMessageType.getMatcher() != null && inMessageType.getMatcher().matches((EObject) semanticObject)) {
 			return "in " + super.getText(element);
