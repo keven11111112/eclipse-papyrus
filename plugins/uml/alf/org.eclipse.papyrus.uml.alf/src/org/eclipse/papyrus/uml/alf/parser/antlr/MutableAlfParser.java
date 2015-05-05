@@ -14,43 +14,28 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.alf.parser.antlr;
 
-import org.eclipse.emf.ecore.EObject;
-import org.eclipse.uml2.uml.Class;
-import org.eclipse.uml2.uml.Property;
+import org.eclipse.xtext.parser.IParseResult;
+import org.eclipse.xtext.util.ReplaceRegion;
 
 /**
- * Provide an extended ALF parser capable to adapt the parser entry rule
- * according to the textual representation which is going to be parsed
+ * Provide an extended ALF parser
  */
 public class MutableAlfParser extends AlfParser {
 
-	public static EObject SEMANTIC_ELEMENT = null;
-
-	private static final String UNIT_DEFINITION_RULE = "UnitDefinition";
-
-	private static final String CLASS_MEMBER_RULE = "ClassMember";
-
 	/**
-	 * Take advantage of editor configuration
+	 * @see org.eclipse.xtext.parser.antlr.AbstractAntlrParser#doReparse(org.eclipse.xtext.parser.IParseResult, org.eclipse.xtext.util.ReplaceRegion)
+	 * 
+	 * In addition to the initial doReparse method behavior, it handles the fact that reparse may fail.
+	 * If it fails then previous parse results are returned.
 	 */
 	@Override
-	protected String getDefaultRuleName() {
-		return this.selectParserEntryRule(SEMANTIC_ELEMENT);
-	}
-
-	/**
-	 * Change the entry rule used by the parser to start recognition of an Alf Model
-	 * 
-	 * @param objectToEdit
-	 * @return the entry rule
-	 */
-	protected String selectParserEntryRule(EObject objectToEdit) {
-		if (objectToEdit instanceof Class) {
-			return UNIT_DEFINITION_RULE;
-		} else if (objectToEdit instanceof Property) {
-			return CLASS_MEMBER_RULE;
-		} else {
-			return null;
+	protected IParseResult doReparse(IParseResult previousParseResult, ReplaceRegion replaceRegion) {
+		IParseResult newParseResult = previousParseResult;
+		try {
+			newParseResult = super.doReparse(previousParseResult, replaceRegion);
+		} catch (Exception e) {
+			//Do nothing - It avoids the famous xtext reconcilier job error to block the user
 		}
+		return newParseResult;
 	}
 }
