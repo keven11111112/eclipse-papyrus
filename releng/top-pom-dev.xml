@@ -47,13 +47,13 @@
 			<id>emft-mwe[0]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",0) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201503240644/mwe</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201505050723/mwe</url>
 		</repository>
 		<repository>
 			<id>emft-mwe[1]</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMFT MWE",1) -->
-			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201503240833/mwe2lang</url>
+			<url>http://download.eclipse.org/modeling/emft/mwe/updates/milestones/S201505050939/mwe2lang</url>
 		</repository>
 		<repository>
 			<id>emf-transaction</id>
@@ -101,7 +101,7 @@
 			<id>m2t-xpand</id>
 			<layout>p2</layout>
 			<!-- updateFrom("M2T XPAND",0) -->
-			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201503240650/</url>
+			<url>http://download.eclipse.org/modeling/m2t/xpand/updates/milestones/S201505050751/</url>
 		</repository>
 		<repository>
 			<id>mdt-ocl</id>
@@ -119,7 +119,7 @@
 			<id>mmt-qvto</id>
 			<layout>p2</layout>
 			<!-- updateFrom("QVT Operational",0) -->
-			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201503241740</url>
+			<url>http://download.eclipse.org/mmt/qvto/updates/milestones/3.5.0/S201505050519</url>
 		</repository>
 		<repository>
 			<id>nattable</id>
@@ -140,13 +140,13 @@
 			<id>tmf-xtext</id>
 			<layout>p2</layout>
 			<!-- updateFrom("Xtext, Xtend",0) -->
-			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/releases/2.8.2</url>
+			<url>http://download.eclipse.org/modeling/tmf/xtext/updates/milestones/maintenance/S201505050902/</url>
 		</repository>
 		<repository>
 			<id>webtools</id>
 			<layout>p2</layout>
 			<!-- updateFrom("WebTools",0) -->
-			<url>http://build.eclipse.org/webtools/committers/wtp-R3.7.0-I/20150430000109/I-3.7.0-20150430000109/repository/</url>
+			<url>http://download.eclipse.org/webtools/downloads/drops/R3.7.0/S-3.7.0M7-20150505000109/repository/</url>
 		</repository>
 		<repository>
 			<id>XWT</id>
