@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2010, 2014 CEA LIST, Christian W. Damus, and others.
+ * Copyright (c) 2010, 2015 CEA LIST, Christian W. Damus, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 437217
  *  Christian W. Damus - bug 451683
+ *  Christian W. Damus - bug 465416
  *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.common;
@@ -28,6 +29,7 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.emf.transaction.RollbackException;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gef.DefaultEditDomain;
+import org.eclipse.gef.EditPart;
 import org.eclipse.gef.GraphicalViewer;
 import org.eclipse.gef.commands.CommandStack;
 import org.eclipse.gef.ui.palette.PaletteViewer;
@@ -53,12 +55,15 @@ import org.eclipse.jface.viewers.IStructuredSelection;
 import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.papyrus.commands.CheckedDiagramCommandStack;
 import org.eclipse.papyrus.infra.core.editor.reload.IReloadContextProvider;
+import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.gmfdiag.common.preferences.PreferencesConstantsHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconciler;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramReconcilersReader;
 import org.eclipse.papyrus.infra.gmfdiag.common.reconciler.DiagramVersioningUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.CommandIds;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
+import org.eclipse.papyrus.infra.sync.service.ISyncService;
 import org.eclipse.papyrus.infra.tools.util.EclipseCommandUtils;
 import org.eclipse.papyrus.infra.widgets.util.IRevealSemanticElement;
 import org.eclipse.papyrus.infra.widgets.util.NavigationTarget;
@@ -338,6 +343,22 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 
 		localStore.setValue(PreferencesConstantsHelper.GRID_LINE_STYLE_CONSTANT, gridLineStyle);
 
+	}
+
+	@Override
+	protected void initializeGraphicalViewer() {
+		super.initializeGraphicalViewer();
+
+		// Engage synchronization (if required)
+		EditPart diagram = getDiagramEditPart();
+		if (diagram != null) {
+			try {
+				ISyncService syncService = ServiceUtilsForEditPart.getInstance().getService(ISyncService.class, diagram);
+				syncService.evaluateTriggers(diagram.getViewer());
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
+		}
 	}
 
 	/**

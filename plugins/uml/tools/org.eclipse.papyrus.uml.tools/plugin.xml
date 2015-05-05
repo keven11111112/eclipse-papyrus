@@ -109,8 +109,15 @@
             class="org.eclipse.papyrus.uml.tools.commands.internal.expressions.UMLPropertyTester"
             id="org.eclipse.papyrus.uml.tools.umlProperties"
             namespace="org.eclipse.papyrus.uml.tools"
-            properties="isRoot"
+            properties="isRoot,profile,stereotype"
             type="org.eclipse.core.runtime.IAdaptable">
+      </propertyTester>
+      <propertyTester
+            class="org.eclipse.papyrus.uml.tools.commands.internal.expressions.UMLPropertyTester"
+            id="org.eclipse.papyrus.uml.tools.umlNativeProperties"
+            namespace="org.eclipse.papyrus.uml"
+            properties="profile,stereotype"
+            type="org.eclipse.uml2.uml.Element">
       </propertyTester>
    </extension>
    <extension

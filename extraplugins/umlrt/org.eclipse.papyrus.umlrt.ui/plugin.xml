@@ -99,4 +99,25 @@
       </activeWhen>
    </handler>
    </extension>
+   <extension
+         point="org.eclipse.papyrus.infra.sync.triggers">
+      <syncTrigger
+            class="org.eclipse.papyrus.umlrt.ui.internal.sync.statemachine.CapsuleStatemachineDiagramSyncTrigger">
+         <enablement>
+            <and>
+               <!-- Match an edit-part for a Statemachine of a Capsule -->
+               <instanceof
+                     value="org.eclipse.gef.EditPart">
+               </instanceof>
+               <adapt
+                     type="org.eclipse.uml2.uml.StateMachine">
+                  <test
+                        property="org.eclipse.papyrus.umlrt.context"
+                        value="UMLRealTime::Capsule">
+                  </test>
+               </adapt>
+            </and>
+         </enablement>
+      </syncTrigger>
+   </extension>
 </plugin>
