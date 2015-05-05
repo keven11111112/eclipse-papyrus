@@ -19,6 +19,7 @@ import org.eclipse.papyrus.C_Cpp.Ptr;
 import org.eclipse.papyrus.qompass.designer.core.Messages;
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.papyrus.uml.tools.utils.StereotypeUtil;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Element;
@@ -107,7 +108,7 @@ public class CompTypeTrafos {
 					boolean multiPort = (port.getUpper() > 1) || (port.getUpper() == -1); // -1 indicates "*"
 					if (multiPort) {
 						// add index parameter
-						Element eLong = Utils.getQualifiedElement(Utils.getTop(component), INDEX_TYPE_FOR_MULTI_RECEPTACLE);
+						Element eLong = Utils.getQualifiedElement(PackageUtil.getRootPackage(component), INDEX_TYPE_FOR_MULTI_RECEPTACLE);
 						if (eLong instanceof Type) {
 							op.createOwnedParameter("index", (Type) eLong); //$NON-NLS-1$
 						}

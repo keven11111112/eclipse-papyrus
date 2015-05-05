@@ -145,7 +145,7 @@ public class CreateStateMachineDiagramCommand extends CreateBehavioredClassifier
 
 	@Override
 	protected void initializeModel(EObject owner) {
-		if (owner.eClass() == getBehaviorEClass()) {
+		if (owner instanceof StateMachine) {
 			stateMachine = (StateMachine) owner;
 		} else {
 			stateMachine = UMLFactory.eINSTANCE.createStateMachine();

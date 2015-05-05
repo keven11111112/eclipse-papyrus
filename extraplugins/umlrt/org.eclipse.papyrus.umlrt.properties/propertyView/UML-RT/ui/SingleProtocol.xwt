@@ -18,9 +18,9 @@
 			<ppel:PropertiesLayout numColumns="3"></ppel:PropertiesLayout>
 		</Composite.layout>
 		<ppe:MultiReference input="{Binding}"
-			property="UMLRealTimeExt:Protocol:Incoming" customLabel="Incoming"></ppe:MultiReference>
-		<ppe:MultiReference input="{Binding}"
 			property="UMLRealTimeExt:Protocol:Outgoing" customLabel="Outgoing"></ppe:MultiReference>
+		<ppe:MultiReference input="{Binding}"
+			property="UMLRealTimeExt:Protocol:Incoming" customLabel="Incoming"></ppe:MultiReference>
 		<ppe:MultiReference input="{Binding}"
 			property="UMLRealTimeExt:Protocol:InOut" customLabel="In-Out"></ppe:MultiReference>
 	</Composite>

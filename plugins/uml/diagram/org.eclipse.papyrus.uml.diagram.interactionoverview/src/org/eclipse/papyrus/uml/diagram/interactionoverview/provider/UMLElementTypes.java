@@ -26,6 +26,7 @@ import org.eclipse.jface.resource.ImageDescriptor;
 import org.eclipse.jface.resource.ImageRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLDiagramEditorPlugin;
 import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CallBehaviorActionAsInteractionEditPart;
+import org.eclipse.papyrus.uml.diagram.interactionoverview.edit.part.CustomInteractionUseEditPartCN;
 import org.eclipse.swt.graphics.Image;
 import org.eclipse.uml2.uml.UMLPackage;
 
@@ -43,6 +44,7 @@ public class UMLElementTypes {
 
 	public static final IElementType CallBehaviorAction_5000 = getElementType("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_5000"); //$NON-NLS-1$
 
+	public static final IElementType CallBehaviorAction_As_InteractionUse_5005 = getElementType("org.eclipse.papyrus.uml.diagram.interactionoverview.CallBehaviorAction_As_InteractionUse_5005"); //$NON-NLS-1$
 
 	private static ImageRegistry getImageRegistry() {
 		if (imageRegistry == null) {
@@ -165,6 +167,7 @@ public class UMLElementTypes {
 		if (KNOWN_ELEMENT_TYPES == null) {
 			KNOWN_ELEMENT_TYPES = new HashSet<IElementType>();
 			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_5000);
+			KNOWN_ELEMENT_TYPES.add(CallBehaviorAction_As_InteractionUse_5005);
 		}
 		return KNOWN_ELEMENT_TYPES.contains(elementType);
 	}
@@ -174,9 +177,10 @@ public class UMLElementTypes {
 	 */
 	public static IElementType getElementType(final int visualID) {
 		switch (visualID) {
-		case CallBehaviorActionAsInteractionEditPart.VISUAL_ID:
+		case CallBehaviorActionAsInteractionEditPart.INTERACTION_VISUAL_ID:
 			return CallBehaviorAction_5000;
-
+		case CustomInteractionUseEditPartCN.INTERACTIONUSE_VISUAL_ID:
+			return CallBehaviorAction_As_InteractionUse_5005;
 		}
 		return null;
 	}

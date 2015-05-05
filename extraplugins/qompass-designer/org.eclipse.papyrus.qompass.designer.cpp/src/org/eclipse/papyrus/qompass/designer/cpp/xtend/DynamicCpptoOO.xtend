@@ -39,6 +39,7 @@ import org.eclipse.emf.common.util.EList
 import org.eclipse.papyrus.qompass.designer.cpp.Messages
 import org.eclipse.papyrus.qompass.designer.cpp.Constants
 import static extension org.eclipse.papyrus.qompass.designer.cpp.xtend.CppUtils.nameRef;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil
 
 /**
  * This class realizes the dynamic variant of the OO-transformation 
@@ -190,7 +191,7 @@ class DynamicCppToOO implements IOOTrafo {
 					if (multiPort) {
 
 						// add index parameter
-						val eLong = Utils.getQualifiedElement(Utils.getTop(implementation),
+						val eLong = Utils.getQualifiedElement(PackageUtil.getRootPackage(implementation),
 							CompTypeTrafos.INDEX_TYPE_FOR_MULTI_RECEPTACLE)
 						if (eLong instanceof Type) {
 							op.createOwnedParameter("index", eLong as Type) 
@@ -485,7 +486,7 @@ class DynamicCppToOO implements IOOTrafo {
 			}
 		}
 		
-		val partManager = Utils.getQualifiedElement(Utils.getTop(compositeImplementation), PART_MANAGER);
+		val partManager = Utils.getQualifiedElement(PackageUtil.getRootPackage(compositeImplementation), PART_MANAGER);
 		if (partManager instanceof Type) {
 			compositeImplementation.createOwnedAttribute(PARTS, partManager as Type);
 		}

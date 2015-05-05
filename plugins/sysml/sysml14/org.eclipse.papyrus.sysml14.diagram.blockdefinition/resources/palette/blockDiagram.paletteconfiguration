@@ -269,19 +269,24 @@
         label="PartAssociation"
         description="Create a Part Association"
         kind="ConnectionTool">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_2015"/>
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Association_composite.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4001"/>
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.PartAssociation_4019"/>
     </ownedConfigurations>
     <ownedConfigurations
         xsi:type="paletteconfiguration:ToolConfiguration"
         id="org.eclipse.papyrus.SysML14.SharedAssociation"
         label="SharedAssociation"
         description="Create a SharedAssociation"
-        kind="ConnectionTool"/>
+        kind="ConnectionTool">
+      <icon
+          pluginID="org.eclipse.uml2.uml.edit"
+          iconPath="icons/full/obj16/Association_shared.gif"/>
+      <elementDescriptors
+          elementTypeId="org.eclipse.papyrus.sysML.SharedAssociation_4001"/>
+    </ownedConfigurations>
   </drawerConfigurations>
   <drawerConfigurations
       id="Nodes"
@@ -790,35 +795,6 @@
           iconPath="icons/full/obj16/InformationFlow.gif"/>
       <elementDescriptors
           elementTypeId="org.eclipse.papyrus.sysML.ItemFlow_4026"/>
-    </ownedConfigurations>
-  </drawerConfigurations>
-  <drawerConfigurations
-      id="Other SysML Elements"
-      label="Other SysML Elements"
-      description="Other SysML Elements">
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.View_Package_PapyrusUMLClassDi"
-        label="View"
-        description="Create a View">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.View_Package_PapyrusUMLClassDiagram"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.Allocated"
-        label="Allocated"
-        description="Create a Allocated">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.Allocated_2097"/>
-    </ownedConfigurations>
-    <ownedConfigurations
-        xsi:type="paletteconfiguration:ToolConfiguration"
-        id="org.eclipse.papyrus.sysML.RequirementRelated"
-        label="RequirementRelated"
-        description="Create a RequirementRelated">
-      <elementDescriptors
-          elementTypeId="org.eclipse.papyrus.sysML.RequirementRelated_2097"/>
     </ownedConfigurations>
   </drawerConfigurations>
 </paletteconfiguration:PaletteConfiguration>

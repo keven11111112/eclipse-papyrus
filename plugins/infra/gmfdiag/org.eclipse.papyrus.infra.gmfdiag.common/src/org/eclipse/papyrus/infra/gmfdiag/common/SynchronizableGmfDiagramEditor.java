@@ -172,7 +172,9 @@ public class SynchronizableGmfDiagramEditor extends DiagramDocumentEditor implem
 				IStructuredSelection sSelection = new StructuredSelection(partSelection);
 				// this is used instead of graphicalViewer.select(IGraphicalEditPart) as the later only allows the selection of a single element
 				graphicalViewer.setSelection(sSelection);
-				graphicalViewer.reveal(partSelection.get(0));
+				if (!partSelection.isEmpty()) {
+					graphicalViewer.reveal(partSelection.get(0));
+				}
 				return true;
 			}
 		}

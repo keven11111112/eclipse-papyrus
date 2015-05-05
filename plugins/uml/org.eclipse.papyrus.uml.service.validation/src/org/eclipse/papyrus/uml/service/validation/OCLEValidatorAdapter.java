@@ -26,9 +26,6 @@ import org.eclipse.ocl.pivot.internal.delegate.OCLDelegateValidator;
 import org.eclipse.ocl.pivot.uml.internal.validation.UMLOCLEValidator;
 import org.eclipse.papyrus.infra.services.validation.EValidatorAdapter;
 import org.eclipse.uml2.uml.InstanceSpecification;
-import org.eclipse.uml2.uml.LiteralInteger;
-import org.eclipse.uml2.uml.LiteralUnlimitedNatural;
-import org.eclipse.uml2.uml.MultiplicityElement;
 import org.eclipse.uml2.uml.OpaqueAction;
 import org.eclipse.uml2.uml.OpaqueBehavior;
 import org.eclipse.uml2.uml.OpaqueExpression;
@@ -73,23 +70,6 @@ public class OCLEValidatorAdapter
 			}.validate(eClass, eObject, diagnostics, context);
 		}
 		return batchValidate(eObject, diagnostics, context);
-	}
-
-	/**
-	 * Validate if only the lower and the upper are integer values.
-	 * {@inheritDoc}
-	 * 
-	 * @see org.eclipse.uml2.uml.util.UMLValidator#validateMultiplicityElement_validateUpperGeLower(org.eclipse.uml2.uml.MultiplicityElement, org.eclipse.emf.common.util.DiagnosticChain, java.util.Map)
-	 */
-	@Override
-	public boolean validateMultiplicityElement_validateUpperGeLower(final MultiplicityElement multiplicityElement, final DiagnosticChain diagnostics, final Map<Object, Object> context) {
-		boolean result = false;
-		if (((multiplicityElement.getLowerValue() instanceof LiteralInteger || multiplicityElement.getLowerValue() instanceof LiteralUnlimitedNatural)
-				&& (multiplicityElement.getUpperValue() instanceof LiteralInteger || multiplicityElement.getUpperValue() instanceof LiteralUnlimitedNatural))) {
-			result = super.validateMultiplicityElement_validateUpperGeLower(multiplicityElement, diagnostics, context);
-		}
-
-		return result;
 	}
 
 	@Override

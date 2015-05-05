@@ -295,7 +295,7 @@
            </Priority>
            <context
                 viewClass="org.eclipse.gmf.runtime.notation.Node"
-                semanticHints="5000"/>
+                semanticHints="5000, 5005"/>
 
             <!-- "4006" = COMMENT_ANNOTATED_ELEMENT "4004" = CONTROL_FLOW -->
             
@@ -306,6 +306,15 @@
                 <method
                     name="getSemanticHint()"
                     value="5000">
+                </method>
+            </object>
+            <object
+                id=""
+                class="org.eclipse.papyrus.gmf.diagram.common.commands.ISemanticHintAdapter(org.eclipse.papyrus.sysml.diagram.common)">
+
+                <method
+                    name="getSemanticHint()"
+                    value="5005">
                 </method>
             </object>
             <context
@@ -603,7 +612,16 @@
                    large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif"
                    path="/interactionoverview.drawer.nodes/"
                    small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/Interaction.gif">
-                   path="/InteractionSnapshotGroup">
+             </entry>
+             <entry
+                   defineOnly="false"
+                   description="Create a new InteractionUse"
+                   id="interactionoverview.drawer.nodes.interactionuse"
+                   kind="tool"
+                   label="Interaction Use"
+                   large_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif"
+                   path="/interactionoverview.drawer.nodes/"
+                   small_icon="platform:/plugin/org.eclipse.uml2.uml.edit/icons/full/obj16/InteractionUse.gif">
              </entry>
           </contribution>
           <editor
@@ -701,5 +719,15 @@
          id="org.eclipse.papyrus.uml.diagram.interactionoverview.elementTypeSet"
          path="model/interactionOverviewDiagram.elementtypesconfigurations">
    </elementTypeSet>
+</extension>
+
+<extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLInteractionOverviewDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.activity.migration.ActivityReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
 </extension>
 </plugin>

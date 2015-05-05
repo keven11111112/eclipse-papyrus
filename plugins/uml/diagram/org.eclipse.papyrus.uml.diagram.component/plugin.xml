@@ -1034,4 +1034,14 @@
    </elementTypeSet>
 </extension>
 
+   <extension
+      point="org.eclipse.papyrus.infra.gmfdiag.common.diagramReconciler">
+   <diagramReconciler
+         diagramType="PapyrusUMLComponentDiagram"
+         reconcilerClass="org.eclipse.papyrus.uml.diagram.component.custom.migration.ComponentReconcilier"
+         source="undefined"
+         target="1.1.0">
+   </diagramReconciler>
+</extension>
+
 </plugin>

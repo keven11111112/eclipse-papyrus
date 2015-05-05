@@ -33,7 +33,7 @@ public class PerspectiveContextDependence implements ICreationCondition {
 		// // Get the perspective
 		// Perspective perspective = ((WorkbenchPage)PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage()).getActivePerspective();
 		// // look for the perspective
-		// // verify if the commannd has to be displayed
+		// // verify if the command has to be displayed
 		// if(perspective.getHiddenMenuItems().contains(commandID) && perspective.getHiddenToolbarItems().contains(commandID)) {
 		// return false;
 		// }

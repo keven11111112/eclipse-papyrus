@@ -1,10 +1,10 @@
 package org.eclipse.papyrus.qompass.modellibs.tracing;
 
 import org.eclipse.papyrus.qompass.designer.core.PortUtils;
-import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.deployment.DepPlanUtils;
 import org.eclipse.papyrus.qompass.designer.core.extensions.IInstanceConfigurator;
 import org.eclipse.papyrus.qompass.designer.core.transformations.container.ContainerTrafo;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.InstanceSpecification;
 import org.eclipse.uml2.uml.Interface;
 import org.eclipse.uml2.uml.Operation;
@@ -49,7 +49,7 @@ public class IConfiguratorOTF implements IInstanceConfigurator {
 				// since we add instance information to the trace (is that useful??, seems like a hack)
 				// TODO: originally, we used executorIS *in source model*
 				for (Operation op : intf.getOperations()) {
-					String id = Utils.getTop(instance).getName() + "::Tracing::Trace::ID_" + //$NON-NLS-1$
+					String id = PackageUtil.getRootPackage(instance).getName() + "::Tracing::Trace::ID_" + //$NON-NLS-1$
 							instance.getName().replace(".", "_") + "_" + op.getName(); //$NON-NLS-1$//$NON-NLS-2$ //$NON-NLS-3$
 					DepPlanUtils.configureProperty(instance, "id_" + op.getName(), id); //$NON-NLS-1$
 				}

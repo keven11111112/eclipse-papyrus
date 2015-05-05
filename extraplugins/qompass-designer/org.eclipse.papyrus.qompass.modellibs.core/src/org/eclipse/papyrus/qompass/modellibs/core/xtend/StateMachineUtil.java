@@ -8,6 +8,7 @@ import org.eclipse.papyrus.qompass.designer.core.UMLTool;
 import org.eclipse.papyrus.qompass.designer.core.Utils;
 import org.eclipse.papyrus.qompass.designer.core.templates.TemplateUtils;
 import org.eclipse.papyrus.qompass.designer.core.transformations.TransformationContext;
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil;
 import org.eclipse.uml2.uml.NamedElement;
 import org.eclipse.uml2.uml.Package;
 import org.eclipse.uml2.uml.PackageableElement;
@@ -213,7 +214,7 @@ public class StateMachineUtil {
 	 * @return
 	 */
 	public static Package boundPackageRef(Type actual) {
-		for (Package nestedPkg : Utils.getTop(actual).getNestedPackages()) {
+		for (Package nestedPkg : PackageUtil.getRootPackage(actual).getNestedPackages()) {
 			if (nestedPkg.getTemplateBindings().size() > 0) {
 				TemplateBinding binding = nestedPkg.getTemplateBindings().get(0);
 				if (actual == TemplateUtils.getFirstActualFromBinding(binding)) {

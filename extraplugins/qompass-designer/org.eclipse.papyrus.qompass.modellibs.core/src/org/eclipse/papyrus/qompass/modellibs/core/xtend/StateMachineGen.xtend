@@ -41,6 +41,7 @@ import static extension org.eclipse.papyrus.qompass.designer.core.UMLTool.*
 import static extension org.eclipse.papyrus.qompass.modellibs.core.xtend.BehaviorUtil.*
 import static extension org.eclipse.papyrus.qompass.modellibs.core.xtend.CppUtils.cppCall
 import static extension org.eclipse.papyrus.qompass.modellibs.core.xtend.StateMachineUtil.*
+import org.eclipse.papyrus.uml.tools.utils.PackageUtil
 
 class StateMachineGen implements IXtend {
 
@@ -68,7 +69,7 @@ class StateMachineGen implements IXtend {
 #endif
 		for (;;) {
 			processEvents();
-		}	
+		}
 	'''
 	
 	def processEvents(Class clazz) {
@@ -96,7 +97,7 @@ class StateMachineGen implements IXtend {
 			«FOR attribute : signal.ownedAttributes»
 				signal->«attribute.name» = «attribute.name»;
 			«ENDFOR»
-			«Utils.getTop(operation).declareDependencyToSignalIDs»
+			«PackageUtil.getRootPackage(operation).declareDependencyToSignalIDs»
 			«UMLTool.declareDependency(TransformationContext.classifier, signal)»
 		«ELSE»
 			// create event with operationID/portID and pass call
