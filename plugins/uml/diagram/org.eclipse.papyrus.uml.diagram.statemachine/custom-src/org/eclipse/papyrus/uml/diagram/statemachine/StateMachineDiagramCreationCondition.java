@@ -15,8 +15,11 @@ import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.infra.core.extension.commands.PerspectiveContextDependence;
 
 /**
- * StateMachineDiagramCreationCondition class allows to check if a State Machine
+ * The StateMachineDiagramCreationCondition class allows to check if a State Machine
  * diagram can be added to the selected element.
+ * CAVEAT: since the state machine diagram uses viewpoints, the returned value is ignored. Instead, the check
+ * whether a diagram can be added is done in
+ * org.eclipse.papyrus.infra.viewpoints.policy, file builtin/default.configuration
  */
 public class StateMachineDiagramCreationCondition extends PerspectiveContextDependence {
 
@@ -27,5 +30,4 @@ public class StateMachineDiagramCreationCondition extends PerspectiveContextDepe
 	public boolean create(EObject selectedElement) {
 		return false;
 	}
-
 }
