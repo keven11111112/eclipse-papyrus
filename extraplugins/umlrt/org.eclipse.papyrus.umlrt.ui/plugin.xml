@@ -64,28 +64,6 @@
             provider="org.eclipse.papyrus.umlrt.ui.provider.UMLRTFilteredLabelProvider">
       </labelProvider>
    </extension>
- <handler
-         class="org.eclipse.papyrus.views.modelexplorer.handler.CopyHandler"
-         commandId="org.eclipse.ui.edit.copy">
-      <activeWhen>
-         <and>
-            <with
-                  variable="activePart">
-               <instanceof
-                     value="org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView">
-               </instanceof>
-            </with>
-            <with
-                  variable="selection">
-               <test
-                     forcePluginActivation="true"
-                     property="org.eclipse.papyrus.views.modelexplorer.tester.isEObject"
-                     value="true">
-               </test>
-            </with>
-         </and>
-      </activeWhen>
-   </handler>
    <extension
       point="org.eclipse.core.expressions.propertyTesters">
    <propertyTester
