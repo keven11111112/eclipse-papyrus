@@ -21,7 +21,6 @@ import java.util.Map;
 
 import org.eclipse.core.commands.ExecutionException;
 import org.eclipse.core.runtime.IStatus;
-import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.emf.common.command.Command;
 import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.common.util.EList;
@@ -177,7 +176,8 @@ public class CreationMenuFactory {
 		if (getEditContextCommand != null) {
 			IStatus status = null;
 			try {
-				status = getEditContextCommand.execute(new NullProgressMonitor(), null);
+				// this command could run in an unprotected transaction, it is not supposed to modify the model
+				status = getEditContextCommand.execute(null, null);
 			} catch (ExecutionException e) {
 				Activator.log.error(e);
 				return false;
@@ -310,8 +310,9 @@ public class CreationMenuFactory {
 	 *            the current menu
 	 */
 	protected void createIconFromElementType(CreationMenu currentCreationMenu, MenuItem item) {
-		if (getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL() != null) {
-			ImageDescriptor imgDesc = ImageDescriptor.createFromURL(getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL());
+		URL iconURL = getElementType(currentCreationMenu.getElementTypeIdRef()).getIconURL();
+		if (iconURL != null) {
+			ImageDescriptor imgDesc = ImageDescriptor.createFromURL(iconURL);
 			item.setImage(org.eclipse.papyrus.infra.widgets.Activator.getDefault().getImage(imgDesc));
 		}
 	}

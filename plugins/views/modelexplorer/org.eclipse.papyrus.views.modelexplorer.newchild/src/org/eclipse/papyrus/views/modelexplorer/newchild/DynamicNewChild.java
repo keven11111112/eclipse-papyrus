@@ -65,14 +65,15 @@ public class DynamicNewChild extends org.eclipse.papyrus.infra.newchild.ui.Dynam
 			} catch (ServiceException e) {
 				Activator.log.error(e);
 			}
-
+			Map<Object, Object> cacheMap = new HashMap<Object, Object>();
+			cacheMap.put(eObject, adviceCache);
 
 			CreationMenuFactory creationMenuFactory = new ModelExplorerMenuFactory(editingDomain);
 			ArrayList<Folder> folders = creationMenuRegistry.getRootFolder();
 			Iterator<Folder> iterFolder = folders.iterator();
 			while (iterFolder.hasNext()) {
 				Folder currentFolder = iterFolder.next();
-				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index, adviceCache);
+				boolean hasbeenBuild = creationMenuFactory.populateMenu(menu, currentFolder, eObject, index, cacheMap);
 				if (hasbeenBuild) {
 					index++;
 				}
