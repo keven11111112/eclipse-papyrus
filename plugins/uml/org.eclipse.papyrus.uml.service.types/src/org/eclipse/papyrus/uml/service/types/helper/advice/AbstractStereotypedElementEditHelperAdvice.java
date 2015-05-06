@@ -17,7 +17,9 @@ package org.eclipse.papyrus.uml.service.types.helper.advice;
 import java.util.ArrayList;
 import java.util.List;
 
+import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EPackage;
+import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -72,10 +74,12 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 					}
 					// do not try to get the Profile, as this can be time consuming and dependent on the size of the model
 					boolean requiredProfileApplied = false;
+					URI requiredProfileURI = EcoreUtil.getURI(requiredProfile);
 					for (Profile profile : profileApplicationContext.getAllAppliedProfiles()) {
 						EPackage definition = profile.getDefinition();
 						// compare definition & requireProfiles
-						if (requiredProfile.equals(definition)) {
+						URI appliedProfileURI = EcoreUtil.getURI(definition);
+						if (requiredProfileURI.equals(appliedProfileURI)) {
 							isApproved = true;
 							break; // this required profile has been found, accept this one
 						}
