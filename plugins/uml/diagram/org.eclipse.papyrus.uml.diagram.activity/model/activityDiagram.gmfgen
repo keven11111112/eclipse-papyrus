@@ -8498,7 +8498,7 @@
         </elementType>
         <viewmap
             xsi:type="gmfgen:FigureViewmap"
-            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigure">
+            figureQualifiedClassName="org.eclipse.papyrus.uml.diagram.activity.figures.ActivityFigureCN">
           <attributes
               xsi:type="gmfgen:DefaultSizeAttributes"
               width="200"
