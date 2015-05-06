@@ -32,4 +32,5 @@
       <elementDescriptors elementTypeId="org.eclipse.papyrus.umlrt.Operation_3042"/>
     </ownedConfigurations>
   </drawerConfigurations>
+  <requiredProfiles>UMLRealTime</requiredProfiles>
 </paletteconfiguration:PaletteConfiguration>
