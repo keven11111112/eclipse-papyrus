@@ -56,8 +56,7 @@ import org.eclipse.xtext.resource.XtextResource;
 import com.google.inject.Injector;
 
 /**
- * Attention: class has been deactivated, since the additional tab is redundant with the
- * body editor in the standard UML property tab.
+ * Property view contribution for the ALF editor
  */
 public class AlfEditionPropertySection extends
 		AbstractModelerPropertySection implements IContextElementProvider {
@@ -84,7 +83,10 @@ public class AlfEditionPropertySection extends
 
 	private Injector alfToolingInjector;
 
+	private EObject previousEObject;
+	
 	public AlfEditionPropertySection() {
+		this.previousEObject = null;
 		this.undoRedoStack = new UndoRedoStack<ExtendedModifyEvent>();
 		this.alfSerialization = new DefaultEditStringRetrievalStrategy();
 		this.alfToolingInjector = AlfActivator.getInstance().getInjector(AlfActivator.ORG_ECLIPSE_PAPYRUS_UML_ALF_ALF);
@@ -96,13 +98,18 @@ public class AlfEditionPropertySection extends
 
 	@Override
 	public void refresh() {
-		/* 1. Update adapters placed over the xtext resource */
-		this.updateXtextAdapters(this.textControl);
-		/* 2. Compute edit string */
+		/* 1. Compute edit string */
 		String serialization = "/*Error: serialization could not be computed*/";
 		if (this.eObject != null) {
 			serialization = this.alfSerialization.getEditString(this.getEditableObject(this.eObject));
 		}
+		
+		/* 2. Update adapters placed over the xtext resource */
+		if(this.previousEObject!=this.eObject){
+			this.updateXtextAdapters(this.textControl);
+			this.previousEObject = this.eObject;
+		}
+		
 		/* 3. Set up editor content (textControl) */
 		this.textControl.setText(serialization);
 		if (this.textControl != null) {
