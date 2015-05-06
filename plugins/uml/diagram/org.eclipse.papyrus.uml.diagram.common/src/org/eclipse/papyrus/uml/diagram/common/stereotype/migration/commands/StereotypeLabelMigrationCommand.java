@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2015 CEA LIST and others.
+ * Copyright (c) 2015 CEA LIST, Christian W. Damus, and others.
  * 
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Initial API and implementation
  *   Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotype Displays
+ *   Christian W. Damus - bug 466629
  *   
  *****************************************************************************/
 
@@ -46,7 +47,7 @@ public class StereotypeLabelMigrationCommand implements Runnable {
 	private static StereotypeDisplayUtil helper = StereotypeDisplayUtil.getInstance();
 	private static StereotypeMigrationHelper migrationHelper = StereotypeMigrationHelper.getInstance();
 	private static StereotypeDisplayCommandExecution commandHelper = StereotypeDisplayCommandExecution.getInstance();
-	protected static IStereotypeViewProvider provider;
+	private IStereotypeViewProvider provider;
 
 
 	/**

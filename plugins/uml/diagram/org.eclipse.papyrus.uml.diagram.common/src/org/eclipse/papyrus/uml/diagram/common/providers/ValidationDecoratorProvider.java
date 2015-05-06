@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2007, 2009 Borland Software Corporation
+ * Copyright (c) 2007, 2015 Borland Software Corporation, Christian W. Damus, and others
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -12,6 +12,7 @@
  *    	bug fix and re-factoring (separating common class)
  *      specific version for Papyrus
  *      Amine EL KOUHEN (CEA LIST) - Added decoration Service
+ *    Christian W. Damus - bug 466629
  */
 package org.eclipse.papyrus.uml.diagram.common.providers;
 
@@ -129,9 +130,9 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		private TransactionalEditingDomain editingDomain;
 
 		/**
-		 * Decoration Service (there is a unique instance of this service, use static variable)
+		 * The decoration service that manages me.
 		 */
-		private static DecorationService decorationService;
+		private DecorationService decorationService;
 
 		private Object element;
 
@@ -146,26 +147,6 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		public StatusDecorator(IDecoratorTarget decoratorTarget) {
 			super(decoratorTarget);
 			diagramDecorationAdapter = new DiagramDecorationAdapter(decoratorTarget);
-			try {
-				final View view = (View) getDecoratorTarget().getAdapter(View.class);
-				element = view.getElement();
-				EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
-				IDiagramEditDomain domain = (IDiagramEditDomain) editPart.getViewer().getEditDomain();
-				ServicesRegistry serviceRegistry = ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
-				decorationService = serviceRegistry.getService(DecorationService.class);
-				// Register As an Decoration service customer
-				decorationService.addListener(this);
-				TransactionUtil.getEditingDomain(view).runExclusive(new Runnable() {
-
-					@Override
-					public void run() {
-						StatusDecorator.this.viewId = view != null ? ViewUtil.getIdStr(view) : null;
-						StatusDecorator.this.editingDomain = TransactionUtil.getEditingDomain(view);
-					}
-				});
-			} catch (Exception e) {
-				log.error("ViewID access failure", e); //$NON-NLS-1$
-			}
 		}
 
 		/**
@@ -179,7 +160,7 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 			if (view == null || view.eResource() == null) {
 				return;
 			}
-			if (view.getElement() != null) {
+			if ((view.getElement() != null) && (decorationService != null)) {
 				diagramDecorationAdapter.removeDecorations();
 				List<IPapyrusDecoration> semanticDecorations = new BasicEList<IPapyrusDecoration>();
 				for (Object decoratedElement : getDecoratedElements(element)) {
@@ -234,14 +215,33 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 */
 		@Override
 		public void activate() {
-			if (viewId == null) {
-				return;
+			try {
+				final View view = (View) getDecoratorTarget().getAdapter(View.class);
+				element = view.getElement();
+				EditPart editPart = (EditPart) getDecoratorTarget().getAdapter(EditPart.class);
+				IDiagramEditDomain domain = (IDiagramEditDomain) editPart.getViewer().getEditDomain();
+				ServicesRegistry serviceRegistry = ServiceUtilsForGMF.getInstance().getServiceRegistry(domain);
+				decorationService = serviceRegistry.getService(DecorationService.class);
+				// Register As an Decoration service customer
+				decorationService.addListener(this);
+				TransactionUtil.getEditingDomain(view).runExclusive(new Runnable() {
+
+					@Override
+					public void run() {
+						StatusDecorator.this.viewId = view != null ? ViewUtil.getIdStr(view) : null;
+						StatusDecorator.this.editingDomain = TransactionUtil.getEditingDomain(view);
+					}
+				});
+			} catch (Exception e) {
+				log.error("ViewID access failure", e); //$NON-NLS-1$
 			}
 
-			// add self to global decorators registry
-			IDecorator decorator = allDecorators.get(viewId);
-			if (decorator == null) {
-				allDecorators.put(viewId, this);
+			if (viewId != null) {
+				// add self to global decorators registry
+				IDecorator decorator = allDecorators.get(viewId);
+				if (decorator == null) {
+					allDecorators.put(viewId, this);
+				}
 			}
 		}
 
@@ -250,21 +250,18 @@ public abstract class ValidationDecoratorProvider extends AbstractProvider imple
 		 */
 		@Override
 		public void deactivate() {
-			if (viewId == null) {
-				return;
-			}
-
 			diagramDecorationAdapter.removeDecorations();
-			decorationService.deleteListener(this);
-			// remove self from global decorators registry
-			allDecorators.remove(viewId);
 
-			View view = (View) getDecoratorTarget().getAdapter(View.class);
-			if ((view == null) || (editingDomain == null)) {
-				// should not happen
-				super.deactivate();
-				return;
+			if (decorationService != null) {
+				decorationService.deleteListener(this);
+				decorationService = null;
 			}
+
+			if (viewId != null) {
+				// remove self from global decorators registry
+				allDecorators.remove(viewId);
+			}
+
 			super.deactivate();
 		}
 
