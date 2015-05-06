@@ -142,8 +142,8 @@ public abstract class TestNewModelWizardBase extends AbstractPapyrusTest {
 	}
 
 	protected void testPageInstanceOf(IWizardPage next, Class<?> expectedClass, int index) {
-		String wrongClassFormat = "page %s expected to be SelectRootElementPage, but actual is: %s";
-		assertTrue(String.format(wrongClassFormat, index, next.getClass()), expectedClass.isInstance(next));
+		String wrongClassFormat = "page %s expected to be %s, but actual is: %s";
+		assertTrue(String.format(wrongClassFormat, index, expectedClass, next.getClass()), expectedClass.isInstance(next));
 	}
 
 	private void initSettingsHelper() {
