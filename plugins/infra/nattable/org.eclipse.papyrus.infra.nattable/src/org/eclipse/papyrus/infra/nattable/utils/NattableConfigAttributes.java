@@ -14,6 +14,7 @@
 package org.eclipse.papyrus.infra.nattable.utils;
 
 import org.eclipse.nebula.widgets.nattable.filterrow.TextMatchingMode;
+import org.eclipse.nebula.widgets.nattable.sort.ISortModel;
 import org.eclipse.nebula.widgets.nattable.style.ConfigAttribute;
 import org.eclipse.papyrus.infra.nattable.comparator.ObjectNameAndPathComparator;
 import org.eclipse.papyrus.infra.nattable.display.converter.ObjectNameAndPathDisplayConverter;
@@ -100,5 +101,10 @@ public class NattableConfigAttributes {
 	 * the config attribute used to register the class loading and storing filter state
 	 */
 	public static final ConfigAttribute<IFilterValueToMatchManager> FILTER_VALUE_TO_MATCH_MANAGER = new ConfigAttribute<IFilterValueToMatchManager>();
+
+	/**
+	 * the config attribute used to register the sort model
+	 */
+	public static final ConfigAttribute<ISortModel> ROW_SORT_MODEl = new ConfigAttribute<ISortModel>();
 
 }

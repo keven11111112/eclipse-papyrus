@@ -83,6 +83,8 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 */
 	protected List<TreeFillingConfiguration> currentFillingConfiguration;
 
+	protected ITreeItemAxisComparator comparator;
+
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#init(org.eclipse.papyrus.infra.nattable.manager.table.INattableModelManager, org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisconfiguration.AxisManagerRepresentation,
 	 *      org.eclipse.papyrus.infra.nattable.model.nattable.nattableaxisprovider.AbstractAxisProvider)
@@ -95,6 +97,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	public void init(INattableModelManager manager, AxisManagerRepresentation rep, AbstractAxisProvider provider) {
 		super.init(manager, rep, provider);
 		this.currentFillingConfiguration = FillingConfigurationUtils.getTreeFillingConfiguration(getTable(), representedAxisManager);
+		this.comparator = new ITreeItemAxisComparator(this.tableManager, this);
 	}
 
 	/**
@@ -114,7 +117,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param objectToAdd
 	 *            the object to add as child of the parent axis
 	 * @return
-	 *         the created {@link ITreeItemAxis} representing objectToAdd
+	 * 		the created {@link ITreeItemAxis} representing objectToAdd
 	 */
 	protected final ITreeItemAxis addObject(final ITreeItemAxis parentAxis, final Object objectToAdd) {
 		final ITreeItemAxis newAxis = createITreeItemAxis(parentAxis, objectToAdd);
@@ -127,15 +130,15 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 
 
 					try {
-						if(null != getTableEditingDomain()){
+						if (null != getTableEditingDomain()) {
 							GMFUnsafe.write(getTableEditingDomain(), new Runnable() {
-	
+
 								@Override
 								public void run() {
 									newAxis.setExpanded(true);
 								}
 							});
-						}else{
+						} else {
 							newAxis.setExpanded(true);
 						}
 					} catch (InterruptedException e) {
@@ -158,7 +161,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * TODO : find a better way to get the tree layer
 	 *
 	 * @return
-	 *         the tree layer
+	 * 		the tree layer
 	 */
 	private TreeLayer getTreeLayer() {
 		NatTable natTable = (NatTable) getTableManager().getAdapter(NatTable.class);
@@ -177,7 +180,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @see org.eclipse.papyrus.infra.nattable.manager.axis.AbstractAxisManager#canBeUsedAsColumnManager()
 	 *
 	 * @return
-	 *         always false
+	 * 		always false
 	 */
 	@Override
 	public boolean canBeUsedAsColumnManager() {
@@ -236,52 +239,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 */
 	@Override
 	public int compare(ISortModel sortModel, int depth, ITreeItemAxis axis1, ITreeItemAxis axis2) {
-		if (axis1 == axis2) {
-			return 0;
-		}
-		if (axis1.getParent() != axis2.getParent()) {
-			Activator.log.warn("There is probably a bug, we are comparing 2 elements from differents level in the tree"); //$NON-NLS-1$
-			return 0;
-		}
-		Object el1 = axis1.getElement();
-		Object el2 = axis2.getElement();
-		int index1 = -2;
-		int index2 = -2;
-
-		// we are comparing 2 filling configurations
-		if (el1 instanceof TreeFillingConfiguration) {
-			Assert.isTrue(el2 instanceof TreeFillingConfiguration);
-			final List<TreeFillingConfiguration> confs = FillingConfigurationUtils.getTreeFillingConfiguration(getTable(), representedAxisManager);
-
-			index1 = confs.indexOf(el1);
-			index2 = confs.indexOf(el2);
-		} else {// we must compare values
-			// parent1 and parent2 are axis representing filling configuration
-			ITreeItemAxis parent1 = axis1.getParent();
-			if (parent1 == null) {
-				// its root element, filled by DnD
-				List<IAxis> axis = getRepresentedContentProvider().getAxis();
-				index1 = axis.indexOf(axis1);
-				index2 = axis.indexOf(axis2);
-			} else {
-				TreeFillingConfiguration conf = (TreeFillingConfiguration) parent1.getElement();
-				ITreeItemAxis grandFather1 = parent1.getParent();
-				Object context = null;
-				if (grandFather1 == null) {
-					context = getTableContext();
-				} else {
-					context = grandFather1.getElement();
-				}
-				Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), context);
-				if (values instanceof List<?>) {
-					index1 = ((List<?>) values).indexOf(axis1.getElement());
-					index2 = ((List<?>) values).indexOf(axis2.getElement());
-				}
-			}
-		}
-
-		int res = index1 - index2;
-		return Integer.signum(res);
+		return this.comparator.compare(axis1, axis2);
 	}
 
 	/**
@@ -291,7 +249,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param objectToAdd
 	 *            the object to add
 	 * @return
-	 *         the ITreeItemAxis created to represents this object
+	 * 		the ITreeItemAxis created to represents this object
 	 */
 	protected abstract ITreeItemAxis createITreeItemAxis(ITreeItemAxis parentAxis, Object objectToAdd);
 
@@ -410,35 +368,27 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 		fillChildrenForSemanticElement(null);
 	}
 
+
 	/**
 	 *
 	 * @param iaxis
 	 * @param rowElement
 	 *            the element
 	 * @return
-	 * 		a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
+	 *         a collection of all values for the intersection of the iaxis and the row element. These values are not yet filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
+	 *         
+	 *         @deprecated : use directly CellManagerFactory.INSTANCE.getCrossValueAsCollection(iaxis, rowElement, this.tableManager);
 	 */
+	@Deprecated
 	protected final Collection<?> getCellValueAsCollection(final Object iaxis, final Object rowElement) {
-		Object value = CellManagerFactory.INSTANCE.getCrossValue(iaxis, rowElement, this.tableManager);
-		Collection<?> collection = Collections.emptyList();
-
-		if (value instanceof Collection<?>) {
-			collection = (Collection<?>) value;
-		} else if (value instanceof Object[]) {
-			collection = Arrays.asList(value);
-		} else if (value != null) {
-			collection = Collections.singletonList(value);
-		}
-
-		return collection;
+		return CellManagerFactory.INSTANCE.getCrossValueAsCollection(iaxis, rowElement, this.tableManager);
 	}
-
 	/**
 	 *
 	 * @param axis
 	 *            an object
 	 * @return
-	 *         the depth of the axis
+	 * 		the depth of the axis
 	 */
 	protected int getDepth(final ITreeItemAxis axis) {
 		final INattableModelManager manager = getTableManager();
@@ -457,7 +407,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param depth
 	 *            the depth of the new element
 	 * @return
-	 *         a collection with all values accepted as children of the rowElement. Returned values have been filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
+	 * 		a collection with all values accepted as children of the rowElement. Returned values have been filtered by the method {@link #isAllowedContents(Object, Object, TreeFillingConfiguration, int)}
 	 */
 	protected final Collection<?> getFilteredValueAsCollection(final TreeFillingConfiguration conf, final Object rowElement, final int depth) {
 		Collection<?> values = getCellValueAsCollection(conf.getAxisUsedAsAxisProvider(), rowElement);
@@ -476,7 +426,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param axis
 	 *            an axis
 	 * @return
-	 *         the real depth of an element (semantic or {@link TreeFillingConfiguration}), that is to say than for {@link TreeFillingConfiguration} we return {@link TreeFillingConfiguration#getDepth()} and for a semantic element
+	 * 		the real depth of an element (semantic or {@link TreeFillingConfiguration}), that is to say than for {@link TreeFillingConfiguration} we return {@link TreeFillingConfiguration#getDepth()} and for a semantic element
 	 *         we returns the depth of the {@link TreeFillingConfiguration} parent of the {@link ITreeItemAxis} represented it.
 	 */
 	public final int getSemanticDepth(final ITreeItemAxis axis) {
@@ -692,7 +642,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	 * @param object
 	 *            the element
 	 * @return
-	 *         the {@link ITreeItemAxis} representing this element or <code>null</code> if not found
+	 * 		the {@link ITreeItemAxis} representing this element or <code>null</code> if not found
 	 */
 	public static final ITreeItemAxis getITreeItemAxisRepresentingObject(final Collection<ITreeItemAxis> possibleRepresentation, Object object) {
 		for (ITreeItemAxis axis : possibleRepresentation) {
@@ -1168,7 +1118,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	/**
 	 *
 	 * @return
-	 *         the row hide show layer
+	 * 		the row hide show layer
 	 */
 	protected final RowHideShowLayer getRowHideShowLayer() {
 		if (this.tableManager != null && this.tableManager.getBodyLayerStack() != null) {

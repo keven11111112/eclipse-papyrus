@@ -13,6 +13,9 @@
  *****************************************************************************/
 package org.eclipse.papyrus.infra.nattable.manager.cell;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
 import java.util.Map;
 import java.util.TreeMap;
 
@@ -279,5 +282,32 @@ public final class CellManagerFactory {
 			return cellManager.getSetValueCommand(domain, columnElement, rowElement, newValue, tableManager);
 		}
 		return UnexecutableCommand.INSTANCE;
+	}
+
+
+	/**
+	 *
+	 * @param columnElement
+	 *            a column element
+	 * @param rowElement
+	 *            a row element
+	 * @param tableManager
+	 *            the table manager
+	 * @return
+	 *         a collection of all values for the intersection of the columnElement and the row element.
+	 */
+	public final Collection<?> getCrossValueAsCollection(final Object columnElement, final Object rowElement, final INattableModelManager tableManager) {
+		Object value = CellManagerFactory.INSTANCE.getCrossValue(columnElement, rowElement, tableManager);
+		if (value == null) {
+			return Collections.emptyList();
+		}
+		if (value instanceof Collection<?>) {
+			return (Collection<?>) value;
+		}
+
+		if (value instanceof Object[]) {
+			return Arrays.asList(value);
+		}
+		return Collections.emptyList();
 	}
 }

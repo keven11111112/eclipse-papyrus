@@ -92,6 +92,8 @@ import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.BooleanVa
 import org.eclipse.papyrus.infra.nattable.model.nattable.nattablestyle.IntValueStyle;
 import org.eclipse.papyrus.infra.nattable.selection.ISelectionExtractor;
 import org.eclipse.papyrus.infra.nattable.selection.ObjectsSelectionExtractor;
+import org.eclipse.papyrus.infra.nattable.sort.IPapyrusSortModel;
+import org.eclipse.papyrus.infra.nattable.sort.PapyrusCompositeGlazedListSortModel;
 import org.eclipse.papyrus.infra.nattable.utils.AxisUtils;
 import org.eclipse.papyrus.infra.nattable.utils.CellMapKey;
 import org.eclipse.papyrus.infra.nattable.utils.HeaderAxisConfigurationManagementUtils;
@@ -120,6 +122,7 @@ import com.google.common.collect.HashBiMap;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.event.ListEvent;
 import ca.odell.glazedlists.event.ListEventListener;
 
@@ -386,30 +389,63 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 	}
 
 
+	protected SortedList<Object> rowSortedList;
+
+	protected SortedList<Object> columnSortedList;
+
 	/**
-	 *
+	 * 
 	 * @return
-	 * 		the new list to use for vertical element
+	 *         the new list to use for vertical element
 	 */
 	protected List<Object> createVerticalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicVerticalList = GlazedLists.eventList(new ArrayList<Object>());
 		// it required than vertical element is a filter list -> warning to invert axis?
-		this.verticalFilterList = new FilterList<Object>(this.basicVerticalList);
+		this.columnSortedList = new SortedList<Object>(this.basicVerticalList, null);
+		this.verticalFilterList = new FilterList<Object>(this.columnSortedList);
 		return this.verticalFilterList;
 	}
 
 	/**
-	 *
+	 * 
 	 * @return
-	 * 		the new list to use for horizontal element
+	 *         the new list to use for horizontal element
 	 */
 	protected List<Object> createHorizontalElementList() {
 		// return Collections.synchronizedList(new ArrayList<Object>());
 		this.basicHorizontalList = GlazedLists.eventList(new ArrayList<Object>());
-		FilterList<Object> filteredList = new FilterList<Object>(this.basicHorizontalList);
+		this.rowSortedList = new SortedList<Object>(this.basicHorizontalList, null);
+		FilterList<Object> filteredList = new FilterList<Object>(this.rowSortedList);
 		this.horizontalFilterList = filteredList;
 		return this.horizontalFilterList;
+	}
+
+	public SortedList<Object> getRowSortedList() {
+		return this.rowSortedList;
+	}
+
+	public SortedList<Object> getColumnSortedList() {
+		return this.columnSortedList;
+	}
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#getRowSortModel()
+	 *
+	 * @return
+	 */
+	@Override
+	protected IPapyrusSortModel getRowSortModel() {
+		if (this.rowSortModel == null) {
+			boolean inverted = getTable().isInvertAxis();
+			if (inverted) {
+				this.rowSortModel = new PapyrusCompositeGlazedListSortModel(this, getColumnSortedList(), getRowSortedList(), inverted);
+			} else {
+				this.rowSortModel = new PapyrusCompositeGlazedListSortModel(this, getRowSortedList(), getColumnSortedList(), inverted);
+			}
+		}
+		return this.rowSortModel;
+
+
 	}
 
 
@@ -649,13 +685,20 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		EventList<Object> newHorizontalBasicList = this.basicVerticalList;
 		EventList<Object> newVerticalBasicList = this.basicHorizontalList;
 
+		SortedList<Object> newHorizontalSortedList = this.rowSortedList;
+		SortedList<Object> newVerticalSortedList = this.columnSortedList;
+		
 		FilterList<Object> newVerticalFilterLilst = this.horizontalFilterList;
 		FilterList<Object> newHorizontalFilterList = this.verticalFilterList;
 
 		this.basicVerticalList = newVerticalBasicList;
 		this.basicHorizontalList = newHorizontalBasicList;
+		
 		this.horizontalFilterList = newHorizontalFilterList;
 		this.verticalFilterList = newVerticalFilterLilst;
+
+		this.rowSortedList = newHorizontalSortedList;
+		this.columnSortedList = newVerticalSortedList;
 
 
 		NattableModelManager.this.rowManager = newRowManager;
@@ -663,6 +706,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		this.rowManager.setAxisComparator(null);
 		this.columnManager.setAxisComparator(null);
 
+		((IPapyrusSortModel) getRowSortModel()).setTableInverted(getTable().isInvertAxis());
 		updateToggleActionState();
 		// configureNatTable();
 
@@ -730,7 +774,7 @@ public class NattableModelManager extends AbstractNattableWidgetManager implemen
 		final List<IAxisManager> managers = new ArrayList<IAxisManager>();
 		for (AxisManagerRepresentation current : representations) {
 			final IAxisManager manager = AxisManagerFactory.INSTANCE.getAxisManager(current);
-			assert manager != null;
+			Assert.isNotNull(manager);
 			manager.init(this, current, contentProvider);
 			managers.add(manager);
 		}

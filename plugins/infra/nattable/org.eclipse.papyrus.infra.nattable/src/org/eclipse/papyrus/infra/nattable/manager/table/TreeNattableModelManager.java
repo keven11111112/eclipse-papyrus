@@ -30,6 +30,7 @@ import org.eclipse.nebula.widgets.nattable.layer.ILayer;
 import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.infra.nattable.command.CommandIds;
+import org.eclipse.papyrus.infra.nattable.configuration.TreeTableClickSortConfiguration;
 import org.eclipse.papyrus.infra.nattable.layerstack.BodyLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderHierarchicalLayerStack;
 import org.eclipse.papyrus.infra.nattable.layerstack.RowHeaderLayerStack;
@@ -66,6 +67,7 @@ import org.eclipse.ui.commands.ICommandService;
 import ca.odell.glazedlists.EventList;
 import ca.odell.glazedlists.FilterList;
 import ca.odell.glazedlists.GlazedLists;
+import ca.odell.glazedlists.SortedList;
 import ca.odell.glazedlists.TreeList;
 import ca.odell.glazedlists.TreeList.Format;
 
@@ -127,9 +129,12 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		EventList<Object> eventList = GlazedLists.eventList(new ArrayList<Object>());
 		eventList = GlazedLists.threadSafeList(eventList);
 		this.basicHorizontalList = eventList;
-		treeFormat = new DatumTreeFormat(new ColumnSortModel(this));
+		// must be created before the row sort model
+		this.rowSortedList = new SortedList<Object>(this.basicHorizontalList, null);
+		treeFormat = new DatumTreeFormat(getRowSortModel());
 		this.expansionModel = new DatumExpansionModel();
-		this.horizontalFilterList = new FilterList<Object>(this.basicHorizontalList);
+
+		this.horizontalFilterList = new FilterList<Object>(this.rowSortedList);
 		this.treeList = new TreeList(this.horizontalFilterList, treeFormat, expansionModel);
 
 		return this.treeList;
@@ -165,6 +170,17 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		return nattable;
 	}
 
+	/**
+	 * @see org.eclipse.papyrus.infra.nattable.manager.table.AbstractNattableWidgetManager#addClickSortConfiguration(org.eclipse.nebula.widgets.nattable.NatTable)
+	 *
+	 * @param natTable
+	 */
+	@Override
+	protected void addClickSortConfiguration(NatTable natTable) {
+		natTable.addConfiguration(new TreeTableClickSortConfiguration());
+	}
+
+	
 	/**
 	 * @see org.eclipse.papyrus.infra.nattable.manager.table.NattableModelManager#updateToggleActionState()
 	 *
@@ -379,7 +395,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 	protected Adapter createInvertAxisListener() {
 		return null;
 	}
-	
+
 	/**
 	 * Modify the axis when it is disposed.
 	 * 
@@ -415,7 +431,7 @@ public class TreeNattableModelManager extends NattableModelManager implements IT
 		}
 		final List<IAxis> iAxis = getHorizontalAxisProvider().getAxis();
 
-		if (iAxis != null && !iAxis.isEmpty()) {			// see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
+		if (iAxis != null && !iAxis.isEmpty()) { // see bug 467706: [Table 2] Tree Table with no tree filling configuration on depth==0 can't be reopened
 			// we need to remove the children which are not serialized from the root of the table, to be able to reopen
 			Runnable runnable = new Runnable() {
 
