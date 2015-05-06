@@ -2,7 +2,6 @@ package org.eclipse.papyrus.uml.diagram.common.tests.parser;
 
 import static org.junit.Assert.assertEquals;
 
-import org.eclipse.papyrus.junit.framework.classification.FailingTest;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.uml.tools.utils.ValueSpecificationUtil;
 import org.eclipse.uml2.uml.LiteralBoolean;
@@ -59,7 +58,6 @@ public class ValueSpecificationUtilTestCase extends AbstractPapyrusTest {
 		assertEquals("", ValueSpecificationUtil.getSpecificationValue(createLiteralNull()));
 	}
 
-	@FailingTest
 	@Test
 	public void testLiteralReal() {
 		assertEquals("0.5", ValueSpecificationUtil.getSpecificationValue(createLiteralReal(0.5)));
