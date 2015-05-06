@@ -48,6 +48,9 @@ import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.notation.Edge;
 import org.eclipse.gmf.runtime.notation.Node;
 import org.eclipse.gmf.runtime.notation.View;
+import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
+import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
+import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPostconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ActionLocalPreconditionEditPart;
 import org.eclipse.papyrus.uml.diagram.activity.edit.parts.CallBehaviorActionEditPart;
@@ -68,14 +71,12 @@ import org.eclipse.papyrus.uml.diagram.activity.edit.parts.ValueSpecificationAct
 import org.eclipse.papyrus.uml.diagram.activity.helper.ActivityLinkMappingHelper;
 import org.eclipse.papyrus.uml.diagram.activity.part.UMLVisualIDRegistry;
 import org.eclipse.papyrus.uml.diagram.activity.providers.UMLElementTypes;
-import org.eclipse.papyrus.infra.gmfdiag.common.commands.CommonDeferredCreateConnectionViewCommand;
-import org.eclipse.papyrus.infra.gmfdiag.common.adapter.SemanticAdapter;
 import org.eclipse.papyrus.uml.diagram.common.editpolicies.CommonDiagramDragDropEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.common.utils.DiagramEditPartsUtil;
 import org.eclipse.uml2.uml.Action;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.ActivityEdge;
 import org.eclipse.uml2.uml.ActivityNode;
+import org.eclipse.uml2.uml.ActivityPartition;
 import org.eclipse.uml2.uml.Behavior;
 import org.eclipse.uml2.uml.Constraint;
 import org.eclipse.uml2.uml.Element;
@@ -203,6 +204,10 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		EObject graphicalParent = ((GraphicalEditPart) getHost()).resolveSemanticElement();
 		if (graphicalParent instanceof StructuredActivityNode) {
 			if (!((StructuredActivityNode) graphicalParent).getNodes().contains(semanticElement)) {
+				return UnexecutableCommand.INSTANCE;
+			}
+		} else if (graphicalParent instanceof ActivityPartition) {
+			if (false == semanticElement.eContainer() instanceof Activity) {
 				return UnexecutableCommand.INSTANCE;
 			}
 		} else if (graphicalParent instanceof Element) {
