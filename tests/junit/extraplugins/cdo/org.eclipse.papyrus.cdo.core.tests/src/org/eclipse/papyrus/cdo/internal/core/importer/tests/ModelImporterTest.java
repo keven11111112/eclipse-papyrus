@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer.tests;
 
@@ -75,7 +76,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		config.addModelToTransfer(uri2);
 
 		IModelImportMapping mapping = IModelImportMapping.Factory.ONE_TO_ONE.create(config);
-		mapping.setRepository(getPapyrusRepository());
+		mapping.setCheckout(getCheckout());
 
 		long commitTime = System.currentTimeMillis();
 
@@ -83,7 +84,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		assertThat(problems.getSeverity(), is(Diagnostic.OK));
 		assertThat(problems.getChildren().size(), is(0));
 
-		CDOView view = getInternalPapyrusRepository().getMasterView();
+		CDOView view = getInternalCheckout().getView();
 		view.waitForUpdate(commitTime, 10000L);
 
 		assertResource(view.getResource("has_dependencies/model.di"));
@@ -104,7 +105,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		config.addModelToTransfer(uri2);
 
 		IModelImportMapping mapping = IModelImportMapping.Factory.MANY_TO_ONE.create(config);
-		mapping.setRepository(getPapyrusRepository());
+		mapping.setCheckout(getCheckout());
 		mapping.mapTo(Iterables.get(config.getModelsToTransfer(), 0), new Path("my_import/combined.di"));
 
 		long commitTime = System.currentTimeMillis();
@@ -113,14 +114,14 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		assertThat(problems.getSeverity(), is(Diagnostic.OK));
 		assertThat(problems.getChildren().size(), is(0));
 
-		CDOView view = getInternalPapyrusRepository().getMasterView();
+		CDOView view = getInternalCheckout().getView();
 		view.waitForUpdate(commitTime, 10000L);
 
 		assertResource(view.getResource("my_import/combined.di"), "di", 1);
 		assertResource(view.getResource("my_import/combined.uml"), "uml", 2);
 		assertResource(view.getResource("my_import/combined.notation"), "notation", 2);
 
-		SashWindowsMngr mngr = (SashWindowsMngr)EcoreUtil.getObjectByType(view.getResource("my_import/combined.di").getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
+		SashWindowsMngr mngr = (SashWindowsMngr) EcoreUtil.getObjectByType(view.getResource("my_import/combined.di").getContents(), DiPackage.Literals.SASH_WINDOWS_MNGR);
 		assertThat(mngr.getSashModel().getWindows().size(), is(2));
 		assertThat(mngr.getPageList().getAvailablePage().size(), is(3));
 	}
@@ -136,7 +137,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		config.addModelToTransfer(hasDependents.getResourceURI("Datatypes.di"));
 
 		IModelImportMapping mapping = IModelImportMapping.Factory.ONE_TO_ONE.create(config);
-		mapping.setRepository(getPapyrusRepository());
+		mapping.setCheckout(getCheckout());
 
 		fixture.importModels(mapping);
 
@@ -146,7 +147,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 		reader.close();
 
 		assertThat(text, not(containsString("href=\"../has_dependents/Datatypes.uml")));
-		assertThat(text, containsString("href=\"cdo://MEM/has_dependents/Datatypes.uml"));
+		assertThat(text, containsString("href=\"cdo.checkout://1/1/has_dependents/Datatypes.uml"));
 	}
 
 	//
@@ -187,7 +188,7 @@ public class ModelImporterTest extends AbstractPapyrusCDOTest {
 			public boolean apply(EObject input) {
 				boolean result = false;
 
-				if(input != null) {
+				if (input != null) {
 					EPackage epackage = input.eClass().getEPackage();
 					result = epackage.getName().equalsIgnoreCase(metamodel);
 				}

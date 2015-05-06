@@ -18,12 +18,11 @@ import java.util.Collections;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.ui.CDOItemProvider;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.net4j.util.ui.views.IElementFilter;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.swt.graphics.Image;
@@ -37,7 +36,7 @@ import com.google.common.collect.Iterables;
 /**
  * This is the ModelRepositoryItemProvider type. Enjoy.
  */
-public class ModelRepositoryItemProvider extends CDOItemProvider {
+public class CheckoutItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> isDIResource = new Predicate<Object>() {
 
@@ -72,18 +71,18 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 	private final Predicate<Object> extensibleFilter;
 
-	public ModelRepositoryItemProvider(IWorkbenchPage page, IElementFilter rootElementFilter) {
+	public CheckoutItemProvider(IWorkbenchPage page, IElementFilter rootElementFilter) {
 
 		super(page, rootElementFilter);
 
 		extensibleFilter = ItemProviderFilterRegistry.INSTANCE.createFilter(this);
 	}
 
-	public ModelRepositoryItemProvider(IWorkbenchPage page, Object rootElementToShow) {
+	public CheckoutItemProvider(IWorkbenchPage page, Object rootElementToShow) {
 		this(page, Collections.singleton(rootElementToShow));
 	}
 
-	public ModelRepositoryItemProvider(IWorkbenchPage page, final Collection<?> rootElementsToShow) {
+	public CheckoutItemProvider(IWorkbenchPage page, final Collection<?> rootElementsToShow) {
 		this(page, new IElementFilter() {
 
 			@Override
@@ -93,17 +92,17 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 		});
 	}
 
-	public ModelRepositoryItemProvider(IWorkbenchPage page) {
+	public CheckoutItemProvider(IWorkbenchPage page) {
 		this(page, (IElementFilter) null);
 	}
 
 	@Override
 	public Object[] getChildren(Object element) {
-		if (element instanceof IPapyrusRepository) {
+		if (element instanceof CDOCheckout) {
 			// initialize query for DI resources
-			IInternalPapyrusRepository repo = (IInternalPapyrusRepository) element;
-			if (repo.isConnected()) {
-				DIResourceQuery.initialize(getViewer(), repo.getMasterView());
+			CDOCheckout checkout = (CDOCheckout) element;
+			if (checkout.isOpen()) {
+				DIResourceQuery.initialize(getViewer(), checkout.getView());
 			}
 		}
 
@@ -114,7 +113,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 		} else {
 			result = Arrays.asList(super.getChildren(element));
 
-			if ((element instanceof CDOResourceFolder) || (element instanceof IPapyrusRepository)) {
+			if ((element instanceof CDOResourceFolder) || (element instanceof CDOCheckout)) {
 				result = filterDIResources(result);
 			}
 		}
@@ -151,7 +150,7 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 
 			// we don't show the view
 			if (result instanceof CDOView) {
-				result = PapyrusRepositoryManager.INSTANCE.getRepository((CDOView) result);
+				result = CDOExplorerUtil.getCheckout((CDOView) result);
 			}
 		}
 
@@ -170,8 +169,8 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 	public Image getImage(Object obj) {
 		Image result;
 
-		if (obj instanceof IPapyrusRepository) {
-			boolean open = ((IPapyrusRepository) obj).isConnected();
+		if (obj instanceof CDOCheckout) {
+			boolean open = ((CDOCheckout) obj).isOffline();
 			result = SharedImages.getImage(open ? Activator.ICON_OPEN_REPOSITORY : Activator.ICON_CLOSED_REPOSITORY);
 		} else if (obj instanceof DIModel) {
 			result = ((DIModel) obj).getImage();
@@ -186,8 +185,8 @@ public class ModelRepositoryItemProvider extends CDOItemProvider {
 	public String getText(Object obj) {
 		String result;
 
-		if (obj instanceof IInternalPapyrusRepository) {
-			result = ((IInternalPapyrusRepository) obj).getName();
+		if (obj instanceof CDOCheckout) {
+			result = ((CDOCheckout) obj).getLabel();
 		} else if (obj instanceof DIModel) {
 			result = ((DIModel) obj).getName();
 		} else {

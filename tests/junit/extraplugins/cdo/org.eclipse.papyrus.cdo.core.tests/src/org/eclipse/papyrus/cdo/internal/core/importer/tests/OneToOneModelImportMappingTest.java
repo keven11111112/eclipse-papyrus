@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.importer.tests;
 
@@ -60,8 +61,8 @@ public class OneToOneModelImportMappingTest extends AbstractPapyrusCDOTest {
 		config.addModelToTransfer(uri1);
 		config.addModelToTransfer(uri2);
 
-		assertThat(fixture.getMapping(getNode(uri1)), is((IPath)new Path("/has_dependencies/model.di")));
-		assertThat(fixture.getMapping(getNode(uri2)), is((IPath)new Path("/has_dependents/Datatypes.di")));
+		assertThat(fixture.getMapping(getNode(uri1)), is((IPath) new Path("/has_dependencies/model.di")));
+		assertThat(fixture.getMapping(getNode(uri2)), is((IPath) new Path("/has_dependents/Datatypes.di")));
 	}
 
 	@Test
@@ -96,7 +97,7 @@ public class OneToOneModelImportMappingTest extends AbstractPapyrusCDOTest {
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
 		assertThat(child.getMessage(), containsString("Resource already exists"));
-		assertThat(child.getData().get(0), sameInstance((Object)getNode(uri)));
+		assertThat(child.getData().get(0), sameInstance((Object) getNode(uri)));
 	}
 
 	@Test
@@ -112,30 +113,30 @@ public class OneToOneModelImportMappingTest extends AbstractPapyrusCDOTest {
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
 		assertThat(child.getMessage(), containsString("No mapping"));
-		assertThat(child.getData().get(0), sameInstance((Object)getNode(uri)));
+		assertThat(child.getData().get(0), sameInstance((Object) getNode(uri)));
 	}
 
 	@Test
 	public void testValidation_repository() throws Exception {
 
-		getPapyrusRepository().disconnect();
+		getCheckout().close();
 
 		Diagnostic problems = fixture.validate();
 
 		assertThat(problems.getChildren().size(), is(1));
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
-		assertThat(child.getMessage(), containsString("is not connected"));
-		assertThat(child.getData().get(0), sameInstance((Object)getPapyrusRepository()));
+		assertThat(child.getMessage(), containsString("is not open"));
+		assertThat(child.getData().get(0), sameInstance((Object) getCheckout()));
 
-		fixture.setRepository(null);
+		fixture.setCheckout(null);
 
 		problems = fixture.validate();
 
 		assertThat(problems.getChildren().size(), is(1));
 		child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
-		assertThat(child.getMessage(), containsString("No repository"));
+		assertThat(child.getMessage(), containsString("No checkout"));
 	}
 
 	//
@@ -153,7 +154,7 @@ public class OneToOneModelImportMappingTest extends AbstractPapyrusCDOTest {
 		}, null);
 
 		fixture = IModelImportMapping.Factory.ONE_TO_ONE.create(config);
-		fixture.setRepository(getPapyrusRepository());
+		fixture.setCheckout(getCheckout());
 	}
 
 	@After
@@ -167,8 +168,8 @@ public class OneToOneModelImportMappingTest extends AbstractPapyrusCDOTest {
 	IModelTransferNode getNode(URI uri) {
 		IModelTransferNode result = null;
 
-		for(IModelTransferNode next : config.getModelsToTransfer()) {
-			if(next.getPrimaryResourceURI().equals(uri)) {
+		for (IModelTransferNode next : config.getModelsToTransfer()) {
+			if (next.getPrimaryResourceURI().equals(uri)) {
 				result = next;
 				break;
 			}

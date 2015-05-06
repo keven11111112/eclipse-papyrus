@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.internal.ui.importsources;
 
@@ -23,6 +24,9 @@ import org.eclipse.core.runtime.IAdaptable;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager;
 import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
@@ -30,13 +34,10 @@ import org.eclipse.jface.viewers.ILabelProvider;
 import org.eclipse.jface.viewers.ITreeContentProvider;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.papyrus.cdo.internal.ui.views.DIModel;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
+import org.eclipse.papyrus.cdo.internal.ui.views.CheckoutItemProvider;
 import org.eclipse.papyrus.cdo.uml.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.uml.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.widgets.providers.DelegatingLabelProvider;
@@ -55,11 +56,9 @@ import com.google.common.collect.Ordering;
  */
 public class CDOPackageImportSource extends AbstractPackageImportSource {
 
-	private final IPapyrusRepositoryManager repoMan = PapyrusRepositoryManager.INSTANCE;
+	private List<CDOCheckout> availableRepos;
 
-	private List<IPapyrusRepository> availableRepos;
-
-	private ModelRepositoryItemProvider itemProvider;
+	private CheckoutItemProvider itemProvider;
 
 	public CDOPackageImportSource() {
 		super();
@@ -79,14 +78,14 @@ public class CDOPackageImportSource extends AbstractPackageImportSource {
 
 	@Override
 	public void initialize(Collection<?> selection) {
-		availableRepos = new java.util.ArrayList<IPapyrusRepository>();
-		for (IPapyrusRepository next : repoMan.getRepositories()) {
-			if (next.isConnected()) {
+		availableRepos = new java.util.ArrayList<CDOCheckout>();
+		for (CDOCheckout next : CDOExplorerUtil.getCheckoutManager().getCheckouts()) {
+			if (next.isOpen()) {
 				availableRepos.add(next);
 			}
 		}
 
-		itemProvider = new ModelRepositoryItemProvider(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
+		itemProvider = new CheckoutItemProvider(PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage());
 	}
 
 	@Override
@@ -196,6 +195,7 @@ public class CDOPackageImportSource extends AbstractPackageImportSource {
 
 		@Override
 		public void inputChanged(Viewer viewer, Object oldInput, Object newInput) {
+			CDOCheckoutManager repoMan = CDOExplorerUtil.getCheckoutManager();
 			if (newInput == null) {
 				itemProvider.inputChanged(viewer, repoMan, null);
 				super.inputChanged(viewer, repoMan, null);

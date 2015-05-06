@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 429242
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.l10n;
@@ -22,41 +23,35 @@ public class Messages extends NLS {
 
 	private static final String BUNDLE_NAME = "org.eclipse.papyrus.cdo.internal.ui.l10n.messages"; //$NON-NLS-1$
 
-	public static String AddRepositoryAction_0;
+	public static String CheckoutBrowseDialog_anyNode;
 
-	public static String AddRepositoryDialog_0;
+	public static String CheckoutBrowseDialog_binKind;
 
-	public static String AddRepositoryDialog_1;
+	public static String CheckoutBrowseDialog_existsError;
 
-	public static String BrowseRepoDlg_anyNode;
+	public static String CheckoutBrowseDialog_existsWarning;
 
-	public static String BrowseRepoDlg_binKind;
+	public static String CheckoutBrowseDialog_fileKind;
 
-	public static String BrowseRepoDlg_existsError;
+	public static String CheckoutBrowseDialog_folderKind;
 
-	public static String BrowseRepoDlg_existsWarning;
+	public static String CheckoutBrowseDialog_invalidURISeg;
 
-	public static String BrowseRepoDlg_fileKind;
+	public static String CheckoutBrowseDialog_leafKind;
 
-	public static String BrowseRepoDlg_folderKind;
+	public static String CheckoutBrowseDialog_modelKind;
 
-	public static String BrowseRepoDlg_invalidURISeg;
+	public static String CheckoutBrowseDialog_nameLabel;
 
-	public static String BrowseRepoDlg_leafKind;
+	public static String CheckoutBrowseDialog_newFolderAction;
 
-	public static String BrowseRepoDlg_modelKind;
+	public static String CheckoutBrowseDialog_noSuchResource;
 
-	public static String BrowseRepoDlg_nameLabel;
+	public static String CheckoutBrowseDialog_textKind;
 
-	public static String BrowseRepoDlg_newFolderAction;
+	public static String CheckoutBrowseDialog_windowTitle;
 
-	public static String BrowseRepoDlg_noSuchResource;
-
-	public static String BrowseRepoDlg_textKind;
-
-	public static String BrowseRepoDlg_windowTitle;
-
-	public static String BrowseRepoDlg_wrongSelection;
+	public static String CheckoutBrowseDialog_wrongSelection;
 
 	public static String CDOResLabels_binKind;
 
@@ -80,14 +75,6 @@ public class Messages extends NLS {
 
 	public static String CDOStateLabelDecorator_1;
 
-	public static String ChangePasswordAction_0;
-
-	public static String ChangePasswordAction_1;
-
-	public static String ConnectRepositoryAction_0;
-
-	public static String ConnectRepositoryAction_errorTitle;
-
 	public static String CreateCDOFragDlg_browseMessage;
 
 	public static String CreateCDOFragDlg_browseRepo;
@@ -104,31 +91,7 @@ public class Messages extends NLS {
 
 	public static String CreateCDOFragDlg_uriLabel;
 
-	public static String CreateFolderAction_0;
-
-	public static String CreateFolderAction_1;
-
-	public static String CreateFolderAction_2;
-
-	public static String CreateFolderAction_5;
-
-	public static String CreateFolderAction_6;
-
-	public static String DeleteModelAction_0;
-
-	public static String DeleteModelAction_1;
-
-	public static String DeleteModelAction_2;
-
-	public static String DialogCredentialsProviderFactory_0;
-
 	public static String DIResourceQuery_2;
-
-	public static String DisconnectRepositoryAction_0;
-
-	public static String DisconnectRepositoryAction_2;
-
-	public static String LinkWithEditorAction_0;
 
 	public static String ModelExportMappingsPage_0;
 
@@ -194,111 +157,26 @@ public class Messages extends NLS {
 
 	public static String ModelReferencesPage_9;
 
-	public static String ModelRepositoriesView_commitSaveError;
-
-	public static String ModelRepositoriesView_commitSaveFailed;
-
-	public static String OpenPapyrusModelAction_0;
-
 	public static String PapyrusCDOEditorManager_1;
 
 	public static String PapyrusCDOEditorManager_2;
 
 	public static String PapyrusTransactionListener_0;
 
-	public static String RemoveRepositoryAction_0;
+	public static String CheckoutSelectionBlock_0;
 
-	public static String RemoveRepositoryAction_1;
+	public static String CheckoutSelectionBlock_1;
 
-	public static String RemoveRepositoryAction_2;
+	public static String CheckoutSelectionDialog_0;
 
-	public static String RemoveRepositoryAction_3;
+	public static String CheckoutSelectionDialog_1;
 
-	public static String RemoveRepositoryAction_4;
+	public static String CheckoutSelectionPage_0;
 
-	public static String RenameModelAction_0;
+	public static String CheckoutSelectionPage_2;
 
-	public static String RenameModelAction_1;
+	public static String CheckoutSelectionPage_3;
 
-	public static String RenameModelAction_10;
-
-	public static String RenameModelAction_2;
-
-	public static String RenameModelAction_7;
-
-	public static String RenameModelAction_8;
-
-	public static String RepositoryAdminListener_0;
-
-	public static String RepositoryAdminListener_1;
-
-	public static String RepositoryAdminListener_2;
-
-	public static String RepositoryAdminListener_3;
-
-	public static String RepositoryAdminListener_4;
-
-	public static String RepositoryCredentialsDialog_0;
-
-	public static String RepositoryCredentialsDialog_1;
-
-	public static String RepositoryCredentialsDialog_2;
-
-	public static String RepositoryCredentialsDialog_3;
-
-	public static String RepositoryCredentialsDialog_4;
-
-	public static String RepositoryPropertiesBlock_0;
-
-	public static String RepositoryPropertiesBlock_1;
-
-	public static String RepositoryPropertiesBlock_12;
-
-	public static String RepositoryPropertiesBlock_13;
-
-	public static String RepositoryPropertiesBlock_14;
-
-	public static String RepositoryPropertiesBlock_15;
-
-	public static String RepositoryPropertiesBlock_16;
-
-	public static String RepositoryPropertiesBlock_17;
-
-	public static String RepositoryPropertiesBlock_2;
-
-	public static String RepositoryPropertiesBlock_3;
-
-	public static String RepositoryPropertiesBlock_4;
-
-	public static String RepositoryPropertiesBlock_5;
-
-	public static String RepositoryPropertiesBlock_6;
-
-	public static String RepositoryPropertyPage_0;
-
-	public static String RepositoryPropertyPage_1;
-
-	public static String RepositoryPropertyPage_2;
-
-	public static String RepositoryPropertyPage_3;
-
-	public static String RepositoryPropertyPage_4;
-
-	public static String RepositorySelectionBlock_0;
-
-	public static String RepositorySelectionBlock_1;
-
-	public static String RepositorySelectionDialog_0;
-
-	public static String RepositorySelectionDialog_1;
-
-	public static String RepositorySelectionPage_0;
-
-	public static String RepositorySelectionPage_2;
-
-	public static String RepositorySelectionPage_3;
-
-	public static String RepositorySelectionPage_4;
 
 	public static String ResolveConflictsHandler_0;
 
@@ -317,6 +195,7 @@ public class Messages extends NLS {
 	public static String ResourceDropAdapter_6;
 
 	public static String WizardOperationContext_0;
+
 	static {
 		// initialize resource bundle
 		NLS.initializeMessages(BUNDLE_NAME, Messages.class);

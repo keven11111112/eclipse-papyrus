@@ -14,6 +14,8 @@ package org.eclipse.papyrus.cdo.internal.ui.dialogs;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.eresource.EresourcePackage;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
@@ -33,14 +35,10 @@ import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
 import org.eclipse.net4j.util.ui.views.IElementFilter;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.ui.actions.CreateFolderAction;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
+import org.eclipse.papyrus.cdo.internal.ui.views.CheckoutItemProvider;
 import org.eclipse.papyrus.cdo.internal.ui.widgets.ActionButton;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.DisposeEvent;
@@ -56,14 +54,15 @@ import org.eclipse.swt.widgets.Label;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.ui.PlatformUI;
+import org.eclipse.ui.actions.CreateFolderAction;
 
 import com.google.common.base.Strings;
 
 
 /**
- * This is the BrowseRepositoryDialog type. Enjoy.
+ * This is the CheckoutBrowseDialog type. Enjoy.
  */
-public class BrowseRepositoryDialog extends TitleAreaDialog {
+public class CheckoutBrowseDialog extends TitleAreaDialog {
 
 	private final String windowTitle;
 
@@ -73,7 +72,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 	private final int style;
 
-	private final IInternalPapyrusRepository repository;
+	private final CDOCheckout checkout;
 
 	private boolean allowOverwrite = false;
 
@@ -95,15 +94,15 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 	 * @param style
 	 *            one of {@link SWT#OPEN} or {@link SWT#SAVE}
 	 */
-	public BrowseRepositoryDialog(Shell parentShell, String title, String message, CDOView view, int style) {
-		this(parentShell, Messages.BrowseRepoDlg_windowTitle, title, message, view, style);
+	public CheckoutBrowseDialog(Shell parentShell, String title, String message, CDOView view, int style) {
+		this(parentShell, Messages.CheckoutBrowseDialog_windowTitle, title, message, view, style);
 	}
 
 	/**
 	 * @param style
 	 *            one of {@link SWT#OPEN} or {@link SWT#SAVE}
 	 */
-	public BrowseRepositoryDialog(Shell parentShell, String windowTitle, String title, String message, CDOView view, int style) {
+	public CheckoutBrowseDialog(Shell parentShell, String windowTitle, String title, String message, CDOView view, int style) {
 		super(parentShell);
 
 		this.windowTitle = windowTitle;
@@ -111,7 +110,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		this.message = message;
 		this.style = checkStyle(style);
 
-		this.repository = (view == null) ? null : PapyrusRepositoryManager.INSTANCE.getRepository(view);
+		this.checkout = (view == null) ? null : CDOExplorerUtil.getCheckout(view);
 
 		setHelpAvailable(false);
 	}
@@ -139,9 +138,9 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 	private void shellDisposed() {
 		if (viewerRefresh != null) {
-			for (IInternalPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
-				if (next.isConnected()) {
-					next.getMasterView().removeListener(viewerRefresh);
+			for (CDOCheckout next : CDOExplorerUtil.getCheckoutManager().getCheckouts()) {
+				if (next.isOpen()) {
+					next.getView().removeListener(viewerRefresh);
 				}
 			}
 		}
@@ -204,8 +203,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		return (style & SWT.SAVE) != 0;
 	}
 
-	IInternalPapyrusRepository getRepository() {
-		return repository;
+	CDOCheckout getCheckout() {
+		return checkout;
 	}
 
 	@Override
@@ -221,14 +220,14 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 		tree = new TreeViewer(result, SWT.SINGLE | SWT.BORDER | SWT.H_SCROLL | SWT.V_SCROLL);
 		tree.getControl().setLayoutData(new GridData(SWT.FILL, SWT.FILL, true, true, isSaveStyle() ? 2 : 1, 1));
 
-		ModelRepositoryItemProvider itemProvider = (getRepository() == null) ? new ModelRepositoryItemProvider(null, showConnectedRepositories()) : new ModelRepositoryItemProvider(null, getRepository());
+		CheckoutItemProvider itemProvider = (getCheckout() == null) ? new CheckoutItemProvider(null, showConnectedRepositories()) : new CheckoutItemProvider(null, getCheckout());
 		tree.setContentProvider(itemProvider);
 		tree.setLabelProvider(new DecoratingLabelProvider(itemProvider, PlatformUI.getWorkbench().getDecoratorManager().getLabelDecorator()));
 		tree.setSorter(itemProvider);
-		tree.setInput(PapyrusRepositoryManager.INSTANCE);
-		for (IInternalPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
-			if (next.isConnected()) {
-				next.getMasterView().addListener(getViewerRefresh());
+		tree.setInput(CDOExplorerUtil.getCheckoutManager());
+		for (CDOCheckout next : CDOExplorerUtil.getCheckoutManager().getCheckouts()) {
+			if (next.isOpen()) {
+				next.getView().addListener(getViewerRefresh());
 			}
 		}
 
@@ -238,13 +237,13 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			actionButtons.setLayoutData(new GridData(SWT.RIGHT, SWT.TOP, false, false));
 			actionButtons.setLayout(new RowLayout(SWT.VERTICAL));
 
-			ActionButton newFolderButton = new ActionButton(Messages.BrowseRepoDlg_newFolderAction, new CreateFolderAction(this), SWT.PUSH);
+			ActionButton newFolderButton = new ActionButton(Messages.CheckoutBrowseDialog_newFolderAction, new CreateFolderAction(this), SWT.PUSH);
 			newFolderButton.attach(tree);
 			newFolderButton.createControl(actionButtons);
 
 			// don't need to type in names of non-existent resources when opening an existing resource
 			Label label = new Label(result, SWT.NONE);
-			label.setText(Messages.BrowseRepoDlg_nameLabel);
+			label.setText(Messages.CheckoutBrowseDialog_nameLabel);
 			GridData gd = new GridData(GridData.HORIZONTAL_ALIGN_BEGINNING);
 			gd.verticalIndent = convertVerticalDLUsToPixels(8);
 			label.setLayoutData(gd);
@@ -257,8 +256,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		if (getInitialURI() != null) {
 			initializeSelection();
-		} else if (getRepository() != null) {
-			selection = getRepository().getMasterView().getRootResource();
+		} else if (getCheckout() != null) {
+			selection = getCheckout().getView().getRootResource();
 		}
 
 		tree.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -267,8 +266,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			public void selectionChanged(SelectionChangedEvent event) {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 				if (sel.isEmpty()) {
-					if (getRepository() != null) {
-						selection = getRepository().getMasterView().getRootResource();
+					if (getCheckout() != null) {
+						selection = getCheckout().getView().getRootResource();
 					} else {
 						selection = null;
 					}
@@ -301,8 +300,8 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			public boolean filter(Object element) {
 				boolean result = false;
 
-				if (element instanceof IPapyrusRepository) {
-					result = ((IPapyrusRepository) element).isConnected();
+				if (element instanceof CDOCheckout) {
+					result = ((CDOCheckout) element).isOpen();
 				}
 
 				return result;
@@ -312,7 +311,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 	private void initializeSelection() {
 		URI uri = getInitialURI();
-		CDOView view = getRepository().getMasterView();
+		CDOView view = getCheckout().getView();
 
 		String path = CDOURIUtil.extractResourcePath(uri);
 		if (view.hasResource(path)) {
@@ -328,9 +327,9 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 			URI parent = uri.trimSegments(1);
 			path = CDOURIUtil.extractResourcePath(parent);
 			if (view.hasResource(path)) {
-				// if the root resource, it is represented by the repository
+				// if the root resource, it is represented by the checkout
 				selection = view.getResourceNode(path);
-				Object treeSelection = selection.isRoot() ? getRepository() : selection;
+				Object treeSelection = selection.isRoot() ? getCheckout() : selection;
 				tree.setSelection(new StructuredSelection(treeSelection), true);
 				tree.expandToLevel(treeSelection, 1);
 				if (nameText != null) {
@@ -339,9 +338,9 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 				}
 			}
 		} else {
-			// select the repository (representing the root resource)
+			// select the checkout (representing the root resource)
 			selection = view.getRootResource();
-			Object treeSelection = getRepository();
+			Object treeSelection = getCheckout();
 			tree.setSelection(new StructuredSelection(treeSelection), true);
 			tree.expandToLevel(treeSelection, 1);
 		}
@@ -355,7 +354,7 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 
 		if (name != null) {
 			if (!URI.validSegment(name)) {
-				error = Messages.BrowseRepoDlg_invalidURISeg;
+				error = Messages.CheckoutBrowseDialog_invalidURISeg;
 			}
 		}
 
@@ -367,19 +366,19 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 				CDOView view = selection.cdoView();
 
 				if (isOpenStyle() && !view.hasResource(path)) {
-					error = Messages.BrowseRepoDlg_noSuchResource;
+					error = Messages.CheckoutBrowseDialog_noSuchResource;
 				} else if (isOpenStyle()) {
 					// then the resource exists. Is it the kind we want?
 					CDOResourceNode node = view.getResourceNode(path);
 					if (!getNodeTypeFilter().isInstance(node)) {
 						disable = true;
-						info = NLS.bind(Messages.BrowseRepoDlg_wrongSelection, getNodeType(getNodeTypeFilter()));
+						info = NLS.bind(Messages.CheckoutBrowseDialog_wrongSelection, getNodeType(getNodeTypeFilter()));
 					}
 				} else if (isSaveStyle() && view.hasResource(path)) {
 					if (isAllowOverwrite()) {
-						warning = Messages.BrowseRepoDlg_existsWarning;
+						warning = Messages.CheckoutBrowseDialog_existsWarning;
 					} else {
-						error = Messages.BrowseRepoDlg_existsError;
+						error = Messages.CheckoutBrowseDialog_existsError;
 					}
 				}
 			}
@@ -398,27 +397,27 @@ public class BrowseRepositoryDialog extends TitleAreaDialog {
 	}
 
 	private String getNodeType(EClass nodeClass) {
-		String result = Messages.BrowseRepoDlg_anyNode;
+		String result = Messages.CheckoutBrowseDialog_anyNode;
 
 		if (nodeClass.getEPackage() == EresourcePackage.eINSTANCE) {
 			switch (nodeClass.getClassifierID()) {
 			case EresourcePackage.CDO_RESOURCE:
-				result = Messages.BrowseRepoDlg_modelKind;
+				result = Messages.CheckoutBrowseDialog_modelKind;
 				break;
 			case EresourcePackage.CDO_RESOURCE_FOLDER:
-				result = Messages.BrowseRepoDlg_folderKind;
+				result = Messages.CheckoutBrowseDialog_folderKind;
 				break;
 			case EresourcePackage.CDO_TEXT_RESOURCE:
-				result = Messages.BrowseRepoDlg_textKind;
+				result = Messages.CheckoutBrowseDialog_textKind;
 				break;
 			case EresourcePackage.CDO_BINARY_RESOURCE:
-				result = Messages.BrowseRepoDlg_binKind;
+				result = Messages.CheckoutBrowseDialog_binKind;
 				break;
 			case EresourcePackage.CDO_FILE_RESOURCE:
-				result = Messages.BrowseRepoDlg_fileKind;
+				result = Messages.CheckoutBrowseDialog_fileKind;
 				break;
 			case EresourcePackage.CDO_RESOURCE_LEAF:
-				result = Messages.BrowseRepoDlg_leafKind;
+				result = Messages.CheckoutBrowseDialog_leafKind;
 				break;
 			}
 		}

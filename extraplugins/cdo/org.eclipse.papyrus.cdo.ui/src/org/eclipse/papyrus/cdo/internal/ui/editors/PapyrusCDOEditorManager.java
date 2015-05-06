@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,34 +9,49 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.editors;
 
+import java.lang.reflect.Method;
 import java.util.Collection;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 import java.util.concurrent.Callable;
 import java.util.concurrent.Future;
 
+import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.ui.CDOInvalidRootAgent;
+import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
+import org.eclipse.emf.ecore.resource.Resource;
 import org.eclipse.emf.ecore.resource.ResourceSet;
+import org.eclipse.emf.ecore.resource.impl.ResourceImpl;
 import org.eclipse.emf.edit.domain.EditingDomain;
+import org.eclipse.emf.spi.cdo.CDOMergingConflictResolver;
+import org.eclipse.gef.EditPart;
+import org.eclipse.gef.GraphicalViewer;
+import org.eclipse.gef.ui.parts.GraphicalEditor;
+import org.eclipse.gmf.runtime.notation.Diagram;
+import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.jface.dialogs.IDialogConstants;
 import org.eclipse.jface.dialogs.MessageDialog;
+import org.eclipse.net4j.util.ReflectUtil;
 import org.eclipse.net4j.util.lifecycle.ILifecycle;
 import org.eclipse.net4j.util.lifecycle.LifecycleEventAdapter;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.IResourceSetDisposalApprover;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.cdo.internal.ui.util.UIUtil;
 import org.eclipse.papyrus.editor.PapyrusMultiDiagramEditor;
+import org.eclipse.papyrus.infra.core.editor.CoreMultiDiagramEditor;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IComponentPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IEditorPage;
 import org.eclipse.papyrus.infra.core.sasheditor.editor.IPage;
@@ -70,6 +85,7 @@ public class PapyrusCDOEditorManager {
 	public static final PapyrusCDOEditorManager INSTANCE = new PapyrusCDOEditorManager();
 
 	private final BiMap<IEditorPart, CDOView> editors = HashBiMap.create();
+	private final Map<IEditorPart, Map<IEditorPart, CDOInvalidRootAgent>> invalidRootAgents = new HashMap();
 
 	private final Cache<IWorkbenchPage, EditorListener> editorListeners = CacheBuilder.newBuilder().weakKeys().build(new CacheLoader<IWorkbenchPage, EditorListener>() {
 
@@ -81,7 +97,7 @@ public class PapyrusCDOEditorManager {
 		}
 	});
 
-	private IResourceSetDisposalApprover disposalApprover;
+	private IResourceSetDisposalApprover disposalApprover = new ResourceSetDisposalApprover();
 
 	private PapyrusCDOEditorManager() {
 		super();
@@ -98,39 +114,85 @@ public class PapyrusCDOEditorManager {
 	public IEditorPart openEditor(IWorkbenchPage page, IEditorInput input) throws PartInitException {
 		URI uri = EditorUtils.getResourceURI(input);
 
-		IInternalPapyrusRepository repository = getRepository(uri);
-		repository.addResourceSetDisposalApprover(getDisposalApprover());
+		// FIXME(Eike) Port to an API on CDOCheckouts that allows for veto of user-initiated closing of a checkout
+		// IInternalPapyrusRepository repository = getRepository(uri);
+		// repository.addResourceSetDisposalApprover(disposalApprover);
 
 		IEditorPart result = page.openEditor(input, PapyrusMultiDiagramEditor.EDITOR_ID);
 
-		EditingDomain domain = (EditingDomain) result.getAdapter(EditingDomain.class);
+		EditingDomain domain = result.getAdapter(EditingDomain.class);
 		ResourceSet resourceSet = domain.getResourceSet();
 
-		CDOView view = repository.getCDOView(resourceSet);
+		CDOView view = CDOUtil.getView(resourceSet);
+
+
 		add(view, result);
 
 		if (view instanceof CDOTransaction) {
-			ServicesRegistry services = (ServicesRegistry) result.getAdapter(ServicesRegistry.class);
+			CDOTransaction transaction = (CDOTransaction) view;
+			transaction.options().addConflictResolver(new CDOMergingConflictResolver());
+
+			ServicesRegistry services = result.getAdapter(ServicesRegistry.class);
 			view.addListener(new PapyrusTransactionListener(services, resourceSet));
 		}
 
 		return result;
 	}
 
-	private IResourceSetDisposalApprover getDisposalApprover() {
-		if (disposalApprover == null) {
-			disposalApprover = new ResourceSetDisposalApprover();
-		}
-
-		return disposalApprover;
-	}
-
-	IInternalPapyrusRepository getRepository(URI uri) {
-		return PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-	}
-
-	void add(CDOView view, final IEditorPart editor) {
+	void add(final CDOView view, final IEditorPart editor) {
 		editors.put(editor, view);
+
+		if (view.isReadOnly() && editor instanceof CoreMultiDiagramEditor) {
+			final CoreMultiDiagramEditor coreEditor = (CoreMultiDiagramEditor) editor;
+			ISashWindowsContainer sashWindowsContainer = coreEditor.getISashWindowsContainer();
+
+			for (IEditorPart editorPart : sashWindowsContainer.getVisibleIEditorParts()) {
+				addInvalidRootAgent(coreEditor, editorPart, view);
+			}
+
+			sashWindowsContainer.addPageLifeCycleListener(new IPageLifeCycleEventsListener() {
+				@Override
+				public void pageOpened(IPage page) {
+					if (page instanceof IEditorPage) {
+						IEditorPage editorPage = (IEditorPage) page;
+						addInvalidRootAgent(coreEditor, editorPage.getIEditorPart(), view);
+					}
+				}
+
+				@Override
+				public void pageClosed(IPage page) {
+					if (page instanceof IEditorPage) {
+						IEditorPage editorPage = (IEditorPage) page;
+						removeInvalidRootAgent(coreEditor, editorPage.getIEditorPart());
+					}
+				}
+
+				@Override
+				public void pageChanged(IPage page) {
+					// Do nothing.
+				}
+
+				@Override
+				public void pageDeactivated(IPage page) {
+					// Do nothing.
+				}
+
+				@Override
+				public void pageActivated(IPage page) {
+					// Do nothing.
+				}
+
+				@Override
+				public void pageAboutToBeOpened(IPage page) {
+					// Do nothing.
+				}
+
+				@Override
+				public void pageAboutToBeClosed(IPage page) {
+					// Do nothing.
+				}
+			});
+		}
 
 		view.addListener(new CDOViewListener(editor));
 		try {
@@ -151,9 +213,83 @@ public class PapyrusCDOEditorManager {
 		}
 	}
 
-	void closed(IEditorPart editor) {
-		editors.remove(editor);
-		DawnEditorAdapter.removeAdapter(editor);
+	private void addInvalidRootAgent(IEditorPart coreEditor, IEditorPart editorPart, final CDOView view) {
+		final GraphicalViewer graphicalViewer = getGraphicalViewer(editorPart);
+		if (graphicalViewer != null) {
+			CDOInvalidRootAgent invalidRootAgent = new CDOInvalidRootAgent(view) {
+				private Map<Object, Resource> temporaryResources = new HashMap<Object, Resource>();
+
+				@Override
+				protected Object createEmptyRoot(CDOObject invalidRoot) {
+					Diagram diagram = NotationFactory.eINSTANCE.createDiagram();
+					diagram.setName("Unavailable");
+
+					Resource resource = new ResourceImpl(URI.createURI("dummy://huhu"));
+					resource.getContents().add(diagram);
+
+					view.getResourceSet().getResources().add(resource);
+					temporaryResources.put(diagram, resource);
+					return diagram;
+				}
+
+				@Override
+				protected void setRootToUI(Object root) {
+					EditPart oldRoot = graphicalViewer.getContents();
+					Resource resource = temporaryResources.remove(oldRoot);
+					if (resource != null) {
+						view.getResourceSet().getResources().remove(resource);
+					}
+
+					graphicalViewer.setContents(root);
+				}
+
+				@Override
+				protected Object getRootFromUI() {
+					return graphicalViewer.getContents().getModel();
+				}
+			};
+
+			Map<IEditorPart, CDOInvalidRootAgent> map = invalidRootAgents.get(coreEditor);
+			if (map == null) {
+				map = new HashMap<IEditorPart, CDOInvalidRootAgent>();
+				invalidRootAgents.put(coreEditor, map);
+			}
+
+			map.put(editorPart, invalidRootAgent);
+		}
+	}
+
+	private void removeInvalidRootAgent(IEditorPart coreEditor, IEditorPart editorPart) {
+		Map<IEditorPart, CDOInvalidRootAgent> map = invalidRootAgents.get(coreEditor);
+		if (map != null) {
+			CDOInvalidRootAgent invalidRootAgent = map.remove(editorPart);
+			if (invalidRootAgent != null) {
+				invalidRootAgent.dispose();
+			}
+		}
+	}
+
+	private GraphicalViewer getGraphicalViewer(IEditorPart editorPart) {
+		if (editorPart instanceof GraphicalEditor) {
+			GraphicalEditor graphicalEditor = (GraphicalEditor) editorPart;
+
+			Method method = ReflectUtil.getMethod(GraphicalEditor.class, "getGraphicalViewer");
+			return (GraphicalViewer) ReflectUtil.invokeMethod(method, graphicalEditor);
+		}
+
+		return null;
+	}
+
+	private void closed(IEditorPart coreEditor) {
+		CDOView view = editors.remove(coreEditor);
+		DawnEditorAdapter.removeAdapter(coreEditor);
+
+		Map<IEditorPart, CDOInvalidRootAgent> map = invalidRootAgents.remove(coreEditor);
+		if (map != null) {
+			for (CDOInvalidRootAgent invalidRootAgent : map.values()) {
+				invalidRootAgent.dispose();
+			}
+		}
 	}
 
 	//
@@ -283,14 +419,13 @@ public class PapyrusCDOEditorManager {
 	private class ResourceSetDisposalApprover implements IResourceSetDisposalApprover {
 
 		@Override
-		public DisposeAction disposalRequested(IPapyrusRepository repository, Collection<ResourceSet> resourceSets) {
+		public DisposeAction disposalRequested(CDOCheckout checkout, Collection<ResourceSet> resourceSets) {
 
 			DisposeAction result = DisposeAction.CLOSE;
-			IInternalPapyrusRepository internal = (IInternalPapyrusRepository) repository;
 			final List<IEditorPart> dirty = Lists.newArrayList();
 
 			for (ResourceSet next : resourceSets) {
-				CDOView view = internal.getCDOView(next);
+				CDOView view = CDOUtil.getView(next);
 				IEditorPart editor = editors.inverse().get(view);
 
 				if ((editor != null) && editor.isDirty()) {

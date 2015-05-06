@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2009, 2013 CEA LIST and others.
+ * Copyright (c) 2009, 2015 CEA LIST and others.
  *
  *
  * All rights reserved. This program and the accompanying materials
@@ -10,6 +10,7 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA LIST) - adapted for CDO repository resource hyperlinks
+ *  Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
@@ -17,7 +18,7 @@ package org.eclipse.papyrus.cdo.internal.ui.hyperlink;
 import org.eclipse.emf.cdo.eresource.EresourcePackage;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.cdo.internal.ui.dialogs.BrowseRepositoryDialog;
+import org.eclipse.papyrus.cdo.internal.ui.dialogs.CheckoutBrowseDialog;
 import org.eclipse.papyrus.infra.hyperlink.ui.AbstractEditHyperlinkDocumentShell;
 import org.eclipse.swt.SWT;
 import org.eclipse.swt.events.MouseAdapter;
@@ -106,7 +107,7 @@ public class CDOResourceHyperlinkEditorShell extends AbstractEditHyperlinkDocume
 
 			@Override
 			public void mouseDown(MouseEvent e) {
-				BrowseRepositoryDialog browse = new BrowseRepositoryDialog(getEditHyperlinkShell(), Messages.CDOResourceHyperlinkEditorShell_title, Messages.CDOResourceHyperlinkEditorShell_message, null, SWT.OPEN);
+				CheckoutBrowseDialog browse = new CheckoutBrowseDialog(getEditHyperlinkShell(), Messages.CDOResourceHyperlinkEditorShell_title, Messages.CDOResourceHyperlinkEditorShell_message, null, SWT.OPEN);
 				browse.setBlockOnOpen(true);
 
 				String initialURIString = getObjectLabeltext().getText().trim();

@@ -14,7 +14,7 @@ package org.eclipse.papyrus.cdo.internal.core.controlmode;
 import org.eclipse.emf.cdo.common.id.CDOID;
 import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.common.model.CDOClassifierRef;
-import org.eclipse.emf.cdo.util.CDOURIUtil;
+import org.eclipse.emf.cdo.internal.explorer.checkouts.CDOCheckoutViewProvider;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EClass;
 import org.eclipse.emf.ecore.EClassifier;
@@ -31,7 +31,7 @@ import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
  */
 public class CDOProxyManager {
 
-	private static final String URI_SCHEME = CDOURIUtil.PROTOCOL_NAME;
+	private static final String URI_SCHEME = CDOCheckoutViewProvider.SCHEME;
 
 	private final ResourceSet resourceSet;
 

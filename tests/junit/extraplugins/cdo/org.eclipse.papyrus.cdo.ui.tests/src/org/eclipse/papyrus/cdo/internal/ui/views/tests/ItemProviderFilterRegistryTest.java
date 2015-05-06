@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2014, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,7 +8,8 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 
 package org.eclipse.papyrus.cdo.internal.ui.views.tests;
@@ -19,9 +20,9 @@ import static org.hamcrest.MatcherAssert.assertThat;
 import java.util.Arrays;
 import java.util.Collections;
 
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.ui.views.ModelRepositoryItemProvider;
+import org.eclipse.papyrus.cdo.internal.ui.views.CheckoutItemProvider;
 import org.junit.After;
 import org.junit.Test;
 
@@ -38,11 +39,11 @@ public class ItemProviderFilterRegistryTest extends AbstractPapyrusCDOTest {
 
 	@Test
 	public void testPredicateFilter() {
-		TestFilter.banned = getPapyrusRepository();
-		ModelRepositoryItemProvider itemProvider = new ModelRepositoryItemProvider(null);
-		itemProvider.inputChanged(null, null, PapyrusRepositoryManager.INSTANCE);
+		TestFilter.banned = getCheckout();
+		CheckoutItemProvider itemProvider = new CheckoutItemProvider(null);
+		itemProvider.inputChanged(null, null, CDOExplorerUtil.getCheckoutManager());
 
-		assertThat(Arrays.asList(itemProvider.getChildren(PapyrusRepositoryManager.INSTANCE)), is(Collections.EMPTY_LIST));
+		assertThat(Arrays.asList(itemProvider.getChildren(CDOExplorerUtil.getCheckoutManager())), is(Collections.EMPTY_LIST));
 	}
 
 	//

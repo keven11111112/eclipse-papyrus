@@ -93,7 +93,10 @@ public class DIResourceQuery {
 				EresourcePackage.Literals.CDO_RESOURCE);
 
 		view.addListener(cdoViewListener);
-		viewer.getControl().addDisposeListener(createViewerDisposeListener());
+
+		if (viewer != null) {
+			viewer.getControl().addDisposeListener(createViewerDisposeListener());
+		}
 
 		runQuery();
 	}

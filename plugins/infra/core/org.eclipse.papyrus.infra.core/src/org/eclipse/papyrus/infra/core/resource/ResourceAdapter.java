@@ -1,5 +1,5 @@
 /*
- * Copyright (c) 2014, 2015 CEA, Christian W. Damus, and others.
+ * Copyright (c) 2014, 2015 CEA, Christian W. Damus, CEA LIST, and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -10,6 +10,7 @@
  *   Christian W. Damus (CEA) - Initial API and implementation
  *   Christian W. Damus - bug 399859
  *   Christian W. Damus - bug 465416
+ *   Eike Stepper (CEA) - bug 466520
  *
  */
 package org.eclipse.papyrus.infra.core.resource;
@@ -171,28 +172,49 @@ public abstract class ResourceAdapter extends AdapterImpl {
 		// because loading and unloading are semantically more significant events
 		if (resource.isLoaded() && !resource.isLoading()) {
 			switch (msg.getEventType()) {
-			case Notification.ADD:
-				handleRootAdded(resource, (EObject) msg.getNewValue());
+			case Notification.ADD: {
+				Object newValue = msg.getNewValue();
+				if (newValue instanceof EObject) {
+					handleRootAdded(resource, (EObject) newValue);
+				}
 				break;
-			case Notification.ADD_MANY:
-				for (Object next : (Iterable<?>) msg.getNewValue()) {
+			}
+			case Notification.ADD_MANY: {
+				Object newValue = msg.getNewValue();
+				if (newValue instanceof Iterable<?>) {
+					for (Object next : (Iterable<?>) newValue) {
 					handleRootAdded(resource, (EObject) next);
 				}
-				break;
-			case Notification.REMOVE:
-				handleRootRemoved(resource, (EObject) msg.getOldValue());
-				break;
-			case Notification.REMOVE_MANY:
-				for (Object next : (Iterable<?>) msg.getOldValue()) {
-					handleRootRemoved(resource, (EObject) next);
 				}
 				break;
-			case Notification.SET:
-				handleRootRemoved(resource, (EObject) msg.getOldValue());
-				handleRootAdded(resource, (EObject) msg.getNewValue());
+			}
+			case Notification.REMOVE: {
+				Object oldValue = msg.getOldValue();
+				if (oldValue instanceof EObject) {
+					handleRootRemoved(resource, (EObject) oldValue);
+				}
+				break;
+			}
+			case Notification.REMOVE_MANY: {
+				Object oldValue = msg.getOldValue();
+				if (oldValue instanceof Iterable<?>) {
+					for (Object next : (Iterable<?>) oldValue) {
+					handleRootRemoved(resource, (EObject) next);
+				}
+				}
+				break;
+			}
+			case Notification.SET: {
+				Object oldValue = msg.getOldValue();
+				Object newValue = msg.getNewValue();
+				if (oldValue instanceof EObject && newValue instanceof EObject) {
+					handleRootRemoved(resource, (EObject) oldValue);
+					handleRootAdded(resource, (EObject) newValue);
+				}
 				break;
 			}
 		}
+	}
 	}
 
 	protected void handleResourceAdded(Resource resource) {

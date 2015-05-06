@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.dialogs;
 
@@ -144,7 +145,7 @@ public class CreateCDOModelFragmentDialog extends Dialog {
 	}
 
 	private void browseRepository() {
-		BrowseRepositoryDialog dlg = new BrowseRepositoryDialog(getShell(), Messages.CreateCDOFragDlg_browseTitle, Messages.CreateCDOFragDlg_browseMessage, view, SWT.SAVE);
+		CheckoutBrowseDialog dlg = new CheckoutBrowseDialog(getShell(), Messages.CreateCDOFragDlg_browseTitle, Messages.CreateCDOFragDlg_browseMessage, view, SWT.SAVE);
 
 		dlg.setNodeTypeFilter(EresourcePackage.Literals.CDO_RESOURCE);
 		dlg.setAllowOverwrite(false);

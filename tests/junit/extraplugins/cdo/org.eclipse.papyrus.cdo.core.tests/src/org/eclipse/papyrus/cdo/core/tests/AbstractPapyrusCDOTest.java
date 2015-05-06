@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -11,7 +11,8 @@
  *   Christian W. Damus (CEA) - bug 429242
  *   Christian W. Damus (CEA) - bug 430023
  *   Christian W. Damus (CEA) - bug 422257
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.tests;
 
@@ -19,21 +20,33 @@ import static org.hamcrest.CoreMatchers.instanceOf;
 import static org.junit.Assert.assertThat;
 import static org.junit.Assert.fail;
 
+import java.io.File;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.Map;
+import java.util.Properties;
 import java.util.regex.Pattern;
 
 import org.eclipse.emf.cdo.common.CDOCommonRepository;
+import org.eclipse.emf.cdo.common.branch.CDOBranch;
+import org.eclipse.emf.cdo.common.branch.CDOBranchPoint;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.repositories.CDORepository;
+import org.eclipse.emf.cdo.internal.explorer.checkouts.CDOCheckoutImpl;
+import org.eclipse.emf.cdo.internal.explorer.checkouts.OnlineCDOCheckout;
+import org.eclipse.emf.cdo.internal.explorer.repositories.RemoteCDORepository;
 import org.eclipse.emf.cdo.net4j.CDONet4jUtil;
 import org.eclipse.emf.cdo.server.CDOServerUtil;
 import org.eclipse.emf.cdo.server.IRepository.Props;
 import org.eclipse.emf.cdo.server.mem.MEMStoreUtil;
 import org.eclipse.emf.cdo.server.net4j.CDONet4jServerUtil;
-import org.eclipse.emf.cdo.session.CDOSession;
 import org.eclipse.emf.cdo.spi.server.InternalRepository;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
+import org.eclipse.emf.cdo.util.CDOUtil;
+import org.eclipse.emf.cdo.util.CommitException;
+import org.eclipse.emf.cdo.util.ConcurrentAccessException;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -46,11 +59,11 @@ import org.eclipse.net4j.Net4jUtil;
 import org.eclipse.net4j.jvm.JVMUtil;
 import org.eclipse.net4j.util.container.ContainerUtil;
 import org.eclipse.net4j.util.container.IManagedContainer;
+import org.eclipse.net4j.util.io.IOUtil;
+import org.eclipse.net4j.util.io.TMPUtil;
 import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
+import org.eclipse.net4j.util.transaction.TransactionException;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.hamcrest.BaseMatcher;
@@ -73,47 +86,72 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 	@Rule
 	public final HouseKeeper houseKeeper = new HouseKeeper();
 
-	private String repoUUID;
-
-	private String repoURL;
-
 	private IManagedContainer container;
 
-	private IPapyrusRepository repository;
+	private CDORepository repository;
+
+	private CDOCheckout checkout;
 
 	public AbstractPapyrusCDOTest() {
 		super();
 	}
 
 	@Before
-	public void createRepository() throws Exception {
+	public void init() throws Exception {
+		// Net4jUtil.prepareContainer(PluginContainer.INSTANCE);
+		// JVMUtil.prepareContainer(PluginContainer.INSTANCE);
+
+		File testFolder = TMPUtil.createTempFolder("cdotest-", "");
+		org.eclipse.emf.cdo.internal.explorer.bundle.OM.initializeManagers(testFolder);
+		houseKeeper.cleanUpLater(testFolder, new HouseKeeper.Disposer<File>() {
+			@Override
+			public void dispose(File testFolder) throws Exception {
+				IOUtil.delete(testFolder);
+			}
+		});
 
 		container = createServerContainer();
-		InternalRepository repo = createRepository(container);
+		InternalRepository remoteRepository = createRemoteRepository(container);
+		String repositoryName = remoteRepository.getName();
 
-		repoUUID = repo.getUUID();
-		repoURL = "jvm://default?repositoryName=" + repo.getName();
+		repository = createRepository(repositoryName);
 
-		if(needPapyrusRepository()) {
-			repository = PapyrusRepositoryManager.INSTANCE.getRepository(repoURL);
-			if(repository == null) {
-				repository = houseKeeper.cleanUpLater(PapyrusRepositoryManager.INSTANCE.createRepository(repoURL), repositoryDisposer());
-			}
-
-			repository.setName(houseKeeper.getTestName());
-
-			if(!repository.isConnected()) {
-				repository.connect();
-			}
-
-			CDOSession session = ((IInternalPapyrusRepository)repository).getCDOSession();
+		if (needCheckout()) {
+			checkout = createCheckout(houseKeeper.getTestName());
 
 			// ensure the test resource path
-			CDOTransaction transaction = session.openTransaction();
+			CDOTransaction transaction = checkout.openTransaction();
 			transaction.getOrCreateResourceFolder(getResourceFolder());
 			transaction.commit();
 			transaction.close();
 		}
+	}
+
+	private CDORepository createRepository(String repositoryName) {
+		Properties properties = new Properties();
+		properties.setProperty(RemoteCDORepository.PROP_TYPE, CDORepository.TYPE_REMOTE);
+		properties.setProperty(RemoteCDORepository.PROP_LABEL, repositoryName);
+		properties.setProperty(RemoteCDORepository.PROP_NAME, repositoryName);
+		properties.setProperty(RemoteCDORepository.PROP_CONNECTOR_TYPE, "jvm");
+		properties.setProperty(RemoteCDORepository.PROP_CONNECTOR_DESCRIPTION, "default");
+
+		CDORepository repository = CDOExplorerUtil.getRepositoryManager().addRepository(properties);
+		repository.connect();
+		return repository;
+	}
+
+	private CDOCheckout createCheckout(String checkoutName) {
+		Properties properties = new Properties();
+		properties.setProperty(OnlineCDOCheckout.PROP_TYPE, CDOCheckout.TYPE_ONLINE_HISTORICAL);
+		properties.setProperty(OnlineCDOCheckout.PROP_LABEL, checkoutName);
+		properties.setProperty(OnlineCDOCheckout.PROP_REPOSITORY, repository.getID());
+		properties.setProperty(OnlineCDOCheckout.PROP_BRANCH_ID, Integer.toString(CDOBranch.MAIN_BRANCH_ID));
+		properties.setProperty(OnlineCDOCheckout.PROP_TIME_STAMP, Long.toString(CDOBranchPoint.UNSPECIFIED_DATE));
+		properties.setProperty(OnlineCDOCheckout.PROP_READ_ONLY, Boolean.toString(false));
+
+		CDOCheckout checkout = CDOExplorerUtil.getCheckoutManager().addCheckout(properties);
+		checkout.open();
+		return checkout;
 	}
 
 	protected HouseKeeper.Disposer<IManagedContainer> containerDisposer() {
@@ -126,24 +164,19 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 		};
 	}
 
-	protected HouseKeeper.Disposer<IPapyrusRepository> repositoryDisposer() {
-		return new HouseKeeper.Disposer<IPapyrusRepository>() {
+	protected HouseKeeper.Disposer<CDOCheckout> checkoutDisposer() {
+		return new HouseKeeper.Disposer<CDOCheckout>() {
 
 			@Override
-			public void dispose(IPapyrusRepository object) throws Exception {
+			public void dispose(CDOCheckout checkout) throws Exception {
 				Exception exception = null;
 				try {
-					object.disconnect();
+					checkout.close();
 				} catch (Exception e) {
 					exception = e;
 				}
 
-				PapyrusRepositoryManager.INSTANCE.removeRepository(object);
-
-				// persist the removal (the new repository saved its UUID when opened)
-				PapyrusRepositoryManager.INSTANCE.saveRepositories();
-
-				if(exception != null) {
+				if (exception != null) {
 					throw exception;
 				}
 			}
@@ -182,51 +215,70 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 		JVMUtil.prepareContainer(container);
 	}
 
-	protected InternalRepository createRepository(IManagedContainer container) {
-		InternalRepository result = (InternalRepository)CDOServerUtil.createRepository("MEM", MEMStoreUtil.createMEMStore(), getRepositoryProperties());
+	protected InternalRepository createRemoteRepository(IManagedContainer container) {
+		InternalRepository result = (InternalRepository) CDOServerUtil.createRepository("MEM", MEMStoreUtil.createMEMStore(), getRepositoryProperties());
 
 		CDOServerUtil.addRepository(container, result);
 		LifecycleUtil.activate(JVMUtil.getAcceptor(container, "default"));
 		return result;
 	}
 
-	protected IPapyrusRepository getPapyrusRepository() {
-		return repository;
+	protected CDOCheckout getCheckout() {
+		return checkout;
 	}
 
-	protected IInternalPapyrusRepository getInternalPapyrusRepository() {
-		return (IInternalPapyrusRepository)getPapyrusRepository();
+	protected CDOCheckoutImpl getInternalCheckout() {
+		return (CDOCheckoutImpl) getCheckout();
 	}
 
 	protected CDOTransaction createTransaction() {
-		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
-
-		CDOTransaction result = getTransaction(repo.createTransaction(createResourceSet()));
-
+		CDOCheckout repo = getInternalCheckout();
+		CDOTransaction result = repo.openTransaction(createResourceSet());
 		return houseKeeper.cleanUpLater(result, viewDisposer(repo));
+	}
+
+	protected ResourceSet createTransaction(ResourceSet resourceSet) {
+		CDOCheckout checkout = getCheckout();
+		checkout.openTransaction(resourceSet);
+		return resourceSet;
 	}
 
 	protected CDOView createView() {
-		IInternalPapyrusRepository repo = getInternalPapyrusRepository();
-
-		CDOView result = getInternalPapyrusRepository().getCDOView(repo.createReadOnlyView(createResourceSet()));
-
+		CDOCheckout repo = getInternalCheckout();
+		CDOView result = repo.openView(true, createResourceSet());
 		return houseKeeper.cleanUpLater(result, viewDisposer(repo));
 	}
 
-	protected void close(IPapyrusRepository repository, CDOView view) {
+	protected void commit(ResourceSet resourceSet) {
+		CDOTransaction transaction = (CDOTransaction) CDOUtil.getView(resourceSet);
+
+		try {
+			transaction.commit();
+		} catch (ConcurrentAccessException e) {
+			throw new TransactionException(e);
+		} catch (CommitException e) {
+			throw new TransactionException(e);
+		}
+	}
+
+	protected void close(ResourceSet resourceSet) {
+		CDOView view = CDOUtil.getView(resourceSet);
+		LifecycleUtil.deactivate(view);
+	}
+
+	protected void close(CDOCheckout checkout, CDOView view) {
 		ResourceSet rset = view.getResourceSet();
 
 		// CDOResources don't implement unload(), but we can remove adapters from
 		// all of the objects that we have loaded in this view
 		CDOUtils.unload(view);
 
-		for(Resource next : ImmutableList.copyOf(rset.getResources())) {
+		for (Resource next : ImmutableList.copyOf(rset.getResources())) {
 			next.unload();
 		}
 
-		if(repository.isConnected()) {
-			repository.close(rset);
+		if (checkout.isOpen()) {
+			view.close();
 		}
 
 		rset.getResources().clear();
@@ -236,17 +288,17 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 		// want to leak in BasicExtendedMetaData instances attached to static EPackages)
 		// Works around EMF bug 433108
 		EPackage.Registry packageRegistry = rset.getPackageRegistry();
-		if(packageRegistry != null) {
+		if (packageRegistry != null) {
 			packageRegistry.clear();
 		}
 	}
 
-	protected HouseKeeper.Disposer<CDOView> viewDisposer(final IPapyrusRepository repository) {
+	protected HouseKeeper.Disposer<CDOView> viewDisposer(final CDOCheckout repository) {
 		return new HouseKeeper.Disposer<CDOView>() {
 
 			@Override
 			public void dispose(CDOView object) {
-				if(!object.isClosed()) {
+				if (!object.isClosed()) {
 					close(repository, object);
 				}
 			}
@@ -257,9 +309,9 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 		ResourceSet result = null;
 
 		Method factory = getAnnotatedMethod(ResourceSetFactory.class);
-		if(factory != null) {
+		if (factory != null) {
 			try {
-				result = (ResourceSet)factory.invoke(this);
+				result = (ResourceSet) factory.invoke(this);
 			} catch (InvocationTargetException e) {
 				e.getTargetException().printStackTrace();
 				fail("Failed to create resource set for test case: " + e.getTargetException().getLocalizedMessage());
@@ -268,7 +320,7 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 			}
 		}
 
-		if(result == null) {
+		if (result == null) {
 			// default
 			result = new ResourceSetImpl();
 		}
@@ -277,14 +329,14 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 	}
 
 	protected CDOTransaction getTransaction(ResourceSet resourceSet) {
-		return cast(getInternalPapyrusRepository().getCDOView(resourceSet), CDOTransaction.class);
+		return cast(CDOUtil.getView(resourceSet), CDOTransaction.class);
 	}
 
 	protected final Method getAnnotatedMethod(Class<? extends Annotation> annotationType) {
 		Method result = null;
 
-		for(Method next : getClass().getMethods()) {
-			if(next.isAnnotationPresent(annotationType)) {
+		for (Method next : getClass().getMethods()) {
+			if (next.isAnnotationPresent(annotationType)) {
 				result = next;
 				break;
 			}
@@ -293,11 +345,8 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 		return result;
 	}
 
-	protected String getRepositoryURL() {
-		return repoURL;
-	}
 
-	protected boolean needPapyrusRepository() {
+	protected boolean needCheckout() {
 		return true;
 	}
 
@@ -307,18 +356,19 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 
 	protected String getResourcePath(String path) {
 		java.util.regex.Matcher m = LEADING_SLASHES.matcher(path);
-		if(m.find()) {
+		if (m.find()) {
 			path = path.substring(m.end());
 		}
 		return String.format("%s/%s", getResourceFolder(), path);
 	}
 
 	protected URI getTestResourceURI(String path) {
-		return URI.createURI("cdo://" + repoUUID + getResourcePath(path), false);
+		return checkout.createResourceURI(getResourcePath(path));
+		// return URI.createURI("cdo://" + repoUUID + getResourcePath(path), false);
 	}
 
 	protected URI getRepositoryURI() {
-		return getInternalPapyrusRepository().getMasterView().getRootResource().getURI();
+		return getInternalCheckout().getView().getRootResource().getURI();
 	}
 
 	protected URI getTestFolderURI() {
@@ -340,23 +390,23 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 
 		// load all the templates
 		Resource[] templates = new Resource[resource.length];
-		for(int i = 0; i < templates.length; i++) {
+		for (int i = 0; i < templates.length; i++) {
 			templates[i] = rset.getResource(getTemplateResourceURI(templateName, resourceName, resource[i].getURI().fileExtension()), true);
 		}
 
 		// resolve their cross-references
-		for(int i = 0; i < templates.length; i++) {
+		for (int i = 0; i < templates.length; i++) {
 			EcoreUtil.resolveAll(templates[i]);
 		}
 
 		// move them into the destination resources
-		for(int i = 0; i < resource.length; i++) {
+		for (int i = 0; i < resource.length; i++) {
 			resource[i].getContents().addAll(templates[i].getContents());
 		}
 	}
 
 	protected <T extends EObject> T getMasterViewObject(T object) {
-		CDOView view = getInternalPapyrusRepository().getMasterView();
+		CDOView view = getInternalCheckout().getView();
 		return view.getObject(object);
 	}
 
@@ -371,7 +421,7 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
-				return ((T)item).compareTo(max) < 0;
+				return ((T) item).compareTo(max) < 0;
 			}
 		};
 	}
@@ -387,7 +437,7 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 			@Override
 			@SuppressWarnings("unchecked")
 			public boolean matches(Object item) {
-				return ((T)item).compareTo(max) <= 0;
+				return ((T) item).compareTo(max) <= 0;
 			}
 		};
 	}
@@ -402,7 +452,7 @@ public abstract class AbstractPapyrusCDOTest extends AbstractPapyrusTest {
 
 			@Override
 			public boolean matches(Object item) {
-				return Iterables.size((Iterable<?>)item) == size;
+				return Iterables.size((Iterable<?>) item) == size;
 			}
 		};
 	}

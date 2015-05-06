@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.uml.search.internal.ui.scope;
 
@@ -17,13 +18,13 @@ import java.util.Collections;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceFolder;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.views.search.scope.IScopeProvider;
 import org.eclipse.uml2.uml.resource.UMLResource;
 
@@ -46,14 +47,14 @@ public class CDOScopeProvider implements IScopeProvider {
 	public Collection<URI> getScope() {
 		Collection<URI> result;
 
-		final Collection<? extends IInternalPapyrusRepository> repos = PapyrusRepositoryManager.INSTANCE.getRepositories();
-		if (repos.isEmpty()) {
+		CDOCheckout[] repos = CDOExplorerUtil.getCheckoutManager().getCheckouts();
+		if (repos.length == 0) {
 			result = Collections.emptyList();
 		} else {
-			result = Lists.newArrayListWithCapacity(repos.size());
-			for (IInternalPapyrusRepository next : repos) {
-				if (next.isConnected()) {
-					CDOView view = next.getMasterView();
+			result = Lists.newArrayListWithCapacity(repos.length);
+			for (CDOCheckout next : repos) {
+				if (next.isOpen()) {
+					CDOView view = next.getView();
 					if (view != null) {
 						result.add(view.getRootResource().getURI());
 					}

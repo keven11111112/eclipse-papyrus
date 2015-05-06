@@ -17,6 +17,9 @@ import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.Status;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckoutManager;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.operation.IRunnableContext;
 import org.eclipse.jface.operation.IRunnableWithProgress;
@@ -29,9 +32,6 @@ import org.eclipse.jface.viewers.StructuredSelection;
 import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.SharedImages;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
@@ -44,11 +44,9 @@ import com.google.common.base.Supplier;
 import com.google.common.eventbus.EventBus;
 
 /**
- * This is the RepositorySelectionBlock type. Enjoy.
+ * This is the CheckoutSelectionBlock type. Enjoy.
  */
-public class RepositorySelectionBlock {
-
-	private final IPapyrusRepositoryManager repoMan;
+public class CheckoutSelectionBlock {
 
 	private final EventBus bus;
 
@@ -56,24 +54,24 @@ public class RepositorySelectionBlock {
 
 	private TableViewer repoList;
 
-	private IPapyrusRepository selectedRepository;
+	private CDOCheckout selectedCheckout;
 
-	public RepositorySelectionBlock(IPapyrusRepositoryManager repoMan, EventBus bus, Supplier<? extends IRunnableContext> runnableContext) {
-		this.repoMan = repoMan;
+	public CheckoutSelectionBlock(EventBus bus, Supplier<? extends IRunnableContext> runnableContext) {
 		this.bus = bus;
 		this.runnableContext = runnableContext;
 	}
 
 	public Control createControl(Composite parent) {
+		CDOCheckoutManager mgr = CDOExplorerUtil.getCheckoutManager();
 		repoList = new TableViewer(parent);
 		GridDataFactory.fillDefaults().grab(true, true).applyTo(repoList.getControl());
 		repoList.setContentProvider(new RepositoryContentProvider());
 		repoList.setLabelProvider(new RepositoryLabelProvider());
-		repoList.setInput(repoMan);
+		repoList.setInput(mgr);
 
-		if (selectedRepository != null) {
-			repoList.setSelection(new StructuredSelection(selectedRepository));
-			selected(selectedRepository);
+		if (selectedCheckout != null) {
+			repoList.setSelection(new StructuredSelection(selectedCheckout));
+			selected(selectedCheckout);
 		}
 
 		repoList.addSelectionChangedListener(new ISelectionChangedListener() {
@@ -83,20 +81,20 @@ public class RepositorySelectionBlock {
 				IStructuredSelection sel = (IStructuredSelection) event.getSelection();
 
 				if (sel.isEmpty()) {
-					if (selectedRepository != null) {
+					if (selectedCheckout != null) {
 						// veto empty selection
-						repoList.setSelection(new StructuredSelection(selectedRepository));
+						repoList.setSelection(new StructuredSelection(selectedCheckout));
 					}
 				} else {
-					selected((IPapyrusRepository) sel.getFirstElement());
+					selected((CDOCheckout) sel.getFirstElement());
 				}
 			}
 		});
 
 		// initially select the first connected repo
-		for (IPapyrusRepository next : PapyrusRepositoryManager.INSTANCE.getRepositories()) {
+		for (CDOCheckout next : mgr.getCheckouts()) {
 
-			if (next.isConnected()) {
+			if (next.isOpen()) {
 				selected(next);
 				repoList.setSelection(new StructuredSelection(next));
 				break;
@@ -120,25 +118,25 @@ public class RepositorySelectionBlock {
 		return (repoList != null) && repoList.getControl().isEnabled();
 	}
 
-	void selected(final IPapyrusRepository repository) {
-		selectedRepository = repository;
+	void selected(final CDOCheckout checkout) {
+		selectedCheckout = checkout;
 
-		if (!repository.isConnected()) {
+		if (!checkout.isOpen()) {
 			try {
 				runnableContext.get().run(true, false, new IRunnableWithProgress() {
 
 					@Override
 					public void run(IProgressMonitor monitor) throws InvocationTargetException, InterruptedException {
 
-						SubMonitor sub = SubMonitor.convert(monitor, NLS.bind(Messages.RepositorySelectionBlock_0, repository.getName()), IProgressMonitor.UNKNOWN);
+						SubMonitor sub = SubMonitor.convert(monitor, NLS.bind(Messages.CheckoutSelectionBlock_0, checkout.getLabel()), IProgressMonitor.UNKNOWN);
 
 						try {
-							repository.connect();
+							checkout.open();
 
 							// yes, it's a busy wait, but there's not much
 							// to be done about that.
 							final long deadline = System.currentTimeMillis() + 5000L;
-							while (!repository.isConnected()) {
+							while (!checkout.isOpen()) {
 								Thread.sleep(250L);
 								if (System.currentTimeMillis() >= deadline) {
 									break;
@@ -150,8 +148,8 @@ public class RepositorySelectionBlock {
 								@Override
 								public void run() {
 									if (!repoList.getControl().isDisposed()) {
-										repoList.update(repository, null);
-										bus.post(repository);
+										repoList.update(checkout, null);
+										bus.post(checkout);
 									}
 								}
 							});
@@ -161,24 +159,24 @@ public class RepositorySelectionBlock {
 					}
 				});
 			} catch (Exception e) {
-				StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.RepositorySelectionBlock_1, e), StatusManager.SHOW);
+				StatusManager.getManager().handle(new Status(IStatus.ERROR, Activator.PLUGIN_ID, Messages.CheckoutSelectionBlock_1, e), StatusManager.SHOW);
 			}
 		}
 
-		bus.post(repository);
+		bus.post(checkout);
 	}
 
-	public void setSelectedRepository(IPapyrusRepository repository) {
-		this.selectedRepository = repository;
+	public void setSelectedCheckout(CDOCheckout checkout) {
+		this.selectedCheckout = checkout;
 
 		if (repoList != null) {
-			repoList.setSelection(new StructuredSelection(selectedRepository));
-			selected(selectedRepository);
+			repoList.setSelection(new StructuredSelection(selectedCheckout));
+			selected(selectedCheckout);
 		}
 	}
 
-	public IPapyrusRepository getSelectedRepository() {
-		return selectedRepository;
+	public CDOCheckout getSelectedCheckout() {
+		return selectedCheckout;
 	}
 
 	//
@@ -194,7 +192,7 @@ public class RepositorySelectionBlock {
 
 		@Override
 		public Object[] getElements(Object inputElement) {
-			return ((IPapyrusRepositoryManager) inputElement).getRepositories().toArray();
+			return CDOExplorerUtil.getCheckoutManager().getCheckouts();
 		}
 
 		@Override
@@ -207,13 +205,13 @@ public class RepositorySelectionBlock {
 
 		@Override
 		public Image getImage(Object element) {
-			boolean open = ((IPapyrusRepository) element).isConnected();
+			boolean open = ((CDOCheckout) element).isOpen();
 			return SharedImages.getImage(open ? Activator.ICON_OPEN_REPOSITORY : Activator.ICON_CLOSED_REPOSITORY);
 		}
 
 		@Override
 		public String getText(Object element) {
-			return ((IPapyrusRepository) element).getName();
+			return ((CDOCheckout) element).getLabel();
 		}
 	}
 }

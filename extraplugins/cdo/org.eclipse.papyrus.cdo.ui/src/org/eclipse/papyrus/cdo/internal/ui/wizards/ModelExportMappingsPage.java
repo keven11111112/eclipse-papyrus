@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -8,11 +8,13 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.wizards;
 
 import org.eclipse.core.resources.IContainer;
 import org.eclipse.core.runtime.IPath;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.common.util.Diagnostic;
 import org.eclipse.jface.layout.GridDataFactory;
 import org.eclipse.jface.viewers.CellEditor;
@@ -25,7 +27,6 @@ import org.eclipse.jface.viewers.TableViewer;
 import org.eclipse.jface.viewers.TableViewerColumn;
 import org.eclipse.jface.viewers.Viewer;
 import org.eclipse.jface.window.Window;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.core.exporter.IModelExportMapping;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferConfiguration;
 import org.eclipse.papyrus.cdo.core.importer.IModelTransferListener;
@@ -56,7 +57,7 @@ public class ModelExportMappingsPage extends ModelImportWizardPage {
 
 	private IModelTransferListener exportConfigListener;
 
-	private IPapyrusRepository repository;
+	private CDOCheckout checkout;
 
 	private IModelExportMapping mapping;
 
@@ -169,7 +170,7 @@ public class ModelExportMappingsPage extends ModelImportWizardPage {
 
 		if (this.mapping != null) {
 			this.mapping.addModelTransferMappingListener(getMappingListener());
-			this.mapping.setRepository(repository);
+			this.mapping.setCheckout(checkout);
 			initializeMappings();
 		}
 	}
@@ -203,11 +204,11 @@ public class ModelExportMappingsPage extends ModelImportWizardPage {
 	}
 
 	@Subscribe
-	public void setRepository(IPapyrusRepository repository) {
-		this.repository = repository;
+	public void setRepository(CDOCheckout checkout) {
+		this.checkout = checkout;
 
 		if (mapping != null) {
-			mapping.setRepository(repository);
+			mapping.setCheckout(checkout);
 		}
 
 		validatePage();

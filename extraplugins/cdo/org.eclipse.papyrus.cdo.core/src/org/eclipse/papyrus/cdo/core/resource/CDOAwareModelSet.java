@@ -12,6 +12,7 @@
  *   Christian W. Damus (CEA) - bug 422257
  *   Christian W. Damus (CEA) - bug 437052
  *   Christian W. Damus - bug 436998
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.core.resource;
@@ -21,6 +22,7 @@ import java.util.Collection;
 import java.util.Collections;
 import java.util.EnumSet;
 import java.util.Iterator;
+import java.util.Map;
 import java.util.Set;
 
 import org.eclipse.core.runtime.IProgressMonitor;
@@ -28,8 +30,13 @@ import org.eclipse.core.runtime.NullProgressMonitor;
 import org.eclipse.core.runtime.SubMonitor;
 import org.eclipse.emf.cdo.CDOObject;
 import org.eclipse.emf.cdo.CDOState;
+import org.eclipse.emf.cdo.common.protocol.CDOProtocolConstants;
 import org.eclipse.emf.cdo.dawn.gmf.util.DawnDiagramUpdater;
 import org.eclipse.emf.cdo.eresource.CDOResource;
+import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.internal.explorer.checkouts.CDOCheckoutViewProvider;
 import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.util.CommitException;
@@ -47,8 +54,7 @@ import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.notation.Diagram;
 import org.eclipse.net4j.util.event.IEvent;
 import org.eclipse.net4j.util.event.IListener;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepositoryManager;
+import org.eclipse.net4j.util.lifecycle.LifecycleUtil;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOControlModeParticipant;
 import org.eclipse.papyrus.cdo.internal.core.controlmode.CDOProxyManager;
@@ -71,17 +77,21 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	private final CDOProxyManager proxyManager = new CDOProxyManager(this);
 
-	private final IPapyrusRepositoryManager repositoryManager;
+	private final PapyrusCDOResourceFactory resourceFactory = new PapyrusCDOResourceFactory(this);
+	private CDOCheckout checkout;
 
-	private IPapyrusRepository repository;
+	private CDOView view;
 
 	private IListener invalidationListener;
 
-	public CDOAwareModelSet(IPapyrusRepositoryManager repositoryManager) {
+	public CDOAwareModelSet() {
 		super();
 
 		this.resources = new SafeResourceList();
-		this.repositoryManager = repositoryManager;
+
+		Map<String, Object> map = getResourceFactoryRegistry().getProtocolToFactoryMap();
+		map.put(CDOProtocolConstants.PROTOCOL_NAME, resourceFactory);
+		map.put(CDOCheckoutViewProvider.SCHEME, resourceFactory);
 	}
 
 	@Override
@@ -127,14 +137,20 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 	@Override
 	public Resource createResource(URI uri, String contentType) {
-		initTransaction(uri);
-		return super.createResource(uri, contentType);
+		Resource resource = super.createResource(uri, contentType);
+		initTransaction(resource);
+		return resource;
 	}
 
 	@Override
 	protected void demandLoad(Resource resource) throws IOException {
+		URI uri = resource.getURI();
 
-		if (CDOUtils.isCDOURI(resource.getURI())) {
+		// if (CDOCheckoutViewProvider.SCHEME.equals(uri.scheme())) {
+		//
+		// } else
+
+		if (CDOUtils.isCDOURI(uri)) {
 			// XML options not applicable to CDO resources
 			resource.load(null);
 
@@ -142,6 +158,17 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		} else {
 			super.demandLoad(resource);
 		}
+
+		initTransaction(resource);
+	}
+
+	@Override
+	protected Resource setResourceOptions(Resource r) {
+		if (r instanceof CDOResource) {
+			return r;
+		}
+
+		return super.setResourceOptions(r);
 	}
 
 	protected void resourceLoadedHook(Resource resource) {
@@ -152,22 +179,17 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 	}
 
 	public CDOView getCDOView() {
-		CDOViewSet viewSet = CDOUtil.getViewSet(this);
-		CDOView[] views = (viewSet == null) ? null : viewSet.getViews();
-
-		return ((views != null) && (views.length > 0)) ? views[0] : null;
+		return view;
 	}
 
 	@Override
 	public void createModels(URI newURI) {
-		initTransaction(newURI);
 		super.createModels(newURI);
 	}
 
 	@Override
 	public void loadModels(URI uri) throws ModelMultiException {
 
-		initTransaction(uri);
 		super.loadModels(uri);
 
 		// Did any of the models create a new resource? (the DiModel and/or HistoryModel may have done)
@@ -189,20 +211,21 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		}
 	}
 
-	protected void initTransaction(URI uri) {
-		if (getCDOView() == null) {
-			// get the repository and start a transaction on it
+	/**
+	 * @param resource
+	 */
+	protected void initTransaction(Resource resource) {
+		if (resource instanceof CDOResource) {
+			CDOResource cdoResource = (CDOResource) resource;
+			view = cdoResource.cdoView();
 
-			if (repository == null) {
-				repository = repositoryManager.getRepositoryForURI(uri);
-			}
+			if (view != null) {
+				view.addListener(getInvalidationListener());
+				checkout = CDOExplorerUtil.getCheckout(view);
 
-			if (repository != null) {
-				repository.createTransaction(this);
-				CDOView view = getCDOView();
-				if (view != null) {
-					view.addListener(getInvalidationListener());
-				}
+				// URI from = URI.createURI("cdo://" + view.getSession().getRepositoryInfo().getName() + "/");
+				// URI to = URI.createURI("cdo.checkout://" + checkout.getID() + "/" + checkout.getRepository().getID() + "/");
+				// getURIConverter().getURIMap().put(from, to);
 			}
 		}
 	}
@@ -212,26 +235,18 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 		try {
 			// CDOResources don't implement unload(), but we can remove adapters from
 			// all of the objects that we have loaded in this view
-			CDOUtils.unload(getCDOView());
+			if (view != null && !view.isClosed()) {
+				CDOUtils.unload(view);
+			}
 		} finally {
 			try {
 				super.unload();
 			} finally {
-				if ((repository != null) && (getCDOView() != null)) {
-					CDOView view = getCDOView();
-					if (view != null) {
-						view.removeListener(getInvalidationListener());
-					}
-					invalidationListener = null;
+				LifecycleUtil.deactivate(view);
+				CDOCheckoutViewProvider.disposeResourceSet(this);
 
-					// dispose the transaction
-					repository.close(this);
-
-					// now, we can remove the CDOViewSet adapter
-					eAdapters().clear();
-				}
-
-				repository = null;
+				// now, we can remove the CDOViewSet adapter
+				eAdapters().clear();
 			}
 		}
 	}
@@ -412,7 +427,7 @@ public class CDOAwareModelSet extends OnDemandLoadingModelSet {
 
 			for (CDOObject next : updates) {
 				// Resources don't have cross-references that we need to refactor
-				if (!(next instanceof CDOResource)) {
+				if (!(next instanceof CDOResourceNode)) {
 					EObject object = CDOUtil.getEObject(next);
 					if (object != null) {
 						for (EReference xref : object.eClass().getEAllReferences()) {

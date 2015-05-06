@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core;
@@ -29,6 +30,7 @@ import org.eclipse.emf.cdo.common.id.CDOIDUtil;
 import org.eclipse.emf.cdo.dawn.spi.DawnState;
 import org.eclipse.emf.cdo.eresource.CDOResource;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
+import org.eclipse.emf.cdo.internal.explorer.checkouts.CDOCheckoutViewProvider;
 import org.eclipse.emf.cdo.util.CDOUtil;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.cdo.view.CDOViewInvalidationEvent;
@@ -67,7 +69,7 @@ import com.google.common.collect.UnmodifiableListIterator;
  */
 public class CDOUtils {
 
-	private static final Set<String> CDO_URI_SCHEMES = ImmutableSet.of("cdo", "dawn"); //$NON-NLS-1$ //$NON-NLS-2$
+	private static final Set<String> CDO_URI_SCHEMES = ImmutableSet.of("cdo", "dawn", CDOCheckoutViewProvider.SCHEME); //$NON-NLS-1$ //$NON-NLS-2$
 
 	private static Executor broadcastExecutor = new DirectExecutor();
 
@@ -285,7 +287,7 @@ public class CDOUtils {
 			InternalEList<E> list = (InternalEList<E>) value;
 			final ListIterator<E> delegate = (resolve) ? list.listIterator() : list.basicListIterator();
 
-			class NonEmpty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+			class NonEmpty extends UnmodifiableListIterator<E>implements FeatureListIterator<E> {
 
 				@Override
 				public EStructuralFeature feature() {
@@ -326,7 +328,7 @@ public class CDOUtils {
 
 			result = new NonEmpty();
 		} else if (value == null) {
-			class Empty extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+			class Empty extends UnmodifiableListIterator<E>implements FeatureListIterator<E> {
 
 				@Override
 				public EStructuralFeature feature() {
@@ -370,7 +372,7 @@ public class CDOUtils {
 			@SuppressWarnings("unchecked")
 			final E onlyValue = (E) value;
 
-			class Singleton extends UnmodifiableListIterator<E> implements FeatureListIterator<E> {
+			class Singleton extends UnmodifiableListIterator<E>implements FeatureListIterator<E> {
 
 				private int index = -1;
 

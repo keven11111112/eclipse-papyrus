@@ -2157,7 +2157,7 @@
           <repositoryList
               name="Mars">
             <repository
-                url="http://download.eclipse.org/modeling/emf/cdo/drops/S20150324-0935">
+                url="http://download.eclipse.org/modeling/emf/cdo/updates/integration">
               <annotation
                   source="http://www.eclipse.org/Papyrus/2014/releng/dependencytools">
                 <detail

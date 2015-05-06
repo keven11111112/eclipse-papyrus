@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 422257
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter;
@@ -19,6 +20,8 @@ import org.eclipse.core.runtime.IPath;
 import org.eclipse.core.runtime.IProgressMonitor;
 import org.eclipse.core.runtime.IStatus;
 import org.eclipse.core.runtime.SubMonitor;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
+import org.eclipse.emf.cdo.transaction.CDOTransaction;
 import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.BasicDiagnostic;
 import org.eclipse.emf.common.util.Diagnostic;
@@ -36,7 +39,6 @@ import org.eclipse.papyrus.cdo.core.importer.IModelTransferOperation;
 import org.eclipse.papyrus.cdo.internal.core.Activator;
 import org.eclipse.papyrus.cdo.internal.core.CDOProxyResolvingResourceSet;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.IInternalPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.l10n.Messages;
 import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 
@@ -77,33 +79,33 @@ public class ModelExporter implements IModelExporter {
 		// 1 for proxy resolution, 1 for resource saving, and 1 for clean-up
 		SubMonitor sub = SubMonitor.convert(monitor, Messages.ModelExporter_0, 2 * configuration.getModelsToTransfer().size() + 3);
 
-		IInternalPapyrusRepository repository = (IInternalPapyrusRepository) mapping.getRepository();
+		CDOCheckout checkout = mapping.getCheckout();
+		CDOTransaction transaction = checkout.openTransaction(new CDOProxyResolvingResourceSet());
+		ResourceSet source = transaction.getResourceSet();
 		ResourceSet destination = new ResourceSetImpl();
-		ResourceSet source = repository.createTransaction(new CDOProxyResolvingResourceSet());
-		CDOView view = repository.getCDOView(source);
 
 		try {
 			// load all models to be exported and resolve their cross-references so that CDO-style
 			// cross-resource proxies will be resolved
 			for (IModelTransferNode model : configuration.getModelsToTransfer()) {
-				add(result, loadModel(model, view, sub.newChild(1)));
+				add(result, loadModel(model, transaction, sub.newChild(1)));
 			}
 			EcoreUtil.resolveAll(source);
 			sub.worked(1);
 
 			for (IModelTransferNode model : configuration.getModelsToTransfer()) {
-				add(result, exportModel(model, view, mapping.getMapping(model), destination, sub.newChild(1)));
+				add(result, exportModel(model, transaction, mapping.getMapping(model), destination, sub.newChild(1)));
 			}
 
 			for (IModelTransferNode model : configuration.getModelsToTransfer()) {
-				add(result, saveModel(model, view, mapping.getMapping(model), destination));
+				add(result, saveModel(model, transaction, mapping.getMapping(model), destination));
 			}
 			sub.worked(1);
 		} finally {
 			// don't clean up the configuration's resource set because it is not owned by the configuration
 			EMFHelper.unload(destination);
-			CDOUtils.unload(repository.getCDOView(source));
-			repository.close(source);
+			CDOUtils.unload(transaction);
+			transaction.close();
 			EMFHelper.unload(source);
 			sub.worked(1);
 		}

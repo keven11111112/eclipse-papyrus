@@ -238,7 +238,7 @@
 			<id>emf-cdo</id>
 			<layout>p2</layout>
 			<!-- updateFrom("EMF CDO",0) -->
-			<url>http://download.eclipse.org/modeling/emf/cdo/drops/S20150324-0935</url>
+			<url>http://download.eclipse.org/modeling/emf/cdo/updates/integration</url>
 		</repository>
 		<repository>
 			<id>emf-compare</id>

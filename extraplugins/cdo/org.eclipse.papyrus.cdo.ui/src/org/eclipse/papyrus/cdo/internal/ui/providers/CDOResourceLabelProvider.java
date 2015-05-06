@@ -1,5 +1,5 @@
 /*****************************************************************************
- * Copyright (c) 2013, 2014 CEA LIST and others.
+ * Copyright (c) 2013, 2015 CEA LIST and others.
  *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
@@ -9,6 +9,7 @@
  * Contributors:
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - adapt to source-incompatible API change in CDO Luna M6
+ *   Eike Stepper (CEA) - bug 466520
  *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.ui.providers;
@@ -21,6 +22,8 @@ import org.eclipse.emf.cdo.eresource.CDOResourceLeaf;
 import org.eclipse.emf.cdo.eresource.CDOResourceNode;
 import org.eclipse.emf.cdo.eresource.CDOTextResource;
 import org.eclipse.emf.cdo.eresource.util.EresourceSwitch;
+import org.eclipse.emf.cdo.explorer.CDOExplorerUtil;
+import org.eclipse.emf.cdo.explorer.checkouts.CDOCheckout;
 import org.eclipse.emf.cdo.util.CDOURIUtil;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
@@ -29,9 +32,7 @@ import org.eclipse.jface.resource.LocalResourceManager;
 import org.eclipse.jface.resource.ResourceManager;
 import org.eclipse.jface.viewers.LabelProvider;
 import org.eclipse.osgi.util.NLS;
-import org.eclipse.papyrus.cdo.core.IPapyrusRepository;
 import org.eclipse.papyrus.cdo.internal.core.CDOUtils;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.cdo.internal.ui.Activator;
 import org.eclipse.papyrus.cdo.internal.ui.l10n.Messages;
 import org.eclipse.papyrus.infra.services.labelprovider.service.IFilteredLabelProvider;
@@ -78,10 +79,10 @@ public class CDOResourceLabelProvider extends LabelProvider implements IFiltered
 		if (uri != null) {
 			String nodeType = element instanceof CDOResourceNode ? nodeTypeSwitch.doSwitch((CDOResource) element) : Messages.CDOResLabels_node;
 			String path = CDOURIUtil.extractResourcePath(uri);
-			IPapyrusRepository repo = PapyrusRepositoryManager.INSTANCE.getRepositoryForURI(uri);
-			String repoName = (repo == null) ? Messages.CDOResLabels_unknown : repo.getName();
+			CDOCheckout checkout = CDOExplorerUtil.getCheckout(uri);
+			String checkoutName = (checkout == null) ? Messages.CDOResLabels_unknown : checkout.getLabel();
 
-			result = NLS.bind(Messages.CDOResLabels_pattern, new Object[] { nodeType, path, repoName });
+			result = NLS.bind(Messages.CDOResLabels_pattern, new Object[] { nodeType, path, checkoutName });
 		}
 
 		return result;

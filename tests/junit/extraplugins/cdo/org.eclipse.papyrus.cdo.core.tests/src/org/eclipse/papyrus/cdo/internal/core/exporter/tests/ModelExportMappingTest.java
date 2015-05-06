@@ -1,6 +1,6 @@
 /*****************************************************************************
- * Copyright (c) 2013 CEA LIST.
- * 
+ * Copyright (c) 2013, 2015 CEA LIST and others.
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -8,6 +8,7 @@
  *
  * Contributors:
  *   CEA LIST - Initial API and implementation
+ *   Eike Stepper (CEA) - bug 466520
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.exporter.tests;
 
@@ -85,7 +86,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
 		assertThat(child.getMessage(), containsString("esource already exists"));
-		assertThat(child.getData().get(0), sameInstance((Object)getNode(uri1)));
+		assertThat(child.getData().get(0), sameInstance((Object) getNode(uri1)));
 	}
 
 	@Test
@@ -105,7 +106,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
 		assertThat(child.getMessage(), containsString("Multiple models map"));
-		assertThat(child.getData().get(0), either(sameInstance((Object)getNode(uri1))).or(sameInstance((Object)getNode(uri2))));
+		assertThat(child.getData().get(0), either(sameInstance((Object) getNode(uri1))).or(sameInstance((Object) getNode(uri2))));
 	}
 
 	@Test
@@ -125,7 +126,10 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		Diagnostic child = problems.getChildren().get(0);
 		assertThat(child.getSeverity(), is(Diagnostic.ERROR));
 		assertThat(child.getMessage(), containsString("No mapping"));
-		assertThat(child.getData().get(0), sameInstance((Object)getNode(uri2)));
+
+		Object actual = child.getData().get(0);
+		Object expected = (Object) getNode(uri2);
+		assertThat(actual, sameInstance(expected));
 	}
 
 	//
@@ -134,7 +138,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 
 	@Before
 	public void createTestFixture() throws Exception {
-		ResourceSet rset = getInternalPapyrusRepository().getMasterView().getResourceSet();
+		ResourceSet rset = getInternalCheckout().getView().getResourceSet();
 		createModels();
 
 		config = IModelTransferConfiguration.Factory.EXPORT.create(new IModelTransferOperation.Context() {
@@ -146,7 +150,7 @@ public class ModelExportMappingTest extends AbstractModelExportTest {
 		}, rset);
 
 		fixture = IModelExportMapping.Factory.DEFAULT.create(config);
-		fixture.setRepository(getPapyrusRepository());
+		fixture.setCheckout(getCheckout());
 	}
 
 	@After

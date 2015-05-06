@@ -1,6 +1,6 @@
 /*****************************************************************************
  * Copyright (c) 2013, 2015 CEA LIST, Christian W. Damus, and others.
- * 
+ *
  * All rights reserved. This program and the accompanying materials
  * are made available under the terms of the Eclipse Public License v1.0
  * which accompanies this distribution, and is available at
@@ -10,7 +10,8 @@
  *   CEA LIST - Initial API and implementation
  *   Christian W. Damus (CEA) - bug 431953 (fix start-up of selective services to require only their dependencies)
  *   Christian W. Damus - bug 436998
- *   
+ *   Eike Stepper (CEA) - bug 466520
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.cdo.internal.core.controlmode.tests;
 
@@ -35,13 +36,13 @@ import org.eclipse.emf.cdo.view.CDOView;
 import org.eclipse.emf.common.util.URI;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.resource.Resource;
+import org.eclipse.emf.ecore.resource.ResourceSet;
 import org.eclipse.emf.ecore.util.EcoreUtil;
 import org.eclipse.emf.ecore.util.InternalEList;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.papyrus.cdo.core.resource.CDOAwareModelSet;
 import org.eclipse.papyrus.cdo.core.tests.AbstractPapyrusCDOTest;
 import org.eclipse.papyrus.cdo.core.tests.ResourceSetFactory;
-import org.eclipse.papyrus.cdo.internal.core.PapyrusRepositoryManager;
 import org.eclipse.papyrus.infra.core.Activator;
 import org.eclipse.papyrus.infra.core.resource.ModelSet;
 import org.eclipse.papyrus.infra.core.services.ExtensionServicesRegistry;
@@ -79,14 +80,14 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 	@Test
 	public void testControlOneResource() {
 		CDOResource res = createUMLModel();
-		Package root = getPackage(res);
+		ResourceSet resourceSet = res.getResourceSet();
 
+		Package root = getPackage(res);
 		Package sub1 = root.getNestedPackages().get(0);
 
 		save(res); // save now so that all model elements are already persistent
 
 		control(sub1, "sub1.uml");
-
 		save(res);
 
 		// create a new view in which to re-load the model
@@ -202,7 +203,7 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 				}
 			});
 
-			services.add(ModelSet.class, Integer.MAX_VALUE, new CDOAwareModelSet(PapyrusRepositoryManager.INSTANCE));
+			services.add(ModelSet.class, Integer.MAX_VALUE, new CDOAwareModelSet());
 			services.startRegistry();
 
 			result = services.getService(ModelSet.class);
@@ -278,8 +279,9 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 		return result;
 	}
 
-	void control(EObject objectToControl, String fragmentName) {
-		ICommand control = ControlModeManager.getInstance().getControlCommand(request(objectToControl, fragmentName));
+	URI control(EObject objectToControl, String fragmentName) {
+		ControlModeRequest request = request(objectToControl, fragmentName);
+		ICommand control = ControlModeManager.getInstance().getControlCommand(request);
 
 		try {
 			control.execute(new NullProgressMonitor(), null);
@@ -287,6 +289,8 @@ public class CDOControlModeTest extends AbstractPapyrusCDOTest {
 			e.printStackTrace();
 			fail("Failed to execute control-mode command: " + e.getLocalizedMessage());
 		}
+
+		return request.getNewURI();
 	}
 
 	private ControlModeRequest request(EObject objectToControl) {
