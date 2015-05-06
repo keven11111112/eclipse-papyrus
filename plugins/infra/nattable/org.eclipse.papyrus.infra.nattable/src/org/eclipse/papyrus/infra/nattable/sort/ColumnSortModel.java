@@ -33,7 +33,7 @@ import org.eclipse.papyrus.infra.tools.comparator.CompositeComparator;
  *  @author VL222926
  *
  */
-@Deprecated 
+@Deprecated
 public class ColumnSortModel implements IPapyrusSortModel {
 
 
@@ -264,3 +264,4 @@ public class ColumnSortModel implements IPapyrusSortModel {
 		
 	}
 }
+

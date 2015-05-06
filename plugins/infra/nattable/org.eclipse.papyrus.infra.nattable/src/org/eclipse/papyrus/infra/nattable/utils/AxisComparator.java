@@ -40,6 +40,9 @@ public class AxisComparator implements Comparator<IAxis> {
 	 */
 	private IConfigRegistry configRegistry;
 
+	private LabelProviderContextElementWrapper wrapper1;
+	
+	private LabelProviderContextElementWrapper wrapper2;
 
 	/**
 	 *
@@ -53,6 +56,10 @@ public class AxisComparator implements Comparator<IAxis> {
 	public AxisComparator(boolean alphabticOrder, final IConfigRegistry configRegistry) {
 		this.alphabeticOrder = alphabticOrder;
 		this.configRegistry = configRegistry;
+		wrapper1 = new LabelProviderContextElementWrapper();
+		wrapper2 = new LabelProviderContextElementWrapper();
+		wrapper1.setConfigRegistry(configRegistry);
+		wrapper2.setConfigRegistry(configRegistry);
 	}
 
 	/**
@@ -67,8 +74,12 @@ public class AxisComparator implements Comparator<IAxis> {
 	@Override
 	public int compare(IAxis arg0, IAxis arg1) {
 		final LabelProviderService serv = this.configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final String str1 = getText(serv, arg0).replaceAll(AxisUtils.REGEX, "");// we keep only words characters (letters + numbers) + whitespace //$NON-NLS-1$
-		final String str2 = getText(serv, arg1).replaceAll(AxisUtils.REGEX, ""); //$NON-NLS-1$
+		wrapper1.setObject(arg0);
+		wrapper2.setObject(arg1);
+		final ILabelProvider provider = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
+		
+		final String str1 = provider.getText(wrapper1).replaceAll(AxisUtils.REGEX, "");// we keep only words characters (letters + numbers) + whitespace //$NON-NLS-1$
+		final String str2 = provider.getText(wrapper2).replaceAll(AxisUtils.REGEX, ""); //$NON-NLS-1$
 		if (this.alphabeticOrder) {
 			return str1.compareToIgnoreCase(str2);
 		}
@@ -83,9 +94,15 @@ public class AxisComparator implements Comparator<IAxis> {
 	 * @param obj
 	 *            the object for which we want the displayed text
 	 * @return
+	 * 
+	 * @Deprecated since Eclipse Mars
 	 */
+	@Deprecated
 	protected String getText(final LabelProviderService serv, final Object obj) {
 		final ILabelProvider provider = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);
-		return provider.getText(new LabelProviderContextElementWrapper(obj, this.configRegistry));
+		LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper();
+		wrapper.setConfigRegistry(this.configRegistry);
+		wrapper.setObject(obj);
+		return provider.getText(wrapper);
 	}
 }

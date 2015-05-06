@@ -300,7 +300,9 @@ public abstract class AbstractPasteImportInNattableManager {
 			if (feature == null) {
 				IAxis axis = current.getAxisUsedAsAxisProvider();
 				NatTable natTable = (NatTable) manager.getAdapter(NatTable.class);
-				LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper(axis, natTable.getConfigRegistry());
+				LabelProviderContextElementWrapper wrapper = new LabelProviderContextElementWrapper();
+				wrapper.setObject(axis);
+				wrapper.setConfigRegistry(natTable.getConfigRegistry());
 				final LabelProviderService serv = natTable.getConfigRegistry().getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
 				ILabelProvider p = serv.getLabelProvider(wrapper);
 				p = serv.getLabelProvider(Constants.HEADER_LABEL_PROVIDER_CONTEXT);

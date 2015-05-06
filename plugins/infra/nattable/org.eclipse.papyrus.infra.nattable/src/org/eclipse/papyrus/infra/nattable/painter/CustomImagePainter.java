@@ -19,7 +19,6 @@ import org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell;
 import org.eclipse.nebula.widgets.nattable.painter.cell.ImagePainter;
 import org.eclipse.nebula.widgets.nattable.style.DisplayMode;
 import org.eclipse.papyrus.infra.nattable.utils.Constants;
-import org.eclipse.papyrus.infra.nattable.utils.ILabelProviderContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.LabelProviderCellContextElementWrapper;
 import org.eclipse.papyrus.infra.nattable.utils.NattableConfigAttributes;
 import org.eclipse.papyrus.infra.services.labelprovider.service.LabelProviderService;
@@ -32,6 +31,7 @@ import org.eclipse.swt.graphics.Image;
  */
 public class CustomImagePainter extends ImagePainter {
 
+	private LabelProviderCellContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper();
 	/**
 	 *
 	 * @see org.eclipse.nebula.widgets.nattable.painter.cell.ImagePainter#getImage(org.eclipse.nebula.widgets.nattable.layer.cell.ILayerCell, org.eclipse.nebula.widgets.nattable.config.IConfigRegistry)
@@ -42,8 +42,10 @@ public class CustomImagePainter extends ImagePainter {
 	 */
 	@Override
 	protected Image getImage(ILayerCell cell, IConfigRegistry configRegistry) {
+		contextElement.setConfigRegistry(configRegistry);
+		contextElement.setCell(cell);
+		contextElement.setObject(cell.getDataValue());
 		final LabelProviderService serv = configRegistry.getConfigAttribute(NattableConfigAttributes.LABEL_PROVIDER_SERVICE_CONFIG_ATTRIBUTE, DisplayMode.NORMAL, NattableConfigAttributes.LABEL_PROVIDER_SERVICE_ID);
-		final ILabelProviderContextElementWrapper contextElement = new LabelProviderCellContextElementWrapper(cell, configRegistry);
 		final ILabelProvider provider = serv.getLabelProvider(Constants.TABLE_LABEL_PROVIDER_CONTEXT, contextElement);
 		return provider.getImage(contextElement);
 	}

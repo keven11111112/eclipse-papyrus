@@ -76,7 +76,7 @@ public abstract class AbstractTreeAxisManagerForEventList extends AbstractAxisMa
 	/**
 	 * the list of axis which have been expanded one time
 	 */
-	protected List<ITreeItemAxis> alreadyExpanded = new ArrayList<ITreeItemAxis>();
+	protected Set<ITreeItemAxis> alreadyExpanded = new HashSet<ITreeItemAxis>();
 
 	/**
 	 * the current filling configuration used by this axis manager

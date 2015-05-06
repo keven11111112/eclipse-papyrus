@@ -31,6 +31,11 @@ import ca.odell.glazedlists.TreeList;
 public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 
 	/**
+	 * the comparator to use to sort the tree
+	 */
+	private Comparator<ITreeItemAxis> comparator = null;
+	
+	/**
 	 * the axis manager providing comparator
 	 */
 	private CompositeTreeAxisManagerForEventList axisManager;
@@ -95,19 +100,22 @@ public class DatumTreeFormat implements TreeList.Format<ITreeItemAxis> {
 		if (this.axisManager == null) {
 			return null;
 		}
-		return new SortableTreeComparator<ITreeItemAxis>(new Comparator<ITreeItemAxis>() {
-			/**
-			 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
-			 *
-			 * @param o1
-			 * @param o2
-			 * @return
-			 */
-			// @Override
-			public int compare(ITreeItemAxis o1, ITreeItemAxis o2) {
-				return axisManager.compare(sortModel, depth, o1, o2);
-			}
+		if (this.comparator == null) {
+			this.comparator = new SortableTreeComparator<ITreeItemAxis>(new Comparator<ITreeItemAxis>() {
+				/**
+				 * @see java.util.Comparator#compare(java.lang.Object, java.lang.Object)
+				 *
+				 * @param o1
+				 * @param o2
+				 * @return
+				 */
+				@Override
+				public int compare(ITreeItemAxis o1, ITreeItemAxis o2) {
+					return axisManager.compare(sortModel, depth, o1, o2);
+				}
 
-		}, sortModel);
+			}, this.sortModel);
+		}
+		return this.comparator;
 	}
 }
