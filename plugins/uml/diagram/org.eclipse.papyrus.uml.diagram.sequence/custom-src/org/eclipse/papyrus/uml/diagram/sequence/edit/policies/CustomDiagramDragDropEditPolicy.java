@@ -445,10 +445,7 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 		if (getHostObject().equals(parent)) {
 			List<View> existingViews = DiagramEditPartsUtil.findViews(parent, getViewer());
 			if (!existingViews.isEmpty()) {
-				EditPart parentEditPart = lookForEditPart(parent);
-				if (parentEditPart != null) {
-					return new ICommandProxy(getDefaultDropNodeCommand(parentEditPart, nodeVISUALID, location, element));
-				}
+				return new ICommandProxy(getDefaultDropNodeCommand(getHost(), nodeVISUALID, location, element));
 			}
 		}
 		return UnexecutableCommand.INSTANCE;
@@ -507,18 +504,18 @@ public class CustomDiagramDragDropEditPolicy extends CommonDiagramDragDropEditPo
 
 	/*
 	 * To extend the method in superclass with an option Dimension size,
-	 * 
-	 * 
+	 *
+	 *
 	 * @param hostEP
-	 * 
+	 *
 	 * @param nodeVISUALID
-	 * 
+	 *
 	 * @param absoluteLocation
-	 * 
+	 *
 	 * @param size
-	 * 
+	 *
 	 * @param droppedObject
-	 * 
+	 *
 	 * @return
 	 */
 	protected ICommand dropCombinedFragment(EditPart hostEP, int nodeVISUALID, Point absoluteLocation, Dimension size, EObject droppedObject) {
