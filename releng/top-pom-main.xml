@@ -515,50 +515,50 @@
 		<plugins>
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-compiler-plugin</artifactId>
-					<version>3.2</version>
-					<configuration>
-						<source>${java.source.version}</source>
-						<target>${java.target.version}</target>
-					</configuration>
-				</plugin>
-				<plugin>
-					<groupId>org.apache.maven.plugins</groupId>
-					<artifactId>maven-clean-plugin</artifactId>
-					<version>2.6</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>build-helper-maven-plugin</artifactId>
-					<version>1.9.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.codehaus.mojo</groupId>
-					<artifactId>exec-maven-plugin</artifactId>
-					<version>1.2.1</version>
-				</plugin>
-				<plugin>
-					<groupId>org.eclipse.xtend</groupId>
-					<artifactId>xtend-maven-plugin</artifactId>
-					<version>${xtext.version}</version>
-				</plugin>
-	            <plugin>
-	                <groupId>org.apache.maven.plugins</groupId>
-	                <artifactId>maven-resources-plugin</artifactId>
-	                <version>2.6</version>
-	                <configuration>
-	                    <encoding>UTF-8</encoding>
-	                </configuration>
-	            </plugin>
-	            <plugin>
-	                <groupId>org.eclipse.tycho</groupId>
-	                <artifactId>tycho-compiler-plugin</artifactId>
-	                <version>${tycho-version}</version>
-	                <configuration>
-	                    <optimize>true</optimize>
-	                    <showWarnings>true</showWarnings>
-	                    <!-- Tycho build using the project's JDT settings. -->
-	                    <useProjectSettings>true</useProjectSettings>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.2</version>
+				<configuration>
+					<source>${java.source.version}</source>
+					<target>${java.target.version}</target>
+				</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-clean-plugin</artifactId>
+				<version>2.6</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>build-helper-maven-plugin</artifactId>
+				<version>1.9.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.codehaus.mojo</groupId>
+				<artifactId>exec-maven-plugin</artifactId>
+				<version>1.2.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.eclipse.xtend</groupId>
+				<artifactId>xtend-maven-plugin</artifactId>
+				<version>${xtext.version}</version>
+			</plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-resources-plugin</artifactId>
+                <version>2.6</version>
+                <configuration>
+                    <encoding>UTF-8</encoding>
+                </configuration>
+            </plugin>
+            <plugin>
+                <groupId>org.eclipse.tycho</groupId>
+                <artifactId>tycho-compiler-plugin</artifactId>
+                <version>${tycho-version}</version>
+                <configuration>
+                    <optimize>true</optimize>
+                    <showWarnings>true</showWarnings>
+                    <!-- Tycho build using the project's JDT settings. -->
+                    <useProjectSettings>true</useProjectSettings>
 				</configuration>
 			</plugin>
 			<plugin>
@@ -581,43 +581,43 @@
 					</environments>
 				</configuration>
 			</plugin>
-	            <plugin>
-					<groupId>org.eclipse.mylyn.docs</groupId>
-					<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
-					<version>${mylyn.wikitext.version}</version>
-				</plugin>
-				<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
-				<plugin>
-					<groupId>org.eclipse.m2e</groupId>
-					<artifactId>lifecycle-mapping</artifactId>
-					<version>1.0.0</version>
-					<configuration>
-						<lifecycleMappingMetadata>
-							<pluginExecutions>
-								<pluginExecution>
-									<pluginExecutionFilter>
-										<groupId>
-											org.eclipse.mylyn.docs
-										</groupId>
-										<artifactId>
-											org.eclipse.mylyn.wikitext.core.maven
-										</artifactId>
-										<versionRange>
-											[2.4.0-SNAPSHOT,)
-										</versionRange>
-										<goals>
-											<goal>eclipse-help</goal>
-										</goals>
-									</pluginExecutionFilter>
-									<action>
-										<execute/>
-									</action>
-								</pluginExecution>
-							</pluginExecutions>
-						</lifecycleMappingMetadata>
-					</configuration>
-				</plugin>
-			</plugins>
+            <plugin>
+				<groupId>org.eclipse.mylyn.docs</groupId>
+				<artifactId>org.eclipse.mylyn.wikitext.core.maven</artifactId>
+				<version>${mylyn.wikitext.version}</version>
+			</plugin>
+			<!--This plugin's configuration is used to store Eclipse m2e settings only. It has no influence on the Maven build itself.-->
+			<plugin>
+				<groupId>org.eclipse.m2e</groupId>
+				<artifactId>lifecycle-mapping</artifactId>
+				<version>1.0.0</version>
+				<configuration>
+					<lifecycleMappingMetadata>
+						<pluginExecutions>
+							<pluginExecution>
+								<pluginExecutionFilter>
+									<groupId>
+										org.eclipse.mylyn.docs
+									</groupId>
+									<artifactId>
+										org.eclipse.mylyn.wikitext.core.maven
+									</artifactId>
+									<versionRange>
+										[2.4.0-SNAPSHOT,)
+									</versionRange>
+									<goals>
+										<goal>eclipse-help</goal>
+									</goals>
+								</pluginExecutionFilter>
+								<action>
+									<execute/>
+								</action>
+							</pluginExecution>
+						</pluginExecutions>
+					</lifecycleMappingMetadata>
+				</configuration>
+			</plugin>
+		</plugins>
 		</pluginManagement>
 		<plugins>
 			<plugin>
