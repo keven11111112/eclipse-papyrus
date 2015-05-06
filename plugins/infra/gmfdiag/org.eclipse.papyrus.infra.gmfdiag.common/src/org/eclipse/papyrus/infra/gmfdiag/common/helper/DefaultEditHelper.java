@@ -32,6 +32,7 @@ import org.eclipse.gmf.runtime.emf.type.core.ISpecializationType;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelper;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.IEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.gmf.runtime.emf.type.core.requests.CreateRelationshipRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyDependentsRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
@@ -85,7 +86,10 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	 */
 	@Override
 	protected boolean approveRequest(IEditCommandRequest request) {
-		if (request instanceof CreateElementRequest) {
+		if (request instanceof CreateRelationshipRequest) {
+			// specific case for relationship should be handled
+			return super.approveRequest(request);
+		} else if (request instanceof CreateElementRequest) {
 			// check the containment feature.
 			Object context = request.getEditHelperContext();
 			if (context instanceof EObject) {
