@@ -160,7 +160,7 @@ public class GenericTransformer {
 
 		IWorkbenchPage page = PlatformUI.getWorkbench().getActiveWorkbenchWindow().getActivePage();
 		IEditorPart editor = page.getActiveEditor();
-		CommandStack stack = (CommandStack) editor.getAdapter(CommandStack.class);
+		CommandStack stack = editor.getAdapter(CommandStack.class);
 		globalCommand = new CompositeCommand("Generic Transformation");
 
 		if (graphCopy) {

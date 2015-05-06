@@ -87,7 +87,7 @@ public abstract class AbstractEditHyperlinkShell {
 		gridLayout.makeColumnsEqualWidth = true;
 
 		// this line has to be commented in order to open with VISUAL EDITOR
-		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE);
+		editHyperlinkShell = new Shell(PlatformUI.getWorkbench().getDisplay().getActiveShell(), SWT.DIALOG_TRIM | SWT.RESIZE | SWT.APPLICATION_MODAL);
 
 		// editHyperlinkShell = new Shell(display, SWT.DIALOG_TRIM |
 		// SWT.APPLICATION_MODAL);

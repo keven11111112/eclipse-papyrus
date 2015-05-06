@@ -29,13 +29,23 @@
       </decoratorProvider>
    </extension>
    <extension
-         point="org.eclipse.gmf.runtime.diagram.ui.editpolicyProviders">
-      <editpolicyProvider
-            class="org.eclipse.papyrus.infra.gmfdiag.navigation.provider.NavigationEditPolicyProvider">
-         <Priority
-               name="Medium">
-         </Priority>
-      </editpolicyProvider>
+         point="org.eclipse.papyrus.infra.services.navigation.navigationMenuContributor">
+      <contributor
+            contributor="org.eclipse.papyrus.infra.gmfdiag.navigation.menuContributor.OwnedDiagramsButton"
+            description="Diagrams owned by the selected element"
+            id="org.eclipse.papyrus.infra.gmfdiag.navigation..ownedDiagramsButton"
+            label="Owned diagrams">
+      </contributor>
+   </extension>
+   
+   <extension
+         point="org.eclipse.papyrus.infra.services.navigation.navigationMenu">
+      <menu
+            description="The default navigation menu that appears on Alt+Hover"
+            id="org.eclipse.papyrus.infra.gmfdiag.navigation.defaultNavigationMenu"
+            label="Default navigation menu"
+            menu="org.eclipse.papyrus.infra.gmfdiag.navigation.menu.DefaultNavigationMenu">
+      </menu>
    </extension>
   
    <!--commented for the build Juno M4, because perspective doesn't work-->

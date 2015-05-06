@@ -486,10 +486,10 @@ public class NavigatorUtils {
 		T result = null;
 		if (o instanceof IAdaptable) {
 			IAdaptable adaptable = (IAdaptable) o;
-			result = (T) adaptable.getAdapter(theClass);
+			result = adaptable.getAdapter(theClass);
 		}
 		if (result == null) {
-			result = (T) Platform.getAdapterManager().getAdapter(o, theClass);
+			result = Platform.getAdapterManager().getAdapter(o, theClass);
 		}
 		if (result == null && theClass.isInstance(o)) {
 			result = (T) o;

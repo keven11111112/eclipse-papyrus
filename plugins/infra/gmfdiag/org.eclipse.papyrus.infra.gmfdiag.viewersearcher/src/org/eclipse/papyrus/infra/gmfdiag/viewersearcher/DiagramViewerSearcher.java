@@ -129,10 +129,11 @@ public class DiagramViewerSearcher extends AbstractViewerSearcher {
 		
 		try {
 			for (Object page : pageManager.allPages()) {
+				if (openPagesOnly && !pageManager.isOpen(page)) {
+					continue;
+				}
 				
 				if (page instanceof Diagram) {
-					// TODO openPagesOnly: contributed by future navigation patch
-					
 					// Container checks
 					if (container != null) {
 						EObject owner = DiagramUtils.getOwner((Diagram) page);

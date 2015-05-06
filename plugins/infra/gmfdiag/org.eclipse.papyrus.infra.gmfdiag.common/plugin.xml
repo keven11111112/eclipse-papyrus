@@ -311,6 +311,12 @@
             name="Lowest">
       </Priority>
    </editpolicyProvider>
+   <editpolicyProvider
+         class="org.eclipse.papyrus.infra.gmfdiag.common.providers.PopupBarEditPolicyProvider">
+      <Priority
+            name="Lowest">
+      </Priority>
+   </editpolicyProvider>
 </extension>
 <extension
       point="org.eclipse.papyrus.infra.gmfdiag.commands.historyListeners">

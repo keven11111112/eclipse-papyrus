@@ -9,7 +9,8 @@
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
  *  Christian W. Damus - bug 451230
- *  
+ *  Shuai Li
+ *
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.hyperlink.providers;
 
@@ -17,15 +18,12 @@ import org.eclipse.gef.EditPart;
 import org.eclipse.gmf.runtime.common.core.service.AbstractProvider;
 import org.eclipse.gmf.runtime.common.core.service.IOperation;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IPrimaryEditPart;
-import org.eclipse.gmf.runtime.diagram.ui.editpolicies.EditPolicyRoles;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.CreateEditPoliciesOperation;
 import org.eclipse.gmf.runtime.diagram.ui.services.editpolicy.IEditPolicyProvider;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
-import org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.HyperLinkPopupBarEditPolicy;
-import org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy;
+import org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.HyperlinkNavigationMenuEditPolicy;
 
 /**
  * An EditPolicyProvider for Navigation and Hyperlinks
@@ -66,12 +64,7 @@ public class HyperlinkEditPolicyProvider extends AbstractProvider implements IEd
 	 * Installs the Hyperlink and Navigation edit policies
 	 */
 	public void createEditPolicies(EditPart editPart) {
-		if (editPart instanceof IPrimaryEditPart) {
-			editPart.removeEditPolicy(EditPolicyRoles.POPUPBAR_ROLE);
-			editPart.installEditPolicy(EditPolicyRoles.POPUPBAR_ROLE, new HyperLinkPopupBarEditPolicy());
-		}
-		editPart.installEditPolicy(NavigationEditPolicy.NAVIGATION_POLICY, new NavigationEditPolicy());
-
+		editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy.NavigationEditPolicy.EDIT_POLICY_ID, new HyperlinkNavigationMenuEditPolicy());
+		editPart.installEditPolicy(org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy.NAVIGATION_POLICY, new org.eclipse.papyrus.infra.gmfdiag.hyperlink.editpolicies.NavigationEditPolicy());
 	}
-
 }

@@ -8,13 +8,10 @@
  *
  * Contributors:
  *  Camille Letavernier (CEA LIST) camille.letavernier@cea.fr - Initial API and implementation
+ *  Shuai Li (CEA LIST) shuai.li@cea.fr - Selection menu modifications
  *****************************************************************************/
 package org.eclipse.papyrus.infra.gmfdiag.navigation.editpolicy;
 
-import java.util.List;
-
-import org.eclipse.draw2d.IFigure;
-import org.eclipse.emf.ecore.EObject;
 import org.eclipse.gef.EditPart;
 import org.eclipse.gef.EditPartViewer;
 import org.eclipse.gef.EditPolicy;
@@ -23,19 +20,13 @@ import org.eclipse.gef.RootEditPart;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gef.requests.SelectionRequest;
-import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
-import org.eclipse.gmf.runtime.draw2d.ui.figures.WrappingLabel;
-import org.eclipse.jface.viewers.ISelectionChangedListener;
-import org.eclipse.jface.viewers.IStructuredSelection;
-import org.eclipse.jface.viewers.SelectionChangedEvent;
 import org.eclipse.papyrus.infra.core.services.ServiceException;
 import org.eclipse.papyrus.infra.core.services.ServicesRegistry;
-import org.eclipse.papyrus.infra.emf.utils.EMFHelper;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.ServiceUtilsForEditPart;
 import org.eclipse.papyrus.infra.gmfdiag.navigation.Activator;
-import org.eclipse.papyrus.infra.services.navigation.service.NavigableElement;
+import org.eclipse.papyrus.infra.services.navigation.service.NavigationMenu;
 import org.eclipse.papyrus.infra.services.navigation.service.NavigationService;
-import org.eclipse.papyrus.infra.widgets.editors.SelectionMenu;
+import org.eclipse.swt.widgets.Shell;
 
 /**
  * An edit policy to use the {@link NavigationService} on GMF Diagrams
@@ -47,14 +38,13 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 	public static final String EDIT_POLICY_ID = "org.eclipse.papyrus.infra.gmfdiag.navigation.NavigationEditPolicy";
 
-	private ViewerContext viewerContext;
+	protected NavigationMenu navigationMenu;
 
 	@Override
 	public void activate() {
 		super.activate();
 		initViewerContext();
-
-		if (viewerContext == null) {
+		if (navigationMenu == null) {
 			return;
 		}
 	}
@@ -62,11 +52,22 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	private void initViewerContext() {
 		if (getHost() == getRoot()) {
 			EditPartViewer viewer = getHost().getViewer();
-			viewerContext = new ViewerContext(viewer);
+			try {
+				ServicesRegistry registry = ServiceUtilsForEditPart.getInstance().getServiceRegistry(getHost());
+				Shell parentShell = viewer.getControl().getShell();
+
+				navigationMenu = registry.getService(NavigationService.class).createNavigationList();
+				if (navigationMenu != null) {
+					navigationMenu.setServicesRegistry(registry);
+					navigationMenu.setParentShell(parentShell);
+				}
+			} catch (ServiceException e) {
+				Activator.log.error(e);
+			}
 		} else {
 			EditPolicy rootNavigationEditPolicy = getRoot().getEditPolicy(EDIT_POLICY_ID);
 			if (rootNavigationEditPolicy instanceof NavigationEditPolicy) {
-				this.viewerContext = ((NavigationEditPolicy) rootNavigationEditPolicy).viewerContext;
+				this.navigationMenu = ((NavigationEditPolicy) rootNavigationEditPolicy).navigationMenu;
 			}
 		}
 	}
@@ -75,7 +76,7 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 	public void showTargetFeedback(Request request) {
 		super.showTargetFeedback(request);
 
-		if (viewerContext == null) {
+		if (navigationMenu == null) {
 			return;
 		}
 
@@ -86,14 +87,25 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 
 		if (request instanceof SelectionRequest) {
 			SelectionRequest selectionRequest = (SelectionRequest) request;
-			viewerContext.handleRequest(selectionRequest);
+			EditPart targetEditPart = getHost().getViewer().findObjectAt(selectionRequest.getLocation());
+
+			if (navigationMenu.willEnter(selectionRequest, targetEditPart)) {
+				prependNavigationMenuItem();
+				appendNavigationMenuItem();
+			}
+
+			navigationMenu.handleRequest(selectionRequest, targetEditPart);
 		}
 	}
 
 	@Override
 	public Command getCommand(Request request) {
-		if (request instanceof SelectionRequest && viewerContext != null) {
-			return viewerContext.navigate((SelectionRequest) request);
+		if (request instanceof SelectionRequest && navigationMenu != null) {
+			SelectionRequest selectionRequest = (SelectionRequest) request;
+			Object command = navigationMenu.navigate(selectionRequest, getHost());
+			if (command instanceof Command) {
+				return (Command) command;
+			}
 		}
 		return super.getCommand(request);
 	}
@@ -103,197 +115,23 @@ public class NavigationEditPolicy extends GraphicalEditPolicy {
 		return rootEditPart.getContents();
 	}
 
-	// A Single ViewerContext for each diagram (Root EditPartViewer)
-	private class ViewerContext {
+	protected void prependNavigationMenuItem () {
+		// Nothing here, written in sub-classes
+	}
 
-		private EditPartViewer editPartViewer;
+	protected void appendNavigationMenuItem () {
+		// Nothing here, written in sub-classes
+	}
 
-		private EObject currentModel;
-
-		private SelectionMenu selectionMenu;
-
-		private boolean wasUnderlined;
-
-		private WrappingLabel lastWrappingLabel;
-
-		public void handleRequest(SelectionRequest request) {
-			if (isExitState(request)) {
-				exitItem();
-			}
-
-			if (isEnterState(request)) {
-				enterItem(currentModel, request);
-			}
+	protected void clearAppendObjects() {
+		if (navigationMenu != null && navigationMenu.getAppendObjects() != null) {
+			navigationMenu.getAppendObjects().clear();
 		}
+	}
 
-		public Command navigate(final SelectionRequest request) {
-			if (!isAlt(request)) {
-				return null;
-			}
-
-			final NavigableElement element = getElementToNavigate(request);
-			if (element == null) {
-				return null;
-			}
-
-			return new Command() {
-
-				@Override
-				public void execute() {
-					try {
-						getNavigationService(request).navigate(element);
-					} catch (ServiceException ex) {
-						Activator.log.error(ex);
-					}
-					exitItem();
-				}
-			};
+	protected void clearPrependObjects() {
+		if (navigationMenu != null && navigationMenu.getPrependObjects() != null) {
+			this.navigationMenu.getPrependObjects().clear();
 		}
-
-		private NavigableElement getElementToNavigate(SelectionRequest request) {
-			try {
-				List<NavigableElement> navigableElements = getNavigationService(request).getNavigableElements(getEditPart(request));
-				if (navigableElements.isEmpty()) {
-					return null;
-				}
-
-				for (NavigableElement element : navigableElements) {
-					if (element.isEnabled()) {
-						return element;
-					}
-				}
-			} catch (ServiceException ex) {
-				// Ignore: the service is not available, do nothing
-			}
-			return null;
-		}
-
-		private NavigationService getNavigationService(SelectionRequest request) throws ServiceException {
-			return getServicesRegistry().getService(NavigationService.class);
-		}
-
-		public ViewerContext(EditPartViewer editPartViewer) {
-			this.editPartViewer = editPartViewer;
-		}
-
-		private boolean isExitState(SelectionRequest request) {
-			if (currentModel == null) {
-				return false;
-			}
-
-			EObject newModel = getModel(request);
-			if (newModel == null) {
-				return true;
-			}
-
-			if (newModel != currentModel) {
-				return true;
-			}
-
-			if (!isAlt(request)) {
-				return true;
-			}
-
-			return false;
-		}
-
-		private boolean isEnterState(SelectionRequest request) {
-			EObject model = getModel(request);
-			if (model == currentModel) {
-				return false;
-			}
-
-			if (model == null) {
-				return false;
-			}
-
-			if (!isAlt(request)) {
-				return false;
-			}
-
-			currentModel = model;
-
-			return true;
-		}
-
-		private boolean isAlt(SelectionRequest request) {
-			return request.isAltKeyPressed();
-		}
-
-		private EObject getModel(SelectionRequest request) {
-			return EMFHelper.getEObject(getEditPart(request));
-
-		}
-
-		private EditPart getEditPart(SelectionRequest request) {
-			return editPartViewer.findObjectAt(request.getLocation());
-		}
-
-		private void disposeCurrentMenu() {
-			if (selectionMenu != null) {
-				selectionMenu.dispose();
-				selectionMenu = null;
-			}
-		}
-
-		private void exitItem() {
-			if (lastWrappingLabel != null) {
-				lastWrappingLabel.setTextUnderline(wasUnderlined);
-			}
-			wasUnderlined = false;
-			lastWrappingLabel = null;
-			currentModel = null;
-			disposeCurrentMenu();
-		}
-
-		private void enterItem(EObject model, SelectionRequest request) {
-			try {
-				EditPart targetEditPart = getEditPart(request);
-
-				final NavigationService navigation = getServicesRegistry().getService(NavigationService.class);
-				disposeCurrentMenu();
-				selectionMenu = navigation.createNavigationList(targetEditPart, editPartViewer.getControl());
-				if (selectionMenu == null) {
-					return;
-				}
-
-				wasUnderlined = false;
-				if (targetEditPart instanceof IGraphicalEditPart) {
-					IGraphicalEditPart graphicalEditPart = (IGraphicalEditPart) targetEditPart;
-					IFigure figure = graphicalEditPart.getFigure();
-					if (figure instanceof WrappingLabel) {
-						lastWrappingLabel = ((WrappingLabel) figure);
-						wasUnderlined = lastWrappingLabel.isTextUnderlined();
-						lastWrappingLabel.setTextUnderline(!wasUnderlined);
-					}
-				}
-
-				selectionMenu.addSelectionChangedListener(new ISelectionChangedListener() {
-
-					public void selectionChanged(SelectionChangedEvent event) {
-						if (event.getSelection().isEmpty()) {
-							return;
-						}
-						Object selectedElement = ((IStructuredSelection) event.getSelection()).getFirstElement();
-						if (selectedElement instanceof NavigableElement) {
-							NavigableElement navigableElement = (NavigableElement) selectedElement;
-							navigate(navigableElement, navigation);
-						}
-					}
-				});
-			} catch (ServiceException ex) {
-				Activator.log.error(ex);
-			}
-		}
-
-		private void navigate(NavigableElement navigableElement, NavigationService navigationService) {
-			navigationService.navigate(navigableElement);
-			exitItem();
-		}
-
-		private ServicesRegistry getServicesRegistry() throws ServiceException {
-			return ServiceUtilsForEditPart.getInstance().getServiceRegistry(getHost());
-		}
-
 	}
 }

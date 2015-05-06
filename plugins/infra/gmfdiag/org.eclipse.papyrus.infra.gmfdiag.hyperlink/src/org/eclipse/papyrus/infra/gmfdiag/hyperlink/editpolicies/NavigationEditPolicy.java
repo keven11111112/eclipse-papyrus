@@ -437,7 +437,7 @@ public class NavigationEditPolicy extends OpenEditPolicy {
 
 	/**
 	 * Get the open command previously defined by ShortCutEditPolicy
-	 * 
+	 *
 	 * @param request
 	 * @return
 	 */
