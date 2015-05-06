@@ -647,8 +647,8 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	protected void addSemanticListeners() {
 		if (getParser() instanceof ISemanticParser) {
 			// listen stereotype application
-			EObject StereotypeApplication = ((View) getNotationView().eContainer()).getElement();
-			addListenerFilter("SemanticModelForStereotypeApplication", this, StereotypeApplication); //$NON-NLS-1$
+			EObject stereotypeApplication = ((View) getNotationView().eContainer()).getElement();
+			addListenerFilter("SemanticModelForStereotypeApplication", this, stereotypeApplication); //$NON-NLS-1$
 			EObject element = resolveSemanticElement();
 			parserElements = ((ISemanticParser) getParser()).getSemanticElementsBeingParsed(element);
 			for (int i = 0; i < parserElements.size(); i++) {
@@ -725,7 +725,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected boolean checkExtendedEditor() {
 		if (resolveSemanticElement() != null) {
-			return DirectEditorsUtil.hasSpecificEditorConfiguration(getAdapter(AppliedStereotypeProperty.class), this);
+			return DirectEditorsUtil.hasSpecificEditorConfiguration(resolveSemanticElement().eClass().getInstanceClassName());
 		}
 		return false;
 	}
@@ -745,12 +745,11 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	 */
 	protected void initExtendedEditorConfiguration() {
 		if (configuration == null) {
-			Object semanticElement = getAdapter(AppliedStereotypeProperty.class);
-			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + semanticElement);
+			final String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 			if (languagePreferred != null && !languagePreferred.equals("")) {
-				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, semanticElement, this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 			} else {
-				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, semanticElement, this);
+				configuration = DirectEditorsUtil.findEditorConfiguration(IDirectEditorsIds.UML_LANGUAGE, resolveSemanticElement().eClass().getInstanceClassName());
 			}
 		}
 	}
@@ -762,7 +761,7 @@ public class AppliedStereotypePropertyEditPart extends UMLCompartmentEditPart im
 	protected void updateExtendedEditorConfiguration() {
 		String languagePreferred = Activator.getDefault().getPreferenceStore().getString(IDirectEditorsIds.EDITOR_FOR_ELEMENT + resolveSemanticElement().eClass().getInstanceClassName());
 		if (languagePreferred != null && !languagePreferred.equals("") && languagePreferred != configuration.getLanguage()) {
-			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, getAdapter(AppliedStereotypeProperty.class), this);
+			configuration = DirectEditorsUtil.findEditorConfiguration(languagePreferred, resolveSemanticElement().eClass().getInstanceClassName());
 		} else if (IDirectEditorsIds.SIMPLE_DIRECT_EDITOR.equals(languagePreferred)) {
 			configuration = null;
 		}

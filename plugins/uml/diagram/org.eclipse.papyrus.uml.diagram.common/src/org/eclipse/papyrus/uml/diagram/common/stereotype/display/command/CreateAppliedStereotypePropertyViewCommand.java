@@ -9,17 +9,20 @@
  *
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 455311 : Refactor Stereotypes Display
  *
  *****************************************************************************/
-package org.eclipse.papyrus.uml.diagram.stereotype.edition.command;
+package org.eclipse.papyrus.uml.diagram.common.stereotype.display.command;
 
+import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.RecordingCommand;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.gmf.runtime.diagram.core.util.ViewUtil;
-import org.eclipse.gmf.runtime.notation.Node;
+import org.eclipse.gmf.runtime.notation.DecorationNode;
 import org.eclipse.gmf.runtime.notation.NotationFactory;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypePropertyEditPart;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
+import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Property;
 
 /**
@@ -32,27 +35,35 @@ public class CreateAppliedStereotypePropertyViewCommand extends RecordingCommand
 
 	protected Property property;
 
-	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property) {
+	protected EObject stereotypeApplication;
+
+	protected Element element;
+
+	protected String type;
+
+	public CreateAppliedStereotypePropertyViewCommand(TransactionalEditingDomain domain, View owner, Property property, final String type) {
 
 		super(domain, "CreateStereotypePropertyView");
 		this.owner = owner;
 		this.property = property;
+		this.type = type;
 
 	}
 
-	@SuppressWarnings("unchecked")
 	@Override
 	public void doExecute() {
 
-		Node node = NotationFactory.eINSTANCE.createShape();
-		node.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
-		node.setType(AppliedStereotypePropertyEditPart.ID);
-		ViewUtil.insertChildView(owner, node, -1, false);
-		node.setElement(property);
-		node.setMutable(true);
+		// Create Stereotype Property into Notation Structure
 
+		// Create property Label
+		DecorationNode propertyLabel = NotationFactory.eINSTANCE.createDecorationNode();
+		propertyLabel.setType(type);
+		propertyLabel.setLayoutConstraint(NotationFactory.eINSTANCE.createLocation());
+		propertyLabel.setElement(property);
 
+		// Add the new Label to it's owner Object
+		ViewUtil.insertChildView(owner, propertyLabel, ViewUtil.APPEND, StereotypeDisplayConstant.PERSISTENT);
+		propertyLabel.setMutable(true);
 
 	}
-
 }

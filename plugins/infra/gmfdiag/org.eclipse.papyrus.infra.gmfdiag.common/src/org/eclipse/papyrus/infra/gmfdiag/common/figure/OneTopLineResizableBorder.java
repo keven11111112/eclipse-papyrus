@@ -121,7 +121,7 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 		// get the length of the line according to the corner
 		int length = getLineLength(figure);
 
-		tempRect.width = (int) (length);
+		tempRect.width = (length);
 
 		// if the length is forced or a ratio is applied
 		if (forcedLength != -1) {
@@ -179,29 +179,31 @@ public class OneTopLineResizableBorder extends OneLineBorder {
 
 		SVGNodePlateFigure mainFigure = FigureUtils.findParentFigureInstance(figure, SVGNodePlateFigure.class);
 		// Get the connection anchor
-		ConnectionAnchor connectionAnchor = ((SVGNodePlateFigure) mainFigure).getConnectionAnchor("");
-		if (connectionAnchor instanceof SlidableRoundedRectangleAnchor && !(mainFigure.getBounds().equals(new Rectangle()))) {
-			// Calculate the length off the border thanks the SlidableRoundedRectangleAnchor
-			Rectangle rect = figure.getBounds().getCopy();
-			figure.translateToAbsolute(rect);
+		if (mainFigure != null) {
+			ConnectionAnchor connectionAnchor = mainFigure.getConnectionAnchor("");
+			if (connectionAnchor instanceof SlidableRoundedRectangleAnchor && !(mainFigure.getBounds().equals(new Rectangle()))) {
+				// Calculate the length off the border thanks the SlidableRoundedRectangleAnchor
+				Rectangle rect = figure.getBounds().getCopy();
+				figure.translateToAbsolute(rect);
 
-			Point locationLeft = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(rect.getTopLeft().translate(rect.width / 2, 0), rect.getTopLeft());
-			Point locationRight = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(rect.getTopLeft().translate(rect.width / 2, 0), rect.getTopRight());
+				Point locationLeft = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(rect.getTopLeft().translate(rect.width / 2, 0), rect.getTopLeft());
+				Point locationRight = ((SlidableRoundedRectangleAnchor) connectionAnchor).getLocation(rect.getTopLeft().translate(rect.width / 2, 0), rect.getTopRight());
 
-			if (locationLeft != null && locationRight != null) {
+				if (locationLeft != null && locationRight != null) {
 
-				rect.width = locationRight.x - locationLeft.x;
-				// translate the length according to the zoom
-				figure.translateToRelative(rect);
-				length = rect.width;
+					rect.width = locationRight.x - locationLeft.x;
+					// translate the length according to the zoom
+					figure.translateToRelative(rect);
+					length = rect.width;
 
-				// set the position at the figure bounds.x to the position on x of the left location
-				// TODO: don't do it on a getLenght method.
-				figure.translateToRelative(locationLeft);
-				tempRect.x = locationLeft.x;
+					// set the position at the figure bounds.x to the position on x of the left location
+					// TODO: don't do it on a getLenght method.
+					figure.translateToRelative(locationLeft);
+					tempRect.x = locationLeft.x;
+				}
 			}
 		}
-		return (int) (length);
+		return (length);
 	}
 
 	/**

@@ -31,7 +31,7 @@ import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.uml2.uml.Stereotype;
 
 
-// TODO: Auto-generated Javadoc
+
 /**
  * Dialog that allows user to add/remove stereotypes to an element.
  *

@@ -22,9 +22,7 @@ import org.eclipse.gmf.runtime.diagram.ui.commands.ICommandProxy;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.emf.commands.core.command.CompositeTransactionalCommand;
 import org.eclipse.gmf.runtime.notation.View;
-import org.eclipse.papyrus.commands.wrappers.EMFtoGMFCommandWrapper;
 import org.eclipse.papyrus.uml.diagram.common.commands.ApplyStereotypeCommand;
-import org.eclipse.papyrus.uml.diagram.common.commands.DefferedAppliedStereotypeToDisplayCommand;
 import org.eclipse.papyrus.uml.diagram.common.service.ApplyStereotypeRequest;
 import org.eclipse.uml2.uml.Element;
 
@@ -95,9 +93,6 @@ public class ApplyStereotypeEditPolicy extends AbstractEditPolicy {
 
 		// 1. apply stereotypes
 		cc.compose(new ApplyStereotypeCommand(editingDomain, request));
-
-		// 2. display stereotypes
-		cc.compose(new EMFtoGMFCommandWrapper(new DefferedAppliedStereotypeToDisplayCommand(editingDomain, getHost(), "")));
 
 		return new ICommandProxy(cc.reduce());
 	}

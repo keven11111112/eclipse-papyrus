@@ -10,77 +10,69 @@
  * Contributors:
  *  Patrick Tessier (CEA LIST) Patrick.tessier@cea.fr - Initial API and implementation
  *  Christian W. Damus (CEA) - bug 323802
+ *  Celine Janssens (ALL4TEC) celine.janssens@all4tec.net - Bug 460356 : Refactor Stereotype Display
  *
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.common.editpolicies;
 
-import java.util.Iterator;
-
-import org.eclipse.emf.common.notify.Notification;
+import org.eclipse.draw2d.IFigure;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
 import org.eclipse.emf.transaction.util.TransactionUtil;
 import org.eclipse.gef.Request;
 import org.eclipse.gef.commands.Command;
 import org.eclipse.gef.commands.UnexecutableCommand;
-import org.eclipse.gef.editpolicies.GraphicalEditPolicy;
 import org.eclipse.gmf.runtime.diagram.core.commands.DeleteCommand;
 import org.eclipse.gmf.runtime.diagram.core.listener.DiagramEventBroker;
 import org.eclipse.gmf.runtime.diagram.core.listener.NotificationListener;
+import org.eclipse.gmf.runtime.diagram.ui.editparts.GraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.editparts.IGraphicalEditPart;
 import org.eclipse.gmf.runtime.diagram.ui.requests.EditCommandRequestWrapper;
 import org.eclipse.gmf.runtime.emf.type.core.requests.DestroyElementRequest;
-import org.eclipse.gmf.runtime.notation.EObjectValueStyle;
-import org.eclipse.gmf.runtime.notation.NotationPackage;
 import org.eclipse.gmf.runtime.notation.View;
 import org.eclipse.papyrus.infra.core.listenerservice.IPapyrusListener;
+import org.eclipse.papyrus.infra.gmfdiag.common.editpart.IPapyrusEditPart;
+import org.eclipse.papyrus.infra.gmfdiag.common.model.NotationUtils;
 import org.eclipse.papyrus.infra.gmfdiag.common.utils.GMFUnsafe;
 import org.eclipse.papyrus.uml.diagram.common.Activator;
+import org.eclipse.papyrus.uml.diagram.common.figure.node.IPapyrusNodeUMLElementFigure;
+import org.eclipse.papyrus.uml.diagram.common.stereotype.display.helper.StereotypeDisplayConstant;
 import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Element;
+import org.eclipse.uml2.uml.util.UMLUtil;
 
 /**
- * this editpolicy attached to StereotypeCommentEdipart has in charge to prevent the remove form model
- * and launch command of deletion if it detect that any properties of applied stereotype are displayed
+ * This Edit Policy is attached to AppliedStereotypeCommentEdipart, and is in charge to prevent the deletion of the Comment from model
+ * and launch command of deletion if it detect that no property of applied stereotype are displayed.
  *
  */
-public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPolicy implements NotificationListener, IPapyrusListener {
+public class CommentShapeForAppliedStereotypeEditPolicy extends AbstractAppliedStereotypeDisplayEditPolicy implements NotificationListener, IPapyrusListener {
 
-	@Override
-	public void notifyChanged(Notification notification) {
-		View commentNode = getView();
-		final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
-		if (getUMLElement() == null) {
-			executeAppliedStereotypeCommentDeletion(domain, commentNode);
-		}
-		final int eventType = notification.getEventType();
-		if (eventType == Notification.SET && notification.getFeature().equals(NotationPackage.eINSTANCE.getView_Visible())) {
-
-			if (getView() != null) {
-
-				if (getvisibleAppliedStereotypeCompartment(commentNode, getUMLElement()) == 0) {
-
-					executeAppliedStereotypeCommentDeletion(domain, commentNode);
-
-				}
-			}
-		}
-	}
 
 	/**
 	 * Returns the uml element controlled by the host edit part
 	 *
 	 * @return the uml element controlled by the host edit part
 	 */
+	@Override
 	protected Element getUMLElement() {
+		Element element = null;
 		if ((Element) getView().getElement() != null) {
-			return (Element) getView().getElement();
+			element = (Element) getView().getElement();
+		} else {
+
+			EObject object = NotationUtils.getEObjectValue(getView(), StereotypeDisplayConstant.STEREOTYPE_COMMENT_RELATION_NAME, null);
+			if (object != null) {
+				if (object instanceof Element) {
+					element = (Element) object;
+				} else {
+					if (UMLUtil.getStereotype(object) != null) {
+						element = UMLUtil.getStereotype(object);
+					}
+				}
+			}
 		}
-		if (getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT") != null) {
-			EObjectValueStyle eObjectValueStyle = (EObjectValueStyle) getView().getNamedStyle(NotationPackage.eINSTANCE.getEObjectValueStyle(), "BASE_ELEMENT");
-			return (Element) eObjectValueStyle.getEObjectValue();
-		}
-		return null;
+		return element;
 	}
 
 	@Override
@@ -93,42 +85,59 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 		return super.getCommand(request);
 	}
 
+	/**
+	 * Refreshes the stereotypes properties displayed above name of the element
+	 * in this edit part.
+	 * 
+	 * @param stereotypesPropertiesToDisplay
+	 */
+	protected void refreshAppliedStereotypesPropertiesInBrace(IPapyrusNodeUMLElementFigure figure) {
+		String toDisplayInBrace = helper.getStereotypePropertiesInBrace(((GraphicalEditPart) getHost()).getNotationView());
+		// if the string is not empty, then, the figure has to display it. Else,
+		// it displays nothing
+		if (!"".equals(toDisplayInBrace)) {
+			// it has to be displayed in braces, so compute the string to
+			// display
+			figure.setStereotypePropertiesInBrace(toDisplayInBrace);
+		} else {
+			figure.setStereotypePropertiesInBrace(null);
+		}
+	}
 
+	/**
+	 * Execute Comment Deletion
+	 * 
+	 * @param domain
+	 *            TransactionalDomain
+	 * @param commentNode
+	 *            Node of the Comment to be deleted.
+	 */
 	protected void executeAppliedStereotypeCommentDeletion(final TransactionalEditingDomain domain, final View commentNode) {
-		if (commentNode != null) {
-			Display.getCurrent().asyncExec(new Runnable() {
 
-				@Override
-				public void run() {
-					// because it is asynchronous the comment node's domain maybe become null
-					if (TransactionUtil.getEditingDomain(commentNode) == domain) {
-						DeleteCommand command = new DeleteCommand(commentNode);
-						try {
-							GMFUnsafe.write(domain, command);
-						} catch (Exception e) {
-							Activator.log.error(e);
-						}
+		Display.getCurrent().asyncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				// because it is asynchronous the comment node's domain maybe become null
+				if (TransactionUtil.getEditingDomain(commentNode) == domain) {
+					DeleteCommand command = new DeleteCommand(commentNode);
+					try {
+						GMFUnsafe.write(domain, command);
+					} catch (Exception e) {
+						Activator.log.error(e);
 					}
 				}
-			});
-		}
+			}
+		});
 	}
 
-	protected int getvisibleAppliedStereotypeCompartment(View view, EObject eobject) {
-		int nbVisibleCompartment = 0;
-		Iterator<View> iteratorView = view.getChildren().iterator();
-		while (iteratorView.hasNext()) {
-			View subview = iteratorView.next();
-			if (subview.isVisible() == true) {
-				nbVisibleCompartment++;
-			}
-		}
-		return nbVisibleCompartment;
-	}
+
+
 
 
 	@Override
 	public void activate() {
+		super.activate();
 		// retrieve the view and the element managed by the edit part
 		View view = getView();
 		if (view == null) {
@@ -136,8 +145,9 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 		}
 
 		// adds a listener on the view and the element controlled by the
-		// editpart
+		// editpartrefr
 		getDiagramEventBroker().addNotificationListener(view, this);
+
 	}
 
 	/**
@@ -160,6 +170,7 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 *
 	 * @return the diagram event broker
 	 */
+	@Override
 	protected DiagramEventBroker getDiagramEventBroker() {
 		TransactionalEditingDomain theEditingDomain = ((IGraphicalEditPart) getHost()).getEditingDomain();
 		if (theEditingDomain != null) {
@@ -173,7 +184,48 @@ public class CommentShapeForAppliedStereotypeEditPolicy extends GraphicalEditPol
 	 *
 	 * @return the view controlled by the host edit part
 	 */
+	@Override
 	protected View getView() {
 		return (View) getHost().getModel();
+	}
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeLabelDisplayEditPolicy#refreshStereotypeDisplay()
+	 *
+	 */
+
+	protected void refreshStereotypeDisplay() {
+
+
+		IFigure figure = ((IPapyrusEditPart) getHost()).getPrimaryShape();
+
+		// refresh Brace display
+		if (figure instanceof IPapyrusNodeUMLElementFigure) {
+			refreshAppliedStereotypesPropertiesInBrace((IPapyrusNodeUMLElementFigure) figure);
+		}
+
+		// Deletion of Comment
+		View commentNode = getView();
+		if (commentNode != null) {
+			final TransactionalEditingDomain domain = TransactionUtil.getEditingDomain(commentNode);
+
+			// if Base_Element is deleted, the Comment is deleted as well
+			if (getUMLElement() == null) {
+				executeAppliedStereotypeCommentDeletion(domain, commentNode);
+			}
+		}
+
+	}
+
+
+	/**
+	 * @see org.eclipse.papyrus.uml.diagram.common.editpolicies.AbstractAppliedStereotypeDisplayEditPolicy#refreshDisplay()
+	 *
+	 */
+	@Override
+	public void refreshDisplay() {
+
+		refreshStereotypeDisplay();
+
 	}
 }

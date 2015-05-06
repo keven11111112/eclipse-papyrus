@@ -86,7 +86,7 @@ import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineMessageCreateHelper
 import org.eclipse.papyrus.uml.diagram.sequence.util.LifelineResizeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.OperandBoundsComputeHelper;
 import org.eclipse.papyrus.uml.diagram.sequence.util.SequenceUtil;
-import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypesCommentEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpart.AppliedStereotypeCommentEditPart;
 import org.eclipse.uml2.uml.CombinedFragment;
 import org.eclipse.uml2.uml.ExecutionSpecification;
 import org.eclipse.uml2.uml.Interaction;
@@ -694,7 +694,7 @@ public class InteractionCompartmentXYLayoutEditPolicy extends XYLayoutEditPolicy
 		if(request instanceof ChangeBoundsRequest) {
 			List<?> editParts = ((ChangeBoundsRequest)request).getEditParts();
 			if(editParts.size() == 1) {
-				if (editParts.get(0) instanceof AppliedStereotypesCommentEditPart) {
+				if (editParts.get(0) instanceof AppliedStereotypeCommentEditPart) {
 					// Allow to move-in AppliedStereotypeCommentEditPart			
 					return super.getAddCommand(request);
 				}

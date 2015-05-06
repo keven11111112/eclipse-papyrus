@@ -13,8 +13,8 @@
  *****************************************************************************/
 package org.eclipse.papyrus.uml.diagram.sequence.edit.policies;
 
-import org.eclipse.papyrus.uml.diagram.common.editpolicies.AppliedStereotypeNodeLabelDisplayEditPolicy;
 import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPart;
+import org.eclipse.papyrus.uml.diagram.stereotype.edition.editpolicies.AppliedStereotypeLabelEditPolicy;
 
 /**
  * This policy is used to automatically move a lifeline when a stereotype is changed.
@@ -23,14 +23,14 @@ import org.eclipse.papyrus.uml.diagram.sequence.edit.parts.CustomLifelineEditPar
  * @author mvelten
  *
  */
-public class LifelineAppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereotypeNodeLabelDisplayEditPolicy {
+public class LifelineAppliedStereotypeNodeLabelDisplayEditPolicy extends AppliedStereotypeLabelEditPolicy {
 
 	/**
 	 * {@inheritDoc}
 	 */
 	@Override
-	public void refreshDisplay() {
-		super.refreshDisplay();
+	public void refreshStereotypeDisplay() {
+		super.refreshStereotypeDisplay();
 		if (getHost() instanceof CustomLifelineEditPart) {
 			((CustomLifelineEditPart) getHost()).updateLifelinePosition();
 		}
