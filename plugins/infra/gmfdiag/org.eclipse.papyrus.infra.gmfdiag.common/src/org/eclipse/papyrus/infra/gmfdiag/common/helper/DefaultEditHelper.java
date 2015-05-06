@@ -40,6 +40,7 @@ import org.eclipse.papyrus.commands.DestroyElementPapyrusCommand;
 import org.eclipse.papyrus.infra.emf.commands.UnsetValueCommand;
 import org.eclipse.papyrus.infra.emf.requests.UnsetRequest;
 import org.eclipse.papyrus.infra.gmfdiag.common.commands.CreateEditBasedElementCommand;
+import org.eclipse.papyrus.infra.services.edit.utils.CacheRegistry;
 import org.eclipse.papyrus.infra.services.edit.utils.IRequestCacheEntries;
 
 /**
@@ -317,6 +318,10 @@ public class DefaultEditHelper extends AbstractEditHelper {
 	protected IEditHelperAdvice[] getEditHelperAdvice(IEditCommandRequest req) {
 		IEditHelperAdvice[] advices = null;
 		Object editHelperContext = req.getEditHelperContext();
+		if (editHelperContext == null) {
+			return null;
+		}
+
 		Map cacheMaps = (Map) req.getParameter(Cache_Maps);
 		if (cacheMaps != null) {
 			if (editHelperContext instanceof IEditHelperContext) {
@@ -348,11 +353,20 @@ public class DefaultEditHelper extends AbstractEditHelper {
 		if (advices == null) {
 
 			if (editHelperContext instanceof EObject) {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
+				IElementType type = ElementTypeRegistry.getInstance().getElementType((EObject) editHelperContext, req.getClientContext());
+				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				// advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((EObject) editHelperContext, req.getClientContext());
 
 			} else if (editHelperContext instanceof IElementType) {
-				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice((IElementType) editHelperContext, req.getClientContext());
+				advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), ((IElementType) editHelperContext));
 
+			} else if (editHelperContext instanceof IEditHelperContext) {
+				IElementType type = ((IEditHelperContext) editHelperContext).getElementType();
+				if (type != null) {
+					advices = CacheRegistry.getInstance().getEditHelperAdvice(req.getClientContext(), type);
+				} else {
+					advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
+				}
 			} else {
 				advices = ElementTypeRegistry.getInstance().getEditHelperAdvice(editHelperContext);
 			}

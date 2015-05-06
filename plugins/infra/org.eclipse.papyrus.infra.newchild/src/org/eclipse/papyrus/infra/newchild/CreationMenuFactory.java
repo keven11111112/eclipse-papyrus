@@ -16,6 +16,7 @@ package org.eclipse.papyrus.infra.newchild;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 
@@ -29,7 +30,10 @@ import org.eclipse.emf.ecore.EClassifier;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.ecore.EStructuralFeature;
+import org.eclipse.emf.transaction.RollbackException;
+import org.eclipse.emf.transaction.Transaction;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
+import org.eclipse.emf.transaction.impl.InternalTransactionalEditingDomain;
 import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.ElementTypeRegistry;
 import org.eclipse.gmf.runtime.emf.type.core.IElementType;
@@ -172,21 +176,34 @@ public class CreationMenuFactory {
 
 		EObject target = selectedObject;
 		Object result = null;
-		ICommand getEditContextCommand = provider.getEditCommand(editContextRequest);
+		final ICommand getEditContextCommand = provider.getEditCommand(editContextRequest);
 		if (getEditContextCommand != null) {
 			IStatus status = null;
 			try {
 				// this command could run in an unprotected transaction, it is not supposed to modify the model
-				status = getEditContextCommand.execute(null, null);
+				InternalTransactionalEditingDomain domain = (InternalTransactionalEditingDomain) editingDomain;
+				Map<String, Object> options = new HashMap<String, Object>();
+				options.put(Transaction.OPTION_NO_NOTIFICATIONS, true);
+				options.put(Transaction.OPTION_NO_VALIDATION, true);
+				options.put(Transaction.OPTION_NO_TRIGGERS, true);
+				Transaction transaction = domain.startTransaction(false, options);
+				try {
+					status = getEditContextCommand.execute(null, null);
+				} finally {
+					transaction.commit();
+				}
+			} catch (InterruptedException e) {
+				Activator.log.error(e);
 			} catch (ExecutionException e) {
 				Activator.log.error(e);
-				return false;
+			} catch (RollbackException e) {
+				Activator.log.error(e);
 			}
 			if (!(status == null || !status.isOK())) {
 				result = getEditContextCommand.getCommandResult().getReturnValue();
 			}
-			if(result instanceof EObject) {
-				target = (EObject)result;
+			if (result instanceof EObject) {
+				target = (EObject) result;
 			}
 		}
 

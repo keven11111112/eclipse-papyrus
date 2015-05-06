@@ -21,9 +21,10 @@ import org.eclipse.emf.ecore.EPackage;
 import org.eclipse.gmf.runtime.emf.type.core.edithelper.AbstractEditHelperAdvice;
 import org.eclipse.gmf.runtime.emf.type.core.requests.GetEditContextRequest;
 import org.eclipse.gmf.runtime.emf.type.core.requests.IEditCommandRequest;
+import org.eclipse.papyrus.commands.Activator;
 import org.eclipse.uml2.uml.Element;
 import org.eclipse.uml2.uml.Package;
-import org.eclipse.uml2.uml.util.UMLUtil;
+import org.eclipse.uml2.uml.Profile;
 
 /**
  * This abstract EditHelperAdvice is used for UML Element creation with
@@ -63,10 +64,25 @@ public abstract class AbstractStereotypedElementEditHelperAdvice extends Abstrac
 
 			// Ensure all necessary profiles are effectively applied
 			if(profileApplicationContext != null) {
+
 				for(EPackage requiredProfile : requiredProfiles) {
-					if(! profileApplicationContext.getAllAppliedProfiles().contains(UMLUtil.getProfile(requiredProfile, profileApplicationContext))) {					
+					if (requiredProfile == null) {
+						Activator.log.debug("required profile could not be found");
+						return false;
+					}
+					// do not try to get the Profile, as this can be time consuming and dependent on the size of the model
+					boolean requiredProfileApplied = false;
+					for (Profile profile : profileApplicationContext.getAllAppliedProfiles()) {
+						EPackage definition = profile.getDefinition();
+						// compare definition & requireProfiles
+						if (requiredProfile.equals(definition)) {
+							isApproved = true;
+							break; // this required profile has been found, accept this one
+						}
+					}
+					if (!requiredProfileApplied) {
 						isApproved = false;
-						break;
+						break; // a required profile has not been found. this helper does not approve the request
 					}
 				}
 			}
