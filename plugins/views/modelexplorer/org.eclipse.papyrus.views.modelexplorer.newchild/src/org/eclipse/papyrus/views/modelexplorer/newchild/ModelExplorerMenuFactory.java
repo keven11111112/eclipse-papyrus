@@ -16,10 +16,10 @@ package org.eclipse.papyrus.views.modelexplorer.newchild;
 import java.util.Map;
 
 import org.eclipse.emf.common.command.Command;
+import org.eclipse.emf.common.command.UnexecutableCommand;
 import org.eclipse.emf.ecore.EObject;
 import org.eclipse.emf.ecore.EReference;
 import org.eclipse.emf.transaction.TransactionalEditingDomain;
-import org.eclipse.gmf.runtime.common.core.command.UnexecutableCommand;
 import org.eclipse.papyrus.infra.newchild.CreationMenuFactory;
 import org.eclipse.papyrus.infra.widgets.util.RevealResultCommand;
 import org.eclipse.papyrus.views.modelexplorer.ModelExplorerPageBookView;

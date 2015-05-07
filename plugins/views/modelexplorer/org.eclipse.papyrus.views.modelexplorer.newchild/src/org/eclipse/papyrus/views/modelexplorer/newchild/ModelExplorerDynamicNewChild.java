@@ -30,26 +30,22 @@ import org.eclipse.swt.widgets.Menu;
 
 /**
  * This class has in charge to create menu from elementCreationMenuModel
- *
  */
-public class DynamicNewChild extends org.eclipse.papyrus.infra.newchild.ui.DynamicNewChild {
+public class ModelExplorerDynamicNewChild extends org.eclipse.papyrus.infra.newchild.ui.DynamicNewChild {
 
 	/**
-	 *
 	 * Constructor.
-	 *
 	 */
-	public DynamicNewChild() {
+	public ModelExplorerDynamicNewChild() {
 		super();
 	}
 
 	/**
-	 *
 	 * Constructor.
 	 *
 	 * @param id
 	 */
-	public DynamicNewChild(String id) {
+	public ModelExplorerDynamicNewChild(String id) {
 		super(id);
 	}
 
