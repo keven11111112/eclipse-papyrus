@@ -35,12 +35,14 @@ import org.eclipse.gmf.runtime.common.core.command.ICommand;
 import org.eclipse.gmf.runtime.emf.type.core.IHintedType;
 import org.eclipse.gmf.runtime.emf.type.core.commands.CreateElementCommand;
 import org.eclipse.gmf.runtime.emf.type.core.requests.CreateElementRequest;
+import org.eclipse.papyrus.infra.elementtypesconfigurations.registries.ElementTypeSetConfigurationRegistry;
 import org.eclipse.papyrus.infra.services.edit.service.ElementEditServiceUtils;
 import org.eclipse.papyrus.infra.services.edit.service.IElementEditService;
 import org.eclipse.papyrus.junit.framework.classification.tests.AbstractPapyrusTest;
 import org.eclipse.papyrus.junit.utils.PapyrusProjectUtils;
 import org.eclipse.papyrus.junit.utils.rules.HouseKeeper;
 import org.eclipse.papyrus.uml.service.types.element.UMLElementTypes;
+import org.eclipse.swt.widgets.Display;
 import org.eclipse.uml2.uml.Activity;
 import org.eclipse.uml2.uml.Class;
 import org.eclipse.uml2.uml.Model;
@@ -101,13 +103,25 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 			fail(e.getMessage());
 		}
 
-		rootModel = (Model)resource.getContents().get(0);
+		rootModel = (Model) resource.getContents().get(0);
 		assertNotNull("Model should not be null", rootModel);
 		try {
 			initExistingElements();
 		} catch (Exception e) {
 			fail(e.getMessage());
 		}
+
+		// force load of the element type registry. Will need to load in in UI thread because of some advice in communication diag: see org.eclipse.gmf.tooling.runtime.providers.DiagramElementTypeImages
+		Display.getDefault().syncExec(new Runnable() {
+
+			@Override
+			public void run() {
+				ElementTypeSetConfigurationRegistry registry = ElementTypeSetConfigurationRegistry.getInstance();
+				Assert.assertNotNull("registry should not be null after init", registry);
+				Assert.assertNotNull("element type should not be null", UMLElementTypes.CLASS);
+			}
+		});
+
 
 	}
 
@@ -116,9 +130,9 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 	 */
 	private static void initExistingElements() throws Exception {
 		// existing test activity
-		testActivity = (Activity)rootModel.getOwnedMember("TestActivity");
-		testClass = (Class)rootModel.getOwnedMember("TestClass");
-		testActivityWithNode = (Activity)rootModel.getOwnedMember("TestActivityWithNode");
+		testActivity = (Activity) rootModel.getOwnedMember("TestActivity");
+		testClass = (Class) rootModel.getOwnedMember("TestClass");
+		testActivityWithNode = (Activity) rootModel.getOwnedMember("TestActivityWithNode");
 	}
 
 	@Test
@@ -147,11 +161,11 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 	 * Creates the element in the given owner element, undo and redo the action
 	 *
 	 * @param owner
-	 *        owner of the new element
+	 *            owner of the new element
 	 * @param hintedType
-	 *        type of the new element
+	 *            type of the new element
 	 * @param canCreate
-	 *        <code>true</code> if new element can be created in the specified owner
+	 *            <code>true</code> if new element can be created in the specified owner
 	 */
 	protected Command getCreateChildCommand(EObject owner, IHintedType hintedType, boolean canCreate) throws Exception {
 		IElementEditService elementEditService = ElementEditServiceUtils.getCommandProvider(owner);
@@ -159,9 +173,9 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 		assertTrue("Command should be a CreationCommand", command instanceof CreateElementCommand);
 		// test if the command is enable and compare with the canCreate parameter
 		boolean canExecute = command.canExecute();
-		if(canExecute) {
+		if (canExecute) {
 			// executable but was expected as not executable
-			if(!canCreate) {
+			if (!canCreate) {
 				fail("Creation command is executable but it was expected as not executable");
 			} else {
 				// command is executable, and it was expected to => run the creation
@@ -169,7 +183,7 @@ public class CreatePureUMLElementTest extends AbstractPapyrusTest {
 				return emfCommand;
 			}
 		} else {
-			if(canCreate) {
+			if (canCreate) {
 				fail("Creation command is not executable but it was expected to be executable");
 			}
 		}
